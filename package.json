@@ -12,8 +12,10 @@
     "lint": "eslint --ext .jsx,.js,.ts,.tsx packages/",
     "lint:fix": "yarn lint --fix",
     "pre-commit": "lint-staged",
+    "pre-push": "yarn test:coverage && yarn lint",
     "prepare-husky": "husky install",
     "test": "echo test",
+    "test:coverage": "echo test:coverage",
     "test:staged": "echo test:staged",
     "test:watch": "echo test:watch"
   },
