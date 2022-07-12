@@ -1,0 +1,66 @@
+{
+  "settings": {
+    "import/resolver": {
+      "babel-module": {}
+    },
+    "react": {
+      "pragma": "React",
+      "version": "detect"
+    }
+  },
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "testing-library", "spellcheck"],
+  "extends": [
+    "plugin:react/recommended",
+    "plugin:mdx/recommended",
+    "airbnb",
+    "@tiendanube/eslint-config",
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "plugin:prettier/recommended"
+  ],
+  "overrides": [
+    {
+      "files": ["*.md"],
+      "rules": {
+        "prettier/prettier": [
+          2,
+          {
+            "parser": "markdown"
+          }
+        ]
+      }
+    },
+    {
+      "files": ["*.mdx"],
+      "extends": ["plugin:mdx/overrides"]
+    }
+  ],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "rules": {
+    "@typescript-eslint/interface-name-prefix": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-unused-vars": ["warn", { "varsIgnorePattern": "^_" }],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "error",
+    "prettier/prettier": [
+      "warn",
+      {
+        "singleQuote": true,
+        "semi": true,
+        "trailingComma": "none"
+      }
+    ],
+    "no-console": "warn"
+  }
+}
