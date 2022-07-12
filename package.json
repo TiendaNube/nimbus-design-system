@@ -1,0 +1,29 @@
+{
+  "name": "nimbus-design-system",
+  "version": "0.0.0",
+  "description": "Nimbus is the open source design system created by the Cloudshop design team so that together we can leverage more stories every day, with simplicity, accessibility, consistency and performance.",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "scripts": {
+    "prepare-husky": "husky install",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TiendaNube/nimbus-design-system.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TiendaNube/nimbus-design-system/issues"
+  },
+  "homepage": "https://github.com/TiendaNube/nimbus-design-system#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^17.0.3",
+    "@commitlint/config-conventional": "^17.0.3",
+    "husky": "^8.0.1"
+  }
+}
