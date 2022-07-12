@@ -11,8 +11,11 @@
   "scripts": {
     "lint": "eslint --ext .jsx,.js,.ts,.tsx packages/",
     "lint:fix": "yarn lint --fix",
+    "pre-commit": "lint-staged",
     "prepare-husky": "husky install",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo test",
+    "test:staged": "echo test:staged",
+    "test:watch": "echo test:watch"
   },
   "repository": {
     "type": "git",
@@ -43,6 +46,7 @@
     "eslint-plugin-spellcheck": "^0.0.19",
     "eslint-plugin-testing-library": "^5.5.1",
     "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
     "typescript": "^4.7.4"
   }
