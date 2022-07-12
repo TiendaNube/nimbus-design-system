@@ -1,7 +1,7 @@
 {
   "name": "nimbus-design-system",
   "version": "0.0.0",
-  "description": "Nimbus is the open source design system created by the Cloudshop design team so that together we can leverage more stories every day, with simplicity, accessibility, consistency and performance.",
+  "description": "Nimbus is the open source design system created by the NuvemSop design team so that together we can leverage more stories every day, with simplicity, accessibility, consistency and performance.",
   "private": true,
   "workspaces": {
     "packages": [
@@ -9,6 +9,8 @@
     ]
   },
   "scripts": {
+    "lint": "eslint --ext .jsx,.js,.ts,.tsx packages/",
+    "lint:fix": "yarn lint --fix",
     "prepare-husky": "husky install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -24,6 +26,24 @@
   "devDependencies": {
     "@commitlint/cli": "^17.0.3",
     "@commitlint/config-conventional": "^17.0.3",
-    "husky": "^8.0.1"
+    "@tiendanube/eslint-config": "^0.3.2",
+    "@typescript-eslint/eslint-plugin": "^5.30.6",
+    "@typescript-eslint/parser": "^5.30.6",
+    "eslint": "^8.19.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-babel": "^5.3.1",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.6.0",
+    "eslint-plugin-mdx": "^2.0.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.30.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-sonarjs": "^0.13.0",
+    "eslint-plugin-spellcheck": "^0.0.19",
+    "eslint-plugin-testing-library": "^5.5.1",
+    "husky": "^8.0.1",
+    "prettier": "^2.7.1",
+    "typescript": "^4.7.4"
   }
 }
