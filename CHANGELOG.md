@@ -44,5 +44,7 @@ Package-specific changes not released in any package will be added here just bef
   - Lint Staged configuration performed. ([#1](https://github.com/TiendaNube/nimbus-design-system/pull/1) by [@juniorconquista](https://github.com/juniorconquista))
   - Commitlint configuration performed. ([#1](https://github.com/TiendaNube/nimbus-design-system/pull/1) by [@juniorconquista](https://github.com/juniorconquista))
   - Editorconfig configuration performed. ([#1](https://github.com/TiendaNube/nimbus-design-system/pull/1) by [@juniorconquista](https://github.com/juniorconquista))
+  - Added CONTRIBUTING.md. ([#2](https://github.com/TiendaNube/nimbus-design-system/pull/2) by [@juniorconquista](https://github.com/juniorconquista))
+  - Added bug and new request issue templates. ([#2](https://github.com/TiendaNube/nimbus-design-system/pull/2) by [@juniorconquista](https://github.com/juniorconquista))
 
 <!-- ### ⚠️ Notices -->
