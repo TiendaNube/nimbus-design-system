@@ -1,0 +1,39 @@
+# See https://help.github.com/ignore-files/ for more about ignoring files.
+
+# Global ignoring
+.DS_Store
+node_modules
+dist
+test-output.*
+.cache
+.parcel-cache
+storybook-static
+.env
+.eslintcache
+
+# Yarn 2 build artifacts
+# https://yarnpkg.com/advanced/qa#which-files-should-be-gitignored
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+
+# Testing
+cypress/videos
+cypress/screenshots
+
+# Editor-specific
+.vscode
+.idea
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+yalc.lock
+
+# So devs can maintain their own todo lists in the project
+TODO.md
