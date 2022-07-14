@@ -9,6 +9,7 @@
     ]
   },
   "scripts": {
+    "build": "echo build",
     "lint": "eslint --ext .jsx,.js,.ts,.tsx",
     "lint:fix": "yarn lint --fix",
     "pre-commit": "lint-staged",
