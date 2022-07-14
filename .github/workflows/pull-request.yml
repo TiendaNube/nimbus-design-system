@@ -1,4 +1,4 @@
-name: Pull requests
+name: Master
 
 on: [pull_request]
 
