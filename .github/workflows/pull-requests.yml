@@ -1,0 +1,33 @@
+name: Pull requests
+
+on: [pull_request]
+
+jobs:
+  pipeline-quality:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Read Node version
+        run: echo "##[set-output name=NVMRC;]$(cat .nvmrc)"
+        id: nvm
+      - name: Set Node version
+        uses: actions/setup-node@v1
+        with:
+          node-version: '${{ steps.nvm.outputs.NVMRC }}'
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
+      - uses: actions/cache@v1
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+      - name: Install dependencies
+        if: steps.yarn-cache-dir-path.outputs.cache-hit != 'true'
+        run: yarn
+      - name: Run build
+        run: yarn build
+      - name: Run lint
+        run: yarn lint
+      - name: Run tests
+        run: yarn test
