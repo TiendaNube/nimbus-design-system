@@ -45,6 +45,6 @@ Package-specific changes not released in any package will be added here just bef
 - Editorconfig configuration performed. ([#1](https://github.com/TiendaNube/nimbus-design-system/pull/1) by [@juniorconquista](https://github.com/juniorconquista))
 - Added CONTRIBUTING.md. ([#2](https://github.com/TiendaNube/nimbus-design-system/pull/2) by [@juniorconquista](https://github.com/juniorconquista))
 - Added bug and new request issue templates. ([#2](https://github.com/TiendaNube/nimbus-design-system/pull/2) by [@juniorconquista](https://github.com/juniorconquista))
-- Added new jog on github actions for pull requests. ([#3](https://github.com/TiendaNube/nimbus-design-system/pull/3) by [@juniorconquista](https://github.com/juniorconquista))
+- Added new jog on github actions for pull requests. ([#4](https://github.com/TiendaNube/nimbus-design-system/pull/4) by [@juniorconquista](https://github.com/juniorconquista))
 
 <!-- ### ⚠️ Notices -->
