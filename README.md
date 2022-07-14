@@ -4,7 +4,7 @@
 
 > Nimbus is an open-source Design System created by Tiendanube / Nuvesmhop’s team to empower and enhance more stories every day, with simplicity, accessibility, consistency and performance.
 
-![PRs](https://img.shields.io/badge/PRs-Welcome-0CA76B) ![Nimbus Design System](https://github.com/TiendaNube/nimbus-design-system/actions/workflows/master.yml/badge.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![PRs](https://img.shields.io/badge/PRs-Welcome-0CA76B) ![Nimbus Design System](https://github.com/TiendaNube/nimbus-design-system/actions/workflows/pull-request.yml/badge.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## 📚 Documentation
 
