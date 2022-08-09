@@ -15,7 +15,7 @@
     "lint": "eslint packages --ext .jsx,.js,.ts,.tsx --quiet",
     "lint:fix": "yarn lint --fix",
     "pre-commit": "lint-staged",
-    "pre-push": "yarn test:coverage && yarn lint && types:check",
+    "pre-push": "yarn test:coverage && yarn lint && yarn types:check",
     "prepare-husky": "husky install",
     "reset": "yarn clean && rm -rf node_modules .yarn/cache .parcel-cache",
     "storybook": "start-storybook -p 6006 --ci",
