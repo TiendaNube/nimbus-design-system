@@ -1,6 +1,6 @@
 # Changelog
 
-It is a basic component that allows you to give titles and more hierarchy to blocks of texts to head sections or components.
+Tilte is a basic component that allows you to give titles and more hierarchy to blocks of text for sections or header components
 
 ## 0.0.1 2022-08-09
 
@@ -10,8 +10,8 @@ It is a basic component that allows you to give titles and more hierarchy to blo
 
 ### 🎉 New features
 
-- Add `children`, `as`, `textAlign` on Component
-- Add stories on Component
+- Add `children`, `as`, `textAlign` on Component. ([#8](https://github.com/TiendaNube/nimbus-design-system/pull/8) by [@juniorconquista](https://github.com/juniorconquista))
+- Add stories on Component. ([#8](https://github.com/TiendaNube/nimbus-design-system/pull/8) by [@juniorconquista](https://github.com/juniorconquista))
 
 <!-- ### 🐛 Bug fixes -->
 
