@@ -12,12 +12,25 @@ storybook-static
 .eslintcache
 
 # Yarn 2 build artifacts
-# https://yarnpkg.com/advanced/qa#which-files-should-be-gitignored
+### yarn ###
+# https://yarnpkg.com/getting-started/qa#which-files-should-be-gitignored
+
 .yarn/*
 !.yarn/releases
+!.yarn/patches
 !.yarn/plugins
 !.yarn/sdks
 !.yarn/versions
+
+# if you are NOT using Zero-installs, then:
+# comment the following lines
+.yarn/cache
+
+# and uncomment the following lines
+.pnp.*
+
+# Coverage directory used by tools like istanbul
+coverage
 
 # Testing
 cypress/videos
