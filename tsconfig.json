@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "paths": {
+      "@nimbus/properties": ["./packages/core/properties/src"],
+      "@nimbus/react-title": ["./packages/react/Title/src"]
+    }
+  }
+}

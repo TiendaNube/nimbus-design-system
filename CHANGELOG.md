@@ -5,6 +5,47 @@ Package-specific changes not released in any package will be added here just bef
 
 ## Unpublished
 
+## 0.0.1 2022-08-09
+
+### 📚 3rd party library updates
+
+- Added `react@18.2.0`. ([#6](https://github.com/TiendaNube/nimbus-design-system/pull/6) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `react-dom@18.2.0`. ([#6](https://github.com/TiendaNube/nimbus-design-system/pull/6) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `@babel/core@7.18.10`. ([#6](https://github.com/TiendaNube/nimbus-design-system/pull/6) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `@jest/types@28.1.3`. ([#6](https://github.com/TiendaNube/nimbus-design-system/pull/6) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `@storybook/addon-a11y@6.5.10`. ([#6](https://github.com/TiendaNube/nimbus-design-system/pull/6) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `@storybook/addon-actions@6.5.10`. ([#6](https://github.com/TiendaNube/nimbus-design-system/pull/6) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `@storybook/addon-essentials@6.5.10`. ([#6](https://github.com/TiendaNube/nimbus-design-system/pull/6) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `@storybook/addon-interactions@6.5.10`. ([#6](https://github.com/TiendaNube/nimbus-design-system/pull/6) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `@storybook/addon-links@6.5.10`. ([#6](https://github.com/TiendaNube/nimbus-design-system/pull/6) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `@storybook/builder-webpack4@6.5.10`. ([#6](https://github.com/TiendaNube/nimbus-design-system/pull/6) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `@storybook/manager-webpack4@6.5.10`. ([#6](https://github.com/TiendaNube/nimbus-design-system/pull/6) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `@storybook/react@6.5.10`. ([#6](https://github.com/TiendaNube/nimbus-design-system/pull/6) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `@testing-library/react@13.3.0`. ([#6](https://github.com/TiendaNube/nimbus-design-system/pull/6) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `@types/jest@28.1.6`. ([#6](https://github.com/TiendaNube/nimbus-design-system/pull/6) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `@types/react@18.0.15`. ([#6](https://github.com/TiendaNube/nimbus-design-system/pull/6) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `@types/react-dom@18.0.6`. ([#6](https://github.com/TiendaNube/nimbus-design-system/pull/6) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `babel-loader@8.2.5`. ([#6](https://github.com/TiendaNube/nimbus-design-system/pull/6) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `babel-plugin-module-resolver@4.1.0`. ([#6](https://github.com/TiendaNube/nimbus-design-system/pull/6) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `eslint-import-resolver-babel-module@5.3.1`. ([#6](https://github.com/TiendaNube/nimbus-design-system/pull/6) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `eslint-import-resolver-typescript@3.4.0`. ([#6](https://github.com/TiendaNube/nimbus-design-system/pull/6) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `eslint-plugin-jest@26.8.1`. ([#6](https://github.com/TiendaNube/nimbus-design-system/pull/6) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `jest@28.1.3`. ([#6](https://github.com/TiendaNube/nimbus-design-system/pull/6) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `jest-environment-jsdom@28.1.3`. ([#6](https://github.com/TiendaNube/nimbus-design-system/pull/6) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `jsdom@28.1.3`. ([#6](https://github.com/TiendaNube/nimbus-design-system/pull/6) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `sass@1.54.3`. ([#6](https://github.com/TiendaNube/nimbus-design-system/pull/6) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `ts-jest@28.0.7`. ([#6](https://github.com/TiendaNube/nimbus-design-system/pull/6) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `ts-node@10.9.1`. ([#6](https://github.com/TiendaNube/nimbus-design-system/pull/6) by [@juniorconquista](https://github.com/juniorconquista))
+
+### 💡 Others
+
+- Storybook configuration performed. ([#6](https://github.com/TiendaNube/nimbus-design-system/pull/6) by [@juniorconquista](https://github.com/juniorconquista))
+- Yarn workspaces configuration performed. ([#6](https://github.com/TiendaNube/nimbus-design-system/pull/6) by [@juniorconquista](https://github.com/juniorconquista))
+- Jest configuration performed. ([#6](https://github.com/TiendaNube/nimbus-design-system/pull/6) by [@juniorconquista](https://github.com/juniorconquista))
+- Remove jog on github actions for pull requests. ([#5](https://github.com/TiendaNube/nimbus-design-system/pull/5) by [@juniorconquista](https://github.com/juniorconquista))
+
+## 0.0.1 2022-08-02
+
 ### 📚 3rd party library updates
 
 - Added `@commitlint/cli@17.0.3`. ([#1](https://github.com/TiendaNube/nimbus-design-system/pull/1) by [@juniorconquista](https://github.com/juniorconquista))

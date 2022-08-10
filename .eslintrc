@@ -1,6 +1,12 @@
 {
   "settings": {
     "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true
+      },
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      },
       "babel-module": {}
     },
     "react": {
@@ -8,16 +14,20 @@
       "version": "detect"
     }
   },
+  "env": {
+    "browser": true
+  },
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint", "testing-library", "spellcheck"],
+  "plugins": ["@typescript-eslint", "testing-library", "spellcheck", "jest"],
   "extends": [
     "plugin:react/recommended",
     "plugin:mdx/recommended",
-    "airbnb",
-    "@tiendanube/eslint-config",
     "plugin:@typescript-eslint/recommended",
-    "prettier",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "plugin:jest/recommended",
+    "@tiendanube/eslint-config",
+    "airbnb",
+    "prettier"
   ],
   "overrides": [
     {
@@ -48,11 +58,36 @@
     "sourceType": "module"
   },
   "rules": {
+    "import/extensions": "off",
+    "import/prefer-default-export": "off",
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "packageDir": [".", "./packages/react/Title"]
+      }
+    ],
     "@typescript-eslint/interface-name-prefix": "off",
     "@typescript-eslint/no-explicit-any": "off",
-    "@typescript-eslint/no-unused-vars": ["warn", { "varsIgnorePattern": "^_" }],
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      { "varsIgnorePattern": "^_" }
+    ],
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".js", ".jsx", ".tsx"]
+      }
+    ],
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "error",
+    "react/jsx-props-no-spreading": "off",
+    "react/function-component-definition": [
+      2,
+      {
+        "namedComponents": ["arrow-function", "function-declaration"],
+        "unnamedComponents": "arrow-function"
+      }
+    ],
     "prettier/prettier": [
       "warn",
       {

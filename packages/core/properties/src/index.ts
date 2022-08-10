@@ -1,0 +1,1 @@
+export { removeStylesProperties } from "./properties";
