@@ -10,14 +10,6 @@ module.exports = {
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
     "@storybook/addon-a11y",
-    {
-      name: "storybook-addon-sass-postcss",
-      options: {
-        rule: {
-          test: /\.(scss|sass)$/i,
-        },
-      },
-    },
   ],
   framework: "@storybook/react",
   // we need to add aliases to webpack so it knows how to follow
