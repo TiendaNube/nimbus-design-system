@@ -24,7 +24,7 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
       - name: Install dependencies
         if: steps.yarn-cache-dir-path.outputs.cache-hit != 'true'
-        run: yarn
+        run: yarn install --immutable
       - name: Run build
         run: yarn build
       - name: Run lint
