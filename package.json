@@ -21,6 +21,7 @@
     "storybook": "start-storybook -p 6006 --ci",
     "start:dev": "yarn storybook",
     "test": "jest --passWithNoTests --no-cache --runInBand --watchAll=false",
+    "test:ci": "yarn types:check && jest --ci",
     "test:coverage": "yarn test --coverage",
     "test:staged": "yarn test --findRelatedTests",
     "test:watch": "yarn test --watch",
