@@ -1,0 +1,29 @@
+{
+  "font": {
+    "family": {
+      "value": "CentraNube, -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', arial, sans-serif"
+    },
+    "size": {
+      "sys": {
+        "body": {
+          "small": { "value": "{font.size.ref.075}" },
+          "caption": { "value": "{font.size.ref.0875}" },
+          "base": { "value": "{font.size.ref.1}" }
+        },
+        "title": {
+          "h1": { "value": "{font.size.ref.2}" },
+          "h2": { "value": "{font.size.ref.15}" },
+          "h3": { "value": "{font.size.ref.125}" },
+          "h4": { "value": "{font.size.ref.1125}" },
+          "h5": { "value": "{font.size.ref.1}" },
+          "h6": { "value": "{font.size.ref.0875}" }
+        }
+      }
+    },
+    "weight": {
+      "regular": { "value": "400" },
+      "medium": { "value": "500" },
+      "bold": { "value": "700" }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "spacing": {
+    "025": { "value": "0.125rem" },
+    "05": { "value": "0.25rem" },
+    "1": { "value": "0.5rem" },
+    "2": { "value": "1rem" },
+    "3": { "value": "1.5rem" },
+    "4": { "value": "2rem" },
+    "5": { "value": "2.5rem" },
+    "6": { "value": "3rem" },
+    "7": { "value": "3.5rem" },
+    "8": { "value": "4rem" },
+    "9": { "value": "4.5rem" },
+    "10": { "value": "5rem" }
+  }
+}
