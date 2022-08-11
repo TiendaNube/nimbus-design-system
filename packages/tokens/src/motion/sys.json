@@ -1,0 +1,10 @@
+{
+  "motion": {
+    "speed": {
+      "fast": { "value": "150ms" },
+      "base": { "value": "300ms" },
+      "slow": { "value": "450ms" },
+      "slower": { "value": "600ms" }
+    }
+  }
+}
