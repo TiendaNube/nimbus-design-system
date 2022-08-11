@@ -4,7 +4,7 @@
     "paths": {
       "@nimbus-ds/core-properties": ["./packages/core/properties/src"],
       "@nimbus-ds/tokens": ["./packages/tokens/dist"],
-      "@nimbus-ds/title": ["./packages/react/Title/src"]
+      "@nimbus-ds/Title": ["./packages/react/Title/src"]
     }
   }
 }
