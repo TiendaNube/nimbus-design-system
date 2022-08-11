@@ -6,13 +6,15 @@ on:
       - master
 
 jobs:
-  check:
+  check-version:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
+      - name: Upgrade yarn
+        run: yarn set version berry
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn config get cacheFolder)"

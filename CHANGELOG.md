@@ -9,7 +9,8 @@ Package-specific changes not released in any package will be added here just bef
 
 ### 💡 Others
 
-- Added new jog on github actions for versions. ([#6](https://github.com/TiendaNube/nimbus-design-system/pull/6) by [@juniorconquista](https://github.com/juniorconquista))
+- Added new jog on github actions for versions. ([#8](https://github.com/TiendaNube/nimbus-design-system/pull/8) by [@juniorconquista](https://github.com/juniorconquista))
+- Added new jog on github actions for publish release candidate. ([#8](https://github.com/TiendaNube/nimbus-design-system/pull/8) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 0.0.0 2022-08-09
 

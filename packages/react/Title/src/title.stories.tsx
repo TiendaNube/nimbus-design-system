@@ -2,7 +2,7 @@ import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { withA11y } from "@storybook/addon-a11y";
 
-import Title from "@nimbus-ds/title";
+import Title from "@nimbus-ds/Title";
 
 export default {
   title: "Atomic/Title",

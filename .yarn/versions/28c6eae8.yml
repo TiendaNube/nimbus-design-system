@@ -1,0 +1,5 @@
+releases:
+  "@nimbus-ds/tokens": major
+
+declined:
+  - nimbus-design-system
