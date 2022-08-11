@@ -12,6 +12,7 @@
   "scripts": {
     "build": "echo build",
     "build-storybook": "build-storybook",
+    "bump:check": "yarn version check -i",
     "clean": "yarn workspaces foreach -pv run clean",
     "lint": "eslint packages --ext .jsx,.js,.ts,.tsx --quiet",
     "lint:fix": "yarn lint --fix",
