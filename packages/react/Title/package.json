@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/title",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "license": "MIT",
   "source": "src/index.ts",
   "main": "dist/index.js",
