@@ -12,6 +12,7 @@
   ],
   "sideEffects": false,
   "scripts": {
+    "build": "echo build",
     "clean": "rm -rf dist",
     "version": "yarn version"
   },

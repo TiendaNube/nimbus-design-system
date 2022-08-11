@@ -10,7 +10,8 @@
     ]
   },
   "scripts": {
-    "build": "echo build",
+    "build": "yarn build:packages",
+    "build:packages": "yarn workspaces foreach -pv run build",
     "build-storybook": "build-storybook",
     "bump:check": "yarn version check",
     "bump:next": "yarn version apply --all --prerelease",

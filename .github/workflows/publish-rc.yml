@@ -22,12 +22,12 @@ jobs:
         with:
           node-version: '${{ steps.node_version.outputs.NVMRC }}'
           registry-url: 'https://registry.npmjs.org'
-
-      - name: Upgrade yarn
-        run: yarn set version berry
         
       - name: Install dependencies and publish
-        run: yarn && yarn publish:next
+        run: yarn
+
+      - name: Install dependencies and publish
+        run: yarn publish:next
         env:
           YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTOMATION_FROM_JUNIOR_CONQUISTA }}
 
