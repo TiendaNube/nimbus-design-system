@@ -1,11 +1,11 @@
-# `react-title`
+# `title`
 
 ## Installation
 
 ```sh
-$ yarn add @nimbus/react-title
+$ yarn add @nimbus-ds/title
 # or
-$ npm install @nimbus/react-title
+$ npm install @nimbus-ds/title
 ```
 
 ## Usage

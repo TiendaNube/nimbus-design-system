@@ -1,5 +1,5 @@
 {
-  "name": "@nimbus/properties",
+  "name": "@nimbus-ds/core-properties",
   "version": "1.0.0",
   "license": "MIT",
   "source": "src/index.ts",

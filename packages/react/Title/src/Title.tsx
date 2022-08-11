@@ -1,5 +1,5 @@
 import React from "react";
-import { removeStylesProperties } from "@nimbus/properties";
+import { removeStylesProperties } from "@nimbus-ds/core-properties";
 
 import { TitleProps } from "./title.types";
 

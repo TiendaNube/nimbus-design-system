@@ -3,9 +3,9 @@
 ## Installation
 
 ```sh
-$ yarn add @nimbus/properties
+$ yarn add @nimbus-ds/core-properties
 # or
-$ npm install @nimbus/properties
+$ npm install @nimbus-ds/core-properties
 ```
 
 ## Usage

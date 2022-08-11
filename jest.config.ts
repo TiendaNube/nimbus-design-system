@@ -4,8 +4,8 @@ const config: Config.InitialOptions = {
   testEnvironment: "jsdom",
   verbose: true,
   moduleNameMapper: {
-    "@nimbus/react-(.+)$": "<rootDir>/packages/react/$1/src",
-    "@nimbus/(.+)$": "<rootDir>packages/core/$1/src",
+    "@nimbus-ds/core-(.+)$": "<rootDir>packages/core/$1/src",
+    "@nimbus-ds/(.+)$": "<rootDir>/packages/react/$1/src",
   },
   transform: {
     ".+\\.(ts|tsx)$": "ts-jest",

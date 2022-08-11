@@ -2360,26 +2360,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nimbus/properties@workspace:*, @nimbus/properties@workspace:packages/core/properties":
+"@nimbus-ds/core-properties@workspace:*, @nimbus-ds/core-properties@workspace:packages/core/properties":
   version: 0.0.0-use.local
-  resolution: "@nimbus/properties@workspace:packages/core/properties"
+  resolution: "@nimbus-ds/core-properties@workspace:packages/core/properties"
   languageName: unknown
   linkType: soft
 
-"@nimbus/react-title@workspace:packages/react/Title":
+"@nimbus-ds/title@workspace:packages/react/Title":
   version: 0.0.0-use.local
-  resolution: "@nimbus/react-title@workspace:packages/react/Title"
+  resolution: "@nimbus-ds/title@workspace:packages/react/Title"
   dependencies:
-    "@nimbus/properties": "workspace:*"
+    "@nimbus-ds/core-properties": "workspace:*"
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
   languageName: unknown
   linkType: soft
 
-"@nimbus/tokens@workspace:packages/tokens":
+"@nimbus-ds/tokens@workspace:packages/tokens":
   version: 0.0.0-use.local
-  resolution: "@nimbus/tokens@workspace:packages/tokens"
+  resolution: "@nimbus-ds/tokens@workspace:packages/tokens"
   dependencies:
     style-dictionary: ^3.7.1
   languageName: unknown

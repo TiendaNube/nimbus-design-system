@@ -1,5 +1,5 @@
 {
-  "name": "@nimbus/react-title",
+  "name": "@nimbus-ds/title",
   "version": "1.0.0",
   "license": "MIT",
   "source": "src/index.ts",
@@ -16,7 +16,7 @@
     "version": "yarn version"
   },
   "dependencies": {
-    "@nimbus/properties": "workspace:*"
+    "@nimbus-ds/core-properties": "workspace:*"
   },
   "peerDependencies": {
     "react": "^16.8 || ^17.0 || ^18.0",
