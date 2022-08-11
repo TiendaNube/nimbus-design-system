@@ -1,0 +1,30 @@
+{
+  "font": {
+    "size": {
+      "ref": {
+        "075": { "value": "0.75rem" },
+        "0875": { "value": "0.875rem" },
+        "1": { "value": "1rem" },
+        "1125": { "value": "1.125rem" },
+        "125": { "value": "1.25rem" },
+        "15": { "value": "1.5rem" },
+        "2": { "value": "2rem" },
+        "3": { "value": "3rem" },
+        "4": { "value": "4rem " }
+      }
+    }
+  },
+  "line": {
+    "height": {
+      "ref": {
+        "1": { "value": "1rem" },
+        "1125": { "value": "1.125rem" },
+        "125": { "value": "1.25rem" },
+        "15": { "value": "1.5rem" },
+        "175": { "value": "1.75rem" },
+        "2": { "value": "2rem" },
+        "275": { "value": "2.75rem" }
+      }
+    }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "color": {
+    "sys": {
+      "light": {
+        "primary": {
+          "bg": { "value": "{color.ref.light.primary.100}" },
+          "surface": { "value": "{color.ref.light.primary.99}" },
+          "surface-highlight": { "value": "{color.ref.light.primary.90}" },
+          "interactive": { "value": "{color.ref.light.primary.60}" },
+          "interactive-hover": { "value": "{color.ref.light.primary.40}" },
+          "interactive-pressed": { "value": "{color.ref.light.primary.30}" },
+          "low": { "value": "{color.ref.light.primary.10}" },
+          "high": { "value": "{color.ref.light.primary.5}" }
+        },
+        "success": {
+          "bg": { "value": "{color.ref.light.success.100}" },
+          "surface": { "value": "{color.ref.light.success.99}" },
+          "surface-highlight": { "value": "{color.ref.light.success.90}" },
+          "interactive": { "value": "{color.ref.light.success.60}" },
+          "interactive-hover": { "value": "{color.ref.light.success.40}" },
+          "interactive-pressed": { "value": "{color.ref.light.success.30}" },
+          "low": { "value": "{color.ref.light.success.10}" },
+          "high": { "value": "{color.ref.light.success.5}" }
+        },
+        "warning": {
+          "bg": { "value": "{color.ref.light.warning.100}" },
+          "surface": { "value": "{color.ref.light.warning.99}" },
+          "surface-highlight": { "value": "{color.ref.light.warning.90}" },
+          "interactive": { "value": "{color.ref.light.warning.60}" },
+          "interactive-hover": { "value": "{color.ref.light.warning.40}" },
+          "interactive-pressed": { "value": "{color.ref.light.warning.30}" },
+          "low": { "value": "{color.ref.light.warning.10}" },
+          "high": { "value": "{color.ref.light.warning.5}" }
+        },
+        "danger": {
+          "bg": { "value": "{color.ref.light.danger.100}" },
+          "surface": { "value": "{color.ref.light.danger.99}" },
+          "surface-highlight": { "value": "{color.ref.light.danger.90}" },
+          "interactive": { "value": "{color.ref.light.danger.60}" },
+          "interactive-hover": { "value": "{color.ref.light.danger.40}" },
+          "interactive-pressed": { "value": "{color.ref.light.danger.30}" },
+          "low": { "value": "{color.ref.light.danger.10}" },
+          "high": { "value": "{color.ref.light.danger.5}" }
+        },
+        "neutral": {
+          "bg": { "value": "{color.ref.light.neutral.100}" },
+          "surface": { "value": "{color.ref.light.neutral.99}" },
+          "disabled": { "value": "{color.ref.light.neutral.95}" },
+          "interactive": { "value": "{color.ref.light.neutral.80}" },
+          "interactive-hover": { "value": "{color.ref.light.neutral.70}" },
+          "interactive-pressed": { "value": "{color.ref.light.neutral.30}" },
+          "low": { "value": "{color.ref.light.neutral.10}" },
+          "high": { "value": "{color.ref.light.neutral.5}" }
+        }
+      }
+    }
+  }
+}
