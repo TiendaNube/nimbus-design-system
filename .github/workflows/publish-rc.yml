@@ -23,10 +23,10 @@ jobs:
           node-version: '${{ steps.node_version.outputs.NVMRC }}'
           registry-url: 'https://registry.npmjs.org'
         
-      - name: Install dependencies and publish
+      - name: Install dependencies
         run: yarn
 
-      - name: Install dependencies and publish
+      - name: Publish
         run: yarn publish:next
         env:
           YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTOMATION_FROM_JUNIOR_CONQUISTA }}
