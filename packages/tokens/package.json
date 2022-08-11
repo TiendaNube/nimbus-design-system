@@ -1,5 +1,5 @@
 {
-  "name": "@nimbus/tokens",
+  "name": "@nimbus-ds/tokens",
   "version": "0.0.0",
   "license": "MIT",
   "source": "src/index.ts",
@@ -12,9 +12,9 @@
   ],
   "sideEffects": false,
   "scripts": {
+    "build": "style-dictionary build",
     "clean": "rm -rf dist",
-    "version": "yarn version",
-    "generate:tokens": "style-dictionary build"
+    "version": "yarn version"
   },
   "homepage": "https://nimbus.nuvemshop.com.br/documentation",
   "repository": {
