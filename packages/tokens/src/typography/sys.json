@@ -25,5 +25,24 @@
       "medium": { "value": "500" },
       "bold": { "value": "700" }
     }
+  },
+  "line": {
+    "height": {
+      "sys": {
+        "body": {
+          "small": { "value": "{line.height.ref.1}" },
+          "caption": { "value": "{line.height.ref.1125}" },
+          "base": { "value": "{line.height.ref.125}" }
+        },
+        "title": {
+          "h1": { "value": "{line.height.ref.275}" },
+          "h2": { "value": "{line.height.ref.2}" },
+          "h3": { "value": "{line.height.ref.175}" },
+          "h4": { "value": "{line.height.ref.15}" },
+          "h5": { "value": "{line.height.ref.125}" },
+          "h6": { "value": "{line.height.ref.1125}" }
+        }
+      }
+    }
   }
 }
