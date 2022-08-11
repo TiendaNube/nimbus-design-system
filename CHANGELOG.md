@@ -5,7 +5,13 @@ Package-specific changes not released in any package will be added here just bef
 
 ## Unpublished
 
-## 0.0.1 2022-08-09
+## 0.0.0 2022-08-11
+
+### 💡 Others
+
+- Added new jog on github actions for versions. ([#6](https://github.com/TiendaNube/nimbus-design-system/pull/6) by [@juniorconquista](https://github.com/juniorconquista))
+
+## 0.0.0 2022-08-09
 
 ### 📚 3rd party library updates
 
@@ -44,7 +50,7 @@ Package-specific changes not released in any package will be added here just bef
 - Jest configuration performed. ([#6](https://github.com/TiendaNube/nimbus-design-system/pull/6) by [@juniorconquista](https://github.com/juniorconquista))
 - Remove jog on github actions for pull requests. ([#5](https://github.com/TiendaNube/nimbus-design-system/pull/5) by [@juniorconquista](https://github.com/juniorconquista))
 
-## 0.0.1 2022-08-02
+## 0.0.0 2022-08-02
 
 ### 📚 3rd party library updates
 
