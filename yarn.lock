@@ -2371,14 +2371,13 @@ __metadata:
   resolution: "@nimbus/react-title@workspace:packages/react/Title"
   dependencies:
     "@nimbus/properties": "workspace:*"
-    "@nimbus/tokens": "workspace:*"
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
   languageName: unknown
   linkType: soft
 
-"@nimbus/tokens@workspace:*, @nimbus/tokens@workspace:packages/tokens":
+"@nimbus/tokens@workspace:packages/tokens":
   version: 0.0.0-use.local
   resolution: "@nimbus/tokens@workspace:packages/tokens"
   dependencies:
