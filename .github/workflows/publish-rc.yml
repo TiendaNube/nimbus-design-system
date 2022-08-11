@@ -23,6 +23,9 @@ jobs:
           node-version: '${{ steps.node_version.outputs.NVMRC }}'
           registry-url: 'https://registry.npmjs.org'
 
+      - name: Upgrade yarn
+        run: yarn set version berry
+        
       - name: Install dependencies and publish
         run: yarn && yarn publish:next
         env:
