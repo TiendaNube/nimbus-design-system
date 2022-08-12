@@ -5,8 +5,8 @@
   "private": true,
   "workspaces": {
     "packages": [
-      "packages/*/*",
-      "packages/*"
+      "packages/core/properties",
+      "packages/tokens"
     ]
   },
   "scripts": {

@@ -1,0 +1,6 @@
+releases:
+  "@nimbus-ds/tokens": major
+
+declined:
+  - nimbus-design-system
+  - "@nimbus-ds/core-properties"
