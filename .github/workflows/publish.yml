@@ -1,15 +1,15 @@
-name: 'Publish Release Candidate'
+name: 'Publish Release'
 
 on:
   push:
     branches:
-      - candidate
+      - master
     paths-ignore:
       - '**/package.json'
       - '.yarn/versions/**'
 
 jobs:
-  publish-rc:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -27,26 +27,26 @@ jobs:
         run: yarn
 
       - name: Publish
-        run: yarn publish:next
+        run: yarn publish:stable
         env:
           YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTOMATION_FROM_JUNIOR_CONQUISTA }}
 
       - name: Branch protection OFF
         run: |
           curl --request PUT \
-          --url 'https://api.github.com/repos/tiendanube/nimbus-design-system/branches/candidate/protection' \
+          --url 'https://api.github.com/repos/tiendanube/nimbus-design-system/branches/master/protection' \
           --header 'Authorization: token ${{ secrets.PAT_CHANGE_BRANCH_PROTECTION_RULES_FROM_JUNIOR_CONQUISTA }}' \
           --data '{"enforce_admins":false,"required_pull_request_reviews":null,"required_conversation_resolution":false}'
 
-      - name: Commit release candidate
+      - name: Commit release
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: 'feat: publish release candidate'
+          commit_message: 'feat: publish release'
 
       - name: Branch protection ON
         run: |
           curl --request PUT \
-          --url 'https://api.github.com/repos/tiendanube/nimbus-design-system/branches/candidate/protection' \
+          --url 'https://api.github.com/repos/tiendanube/nimbus-design-system/branches/master/protection' \
           --header 'Authorization: token ${{ secrets.PAT_CHANGE_BRANCH_PROTECTION_RULES_FROM_JUNIOR_CONQUISTA }}' \
           --header 'Accept: application/vnd.github.luke-cage-preview+json' \
           --data '{"enforce_admins":true,"required_pull_request_reviews":{"dismiss_stale_reviews":true","require_code_owner_reviews":true,"required_approving_review_count":2},"required_conversation_resolution":true}'
