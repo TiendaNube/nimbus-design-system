@@ -1,0 +1,4 @@
+releases:
+  "@nimbus-ds/core-properties": major
+  "@nimbus-ds/title": major
+  "@nimbus-ds/tokens": major
