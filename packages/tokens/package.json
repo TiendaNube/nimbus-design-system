@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/tokens",
-  "version": "0.0.0",
+  "version": "1.0.0-rc.2",
   "license": "MIT",
   "source": "src/index.ts",
   "main": "dist/index.js",
