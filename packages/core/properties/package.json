@@ -23,5 +23,6 @@
   },
   "bugs": {
     "url": "https://github.com/TiendaNube/nimbus-design-system/issues"
-  }
+  },
+  "stableVersion": "0.0.0"
 }
