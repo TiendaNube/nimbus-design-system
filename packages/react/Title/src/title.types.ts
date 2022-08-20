@@ -1,7 +1,6 @@
 import { ReactNode, HTMLAttributes } from "react";
 
-export interface TitleProps
-  extends Omit<HTMLAttributes<HTMLHeadingElement>, "className" | "style"> {
+export interface TitleProps extends HTMLAttributes<HTMLHeadingElement> {
   /** Element to be rendered inside the Title component */
   children: ReactNode;
   /** Type of html tag to create for the Title component */

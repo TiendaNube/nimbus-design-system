@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 
-import Title from "@nimbus-ds/Title";
+import { Title } from "./Title";
 import { TitleProps } from "./title.types";
 
 const content = "myText";
