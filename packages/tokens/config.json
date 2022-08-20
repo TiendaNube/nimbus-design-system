@@ -21,13 +21,17 @@
         }
       ]
     },
-    "js": {
+    "ts": {
       "transformGroup": "js",
       "buildPath": "dist/js/",
       "files": [
         {
-          "destination": "tokens.js",
-          "format": "javascript/module"
+          "format": "javascript/module",
+          "destination": "tokens.js"
+        },
+        {
+          "format": "typescript/module-declarations",
+          "destination": "tokens.d.ts"
         }
       ]
     }

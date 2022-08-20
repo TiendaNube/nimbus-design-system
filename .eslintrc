@@ -63,7 +63,12 @@
     "import/no-extraneous-dependencies": [
       "error",
       {
-        "packageDir": [".", "./packages/react/Title", "./packages/tokens"]
+        "packageDir": [
+          ".",
+          "./packages/react/Title",
+          "./packages/tokens",
+          "./packages/styles"
+        ]
       }
     ],
     "@typescript-eslint/interface-name-prefix": "off",
