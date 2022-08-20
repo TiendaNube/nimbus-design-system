@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/styles",
-  "version": "1.0.0-rc.1",
+  "version": "1.0.0",
   "license": "MIT",
   "source": "src/index.ts",
   "main": "dist/index.js",
@@ -27,7 +27,6 @@
   "bugs": {
     "url": "https://github.com/TiendaNube/nimbus-design-system/issues"
   },
-  "stableVersion": "0.0.0",
   "devDependencies": {
     "@vanilla-extract/babel-plugin": "^1.1.7",
     "@vanilla-extract/css": "^1.7.2",

@@ -1,7 +1,0 @@
-releases:
-  "@nimbus-ds/styles": major
-  "@nimbus-ds/title": major
-  "@nimbus-ds/tokens": major
-
-declined:
-  - nimbus-design-system
