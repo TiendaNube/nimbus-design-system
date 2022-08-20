@@ -1,8 +1,8 @@
 # Changelog
 
-Tilte is a basic component that allows you to give titles and more hierarchy to blocks of text for sections or header components
+Nimbus Styles deprive all styles needed to build nimbus components.
 
-## 1.0.0-rc.2 2022-08-20
+## 1.0.0-rc.1 2022-06-09
 
 ### 📚 3rd party library updates
 
@@ -16,19 +16,14 @@ Tilte is a basic component that allows you to give titles and more hierarchy to 
 - Added `webpack@5.74.0`. ([#11](https://github.com/TiendaNube/nimbus-design-system/pull/11) by [@juniorconquista](https://github.com/juniorconquista))
 - Added `webpack-cli@4.10.0`. ([#11](https://github.com/TiendaNube/nimbus-design-system/pull/11) by [@juniorconquista](https://github.com/juniorconquista))
 
-## 1.0.0-rc.1 2022-08-09
-
 <!-- ### 📚 3rd party library updates -->
 
 <!-- ### 🛠 Breaking changes -->
 
-### 🎉 New features
-
-- Added `children`, `as`, `textAlign` properties to the Component.. ([#6](https://github.com/TiendaNube/nimbus-design-system/pull/6) by [@juniorconquista](https://github.com/juniorconquista))
-- Added stories on Component. ([#6](https://github.com/TiendaNube/nimbus-design-system/pull/6) by [@juniorconquista](https://github.com/juniorconquista))
+<!-- ### 🎉 New features -->
 
 <!-- ### 🐛 Bug fixes -->
 
 <!-- ### 💡 Others -->
 
-<!-- ### ⚠️ Notices -->
+<!-- ### ⚠️ Notices  -->

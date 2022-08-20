@@ -1,13 +1,14 @@
 import type { Config } from "@jest/types";
 
 const config: Config.InitialOptions = {
+  setupFilesAfterEnv: ["./jest.setup.ts"],
   testEnvironment: "jsdom",
   verbose: true,
   moduleNameMapper: {
-    "@nimbus-ds/core-(.+)$": "<rootDir>packages/core/$1/src",
-    "@nimbus-ds/(.+)$": "<rootDir>/packages/react/$1/src",
+    "@nimbus-ds/styles": "<rootDir>/packages/styles/src",
   },
   transform: {
+    "^.+\\.css\\.ts$": "babel-jest",
     ".+\\.(ts|tsx)$": "ts-jest",
   },
 };

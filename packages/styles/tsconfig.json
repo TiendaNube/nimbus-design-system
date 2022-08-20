@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.json",
+  "include": ["./src"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "declaration": true,
+    "declarationDir": "./dist",
+    "paths": {
+      "@nimbus-ds/tokens": ["../tokens"]
+    }
+  }
+}

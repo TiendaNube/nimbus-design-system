@@ -1,11 +1,11 @@
-# `properties`
+# `styles`
 
 ## Installation
 
 ```sh
-$ yarn add @nimbus-ds/core-properties
+$ yarn add @nimbus-ds/styles
 # or
-$ npm install @nimbus-ds/core-properties
+$ npm install @nimbus-ds/styles
 ```
 
 ## Usage
