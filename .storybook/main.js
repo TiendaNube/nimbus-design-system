@@ -1,6 +1,16 @@
 const path = require("path");
+const { VanillaExtractPlugin } = require("@vanilla-extract/webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
+  core: {
+    builder: {
+      name: "webpack5",
+      options: {
+        lazyCompilation: true,
+      },
+    },
+  },
   stories: [
     "../packages/react/**/*.stories.mdx",
     "../packages/react/**/*.stories.@(js|jsx|ts|tsx)",
@@ -14,16 +24,25 @@ module.exports = {
   framework: "@storybook/react",
   // we need to add aliases to webpack so it knows how to follow
   // to the source of the packages rather than the built version (dist)
-  webpackFinal: async (config) => ({
-    ...config,
-    resolve: {
-      ...config.resolve,
-      alias: {
-        ...config.resolve.alias,
-        ...convertTsConfigPathsToWebpackAliases(),
+  webpackFinal: async (baseConfig) => {
+    const { module = {}, plugins = {}, resolve = {} } = baseConfig;
+
+    return {
+      ...baseConfig,
+      plugins: [
+        ...plugins,
+        new VanillaExtractPlugin(),
+        new MiniCssExtractPlugin(),
+      ],
+      resolve: {
+        ...resolve,
+        alias: {
+          ...resolve.alias,
+          ...convertTsConfigPathsToWebpackAliases(),
+        },
       },
-    },
-  }),
+    };
+  },
 };
 
 const convertTsConfigPathsToWebpackAliases = () => {
