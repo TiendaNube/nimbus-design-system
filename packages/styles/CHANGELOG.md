@@ -1,6 +1,6 @@
 # Changelog
 
-Properties is a utility package responsible for providing utility functions to other packages.
+Nimbus Styles deprive all styles needed to build nimbus components.
 
 ## 1.0.0-rc.1 2022-06-09
 
