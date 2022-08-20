@@ -5,6 +5,19 @@ Package-specific changes not released in any package will be added here just bef
 
 ## Unpublished
 
+## 0.0.0 2022-08-20
+
+### 📚 3rd party library updates
+
+- Added `@babel/preset-typescript@7.18.6`. ([#11](https://github.com/TiendaNube/nimbus-design-system/pull/11) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `@storybook/builder-webpack5@6.5.10`. ([#11](https://github.com/TiendaNube/nimbus-design-system/pull/11) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `@storybook/manager-webpack5@6.5.10`. ([#11](https://github.com/TiendaNube/nimbus-design-system/pull/11) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `@vanilla-extract/babel-plugin@1.1.7`. ([#11](https://github.com/TiendaNube/nimbus-design-system/pull/11) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `babel-jest@28.1.3`. ([#11](https://github.com/TiendaNube/nimbus-design-system/pull/11) by [@juniorconquista](https://github.com/juniorconquista))
+- Removed `sass@1.54.3`. ([#11](https://github.com/TiendaNube/nimbus-design-system/pull/11) by [@juniorconquista](https://github.com/juniorconquista))
+- Removed `@storybook/builder-webpack4@6.5.10`. ([#11](https://github.com/TiendaNube/nimbus-design-system/pull/11) by [@juniorconquista](https://github.com/juniorconquista))
+- Removed `@storybook/manager-webpack4@6.5.10`. ([#11](https://github.com/TiendaNube/nimbus-design-system/pull/11) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 0.0.0 2022-08-11
 
 ### 💡 Others

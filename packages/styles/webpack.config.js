@@ -1,6 +1,7 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { VanillaExtractPlugin } = require("@vanilla-extract/webpack-plugin");
+const TerserJSPlugin = require("terser-webpack-plugin");
 
 module.exports = {
   mode: "production",
@@ -41,5 +42,13 @@ module.exports = {
       "@nimbus-ds/tokens": path.resolve(__dirname, "../tokens"),
     },
     extensions: [".tsx", ".ts", ".js"],
+  },
+  externals: {
+    react: "React",
+    "react-dom": "ReactDOM",
+  },
+  optimization: {
+    minimize: true,
+    minimizer: [new TerserJSPlugin()],
   },
 };
