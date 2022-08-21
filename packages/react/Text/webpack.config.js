@@ -1,14 +1,12 @@
 const path = require("path");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { VanillaExtractPlugin } = require("@vanilla-extract/webpack-plugin");
 const TerserJSPlugin = require("terser-webpack-plugin");
 
 module.exports = {
-  mode: "production",
+  mode: "development",
   devtool: "source-map",
   entry: {
     "./index": "./src/index.ts",
-    "./themes/base": "./src/themes/base.css.ts",
   },
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -25,25 +23,16 @@ module.exports = {
       },
       {
         test: /\.css$/i,
-        use: [MiniCssExtractPlugin.loader, "css-loader"],
+        use: ["style-loader", "css-loader"],
       },
     ],
   },
-  plugins: [
-    new VanillaExtractPlugin(),
-    new MiniCssExtractPlugin({
-      filename: "[name].css",
-    }),
-  ],
+  plugins: [new VanillaExtractPlugin()],
   resolve: {
     alias: {
-      "@nimbus-ds/tokens": path.resolve(__dirname, "../tokens"),
+      "@nimbus-ds/styles": path.resolve(__dirname, "../../styles/src"),
     },
     extensions: [".tsx", ".ts", ".js"],
-  },
-  externals: {
-    react: "React",
-    "react-dom": "ReactDOM",
   },
   optimization: {
     minimize: true,

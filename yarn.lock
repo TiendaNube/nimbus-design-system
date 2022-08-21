@@ -2393,6 +2393,26 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@nimbus-ds/text@workspace:packages/react/Text":
+  version: 0.0.0-use.local
+  resolution: "@nimbus-ds/text@workspace:packages/react/Text"
+  dependencies:
+    "@nimbus-ds/styles": "workspace:*"
+    "@vanilla-extract/babel-plugin": ^1.1.7
+    "@vanilla-extract/css": ^1.7.2
+    "@vanilla-extract/recipes": ^0.2.5
+    "@vanilla-extract/webpack-plugin": ^2.1.11
+    terser-webpack-plugin: ^5.3.5
+    ts-loader: ^9.3.1
+    typescript: ^4.7.4
+    webpack: ^5.74.0
+    webpack-cli: ^4.10.0
+  peerDependencies:
+    react: ^16.8 || ^17.0 || ^18.0
+    react-dom: ^16.8 || ^17.0 || ^18.0
+  languageName: unknown
+  linkType: soft
+
 "@nimbus-ds/title@workspace:packages/react/Title":
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/title@workspace:packages/react/Title"

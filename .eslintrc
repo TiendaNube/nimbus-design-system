@@ -66,6 +66,7 @@
         "packageDir": [
           ".",
           "./packages/react/Title",
+          "./packages/react/Text",
           "./packages/tokens",
           "./packages/styles"
         ]
