@@ -8,9 +8,7 @@ module.exports = {
   devtool: "source-map",
   entry: {
     "./index": "./src/index.ts",
-    "./themes/dark": "./src/themes/dark.css.ts",
     "./themes/base": "./src/themes/base.css.ts",
-    "./packages/title": "./src/packages/title.css.ts",
   },
   output: {
     path: path.resolve(__dirname, "dist"),
