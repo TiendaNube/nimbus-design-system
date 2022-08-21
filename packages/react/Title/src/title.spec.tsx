@@ -61,4 +61,42 @@ describe("GIVEN <Title />", () => {
       ).toBeDefined();
     });
   });
+
+  describe("THEN should correctly render the text", () => {
+    it("THEN should correctly render the text on the left", () => {
+      makeSut({ textAlign: "left" });
+      expect(
+        screen
+          .getByRole("heading", { name: content, level: 1 })
+          .getAttribute("class")
+      ).toContain("textAlign_left");
+    });
+
+    it("THEN should correctly render the text on the center", () => {
+      makeSut({ textAlign: "center" });
+      expect(
+        screen
+          .getByRole("heading", { name: content, level: 1 })
+          .getAttribute("class")
+      ).toContain("textAlign_center");
+    });
+
+    it("THEN should correctly render the text on the right", () => {
+      makeSut({ textAlign: "right" });
+      expect(
+        screen
+          .getByRole("heading", { name: content, level: 1 })
+          .getAttribute("class")
+      ).toContain("textAlign_right");
+    });
+
+    it("THEN should correctly render the text on the justify", () => {
+      makeSut({ textAlign: "justify" });
+      expect(
+        screen
+          .getByRole("heading", { name: content, level: 1 })
+          .getAttribute("class")
+      ).toContain("textAlign_justify");
+    });
+  });
 });
