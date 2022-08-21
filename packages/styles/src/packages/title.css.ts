@@ -1,5 +1,7 @@
 import { recipe } from "@vanilla-extract/recipes";
+
 import { varsThemeBase } from "../themes/base.css";
+import { textAlign } from "../commons";
 
 export const title = recipe({
   base: {
@@ -9,6 +11,7 @@ export const title = recipe({
     margin: 0,
   },
   variants: {
+    textAlign,
     as: {
       h1: {
         fontSize: varsThemeBase.fontSize.title.h1,
@@ -34,12 +37,6 @@ export const title = recipe({
         fontSize: varsThemeBase.fontSize.title.h6,
         lineHeight: varsThemeBase.lineWeight.title.h6,
       },
-    },
-    textAlign: {
-      left: { textAlign: "left" },
-      right: { textAlign: "right" },
-      center: { textAlign: "center" },
-      justify: { textAlign: "justify" },
     },
     defaultVariants: {
       as: "h1",
