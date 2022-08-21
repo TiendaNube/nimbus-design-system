@@ -2,7 +2,15 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
-## 1.0.0-rc.1 2022-06-09
+## 2022-08-21
+
+### 🎉 New features
+
+- Added success, warning, danger, neutral color system. ([#13](https://github.com/TiendaNube/nimbus-design-system/pull/13) by [@juniorconquista](https://github.com/juniorconquista))
+- Added font size and line height system small, caption, base. ([#13](https://github.com/TiendaNube/nimbus-design-system/pull/13) by [@juniorconquista](https://github.com/juniorconquista))
+- Added new style pack for text component. ([#13](https://github.com/TiendaNube/nimbus-design-system/pull/13) by [@juniorconquista](https://github.com/juniorconquista))
+
+## 2022-06-09
 
 ### 📚 3rd party library updates
 
