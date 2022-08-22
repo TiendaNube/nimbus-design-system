@@ -2,6 +2,10 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2022-08-22
+
+- Added new style pack for skeleton component. ([#15](https://github.com/TiendaNube/nimbus-design-system/pull/15) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2022-08-21
 
 ### 🎉 New features
