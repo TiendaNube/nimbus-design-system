@@ -65,10 +65,11 @@
       {
         "packageDir": [
           ".",
-          "./packages/react/Title",
-          "./packages/react/Text",
+          "./packages/styles",
           "./packages/tokens",
-          "./packages/styles"
+          "./packages/react/Skeleton",
+          "./packages/react/Text",
+          "./packages/react/Title"
         ]
       }
     ],

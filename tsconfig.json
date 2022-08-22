@@ -37,8 +37,7 @@
     "typeRoots": ["./node_modules/@types", "./types"],
     "paths": {
       "@nimbus-ds/tokens": ["./packages/tokens"],
-      "@nimbus-ds/styles": ["./packages/styles/src"],
-      "@nimbus-ds/Title": ["./packages/react/Title/src"]
+      "@nimbus-ds/styles": ["./packages/styles/src"]
     }
   }
 }
