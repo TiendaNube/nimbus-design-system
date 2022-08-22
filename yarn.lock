@@ -2377,6 +2377,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@nimbus-ds/skeleton@workspace:*, @nimbus-ds/skeleton@workspace:packages/react/Skeleton":
+  version: 0.0.0-use.local
+  resolution: "@nimbus-ds/skeleton@workspace:packages/react/Skeleton"
+  dependencies:
+    "@nimbus-ds/styles": "workspace:*"
+    "@vanilla-extract/dynamic": ^2.0.2
+    "@vanilla-extract/webpack-plugin": ^2.1.11
+    terser-webpack-plugin: ^5.3.5
+    ts-loader: ^9.3.1
+    typescript: ^4.7.4
+    webpack: ^5.74.0
+    webpack-cli: ^4.10.0
+  peerDependencies:
+    react: ^16.8 || ^17.0 || ^18.0
+    react-dom: ^16.8 || ^17.0 || ^18.0
+  languageName: unknown
+  linkType: soft
+
 "@nimbus-ds/styles@workspace:*, @nimbus-ds/styles@workspace:packages/styles":
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/styles@workspace:packages/styles"
@@ -2397,10 +2415,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/text@workspace:packages/react/Text"
   dependencies:
+    "@nimbus-ds/skeleton": "workspace:*"
     "@nimbus-ds/styles": "workspace:*"
-    "@vanilla-extract/babel-plugin": ^1.1.7
-    "@vanilla-extract/css": ^1.7.2
-    "@vanilla-extract/recipes": ^0.2.5
     "@vanilla-extract/webpack-plugin": ^2.1.11
     terser-webpack-plugin: ^5.3.5
     ts-loader: ^9.3.1
@@ -2417,10 +2433,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/title@workspace:packages/react/Title"
   dependencies:
+    "@nimbus-ds/skeleton": "workspace:*"
     "@nimbus-ds/styles": "workspace:*"
-    "@vanilla-extract/babel-plugin": ^1.1.7
-    "@vanilla-extract/css": ^1.7.2
-    "@vanilla-extract/recipes": ^0.2.5
     "@vanilla-extract/webpack-plugin": ^2.1.11
     terser-webpack-plugin: ^5.3.5
     ts-loader: ^9.3.1
@@ -4640,6 +4654,15 @@ __metadata:
     media-query-parser: ^2.0.2
     outdent: ^0.8.0
   checksum: 7e0f4b77532ae6c42de14237eea0f3a0269648f1515c7bf52bcbc45205179060b18530d44452fcf4031e990d60c450c6673b27fadf1d16fe8c202503e809fffd
+  languageName: node
+  linkType: hard
+
+"@vanilla-extract/dynamic@npm:^2.0.2":
+  version: 2.0.2
+  resolution: "@vanilla-extract/dynamic@npm:2.0.2"
+  dependencies:
+    "@vanilla-extract/private": ^1.0.3
+  checksum: c6f22606bce094a5682c6d842be6d6965b9448f8973eaabdaa7a7438146458c22490c1c63345f08d2226f1c95ac20731835a5140c2c18646b2c1287b65607b84
   languageName: node
   linkType: hard
 
