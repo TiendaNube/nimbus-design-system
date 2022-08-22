@@ -1,8 +1,0 @@
-releases:
-  "@nimbus-ds/skeleton": major
-  "@nimbus-ds/styles": minor
-  "@nimbus-ds/text": minor
-  "@nimbus-ds/title": minor
-
-declined:
-  - nimbus-design-system
