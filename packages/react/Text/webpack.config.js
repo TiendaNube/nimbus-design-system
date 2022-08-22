@@ -30,6 +30,7 @@ module.exports = {
   plugins: [new VanillaExtractPlugin()],
   resolve: {
     alias: {
+      "@nimbus-ds/skeleton": path.resolve(__dirname, "../skeleton/src"),
       "@nimbus-ds/styles": path.resolve(__dirname, "../../styles/src"),
     },
     extensions: [".tsx", ".ts", ".js"],

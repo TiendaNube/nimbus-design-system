@@ -1,0 +1,6 @@
+releases:
+  "@nimbus-ds/text": patch
+  "@nimbus-ds/title": patch
+
+declined:
+  - nimbus-design-system
