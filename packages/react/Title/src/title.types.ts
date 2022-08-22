@@ -1,4 +1,9 @@
 import { ReactNode, HTMLAttributes } from "react";
+import { TitleSkeleton } from "./fragments";
+
+export interface TitleComponents {
+  Skeleton: typeof TitleSkeleton;
+}
 
 export interface TitleProps extends HTMLAttributes<HTMLHeadingElement> {
   /** Element to be rendered inside the Title component */
