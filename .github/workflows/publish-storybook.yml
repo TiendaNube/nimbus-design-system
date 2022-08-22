@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - master
-    paths-ignore:
-      - "**/package.json"
-      - ".yarn/versions/**"
 
 jobs:
   publish:

@@ -1,4 +1,4 @@
-# Title `@nimbus-ds/title`
+# `@nimbus-ds/title`
 
 Titles are text components, used to apply visual and semantic hierarchy to the contents of a page.
 

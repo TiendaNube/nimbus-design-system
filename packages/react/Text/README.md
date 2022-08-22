@@ -1,4 +1,4 @@
-# Title `@nimbus-ds/text`
+# `@nimbus-ds/text`
 
 Text is the text component, used to write and format blocks of content within pages or components.
 
