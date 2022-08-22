@@ -1,9 +1,10 @@
 import React from "react";
 
 import { text } from "@nimbus-ds/styles";
-import { TextProps } from "./text.types";
+import { TextProps, TextComponents } from "./text.types";
+import { TextSkeleton } from "./fragments";
 
-const Text: React.FC<TextProps> = ({
+const Text: React.FC<TextProps> & TextComponents = ({
   className: _className,
   style: _style,
   as: As = "p",
@@ -14,7 +15,7 @@ const Text: React.FC<TextProps> = ({
   bold,
   size,
   ...rest
-}) => (
+}: TextProps) => (
   <As
     className={text({ appearance, bold, size, textAlign, lineHeight })}
     {...rest}
@@ -22,5 +23,7 @@ const Text: React.FC<TextProps> = ({
     {children}
   </As>
 );
+
+Text.Skeleton = TextSkeleton;
 
 export { Text };

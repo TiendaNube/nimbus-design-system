@@ -2,6 +2,20 @@
 
 Text is a basic component that allows us to write blocks of text and give it formatting to use within other components, sections and pages of our application or website.
 
+## 2022-08-22
+
+### 📚 3rd party library updates
+
+- Removed `@vanilla-extract/babel-plugin@1.1.7`. ([#15](https://github.com/TiendaNube/nimbus-design-system/pull/15) by [@juniorconquista](https://github.com/juniorconquista))
+- Removed `@vanilla-extract/css@1.7.2`. ([#15](https://github.com/TiendaNube/nimbus-design-system/pull/15) by [@juniorconquista](https://github.com/juniorconquista))
+- Removed `@vanilla-extract/recipes@0.2.5`. ([#15](https://github.com/TiendaNube/nimbus-design-system/pull/15) by [@juniorconquista](https://github.com/juniorconquista))
+
+### 🎉 New features
+
+- Created new `Text.Skeleton` subcomponent. ([#15](https://github.com/TiendaNube/nimbus-design-system/pull/15) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `size`, `width` and `height` properties to the Component `Text.Skeleton`. ([#15](https://github.com/TiendaNube/nimbus-design-system/pull/15) by [@juniorconquista](https://github.com/juniorconquista))
+- Added stories on Component `Text.Skeleton`. ([#15](https://github.com/TiendaNube/nimbus-design-system/pull/15) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2022-08-21
 
 ### 📚 3rd party library updates
