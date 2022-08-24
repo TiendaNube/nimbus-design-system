@@ -13,25 +13,25 @@ describe("GIVEN <Text.Skeleton />", () => {
     it('THEN should render skeleton size="small"', () => {
       makeSut({ size: "small" });
       const skeleton = screen.getByTestId("skeleton-element");
-      expect(skeleton.getAttribute("style")).toContain("32px");
-      expect(skeleton.getAttribute("style")).toContain("16px");
-      expect(skeleton.getAttribute("style")).toContain("4px");
+      expect(skeleton.getAttribute("style")).toContain("2rem");
+      expect(skeleton.getAttribute("style")).toContain("1rem");
+      expect(skeleton.getAttribute("style")).toContain("0.25rem");
     });
 
     it('THEN should render skeleton size="caption"', () => {
       makeSut({ size: "caption" });
       const skeleton = screen.getByTestId("skeleton-element");
-      expect(skeleton.getAttribute("style")).toContain("32px");
-      expect(skeleton.getAttribute("style")).toContain("20px");
-      expect(skeleton.getAttribute("style")).toContain("4px");
+      expect(skeleton.getAttribute("style")).toContain("2rem");
+      expect(skeleton.getAttribute("style")).toContain("1.25rem");
+      expect(skeleton.getAttribute("style")).toContain("0.25rem");
     });
 
     it('THEN should render skeleton type="base"', () => {
       makeSut({ size: "base" });
       const skeleton = screen.getByTestId("skeleton-element");
-      expect(skeleton.getAttribute("style")).toContain("32px");
-      expect(skeleton.getAttribute("style")).toContain("18px");
-      expect(skeleton.getAttribute("style")).toContain("4px");
+      expect(skeleton.getAttribute("style")).toContain("2rem");
+      expect(skeleton.getAttribute("style")).toContain("1.125rem");
+      expect(skeleton.getAttribute("style")).toContain("0.25rem");
     });
   });
 });
