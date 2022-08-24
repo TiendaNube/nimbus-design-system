@@ -5,15 +5,26 @@ on:
     branches:
       - master
 
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
 jobs:
-  publish:
+  publish-storybook:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set node version
         id: node_version
@@ -25,6 +36,9 @@ jobs:
 
       - name: Install dependencies
         run: yarn
+
+      - name: Install dependencies
+        run: yarn build:packages
 
       - name: build
         run: yarn build:storybook
