@@ -2,7 +2,7 @@ import React from "react";
 
 import { text } from "@nimbus-ds/styles";
 import { TextProps, TextComponents } from "./text.types";
-import { TextSkeleton } from "./fragments";
+import { Skeleton } from "./components";
 
 const Text: React.FC<TextProps> & TextComponents = ({
   className: _className,
@@ -24,6 +24,6 @@ const Text: React.FC<TextProps> & TextComponents = ({
   </As>
 );
 
-Text.Skeleton = TextSkeleton;
+Text.Skeleton = Skeleton;
 
 export { Text };

@@ -2,18 +2,18 @@ import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { withA11y } from "@storybook/addon-a11y";
 
-import { TitleSkeleton } from "./TitleSkeleton";
+import { Skeleton } from "./Skeleton";
 
 export default {
   title: "Atomic/Title/Title.Skeleton",
-  component: TitleSkeleton,
+  component: Skeleton,
   parameters: {
     withA11y: { decorators: [withA11y] },
   },
-} as ComponentMeta<typeof TitleSkeleton>;
+} as ComponentMeta<typeof Skeleton>;
 
-const Template: ComponentStory<typeof TitleSkeleton> = (args) => (
-  <TitleSkeleton {...args} />
+const Template: ComponentStory<typeof Skeleton> = (args) => (
+  <Skeleton {...args} />
 );
 
 export const h1 = Template.bind({});

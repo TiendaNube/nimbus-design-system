@@ -1,8 +1,8 @@
 import { ReactNode, HTMLAttributes } from "react";
-import { TitleSkeleton } from "./fragments";
+import { Skeleton } from "./components";
 
 export interface TitleComponents {
-  Skeleton: typeof TitleSkeleton;
+  Skeleton: typeof Skeleton;
 }
 
 export interface TitleProps extends HTMLAttributes<HTMLHeadingElement> {

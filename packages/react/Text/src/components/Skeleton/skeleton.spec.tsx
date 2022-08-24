@@ -1,14 +1,14 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 
-import { TextSkeleton } from "./TextSkeleton";
-import { TextSkeletonProps } from "./textSkeleton.types";
+import { Skeleton } from "./skeleton";
+import { SkeletonProps } from "./skeleton.types";
 
-const makeSut = (props?: TextSkeletonProps) => {
-  render(<TextSkeleton {...props} data-testid="skeleton-element" />);
+const makeSut = (props?: SkeletonProps) => {
+  render(<Skeleton {...props} data-testid="skeleton-element" />);
 };
 
-describe("GIVEN <TitleSkeleton />", () => {
+describe("GIVEN <Text.Skeleton />", () => {
   describe("WHEN rendered", () => {
     it('THEN should render skeleton size="small"', () => {
       makeSut({ size: "small" });

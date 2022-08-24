@@ -1,8 +1,8 @@
 import { ReactNode, HTMLAttributes } from "react";
-import { TextSkeleton } from "./fragments";
+import { Skeleton } from "./components";
 
 export interface TextComponents {
-  Skeleton: typeof TextSkeleton;
+  Skeleton: typeof Skeleton;
 }
 
 export interface TextProps extends HTMLAttributes<HTMLParagraphElement> {

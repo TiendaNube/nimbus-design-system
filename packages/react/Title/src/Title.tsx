@@ -2,7 +2,7 @@ import React from "react";
 
 import { title } from "@nimbus-ds/styles";
 import { TitleProps, TitleComponents } from "./title.types";
-import { TitleSkeleton } from "./fragments";
+import { Skeleton } from "./components";
 
 const Title: React.FC<TitleProps> & TitleComponents = ({
   className: _className,
@@ -17,6 +17,6 @@ const Title: React.FC<TitleProps> & TitleComponents = ({
   </As>
 );
 
-Title.Skeleton = TitleSkeleton;
+Title.Skeleton = Skeleton;
 
 export { Title };

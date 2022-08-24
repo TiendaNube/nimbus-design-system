@@ -1,14 +1,14 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 
-import { TitleSkeleton } from "./TitleSkeleton";
-import { TitleSkeletonProps } from "./titleSkeleton.types";
+import { Skeleton } from "./Skeleton";
+import { SkeletonProps } from "./skeleton.types";
 
-const makeSut = (props?: TitleSkeletonProps) => {
-  render(<TitleSkeleton {...props} data-testid="skeleton-element" />);
+const makeSut = (props?: SkeletonProps) => {
+  render(<Skeleton {...props} data-testid="skeleton-element" />);
 };
 
-describe("GIVEN <TitleSkeleton />", () => {
+describe("GIVEN <Title.Skeleton />", () => {
   describe("WHEN rendered", () => {
     it('THEN should render skeleton type="h1"', () => {
       makeSut({ as: "h1" });
