@@ -15,8 +15,8 @@ jobs:
       - name: Install dependencies
         run: yarn
 
-      - name: Build packages
-        run: yarn build:packages
+      - name: Build tokens
+        run: yarn workspace @nimbus-ds/tokens run build 
 
       - name: build storybook
         run: yarn build:storybook
@@ -30,5 +30,4 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          # Upload entire repository
           path: ".build-storybook"

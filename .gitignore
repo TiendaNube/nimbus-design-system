@@ -7,7 +7,7 @@ dist
 test-output.*
 .cache
 .parcel-cache
-storybook-static
+.build-storybook
 .env
 .eslintcache
 
