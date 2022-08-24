@@ -14,19 +14,19 @@ export const text = recipe({
     textAlign,
     appearance: {
       primary: {
-        color: varsThemeBase.color.primary.interactive,
+        color: varsThemeBase.color.primary.low,
       },
       success: {
-        color: varsThemeBase.color.success.interactive,
+        color: varsThemeBase.color.success.low,
       },
       warning: {
-        color: varsThemeBase.color.warning.interactive,
+        color: varsThemeBase.color.warning.low,
       },
       danger: {
-        color: varsThemeBase.color.danger.interactive,
+        color: varsThemeBase.color.danger.low,
       },
       neutral: {
-        color: varsThemeBase.color.neutral.interactive,
+        color: varsThemeBase.color.neutral.low,
       },
     },
     size: {
