@@ -1,6 +1,6 @@
-<img alt="Nimbus" style="margin-bottom: 30px;" src="https://tiendanube.github.io/design-system-nimbus/static/media/nimbus-logo.ab60bd79.png" height="30" />
+# `@nimbus-ds/tokens`
 
-# ☁️ Nimbus Design Tokens
+[![@nimbus-ds/tokens](https://img.shields.io/npm/v/@nimbus-ds/tokens?label=%40nimbus-ds%2Ftokens)](https://www.npmjs.com/package/@nimbus-ds/tokens)
 
 ## 📚 Documentation
 
@@ -73,3 +73,5 @@ Once you finish making changes to our source tokens, you must generate a build t
 ## 🤝 Contributing
 
 We encourage all ideas, suggestions and feedback. If you want to collaborate with us, start by reading our [contribution guidelines](https://github.com/TiendaNube/nimbus-design-system/blob/master/CONTRIBUTING.md).
+
+<img alt="Nimbus" style="margin-bottom: 30px;" src="https://tiendanube.github.io/design-system-nimbus/static/media/nimbus-logo.ab60bd79.png" height="30" />

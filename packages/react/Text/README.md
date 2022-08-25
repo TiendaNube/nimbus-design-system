@@ -1,5 +1,7 @@
 # `@nimbus-ds/text`
 
+[![@nimbus-ds/text](https://img.shields.io/npm/v/@nimbus-ds/text?label=%40nimbus-ds%2Ftext)](https://www.npmjs.com/package/@nimbus-ds/text)
+
 Text is the text component, used to write and format blocks of content within pages or components.
 
 ## Implementation

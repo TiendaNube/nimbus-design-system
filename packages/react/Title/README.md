@@ -1,5 +1,7 @@
 # `@nimbus-ds/title`
 
+[![@nimbus-ds/title](https://img.shields.io/npm/v/@nimbus-ds/title?label=%40nimbus-ds%2Ftitle)](https://www.npmjs.com/package/@nimbus-ds/title)
+
 Titles are text components, used to apply visual and semantic hierarchy to the contents of a page.
 
 ## Implementation
