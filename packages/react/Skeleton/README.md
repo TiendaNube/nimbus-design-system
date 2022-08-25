@@ -1,4 +1,6 @@
-# `skeleton`
+# `@nimbus-ds/skeleton`
+
+[![@nimbus-ds/skeleton](https://img.shields.io/npm/v/@nimbus-ds/skeleton?label=%40nimbus-ds%2Fskeleton)](https://www.npmjs.com/package/@nimbus-ds/skeleton)
 
 ## Installation
 

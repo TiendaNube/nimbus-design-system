@@ -28,11 +28,11 @@ describe("GIVEN <Skeleton />", () => {
       makeSut({
         height: "10rem",
         width: "50rem",
-        borderRadius: "4px",
+        borderRadius: "0.25rem",
       });
       const skeleton = screen.getByTestId("skeleton-element");
       expect(skeleton.getAttribute("style")).toMatch(
-        /--borderRadius__\w{0,9}: 4px;/
+        /--borderRadius__\w{0,9}: 0.25rem;/
       );
     });
   });

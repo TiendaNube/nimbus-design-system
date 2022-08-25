@@ -68,6 +68,7 @@
           "./packages/styles",
           "./packages/tokens",
           "./packages/react/Skeleton",
+          "./packages/react/Tag",
           "./packages/react/Text",
           "./packages/react/Title"
         ]

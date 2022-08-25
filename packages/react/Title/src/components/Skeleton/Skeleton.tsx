@@ -14,7 +14,7 @@ const Skeleton: React.FC<SkeletonProps> = ({
     width={width ?? sizes[as].width}
     height={height ?? sizes[as].height}
     data-testid={dataTestId}
-    borderRadius="4px"
+    borderRadius="0.25rem"
   />
 );
 

@@ -24,7 +24,7 @@
     "prepare-husky": "husky install",
     "publish:next": "yarn bump:next && yarn build && yarn workspaces foreach -pv -pt --exclude nimbus-design-system npm publish --tolerate-republish --access public --tag next",
     "publish:stable": "yarn bump:stable && yarn build && yarn workspaces foreach -pv -pt --exclude nimbus-design-system npm publish --tolerate-republish --access public",
-    "reset": "yarn clean && rm -rf node_modules .yarn/cache .parcel-cache",
+    "reset": "yarn clean && rm -rf node_modules .yarn/cache",
     "storybook": "start-storybook -p 6006 --ci",
     "start:dev": "yarn storybook",
     "test": "jest --passWithNoTests --no-cache --runInBand --watchAll=false",

@@ -1,0 +1,10 @@
+releases:
+  "@nimbus-ds/skeleton": patch
+  "@nimbus-ds/styles": minor
+  "@nimbus-ds/tag": major
+  "@nimbus-ds/text": patch
+  "@nimbus-ds/title": patch
+  "@nimbus-ds/tokens": patch
+
+declined:
+  - nimbus-design-system

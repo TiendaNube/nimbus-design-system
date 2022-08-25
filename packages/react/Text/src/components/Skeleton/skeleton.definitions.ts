@@ -1,14 +1,14 @@
 export const sizes = {
   small: {
-    width: "32px",
-    height: "16px",
+    width: "2rem",
+    height: "1rem",
   },
   caption: {
-    width: "32px",
-    height: "20px",
+    width: "2rem",
+    height: "1.25rem",
   },
   base: {
-    width: "32px",
-    height: "18px",
+    width: "2rem",
+    height: "1.125rem",
   },
 };

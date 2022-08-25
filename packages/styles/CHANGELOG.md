@@ -2,6 +2,16 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2022-08-24
+
+### 🎉 New features
+
+- Added new style pack for tag component. ([#17](https://github.com/TiendaNube/nimbus-design-system/pull/17) by [@juniorconquista](https://github.com/juniorconquista))
+
+### 🐛 Bug fixes
+
+- Changed `text` component appearance tokens from interactive color variations to low colors. ([#17](https://github.com/TiendaNube/nimbus-design-system/pull/17) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2022-08-22
 
 ### 🎉 New features
