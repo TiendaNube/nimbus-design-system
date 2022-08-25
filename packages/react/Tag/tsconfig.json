@@ -5,8 +5,8 @@
     "baseUrl": ".",
     "declaration": false,
     "paths": {
-      "@nimbus-ds/skeleton": ["../skeleton/src"],
-      "@nimbus-ds/text": ["../text/src"],
+      "@nimbus-ds/skeleton": ["../Skeleton/src"],
+      "@nimbus-ds/text": ["../Text/src"],
       "@nimbus-ds/styles": ["../../styles/src"]
     }
   }
