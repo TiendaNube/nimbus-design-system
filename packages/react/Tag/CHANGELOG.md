@@ -1,5 +1,6 @@
 # Changelog
 
+
 The Tag component is used to categorize information, organize or indicate the status of elements or components using keywords, icons or colors.
 
 ## 2022-08-24

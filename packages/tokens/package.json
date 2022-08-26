@@ -26,5 +26,6 @@
   },
   "devDependencies": {
     "style-dictionary": "^3.7.1"
-  }
+  },
+  "stableVersion": "1.0.0"
 }
