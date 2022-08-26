@@ -3,13 +3,23 @@
 This is the log of notable changes to the Design System Nimbus that are developer-facing.
 Package-specific changes not released in any package will be added here just before the release. Until then, you can find them in changelogs of the individual packages (see [packages](./packages) directory).
 
-## 0.0.0 2022-08-22
+## 2022-08-26
+
+### 📚 3rd party library updates
+
+- Added `copy-webpack-plugin@11.0.0`. ([#19](https://github.com/TiendaNube/nimbus-design-system/pull/19) by [@juniorconquista](https://github.com/juniorconquista))
+
+### 🎉 New features
+
+- Added Centranube font in storybook. ([#19](https://github.com/TiendaNube/nimbus-design-system/pull/19) by [@juniorconquista](https://github.com/juniorconquista))
+
+## 2022-08-22
 
 ### 💡 Others
 
 - Added new jog on github actions for publish storybook. ([#15](https://github.com/TiendaNube/nimbus-design-system/pull/15) by [@juniorconquista](https://github.com/juniorconquista))
 
-## 0.0.0 2022-08-20
+## 2022-08-20
 
 ### 📚 3rd party library updates
 
@@ -22,14 +32,14 @@ Package-specific changes not released in any package will be added here just bef
 - Removed `@storybook/builder-webpack4@6.5.10`. ([#11](https://github.com/TiendaNube/nimbus-design-system/pull/11) by [@juniorconquista](https://github.com/juniorconquista))
 - Removed `@storybook/manager-webpack4@6.5.10`. ([#11](https://github.com/TiendaNube/nimbus-design-system/pull/11) by [@juniorconquista](https://github.com/juniorconquista))
 
-## 0.0.0 2022-08-11
+## 2022-08-11
 
 ### 💡 Others
 
 - Added new jog on github actions for versions. ([#8](https://github.com/TiendaNube/nimbus-design-system/pull/8) by [@juniorconquista](https://github.com/juniorconquista))
 - Added new jog on github actions for publish release candidate. ([#8](https://github.com/TiendaNube/nimbus-design-system/pull/8) by [@juniorconquista](https://github.com/juniorconquista))
 
-## 0.0.0 2022-08-09
+## 2022-08-09
 
 ### 📚 3rd party library updates
 
@@ -68,7 +78,7 @@ Package-specific changes not released in any package will be added here just bef
 - Jest configuration performed. ([#6](https://github.com/TiendaNube/nimbus-design-system/pull/6) by [@juniorconquista](https://github.com/juniorconquista))
 - Remove jog on github actions for pull requests. ([#5](https://github.com/TiendaNube/nimbus-design-system/pull/5) by [@juniorconquista](https://github.com/juniorconquista))
 
-## 0.0.0 2022-08-02
+## 2022-08-02
 
 ### 📚 3rd party library updates
 

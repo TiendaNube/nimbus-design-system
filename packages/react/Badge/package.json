@@ -1,6 +1,6 @@
 {
-  "name": "@nimbus-ds/tag",
-  "version": "1.1.0-rc.1",
+  "name": "@nimbus-ds/badge",
+  "version": "1.0.0-rc.1",
   "license": "MIT",
   "source": "src/index.ts",
   "main": "dist/index.js",
@@ -34,7 +34,6 @@
     "url": "https://github.com/TiendaNube/nimbus-design-system/issues"
   },
   "devDependencies": {
-    "@nimbus-ds/text": "workspace:*",
     "@vanilla-extract/webpack-plugin": "^2.1.11",
     "terser-webpack-plugin": "^5.3.5",
     "ts-loader": "^9.3.1",
@@ -42,5 +41,5 @@
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0"
   },
-  "stableVersion": "1.0.0"
+  "stableVersion": "0.0.0"
 }

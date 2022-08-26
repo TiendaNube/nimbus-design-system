@@ -9,8 +9,8 @@ const Skeleton: React.FC<SkeletonProps> = ({
   "data-testid": dataTestId,
 }) => (
   <SkeletonBase
-    width={width ?? "3.313rem"}
-    height={height ?? "1.5rem"}
+    width={width ?? "1.5rem"}
+    height={height ?? "1.25rem"}
     borderRadius="0.813rem"
     data-testid={dataTestId}
   />

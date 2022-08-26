@@ -1,12 +1,12 @@
 # Changelog
 
-Tags represent a set of interactive, merchant-supplied keywords that help label, organize, and categorize objects. Tags can be added or removed from an object by merchants.
+
+The Tag component is used to categorize information, organize or indicate the status of elements or components using keywords, icons or colors.
 
 ## 2022-08-24
 
 ### 📚 3rd party library updates
 
-- Added `@vanilla-extract/dynamic@2.0.2`. ([#17](https://github.com/TiendaNube/nimbus-design-system/pull/17) by [@juniorconquista](https://github.com/juniorconquista))
 - Added `@vanilla-extract/webpack-plugin@2.1.11`. ([#17](https://github.com/TiendaNube/nimbus-design-system/pull/17) by [@juniorconquista](https://github.com/juniorconquista))
 - Added `terser-webpack-plugin@5.3.5`. ([#17](https://github.com/TiendaNube/nimbus-design-system/pull/17) by [@juniorconquista](https://github.com/juniorconquista))
 - Added `ts-loader@9.3.1`. ([#17](https://github.com/TiendaNube/nimbus-design-system/pull/17) by [@juniorconquista](https://github.com/juniorconquista))
