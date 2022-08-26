@@ -6,6 +6,7 @@ const config: Config.InitialOptions = {
   verbose: true,
   moduleNameMapper: {
     "@nimbus-ds/styles": "<rootDir>/packages/styles/src",
+    "@nimbus-ds/skeleton": "<rootDir>/packages/react/Skeleton/src",
   },
   transform: {
     "^.+\\.css\\.ts$": "babel-jest",
