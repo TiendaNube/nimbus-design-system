@@ -5,7 +5,7 @@ import { varsThemeBase } from "../themes/base.css";
 import { textAlign } from "../commons";
 
 const colors = tokens.color.ref.light;
-const {spacing} = tokens;
+const { spacing } = tokens;
 
 export const tag = recipe({
   base: {
@@ -13,6 +13,8 @@ export const tag = recipe({
     display: "flex",
     flexDirection: "row",
     width: "fit-content",
+    alignItems: "center",
+    height: "1.25rem",
     gap: spacing["5"].value,
     padding: `${spacing["025"].value} ${spacing["1"].value}`,
     borderWidth: "0.063rem",

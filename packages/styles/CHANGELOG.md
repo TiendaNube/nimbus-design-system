@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2022-08-25
+
+### 🎉 New features
+
+- Added new style pack for badge component. ([#19](https://github.com/TiendaNube/nimbus-design-system/pull/19) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2022-08-24
 
 ### 🎉 New features
