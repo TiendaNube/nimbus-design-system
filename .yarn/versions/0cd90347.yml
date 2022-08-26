@@ -8,3 +8,4 @@ declined:
   - "@nimbus-ds/skeleton"
   - "@nimbus-ds/text"
   - "@nimbus-ds/title"
+  - "@nimbus-ds/tokens"
