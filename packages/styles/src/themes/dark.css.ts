@@ -1,5 +1,7 @@
-import { createGlobalTheme } from "@vanilla-extract/css";
+import { createTheme } from "@vanilla-extract/css";
 import tokens from "@nimbus-ds/tokens/dist/js/tokens";
+
+import { varsThemeBase } from "./base.css";
 
 const colors = tokens.color.sys.light;
 const fontFamily = tokens.font.family;
@@ -7,7 +9,7 @@ const fontSize = tokens.font.size.sys;
 const fontWeight = tokens.font.weight;
 const lineWeight = tokens.line.height.sys;
 
-export const varsThemeBase = createGlobalTheme(":root", {
+export const ThemeDark = createTheme(varsThemeBase, {
   colors: {
     primary: {
       background: colors.primary.background.value as string,
@@ -16,8 +18,8 @@ export const varsThemeBase = createGlobalTheme(":root", {
       interactive: colors.primary.interactive.value as string,
       interactiveHover: colors.primary["interactive-hover"].value as string,
       interactivePressed: colors.primary["interactive-pressed"].value as string,
-      textLow: colors.primary["text-low"].value as string,
-      textHigh: colors.primary["text-high"].value as string,
+      textLow: "red",
+      textHigh: "blue",
     },
     success: {
       background: colors.success.background.value as string,
