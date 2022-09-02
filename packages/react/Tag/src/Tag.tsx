@@ -1,6 +1,6 @@
 import React from "react";
-
 import { tag } from "@nimbus-ds/styles";
+
 import { TagProps, TagComponents } from "./tag.types";
 import { Skeleton } from "./components";
 
@@ -11,7 +11,7 @@ const Tag: React.FC<TagProps> & TagComponents = ({
   children,
   ...rest
 }: TagProps) => (
-  <div {...rest} className={tag({ appearance })}>
+  <div {...rest} className={tag.style({ appearance })}>
     {children}
   </div>
 );

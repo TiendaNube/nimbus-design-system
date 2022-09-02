@@ -13,7 +13,15 @@ describe("GIVEN <Tag.Skeleton />", () => {
     it("THEN should render skeleton base", () => {
       makeSut();
       const skeleton = screen.getByTestId("skeleton-element");
-      expect(skeleton.getAttribute("style")).toContain("0.813rem");
+      expect(skeleton.getAttribute("style")).toMatch(
+        /--width__\w{0,9}: 3.313rem;/
+      );
+      expect(skeleton.getAttribute("style")).toMatch(
+        /--height__\w{0,9}: 1.5rem;/
+      );
+      expect(skeleton.getAttribute("style")).toMatch(
+        /--borderRadius__\w{0,9}: 0.813rem;/
+      );
     });
   });
 });
