@@ -1,4 +1,6 @@
 import { ReactNode, HTMLAttributes } from "react";
+import { text } from "@nimbus-ds/styles";
+
 import { Skeleton } from "./components";
 
 export interface TextComponents {
@@ -16,8 +18,8 @@ export interface TextProps extends HTMLAttributes<HTMLParagraphElement> {
   bold?: boolean;
   /** Text size */
   size?: "small" | "caption" | "base";
-  /** Text color */
-  appearance?: "primary" | "success" | "warning" | "danger" | "neutral";
   /** Text line height */
   lineHeight?: "small" | "caption" | "base";
+  /** Text color */
+  color?: keyof typeof text.properties;
 }

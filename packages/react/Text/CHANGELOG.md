@@ -2,6 +2,20 @@
 
 Text is a basic component that allows us to write blocks of text and give it formatting to use within other components, sections and pages of our application or website.
 
+## 2022-09-01
+
+### 📚 3rd party library updates
+
+- Removed `@vanilla-extract/webpack-plugin@2.1.11`. ([#20](https://github.com/TiendaNube/nimbus-design-system/pull/20) by [@juniorconquista](https://github.com/juniorconquista))
+
+### 🎉 New features
+
+- Added `color` properties to the Component Text. ([#20](https://github.com/TiendaNube/nimbus-design-system/pull/20) by [@juniorconquista](https://github.com/juniorconquista))
+
+### 💡 Others
+
+- Removed `appearance` properties to the Component Text. ([#20](https://github.com/TiendaNube/nimbus-design-system/pull/20) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2022-08-22
 
 ### 📚 3rd party library updates
