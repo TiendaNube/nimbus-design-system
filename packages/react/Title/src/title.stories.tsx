@@ -7,7 +7,7 @@ import { Title } from "./Title";
 export default {
   title: "Atomic/Title",
   component: Title,
-  // subcomponents: { "Title.Skeleton": Title.Skeleton },
+  subcomponents: { "Title.Skeleton": Title.Skeleton },
   argTypes: {
     children: { control: { disable: true } },
   },
@@ -17,9 +17,9 @@ export default {
 } as ComponentMeta<typeof Title>;
 
 const Template: ComponentStory<typeof Title> = (args) => <Title {...args} />;
-// const SkeletonTemplate: ComponentStory<typeof Title.Skeleton> = (args) => (
-//   <Title.Skeleton {...args} />
-// );
+const SkeletonTemplate: ComponentStory<typeof Title.Skeleton> = (args) => (
+  <Title.Skeleton {...args} />
+);
 
 export const h1 = Template.bind({});
 h1.args = {
@@ -57,5 +57,5 @@ h6.args = {
   children: "Lorem ipsum dolor sit amet",
 };
 
-// export const skeleton = SkeletonTemplate.bind({});
-// skeleton.args = {};
+export const skeleton = SkeletonTemplate.bind({});
+skeleton.args = {};

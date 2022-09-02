@@ -52,8 +52,7 @@ module.exports = {
     extensions: [".tsx", ".ts", ".js"],
   },
   externals: {
-    react: "React",
-    "react-dom": "ReactDOM",
+    "@nimbus-ds/tokens": "@nimbus-ds/tokens",
   },
   optimization: {
     minimize: true,

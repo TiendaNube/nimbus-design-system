@@ -20,6 +20,7 @@ module.exports = {
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
     "@storybook/addon-a11y",
+    "@storybook/addon-controls",
   ],
   framework: "@storybook/react",
   // we need to add aliases to webpack so it knows how to follow
