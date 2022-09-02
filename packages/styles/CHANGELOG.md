@@ -6,18 +6,18 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 ### 📚 3rd party library updates
 
-- Removed `@vanilla-extract/webpack-plugin@2.1.12`. ([#20](https://github.com/TiendaNube/nimbus-design-system/pull/20) by [@juniorconquista](https://github.com/juniorconquista))
-- Updated `@vanilla-extract/css@1.7.3`. ([#20](https://github.com/TiendaNube/nimbus-design-system/pull/20) by [@juniorconquista](https://github.com/juniorconquista))
-- Added `@vanilla-extract/sprinkles@1.4.1`. ([#20](https://github.com/TiendaNube/nimbus-design-system/pull/20) by [@juniorconquista](https://github.com/juniorconquista))
+- Removed `@vanilla-extract/webpack-plugin@2.1.12`. ([#21](https://github.com/TiendaNube/nimbus-design-system/pull/21) by [@juniorconquista](https://github.com/juniorconquista))
+- Updated `@vanilla-extract/css@1.7.3`. ([#21](https://github.com/TiendaNube/nimbus-design-system/pull/21) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `@vanilla-extract/sprinkles@1.4.1`. ([#21](https://github.com/TiendaNube/nimbus-design-system/pull/21) by [@juniorconquista](https://github.com/juniorconquista))
 
 ### 💡 Others
 
-- Restructured folders and style organization concepts. ([#20](https://github.com/TiendaNube/nimbus-design-system/pull/20) by [@juniorconquista](https://github.com/juniorconquista))
+- Restructured folders and style organization concepts. ([#21](https://github.com/TiendaNube/nimbus-design-system/pull/21) by [@juniorconquista](https://github.com/juniorconquista))
 
 ### 🎉 New features
 
-- Added new style pack for chip component. ([#20](https://github.com/TiendaNube/nimbus-design-system/pull/20) by [@juniorconquista](https://github.com/juniorconquista))
-- Added new style pack for icon component. ([#20](https://github.com/TiendaNube/nimbus-design-system/pull/20) by [@juniorconquista](https://github.com/juniorconquista))
+- Added new style pack for chip component. ([#21](https://github.com/TiendaNube/nimbus-design-system/pull/21) by [@juniorconquista](https://github.com/juniorconquista))
+- Added new style pack for icon component. ([#21](https://github.com/TiendaNube/nimbus-design-system/pull/21) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2022-08-25
 

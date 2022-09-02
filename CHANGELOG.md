@@ -7,7 +7,7 @@ Package-specific changes not released in any package will be added here just bef
 
 ### 📚 3rd party library updates
 
-- Added `@storybook/addon-controls@6.5.10`. ([#20](https://github.com/TiendaNube/nimbus-design-system/pull/20) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `@storybook/addon-controls@6.5.10`. ([#21](https://github.com/TiendaNube/nimbus-design-system/pull/21) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2022-08-26
 

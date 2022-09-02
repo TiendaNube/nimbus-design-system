@@ -6,7 +6,7 @@ Badges are used to inform merchants of the status of an object or of an action t
 
 ### 📚 3rd party library updates
 
-- Removed `@vanilla-extract/webpack-plugin@2.1.11`. ([#20](https://github.com/TiendaNube/nimbus-design-system/pull/20) by [@juniorconquista](https://github.com/juniorconquista))
+- Removed `@vanilla-extract/webpack-plugin@2.1.11`. ([#21](https://github.com/TiendaNube/nimbus-design-system/pull/21) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2022-08-25
 

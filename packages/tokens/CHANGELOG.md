@@ -6,7 +6,7 @@ Our design tokens are the foundations of Nimbus Design System.
 
 ### 🐛 Bug fixes
 
-- Fixed naming of color tokens and color variation scale. ([#20](https://github.com/TiendaNube/nimbus-design-system/pull/20) by [@juniorconquista](https://github.com/juniorconquista))
+- Fixed naming of color tokens and color variation scale. ([#21](https://github.com/TiendaNube/nimbus-design-system/pull/21) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2022-08-20
 
