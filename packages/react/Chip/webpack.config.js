@@ -40,6 +40,11 @@ module.exports = {
     minimizer: [new TerserJSPlugin()],
   },
   externals: {
+    "@nimbus-ds/icon": "@nimbus-ds/icon",
+    "@nimbus-ds/skeleton": "@nimbus-ds/skeleton",
+    "@nimbus-ds/styles": "@nimbus-ds/styles",
+    "@nimbus-ds/text": "@nimbus-ds/text",
+    "@tiendanube/icons": "@tiendanube/icons",
     react: "react",
     "react-dom": "react-dom",
   },

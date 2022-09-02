@@ -1,6 +1,6 @@
 import React from "react";
-
 import { icon } from "@nimbus-ds/styles";
+
 import { IconProps, IconComponents } from "./icon.types";
 import { Skeleton } from "./components";
 

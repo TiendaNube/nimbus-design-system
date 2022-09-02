@@ -38,6 +38,8 @@ module.exports = {
     minimizer: [new TerserJSPlugin()],
   },
   externals: {
+    "@nimbus-ds/skeleton": "@nimbus-ds/skeleton",
+    "@nimbus-ds/styles": "@nimbus-ds/styles",
     react: "react",
     "react-dom": "react-dom",
   },

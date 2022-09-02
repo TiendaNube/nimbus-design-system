@@ -5,7 +5,7 @@ import { withA11y } from "@storybook/addon-a11y";
 import { Skeleton } from "./Skeleton";
 
 export default {
-  title: "Atomic/Badge/Badge.Skeleton",
+  title: "Skeleton/Badge",
   component: Skeleton,
   parameters: {
     withA11y: { decorators: [withA11y] },
@@ -16,5 +16,5 @@ const Template: ComponentStory<typeof Skeleton> = (args) => (
   <Skeleton {...args} />
 );
 
-export const base = Template.bind({});
-base.args = {};
+export const badge = Template.bind({});
+badge.args = {};

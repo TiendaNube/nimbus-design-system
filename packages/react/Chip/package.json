@@ -18,11 +18,11 @@
     "version": "yarn version"
   },
   "dependencies": {
-    "@tiendanube/icons": "^0.2.7",
     "@nimbus-ds/icon": "workspace:*",
     "@nimbus-ds/skeleton": "workspace:*",
     "@nimbus-ds/styles": "workspace:*",
-    "@nimbus-ds/text": "workspace:*"
+    "@nimbus-ds/text": "workspace:*",
+    "@tiendanube/icons": "^0.2.7"
   },
   "peerDependencies": {
     "react": "^16.8 || ^17.0 || ^18.0",
