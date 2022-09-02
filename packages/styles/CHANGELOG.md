@@ -6,7 +6,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 ### 📚 3rd party library updates
 
-- Removed `@vanilla-extract/webpack-plugin@2.1.12`. ([#21](https://github.com/TiendaNube/nimbus-design-system/pull/21) by [@juniorconquista](https://github.com/juniorconquista))
+- Updated `@vanilla-extract/webpack-plugin@2.1.12`. ([#21](https://github.com/TiendaNube/nimbus-design-system/pull/21) by [@juniorconquista](https://github.com/juniorconquista))
 - Updated `@vanilla-extract/css@1.7.3`. ([#21](https://github.com/TiendaNube/nimbus-design-system/pull/21) by [@juniorconquista](https://github.com/juniorconquista))
 - Added `@vanilla-extract/sprinkles@1.4.1`. ([#21](https://github.com/TiendaNube/nimbus-design-system/pull/21) by [@juniorconquista](https://github.com/juniorconquista))
 
