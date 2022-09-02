@@ -30,7 +30,7 @@ module.exports = {
   plugins: [new VanillaExtractPlugin()],
   resolve: {
     alias: {
-      "@nimbus-ds/styles": path.resolve(__dirname, "../../styles/src"),
+      "@nimbus-ds/styles": path.resolve(__dirname, "../../styles/dist"),
     },
     extensions: [".tsx", ".ts", ".js"],
   },
@@ -39,6 +39,7 @@ module.exports = {
     minimizer: [new TerserJSPlugin()],
   },
   externals: {
+    "@nimbus-ds/styles": "@nimbus-ds/styles",
     react: "react",
     "react-dom": "react-dom",
   },
