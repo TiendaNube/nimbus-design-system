@@ -2384,7 +2384,6 @@ __metadata:
     "@nimbus-ds/skeleton": "workspace:*"
     "@nimbus-ds/styles": "workspace:*"
     "@nimbus-ds/text": "workspace:*"
-    "@vanilla-extract/webpack-plugin": ^2.1.11
     terser-webpack-plugin: ^5.3.5
     ts-loader: ^9.3.1
     typescript: ^4.7.4
@@ -2473,12 +2472,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/tag@workspace:packages/react/Tag"
   dependencies:
-    "@nimbus-ds/icon": "workspace:*"
     "@nimbus-ds/skeleton": "workspace:*"
     "@nimbus-ds/styles": "workspace:*"
     "@nimbus-ds/text": "workspace:*"
     "@tiendanube/icons": ^0.2.7
-    "@vanilla-extract/webpack-plugin": ^2.1.11
     terser-webpack-plugin: ^5.3.5
     ts-loader: ^9.3.1
     typescript: ^4.7.4
