@@ -1,17 +1,16 @@
 import { recipe } from "@vanilla-extract/recipes";
 
-import { varsThemeBase } from "../themes/base.css";
-import { textAlign } from "../commons";
+import { varsThemeBase } from "../../themes/base.css";
+import { utils } from "../../utils";
 
-export const title = recipe({
+export const style = recipe({
   base: {
-    color: varsThemeBase.color.primary.high,
     fontFamily: varsThemeBase.fontFamily.centranube,
     fontWeight: varsThemeBase.fontWeight.bold,
     margin: 0,
   },
   variants: {
-    textAlign,
+    textAlign: utils.variantes.textAlign,
     as: {
       h1: {
         fontSize: varsThemeBase.fontSize.title.h1,

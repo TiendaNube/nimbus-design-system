@@ -1,9 +1,7 @@
-import { style, keyframes } from "@vanilla-extract/css";
-import tokens from "@nimbus-ds/tokens/dist/js/tokens";
+import { style as vanillaStyle, keyframes } from "@vanilla-extract/css";
 
-import { height, width, borderRadius } from "../commons";
-
-const colors = tokens.color.ref.light.neutral;
+import { varsThemeBase } from "../../themes/base.css";
+import { utils } from "../../utils";
 
 const skeletonAnimation = keyframes({
   "0%": {
@@ -35,12 +33,12 @@ const skeletonAnimation = keyframes({
   },
 });
 
-export const skeleton = style({
-  backgroundColor: colors[95].value,
+export const style = vanillaStyle({
+  backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
   position: "relative",
-  width,
-  height,
-  borderRadius,
+  width: utils.vars.width,
+  height: utils.vars.height,
+  borderRadius: utils.vars.borderRadius,
   ":before": {
     content: "",
     position: "absolute",
@@ -48,7 +46,7 @@ export const skeleton = style({
     left: "0",
     top: "0",
     width: "0%",
-    backgroundColor: colors[99].value,
+    backgroundColor: varsThemeBase.colors.neutral.surface,
     animationName: skeletonAnimation,
     animationDuration: "3000ms",
     animationIterationCount: "infinite",

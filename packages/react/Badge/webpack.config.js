@@ -31,7 +31,8 @@ module.exports = {
   resolve: {
     alias: {
       "@nimbus-ds/skeleton": path.resolve(__dirname, "../Skeleton/src"),
-      "@nimbus-ds/styles": path.resolve(__dirname, "../../styles/src"),
+      "@nimbus-ds/text": path.resolve(__dirname, "../Text/src"),
+      "@nimbus-ds/styles": path.resolve(__dirname, "../../styles/dist"),
     },
     extensions: [".tsx", ".ts", ".js"],
   },
@@ -40,6 +41,9 @@ module.exports = {
     minimizer: [new TerserJSPlugin()],
   },
   externals: {
+    "@nimbus-ds/text": "@nimbus-ds/text",
+    "@nimbus-ds/styles": "@nimbus-ds/styles",
+    "@nimbus-ds/skeleton": "@nimbus-ds/skeleton",
     react: "react",
     "react-dom": "react-dom",
   },

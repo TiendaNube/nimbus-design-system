@@ -1,6 +1,7 @@
 import React from "react";
-
 import { badge } from "@nimbus-ds/styles";
+import { Text } from "@nimbus-ds/text";
+
 import { BadgeProps, BadgeComponents } from "./badge.types";
 import { Skeleton } from "./components";
 
@@ -11,8 +12,8 @@ const Badge: React.FC<BadgeProps> & BadgeComponents = ({
   count,
   ...rest
 }: BadgeProps) => (
-  <div {...rest} className={badge({ appearance })}>
-    {count}
+  <div {...rest} className={badge.style({ appearance })}>
+    <Text color={`${appearance}.textLow`}>{count}</Text>
   </div>
 );
 

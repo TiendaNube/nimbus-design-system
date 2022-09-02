@@ -7,12 +7,16 @@ import { Badge } from "./Badge";
 export default {
   title: "Atomic/Badge",
   component: Badge,
+  subcomponents: { "Badge.Skeleton": Badge.Skeleton },
   parameters: {
     withA11y: { decorators: [withA11y] },
   },
 } as ComponentMeta<typeof Badge>;
 
 const Template: ComponentStory<typeof Badge> = (args) => <Badge {...args} />;
+const SkeletonTemplate: ComponentStory<typeof Badge.Skeleton> = (args) => (
+  <Badge.Skeleton {...args} />
+);
 
 export const neutral = Template.bind({});
 neutral.args = {
@@ -43,3 +47,6 @@ danger.args = {
   appearance: "danger",
   count: "+99",
 };
+
+export const skeleton = SkeletonTemplate.bind({});
+skeleton.args = {};

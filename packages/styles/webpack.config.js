@@ -1,14 +1,24 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const { VanillaExtractPlugin } = require("@vanilla-extract/webpack-plugin");
 const TerserJSPlugin = require("terser-webpack-plugin");
+const { VanillaExtractPlugin } = require("@vanilla-extract/webpack-plugin");
 
 module.exports = {
-  mode: "production",
+  mode: "development",
   devtool: "source-map",
   entry: {
     "./index": "./src/index.ts",
+
     "./themes/base": "./src/themes/base.css.ts",
+    "./themes/dark": "./src/themes/dark.css.ts",
+
+    "./packages/badge/index": "./src/packages/badge/index",
+    "./packages/chip/index": "./src/packages/chip/index",
+    "./packages/icon/index": "./src/packages/icon/index",
+    "./packages/skeleton/index": "./src/packages/skeleton/index",
+    "./packages/tag/index": "./src/packages/tag/index",
+    "./packages/title/index": "./src/packages/title/index",
+    "./packages/text/index": "./src/packages/text/index",
   },
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -42,8 +52,7 @@ module.exports = {
     extensions: [".tsx", ".ts", ".js"],
   },
   externals: {
-    react: "React",
-    "react-dom": "ReactDOM",
+    "@nimbus-ds/tokens": "@nimbus-ds/tokens",
   },
   optimization: {
     minimize: true,

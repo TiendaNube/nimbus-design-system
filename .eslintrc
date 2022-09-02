@@ -68,12 +68,14 @@
           "./packages/styles",
           "./packages/tokens",
           "./packages/react/Skeleton",
+          "./packages/react/Chip",
           "./packages/react/Tag",
           "./packages/react/Text",
           "./packages/react/Title"
         ]
       }
     ],
+    "import/no-unresolved": "off",
     "@typescript-eslint/interface-name-prefix": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-unused-vars": [
