@@ -2,13 +2,19 @@
 
 Our design tokens are the foundations of Nimbus Design System.
 
-## 1.0.0-rc.3 2022-08-20
+## 2022-09-01
+
+### 🐛 Bug fixes
+
+- Fixed naming of color tokens and color variation scale. ([#21](https://github.com/TiendaNube/nimbus-design-system/pull/21) by [@juniorconquista](https://github.com/juniorconquista))
+
+## 2022-08-20
 
 ### 🎉 New features
 
 - Included declaration file for tokens.js. ([#11](https://github.com/TiendaNube/nimbus-design-system/pull/11) by [@juniorconquista](https://github.com/juniorconquista))
 
-## 1.0.0-rc.2 2022-08-11
+## 2022-08-11
 
 <!-- ### 📚 3rd party library updates -->
 

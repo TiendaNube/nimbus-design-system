@@ -3,4 +3,4 @@ export const textAlign = {
   right: { textAlign: "right" },
   center: { textAlign: "center" },
   justify: { textAlign: "justify" },
-} as any;
+} as const;

@@ -1,12 +1,7 @@
 import React from "react";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
+import { skeleton, utils } from "@nimbus-ds/styles";
 
-import {
-  skeleton,
-  width as widthVAR,
-  height as heightVAR,
-  borderRadius as borderRadiusVAR,
-} from "@nimbus-ds/styles";
 import { SkeletonProps } from "./skeleton.types";
 
 const Skeleton: React.FC<SkeletonProps> = ({
@@ -18,11 +13,11 @@ const Skeleton: React.FC<SkeletonProps> = ({
   ...rest
 }) => (
   <div
-    className={skeleton}
+    className={skeleton.style}
     style={assignInlineVars({
-      [widthVAR]: width,
-      [heightVAR]: height,
-      [borderRadiusVAR]: borderRadius,
+      [utils.vars.width]: width,
+      [utils.vars.height]: height,
+      [utils.vars.borderRadius]: borderRadius,
     })}
     {...rest}
   />

@@ -5,13 +5,14 @@
   "private": true,
   "workspaces": {
     "packages": [
-      "packages/*/*",
-      "packages/*"
+      "packages/*",
+      "packages/*/*"
     ]
   },
   "scripts": {
-    "build": "yarn clean && yarn build:packages",
-    "build:packages": "yarn workspaces foreach -pv -pt --exclude nimbus-design-system run build",
+    "build": "yarn clean && yarn build:essentials && yarn build:packages",
+    "build:essentials": "yarn workspaces foreach -pv -ptR --from '{@nimbus-ds/tokens,@nimbus-ds/styles,@nimbus-ds/skeleton,@nimbus-ds/text}' run build",
+    "build:packages": "yarn workspaces foreach -pv -pt --exclude nimbus-design-system --exclude @nimbus-ds/tokens --exclude @nimbus-ds/styles --exclude @nimbus-ds/skeleton --exclude @nimbus-ds/text run build",
     "build:storybook": "build-storybook -c .storybook -o .build-storybook",
     "bump:check": "yarn version check",
     "bump:next": "yarn version apply --all --prerelease",
@@ -55,6 +56,7 @@
     "@jest/types": "^28.1.3",
     "@storybook/addon-a11y": "^6.5.10",
     "@storybook/addon-actions": "^6.5.10",
+    "@storybook/addon-controls": "^6.5.10",
     "@storybook/addon-essentials": "^6.5.10",
     "@storybook/addon-interactions": "^6.5.10",
     "@storybook/addon-links": "^6.5.10",

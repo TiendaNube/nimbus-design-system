@@ -1,34 +1,16 @@
 import { recipe } from "@vanilla-extract/recipes";
 
-import { varsThemeBase } from "../themes/base.css";
-import { textAlign } from "../commons";
+import { varsThemeBase } from "../../themes/base.css";
+import { utils } from "../../utils";
 
-export const text = recipe({
+export const style = recipe({
   base: {
-    color: varsThemeBase.color.primary.high,
     fontFamily: varsThemeBase.fontFamily.centranube,
     fontWeight: varsThemeBase.fontWeight.regular,
     margin: 0,
   },
   variants: {
-    textAlign,
-    appearance: {
-      primary: {
-        color: varsThemeBase.color.primary.low,
-      },
-      success: {
-        color: varsThemeBase.color.success.low,
-      },
-      warning: {
-        color: varsThemeBase.color.warning.low,
-      },
-      danger: {
-        color: varsThemeBase.color.danger.low,
-      },
-      neutral: {
-        color: varsThemeBase.color.neutral.low,
-      },
-    },
+    textAlign: utils.variantes.textAlign,
     size: {
       small: {
         fontSize: varsThemeBase.fontSize.body.small,

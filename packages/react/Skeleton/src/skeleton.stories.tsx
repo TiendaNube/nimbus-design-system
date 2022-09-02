@@ -16,8 +16,8 @@ const Template: ComponentStory<typeof Skeleton> = (args) => (
   <Skeleton {...args} />
 );
 
-export const skeleton = Template.bind({});
-skeleton.args = {
+export const base = Template.bind({});
+base.args = {
   height: "3.125rem",
   width: "9.375rem",
 };
