@@ -7,12 +7,19 @@ import { Title } from "./Title";
 export default {
   title: "Atomic/Title",
   component: Title,
+  // subcomponents: { "Title.Skeleton": Title.Skeleton },
+  argTypes: {
+    children: { control: { disable: true } },
+  },
   parameters: {
     withA11y: { decorators: [withA11y] },
   },
 } as ComponentMeta<typeof Title>;
 
 const Template: ComponentStory<typeof Title> = (args) => <Title {...args} />;
+// const SkeletonTemplate: ComponentStory<typeof Title.Skeleton> = (args) => (
+//   <Title.Skeleton {...args} />
+// );
 
 export const h1 = Template.bind({});
 h1.args = {
@@ -49,3 +56,6 @@ h6.args = {
   as: "h6",
   children: "Lorem ipsum dolor sit amet",
 };
+
+// export const skeleton = SkeletonTemplate.bind({});
+// skeleton.args = {};
