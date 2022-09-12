@@ -1,7 +1,6 @@
 import { recipe } from "@vanilla-extract/recipes";
 
 import { varsThemeBase } from "../../themes/base.css";
-import { utils } from "../../utils";
 
 export const style = recipe({
   base: {
@@ -10,7 +9,6 @@ export const style = recipe({
     margin: 0,
   },
   variants: {
-    textAlign: utils.variantes.textAlign,
     as: {
       h1: {
         fontSize: varsThemeBase.fontSize.title.h1,
@@ -39,7 +37,6 @@ export const style = recipe({
     },
     defaultVariants: {
       as: "h1",
-      textAlign: "left",
     },
   },
 });
