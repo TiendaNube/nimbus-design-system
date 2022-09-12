@@ -7,6 +7,7 @@ releases:
   "@nimbus-ds/tokens": minor
 
 declined:
+  - nimbus-design-system
   - "@nimbus-ds/badge"
   - "@nimbus-ds/skeleton"
   - "@nimbus-ds/tag"
