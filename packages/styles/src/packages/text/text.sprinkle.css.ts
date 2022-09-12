@@ -1,8 +1,10 @@
 import { defineProperties, createSprinkles } from "@vanilla-extract/sprinkles";
-
+import { varsThemeBase } from "../../themes/base.css";
 import * as base from "../../sprinkles/colors.css";
 
-export const properties = {
+import { properties as textAlignProperties } from "../../sprinkles/textAlign.css";
+
+const colorsProperties = {
   "primary.background": base.properties["primary.background"],
   "primary.interactive": base.properties["primary.interactive"],
   "primary.textLow": base.properties["primary.textLow"],
@@ -29,10 +31,39 @@ export const properties = {
   "neutral.textHigh": base.properties["neutral.textHigh"],
 };
 
+const lineHeightProperties = {
+  small: varsThemeBase.lineWeight.body.small,
+  caption: varsThemeBase.lineWeight.body.caption,
+  base: varsThemeBase.lineWeight.body.base,
+};
+
+const fontWeightProperties = {
+  regular: varsThemeBase.fontWeight.regular,
+  bold: varsThemeBase.fontWeight.bold,
+};
+
+const fontSizeProperties = {
+  small: varsThemeBase.fontSize.body.small,
+  caption: varsThemeBase.fontSize.body.caption,
+  base: varsThemeBase.fontSize.body.base,
+};
+
 export const sprinkle = createSprinkles(
   defineProperties({
     properties: {
-      color: properties,
+      color: colorsProperties,
+      lineHeight: lineHeightProperties,
+      fontWeight: fontWeightProperties,
+      fontSize: fontSizeProperties,
+      textAlign: textAlignProperties,
     },
   })
 );
+
+export {
+  textAlignProperties,
+  colorsProperties,
+  lineHeightProperties,
+  fontWeightProperties,
+  fontSizeProperties,
+};
