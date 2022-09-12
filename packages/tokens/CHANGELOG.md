@@ -16,7 +16,9 @@ Our design tokens are the foundations of Nimbus Design System.
 
 ## 2022-08-11
 
-<!-- ### 📚 3rd party library updates -->
+### 📚 3rd party library updates
+
+- Added `style-dictionary@3.7.1`. ([#7](https://github.com/TiendaNube/nimbus-design-system/pull/7) by [@juniorconquista](https://github.com/juniorconquista))
 
 <!-- ### 🛠 Breaking changes -->
 

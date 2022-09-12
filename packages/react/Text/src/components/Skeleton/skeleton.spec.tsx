@@ -11,7 +11,7 @@ const makeSut = (props?: SkeletonProps) => {
 describe("GIVEN <Text.Skeleton />", () => {
   describe("WHEN rendered", () => {
     it('THEN should render skeleton size="small"', () => {
-      makeSut({ size: "small" });
+      makeSut({ fontSize: "small" });
       const skeleton = screen.getByTestId("skeleton-element");
       expect(skeleton.getAttribute("style")).toMatch(/--width__\w{0,9}: 2rem;/);
       expect(skeleton.getAttribute("style")).toMatch(
@@ -23,7 +23,7 @@ describe("GIVEN <Text.Skeleton />", () => {
     });
 
     it('THEN should render skeleton size="caption"', () => {
-      makeSut({ size: "caption" });
+      makeSut({ fontSize: "caption" });
       const skeleton = screen.getByTestId("skeleton-element");
       expect(skeleton.getAttribute("style")).toMatch(/--width__\w{0,9}: 2rem;/);
       expect(skeleton.getAttribute("style")).toMatch(
@@ -35,7 +35,7 @@ describe("GIVEN <Text.Skeleton />", () => {
     });
 
     it('THEN should render skeleton type="base"', () => {
-      makeSut({ size: "base" });
+      makeSut({ fontSize: "base" });
       const skeleton = screen.getByTestId("skeleton-element");
       expect(skeleton.getAttribute("style")).toMatch(/--width__\w{0,9}: 2rem;/);
       expect(skeleton.getAttribute("style")).toMatch(

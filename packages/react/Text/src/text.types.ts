@@ -12,14 +12,14 @@ export interface TextProps extends HTMLAttributes<HTMLParagraphElement> {
   children: ReactNode;
   /** Type of html tag to create for the Text component */
   as?: "p" | "span";
-  /** Text alignment in content */
-  textAlign?: "left" | "right" | "center" | "justify";
-  /** Bold font for the text component */
-  bold?: boolean;
   /** Text size */
-  size?: "small" | "caption" | "base";
+  fontSize?: keyof typeof text.properties.fontSize;
+  /** Bold font for the text component */
+  fontWeight?: keyof typeof text.properties.fontWeight;
   /** Text line height */
-  lineHeight?: "small" | "caption" | "base";
+  lineHeight?: keyof typeof text.properties.lineHeight;
+  /** Text alignment in content */
+  textAlign?: keyof typeof text.properties.textAlign;
   /** Text color */
-  color?: keyof typeof text.properties;
+  color?: keyof typeof text.properties.colors;
 }

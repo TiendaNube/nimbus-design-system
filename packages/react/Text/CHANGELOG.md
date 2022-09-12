@@ -2,6 +2,17 @@
 
 Text is a basic component that allows us to write blocks of text and give it formatting to use within other components, sections and pages of our application or website.
 
+## 2022-09-12
+
+### 🎉 New features
+
+- Added `fontWeight` property to the Component Text. ([#23](https://github.com/TiendaNube/nimbus-design-system/pull/23) by [@juniorconquista](https://github.com/juniorconquista))
+
+### 💡 Others
+
+- Renamed `size` property for `fontSize` to the Component Text. ([#23](https://github.com/TiendaNube/nimbus-design-system/pull/23) by [@juniorconquista](https://github.com/juniorconquista))
+- Removed `bold` property to the Component Text. ([#23](https://github.com/TiendaNube/nimbus-design-system/pull/23) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2022-09-01
 
 ### 📚 3rd party library updates

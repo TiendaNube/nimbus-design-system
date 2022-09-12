@@ -5,14 +5,14 @@ import { SkeletonProps } from "./skeleton.types";
 import { sizes } from "./skeleton.definitions";
 
 const Skeleton: React.FC<SkeletonProps> = ({
-  size = "caption",
+  fontSize = "caption",
   width,
   height,
   "data-testid": dataTestId,
 }) => (
   <SkeletonBase
-    width={width ?? sizes[size].width}
-    height={height ?? sizes[size].height}
+    width={width ?? sizes[fontSize].width}
+    height={height ?? sizes[fontSize].height}
     data-testid={dataTestId}
     borderRadius="0.25rem"
   />

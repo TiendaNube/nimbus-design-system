@@ -2,6 +2,22 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2022-09-12
+
+### 🎉 New features
+
+- Global theme contract created. ([#23](https://github.com/TiendaNube/nimbus-design-system/pull/23) by [@juniorconquista](https://github.com/juniorconquista))
+- Added new `textAlign` sprinkle pack. ([#23](https://github.com/TiendaNube/nimbus-design-system/pull/23) by [@juniorconquista](https://github.com/juniorconquista))
+- Added new `textAlign` sprinkle in `Title` package. ([#23](https://github.com/TiendaNube/nimbus-design-system/pull/23) by [@juniorconquista](https://github.com/juniorconquista))
+- Added new `textAlign`, `size`, `lineHeight`, and `bold` sprinkle in `Text` package. ([#23](https://github.com/TiendaNube/nimbus-design-system/pull/23) by [@juniorconquista](https://github.com/juniorconquista))
+
+### 💡 Others
+
+- Removed `textAlign` variant in `Title` package. ([#23](https://github.com/TiendaNube/nimbus-design-system/pull/23) by [@juniorconquista](https://github.com/juniorconquista))
+- Removed `textAlign`, `size`, `lineHeight`, and `bold` variant in `Text` package. ([#23](https://github.com/TiendaNube/nimbus-design-system/pull/23) by [@juniorconquista](https://github.com/juniorconquista))
+- Removed `textAlign` variant in `Tag` package. ([#23](https://github.com/TiendaNube/nimbus-design-system/pull/23) by [@juniorconquista](https://github.com/juniorconquista))
+- Removed `textAlign` variant in `Badge` package. ([#23](https://github.com/TiendaNube/nimbus-design-system/pull/23) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2022-09-01
 
 ### 📚 3rd party library updates
@@ -49,7 +65,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 - Added font size and line height system small, caption, base. ([#13](https://github.com/TiendaNube/nimbus-design-system/pull/13) by [@juniorconquista](https://github.com/juniorconquista))
 - Added new style pack for text component. ([#13](https://github.com/TiendaNube/nimbus-design-system/pull/13) by [@juniorconquista](https://github.com/juniorconquista))
 
-## 2022-06-09
+## 2022-08-09
 
 ### 📚 3rd party library updates
 
