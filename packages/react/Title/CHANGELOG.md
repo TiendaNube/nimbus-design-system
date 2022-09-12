@@ -22,9 +22,9 @@ Tilte is a basic component that allows you to give titles and more hierarchy to 
 
 ### 🎉 New features
 
-- Created new `Text.Skeleton` subcomponent. ([#15](https://github.com/TiendaNube/nimbus-design-system/pull/15) by [@juniorconquista](https://github.com/juniorconquista))
-- Added `as`, `width` and `height` properties to the Component `Text.Skeleton`. ([#15](https://github.com/TiendaNube/nimbus-design-system/pull/15) by [@juniorconquista](https://github.com/juniorconquista))
-- Added stories on Component `Text.Skeleton`. ([#15](https://github.com/TiendaNube/nimbus-design-system/pull/15) by [@juniorconquista](https://github.com/juniorconquista))
+- Created new `Title.Skeleton` subcomponent. ([#15](https://github.com/TiendaNube/nimbus-design-system/pull/15) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `as`, `width` and `height` properties to the Component `Title.Skeleton`. ([#15](https://github.com/TiendaNube/nimbus-design-system/pull/15) by [@juniorconquista](https://github.com/juniorconquista))
+- Added stories on Component `Title.Skeleton`. ([#15](https://github.com/TiendaNube/nimbus-design-system/pull/15) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2022-08-21
 

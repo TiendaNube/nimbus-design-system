@@ -14,8 +14,8 @@ Icons are used to visually communicate core parts of the product and available a
 
 ### 🎉 New features
 
-- Added `source` and `color` properties to the Component. ([#20](https://github.com/TiendaNube/nimbus-design-system/pull/20) by [@juniorconquista](https://github.com/juniorconquista))
-- Added stories on Component. ([#20](https://github.com/TiendaNube/nimbus-design-system/pull/20) by [@juniorconquista](https://github.com/juniorconquista))
-- Created new `Icon.Skeleton` subcomponent. ([#20](https://github.com/TiendaNube/nimbus-design-system/pull/20) by [@juniorconquista](https://github.com/juniorconquista))
-- Added `width` and `height` properties to the Component `Icon.Skeleton`. ([#20](https://github.com/TiendaNube/nimbus-design-system/pull/20) by [@juniorconquista](https://github.com/juniorconquista))
-- Added stories on Component `Icon.Skeleton`. ([#20](https://github.com/TiendaNube/nimbus-design-system/pull/20) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `source` and `color` properties to the Component. ([#21](https://github.com/TiendaNube/nimbus-design-system/pull/21) by [@juniorconquista](https://github.com/juniorconquista))
+- Added stories on Component. ([#21](https://github.com/TiendaNube/nimbus-design-system/pull/21) by [@juniorconquista](https://github.com/juniorconquista))
+- Created new `Icon.Skeleton` subcomponent. ([#21](https://github.com/TiendaNube/nimbus-design-system/pull/21) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `width` and `height` properties to the Component `Icon.Skeleton`. ([#21](https://github.com/TiendaNube/nimbus-design-system/pull/21) by [@juniorconquista](https://github.com/juniorconquista))
+- Added stories on Component `Icon.Skeleton`. ([#21](https://github.com/TiendaNube/nimbus-design-system/pull/21) by [@juniorconquista](https://github.com/juniorconquista))
