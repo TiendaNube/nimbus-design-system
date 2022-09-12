@@ -1,8 +1,21 @@
 import { style } from "./text.style.css";
-import { sprinkle, properties } from "./text.sprinkle.css";
+import {
+  sprinkle,
+  colorsProperties,
+  textAlignProperties,
+  lineHeightProperties,
+  fontWeightProperties,
+  fontSizeProperties,
+} from "./text.sprinkle.css";
 
 export const text = {
   style,
   sprinkle,
-  properties,
+  properties: {
+    colors: colorsProperties,
+    textAlign: textAlignProperties,
+    lineHeight: lineHeightProperties,
+    fontWeight: fontWeightProperties,
+    fontSize: fontSizeProperties,
+  },
 };

@@ -1,19 +1,23 @@
 import { defineProperties, createSprinkles } from "@vanilla-extract/sprinkles";
 
-import * as base from "../../sprinkles/colors.css";
+import { properties as colors } from "../../sprinkles/colors.css";
+import { properties as textAlignProperties } from "../../sprinkles/textAlign.css";
 
-export const properties = {
-  "primary.textHigh": base.properties["primary.textHigh"],
-  "success.textHigh": base.properties["success.textHigh"],
-  "warning.textHigh": base.properties["warning.textHigh"],
-  "danger.textHigh": base.properties["danger.textHigh"],
-  "neutral.textHigh": base.properties["neutral.textHigh"],
+const colorsProperties = {
+  "primary.textHigh": colors["primary.textHigh"],
+  "success.textHigh": colors["success.textHigh"],
+  "warning.textHigh": colors["warning.textHigh"],
+  "danger.textHigh": colors["danger.textHigh"],
+  "neutral.textHigh": colors["neutral.textHigh"],
 };
 
 export const sprinkle = createSprinkles(
   defineProperties({
     properties: {
-      color: properties,
+      color: colorsProperties,
+      textAlign: textAlignProperties,
     },
   })
 );
+
+export { textAlignProperties, colorsProperties };
