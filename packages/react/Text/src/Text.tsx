@@ -9,18 +9,18 @@ const Text: React.FC<TextProps> & TextComponents = ({
   style: _style,
   as: As = "p",
   color = "primary.textLow",
+  textAlign = "left",
+  lineHeight = "caption",
+  fontWeight = "regular",
+  fontSize = "caption",
   children,
-  textAlign,
-  lineHeight,
-  bold,
-  size,
   ...rest
 }: TextProps) => (
   <As
     {...rest}
     className={[
-      text.sprinkle({ color }),
-      text.style({ bold, size, textAlign, lineHeight }),
+      text.sprinkle({ color, textAlign, lineHeight, fontWeight, fontSize }),
+      text.style,
     ].join(" ")}
   >
     {children}

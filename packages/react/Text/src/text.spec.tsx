@@ -57,35 +57,42 @@ describe("GIVEN <Text />", () => {
     });
   });
 
-  describe("THEN should correctly render a bold", () => {
-    it("THEN should correctly render a bold true", () => {
-      makeSut({ bold: true });
+  describe("THEN should correctly render a fontWeight", () => {
+    it("THEN should correctly render a bold", () => {
+      makeSut({ fontWeight: "bold" });
       expect(
         screen.getByTestId("text-element").getAttribute("class")
-      ).toContain("bold_true");
+      ).toContain("fontWeight_bold");
+    });
+
+    it("THEN should correctly render a regular", () => {
+      makeSut({ fontWeight: "regular" });
+      expect(
+        screen.getByTestId("text-element").getAttribute("class")
+      ).toContain("fontWeight_regular");
     });
   });
 
   describe("THEN should correctly render the size", () => {
     it("THEN should correctly render the size base", () => {
-      makeSut({ size: "base" });
+      makeSut({ fontSize: "base" });
       expect(
         screen.getByTestId("text-element").getAttribute("class")
-      ).toContain("size_base");
+      ).toContain("fontSize_base");
     });
 
     it("THEN should correctly render the size caption", () => {
-      makeSut({ size: "caption" });
+      makeSut({ fontSize: "caption" });
       expect(
         screen.getByTestId("text-element").getAttribute("class")
-      ).toContain("size_caption");
+      ).toContain("fontSize_caption");
     });
 
     it("THEN should correctly render the size small", () => {
-      makeSut({ size: "small" });
+      makeSut({ fontSize: "small" });
       expect(
         screen.getByTestId("text-element").getAttribute("class")
-      ).toContain("size_small");
+      ).toContain("fontSize_small");
     });
   });
 
