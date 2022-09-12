@@ -2,7 +2,6 @@ import { recipe } from "@vanilla-extract/recipes";
 import tokens from "@nimbus-ds/tokens/dist/js/tokens";
 
 import { varsThemeBase } from "../../themes/base.css";
-import { utils } from "../../utils";
 
 const { spacing } = tokens;
 
@@ -25,7 +24,6 @@ export const style = recipe({
     fontFamily: varsThemeBase.fontFamily.centranube,
   },
   variants: {
-    textAlign: utils.variantes.textAlign,
     appearance: {
       neutral: {
         color: varsThemeBase.colors.neutral.textLow,
