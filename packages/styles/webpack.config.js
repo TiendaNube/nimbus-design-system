@@ -16,6 +16,7 @@ module.exports = {
     "./packages/chip/index": "./src/packages/chip/index",
     "./packages/icon/index": "./src/packages/icon/index",
     "./packages/skeleton/index": "./src/packages/skeleton/index",
+    "./packages/spinner/index": "./src/packages/spinner/index",
     "./packages/tag/index": "./src/packages/tag/index",
     "./packages/title/index": "./src/packages/title/index",
     "./packages/text/index": "./src/packages/text/index",

@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2022-09-13
+
+### 🎉 New features
+
+- Added new style pack for spinner component. ([#25](https://github.com/TiendaNube/nimbus-design-system/pull/25) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2022-09-12
 
 ### 🎉 New features
