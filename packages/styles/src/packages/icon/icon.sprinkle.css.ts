@@ -1,27 +1,26 @@
 import { defineProperties, createSprinkles } from "@vanilla-extract/sprinkles";
-
-import * as base from "../../sprinkles/colors.css";
+import { properties as colors } from "../../sprinkles/colors.css";
 
 export const properties = {
-  "primary.background": base.properties["primary.background"],
-  "primary.textLow": base.properties["primary.textLow"],
-  "primary.textHigh": base.properties["primary.textHigh"],
+  "primary.background": colors["primary.background"],
+  "primary.textLow": colors["primary.textLow"],
+  "primary.textHigh": colors["primary.textHigh"],
 
-  "success.background": base.properties["success.background"],
-  "success.textLow": base.properties["success.textLow"],
-  "success.textHigh": base.properties["success.textHigh"],
+  "success.background": colors["success.background"],
+  "success.textLow": colors["success.textLow"],
+  "success.textHigh": colors["success.textHigh"],
 
-  "warning.background": base.properties["warning.background"],
-  "warning.textLow": base.properties["warning.textLow"],
-  "warning.textHigh": base.properties["warning.textHigh"],
+  "warning.background": colors["warning.background"],
+  "warning.textLow": colors["warning.textLow"],
+  "warning.textHigh": colors["warning.textHigh"],
 
-  "danger.background": base.properties["danger.background"],
-  "danger.textLow": base.properties["danger.textLow"],
-  "danger.textHigh": base.properties["danger.textHigh"],
+  "danger.background": colors["danger.background"],
+  "danger.textLow": colors["danger.textLow"],
+  "danger.textHigh": colors["danger.textHigh"],
 
-  "neutral.background": base.properties["neutral.background"],
-  "neutral.textLow": base.properties["neutral.textLow"],
-  "neutral.textHigh": base.properties["neutral.textHigh"],
+  "neutral.background": colors["neutral.background"],
+  "neutral.textLow": colors["neutral.textLow"],
+  "neutral.textHigh": colors["neutral.textHigh"],
 };
 
 export const sprinkle = createSprinkles(
