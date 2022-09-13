@@ -17,7 +17,6 @@ Currently also with a gihub action that also validates on each pull request if t
 ### Release candidates
 
 1. Run `yarn bump:check`
-1. Run `yarn build`
 1. Run `yarn npm login` and supply your credentials (ensure you have access to the org scope for publishing)
 1. Run `yarn publish:next`
 1. Commit the resulting changes directly to `current branch`
