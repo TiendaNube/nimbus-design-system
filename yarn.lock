@@ -2440,7 +2440,6 @@ __metadata:
     "@nimbus-ds/icon": "workspace:*"
     "@nimbus-ds/skeleton": "workspace:*"
     "@nimbus-ds/styles": "workspace:*"
-    "@nimbus-ds/text": "workspace:*"
     "@tiendanube/icons": ^0.2.7
     terser-webpack-plugin: ^5.3.5
     ts-loader: ^9.3.1
