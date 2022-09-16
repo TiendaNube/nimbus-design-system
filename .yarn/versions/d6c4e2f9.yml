@@ -1,0 +1,14 @@
+releases:
+  "@nimbus-ds/label": major
+  "@nimbus-ds/styles": minor
+
+declined:
+  - nimbus-design-system
+  - "@nimbus-ds/badge"
+  - "@nimbus-ds/chip"
+  - "@nimbus-ds/icon"
+  - "@nimbus-ds/skeleton"
+  - "@nimbus-ds/spinner"
+  - "@nimbus-ds/tag"
+  - "@nimbus-ds/text"
+  - "@nimbus-ds/title"
