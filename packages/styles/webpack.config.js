@@ -20,6 +20,7 @@ module.exports = {
     "./packages/tag/index": "./src/packages/tag/index",
     "./packages/title/index": "./src/packages/title/index",
     "./packages/text/index": "./src/packages/text/index",
+    "./packages/label/index": "./src/packages/label/index",
   },
   output: {
     path: path.resolve(__dirname, "dist"),

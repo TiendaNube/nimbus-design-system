@@ -8,3 +8,4 @@ export { text } from "./packages/text";
 export { title } from "./packages/title";
 export { skeleton } from "./packages/skeleton";
 export { spinner } from "./packages/spinner";
+export { label } from "./packages/label";

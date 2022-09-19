@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2022-09-16
+
+### 🎉 New features
+
+- Added new style pack for label component. ([#26](https://github.com/TiendaNube/nimbus-design-system/pull/26) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2022-09-13
 
 ### 🎉 New features
