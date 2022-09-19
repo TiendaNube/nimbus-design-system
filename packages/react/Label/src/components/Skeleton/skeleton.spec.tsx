@@ -8,7 +8,7 @@ const makeSut = (props?: SkeletonProps) => {
   render(<Skeleton {...props} data-testid="skeleton-element" />);
 };
 
-describe("GIVEN <Chip.Skeleton />", () => {
+describe("GIVEN <Label.Skeleton />", () => {
   describe("WHEN rendered", () => {
     it("THEN should render skeleton base", () => {
       makeSut();
