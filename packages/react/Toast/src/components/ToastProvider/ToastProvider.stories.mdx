@@ -1,0 +1,91 @@
+import { Canvas, Meta, Story, Preview } from "@storybook/addon-docs";
+
+import { useToast } from "../../hooks";
+import { ToastProvider } from "./ToastProvider";
+
+<Meta
+  title="Atomic/Toast"
+  component={ToastProvider}
+  decorators={[
+    (Story) => (
+      <ToastProvider>
+        <Story />
+      </ToastProvider>
+    ),
+  ]}
+/>
+
+# ToastProvider
+
+<Preview>
+  <Story name="Provider" parameters={{ docs: { source: { code: null } } }}>
+    {() => {
+      const { addToast } = useToast();
+      return (
+        <div style={{ display: "flex", gap: "0.5rem" }}>
+          <button
+            style={{ curson: "pointer" }}
+            onClick={() => {
+              addToast({
+                type: "primary",
+                text: "Toast primary",
+              });
+            }}
+          >
+            Toast primary
+          </button>
+          <button
+            style={{ curson: "pointer" }}
+            onClick={() =>
+              addToast({
+                type: "success",
+                text: "Toast success",
+              })
+            }
+          >
+            Toast success
+          </button>
+          <button
+            onClick={() =>
+              addToast({
+                type: "danger",
+                text: "Toast danger",
+              })
+            }
+          >
+            Toast danger
+          </button>
+          <button
+            onClick={() =>
+              addToast({
+                type: "progress",
+                text: "Toast progress",
+              })
+            }
+          >
+            Toast progress
+          </button>
+        </div>
+      );
+    }}
+  </Story>
+</Preview>
+
+# Basic usage
+
+```jsx
+<ToastProvider>
+  const {addToast} = useToast();
+  <button
+    onClick={() => {
+      addToast({
+        type: "primary",
+        text: "Toast",
+        duration: 4000,
+      });
+    }}
+  >
+    Toast
+  </button>
+</ToastProvider>
+```
