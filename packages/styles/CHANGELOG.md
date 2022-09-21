@@ -2,6 +2,13 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2022-09-21
+
+### 🎉 New features
+
+- Added new style pack for toast component. ([#27](https://github.com/TiendaNube/nimbus-design-system/pull/27) by [@juniorconquista](https://github.com/juniorconquista))
+- Added new animation tokens to theme base. ([#27](https://github.com/TiendaNube/nimbus-design-system/pull/27) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2022-09-13
 
 ### 🎉 New features

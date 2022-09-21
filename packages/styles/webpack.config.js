@@ -18,8 +18,9 @@ module.exports = {
     "./packages/skeleton/index": "./src/packages/skeleton/index",
     "./packages/spinner/index": "./src/packages/spinner/index",
     "./packages/tag/index": "./src/packages/tag/index",
-    "./packages/title/index": "./src/packages/title/index",
     "./packages/text/index": "./src/packages/text/index",
+    "./packages/title/index": "./src/packages/title/index",
+    "./packages/toast/index": "./src/packages/toast/index",
   },
   output: {
     path: path.resolve(__dirname, "dist"),
