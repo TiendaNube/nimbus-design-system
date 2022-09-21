@@ -28,10 +28,10 @@ module.exports = {
   },
   resolve: {
     alias: {
+      "@nimbus-ds/styles": path.resolve(__dirname, "../../styles/dist"),
       "@nimbus-ds/icon": path.resolve(__dirname, "../Icon/src"),
       "@nimbus-ds/skeleton": path.resolve(__dirname, "../Skeleton/src"),
       "@nimbus-ds/text": path.resolve(__dirname, "../Text/src"),
-      "@nimbus-ds/styles": path.resolve(__dirname, "../../styles/dist"),
     },
     extensions: [".tsx", ".ts", ".js"],
   },
