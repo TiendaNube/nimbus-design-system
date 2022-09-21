@@ -11,7 +11,7 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].js",
     libraryTarget: "umd",
-    library: "@nimbus-ds/chip",
+    library: "@nimbus-ds/toast",
   },
   module: {
     rules: [
@@ -30,7 +30,7 @@ module.exports = {
     alias: {
       "@nimbus-ds/styles": path.resolve(__dirname, "../../styles/dist"),
       "@nimbus-ds/icon": path.resolve(__dirname, "../Icon/src"),
-      "@nimbus-ds/skeleton": path.resolve(__dirname, "../Skeleton/src"),
+      "@nimbus-ds/spinner": path.resolve(__dirname, "../spinner/src"),
       "@nimbus-ds/text": path.resolve(__dirname, "../Text/src"),
     },
     extensions: [".tsx", ".ts", ".js"],
@@ -41,7 +41,7 @@ module.exports = {
   },
   externals: {
     "@nimbus-ds/icon": "@nimbus-ds/icon",
-    "@nimbus-ds/skeleton": "@nimbus-ds/skeleton",
+    "@nimbus-ds/spinner": "@nimbus-ds/spinner",
     "@nimbus-ds/styles": "@nimbus-ds/styles",
     "@nimbus-ds/text": "@nimbus-ds/text",
     "@tiendanube/icons": "@tiendanube/icons",

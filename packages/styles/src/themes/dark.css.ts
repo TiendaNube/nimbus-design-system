@@ -8,6 +8,7 @@ const fontFamily = tokens.font.family;
 const fontSize = tokens.font.size.sys;
 const fontWeight = tokens.font.weight;
 const lineWeight = tokens.line.height.sys;
+const { motion } = tokens;
 
 export const ThemeDark = createTheme(varsThemeBase, {
   colors: {
@@ -98,6 +99,14 @@ export const ThemeDark = createTheme(varsThemeBase, {
       h4: lineWeight.title.h4.value as string,
       h5: lineWeight.title.h5.value as string,
       h6: lineWeight.title.h6.value as string,
+    },
+  },
+  motion: {
+    speed: {
+      base: motion.speed.base.value as string,
+      fast: motion.speed.fast.value as string,
+      slow: motion.speed.slow.value as string,
+      slower: motion.speed.slower.value as string,
     },
   },
 });

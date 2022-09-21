@@ -7,29 +7,26 @@ import { Spinner } from "./Spinner";
 export default {
   title: "Atomic/Spinner",
   component: Spinner,
-  argTypes: {
-    source: { control: { disable: true } },
-  },
   parameters: {
     withA11y: { decorators: [withA11y] },
   },
 } as ComponentMeta<typeof Spinner>;
 
-const IconTemplate: ComponentStory<typeof Spinner> = (args) => (
+const SpinnerTemplate: ComponentStory<typeof Spinner> = (args) => (
   <Spinner {...args} />
 );
 
-export const large = IconTemplate.bind({});
+export const large = SpinnerTemplate.bind({});
 large.args = {
   size: "large",
 };
 
-export const medium = IconTemplate.bind({});
+export const medium = SpinnerTemplate.bind({});
 medium.args = {
   size: "medium",
 };
 
-export const small = IconTemplate.bind({});
+export const small = SpinnerTemplate.bind({});
 small.args = {
   size: "small",
 };
