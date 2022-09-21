@@ -71,7 +71,8 @@
           "./packages/react/Chip",
           "./packages/react/Tag",
           "./packages/react/Text",
-          "./packages/react/Title"
+          "./packages/react/Title",
+          "./packages/react/Toast"
         ]
       }
     ],
