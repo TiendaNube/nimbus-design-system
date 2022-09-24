@@ -8,7 +8,7 @@ const base = vanillaStyle({
   display: "flex",
   flexDirection: "row",
   alignItems: "center",
-  gap: spacing["05"].value,
+  gap: varsThemeBase.spacing[1],
 
   height: "2rem",
   width: "fit-content",

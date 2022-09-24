@@ -1,18 +1,15 @@
 import { recipe } from "@vanilla-extract/recipes";
-import tokens from "@nimbus-ds/tokens/dist/js/tokens";
 
 import { varsThemeBase } from "../../themes/base.css";
-
-const { spacing } = tokens;
 
 export const style = recipe({
   base: {
     display: "flex",
     alignItems: "center",
-    gap: spacing["05"].value,
+    gap: varsThemeBase.spacing[1],
 
-    lineHeight: varsThemeBase.lineWeight.body.small,
-    fontSize: varsThemeBase.fontSize.body.small,
+    lineHeight: varsThemeBase.lineWeight.body.caption,
+    fontSize: varsThemeBase.fontSize.body.caption,
     fontFamily: varsThemeBase.fontFamily.centranube,
 
     color: varsThemeBase.colors.neutral.textLow,

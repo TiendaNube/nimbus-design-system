@@ -1,22 +1,19 @@
 import { style as vanillaStyle } from "@vanilla-extract/css";
-import tokens from "@nimbus-ds/tokens/dist/js/tokens";
 
 import { varsThemeBase } from "../../themes/base.css";
-
-const { spacing } = tokens;
 
 export const style = vanillaStyle({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
 
-  padding: `${spacing["05"].value} ${spacing["1"].value}`,
+  padding: `${varsThemeBase.spacing[1]} ${varsThemeBase.spacing[2]}`,
   height: "1.5rem",
   width: "fit-content",
-  gap: spacing["05"].value,
+  gap: varsThemeBase.spacing[1],
 
-  lineHeight: varsThemeBase.lineWeight.body.small,
-  fontSize: varsThemeBase.fontSize.body.small,
+  lineHeight: varsThemeBase.lineWeight.body.caption,
+  fontSize: varsThemeBase.fontSize.body.caption,
   fontFamily: varsThemeBase.fontFamily.centranube,
 
   background: varsThemeBase.colors.neutral.interactive,

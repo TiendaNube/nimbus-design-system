@@ -33,9 +33,9 @@ const colorsProperties = {
 };
 
 const lineHeightProperties = {
-  small: varsThemeBase.lineWeight.body.small,
   caption: varsThemeBase.lineWeight.body.caption,
   base: varsThemeBase.lineWeight.body.base,
+  highlight: varsThemeBase.lineWeight.body.highlight,
 };
 
 const fontWeightProperties = {
@@ -44,9 +44,9 @@ const fontWeightProperties = {
 };
 
 const fontSizeProperties = {
-  small: varsThemeBase.fontSize.body.small,
   caption: varsThemeBase.fontSize.body.caption,
   base: varsThemeBase.fontSize.body.base,
+  highlight: varsThemeBase.fontSize.body.highlight,
 };
 
 export const sprinkle = createSprinkles(
