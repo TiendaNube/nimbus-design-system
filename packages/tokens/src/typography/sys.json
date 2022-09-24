@@ -16,7 +16,7 @@
           "h3": { "value": "{font.size.ref.5}" },
           "h4": { "value": "{font.size.ref.4,5}" },
           "h5": { "value": "{font.size.ref.4}" },
-          "h6": { "value": "{font.size.ref.3.5}" }
+          "h6": { "value": "{font.size.ref.3,5}" }
         }
       }
     },
