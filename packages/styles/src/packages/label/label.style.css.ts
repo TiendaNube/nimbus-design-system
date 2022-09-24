@@ -8,7 +8,8 @@ const { spacing } = tokens;
 export const style = recipe({
   base: {
     display: "flex",
-    gap: spacing["025"].value,
+    alignItems: "center",
+    gap: spacing["05"].value,
 
     lineHeight: varsThemeBase.lineWeight.body.small,
     fontSize: varsThemeBase.fontSize.body.small,

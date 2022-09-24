@@ -1,6 +1,6 @@
 {
-  "name": "@nimbus-ds/text",
-  "version": "3.1.0-rc.1",
+  "name": "@nimbus-ds/checkbox",
+  "version": "1.0.0-rc.1",
   "license": "MIT",
   "source": "src/index.ts",
   "main": "dist/index.js",
@@ -18,8 +18,10 @@
     "version": "yarn version"
   },
   "dependencies": {
+    "@nimbus-ds/icon": "workspace:*",
     "@nimbus-ds/skeleton": "workspace:*",
-    "@nimbus-ds/styles": "workspace:*"
+    "@nimbus-ds/styles": "workspace:*",
+    "@nimbus-ds/text": "workspace:*"
   },
   "peerDependencies": {
     "react": "^16.8 || ^17.0 || ^18.0",
@@ -40,5 +42,5 @@
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0"
   },
-  "stableVersion": "3.0.0"
+  "stableVersion": "0.0.0"
 }

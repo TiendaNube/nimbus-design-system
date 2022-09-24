@@ -7,6 +7,7 @@ const config: Config.InitialOptions = {
   moduleNameMapper: {
     "@nimbus-ds/styles": "<rootDir>/packages/styles/src",
     "@nimbus-ds/skeleton": "<rootDir>/packages/react/Skeleton/src",
+    "^.+\\.svg$": "jest-svg-transformer",
   },
   transform: {
     "^.+\\.css\\.ts$": "babel-jest",

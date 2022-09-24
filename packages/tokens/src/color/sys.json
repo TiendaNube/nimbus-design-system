@@ -45,10 +45,12 @@
         "neutral": {
           "background": { "value": "{color.ref.light.neutral.100}" },
           "surface": { "value": "{color.ref.light.neutral.99}" },
+          "surface-disabled": { "value": "{color.ref.light.neutral.95}" },
           "surface-highlight": { "value": "{color.ref.light.neutral.90}" },
           "interactive": { "value": "{color.ref.light.neutral.80}" },
           "interactive-hover": { "value": "{color.ref.light.neutral.70}" },
           "interactive-pressed": { "value": "{color.ref.light.neutral.60}" },
+          "text-disabled": { "value": "{color.ref.light.neutral.40}" },
           "text-low": { "value": "{color.ref.light.neutral.20}" },
           "text-high": { "value": "{color.ref.light.neutral.5}" }
         }

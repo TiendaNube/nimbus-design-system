@@ -55,10 +55,12 @@ export const ThemeDark = createTheme(varsThemeBase, {
     neutral: {
       background: colors.neutral.background.value as string,
       surface: colors.neutral.surface.value as string,
+      surfaceDisabled: colors.neutral["surface-disabled"].value as string,
       surfaceHighlight: colors.neutral["surface-highlight"].value as string,
       interactive: colors.neutral.interactive.value as string,
       interactiveHover: colors.neutral["interactive-hover"].value as string,
       interactivePressed: colors.neutral["interactive-pressed"].value as string,
+      textDisabled: colors.neutral["text-disabled"].value as string,
       textLow: colors.neutral["text-low"].value as string,
       textHigh: colors.neutral["text-high"].value as string,
     },

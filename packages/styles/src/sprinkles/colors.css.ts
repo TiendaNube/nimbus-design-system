@@ -40,10 +40,12 @@ export const properties = {
 
   "neutral.background": varsThemeBase.colors.neutral.background,
   "neutral.surface": varsThemeBase.colors.neutral.surface,
+  "neutral.surfaceDisabled": varsThemeBase.colors.neutral.surfaceDisabled,
   "neutral.surfaceHighlight": varsThemeBase.colors.neutral.surfaceHighlight,
   "neutral.interactive": varsThemeBase.colors.neutral.interactive,
   "neutral.interactiveHover": varsThemeBase.colors.neutral.interactiveHover,
   "neutral.interactivePressed": varsThemeBase.colors.neutral.interactivePressed,
+  "neutral.textDisabled": varsThemeBase.colors.neutral.textDisabled,
   "neutral.textLow": varsThemeBase.colors.neutral.textLow,
   "neutral.textHigh": varsThemeBase.colors.neutral.textHigh,
 };
