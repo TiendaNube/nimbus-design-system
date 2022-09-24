@@ -1,16 +1,16 @@
 {
   "spacing": {
-    "025": { "value": "0.125rem" },
-    "05": { "value": "0.25rem" },
-    "1": { "value": "0.5rem" },
-    "2": { "value": "1rem" },
-    "3": { "value": "1.5rem" },
-    "4": { "value": "2rem" },
-    "5": { "value": "2.5rem" },
-    "6": { "value": "3rem" },
-    "7": { "value": "3.5rem" },
-    "8": { "value": "4rem" },
-    "9": { "value": "4.5rem" },
-    "10": { "value": "5rem" }
+    "0,5": { "value": "{sizes.0,5}" },
+    "1": { "value": "{sizes.1}" },
+    "2": { "value": "{sizes.2}" },
+    "4": { "value": "{sizes.4}" },
+    "6": { "value": "{sizes.6}" },
+    "8": { "value": "{sizes.8}" },
+    "10": { "value": "{sizes.10}" },
+    "12": { "value": "{sizes.12}" },
+    "14": { "value": "{sizes.14}" },
+    "16": { "value": "{sizes.16}" },
+    "18": { "value": "{sizes.18}" },
+    "20": { "value": "{sizes.20}" }
   }
 }
