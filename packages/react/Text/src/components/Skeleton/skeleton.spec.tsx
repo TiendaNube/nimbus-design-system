@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 
-import { Skeleton } from "./skeleton";
+import { Skeleton } from "./Skeleton";
 import { SkeletonProps } from "./skeleton.types";
 
 const makeSut = (props?: SkeletonProps) => {
@@ -10,8 +10,8 @@ const makeSut = (props?: SkeletonProps) => {
 
 describe("GIVEN <Text.Skeleton />", () => {
   describe("WHEN rendered", () => {
-    it('THEN should render skeleton size="small"', () => {
-      makeSut({ fontSize: "small" });
+    it('THEN should render skeleton size="caption"', () => {
+      makeSut({ fontSize: "caption" });
       const skeleton = screen.getByTestId("skeleton-element");
       expect(skeleton.getAttribute("style")).toMatch(/--width__\w{0,9}: 2rem;/);
       expect(skeleton.getAttribute("style")).toMatch(
@@ -22,8 +22,8 @@ describe("GIVEN <Text.Skeleton />", () => {
       );
     });
 
-    it('THEN should render skeleton size="caption"', () => {
-      makeSut({ fontSize: "caption" });
+    it('THEN should render skeleton size="base"', () => {
+      makeSut({ fontSize: "base" });
       const skeleton = screen.getByTestId("skeleton-element");
       expect(skeleton.getAttribute("style")).toMatch(/--width__\w{0,9}: 2rem;/);
       expect(skeleton.getAttribute("style")).toMatch(
@@ -34,8 +34,8 @@ describe("GIVEN <Text.Skeleton />", () => {
       );
     });
 
-    it('THEN should render skeleton type="base"', () => {
-      makeSut({ fontSize: "base" });
+    it('THEN should render skeleton type="highlight"', () => {
+      makeSut({ fontSize: "highlight" });
       const skeleton = screen.getByTestId("skeleton-element");
       expect(skeleton.getAttribute("style")).toMatch(/--width__\w{0,9}: 2rem;/);
       expect(skeleton.getAttribute("style")).toMatch(

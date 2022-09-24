@@ -1,13 +1,13 @@
 export const sizes = {
-  small: {
+  caption: {
     width: "2rem",
     height: "1rem",
   },
-  caption: {
+  base: {
     width: "2rem",
     height: "1.25rem",
   },
-  base: {
+  highlight: {
     width: "2rem",
     height: "1.125rem",
   },
