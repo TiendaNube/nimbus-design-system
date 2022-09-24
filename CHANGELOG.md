@@ -3,6 +3,16 @@
 This is the log of notable changes to the Design System Nimbus that are developer-facing.
 Package-specific changes not released in any package will be added here just before the release. Until then, you can find them in changelogs of the individual packages (see [packages](./packages) directory).
 
+## 2022-09-24
+
+### 📚 3rd party library updates
+
+- Added `@svgr/webpack@6.3.1`. ([#28](https://github.com/TiendaNube/nimbus-design-system/pull/28) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `jest-svg-transformer@1.0.0`. ([#28](https://github.com/TiendaNube/nimbus-design-system/pull/28) by [@juniorconquista](https://github.com/juniorconquista))
+- Added global type declaration for using svg elements. ([#28](https://github.com/TiendaNube/nimbus-design-system/pull/28) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `jest-svg-transformer` configuration to `jest` for using svgs in components. ([#28](https://github.com/TiendaNube/nimbus-design-system/pull/28) by [@juniorconquista](https://github.com/juniorconquista))
+- Added new rule to webpack modules to use svgs in components. ([#28](https://github.com/TiendaNube/nimbus-design-system/pull/28) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2022-09-21
 
 ### 📚 3rd party library updates
