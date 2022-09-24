@@ -27,6 +27,7 @@ const colorsProperties = {
 
   "neutral.background": colors["neutral.background"],
   "neutral.interactive": colors["neutral.interactive"],
+  "neutral.textDisabled": colors["neutral.textDisabled"],
   "neutral.textLow": colors["neutral.textLow"],
   "neutral.textHigh": colors["neutral.textHigh"],
 };
