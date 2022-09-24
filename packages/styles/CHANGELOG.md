@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+### 🎉 New features
+
+- Added new interactive color properties to the sprinkle icon. ([#28](https://github.com/TiendaNube/nimbus-design-system/pull/28) by [@juniorconquista](https://github.com/juniorconquista))
+- Added new style pack for checkbox component. ([#28](https://github.com/TiendaNube/nimbus-design-system/pull/28) by [@juniorconquista](https://github.com/juniorconquista))
+- Added new `text-disabled` and `surface-disabled` colors to the neutral color palette in themes. ([#28](https://github.com/TiendaNube/nimbus-design-system/pull/28) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2022-09-21
 
 ### 🎉 New features
