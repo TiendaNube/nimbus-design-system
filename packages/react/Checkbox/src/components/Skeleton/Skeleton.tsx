@@ -1,16 +1,16 @@
 import React from "react";
-import { Skeleton } from "@nimbus-ds/skeleton";
+import { Skeleton as SkeletonBase } from "@nimbus-ds/skeleton";
 import { checkbox } from "@nimbus-ds/styles";
 
-import { CheckboxSkeletonProps } from "./checkboxSkeleton.types";
+import { SkeletonProps } from "./skeleton.types";
 
-const CheckboxSkeleton: React.FC<CheckboxSkeletonProps> = ({
+const Skeleton: React.FC<SkeletonProps> = ({
   width,
   "data-testid": dataTestId,
 }) => (
   <div className={checkbox.style.container}>
-    <Skeleton width="1rem" height="1rem" borderRadius="0.25rem" />
-    <Skeleton
+    <SkeletonBase width="1rem" height="1rem" borderRadius="0.25rem" />
+    <SkeletonBase
       width={width ?? "2rem"}
       height="1rem"
       borderRadius="0.25rem"
@@ -19,4 +19,4 @@ const CheckboxSkeleton: React.FC<CheckboxSkeletonProps> = ({
   </div>
 );
 
-export { CheckboxSkeleton };
+export { Skeleton };

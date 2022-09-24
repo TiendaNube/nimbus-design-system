@@ -2,18 +2,18 @@ import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { withA11y } from "@storybook/addon-a11y";
 
-import { CheckboxSkeleton } from "./CheckboxSkeleton";
+import { Skeleton } from "./Skeleton";
 
 export default {
   title: "Skeleton/Label",
-  component: CheckboxSkeleton,
+  component: Skeleton,
   parameters: {
     withA11y: { decorators: [withA11y] },
   },
-} as ComponentMeta<typeof CheckboxSkeleton>;
+} as ComponentMeta<typeof Skeleton>;
 
-const Template: ComponentStory<typeof CheckboxSkeleton> = (args) => (
-  <CheckboxSkeleton {...args} />
+const Template: ComponentStory<typeof Skeleton> = (args) => (
+  <Skeleton {...args} />
 );
 
 export const Label = Template.bind({});
