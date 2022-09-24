@@ -1,11 +1,11 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 
-import { CheckboxSkeleton } from "./CheckboxSkeleton";
-import { CheckboxSkeletonProps } from "./checkboxSkeleton.types";
+import { Skeleton } from "./Skeleton";
+import { SkeletonProps } from "./skeleton.types";
 
-const makeSut = (props?: CheckboxSkeletonProps) => {
-  render(<CheckboxSkeleton {...props} data-testid="skeleton-element" />);
+const makeSut = (props?: SkeletonProps) => {
+  render(<Skeleton {...props} data-testid="skeleton-element" />);
 };
 
 describe("GIVEN </Checkbox.Skeleton />", () => {

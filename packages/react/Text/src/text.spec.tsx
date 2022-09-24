@@ -74,13 +74,6 @@ describe("GIVEN <Text />", () => {
   });
 
   describe("THEN should correctly render the size", () => {
-    it("THEN should correctly render the size base", () => {
-      makeSut({ fontSize: "base" });
-      expect(
-        screen.getByTestId("text-element").getAttribute("class")
-      ).toContain("fontSize_base");
-    });
-
     it("THEN should correctly render the size caption", () => {
       makeSut({ fontSize: "caption" });
       expect(
@@ -88,11 +81,18 @@ describe("GIVEN <Text />", () => {
       ).toContain("fontSize_caption");
     });
 
-    it("THEN should correctly render the size small", () => {
-      makeSut({ fontSize: "small" });
+    it("THEN should correctly render the size base", () => {
+      makeSut({ fontSize: "base" });
       expect(
         screen.getByTestId("text-element").getAttribute("class")
-      ).toContain("fontSize_small");
+      ).toContain("fontSize_base");
+    });
+
+    it("THEN should correctly render the size highlight", () => {
+      makeSut({ fontSize: "highlight" });
+      expect(
+        screen.getByTestId("text-element").getAttribute("class")
+      ).toContain("fontSize_highlight");
     });
   });
 
@@ -239,13 +239,6 @@ describe("GIVEN <Text />", () => {
   });
 
   describe("THEN should correctly render the line height", () => {
-    it("THEN should correctly render the line height base", () => {
-      makeSut({ lineHeight: "base" });
-      expect(
-        screen.getByTestId("text-element").getAttribute("class")
-      ).toContain("lineHeight_base");
-    });
-
     it("THEN should correctly render the line height caption", () => {
       makeSut({ lineHeight: "caption" });
       expect(
@@ -253,11 +246,18 @@ describe("GIVEN <Text />", () => {
       ).toContain("lineHeight_caption");
     });
 
-    it("THEN should correctly render the line height small", () => {
-      makeSut({ lineHeight: "small" });
+    it("THEN should correctly render the line height base", () => {
+      makeSut({ lineHeight: "base" });
       expect(
         screen.getByTestId("text-element").getAttribute("class")
-      ).toContain("lineHeight_small");
+      ).toContain("lineHeight_base");
+    });
+
+    it("THEN should correctly render the line height highlight", () => {
+      makeSut({ lineHeight: "highlight" });
+      expect(
+        screen.getByTestId("text-element").getAttribute("class")
+      ).toContain("lineHeight_highlight");
     });
   });
 });

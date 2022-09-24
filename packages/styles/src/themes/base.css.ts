@@ -61,9 +61,9 @@ export const varsThemeBase = createThemeContract({
   },
   fontSize: {
     body: {
-      small: "fontSize.body.small",
       caption: "fontSize.body.caption",
       base: "fontSize.body.base",
+      highlight: "fontSize.body.highlight",
     },
     title: {
       h1: "fontSize.title.h1",
@@ -81,9 +81,9 @@ export const varsThemeBase = createThemeContract({
   },
   lineWeight: {
     body: {
-      small: "lineWeight.body.small",
       caption: "lineWeight.caption.small",
       base: "lineWeight.base.small",
+      highlight: "lineWeight.body.highlight",
     },
     title: {
       h1: "lineWeight.title.h1",
@@ -93,6 +93,43 @@ export const varsThemeBase = createThemeContract({
       h5: "lineWeight.title.h5",
       h6: "lineWeight.title.h6",
     },
+  },
+  spacing: {
+    "0,5": "spacing.0,5",
+    "1": "spacing.1",
+    "2": "spacing.2",
+    "4": "spacing.4",
+    "6": "spacing.6",
+    "8": "spacing.8",
+    "10": "spacing.10",
+    "12": "spacing.12",
+    "14": "spacing.14",
+    "16": "spacing.16",
+    "18": "spacing.18",
+    "20": "spacing.20",
+  },
+  sizes: {
+    "0,5": "sizes.0,5",
+    "1": "sizes.1",
+    "1,5": "sizes.1,5",
+    "2": "sizes.2",
+    "2,5": "sizes.2,5",
+    "3": "sizes.3",
+    "3,5": "sizes.3,5",
+    "4": "sizes.4",
+    "4,5": "sizes.4,5",
+    "5": "sizes.5",
+    "6": "sizes.6",
+    "7": "sizes.7",
+    "8": "sizes.8",
+    "9": "sizes.9",
+    "10": "sizes.10",
+    "11": "sizes.11",
+    "12": "sizes.12",
+    "14": "sizes.14",
+    "16": "sizes.16",
+    "18": "sizes.18",
+    "20": "sizes.20",
   },
   motion: {
     speed: {
@@ -109,7 +146,7 @@ const fontFamily = tokens.font.family;
 const fontSize = tokens.font.size.sys;
 const fontWeight = tokens.font.weight;
 const lineWeight = tokens.line.height.sys;
-const { motion } = tokens;
+const { motion, spacing, sizes } = tokens;
 
 createGlobalTheme(":root", varsThemeBase, {
   colors: {
@@ -171,9 +208,9 @@ createGlobalTheme(":root", varsThemeBase, {
   },
   fontSize: {
     body: {
-      small: fontSize.body.small.value as string,
       caption: fontSize.body.caption.value as string,
       base: fontSize.body.base.value as string,
+      highlight: fontSize.body.highlight.value as string,
     },
     title: {
       h1: fontSize.title.h1.value as string,
@@ -191,9 +228,9 @@ createGlobalTheme(":root", varsThemeBase, {
   },
   lineWeight: {
     body: {
-      small: lineWeight.body.small.value as string,
       caption: lineWeight.body.caption.value as string,
       base: lineWeight.body.base.value as string,
+      highlight: lineWeight.body.highlight.value as string,
     },
     title: {
       h1: lineWeight.title.h1.value as string,
@@ -203,6 +240,43 @@ createGlobalTheme(":root", varsThemeBase, {
       h5: lineWeight.title.h5.value as string,
       h6: lineWeight.title.h6.value as string,
     },
+  },
+  spacing: {
+    "0,5": spacing["0,5"].value,
+    "1": spacing[1].value,
+    "2": spacing[2].value,
+    "4": spacing[4].value,
+    "6": spacing[6].value,
+    "8": spacing[8].value,
+    "10": spacing[10].value,
+    "12": spacing[12].value,
+    "14": spacing[14].value,
+    "16": spacing[16].value,
+    "18": spacing[18].value,
+    "20": spacing[20].value,
+  },
+  sizes: {
+    "0,5": sizes["0,5"].value,
+    "1": sizes[1].value,
+    "1,5": sizes["1,5"].value,
+    "2": sizes[2].value,
+    "2,5": sizes["2,5"].value,
+    "3": sizes[3].value,
+    "3,5": sizes["3,5"].value,
+    "4": sizes[4].value,
+    "4,5": sizes["4,5"].value,
+    "5": sizes[5].value,
+    "6": sizes[6].value,
+    "7": sizes[7].value,
+    "8": sizes[8].value,
+    "9": sizes[9].value,
+    "10": sizes[10].value,
+    "11": sizes[11].value,
+    "12": sizes[12].value,
+    "14": sizes[14].value,
+    "16": sizes[16].value,
+    "18": sizes[18].value,
+    "20": sizes[20].value,
   },
   motion: {
     speed: {

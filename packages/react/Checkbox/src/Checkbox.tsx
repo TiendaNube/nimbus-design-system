@@ -6,7 +6,7 @@ import { checkbox } from "@nimbus-ds/styles";
 import CheckIcon from "./checkbox-check.svg";
 import IndeterminateIcon from "./checkbox-indeterminate.svg";
 import { CheckboxProps, CheckboxComponents } from "./checkbox.types";
-import { CheckboxSkeleton } from "./components";
+import { Skeleton } from "./components";
 import { borderColors, textColors } from "./checkbox.definitions";
 
 const Checkbox: React.FC<CheckboxProps> & CheckboxComponents = ({
@@ -82,8 +82,8 @@ const Checkbox: React.FC<CheckboxProps> & CheckboxComponents = ({
         <Text
           data-testid="text"
           color={textColor}
-          fontSize="caption"
-          lineHeight="small"
+          fontSize="base"
+          lineHeight="highlight"
         >
           {label}
         </Text>
@@ -92,6 +92,6 @@ const Checkbox: React.FC<CheckboxProps> & CheckboxComponents = ({
   );
 };
 
-Checkbox.Skeleton = CheckboxSkeleton;
+Checkbox.Skeleton = Skeleton;
 
 export { Checkbox };

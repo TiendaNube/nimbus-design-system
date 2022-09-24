@@ -1,15 +1,12 @@
 import { style as vanillaStyle, globalStyle } from "@vanilla-extract/css";
-import tokens from "@nimbus-ds/tokens/dist/js/tokens";
 
 import { varsThemeBase } from "../../themes/base.css";
-
-const { spacing } = tokens;
 
 export const container = vanillaStyle({
   display: "flex",
   alignItems: "center",
   width: "fit-content",
-  gap: spacing["05"].value,
+  gap: varsThemeBase.spacing[1],
   position: "relative",
 });
 
@@ -31,7 +28,7 @@ export const checkmark = vanillaStyle({
 
   borderWidth: "0.063rem",
   borderStyle: "solid",
-  borderRadius: spacing["05"].value,
+  borderRadius: varsThemeBase.spacing[1],
 });
 
 export const checkicon = vanillaStyle({

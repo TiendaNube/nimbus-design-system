@@ -4,6 +4,12 @@ The Checkbox component allows us to choose one or several options from a selecti
 
 ## 2022-09-24
 
+### 💡 Others
+
+- Renamed `CheckboxSkeleton` component to `Skeleton`. ([#29](https://github.com/TiendaNube/nimbus-design-system/pull/29) by [@juniorconquista](https://github.com/juniorconquista))
+- Adjusted `fontSize` size of internal `Text` component from `caption` to `base`. ([#29](https://github.com/TiendaNube/nimbus-design-system/pull/29) by [@juniorconquista](https://github.com/juniorconquista))
+- Adjusted `lineHeight` size of internal `Text` component from `small` to `highlight`. ([#29](https://github.com/TiendaNube/nimbus-design-system/pull/29) by [@juniorconquista](https://github.com/juniorconquista))
+
 ### 📚 3rd party library updates
 
 - Added `terser-webpack-plugin@5.3.5`. ([#28](https://github.com/TiendaNube/nimbus-design-system/pull/28) by [@juniorconquista](https://github.com/juniorconquista))

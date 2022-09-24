@@ -108,7 +108,7 @@ const Toast: React.FC<ToastProps> = ({
           size="small"
         />
       )}
-      <Text color={`${types}.textLow`} fontSize="small" lineHeight="small">
+      <Text color={`${types}.textLow`} fontSize="caption" lineHeight="caption">
         {text}
       </Text>
     </div>

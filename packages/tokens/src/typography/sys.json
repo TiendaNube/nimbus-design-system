@@ -6,17 +6,17 @@
     "size": {
       "sys": {
         "body": {
-          "small": { "value": "{font.size.ref.075}" },
-          "caption": { "value": "{font.size.ref.0875}" },
-          "base": { "value": "{font.size.ref.1}" }
+          "caption": { "value": "{font.size.ref.3}" },
+          "base": { "value": "{font.size.ref.3,5}" },
+          "highlight": { "value": "{font.size.ref.4}" }
         },
         "title": {
-          "h1": { "value": "{font.size.ref.2}" },
-          "h2": { "value": "{font.size.ref.15}" },
-          "h3": { "value": "{font.size.ref.125}" },
-          "h4": { "value": "{font.size.ref.1125}" },
-          "h5": { "value": "{font.size.ref.1}" },
-          "h6": { "value": "{font.size.ref.0875}" }
+          "h1": { "value": "{font.size.ref.8}" },
+          "h2": { "value": "{font.size.ref.6}" },
+          "h3": { "value": "{font.size.ref.5}" },
+          "h4": { "value": "{font.size.ref.4,5}" },
+          "h5": { "value": "{font.size.ref.4}" },
+          "h6": { "value": "{font.size.ref.3,5}" }
         }
       }
     },
@@ -30,17 +30,17 @@
     "height": {
       "sys": {
         "body": {
-          "small": { "value": "{line.height.ref.1}" },
-          "caption": { "value": "{line.height.ref.1125}" },
-          "base": { "value": "{line.height.ref.125}" }
+          "caption": { "value": "{line.height.ref.3,5}" },
+          "base": { "value": "{line.height.ref.4,5}" },
+          "highlight": { "value": "{line.height.ref.5}" }
         },
         "title": {
-          "h1": { "value": "{line.height.ref.275}" },
-          "h2": { "value": "{line.height.ref.2}" },
-          "h3": { "value": "{line.height.ref.175}" },
-          "h4": { "value": "{line.height.ref.15}" },
-          "h5": { "value": "{line.height.ref.125}" },
-          "h6": { "value": "{line.height.ref.1125}" }
+          "h1": { "value": "{line.height.ref.11}" },
+          "h2": { "value": "{line.height.ref.8}" },
+          "h3": { "value": "{line.height.ref.7}" },
+          "h4": { "value": "{line.height.ref.6}" },
+          "h5": { "value": "{line.height.ref.5}" },
+          "h6": { "value": "{line.height.ref.4,5}" }
         }
       }
     }

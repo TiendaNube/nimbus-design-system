@@ -1,9 +1,6 @@
 import { recipe } from "@vanilla-extract/recipes";
-import tokens from "@nimbus-ds/tokens/dist/js/tokens";
 
 import { varsThemeBase } from "../../themes/base.css";
-
-const { spacing } = tokens;
 
 export const style = recipe({
   base: {
@@ -13,14 +10,14 @@ export const style = recipe({
     alignItems: "center",
     width: "fit-content",
     height: "1.25rem",
-    gap: spacing["05"].value,
-    padding: `${spacing["025"].value} ${spacing["1"].value}`,
+    gap: varsThemeBase.spacing[1],
+    padding: `${varsThemeBase.spacing["0,5"]} ${varsThemeBase.spacing[2]}`,
     boxSizing: "border-box",
     borderWidth: "0.063rem",
     borderStyle: "solid",
-    borderRadius: "0.813rem",
-    lineHeight: varsThemeBase.lineWeight.body.small,
-    fontSize: varsThemeBase.fontSize.body.small,
+    borderRadius: varsThemeBase.sizes[3],
+    lineHeight: varsThemeBase.lineWeight.body.caption,
+    fontSize: varsThemeBase.fontSize.body.caption,
     fontFamily: varsThemeBase.fontFamily.centranube,
   },
   variants: {

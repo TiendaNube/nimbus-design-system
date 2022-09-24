@@ -4,6 +4,10 @@ Our design tokens are the foundations of Nimbus Design System.
 
 ## 2022-09-24
 
+### 💡 Others
+
+- Refactored typography spacing sizes and tokens. ([#29](https://github.com/TiendaNube/nimbus-design-system/pull/29) by [@juniorconquista](https://github.com/juniorconquista))
+
 ### 🎉 New features
 
 - Added new `text-disabled` and `surface-disabled` colors to the neutral color palette. ([#28](https://github.com/TiendaNube/nimbus-design-system/pull/28) by [@juniorconquista](https://github.com/juniorconquista))

@@ -2,6 +2,14 @@
 
 Text is a basic component that allows us to write blocks of text and give it formatting to use within other components, sections and pages of our application or website.
 
+## 2022-09-24
+
+### 💡 Others
+
+- Refactored `fontSize` properties for `caption`, `base` and `highlight`. ([#29](https://github.com/TiendaNube/nimbus-design-system/pull/29) by [@juniorconquista](https://github.com/juniorconquista))
+- Refactored `lineHeight` properties for `caption`, `base` and `highlight`. ([#29](https://github.com/TiendaNube/nimbus-design-system/pull/29) by [@juniorconquista](https://github.com/juniorconquista))
+- Renamed `Skeleton` component to `TextSkeleton`. ([#29](https://github.com/TiendaNube/nimbus-design-system/pull/29) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2022-09-12
 
 ### 🎉 New features
