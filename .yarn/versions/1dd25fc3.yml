@@ -1,0 +1,17 @@
+releases:
+  "@nimbus-ds/checkbox": major
+  "@nimbus-ds/icon": minor
+  "@nimbus-ds/label": minor
+  "@nimbus-ds/styles": minor
+  "@nimbus-ds/text": minor
+  "@nimbus-ds/tokens": major
+
+declined:
+  - nimbus-design-system
+  - "@nimbus-ds/badge"
+  - "@nimbus-ds/chip"
+  - "@nimbus-ds/skeleton"
+  - "@nimbus-ds/spinner"
+  - "@nimbus-ds/tag"
+  - "@nimbus-ds/title"
+  - "@nimbus-ds/toast"
