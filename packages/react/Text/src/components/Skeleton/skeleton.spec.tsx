@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 
-import { Skeleton } from "./Skeletondsad";
+import { Skeleton } from "./Skeleton";
 import { SkeletonProps } from "./skeleton.types";
 
 const makeSut = (props?: SkeletonProps) => {

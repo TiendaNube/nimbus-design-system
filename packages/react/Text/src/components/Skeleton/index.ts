@@ -1,4 +1,4 @@
-import { Skeleton } from "./Skeletondsad";
+import { Skeleton } from "./Skeleton";
 
-export { Skeleton } from "./Skeletondsad";
+export { Skeleton } from "./Skeleton";
 export default Skeleton;
