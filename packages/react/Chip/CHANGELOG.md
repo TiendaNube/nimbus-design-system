@@ -1,6 +1,12 @@
 # Changelog
 
-The Chip component is primarily used to define cumulative criteria or attributes for searching or filtering information in a list of entries or objects. Each of these criteria can be added or removed using this component.
+The Chip component is used to flag criteria or attributes related to searches or filters of a list of information.
+
+## 2022-09-27
+
+### 💡 Others
+
+- Adjusted component native typing for ButtonHTMLAttributes. ([#30](https://github.com/TiendaNube/nimbus-design-system/pull/30) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2022-09-24
 

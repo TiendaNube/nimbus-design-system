@@ -1,8 +1,8 @@
-import { HTMLAttributes } from "react";
+import { SVGAttributes } from "react";
 
 import { spinner } from "@nimbus-ds/styles";
 
-export interface SpinnerProps extends HTMLAttributes<SVGElement> {
+export interface SpinnerProps extends SVGAttributes<SVGElement> {
   /** Spinner size */
   size?: "small" | "medium" | "large" | number;
   /** Spinner color */

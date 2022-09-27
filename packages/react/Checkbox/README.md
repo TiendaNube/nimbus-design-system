@@ -48,14 +48,6 @@ To facilitate navigation for people with some kind of visual or cognitive limita
 
 Radio Button - Can be used to select options in settings or filters, where only a single choice is allowed.
 
-## Implementation
-
-**Install** the component via terminal.
-
-```bash
-npm install @nimbus-ds/checkbox
-```
-
 ## Usage
 
 View docs [here](https://nimbus.nuvemshop.com.br/documentation/atomic-components/checkbox).

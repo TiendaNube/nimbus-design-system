@@ -2,6 +2,12 @@
 
 The Checkbox component allows us to choose one or several options from a selection list.
 
+## 2022-09-27
+
+### 💡 Others
+
+- Adjusted component native typing for InputHTMLAttributes. ([#30](https://github.com/TiendaNube/nimbus-design-system/pull/30) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2022-09-24
 
 ### 💡 Others

@@ -5,7 +5,7 @@ import { withA11y } from "@storybook/addon-a11y";
 import { Skeleton } from "./Skeleton";
 
 export default {
-  title: "Skeleton/Checkbox",
+  title: "Skeleton/Icon Button",
   component: Skeleton,
   parameters: {
     withA11y: { decorators: [withA11y] },
@@ -16,5 +16,5 @@ const Template: ComponentStory<typeof Skeleton> = (args) => (
   <Skeleton {...args} />
 );
 
-export const checkbox = Template.bind({});
-checkbox.args = {};
+export const iconButton = Template.bind({});
+iconButton.args = {};
