@@ -2,6 +2,12 @@
 
 Badges are used to inform merchants of the status of an object or of an action that’s been taken.
 
+## 2022-09-27
+
+### 💡 Others
+
+- Adjusted component native typing for HTMLElement. ([#30](https://github.com/TiendaNube/nimbus-design-system/pull/30) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2022-09-01
 
 ### 📚 3rd party library updates
