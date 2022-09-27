@@ -1,11 +1,11 @@
-import { HTMLAttributes } from "react";
+import { InputHTMLAttributes } from "react";
 import { Skeleton } from "./components";
 
 export interface CheckboxComponents {
   Skeleton: typeof Skeleton;
 }
 
-export interface CheckboxProps extends HTMLAttributes<HTMLInputElement> {
+export interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
   /** Checkbox name */
   name: string;
   /** Checkbox color */
