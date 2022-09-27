@@ -26,14 +26,14 @@ export const style = vanillaStyle({
   borderColor: varsThemeBase.colors.neutral.interactive,
 
   cursor: "pointer",
-  transition: "150ms ease",
+  transition: `all ${varsThemeBase.motion.speed.fast} ease`,
 
   ":hover": {
     background: varsThemeBase.colors.neutral.interactiveHover,
     borderColor: varsThemeBase.colors.neutral.interactiveHover,
   },
   ":focus": {
-    borderColor: varsThemeBase.colors.neutral.textLow,
+    borderColor: varsThemeBase.colors.neutral.interactiveHover,
   },
   ":active": {
     background: varsThemeBase.colors.neutral.interactivePressed,
