@@ -1,6 +1,6 @@
 # Changelog
 
-Badges are used to inform merchants of the status of an object or of an action that’s been taken.
+The badge component is used to communicate quantities of items or pending actions.
 
 ## 2022-09-27
 
