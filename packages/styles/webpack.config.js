@@ -24,6 +24,7 @@ module.exports = {
     "./packages/text/index": "./src/packages/text/index",
     "./packages/title/index": "./src/packages/title/index",
     "./packages/toast/index": "./src/packages/toast/index",
+    "./packages/toggle/index": "./src/packages/toggle/index",
   },
   output: {
     path: path.resolve(__dirname, "dist"),

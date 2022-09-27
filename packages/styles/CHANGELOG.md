@@ -6,6 +6,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 ### 🎉 New features
 
+- Added new style pack for toggle component. ([#31](https://github.com/TiendaNube/nimbus-design-system/pull/31) by [@juniorconquista](https://github.com/juniorconquista))
 - Added transition animation in chip pack styles. ([#30](https://github.com/TiendaNube/nimbus-design-system/pull/30) by [@juniorconquista](https://github.com/juniorconquista))
 - Added new style pack for icon button component. ([#30](https://github.com/TiendaNube/nimbus-design-system/pull/30) by [@juniorconquista](https://github.com/juniorconquista))
 
