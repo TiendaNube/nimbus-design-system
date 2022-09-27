@@ -1,6 +1,12 @@
 # Changelog
 
-Spinner is a loading indicator and we use it to show the user that there is more content loading in real time.
+The Spinner component is used to inform the processing of tasks.
+
+## 2022-09-27
+
+### 💡 Others
+
+- Adjusted component native typing for SVGAttributes. ([#30](https://github.com/TiendaNube/nimbus-design-system/pull/30) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2022-09-13
 
