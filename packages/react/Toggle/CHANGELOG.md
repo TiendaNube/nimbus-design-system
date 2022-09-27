@@ -4,8 +4,6 @@ A toggle is used to quickly switch between two possible states. They are commonl
 
 ## 2022-09-27
 
-### 💡 Others
-
 ### 📚 3rd party library updates
 
 - Added `terser-webpack-plugin@5.3.5`. ([#31](https://github.com/TiendaNube/nimbus-design-system/pull/31) by [@juniorconquista](https://github.com/juniorconquista))
