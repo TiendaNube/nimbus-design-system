@@ -2782,6 +2782,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/icon-button@workspace:packages/react/IconButton"
   dependencies:
+    "@nimbus-ds/icon": "workspace:*"
     "@nimbus-ds/skeleton": "workspace:*"
     "@nimbus-ds/styles": "workspace:*"
     "@tiendanube/icons": ^0.2.7
