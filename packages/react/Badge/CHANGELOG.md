@@ -7,6 +7,8 @@ The badge component is used to communicate quantities of items or pending action
 ### 🎉 New features
 
 - Added `theme` properties to the component. ([#32](https://github.com/TiendaNube/nimbus-design-system/pull/32) by [@juniorconquista](https://github.com/juniorconquista))
+- Added displayName to component. ([#32](https://github.com/TiendaNube/nimbus-design-system/pull/32) by [@juniorconquista](https://github.com/juniorconquista))
+- Added displayName to component `Badge.Skeleton`. ([#32](https://github.com/TiendaNube/nimbus-design-system/pull/32) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2022-09-27
 
