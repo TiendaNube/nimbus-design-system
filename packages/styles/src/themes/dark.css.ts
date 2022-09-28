@@ -13,7 +13,6 @@ const { motion, spacing, sizes } = tokens;
 export const ThemeDark = createTheme(varsThemeBase, {
   colors: {
     primary: {
-      background: colors.primary.background.value as string,
       surface: colors.primary.surface.value as string,
       surfaceHighlight: colors.primary["surface-highlight"].value as string,
       interactive: colors.primary.interactive.value as string,
@@ -23,7 +22,6 @@ export const ThemeDark = createTheme(varsThemeBase, {
       textHigh: "blue",
     },
     success: {
-      background: colors.success.background.value as string,
       surface: colors.success.surface.value as string,
       surfaceHighlight: colors.success["surface-highlight"].value as string,
       interactive: colors.success.interactive.value as string,
@@ -33,7 +31,6 @@ export const ThemeDark = createTheme(varsThemeBase, {
       textHigh: colors.success["text-high"].value as string,
     },
     warning: {
-      background: colors.warning.background.value as string,
       surface: colors.warning.surface.value as string,
       surfaceHighlight: colors.warning["surface-highlight"].value as string,
       interactive: colors.warning.interactive.value as string,
@@ -43,7 +40,6 @@ export const ThemeDark = createTheme(varsThemeBase, {
       textHigh: colors.warning["text-high"].value as string,
     },
     danger: {
-      background: colors.danger.background.value as string,
       surface: colors.danger.surface.value as string,
       surfaceHighlight: colors.danger["surface-highlight"].value as string,
       interactive: colors.danger.interactive.value as string,

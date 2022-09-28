@@ -4,7 +4,6 @@ import tokens from "@nimbus-ds/tokens/dist/js/tokens";
 export const varsThemeBase = createThemeContract({
   colors: {
     primary: {
-      background: "primary.background",
       surface: "primary.surface",
       surfaceHighlight: "primary.surfaceHighlight",
       interactive: "primary.interactive",
@@ -14,7 +13,6 @@ export const varsThemeBase = createThemeContract({
       textHigh: "primary.textHigh",
     },
     success: {
-      background: "success.background",
       surface: "success.surface",
       surfaceHighlight: "success.surfaceHighlight",
       interactive: "success.interactive",
@@ -24,7 +22,6 @@ export const varsThemeBase = createThemeContract({
       textHigh: "success.textHigh",
     },
     warning: {
-      background: "warning.background",
       surface: "warning.surface",
       surfaceHighlight: "warning.surfaceHighlight",
       interactive: "warning.interactive",
@@ -34,7 +31,6 @@ export const varsThemeBase = createThemeContract({
       textHigh: "warning.textHigh",
     },
     danger: {
-      background: "danger.background",
       surface: "danger.surface",
       surfaceHighlight: "danger.surfaceHighlight",
       interactive: "danger.interactive",
@@ -151,7 +147,6 @@ const { motion, spacing, sizes } = tokens;
 createGlobalTheme(":root", varsThemeBase, {
   colors: {
     primary: {
-      background: colors.primary.background.value as string,
       surface: colors.primary.surface.value as string,
       surfaceHighlight: colors.primary["surface-highlight"].value as string,
       interactive: colors.primary.interactive.value as string,
@@ -161,7 +156,6 @@ createGlobalTheme(":root", varsThemeBase, {
       textHigh: colors.primary["text-high"].value as string,
     },
     success: {
-      background: colors.success.background.value as string,
       surface: colors.success.surface.value as string,
       surfaceHighlight: colors.success["surface-highlight"].value as string,
       interactive: colors.success.interactive.value as string,
@@ -171,7 +165,6 @@ createGlobalTheme(":root", varsThemeBase, {
       textHigh: colors.success["text-high"].value as string,
     },
     warning: {
-      background: colors.warning.background.value as string,
       surface: colors.warning.surface.value as string,
       surfaceHighlight: colors.warning["surface-highlight"].value as string,
       interactive: colors.warning.interactive.value as string,
@@ -181,7 +174,6 @@ createGlobalTheme(":root", varsThemeBase, {
       textHigh: colors.warning["text-high"].value as string,
     },
     danger: {
-      background: colors.danger.background.value as string,
       surface: colors.danger.surface.value as string,
       surfaceHighlight: colors.danger["surface-highlight"].value as string,
       interactive: colors.danger.interactive.value as string,
