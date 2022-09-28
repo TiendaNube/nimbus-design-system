@@ -4,6 +4,7 @@ import tokens from "@nimbus-ds/tokens/dist/js/tokens";
 import { varsThemeBase } from "../../themes/base.css";
 
 const { spacing } = tokens;
+
 const base = vanillaStyle({
   display: "flex",
   flexDirection: "row",

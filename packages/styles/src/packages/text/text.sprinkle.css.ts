@@ -5,22 +5,20 @@ import { properties as colors } from "../../sprinkles/colors.css";
 import { properties as textAlignProperties } from "../../sprinkles/textAlign.css";
 
 const colorsProperties = {
-  "primary.background": colors["primary.background"],
+  currentColor: "currentColor",
+
   "primary.interactive": colors["primary.interactive"],
   "primary.textLow": colors["primary.textLow"],
   "primary.textHigh": colors["primary.textHigh"],
 
-  "success.background": colors["success.background"],
   "success.interactive": colors["success.interactive"],
   "success.textLow": colors["success.textLow"],
   "success.textHigh": colors["success.textHigh"],
 
-  "warning.background": colors["warning.background"],
   "warning.interactive": colors["warning.interactive"],
   "warning.textLow": colors["warning.textLow"],
   "warning.textHigh": colors["warning.textHigh"],
 
-  "danger.background": colors["danger.background"],
   "danger.interactive": colors["danger.interactive"],
   "danger.textLow": colors["danger.textLow"],
   "danger.textHigh": colors["danger.textHigh"],
