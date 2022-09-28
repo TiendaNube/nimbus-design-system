@@ -2,6 +2,12 @@
 
 The badge component is used to communicate quantities of items or pending actions.
 
+## 2022-09-28
+
+### 🎉 New features
+
+- Added `theme` properties to the component. ([#32](https://github.com/TiendaNube/nimbus-design-system/pull/32) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2022-09-27
 
 ### 💡 Others
