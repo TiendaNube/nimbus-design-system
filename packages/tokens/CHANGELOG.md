@@ -6,7 +6,7 @@ Our design tokens are the foundations of Nimbus Design System.
 
 ### 💡 Others
 
-- Removed background colors from primary, success, warning and danger scales
+- Removed background colors from primary, success, warning and danger scales. ([#31](https://github.com/TiendaNube/nimbus-design-system/pull/31) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2022-09-24
 
