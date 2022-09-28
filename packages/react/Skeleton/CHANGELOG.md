@@ -2,6 +2,12 @@
 
 The skeleton is a basic component that displays a placeholder preview of its content before the data is loaded, reducing the feeling of slow loading time.
 
+## 2022-09-29
+
+### 🎉 New features
+
+- Added displayName to component. ([#32](https://github.com/TiendaNube/nimbus-design-system/pull/32) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2022-08-22
 
 ### 📚 3rd party library updates
