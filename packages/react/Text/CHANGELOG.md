@@ -12,7 +12,7 @@ Text is a basic component that allows us to write blocks of text and give it for
 
 ### 💡 Others
 
-- Removed `primary.background`, `danger.background`, `success.background`, `waring.background` color properties. ([#31](https://github.com/TiendaNube/nimbus-design-system/pull/31) by [@juniorconquista](https://github.com/juniorconquista))
+- Removed `primary.background`, `danger.background`, `success.background`, `waring.background` color properties. ([#32](https://github.com/TiendaNube/nimbus-design-system/pull/32) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2022-09-24
 
