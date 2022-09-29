@@ -65,7 +65,7 @@ const Checkbox: React.FC<CheckboxProps> & CheckboxComponents = ({
         <div className={checkbox.style.checkicon}>
           <Icon
             data-testid="icon-check"
-            color={disabled ? "neutral.textLow" : "primary.background"}
+            color={disabled ? "neutral.textLow" : "neutral.background"}
             source={<CheckIcon />}
           />
         </div>
@@ -93,5 +93,6 @@ const Checkbox: React.FC<CheckboxProps> & CheckboxComponents = ({
 };
 
 Checkbox.Skeleton = Skeleton;
+Checkbox.displayName = "Checkbox";
 
 export { Checkbox };
