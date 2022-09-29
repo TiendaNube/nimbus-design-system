@@ -23,6 +23,7 @@ module.exports = {
     "./packages/text/index": "./src/packages/text/index",
     "./packages/title/index": "./src/packages/title/index",
     "./packages/toast/index": "./src/packages/toast/index",
+    "./packages/list/index": "./src/packages/list/index",
   },
   output: {
     path: path.resolve(__dirname, "dist"),
