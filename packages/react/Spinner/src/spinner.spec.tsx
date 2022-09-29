@@ -4,7 +4,7 @@ import { render, screen } from "@testing-library/react";
 import { Spinner } from "./Spinner";
 import { SpinnerProps } from "./spinner.types";
 
-const makeSut = (rest: SpinnerProps) => {
+const makeSut = (rest?: SpinnerProps) => {
   render(<Spinner {...rest} data-testid="spinner-element" />);
 };
 
@@ -68,6 +68,13 @@ describe("GIVEN <Spinner />", () => {
   });
 
   describe("THEN should correctly render the submitted size", () => {
+    it("THEN should correctly render the size default", () => {
+      makeSut();
+      const spinner = screen.getByTestId("spinner-element");
+      expect(spinner.getAttribute("style")).toMatch(/--width__\w{0,9}: 32px;/);
+      expect(spinner.getAttribute("style")).toMatch(/--height__\w{0,9}: 32px;/);
+    });
+
     it("THEN should correctly render the size large", () => {
       makeSut({ size: "large" });
       const spinner = screen.getByTestId("spinner-element");
