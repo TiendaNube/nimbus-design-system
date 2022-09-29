@@ -2,6 +2,18 @@
 
 Text is a basic component that allows us to write blocks of text and give it formatting to use within other components, sections and pages of our application or website.
 
+## 2022-09-29
+
+### 🎉 New features
+
+- Added `currentColor` color properties. ([#31](https://github.com/TiendaNube/nimbus-design-system/pull/31) by [@juniorconquista](https://github.com/juniorconquista))
+- Added displayName to component. ([#32](https://github.com/TiendaNube/nimbus-design-system/pull/32) by [@juniorconquista](https://github.com/juniorconquista))
+- Added displayName to component `Text.Skeleton`. ([#32](https://github.com/TiendaNube/nimbus-design-system/pull/32) by [@juniorconquista](https://github.com/juniorconquista))
+
+### 💡 Others
+
+- Removed `primary.background`, `danger.background`, `success.background`, `waring.background` color properties. ([#31](https://github.com/TiendaNube/nimbus-design-system/pull/31) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2022-09-24
 
 ### 💡 Others
