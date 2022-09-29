@@ -7,6 +7,7 @@ Icons are used to visually communicate core parts of the product and available a
 ### 🎉 New features
 
 - Added displayName to component. ([#32](https://github.com/TiendaNube/nimbus-design-system/pull/32) by [@juniorconquista](https://github.com/juniorconquista))
+- Added displayName to component `Icon.Skeleton`. ([#32](https://github.com/TiendaNube/nimbus-design-system/pull/32) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2022-09-01
 
