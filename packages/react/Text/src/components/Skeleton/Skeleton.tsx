@@ -18,4 +18,5 @@ const Skeleton: React.FC<SkeletonProps> = ({
   />
 );
 
+Skeleton.displayName = "Text.Skeleton";
 export { Skeleton };

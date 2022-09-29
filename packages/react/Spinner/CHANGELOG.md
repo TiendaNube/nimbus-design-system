@@ -2,6 +2,16 @@
 
 The Spinner component is used to inform the processing of tasks.
 
+## 2022-09-29
+
+### 🎉 New features
+
+- Added displayName to component. ([#32](https://github.com/TiendaNube/nimbus-design-system/pull/32) by [@juniorconquista](https://github.com/juniorconquista))
+
+### 💡 Others
+
+- Adjusted `stroke-width` de 6 para 10. ([#32](https://github.com/TiendaNube/nimbus-design-system/pull/32) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2022-09-27
 
 ### 💡 Others

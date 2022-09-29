@@ -2,6 +2,22 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2022-09-28
+
+### 🎉 New features
+
+- Added new style pack for button component. ([#32](https://github.com/TiendaNube/nimbus-design-system/pull/32) by [@juniorconquista](https://github.com/juniorconquista))
+- Added surface and light theme variations. ([#32](https://github.com/TiendaNube/nimbus-design-system/pull/32) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `neutral.background` color properties from sprinkle sppiner. ([#32](https://github.com/TiendaNube/nimbus-design-system/pull/32) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `currentColor` color properties from sprinkle text. ([#32](https://github.com/TiendaNube/nimbus-design-system/pull/32) by [@juniorconquista](https://github.com/juniorconquista))
+
+### 💡 Others
+
+- Removed background colors from primary, success, warning, and danger scales for basic and dark themes. ([#32](https://github.com/TiendaNube/nimbus-design-system/pull/32) by [@juniorconquista](https://github.com/juniorconquista))
+- Removed `primary.background`, `danger.background`, `success.background`, `waring.background` properties from sprinkle colors. ([#32](https://github.com/TiendaNube/nimbus-design-system/pull/32) by [@juniorconquista](https://github.com/juniorconquista))
+- Removed `primary.background`, `danger.background`, `success.background`, `waring.background` color properties from sprinkle icon. ([#32](https://github.com/TiendaNube/nimbus-design-system/pull/32) by [@juniorconquista](https://github.com/juniorconquista))
+- Removed `primary.background`, `danger.background`, `success.background`, `waring.background` color properties from sprinkle text. ([#32](https://github.com/TiendaNube/nimbus-design-system/pull/32) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2022-09-27
 
 ### 🎉 New features

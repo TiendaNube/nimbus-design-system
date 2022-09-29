@@ -3,7 +3,6 @@
     "sys": {
       "light": {
         "primary": {
-          "background": { "value": "{color.ref.light.primary.100}" },
           "surface": { "value": "{color.ref.light.primary.99}" },
           "surface-highlight": { "value": "{color.ref.light.primary.90}" },
           "interactive": { "value": "{color.ref.light.primary.60}" },
@@ -13,7 +12,6 @@
           "text-high": { "value": "{color.ref.light.primary.5}" }
         },
         "success": {
-          "background": { "value": "{color.ref.light.success.100}" },
           "surface": { "value": "{color.ref.light.success.99}" },
           "surface-highlight": { "value": "{color.ref.light.success.90}" },
           "interactive": { "value": "{color.ref.light.success.60}" },
@@ -23,7 +21,6 @@
           "text-high": { "value": "{color.ref.light.success.5}" }
         },
         "warning": {
-          "background": { "value": "{color.ref.light.warning.100}" },
           "surface": { "value": "{color.ref.light.warning.99}" },
           "surface-highlight": { "value": "{color.ref.light.warning.90}" },
           "interactive": { "value": "{color.ref.light.warning.60}" },
@@ -33,7 +30,6 @@
           "text-high": { "value": "{color.ref.light.warning.5}" }
         },
         "danger": {
-          "background": { "value": "{color.ref.light.danger.100}" },
           "surface": { "value": "{color.ref.light.danger.99}" },
           "surface-highlight": { "value": "{color.ref.light.danger.90}" },
           "interactive": { "value": "{color.ref.light.danger.60}" },

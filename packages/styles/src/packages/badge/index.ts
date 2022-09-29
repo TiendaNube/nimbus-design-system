@@ -1,4 +1,4 @@
-import { style } from "./badge.style.css";
+import * as style from "./badge.style.css";
 
 export const badge = {
   style,

@@ -9,14 +9,16 @@ const Badge: React.FC<BadgeProps> & BadgeComponents = ({
   className: _className,
   style: _style,
   appearance = "neutral",
+  theme = "surface",
   count,
   ...rest
 }: BadgeProps) => (
-  <div {...rest} className={badge.style({ appearance })}>
-    <Text color={`${appearance}.textLow`}>{count}</Text>
+  <div {...rest} className={badge.style[theme][appearance]}>
+    <Text color="currentColor">{count}</Text>
   </div>
 );
 
 Badge.Skeleton = Skeleton;
+Badge.displayName = "Badge";
 
 export { Badge };

@@ -10,6 +10,13 @@ const makeSut = (rest: IconProps) => {
 
 describe("GIVEN <Icon />", () => {
   describe("THEN should correctly render the submitted color", () => {
+    it("THEN should correctly render the color default", () => {
+      makeSut({ source: <svg /> });
+      expect(
+        screen.getByTestId("icon-element").getAttribute("class")
+      ).toContain("icon.sprinkle_color_neutral.textLow");
+    });
+
     it("THEN should correctly render the color primary.textLow", () => {
       makeSut({ source: <svg />, color: "primary.textLow" });
       expect(
