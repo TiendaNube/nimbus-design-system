@@ -1,0 +1,20 @@
+releases:
+  "@nimbus-ds/badge": major
+  "@nimbus-ds/button": major
+  "@nimbus-ds/checkbox": patch
+  "@nimbus-ds/icon": patch
+  "@nimbus-ds/skeleton": patch
+  "@nimbus-ds/spinner": patch
+  "@nimbus-ds/styles": major
+  "@nimbus-ds/text": minor
+  "@nimbus-ds/tokens": major
+
+declined:
+  - nimbus-design-system
+  - "@nimbus-ds/chip"
+  - "@nimbus-ds/icon-button"
+  - "@nimbus-ds/label"
+  - "@nimbus-ds/tag"
+  - "@nimbus-ds/title"
+  - "@nimbus-ds/toast"
+  - "@nimbus-ds/toggle"
