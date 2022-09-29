@@ -1,7 +1,7 @@
 {
   "name": "nimbus-design-system",
   "version": "0.0.0",
-  "description": "Nimbus is the open source design system created by the NuvemSop design team so that together we can leverage more stories every day, with simplicity, accessibility, consistency and performance.",
+  "description": "Nimbus is the open source design system created by the Nuvemshop design team so that together we can leverage more stories every day, with simplicity, accessibility, consistency and performance.",
   "private": true,
   "workspaces": {
     "packages": [
@@ -11,8 +11,8 @@
   },
   "scripts": {
     "build": "yarn clean && yarn build:essentials && yarn build:packages",
-    "build:essentials": "yarn workspaces foreach -pv -ptR --from '{@nimbus-ds/tokens,@nimbus-ds/styles,@nimbus-ds/skeleton,@nimbus-ds/text}' run build",
-    "build:packages": "yarn workspaces foreach -pv -pt --exclude nimbus-design-system --exclude @nimbus-ds/tokens --exclude @nimbus-ds/styles --exclude @nimbus-ds/skeleton --exclude @nimbus-ds/text run build",
+    "build:essentials": "yarn workspaces foreach -pv -ptR --from '{@nimbus-ds/tokens,@nimbus-ds/styles,@nimbus-ds/skeleton,@nimbus-ds/text,@nimbus-ds/badge,@nimbus-ds/spinner,@nimbus-ds/icon}' run build",
+    "build:packages": "yarn workspaces foreach -pv -pt --exclude nimbus-design-system --exclude @nimbus-ds/tokens --exclude @nimbus-ds/styles --exclude @nimbus-ds/skeleton --exclude @nimbus-ds/text --exclude @nimbus-ds/badge --exclude @nimbus-ds/spinner --exclude @nimbus-ds/icon run build",
     "build:storybook": "build-storybook -c .storybook -o .build-storybook",
     "bump:check": "yarn version check",
     "bump:next": "yarn version apply --all --prerelease",

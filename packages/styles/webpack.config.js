@@ -13,9 +13,11 @@ module.exports = {
     "./themes/dark": "./src/themes/dark.css.ts",
 
     "./packages/badge/index": "./src/packages/badge/index",
+    "./packages/button/index": "./src/packages/button/index",
     "./packages/checkbox/index": "./src/packages/checkbox/index",
     "./packages/chip/index": "./src/packages/chip/index",
     "./packages/icon/index": "./src/packages/icon/index",
+    "./packages/iconButton/index": "./src/packages/iconButton/index",
     "./packages/label/index": "./src/packages/label/index",
     "./packages/skeleton/index": "./src/packages/skeleton/index",
     "./packages/spinner/index": "./src/packages/spinner/index",
@@ -24,6 +26,7 @@ module.exports = {
     "./packages/title/index": "./src/packages/title/index",
     "./packages/toast/index": "./src/packages/toast/index",
     "./packages/list/index": "./src/packages/list/index",
+    "./packages/toggle/index": "./src/packages/toggle/index",
   },
   output: {
     path: path.resolve(__dirname, "dist"),

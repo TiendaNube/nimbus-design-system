@@ -27,9 +27,10 @@ const Spinner: React.FC<SpinnerProps> = ({
       })}
       {...rest}
     >
-      <circle cx="25" cy="25" r="20" fill="none" strokeWidth="6" />
+      <circle cx="25" cy="25" r="20" fill="none" strokeWidth="10" />
     </svg>
   );
 };
 
+Spinner.displayName = "Spinner";
 export { Spinner };

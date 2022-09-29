@@ -2,7 +2,6 @@ import { defineProperties, createSprinkles } from "@vanilla-extract/sprinkles";
 import { varsThemeBase } from "../themes/base.css";
 
 export const properties = {
-  "primary.background": varsThemeBase.colors.primary.background,
   "primary.surface": varsThemeBase.colors.primary.surface,
   "primary.surfaceHighlight": varsThemeBase.colors.primary.surfaceHighlight,
   "primary.interactive": varsThemeBase.colors.primary.interactive,
@@ -11,7 +10,6 @@ export const properties = {
   "primary.textLow": varsThemeBase.colors.primary.textLow,
   "primary.textHigh": varsThemeBase.colors.primary.textHigh,
 
-  "success.background": varsThemeBase.colors.success.background,
   "success.surface": varsThemeBase.colors.success.surface,
   "success.surfaceHighlight": varsThemeBase.colors.success.surfaceHighlight,
   "success.interactive": varsThemeBase.colors.success.interactive,
@@ -20,7 +18,6 @@ export const properties = {
   "success.textLow": varsThemeBase.colors.success.textLow,
   "success.textHigh": varsThemeBase.colors.success.textHigh,
 
-  "warning.background": varsThemeBase.colors.warning.background,
   "warning.surface": varsThemeBase.colors.warning.surface,
   "warning.surfaceHighlight": varsThemeBase.colors.warning.surfaceHighlight,
   "warning.interactive": varsThemeBase.colors.warning.interactive,
@@ -29,7 +26,6 @@ export const properties = {
   "warning.textLow": varsThemeBase.colors.warning.textLow,
   "warning.textHigh": varsThemeBase.colors.warning.textHigh,
 
-  "danger.background": varsThemeBase.colors.danger.background,
   "danger.surface": varsThemeBase.colors.danger.surface,
   "danger.surfaceHighlight": varsThemeBase.colors.danger.surfaceHighlight,
   "danger.interactive": varsThemeBase.colors.danger.interactive,
