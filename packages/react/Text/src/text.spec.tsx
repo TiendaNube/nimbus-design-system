@@ -97,13 +97,6 @@ describe("GIVEN <Text />", () => {
   });
 
   describe("THEN should correctly render the submitted color", () => {
-    it("THEN should correctly render the color primary.background", () => {
-      makeSut({ color: "primary.background" });
-      expect(
-        screen.getByTestId("text-element").getAttribute("class")
-      ).toContain("text.sprinkle_color_primary.background");
-    });
-
     it("THEN should correctly render the color primary.textLow", () => {
       makeSut({ color: "primary.textLow" });
       expect(
@@ -123,13 +116,6 @@ describe("GIVEN <Text />", () => {
       expect(
         screen.getByTestId("text-element").getAttribute("class")
       ).toContain("text.sprinkle_color_primary.interactive");
-    });
-
-    it("THEN should correctly render the color success.background", () => {
-      makeSut({ color: "success.background" });
-      expect(
-        screen.getByTestId("text-element").getAttribute("class")
-      ).toContain("text.sprinkle_color_success.background");
     });
 
     it("THEN should correctly render the color success.textLow", () => {
@@ -153,13 +139,6 @@ describe("GIVEN <Text />", () => {
       ).toContain("text.sprinkle_color_success.interactive");
     });
 
-    it("THEN should correctly render the color warning.background", () => {
-      makeSut({ color: "warning.background" });
-      expect(
-        screen.getByTestId("text-element").getAttribute("class")
-      ).toContain("text.sprinkle_color_warning.background");
-    });
-
     it("THEN should correctly render the color warning.textLow", () => {
       makeSut({ color: "warning.textLow" });
       expect(
@@ -179,13 +158,6 @@ describe("GIVEN <Text />", () => {
       expect(
         screen.getByTestId("text-element").getAttribute("class")
       ).toContain("text.sprinkle_color_warning.interactive");
-    });
-
-    it("THEN should correctly render the color danger.background", () => {
-      makeSut({ color: "danger.background" });
-      expect(
-        screen.getByTestId("text-element").getAttribute("class")
-      ).toContain("text.sprinkle_color_danger.background");
     });
 
     it("THEN should correctly render the color danger.textLow", () => {
