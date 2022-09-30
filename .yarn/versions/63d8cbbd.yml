@@ -1,6 +1,6 @@
 releases:
   "@nimbus-ds/list": major
-  "@nimbus-ds/styles": major
+  "@nimbus-ds/styles": minor
 
 declined:
   - nimbus-design-system
