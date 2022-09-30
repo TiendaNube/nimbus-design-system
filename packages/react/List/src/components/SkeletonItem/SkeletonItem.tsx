@@ -16,4 +16,6 @@ const SkeletonItem: React.FC<SkeletonItemProps> = ({
   />
 );
 
+SkeletonItem.displayName = "List.SkeletonItem";
+
 export { SkeletonItem };

@@ -15,4 +15,6 @@ const Skeleton: React.FC<SkeletonProps> = ({
   </div>
 );
 
+Skeleton.displayName = "List.Skeleton";
+
 export { Skeleton };
