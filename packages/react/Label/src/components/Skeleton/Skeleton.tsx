@@ -16,4 +16,6 @@ const Skeleton: React.FC<SkeletonProps> = ({
   />
 );
 
+Skeleton.displayName = "Label.Skeleton";
+
 export { Skeleton };
