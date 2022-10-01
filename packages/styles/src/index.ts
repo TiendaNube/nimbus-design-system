@@ -14,3 +14,4 @@ export { text } from "./packages/text";
 export { title } from "./packages/title";
 export { toast } from "./packages/toast";
 export { toggle } from "./packages/toggle";
+export { tooltip } from "./packages/tooltip";
