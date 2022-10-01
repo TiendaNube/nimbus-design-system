@@ -27,7 +27,9 @@ jobs:
         run: yarn
 
       - name: Publish
-        run: yarn publish:stable
+        run: |
+          export NODE_OPTIONS="--max_old_space_size=4096"
+          yarn publish:stable
         env:
           YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTOMATION_FROM_JUNIOR_CONQUISTA }}
 
