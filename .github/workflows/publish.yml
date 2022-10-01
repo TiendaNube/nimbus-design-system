@@ -1,12 +1,12 @@
-name: 'Publish Release'
+name: "Publish Release"
 
 on:
   push:
     branches:
       - master
     paths-ignore:
-      - '**/package.json'
-      - '.yarn/versions/**'
+      - "**/package.json"
+      - ".yarn/versions/**"
 
 jobs:
   publish:
@@ -20,9 +20,12 @@ jobs:
         run: echo ::set-output name=NVMRC::$(cat .nvmrc)
       - uses: actions/setup-node@v2
         with:
-          node-version: '${{ steps.node_version.outputs.NVMRC }}'
-          registry-url: 'https://registry.npmjs.org'
-        
+          node-version: "${{ steps.node_version.outputs.NVMRC }}"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: "Set old space"
+        run: export NODE_OPTIONS="--max_old_space_size=4096"
+
       - name: Install dependencies
         run: yarn
 
@@ -41,7 +44,7 @@ jobs:
       - name: Commit release
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: 'feat: publish release'
+          commit_message: "feat: publish release"
 
       - name: Branch protection ON
         run: |
