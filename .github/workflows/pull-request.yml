@@ -16,8 +16,8 @@ jobs:
       - name: Set Node version
         uses: actions/setup-node@v1
         with:
-          node-version: '${{ steps.nvm.outputs.NVMRC }}'
-      
+          node-version: "${{ steps.nvm.outputs.NVMRC }}"
+
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
@@ -26,13 +26,16 @@ jobs:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
 
+      - name: "Set old space"
+        run: export NODE_OPTIONS="--max_old_space_size=4096"
+
       - name: Install dependencies
         if: steps.yarn-cache-dir-path.outputs.cache-hit != 'true'
         run: yarn
-        
+
       - name: Run build
         run: yarn build
-        
+
       - name: Run lint
         run: yarn lint
 
