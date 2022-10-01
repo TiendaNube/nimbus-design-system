@@ -26,9 +26,6 @@ jobs:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
 
-      - name: "Set old space"
-        run: export NODE_OPTIONS="--max_old_space_size=4096"
-
       - name: Install dependencies
         if: steps.yarn-cache-dir-path.outputs.cache-hit != 'true'
         run: yarn
