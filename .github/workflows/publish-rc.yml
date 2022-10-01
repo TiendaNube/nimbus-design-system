@@ -1,12 +1,12 @@
-name: 'Publish Release Candidate'
+name: "Publish Release Candidate"
 
 on:
   push:
     branches:
       - candidate
     paths-ignore:
-      - '**/package.json'
-      - '.yarn/versions/**'
+      - "**/package.json"
+      - ".yarn/versions/**"
 
 jobs:
   publish-rc:
@@ -20,14 +20,16 @@ jobs:
         run: echo ::set-output name=NVMRC::$(cat .nvmrc)
       - uses: actions/setup-node@v2
         with:
-          node-version: '${{ steps.node_version.outputs.NVMRC }}'
-          registry-url: 'https://registry.npmjs.org'
-        
+          node-version: "${{ steps.node_version.outputs.NVMRC }}"
+          registry-url: "https://registry.npmjs.org"
+
       - name: Install dependencies
         run: yarn
 
       - name: Publish
-        run: yarn publish:next
+        run: |
+          export NODE_OPTIONS="--max_old_space_size=4096" 
+          yarn publish:next
         env:
           YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTOMATION_FROM_JUNIOR_CONQUISTA }}
 
@@ -41,7 +43,7 @@ jobs:
       - name: Commit release candidate
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: 'feat: publish release candidate'
+          commit_message: "feat: publish release candidate"
 
       - name: Branch protection ON
         run: |

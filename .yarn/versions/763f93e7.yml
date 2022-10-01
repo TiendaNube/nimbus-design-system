@@ -1,0 +1,21 @@
+releases:
+  "@nimbus-ds/label": minor
+  "@nimbus-ds/styles": minor
+  "@nimbus-ds/toast": minor
+  "@nimbus-ds/tooltip": major
+
+declined:
+  - nimbus-design-system
+  - "@nimbus-ds/badge"
+  - "@nimbus-ds/button"
+  - "@nimbus-ds/checkbox"
+  - "@nimbus-ds/chip"
+  - "@nimbus-ds/icon"
+  - "@nimbus-ds/icon-button"
+  - "@nimbus-ds/list"
+  - "@nimbus-ds/skeleton"
+  - "@nimbus-ds/spinner"
+  - "@nimbus-ds/tag"
+  - "@nimbus-ds/text"
+  - "@nimbus-ds/title"
+  - "@nimbus-ds/toggle"

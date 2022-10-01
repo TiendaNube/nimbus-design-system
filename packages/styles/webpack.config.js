@@ -27,6 +27,7 @@ module.exports = {
     "./packages/toast/index": "./src/packages/toast/index",
     "./packages/list/index": "./src/packages/list/index",
     "./packages/toggle/index": "./src/packages/toggle/index",
+    "./packages/tooltip/index": "./src/packages/tooltip/index",
   },
   output: {
     path: path.resolve(__dirname, "dist"),

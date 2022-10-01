@@ -1,4 +1,5 @@
 import { Canvas, Meta, Story, Preview } from "@storybook/addon-docs";
+import { Button } from "@nimbus-ds/button";
 
 import { useToast } from "../../hooks";
 import { ToastProvider } from "./ToastProvider";
@@ -23,8 +24,8 @@ import { ToastProvider } from "./ToastProvider";
       const { addToast } = useToast();
       return (
         <div style={{ display: "flex", gap: "0.5rem" }}>
-          <button
-            style={{ curson: "pointer" }}
+          <Button
+            appearance="primary"
             onClick={() => {
               addToast({
                 type: "primary",
@@ -32,10 +33,9 @@ import { ToastProvider } from "./ToastProvider";
               });
             }}
           >
-            Toast primary
-          </button>
-          <button
-            style={{ curson: "pointer" }}
+            Primary
+          </Button>
+          <Button
             onClick={() =>
               addToast({
                 type: "success",
@@ -43,9 +43,10 @@ import { ToastProvider } from "./ToastProvider";
               })
             }
           >
-            Toast success
-          </button>
-          <button
+            Success
+          </Button>
+          <Button
+            appearance="danger"
             onClick={() =>
               addToast({
                 type: "danger",
@@ -53,9 +54,9 @@ import { ToastProvider } from "./ToastProvider";
               })
             }
           >
-            Toast danger
-          </button>
-          <button
+            Danger
+          </Button>
+          <Button
             onClick={() =>
               addToast({
                 type: "progress",
@@ -63,8 +64,8 @@ import { ToastProvider } from "./ToastProvider";
               })
             }
           >
-            Toast progress
-          </button>
+            Progress
+          </Button>
         </div>
       );
     }}
