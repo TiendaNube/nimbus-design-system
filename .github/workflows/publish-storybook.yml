@@ -16,12 +16,12 @@ jobs:
         run: yarn
 
       - name: Build
-        run: yarn build
-
-      - name: build storybook
         run: |
           export NODE_OPTIONS="--max_old_space_size=4096"
-          yarn build:storybook
+          yarn build
+
+      - name: build storybook
+        run: yarn build:storybook
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@3.6.2
