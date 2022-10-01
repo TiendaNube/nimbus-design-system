@@ -41,4 +41,6 @@ const ToastProvider: React.FC<ToastProviderProps> = ({ children }) => {
   );
 };
 
+ToastProvider.displayName = "ToastProvider";
+
 export { ToastProvider };
