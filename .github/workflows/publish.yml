@@ -23,9 +23,6 @@ jobs:
           node-version: "${{ steps.node_version.outputs.NVMRC }}"
           registry-url: "https://registry.npmjs.org"
 
-      - name: "Set old space"
-        run: export NODE_OPTIONS="--max_old_space_size=4096"
-
       - name: Install dependencies
         run: yarn
 
