@@ -25,6 +25,7 @@ module.exports = {
     "./packages/text/index": "./src/packages/text/index",
     "./packages/title/index": "./src/packages/title/index",
     "./packages/toast/index": "./src/packages/toast/index",
+    "./packages/list/index": "./src/packages/list/index",
     "./packages/toggle/index": "./src/packages/toggle/index",
   },
   output: {
