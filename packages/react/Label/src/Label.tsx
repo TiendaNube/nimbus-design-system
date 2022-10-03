@@ -12,11 +12,16 @@ const Label: React.FC<LabelProps> & LabelComponents = ({
   hidden = false,
   ...rest
 }: LabelProps) => (
-  <label {...rest} className={label.style({ hidden })} htmlFor={htmlFor}>
+  <label
+    {...rest}
+    className={[label.style.base, hidden ? label.style.hidden : ""].join(" ")}
+    htmlFor={htmlFor}
+  >
     {children}
   </label>
 );
 
 Label.Skeleton = Skeleton;
+Label.displayName = "Label";
 
 export { Label };

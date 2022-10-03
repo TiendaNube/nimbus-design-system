@@ -18,7 +18,14 @@ describe("GIVEN <Label />", () => {
   it("THEN it should correctly remain visually hidden", () => {
     makeSut({ hidden: true });
     expect(screen.getByTestId("label-element").getAttribute("class")).toContain(
-      "hidden_true"
+      "hidden"
     );
+  });
+
+  it("THEN it should correctly remain visually default", () => {
+    makeSut();
+    expect(
+      screen.getByTestId("label-element").getAttribute("class")
+    ).not.toContain("hidden");
   });
 });

@@ -12,7 +12,7 @@ const Button: React.FC<{ toast: ToastProps; id: string }> = ({ toast, id }) => {
       <button type="button" onClick={() => addToast(toast)}>
         add
       </button>
-      <button type="button" onClick={() => closeToast(id)}>
+      <button type="button" onClick={() => closeToast(id || "")}>
         close
       </button>
     </>
@@ -70,6 +70,22 @@ describe("GIVEN <ToastProvider />", () => {
         screen.getByText("close").click();
       });
       expect(screen.queryByTestId("toast-element")).toBeNull();
+    });
+
+    it("THEN should generate dinamyc id", () => {
+      makeSut({ type: "primary", id: "", text: "Toast" });
+      act(() => {
+        screen.getByText("add").click();
+      });
+      expect(
+        screen.getByTestId("toast-element").getAttribute("class")
+      ).toContain("primary");
+
+      const icon = screen.getByTestId("toast-icon-primary");
+      expect(icon.getAttribute("class")).toContain(
+        "icon.sprinkle_color_primary.textLow"
+      );
+      expect(icon.firstChild?.nodeName).toEqual("svg");
     });
   });
 });
