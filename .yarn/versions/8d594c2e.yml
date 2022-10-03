@@ -11,6 +11,7 @@ declined:
   - "@nimbus-ds/icon"
   - "@nimbus-ds/icon-button"
   - "@nimbus-ds/label"
+  - "@nimbus-ds/list"
   - "@nimbus-ds/skeleton"
   - "@nimbus-ds/spinner"
   - "@nimbus-ds/tag"
@@ -18,3 +19,4 @@ declined:
   - "@nimbus-ds/title"
   - "@nimbus-ds/toast"
   - "@nimbus-ds/toggle"
+  - "@nimbus-ds/tooltip"
