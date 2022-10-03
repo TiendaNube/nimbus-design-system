@@ -2912,7 +2912,7 @@ __metadata:
     react-dom: ^16.8 || ^17.0 || ^18.0
   languageName: unknown
   linkType: soft
-  
+
 "@nimbus-ds/list@workspace:packages/react/List":
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/list@workspace:packages/react/List"
