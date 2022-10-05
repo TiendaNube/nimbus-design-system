@@ -27,6 +27,7 @@ module.exports = {
     "./packages/toast/index": "./src/packages/toast/index",
     "./packages/list/index": "./src/packages/list/index",
     "./packages/toggle/index": "./src/packages/toggle/index",
+    "./packages/link/index": "./src/packages/link/index",
     "./packages/tooltip/index": "./src/packages/tooltip/index",
   },
   output: {
