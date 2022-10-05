@@ -22,9 +22,9 @@ export default {
 const Template: ComponentStory<typeof Link> = (args) => <Link {...args} />;
 const StressedTemplate: ComponentStory<typeof Link> = (args) => (
   <Text fontSize="base" color="neutral.textLow">
-      This is a paragraph followed by a link.
-      <Link {...args} />
-    </Text>
+    This is a paragraph followed by a link.
+    <Link {...args} />
+  </Text>
 );
 const SkeletonTemplate: ComponentStory<typeof Link.Skeleton> = (args) => (
   <Link.Skeleton {...args} />
