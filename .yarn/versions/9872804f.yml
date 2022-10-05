@@ -11,6 +11,7 @@ declined:
   - "@nimbus-ds/icon"
   - "@nimbus-ds/icon-button"
   - "@nimbus-ds/label"
+  - "@nimbus-ds/link"
   - "@nimbus-ds/list"
   - "@nimbus-ds/skeleton"
   - "@nimbus-ds/spinner"
