@@ -8,6 +8,12 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 - Added new style pack for radio component. ([#36](https://github.com/TiendaNube/nimbus-design-system/pull/36) by [@juniorconquista](https://github.com/juniorconquista))
 
+## 2022-10-03
+
+### 🎉 New features
+
+- Added new style pack for link component. ([#35](https://github.com/TiendaNube/nimbus-design-system/pull/35) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2022-10-01
 
 ### 🎉 New features

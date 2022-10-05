@@ -16,4 +16,5 @@ export { toast } from "./packages/toast";
 export { list } from "./packages/list";
 export { radio } from "./packages/radio";
 export { toggle } from "./packages/toggle";
+export { link } from "./packages/link";
 export { tooltip } from "./packages/tooltip";
