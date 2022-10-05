@@ -17,7 +17,7 @@ const makeSut = (rest?: Omit<ListProps, "children">, children = content) => {
 describe("GIVEN <List />", () => {
   describe("WHEN rendered", () => {
     it("THEN it should correctly render as an unordered list", () => {
-      makeSut({ as: "ul" });
+      makeSut();
       expect(screen.getByTestId("list-element").nodeName).toEqual("UL");
     });
 
