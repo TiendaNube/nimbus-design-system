@@ -2934,7 +2934,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/radio@workspace:packages/react/Radio"
   dependencies:
-    "@nimbus-ds/icon": "workspace:*"
     "@nimbus-ds/skeleton": "workspace:*"
     "@nimbus-ds/styles": "workspace:*"
     "@nimbus-ds/text": "workspace:*"
