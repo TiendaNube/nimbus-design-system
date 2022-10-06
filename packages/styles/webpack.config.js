@@ -26,6 +26,7 @@ module.exports = {
     "./packages/title/index": "./src/packages/title/index",
     "./packages/toast/index": "./src/packages/toast/index",
     "./packages/list/index": "./src/packages/list/index",
+    "./packages/popover/index": "./src/packages/popover/index",
     "./packages/radio/index": "./src/packages/radio/index",
     "./packages/toggle/index": "./src/packages/toggle/index",
     "./packages/link/index": "./src/packages/link/index",

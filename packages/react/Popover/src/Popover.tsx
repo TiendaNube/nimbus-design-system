@@ -4,22 +4,24 @@ import {
   useInteractions,
   useHover,
   FloatingPortal,
-  arrow,
+  arrow as arrowUI,
   offset,
   safePolygon,
 } from "@floating-ui/react-dom-interactions";
-import { tooltip } from "@nimbus-ds/styles";
-import { Text } from "@nimbus-ds/text";
+import { popover } from "@nimbus-ds/styles";
 
-import { staticSide } from "./toast.definitions";
-import { TooltipProps } from "./tooltip.types";
+import { staticSide } from "./popover.definitions";
+import { PopoverProps } from "./popover.types";
 
-const Tooltip: React.FC<TooltipProps> = ({
+const Popover: React.FC<PopoverProps> = ({
   className: _className,
   style: _style,
+  appearance = "light",
+  position = "bottom",
+  padding = "base",
+  arrow = true,
   children,
   content,
-  position = "bottom",
   ...rest
 }) => {
   const arrowRef = useRef(null);
@@ -36,7 +38,7 @@ const Tooltip: React.FC<TooltipProps> = ({
     open: isVisible,
     placement: position,
     strategy: "fixed",
-    middleware: [offset(6), arrow({ element: arrowRef })],
+    middleware: [offset(8), arrowUI({ element: arrowRef })],
     onOpenChange: setVisibility,
   });
 
@@ -52,18 +54,25 @@ const Tooltip: React.FC<TooltipProps> = ({
   return (
     <>
       <div
-        data-testid="tooltip-container"
+        data-testid="popover-container"
         ref={reference}
         {...getReferenceProps()}
       >
         {children}
       </div>
-      <FloatingPortal id="nimbus-tooltip-floating">
+      <FloatingPortal id="nimbus-popover-floating">
         {isVisible && (
           <div
             {...rest}
             ref={floating}
-            className={tooltip.style.content}
+            className={[
+              popover.style.content,
+              popover.sprinkle({
+                color: appearance,
+                backgroundColor: appearance,
+                padding,
+              }),
+            ].join(" ")}
             style={{
               position: strategy,
               top: y ?? 0,
@@ -71,24 +80,20 @@ const Tooltip: React.FC<TooltipProps> = ({
             }}
             {...getFloatingProps()}
           >
-            <Text
-              color="neutral.background"
-              fontSize="caption"
-              lineHeight="caption"
-            >
-              {content}
-            </Text>
-            <div
-              data-testid="arrow-element"
-              ref={arrowRef}
-              className={tooltip.style.arrow[position]}
-              style={{
-                position: "absolute",
-                left: arrowX != null ? `${arrowX}px` : "",
-                top: arrowY != null ? `${arrowY}px` : "",
-                [staticSide[position]]: "0px",
-              }}
-            />
+            {content}
+            {arrow && (
+              <div
+                data-testid="arrow-element"
+                ref={arrowRef}
+                className={popover.style.arrow[position]}
+                style={{
+                  position: "absolute",
+                  left: arrowX != null ? `${arrowX}px` : "",
+                  top: arrowY != null ? `${arrowY}px` : "",
+                  [staticSide[position]]: "0px",
+                }}
+              />
+            )}
           </div>
         )}
       </FloatingPortal>
@@ -96,5 +101,5 @@ const Tooltip: React.FC<TooltipProps> = ({
   );
 };
 
-Tooltip.displayName = "Tooltip";
-export { Tooltip };
+Popover.displayName = "Popover";
+export { Popover };

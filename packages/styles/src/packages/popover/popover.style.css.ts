@@ -3,64 +3,69 @@ import { style, styleVariants } from "@vanilla-extract/css";
 import { varsThemeBase } from "../../themes/base.css";
 
 export const content = style({
-  width: "fit-content",
-  backgroundColor: varsThemeBase.colors.neutral.textLow,
-  padding: varsThemeBase.spacing[1],
-  borderRadius: varsThemeBase.spacing[1],
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  width: "17.5rem",
+  minHeight: "2rem",
+
+  boxShadow: varsThemeBase.shadow.popover,
+  borderRadius: varsThemeBase.spacing[2],
+  boxSizing: "border-box",
   transition: `opacity ${varsThemeBase.motion.speed.fast} ease`,
 });
 
-export const base = style({
+export const baseArrow = style({
   "::after": {
     content: " ",
     position: "absolute",
-    borderWidth: varsThemeBase.spacing[1],
+    borderWidth: varsThemeBase.spacing[2],
     borderStyle: "solid",
   },
 });
 
 export const arrow = styleVariants({
   top: [
-    base,
+    baseArrow,
     {
       "::after": {
         top: "100%",
-        borderColor: `${varsThemeBase.colors.neutral.textLow} transparent transparent transparent`,
-        marginLeft: "-0.25rem",
+        borderColor: `currentColor transparent transparent transparent`,
+        marginLeft: "-0.5rem",
         left: "50%",
       },
     },
   ],
   bottom: [
-    base,
+    baseArrow,
     {
       "::after": {
         bottom: "100%",
-        borderColor: `transparent transparent ${varsThemeBase.colors.neutral.textLow} transparent`,
-        marginLeft: "-0.25rem",
+        borderColor: `transparent transparent currentColor transparent`,
+        marginLeft: "-0.5rem",
         left: "50%",
       },
     },
   ],
   left: [
-    base,
+    baseArrow,
     {
       "::after": {
         bottom: "100%",
-        borderColor: `transparent transparent transparent ${varsThemeBase.colors.neutral.textLow}`,
-        marginTop: "-0.25rem",
+        borderColor: `transparent transparent transparent currentColor`,
+        marginTop: "-0.5rem",
         top: "50%",
         left: "100%",
       },
     },
   ],
   right: [
-    base,
+    baseArrow,
     {
       "::after": {
         bottom: "100%",
-        borderColor: `transparent ${varsThemeBase.colors.neutral.textLow} transparent transparent`,
-        marginTop: "-0.25rem",
+        borderColor: `transparent currentColor transparent transparent`,
+        marginTop: "-0.5rem",
         top: "50%",
         right: "100%",
       },

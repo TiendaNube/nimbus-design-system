@@ -32,7 +32,7 @@ describe("GIVEN <Tooltip />", () => {
       const arrow = screen.getByTestId("arrow-element");
       expect(tooltip).toBeDefined();
 
-      expect(tooltip.style.top).toEqual("-10px");
+      expect(tooltip.style.top).toEqual("-6px");
       expect(tooltip.style.left).toEqual("0px");
       expect(tooltip.style.position).toEqual("fixed");
 
@@ -50,7 +50,7 @@ describe("GIVEN <Tooltip />", () => {
       const arrow = screen.getByTestId("arrow-element");
       expect(tooltip).toBeDefined();
 
-      expect(tooltip.style.top).toEqual("10px");
+      expect(tooltip.style.top).toEqual("6px");
       expect(tooltip.style.left).toEqual("0px");
       expect(tooltip.style.position).toEqual("fixed");
 
@@ -69,7 +69,7 @@ describe("GIVEN <Tooltip />", () => {
       expect(tooltip).toBeDefined();
 
       expect(tooltip.style.top).toEqual("0px");
-      expect(tooltip.style.left).toEqual("-10px");
+      expect(tooltip.style.left).toEqual("-6px");
       expect(tooltip.style.position).toEqual("fixed");
 
       expect(arrow.style.top).toEqual("0px");
@@ -87,7 +87,7 @@ describe("GIVEN <Tooltip />", () => {
       expect(tooltip).toBeDefined();
 
       expect(tooltip.style.top).toEqual("0px");
-      expect(tooltip.style.left).toEqual("10px");
+      expect(tooltip.style.left).toEqual("6px");
       expect(tooltip.style.position).toEqual("fixed");
 
       expect(arrow.style.top).toEqual("0px");

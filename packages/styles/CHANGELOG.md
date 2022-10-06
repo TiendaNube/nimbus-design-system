@@ -2,6 +2,17 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2022-10-06
+
+### 🎉 New features
+
+- Added new style pack for popover component. ([#37](https://github.com/TiendaNube/nimbus-design-system/pull/37) by [@juniorconquista](https://github.com/juniorconquista))
+- Added new shadow tokens to theme base. ([#37](https://github.com/TiendaNube/nimbus-design-system/pull/37) by [@juniorconquista](https://github.com/juniorconquista))
+
+### 💡 Others
+
+- Refactored tooltip package color scheme. ([#37](https://github.com/TiendaNube/nimbus-design-system/pull/37) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2022-10-05
 
 ### 🎉 New features

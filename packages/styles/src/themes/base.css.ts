@@ -90,6 +90,11 @@ export const varsThemeBase = createThemeContract({
       h6: "lineWeight.title.h6",
     },
   },
+  shadow: {
+    card: "shadow.card",
+    popover: "shadow.popover",
+    modal: "shadow.modal",
+  },
   spacing: {
     "0,5": "spacing.0,5",
     "1": "spacing.1",
@@ -142,7 +147,7 @@ const fontFamily = tokens.font.family;
 const fontSize = tokens.font.size.sys;
 const fontWeight = tokens.font.weight;
 const lineWeight = tokens.line.height.sys;
-const { motion, spacing, sizes } = tokens;
+const { motion, spacing, sizes, shadow } = tokens;
 
 createGlobalTheme(":root", varsThemeBase, {
   colors: {
@@ -232,6 +237,11 @@ createGlobalTheme(":root", varsThemeBase, {
       h5: lineWeight.title.h5.value as string,
       h6: lineWeight.title.h6.value as string,
     },
+  },
+  shadow: {
+    card: shadow.card.value,
+    popover: shadow.popover.value,
+    modal: shadow.modal.value,
   },
   spacing: {
     "0,5": spacing["0,5"].value,
