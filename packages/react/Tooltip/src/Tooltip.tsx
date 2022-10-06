@@ -36,7 +36,7 @@ const Tooltip: React.FC<TooltipProps> = ({
     open: isVisible,
     placement: position,
     strategy: "fixed",
-    middleware: [offset(10), arrow({ element: arrowRef })],
+    middleware: [offset(6), arrow({ element: arrowRef })],
     onOpenChange: setVisibility,
   });
 
@@ -72,9 +72,9 @@ const Tooltip: React.FC<TooltipProps> = ({
             {...getFloatingProps()}
           >
             <Text
-              color="neutral.textLow"
-              fontSize="base"
-              lineHeight="highlight"
+              color="neutral.background"
+              fontSize="caption"
+              lineHeight="caption"
             >
               {content}
             </Text>
