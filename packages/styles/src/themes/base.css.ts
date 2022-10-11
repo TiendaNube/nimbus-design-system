@@ -140,6 +140,11 @@ export const varsThemeBase = createThemeContract({
       slower: "motion.speed.slower",
     },
   },
+  breakpoint: {
+    xs: "breakpoint.xs",
+    md: "breakpoint.md",
+    lg: "breakpoint.lg",
+  },
 });
 
 const colors = tokens.color.sys.light;
@@ -147,7 +152,7 @@ const fontFamily = tokens.font.family;
 const fontSize = tokens.font.size.sys;
 const fontWeight = tokens.font.weight;
 const lineWeight = tokens.line.height.sys;
-const { motion, spacing, sizes, shadow } = tokens;
+const { motion, spacing, sizes, shadow, breakpoint } = tokens;
 
 createGlobalTheme(":root", varsThemeBase, {
   colors: {
@@ -287,5 +292,13 @@ createGlobalTheme(":root", varsThemeBase, {
       slow: motion.speed.slow.value as string,
       slower: motion.speed.slower.value as string,
     },
+  },
+  breakpoint: {
+    // xs: `screen and (min-width: ${breakpoint.xs.value})`,
+    // md: `screen and (min-width: ${breakpoint.md.value})`,
+    // lg: `screen and (min-width: ${breakpoint.lg.value})`,
+    xs: breakpoint.xs.value,
+    md: breakpoint.md.value,
+    lg: breakpoint.lg.value,
   },
 });

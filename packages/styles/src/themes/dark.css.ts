@@ -8,7 +8,7 @@ const fontFamily = tokens.font.family;
 const fontSize = tokens.font.size.sys;
 const fontWeight = tokens.font.weight;
 const lineWeight = tokens.line.height.sys;
-const { motion, spacing, sizes, shadow } = tokens;
+const { motion, spacing, sizes, shadow, breakpoint } = tokens;
 
 export const ThemeDark = createTheme(varsThemeBase, {
   colors: {
@@ -148,5 +148,10 @@ export const ThemeDark = createTheme(varsThemeBase, {
       slow: motion.speed.slow.value as string,
       slower: motion.speed.slower.value as string,
     },
+  },
+  breakpoint: {
+    xs: breakpoint.xs.value,
+    md: breakpoint.md.value,
+    lg: breakpoint.lg.value,
   },
 });

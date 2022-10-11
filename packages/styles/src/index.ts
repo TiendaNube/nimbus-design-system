@@ -1,6 +1,7 @@
 export { utils } from "./utils";
 
 export { badge } from "./packages/badge";
+export { box } from "./packages/box";
 export { button } from "./packages/button";
 export { checkbox } from "./packages/checkbox";
 export { chip } from "./packages/chip";
