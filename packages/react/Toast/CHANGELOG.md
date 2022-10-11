@@ -31,6 +31,6 @@ It is a component that appears and disappears after a few seconds. By default, w
 
 - Added `id`, `type`, `text`, `duration`, `autoClose`, and `position` properties to the Component. ([#27](https://github.com/TiendaNube/nimbus-design-system/pull/27) by [@juniorconquista](https://github.com/juniorconquista))
 - Added stories on Component. ([#27](https://github.com/TiendaNube/nimbus-design-system/pull/27) by [@juniorconquista](https://github.com/juniorconquista))
-- Created new `TextProvider` subcomponent. ([#27](https://github.com/TiendaNube/nimbus-design-system/pull/27) by [@juniorconquista](https://github.com/juniorconquista))
+- Created new `ToastProvider` subcomponent. ([#27](https://github.com/TiendaNube/nimbus-design-system/pull/27) by [@juniorconquista](https://github.com/juniorconquista))
 - Created new `ToastContext` context to use `ToastProvider`. ([#27](https://github.com/TiendaNube/nimbus-design-system/pull/27) by [@juniorconquista](https://github.com/juniorconquista))
 - Created new `useToast` hook. ([#27](https://github.com/TiendaNube/nimbus-design-system/pull/27) by [@juniorconquista](https://github.com/juniorconquista))
