@@ -13,6 +13,7 @@ module.exports = {
     "./themes/dark": "./src/themes/dark.css.ts",
 
     "./packages/badge/index": "./src/packages/badge/index",
+    "./packages/box/index": "./src/packages/box/index",
     "./packages/button/index": "./src/packages/button/index",
     "./packages/checkbox/index": "./src/packages/checkbox/index",
     "./packages/chip/index": "./src/packages/chip/index",

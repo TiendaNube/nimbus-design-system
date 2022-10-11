@@ -2,6 +2,17 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2022-10-11
+
+### 🎉 New features
+
+- Added new style pack for box component. ([#38](https://github.com/TiendaNube/nimbus-design-system/pull/38) by [@juniorconquista](https://github.com/juniorconquista))
+- Added new breakpoint tokens to theme base. ([#38](https://github.com/TiendaNube/nimbus-design-system/pull/38) by [@juniorconquista](https://github.com/juniorconquista))
+
+### 📚 3rd party library updates
+
+- Added `rainbow-sprinkles@0.13.0`. ([#38](https://github.com/TiendaNube/nimbus-design-system/pull/38) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2022-10-06
 
 ### 🎉 New features
@@ -31,7 +42,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 - Added new style pack for tooltip component. ([#34](https://github.com/TiendaNube/nimbus-design-system/pull/34) by [@juniorconquista](https://github.com/juniorconquista))
 
-## 2022-09-29
+## 2022-09-30
 
 ### 🎉 New features
 
@@ -99,7 +110,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 - Global theme contract created. ([#23](https://github.com/TiendaNube/nimbus-design-system/pull/23) by [@juniorconquista](https://github.com/juniorconquista))
 - Added new `textAlign` sprinkle pack. ([#23](https://github.com/TiendaNube/nimbus-design-system/pull/23) by [@juniorconquista](https://github.com/juniorconquista))
 - Added new `textAlign` sprinkle in `Title` package. ([#23](https://github.com/TiendaNube/nimbus-design-system/pull/23) by [@juniorconquista](https://github.com/juniorconquista))
-- Added new `textAlign`, `size`, `lineHeight`, and `bold` sprinkle in `Text` package. ([#23](https://github.com/TiendaNube/nimbus-design-system/pull/23) by [@juniorconquista](https://github.com/juniorconquista))
+- Added new `textAlign`, `fontSize`, `lineHeight`, and `fontWeight` sprinkle in `Text` package. ([#23](https://github.com/TiendaNube/nimbus-design-system/pull/23) by [@juniorconquista](https://github.com/juniorconquista))
 
 ### 💡 Others
 
