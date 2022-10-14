@@ -32,6 +32,7 @@ module.exports = {
     "./packages/toggle/index": "./src/packages/toggle/index",
     "./packages/link/index": "./src/packages/link/index",
     "./packages/tooltip/index": "./src/packages/tooltip/index",
+    "./packages/select/index": "./src/packages/select/index",
   },
   output: {
     path: path.resolve(__dirname, "dist"),
