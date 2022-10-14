@@ -2,14 +2,17 @@ import { style, styleVariants } from "@vanilla-extract/css";
 
 import { varsThemeBase } from "../../themes/base.css";
 
+export const container = style({
+  width: "fit-content",
+});
+
 export const content = style({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
   width: "17.5rem",
   minHeight: "2rem",
-
-  boxShadow: varsThemeBase.shadow.popover,
+  filter: `drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.2))`,
   borderRadius: varsThemeBase.spacing[2],
   boxSizing: "border-box",
   transition: `opacity ${varsThemeBase.motion.speed.fast} ease`,
