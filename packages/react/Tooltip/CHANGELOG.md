@@ -2,6 +2,12 @@
 
 The Tooltip component allows us to display additional information in a non-intrusive way.
 
+## 2022-10-14
+
+### 🎉 New features
+
+- Added styles so that the tooltip container has a maximum width relative to the anchor size. ([#40](https://github.com/TiendaNube/nimbus-design-system/pull/40) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2022-10-06
 
 ### 💡 Others
