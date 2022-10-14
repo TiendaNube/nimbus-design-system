@@ -1,9 +1,6 @@
 import { style as vanillaStyle, styleVariants } from "@vanilla-extract/css";
-import tokens from "@nimbus-ds/tokens/dist/js/tokens";
 
 import { varsThemeBase } from "../../themes/base.css";
-
-const { spacing } = tokens;
 
 const base = vanillaStyle({
   display: "flex",
@@ -14,12 +11,12 @@ const base = vanillaStyle({
   height: "2rem",
   width: "fit-content",
 
-  padding: spacing["1"].value,
+  padding: varsThemeBase.spacing[1],
   boxSizing: "border-box",
 
   borderWidth: "0.063rem",
   borderStyle: "solid",
-  borderRadius: spacing["1"].value,
+  borderRadius: varsThemeBase.spacing[1],
 
   transition: `${varsThemeBase.motion.speed.fast} ease`,
 });

@@ -2,6 +2,13 @@
 
 Use Popovers to bring attention to specific user interface elements and suggest an action or to guide users through a new experience
 
+## 2022-10-14
+
+### 🎉 New features
+
+- Added box-shadow to popover arrow. ([#40](https://github.com/TiendaNube/nimbus-design-system/pull/40) by [@juniorconquista](https://github.com/juniorconquista))
+- Added styles so that the popover container has a maximum width relative to the anchor size. ([#40](https://github.com/TiendaNube/nimbus-design-system/pull/40) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2022-10-06
 
 ### 📚 3rd party library updates

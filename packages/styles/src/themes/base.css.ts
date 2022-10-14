@@ -294,9 +294,6 @@ createGlobalTheme(":root", varsThemeBase, {
     },
   },
   breakpoint: {
-    // xs: `screen and (min-width: ${breakpoint.xs.value})`,
-    // md: `screen and (min-width: ${breakpoint.md.value})`,
-    // lg: `screen and (min-width: ${breakpoint.lg.value})`,
     xs: breakpoint.xs.value,
     md: breakpoint.md.value,
     lg: breakpoint.lg.value,

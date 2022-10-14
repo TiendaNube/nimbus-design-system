@@ -22,6 +22,7 @@ module.exports = {
     "./packages/label/index": "./src/packages/label/index",
     "./packages/skeleton/index": "./src/packages/skeleton/index",
     "./packages/spinner/index": "./src/packages/spinner/index",
+    "./packages/stack/index": "./src/packages/stack/index",
     "./packages/tag/index": "./src/packages/tag/index",
     "./packages/text/index": "./src/packages/text/index",
     "./packages/title/index": "./src/packages/title/index",

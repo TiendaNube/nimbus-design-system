@@ -2,6 +2,10 @@ import { style, styleVariants } from "@vanilla-extract/css";
 
 import { varsThemeBase } from "../../themes/base.css";
 
+export const container = style({
+  width: "fit-content",
+});
+
 export const content = style({
   width: "fit-content",
   backgroundColor: varsThemeBase.colors.neutral.textLow,
