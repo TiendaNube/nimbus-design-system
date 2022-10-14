@@ -38,7 +38,7 @@ const Popover: React.FC<PopoverProps> = ({
     open: isVisible,
     placement: position,
     strategy: "fixed",
-    middleware: [offset(8), arrowUI({ element: arrowRef })],
+    middleware: [offset(10), arrowUI({ element: arrowRef })],
     onOpenChange: setVisibility,
   });
 
@@ -56,6 +56,7 @@ const Popover: React.FC<PopoverProps> = ({
       <div
         data-testid="popover-container"
         ref={reference}
+        className={popover.style.container}
         {...getReferenceProps()}
       >
         {children}
@@ -68,7 +69,6 @@ const Popover: React.FC<PopoverProps> = ({
             className={[
               popover.style.content,
               popover.sprinkle({
-                color: appearance,
                 backgroundColor: appearance,
                 padding,
               }),
@@ -85,7 +85,12 @@ const Popover: React.FC<PopoverProps> = ({
               <div
                 data-testid="arrow-element"
                 ref={arrowRef}
-                className={popover.style.arrow[position]}
+                className={[
+                  popover.style.arrow[position],
+                  popover.sprinkle({
+                    color: appearance,
+                  }),
+                ].join(" ")}
                 style={{
                   position: "absolute",
                   left: arrowX != null ? `${arrowX}px` : "",
