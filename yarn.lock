@@ -2780,7 +2780,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/box@workspace:packages/react/Box":
+"@nimbus-ds/box@workspace:*, @nimbus-ds/box@workspace:packages/react/Box":
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/box@workspace:packages/react/Box"
   dependencies:
@@ -2952,6 +2952,7 @@ __metadata:
   resolution: "@nimbus-ds/popover@workspace:packages/react/Popover"
   dependencies:
     "@floating-ui/react-dom-interactions": ^0.10.1
+    "@nimbus-ds/stack": "workspace:*"
     "@nimbus-ds/styles": "workspace:*"
     "@vanilla-extract/dynamic": ^2.0.2
     terser-webpack-plugin: ^5.3.5
@@ -3018,10 +3019,11 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/stack@workspace:packages/react/Stack":
+"@nimbus-ds/stack@workspace:*, @nimbus-ds/stack@workspace:packages/react/Stack":
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/stack@workspace:packages/react/Stack"
   dependencies:
+    "@nimbus-ds/box": "workspace:*"
     "@nimbus-ds/styles": "workspace:*"
     "@vanilla-extract/dynamic": ^2.0.2
     terser-webpack-plugin: ^5.3.5
@@ -3157,6 +3159,7 @@ __metadata:
   resolution: "@nimbus-ds/tooltip@workspace:packages/react/Tooltip"
   dependencies:
     "@floating-ui/react-dom-interactions": ^0.10.1
+    "@nimbus-ds/stack": "workspace:*"
     "@nimbus-ds/styles": "workspace:*"
     "@vanilla-extract/dynamic": ^2.0.2
     terser-webpack-plugin: ^5.3.5
