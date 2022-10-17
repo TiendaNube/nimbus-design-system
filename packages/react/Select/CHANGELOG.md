@@ -19,7 +19,7 @@ Use a select box when a user needs to select one option from a list.
 - Created new `Select.Group` subcomponent. ([#39](https://github.com/TiendaNube/nimbus-design-system/pull/39) by [@juanchigallego](https://github.com/juanchigallego))
 - Added `label` and `children` properties to the component `Select.Group`. ([#39](https://github.com/TiendaNube/nimbus-design-system/pull/39) by [@juanchigallego](https://github.com/juanchigallego))
 - Created new `Select.Option` subcomponent. ([#39](https://github.com/TiendaNube/nimbus-design-system/pull/39) by [@juanchigallego](https://github.com/juanchigallego))
-- Added `disabled`, `select`, `label` and `value` to the component `Select.Option`. ([#39](https://github.com/TiendaNube/nimbus-design-system/pull/39) by [@juanchigallego](https://github.com/juanchigallego))
+- Added `label` and `value` properties to the component `Select.Option`. ([#39](https://github.com/TiendaNube/nimbus-design-system/pull/39) by [@juanchigallego](https://github.com/juanchigallego))
 - Created new `Select.Skeleton` subcomponent. ([#39](https://github.com/TiendaNube/nimbus-design-system/pull/39) by [@juanchigallego](https://github.com/juanchigallego))
 - Added `width` property to the component `Select.Skeleton`. ([#39](https://github.com/TiendaNube/nimbus-design-system/pull/39) by [@juanchigallego](https://github.com/juanchigallego))
 - Added stories on component `Select.Skeleton`. ([#39](https://github.com/TiendaNube/nimbus-design-system/pull/39) by [@juanchigallego](https://github.com/juanchigallego))

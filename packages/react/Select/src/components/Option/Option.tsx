@@ -5,19 +5,13 @@ import { OptionProps } from "./option.types";
 const Option: React.FC<OptionProps> = ({
   className: _className,
   style: _style,
-  disabled = false,
-  selected = false,
   label,
   value,
   ...rest
 }: OptionProps) => {
   const hasLabel = useMemo(() => label || value, [label, value]);
 
-  return (
-    <option {...rest} disabled={disabled} selected={selected} label={hasLabel}>
-      {value}
-    </option>
-  );
+  return <option {...rest} label={hasLabel} value={value} />;
 };
 
 Option.displayName = "Select.Option";
