@@ -6,6 +6,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 ### 🎉 New features
 
+- Added new style pack for select component. ([#39](https://github.com/TiendaNube/nimbus-design-system/pull/39) by [@juanchigallego](https://github.com/juanchigallego))
 - Added new style pack for stack component. ([#40](https://github.com/TiendaNube/nimbus-design-system/pull/40) by [@juniorconquista](https://github.com/juniorconquista))
 - Added box-shadow to popover arrow. ([#40](https://github.com/TiendaNube/nimbus-design-system/pull/40) by [@juniorconquista](https://github.com/juniorconquista))
 
