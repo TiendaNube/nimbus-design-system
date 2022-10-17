@@ -18,6 +18,7 @@ declined:
   - "@nimbus-ds/radio"
   - "@nimbus-ds/skeleton"
   - "@nimbus-ds/spinner"
+  - "@nimbus-ds/stack"
   - "@nimbus-ds/tag"
   - "@nimbus-ds/text"
   - "@nimbus-ds/title"
