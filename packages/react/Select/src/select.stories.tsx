@@ -41,12 +41,12 @@ withGroups.args = {
           disabled
           value="Option 2"
         />
-        <Select.Option value="Option 3" />
+        <Select.Option label="Option 3" value="Option 3" />
       </Select.Group>
       <Select.Group label="Group 2">
-        <Select.Option value="Option 4" />
-        <Select.Option value="Option 5" />
-        <Select.Option value="Option 6" />
+        <Select.Option label="Option 4" value="Option 4" />
+        <Select.Option label="Option 5" value="Option 5" />
+        <Select.Option label="Option 6" value="Option 6" />
       </Select.Group>
     </>
   ),
@@ -68,10 +68,10 @@ withoutGroups.args = {
         disabled
         value="Option 2"
       />
-      <Select.Option value="Option 3" />
-      <Select.Option value="Option 4" />
-      <Select.Option value="Option 5" />
-      <Select.Option value="Option 6" />
+      <Select.Option label="Option 3" value="Option 3" />
+      <Select.Option label="Option 4" value="Option 4" />
+      <Select.Option label="Option 5" value="Option 5" />
+      <Select.Option label="Option 6" value="Option 6" />
     </>
   ),
 };
@@ -82,12 +82,17 @@ withPlaceholderOption.args = {
   id: "Id",
   children: (
     <>
-      <Select.Option label="This option is a placeholder" disabled selected />
-      <Select.Option value="Option 2" />
-      <Select.Option value="Option 3" />
-      <Select.Option value="Option 4" />
-      <Select.Option value="Option 5" />
-      <Select.Option value="Option 6" />
+      <Select.Option
+        label="This option is a placeholder"
+        value="Option 1"
+        disabled
+        selected
+      />
+      <Select.Option label="Option 2" value="Option 2" />
+      <Select.Option label="Option 3" value="Option 3" />
+      <Select.Option label="Option 4" value="Option 4" />
+      <Select.Option label="Option 5" value="Option 5" />
+      <Select.Option label="Option 6" value="Option 6" />
     </>
   ),
 };
