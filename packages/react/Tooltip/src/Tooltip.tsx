@@ -54,6 +54,7 @@ const Tooltip: React.FC<TooltipProps> = ({
       <div
         data-testid="tooltip-container"
         ref={reference}
+        className={tooltip.style.container}
         {...getReferenceProps()}
       >
         {children}

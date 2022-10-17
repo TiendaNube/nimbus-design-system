@@ -74,7 +74,8 @@
           "./packages/react/Title",
           "./packages/react/Toast",
           "./packages/react/Button",
-          "./packages/react/Tooltip"
+          "./packages/react/Tooltip",
+          "./packages/react/Stack"
         ]
       }
     ],

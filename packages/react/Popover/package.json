@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/popover",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "source": "src/index.ts",
   "main": "dist/index.js",
@@ -34,6 +34,7 @@
     "url": "https://github.com/TiendaNube/nimbus-design-system/issues"
   },
   "devDependencies": {
+    "@nimbus-ds/stack": "workspace:*",
     "@vanilla-extract/dynamic": "^2.0.2",
     "terser-webpack-plugin": "^5.3.5",
     "ts-loader": "^9.3.1",

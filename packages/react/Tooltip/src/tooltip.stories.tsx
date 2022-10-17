@@ -2,6 +2,7 @@ import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { withA11y } from "@storybook/addon-a11y";
 import { Text } from "@nimbus-ds/text";
+import { Stack } from "@nimbus-ds/stack";
 
 import { Tooltip } from "./Tooltip";
 
@@ -17,11 +18,11 @@ export default {
 } as ComponentMeta<typeof Tooltip>;
 
 const Template: ComponentStory<typeof Tooltip> = (args) => (
-  <div style={{ display: "flex", justifyContent: "center" }}>
+  <Stack display="flex" justifyContent="center">
     <Tooltip {...args}>
       <Text>Hover</Text>
     </Tooltip>
-  </div>
+  </Stack>
 );
 
 export const base = Template.bind({});

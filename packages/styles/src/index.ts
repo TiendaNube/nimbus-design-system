@@ -10,6 +10,7 @@ export { iconButton } from "./packages/iconButton";
 export { label } from "./packages/label";
 export { skeleton } from "./packages/skeleton";
 export { spinner } from "./packages/spinner";
+export { stack } from "./packages/stack";
 export { tag } from "./packages/tag";
 export { text } from "./packages/text";
 export { title } from "./packages/title";

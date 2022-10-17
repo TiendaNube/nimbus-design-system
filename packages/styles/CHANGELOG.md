@@ -7,6 +7,13 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 ### 🎉 New features
 
 - Added new style pack for select component. ([#39](https://github.com/TiendaNube/nimbus-design-system/pull/39) by [@juanchigallego](https://github.com/juanchigallego))
+- Added new style pack for stack component. ([#40](https://github.com/TiendaNube/nimbus-design-system/pull/40) by [@juniorconquista](https://github.com/juniorconquista))
+- Added box-shadow to popover arrow. ([#40](https://github.com/TiendaNube/nimbus-design-system/pull/40) by [@juniorconquista](https://github.com/juniorconquista))
+
+### 💡 Others
+
+- Added styles so that the popover container has a maximum width relative to its anchor size. ([#40](https://github.com/TiendaNube/nimbus-design-system/pull/40) by [@juniorconquista](https://github.com/juniorconquista))
+- Added styles so that the tooltip container has a maximum width relative to its anchor size. ([#40](https://github.com/TiendaNube/nimbus-design-system/pull/40) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2022-10-11
 
