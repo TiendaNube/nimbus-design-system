@@ -12,13 +12,19 @@ const Select: React.FC<SelectProps> & SelectComponents = ({
   name,
   id,
   children,
+  appearance = "neutral",
   ...rest
 }: SelectProps) => (
   <div className={select.style.wrapper}>
     <div className={select.style.icon}>
       <Icon source={<ChevronDownIcon />} color="primary.textHigh" />
     </div>
-    <select {...rest} id={id} name={name} className={select.style.field}>
+    <select
+      {...rest}
+      id={id}
+      name={name}
+      className={select.style.appearance[appearance]}
+    >
       {children}
     </select>
   </div>

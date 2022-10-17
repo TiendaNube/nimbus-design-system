@@ -14,7 +14,7 @@ Use a select box when a user needs to select one option from a list.
 
 ### 🎉 New features
 
-- Added `name`, `id` and `children` properties to the component. ([#39](https://github.com/TiendaNube/nimbus-design-system/pull/39) by [@juanchigallego](https://github.com/juanchigallego))
+- Added `name`, `id`, `appearance` and `children` properties to the component. ([#39](https://github.com/TiendaNube/nimbus-design-system/pull/39) by [@juanchigallego](https://github.com/juanchigallego))
 - Added stories on component. ([#39](https://github.com/TiendaNube/nimbus-design-system/pull/39) by [@juanchigallego](https://github.com/juanchigallego))
 - Created new `Select.Group` subcomponent. ([#39](https://github.com/TiendaNube/nimbus-design-system/pull/39) by [@juanchigallego](https://github.com/juanchigallego))
 - Added `label` and `children` properties to the component `Select.Group`. ([#39](https://github.com/TiendaNube/nimbus-design-system/pull/39) by [@juanchigallego](https://github.com/juanchigallego))

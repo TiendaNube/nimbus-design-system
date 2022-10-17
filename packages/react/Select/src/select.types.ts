@@ -14,4 +14,6 @@ export interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   id: string;
   /** Elements to be rendered inside the select list */
   children: ReactNode;
+  /** Select color */
+  appearance?: "success" | "warning" | "danger" | "neutral";
 }

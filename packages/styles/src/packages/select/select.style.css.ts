@@ -1,4 +1,4 @@
-import { globalStyle, style } from "@vanilla-extract/css";
+import { globalStyle, style, styleVariants } from "@vanilla-extract/css";
 
 import { varsThemeBase } from "../../themes/base.css";
 
@@ -17,22 +17,20 @@ export const icon = style({
   transform: "translateY(-50%)",
 });
 
-export const field = style({
+const base = style({
   fontFamily: varsThemeBase.fontFamily.centranube,
   fontSize: varsThemeBase.fontSize.body.base,
   lineHeight: varsThemeBase.lineWeight.body.base,
   textAlign: "left",
 
-  border: `1px solid ${varsThemeBase.colors.neutral.interactive}`,
+  color: varsThemeBase.colors.neutral.textHigh,
+
   borderRadius: varsThemeBase.sizes[2],
   paddingBottom: varsThemeBase.sizes[2],
   paddingLeft: varsThemeBase.sizes[2],
   paddingRight: varsThemeBase.sizes[8],
   paddingTop: varsThemeBase.sizes[2],
   width: "100%",
-
-  backgroundColor: varsThemeBase.colors.neutral.background,
-  color: varsThemeBase.colors.neutral.textHigh,
 
   appearance: "none",
   transition: `all ${varsThemeBase.motion.speed.fast} ease`,
@@ -53,10 +51,41 @@ export const field = style({
   },
 });
 
-globalStyle(`${field} option`, {
+export const appearance = styleVariants({
+  neutral: [
+    base,
+    {
+      border: `1px solid ${varsThemeBase.colors.neutral.interactive}`,
+      backgroundColor: varsThemeBase.colors.neutral.background,
+    },
+  ],
+  success: [
+    base,
+    {
+      border: `1px solid ${varsThemeBase.colors.success.interactive}`,
+      backgroundColor: varsThemeBase.colors.success.surface,
+    },
+  ],
+  warning: [
+    base,
+    {
+      border: `1px solid ${varsThemeBase.colors.warning.interactive}`,
+      backgroundColor: varsThemeBase.colors.warning.surface,
+    },
+  ],
+  danger: [
+    base,
+    {
+      border: `1px solid ${varsThemeBase.colors.danger.interactive}`,
+      backgroundColor: varsThemeBase.colors.danger.surface,
+    },
+  ],
+});
+
+globalStyle(`${base} option`, {
   color: varsThemeBase.colors.neutral.textHigh,
 });
 
-globalStyle(`${field} option[value=""][disabled]`, {
+globalStyle(`${base} option[value=""][disabled]`, {
   color: varsThemeBase.colors.neutral.textDisabled,
 });

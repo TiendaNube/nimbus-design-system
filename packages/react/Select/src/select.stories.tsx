@@ -27,6 +27,7 @@ export const withGroups = Template.bind({});
 withGroups.args = {
   name: "Name",
   id: "Id",
+  appearance: "neutral",
   disabled: false,
   children: (
     <>
@@ -56,6 +57,7 @@ export const withoutGroups = Template.bind({});
 withoutGroups.args = {
   name: "Name",
   id: "Id",
+  appearance: "neutral",
   children: (
     <>
       <Select.Option
@@ -80,6 +82,7 @@ export const withPlaceholderOption = Template.bind({});
 withPlaceholderOption.args = {
   name: "Name",
   id: "Id",
+  appearance: "neutral",
   children: (
     <>
       <Select.Option
