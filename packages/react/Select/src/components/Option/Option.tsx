@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 
 import { OptionProps } from "./option.types";
 
@@ -8,11 +8,7 @@ const Option: React.FC<OptionProps> = ({
   label,
   value,
   ...rest
-}: OptionProps) => {
-  const hasLabel = useMemo(() => label || value, [label, value]);
-
-  return <option {...rest} label={hasLabel} value={value} />;
-};
+}: OptionProps) => <option {...rest} label={label} value={value} />;
 
 Option.displayName = "Select.Option";
 

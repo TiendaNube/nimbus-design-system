@@ -13,29 +13,15 @@ const optValue = "myValue";
 
 describe("GIVEN <Option />", () => {
   describe("WHEN rendered", () => {
-    it("THEN should disable the option", () => {
-      makeSut({ disabled: true });
-      expect(
-        screen.getByRole<HTMLOptionElement>("option").disabled
-      ).toBeTruthy();
-    });
-
-    it("THEN should select the option", () => {
-      makeSut({ selected: true });
-      expect(
-        screen.getByRole<HTMLOptionElement>("option").selected
-      ).toBeTruthy();
-    });
-
     it("THEN should render the label", () => {
-      makeSut({ label: optLabel });
+      makeSut({ label: optLabel, value: optValue });
       expect(screen.getByRole<HTMLOptionElement>("option").label).toContain(
         optLabel
       );
     });
 
     it("THEN should render the value", () => {
-      makeSut({ value: optValue });
+      makeSut({ label: optLabel, value: optValue });
       expect(screen.getByRole<HTMLOptionElement>("option").value).toContain(
         optValue
       );
