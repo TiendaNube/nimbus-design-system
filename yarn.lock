@@ -3108,6 +3108,23 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@nimbus-ds/textarea@workspace:packages/react/Textarea":
+  version: 0.0.0-use.local
+  resolution: "@nimbus-ds/textarea@workspace:packages/react/Textarea"
+  dependencies:
+    "@nimbus-ds/skeleton": "workspace:*"
+    "@nimbus-ds/styles": "workspace:*"
+    terser-webpack-plugin: ^5.3.5
+    ts-loader: ^9.3.1
+    typescript: ^4.7.4
+    webpack: ^5.74.0
+    webpack-cli: ^4.10.0
+  peerDependencies:
+    react: ^16.8 || ^17.0 || ^18.0
+    react-dom: ^16.8 || ^17.0 || ^18.0
+  languageName: unknown
+  linkType: soft
+
 "@nimbus-ds/title@workspace:packages/react/Title":
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/title@workspace:packages/react/Title"
