@@ -2,6 +2,16 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2022-10-18
+
+### 🎉 New features
+
+- Added new style pack for textarea component. ([#41](https://github.com/TiendaNube/nimbus-design-system/pull/41) by [@juanchigallego](https://github.com/juanchigallego))
+
+### 💡 Others
+
+- Adjust focus styles on select component. ([#41](https://github.com/TiendaNube/nimbus-design-system/pull/41) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2022-10-14
 
 ### 🎉 New features
