@@ -34,6 +34,7 @@ module.exports = {
     "./packages/link/index": "./src/packages/link/index",
     "./packages/tooltip/index": "./src/packages/tooltip/index",
     "./packages/select/index": "./src/packages/select/index",
+    "./packages/textarea/index": "./src/packages/textarea/index",
   },
   output: {
     path: path.resolve(__dirname, "dist"),

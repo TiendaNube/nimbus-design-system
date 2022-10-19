@@ -25,7 +25,9 @@ const base = style({
 
   color: varsThemeBase.colors.neutral.textHigh,
 
+  boxSizing: "border-box",
   borderRadius: varsThemeBase.sizes[2],
+  margin: 0,
   paddingBottom: varsThemeBase.sizes[2],
   paddingLeft: varsThemeBase.sizes[2],
   paddingRight: varsThemeBase.sizes[8],
@@ -33,6 +35,7 @@ const base = style({
   width: "100%",
 
   appearance: "none",
+  outline: "none",
   transition: `all ${varsThemeBase.motion.speed.fast} ease`,
 
   "::placeholder": {
@@ -40,14 +43,15 @@ const base = style({
   },
 
   ":disabled": {
+    border: `1px solid ${varsThemeBase.colors.neutral.interactive}`,
     backgroundColor: varsThemeBase.colors.neutral.surfaceDisabled,
     color: varsThemeBase.colors.neutral.textDisabled,
 
     cursor: "not-allowed",
   },
 
-  ":focus": {
-    borderColor: varsThemeBase.colors.primary.interactive,
+  ":focus-visible": {
+    boxShadow: `0px 0px 0px 3px ${varsThemeBase.colors.primary.surfaceHighlight}`,
   },
 });
 
@@ -57,6 +61,10 @@ export const appearance = styleVariants({
     {
       border: `1px solid ${varsThemeBase.colors.neutral.interactive}`,
       backgroundColor: varsThemeBase.colors.neutral.background,
+
+      ":focus": {
+        borderColor: varsThemeBase.colors.primary.interactivePressed,
+      },
     },
   ],
   success: [
@@ -64,6 +72,10 @@ export const appearance = styleVariants({
     {
       border: `1px solid ${varsThemeBase.colors.success.interactive}`,
       backgroundColor: varsThemeBase.colors.success.surface,
+
+      ":focus": {
+        borderColor: varsThemeBase.colors.success.interactivePressed,
+      },
     },
   ],
   warning: [
@@ -71,6 +83,10 @@ export const appearance = styleVariants({
     {
       border: `1px solid ${varsThemeBase.colors.warning.interactive}`,
       backgroundColor: varsThemeBase.colors.warning.surface,
+
+      ":focus": {
+        borderColor: varsThemeBase.colors.warning.interactivePressed,
+      },
     },
   ],
   danger: [
@@ -78,6 +94,10 @@ export const appearance = styleVariants({
     {
       border: `1px solid ${varsThemeBase.colors.danger.interactive}`,
       backgroundColor: varsThemeBase.colors.danger.surface,
+
+      ":focus": {
+        borderColor: varsThemeBase.colors.danger.interactivePressed,
+      },
     },
   ],
 });

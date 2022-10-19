@@ -22,3 +22,4 @@ export { toggle } from "./packages/toggle";
 export { link } from "./packages/link";
 export { tooltip } from "./packages/tooltip";
 export { select } from "./packages/select";
+export { textarea } from "./packages/textarea";
