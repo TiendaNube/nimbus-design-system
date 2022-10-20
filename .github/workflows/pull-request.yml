@@ -30,13 +30,18 @@ jobs:
         if: steps.yarn-cache-dir-path.outputs.cache-hit != 'true'
         run: yarn
 
-      - name: Run build
-        run: |
-          export NODE_OPTIONS="--max_old_space_size=4096" 
-          yarn build
+      # - name: Run build
+      #   run: |
+      #     export NODE_OPTIONS="--max_old_space_size=4096" 
+      #     yarn build
 
-      - name: Run lint
-        run: yarn lint
+      # - name: Run lint
+      #   run: yarn lint
 
       - name: Run tests
         run: yarn test:ci
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_AUTOMATION_FROM_JUNIOR_CONQUISTA }}
