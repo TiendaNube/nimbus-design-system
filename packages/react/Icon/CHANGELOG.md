@@ -2,6 +2,12 @@
 
 Icons are used to visually communicate core parts of the product and available actions. They can act as wayfinding tools to help merchants more easily understand where they are in the product, and common interaction patterns that are available.
 
+## 2022-10-20
+
+### 🎉 New features
+
+- Added `neutral.textDisabled` color to the component property . ([#42](https://github.com/TiendaNube/nimbus-design-system/pull/42) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2022-09-29
 
 ### 🎉 New features
