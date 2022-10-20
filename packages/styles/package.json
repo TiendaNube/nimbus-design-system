@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/styles",
-  "version": "4.9.0-rc.1",
+  "version": "4.9.0",
   "license": "MIT",
   "source": "src/index.ts",
   "main": "dist/index.js",
@@ -38,6 +38,5 @@
     "ts-loader": "^9.3.1",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0"
-  },
-  "stableVersion": "4.8.0"
+  }
 }
