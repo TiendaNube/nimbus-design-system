@@ -21,6 +21,7 @@ export const properties = {
   "neutral.background": colors["neutral.background"],
   "neutral.interactive": colors["neutral.interactive"],
   "neutral.textLow": colors["neutral.textLow"],
+  "neutral.textDisabled": colors["neutral.textDisabled"],
   "neutral.textHigh": colors["neutral.textHigh"],
 };
 
