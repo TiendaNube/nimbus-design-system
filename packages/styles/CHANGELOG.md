@@ -2,6 +2,13 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2022-10-20
+
+### 🎉 New features
+
+- Added new style pack for input component. ([#42](https://github.com/TiendaNube/nimbus-design-system/pull/42) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `neutral.textDisabled` color properties from sprinkle icon. ([#42](https://github.com/TiendaNube/nimbus-design-system/pull/42) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2022-10-18
 
 ### 🎉 New features
