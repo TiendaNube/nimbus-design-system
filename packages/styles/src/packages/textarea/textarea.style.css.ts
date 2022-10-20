@@ -1,7 +1,6 @@
 import { style, styleVariants } from "@vanilla-extract/css";
 
 import { varsThemeBase } from "../../themes/base.css";
-
 import { select as field } from "../select";
 
 const base = style({
