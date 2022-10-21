@@ -5,6 +5,7 @@
 node_modules
 dist
 test-output.*
+.turbo
 .cache
 .parcel-cache
 .build-storybook

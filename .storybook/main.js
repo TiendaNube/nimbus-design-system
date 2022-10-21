@@ -51,8 +51,18 @@ const convertTsConfigPathsToWebpackAliases = () => {
   const tsconfig = require("../tsconfig.json");
   const tsconfigPaths = Object.entries(tsconfig.compilerOptions.paths);
 
-  return tsconfigPaths.reduce((aliases, [realPath, mappedPath]) => {
-    aliases[realPath] = path.join(rootDir, mappedPath[0]);
+  const paths = tsconfigPaths.reduce((aliases, [realPath, mappedPath]) => {
+    const packageName = mappedPath[0].split("/")[3];
+    const alias = `${mappedPath[0]}/${packageName}.tsx`;
+    aliases[realPath] = path.join(rootDir, alias);
     return aliases;
   }, {});
+
+  paths["@nimbus-ds/tokens"] = path.join(rootDir, "packages/tokens");
+  paths["@nimbus-ds/styles"] = path.join(
+    rootDir,
+    "packages/styles/src/index.ts"
+  );
+
+  return paths;
 };

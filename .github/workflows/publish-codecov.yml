@@ -37,11 +37,6 @@ jobs:
         if: steps.yarn-cache-dir-path.outputs.cache-hit != 'true'
         run: yarn
 
-      - name: Run build
-        run: |
-          export NODE_OPTIONS="--max_old_space_size=4096" 
-          yarn build:essentials
-
       - name: Run tests
         run: yarn test:ci
 
