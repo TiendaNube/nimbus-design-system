@@ -2,10 +2,6 @@ import { style, styleVariants } from "@vanilla-extract/css";
 
 import { varsThemeBase } from "../../themes/base.css";
 
-export const container = style({
-  width: "fit-content",
-});
-
 export const content = style({
   display: "flex",
   justifyContent: "center",
@@ -74,4 +70,19 @@ export const arrow = styleVariants({
       },
     },
   ],
+});
+
+export const placement = styleVariants({
+  top: {},
+  right: {},
+  bottom: {},
+  left: {},
+  "top-start": {},
+  "top-end": {},
+  "right-start": { "::after": { marginTop: 0 } },
+  "right-end": { "::after": { marginTop: "-1rem" } },
+  "bottom-start": {},
+  "bottom-end": {},
+  "left-start": { "::after": { marginTop: 0 } },
+  "left-end": { "::after": { marginTop: "-1rem" } },
 });
