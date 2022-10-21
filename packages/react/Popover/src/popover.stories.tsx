@@ -21,7 +21,7 @@ export default {
 const Template: ComponentStory<typeof Popover> = (args) => (
   <Stack display="flex" justifyContent="center">
     <Popover {...args}>
-      <Text>Hover</Text>
+      <Text>Click-Hover</Text>
     </Popover>
   </Stack>
 );
@@ -35,22 +35,30 @@ export const top = Template.bind({});
 top.args = {
   content: <Text color="primary.textLow">Replace me with your content</Text>,
   position: "top",
+  enabledHover: true,
+  enabledDismiss: false,
 };
 
 export const bottom = Template.bind({});
 bottom.args = {
   content: <Text color="primary.textLow">Replace me with your content</Text>,
   position: "bottom",
+  enabledHover: true,
+  enabledDismiss: false,
 };
 
 export const right = Template.bind({});
 right.args = {
   content: <Text color="primary.textLow">Replace me with your content</Text>,
   position: "right",
+  enabledHover: true,
+  enabledDismiss: false,
 };
 
 export const left = Template.bind({});
 left.args = {
   content: <Text color="primary.textLow">Replace me with your content</Text>,
   position: "left",
+  enabledHover: true,
+  enabledDismiss: false,
 };

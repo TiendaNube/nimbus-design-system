@@ -1,12 +1,16 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useMemo } from "react";
 import {
+  Side,
+  FloatingPortal,
+  autoUpdate,
   useFloating,
   useInteractions,
   useHover,
-  FloatingPortal,
-  arrow as arrowUI,
-  offset,
+  useDismiss,
+  useClick,
   safePolygon,
+  arrow as arrowUI,
+  offset as offsetUI,
 } from "@floating-ui/react-dom-interactions";
 import { popover } from "@nimbus-ds/styles";
 
@@ -20,6 +24,10 @@ const Popover: React.FC<PopoverProps> = ({
   position = "bottom",
   padding = "base",
   arrow = true,
+  offset = 10,
+  enabledHover = false,
+  enabledDismiss = true,
+  enabledClick = true,
   children,
   content,
   ...rest
@@ -38,25 +46,34 @@ const Popover: React.FC<PopoverProps> = ({
     open: isVisible,
     placement: position,
     strategy: "fixed",
-    middleware: [offset(10), arrowUI({ element: arrowRef })],
+    middleware: [offsetUI(offset), arrowUI({ element: arrowRef, padding: 5 })],
+    whileElementsMounted: autoUpdate,
     onOpenChange: setVisibility,
   });
 
   const { getReferenceProps, getFloatingProps } = useInteractions([
     useHover(context, {
+      enabled: enabledHover,
       handleClose: safePolygon({
         buffer: 1,
         restMs: 50,
       }),
     }),
+    useClick(context, {
+      enabled: enabledClick,
+    }),
+    useDismiss(context, {
+      enabled: enabledDismiss,
+    }),
   ]);
+
+  const side = useMemo(() => position.split("-")[0], [position]) as Side;
 
   return (
     <>
       <div
         data-testid="popover-container"
         ref={reference}
-        className={popover.style.container}
         {...getReferenceProps()}
       >
         {children}
@@ -86,7 +103,8 @@ const Popover: React.FC<PopoverProps> = ({
                 data-testid="arrow-element"
                 ref={arrowRef}
                 className={[
-                  popover.style.arrow[position],
+                  popover.style.arrow[side],
+                  popover.style.placement[position],
                   popover.sprinkle({
                     color: appearance,
                   }),
@@ -95,7 +113,7 @@ const Popover: React.FC<PopoverProps> = ({
                   position: "absolute",
                   left: arrowX != null ? `${arrowX}px` : "",
                   top: arrowY != null ? `${arrowY}px` : "",
-                  [staticSide[position]]: "0px",
+                  [staticSide[side]]: "0px",
                 }}
               />
             )}
