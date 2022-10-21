@@ -7,7 +7,7 @@ Use Popovers to bring attention to specific user interface elements and suggest 
 ### 🎉 New features
 
 - Added `enabledHover`, `enabledClick`, `enabledDismiss` and `offset` properties to the Component. ([#45](https://github.com/TiendaNube/nimbus-design-system/pull/45) by [@juniorconquista](https://github.com/juniorconquista))
-- Added `top-start`, `top-end`, `right-start`, `right-end`, `bottom-start`, `bottom-end`, `left-start` a `left-end` position to the component property. ([#45](https://github.com/TiendaNube/nimbus-design-system/pull/45) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `top-start`, `top-end`, `right-start`, `right-end`, `bottom-start`, `bottom-end`, `left-start` and `left-end` position to the component property. ([#45](https://github.com/TiendaNube/nimbus-design-system/pull/45) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2022-10-14
 
