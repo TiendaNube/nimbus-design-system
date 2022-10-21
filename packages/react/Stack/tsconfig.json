@@ -5,6 +5,7 @@
     "baseUrl": ".",
     "declaration": false,
     "paths": {
+      "@nimbus-ds/box": ["../Box/src"],
       "@nimbus-ds/styles": ["../../styles/src"]
     }
   }

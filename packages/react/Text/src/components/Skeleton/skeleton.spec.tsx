@@ -10,6 +10,18 @@ const makeSut = (props?: SkeletonProps) => {
 
 describe("GIVEN <Text.Skeleton />", () => {
   describe("WHEN rendered", () => {
+    it('THEN should render skeleton size="default"', () => {
+      makeSut();
+      const skeleton = screen.getByTestId("skeleton-element");
+      expect(skeleton.getAttribute("style")).toMatch(/--width__\w{0,9}: 2rem;/);
+      expect(skeleton.getAttribute("style")).toMatch(
+        /--height__\w{0,9}: 1rem;/
+      );
+      expect(skeleton.getAttribute("style")).toMatch(
+        /--borderRadius__\w{0,9}: 0.25rem;/
+      );
+    });
+
     it('THEN should render skeleton size="caption"', () => {
       makeSut({ fontSize: "caption" });
       const skeleton = screen.getByTestId("skeleton-element");

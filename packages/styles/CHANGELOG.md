@@ -2,6 +2,16 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2022-10-21
+
+### 🎉 New features
+
+- Added new styles for positioning the arrow in positions `right-start`, `right-end`, `left-start` and `left-end`. ([#45](https://github.com/TiendaNube/nimbus-design-system/pull/45) by [@juniorconquista](https://github.com/juniorconquista))
+
+### 💡 Others
+
+- Removed styles so that the popover container has a maximum width relative to its anchor size. ([#45](https://github.com/TiendaNube/nimbus-design-system/pull/45) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2022-10-20
 
 ### 🎉 New features

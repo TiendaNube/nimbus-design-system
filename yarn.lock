@@ -2971,6 +2971,7 @@ __metadata:
   resolution: "@nimbus-ds/popover@workspace:packages/react/Popover"
   dependencies:
     "@floating-ui/react-dom-interactions": ^0.10.1
+    "@nimbus-ds/box": "workspace:*"
     "@nimbus-ds/stack": "workspace:*"
     "@nimbus-ds/styles": "workspace:*"
     "@vanilla-extract/dynamic": ^2.0.2
