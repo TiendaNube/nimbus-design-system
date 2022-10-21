@@ -102,5 +102,14 @@ describe("GIVEN <Spinner />", () => {
       expect(spinner.getAttribute("style")).toMatch(/--width__\w{0,9}: 64px;/);
       expect(spinner.getAttribute("style")).toMatch(/--height__\w{0,9}: 64px;/);
     });
+
+    it("THEN should return the default size if the size sent does not exist", () => {
+      // eslint-disable-next-line
+      // @ts-ignore
+      makeSut({ size: "test" });
+      const spinner = screen.getByTestId("spinner-element");
+      expect(spinner.getAttribute("style")).toMatch(/--width__\w{0,9}: 32px;/);
+      expect(spinner.getAttribute("style")).toMatch(/--height__\w{0,9}: 32px;/);
+    });
   });
 });

@@ -10,6 +10,20 @@ const makeSut = (props?: SkeletonProps) => {
 
 describe("GIVEN <Title.Skeleton />", () => {
   describe("WHEN rendered", () => {
+    it('THEN should render skeleton type="default"', () => {
+      makeSut();
+      const skeleton = screen.getByTestId("skeleton-element");
+      expect(skeleton.getAttribute("style")).toMatch(
+        /--width__\w{0,9}: 8.25rem;/
+      );
+      expect(skeleton.getAttribute("style")).toMatch(
+        /--height__\w{0,9}: 2.75rem;/
+      );
+      expect(skeleton.getAttribute("style")).toMatch(
+        /--borderRadius__\w{0,9}: 0.25rem;/
+      );
+    });
+
     it('THEN should render skeleton type="h1"', () => {
       makeSut({ as: "h1" });
       const skeleton = screen.getByTestId("skeleton-element");
