@@ -3,6 +3,7 @@ releases:
   "@nimbus-ds/styles": minor
 
 declined:
+  - nimbus-design-system
   - "@nimbus-ds/badge"
   - "@nimbus-ds/box"
   - "@nimbus-ds/button"
