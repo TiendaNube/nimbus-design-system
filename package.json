@@ -10,8 +10,10 @@
     ]
   },
   "scripts": {
-    "build": "yarn clean && yarn build:essentials && yarn build:packages",
-    "build:essentials": "yarn workspaces foreach -pv -ptR --from '{@nimbus-ds/tokens,@nimbus-ds/styles,@nimbus-ds/box,@nimbus-ds/skeleton,@nimbus-ds/text,@nimbus-ds/badge,@nimbus-ds/spinner,@nimbus-ds/icon}' run build",
+    "build:turbo": "turbo run build --filter=...[origin/master] --dry=json",
+    "build": "yarn clean && yarn build:styles && yarn build:essentials && yarn build:packages",
+    "build:styles": "yarn workspaces foreach -pv -ptR --from '{@nimbus-ds/tokens,@nimbus-ds/styles}' run build",
+    "build:essentials": "yarn workspaces foreach -pv -ptR --from '{@nimbus-ds/skeleton,@nimbus-ds/text,@nimbus-ds/badge,@nimbus-ds/spinner,@nimbus-ds/icon}' run build",
     "build:packages": "yarn workspaces foreach -pv -pt --exclude nimbus-design-system --exclude @nimbus-ds/tokens --exclude @nimbus-ds/styles --exclude @nimbus-ds/skeleton --exclude @nimbus-ds/text --exclude @nimbus-ds/badge --exclude @nimbus-ds/spinner --exclude @nimbus-ds/icon --exclude @nimbus-ds/box run build",
     "build:storybook": "build-storybook -c .storybook -o .build-storybook",
     "bump:check": "yarn version check",
@@ -101,6 +103,7 @@
     "prettier": "^2.7.1",
     "ts-jest": "^28.0.7",
     "ts-node": "^10.9.1",
+    "turbo": "^1.6.1",
     "typescript": "^4.7.4"
   },
   "engines": {
