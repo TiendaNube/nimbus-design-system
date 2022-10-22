@@ -30,6 +30,11 @@ jobs:
         if: steps.yarn-cache-dir-path.outputs.cache-hit != 'true'
         run: yarn
 
+      - name: Run build styles
+        run: |
+          export NODE_OPTIONS="--max_old_space_size=4096" 
+          yarn build:styles
+
       - name: Run lint
         run: yarn lint
 
