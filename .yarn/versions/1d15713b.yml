@@ -1,2 +1,5 @@
 releases:
   "@nimbus-ds/popover": minor
+
+declined:
+  - nimbus-design-system
