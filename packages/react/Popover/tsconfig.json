@@ -6,6 +6,8 @@
     "baseUrl": ".",
     "declaration": false,
     "paths": {
+      "@nimbus-ds/button": ["../Button/src"],
+      "@nimbus-ds/stack": ["../Stack/src"],
       "@nimbus-ds/text": ["../Text/src"],
       "@nimbus-ds/styles": ["../../styles/src"]
     }

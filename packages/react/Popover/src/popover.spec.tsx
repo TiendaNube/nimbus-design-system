@@ -116,6 +116,47 @@ describe("GIVEN <Popover />", () => {
       expect(arrow.style.left).toEqual("0px");
       expect(arrow.style.position).toEqual("absolute");
     });
+
+    it("THEN should render the popover open by default", async () => {
+      await act(() => {
+        makeSut({
+          content: <p>string</p>,
+          visible: true,
+        });
+      });
+      const popover = screen.getByTestId("popover-element");
+      expect(popover).toBeDefined();
+    });
+
+    it("THEN should control the operation by the onVisibility function sent and with popover open", async () => {
+      const mockedOnVisibility = jest.fn();
+      await act(() => {
+        makeSut({
+          content: <p>string</p>,
+          visible: true,
+          onVisibility: mockedOnVisibility,
+        });
+      });
+      const popover = screen.getByTestId("popover-element");
+      expect(popover).toBeDefined();
+      fireEvent.click(screen.getByTestId("popover-container"));
+      expect(mockedOnVisibility).toHaveBeenCalledWith(false);
+    });
+
+    it("THEN should control the operation by the onVisibility function sent and with popover close", async () => {
+      const mockedOnVisibility = jest.fn();
+      await act(() => {
+        makeSut({
+          content: <p>string</p>,
+          visible: false,
+          onVisibility: mockedOnVisibility,
+        });
+      });
+      const popover = screen.queryByTestId("popover-element");
+      expect(popover).toBeNull();
+      fireEvent.click(screen.getByTestId("popover-container"));
+      expect(mockedOnVisibility).toHaveBeenCalledWith(true);
+    });
   });
 
   describe("THEN should correctly render the submitted appearance", () => {

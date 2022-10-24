@@ -7,6 +7,10 @@ export interface PopoverProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
   /** Content for the Popover */
   content: ReactNode;
+  /** Default open popover */
+  visible?: boolean;
+  /** Function to control popover opening and closing */
+  onVisibility?: (visible: boolean) => void;
   /** Conditional for displaying the popover arrow */
   arrow?: boolean;
   /** Popover appearance */

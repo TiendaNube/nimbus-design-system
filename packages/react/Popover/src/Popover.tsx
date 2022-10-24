@@ -20,6 +20,8 @@ import { PopoverProps } from "./popover.types";
 const Popover: React.FC<PopoverProps> = ({
   className: _className,
   style: _style,
+  visible,
+  onVisibility,
   appearance = "light",
   position = "bottom",
   padding = "base",
@@ -34,6 +36,12 @@ const Popover: React.FC<PopoverProps> = ({
 }) => {
   const arrowRef = useRef(null);
   const [isVisible, setVisibility] = useState(false);
+
+  const open = useMemo(
+    () => (visible === undefined ? isVisible : visible),
+    [visible, isVisible]
+  );
+
   const {
     x,
     y,
@@ -43,12 +51,12 @@ const Popover: React.FC<PopoverProps> = ({
     floating,
     middlewareData: { arrow: { x: arrowX, y: arrowY } = {} },
   } = useFloating({
-    open: isVisible,
+    open,
     placement: position,
     strategy: "fixed",
     middleware: [offsetUI(offset), arrowUI({ element: arrowRef, padding: 5 })],
     whileElementsMounted: autoUpdate,
-    onOpenChange: setVisibility,
+    onOpenChange: onVisibility !== undefined ? onVisibility : setVisibility,
   });
 
   const { getReferenceProps, getFloatingProps } = useInteractions([
@@ -79,7 +87,7 @@ const Popover: React.FC<PopoverProps> = ({
         {children}
       </div>
       <FloatingPortal id="nimbus-popover-floating">
-        {isVisible && (
+        {open && (
           <div
             {...rest}
             ref={floating}
