@@ -20,7 +20,7 @@ export default {
 
 const Template: ComponentStory<typeof Popover> = (args) => (
   <Stack display="flex" justifyContent="center">
-    <Popover {...args}>
+    <Popover {...args} onVisibility={undefined}>
       <Text>Click-Hover</Text>
     </Popover>
   </Stack>
