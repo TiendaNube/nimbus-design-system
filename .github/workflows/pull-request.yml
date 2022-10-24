@@ -33,7 +33,7 @@ jobs:
       - name: Run build styles
         run: |
           export NODE_OPTIONS="--max_old_space_size=4096" 
-          yarn build:styles
+          npm run build:styles
 
       - name: Run lint
         run: yarn lint
