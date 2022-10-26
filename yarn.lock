@@ -3149,11 +3149,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/thumbnail@workspace:packages/react/Thumbnail"
   dependencies:
-    "@nimbus-ds/badge": "workspace:*"
     "@nimbus-ds/icon": "workspace:*"
     "@nimbus-ds/skeleton": "workspace:*"
     "@nimbus-ds/styles": "workspace:*"
     "@tiendanube/icons": ^0.2.7
+    "@vanilla-extract/dynamic": ^2.0.2
+    "@vanilla-extract/webpack-plugin": ^2.1.11
     terser-webpack-plugin: ^5.3.5
     ts-loader: ^9.3.1
     typescript: ^4.7.4
