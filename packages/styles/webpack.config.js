@@ -36,6 +36,7 @@ module.exports = {
     "./packages/tooltip/index": "./src/packages/tooltip/index",
     "./packages/select/index": "./src/packages/select/index",
     "./packages/textarea/index": "./src/packages/textarea/index",
+    "./packages/alert/index": "./src/packages/alert/index",
   },
   output: {
     path: path.resolve(__dirname, "dist"),

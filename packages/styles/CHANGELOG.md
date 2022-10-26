@@ -2,6 +2,13 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2022-10-26
+
+### 🎉 New features
+
+- Added new style pack for alert component. ([#50](https://github.com/TiendaNube/nimbus-design-system/pull/50) by [@juanchigallego](https://github.com/juanchigallego))
+- Added new colors `primary.textLow`, `success.textLow`, `warning.textLow`, `danger.textLow` and `neutral.textLow` to title component. ([#50](https://github.com/TiendaNube/nimbus-design-system/pull/50) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2022-10-21
 
 ### 🎉 New features
