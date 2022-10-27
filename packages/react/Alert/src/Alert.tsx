@@ -45,7 +45,7 @@ const Alert: React.FC<AlertProps> & AlertComponents = ({
       {onRemove && (
         <button
           aria-label="Dismiss alert"
-          className={alert.style.close}
+          className={alert.style.closeAppearance[appearance]}
           data-testid="dismiss-alert-button"
           type="button"
           onClick={onRemove}

@@ -107,37 +107,62 @@ export const close = vanillaStyle({
   ":focus-visible": {
     boxShadow: `0px 0px 0px 3px ${varsThemeBase.colors.primary.surfaceHighlight}`,
   },
+});
 
-  selectors: {
-    [`${appearance.primary} &:hover`]: {
-      backgroundColor: varsThemeBase.colors.primary.surfaceHighlight,
+export const closeAppearance = styleVariants({
+  primary: [
+    close,
+    {
+      ":hover": {
+        backgroundColor: varsThemeBase.colors.primary.surfaceHighlight,
+      },
+      ":focus": {
+        borderColor: varsThemeBase.colors.primary.interactivePressed,
+      },
     },
-    [`${appearance.primary} &:focus`]: {
-      borderColor: varsThemeBase.colors.primary.interactivePressed,
+  ],
+  success: [
+    close,
+    {
+      ":hover": {
+        backgroundColor: varsThemeBase.colors.success.surfaceHighlight,
+      },
+      ":focus": {
+        borderColor: varsThemeBase.colors.success.interactivePressed,
+      },
     },
-    [`${appearance.success} &:hover`]: {
-      backgroundColor: varsThemeBase.colors.success.surfaceHighlight,
+  ],
+  warning: [
+    close,
+    {
+      ":hover": {
+        backgroundColor: varsThemeBase.colors.warning.surfaceHighlight,
+      },
+      ":focus": {
+        borderColor: varsThemeBase.colors.warning.interactivePressed,
+      },
     },
-    [`${appearance.success} &:focus`]: {
-      borderColor: varsThemeBase.colors.success.interactivePressed,
+  ],
+  danger: [
+    close,
+    {
+      ":hover": {
+        backgroundColor: varsThemeBase.colors.danger.surfaceHighlight,
+      },
+      ":focus": {
+        borderColor: varsThemeBase.colors.danger.interactivePressed,
+      },
     },
-    [`${appearance.warning} &:hover`]: {
-      backgroundColor: varsThemeBase.colors.warning.surfaceHighlight,
+  ],
+  neutral: [
+    close,
+    {
+      ":hover": {
+        backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
+      },
+      ":focus": {
+        borderColor: varsThemeBase.colors.neutral.interactivePressed,
+      },
     },
-    [`${appearance.warning} &:focus`]: {
-      borderColor: varsThemeBase.colors.warning.interactivePressed,
-    },
-    [`${appearance.danger} &:hover`]: {
-      backgroundColor: varsThemeBase.colors.danger.surfaceHighlight,
-    },
-    [`${appearance.danger} &:focus`]: {
-      borderColor: varsThemeBase.colors.danger.interactivePressed,
-    },
-    [`${appearance.neutral} &:hover`]: {
-      backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
-    },
-    [`${appearance.neutral} &:focus`]: {
-      borderColor: varsThemeBase.colors.neutral.interactivePressed,
-    },
-  },
+  ],
 });
