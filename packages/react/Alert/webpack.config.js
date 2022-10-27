@@ -12,7 +12,7 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].js",
     libraryTarget: "umd",
-    library: "nimbus-ds",
+    library: "@nimbus-ds/alert",
   },
   module: {
     rules: [
