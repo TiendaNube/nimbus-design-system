@@ -3164,7 +3164,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/title@workspace:*, @nimbus-ds/title@workspace:packages/react/Title":
 "@nimbus-ds/thumbnail@workspace:packages/react/Thumbnail":
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/thumbnail@workspace:packages/react/Thumbnail"
@@ -3186,7 +3185,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/title@workspace:packages/react/Title":
+"@nimbus-ds/title@workspace:*, @nimbus-ds/title@workspace:packages/react/Title":
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/title@workspace:packages/react/Title"
   dependencies:
