@@ -5,6 +5,7 @@ export { box } from "./packages/box";
 export { button } from "./packages/button";
 export { checkbox } from "./packages/checkbox";
 export { chip } from "./packages/chip";
+export { fileUploader } from "./packages/fileUploader";
 export { icon } from "./packages/icon";
 export { iconButton } from "./packages/iconButton";
 export { input } from "./packages/input";

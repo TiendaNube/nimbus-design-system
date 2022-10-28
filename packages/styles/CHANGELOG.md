@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2022-10-28
+
+### 🎉 New features
+
+- Added new style pack for file uploader component. ([#51](https://github.com/TiendaNube/nimbus-design-system/pull/51) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2022-10-26
 
 ### 🎉 New features
