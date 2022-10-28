@@ -2766,6 +2766,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/alert@workspace:packages/react/Alert"
   dependencies:
+    "@nimbus-ds/button": "workspace:*"
     "@nimbus-ds/icon": "workspace:*"
     "@nimbus-ds/skeleton": "workspace:*"
     "@nimbus-ds/styles": "workspace:*"
@@ -2816,7 +2817,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/button@workspace:packages/react/Button":
+"@nimbus-ds/button@workspace:*, @nimbus-ds/button@workspace:packages/react/Button":
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/button@workspace:packages/react/Button"
   dependencies:
