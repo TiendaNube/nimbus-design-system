@@ -17,6 +17,7 @@ module.exports = {
     "./packages/button/index": "./src/packages/button/index",
     "./packages/checkbox/index": "./src/packages/checkbox/index",
     "./packages/chip/index": "./src/packages/chip/index",
+    "./packages/fileUploader/index": "./src/packages/fileUploader/index",
     "./packages/icon/index": "./src/packages/icon/index",
     "./packages/iconButton/index": "./src/packages/iconButton/index",
     "./packages/input/index": "./src/packages/input/index",
