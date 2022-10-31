@@ -1,0 +1,21 @@
+# Changelog
+
+The alert component is used to showcase relevant or time-sensitive information to the user in a visually prominent banner.
+
+## 2022-10-26
+
+### 📚 3rd party library updates
+
+- Added `@vanilla-extract/webpack-plugin@2.1.11`. ([#50](https://github.com/TiendaNube/nimbus-design-system/pull/50) by [@juanchigallego](https://github.com/juanchigallego))
+- Added `terser-webpack-plugin@5.3.5`. ([#50](https://github.com/TiendaNube/nimbus-design-system/pull/50) by [@juanchigallego](https://github.com/juanchigallego))
+- Added `ts-loader@9.3.1`. ([#50](https://github.com/TiendaNube/nimbus-design-system/pull/50) by [@juanchigallego](https://github.com/juanchigallego))
+- Added `typescript@4.7.4`. ([#50](https://github.com/TiendaNube/nimbus-design-system/pull/50) by [@juanchigallego](https://github.com/juanchigallego))
+- Added `webpack@5.74.0`. ([#50](https://github.com/TiendaNube/nimbus-design-system/pull/50) by [@juanchigallego](https://github.com/juanchigallego))
+- Added `webpack-cli@4.10.0`. ([#50](https://github.com/TiendaNube/nimbus-design-system/pull/50) by [@juanchigallego](https://github.com/juanchigallego))
+
+### 🎉 New features
+
+- Added `title`, `appearance`, `children`, `onRemove` and `show` properties to the component API. ([#50](https://github.com/TiendaNube/nimbus-design-system/pull/50) by [@juanchigallego](https://github.com/juanchigallego))
+- Added stories to the component. ([#50](https://github.com/TiendaNube/nimbus-design-system/pull/50) by [@juanchigallego](https://github.com/juanchigallego))
+- Created new `Alert.Skeleton` subcomponent. ([#50](https://github.com/TiendaNube/nimbus-design-system/pull/50) by [@juanchigallego](https://github.com/juanchigallego))
+- Added stories to the subcomponent `Alert.Skeleton`. ([#50](https://github.com/TiendaNube/nimbus-design-system/pull/50) by [@juanchigallego](https://github.com/juanchigallego))
