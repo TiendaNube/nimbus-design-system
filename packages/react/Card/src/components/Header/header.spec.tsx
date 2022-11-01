@@ -5,7 +5,7 @@ import { Header } from "./Header";
 import { HeaderProps } from "./header.types";
 
 const makeSut = (props?: HeaderProps) => {
-  render(<Header {...props} data-testid="skeleton-element" />);
+  render(<Header {...props} data-testid="header-element" />);
 };
 
 describe("GIVEN <Header />", () => {
