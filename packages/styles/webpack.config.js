@@ -15,6 +15,7 @@ module.exports = {
     "./packages/badge/index": "./src/packages/badge/index",
     "./packages/box/index": "./src/packages/box/index",
     "./packages/button/index": "./src/packages/button/index",
+    "./packages/card/index": "./src/packages/card/index",
     "./packages/checkbox/index": "./src/packages/checkbox/index",
     "./packages/chip/index": "./src/packages/chip/index",
     "./packages/fileUploader/index": "./src/packages/fileUploader/index",

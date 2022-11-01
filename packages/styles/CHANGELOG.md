@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2022-10-31
+
+### 🎉 New features
+
+- Added new style pack for card component. ([##](https://github.com/TiendaNube/nimbus-design-system/pull/#) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2022-10-28
 
 ### 🎉 New features
