@@ -18,6 +18,11 @@ export const header = style({
   marginBottom: "1.125rem",
 });
 
-export const skeleton = style({
+export const body = style({
+  marginBottom: "1rem",
+});
+
+export const footer = style({
   display: "flex",
+  gap: varsThemeBase.spacing[2],
 });
