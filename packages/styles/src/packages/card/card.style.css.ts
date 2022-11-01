@@ -14,6 +14,10 @@ export const container = style({
   boxSizing: "border-box",
 });
 
+export const header = style({
+  marginBottom: "1.125rem",
+});
+
 export const skeleton = style({
   display: "flex",
 });

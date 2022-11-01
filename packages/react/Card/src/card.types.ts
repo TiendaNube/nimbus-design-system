@@ -1,10 +1,9 @@
 import { HTMLAttributes, ReactNode } from "react";
 import { card } from "@nimbus-ds/styles";
-import { Skeleton, Header } from "./components";
+import { Header } from "./components";
 
 export interface CardComponents {
   Header: typeof Header;
-  Skeleton: typeof Skeleton;
 }
 
 export interface CardProps extends HTMLAttributes<HTMLElement> {
