@@ -25,5 +25,6 @@ const Title: React.FC<TitleProps> & TitleComponents = ({
 );
 
 Title.Skeleton = Skeleton;
+Title.Skeleton.displayName = "Title.Skeleton";
 
 export { Title };
