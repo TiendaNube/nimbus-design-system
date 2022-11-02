@@ -2,14 +2,20 @@
 
 The Tag component is used to categorize information, organize or indicate the status of elements or components using keywords, icons or colors.
 
-## 2022-09-01
+## 2022-11-02 `1.2.0`
+
+### 🎉 New features
+
+- Added displayName to component `Tag.Skeleton`. ([#52](https://github.com/TiendaNube/nimbus-design-system/pull/52) by [@juniorconquista](https://github.com/juniorconquista))
+
+## 2022-09-01 `1.1.0`
 
 ### 📚 3rd party library updates
 
 - Removed `@vanilla-extract/webpack-plugin@2.1.11`. ([#21](https://github.com/TiendaNube/nimbus-design-system/pull/21) by [@juniorconquista](https://github.com/juniorconquista))
 - Added `@tiendanube/icons@0.2.7`. ([#21](https://github.com/TiendaNube/nimbus-design-system/pull/21) by [@juniorconquista](https://github.com/juniorconquista))
 
-## 2022-08-24
+## 2022-08-24 `1.0.0`
 
 ### 📚 3rd party library updates
 

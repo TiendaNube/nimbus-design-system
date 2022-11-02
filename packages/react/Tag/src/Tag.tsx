@@ -17,5 +17,6 @@ const Tag: React.FC<TagProps> & TagComponents = ({
 );
 
 Tag.Skeleton = Skeleton;
+Tag.Skeleton.displayName = "Tag.Skeleton";
 
 export { Tag };
