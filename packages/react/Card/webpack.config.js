@@ -1,5 +1,4 @@
 const path = require("path");
-const { VanillaExtractPlugin } = require("@vanilla-extract/webpack-plugin");
 const TerserJSPlugin = require("terser-webpack-plugin");
 
 module.exports = {
@@ -30,9 +29,7 @@ module.exports = {
   resolve: {
     alias: {
       "@nimbus-ds/styles": path.resolve(__dirname, "../../styles/dist"),
-      "@nimbus-ds/icon": path.resolve(__dirname, "../Icon/src"),
-      "@nimbus-ds/skeleton": path.resolve(__dirname, "../Skeleton/src"),
-      "@nimbus-ds/text": path.resolve(__dirname, "../Text/src"),
+      "@nimbus-ds/title": path.resolve(__dirname, "../Title/src"),
     },
     extensions: [".tsx", ".ts", ".js"],
   },
@@ -41,11 +38,8 @@ module.exports = {
     minimizer: [new TerserJSPlugin()],
   },
   externals: {
-    "@tiendanube/icons": "@tiendanube/icons",
-    "@nimbus-ds/icon": "@nimbus-ds/icon",
-    "@nimbus-ds/skeleton": "@nimbus-ds/skeleton",
+    "@nimbus-ds/title": "@nimbus-ds/title",
     "@nimbus-ds/styles": "@nimbus-ds/styles",
-    "@nimbus-ds/text": "@nimbus-ds/text",
     react: "react",
     "react-dom": "react-dom",
   },

@@ -5,9 +5,12 @@
     "baseUrl": ".",
     "declaration": false,
     "paths": {
-      "@nimbus-ds/icon": ["../Icon/src"],
-      "@nimbus-ds/skeleton": ["../Skeleton/src"],
+      "@nimbus-ds/tag": ["../Tag/src"],
       "@nimbus-ds/text": ["../Text/src"],
+      "@nimbus-ds/title": ["../Tilte/src"],
+      "@nimbus-ds/stack": ["../Stack/src"],
+      "@nimbus-ds/box": ["../Box/src"],
+      "@nimbus-ds/button": ["../Button/src"],
       "@nimbus-ds/styles": ["../../styles/src"]
     }
   }
