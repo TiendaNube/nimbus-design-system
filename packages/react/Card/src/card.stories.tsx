@@ -114,3 +114,29 @@ content.args = {
     </Text>
   ),
 };
+
+export const skeleton = Template.bind({});
+skeleton.args = {
+  children: (
+    <>
+      <Card.Header>
+        <Stack
+          display="flex"
+          justifyContent="space-between"
+          alignItems="center"
+          gap="4"
+        >
+          <Title.Skeleton as="h3" width="100%" />
+          <Tag.Skeleton />
+        </Stack>
+      </Card.Header>
+      <Card.Body>
+        <Text.Skeleton width="100%" />
+      </Card.Body>
+      <Card.Footer>
+        <Button.Skeleton />
+        <Button.Skeleton />
+      </Card.Footer>
+    </>
+  ),
+};
