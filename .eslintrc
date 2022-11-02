@@ -76,7 +76,8 @@
           "./packages/react/Button",
           "./packages/react/Tooltip",
           "./packages/react/Stack",
-          "./packages/react/Alert"
+          "./packages/react/Alert",
+          "./packages/react/Card"
         ]
       }
     ],
