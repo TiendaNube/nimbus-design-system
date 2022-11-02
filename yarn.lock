@@ -2841,11 +2841,13 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/card@workspace:packages/react/Card"
   dependencies:
-    "@nimbus-ds/icon": "workspace:*"
-    "@nimbus-ds/skeleton": "workspace:*"
+    "@nimbus-ds/box": "workspace:*"
+    "@nimbus-ds/button": "workspace:*"
+    "@nimbus-ds/stack": "workspace:*"
     "@nimbus-ds/styles": "workspace:*"
+    "@nimbus-ds/tag": "workspace:*"
     "@nimbus-ds/text": "workspace:*"
-    "@tiendanube/icons": ^0.2.7
+    "@nimbus-ds/title": "workspace:*"
     terser-webpack-plugin: ^5.3.5
     ts-loader: ^9.3.1
     typescript: ^4.7.4
@@ -3154,7 +3156,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/tag@workspace:packages/react/Tag":
+"@nimbus-ds/tag@workspace:*, @nimbus-ds/tag@workspace:packages/react/Tag":
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/tag@workspace:packages/react/Tag"
   dependencies:
