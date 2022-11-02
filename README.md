@@ -101,7 +101,7 @@ To standardize our commits we use [Conventional Commits](https://www.conventiona
   - `commit-msg`: validates the commit message according to the convention adopted by the project
   - `pre-push`: perform unit testing of project components and integration tests
 
-🖥️ Release process
+## 🖥️ Release process
 
 While our release schedule is flexible, our general strategy is to release several larger improvements inside each stable release. In order to provide faster access to fixes and enhancements between main releases we provide release candidates which are published on every merge into `master`.
 The step by step to perform a release release can be found at the [link](https://github.com/TiendaNube/nimbus-design-system/blob/master/RELEASE_PROCESS.md).
