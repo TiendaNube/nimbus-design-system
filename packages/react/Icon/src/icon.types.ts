@@ -11,5 +11,7 @@ export interface IconProps extends HTMLAttributes<HTMLDivElement> {
   /** Icon SVG */
   source: ReactNode;
   /** Icon color */
-  color?: keyof typeof icon.properties;
+  color?: keyof typeof icon.properties.color;
+  /** Icon cursor */
+  cursor?: typeof icon.properties.cursor[number];
 }

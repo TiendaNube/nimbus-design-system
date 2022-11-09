@@ -2,16 +2,26 @@ import { createRainbowSprinkles, defineProperties } from "rainbow-sprinkles";
 import { varsThemeBase } from "../../themes/base.css";
 import { mediaQueries } from "../../themes/mediaQueries";
 
+type Display = "block" | "flex" | "inline-flex" | "grid" | "inline-grid";
 type FlexWrap = "nowrap" | "wrap" | "wrap-reverse";
 type FlexDirection = "row" | "row-reverse" | "column" | "column-reverse";
+type JustifyContent =
+  | "flex-start"
+  | "flex-end"
+  | "center"
+  | "space-between"
+  | "space-around"
+  | "space-evenly";
+type AlignItems = "stretch" | "flex-start" | "flex-end" | "center" | "baseline";
 
-export const displayProperties = [
+export const displayProperties: Display[] = [
   "block",
   "flex",
   "inline-flex",
   "grid",
   "inline-grid",
 ];
+
 export const flexDirectionProperties: FlexDirection[] = [
   "row",
   "row-reverse",
@@ -25,7 +35,7 @@ export const flexWrapProperties: FlexWrap[] = [
   "wrap-reverse",
 ];
 
-export const justifyContentProperties = [
+export const justifyContentProperties: JustifyContent[] = [
   "flex-start",
   "flex-end",
   "center",
@@ -34,7 +44,7 @@ export const justifyContentProperties = [
   "space-evenly",
 ];
 
-export const alignItemsProperties = [
+export const alignItemsProperties: AlignItems[] = [
   "stretch",
   "flex-start",
   "flex-end",
@@ -46,7 +56,9 @@ export const spaceProperties = {
   none: "0",
   "0,5": varsThemeBase.spacing["0,5"],
   "1": varsThemeBase.spacing[1],
+  "1,5": varsThemeBase.sizes["1,5"],
   "2": varsThemeBase.spacing[2],
+  "2,5": varsThemeBase.sizes["2,5"],
   "4": varsThemeBase.spacing[4],
   "6": varsThemeBase.spacing[6],
   "8": varsThemeBase.spacing[8],

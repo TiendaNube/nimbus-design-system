@@ -17,3 +17,5 @@ export const box = {
     cursor: cursorProperties,
   },
 };
+
+export type { BoxSprinkle } from "./box.sprinkle.types";

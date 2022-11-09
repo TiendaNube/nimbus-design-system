@@ -8,10 +8,14 @@ const Icon: React.FC<IconProps> & IconComponents = ({
   className: _className,
   style: _style,
   color = "neutral.textLow",
+  cursor = "auto",
   source,
   ...rest
 }: IconProps) => (
-  <div {...rest} className={[icon.sprinkle({ color }), icon.style].join(" ")}>
+  <div
+    {...rest}
+    className={[icon.sprinkle({ color, cursor }), icon.style].join(" ")}
+  >
     {source}
   </div>
 );

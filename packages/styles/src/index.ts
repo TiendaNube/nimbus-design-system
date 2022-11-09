@@ -28,3 +28,6 @@ export { tooltip } from "./packages/tooltip";
 export { thumbnail } from "./packages/thumbnail";
 export { textarea } from "./packages/textarea";
 export { alert } from "./packages/alert";
+
+export type { BoxSprinkle } from "./packages/box";
+export type { StackSprinkle } from "./packages/stack";

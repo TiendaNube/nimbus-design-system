@@ -2,20 +2,26 @@
 
 Icons are used to visually communicate core parts of the product and available actions. They can act as wayfinding tools to help merchants more easily understand where they are in the product, and common interaction patterns that are available.
 
-## 2022-10-20
+## 2022-11-09 `1.4.0`
+
+### 🎉 New features
+
+- Added `cursor` property to the Component. ([#53](https://github.com/TiendaNube/nimbus-design-system/pull/53) by [@juniorconquista](https://github.com/juniorconquista))
+
+## 2022-10-20 `1.3.0`
 
 ### 🎉 New features
 
 - Added `neutral.textDisabled` color to the component property . ([#42](https://github.com/TiendaNube/nimbus-design-system/pull/42) by [@juniorconquista](https://github.com/juniorconquista))
 
-## 2022-09-29
+## 2022-09-29 `1.2.1`
 
 ### 🎉 New features
 
 - Added displayName to component. ([#32](https://github.com/TiendaNube/nimbus-design-system/pull/32) by [@juniorconquista](https://github.com/juniorconquista))
 - Added displayName to component `Icon.Skeleton`. ([#32](https://github.com/TiendaNube/nimbus-design-system/pull/32) by [@juniorconquista](https://github.com/juniorconquista))
 
-## 2022-09-01
+## 2022-09-01 `1.0.0`
 
 ### 📚 3rd party library updates
 
