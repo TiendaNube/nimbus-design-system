@@ -2,6 +2,16 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2022-11-02 `4.15.0`
+
+### 🐛 Bug fixes
+
+- Fixed typing of box and stack packages. ([#53](https://github.com/TiendaNube/nimbus-design-system/pull/#53) by [@juniorconquista](https://github.com/juniorconquista))
+
+### 🎉 New features
+
+- Added `auto` and `pointer` cursor properties in icon sprinkle. ([#53](https://github.com/TiendaNube/nimbus-design-system/pull/53) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2022-11-02 `4.14.0`
 
 ### 🎉 New features

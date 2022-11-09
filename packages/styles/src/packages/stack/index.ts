@@ -20,3 +20,5 @@ export const stack = {
     gridGap: spaceProperties,
   },
 };
+
+export type { StackSprinkle } from "./stack.sprinkle.types";

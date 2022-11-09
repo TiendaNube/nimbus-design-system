@@ -3,6 +3,9 @@ import { properties as colors } from "../../sprinkles/colors.css";
 import { varsThemeBase } from "../../themes/base.css";
 import { mediaQueries } from "../../themes/mediaQueries";
 
+type BorderStyle = "solid" | "none" | "hidden" | "dashed" | "dotted";
+type Cursor = "auto" | "pointer";
+
 export const backgroundColorProperties = {
   "primary.interactive": colors["primary.interactive"],
   "primary.surface": colors["primary.surface"],
@@ -53,7 +56,7 @@ export const borderColorProperties = {
   "neutral.surfaceHighlight": colors["neutral.surfaceHighlight"],
 };
 
-export const borderStyleProperties = [
+export const borderStyleProperties: BorderStyle[] = [
   "solid",
   "none",
   "hidden",
@@ -61,13 +64,14 @@ export const borderStyleProperties = [
   "dotted",
 ];
 
-export const cursorProperties = ["auto", "pointer"];
+export const cursorProperties: Cursor[] = ["auto", "pointer"];
 
 export const spaceProperties = {
   none: "0",
   "0,5": varsThemeBase.spacing["0,5"],
   "1": varsThemeBase.spacing[1],
   "2": varsThemeBase.spacing[2],
+  "2,5": varsThemeBase.spacing[2],
   "4": varsThemeBase.spacing[4],
   "6": varsThemeBase.spacing[6],
   "8": varsThemeBase.spacing[8],
