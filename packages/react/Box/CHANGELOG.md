@@ -2,7 +2,7 @@
 
 A low-level utility component that accepts styled system props to enable custom theme-aware styling
 
-## 2022-11-09
+## 2022-11-09 `1.0.1`
 
 ### 🐛 Bug fixes
 
