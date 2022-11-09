@@ -1,7 +1,7 @@
 import { defineProperties, createSprinkles } from "@vanilla-extract/sprinkles";
 import { properties as colors } from "../../sprinkles/colors.css";
 
-export const properties = {
+export const colorProperties = {
   "primary.interactive": colors["primary.interactive"],
   "primary.textLow": colors["primary.textLow"],
   "primary.textHigh": colors["primary.textHigh"],
@@ -25,10 +25,13 @@ export const properties = {
   "neutral.textHigh": colors["neutral.textHigh"],
 };
 
+export const cursorProperties = ["auto", "pointer"] as const;
+
 export const sprinkle = createSprinkles(
   defineProperties({
     properties: {
-      color: properties,
+      color: colorProperties,
+      cursor: cursorProperties,
     },
   })
 );
