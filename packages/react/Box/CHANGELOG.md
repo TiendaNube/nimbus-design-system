@@ -2,6 +2,12 @@
 
 A low-level utility component that accepts styled system props to enable custom theme-aware styling
 
+## 2022-11-16 `1.0.2`
+
+### 🐛 Bug fixes
+
+- Added `box-sizing` to component styling. ([#56](https://github.com/TiendaNube/nimbus-design-system/pull/#56) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2022-11-09 `1.0.1`
 
 ### 🐛 Bug fixes
