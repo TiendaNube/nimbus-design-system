@@ -2,7 +2,13 @@
 
 The alert component is used to showcase relevant or time-sensitive information to the user in a visually prominent banner.
 
-## 2022-10-26
+## 2022-11-16 `1.0.1`
+
+### 🐛 Bug fixes
+
+- Externalizing component build style pack. ([#56](https://github.com/TiendaNube/nimbus-design-system/pull/#56) by [@juniorconquista](https://github.com/juniorconquista))
+
+## 2022-10-26 `1.0.0`
 
 ### 📚 3rd party library updates
 

@@ -46,6 +46,7 @@ module.exports = {
     "@nimbus-ds/skeleton": "@nimbus-ds/skeleton",
     "@nimbus-ds/title": "@nimbus-ds/title",
     "@nimbus-ds/icon": "@nimbus-ds/icon",
+    "@nimbus-ds/styles": "@nimbus-ds/styles",
     react: "react",
     "react-dom": "react-dom",
   },
