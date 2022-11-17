@@ -19,6 +19,7 @@ export { list } from "./packages/list";
 export { popover } from "./packages/popover";
 export { radio } from "./packages/radio";
 export { select } from "./packages/select";
+export { sidebar } from "./packages/sidebar";
 export { skeleton } from "./packages/skeleton";
 export { spinner } from "./packages/spinner";
 export { stack } from "./packages/stack";

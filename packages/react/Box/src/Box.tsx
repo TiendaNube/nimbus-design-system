@@ -11,7 +11,11 @@ const Box: React.FC<BoxProps> = ({
 }) => {
   const { className, style, otherProps } = box.sprinkle(rest);
   return (
-    <div className={className} style={style} {...otherProps}>
+    <div
+      className={[className, box.style.container].join(" ")}
+      style={style}
+      {...otherProps}
+    >
       {children}
     </div>
   );

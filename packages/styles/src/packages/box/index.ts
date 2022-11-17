@@ -1,3 +1,4 @@
+import * as style from "./box.style.css";
 import {
   sprinkle,
   backgroundColorProperties,
@@ -8,6 +9,7 @@ import {
 } from "./box.sprinkle.css";
 
 export const box = {
+  style,
   sprinkle,
   properties: {
     backgroundColor: backgroundColorProperties,

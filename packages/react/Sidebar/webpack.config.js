@@ -12,7 +12,7 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].js",
     libraryTarget: "umd",
-    library: "@nimbus-ds/alert",
+    library: "@nimbus-ds/sidebar",
   },
   module: {
     rules: [
@@ -30,10 +30,8 @@ module.exports = {
   plugins: [new VanillaExtractPlugin()],
   resolve: {
     alias: {
-      "@nimbus-ds/skeleton": path.resolve(__dirname, "../Skeleton/src"),
       "@nimbus-ds/styles": path.resolve(__dirname, "../../styles/dist"),
       "@nimbus-ds/title": path.resolve(__dirname, "../Title/src"),
-      "@nimbus-ds/icon": path.resolve(__dirname, "../Icon/src"),
     },
     extensions: [".tsx", ".ts", ".js"],
   },
@@ -42,10 +40,7 @@ module.exports = {
     minimizer: [new TerserJSPlugin()],
   },
   externals: {
-    "@nimbus-ds/text": "@nimbus-ds/text",
-    "@nimbus-ds/skeleton": "@nimbus-ds/skeleton",
     "@nimbus-ds/title": "@nimbus-ds/title",
-    "@nimbus-ds/icon": "@nimbus-ds/icon",
     "@nimbus-ds/styles": "@nimbus-ds/styles",
     react: "react",
     "react-dom": "react-dom",

@@ -2,13 +2,23 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
-## 2022-11-14 `4.16.0`
+## 2022-11-16 `4.16.0`
+
+### 🎉 New features
+
+- Added new style pack for sidebar component. ([#56](https://github.com/TiendaNube/nimbus-design-system/pull/#56) by [@juniorconquista](https://github.com/juniorconquista))
+
+### 🐛 Bug fixes
+
+- Added `box-sizing` to box component styling. ([#56](https://github.com/TiendaNube/nimbus-design-system/pull/#56) by [@juniorconquista](https://github.com/juniorconquista))
+
+## 2022-11-14 `4.15.0`
 
 ### 🎉 New features
 
 - Added new style pack for tabs component. [#54](https://github.com/TiendaNube/nimbus-design-system/pull/#54) by [@juanchigallego](https://github.com/juanchigallego))
 
-## 2022-11-02 `4.15.0`
+## 2022-11-02 `4.14.1`
 
 ### 🐛 Bug fixes
 
