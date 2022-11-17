@@ -23,6 +23,7 @@ module.exports = {
     "./packages/iconButton/index": "./src/packages/iconButton/index",
     "./packages/input/index": "./src/packages/input/index",
     "./packages/label/index": "./src/packages/label/index",
+    "./packages/sidebar/index": "./src/packages/sidebar/index",
     "./packages/skeleton/index": "./src/packages/skeleton/index",
     "./packages/spinner/index": "./src/packages/spinner/index",
     "./packages/stack/index": "./src/packages/stack/index",

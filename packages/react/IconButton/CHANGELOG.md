@@ -6,7 +6,7 @@ Icons are used to visually communicate core parts of the product and available a
 
 ### 🐛 Bug fixes
 
-- Updating internal version of @nimbus-ds/icon package. ([#56](https://github.com/TiendaNube/nimbus-design-system/pull/56) by [@juniorconquista](https://github.com/juniorconquista))
+- Updating internal version of `@nimbus-ds/icon` package. ([#56](https://github.com/TiendaNube/nimbus-design-system/pull/56) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2022-09-27 `1.0.0`
 
