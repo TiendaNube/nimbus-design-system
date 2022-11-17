@@ -39,7 +39,7 @@ jobs:
 
       - name: Run build styles
         run: |
-          export NODE_OPTIONS="--max_old_space_size=4096" 
+          export NODE_OPTIONS="--max_old_space_size=8192" 
           yarn build:styles
 
       - name: Run tests
