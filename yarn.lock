@@ -2800,7 +2800,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/box@workspace:*, @nimbus-ds/box@workspace:^, @nimbus-ds/box@workspace:packages/react/Box":
+"@nimbus-ds/box@workspace:*, @nimbus-ds/box@workspace:packages/react/Box":
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/box@workspace:packages/react/Box"
   dependencies:
@@ -2817,7 +2817,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/button@workspace:*, @nimbus-ds/button@workspace:^, @nimbus-ds/button@workspace:packages/react/Button":
+"@nimbus-ds/button@workspace:*, @nimbus-ds/button@workspace:packages/react/Button":
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/button@workspace:packages/react/Button"
   dependencies:
@@ -3089,12 +3089,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/sidebar@workspace:packages/react/Sidebar"
   dependencies:
-    "@nimbus-ds/box": "workspace:^"
-    "@nimbus-ds/button": "workspace:^"
-    "@nimbus-ds/stack": "workspace:^"
-    "@nimbus-ds/styles": "workspace:^"
-    "@nimbus-ds/text": "workspace:^"
-    "@nimbus-ds/title": "workspace:^"
+    "@nimbus-ds/box": "workspace:*"
+    "@nimbus-ds/button": "workspace:*"
+    "@nimbus-ds/stack": "workspace:*"
+    "@nimbus-ds/styles": "workspace:*"
+    "@nimbus-ds/text": "workspace:*"
+    "@nimbus-ds/title": "workspace:*"
     terser-webpack-plugin: ^5.3.5
     ts-loader: ^9.3.1
     typescript: ^4.7.4
@@ -3141,7 +3141,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/stack@workspace:*, @nimbus-ds/stack@workspace:^, @nimbus-ds/stack@workspace:packages/react/Stack":
+"@nimbus-ds/stack@workspace:*, @nimbus-ds/stack@workspace:packages/react/Stack":
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/stack@workspace:packages/react/Stack"
   dependencies:
@@ -3159,7 +3159,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/styles@workspace:*, @nimbus-ds/styles@workspace:^, @nimbus-ds/styles@workspace:packages/styles":
+"@nimbus-ds/styles@workspace:*, @nimbus-ds/styles@workspace:packages/styles":
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/styles@workspace:packages/styles"
   dependencies:
@@ -3196,7 +3196,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/text@workspace:*, @nimbus-ds/text@workspace:^, @nimbus-ds/text@workspace:packages/react/Text":
+"@nimbus-ds/text@workspace:*, @nimbus-ds/text@workspace:packages/react/Text":
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/text@workspace:packages/react/Text"
   dependencies:
@@ -3251,7 +3251,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/title@workspace:*, @nimbus-ds/title@workspace:^, @nimbus-ds/title@workspace:packages/react/Title":
+"@nimbus-ds/title@workspace:*, @nimbus-ds/title@workspace:packages/react/Title":
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/title@workspace:packages/react/Title"
   dependencies:
