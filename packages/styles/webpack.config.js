@@ -40,6 +40,7 @@ module.exports = {
     "./packages/textarea/index": "./src/packages/textarea/index",
     "./packages/alert/index": "./src/packages/alert/index",
     "./packages/thumbnail/index": "./src/packages/thumbnail/index",
+    "./packages/tabs/index": "./src/packages/tabs/index",
   },
   output: {
     path: path.resolve(__dirname, "dist"),
