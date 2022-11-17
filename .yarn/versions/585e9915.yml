@@ -1,6 +1,7 @@
 releases:
   "@nimbus-ds/alert": patch
   "@nimbus-ds/box": patch
+  "@nimbus-ds/icon-button": patch
   "@nimbus-ds/sidebar": major
   "@nimbus-ds/styles": minor
 
@@ -13,7 +14,6 @@ declined:
   - "@nimbus-ds/chip"
   - "@nimbus-ds/file-uploader"
   - "@nimbus-ds/icon"
-  - "@nimbus-ds/icon-button"
   - "@nimbus-ds/input"
   - "@nimbus-ds/label"
   - "@nimbus-ds/link"
