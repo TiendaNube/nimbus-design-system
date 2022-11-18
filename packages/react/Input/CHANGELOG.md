@@ -2,7 +2,13 @@
 
 The Input component allows the user to enter or edit information in text format.
 
-## 2022-08-20
+## 2022-11-18 `1.1.0`
+
+### 📚 3rd party library updates
+
+- Updated `@tiendanube/icons@0.3.1`. ([#57](https://github.com/TiendaNube/nimbus-design-system/pull/#57) by [@juniorconquista](https://github.com/juniorconquista))
+
+## 2022-08-20 `1.0.0`
 
 ### 📚 3rd party library updates
 

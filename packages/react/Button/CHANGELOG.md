@@ -2,7 +2,13 @@
 
 The Button component allows us to initiate actions, make state or page changes.
 
-## 2022-09-28
+## 2022-11-18 `1.1.0`
+
+### 📚 3rd party library updates
+
+- Updated `@tiendanube/icons@0.3.1`. ([#57](https://github.com/TiendaNube/nimbus-design-system/pull/#57) by [@juniorconquista](https://github.com/juniorconquista))
+
+## 2022-09-28 `1.0.0`
 
 ### 📚 3rd party library updates
 

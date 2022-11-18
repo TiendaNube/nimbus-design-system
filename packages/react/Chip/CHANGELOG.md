@@ -2,19 +2,25 @@
 
 The Chip component is used to flag criteria or attributes related to searches or filters of a list of information.
 
-## 2022-09-27
+## 2022-11-18 `1.5.0`
+
+### 📚 3rd party library updates
+
+- Updated `@tiendanube/icons@0.3.1`. ([#57](https://github.com/TiendaNube/nimbus-design-system/pull/#57) by [@juniorconquista](https://github.com/juniorconquista))
+
+## 2022-09-27 `1.4.0`
 
 ### 💡 Others
 
 - Adjusted component native typing for ButtonHTMLAttributes. ([#30](https://github.com/TiendaNube/nimbus-design-system/pull/30) by [@juniorconquista](https://github.com/juniorconquista))
 
-## 2022-09-24
+## 2022-09-24 `1.3.0`
 
 ### 💡 Others
 
 - Adjusted `fontSize` size of internal `Text` component from `small` to `caption`. ([#29](https://github.com/TiendaNube/nimbus-design-system/pull/29) by [@juniorconquista](https://github.com/juniorconquista))
 
-## 2022-09-01
+## 2022-09-01 `1.0.0`
 
 ### 📚 3rd party library updates
 
