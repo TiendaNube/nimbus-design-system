@@ -21,7 +21,7 @@
     "@nimbus-ds/icon": "workspace:*",
     "@nimbus-ds/skeleton": "workspace:*",
     "@nimbus-ds/styles": "workspace:*",
-    "@tiendanube/icons": "^0.2.7"
+    "@tiendanube/icons": "^0.3.1"
   },
   "peerDependencies": {
     "react": "^16.8 || ^17.0 || ^18.0",

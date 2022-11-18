@@ -2,6 +2,12 @@
 
 The Tag component is used to categorize information, organize or indicate the status of elements or components using keywords, icons or colors.
 
+## 2022-11-18 `1.3.0`
+
+### 📚 3rd party library updates
+
+- Updated `@tiendanube/icons@0.3.1`. ([#57](https://github.com/TiendaNube/nimbus-design-system/pull/#57) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2022-11-02 `1.2.0`
 
 ### 🎉 New features

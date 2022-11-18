@@ -2,6 +2,20 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2022-11-18 `4.17.0`
+
+### 📚 3rd party library updates
+
+- Updated `@vanilla-extract/css@1.9.2`. ([#57](https://github.com/TiendaNube/nimbus-design-system/pull/#57) by [@juniorconquista](https://github.com/juniorconquista))
+- Updated `@vanilla-extract/recipes@0.3.0`. ([#57](https://github.com/TiendaNube/nimbus-design-system/pull/#57) by [@juniorconquista](https://github.com/juniorconquista))
+- Updated `@vanilla-extract/sprinkles@1.5.1`. ([#57](https://github.com/TiendaNube/nimbus-design-system/pull/#57) by [@juniorconquista](https://github.com/juniorconquista))
+- Updated `@vanilla-extract/webpack-plugin@2.2.0`. ([#57](https://github.com/TiendaNube/nimbus-design-system/pull/#57) by [@juniorconquista](https://github.com/juniorconquista))
+- Updated `mini-css-extract-plugin@2.7.0`. ([#57](https://github.com/TiendaNube/nimbus-design-system/pull/#57) by [@juniorconquista](https://github.com/juniorconquista))
+- Updated `rainbow-sprinkles@0.14.0`. ([#57](https://github.com/TiendaNube/nimbus-design-system/pull/#57) by [@juniorconquista](https://github.com/juniorconquista))
+- Updated `ts-loader@9.4.1`. ([#57](https://github.com/TiendaNube/nimbus-design-system/pull/#57) by [@juniorconquista](https://github.com/juniorconquista))
+- Updated `webpack@5.75.0`. ([#57](https://github.com/TiendaNube/nimbus-design-system/pull/#57) by [@juniorconquista](https://github.com/juniorconquista))
+- Updated `webpack-cli@5.0.0`. ([#57](https://github.com/TiendaNube/nimbus-design-system/pull/#57) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2022-11-16 `4.16.0`
 
 ### 🎉 New features
