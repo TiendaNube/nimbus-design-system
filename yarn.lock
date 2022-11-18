@@ -2408,6 +2408,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@emotion/hash@npm:^0.9.0":
+  version: 0.9.0
+  resolution: "@emotion/hash@npm:0.9.0"
+  checksum: b63428f7c8186607acdca5d003700cecf0ded519d0b5c5cc3b3154eafcad6ff433f8361bd2bac8882715b557e6f06945694aeb6ba8b25c6095d7a88570e2e0bb
+  languageName: node
+  linkType: hard
+
 "@eslint/eslintrc@npm:^1.3.0":
   version: 1.3.0
   resolution: "@eslint/eslintrc@npm:1.3.0"
@@ -3328,16 +3335,15 @@ __metadata:
   resolution: "@nimbus-ds/styles@workspace:packages/styles"
   dependencies:
     "@nimbus-ds/tokens": "workspace:*"
-    "@vanilla-extract/babel-plugin": ^1.1.7
-    "@vanilla-extract/css": ^1.7.3
-    "@vanilla-extract/recipes": ^0.2.5
-    "@vanilla-extract/sprinkles": ^1.4.1
-    "@vanilla-extract/webpack-plugin": ^2.1.12
-    mini-css-extract-plugin: ^2.6.1
-    rainbow-sprinkles: ^0.13.0
-    ts-loader: ^9.3.1
-    webpack: ^5.74.0
-    webpack-cli: ^4.10.0
+    "@vanilla-extract/css": ^1.9.2
+    "@vanilla-extract/recipes": ^0.3.0
+    "@vanilla-extract/sprinkles": ^1.5.1
+    "@vanilla-extract/webpack-plugin": ^2.2.0
+    mini-css-extract-plugin: ^2.7.0
+    rainbow-sprinkles: ^0.14.0
+    ts-loader: ^9.4.1
+    webpack: ^5.75.0
+    webpack-cli: ^5.0.0
   languageName: unknown
   linkType: soft
 
@@ -5864,6 +5870,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@vanilla-extract/babel-plugin-debug-ids@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@vanilla-extract/babel-plugin-debug-ids@npm:1.0.0"
+  dependencies:
+    "@babel/core": ^7.13.10
+  checksum: cb5d3496634bdeca8f48470ee0803ca5a1d63642af7be93a2a28e9c71bc38c6024e6f970bbaafb7fdf508351a3c83eb65a9e8bfa9262af4f04a8da6c58222b29
+  languageName: node
+  linkType: hard
+
 "@vanilla-extract/babel-plugin@npm:^1.1.7":
   version: 1.1.7
   resolution: "@vanilla-extract/babel-plugin@npm:1.1.7"
@@ -5894,22 +5909,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vanilla-extract/css@npm:^1.7.3":
-  version: 1.7.3
-  resolution: "@vanilla-extract/css@npm:1.7.3"
+"@vanilla-extract/css@npm:^1.9.2":
+  version: 1.9.2
+  resolution: "@vanilla-extract/css@npm:1.9.2"
   dependencies:
-    "@emotion/hash": ^0.8.0
+    "@emotion/hash": ^0.9.0
     "@vanilla-extract/private": ^1.0.3
+    ahocorasick: 1.0.2
     chalk: ^4.1.1
     css-what: ^5.0.1
     cssesc: ^3.0.0
     csstype: ^3.0.7
     deep-object-diff: ^1.1.0
     deepmerge: ^4.2.2
-    escape-string-regexp: ^4.0.0
     media-query-parser: ^2.0.2
     outdent: ^0.8.0
-  checksum: 6e8210428b806610e4a4150e9aa5aa809dc07af0f6d2b7059bafc36a5067d542996e6f69351587ed356269cab76ad526499be0bf9c7786ee74805880ca9aa9b2
+  checksum: 8444134def22e46021ac3de94ee275528354cc44297ebe2da1b61df27a6f1d3088832b52e8a1ad65cfb81203be7ce085177a80a0681371e902158081ac222685
   languageName: node
   linkType: hard
 
@@ -5937,6 +5952,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@vanilla-extract/integration@npm:^6.0.0":
+  version: 6.0.1
+  resolution: "@vanilla-extract/integration@npm:6.0.1"
+  dependencies:
+    "@babel/core": ^7.13.10
+    "@babel/plugin-syntax-typescript": ^7.18.6
+    "@vanilla-extract/babel-plugin-debug-ids": ^1.0.0
+    "@vanilla-extract/css": ^1.9.2
+    esbuild: ^0.11.16
+    eval: 0.1.6
+    find-up: ^5.0.0
+    javascript-stringify: ^2.0.1
+    lodash: ^4.17.21
+    outdent: ^0.8.0
+  checksum: 14a613e1195aa002257bb31f5a4972e9e9a76e3a9f19b6e661e9fbf280df2dd35213083fcea28e8f9f453794450ae733984b8970c6e5c97f8c1dc165e5f9e7f2
+  languageName: node
+  linkType: hard
+
 "@vanilla-extract/private@npm:^1.0.3":
   version: 1.0.3
   resolution: "@vanilla-extract/private@npm:1.0.3"
@@ -5944,21 +5977,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vanilla-extract/recipes@npm:^0.2.5":
-  version: 0.2.5
-  resolution: "@vanilla-extract/recipes@npm:0.2.5"
+"@vanilla-extract/recipes@npm:^0.3.0":
+  version: 0.3.0
+  resolution: "@vanilla-extract/recipes@npm:0.3.0"
   peerDependencies:
     "@vanilla-extract/css": ^1.0.0
-  checksum: 474ab445f4166bded294d5f77e02ba9b10ec6effe08364c03396e2802848d904a2a1dd9b20466405ebda93449c5a634c2fe99cd1d12888b0f84accf4d2d72666
+  checksum: 9e7d989bf6e16d11fd6c972bec5d8d6c4efee5fe84070108db87570992e596dc937a6c5f9061fe10b564c1c64f53abf77a41bd589b1da5993c7f8d7b7811acfd
   languageName: node
   linkType: hard
 
-"@vanilla-extract/sprinkles@npm:^1.4.1":
-  version: 1.4.1
-  resolution: "@vanilla-extract/sprinkles@npm:1.4.1"
+"@vanilla-extract/sprinkles@npm:^1.5.1":
+  version: 1.5.1
+  resolution: "@vanilla-extract/sprinkles@npm:1.5.1"
   peerDependencies:
     "@vanilla-extract/css": ^1.0.0
-  checksum: e72407ca6afad27c9e609ec3b23f8216c17374f40728ed8f8fc4decc0ea65216d9fb0f74daf31b846dffc7a90c0fe8f40a16d0b468c8f81a0600eea570a437bf
+  checksum: a99d5a89cd56f1da7dd32fcc05c12d85fa9f2253a68431398e671861a7f8b48a8cd2c1057af364f8c74e69207038d7e1cd52fd84abcfb0dc63516beeea91e944
   languageName: node
   linkType: hard
 
@@ -5976,17 +6009,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vanilla-extract/webpack-plugin@npm:^2.1.12":
-  version: 2.1.12
-  resolution: "@vanilla-extract/webpack-plugin@npm:2.1.12"
+"@vanilla-extract/webpack-plugin@npm:^2.2.0":
+  version: 2.2.0
+  resolution: "@vanilla-extract/webpack-plugin@npm:2.2.0"
   dependencies:
-    "@vanilla-extract/integration": ^5.0.0
+    "@vanilla-extract/integration": ^6.0.0
     chalk: ^4.1.1
     debug: ^4.3.1
     loader-utils: ^2.0.0
   peerDependencies:
     webpack: ^4.30.0 || ^5.20.2
-  checksum: 1c948e82e3fe33a5a3d675c1fb3ea8bea7781922acb4782bdefffbda2557b3b59598a60b835b7b2024fdb5304861cf55c55b203c043fe161c420904d10bef8b7
+  checksum: 3e1741062eb849192558718e85c99d2e1aeefab01f17863d2381d493ec337a1a5137b8aef7bb60687ad754facda184d15ba763231f7bdad307170761755abf67
   languageName: node
   linkType: hard
 
@@ -6332,6 +6365,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@webpack-cli/configtest@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@webpack-cli/configtest@npm:2.0.0"
+  peerDependencies:
+    webpack: 5.x.x
+    webpack-cli: 5.x.x
+  checksum: 7d1977c833c4dcd7cc30a6873bf5f79564a194e4799bcdaf8158081595409adf64e3179beada4f7b6522086c8e18ee802f7b505692d6359aab6503e8caa82de8
+  languageName: node
+  linkType: hard
+
 "@webpack-cli/info@npm:^1.5.0":
   version: 1.5.0
   resolution: "@webpack-cli/info@npm:1.5.0"
@@ -6340,6 +6383,16 @@ __metadata:
   peerDependencies:
     webpack-cli: 4.x.x
   checksum: 7f56fe037cd7d1fd5c7428588519fbf04a0cad33925ee4202ffbafd00f8ec1f2f67d991245e687d50e0f3e23f7b7814273d56cb9f7da4b05eed47c8d815c6296
+  languageName: node
+  linkType: hard
+
+"@webpack-cli/info@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@webpack-cli/info@npm:2.0.0"
+  peerDependencies:
+    webpack: 5.x.x
+    webpack-cli: 5.x.x
+  checksum: d354d50dbef180066279b548e91b84372a99e1026fa1c228dcb4a6923a6aefc76e8a9c4e328e048732dc086c60fab967ff323690f170cc6a3c1a83c06bbf043e
   languageName: node
   linkType: hard
 
@@ -6352,6 +6405,19 @@ __metadata:
     webpack-dev-server:
       optional: true
   checksum: d475e8effa23eb7ff9a48b14d4de425989fd82f906ce71c210921cc3852327c22873be00c35e181a25a6bd03d424ae2b83e7f3b3f410ac7ee31b128ab4ac7713
+  languageName: node
+  linkType: hard
+
+"@webpack-cli/serve@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@webpack-cli/serve@npm:2.0.0"
+  peerDependencies:
+    webpack: 5.x.x
+    webpack-cli: 5.x.x
+  peerDependenciesMeta:
+    webpack-dev-server:
+      optional: true
+  checksum: d5cd72589d3563e21dedbd9e05102ef87f7e325a1de15fb7db0906132440556920719ce012e0f052efd1bc4c1fbaf3fb123552c5f3476339657ebf29c5c81732
   languageName: node
   linkType: hard
 
@@ -6508,6 +6574,13 @@ __metadata:
     clean-stack: ^2.0.0
     indent-string: ^4.0.0
   checksum: 1101a33f21baa27a2fa8e04b698271e64616b886795fd43c31068c07533c7b3facfcaf4e9e0cab3624bd88f729a592f1c901a1a229c9e490eafce411a8644b79
+  languageName: node
+  linkType: hard
+
+"ahocorasick@npm:1.0.2":
+  version: 1.0.2
+  resolution: "ahocorasick@npm:1.0.2"
+  checksum: a13ce4403554ae782cf5e28d468a732acf1fd3d0bff251f5dcfddfa5497b6cc343948d69cd94dfdbe8d4dfdb81e2b34cb1c92079e6301f38b0143d314fb95bd6
   languageName: node
   linkType: hard
 
@@ -8480,6 +8553,13 @@ __metadata:
   version: 9.3.0
   resolution: "commander@npm:9.3.0"
   checksum: d421ce66fee25792a1470c69aa8d1b86434bf873a96483aa92c8267f81a6f20c6f7c426f5e82f88ac50a8ec4855d3f2787aebcdef8aa559e1080a2337a95a217
+  languageName: node
+  linkType: hard
+
+"commander@npm:^9.4.1":
+  version: 9.4.1
+  resolution: "commander@npm:9.4.1"
+  checksum: bfb18e325a5bdf772763c2213d5c7d9e77144d944124e988bcd8e5e65fb6d45d5d4e86b09155d0f2556c9a59c31e428720e57968bcd050b2306e910a0bf3cf13
   languageName: node
   linkType: hard
 
@@ -12195,6 +12275,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"interpret@npm:^3.1.1":
+  version: 3.1.1
+  resolution: "interpret@npm:3.1.1"
+  checksum: 35cebcf48c7351130437596d9ab8c8fe131ce4038da4561e6d665f25640e0034702a031cf7e3a5cea60ac7ac548bf17465e0571ede126f3d3a6933152171ac82
+  languageName: node
+  linkType: hard
+
 "invariant@npm:^2.2.4":
   version: 2.2.4
   resolution: "invariant@npm:2.2.4"
@@ -14990,14 +15077,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mini-css-extract-plugin@npm:^2.6.1":
-  version: 2.6.1
-  resolution: "mini-css-extract-plugin@npm:2.6.1"
+"mini-css-extract-plugin@npm:^2.7.0":
+  version: 2.7.0
+  resolution: "mini-css-extract-plugin@npm:2.7.0"
   dependencies:
     schema-utils: ^4.0.0
   peerDependencies:
     webpack: ^5.0.0
-  checksum: df60840404878c4832b4104799fd29c5a89b06b1e377956c8d4a5729efe0ef301a52e5087d6f383871df5e69a8445922a0ae635c11abf412d7645a7096d0e973
+  checksum: e6b111d4289132bd496286eec42801c74c83af7eac71af630a5babae48ca65377f47d8b39e1f0653b449e68e67b57dbd0d36917242f08fc3e7770e70c0cb56cd
   languageName: node
   linkType: hard
 
@@ -16879,13 +16966,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rainbow-sprinkles@npm:^0.13.0":
-  version: 0.13.0
-  resolution: "rainbow-sprinkles@npm:0.13.0"
+"rainbow-sprinkles@npm:^0.14.0":
+  version: 0.14.3
+  resolution: "rainbow-sprinkles@npm:0.14.3"
   peerDependencies:
     "@vanilla-extract/css": ^1
     "@vanilla-extract/dynamic": ^2
-  checksum: 603685f6ad4d9677579206f52abee8125a7bde0a2d6215d3c267b89b3ad4ad06b9cea4eaa94277a08273278dbda2bed77c876539991afdbd5327cf850bf94168
+  checksum: bf6abc1eab11f907df0042fceda5573e81bdc554164d0de17316653cb070a365ef35e7c7f7c1e3934e80b76f99638c2634fce6fe52c15050fb774196ad0a54fe
   languageName: node
   linkType: hard
 
@@ -17166,6 +17253,15 @@ __metadata:
   dependencies:
     resolve: ^1.9.0
   checksum: 2a04aab4e28c05fcd6ee6768446bc8b859d8f108e71fc7f5bcbc5ef25e53330ce2c11d10f82a24591a2df4c49c4f61feabe1fd11f844c66feedd4cd7bb61146a
+  languageName: node
+  linkType: hard
+
+"rechoir@npm:^0.8.0":
+  version: 0.8.0
+  resolution: "rechoir@npm:0.8.0"
+  dependencies:
+    resolve: ^1.20.0
+  checksum: ad3caed8afdefbc33fbc30e6d22b86c35b3d51c2005546f4e79bcc03c074df804b3640ad18945e6bef9ed12caedc035655ec1082f64a5e94c849ff939dc0a788
   languageName: node
   linkType: hard
 
@@ -19338,6 +19434,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"ts-loader@npm:^9.4.1":
+  version: 9.4.1
+  resolution: "ts-loader@npm:9.4.1"
+  dependencies:
+    chalk: ^4.1.0
+    enhanced-resolve: ^5.0.0
+    micromatch: ^4.0.0
+    semver: ^7.3.4
+  peerDependencies:
+    typescript: "*"
+    webpack: ^5.0.0
+  checksum: b8947f6d396621cc3f6ba8d4c14fa09eba03c4b7eeabbc429481e923a973c244fb80feb44e900f03fc1010755a6bf14fc561c574fb79e324f39b5b6ef1dcca6c
+  languageName: node
+  linkType: hard
+
 "ts-node@npm:^10.8.1, ts-node@npm:^10.9.1":
   version: 10.9.1
   resolution: "ts-node@npm:10.9.1"
@@ -20325,6 +20436,38 @@ __metadata:
   languageName: node
   linkType: hard
 
+"webpack-cli@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "webpack-cli@npm:5.0.0"
+  dependencies:
+    "@discoveryjs/json-ext": ^0.5.0
+    "@webpack-cli/configtest": ^2.0.0
+    "@webpack-cli/info": ^2.0.0
+    "@webpack-cli/serve": ^2.0.0
+    colorette: ^2.0.14
+    commander: ^9.4.1
+    cross-spawn: ^7.0.3
+    envinfo: ^7.7.3
+    fastest-levenshtein: ^1.0.12
+    import-local: ^3.0.2
+    interpret: ^3.1.1
+    rechoir: ^0.8.0
+    webpack-merge: ^5.7.3
+  peerDependencies:
+    webpack: 5.x.x
+  peerDependenciesMeta:
+    "@webpack-cli/generators":
+      optional: true
+    webpack-bundle-analyzer:
+      optional: true
+    webpack-dev-server:
+      optional: true
+  bin:
+    webpack-cli: bin/cli.js
+  checksum: 514874b6625d5a0077d9f52fe67dd0528115823d15612dbdc99fece271d26825fbedd3e7b209ed7726edc8528c0e7f787acbba57929ac4cb6d0618ec1c834933
+  languageName: node
+  linkType: hard
+
 "webpack-dev-middleware@npm:^3.7.3":
   version: 3.7.3
   resolution: "webpack-dev-middleware@npm:3.7.3"
@@ -20502,6 +20645,43 @@ __metadata:
   bin:
     webpack: bin/webpack.js
   checksum: 320c41369a75051b19e18c63f408b3dcc481852e992f83d311771c5ec0f05f2946385e8ebef62030cf3587f0a3d2f12779ffdb191569a966847289ba7313f946
+  languageName: node
+  linkType: hard
+
+"webpack@npm:^5.75.0":
+  version: 5.75.0
+  resolution: "webpack@npm:5.75.0"
+  dependencies:
+    "@types/eslint-scope": ^3.7.3
+    "@types/estree": ^0.0.51
+    "@webassemblyjs/ast": 1.11.1
+    "@webassemblyjs/wasm-edit": 1.11.1
+    "@webassemblyjs/wasm-parser": 1.11.1
+    acorn: ^8.7.1
+    acorn-import-assertions: ^1.7.6
+    browserslist: ^4.14.5
+    chrome-trace-event: ^1.0.2
+    enhanced-resolve: ^5.10.0
+    es-module-lexer: ^0.9.0
+    eslint-scope: 5.1.1
+    events: ^3.2.0
+    glob-to-regexp: ^0.4.1
+    graceful-fs: ^4.2.9
+    json-parse-even-better-errors: ^2.3.1
+    loader-runner: ^4.2.0
+    mime-types: ^2.1.27
+    neo-async: ^2.6.2
+    schema-utils: ^3.1.0
+    tapable: ^2.1.1
+    terser-webpack-plugin: ^5.1.3
+    watchpack: ^2.4.0
+    webpack-sources: ^3.2.3
+  peerDependenciesMeta:
+    webpack-cli:
+      optional: true
+  bin:
+    webpack: bin/webpack.js
+  checksum: 2bcc5f3c195f375944e8af2f00bf2feea39cb9fda5f763b0d1b00077f1c51783db25c94d3fae96a07dead9fa085e6ae7474417e5ab31719c9776ea5969ceb83a
   languageName: node
   linkType: hard
 
