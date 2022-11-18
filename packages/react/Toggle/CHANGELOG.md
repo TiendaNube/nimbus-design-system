@@ -14,8 +14,8 @@ A toggle is used to quickly switch between two possible states. They are commonl
 
 ### 🎉 New features
 
-- Added `name`, `active`, and `label` properties to the Component. ([#31](https://github.com/TiendaNube/nimbus-design-system/pull/31) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `name`, `active` and `label` properties to the Component. ([#31](https://github.com/TiendaNube/nimbus-design-system/pull/31) by [@juniorconquista](https://github.com/juniorconquista))
 - Added stories on Component. ([#31](https://github.com/TiendaNube/nimbus-design-system/pull/31) by [@juniorconquista](https://github.com/juniorconquista))
 - Created new `Toggle.Skeleton` subcomponent. ([#31](https://github.com/TiendaNube/nimbus-design-system/pull/31) by [@juniorconquista](https://github.com/juniorconquista))
-- Added `width`, and `data-testid` properties to the Component `Toggle.Skeleton`. ([#31](https://github.com/TiendaNube/nimbus-design-system/pull/31) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `width` and `data-testid` properties to the Component `Toggle.Skeleton`. ([#31](https://github.com/TiendaNube/nimbus-design-system/pull/31) by [@juniorconquista](https://github.com/juniorconquista))
 - Added stories on Component `Toggle.Skeleton`. ([#31](https://github.com/TiendaNube/nimbus-design-system/pull/31) by [@juniorconquista](https://github.com/juniorconquista))

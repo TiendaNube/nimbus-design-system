@@ -19,5 +19,5 @@ The File Uploader component is used to upload files.
 - Added `children`, `aspectRatio`, `width`, `placeholder`, `accept`, `height` and `flexDirection` properties to the Component. ([#51](https://github.com/TiendaNube/nimbus-design-system/pull/51) by [@juniorconquista](https://github.com/juniorconquista))
 - Added stories on Component. ([#51](https://github.com/TiendaNube/nimbus-design-system/pull/51) by [@juniorconquista](https://github.com/juniorconquista))
 - Created new `FileUploader.Skeleton` subcomponent. ([#51](https://github.com/TiendaNube/nimbus-design-system/pull/51) by [@juniorconquista](https://github.com/juniorconquista))
-- Added `width`, `aspectRatio`, and `height` properties to the Component `FileUploader.Skeleton`. ([#51](https://github.com/TiendaNube/nimbus-design-system/pull/51) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `width`, `aspectRatio` and `height` properties to the Component `FileUploader.Skeleton`. ([#51](https://github.com/TiendaNube/nimbus-design-system/pull/51) by [@juniorconquista](https://github.com/juniorconquista))
 - Added stories on Component `FileUploader.Skeleton`. ([#51](https://github.com/TiendaNube/nimbus-design-system/pull/51) by [@juniorconquista](https://github.com/juniorconquista))

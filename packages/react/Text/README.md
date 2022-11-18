@@ -22,7 +22,7 @@ The Text component is composed of a stylized (p) or (span) that consumes our typ
 
 ### Alignments
 
-Component content can be left, center, and right aligned. The criteria for using each one may vary on a case-by-case basis, the most common being the left for running text, the center for unique or punctual information and the right for texts within lists of information.
+Component content can be `left`, `center` and `right` aligned. The criteria for using each one may vary on a case-by-case basis, the most common being the left for running text, the center for unique or punctual information and the right for texts within lists of information.
 
 ### Formatting
 

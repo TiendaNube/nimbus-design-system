@@ -14,7 +14,7 @@ The Button component allows us to initiate actions, make state or page changes.
 
 ### 🎉 New features
 
-- Added `children`, `appearance`, and `disabled` properties to the Component. ([#32](https://github.com/TiendaNube/nimbus-design-system/pull/32) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `children`, `appearance` and `disabled` properties to the Component. ([#32](https://github.com/TiendaNube/nimbus-design-system/pull/32) by [@juniorconquista](https://github.com/juniorconquista))
 - Added stories on Component. ([#32](https://github.com/TiendaNube/nimbus-design-system/pull/32) by [@juniorconquista](https://github.com/juniorconquista))
 - Created new `Button.Skeleton` subcomponent. ([#32](https://github.com/TiendaNube/nimbus-design-system/pull/32) by [@juniorconquista](https://github.com/juniorconquista))
 - Added `width` properties to the Component `Button.Skeleton`. ([#32](https://github.com/TiendaNube/nimbus-design-system/pull/32) by [@juniorconquista](https://github.com/juniorconquista))

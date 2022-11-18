@@ -18,7 +18,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 - Added new style pack for tabs component. [#54](https://github.com/TiendaNube/nimbus-design-system/pull/#54) by [@juanchigallego](https://github.com/juanchigallego))
 
-## 2022-11-02 `4.14.1`
+## 2022-11-09 `4.14.1`
 
 ### 🐛 Bug fixes
 
@@ -145,7 +145,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 ### 💡 Others
 
-- Removed background colors from primary, success, warning, and danger scales for basic and dark themes. ([#32](https://github.com/TiendaNube/nimbus-design-system/pull/32) by [@juniorconquista](https://github.com/juniorconquista))
+- Removed background colors from `primary`, `success`, `warning` and `danger` scales for basic and dark themes. ([#32](https://github.com/TiendaNube/nimbus-design-system/pull/32) by [@juniorconquista](https://github.com/juniorconquista))
 - Removed `primary.background`, `danger.background`, `success.background`, `waring.background` properties from sprinkle colors. ([#32](https://github.com/TiendaNube/nimbus-design-system/pull/32) by [@juniorconquista](https://github.com/juniorconquista))
 - Removed `primary.background`, `danger.background`, `success.background`, `waring.background` color properties from sprinkle icon. ([#32](https://github.com/TiendaNube/nimbus-design-system/pull/32) by [@juniorconquista](https://github.com/juniorconquista))
 - Removed `primary.background`, `danger.background`, `success.background`, `waring.background` color properties from sprinkle text. ([#32](https://github.com/TiendaNube/nimbus-design-system/pull/32) by [@juniorconquista](https://github.com/juniorconquista))
@@ -196,12 +196,12 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 - Global theme contract created. ([#23](https://github.com/TiendaNube/nimbus-design-system/pull/23) by [@juniorconquista](https://github.com/juniorconquista))
 - Added new `textAlign` sprinkle pack. ([#23](https://github.com/TiendaNube/nimbus-design-system/pull/23) by [@juniorconquista](https://github.com/juniorconquista))
 - Added new `textAlign` sprinkle in `Title` package. ([#23](https://github.com/TiendaNube/nimbus-design-system/pull/23) by [@juniorconquista](https://github.com/juniorconquista))
-- Added new `textAlign`, `fontSize`, `lineHeight`, and `fontWeight` sprinkle in `Text` package. ([#23](https://github.com/TiendaNube/nimbus-design-system/pull/23) by [@juniorconquista](https://github.com/juniorconquista))
+- Added new `textAlign`, `fontSize`, `lineHeight` and `fontWeight` sprinkle in `Text` package. ([#23](https://github.com/TiendaNube/nimbus-design-system/pull/23) by [@juniorconquista](https://github.com/juniorconquista))
 
 ### 💡 Others
 
 - Removed `textAlign` variant in `Title` package. ([#23](https://github.com/TiendaNube/nimbus-design-system/pull/23) by [@juniorconquista](https://github.com/juniorconquista))
-- Removed `textAlign`, `size`, `lineHeight`, and `bold` variant in `Text` package. ([#23](https://github.com/TiendaNube/nimbus-design-system/pull/23) by [@juniorconquista](https://github.com/juniorconquista))
+- Removed `textAlign`, `size`, `lineHeight` and `bold` variant in `Text` package. ([#23](https://github.com/TiendaNube/nimbus-design-system/pull/23) by [@juniorconquista](https://github.com/juniorconquista))
 - Removed `textAlign` variant in `Tag` package. ([#23](https://github.com/TiendaNube/nimbus-design-system/pull/23) by [@juniorconquista](https://github.com/juniorconquista))
 - Removed `textAlign` variant in `Badge` package. ([#23](https://github.com/TiendaNube/nimbus-design-system/pull/23) by [@juniorconquista](https://github.com/juniorconquista))
 

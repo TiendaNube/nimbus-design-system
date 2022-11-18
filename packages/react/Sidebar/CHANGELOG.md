@@ -2,7 +2,7 @@
 
 Sidebars navigation provides access to the parts within its application. The side sections have the supplementary content that is linked on the left or right side of the screen.
 
-## 2022-10-26
+## 2022-11-16 `1.0.0`
 
 ### 📚 3rd party library updates
 
@@ -14,11 +14,11 @@ Sidebars navigation provides access to the parts within its application. The sid
 
 ### 🎉 New features
 
-- Added `position`, `padding`, `children`, `onRemove`, and `open` properties to the Component. ([#56](https://github.com/TiendaNube/nimbus-design-system/pull/56) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `position`, `padding`, `children`, `onRemove` and `open` properties to the Component. ([#56](https://github.com/TiendaNube/nimbus-design-system/pull/56) by [@juniorconquista](https://github.com/juniorconquista))
 - Added stories on Component. ([#56](https://github.com/TiendaNube/nimbus-design-system/pull/56) by [@juniorconquista](https://github.com/juniorconquista))
 - Created new `Sidebar.Header` subcomponent. ([#56](https://github.com/TiendaNube/nimbus-design-system/pull/56) by [@juniorconquista](https://github.com/juniorconquista))
-- Added `children`, and `title` properties to the Component `Sidebar.Header`. ([#56](https://github.com/TiendaNube/nimbus-design-system/pull/56) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `children` and `title` properties to the Component `Sidebar.Header`. ([#56](https://github.com/TiendaNube/nimbus-design-system/pull/56) by [@juniorconquista](https://github.com/juniorconquista))
 - Created new `Sidebar.Body` subcomponent. ([#56](https://github.com/TiendaNube/nimbus-design-system/pull/56) by [@juniorconquista](https://github.com/juniorconquista))
-- Added `children`, and `padding` properties to the Component `Sidebar.Body`. ([#56](https://github.com/TiendaNube/nimbus-design-system/pull/56) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `children` and `padding` properties to the Component `Sidebar.Body`. ([#56](https://github.com/TiendaNube/nimbus-design-system/pull/56) by [@juniorconquista](https://github.com/juniorconquista))
 - Created new `Sidebar.Footer` subcomponent. ([#56](https://github.com/TiendaNube/nimbus-design-system/pull/56) by [@juniorconquista](https://github.com/juniorconquista))
 - Added `children` properties to the Component `Sidebar.Footer`. ([#56](https://github.com/TiendaNube/nimbus-design-system/pull/56) by [@juniorconquista](https://github.com/juniorconquista))

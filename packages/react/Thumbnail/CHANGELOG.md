@@ -16,8 +16,8 @@ The Thumbnail component allows us to present thumbnails of images.
 
 ### 🎉 New features
 
-- Added `children`, `aspectRatio`, and `width` properties to the Component. ([#49](https://github.com/TiendaNube/nimbus-design-system/pull/49) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `children`, `aspectRatio` and `width` properties to the Component. ([#49](https://github.com/TiendaNube/nimbus-design-system/pull/49) by [@juniorconquista](https://github.com/juniorconquista))
 - Added stories on Component. ([#49](https://github.com/TiendaNube/nimbus-design-system/pull/49) by [@juniorconquista](https://github.com/juniorconquista))
 - Created new `Thumbnail.Skeleton` subcomponent. ([#49](https://github.com/TiendaNube/nimbus-design-system/pull/49) by [@juniorconquista](https://github.com/juniorconquista))
-- Added `width`, `aspectRatio`, and `width` properties to the Component `Thumbnail.Skeleton`. ([#49](https://github.com/TiendaNube/nimbus-design-system/pull/49) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `width`, `aspectRatio` and `width` properties to the Component `Thumbnail.Skeleton`. ([#49](https://github.com/TiendaNube/nimbus-design-system/pull/49) by [@juniorconquista](https://github.com/juniorconquista))
 - Added stories on Component `Thumbnail.Skeleton`. ([#49](https://github.com/TiendaNube/nimbus-design-system/pull/49) by [@juniorconquista](https://github.com/juniorconquista))

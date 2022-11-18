@@ -26,7 +26,7 @@ The Chip component is used to flag criteria or attributes related to searches or
 
 ### 🎉 New features
 
-- Added `icon`, `removable`, and `text` properties to the Component. ([#21](https://github.com/TiendaNube/nimbus-design-system/pull/21) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `icon`, `removable` and `text` properties to the Component. ([#21](https://github.com/TiendaNube/nimbus-design-system/pull/21) by [@juniorconquista](https://github.com/juniorconquista))
 - Added stories on Component. ([#21](https://github.com/TiendaNube/nimbus-design-system/pull/21) by [@juniorconquista](https://github.com/juniorconquista))
 - Created new `Chip.Skeleton` subcomponent. ([#21](https://github.com/TiendaNube/nimbus-design-system/pull/21) by [@juniorconquista](https://github.com/juniorconquista))
 - Added `width` and `height` properties to the Component `Chip.Skeleton`. ([#21](https://github.com/TiendaNube/nimbus-design-system/pull/21) by [@juniorconquista](https://github.com/juniorconquista))

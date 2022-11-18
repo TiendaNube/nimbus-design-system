@@ -40,5 +40,5 @@ The Checkbox component allows us to choose one or several options from a selecti
 - Added `name`, `appearance`, `checked`, `disabled`, `indeterminate` and `label` properties to the Component. ([#28](https://github.com/TiendaNube/nimbus-design-system/pull/28) by [@juniorconquista](https://github.com/juniorconquista))
 - Added stories on Component. ([#28](https://github.com/TiendaNube/nimbus-design-system/pull/28) by [@juniorconquista](https://github.com/juniorconquista))
 - Created new `Checkbox.Skeleton` subcomponent. ([#28](https://github.com/TiendaNube/nimbus-design-system/pull/28) by [@juniorconquista](https://github.com/juniorconquista))
-- Added `width`, and `data-testid` properties to the Component `Checkbox.Skeleton`. ([#28](https://github.com/TiendaNube/nimbus-design-system/pull/28) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `width` and `data-testid` properties to the Component `Checkbox.Skeleton`. ([#28](https://github.com/TiendaNube/nimbus-design-system/pull/28) by [@juniorconquista](https://github.com/juniorconquista))
 - Added stories on Component `Checkbox.Skeleton`. ([#28](https://github.com/TiendaNube/nimbus-design-system/pull/28) by [@juniorconquista](https://github.com/juniorconquista))

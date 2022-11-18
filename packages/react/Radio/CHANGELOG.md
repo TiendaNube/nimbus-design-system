@@ -17,5 +17,5 @@ Use radios when a user needs to select one option from a list.
 - Added `name`, `as`, `checked`, `disabled` and `label` properties to the Component. ([#36](https://github.com/TiendaNube/nimbus-design-system/pull/36) by [@juniorconquista](https://github.com/juniorconquista))
 - Added stories on Component. ([#36](https://github.com/TiendaNube/nimbus-design-system/pull/36) by [@juniorconquista](https://github.com/juniorconquista))
 - Created new `Radio.Skeleton` subcomponent. ([#36](https://github.com/TiendaNube/nimbus-design-system/pull/36) by [@juniorconquista](https://github.com/juniorconquista))
-- Added `width`, `as`, and `data-testid` properties to the Component `Radio.Skeleton`. ([#36](https://github.com/TiendaNube/nimbus-design-system/pull/36) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `width`, `as` and `data-testid` properties to the Component `Radio.Skeleton`. ([#36](https://github.com/TiendaNube/nimbus-design-system/pull/36) by [@juniorconquista](https://github.com/juniorconquista))
 - Added stories on Component `Radio.Skeleton`. ([#36](https://github.com/TiendaNube/nimbus-design-system/pull/36) by [@juniorconquista](https://github.com/juniorconquista))
