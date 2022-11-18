@@ -42,7 +42,7 @@ base.args = {
   children: (
     <Box
       borderStyle="dashed"
-      padding="0.5rem"
+      padding="2"
       borderWidth="1px"
       borderColor="neutral.interactive"
       height="100%"
@@ -67,7 +67,7 @@ withPadding.args = {
   children: (
     <Box
       borderStyle="dashed"
-      padding="0.5rem"
+      padding="2"
       borderWidth="1px"
       borderColor="neutral.interactive"
       height="100%"
@@ -94,7 +94,7 @@ withHeader.args = {
       <Sidebar.Header>
         <Box
           borderStyle="dashed"
-          padding="0.5rem"
+          padding="2"
           borderWidth="1px"
           borderColor="neutral.interactive"
           height="100%"
@@ -113,7 +113,7 @@ withHeader.args = {
       </Sidebar.Header>
       <Box
         borderStyle="dashed"
-        padding="0.5rem"
+        padding="2"
         borderWidth="1px"
         borderColor="neutral.interactive"
         height="100%"
@@ -141,7 +141,7 @@ withHeaderAndTitle.args = {
       <Sidebar.Header title="Title" />
       <Box
         borderStyle="dashed"
-        padding="0.5rem"
+        padding="2"
         borderWidth="1px"
         borderColor="neutral.interactive"
         height="100%"
@@ -169,7 +169,7 @@ withFooter.args = {
       <Sidebar.Header>
         <Box
           borderStyle="dashed"
-          padding="0.5rem"
+          padding="2"
           borderWidth="1px"
           borderColor="neutral.interactive"
           height="100%"
@@ -188,7 +188,7 @@ withFooter.args = {
       </Sidebar.Header>
       <Box
         borderStyle="dashed"
-        padding="0.5rem"
+        padding="2"
         borderWidth="1px"
         borderColor="neutral.interactive"
         height="100%"
@@ -207,7 +207,7 @@ withFooter.args = {
       <Sidebar.Footer>
         <Box
           borderStyle="dashed"
-          padding="0.5rem"
+          padding="2"
           borderWidth="1px"
           borderColor="neutral.interactive"
           height="100%"

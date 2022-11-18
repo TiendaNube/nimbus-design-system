@@ -69,7 +69,7 @@ variableContent.args = {
   children: (
     <>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eget.
-      <Stack display="flex" gap="8px" flexWrap="wrap">
+      <Stack display="flex" gap="2" flexWrap="wrap">
         <Button>Primary action</Button>
         <Button>Secondary action</Button>
       </Stack>

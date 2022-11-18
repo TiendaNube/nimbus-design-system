@@ -68,7 +68,7 @@ WithHeader.args = {
       <Card.Body>
         <Box
           borderStyle="dashed"
-          padding="0.5rem"
+          padding="2"
           borderWidth="1px"
           borderColor="neutral.interactive"
         >
@@ -89,7 +89,7 @@ WithFooterAndHeader.args = {
       <Card.Body>
         <Box
           borderStyle="dashed"
-          padding="0.5rem"
+          padding="2"
           borderWidth="1px"
           borderColor="neutral.interactive"
         >
