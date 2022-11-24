@@ -7,8 +7,12 @@ import { TabsProps } from "./tabs.types";
 const tabContent = "myTabsContent";
 
 const tabsChildren = [
-  <Tabs.Item label="myTabsChildren">{tabContent}</Tabs.Item>,
-  <Tabs.Item label="myTabsChildren2">{tabContent}</Tabs.Item>,
+  <Tabs.Item key="myTabsChildren" label="myTabsChildren">
+    {tabContent}
+  </Tabs.Item>,
+  <Tabs.Item key="myTabsChildren2" label="myTabsChildren2">
+    {tabContent}
+  </Tabs.Item>,
 ];
 
 const makeSut = (

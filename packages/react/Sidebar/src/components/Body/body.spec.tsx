@@ -21,21 +21,21 @@ describe("GIVEN <Body />", () => {
       makeSut({ children: "My content" });
       expect(
         screen.getByTestId("body-element").getAttribute("class")
-      ).toContain("padding_none");
+      ).toContain("");
     });
 
     it("THEN should correctly render the padding none", () => {
       makeSut({ padding: "none", children: "My content" });
-      expect(
-        screen.getByTestId("body-element").getAttribute("class")
-      ).toContain("padding_none");
+      expect(screen.getByTestId("body-element").getAttribute("style")).toMatch(
+        /--padding-xs__\w{0,9}: 0;/
+      );
     });
 
     it("THEN should correctly render the padding base", () => {
       makeSut({ padding: "base", children: "My content" });
-      expect(
-        screen.getByTestId("body-element").getAttribute("class")
-      ).toContain("padding_base");
+      expect(screen.getByTestId("body-element").getAttribute("style")).toMatch(
+        /--padding-xs__\w{0,9}: var\(--spacing-4__\w{0,8}\);/
+      );
     });
   });
 });

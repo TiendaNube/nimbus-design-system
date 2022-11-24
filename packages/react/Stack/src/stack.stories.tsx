@@ -11,10 +11,6 @@ export default {
   component: Stack,
   argTypes: {
     children: { control: { disable: true } },
-    flex: { type: "string" },
-    gridTemplateAreas: { type: "string" },
-    gridTemplateColumns: { type: "string" },
-    gridTemplateRows: { type: "string" },
     display: { options: stack.properties.display },
     flexDirection: { options: stack.properties.flexDirection },
     flexWrap: { options: stack.properties.flexWrap },

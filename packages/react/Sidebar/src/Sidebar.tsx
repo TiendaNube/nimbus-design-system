@@ -10,36 +10,44 @@ const Sidebar: React.FC<SidebarProps> & SidebarComponents = ({
   style: _style,
   title,
   position = "right",
-  padding = "none",
+  maxWidth = "375px",
   open = false,
   children,
   onRemove,
   ...rest
-}: SidebarProps) => (
-  <FloatingPortal id="nimbus-sidebar">
-    <div
-      {...rest}
-      role={rest.role || "presentation"}
-      className={[
-        sidebar.style.container,
-        sidebar.style.positions[position],
-        sidebar.sprinkle({ padding }),
-        open && sidebar.style.isVisible,
-      ].join(" ")}
-    >
-      {children}
-    </div>
-    {open && (
-      <button
-        aria-label="overlay"
-        data-testid="overlay-sidebar-button"
-        type="button"
-        className={sidebar.style.overlay}
-        onClick={onRemove}
-      />
-    )}
-  </FloatingPortal>
-);
+}: SidebarProps) => {
+  const { className, style, otherProps } = sidebar.sprinkle({
+    ...(rest as Parameters<typeof sidebar.sprinkle>[0]),
+    maxWidth,
+  });
+
+  return (
+    <FloatingPortal id="nimbus-sidebar">
+      <div
+        {...otherProps}
+        role={rest.role || "presentation"}
+        style={style}
+        className={[
+          sidebar.style.container,
+          sidebar.style.positions[position],
+          className,
+          open && sidebar.style.isVisible,
+        ].join(" ")}
+      >
+        {children}
+      </div>
+      {open && (
+        <button
+          aria-label="overlay"
+          data-testid="overlay-sidebar-button"
+          type="button"
+          className={sidebar.style.overlay}
+          onClick={onRemove}
+        />
+      )}
+    </FloatingPortal>
+  );
+};
 
 Sidebar.Body = Body;
 Sidebar.Footer = Footer;

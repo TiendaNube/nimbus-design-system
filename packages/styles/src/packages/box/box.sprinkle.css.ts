@@ -4,6 +4,7 @@ import { varsThemeBase } from "../../themes/base.css";
 import { mediaQueries } from "../../themes/mediaQueries";
 
 type BorderStyle = "solid" | "none" | "hidden" | "dashed" | "dotted";
+type BoxSizing = "border-box" | "content-box";
 type Cursor = "auto" | "pointer";
 
 export const backgroundColorProperties = {
@@ -64,6 +65,8 @@ export const borderStyleProperties: BorderStyle[] = [
   "dotted",
 ];
 
+export const boxSizingProperties: BoxSizing[] = ["border-box", "content-box"];
+
 export const cursorProperties: Cursor[] = ["auto", "pointer"];
 
 export const spaceProperties = {
@@ -116,6 +119,7 @@ const properties = defineProperties({
   },
   staticProperties: {
     borderStyle: borderStyleProperties,
+    boxSizing: boxSizingProperties,
     cursor: cursorProperties,
   },
   shorthands: {

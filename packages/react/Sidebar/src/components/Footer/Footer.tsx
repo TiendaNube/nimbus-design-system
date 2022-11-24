@@ -8,10 +8,19 @@ const Footer: React.FC<FooterProps> = ({
   style: _style,
   children,
   ...rest
-}) => (
-  <div className={sidebar.style.footer} {...rest}>
-    {children}
-  </div>
-);
+}) => {
+  const { className, style, otherProps } = sidebar.sprinkle(
+    rest as Parameters<typeof sidebar.sprinkle>[0]
+  );
+  return (
+    <div
+      {...otherProps}
+      style={style}
+      className={[className, sidebar.style.footer].join(" ")}
+    >
+      {children}
+    </div>
+  );
+};
 
 export { Footer };

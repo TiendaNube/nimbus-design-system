@@ -1,20 +1,20 @@
-import * as style from "./box.style.css";
 import {
   sprinkle,
   backgroundColorProperties,
   borderColorProperties,
   borderStyleProperties,
+  boxSizingProperties,
   spaceProperties,
   cursorProperties,
 } from "./box.sprinkle.css";
 
 export const box = {
-  style,
   sprinkle,
   properties: {
     backgroundColor: backgroundColorProperties,
     borderColor: borderColorProperties,
     borderStyle: borderStyleProperties,
+    boxSizing: boxSizingProperties,
     space: spaceProperties,
     cursor: cursorProperties,
   },
