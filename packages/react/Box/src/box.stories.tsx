@@ -5,37 +5,6 @@ import { box } from "@nimbus-ds/styles";
 
 import { Box } from "./Box";
 
-const spaces = [
-  "padding",
-  "paddingX",
-  "paddingY",
-  "paddingTop",
-  "paddingBottom",
-  "paddingLeft",
-  "paddingRight",
-  "p",
-  "pl",
-  "pr",
-  "pt",
-  "pb",
-  "px",
-  "py",
-  "margin",
-  "marginX",
-  "marginY",
-  "marginTop",
-  "marginBottom",
-  "marginLeft",
-  "marginRight",
-  "m",
-  "ml",
-  "mr",
-  "mt",
-  "mb",
-  "mx",
-  "my",
-];
-
 export default {
   title: "Atomic/Box",
   component: Box,
@@ -44,17 +13,8 @@ export default {
     backgroundColor: { options: Object.keys(box.properties.backgroundColor) },
     borderColor: { options: Object.keys(box.properties.borderColor) },
     borderStyle: { options: box.properties.borderStyle },
+    boxSizing: { options: box.properties.boxSizing },
     cursor: { options: box.properties.cursor },
-    ...spaces.reduce(
-      (prev: { [key: string]: { options: string[] } }, curr: string) => {
-        /* eslint-disable no-param-reassign */
-        prev[curr] = {
-          options: Object.keys(box.properties.space),
-        };
-        return prev;
-      },
-      {}
-    ),
   },
   parameters: {
     withA11y: { decorators: [withA11y] },
