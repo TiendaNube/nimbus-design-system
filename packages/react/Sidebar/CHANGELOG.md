@@ -6,7 +6,7 @@ Sidebars navigation provides access to the parts within its application. The sid
 
 ### 🎉 New features
 
-- Added `maxWidth` property to the Component. ([#56](https://github.com/TiendaNube/nimbus-design-system/pull/56) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `maxWidth` property to the Component. ([#58](https://github.com/TiendaNube/nimbus-design-system/pull/58) by [@juniorconquista](https://github.com/juniorconquista))
 - Added `padding` properties to the Component `Sidebar.Header`. ([#58](https://github.com/TiendaNube/nimbus-design-system/pull/58) by [@juniorconquista](https://github.com/juniorconquista))
 - Added `padding` properties to the Component `Sidebar.Footer`. ([#58](https://github.com/TiendaNube/nimbus-design-system/pull/58) by [@juniorconquista](https://github.com/juniorconquista))
 
