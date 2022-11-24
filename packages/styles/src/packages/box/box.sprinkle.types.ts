@@ -2,6 +2,7 @@ import {
   backgroundColorProperties,
   borderColorProperties,
   borderStyleProperties,
+  boxSizingProperties,
   cursorProperties,
   spaceProperties,
 } from "./box.sprinkle.css";
@@ -10,6 +11,7 @@ type CursorProperties = typeof cursorProperties[number];
 type BorderColorProperties = keyof typeof borderColorProperties;
 type BackgroundColorProperties = keyof typeof backgroundColorProperties;
 type BorderStyleProperties = typeof borderStyleProperties[number];
+type BoxSizingProperties = typeof boxSizingProperties[number];
 type SpaceProperties = keyof typeof spaceProperties;
 
 interface Conditions<T> {
@@ -29,6 +31,7 @@ export interface BoxSprinkle {
   borderWidth?: string | Conditions<string>;
   borderColor?: BorderColorProperties | Conditions<BorderColorProperties>;
   borderStyle?: BorderStyleProperties | Conditions<BorderStyleProperties>;
+  boxSizing?: BoxSizingProperties | Conditions<BoxSizingProperties>;
   padding?: SpaceProperties | Conditions<SpaceProperties>;
   paddingTop?: SpaceProperties | Conditions<SpaceProperties>;
   paddingBottom?: SpaceProperties | Conditions<SpaceProperties>;
