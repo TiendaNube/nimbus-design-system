@@ -1,11 +1,12 @@
 releases:
+  "@nimbus-ds/box": minor
   "@nimbus-ds/sidebar": minor
+  "@nimbus-ds/stack": minor
   "@nimbus-ds/styles": minor
   "@nimbus-ds/title": minor
-  "@nimbus-ds/box": minor
-  "@nimbus-ds/stack": minor
 
 declined:
+  - nimbus-design-system
   - "@nimbus-ds/alert"
   - "@nimbus-ds/badge"
   - "@nimbus-ds/button"
