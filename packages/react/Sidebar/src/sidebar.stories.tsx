@@ -46,6 +46,7 @@ base.args = {
       borderWidth="1px"
       borderColor="neutral.interactive"
       height="100%"
+      boxSizing="border-box"
     >
       <Stack
         display="flex"
@@ -71,6 +72,7 @@ withPadding.args = {
       borderWidth="1px"
       borderColor="neutral.interactive"
       height="100%"
+      boxSizing="border-box"
     >
       <Stack
         display="flex"
@@ -98,6 +100,7 @@ withHeader.args = {
           borderWidth="1px"
           borderColor="neutral.interactive"
           height="100%"
+          boxSizing="border-box"
         >
           <Stack
             display="flex"
@@ -111,24 +114,27 @@ withHeader.args = {
           </Stack>
         </Box>
       </Sidebar.Header>
-      <Box
-        borderStyle="dashed"
-        padding="2"
-        borderWidth="1px"
-        borderColor="neutral.interactive"
-        height="100%"
-      >
-        <Stack
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
+      <Sidebar.Body>
+        <Box
+          borderStyle="dashed"
+          padding="2"
+          borderWidth="1px"
+          borderColor="neutral.interactive"
           height="100%"
+          boxSizing="border-box"
         >
-          <Text textAlign="center" fontSize="base">
-            Body
-          </Text>
-        </Stack>
-      </Box>
+          <Stack
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            height="100%"
+          >
+            <Text textAlign="center" fontSize="base">
+              Body
+            </Text>
+          </Stack>
+        </Box>
+      </Sidebar.Body>
     </>
   ),
 };
@@ -145,6 +151,7 @@ withHeaderAndTitle.args = {
         borderWidth="1px"
         borderColor="neutral.interactive"
         height="100%"
+        boxSizing="border-box"
       >
         <Stack
           display="flex"
@@ -173,6 +180,7 @@ withFooter.args = {
           borderWidth="1px"
           borderColor="neutral.interactive"
           height="100%"
+          boxSizing="border-box"
         >
           <Stack
             display="flex"
@@ -186,24 +194,27 @@ withFooter.args = {
           </Stack>
         </Box>
       </Sidebar.Header>
-      <Box
-        borderStyle="dashed"
-        padding="2"
-        borderWidth="1px"
-        borderColor="neutral.interactive"
-        height="100%"
-      >
-        <Stack
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
+      <Sidebar.Body>
+        <Box
+          borderStyle="dashed"
+          padding="2"
+          borderWidth="1px"
+          borderColor="neutral.interactive"
           height="100%"
+          boxSizing="border-box"
         >
-          <Text textAlign="center" fontSize="base">
-            Body
-          </Text>
-        </Stack>
-      </Box>
+          <Stack
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            height="100%"
+          >
+            <Text textAlign="center" fontSize="base">
+              Body
+            </Text>
+          </Stack>
+        </Box>
+      </Sidebar.Body>
       <Sidebar.Footer>
         <Box
           borderStyle="dashed"
@@ -212,6 +223,7 @@ withFooter.args = {
           borderColor="neutral.interactive"
           height="100%"
           width="100%"
+          boxSizing="border-box"
         >
           <Stack
             display="flex"
