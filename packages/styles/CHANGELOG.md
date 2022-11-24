@@ -4,6 +4,8 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 ## 2022-11-24 `4.18.0`
 
+#### 🎉 New features
+
 - Added `border-box` and `content-box` boxSizing properties in box sprinkle. ([#58](https://github.com/TiendaNube/nimbus-design-system/pull/58) by [@juniorconquista](https://github.com/juniorconquista))
 - Added `maxWidth` property in sidebar sprinkle. ([#58](https://github.com/TiendaNube/nimbus-design-system/pull/58) by [@juniorconquista](https://github.com/juniorconquista))
 
