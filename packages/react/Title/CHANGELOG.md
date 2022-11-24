@@ -2,6 +2,10 @@
 
 Tilte is a basic component that allows you to give titles and more hierarchy to blocks of text for sections or header components
 
+## 2022-11-24 `1.5.0`
+
+- Added displayName to component `Title.Skeleton` on subcomponent `Title.Skeleton`. ([#58](https://github.com/TiendaNube/nimbus-design-system/pull/58) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2022-11-02 `1.4.0`
 
 ### 🎉 New features
