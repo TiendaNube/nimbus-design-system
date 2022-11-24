@@ -2,6 +2,14 @@
 
 Sidebars navigation provides access to the parts within its application. The side sections have the supplementary content that is linked on the left or right side of the screen.
 
+## 2022-11-24 `1.1.0`
+
+### 🎉 New features
+
+- Added `maxWidth` property to the Component. ([#56](https://github.com/TiendaNube/nimbus-design-system/pull/56) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `padding` properties to the Component `Sidebar.Header`. ([#58](https://github.com/TiendaNube/nimbus-design-system/pull/58) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `padding` properties to the Component `Sidebar.Footer`. ([#58](https://github.com/TiendaNube/nimbus-design-system/pull/58) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2022-11-16 `1.0.0`
 
 ### 📚 3rd party library updates

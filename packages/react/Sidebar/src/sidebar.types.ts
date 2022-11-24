@@ -1,6 +1,8 @@
 import { HTMLAttributes, ReactNode } from "react";
-import { sidebar } from "@nimbus-ds/styles";
+import { sidebar, SidebarSprinkle } from "@nimbus-ds/styles";
 import { Body, Footer, Header } from "./components";
+
+type Extends = SidebarSprinkle & HTMLAttributes<HTMLDivElement>;
 
 export interface SidebarComponents {
   Body: typeof Body;
@@ -8,7 +10,7 @@ export interface SidebarComponents {
   Header: typeof Header;
 }
 
-export interface SidebarProps extends HTMLAttributes<HTMLElement> {
+export interface SidebarProps extends Extends {
   /** Sidebar position */
   position?: "right" | "left";
   /** Sidebar padding */
