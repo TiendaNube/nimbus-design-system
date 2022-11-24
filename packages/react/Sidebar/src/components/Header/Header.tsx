@@ -10,11 +10,20 @@ const Header: React.FC<HeaderProps> = ({
   title,
   children,
   ...rest
-}) => (
-  <div {...rest} className={sidebar.style.header}>
-    {title && <Title data-testid="header-title">{title}</Title>}
-    {children}
-  </div>
-);
+}) => {
+  const { className, style, otherProps } = sidebar.sprinkle(
+    rest as Parameters<typeof sidebar.sprinkle>[0]
+  );
+  return (
+    <div
+      {...otherProps}
+      style={style}
+      className={[className, sidebar.style.header].join(" ")}
+    >
+      {title && <Title data-testid="header-title">{title}</Title>}
+      {children}
+    </div>
+  );
+};
 
 export { Header };
