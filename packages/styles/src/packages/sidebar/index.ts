@@ -8,3 +8,5 @@ export const sidebar = {
     padding: paddingProperties,
   },
 };
+
+export type { SidebarSprinkle } from "./sidebar.sprinkle.types";

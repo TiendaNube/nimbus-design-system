@@ -19,6 +19,7 @@ export const overlay = style({
   left: 0,
   right: 0,
   zIndex: 100,
+  border: "none",
   animation: `${overlayAnimation} 0.5s ease`,
 });
 
@@ -30,7 +31,6 @@ export const container = style({
   backgroundColor: "#FFFFFF",
   height: "100%",
   minHeight: "100%",
-  maxWidth: "375px",
   width: "100%",
   zIndex: 200,
   top: 0,
@@ -57,6 +57,12 @@ export const isVisible = style({
 
 export const header = style({
   marginBottom: "1rem",
+  boxSizing: "border-box",
+});
+
+export const body = style({
+  height: "100%",
+  boxSizing: "border-box",
 });
 
 export const footer = style({
@@ -64,4 +70,6 @@ export const footer = style({
   display: "flex",
   gap: varsThemeBase.spacing[2],
   marginTop: "1rem",
+  boxSizing: "border-box",
+  justifyContent: "flex-end",
 });

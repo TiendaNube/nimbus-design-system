@@ -32,4 +32,5 @@ export { alert } from "./packages/alert";
 export { tabs } from "./packages/tabs";
 
 export type { BoxSprinkle } from "./packages/box";
+export type { SidebarSprinkle } from "./packages/sidebar";
 export type { StackSprinkle } from "./packages/stack";

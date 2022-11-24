@@ -1,14 +1,28 @@
-import { defineProperties, createSprinkles } from "@vanilla-extract/sprinkles";
+import { createRainbowSprinkles, defineProperties } from "rainbow-sprinkles";
 import { varsThemeBase } from "../../themes/base.css";
+import { mediaQueries } from "../../themes/mediaQueries";
 
 export const paddingProperties = {
   base: varsThemeBase.spacing[4],
   none: 0,
 };
 
-export const sprinkle = createSprinkles(
+export const sprinkle = createRainbowSprinkles(
   defineProperties({
-    properties: {
+    conditions: {
+      xs: {
+        "@media": mediaQueries.xs(),
+      },
+      md: {
+        "@media": mediaQueries.md(),
+      },
+      lg: {
+        "@media": mediaQueries.lg(),
+      },
+    },
+    defaultCondition: "xs",
+    dynamicProperties: {
+      maxWidth: true,
       padding: paddingProperties,
     },
   })
