@@ -9,7 +9,9 @@ const Stack: React.FC<StackProps> = ({
   children,
   ...rest
 }) => {
-  const { className, style, otherProps } = stack.sprinkle(rest);
+  const { className, style, otherProps } = stack.sprinkle(
+    rest as Parameters<typeof stack.sprinkle>[0]
+  );
   return (
     <div className={className} style={style} {...otherProps}>
       {children}

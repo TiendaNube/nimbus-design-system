@@ -6,8 +6,11 @@ A low-level utility component that accepts styled system props to enable custom 
 
 ### 🎉 New features
 
-- Fixed component documentation and typing. ([#58](https://github.com/TiendaNube/nimbus-design-system/pull/#58) by [@juniorconquista](https://github.com/juniorconquista))
 - Added `boxSizing` property to the Component. ([#58](https://github.com/TiendaNube/nimbus-design-system/pull/#58) by [@juniorconquista](https://github.com/juniorconquista))
+
+### 💡 Others
+
+- Fixed component documentation and typing. ([#58](https://github.com/TiendaNube/nimbus-design-system/pull/#58) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2022-11-16 `1.0.2`
 
