@@ -28,7 +28,6 @@ module.exports = {
   },
   resolve: {
     alias: {
-      "@nimbus-ds/icon": path.resolve(__dirname, "../Icon/src"),
       "@nimbus-ds/skeleton": path.resolve(__dirname, "../Skeleton/src"),
       "@nimbus-ds/styles": path.resolve(__dirname, "../../styles/dist"),
     },
@@ -39,10 +38,8 @@ module.exports = {
     minimizer: [new TerserJSPlugin()],
   },
   externals: {
-    "@nimbus-ds/icon": "@nimbus-ds/icon",
     "@nimbus-ds/skeleton": "@nimbus-ds/skeleton",
     "@nimbus-ds/styles": "@nimbus-ds/styles",
-    "@tiendanube/icons": "@tiendanube/icons",
     react: "react",
     "react-dom": "react-dom",
   },

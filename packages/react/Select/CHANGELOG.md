@@ -2,7 +2,7 @@
 
 Use a select box when a user needs to select one option from a list.
 
-## 2022-10-14
+## 2022-10-14 `1.0.0`
 
 ### 📚 3rd party library updates
 
