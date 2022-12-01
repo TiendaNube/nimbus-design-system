@@ -32,15 +32,15 @@ describe("GIVEN <Header />", () => {
     it("THEN should correctly render the padding none", () => {
       makeSut({ padding: "none", children: "My content" });
       expect(
-        screen.getByTestId("header-element").getAttribute("style")
-      ).toMatch(/--padding-xs__\w{0,9}: 0;/);
+        screen.getByTestId("header-element").getAttribute("class")
+      ).toMatch("padding-none");
     });
 
     it("THEN should correctly render the padding base", () => {
       makeSut({ padding: "base", children: "My content" });
       expect(
-        screen.getByTestId("header-element").getAttribute("style")
-      ).toMatch(/--padding-xs__\w{0,9}: var\(--spacing-4__\w{0,8}\);/);
+        screen.getByTestId("header-element").getAttribute("class")
+      ).toMatch("padding-base");
     });
   });
 });

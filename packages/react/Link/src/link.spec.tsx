@@ -38,20 +38,6 @@ describe("GIVEN <Link />", () => {
       ).toContain("appearance_neutral");
     });
 
-    it("THEN should correctly render as a link", () => {
-      makeSut({ as: "link", href: "#", children: "link" });
-      expect(
-        screen.getByRole("link", { name: "link" }).getAttribute("class")
-      ).toContain("as_link");
-    });
-
-    it("THEN should correctly render as a button", () => {
-      makeSut({ as: "button", href: "#", children: "link" });
-      expect(
-        screen.getByRole("link", { name: "link" }).getAttribute("class")
-      ).toContain("as_button");
-    });
-
     it("THEN should correctly render without underline", () => {
       makeSut({ textDecoration: "none", href: "#", children: "link" });
       expect(

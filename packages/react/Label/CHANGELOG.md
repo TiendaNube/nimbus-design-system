@@ -2,6 +2,12 @@
 
 Labels are mainly used to accompany form controls such as inputs, checkboxes, selects, etc. and describe the information that is required inside of each control. They can be visually hidden for UI requirements but can still be read by assistive technologies. They can also include icons or other components to support the relaying of content.
 
+## 2022-12-01 `1.4.0`
+
+### 💡 Others
+
+- Adjusted component dependencies and build construction. ([#59](https://github.com/TiendaNube/nimbus-design-system/pull/59) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2022-11-18 `1.3.0`
 
 ### 📚 3rd party library updates

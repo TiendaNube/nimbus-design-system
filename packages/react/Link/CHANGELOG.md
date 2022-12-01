@@ -2,6 +2,13 @@
 
 The Link component allows us to navigate to external addresses.
 
+## 2022-12-01 `2.0.0`
+
+### 💡 Others
+
+- Removed `as` property to the component. ([#59](https://github.com/TiendaNube/nimbus-design-system/pull/59) by [@juniorconquista](https://github.com/juniorconquista))
+- Refactored component style pack. ([#59](https://github.com/TiendaNube/nimbus-design-system/pull/59) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2022-11-18 `1.1.0`
 
 ### 📚 3rd party library updates
