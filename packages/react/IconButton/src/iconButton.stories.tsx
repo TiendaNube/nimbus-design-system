@@ -26,6 +26,7 @@ const SkeletonTemplate: ComponentStory<typeof IconButton.Skeleton> = (args) => (
 
 export const base = IconTemplate.bind({});
 base.args = {
+  size: "2.75rem",
   source: <TiendanubeIcon size="small" />,
 };
 
