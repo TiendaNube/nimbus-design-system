@@ -11,8 +11,8 @@ const makeSut = (rest: IconButtonProps) => {
 describe("GIVEN <IconButton />", () => {
   describe("WHEN rendered", () => {
     it("THEN should default render element type", () => {
-      makeSut({ source: <div />, href: "http://localhost.com" });
-      expect(screen.getByRole("link")).toBeDefined();
+      makeSut({ source: <div /> });
+      expect(screen.getByRole("button")).toBeDefined();
     });
 
     it('THEN should render element type="div"', () => {
