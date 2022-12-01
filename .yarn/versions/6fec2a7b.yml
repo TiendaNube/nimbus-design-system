@@ -7,6 +7,7 @@ releases:
   "@nimbus-ds/styles": minor
 
 declined:
+  - nimbus-design-system
   - "@nimbus-ds/alert"
   - "@nimbus-ds/badge"
   - "@nimbus-ds/box"
