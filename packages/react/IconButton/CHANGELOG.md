@@ -2,6 +2,18 @@
 
 Icons are used to visually communicate core parts of the product and available actions. They can act as wayfinding tools to help merchants more easily understand where they are in the product, and common interaction patterns that are available..
 
+## 2022-12-01 `2.0.0`
+
+### 🎉 New features
+
+- Added `size`, `backgroundColor` and `borderColor` properties to the component. ([#59](https://github.com/TiendaNube/nimbus-design-system/pull/59) by [@juniorconquista](https://github.com/juniorconquista))
+
+### 💡 Others
+
+- Changed component base typing to extends to native button types. ([#59](https://github.com/TiendaNube/nimbus-design-system/pull/59) by [@juniorconquista](https://github.com/juniorconquista))
+
+### 🎉 New features
+
 ## 2022-11-18 `1.1.0`
 
 ### 📚 3rd party library updates
