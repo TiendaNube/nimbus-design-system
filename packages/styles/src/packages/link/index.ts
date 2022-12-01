@@ -1,4 +1,4 @@
-import { style } from "./link.style.css";
+import * as style from "./link.style.css";
 
 export const link = {
   style,

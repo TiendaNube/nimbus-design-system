@@ -23,6 +23,9 @@ export const sprinkle = createRainbowSprinkles(
     defaultCondition: "xs",
     dynamicProperties: {
       maxWidth: true,
+      zIndex: true,
+    },
+    staticProperties: {
       padding: paddingProperties,
     },
   })
