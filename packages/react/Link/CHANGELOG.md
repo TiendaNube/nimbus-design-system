@@ -6,7 +6,7 @@ The Link component allows us to navigate to external addresses.
 
 ### 💡 Others
 
-- Removed `as` properties to the component. ([#59](https://github.com/TiendaNube/nimbus-design-system/pull/59) by [@juniorconquista](https://github.com/juniorconquista))
+- Removed `as` property to the component. ([#59](https://github.com/TiendaNube/nimbus-design-system/pull/59) by [@juniorconquista](https://github.com/juniorconquista))
 - Refactored component style pack. ([#59](https://github.com/TiendaNube/nimbus-design-system/pull/59) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2022-11-18 `1.1.0`
