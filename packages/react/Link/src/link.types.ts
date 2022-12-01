@@ -6,8 +6,6 @@ export interface LinkComponents {
 }
 
 export interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
-  /** Determine whether the link will visually render as a link or button */
-  as?: "link" | "button";
   /** Text to be displayed on link */
   children: ReactNode;
   /** Link appearance */

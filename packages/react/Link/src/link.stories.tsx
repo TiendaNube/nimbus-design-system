@@ -75,11 +75,5 @@ neutral.args = {
   children: "Link",
 };
 
-export const asButton = Template.bind({});
-asButton.args = {
-  as: "button",
-  children: "Link as button",
-};
-
 export const skeleton = SkeletonTemplate.bind({});
 skeleton.args = {};

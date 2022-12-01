@@ -7,14 +7,20 @@ import { Skeleton } from "./components";
 const Link: React.FC<LinkProps> & LinkComponents = ({
   className: _className,
   style: _style,
-  as = "link",
   appearance = "neutral",
   textDecoration = "underline",
   size = "base",
   children,
   ...rest
 }: LinkProps) => (
-  <a {...rest} className={link.style({ appearance, as, textDecoration, size })}>
+  <a
+    {...rest}
+    className={[
+      link.style.appearance[appearance],
+      link.style.size[size],
+      link.style.textDecoration[textDecoration],
+    ].join(" ")}
+  >
     {children}
   </a>
 );
