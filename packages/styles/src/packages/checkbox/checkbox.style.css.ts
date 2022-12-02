@@ -4,7 +4,7 @@ import { varsThemeBase } from "../../themes/base.css";
 
 export const container = vanillaStyle({
   display: "flex",
-  alignItems: "center",
+  alignItems: "flex-start",
   width: "fit-content",
   gap: varsThemeBase.spacing[1],
   position: "relative",
@@ -19,8 +19,8 @@ export const input = vanillaStyle({
 });
 
 export const checkmark = vanillaStyle({
-  width: "1rem",
-  height: "1rem",
+  minWidth: "0.938rem",
+  minHeight: "0.938rem",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",

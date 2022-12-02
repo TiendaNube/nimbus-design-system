@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2022-12-02 `1.2.1`
+
+### 🐛 Bug fixes
+
+- Fixed minimum package size of checkbox and radio components. ([#62](https://github.com/TiendaNube/nimbus-design-system/pull/62) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2022-12-01 `4.19.0`
 
 #### 🎉 New features

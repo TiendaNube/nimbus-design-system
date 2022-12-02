@@ -10,5 +10,6 @@ interface Conditions<T> {
 
 export interface SidebarSprinkle {
   maxWidth?: string | Conditions<string>;
+  zIndex?: number | Conditions<number>;
   padding?: PaddingProperties | Conditions<PaddingProperties>;
 }
