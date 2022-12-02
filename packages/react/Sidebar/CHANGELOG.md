@@ -6,7 +6,7 @@ Sidebars navigation provides access to the parts within its application. The sid
 
 ### 🎉 New features
 
-- Added `zIndex` property to the component. ([#59](https://github.com/TiendaNube/nimbus-design-system/pull/59) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `zIndex` property to the component. ([#61](https://github.com/TiendaNube/nimbus-design-system/pull/61) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2022-11-24 `1.1.0`
 

@@ -6,7 +6,7 @@ Labels are mainly used to accompany form controls such as inputs, checkboxes, se
 
 ### 💡 Others
 
-- Adjusted component dependencies and build construction. ([#59](https://github.com/TiendaNube/nimbus-design-system/pull/59) by [@juniorconquista](https://github.com/juniorconquista))
+- Adjusted component dependencies and build construction. ([#61](https://github.com/TiendaNube/nimbus-design-system/pull/61) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2022-11-18 `1.3.0`
 

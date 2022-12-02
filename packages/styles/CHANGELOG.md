@@ -12,12 +12,12 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 #### 🎉 New features
 
-- Added `zIndex` property in sidebar sprinkle. ([#59](https://github.com/TiendaNube/nimbus-design-system/pull/59) by [@juniorconquista](https://github.com/juniorconquista))
-- Added `size`, `backgroundColor` and `borderColor` properties in iconButton sprinkle. ([#59](https://github.com/TiendaNube/nimbus-design-system/pull/59) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `zIndex` property in sidebar sprinkle. ([#61](https://github.com/TiendaNube/nimbus-design-system/pull/61) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `size`, `backgroundColor` and `borderColor` properties in iconButton sprinkle. ([#61](https://github.com/TiendaNube/nimbus-design-system/pull/61) by [@juniorconquista](https://github.com/juniorconquista))
 
 ### 💡 Others
 
-- Refactored link component style pack. ([#59](https://github.com/TiendaNube/nimbus-design-system/pull/59) by [@juniorconquista](https://github.com/juniorconquista))
+- Refactored link component style pack. ([#61](https://github.com/TiendaNube/nimbus-design-system/pull/61) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2022-11-24 `4.18.0`
 

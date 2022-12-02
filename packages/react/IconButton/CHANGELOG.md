@@ -6,11 +6,11 @@ Icons are used to visually communicate core parts of the product and available a
 
 ### 🎉 New features
 
-- Added `size`, `backgroundColor` and `borderColor` properties to the component. ([#59](https://github.com/TiendaNube/nimbus-design-system/pull/59) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `size`, `backgroundColor` and `borderColor` properties to the component. ([#61](https://github.com/TiendaNube/nimbus-design-system/pull/61) by [@juniorconquista](https://github.com/juniorconquista))
 
 ### 💡 Others
 
-- Changed component base typing to extends to native button types. ([#59](https://github.com/TiendaNube/nimbus-design-system/pull/59) by [@juniorconquista](https://github.com/juniorconquista))
+- Changed component base typing to extends to native button types. ([#61](https://github.com/TiendaNube/nimbus-design-system/pull/61) by [@juniorconquista](https://github.com/juniorconquista))
 
 ### 🎉 New features
 
