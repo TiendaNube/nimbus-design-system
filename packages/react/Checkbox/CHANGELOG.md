@@ -2,7 +2,13 @@
 
 The Checkbox component allows us to choose one or several options from a selection list.
 
-## 2022-09-29
+## 2022-12-02 `1.2.1`
+
+### 🐛 Bug fixes
+
+- Fixed minimum size of checkbox and lineHeight of label. ([#62](https://github.com/TiendaNube/nimbus-design-system/pull/62) by [@juniorconquista](https://github.com/juniorconquista))
+
+## 2022-09-29 `1.2.1`
 
 ### 🎉 New features
 
@@ -13,13 +19,13 @@ The Checkbox component allows us to choose one or several options from a selecti
 
 - Adjusted color Icon check from `primary.background` to `neutral.background`. ([#32](https://github.com/TiendaNube/nimbus-design-system/pull/32) by [@juniorconquista](https://github.com/juniorconquista))
 
-## 2022-09-27
+## 2022-09-27 `1.2.0`
 
 ### 💡 Others
 
 - Adjusted component native typing for InputHTMLAttributes. ([#30](https://github.com/TiendaNube/nimbus-design-system/pull/30) by [@juniorconquista](https://github.com/juniorconquista))
 
-## 2022-09-24
+## 2022-09-24 `1.0.0`
 
 ### 💡 Others
 

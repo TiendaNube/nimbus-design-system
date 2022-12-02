@@ -83,7 +83,7 @@ const Checkbox: React.FC<CheckboxProps> & CheckboxComponents = ({
           data-testid="text"
           color={textColor}
           fontSize="base"
-          lineHeight="highlight"
+          lineHeight="base"
         >
           {label}
         </Text>

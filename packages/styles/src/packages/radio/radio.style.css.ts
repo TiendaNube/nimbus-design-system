@@ -9,7 +9,7 @@ import { varsThemeBase } from "../../themes/base.css";
 export const container = style({
   position: "relative",
   display: "flex",
-  alignItems: "center",
+  alignItems: "flex-start",
   width: "fit-content",
   gap: varsThemeBase.spacing[1],
   borderWidth: "0.063rem",
@@ -73,8 +73,8 @@ export const input = style({
  * -----------------------------------------------------------------------------------------------*/
 
 export const checkmark = style({
-  width: "1rem",
-  height: "1rem",
+  minWidth: "0.938rem",
+  minHeight: "0.938rem",
 
   display: "flex",
   alignItems: "center",
