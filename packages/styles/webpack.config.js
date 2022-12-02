@@ -4,7 +4,7 @@ const TerserJSPlugin = require("terser-webpack-plugin");
 const { VanillaExtractPlugin } = require("@vanilla-extract/webpack-plugin");
 
 module.exports = {
-  mode: "development",
+  mode: "production",
   devtool: "source-map",
   entry: {
     "./index": "./src/index.ts",
