@@ -2,7 +2,13 @@
 
 Use radios when a user needs to select one option from a list.
 
-## 2022-10-05
+## 2022-12-02 `1.0.1`
+
+### 🐛 Bug fixes
+
+- Fixed minimum size of radio and lineHeight of label. ([#62](https://github.com/TiendaNube/nimbus-design-system/pull/62) by [@juniorconquista](https://github.com/juniorconquista))
+
+## 2022-10-05 `1.0.0`
 
 ### 📚 3rd party library updates
 
