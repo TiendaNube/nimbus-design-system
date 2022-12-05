@@ -1,0 +1,13 @@
+{
+  "extends": "../../../../tsconfig.json",
+  "include": ["./src"],
+  "exclude": ["src/**/*.spec.tsx", "src/**/*.stories.tsx"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "declaration": false,
+    "paths": {
+      "@nimbus-ds/styles": ["../../../core/styles/src"],
+      "@nimbus-ds/text": ["../Text/src"]
+    }
+  }
+}

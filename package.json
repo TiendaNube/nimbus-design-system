@@ -5,14 +5,15 @@
   "private": true,
   "workspaces": {
     "packages": [
-      "packages/*",
-      "packages/*/*"
+      "packages/*/*",
+      "packages/*/atomic/*",
+      "packages/*/composite/*"
     ]
   },
   "scripts": {
     "build": "yarn clean && yarn build:styles && yarn build:essentials && turbo run build --filter=[origin/master]...",
     "build:styles": "turbo run build --filter=@nimbus-ds/styles...",
-    "build:essentials": "turbo run build --filter=@nimbus-ds/skeleton --filter=@nimbus-ds/text --filter=@nimbus-ds/badge --filter=@nimbus-ds/spinner --filter=@nimbus-ds/icon",
+    "build:essentials": "turbo run build --filter=@nimbus-ds/skeleton --filter=@nimbus-ds/text --filter=@nimbus-ds/title --filter=@nimbus-ds/badge --filter=@nimbus-ds/spinner --filter=@nimbus-ds/icon",
     "build:storybook": "build-storybook -c .storybook -o .build-storybook",
     "bump:check": "yarn version check",
     "bump:next": "yarn version apply --all --prerelease",

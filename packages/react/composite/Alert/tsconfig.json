@@ -1,0 +1,17 @@
+{
+  "extends": "../../../../tsconfig.json",
+  "include": ["./src"],
+  "exclude": ["src/**/*.spec.tsx", "src/**/*.stories.tsx"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "declaration": false,
+    "paths": {
+      "@nimbus-ds/styles": ["../../../core/styles/src"],
+      "@nimbus-ds/skeleton": ["../../atomic/Skeleton/src"],
+      "@nimbus-ds/title": ["../../atomic/Title/src"],
+      "@nimbus-ds/icon": ["../../atomic/Icon/src"],
+      "@nimbus-ds/button": ["../../atomic/Button/src"],
+      "@nimbus-ds/stack": ["../../atomic/Stack/src"]
+    }
+  }
+}

@@ -60,28 +60,7 @@
   "rules": {
     "import/extensions": "off",
     "import/prefer-default-export": "off",
-    "import/no-extraneous-dependencies": [
-      "error",
-      {
-        "packageDir": [
-          ".",
-          "./packages/styles",
-          "./packages/tokens",
-          "./packages/react/Skeleton",
-          "./packages/react/Sidebar",
-          "./packages/react/Chip",
-          "./packages/react/Tag",
-          "./packages/react/Text",
-          "./packages/react/Title",
-          "./packages/react/Toast",
-          "./packages/react/Button",
-          "./packages/react/Tooltip",
-          "./packages/react/Stack",
-          "./packages/react/Alert",
-          "./packages/react/Card"
-        ]
-      }
-    ],
+    "import/no-extraneous-dependencies": "off",
     "import/no-unresolved": "off",
     "@typescript-eslint/interface-name-prefix": "off",
     "@typescript-eslint/no-explicit-any": "off",

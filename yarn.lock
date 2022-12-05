@@ -2933,9 +2933,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nimbus-ds/alert@workspace:packages/react/Alert":
+"@nimbus-ds/alert@workspace:packages/react/composite/Alert":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/alert@workspace:packages/react/Alert"
+  resolution: "@nimbus-ds/alert@workspace:packages/react/composite/Alert"
   dependencies:
     "@nimbus-ds/button": "workspace:*"
     "@nimbus-ds/icon": "workspace:*"
@@ -2953,9 +2953,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/badge@workspace:*, @nimbus-ds/badge@workspace:packages/react/Badge":
+"@nimbus-ds/badge@workspace:*, @nimbus-ds/badge@workspace:packages/react/atomic/Badge":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/badge@workspace:packages/react/Badge"
+  resolution: "@nimbus-ds/badge@workspace:packages/react/atomic/Badge"
   dependencies:
     "@nimbus-ds/skeleton": "workspace:*"
     "@nimbus-ds/styles": "workspace:*"
@@ -2971,9 +2971,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/box@workspace:*, @nimbus-ds/box@workspace:packages/react/Box":
+"@nimbus-ds/box@workspace:*, @nimbus-ds/box@workspace:packages/react/atomic/Box":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/box@workspace:packages/react/Box"
+  resolution: "@nimbus-ds/box@workspace:packages/react/atomic/Box"
   dependencies:
     "@nimbus-ds/styles": "workspace:*"
     "@vanilla-extract/dynamic": ^2.0.2
@@ -2988,9 +2988,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/button@workspace:*, @nimbus-ds/button@workspace:packages/react/Button":
+"@nimbus-ds/button@workspace:*, @nimbus-ds/button@workspace:packages/react/atomic/Button":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/button@workspace:packages/react/Button"
+  resolution: "@nimbus-ds/button@workspace:packages/react/atomic/Button"
   dependencies:
     "@nimbus-ds/badge": "workspace:*"
     "@nimbus-ds/icon": "workspace:*"
@@ -3008,9 +3008,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/card@workspace:packages/react/Card":
+"@nimbus-ds/card@workspace:packages/react/composite/Card":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/card@workspace:packages/react/Card"
+  resolution: "@nimbus-ds/card@workspace:packages/react/composite/Card"
   dependencies:
     "@nimbus-ds/box": "workspace:*"
     "@nimbus-ds/button": "workspace:*"
@@ -3030,9 +3030,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/checkbox@workspace:packages/react/Checkbox":
+"@nimbus-ds/checkbox@workspace:packages/react/atomic/Checkbox":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/checkbox@workspace:packages/react/Checkbox"
+  resolution: "@nimbus-ds/checkbox@workspace:packages/react/atomic/Checkbox"
   dependencies:
     "@nimbus-ds/icon": "workspace:*"
     "@nimbus-ds/skeleton": "workspace:*"
@@ -3049,9 +3049,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/chip@workspace:packages/react/Chip":
+"@nimbus-ds/chip@workspace:packages/react/atomic/Chip":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/chip@workspace:packages/react/Chip"
+  resolution: "@nimbus-ds/chip@workspace:packages/react/atomic/Chip"
   dependencies:
     "@nimbus-ds/icon": "workspace:*"
     "@nimbus-ds/skeleton": "workspace:*"
@@ -3069,9 +3069,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/file-uploader@workspace:packages/react/FileUploader":
+"@nimbus-ds/file-uploader@workspace:packages/react/atomic/FileUploader":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/file-uploader@workspace:packages/react/FileUploader"
+  resolution: "@nimbus-ds/file-uploader@workspace:packages/react/atomic/FileUploader"
   dependencies:
     "@nimbus-ds/icon": "workspace:*"
     "@nimbus-ds/skeleton": "workspace:*"
@@ -3091,9 +3091,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/icon-button@workspace:packages/react/IconButton":
+"@nimbus-ds/icon-button@workspace:packages/react/atomic/IconButton":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/icon-button@workspace:packages/react/IconButton"
+  resolution: "@nimbus-ds/icon-button@workspace:packages/react/atomic/IconButton"
   dependencies:
     "@nimbus-ds/icon": "workspace:*"
     "@nimbus-ds/skeleton": "workspace:*"
@@ -3110,9 +3110,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/icon@workspace:*, @nimbus-ds/icon@workspace:packages/react/Icon":
+"@nimbus-ds/icon@workspace:*, @nimbus-ds/icon@workspace:packages/react/atomic/Icon":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/icon@workspace:packages/react/Icon"
+  resolution: "@nimbus-ds/icon@workspace:packages/react/atomic/Icon"
   dependencies:
     "@nimbus-ds/skeleton": "workspace:*"
     "@nimbus-ds/styles": "workspace:*"
@@ -3128,9 +3128,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/input@workspace:packages/react/Input":
+"@nimbus-ds/input@workspace:packages/react/atomic/Input":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/input@workspace:packages/react/Input"
+  resolution: "@nimbus-ds/input@workspace:packages/react/atomic/Input"
   dependencies:
     "@nimbus-ds/icon": "workspace:*"
     "@nimbus-ds/skeleton": "workspace:*"
@@ -3147,9 +3147,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/label@workspace:packages/react/Label":
+"@nimbus-ds/label@workspace:packages/react/atomic/Label":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/label@workspace:packages/react/Label"
+  resolution: "@nimbus-ds/label@workspace:packages/react/atomic/Label"
   dependencies:
     "@nimbus-ds/icon": "workspace:*"
     "@nimbus-ds/skeleton": "workspace:*"
@@ -3166,9 +3166,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/link@workspace:packages/react/Link":
+"@nimbus-ds/link@workspace:packages/react/atomic/Link":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/link@workspace:packages/react/Link"
+  resolution: "@nimbus-ds/link@workspace:packages/react/atomic/Link"
   dependencies:
     "@nimbus-ds/skeleton": "workspace:*"
     "@nimbus-ds/styles": "workspace:*"
@@ -3184,9 +3184,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/list@workspace:packages/react/List":
+"@nimbus-ds/list@workspace:packages/react/atomic/List":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/list@workspace:packages/react/List"
+  resolution: "@nimbus-ds/list@workspace:packages/react/atomic/List"
   dependencies:
     "@nimbus-ds/skeleton": "workspace:*"
     "@nimbus-ds/styles": "workspace:*"
@@ -3201,9 +3201,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/popover@workspace:packages/react/Popover":
+"@nimbus-ds/popover@workspace:packages/react/atomic/Popover":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/popover@workspace:packages/react/Popover"
+  resolution: "@nimbus-ds/popover@workspace:packages/react/atomic/Popover"
   dependencies:
     "@floating-ui/react-dom-interactions": ^0.10.1
     "@nimbus-ds/box": "workspace:*"
@@ -3221,9 +3221,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/radio@workspace:packages/react/Radio":
+"@nimbus-ds/radio@workspace:packages/react/atomic/Radio":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/radio@workspace:packages/react/Radio"
+  resolution: "@nimbus-ds/radio@workspace:packages/react/atomic/Radio"
   dependencies:
     "@nimbus-ds/skeleton": "workspace:*"
     "@nimbus-ds/styles": "workspace:*"
@@ -3239,9 +3239,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/select@workspace:packages/react/Select":
+"@nimbus-ds/select@workspace:packages/react/atomic/Select":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/select@workspace:packages/react/Select"
+  resolution: "@nimbus-ds/select@workspace:packages/react/atomic/Select"
   dependencies:
     "@nimbus-ds/skeleton": "workspace:*"
     "@nimbus-ds/styles": "workspace:*"
@@ -3256,9 +3256,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/sidebar@workspace:packages/react/Sidebar":
+"@nimbus-ds/sidebar@workspace:packages/react/composite/Sidebar":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/sidebar@workspace:packages/react/Sidebar"
+  resolution: "@nimbus-ds/sidebar@workspace:packages/react/composite/Sidebar"
   dependencies:
     "@nimbus-ds/box": "workspace:*"
     "@nimbus-ds/button": "workspace:*"
@@ -3277,9 +3277,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/skeleton@workspace:*, @nimbus-ds/skeleton@workspace:packages/react/Skeleton":
+"@nimbus-ds/skeleton@workspace:*, @nimbus-ds/skeleton@workspace:packages/react/atomic/Skeleton":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/skeleton@workspace:packages/react/Skeleton"
+  resolution: "@nimbus-ds/skeleton@workspace:packages/react/atomic/Skeleton"
   dependencies:
     "@nimbus-ds/styles": "workspace:*"
     "@vanilla-extract/dynamic": ^2.0.2
@@ -3295,9 +3295,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/spinner@workspace:*, @nimbus-ds/spinner@workspace:packages/react/Spinner":
+"@nimbus-ds/spinner@workspace:*, @nimbus-ds/spinner@workspace:packages/react/atomic/Spinner":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/spinner@workspace:packages/react/Spinner"
+  resolution: "@nimbus-ds/spinner@workspace:packages/react/atomic/Spinner"
   dependencies:
     "@nimbus-ds/styles": "workspace:*"
     "@vanilla-extract/dynamic": ^2.0.2
@@ -3312,9 +3312,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/stack@workspace:*, @nimbus-ds/stack@workspace:packages/react/Stack":
+"@nimbus-ds/stack@workspace:*, @nimbus-ds/stack@workspace:packages/react/atomic/Stack":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/stack@workspace:packages/react/Stack"
+  resolution: "@nimbus-ds/stack@workspace:packages/react/atomic/Stack"
   dependencies:
     "@nimbus-ds/box": "workspace:*"
     "@nimbus-ds/styles": "workspace:*"
@@ -3330,9 +3330,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/styles@workspace:*, @nimbus-ds/styles@workspace:packages/styles":
+"@nimbus-ds/styles@workspace:*, @nimbus-ds/styles@workspace:packages/core/styles":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/styles@workspace:packages/styles"
+  resolution: "@nimbus-ds/styles@workspace:packages/core/styles"
   dependencies:
     "@nimbus-ds/tokens": "workspace:*"
     "@vanilla-extract/css": ^1.9.2
@@ -3347,9 +3347,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/tabs@workspace:packages/react/Tabs":
+"@nimbus-ds/tabs@workspace:packages/react/composite/Tabs":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/tabs@workspace:packages/react/Tabs"
+  resolution: "@nimbus-ds/tabs@workspace:packages/react/composite/Tabs"
   dependencies:
     "@nimbus-ds/styles": "workspace:*"
     "@vanilla-extract/dynamic": ^2.0.2
@@ -3364,9 +3364,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/tag@workspace:*, @nimbus-ds/tag@workspace:packages/react/Tag":
+"@nimbus-ds/tag@workspace:*, @nimbus-ds/tag@workspace:packages/react/atomic/Tag":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/tag@workspace:packages/react/Tag"
+  resolution: "@nimbus-ds/tag@workspace:packages/react/atomic/Tag"
   dependencies:
     "@nimbus-ds/skeleton": "workspace:*"
     "@nimbus-ds/styles": "workspace:*"
@@ -3383,9 +3383,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/text@workspace:*, @nimbus-ds/text@workspace:packages/react/Text":
+"@nimbus-ds/text@workspace:*, @nimbus-ds/text@workspace:packages/react/atomic/Text":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/text@workspace:packages/react/Text"
+  resolution: "@nimbus-ds/text@workspace:packages/react/atomic/Text"
   dependencies:
     "@nimbus-ds/skeleton": "workspace:*"
     "@nimbus-ds/styles": "workspace:*"
@@ -3400,9 +3400,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/textarea@workspace:packages/react/Textarea":
+"@nimbus-ds/textarea@workspace:packages/react/atomic/Textarea":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/textarea@workspace:packages/react/Textarea"
+  resolution: "@nimbus-ds/textarea@workspace:packages/react/atomic/Textarea"
   dependencies:
     "@nimbus-ds/skeleton": "workspace:*"
     "@nimbus-ds/styles": "workspace:*"
@@ -3417,9 +3417,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/thumbnail@workspace:packages/react/Thumbnail":
+"@nimbus-ds/thumbnail@workspace:packages/react/atomic/Thumbnail":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/thumbnail@workspace:packages/react/Thumbnail"
+  resolution: "@nimbus-ds/thumbnail@workspace:packages/react/atomic/Thumbnail"
   dependencies:
     "@nimbus-ds/icon": "workspace:*"
     "@nimbus-ds/skeleton": "workspace:*"
@@ -3438,9 +3438,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/title@workspace:*, @nimbus-ds/title@workspace:packages/react/Title":
+"@nimbus-ds/title@workspace:*, @nimbus-ds/title@workspace:packages/react/atomic/Title":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/title@workspace:packages/react/Title"
+  resolution: "@nimbus-ds/title@workspace:packages/react/atomic/Title"
   dependencies:
     "@nimbus-ds/skeleton": "workspace:*"
     "@nimbus-ds/styles": "workspace:*"
@@ -3455,9 +3455,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/toast@workspace:packages/react/Toast":
+"@nimbus-ds/toast@workspace:packages/react/atomic/Toast":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/toast@workspace:packages/react/Toast"
+  resolution: "@nimbus-ds/toast@workspace:packages/react/atomic/Toast"
   dependencies:
     "@nimbus-ds/icon": "workspace:*"
     "@nimbus-ds/spinner": "workspace:*"
@@ -3475,9 +3475,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/toggle@workspace:packages/react/Toggle":
+"@nimbus-ds/toggle@workspace:packages/react/atomic/Toggle":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/toggle@workspace:packages/react/Toggle"
+  resolution: "@nimbus-ds/toggle@workspace:packages/react/atomic/Toggle"
   dependencies:
     "@nimbus-ds/skeleton": "workspace:*"
     "@nimbus-ds/styles": "workspace:*"
@@ -3493,17 +3493,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/tokens@workspace:*, @nimbus-ds/tokens@workspace:packages/tokens":
+"@nimbus-ds/tokens@workspace:*, @nimbus-ds/tokens@workspace:packages/core/tokens":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/tokens@workspace:packages/tokens"
+  resolution: "@nimbus-ds/tokens@workspace:packages/core/tokens"
   dependencies:
     style-dictionary: ^3.7.1
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/tooltip@workspace:packages/react/Tooltip":
+"@nimbus-ds/tooltip@workspace:packages/react/atomic/Tooltip":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/tooltip@workspace:packages/react/Tooltip"
+  resolution: "@nimbus-ds/tooltip@workspace:packages/react/atomic/Tooltip"
   dependencies:
     "@floating-ui/react-dom-interactions": ^0.10.1
     "@nimbus-ds/stack": "workspace:*"

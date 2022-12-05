@@ -1,0 +1,13 @@
+{
+  "extends": "../../../../tsconfig.json",
+  "include": ["./src"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "declaration": false,
+    "paths": {
+      "@nimbus-ds/styles": ["../../../core/styles/src"],
+      "@nimbus-ds/skeleton": ["../Skeleton/src"],
+      "@nimbus-ds/icon": ["../Icon/src"]
+    }
+  }
+}
