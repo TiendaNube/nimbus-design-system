@@ -34,10 +34,9 @@ const config: Config.InitialOptions = {
     "^.+\\.svg$": "jest-svg-transformer",
   },
   transform: {
-    "^.+\\.css\\.ts$": "babel-jest",
+    "^.+\\.css\\.ts$": ["babel-jest", { configFile: "./babel-jest.config.js" }],
     ".+\\.(ts|tsx)$": "ts-jest",
   },
   coveragePathIgnorePatterns: ["dist"],
 };
-
 export default config;
