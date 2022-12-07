@@ -17,6 +17,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 - Removed `@vanilla-extract/webpack-plugin@2.0.0`. ([#63](https://github.com/TiendaNube/nimbus-design-system/pull/63) by [@juniorconquista](https://github.com/juniorconquista))
 - Removed `mini-css-extract-plugin@2.7.0`. ([#63](https://github.com/TiendaNube/nimbus-design-system/pull/63) by [@juniorconquista](https://github.com/juniorconquista))
 - Removed `ts-loader@9.4.1`. ([#63](https://github.com/TiendaNube/nimbus-design-system/pull/63) by [@juniorconquista](https://github.com/juniorconquista))
+- Removed `webpack-cli@4.10.0`. ([#63](https://github.com/TiendaNube/nimbus-design-system/pull/63) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2022-12-02 `4.20.0`
 
