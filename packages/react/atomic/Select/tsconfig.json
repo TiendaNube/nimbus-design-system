@@ -1,12 +1,5 @@
 {
   "extends": "../../../../tsconfig.json",
-  "include": ["./src", "../../../index.d.ts"],
-  "compilerOptions": {
-    "baseUrl": ".",
-    "declaration": false,
-    "paths": {
-      "@nimbus-ds/styles": ["../../../core/styles/src"],
-      "@nimbus-ds/skeleton": ["../Skeleton/src"]
-    }
-  }
+  "include": ["./src", "../../../../index.d.ts"],
+  "exclude": ["src/**/*.spec.tsx"]
 }
