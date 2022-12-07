@@ -9,6 +9,7 @@ export const externalItems = {
   "@nimbus-ds/skeleton": "@nimbus-ds/skeleton",
   "@nimbus-ds/spinner": "@nimbus-ds/spinner",
   "@nimbus-ds/text": "@nimbus-ds/text",
+  "@nimbus-ds/title": "@nimbus-ds/title",
   "@nimbus-ds/tokens": "@nimbus-ds/tokens",
   "@tiendanube/icons": "@tiendanube/icons",
   react: "react",
