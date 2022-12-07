@@ -37,7 +37,6 @@
     "@nimbus-ds/tag": "workspace:*",
     "@nimbus-ds/text": "workspace:*",
     "typescript": "^4.7.4",
-    "webpack": "^5.74.0",
-    "webpack-cli": "^5.0.1"
+    "webpack": "^5.74.0"
   }
 }

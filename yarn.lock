@@ -2944,7 +2944,6 @@ __metadata:
     "@nimbus-ds/title": "workspace:*"
     typescript: ^4.7.4
     webpack: ^5.74.0
-    webpack-cli: ^5.0.1
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -2960,7 +2959,6 @@ __metadata:
     "@nimbus-ds/text": "workspace:*"
     typescript: ^4.7.4
     webpack: ^5.74.0
-    webpack-cli: ^5.0.1
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -2975,7 +2973,6 @@ __metadata:
     "@vanilla-extract/dynamic": ^2.0.2
     typescript: ^4.7.4
     webpack: ^5.74.0
-    webpack-cli: ^5.0.1
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -2993,7 +2990,6 @@ __metadata:
     "@tiendanube/icons": ^0.3.1
     typescript: ^4.7.4
     webpack: ^5.74.0
-    webpack-cli: ^5.0.1
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3013,7 +3009,6 @@ __metadata:
     "@nimbus-ds/title": "workspace:*"
     typescript: ^4.7.4
     webpack: ^5.74.0
-    webpack-cli: ^5.0.1
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3030,7 +3025,6 @@ __metadata:
     "@nimbus-ds/text": "workspace:*"
     typescript: ^4.7.4
     webpack: ^5.74.0
-    webpack-cli: ^5.0.1
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3048,7 +3042,6 @@ __metadata:
     "@tiendanube/icons": ^0.3.1
     typescript: ^4.7.4
     webpack: ^5.74.0
-    webpack-cli: ^5.0.1
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3067,7 +3060,6 @@ __metadata:
     "@vanilla-extract/dynamic": ^2.0.2
     typescript: ^4.7.4
     webpack: ^5.74.0
-    webpack-cli: ^5.0.1
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3084,7 +3076,6 @@ __metadata:
     "@tiendanube/icons": ^0.3.1
     typescript: ^4.7.4
     webpack: ^5.74.0
-    webpack-cli: ^5.0.1
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3100,7 +3091,6 @@ __metadata:
     "@tiendanube/icons": ^0.3.1
     typescript: ^4.7.4
     webpack: ^5.74.0
-    webpack-cli: ^5.0.1
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3117,7 +3107,6 @@ __metadata:
     "@tiendanube/icons": ^0.3.1
     typescript: ^4.7.4
     webpack: ^5.74.0
-    webpack-cli: ^5.0.1
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3134,7 +3123,6 @@ __metadata:
     "@tiendanube/icons": ^0.3.1
     typescript: ^4.7.4
     webpack: ^5.74.0
-    webpack-cli: ^5.0.1
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3150,7 +3138,6 @@ __metadata:
     "@tiendanube/icons": ^0.3.1
     typescript: ^4.7.4
     webpack: ^5.74.0
-    webpack-cli: ^5.0.1
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3165,7 +3152,6 @@ __metadata:
     "@nimbus-ds/styles": "workspace:*"
     typescript: ^4.7.4
     webpack: ^5.74.0
-    webpack-cli: ^5.0.1
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3183,7 +3169,6 @@ __metadata:
     "@vanilla-extract/dynamic": ^2.0.2
     typescript: ^4.7.4
     webpack: ^5.74.0
-    webpack-cli: ^5.0.1
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3199,7 +3184,6 @@ __metadata:
     "@nimbus-ds/text": "workspace:*"
     typescript: ^4.7.4
     webpack: ^5.74.0
-    webpack-cli: ^5.0.1
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3214,7 +3198,6 @@ __metadata:
     "@nimbus-ds/styles": "workspace:*"
     typescript: ^4.7.4
     webpack: ^5.74.0
-    webpack-cli: ^5.0.1
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3234,7 +3217,6 @@ __metadata:
     "@nimbus-ds/title": "workspace:*"
     typescript: ^4.7.4
     webpack: ^5.74.0
-    webpack-cli: ^5.0.1
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3250,7 +3232,6 @@ __metadata:
     "@vanilla-extract/dynamic": ^2.0.2
     typescript: ^4.7.4
     webpack: ^5.74.0
-    webpack-cli: ^5.0.1
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3265,7 +3246,6 @@ __metadata:
     "@vanilla-extract/dynamic": ^2.0.2
     typescript: ^4.7.4
     webpack: ^5.74.0
-    webpack-cli: ^5.0.1
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3281,7 +3261,6 @@ __metadata:
     "@vanilla-extract/dynamic": ^2.0.2
     typescript: ^4.7.4
     webpack: ^5.74.0
-    webpack-cli: ^5.0.1
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3315,7 +3294,6 @@ __metadata:
     "@vanilla-extract/dynamic": ^2.0.2
     typescript: ^4.7.4
     webpack: ^5.74.0
-    webpack-cli: ^5.0.1
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3332,7 +3310,6 @@ __metadata:
     "@tiendanube/icons": ^0.3.1
     typescript: ^4.7.4
     webpack: ^5.74.0
-    webpack-cli: ^5.0.1
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3347,7 +3324,6 @@ __metadata:
     "@nimbus-ds/styles": "workspace:*"
     typescript: ^4.7.4
     webpack: ^5.74.0
-    webpack-cli: ^5.0.1
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3362,7 +3338,6 @@ __metadata:
     "@nimbus-ds/styles": "workspace:*"
     typescript: ^4.7.4
     webpack: ^5.74.0
-    webpack-cli: ^5.0.1
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3380,7 +3355,6 @@ __metadata:
     "@vanilla-extract/dynamic": ^2.0.2
     typescript: ^4.7.4
     webpack: ^5.74.0
-    webpack-cli: ^5.0.1
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3395,7 +3369,6 @@ __metadata:
     "@nimbus-ds/styles": "workspace:*"
     typescript: ^4.7.4
     webpack: ^5.74.0
-    webpack-cli: ^5.0.1
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3413,7 +3386,6 @@ __metadata:
     "@tiendanube/icons": ^0.3.1
     typescript: ^4.7.4
     webpack: ^5.74.0
-    webpack-cli: ^5.0.1
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3429,7 +3401,6 @@ __metadata:
     "@nimbus-ds/text": "workspace:*"
     typescript: ^4.7.4
     webpack: ^5.74.0
-    webpack-cli: ^5.0.1
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3454,7 +3425,6 @@ __metadata:
     "@vanilla-extract/dynamic": ^2.0.2
     typescript: ^4.7.4
     webpack: ^5.74.0
-    webpack-cli: ^5.0.1
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -15383,9 +15353,11 @@ __metadata:
     react: ^18.2.0
     react-dom: ^18.2.0
     ts-jest: ^28.0.7
+    ts-loader: ^9.4.2
     ts-node: ^10.9.1
     turbo: ^1.6.1
     typescript: ^4.7.4
+    webpack-cli: ^5.0.1
   languageName: unknown
   linkType: soft
 
