@@ -2,7 +2,7 @@
 
 Icons are used to visually communicate core parts of the product and available actions. They can act as wayfinding tools to help merchants more easily understand where they are in the product, and common interaction patterns that are available.
 
-## 2022-09-07 `1.6.0`
+## 2022-12-07 `1.6.0`
 
 ### 🎉 New features
 

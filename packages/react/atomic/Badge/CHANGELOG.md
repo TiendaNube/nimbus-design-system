@@ -2,7 +2,7 @@
 
 The badge component is used to communicate quantities of items or pending actions.
 
-## 2022-09-07 `2.1.0`
+## 2022-12-07 `2.1.0`
 
 ### 🎉 New features
 

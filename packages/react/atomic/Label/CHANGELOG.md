@@ -2,7 +2,7 @@
 
 Labels are mainly used to accompany form controls such as inputs, checkboxes, selects, etc. and describe the information that is required inside of each control. They can be visually hidden for UI requirements but can still be read by assistive technologies. They can also include icons or other components to support the relaying of content.
 
-## 2022-09-07 `1.5.0`
+## 2022-12-07 `1.5.0`
 
 ### 🎉 New features
 

@@ -2,7 +2,7 @@
 
 The File Uploader component is used to upload files.
 
-## 2022-09-07 `1.2.0`
+## 2022-12-07 `1.2.0`
 
 ### 🎉 New features
 
