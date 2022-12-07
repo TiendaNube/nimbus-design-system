@@ -1,0 +1,28 @@
+{
+  "name": "@nimbus-ds/webpack",
+  "version": "0.0.0",
+  "license": "MIT",
+  "source": "src/index.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "sideEffects": false,
+  "homepage": "https://nimbus.nuvemshop.com.br/documentation",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TiendaNube/nimbus-design-system.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TiendaNube/nimbus-design-system/issues"
+  },
+  "devDependencies": {
+    "@types/webpack": "^5.28.0",
+    "@vanilla-extract/webpack-plugin": "^2.2.0",
+    "mini-css-extract-plugin": "^2.7.2",
+    "terser-webpack-plugin": "^5.3.6",
+    "typescript": "^4.9.3",
+    "webpack": "^5.75.0",
+    "webpack-merge": "^5.8.0"
+  }
+}
