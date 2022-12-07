@@ -1,5 +1,5 @@
 import { Toast } from "./Toast";
-import "@nimbus-ds/styles/packages/toast/index.css";
+import "@nimbus-ds/styles/packages/atomic/toast/index.css";
 
 export { Toast } from "./Toast";
 export { ToastProvider } from "./components";

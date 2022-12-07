@@ -7,6 +7,7 @@ export const externalItems = {
   "@nimbus-ds/icon": "@nimbus-ds/icon",
   "@nimbus-ds/styles": "@nimbus-ds/styles",
   "@nimbus-ds/skeleton": "@nimbus-ds/skeleton",
+  "@nimbus-ds/spinner": "@nimbus-ds/spinner",
   "@nimbus-ds/text": "@nimbus-ds/text",
   "@nimbus-ds/tokens": "@nimbus-ds/tokens",
   "@tiendanube/icons": "@tiendanube/icons",
