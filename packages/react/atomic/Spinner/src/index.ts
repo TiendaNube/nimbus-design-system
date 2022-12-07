@@ -1,5 +1,5 @@
 import { Spinner } from "./Spinner";
-import "@nimbus-ds/styles/packages/spinner/index.css";
+import "@nimbus-ds/styles/packages/atomic/spinner/index.css";
 
 export { Spinner } from "./Spinner";
 export type { SpinnerProps } from "./spinner.types";
