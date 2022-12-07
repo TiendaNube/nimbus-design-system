@@ -1,15 +1,5 @@
 {
   "extends": "../../../../tsconfig.json",
   "include": ["./src"],
-  "compilerOptions": {
-    "baseUrl": ".",
-    "declaration": false,
-    "paths": {
-      "@nimbus-ds/styles": ["../../../core/styles/src"],
-      "@nimbus-ds/badge": ["../Badge/src"],
-      "@nimbus-ds/icon": ["../Icon/src"],
-      "@nimbus-ds/skeleton": ["../Skeleton/src"],
-      "@nimbus-ds/spinner": ["../Spinner/src"]
-    }
-  }
+  "exclude": ["src/**/*.spec.tsx"]
 }

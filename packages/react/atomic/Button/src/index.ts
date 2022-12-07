@@ -1,5 +1,5 @@
 import { Button } from "./Button";
-import "@nimbus-ds/styles/packages/button/index.css";
+import "@nimbus-ds/styles/packages/atomic/button/index.css";
 
 export { Button } from "./Button";
 export type { ButtonProps } from "./button.types";
