@@ -6,11 +6,11 @@ import { join } from "path";
 import { rootDir } from "../utils/constants";
 
 export const aliasItems = {
-  "@nimbus-ds/tokens": join(rootDir, "../../core/tokens"),
-  "@nimbus-ds/styles": join(rootDir, "../../core/styles/dist"),
-  "@nimbus-ds/webpack": join(rootDir, "../../core/webpack/src"),
-  "@nimbus-ds/icon": join(rootDir, "../../../react/atomic/Icon/src"),
-  "@nimbus-ds/skeleton": join(rootDir, "../../../react/atomic/Skeleton/src"),
-  "@nimbus-ds/spinner": join(rootDir, "../../../react/atomic/Spinner/src"),
-  "@nimbus-ds/text": join(rootDir, "../../../react/atomic/Text/src"),
+  "@nimbus-ds/tokens": join(rootDir, "./packages/core/tokens"),
+  "@nimbus-ds/styles": join(rootDir, "./packages/core/styles/dist"),
+  "@nimbus-ds/webpack": join(rootDir, "./packages/core/webpack/src"),
+  "@nimbus-ds/icon": join(rootDir, "./packages/react/atomic/Icon/src"),
+  "@nimbus-ds/skeleton": join(rootDir, "./packages/react/atomic/Skeleton/src"),
+  "@nimbus-ds/spinner": join(rootDir, "./packages/react/atomic/Spinner/src"),
+  "@nimbus-ds/text": join(rootDir, "./packages/react/atomic/Text/src"),
 };

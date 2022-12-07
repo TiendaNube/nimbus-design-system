@@ -2,10 +2,7 @@
   "name": "@nimbus-ds/alert",
   "version": "1.0.1",
   "license": "MIT",
-  "source": "src/index.ts",
   "main": "dist/index.js",
-  "module": "dist/index.module.js",
-  "types": "dist/index.d.ts",
   "files": [
     "dist",
     "README.md"
@@ -13,7 +10,7 @@
   "sideEffects": false,
   "scripts": {
     "build": "yarn build:types && webpack",
-    "build:types": "tsc --emitDeclarationOnly --declaration true --declarationDir ./dist --baseUrl ../../../",
+    "build:types": "tsc --emitDeclarationOnly --declaration true --declarationDir ./dist --baseUrl ./",
     "clean": "rm -rf dist",
     "version": "yarn version"
   },
@@ -38,6 +35,7 @@
   "devDependencies": {
     "@nimbus-ds/button": "workspace:*",
     "typescript": "^4.7.4",
-    "webpack": "^5.74.0"
+    "webpack": "^5.74.0",
+    "webpack-cli": "^5.0.1"
   }
 }

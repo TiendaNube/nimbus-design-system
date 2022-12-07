@@ -22,7 +22,6 @@ A toggle is used to quickly switch between two possible states. They are commonl
 - Added `ts-loader@9.3.1`. ([#31](https://github.com/TiendaNube/nimbus-design-system/pull/31) by [@juniorconquista](https://github.com/juniorconquista))
 - Added `typescript@4.7.4`. ([#31](https://github.com/TiendaNube/nimbus-design-system/pull/31) by [@juniorconquista](https://github.com/juniorconquista))
 - Added `webpack@5.74.0`. ([#31](https://github.com/TiendaNube/nimbus-design-system/pull/31) by [@juniorconquista](https://github.com/juniorconquista))
-- Added `webpack-cli@4.10.0`. ([#31](https://github.com/TiendaNube/nimbus-design-system/pull/31) by [@juniorconquista](https://github.com/juniorconquista))
 
 ### 🎉 New features
 
