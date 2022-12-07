@@ -1,17 +1,5 @@
 {
   "extends": "../../../../tsconfig.json",
   "include": ["./src"],
-  "compilerOptions": {
-    "baseUrl": ".",
-    "declaration": false,
-    "paths": {
-      "@nimbus-ds/styles": ["../../../core/styles/src"],
-      "@nimbus-ds/tag": ["../../atomic/Tag/src"],
-      "@nimbus-ds/text": ["../../atomic/Text/src"],
-      "@nimbus-ds/title": ["../../atomic/Tilte/src"],
-      "@nimbus-ds/stack": ["../../atomic/Stack/src"],
-      "@nimbus-ds/box": ["../../atomic/Box/src"],
-      "@nimbus-ds/button": ["../../atomic/Button/src"]
-    }
-  }
+  "exclude": ["src/**/*.spec.tsx"]
 }
