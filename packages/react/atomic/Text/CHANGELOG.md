@@ -2,7 +2,7 @@
 
 Text is a basic component that allows us to write blocks of text and give it formatting to use within other components, sections and pages of our application or website.
 
-## 2022-09-07 `4.3.0`
+## 2022-12-07 `4.3.0`
 
 ### 🎉 New features
 
