@@ -13,7 +13,7 @@
   "sideEffects": false,
   "scripts": {
     "build": "yarn build:types && webpack",
-    "build:types": "tsc --emitDeclarationOnly --declaration true --declarationDir ./dist --baseUrl ../../../",
+    "build:types": "tsc --emitDeclarationOnly --declaration true --declarationDir ./dist --baseUrl ./",
     "clean": "rm -rf dist",
     "version": "yarn version"
   },
@@ -36,10 +36,7 @@
   "devDependencies": {
     "@nimbus-ds/icon": "workspace:*",
     "@tiendanube/icons": "^0.3.1",
-    "terser-webpack-plugin": "^5.3.5",
-    "ts-loader": "^9.3.1",
     "typescript": "^4.7.4",
-    "webpack": "^5.74.0",
-    "webpack-cli": "^4.10.0"
+    "webpack": "^5.74.0"
   }
 }
