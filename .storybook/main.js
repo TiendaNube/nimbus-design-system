@@ -12,8 +12,8 @@ module.exports = {
     },
   },
   stories: [
-    "../packages/react/**/*.stories.mdx",
-    "../packages/react/**/*.stories.@(js|jsx|ts|tsx)",
+    "../packages/react/*/**/*.stories.mdx",
+    "../packages/react/*/**/*.stories.@(js|jsx|ts|tsx)",
   ],
   addons: [
     "@storybook/addon-links",
@@ -52,16 +52,20 @@ const convertTsConfigPathsToWebpackAliases = () => {
   const tsconfigPaths = Object.entries(tsconfig.compilerOptions.paths);
 
   const paths = tsconfigPaths.reduce((aliases, [realPath, mappedPath]) => {
-    const packageName = mappedPath[0].split("/")[3];
+    const packageName = mappedPath[0].split("/")[4];
     const alias = `${mappedPath[0]}/${packageName}.tsx`;
     aliases[realPath] = path.join(rootDir, alias);
     return aliases;
   }, {});
 
-  paths["@nimbus-ds/tokens"] = path.join(rootDir, "packages/tokens");
+  paths["@nimbus-ds/tokens"] = path.join(rootDir, "packages/core/tokens");
   paths["@nimbus-ds/styles"] = path.join(
     rootDir,
-    "packages/styles/src/index.ts"
+    "packages/core/styles/src/index.ts"
+  );
+  paths["@nimbus-ds/webpack"] = path.join(
+    rootDir,
+    "packages/core/webpack/src/index.ts"
   );
 
   return paths;
