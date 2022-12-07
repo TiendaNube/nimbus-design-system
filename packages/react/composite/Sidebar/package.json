@@ -18,6 +18,7 @@
     "version": "yarn version"
   },
   "dependencies": {
+    "@floating-ui/react-dom-interactions": "^0.10.1",
     "@nimbus-ds/styles": "workspace:*",
     "@nimbus-ds/title": "workspace:*"
   },
