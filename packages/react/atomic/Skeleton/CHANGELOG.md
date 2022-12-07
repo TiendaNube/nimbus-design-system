@@ -2,7 +2,7 @@
 
 The skeleton is a basic component that displays a placeholder preview of its content before the data is loaded, reducing the feeling of slow loading time.
 
-## 2022-09-07 `1.2.0`
+## 2022-12-07 `1.2.0`
 
 ### 🎉 New features
 
