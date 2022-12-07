@@ -6,6 +6,7 @@ Package-specific changes not released in any package will be added here just bef
 ## 2022-12-07
 
 - Renamed babel file jest from `babel-jest.config` to `babel.config`. ([#63](https://github.com/TiendaNube/nimbus-design-system/pull/63) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `@vanilla-extract/webpack-plugin@^2.2.0`. ([#63](https://github.com/TiendaNube/nimbus-design-system/pull/63) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2022-12-05
 
@@ -18,7 +19,7 @@ Package-specific changes not released in any package will be added here just bef
 
 ### 📚 3rd party library updates
 
-Added `mini-css-extract-plugin@2.7.0`. ([#56](https://github.com/TiendaNube/nimbus-design-system/pull/56) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `mini-css-extract-plugin@2.7.0`. ([#56](https://github.com/TiendaNube/nimbus-design-system/pull/56) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2022-11-02
 
