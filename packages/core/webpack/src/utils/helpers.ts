@@ -1,5 +1,5 @@
 /**
- * Created by: Andrey Polyakov (andrey@polyakov.im)
+ * Created by: Júnior Conquista (junior.conquista@nuvemshop.com.br)
  */
 
 interface Rule {

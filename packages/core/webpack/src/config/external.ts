@@ -3,6 +3,7 @@
  * @see https://webpack.js.org/configuration/externals/
  */
 export const externalItems = {
+  "@nimbus-ds/icon": "@nimbus-ds/icon",
   "@nimbus-ds/styles": "@nimbus-ds/styles",
   "@nimbus-ds/skeleton": "@nimbus-ds/skeleton",
   "@nimbus-ds/text": "@nimbus-ds/text",

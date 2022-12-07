@@ -1,5 +1,5 @@
 import { Checkbox } from "./Checkbox";
-import "@nimbus-ds/styles/packages/checkbox/index.css";
+import "@nimbus-ds/styles/packages/atomic/checkbox/index.css";
 
 export { Checkbox } from "./Checkbox";
 export type { CheckboxProps } from "./checkbox.types";

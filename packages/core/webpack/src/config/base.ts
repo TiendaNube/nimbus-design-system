@@ -5,7 +5,7 @@ import merge from "webpack-merge";
 import { Configuration } from "webpack";
 
 import { arrayFilterEmpty, isProduction } from "../utils";
-import { typescriptRule } from "../rules";
+import { typescriptRule, svgRule } from "../rules";
 import { aliasItems } from "./alias";
 import { externalItems } from "./external";
 
@@ -22,7 +22,7 @@ const webpack: Configuration = {
     libraryTarget: "umd",
   },
   module: {
-    rules: arrayFilterEmpty([typescriptRule]),
+    rules: arrayFilterEmpty([typescriptRule, svgRule]),
   },
   plugins: [],
   resolve: {
