@@ -5,6 +5,7 @@
 export const externalItems = {
   "@nimbus-ds/styles": "@nimbus-ds/styles",
   "@nimbus-ds/skeleton": "@nimbus-ds/skeleton",
+  "@nimbus-ds/text": "@nimbus-ds/text",
   "@nimbus-ds/tokens": "@nimbus-ds/tokens",
   react: "react",
   "react-dom": "react-dom",

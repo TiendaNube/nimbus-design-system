@@ -2,7 +2,19 @@
 
 The badge component is used to communicate quantities of items or pending actions.
 
-## 2022-09-28
+## 2022-09-07 `2.1.0`
+
+### 🎉 New features
+
+- Changed build build to consume inner package `@nimbus-ds/webpack`. ([#63](https://github.com/TiendaNube/nimbus-design-system/pull/63) by [@juniorconquista](https://github.com/juniorconquista))
+
+### 📚 3rd party library updates
+
+- Removed `terser-webpack-plugin@5.3.5`. ([#63](https://github.com/TiendaNube/nimbus-design-system/pull/63) by [@juniorconquista](https://github.com/juniorconquista))
+- Removed `ts-loader@9.3.1`. ([#63](https://github.com/TiendaNube/nimbus-design-system/pull/63) by [@juniorconquista](https://github.com/juniorconquista))
+- Removed `webpack-cli@4.10.0`. ([#63](https://github.com/TiendaNube/nimbus-design-system/pull/63) by [@juniorconquista](https://github.com/juniorconquista))
+
+## 2022-09-28 `2.0.0`
 
 ### 🎉 New features
 
@@ -10,19 +22,19 @@ The badge component is used to communicate quantities of items or pending action
 - Added displayName to component. ([#32](https://github.com/TiendaNube/nimbus-design-system/pull/32) by [@juniorconquista](https://github.com/juniorconquista))
 - Added displayName to component `Badge.Skeleton`. ([#32](https://github.com/TiendaNube/nimbus-design-system/pull/32) by [@juniorconquista](https://github.com/juniorconquista))
 
-## 2022-09-27
+## 2022-09-27 `1.2.0`
 
 ### 💡 Others
 
 - Adjusted component native typing for HTMLElement. ([#30](https://github.com/TiendaNube/nimbus-design-system/pull/30) by [@juniorconquista](https://github.com/juniorconquista))
 
-## 2022-09-01
+## 2022-09-01 `1.1.0`
 
 ### 📚 3rd party library updates
 
 - Removed `@vanilla-extract/webpack-plugin@2.1.11`. ([#21](https://github.com/TiendaNube/nimbus-design-system/pull/21) by [@juniorconquista](https://github.com/juniorconquista))
 
-## 2022-08-25
+## 2022-08-25 `1.0.0`
 
 ### 📚 3rd party library updates
 
