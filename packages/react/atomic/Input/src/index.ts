@@ -1,5 +1,5 @@
 import { Input } from "./Input";
-import "@nimbus-ds/styles/packages/input/index.css";
+import "@nimbus-ds/styles/packages/atomic/input/index.css";
 
 export { Input } from "./Input";
 export type { InputProps } from "./input.types";
