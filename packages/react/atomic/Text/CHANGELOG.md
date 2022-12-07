@@ -2,7 +2,13 @@
 
 Text is a basic component that allows us to write blocks of text and give it formatting to use within other components, sections and pages of our application or website.
 
-## 2022-09-29
+## 2022-09-07 `4.3.0`
+
+### 🎉 New features
+
+- Changed build build to consume inner package `@nimbus-ds/webpack`. ([#63](https://github.com/TiendaNube/nimbus-design-system/pull/63) by [@juniorconquista](https://github.com/juniorconquista))
+
+## 2022-09-29 `4.1.0`
 
 ### 🎉 New features
 
@@ -14,7 +20,7 @@ Text is a basic component that allows us to write blocks of text and give it for
 
 - Removed `primary.background`, `danger.background`, `success.background`, `waring.background` color properties. ([#32](https://github.com/TiendaNube/nimbus-design-system/pull/32) by [@juniorconquista](https://github.com/juniorconquista))
 
-## 2022-09-24
+## 2022-09-24 `4.0.0`
 
 ### 💡 Others
 
@@ -22,7 +28,7 @@ Text is a basic component that allows us to write blocks of text and give it for
 - Refactored `lineHeight` properties for `caption`, `base` and `highlight`. ([#29](https://github.com/TiendaNube/nimbus-design-system/pull/29) by [@juniorconquista](https://github.com/juniorconquista))
 - Renamed `Skeleton` component to `TextSkeleton`. ([#29](https://github.com/TiendaNube/nimbus-design-system/pull/29) by [@juniorconquista](https://github.com/juniorconquista))
 
-## 2022-09-12
+## 2022-09-12 `3.0.0`
 
 ### 🎉 New features
 
@@ -33,7 +39,7 @@ Text is a basic component that allows us to write blocks of text and give it for
 - Renamed `size` property for `fontSize` to the Component Text. ([#23](https://github.com/TiendaNube/nimbus-design-system/pull/23) by [@juniorconquista](https://github.com/juniorconquista))
 - Removed `bold` property to the Component Text. ([#23](https://github.com/TiendaNube/nimbus-design-system/pull/23) by [@juniorconquista](https://github.com/juniorconquista))
 
-## 2022-09-01
+## 2022-09-01 `2.0.0`
 
 ### 📚 3rd party library updates
 
@@ -47,7 +53,7 @@ Text is a basic component that allows us to write blocks of text and give it for
 
 - Removed `appearance` properties to the Component Text. ([#21](https://github.com/TiendaNube/nimbus-design-system/pull/21) by [@juniorconquista](https://github.com/juniorconquista))
 
-## 2022-08-22
+## 2022-08-22 `1.1.0`
 
 ### 📚 3rd party library updates
 
@@ -61,7 +67,7 @@ Text is a basic component that allows us to write blocks of text and give it for
 - Added `size`, `width` and `height` properties to the Component `Text.Skeleton`. ([#15](https://github.com/TiendaNube/nimbus-design-system/pull/15) by [@juniorconquista](https://github.com/juniorconquista))
 - Added stories on Component `Text.Skeleton`. ([#15](https://github.com/TiendaNube/nimbus-design-system/pull/15) by [@juniorconquista](https://github.com/juniorconquista))
 
-## 2022-08-21
+## 2022-08-21 `1.0.0`
 
 ### 📚 3rd party library updates
 

@@ -2,7 +2,24 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
-## 2022-12-02 `1.2.1`
+## 2022-12-07 `5.0.0`
+
+### 🎉 New features
+
+- Restructuring folders and organizing style packs. ([#63](https://github.com/TiendaNube/nimbus-design-system/pull/63) by [@juniorconquista](https://github.com/juniorconquista))
+- Changed build build to consume inner package `@nimbus-ds/webpack`. ([#63](https://github.com/TiendaNube/nimbus-design-system/pull/63) by [@juniorconquista](https://github.com/juniorconquista))
+
+### 📚 3rd party library updates
+
+- Added `@types/glob@8`. ([#63](https://github.com/TiendaNube/nimbus-design-system/pull/63) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `glob@8.0.3`. ([#63](https://github.com/TiendaNube/nimbus-design-system/pull/63) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `ts-node@10.9.1`. ([#63](https://github.com/TiendaNube/nimbus-design-system/pull/63) by [@juniorconquista](https://github.com/juniorconquista))
+- Removed `@vanilla-extract/webpack-plugin@2.0.0`. ([#63](https://github.com/TiendaNube/nimbus-design-system/pull/63) by [@juniorconquista](https://github.com/juniorconquista))
+- Removed `mini-css-extract-plugin@2.7.0`. ([#63](https://github.com/TiendaNube/nimbus-design-system/pull/63) by [@juniorconquista](https://github.com/juniorconquista))
+- Removed `ts-loader@9.4.1`. ([#63](https://github.com/TiendaNube/nimbus-design-system/pull/63) by [@juniorconquista](https://github.com/juniorconquista))
+- Removed `webpack-cli@5.0.0`. ([#63](https://github.com/TiendaNube/nimbus-design-system/pull/63) by [@juniorconquista](https://github.com/juniorconquista))
+
+## 2022-12-02 `4.20.0`
 
 ### 🐛 Bug fixes
 

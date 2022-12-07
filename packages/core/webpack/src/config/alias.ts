@@ -9,4 +9,5 @@ export const aliasItems = {
   "@nimbus-ds/tokens": join(rootDir, "../../core/tokens"),
   "@nimbus-ds/styles": join(rootDir, "../../core/styles/dist"),
   "@nimbus-ds/webpack": join(rootDir, "../../core/webpack/src"),
+  "@nimbus-ds/skeleton": join(rootDir, "../../../react/atomic/Skeleton/src"),
 };
