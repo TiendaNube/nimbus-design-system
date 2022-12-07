@@ -8,6 +8,7 @@ export const externalItems = {
   "@nimbus-ds/skeleton": "@nimbus-ds/skeleton",
   "@nimbus-ds/text": "@nimbus-ds/text",
   "@nimbus-ds/tokens": "@nimbus-ds/tokens",
+  "@tiendanube/icons": "@tiendanube/icons",
   react: "react",
   "react-dom": "react-dom",
 };
