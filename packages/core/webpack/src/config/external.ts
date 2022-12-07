@@ -3,6 +3,7 @@
  * @see https://webpack.js.org/configuration/externals/
  */
 export const externalItems = {
+  "@floating-ui/react-dom-interactions": "@floating-ui/react-dom-interactions",
   "@nimbus-ds/icon": "@nimbus-ds/icon",
   "@nimbus-ds/styles": "@nimbus-ds/styles",
   "@nimbus-ds/skeleton": "@nimbus-ds/skeleton",
