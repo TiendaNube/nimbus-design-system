@@ -1,0 +1,43 @@
+{
+  "name": "@nimbus-ds/card",
+  "version": "1.1.0-rc.1",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "yarn build:types && webpack",
+    "build:types": "tsc --emitDeclarationOnly --declaration true --declarationDir ./dist --baseUrl ./",
+    "clean": "rm -rf dist",
+    "version": "yarn version"
+  },
+  "dependencies": {
+    "@nimbus-ds/styles": "workspace:*",
+    "@nimbus-ds/title": "workspace:*"
+  },
+  "peerDependencies": {
+    "react": "^16.8 || ^17.0 || ^18.0",
+    "react-dom": "^16.8 || ^17.0 || ^18.0"
+  },
+  "homepage": "https://nimbus.nuvemshop.com.br/documentation",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TiendaNube/nimbus-design-system.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TiendaNube/nimbus-design-system/issues"
+  },
+  "devDependencies": {
+    "@nimbus-ds/box": "workspace:*",
+    "@nimbus-ds/button": "workspace:*",
+    "@nimbus-ds/stack": "workspace:*",
+    "@nimbus-ds/tag": "workspace:*",
+    "@nimbus-ds/text": "workspace:*",
+    "typescript": "^4.7.4",
+    "webpack": "^5.74.0"
+  },
+  "stableVersion": "1.0.0"
+}
