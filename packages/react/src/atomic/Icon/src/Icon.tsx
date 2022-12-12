@@ -2,7 +2,7 @@ import React from "react";
 import { icon } from "@nimbus-ds/styles";
 
 import { IconProps, IconComponents } from "./icon.types";
-import { Skeleton } from "./components";
+import { IconSkeleton } from "./components";
 
 const Icon: React.FC<IconProps> & IconComponents = ({
   className: _className,
@@ -20,7 +20,7 @@ const Icon: React.FC<IconProps> & IconComponents = ({
   </div>
 );
 
-Icon.Skeleton = Skeleton;
+Icon.Skeleton = IconSkeleton;
 Icon.displayName = "Icon";
 
 export { Icon };

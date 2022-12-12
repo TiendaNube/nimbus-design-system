@@ -1,9 +1,9 @@
 import { InputHTMLAttributes } from "react";
 import { fileUploader } from "@nimbus-ds/styles";
-import { Skeleton } from "./components";
+import { FileUploaderSkeleton } from "./components";
 
 export interface FileUploaderComponents {
-  Skeleton: typeof Skeleton;
+  Skeleton: typeof FileUploaderSkeleton;
 }
 
 export interface FileUploaderProps

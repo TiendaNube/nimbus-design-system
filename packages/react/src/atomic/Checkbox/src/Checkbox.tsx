@@ -6,7 +6,7 @@ import { checkbox } from "@nimbus-ds/styles";
 import CheckIcon from "./checkbox-check.svg";
 import IndeterminateIcon from "./checkbox-indeterminate.svg";
 import { CheckboxProps, CheckboxComponents } from "./checkbox.types";
-import { Skeleton } from "./components";
+import { CheckboxSkeleton } from "./components";
 import { borderColors, textColors } from "./checkbox.definitions";
 
 const Checkbox: React.FC<CheckboxProps> & CheckboxComponents = ({
@@ -92,7 +92,7 @@ const Checkbox: React.FC<CheckboxProps> & CheckboxComponents = ({
   );
 };
 
-Checkbox.Skeleton = Skeleton;
+Checkbox.Skeleton = CheckboxSkeleton;
 Checkbox.displayName = "Checkbox";
 
 export { Checkbox };

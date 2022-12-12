@@ -5,7 +5,7 @@ import { Text } from "@nimbus-ds/text";
 import { Icon } from "@nimbus-ds/icon";
 
 import { ChipProps, ChipComponents } from "./chip.types";
-import { Skeleton } from "./components";
+import { ChipSkeleton } from "./components";
 
 const Chip: React.FC<ChipProps> & ChipComponents = ({
   className: _className,
@@ -30,6 +30,6 @@ const Chip: React.FC<ChipProps> & ChipComponents = ({
   </button>
 );
 
-Chip.Skeleton = Skeleton;
+Chip.Skeleton = ChipSkeleton;
 
 export { Chip };

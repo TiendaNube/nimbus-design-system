@@ -1,11 +1,11 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 
-import { Skeleton } from "./Skeleton";
-import { SkeletonProps } from "./skeleton.types";
+import { ChipSkeleton } from "./ChipSkeleton";
+import { ChipSkeletonProps } from "./chipSkeleton.types";
 
-const makeSut = (props?: SkeletonProps) => {
-  render(<Skeleton {...props} data-testid="skeleton-element" />);
+const makeSut = (props?: ChipSkeletonProps) => {
+  render(<ChipSkeleton {...props} data-testid="skeleton-element" />);
 };
 
 describe("GIVEN <Chip.Skeleton />", () => {

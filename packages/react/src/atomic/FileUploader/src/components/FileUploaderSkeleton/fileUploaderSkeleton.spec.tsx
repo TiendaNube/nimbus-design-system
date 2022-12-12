@@ -1,11 +1,11 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 
-import { Skeleton } from "./Skeleton";
-import { SkeletonProps } from "./skeleton.types";
+import { FileUploaderSkeleton } from "./FileUploaderSkeleton";
+import { FileUploaderSkeletonProps } from "./fileUploaderSkeleton.types";
 
-const makeSut = (props?: SkeletonProps) => {
-  render(<Skeleton {...props} data-testid="skeleton-element" />);
+const makeSut = (props?: FileUploaderSkeletonProps) => {
+  render(<FileUploaderSkeleton {...props} data-testid="skeleton-element" />);
 };
 
 describe("GIVEN <Thumbnail.Skeleton />", () => {

@@ -1,10 +1,10 @@
 import { ReactNode, HTMLAttributes } from "react";
 
 import { icon } from "@nimbus-ds/styles";
-import { Skeleton } from "./components";
+import { IconSkeleton } from "./components";
 
 export interface IconComponents {
-  Skeleton: typeof Skeleton;
+  Skeleton: typeof IconSkeleton;
 }
 
 export interface IconProps extends HTMLAttributes<HTMLDivElement> {

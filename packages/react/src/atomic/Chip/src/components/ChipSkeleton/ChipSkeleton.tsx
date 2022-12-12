@@ -1,14 +1,14 @@
 import React from "react";
 
-import { Skeleton as SkeletonBase } from "@nimbus-ds/skeleton";
-import { SkeletonProps } from "./skeleton.types";
+import { Skeleton } from "@nimbus-ds/skeleton";
+import { ChipSkeletonProps } from "./chipSkeleton.types";
 
-const Skeleton: React.FC<SkeletonProps> = ({
+const ChipSkeleton: React.FC<ChipSkeletonProps> = ({
   width,
   height,
   "data-testid": dataTestId,
 }) => (
-  <SkeletonBase
+  <Skeleton
     width={width ?? "4.375rem"}
     height={height ?? "1.5rem"}
     borderRadius="0.25rem"
@@ -16,4 +16,4 @@ const Skeleton: React.FC<SkeletonProps> = ({
   />
 );
 
-export { Skeleton };
+export { ChipSkeleton };

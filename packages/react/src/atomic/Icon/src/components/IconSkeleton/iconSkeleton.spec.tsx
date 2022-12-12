@@ -1,11 +1,11 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 
-import { Skeleton } from "./Skeleton";
-import { SkeletonProps } from "./skeleton.types";
+import { IconSkeleton } from "./IconSkeleton";
+import { IconSkeletonProps } from "./iconSkeleton.types";
 
-const makeSut = (props?: SkeletonProps) => {
-  render(<Skeleton {...props} data-testid="skeleton-element" />);
+const makeSut = (props?: IconSkeletonProps) => {
+  render(<IconSkeleton {...props} data-testid="skeleton-element" />);
 };
 
 describe("GIVEN <Icon.Skeleton />", () => {

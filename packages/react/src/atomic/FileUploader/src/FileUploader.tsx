@@ -9,7 +9,7 @@ import {
   FileUploaderProps,
   FileUploaderComponents,
 } from "./fileUploader.types";
-import { Skeleton } from "./components";
+import { FileUploaderSkeleton } from "./components";
 
 const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
   className: _className,
@@ -63,7 +63,7 @@ const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
   );
 };
 
-FileUploader.Skeleton = Skeleton;
+FileUploader.Skeleton = FileUploaderSkeleton;
 FileUploader.displayName = "FileUploader";
 FileUploader.Skeleton.displayName = "FileUploader.Skeleton";
 

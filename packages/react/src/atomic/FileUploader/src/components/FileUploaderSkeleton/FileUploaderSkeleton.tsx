@@ -1,9 +1,9 @@
 import React from "react";
 import { fileUploader } from "@nimbus-ds/styles";
-import { Skeleton as SkeletonBase } from "@nimbus-ds/skeleton";
-import { SkeletonProps } from "./skeleton.types";
+import { Skeleton } from "@nimbus-ds/skeleton";
+import { FileUploaderSkeletonProps } from "./fileUploaderSkeleton.types";
 
-const Skeleton: React.FC<SkeletonProps> = ({
+const FileUploaderSkeleton: React.FC<FileUploaderSkeletonProps> = ({
   width,
   aspectRatio = "1-1",
   height,
@@ -14,7 +14,7 @@ const Skeleton: React.FC<SkeletonProps> = ({
       data-testid="file-uploader-skeleton-container"
       className={fileUploader.sprinkle({ aspectRatio })}
     >
-      <SkeletonBase
+      <Skeleton
         width={width ?? "6.5rem"}
         height={height || "100%"}
         borderRadius="0.5rem"
@@ -24,4 +24,4 @@ const Skeleton: React.FC<SkeletonProps> = ({
   </div>
 );
 
-export { Skeleton };
+export { FileUploaderSkeleton };

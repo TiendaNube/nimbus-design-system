@@ -2,18 +2,18 @@ import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { withA11y } from "@storybook/addon-a11y";
 
-import { Skeleton } from "./Skeleton";
+import { ChipSkeleton } from "./ChipSkeleton";
 
 export default {
   title: "Skeleton/Chip",
-  component: Skeleton,
+  component: ChipSkeleton,
   parameters: {
     withA11y: { decorators: [withA11y] },
   },
-} as ComponentMeta<typeof Skeleton>;
+} as ComponentMeta<typeof ChipSkeleton>;
 
-const Template: ComponentStory<typeof Skeleton> = (args) => (
-  <Skeleton {...args} />
+const Template: ComponentStory<typeof ChipSkeleton> = (args) => (
+  <ChipSkeleton {...args} />
 );
 
 export const Chip = Template.bind({});

@@ -3,11 +3,11 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { withA11y } from "@storybook/addon-a11y";
 import { fileUploader as fileUploaderlStyle } from "@nimbus-ds/styles";
 
-import { FileUploader } from "../../FileUploader";
+import { FileUploaderSkeleton } from "./FileUploaderSkeleton";
 
 export default {
   title: "Skeleton/File Uploader",
-  component: FileUploader.Skeleton,
+  component: FileUploaderSkeleton,
   argTypes: {
     aspectRatio: {
       options: Object.keys(fileUploaderlStyle.properties.aspectRatio),
@@ -16,10 +16,10 @@ export default {
   parameters: {
     withA11y: { decorators: [withA11y] },
   },
-} as ComponentMeta<typeof FileUploader.Skeleton>;
+} as ComponentMeta<typeof FileUploaderSkeleton>;
 
-const Template: ComponentStory<typeof FileUploader.Skeleton> = (args) => (
-  <FileUploader.Skeleton {...args} />
+const Template: ComponentStory<typeof FileUploaderSkeleton> = (args) => (
+  <FileUploaderSkeleton {...args} />
 );
 
 export const fileUploader = Template.bind({});

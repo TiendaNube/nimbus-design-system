@@ -1,8 +1,8 @@
 import { ReactNode, ButtonHTMLAttributes } from "react";
-import { Skeleton } from "./components";
+import { ChipSkeleton } from "./components";
 
 export interface ChipComponents {
-  Skeleton: typeof Skeleton;
+  Skeleton: typeof ChipSkeleton;
 }
 
 export interface ChipProps extends ButtonHTMLAttributes<HTMLButtonElement> {
