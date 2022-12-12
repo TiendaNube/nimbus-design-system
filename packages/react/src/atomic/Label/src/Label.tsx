@@ -2,7 +2,7 @@ import React from "react";
 import { label } from "@nimbus-ds/styles";
 
 import { LabelProps, LabelComponents } from "./label.types";
-import { Skeleton } from "./components";
+import { LabelSkeleton } from "./components";
 
 const Label: React.FC<LabelProps> & LabelComponents = ({
   className: _className,
@@ -21,7 +21,7 @@ const Label: React.FC<LabelProps> & LabelComponents = ({
   </label>
 );
 
-Label.Skeleton = Skeleton;
+Label.Skeleton = LabelSkeleton;
 Label.displayName = "Label";
 
 export { Label };

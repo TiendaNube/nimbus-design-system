@@ -1,11 +1,11 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 
-import { Password } from "./Password";
-import { PasswordProps } from "./password.types";
+import { InputPassword } from "./InputPassword";
+import { InputPasswordProps } from "./inputPassword.types";
 
-const makeSut = (rest?: PasswordProps) => {
-  render(<Password {...rest} data-testid="my-input" />);
+const makeSut = (rest?: InputPasswordProps) => {
+  render(<InputPassword {...rest} data-testid="my-input" />);
 };
 
 describe("GIVEN <Password />", () => {

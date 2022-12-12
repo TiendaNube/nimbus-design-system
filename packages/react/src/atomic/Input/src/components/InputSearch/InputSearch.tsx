@@ -3,9 +3,9 @@ import { SearchIcon } from "@tiendanube/icons";
 import { input } from "@nimbus-ds/styles";
 import { Icon } from "@nimbus-ds/icon";
 
-import { SearchProps } from "./search.types";
+import { InputSearchProps } from "./inputSearch.types";
 
-const Search: React.FC<SearchProps> = ({
+const InputSearch: React.FC<InputSearchProps> = ({
   className: _className,
   style: _style,
   appearance = "neutral",
@@ -26,6 +26,6 @@ const Search: React.FC<SearchProps> = ({
   </div>
 );
 
-Search.displayName = "Input.Search";
+InputSearch.displayName = "Input.Search";
 
-export { Search };
+export { InputSearch };

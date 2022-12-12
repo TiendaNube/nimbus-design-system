@@ -1,8 +1,8 @@
 import { HTMLAttributes, ReactNode } from "react";
-import { Skeleton } from "./components";
+import { LabelSkeleton } from "./components";
 
 export interface LabelComponents {
-  Skeleton: typeof Skeleton;
+  Skeleton: typeof LabelSkeleton;
 }
 
 export interface LabelProps extends HTMLAttributes<HTMLLabelElement> {

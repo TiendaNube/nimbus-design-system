@@ -2,7 +2,7 @@ import React from "react";
 import { input } from "@nimbus-ds/styles";
 
 import { InputProps, InputComponents } from "./input.types";
-import { Password, Search, Skeleton } from "./components";
+import { InputPassword, InputSearch, InputSkeleton } from "./components";
 
 const Input: React.FC<InputProps> & InputComponents = ({
   className: _className,
@@ -26,8 +26,8 @@ const Input: React.FC<InputProps> & InputComponents = ({
   </div>
 );
 
-Input.Password = Password;
-Input.Search = Search;
-Input.Skeleton = Skeleton;
+Input.Password = InputPassword;
+Input.Search = InputSearch;
+Input.Skeleton = InputSkeleton;
 
 export { Input };

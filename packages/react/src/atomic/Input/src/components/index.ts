@@ -1,3 +1,3 @@
-export * from "./Password";
-export * from "./Search";
-export * from "./Skeleton";
+export * from "./InputPassword";
+export * from "./InputSearch";
+export * from "./InputSkeleton";

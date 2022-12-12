@@ -1,26 +1,26 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 
-import { Skeleton } from "./Skeleton";
-import { SkeletonProps } from "./skeleton.types";
+import { IconButtonSkeleton } from "./IconButtonSkeleton";
+import { IconButtonSkeletonProps } from "./iconButtonSkeleton.types";
 
-const makeSut = (props?: SkeletonProps) => {
-  render(<Skeleton {...props} data-testid="skeleton-element" />);
+const makeSut = (props?: IconButtonSkeletonProps) => {
+  render(<IconButtonSkeleton {...props} data-testid="skeleton-element" />);
 };
 
-describe("GIVEN <Label.Skeleton />", () => {
+describe("GIVEN <IconButton.Skeleton />", () => {
   describe("WHEN rendered", () => {
     it("THEN should render skeleton base", () => {
       makeSut();
       const skeleton = screen.getByTestId("skeleton-element");
       expect(skeleton.getAttribute("style")).toMatch(
-        /--width__\w{0,9}: 4.375rem;/
+        /--width__\w{0,9}: 2.75rem;/
       );
       expect(skeleton.getAttribute("style")).toMatch(
-        /--height__\w{0,9}: 1rem;/
+        /--height__\w{0,9}: 2.75rem;/
       );
       expect(skeleton.getAttribute("style")).toMatch(
-        /--borderRadius__\w{0,9}: 0;/
+        /--borderRadius__\w{0,9}: 100%;/
       );
     });
   });

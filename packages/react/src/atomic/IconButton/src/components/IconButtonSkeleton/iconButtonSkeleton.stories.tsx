@@ -2,18 +2,18 @@ import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { withA11y } from "@storybook/addon-a11y";
 
-import { Skeleton } from "./Skeleton";
+import { IconButtonSkeleton } from "./IconButtonSkeleton";
 
 export default {
   title: "Skeleton/Icon Button",
-  component: Skeleton,
+  component: IconButtonSkeleton,
   parameters: {
     withA11y: { decorators: [withA11y] },
   },
-} as ComponentMeta<typeof Skeleton>;
+} as ComponentMeta<typeof IconButtonSkeleton>;
 
-const Template: ComponentStory<typeof Skeleton> = (args) => (
-  <Skeleton {...args} />
+const Template: ComponentStory<typeof IconButtonSkeleton> = (args) => (
+  <IconButtonSkeleton {...args} />
 );
 
 export const iconButton = Template.bind({});

@@ -3,7 +3,7 @@ import { iconButton } from "@nimbus-ds/styles";
 import { Icon } from "@nimbus-ds/icon";
 
 import { IconButtonProps, IconButtonComponents } from "./iconButton.types";
-import { Skeleton } from "./components";
+import { IconButtonSkeleton } from "./components";
 
 const IconButton: React.FC<IconButtonProps> & IconButtonComponents = ({
   className: _className,
@@ -47,7 +47,7 @@ const IconButton: React.FC<IconButtonProps> & IconButtonComponents = ({
   );
 };
 
-IconButton.Skeleton = Skeleton;
+IconButton.Skeleton = IconButtonSkeleton;
 IconButton.displayName = "IconButton";
 IconButton.Skeleton.displayName = "IconButton.Skeleton";
 

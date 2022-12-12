@@ -3,9 +3,9 @@ import { EyeIcon, EyeOffIcon } from "@tiendanube/icons";
 import { input } from "@nimbus-ds/styles";
 import { Icon } from "@nimbus-ds/icon";
 
-import { PasswordProps } from "./password.types";
+import { InputPasswordProps } from "./inputPassword.types";
 
-const Password: React.FC<PasswordProps> = ({
+const InputPassword: React.FC<InputPasswordProps> = ({
   className: _className,
   style: _style,
   appearance = "neutral",
@@ -50,6 +50,6 @@ const Password: React.FC<PasswordProps> = ({
   );
 };
 
-Password.displayName = "Input.Password";
+InputPassword.displayName = "Input.Password";
 
-export { Password };
+export { InputPassword };
