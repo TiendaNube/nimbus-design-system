@@ -1,11 +1,11 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 
-import { Group } from "./Group";
-import { GroupProps } from "./group.types";
+import { SelectGroup } from "./SelectGroup";
+import { SelectGroupProps } from "./selectGroup.types";
 
-const makeSut = (rest: GroupProps) => {
-  render(<Group {...rest} data-testid="group-element" />);
+const makeSut = (rest: SelectGroupProps) => {
+  render(<SelectGroup {...rest} data-testid="group-element" />);
 };
 
 const optGroupLabel = "myLabel";
@@ -21,7 +21,9 @@ describe("GIVEN <Group />", () => {
     });
 
     it("THEN should render the children", () => {
-      render(<Group label={optGroupLabel}>{optGroupChildren}</Group>);
+      render(
+        <SelectGroup label={optGroupLabel}>{optGroupChildren}</SelectGroup>
+      );
       expect(screen.getByText(optGroupChildren)).toBeTruthy();
     });
   });

@@ -1,10 +1,10 @@
 import { ReactNode, SelectHTMLAttributes } from "react";
-import { Group, Option, Skeleton } from "./components";
+import { SelectGroup, SelectOption, SelectSkeleton } from "./components";
 
 export interface SelectComponents {
-  Group: typeof Group;
-  Option: typeof Option;
-  Skeleton: typeof Skeleton;
+  Group: typeof SelectGroup;
+  Option: typeof SelectOption;
+  Skeleton: typeof SelectSkeleton;
 }
 
 export interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {

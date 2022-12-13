@@ -4,7 +4,7 @@ import { Icon } from "@nimbus-ds/icon";
 import { ChevronDownIcon } from "@tiendanube/icons";
 
 import { SelectComponents, SelectProps } from "./select.types";
-import { Group, Option, Skeleton } from "./components";
+import { SelectGroup, SelectOption, SelectSkeleton } from "./components";
 
 const Select: React.FC<SelectProps> & SelectComponents = ({
   className: _className,
@@ -30,9 +30,9 @@ const Select: React.FC<SelectProps> & SelectComponents = ({
   </div>
 );
 
-Select.Group = Group;
-Select.Option = Option;
-Select.Skeleton = Skeleton;
+Select.Group = SelectGroup;
+Select.Option = SelectOption;
+Select.Skeleton = SelectSkeleton;
 Select.displayName = "Select";
 
 export { Select };

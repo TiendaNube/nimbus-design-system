@@ -3,7 +3,7 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { withA11y } from "@storybook/addon-a11y";
 
 import { Select } from "./Select";
-import { Group, Option, Skeleton } from "./components";
+import { SelectGroup, SelectOption, SelectSkeleton } from "./components";
 
 export default {
   title: "Atomic/Select",
@@ -12,9 +12,9 @@ export default {
     withA11y: { decorators: [withA11y] },
   },
   subcomponents: {
-    "Select.Group": Group,
-    "Select.Option": Option,
-    "Select.Skeleton": Skeleton,
+    "Select.Group": SelectGroup,
+    "Select.Option": SelectOption,
+    "Select.Skeleton": SelectSkeleton,
   },
 } as ComponentMeta<typeof Select>;
 

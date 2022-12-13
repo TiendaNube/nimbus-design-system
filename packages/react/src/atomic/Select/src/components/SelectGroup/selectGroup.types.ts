@@ -1,6 +1,6 @@
 import { OptgroupHTMLAttributes, ReactNode } from "react";
 
-export interface GroupProps
+export interface SelectGroupProps
   extends OptgroupHTMLAttributes<HTMLOptGroupElement> {
   /** Option group label */
   label: string;

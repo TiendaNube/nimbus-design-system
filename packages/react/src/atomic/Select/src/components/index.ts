@@ -1,3 +1,3 @@
-export * from "./Group";
-export * from "./Option";
-export * from "./Skeleton";
+export * from "./SelectGroup";
+export * from "./SelectOption";
+export * from "./SelectSkeleton";

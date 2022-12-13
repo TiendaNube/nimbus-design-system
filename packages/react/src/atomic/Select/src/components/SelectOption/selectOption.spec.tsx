@@ -1,11 +1,11 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 
-import { Option } from "./Option";
-import { OptionProps } from "./option.types";
+import { SelectOption } from "./SelectOption";
+import { SelectOptionProps } from "./selectOption.types";
 
-const makeSut = (rest: OptionProps) => {
-  render(<Option {...rest} data-testid="option-element" />);
+const makeSut = (rest: SelectOptionProps) => {
+  render(<SelectOption {...rest} data-testid="option-element" />);
 };
 
 const optLabel = "myLabel";
