@@ -3,7 +3,7 @@ import { Text } from "@nimbus-ds/text";
 import { radio } from "@nimbus-ds/styles";
 
 import { RadioProps, RadioComponents } from "./radio.types";
-import { Skeleton } from "./components";
+import { RadioSkeleton } from "./components";
 
 const Radio: React.FC<RadioProps> & RadioComponents = ({
   className: _className,
@@ -61,7 +61,7 @@ const Radio: React.FC<RadioProps> & RadioComponents = ({
   );
 };
 
-Radio.Skeleton = Skeleton;
+Radio.Skeleton = RadioSkeleton;
 Radio.displayName = "Radio";
 
 export { Radio };

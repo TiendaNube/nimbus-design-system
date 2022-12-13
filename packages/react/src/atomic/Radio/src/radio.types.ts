@@ -1,8 +1,8 @@
 import { InputHTMLAttributes } from "react";
-import { Skeleton } from "./components";
+import { RadioSkeleton } from "./components";
 
 export interface RadioComponents {
-  Skeleton: typeof Skeleton;
+  Skeleton: typeof RadioSkeleton;
 }
 
 export interface RadioProps extends InputHTMLAttributes<HTMLInputElement> {

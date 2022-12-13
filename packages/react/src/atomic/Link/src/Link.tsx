@@ -2,7 +2,7 @@ import React from "react";
 import { link } from "@nimbus-ds/styles";
 
 import { LinkProps, LinkComponents } from "./link.types";
-import { Skeleton } from "./components";
+import { LinkSkeleton } from "./components";
 
 const Link: React.FC<LinkProps> & LinkComponents = ({
   className: _className,
@@ -25,7 +25,7 @@ const Link: React.FC<LinkProps> & LinkComponents = ({
   </a>
 );
 
-Link.Skeleton = Skeleton;
+Link.Skeleton = LinkSkeleton;
 Link.displayName = "Link";
 
 export { Link };

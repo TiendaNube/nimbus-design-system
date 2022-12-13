@@ -1,9 +1,9 @@
 import { ReactNode, HTMLAttributes } from "react";
 import { title } from "@nimbus-ds/styles";
-import { Skeleton } from "./components";
+import { TitleSkeleton } from "./components";
 
 export interface TitleComponents {
-  Skeleton: typeof Skeleton;
+  Skeleton: typeof TitleSkeleton;
 }
 
 export interface TitleProps extends HTMLAttributes<HTMLHeadingElement> {

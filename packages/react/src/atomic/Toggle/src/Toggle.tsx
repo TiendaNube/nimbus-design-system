@@ -3,7 +3,7 @@ import { Text } from "@nimbus-ds/text";
 import { toggle } from "@nimbus-ds/styles";
 
 import { ToggleProps, ToggleComponents } from "./toggle.types";
-import { Skeleton } from "./components";
+import { ToggleSkeleton } from "./components";
 
 const Toggle: React.FC<ToggleProps> & ToggleComponents = ({
   className: _className,
@@ -37,6 +37,6 @@ const Toggle: React.FC<ToggleProps> & ToggleComponents = ({
   </label>
 );
 
-Toggle.Skeleton = Skeleton;
+Toggle.Skeleton = ToggleSkeleton;
 
 export { Toggle };

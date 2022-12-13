@@ -1,8 +1,8 @@
 import { ReactNode, AnchorHTMLAttributes } from "react";
-import { Skeleton } from "./components";
+import { LinkSkeleton } from "./components";
 
 export interface LinkComponents {
-  Skeleton: typeof Skeleton;
+  Skeleton: typeof LinkSkeleton;
 }
 
 export interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {

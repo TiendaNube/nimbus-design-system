@@ -1,9 +1,9 @@
 import { ReactNode, ImgHTMLAttributes } from "react";
 import { thumbnail } from "@nimbus-ds/styles";
-import { Skeleton } from "./components";
+import { ThumbnailSkeleton } from "./components";
 
 export interface ThumbnailComponents {
-  Skeleton: typeof Skeleton;
+  Skeleton: typeof ThumbnailSkeleton;
 }
 
 export interface ThumbnailProps extends ImgHTMLAttributes<HTMLImageElement> {

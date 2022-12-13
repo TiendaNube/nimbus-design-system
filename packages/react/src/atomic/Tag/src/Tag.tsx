@@ -2,7 +2,7 @@ import React from "react";
 import { tag } from "@nimbus-ds/styles";
 
 import { TagProps, TagComponents } from "./tag.types";
-import { Skeleton } from "./components";
+import { TagSkeleton } from "./components";
 
 const Tag: React.FC<TagProps> & TagComponents = ({
   className: _className,
@@ -16,7 +16,7 @@ const Tag: React.FC<TagProps> & TagComponents = ({
   </div>
 );
 
-Tag.Skeleton = Skeleton;
+Tag.Skeleton = TagSkeleton;
 Tag.Skeleton.displayName = "Tag.Skeleton";
 
 export { Tag };

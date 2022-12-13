@@ -1,8 +1,8 @@
 import { InputHTMLAttributes } from "react";
-import { Skeleton } from "./components";
+import { ToggleSkeleton } from "./components";
 
 export interface ToggleComponents {
-  Skeleton: typeof Skeleton;
+  Skeleton: typeof ToggleSkeleton;
 }
 
 export interface ToggleProps extends InputHTMLAttributes<HTMLInputElement> {

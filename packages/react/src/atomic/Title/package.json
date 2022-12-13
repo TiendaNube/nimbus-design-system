@@ -10,7 +10,6 @@
   "sideEffects": false,
   "scripts": {
     "build": "webpack",
-    "build:types": "tsc --emitDeclarationOnly --declaration true --declarationDir ./dist --baseUrl ./",
     "clean": "rm -rf dist",
     "version": "yarn version"
   },

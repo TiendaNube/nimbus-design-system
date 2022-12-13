@@ -5,7 +5,7 @@ import { thumbnail, utils } from "@nimbus-ds/styles";
 import { Icon } from "@nimbus-ds/icon";
 
 import { ThumbnailProps, ThumbnailComponents } from "./thumbnail.types";
-import { Skeleton } from "./components";
+import { ThumbnailSkeleton } from "./components";
 
 const Thumbnail: React.FC<ThumbnailProps> & ThumbnailComponents = ({
   className: _className,
@@ -52,7 +52,7 @@ const Thumbnail: React.FC<ThumbnailProps> & ThumbnailComponents = ({
   </div>
 );
 
-Thumbnail.Skeleton = Skeleton;
+Thumbnail.Skeleton = ThumbnailSkeleton;
 Thumbnail.displayName = "Thumbnail";
 Thumbnail.Skeleton.displayName = "Thumbnail.Skeleton";
 

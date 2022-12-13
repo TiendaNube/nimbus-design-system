@@ -2,7 +2,7 @@ import React from "react";
 import { textarea } from "@nimbus-ds/styles";
 
 import { TextareaComponents, TextareaProps } from "./textarea.types";
-import { Skeleton } from "./components";
+import { TextareaSkeleton } from "./components";
 
 const Textarea: React.FC<TextareaProps> & TextareaComponents = ({
   className: _className,
@@ -20,6 +20,6 @@ const Textarea: React.FC<TextareaProps> & TextareaComponents = ({
   />
 );
 
-Textarea.Skeleton = Skeleton;
+Textarea.Skeleton = TextareaSkeleton;
 
 export { Textarea };

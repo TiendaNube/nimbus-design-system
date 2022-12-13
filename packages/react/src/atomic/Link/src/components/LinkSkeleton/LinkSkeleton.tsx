@@ -1,0 +1,19 @@
+import React from "react";
+
+import { Skeleton } from "@nimbus-ds/skeleton";
+import { LinkSkeletonProps } from "./linkSkeletonk.types";
+
+const LinkSkeleton: React.FC<LinkSkeletonProps> = ({
+  width,
+  "data-testid": dataTestId,
+}) => (
+  <Skeleton
+    width={width ?? "4.75rem"}
+    height="1.125rem"
+    borderRadius="0.25rem"
+    data-testid={dataTestId}
+  />
+);
+
+LinkSkeleton.displayName = "Button.Skeleton";
+export { LinkSkeleton };

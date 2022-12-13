@@ -1,9 +1,8 @@
 import { TextareaHTMLAttributes } from "react";
-// import { textarea } from "@nimbus-ds/styles";
-import { Skeleton } from "./components";
+import { TextareaSkeleton } from "./components";
 
 export interface TextareaComponents {
-  Skeleton: typeof Skeleton;
+  Skeleton: typeof TextareaSkeleton;
 }
 
 export interface TextareaProps
