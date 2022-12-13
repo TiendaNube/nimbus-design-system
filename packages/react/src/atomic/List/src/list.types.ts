@@ -1,10 +1,10 @@
 import { HTMLAttributes, ReactNode } from "react";
-import { SkeletonItem, Skeleton, Item } from "./components";
+import { ListSkeletonItem, ListSkeleton, ListItem } from "./components";
 
 export interface ListComponents {
-  Skeleton: typeof Skeleton;
-  SkeletonItem: typeof SkeletonItem;
-  Item: typeof Item;
+  Skeleton: typeof ListSkeleton;
+  SkeletonItem: typeof ListSkeletonItem;
+  Item: typeof ListItem;
 }
 
 export interface ListProps

@@ -1,9 +1,9 @@
 import React from "react";
 import { list } from "@nimbus-ds/styles";
 
-import { SkeletonProps } from "./skeleton.types";
+import { ListSkeletonProps } from "./listSkeleton.types";
 
-const Skeleton: React.FC<SkeletonProps> = ({
+const ListSkeleton: React.FC<ListSkeletonProps> = ({
   className: _className,
   style: _style,
   children,
@@ -15,6 +15,6 @@ const Skeleton: React.FC<SkeletonProps> = ({
   </div>
 );
 
-Skeleton.displayName = "List.Skeleton";
+ListSkeleton.displayName = "List.Skeleton";
 
-export { Skeleton };
+export { ListSkeleton };

@@ -1,9 +1,9 @@
 import React from "react";
 import { list } from "@nimbus-ds/styles";
 
-import { ItemProps } from "./item.types";
+import { ListItemProps } from "./listItem.types";
 
-const Item: React.FC<ItemProps> = ({
+const ListItem: React.FC<ListItemProps> = ({
   className: _className,
   style: _style,
   children,
@@ -14,6 +14,6 @@ const Item: React.FC<ItemProps> = ({
   </li>
 );
 
-Item.displayName = "List.Item";
+ListItem.displayName = "List.Item";
 
-export { Item };
+export { ListItem };

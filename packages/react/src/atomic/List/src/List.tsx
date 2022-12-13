@@ -2,7 +2,7 @@ import React from "react";
 import { list } from "@nimbus-ds/styles";
 
 import { ListProps, ListComponents } from "./list.types";
-import { SkeletonItem, Skeleton, Item } from "./components";
+import { ListSkeletonItem, ListSkeleton, ListItem } from "./components";
 
 const List: React.FC<ListProps> & ListComponents = ({
   className: _className,
@@ -16,9 +16,9 @@ const List: React.FC<ListProps> & ListComponents = ({
   </As>
 );
 
-List.Skeleton = Skeleton;
-List.SkeletonItem = SkeletonItem;
-List.Item = Item;
+List.Skeleton = ListSkeleton;
+List.SkeletonItem = ListSkeletonItem;
+List.Item = ListItem;
 
 List.displayName = "List";
 

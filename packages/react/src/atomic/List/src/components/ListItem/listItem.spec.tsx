@@ -1,13 +1,13 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 
-import { Skeleton } from "./Skeleton";
+import { ListItem } from "./ListItem";
 
 const content = "myText";
 
-describe("GIVEN <List.Skeleton />", () => {
+describe("GIVEN <ListItem />", () => {
   it("WHEN rendered THEN it should correctly render children elements", () => {
-    render(<Skeleton>{content}</Skeleton>);
+    render(<ListItem>{content}</ListItem>);
     expect(screen.getByText(content)).toBeTruthy();
   });
 });
