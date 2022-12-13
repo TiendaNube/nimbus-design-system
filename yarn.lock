@@ -2933,9 +2933,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nimbus-ds/alert@workspace:packages/react/composite/Alert":
+"@nimbus-ds/alert@workspace:packages/react/src/composite/Alert":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/alert@workspace:packages/react/composite/Alert"
+  resolution: "@nimbus-ds/alert@workspace:packages/react/src/composite/Alert"
   dependencies:
     "@nimbus-ds/button": "workspace:*"
     "@nimbus-ds/icon": "workspace:*"
@@ -2950,9 +2950,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/badge@workspace:*, @nimbus-ds/badge@workspace:packages/react/atomic/Badge":
+"@nimbus-ds/badge@workspace:*, @nimbus-ds/badge@workspace:packages/react/src/atomic/Badge":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/badge@workspace:packages/react/atomic/Badge"
+  resolution: "@nimbus-ds/badge@workspace:packages/react/src/atomic/Badge"
   dependencies:
     "@nimbus-ds/skeleton": "workspace:*"
     "@nimbus-ds/styles": "workspace:*"
@@ -2965,9 +2965,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/box@workspace:*, @nimbus-ds/box@workspace:packages/react/atomic/Box":
+"@nimbus-ds/box@workspace:*, @nimbus-ds/box@workspace:packages/react/src/atomic/Box":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/box@workspace:packages/react/atomic/Box"
+  resolution: "@nimbus-ds/box@workspace:packages/react/src/atomic/Box"
   dependencies:
     "@nimbus-ds/styles": "workspace:*"
     "@vanilla-extract/dynamic": ^2.0.2
@@ -2979,9 +2979,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/button@workspace:*, @nimbus-ds/button@workspace:packages/react/atomic/Button":
+"@nimbus-ds/button@workspace:*, @nimbus-ds/button@workspace:packages/react/src/atomic/Button":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/button@workspace:packages/react/atomic/Button"
+  resolution: "@nimbus-ds/button@workspace:packages/react/src/atomic/Button"
   dependencies:
     "@nimbus-ds/badge": "workspace:*"
     "@nimbus-ds/icon": "workspace:*"
@@ -2996,9 +2996,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/card@workspace:packages/react/composite/Card":
+"@nimbus-ds/card@workspace:packages/react/src/composite/Card":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/card@workspace:packages/react/composite/Card"
+  resolution: "@nimbus-ds/card@workspace:packages/react/src/composite/Card"
   dependencies:
     "@nimbus-ds/box": "workspace:*"
     "@nimbus-ds/button": "workspace:*"
@@ -3015,9 +3015,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/checkbox@workspace:packages/react/atomic/Checkbox":
+"@nimbus-ds/checkbox@workspace:packages/react/src/atomic/Checkbox":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/checkbox@workspace:packages/react/atomic/Checkbox"
+  resolution: "@nimbus-ds/checkbox@workspace:packages/react/src/atomic/Checkbox"
   dependencies:
     "@nimbus-ds/icon": "workspace:*"
     "@nimbus-ds/skeleton": "workspace:*"
@@ -3031,9 +3031,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/chip@workspace:packages/react/atomic/Chip":
+"@nimbus-ds/chip@workspace:packages/react/src/atomic/Chip":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/chip@workspace:packages/react/atomic/Chip"
+  resolution: "@nimbus-ds/chip@workspace:packages/react/src/atomic/Chip"
   dependencies:
     "@nimbus-ds/icon": "workspace:*"
     "@nimbus-ds/skeleton": "workspace:*"
@@ -3048,9 +3048,22 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/file-uploader@workspace:packages/react/atomic/FileUploader":
+"@nimbus-ds/components@workspace:packages/react":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/file-uploader@workspace:packages/react/atomic/FileUploader"
+  resolution: "@nimbus-ds/components@workspace:packages/react"
+  dependencies:
+    "@nimbus-ds/styles": "workspace:*"
+    typescript: ^4.9.3
+    webpack: ^5.75.0
+  peerDependencies:
+    react: ^16.8 || ^17.0 || ^18.0
+    react-dom: ^16.8 || ^17.0 || ^18.0
+  languageName: unknown
+  linkType: soft
+
+"@nimbus-ds/file-uploader@workspace:packages/react/src/atomic/FileUploader":
+  version: 0.0.0-use.local
+  resolution: "@nimbus-ds/file-uploader@workspace:packages/react/src/atomic/FileUploader"
   dependencies:
     "@nimbus-ds/icon": "workspace:*"
     "@nimbus-ds/skeleton": "workspace:*"
@@ -3066,9 +3079,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/icon-button@workspace:packages/react/atomic/IconButton":
+"@nimbus-ds/icon-button@workspace:packages/react/src/atomic/IconButton":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/icon-button@workspace:packages/react/atomic/IconButton"
+  resolution: "@nimbus-ds/icon-button@workspace:packages/react/src/atomic/IconButton"
   dependencies:
     "@nimbus-ds/icon": "workspace:*"
     "@nimbus-ds/skeleton": "workspace:*"
@@ -3082,9 +3095,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/icon@workspace:*, @nimbus-ds/icon@workspace:packages/react/atomic/Icon":
+"@nimbus-ds/icon@workspace:*, @nimbus-ds/icon@workspace:packages/react/src/atomic/Icon":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/icon@workspace:packages/react/atomic/Icon"
+  resolution: "@nimbus-ds/icon@workspace:packages/react/src/atomic/Icon"
   dependencies:
     "@nimbus-ds/skeleton": "workspace:*"
     "@nimbus-ds/styles": "workspace:*"
@@ -3097,9 +3110,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/input@workspace:packages/react/atomic/Input":
+"@nimbus-ds/input@workspace:packages/react/src/atomic/Input":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/input@workspace:packages/react/atomic/Input"
+  resolution: "@nimbus-ds/input@workspace:packages/react/src/atomic/Input"
   dependencies:
     "@nimbus-ds/icon": "workspace:*"
     "@nimbus-ds/skeleton": "workspace:*"
@@ -3113,9 +3126,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/label@workspace:packages/react/atomic/Label":
+"@nimbus-ds/label@workspace:packages/react/src/atomic/Label":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/label@workspace:packages/react/atomic/Label"
+  resolution: "@nimbus-ds/label@workspace:packages/react/src/atomic/Label"
   dependencies:
     "@nimbus-ds/icon": "workspace:*"
     "@nimbus-ds/skeleton": "workspace:*"
@@ -3129,9 +3142,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/link@workspace:packages/react/atomic/Link":
+"@nimbus-ds/link@workspace:packages/react/src/atomic/Link":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/link@workspace:packages/react/atomic/Link"
+  resolution: "@nimbus-ds/link@workspace:packages/react/src/atomic/Link"
   dependencies:
     "@nimbus-ds/skeleton": "workspace:*"
     "@nimbus-ds/styles": "workspace:*"
@@ -3144,9 +3157,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/list@workspace:packages/react/atomic/List":
+"@nimbus-ds/list@workspace:packages/react/src/atomic/List":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/list@workspace:packages/react/atomic/List"
+  resolution: "@nimbus-ds/list@workspace:packages/react/src/atomic/List"
   dependencies:
     "@nimbus-ds/skeleton": "workspace:*"
     "@nimbus-ds/styles": "workspace:*"
@@ -3158,9 +3171,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/popover@workspace:packages/react/atomic/Popover":
+"@nimbus-ds/popover@workspace:packages/react/src/atomic/Popover":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/popover@workspace:packages/react/atomic/Popover"
+  resolution: "@nimbus-ds/popover@workspace:packages/react/src/atomic/Popover"
   dependencies:
     "@floating-ui/react-dom-interactions": ^0.10.1
     "@nimbus-ds/box": "workspace:*"
@@ -3175,9 +3188,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/radio@workspace:packages/react/atomic/Radio":
+"@nimbus-ds/radio@workspace:packages/react/src/atomic/Radio":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/radio@workspace:packages/react/atomic/Radio"
+  resolution: "@nimbus-ds/radio@workspace:packages/react/src/atomic/Radio"
   dependencies:
     "@nimbus-ds/skeleton": "workspace:*"
     "@nimbus-ds/styles": "workspace:*"
@@ -3190,9 +3203,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/select@workspace:packages/react/atomic/Select":
+"@nimbus-ds/select@workspace:packages/react/src/atomic/Select":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/select@workspace:packages/react/atomic/Select"
+  resolution: "@nimbus-ds/select@workspace:packages/react/src/atomic/Select"
   dependencies:
     "@nimbus-ds/skeleton": "workspace:*"
     "@nimbus-ds/styles": "workspace:*"
@@ -3204,9 +3217,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/sidebar@workspace:packages/react/composite/Sidebar":
+"@nimbus-ds/sidebar@workspace:packages/react/src/composite/Sidebar":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/sidebar@workspace:packages/react/composite/Sidebar"
+  resolution: "@nimbus-ds/sidebar@workspace:packages/react/src/composite/Sidebar"
   dependencies:
     "@floating-ui/react-dom-interactions": ^0.10.1
     "@nimbus-ds/box": "workspace:*"
@@ -3223,9 +3236,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/skeleton@workspace:*, @nimbus-ds/skeleton@workspace:packages/react/atomic/Skeleton":
+"@nimbus-ds/skeleton@workspace:*, @nimbus-ds/skeleton@workspace:packages/react/src/atomic/Skeleton":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/skeleton@workspace:packages/react/atomic/Skeleton"
+  resolution: "@nimbus-ds/skeleton@workspace:packages/react/src/atomic/Skeleton"
   dependencies:
     "@nimbus-ds/styles": "workspace:*"
     "@nimbus-ds/webpack": "workspace:*"
@@ -3238,9 +3251,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/spinner@workspace:*, @nimbus-ds/spinner@workspace:packages/react/atomic/Spinner":
+"@nimbus-ds/spinner@workspace:*, @nimbus-ds/spinner@workspace:packages/react/src/atomic/Spinner":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/spinner@workspace:packages/react/atomic/Spinner"
+  resolution: "@nimbus-ds/spinner@workspace:packages/react/src/atomic/Spinner"
   dependencies:
     "@nimbus-ds/styles": "workspace:*"
     "@vanilla-extract/dynamic": ^2.0.2
@@ -3252,9 +3265,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/stack@workspace:*, @nimbus-ds/stack@workspace:packages/react/atomic/Stack":
+"@nimbus-ds/stack@workspace:*, @nimbus-ds/stack@workspace:packages/react/src/atomic/Stack":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/stack@workspace:packages/react/atomic/Stack"
+  resolution: "@nimbus-ds/stack@workspace:packages/react/src/atomic/Stack"
   dependencies:
     "@nimbus-ds/box": "workspace:*"
     "@nimbus-ds/styles": "workspace:*"
@@ -3284,9 +3297,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/tabs@workspace:packages/react/composite/Tabs":
+"@nimbus-ds/tabs@workspace:packages/react/src/composite/Tabs":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/tabs@workspace:packages/react/composite/Tabs"
+  resolution: "@nimbus-ds/tabs@workspace:packages/react/src/composite/Tabs"
   dependencies:
     "@nimbus-ds/styles": "workspace:*"
     "@vanilla-extract/dynamic": ^2.0.2
@@ -3298,9 +3311,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/tag@workspace:*, @nimbus-ds/tag@workspace:packages/react/atomic/Tag":
+"@nimbus-ds/tag@workspace:*, @nimbus-ds/tag@workspace:packages/react/src/atomic/Tag":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/tag@workspace:packages/react/atomic/Tag"
+  resolution: "@nimbus-ds/tag@workspace:packages/react/src/atomic/Tag"
   dependencies:
     "@nimbus-ds/skeleton": "workspace:*"
     "@nimbus-ds/styles": "workspace:*"
@@ -3314,9 +3327,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/text@workspace:*, @nimbus-ds/text@workspace:packages/react/atomic/Text":
+"@nimbus-ds/text@workspace:*, @nimbus-ds/text@workspace:packages/react/src/atomic/Text":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/text@workspace:packages/react/atomic/Text"
+  resolution: "@nimbus-ds/text@workspace:packages/react/src/atomic/Text"
   dependencies:
     "@nimbus-ds/skeleton": "workspace:*"
     "@nimbus-ds/styles": "workspace:*"
@@ -3328,9 +3341,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/textarea@workspace:packages/react/atomic/Textarea":
+"@nimbus-ds/textarea@workspace:packages/react/src/atomic/Textarea":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/textarea@workspace:packages/react/atomic/Textarea"
+  resolution: "@nimbus-ds/textarea@workspace:packages/react/src/atomic/Textarea"
   dependencies:
     "@nimbus-ds/skeleton": "workspace:*"
     "@nimbus-ds/styles": "workspace:*"
@@ -3342,9 +3355,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/thumbnail@workspace:packages/react/atomic/Thumbnail":
+"@nimbus-ds/thumbnail@workspace:packages/react/src/atomic/Thumbnail":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/thumbnail@workspace:packages/react/atomic/Thumbnail"
+  resolution: "@nimbus-ds/thumbnail@workspace:packages/react/src/atomic/Thumbnail"
   dependencies:
     "@nimbus-ds/icon": "workspace:*"
     "@nimbus-ds/skeleton": "workspace:*"
@@ -3359,9 +3372,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/title@workspace:*, @nimbus-ds/title@workspace:packages/react/atomic/Title":
+"@nimbus-ds/title@workspace:*, @nimbus-ds/title@workspace:packages/react/src/atomic/Title":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/title@workspace:packages/react/atomic/Title"
+  resolution: "@nimbus-ds/title@workspace:packages/react/src/atomic/Title"
   dependencies:
     "@nimbus-ds/skeleton": "workspace:*"
     "@nimbus-ds/styles": "workspace:*"
@@ -3373,9 +3386,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/toast@workspace:packages/react/atomic/Toast":
+"@nimbus-ds/toast@workspace:packages/react/src/atomic/Toast":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/toast@workspace:packages/react/atomic/Toast"
+  resolution: "@nimbus-ds/toast@workspace:packages/react/src/atomic/Toast"
   dependencies:
     "@nimbus-ds/icon": "workspace:*"
     "@nimbus-ds/spinner": "workspace:*"
@@ -3390,9 +3403,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/toggle@workspace:packages/react/atomic/Toggle":
+"@nimbus-ds/toggle@workspace:packages/react/src/atomic/Toggle":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/toggle@workspace:packages/react/atomic/Toggle"
+  resolution: "@nimbus-ds/toggle@workspace:packages/react/src/atomic/Toggle"
   dependencies:
     "@nimbus-ds/skeleton": "workspace:*"
     "@nimbus-ds/styles": "workspace:*"
@@ -3413,9 +3426,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/tooltip@workspace:packages/react/atomic/Tooltip":
+"@nimbus-ds/tooltip@workspace:packages/react/src/atomic/Tooltip":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/tooltip@workspace:packages/react/atomic/Tooltip"
+  resolution: "@nimbus-ds/tooltip@workspace:packages/react/src/atomic/Tooltip"
   dependencies:
     "@floating-ui/react-dom-interactions": ^0.10.1
     "@nimbus-ds/stack": "workspace:*"
@@ -3441,6 +3454,7 @@ __metadata:
     typescript: ^4.9.3
     webpack: ^5.75.0
     webpack-merge: ^5.8.0
+    webpack-shell-plugin-next: ^2.3.1
   languageName: unknown
   linkType: soft
 
@@ -5423,6 +5437,13 @@ __metadata:
   version: 16.11.47
   resolution: "@types/node@npm:16.11.47"
   checksum: 26811000753fd1bb9a90a563fc72942ac3ad5d5b6c97609a090c1e24210e040597ba060e55a7a46cb22cc84dafee112d741f45652139c6166e8ce0c970b4f05a
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^18.11.13":
+  version: 18.11.13
+  resolution: "@types/node@npm:18.11.13"
+  checksum: b0c1aa3bd2f5df8240e61096a49d6d4be600109b824d23408ec4ba1ec057dc0c60588e09f73b8a60455ad26d367e9c5562fad8403099f885cbc7b4cace83ec4c
   languageName: node
   linkType: hard
 
@@ -8285,6 +8306,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"cliui@npm:^8.0.1":
+  version: 8.0.1
+  resolution: "cliui@npm:8.0.1"
+  dependencies:
+    string-width: ^4.2.0
+    strip-ansi: ^6.0.1
+    wrap-ansi: ^7.0.0
+  checksum: 79648b3b0045f2e285b76fb2e24e207c6db44323581e421c3acbd0e86454cba1b37aea976ab50195a49e7384b871e6dfb2247ad7dec53c02454ac6497394cb56
+  languageName: node
+  linkType: hard
+
 "clone-deep@npm:^4.0.1":
   version: 4.0.1
   resolution: "clone-deep@npm:4.0.1"
@@ -9543,6 +9575,18 @@ __metadata:
   version: 8.6.0
   resolution: "dotenv@npm:8.6.0"
   checksum: 38e902c80b0666ab59e9310a3d24ed237029a7ce34d976796349765ac96b8d769f6df19090f1f471b77a25ca391971efde8a1ea63bb83111bd8bec8e5cc9b2cd
+  languageName: node
+  linkType: hard
+
+"dts-bundle-generator@npm:^7.1.0":
+  version: 7.1.0
+  resolution: "dts-bundle-generator@npm:7.1.0"
+  dependencies:
+    typescript: ">=4.5.2"
+    yargs: ^17.6.0
+  bin:
+    dts-bundle-generator: dist/bin/dts-bundle-generator.js
+  checksum: 120c6b0724da0d91076714f45a27ff62776e1b64319e0dfd7a88fb28e6bf0b47bced738ecb25380dfb0afdf5232ce48ac6a2aaeef90da867810c00012321d9ba
   languageName: node
   linkType: hard
 
@@ -15314,6 +15358,7 @@ __metadata:
     "@testing-library/react": ^13.3.0
     "@tiendanube/eslint-config": ^0.3.2
     "@types/jest": 28.1.6
+    "@types/node": ^18.11.13
     "@types/react": ^18.0.15
     "@types/react-dom": ^18.0.6
     "@typescript-eslint/eslint-plugin": ^5.30.6
@@ -15324,6 +15369,7 @@ __metadata:
     babel-loader: ^8.2.5
     babel-plugin-module-resolver: ^4.1.0
     copy-webpack-plugin: ^11.0.0
+    dts-bundle-generator: ^7.1.0
     eslint: ^8.19.0
     eslint-config-airbnb: ^19.0.4
     eslint-config-prettier: ^8.5.0
@@ -19593,6 +19639,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"typescript@npm:>=4.5.2":
+  version: 4.9.4
+  resolution: "typescript@npm:4.9.4"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: e782fb9e0031cb258a80000f6c13530288c6d63f1177ed43f770533fdc15740d271554cdae86701c1dd2c83b082cea808b07e97fd68b38a172a83dbf9e0d0ef9
+  languageName: node
+  linkType: hard
+
 "typescript@npm:^4.6.4, typescript@npm:^4.7.4":
   version: 4.7.4
   resolution: "typescript@npm:4.7.4"
@@ -19610,6 +19666,16 @@ __metadata:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: 17b8f816050b412403e38d48eef0e893deb6be522d6dc7caf105e54a72e34daf6835c447735fd2b28b66784e72bfbf87f627abb4818a8e43d1fa8106396128dc
+  languageName: node
+  linkType: hard
+
+"typescript@patch:typescript@>=4.5.2#~builtin<compat/typescript>":
+  version: 4.9.4
+  resolution: "typescript@patch:typescript@npm%3A4.9.4#~builtin<compat/typescript>::version=4.9.4&hash=f456af"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 37f6e2c3c5e2aa5934b85b0fddbf32eeac8b1bacf3a5b51d01946936d03f5377fe86255d4e5a4ae628fd0cd553386355ad362c57f13b4635064400f3e8e05b9d
   languageName: node
   linkType: hard
 
@@ -20422,6 +20488,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"webpack-shell-plugin-next@npm:^2.3.1":
+  version: 2.3.1
+  resolution: "webpack-shell-plugin-next@npm:2.3.1"
+  peerDependencies:
+    webpack: ^5.18.0
+  checksum: a5976d01281ba68e9f86ad8e48c70fe5088c1e69638a97e4ed215f5dd5f50372ca4735f92ac295ad1973612f6fd98df7829adf4afbbee669529e7c9c36b99207
+  languageName: node
+  linkType: hard
+
 "webpack-sources@npm:^1.4.0, webpack-sources@npm:^1.4.1, webpack-sources@npm:^1.4.3":
   version: 1.4.3
   resolution: "webpack-sources@npm:1.4.3"
@@ -20872,7 +20947,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yargs-parser@npm:^21.0.0, yargs-parser@npm:^21.0.1":
+"yargs-parser@npm:^21.0.0, yargs-parser@npm:^21.0.1, yargs-parser@npm:^21.1.1":
   version: 21.1.1
   resolution: "yargs-parser@npm:21.1.1"
   checksum: ed2d96a616a9e3e1cc7d204c62ecc61f7aaab633dcbfab2c6df50f7f87b393993fe6640d017759fe112d0cb1e0119f2b4150a87305cc873fd90831c6a58ccf1c
@@ -20925,6 +21000,21 @@ __metadata:
     y18n: ^5.0.5
     yargs-parser: ^21.0.0
   checksum: 00d58a2c052937fa044834313f07910fd0a115dec5ee35919e857eeee3736b21a4eafa8264535800ba8bac312991ce785ecb8a51f4d2cc8c4676d865af1cfbde
+  languageName: node
+  linkType: hard
+
+"yargs@npm:^17.6.0":
+  version: 17.6.2
+  resolution: "yargs@npm:17.6.2"
+  dependencies:
+    cliui: ^8.0.1
+    escalade: ^3.1.1
+    get-caller-file: ^2.0.5
+    require-directory: ^2.1.1
+    string-width: ^4.2.3
+    y18n: ^5.0.5
+    yargs-parser: ^21.1.1
+  checksum: 47da1b0d854fa16d45a3ded57b716b013b2179022352a5f7467409da5a04a1eef5b3b3d97a2dfc13e8bbe5f2ffc0afe3bc6a4a72f8254e60f5a4bd7947138643
   languageName: node
   linkType: hard
 

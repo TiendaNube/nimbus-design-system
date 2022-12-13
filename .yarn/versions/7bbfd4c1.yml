@@ -6,6 +6,7 @@ releases:
   "@nimbus-ds/card": minor
   "@nimbus-ds/checkbox": minor
   "@nimbus-ds/chip": minor
+  "@nimbus-ds/components": major
   "@nimbus-ds/file-uploader": minor
   "@nimbus-ds/icon": minor
   "@nimbus-ds/icon-button": minor
