@@ -9,8 +9,7 @@
   ],
   "sideEffects": false,
   "scripts": {
-    "build": "yarn build:types && webpack",
-    "build:types": "tsc --emitDeclarationOnly --declaration true --declarationDir ./dist --baseUrl ./",
+    "build": "webpack",
     "clean": "rm -rf dist",
     "version": "yarn version"
   },

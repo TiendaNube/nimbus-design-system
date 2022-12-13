@@ -6,7 +6,7 @@ import { CloseIcon } from "@tiendanube/icons";
 import { Title } from "@nimbus-ds/title";
 import { Icon } from "@nimbus-ds/icon";
 
-import { Skeleton } from "./components";
+import { AlertSkeleton } from "./components";
 import { AlertProps, AlertComponents } from "./alert.types";
 import { alertVariants } from "./alert.definitions";
 
@@ -58,7 +58,7 @@ const Alert: React.FC<AlertProps> & AlertComponents = ({
   );
 };
 
-Alert.Skeleton = Skeleton;
+Alert.Skeleton = AlertSkeleton;
 Alert.displayName = "Alert";
 
 export { Alert };

@@ -1,2 +1,2 @@
-export * from "./Button";
-export * from "./Item";
+export * from "./TabsButton";
+export * from "./TabsItem";

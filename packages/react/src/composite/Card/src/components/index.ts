@@ -1,3 +1,3 @@
-export * from "./Body";
-export * from "./Footer";
-export * from "./Header";
+export * from "./CardBody";
+export * from "./CardFooter";
+export * from "./CardHeader";

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { tabs } from "@nimbus-ds/styles";
 
 import { TabsProps, TabsComponents } from "./tabs.types";
-import { Button, Item } from "./components";
+import { TabsButton, TabsItem } from "./components";
 
 const Tabs: React.FC<TabsProps> & TabsComponents = ({
   className: _className,
@@ -37,8 +37,8 @@ const Tabs: React.FC<TabsProps> & TabsComponents = ({
   );
 };
 
-Tabs.Button = Button;
-Tabs.Item = Item;
+Tabs.Button = TabsButton;
+Tabs.Item = TabsItem;
 
 Tabs.displayName = "Tabs";
 

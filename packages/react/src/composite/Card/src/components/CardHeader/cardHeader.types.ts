@@ -1,0 +1,8 @@
+import { HTMLAttributes, ReactNode } from "react";
+
+export interface CardHeaderProps extends HTMLAttributes<HTMLElement> {
+  /** Header content */
+  children?: ReactNode;
+  /** Header title */
+  title?: string;
+}

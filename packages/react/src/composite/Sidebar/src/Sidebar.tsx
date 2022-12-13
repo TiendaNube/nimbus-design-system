@@ -2,7 +2,7 @@ import React from "react";
 import { FloatingPortal } from "@floating-ui/react-dom-interactions";
 import { sidebar } from "@nimbus-ds/styles";
 
-import { Body, Footer, Header } from "./components";
+import { SidebarBody, SidebarFooter, SidebarHeader } from "./components";
 import { SidebarComponents, SidebarProps } from "./sidebar.types";
 
 const Sidebar: React.FC<SidebarProps> & SidebarComponents = ({
@@ -49,9 +49,9 @@ const Sidebar: React.FC<SidebarProps> & SidebarComponents = ({
   );
 };
 
-Sidebar.Body = Body;
-Sidebar.Footer = Footer;
-Sidebar.Header = Header;
+Sidebar.Body = SidebarBody;
+Sidebar.Footer = SidebarFooter;
+Sidebar.Header = SidebarHeader;
 Sidebar.displayName = "Sidebar";
 Sidebar.Body.displayName = "Sidebar.Body";
 Sidebar.Footer.displayName = "Sidebar.Footer";

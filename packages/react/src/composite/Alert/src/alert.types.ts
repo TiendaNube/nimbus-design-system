@@ -1,8 +1,8 @@
 import { HTMLAttributes, ReactNode } from "react";
-import { Skeleton } from "./components";
+import { AlertSkeleton } from "./components";
 
 export interface AlertComponents {
-  Skeleton: typeof Skeleton;
+  Skeleton: typeof AlertSkeleton;
 }
 
 export interface AlertProps extends HTMLAttributes<HTMLElement> {
