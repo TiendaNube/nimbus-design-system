@@ -2,15 +2,15 @@ import { createRainbowSprinkles, defineProperties } from "rainbow-sprinkles";
 import { properties as colors } from "../../../sprinkles/colors.css";
 import { mediaQueries } from "../../../themes/mediaQueries";
 
-export const backgroundColorProperties = {
+export const iconButtonBackgroundColorProperties = {
   transparent: "transparent",
   "neutral.interactive": colors["neutral.interactive"],
   "neutral.surfaceHighlight": colors["neutral.surfaceHighlight"],
   "neutral.interactivePressed": colors["neutral.interactivePressed"],
 };
 
-export const borderColorProperties = {
-  ...backgroundColorProperties,
+export const iconButtonBorderColorProperties = {
+  ...iconButtonBackgroundColorProperties,
   "neutral.interactive": colors["neutral.interactive"],
   "neutral.interactiveHover": colors["neutral.interactiveHover"],
 };
@@ -36,8 +36,8 @@ export const sprinkle = createRainbowSprinkles(
     dynamicProperties: {
       width: true,
       height: true,
-      backgroundColor: backgroundColorProperties,
-      borderColor: borderColorProperties,
+      backgroundColor: iconButtonBackgroundColorProperties,
+      borderColor: iconButtonBorderColorProperties,
     },
     shorthands: {
       size: ["width", "height"],

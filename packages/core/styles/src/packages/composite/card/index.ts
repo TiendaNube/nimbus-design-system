@@ -1,4 +1,4 @@
-import * as style from "./card.style.css";
+import * as styles from "./card.style.css";
 import {
   sprinkle,
   paddingProperties,
@@ -6,7 +6,7 @@ import {
 } from "./card.sprinkle.css";
 
 export const card = {
-  style,
+  style: { ...styles },
   sprinkle,
   properties: {
     padding: paddingProperties,

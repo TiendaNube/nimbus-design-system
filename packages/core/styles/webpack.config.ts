@@ -16,7 +16,21 @@ const entries = paths.reduce((prev: { [key: string]: string }, curr) => {
   return prev;
 }, {});
 
-const config = {
+// const config = {
+//   entry: {
+//     "./themes/base": "./src/themes/base.css.ts",
+//     "./themes/dark": "./src/themes/dark.css.ts",
+//     ...entries,
+//   },
+//   output: {
+//     path: path.resolve(__dirname, "dist"),
+//     library: "@nimbus-ds/styles",
+//   },
+//   module: { rules: [rules.cssLoaderExtractRule] },
+//   plugins: [plugins.vanillaExtractPlugin, plugins.miniCssExtractPlugin],
+// };
+
+const baseConfig = {
   entry: {
     "./themes/base": "./src/themes/base.css.ts",
     "./themes/dark": "./src/themes/dark.css.ts",
@@ -27,7 +41,12 @@ const config = {
     library: "@nimbus-ds/styles",
   },
   module: { rules: [rules.cssLoaderExtractRule] },
-  plugins: [plugins.vanillaExtractPlugin, plugins.miniCssExtractPlugin],
 };
 
-export default () => configuration.getConfiguration(config);
+const config = configuration.getConfiguration(baseConfig);
+delete config.plugins;
+config.plugins = [plugins.vanillaExtractPlugin, plugins.miniCssExtractPlugin];
+
+export default () => config;
+
+// export default () => configuration.getConfiguration(config);

@@ -2,19 +2,24 @@ import { createRainbowSprinkles, defineProperties } from "rainbow-sprinkles";
 import { varsThemeBase } from "../../../themes/base.css";
 import { mediaQueries } from "../../../themes/mediaQueries";
 
-type Display = "block" | "flex" | "inline-flex" | "grid" | "inline-grid";
-type FlexWrap = "nowrap" | "wrap" | "wrap-reverse";
-type FlexDirection = "row" | "row-reverse" | "column" | "column-reverse";
-type JustifyContent =
+type StackDisplay = "block" | "flex" | "inline-flex" | "grid" | "inline-grid";
+type StackFlexWrap = "nowrap" | "wrap" | "wrap-reverse";
+type StackFlexDirection = "row" | "row-reverse" | "column" | "column-reverse";
+type StackJustifyContent =
   | "flex-start"
   | "flex-end"
   | "center"
   | "space-between"
   | "space-around"
   | "space-evenly";
-type AlignItems = "stretch" | "flex-start" | "flex-end" | "center" | "baseline";
+type StackAlignItems =
+  | "stretch"
+  | "flex-start"
+  | "flex-end"
+  | "center"
+  | "baseline";
 
-export const displayProperties: Display[] = [
+export const stackDisplayProperties: StackDisplay[] = [
   "block",
   "flex",
   "inline-flex",
@@ -22,20 +27,20 @@ export const displayProperties: Display[] = [
   "inline-grid",
 ];
 
-export const flexDirectionProperties: FlexDirection[] = [
+export const stackFlexDirectionProperties: StackFlexDirection[] = [
   "row",
   "row-reverse",
   "column",
   "column-reverse",
 ];
 
-export const flexWrapProperties: FlexWrap[] = [
+export const stackFlexWrapProperties: StackFlexWrap[] = [
   "nowrap",
   "wrap",
   "wrap-reverse",
 ];
 
-export const justifyContentProperties: JustifyContent[] = [
+export const stackJustifyContentProperties: StackJustifyContent[] = [
   "flex-start",
   "flex-end",
   "center",
@@ -44,7 +49,7 @@ export const justifyContentProperties: JustifyContent[] = [
   "space-evenly",
 ];
 
-export const alignItemsProperties: AlignItems[] = [
+export const stackAlignItemsProperties: StackAlignItems[] = [
   "stretch",
   "flex-start",
   "flex-end",
@@ -52,7 +57,7 @@ export const alignItemsProperties: AlignItems[] = [
   "baseline",
 ];
 
-export const spaceProperties = {
+export const stackSpaceProperties = {
   none: "0",
   "0,5": varsThemeBase.spacing["0,5"],
   "1": varsThemeBase.spacing[1],
@@ -90,15 +95,15 @@ const properties = defineProperties({
     gridTemplateAreas: true,
     gridTemplateColumns: true,
     gridTemplateRows: true,
-    gap: spaceProperties,
-    gridGap: spaceProperties,
+    gap: stackSpaceProperties,
+    gridGap: stackSpaceProperties,
   },
   staticProperties: {
-    display: displayProperties,
-    flexDirection: flexDirectionProperties,
-    flexWrap: flexWrapProperties,
-    justifyContent: justifyContentProperties,
-    alignItems: alignItemsProperties,
+    display: stackDisplayProperties,
+    flexDirection: stackFlexDirectionProperties,
+    flexWrap: stackFlexWrapProperties,
+    justifyContent: stackJustifyContentProperties,
+    alignItems: stackAlignItemsProperties,
   },
   shorthands: {},
 });

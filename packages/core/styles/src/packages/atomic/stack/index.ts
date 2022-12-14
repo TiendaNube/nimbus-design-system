@@ -1,23 +1,23 @@
 import {
   sprinkle,
-  displayProperties,
-  flexDirectionProperties,
-  flexWrapProperties,
-  justifyContentProperties,
-  alignItemsProperties,
-  spaceProperties,
+  stackDisplayProperties,
+  stackFlexDirectionProperties,
+  stackFlexWrapProperties,
+  stackJustifyContentProperties,
+  stackAlignItemsProperties,
+  stackSpaceProperties,
 } from "./stack.sprinkle.css";
 
 export const stack = {
   sprinkle,
   properties: {
-    display: displayProperties,
-    flexDirection: flexDirectionProperties,
-    flexWrap: flexWrapProperties,
-    justifyContent: justifyContentProperties,
-    alignItems: alignItemsProperties,
-    gap: spaceProperties,
-    gridGap: spaceProperties,
+    display: stackDisplayProperties,
+    flexDirection: stackFlexDirectionProperties,
+    flexWrap: stackFlexWrapProperties,
+    justifyContent: stackJustifyContentProperties,
+    alignItems: stackAlignItemsProperties,
+    gap: stackSpaceProperties,
+    gridGap: stackSpaceProperties,
   },
 };
 

@@ -1,4 +1,4 @@
-import * as style from "./fileUploader.style.css";
+import * as styles from "./fileUploader.style.css";
 import {
   sprinkle,
   aspectRatioProperties,
@@ -6,7 +6,7 @@ import {
 } from "./fileUploader.sprinkle.css";
 
 export const fileUploader = {
-  style,
+  style: { ...styles },
   sprinkle,
   properties: {
     aspectRatio: aspectRatioProperties,

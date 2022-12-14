@@ -1,18 +1,19 @@
 import {
-  spaceProperties,
-  displayProperties,
-  justifyContentProperties,
-  flexDirectionProperties,
-  alignItemsProperties,
-  flexWrapProperties,
+  stackSpaceProperties,
+  stackDisplayProperties,
+  stackJustifyContentProperties,
+  stackFlexDirectionProperties,
+  stackAlignItemsProperties,
+  stackFlexWrapProperties,
 } from "./stack.sprinkle.css";
 
-type SpaceProperties = keyof typeof spaceProperties;
-type DisplayProperties = typeof displayProperties[number];
-type JustifyContentProperties = typeof justifyContentProperties[number];
-type FlexDirectionProperties = typeof flexDirectionProperties[number];
-type AlignItemsProperties = typeof alignItemsProperties[number];
-type FlexWrapProperties = typeof flexWrapProperties[number];
+type StackJustifyContentProperties =
+  typeof stackJustifyContentProperties[number];
+type StackSpaceProperties = keyof typeof stackSpaceProperties;
+type StackDisplayProperties = typeof stackDisplayProperties[number];
+type StackFlexDirectionProperties = typeof stackFlexDirectionProperties[number];
+type StackAlignItemsProperties = typeof stackAlignItemsProperties[number];
+type StackFlexWrapProperties = typeof stackFlexWrapProperties[number];
 
 interface Conditions<T> {
   xs?: T;
@@ -27,13 +28,17 @@ export interface StackSprinkle {
   gridTemplateColumns?: string | Conditions<string>;
   gridTemplateAreas?: string | Conditions<string>;
   gridTemplateRows?: string | Conditions<string>;
-  display?: DisplayProperties | Conditions<DisplayProperties>;
-  flexWrap?: FlexWrapProperties | Conditions<FlexWrapProperties>;
+  display?: StackDisplayProperties | Conditions<StackDisplayProperties>;
+  flexWrap?: StackFlexWrapProperties | Conditions<StackFlexWrapProperties>;
   justifyContent?:
-    | JustifyContentProperties
-    | Conditions<JustifyContentProperties>;
-  flexDirection?: FlexDirectionProperties | Conditions<FlexDirectionProperties>;
-  alignItems?: AlignItemsProperties | Conditions<AlignItemsProperties>;
-  gap?: SpaceProperties | Conditions<SpaceProperties>;
-  gridGap?: SpaceProperties | Conditions<SpaceProperties>;
+    | StackJustifyContentProperties
+    | Conditions<StackJustifyContentProperties>;
+  flexDirection?:
+    | StackFlexDirectionProperties
+    | Conditions<StackFlexDirectionProperties>;
+  alignItems?:
+    | StackAlignItemsProperties
+    | Conditions<StackAlignItemsProperties>;
+  gap?: StackSpaceProperties | Conditions<StackSpaceProperties>;
+  gridGap?: StackSpaceProperties | Conditions<StackSpaceProperties>;
 }

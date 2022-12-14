@@ -1,8 +1,8 @@
-import * as style from "./thumbnail.style.css";
+import * as styles from "./thumbnail.style.css";
 import { sprinkle, aspectRatioProperties } from "./thumbnail.sprinkle.css";
 
 export const thumbnail = {
-  style,
+  style: { ...styles },
   sprinkle,
   properties: { aspectRatio: aspectRatioProperties },
 };

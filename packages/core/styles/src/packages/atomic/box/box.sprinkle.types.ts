@@ -1,18 +1,18 @@
 import {
-  backgroundColorProperties,
-  borderColorProperties,
-  borderStyleProperties,
-  boxSizingProperties,
-  cursorProperties,
-  spaceProperties,
+  boxBackgroundColorProperties,
+  boxBorderColorProperties,
+  boxBorderStyleProperties,
+  boxBoxSizingProperties,
+  boxCursorProperties,
+  boxSpaceProperties,
 } from "./box.sprinkle.css";
 
-type CursorProperties = typeof cursorProperties[number];
-type BorderColorProperties = keyof typeof borderColorProperties;
-type BackgroundColorProperties = keyof typeof backgroundColorProperties;
-type BorderStyleProperties = typeof borderStyleProperties[number];
-type BoxSizingProperties = typeof boxSizingProperties[number];
-type SpaceProperties = keyof typeof spaceProperties;
+type BoxCursorProperties = typeof boxCursorProperties[number];
+type BoxBorderColorProperties = keyof typeof boxBorderColorProperties;
+type BoxBackgroundColorProperties = keyof typeof boxBackgroundColorProperties;
+type BoxBorderStyleProperties = typeof boxBorderStyleProperties[number];
+type BoxBoxSizingProperties = typeof boxBoxSizingProperties[number];
+type BoxSpaceProperties = keyof typeof boxSpaceProperties;
 
 interface Conditions<T> {
   xs?: T;
@@ -23,41 +23,41 @@ interface Conditions<T> {
 export interface BoxSprinkle {
   width?: string | Conditions<string>;
   height?: string | Conditions<string>;
-  cursor?: CursorProperties | Conditions<CursorProperties>;
+  cursor?: BoxCursorProperties | Conditions<BoxCursorProperties>;
   backgroundColor?:
-    | BackgroundColorProperties
-    | Conditions<BackgroundColorProperties>;
+    | BoxBackgroundColorProperties
+    | Conditions<BoxBackgroundColorProperties>;
   borderRadius?: string | Conditions<string>;
   borderWidth?: string | Conditions<string>;
-  borderColor?: BorderColorProperties | Conditions<BorderColorProperties>;
-  borderStyle?: BorderStyleProperties | Conditions<BorderStyleProperties>;
-  boxSizing?: BoxSizingProperties | Conditions<BoxSizingProperties>;
-  padding?: SpaceProperties | Conditions<SpaceProperties>;
-  paddingTop?: SpaceProperties | Conditions<SpaceProperties>;
-  paddingBottom?: SpaceProperties | Conditions<SpaceProperties>;
-  paddingLeft?: SpaceProperties | Conditions<SpaceProperties>;
-  paddingRight?: SpaceProperties | Conditions<SpaceProperties>;
-  margin?: SpaceProperties | Conditions<SpaceProperties>;
-  marginTop?: SpaceProperties | Conditions<SpaceProperties>;
-  marginBottom?: SpaceProperties | Conditions<SpaceProperties>;
-  marginLeft?: SpaceProperties | Conditions<SpaceProperties>;
-  marginRight?: SpaceProperties | Conditions<SpaceProperties>;
-  paddingX?: SpaceProperties | Conditions<SpaceProperties>;
-  paddingY?: SpaceProperties | Conditions<SpaceProperties>;
-  p?: SpaceProperties | Conditions<SpaceProperties>;
-  pl?: SpaceProperties | Conditions<SpaceProperties>;
-  pr?: SpaceProperties | Conditions<SpaceProperties>;
-  pt?: SpaceProperties | Conditions<SpaceProperties>;
-  pb?: SpaceProperties | Conditions<SpaceProperties>;
-  px?: SpaceProperties | Conditions<SpaceProperties>;
-  py?: SpaceProperties | Conditions<SpaceProperties>;
-  marginX?: SpaceProperties | Conditions<SpaceProperties>;
-  marginY?: SpaceProperties | Conditions<SpaceProperties>;
-  m?: SpaceProperties | Conditions<SpaceProperties>;
-  mr?: SpaceProperties | Conditions<SpaceProperties>;
-  ml?: SpaceProperties | Conditions<SpaceProperties>;
-  mt?: SpaceProperties | Conditions<SpaceProperties>;
-  mb?: SpaceProperties | Conditions<SpaceProperties>;
-  mx?: SpaceProperties | Conditions<SpaceProperties>;
-  my?: SpaceProperties | Conditions<SpaceProperties>;
+  borderColor?: BoxBorderColorProperties | Conditions<BoxBorderColorProperties>;
+  borderStyle?: BoxBorderStyleProperties | Conditions<BoxBorderStyleProperties>;
+  boxSizing?: BoxBoxSizingProperties | Conditions<BoxBoxSizingProperties>;
+  padding?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
+  paddingTop?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
+  paddingBottom?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
+  paddingLeft?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
+  paddingRight?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
+  margin?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
+  marginTop?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
+  marginBottom?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
+  marginLeft?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
+  marginRight?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
+  paddingX?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
+  paddingY?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
+  p?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
+  pl?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
+  pr?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
+  pt?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
+  pb?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
+  px?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
+  py?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
+  marginX?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
+  marginY?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
+  m?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
+  mr?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
+  ml?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
+  mt?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
+  mb?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
+  mx?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
+  my?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
 }

@@ -1,4 +1,4 @@
-import * as style from "./popover.style.css";
+import * as styles from "./popover.style.css";
 import {
   backgroundColorProperties,
   paddingProperties,
@@ -7,7 +7,7 @@ import {
 } from "./popover.sprinkle.css";
 
 export const popover = {
-  style,
+  style: { ...styles },
   sprinkle,
   properties: {
     backgroundColor: backgroundColorProperties,

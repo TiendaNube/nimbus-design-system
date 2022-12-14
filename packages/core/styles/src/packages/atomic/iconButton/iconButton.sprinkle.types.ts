@@ -1,10 +1,12 @@
 import {
-  backgroundColorProperties,
-  borderColorProperties,
+  iconButtonBackgroundColorProperties,
+  iconButtonBorderColorProperties,
 } from "./iconButton.sprinkle.css";
 
-type BackgroundColorProperties = keyof typeof backgroundColorProperties;
-type BorderColorProperties = keyof typeof borderColorProperties;
+type IconButtonBackgroundColorProperties =
+  keyof typeof iconButtonBackgroundColorProperties;
+type IconButtonBorderColorProperties =
+  keyof typeof iconButtonBorderColorProperties;
 
 interface Conditions<T> {
   xs?: T;
@@ -17,8 +19,10 @@ interface Conditions<T> {
 
 export interface IconButtonSprinkle {
   size?: string | Conditions<string>;
-  borderColor?: BorderColorProperties | Conditions<BorderColorProperties>;
+  borderColor?:
+    | IconButtonBorderColorProperties
+    | Conditions<IconButtonBorderColorProperties>;
   backgroundColor?:
-    | BackgroundColorProperties
-    | Conditions<BackgroundColorProperties>;
+    | IconButtonBackgroundColorProperties
+    | Conditions<IconButtonBackgroundColorProperties>;
 }

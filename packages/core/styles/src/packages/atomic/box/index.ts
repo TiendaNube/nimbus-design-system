@@ -1,22 +1,22 @@
 import {
   sprinkle,
-  backgroundColorProperties,
-  borderColorProperties,
-  borderStyleProperties,
-  boxSizingProperties,
-  spaceProperties,
-  cursorProperties,
+  boxBackgroundColorProperties,
+  boxBorderColorProperties,
+  boxBorderStyleProperties,
+  boxBoxSizingProperties,
+  boxSpaceProperties,
+  boxCursorProperties,
 } from "./box.sprinkle.css";
 
 export const box = {
   sprinkle,
   properties: {
-    backgroundColor: backgroundColorProperties,
-    borderColor: borderColorProperties,
-    borderStyle: borderStyleProperties,
-    boxSizing: boxSizingProperties,
-    space: spaceProperties,
-    cursor: cursorProperties,
+    backgroundColor: boxBackgroundColorProperties,
+    borderColor: boxBorderColorProperties,
+    borderStyle: boxBorderStyleProperties,
+    boxSizing: boxBoxSizingProperties,
+    space: boxSpaceProperties,
+    cursor: boxCursorProperties,
   },
 };
 

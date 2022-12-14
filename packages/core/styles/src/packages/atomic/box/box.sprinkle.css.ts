@@ -3,11 +3,11 @@ import { properties as colors } from "../../../sprinkles/colors.css";
 import { varsThemeBase } from "../../../themes/base.css";
 import { mediaQueries } from "../../../themes/mediaQueries";
 
-type BorderStyle = "solid" | "none" | "hidden" | "dashed" | "dotted";
+type BoxBorderStyle = "solid" | "none" | "hidden" | "dashed" | "dotted";
 type BoxSizing = "border-box" | "content-box";
-type Cursor = "auto" | "pointer";
+type BoxCursor = "auto" | "pointer";
 
-export const backgroundColorProperties = {
+export const boxBackgroundColorProperties = {
   "primary.interactive": colors["primary.interactive"],
   "primary.surface": colors["primary.surface"],
   "primary.surfaceHighlight": colors["primary.surfaceHighlight"],
@@ -35,7 +35,7 @@ export const backgroundColorProperties = {
   "neutral.textLow": colors["neutral.textLow"],
 };
 
-export const borderColorProperties = {
+export const boxBorderColorProperties = {
   "primary.interactive": colors["primary.interactive"],
   "primary.surface": colors["primary.surface"],
   "primary.surfaceHighlight": colors["primary.surfaceHighlight"],
@@ -57,7 +57,7 @@ export const borderColorProperties = {
   "neutral.surfaceHighlight": colors["neutral.surfaceHighlight"],
 };
 
-export const borderStyleProperties: BorderStyle[] = [
+export const boxBorderStyleProperties: BoxBorderStyle[] = [
   "solid",
   "none",
   "hidden",
@@ -65,11 +65,14 @@ export const borderStyleProperties: BorderStyle[] = [
   "dotted",
 ];
 
-export const boxSizingProperties: BoxSizing[] = ["border-box", "content-box"];
+export const boxBoxSizingProperties: BoxSizing[] = [
+  "border-box",
+  "content-box",
+];
 
-export const cursorProperties: Cursor[] = ["auto", "pointer"];
+export const boxCursorProperties: BoxCursor[] = ["auto", "pointer"];
 
-export const spaceProperties = {
+export const boxSpaceProperties = {
   none: "0",
   "0,5": varsThemeBase.spacing["0,5"],
   "1": varsThemeBase.spacing[1],
@@ -104,23 +107,23 @@ const properties = defineProperties({
     height: true,
     borderRadius: true,
     borderWidth: true,
-    backgroundColor: backgroundColorProperties,
-    borderColor: borderColorProperties,
-    padding: spaceProperties,
-    paddingTop: spaceProperties,
-    paddingBottom: spaceProperties,
-    paddingLeft: spaceProperties,
-    paddingRight: spaceProperties,
-    margin: spaceProperties,
-    marginTop: spaceProperties,
-    marginBottom: spaceProperties,
-    marginLeft: spaceProperties,
-    marginRight: spaceProperties,
+    backgroundColor: boxBackgroundColorProperties,
+    borderColor: boxBorderColorProperties,
+    padding: boxSpaceProperties,
+    paddingTop: boxSpaceProperties,
+    paddingBottom: boxSpaceProperties,
+    paddingLeft: boxSpaceProperties,
+    paddingRight: boxSpaceProperties,
+    margin: boxSpaceProperties,
+    marginTop: boxSpaceProperties,
+    marginBottom: boxSpaceProperties,
+    marginLeft: boxSpaceProperties,
+    marginRight: boxSpaceProperties,
   },
   staticProperties: {
-    borderStyle: borderStyleProperties,
-    boxSizing: boxSizingProperties,
-    cursor: cursorProperties,
+    borderStyle: boxBorderStyleProperties,
+    boxSizing: boxBoxSizingProperties,
+    cursor: boxCursorProperties,
   },
   shorthands: {
     padding: ["paddingTop", "paddingBottom", "paddingLeft", "paddingRight"],

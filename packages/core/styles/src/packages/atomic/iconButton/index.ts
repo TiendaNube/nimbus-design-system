@@ -1,7 +1,7 @@
 import * as style from "./iconButton.style.css";
 import {
-  backgroundColorProperties,
-  borderColorProperties,
+  iconButtonBackgroundColorProperties,
+  iconButtonBorderColorProperties,
   sprinkle,
 } from "./iconButton.sprinkle.css";
 
@@ -9,8 +9,8 @@ export const iconButton = {
   style,
   sprinkle,
   properties: {
-    backgroundColor: backgroundColorProperties,
-    borderColor: borderColorProperties,
+    backgroundColor: iconButtonBackgroundColorProperties,
+    borderColor: iconButtonBorderColorProperties,
   },
 };
 
