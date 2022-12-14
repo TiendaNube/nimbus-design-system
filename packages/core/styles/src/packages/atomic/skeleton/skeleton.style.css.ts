@@ -1,7 +1,7 @@
 import { style as vanillaStyle, keyframes } from "@vanilla-extract/css";
 
-import { varsThemeBase } from "../../../themes/base.css";
-import { utils } from "../../../utils";
+import { varsThemeBase } from "../../../themes";
+import { vars } from "../../../utils";
 
 const skeletonAnimation = keyframes({
   "0%": {
@@ -33,12 +33,12 @@ const skeletonAnimation = keyframes({
   },
 });
 
-export const style = vanillaStyle({
+export const container = vanillaStyle({
   backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
   position: "relative",
-  width: utils.vars.width,
-  height: utils.vars.height,
-  borderRadius: utils.vars.borderRadius,
+  width: vars.width,
+  height: vars.height,
+  borderRadius: vars.borderRadius,
   ":before": {
     content: "",
     position: "absolute",

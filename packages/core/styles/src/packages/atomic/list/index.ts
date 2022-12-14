@@ -1,5 +1,5 @@
-import * as style from "./list.style.css";
+import * as styles from "./list.style.css";
 
 export const list = {
-  style,
+  classnames: { ...styles },
 };

@@ -1,7 +1,6 @@
-import { defineProperties, createSprinkles } from "@vanilla-extract/sprinkles";
-import { varsThemeBase } from "../themes/base.css";
+import { varsThemeBase } from "../themes";
 
-export const properties = {
+export const baseColors = {
   "primary.surface": varsThemeBase.colors.primary.surface,
   "primary.surfaceHighlight": varsThemeBase.colors.primary.surfaceHighlight,
   "primary.interactive": varsThemeBase.colors.primary.interactive,
@@ -44,18 +43,4 @@ export const properties = {
   "neutral.textDisabled": varsThemeBase.colors.neutral.textDisabled,
   "neutral.textLow": varsThemeBase.colors.neutral.textLow,
   "neutral.textHigh": varsThemeBase.colors.neutral.textHigh,
-};
-
-const sprinkle = createSprinkles(
-  defineProperties({
-    properties: {
-      color: properties,
-      backgroundColor: properties,
-    },
-  })
-);
-
-export const colors = {
-  sprinkle,
-  properties,
 };

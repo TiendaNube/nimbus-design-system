@@ -1,5 +1,5 @@
-import * as style from "./label.style.css";
+import * as styles from "./label.style.css";
 
 export const label = {
-  style,
+  classnames: { ...styles },
 };

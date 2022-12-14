@@ -1,25 +1,32 @@
 import { defineProperties, createSprinkles } from "@vanilla-extract/sprinkles";
-import { properties as colors } from "../../../sprinkles/colors.css";
+import { colorProperties } from "../../../properties";
 
-export const properties = {
-  "primary.interactive": colors["primary.interactive"],
-  "primary.textLow": colors["primary.textLow"],
+const spinnerColorProperties = {
+  "primary.interactive": colorProperties["primary.interactive"],
+  "primary.textLow": colorProperties["primary.textLow"],
 
-  "success.interactive": colors["success.interactive"],
-  "success.textLow": colors["success.textLow"],
+  "success.interactive": colorProperties["success.interactive"],
+  "success.textLow": colorProperties["success.textLow"],
 
-  "danger.interactive": colors["danger.interactive"],
-  "danger.textLow": colors["danger.textLow"],
+  "danger.interactive": colorProperties["danger.interactive"],
+  "danger.textLow": colorProperties["danger.textLow"],
 
-  "neutral.background": colors["neutral.background"],
-  "neutral.interactive": colors["neutral.interactive"],
-  "neutral.textLow": colors["neutral.textLow"],
+  "neutral.background": colorProperties["neutral.background"],
+  "neutral.interactive": colorProperties["neutral.interactive"],
+  "neutral.textLow": colorProperties["neutral.textLow"],
 };
 
-export const sprinkle = createSprinkles(
+const properties = {
+  color: spinnerColorProperties,
+};
+
+const sprinkle = createSprinkles(
   defineProperties({
-    properties: {
-      color: properties,
-    },
+    properties,
   })
 );
+
+export const spinnerSprinkle = {
+  sprinkle,
+  properties,
+};

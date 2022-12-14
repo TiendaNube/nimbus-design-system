@@ -1,28 +1,32 @@
 import { defineProperties, createSprinkles } from "@vanilla-extract/sprinkles";
 
-import { properties as colors } from "../../../sprinkles/colors.css";
-import { properties as textAlignProperties } from "../../../sprinkles/textAlign.css";
+import { colorProperties, textAlignProperties } from "../../../properties";
 
-const colorsProperties = {
-  "primary.textHigh": colors["primary.textHigh"],
-  "primary.textLow": colors["primary.textLow"],
-  "success.textHigh": colors["success.textHigh"],
-  "success.textLow": colors["success.textLow"],
-  "warning.textHigh": colors["warning.textHigh"],
-  "warning.textLow": colors["warning.textLow"],
-  "danger.textHigh": colors["danger.textHigh"],
-  "danger.textLow": colors["danger.textLow"],
-  "neutral.textHigh": colors["neutral.textHigh"],
-  "neutral.textLow": colors["neutral.textLow"],
+const titleColorProperties = {
+  "primary.textHigh": colorProperties["primary.textHigh"],
+  "primary.textLow": colorProperties["primary.textLow"],
+  "success.textHigh": colorProperties["success.textHigh"],
+  "success.textLow": colorProperties["success.textLow"],
+  "warning.textHigh": colorProperties["warning.textHigh"],
+  "warning.textLow": colorProperties["warning.textLow"],
+  "danger.textHigh": colorProperties["danger.textHigh"],
+  "danger.textLow": colorProperties["danger.textLow"],
+  "neutral.textHigh": colorProperties["neutral.textHigh"],
+  "neutral.textLow": colorProperties["neutral.textLow"],
 };
 
-export const sprinkle = createSprinkles(
+const properties = {
+  color: titleColorProperties,
+  textAlign: textAlignProperties,
+};
+
+const sprinkle = createSprinkles(
   defineProperties({
-    properties: {
-      color: colorsProperties,
-      textAlign: textAlignProperties,
-    },
+    properties,
   })
 );
 
-export { textAlignProperties, colorsProperties };
+export const titleSprinkle = {
+  sprinkle,
+  properties,
+};

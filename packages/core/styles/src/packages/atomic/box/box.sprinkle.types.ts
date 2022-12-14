@@ -1,37 +1,24 @@
-import {
-  boxBackgroundColorProperties,
-  boxBorderColorProperties,
-  boxBorderStyleProperties,
-  boxBoxSizingProperties,
-  boxCursorProperties,
-  boxSpaceProperties,
-} from "./box.sprinkle.css";
+import { Conditions, BorderStyle, Cursor, BoxSizing } from "../../../types";
+import { boxSprinkle } from "./box.sprinkle.css";
 
-type BoxCursorProperties = typeof boxCursorProperties[number];
-type BoxBorderColorProperties = keyof typeof boxBorderColorProperties;
-type BoxBackgroundColorProperties = keyof typeof boxBackgroundColorProperties;
-type BoxBorderStyleProperties = typeof boxBorderStyleProperties[number];
-type BoxBoxSizingProperties = typeof boxBoxSizingProperties[number];
-type BoxSpaceProperties = keyof typeof boxSpaceProperties;
+const { properties: propertiesBox } = boxSprinkle;
 
-interface Conditions<T> {
-  xs?: T;
-  md?: T;
-  lg?: T;
-}
+type BoxBorderColorProperties = keyof typeof propertiesBox.borderColor;
+type BoxBackgroundColorProperties = keyof typeof propertiesBox.backgroundColor;
+type BoxSpaceProperties = keyof typeof propertiesBox.space;
 
 export interface BoxSprinkle {
   width?: string | Conditions<string>;
   height?: string | Conditions<string>;
-  cursor?: BoxCursorProperties | Conditions<BoxCursorProperties>;
+  cursor?: Cursor | Conditions<Cursor>;
   backgroundColor?:
     | BoxBackgroundColorProperties
     | Conditions<BoxBackgroundColorProperties>;
   borderRadius?: string | Conditions<string>;
   borderWidth?: string | Conditions<string>;
   borderColor?: BoxBorderColorProperties | Conditions<BoxBorderColorProperties>;
-  borderStyle?: BoxBorderStyleProperties | Conditions<BoxBorderStyleProperties>;
-  boxSizing?: BoxBoxSizingProperties | Conditions<BoxBoxSizingProperties>;
+  borderStyle?: BorderStyle | Conditions<BorderStyle>;
+  boxSizing?: BoxSizing | Conditions<BoxSizing>;
   padding?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
   paddingTop?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
   paddingBottom?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;

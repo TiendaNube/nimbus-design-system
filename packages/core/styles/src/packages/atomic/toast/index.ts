@@ -1,5 +1,5 @@
-import { wrapper, content } from "./toast.style.css";
+import * as styles from "./toast.style.css";
 
 export const toast = {
-  style: { wrapper, content },
+  classnames: { ...styles },
 };

@@ -1,14 +1,17 @@
 import { defineProperties, createSprinkles } from "@vanilla-extract/sprinkles";
+import { cursorProperties } from "../../../properties";
 
-export const cursorProperties = {
-  pointer: "pointer",
-  auto: "auto",
+const properties = {
+  cursor: cursorProperties,
 };
 
-export const sprinkle = createSprinkles(
+const sprinkle = createSprinkles(
   defineProperties({
-    properties: {
-      cursor: cursorProperties,
-    },
+    properties,
   })
 );
+
+export const radioSprinkle = {
+  sprinkle,
+  properties,
+};

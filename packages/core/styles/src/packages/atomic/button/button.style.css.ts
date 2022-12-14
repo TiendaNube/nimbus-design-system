@@ -1,6 +1,6 @@
 import { style as vanillaStyle, styleVariants } from "@vanilla-extract/css";
 
-import { varsThemeBase } from "../../../themes/base.css";
+import { varsThemeBase } from "../../../themes";
 
 const base = vanillaStyle({
   display: "flex",
@@ -33,7 +33,7 @@ const base = vanillaStyle({
   },
 });
 
-export const style = styleVariants({
+export const appearance = styleVariants({
   primary: [
     base,
     {

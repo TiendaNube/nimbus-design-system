@@ -1,6 +1,6 @@
 import { style as vanillaStyle, styleVariants } from "@vanilla-extract/css";
 
-import { varsThemeBase } from "../../../themes/base.css";
+import { varsThemeBase } from "../../../themes";
 
 export const container = vanillaStyle({
   borderColor: varsThemeBase.colors.neutral.interactive,

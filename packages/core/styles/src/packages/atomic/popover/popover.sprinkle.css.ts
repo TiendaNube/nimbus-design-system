@@ -1,29 +1,33 @@
 import { defineProperties, createSprinkles } from "@vanilla-extract/sprinkles";
-import { properties as colors } from "../../../sprinkles/colors.css";
-import { varsThemeBase } from "../../../themes/base.css";
+import {
+  backgroundColorProperties,
+  paddingProperties,
+} from "../../../properties";
 
-export const backgroundColorProperties = {
-  primary: colors["primary.surfaceHighlight"],
-  success: colors["success.surfaceHighlight"],
-  danger: colors["danger.surfaceHighlight"],
-  neutral: colors["neutral.surfaceHighlight"],
-  warning: colors["warning.surfaceHighlight"],
-  light: colors["neutral.background"],
+const popoverBackgroundColorProperties = {
+  primary: backgroundColorProperties["primary.surfaceHighlight"],
+  success: backgroundColorProperties["success.surfaceHighlight"],
+  danger: backgroundColorProperties["danger.surfaceHighlight"],
+  neutral: backgroundColorProperties["neutral.surfaceHighlight"],
+  warning: backgroundColorProperties["warning.surfaceHighlight"],
+  light: backgroundColorProperties["neutral.background"],
 };
 
-export const colorProperties = backgroundColorProperties;
+const popoverColorProperties = popoverBackgroundColorProperties;
 
-export const paddingProperties = {
-  base: varsThemeBase.spacing[4],
-  none: 0,
+const properties = {
+  backgroundColor: popoverBackgroundColorProperties,
+  color: popoverColorProperties,
+  padding: paddingProperties,
 };
 
-export const sprinkle = createSprinkles(
+const sprinkle = createSprinkles(
   defineProperties({
-    properties: {
-      backgroundColor: backgroundColorProperties,
-      color: colorProperties,
-      padding: paddingProperties,
-    },
+    properties,
   })
 );
+
+export const popoverSprinkle = {
+  sprinkle,
+  properties,
+};

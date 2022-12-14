@@ -11,7 +11,11 @@ const Button: React.FC<ButtonProps> & ButtonComponents = ({
   children,
   ...rest
 }: ButtonProps) => (
-  <button type="button" {...rest} className={button.style[appearance]}>
+  <button
+    type="button"
+    {...rest}
+    className={button.classnames.appearance[appearance]}
+  >
     {children}
   </button>
 );

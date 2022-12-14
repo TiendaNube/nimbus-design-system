@@ -1,31 +1,37 @@
 import { defineProperties, createSprinkles } from "@vanilla-extract/sprinkles";
-import { properties as colors } from "../../../sprinkles/colors.css";
-import { varsThemeBase } from "../../../themes/base.css";
+import { backgroundColorProperties , paddingProperties } from "../../../properties";
 
-export const backgroundColorProperties = {
-  "primary.surface": colors["primary.surface"],
-  "primary.surfaceHighlight": colors["primary.surfaceHighlight"],
-  "success.surface": colors["success.surface"],
-  "success.surfaceHighlight": colors["success.surfaceHighlight"],
-  "danger.surface": colors["danger.surface"],
-  "danger.surfaceHighlight": colors["danger.surfaceHighlight"],
-  "warning.surface": colors["warning.surface"],
-  "warning.surfaceHighlight": colors["warning.surfaceHighlight"],
-  "neutral.background": colors["neutral.background"],
-  "neutral.surface": colors["neutral.surface"],
-  "neutral.surfaceHighlight": colors["neutral.surfaceHighlight"],
+const cardBackgroundColorProperties = {
+  "primary.surface": backgroundColorProperties["primary.surface"],
+  "primary.surfaceHighlight":
+    backgroundColorProperties["primary.surfaceHighlight"],
+  "success.surface": backgroundColorProperties["success.surface"],
+  "success.surfaceHighlight":
+    backgroundColorProperties["success.surfaceHighlight"],
+  "danger.surface": backgroundColorProperties["danger.surface"],
+  "danger.surfaceHighlight":
+    backgroundColorProperties["danger.surfaceHighlight"],
+  "warning.surface": backgroundColorProperties["warning.surface"],
+  "warning.surfaceHighlight":
+    backgroundColorProperties["warning.surfaceHighlight"],
+  "neutral.background": backgroundColorProperties["neutral.background"],
+  "neutral.surface": backgroundColorProperties["neutral.surface"],
+  "neutral.surfaceHighlight":
+    backgroundColorProperties["neutral.surfaceHighlight"],
 };
 
-export const paddingProperties = {
-  base: varsThemeBase.spacing[4],
-  none: 0,
+const properties = {
+  backgroundColor: cardBackgroundColorProperties,
+  padding: paddingProperties,
 };
 
-export const sprinkle = createSprinkles(
+const sprinkle = createSprinkles(
   defineProperties({
-    properties: {
-      backgroundColor: backgroundColorProperties,
-      padding: paddingProperties,
-    },
+    properties,
   })
 );
+
+export const cardSprinkle = {
+  sprinkle,
+  properties,
+};

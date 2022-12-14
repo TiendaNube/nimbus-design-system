@@ -1,8 +1,8 @@
 import { recipe } from "@vanilla-extract/recipes";
 
-import { varsThemeBase } from "../../../themes/base.css";
+import { varsThemeBase } from "../../../themes";
 
-export const style = recipe({
+export const container = recipe({
   base: {
     margin: 0,
     display: "flex",

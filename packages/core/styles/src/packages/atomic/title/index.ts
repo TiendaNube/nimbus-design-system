@@ -1,12 +1,7 @@
-import { style } from "./title.style.css";
-import {
-  sprinkle,
-  colorsProperties,
-  textAlignProperties,
-} from "./title.sprinkle.css";
+import * as styles from "./title.style.css";
+import { titleSprinkle } from "./title.sprinkle.css";
 
 export const title = {
-  style,
-  sprinkle,
-  properties: { colors: colorsProperties, textAlign: textAlignProperties },
+  classnames: { ...styles },
+  ...titleSprinkle,
 };

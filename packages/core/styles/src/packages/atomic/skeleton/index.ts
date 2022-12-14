@@ -1,5 +1,5 @@
-import { style } from "./skeleton.style.css";
+import * as styles from "./skeleton.style.css";
 
 export const skeleton = {
-  style,
+  classnames: { ...styles },
 };

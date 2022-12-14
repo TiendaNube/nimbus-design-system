@@ -1,6 +1,6 @@
 import { style, styleVariants, keyframes } from "@vanilla-extract/css";
 
-import { varsThemeBase } from "../../../themes/base.css";
+import { varsThemeBase } from "../../../themes";
 
 const overlayAnimation = keyframes({
   "0%": {

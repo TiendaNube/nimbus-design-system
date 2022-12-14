@@ -1,22 +1,24 @@
 import { defineProperties, createSprinkles } from "@vanilla-extract/sprinkles";
-import { properties as colors } from "../../../sprinkles/colors.css";
+import { borderColorProperties, cursorProperties } from "../../../properties";
 
-export const borderColorProperties = {
-  "primary.interactive": colors["primary.interactive"],
-  "danger.interactive": colors["danger.interactive"],
-  "neutral.interactive": colors["neutral.interactive"],
+const checkboxBorderColorProperties = {
+  "primary.interactive": borderColorProperties["primary.interactive"],
+  "danger.interactive": borderColorProperties["danger.interactive"],
+  "neutral.interactive": borderColorProperties["neutral.interactive"],
 };
 
-export const cursorProperties = {
-  pointer: "pointer",
-  auto: "auto",
+const properties = {
+  borderColor: checkboxBorderColorProperties,
+  cursor: cursorProperties,
 };
 
-export const sprinkle = createSprinkles(
+const sprinkle = createSprinkles(
   defineProperties({
-    properties: {
-      borderColor: borderColorProperties,
-      cursor: cursorProperties,
-    },
+    properties,
   })
 );
+
+export const checkboxSprinkle = {
+  sprinkle,
+  properties,
+};

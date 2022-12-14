@@ -1,5 +1,5 @@
-import * as style from "./input.style.css";
+import * as styles from "./input.style.css";
 
 export const input = {
-  style,
+  classnames: { ...styles },
 };

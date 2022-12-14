@@ -1,5 +1,5 @@
-import { style } from "./chip.style.css";
+import * as styles from "./chip.style.css";
 
 export const chip = {
-  style,
+  classnames: { ...styles },
 };

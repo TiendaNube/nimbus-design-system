@@ -1,15 +1,7 @@
 import * as styles from "./fileUploader.style.css";
-import {
-  sprinkle,
-  aspectRatioProperties,
-  flexDirectionProperties,
-} from "./fileUploader.sprinkle.css";
+import { fileUploaderSprinkle } from "./fileUploader.sprinkle.css";
 
 export const fileUploader = {
-  style: { ...styles },
-  sprinkle,
-  properties: {
-    aspectRatio: aspectRatioProperties,
-    flexDirection: flexDirectionProperties,
-  },
+  classnames: { ...styles },
+  ...fileUploaderSprinkle,
 };

@@ -1,46 +1,63 @@
-import { createRainbowSprinkles, defineProperties } from "rainbow-sprinkles";
-import { properties as colors } from "../../../sprinkles/colors.css";
-import { mediaQueries } from "../../../themes/mediaQueries";
+import {
+  createRainbowSprinkles,
+  defineProperties as defineRainbowProperties,
+} from "rainbow-sprinkles";
+import {
+  backgroundColorProperties,
+  borderColorProperties,
+} from "../../../properties";
+import { mediaQueries } from "../../../themes";
 
-export const iconButtonBackgroundColorProperties = {
+const iconButtonBackgroundColorProperties = {
   transparent: "transparent",
-  "neutral.interactive": colors["neutral.interactive"],
-  "neutral.surfaceHighlight": colors["neutral.surfaceHighlight"],
-  "neutral.interactivePressed": colors["neutral.interactivePressed"],
+  "neutral.interactive": backgroundColorProperties["neutral.interactive"],
+  "neutral.surfaceHighlight":
+    backgroundColorProperties["neutral.surfaceHighlight"],
+  "neutral.interactivePressed":
+    backgroundColorProperties["neutral.interactivePressed"],
 };
 
-export const iconButtonBorderColorProperties = {
+const iconButtonBorderColorProperties = {
   ...iconButtonBackgroundColorProperties,
-  "neutral.interactive": colors["neutral.interactive"],
-  "neutral.interactiveHover": colors["neutral.interactiveHover"],
+  "neutral.interactive": borderColorProperties["neutral.interactive"],
+  "neutral.interactiveHover": borderColorProperties["neutral.interactiveHover"],
 };
 
-export const sprinkle = createRainbowSprinkles(
-  defineProperties({
-    conditions: {
-      xs: {
-        "@media": mediaQueries.xs(),
-      },
-      md: {
-        "@media": mediaQueries.md(),
-      },
-      lg: {
-        "@media": mediaQueries.lg(),
-      },
-      active: { selector: "&:active" },
-      hover: { selector: "&:hover" },
-      focus: { selector: "&:focus" },
+const properties = {
+  backgroundColor: iconButtonBackgroundColorProperties,
+  borderColor: iconButtonBorderColorProperties,
+};
+
+const defineProperties = defineRainbowProperties({
+  conditions: {
+    xs: {
+      "@media": mediaQueries.xs(),
     },
-    defaultCondition: "xs",
-    staticProperties: {},
-    dynamicProperties: {
-      width: true,
-      height: true,
-      backgroundColor: iconButtonBackgroundColorProperties,
-      borderColor: iconButtonBorderColorProperties,
+    md: {
+      "@media": mediaQueries.md(),
     },
-    shorthands: {
-      size: ["width", "height"],
+    lg: {
+      "@media": mediaQueries.lg(),
     },
-  })
-);
+    active: { selector: "&:active" },
+    hover: { selector: "&:hover" },
+    focus: { selector: "&:focus" },
+  },
+  defaultCondition: "xs",
+  staticProperties: {},
+  dynamicProperties: {
+    width: true,
+    height: true,
+    ...properties,
+  },
+  shorthands: {
+    size: ["width", "height"],
+  },
+});
+
+const sprinkle = createRainbowSprinkles(defineProperties);
+
+export const iconButtonSprinkle = {
+  sprinkle,
+  properties,
+};

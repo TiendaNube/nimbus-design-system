@@ -1,6 +1,6 @@
 import { style, styleVariants } from "@vanilla-extract/css";
 
-import { varsThemeBase } from "../../../themes/base.css";
+import { varsThemeBase } from "../../../themes";
 import { select as field } from "../select";
 
 const base = style({
@@ -8,8 +8,8 @@ const base = style({
 });
 
 export const appearance = styleVariants({
-  neutral: [base, field.style.appearance.neutral],
-  success: [base, field.style.appearance.success],
-  warning: [base, field.style.appearance.warning],
-  danger: [base, field.style.appearance.danger],
+  neutral: [base, field.classnames.appearance.neutral],
+  success: [base, field.classnames.appearance.success],
+  warning: [base, field.classnames.appearance.warning],
+  danger: [base, field.classnames.appearance.danger],
 });

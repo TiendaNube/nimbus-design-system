@@ -1,5 +1,5 @@
-import * as style from "./badge.style.css";
+import * as styles from "./badge.style.css";
 
 export const badge = {
-  style,
+  classnames: { ...styles },
 };

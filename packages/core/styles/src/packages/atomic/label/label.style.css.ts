@@ -1,6 +1,6 @@
 import { style } from "@vanilla-extract/css";
 
-import { varsThemeBase } from "../../../themes/base.css";
+import { varsThemeBase } from "../../../themes";
 
 export const base = style({
   display: "flex",

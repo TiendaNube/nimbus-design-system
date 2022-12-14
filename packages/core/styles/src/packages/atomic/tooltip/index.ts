@@ -1,5 +1,5 @@
-import * as style from "./tooltip.style.css";
+import * as styles from "./tooltip.style.css";
 
 export const tooltip = {
-  style,
+  classnames: { ...styles },
 };

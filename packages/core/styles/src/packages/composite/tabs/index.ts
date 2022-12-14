@@ -1,5 +1,5 @@
-import * as style from "./tabs.style.css";
+import * as styles from "./tabs.style.css";
 
 export const tabs = {
-  style,
+  classnames: { ...styles },
 };

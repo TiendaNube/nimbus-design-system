@@ -1,8 +1,7 @@
 import { recipe } from "@vanilla-extract/recipes";
+import { varsThemeBase } from "../../../themes";
 
-import { varsThemeBase } from "../../../themes/base.css";
-
-export const style = recipe({
+export const container = recipe({
   base: {
     fontFamily: varsThemeBase.fontFamily.centranube,
     fontWeight: varsThemeBase.fontWeight.bold,

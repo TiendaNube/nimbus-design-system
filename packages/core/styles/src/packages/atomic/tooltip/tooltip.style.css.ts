@@ -1,6 +1,6 @@
 import { style, styleVariants } from "@vanilla-extract/css";
 
-import { varsThemeBase } from "../../../themes/base.css";
+import { varsThemeBase } from "../../../themes";
 
 export const container = style({
   width: "fit-content",

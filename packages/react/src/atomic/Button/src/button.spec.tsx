@@ -22,7 +22,7 @@ describe("GIVEN <Button />", () => {
     it("THEN should correctly render the appearance default", () => {
       makeSut({ children: "button" });
       expect(screen.getByRole("button").getAttribute("class")).toContain(
-        "style_neutral"
+        "appearance_neutral"
       );
     });
 
@@ -30,21 +30,21 @@ describe("GIVEN <Button />", () => {
       makeSut({ appearance: "primary", children: "button" });
       expect(
         screen.getByRole("button", { name: "button" }).getAttribute("class")
-      ).toContain("style_primary");
+      ).toContain("appearance_primary");
     });
 
     it("THEN should correctly render the appearance danger", () => {
       makeSut({ appearance: "danger", children: "button" });
       expect(
         screen.getByRole("button", { name: "button" }).getAttribute("class")
-      ).toContain("style_danger");
+      ).toContain("appearance_danger");
     });
 
     it("THEN should correctly render the appearance neutral", () => {
       makeSut({ appearance: "neutral", children: "button" });
       expect(
         screen.getByRole("button", { name: "button" }).getAttribute("class")
-      ).toContain("style_neutral");
+      ).toContain("appearance_neutral");
     });
   });
 });

@@ -1,15 +1,15 @@
 import { style } from "@vanilla-extract/css";
 
-import { varsThemeBase } from "../../../themes/base.css";
-import { utils } from "../../../utils";
+import { varsThemeBase } from "../../../themes";
+import { vars } from "../../../utils";
 
 export const container = style({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
   gap: varsThemeBase.sizes[1],
-  width: utils.vars.width,
-  height: utils.vars.height,
+  width: vars.width,
+  height: vars.height,
 
   background: varsThemeBase.colors.primary.surface,
   borderRadius: varsThemeBase.spacing[2],

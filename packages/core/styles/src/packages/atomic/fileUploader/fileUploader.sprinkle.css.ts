@@ -1,26 +1,27 @@
 import { defineProperties, createSprinkles } from "@vanilla-extract/sprinkles";
+import { cursorProperties } from "../../../properties";
 import { thumbnail } from "../thumbnail";
 
-export const aspectRatioProperties = {
-  none: "none",
+const fileUploaderAspectRatioProperties = [
+  "none",
   ...thumbnail.properties.aspectRatio,
-};
-export const flexDirectionProperties = {
-  row: "row",
-  column: "column",
-} as const;
+] as const;
 
-export const cursorProperties = {
-  pointer: "pointer",
-  auto: "auto",
+const fileUploaderFlexDirectionProperties = ["row", "column"] as const;
+
+const properties = {
+  aspectRatio: fileUploaderAspectRatioProperties,
+  flexDirection: fileUploaderFlexDirectionProperties,
+  cursor: cursorProperties,
 };
 
-export const sprinkle = createSprinkles(
+const sprinkle = createSprinkles(
   defineProperties({
-    properties: {
-      aspectRatio: aspectRatioProperties,
-      flexDirection: flexDirectionProperties,
-      cursor: cursorProperties,
-    },
+    properties,
   })
 );
+
+export const fileUploaderSprinkle = {
+  sprinkle,
+  properties,
+};

@@ -1,5 +1,5 @@
-import * as style from "./link.style.css";
+import * as styles from "./link.style.css";
 
 export const link = {
-  style,
+  classnames: { ...styles },
 };

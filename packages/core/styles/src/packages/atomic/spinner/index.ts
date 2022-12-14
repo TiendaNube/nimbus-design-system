@@ -1,8 +1,7 @@
-import { style } from "./spinner.style.css";
-import { sprinkle, properties } from "./spinner.sprinkle.css";
+import * as styles from "./spinner.style.css";
+import { spinnerSprinkle } from "./spinner.sprinkle.css";
 
 export const spinner = {
-  style,
-  sprinkle,
-  properties,
+  classnames: { ...styles },
+  ...spinnerSprinkle,
 };

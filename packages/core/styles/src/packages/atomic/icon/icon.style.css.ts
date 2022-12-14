@@ -1,6 +1,6 @@
 import { style as vanillaStyle } from "@vanilla-extract/css";
 
-export const style = vanillaStyle({
+export const container = vanillaStyle({
   display: "flex",
   alignItems: "center",
 });

@@ -1,5 +1,5 @@
-import { style } from "./tag.style.css";
+import * as styles from "./tag.style.css";
 
 export const tag = {
-  style,
+  classnames: { ...styles },
 };

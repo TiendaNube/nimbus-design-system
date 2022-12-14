@@ -1,37 +1,42 @@
 import { defineProperties, createSprinkles } from "@vanilla-extract/sprinkles";
-import { properties as colors } from "../../../sprinkles/colors.css";
+import { cursorProperties, colorProperties } from "../../../properties";
 
-export const colorProperties = {
-  "primary.interactive": colors["primary.interactive"],
-  "primary.textLow": colors["primary.textLow"],
-  "primary.textHigh": colors["primary.textHigh"],
+const iconColorProperties = {
+  "primary.interactive": colorProperties["primary.interactive"],
+  "primary.textLow": colorProperties["primary.textLow"],
+  "primary.textHigh": colorProperties["primary.textHigh"],
 
-  "success.interactive": colors["success.interactive"],
-  "success.textLow": colors["success.textLow"],
-  "success.textHigh": colors["success.textHigh"],
+  "success.interactive": colorProperties["success.interactive"],
+  "success.textLow": colorProperties["success.textLow"],
+  "success.textHigh": colorProperties["success.textHigh"],
 
-  "warning.interactive": colors["warning.interactive"],
-  "warning.textLow": colors["warning.textLow"],
-  "warning.textHigh": colors["warning.textHigh"],
+  "warning.interactive": colorProperties["warning.interactive"],
+  "warning.textLow": colorProperties["warning.textLow"],
+  "warning.textHigh": colorProperties["warning.textHigh"],
 
-  "danger.interactive": colors["danger.interactive"],
-  "danger.textLow": colors["danger.textLow"],
-  "danger.textHigh": colors["danger.textHigh"],
+  "danger.interactive": colorProperties["danger.interactive"],
+  "danger.textLow": colorProperties["danger.textLow"],
+  "danger.textHigh": colorProperties["danger.textHigh"],
 
-  "neutral.background": colors["neutral.background"],
-  "neutral.interactive": colors["neutral.interactive"],
-  "neutral.textLow": colors["neutral.textLow"],
-  "neutral.textDisabled": colors["neutral.textDisabled"],
-  "neutral.textHigh": colors["neutral.textHigh"],
+  "neutral.background": colorProperties["neutral.background"],
+  "neutral.interactive": colorProperties["neutral.interactive"],
+  "neutral.textLow": colorProperties["neutral.textLow"],
+  "neutral.textDisabled": colorProperties["neutral.textDisabled"],
+  "neutral.textHigh": colorProperties["neutral.textHigh"],
 };
 
-export const cursorProperties = ["auto", "pointer"] as const;
+const properties = {
+  color: iconColorProperties,
+  cursor: cursorProperties,
+};
 
-export const sprinkle = createSprinkles(
+const sprinkle = createSprinkles(
   defineProperties({
-    properties: {
-      color: colorProperties,
-      cursor: cursorProperties,
-    },
+    properties,
   })
 );
+
+export const iconSprinkle = {
+  sprinkle,
+  properties,
+};

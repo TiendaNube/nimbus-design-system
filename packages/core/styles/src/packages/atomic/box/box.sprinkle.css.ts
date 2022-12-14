@@ -1,78 +1,72 @@
-import { createRainbowSprinkles, defineProperties } from "rainbow-sprinkles";
-import { properties as colors } from "../../../sprinkles/colors.css";
-import { varsThemeBase } from "../../../themes/base.css";
-import { mediaQueries } from "../../../themes/mediaQueries";
+import {
+  createRainbowSprinkles,
+  defineProperties as defineRainbowProperties,
+} from "rainbow-sprinkles";
+import {
+  backgroundColorProperties,
+  borderColorProperties,
+  borderStyleProperties,
+  boxSizingProperties,
+  cursorProperties,
+} from "../../../properties";
+import { varsThemeBase, mediaQueries } from "../../../themes";
 
-type BoxBorderStyle = "solid" | "none" | "hidden" | "dashed" | "dotted";
-type BoxSizing = "border-box" | "content-box";
-type BoxCursor = "auto" | "pointer";
+const boxBackgroundColorProperties = {
+  "primary.interactive": backgroundColorProperties["primary.interactive"],
+  "primary.surface": backgroundColorProperties["primary.surface"],
+  "primary.surfaceHighlight":
+    backgroundColorProperties["primary.surfaceHighlight"],
+  "primary.textLow": backgroundColorProperties["primary.textLow"],
 
-export const boxBackgroundColorProperties = {
-  "primary.interactive": colors["primary.interactive"],
-  "primary.surface": colors["primary.surface"],
-  "primary.surfaceHighlight": colors["primary.surfaceHighlight"],
-  "primary.textLow": colors["primary.textLow"],
+  "success.interactive": backgroundColorProperties["success.interactive"],
+  "success.surface": backgroundColorProperties["success.surface"],
+  "success.surfaceHighlight":
+    backgroundColorProperties["success.surfaceHighlight"],
+  "success.textLow": backgroundColorProperties["success.textLow"],
 
-  "success.interactive": colors["success.interactive"],
-  "success.surface": colors["success.surface"],
-  "success.surfaceHighlight": colors["success.surfaceHighlight"],
-  "success.textLow": colors["success.textLow"],
+  "warning.interactive": backgroundColorProperties["warning.interactive"],
+  "warning.surface": backgroundColorProperties["warning.surface"],
+  "warning.surfaceHighlight":
+    backgroundColorProperties["warning.surfaceHighlight"],
+  "warning.textLow": backgroundColorProperties["warning.textLow"],
 
-  "warning.interactive": colors["warning.interactive"],
-  "warning.surface": colors["warning.surface"],
-  "warning.surfaceHighlight": colors["warning.surfaceHighlight"],
-  "warning.textLow": colors["warning.textLow"],
+  "danger.interactive": backgroundColorProperties["danger.interactive"],
+  "danger.surface": backgroundColorProperties["danger.surface"],
+  "danger.surfaceHighlight":
+    backgroundColorProperties["danger.surfaceHighlight"],
+  "danger.textLow": backgroundColorProperties["danger.textLow"],
 
-  "danger.interactive": colors["danger.interactive"],
-  "danger.surface": colors["danger.surface"],
-  "danger.surfaceHighlight": colors["danger.surfaceHighlight"],
-  "danger.textLow": colors["danger.textLow"],
-
-  "neutral.background": colors["neutral.background"],
-  "neutral.interactive": colors["neutral.interactive"],
-  "neutral.surface": colors["neutral.surface"],
-  "neutral.surfaceHighlight": colors["neutral.surfaceHighlight"],
-  "neutral.textLow": colors["neutral.textLow"],
+  "neutral.background": backgroundColorProperties["neutral.background"],
+  "neutral.interactive": backgroundColorProperties["neutral.interactive"],
+  "neutral.surface": backgroundColorProperties["neutral.surface"],
+  "neutral.surfaceHighlight":
+    backgroundColorProperties["neutral.surfaceHighlight"],
+  "neutral.textLow": backgroundColorProperties["neutral.textLow"],
 };
 
-export const boxBorderColorProperties = {
-  "primary.interactive": colors["primary.interactive"],
-  "primary.surface": colors["primary.surface"],
-  "primary.surfaceHighlight": colors["primary.surfaceHighlight"],
+const boxBorderColorProperties = {
+  "primary.interactive": borderColorProperties["primary.interactive"],
+  "primary.surface": borderColorProperties["primary.surface"],
+  "primary.surfaceHighlight": borderColorProperties["primary.surfaceHighlight"],
 
-  "success.interactive": colors["success.interactive"],
-  "success.surface": colors["success.surface"],
-  "success.surfaceHighlight": colors["success.surfaceHighlight"],
+  "success.interactive": borderColorProperties["success.interactive"],
+  "success.surface": borderColorProperties["success.surface"],
+  "success.surfaceHighlight": borderColorProperties["success.surfaceHighlight"],
 
-  "warning.interactive": colors["warning.interactive"],
-  "warning.surface": colors["warning.surface"],
-  "warning.surfaceHighlight": colors["warning.surfaceHighlight"],
+  "warning.interactive": borderColorProperties["warning.interactive"],
+  "warning.surface": borderColorProperties["warning.surface"],
+  "warning.surfaceHighlight": borderColorProperties["warning.surfaceHighlight"],
 
-  "danger.interactive": colors["danger.interactive"],
-  "danger.surface": colors["danger.surface"],
-  "danger.surfaceHighlight": colors["danger.surfaceHighlight"],
+  "danger.interactive": borderColorProperties["danger.interactive"],
+  "danger.surface": borderColorProperties["danger.surface"],
+  "danger.surfaceHighlight": borderColorProperties["danger.surfaceHighlight"],
 
-  "neutral.interactive": colors["neutral.interactive"],
-  "neutral.surface": colors["neutral.surface"],
-  "neutral.surfaceHighlight": colors["neutral.surfaceHighlight"],
+  "neutral.interactive": borderColorProperties["neutral.interactive"],
+  "neutral.surface": borderColorProperties["neutral.surface"],
+  "neutral.surfaceHighlight": borderColorProperties["neutral.surfaceHighlight"],
 };
 
-export const boxBorderStyleProperties: BoxBorderStyle[] = [
-  "solid",
-  "none",
-  "hidden",
-  "dashed",
-  "dotted",
-];
-
-export const boxBoxSizingProperties: BoxSizing[] = [
-  "border-box",
-  "content-box",
-];
-
-export const boxCursorProperties: BoxCursor[] = ["auto", "pointer"];
-
-export const boxSpaceProperties = {
+const boxSpaceProperties = {
   none: "0",
   "0,5": varsThemeBase.spacing["0,5"],
   "1": varsThemeBase.spacing[1],
@@ -89,7 +83,7 @@ export const boxSpaceProperties = {
   "20": varsThemeBase.spacing[20],
 };
 
-const properties = defineProperties({
+const defineProperties = defineRainbowProperties({
   conditions: {
     xs: {
       "@media": mediaQueries.xs(),
@@ -121,9 +115,9 @@ const properties = defineProperties({
     marginRight: boxSpaceProperties,
   },
   staticProperties: {
-    borderStyle: boxBorderStyleProperties,
-    boxSizing: boxBoxSizingProperties,
-    cursor: boxCursorProperties,
+    borderStyle: borderStyleProperties,
+    boxSizing: boxSizingProperties,
+    cursor: cursorProperties,
   },
   shorthands: {
     padding: ["paddingTop", "paddingBottom", "paddingLeft", "paddingRight"],
@@ -149,4 +143,18 @@ const properties = defineProperties({
   },
 });
 
-export const sprinkle = createRainbowSprinkles(properties);
+const properties = {
+  backgroundColor: boxBackgroundColorProperties,
+  borderColor: boxBorderColorProperties,
+  borderStyle: borderStyleProperties,
+  boxSizing: boxSizingProperties,
+  cursor: cursorProperties,
+  space: boxSpaceProperties,
+};
+
+const sprinkle = createRainbowSprinkles(defineProperties);
+
+export const boxSprinkle = {
+  sprinkle,
+  properties,
+};

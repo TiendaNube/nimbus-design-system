@@ -1,13 +1,13 @@
 import { style as vanillaStyle } from "@vanilla-extract/css";
 
-import { varsThemeBase } from "../../../themes/base.css";
-import { utils } from "../../../utils";
+import { varsThemeBase } from "../../../themes";
+import { vars } from "../../../utils";
 
 export const container = vanillaStyle({
   display: "flex",
   background: varsThemeBase.colors.neutral.surfaceDisabled,
   borderRadius: varsThemeBase.spacing[2],
-  width: utils.vars.width,
+  width: vars.width,
   overflow: "hidden",
 });
 

@@ -3,7 +3,7 @@ import {
   globalStyle,
   keyframes,
 } from "@vanilla-extract/css";
-import { utils } from "../../../utils";
+import { vars } from "../../../utils";
 
 const rotateAnimation = keyframes({
   "100%": {
@@ -26,13 +26,13 @@ const dashAnimation = keyframes({
   },
 });
 
-export const style = vanillaStyle({
+export const container = vanillaStyle({
   animation: `${rotateAnimation} 2s linear infinite`,
-  width: utils.vars.width,
-  height: utils.vars.height,
+  width: vars.width,
+  height: vars.height,
 });
 
-globalStyle(`${style} circle`, {
+globalStyle(`${container} circle`, {
   stroke: "currentcolor",
   animation: `${dashAnimation} 1.5s ease-in-out infinite`,
 });

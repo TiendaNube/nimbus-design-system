@@ -1,5 +1,5 @@
-import { style } from "./button.style.css";
+import * as styles from "./button.style.css";
 
 export const button = {
-  style,
+  classnames: { ...styles },
 };

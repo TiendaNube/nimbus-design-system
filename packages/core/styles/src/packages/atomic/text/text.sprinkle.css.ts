@@ -1,68 +1,54 @@
 import { defineProperties, createSprinkles } from "@vanilla-extract/sprinkles";
 
-import { varsThemeBase } from "../../../themes/base.css";
-import { properties as colors } from "../../../sprinkles/colors.css";
-import { properties as textAlignProperties } from "../../../sprinkles/textAlign.css";
+import {
+  colorProperties,
+  fontSizeProperties,
+  fontWeightProperties,
+  lineHeightProperties,
+  textAlignProperties,
+} from "../../../properties";
 
-const colorsProperties = {
+const textColorProperties = {
   currentColor: "currentColor",
 
-  "primary.interactive": colors["primary.interactive"],
-  "primary.textLow": colors["primary.textLow"],
-  "primary.textHigh": colors["primary.textHigh"],
+  "primary.interactive": colorProperties["primary.interactive"],
+  "primary.textLow": colorProperties["primary.textLow"],
+  "primary.textHigh": colorProperties["primary.textHigh"],
 
-  "success.interactive": colors["success.interactive"],
-  "success.textLow": colors["success.textLow"],
-  "success.textHigh": colors["success.textHigh"],
+  "success.interactive": colorProperties["success.interactive"],
+  "success.textLow": colorProperties["success.textLow"],
+  "success.textHigh": colorProperties["success.textHigh"],
 
-  "warning.interactive": colors["warning.interactive"],
-  "warning.textLow": colors["warning.textLow"],
-  "warning.textHigh": colors["warning.textHigh"],
+  "warning.interactive": colorProperties["warning.interactive"],
+  "warning.textLow": colorProperties["warning.textLow"],
+  "warning.textHigh": colorProperties["warning.textHigh"],
 
-  "danger.interactive": colors["danger.interactive"],
-  "danger.textLow": colors["danger.textLow"],
-  "danger.textHigh": colors["danger.textHigh"],
+  "danger.interactive": colorProperties["danger.interactive"],
+  "danger.textLow": colorProperties["danger.textLow"],
+  "danger.textHigh": colorProperties["danger.textHigh"],
 
-  "neutral.background": colors["neutral.background"],
-  "neutral.interactive": colors["neutral.interactive"],
-  "neutral.textDisabled": colors["neutral.textDisabled"],
-  "neutral.textLow": colors["neutral.textLow"],
-  "neutral.textHigh": colors["neutral.textHigh"],
+  "neutral.background": colorProperties["neutral.background"],
+  "neutral.interactive": colorProperties["neutral.interactive"],
+  "neutral.textDisabled": colorProperties["neutral.textDisabled"],
+  "neutral.textLow": colorProperties["neutral.textLow"],
+  "neutral.textHigh": colorProperties["neutral.textHigh"],
 };
 
-const lineHeightProperties = {
-  caption: varsThemeBase.lineWeight.body.caption,
-  base: varsThemeBase.lineWeight.body.base,
-  highlight: varsThemeBase.lineWeight.body.highlight,
+const properties = {
+  color: textColorProperties,
+  textAlign: textAlignProperties,
+  lineHeight: lineHeightProperties,
+  fontWeight: fontWeightProperties,
+  fontSize: fontSizeProperties,
 };
 
-const fontWeightProperties = {
-  regular: varsThemeBase.fontWeight.regular,
-  bold: varsThemeBase.fontWeight.bold,
-};
-
-const fontSizeProperties = {
-  caption: varsThemeBase.fontSize.body.caption,
-  base: varsThemeBase.fontSize.body.base,
-  highlight: varsThemeBase.fontSize.body.highlight,
-};
-
-export const sprinkle = createSprinkles(
+const sprinkle = createSprinkles(
   defineProperties({
-    properties: {
-      color: colorsProperties,
-      lineHeight: lineHeightProperties,
-      fontWeight: fontWeightProperties,
-      fontSize: fontSizeProperties,
-      textAlign: textAlignProperties,
-    },
+    properties,
   })
 );
 
-export {
-  textAlignProperties,
-  colorsProperties,
-  lineHeightProperties,
-  fontWeightProperties,
-  fontSizeProperties,
+export const textSprinkle = {
+  sprinkle,
+  properties,
 };

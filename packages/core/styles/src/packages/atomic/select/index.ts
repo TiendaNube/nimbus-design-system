@@ -1,5 +1,5 @@
-import { wrapper, icon, appearance } from "./select.style.css";
+import * as styles from "./select.style.css";
 
 export const select = {
-  style: { wrapper, icon, appearance },
+  classnames: { ...styles },
 };

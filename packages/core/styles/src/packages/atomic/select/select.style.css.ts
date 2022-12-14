@@ -1,6 +1,6 @@
 import { globalStyle, style, styleVariants } from "@vanilla-extract/css";
 
-import { varsThemeBase } from "../../../themes/base.css";
+import { varsThemeBase } from "../../../themes";
 
 /* -------------------------------------------------------------------------------------------------
  * style as "base"

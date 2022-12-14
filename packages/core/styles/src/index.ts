@@ -1,4 +1,4 @@
-export { utils } from "./utils";
+export { vars } from "./utils";
 
 export { badge } from "./packages/atomic/badge";
 export { box } from "./packages/atomic/box";
