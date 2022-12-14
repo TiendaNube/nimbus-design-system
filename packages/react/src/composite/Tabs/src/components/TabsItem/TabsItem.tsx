@@ -18,7 +18,7 @@ const TabsItem: React.FC<TabsItemProps> = ({
       id={`panel-${ariaID}`}
       role="tabpanel"
       aria-labelledby={`tab-${ariaID}`}
-      className={tabs.style.panel}
+      className={tabs.classnames.panel}
       tabIndex={-1}
     >
       {children}

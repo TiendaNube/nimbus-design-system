@@ -5,11 +5,13 @@ import { FileUploaderSkeletonProps } from "./fileUploaderSkeleton.types";
 
 const FileUploaderSkeleton: React.FC<FileUploaderSkeletonProps> = ({
   width,
-  aspectRatio = "1-1",
+  aspectRatio = "1/1",
   height,
   "data-testid": dataTestId,
 }) => (
-  <div className={aspectRatio !== "none" ? fileUploader.style.skeleton : ""}>
+  <div
+    className={aspectRatio !== "none" ? fileUploader.classnames.skeleton : ""}
+  >
     <div
       data-testid="file-uploader-skeleton-container"
       className={fileUploader.sprinkle({ aspectRatio })}

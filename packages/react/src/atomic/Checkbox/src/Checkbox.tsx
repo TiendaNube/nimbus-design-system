@@ -39,7 +39,7 @@ const Checkbox: React.FC<CheckboxProps> & CheckboxComponents = ({
     <label
       htmlFor={id || name}
       className={[
-        checkbox.style.container,
+        checkbox.classnames.container,
         checkbox.sprinkle({
           cursor: disabled ? "auto" : "pointer",
         }),
@@ -50,19 +50,19 @@ const Checkbox: React.FC<CheckboxProps> & CheckboxComponents = ({
         id={id || name}
         name={name}
         type="checkbox"
-        className={checkbox.style.input}
+        className={checkbox.classnames.input}
         disabled={disabled}
       />
       <span
         data-testid="checkmark"
         className={[
-          checkbox.style.checkmark,
+          checkbox.classnames.checkmark,
           checkbox.sprinkle({
             borderColor,
           }),
         ].join(" ")}
       >
-        <div className={checkbox.style.checkicon}>
+        <div className={checkbox.classnames.checkicon}>
           <Icon
             data-testid="icon-check"
             color={disabled ? "neutral.textLow" : "neutral.background"}
@@ -70,7 +70,7 @@ const Checkbox: React.FC<CheckboxProps> & CheckboxComponents = ({
           />
         </div>
         {indeterminate && (
-          <div className={checkbox.style.checkindeterminate}>
+          <div className={checkbox.classnames.checkindeterminate}>
             <Icon
               data-testid="icon-indeterminate"
               source={<IndeterminateIcon />}

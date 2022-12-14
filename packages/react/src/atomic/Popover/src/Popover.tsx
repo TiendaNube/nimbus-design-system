@@ -92,7 +92,7 @@ const Popover: React.FC<PopoverProps> = ({
             {...rest}
             ref={floating}
             className={[
-              popover.style.content,
+              popover.classnames.content,
               popover.sprinkle({
                 backgroundColor: appearance,
                 padding,
@@ -111,8 +111,8 @@ const Popover: React.FC<PopoverProps> = ({
                 data-testid="arrow-element"
                 ref={arrowRef}
                 className={[
-                  popover.style.arrow[side],
-                  popover.style.placement[position],
+                  popover.classnames.arrow[side],
+                  popover.classnames.placement[position],
                   popover.sprinkle({
                     color: appearance,
                   }),

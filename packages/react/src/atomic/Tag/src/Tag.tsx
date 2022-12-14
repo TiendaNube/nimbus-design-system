@@ -11,7 +11,7 @@ const Tag: React.FC<TagProps> & TagComponents = ({
   children,
   ...rest
 }: TagProps) => (
-  <div {...rest} className={tag.style({ appearance })}>
+  <div {...rest} className={tag.classnames.container({ appearance })}>
     {children}
   </div>
 );

@@ -5,10 +5,10 @@ import { ThumbnailSkeletonProps } from "./thumbnailSkeleton.types";
 
 const ThumbnailSkeleton: React.FC<ThumbnailSkeletonProps> = ({
   width,
-  aspectRatio = "1-1",
+  aspectRatio = "1/1",
   "data-testid": dataTestId,
 }) => (
-  <div className={thumbnail.style.skeleton}>
+  <div className={thumbnail.classnames.skeleton}>
     <div
       data-testid="thumbnail-skeleton-container"
       className={thumbnail.sprinkle({ aspectRatio })}

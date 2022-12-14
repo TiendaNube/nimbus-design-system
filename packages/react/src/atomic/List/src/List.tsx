@@ -11,7 +11,7 @@ const List: React.FC<ListProps> & ListComponents = ({
   children,
   ...rest
 }: ListProps) => (
-  <As {...rest} className={list.style.container}>
+  <As {...rest} className={list.classnames.container}>
     {children}
   </As>
 );

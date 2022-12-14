@@ -22,7 +22,7 @@ const Radio: React.FC<RadioProps> & RadioComponents = ({
     <label
       htmlFor={id || name}
       className={[
-        radio.style.container,
+        radio.classnames.container,
         radio.sprinkle({ cursor: disabled ? "auto" : "pointer" }),
       ].join(" ")}
     >
@@ -31,20 +31,23 @@ const Radio: React.FC<RadioProps> & RadioComponents = ({
         id={id || name}
         name={name}
         type="radio"
-        className={radio.style.input}
+        className={radio.classnames.input}
         disabled={disabled}
       />
       {isRadio && (
-        <span data-testid="checkmark-element" className={radio.style.checkmark}>
+        <span
+          data-testid="checkmark-element"
+          className={radio.classnames.checkmark}
+        >
           <div
             data-testid="checkicon-element"
-            className={radio.style.checkicon}
+            className={radio.classnames.checkicon}
           />
         </span>
       )}
       <div
         data-testid="content-element"
-        className={radio.style.content[isDisabled ? "disabled" : as]}
+        className={radio.classnames.content[isDisabled ? "disabled" : as]}
       >
         {label && (
           <Text

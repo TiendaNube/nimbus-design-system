@@ -12,15 +12,15 @@ const Input: React.FC<InputProps> & InputComponents = ({
   append,
   ...rest
 }: InputProps) => (
-  <div className={input.style.container}>
+  <div className={input.classnames.container}>
     {append && (
-      <div className={input.style.append[appendPosition]}>{append}</div>
+      <div className={input.classnames.append[appendPosition]}>{append}</div>
     )}
     <input
       {...rest}
       className={[
-        input.style.inputAppearance[appearance],
-        append && input.style.inputAppend[appendPosition],
+        input.classnames.inputAppearance[appearance],
+        append && input.classnames.inputAppend[appendPosition],
       ].join(" ")}
     />
   </div>

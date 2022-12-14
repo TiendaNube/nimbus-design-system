@@ -14,7 +14,7 @@ const Card: React.FC<CardProps> & CardComponents = ({
 }: CardProps) => (
   <div
     className={[
-      card.style.container,
+      card.classnames.container,
       card.sprinkle({ padding, backgroundColor }),
     ].join(" ")}
     {...rest}

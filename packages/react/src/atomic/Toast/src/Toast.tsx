@@ -85,7 +85,7 @@ const Toast: React.FC<ToastProps> = ({
   return (
     <div
       id={id}
-      className={toast.style.content[type]}
+      className={toast.classnames.content[type]}
       style={{
         transform: isVisible
           ? `translateY(${position * -HEIGHT_TOAST}%)`

@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
-import { spinner, utils } from "@nimbus-ds/styles";
+import { spinner, vars } from "@nimbus-ds/styles";
 
 import { SpinnerProps } from "./spinner.types";
 import { sizes } from "./spinner.definitions";
@@ -20,10 +20,13 @@ const Spinner: React.FC<SpinnerProps> = ({
   return (
     <svg
       viewBox="0 0 50 50"
-      className={[spinner.sprinkle({ color }), spinner.style].join(" ")}
+      className={[
+        spinner.sprinkle({ color }),
+        spinner.classnames.container,
+      ].join(" ")}
       style={assignInlineVars({
-        [utils.vars.width]: scale,
-        [utils.vars.height]: scale,
+        [vars.width]: scale,
+        [vars.height]: scale,
       })}
       {...rest}
     >

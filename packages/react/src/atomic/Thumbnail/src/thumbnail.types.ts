@@ -12,7 +12,7 @@ export interface ThumbnailProps extends ImgHTMLAttributes<HTMLImageElement> {
   /** Element to be displayed on thumbnail */
   children?: ReactNode;
   /** Permitted aspect ratios for the size of the image */
-  aspectRatio?: keyof typeof thumbnail.properties.aspectRatio;
+  aspectRatio?: typeof thumbnail.properties.aspectRatio[number];
   /** Width value of the image. Defaults to 100% */
   width?: string;
 }

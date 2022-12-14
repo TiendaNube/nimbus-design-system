@@ -17,7 +17,7 @@ export interface FileUploaderProps
   /** Width value of the file uploader. Defaults to 100% */
   width?: string;
   /** Permitted aspect ratios for the size of the file uploader */
-  aspectRatio?: keyof typeof fileUploader.properties.aspectRatio;
+  aspectRatio?: typeof fileUploader.properties.aspectRatio[number];
   /** Defines the position of the placeholder in relation to the icon */
-  flexDirection?: keyof typeof fileUploader.properties.flexDirection;
+  flexDirection?: typeof fileUploader.properties.flexDirection[number];
 }

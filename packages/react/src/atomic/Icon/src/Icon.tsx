@@ -14,7 +14,10 @@ const Icon: React.FC<IconProps> & IconComponents = ({
 }: IconProps) => (
   <div
     {...rest}
-    className={[icon.sprinkle({ color, cursor }), icon.style].join(" ")}
+    className={[
+      icon.sprinkle({ color, cursor }),
+      icon.classnames.container,
+    ].join(" ")}
   >
     {source}
   </div>

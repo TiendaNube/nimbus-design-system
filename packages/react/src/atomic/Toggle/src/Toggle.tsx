@@ -14,16 +14,16 @@ const Toggle: React.FC<ToggleProps> & ToggleComponents = ({
   active,
   ...rest
 }: ToggleProps) => (
-  <label htmlFor={id || name} className={toggle.style.container}>
+  <label htmlFor={id || name} className={toggle.classnames.container}>
     <input
       {...rest}
       id={id || name}
       name={name}
       type="checkbox"
-      className={toggle.style.input}
+      className={toggle.classnames.input}
       defaultChecked={active}
     />
-    <span data-testid="slider" className={toggle.style.slider} />
+    <span data-testid="slider" className={toggle.classnames.slider} />
     {label && (
       <Text
         data-testid="text"

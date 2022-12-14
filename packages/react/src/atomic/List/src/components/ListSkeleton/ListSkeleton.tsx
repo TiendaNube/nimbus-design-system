@@ -10,7 +10,7 @@ const ListSkeleton: React.FC<ListSkeletonProps> = ({
   "data-testid": dataTestId,
   ...rest
 }) => (
-  <div {...rest} className={list.style.skeleton} data-testid={dataTestId}>
+  <div {...rest} className={list.classnames.skeleton} data-testid={dataTestId}>
     {children}
   </div>
 );

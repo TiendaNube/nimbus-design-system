@@ -17,7 +17,7 @@ const Title: React.FC<TitleProps> & TitleComponents = ({
     {...rest}
     className={[
       title.sprinkle({ color, textAlign }),
-      title.style({ as: As }),
+      title.classnames.container({ as: As }),
     ].join(" ")}
   >
     {children}

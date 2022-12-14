@@ -31,21 +31,21 @@ const Alert: React.FC<AlertProps> & AlertComponents = ({
       {...rest}
       aria-live="polite"
       role={alertVariants[appearance].role}
-      className={alert.style.appearance[appearance]}
+      className={alert.classnames.appearance[appearance]}
     >
       <Icon color={`${appearance}.textLow`} source={<AlertIcon />} />
-      <div className={alert.style.body}>
+      <div className={alert.classnames.body}>
         {title && (
           <Title as="h6" color={`${appearance}.textLow`}>
             {title}
           </Title>
         )}
-        <div className={alert.style.content}>{children}</div>
+        <div className={alert.classnames.content}>{children}</div>
       </div>
       {onRemove && (
         <button
           aria-label="Dismiss alert"
-          className={alert.style.closeAppearance[appearance]}
+          className={alert.classnames.closeAppearance[appearance]}
           data-testid="dismiss-alert-button"
           type="button"
           onClick={onRemove}

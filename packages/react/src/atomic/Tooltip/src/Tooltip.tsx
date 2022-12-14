@@ -54,7 +54,7 @@ const Tooltip: React.FC<TooltipProps> = ({
       <div
         data-testid="tooltip-container"
         ref={reference}
-        className={tooltip.style.container}
+        className={tooltip.classnames.container}
         {...getReferenceProps()}
       >
         {children}
@@ -64,7 +64,7 @@ const Tooltip: React.FC<TooltipProps> = ({
           <div
             {...rest}
             ref={floating}
-            className={tooltip.style.content}
+            className={tooltip.classnames.content}
             style={{
               position: strategy,
               top: y ?? 0,
@@ -82,7 +82,7 @@ const Tooltip: React.FC<TooltipProps> = ({
             <div
               data-testid="arrow-element"
               ref={arrowRef}
-              className={tooltip.style.arrow[position]}
+              className={tooltip.classnames.arrow[position]}
               style={{
                 position: "absolute",
                 left: arrowX != null ? `${arrowX}px` : "",

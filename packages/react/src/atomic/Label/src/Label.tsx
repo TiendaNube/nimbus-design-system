@@ -14,7 +14,10 @@ const Label: React.FC<LabelProps> & LabelComponents = ({
 }: LabelProps) => (
   <label
     {...rest}
-    className={[label.style.base, hidden ? label.style.hidden : ""].join(" ")}
+    className={[
+      label.classnames.base,
+      hidden ? label.classnames.hidden : "",
+    ].join(" ")}
     htmlFor={htmlFor}
   >
     {children}

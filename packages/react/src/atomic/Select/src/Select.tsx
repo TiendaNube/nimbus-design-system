@@ -15,15 +15,15 @@ const Select: React.FC<SelectProps> & SelectComponents = ({
   appearance = "neutral",
   ...rest
 }: SelectProps) => (
-  <div className={select.style.wrapper}>
-    <div className={select.style.icon}>
+  <div className={select.classnames.wrapper}>
+    <div className={select.classnames.icon}>
       <Icon source={<ChevronDownIcon />} color="primary.textHigh" />
     </div>
     <select
       {...rest}
       id={id}
       name={name}
-      className={select.style.appearance[appearance]}
+      className={select.classnames.appearance[appearance]}
     >
       {children}
     </select>

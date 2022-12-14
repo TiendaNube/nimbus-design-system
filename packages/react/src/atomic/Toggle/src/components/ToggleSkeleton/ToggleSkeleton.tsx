@@ -8,7 +8,7 @@ const ToggleSkeleton: React.FC<ToggleSkeletonProps> = ({
   width,
   "data-testid": dataTestId,
 }) => (
-  <div className={toggle.style.container}>
+  <div className={toggle.classnames.container}>
     <Skeleton
       width="2rem"
       height="1rem"

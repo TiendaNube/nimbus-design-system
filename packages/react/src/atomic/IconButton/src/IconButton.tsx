@@ -33,7 +33,7 @@ const IconButton: React.FC<IconButtonProps> & IconButtonComponents = ({
 
   return (
     <As
-      className={[iconButton.style.container, className].join(" ")}
+      className={[iconButton.classnames.container, className].join(" ")}
       style={style}
       {...otherProps}
     >

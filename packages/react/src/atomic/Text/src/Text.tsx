@@ -20,7 +20,7 @@ const Text: React.FC<TextProps> & TextComponents = ({
     {...rest}
     className={[
       text.sprinkle({ color, textAlign, lineHeight, fontWeight, fontSize }),
-      text.style,
+      text.classnames.container,
     ].join(" ")}
   >
     {children}

@@ -44,8 +44,8 @@ disabled.args = {
 
 export const horizontal = Template.bind({});
 horizontal.args = {
-  // aspectRatio: "none",
-  // flexDirection: "row",
+  aspectRatio: "none",
+  flexDirection: "row",
   width: "100%",
   height: "3rem",
   placeholder: "Helper text",
@@ -53,7 +53,7 @@ horizontal.args = {
 
 export const vertical = Template.bind({});
 vertical.args = {
-  // aspectRatio: "none",
+  aspectRatio: "none",
   width: "96px",
   height: "68px",
   placeholder: "Helper text",

@@ -19,7 +19,7 @@ export interface TextProps extends HTMLAttributes<HTMLParagraphElement> {
   /** Text line height */
   lineHeight?: keyof typeof text.properties.lineHeight;
   /** Text alignment in content */
-  textAlign?: keyof typeof text.properties.textAlign;
+  textAlign?: typeof text.properties.textAlign[number];
   /** Text color */
-  color?: keyof typeof text.properties.colors;
+  color?: keyof typeof text.properties.color;
 }

@@ -15,7 +15,7 @@ const Tabs: React.FC<TabsProps> & TabsComponents = ({
   const [selectedTab, setSelectedTab] = useState<number>(preSelectedTab || 0);
   return (
     <div {...rest}>
-      <ul role="tablist" className={tabs.style.container}>
+      <ul role="tablist" className={tabs.classnames.container}>
         {React.Children.map(children, (item, index) => {
           const {
             props: { label },

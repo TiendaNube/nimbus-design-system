@@ -11,7 +11,7 @@ const RadioSkeleton: React.FC<RadioSkeletonProps> = ({
 }) => {
   const isRadio = useMemo(() => as === "radio", [as]);
   return (
-    <div className={checkbox.style.container}>
+    <div className={checkbox.classnames.container}>
       {isRadio && (
         <Skeleton
           data-testid="checkmark-element"

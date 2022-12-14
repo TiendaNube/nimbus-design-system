@@ -6,5 +6,5 @@ export interface SpinnerProps extends SVGAttributes<SVGElement> {
   /** Spinner size */
   size?: "small" | "medium" | "large" | number;
   /** Spinner color */
-  color?: keyof typeof spinner.properties;
+  color?: keyof typeof spinner.properties.color;
 }

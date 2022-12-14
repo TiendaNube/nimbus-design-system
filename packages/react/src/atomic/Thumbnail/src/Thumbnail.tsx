@@ -1,7 +1,7 @@
 import React from "react";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
 import { CameraIcon } from "@tiendanube/icons";
-import { thumbnail, utils } from "@nimbus-ds/styles";
+import { thumbnail, vars } from "@nimbus-ds/styles";
 import { Icon } from "@nimbus-ds/icon";
 
 import { ThumbnailProps, ThumbnailComponents } from "./thumbnail.types";
@@ -10,7 +10,7 @@ import { ThumbnailSkeleton } from "./components";
 const Thumbnail: React.FC<ThumbnailProps> & ThumbnailComponents = ({
   className: _className,
   style: _style,
-  aspectRatio = "1-1",
+  aspectRatio = "1/1",
   width = "100%",
   children,
   alt,
@@ -18,9 +18,9 @@ const Thumbnail: React.FC<ThumbnailProps> & ThumbnailComponents = ({
   ...rest
 }: ThumbnailProps) => (
   <div
-    className={thumbnail.style.container}
+    className={thumbnail.classnames.container}
     style={assignInlineVars({
-      [utils.vars.width]: width,
+      [vars.width]: width,
     })}
   >
     {children}
@@ -28,7 +28,7 @@ const Thumbnail: React.FC<ThumbnailProps> & ThumbnailComponents = ({
       <img
         {...rest}
         className={[
-          thumbnail.style.image,
+          thumbnail.classnames.image,
           thumbnail.sprinkle({ aspectRatio }),
         ].join(" ")}
         src={src}
@@ -39,7 +39,7 @@ const Thumbnail: React.FC<ThumbnailProps> & ThumbnailComponents = ({
       <div
         data-testid="thumbnail-empty"
         className={[
-          thumbnail.style.placeholder,
+          thumbnail.classnames.placeholder,
           thumbnail.sprinkle({ aspectRatio }),
         ].join(" ")}
       >

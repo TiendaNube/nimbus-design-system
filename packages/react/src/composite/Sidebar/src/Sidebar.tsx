@@ -28,10 +28,10 @@ const Sidebar: React.FC<SidebarProps> & SidebarComponents = ({
         role={rest.role || "presentation"}
         style={style}
         className={[
-          sidebar.style.container,
-          sidebar.style.positions[position],
+          sidebar.classnames.container,
+          sidebar.classnames.positions[position],
           className,
-          open && sidebar.style.isVisible,
+          open && sidebar.classnames.isVisible,
         ].join(" ")}
       >
         {children}
@@ -41,7 +41,7 @@ const Sidebar: React.FC<SidebarProps> & SidebarComponents = ({
           aria-label="overlay"
           data-testid="overlay-sidebar-button"
           type="button"
-          className={sidebar.style.overlay}
+          className={sidebar.classnames.overlay}
           onClick={onRemove}
         />
       )}

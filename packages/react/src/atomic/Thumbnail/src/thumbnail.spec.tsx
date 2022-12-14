@@ -25,56 +25,56 @@ describe("GIVEN <Thumbnail />", () => {
     it("THEN should correctly render the aspectRatio default", () => {
       makeSut({ src: "http://myimage", alt: "alt image" });
       expect(screen.getByRole("img").getAttribute("class")).toContain(
-        "aspectRatio_1-1"
+        "aspectRatio_1/1"
       );
     });
 
-    it("THEN should correctly render the aspectRatio 1-1", () => {
-      makeSut({ src: "http://myimage", aspectRatio: "1-1", alt: "alt image" });
+    it("THEN should correctly render the aspectRatio 1/1", () => {
+      makeSut({ src: "http://myimage", aspectRatio: "1/1", alt: "alt image" });
       expect(screen.getByRole("img").getAttribute("class")).toContain(
-        "aspectRatio_1-1"
+        "aspectRatio_1/1"
       );
     });
 
-    it("THEN should correctly render the aspectRatio 1-2", () => {
-      makeSut({ src: "http://myimage", aspectRatio: "1-2", alt: "alt image" });
+    it("THEN should correctly render the aspectRatio 1/2", () => {
+      makeSut({ src: "http://myimage", aspectRatio: "1/2", alt: "alt image" });
       expect(screen.getByRole("img").getAttribute("class")).toContain(
-        "aspectRatio_1-2"
+        "aspectRatio_1/2"
       );
     });
 
-    it("THEN should correctly render the aspectRatio 16-9", () => {
-      makeSut({ src: "http://myimage", aspectRatio: "16-9", alt: "alt image" });
+    it("THEN should correctly render the aspectRatio 16/9", () => {
+      makeSut({ src: "http://myimage", aspectRatio: "16/9", alt: "alt image" });
       expect(screen.getByRole("img").getAttribute("class")).toContain(
-        "aspectRatio_16-9"
+        "aspectRatio_16/9"
       );
     });
 
-    it("THEN should correctly render the aspectRatio 2-1", () => {
-      makeSut({ src: "http://myimage", aspectRatio: "2-1", alt: "alt image" });
+    it("THEN should correctly render the aspectRatio 2/1", () => {
+      makeSut({ src: "http://myimage", aspectRatio: "2/1", alt: "alt image" });
       expect(screen.getByRole("img").getAttribute("class")).toContain(
-        "aspectRatio_2-1"
+        "aspectRatio_2/1"
       );
     });
 
-    it("THEN should correctly render the aspectRatio 3-4", () => {
-      makeSut({ src: "http://myimage", aspectRatio: "3-4", alt: "alt image" });
+    it("THEN should correctly render the aspectRatio 3/4", () => {
+      makeSut({ src: "http://myimage", aspectRatio: "3/4", alt: "alt image" });
       expect(screen.getByRole("img").getAttribute("class")).toContain(
-        "aspectRatio_3-4"
+        "aspectRatio_3/4"
       );
     });
 
-    it("THEN should correctly render the aspectRatio 4-3", () => {
-      makeSut({ src: "http://myimage", aspectRatio: "4-3", alt: "alt image" });
+    it("THEN should correctly render the aspectRatio 4/3", () => {
+      makeSut({ src: "http://myimage", aspectRatio: "4/3", alt: "alt image" });
       expect(screen.getByRole("img").getAttribute("class")).toContain(
-        "aspectRatio_4-3"
+        "aspectRatio_4/3"
       );
     });
 
-    it("THEN should correctly render the aspectRatio 9-16", () => {
-      makeSut({ src: "http://myimage", aspectRatio: "9-16", alt: "alt image" });
+    it("THEN should correctly render the aspectRatio 9/16", () => {
+      makeSut({ src: "http://myimage", aspectRatio: "9/16", alt: "alt image" });
       expect(screen.getByRole("img").getAttribute("class")).toContain(
-        "aspectRatio_9-16"
+        "aspectRatio_9/16"
       );
     });
   });

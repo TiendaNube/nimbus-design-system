@@ -16,7 +16,7 @@ const SidebarFooter: React.FC<SidebarFooterProps> = ({
     <div
       {...otherProps}
       style={style}
-      className={[className, sidebar.style.footer].join(" ")}
+      className={[className, sidebar.classnames.footer].join(" ")}
     >
       {children}
     </div>

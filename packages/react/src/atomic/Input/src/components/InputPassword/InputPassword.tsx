@@ -17,12 +17,15 @@ const InputPassword: React.FC<InputPasswordProps> = ({
   const handleShow = () => setShow((prevState) => !prevState);
 
   return (
-    <div className={input.style.container}>
+    <div className={input.classnames.container}>
       {value && (
         <button
           data-testid="button-password-show"
           type="button"
-          className={[input.style.password, input.style.append.end].join(" ")}
+          className={[
+            input.classnames.password,
+            input.classnames.append.end,
+          ].join(" ")}
           onClick={handleShow}
         >
           <Icon
@@ -34,8 +37,8 @@ const InputPassword: React.FC<InputPasswordProps> = ({
       <input
         {...rest}
         className={[
-          input.style.inputAppearance[appearance],
-          input.style.inputAppend.end,
+          input.classnames.inputAppearance[appearance],
+          input.classnames.inputAppend.end,
         ].join(" ")}
         type={show ? "text" : "password"}
         value={value}

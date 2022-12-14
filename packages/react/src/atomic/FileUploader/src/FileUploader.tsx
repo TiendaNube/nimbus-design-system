@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
-import { fileUploader, utils } from "@nimbus-ds/styles";
+import { fileUploader, vars } from "@nimbus-ds/styles";
 import { PlusCircleIcon } from "@tiendanube/icons";
 import { Icon } from "@nimbus-ds/icon";
 import { Text } from "@nimbus-ds/text";
@@ -14,7 +14,7 @@ import { FileUploaderSkeleton } from "./components";
 const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
   className: _className,
   style: _style,
-  aspectRatio = "1-1",
+  aspectRatio = "1/1",
   width = "100%",
   height = "",
   accept = "image/jpeg,image/gif,image/png",
@@ -29,17 +29,17 @@ const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
       data-testid="file-uploader-container"
       htmlFor={!disabled ? rest.id || "input-file" : "disabled"}
       className={[
-        fileUploader.style.container,
+        fileUploader.classnames.container,
         fileUploader.sprinkle({
           aspectRatio,
           flexDirection,
           cursor: disabled ? "auto" : "pointer",
         }),
-        disabled && fileUploader.style.disabled,
+        disabled && fileUploader.classnames.disabled,
       ].join(" ")}
       style={assignInlineVars({
-        [utils.vars.width]: width,
-        [utils.vars.height]: height,
+        [vars.width]: width,
+        [vars.height]: height,
       })}
     >
       <Icon
@@ -52,7 +52,7 @@ const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
         </Text>
       )}
       <input
-        className={fileUploader.style.input}
+        className={fileUploader.classnames.input}
         type="file"
         accept={accept}
         disabled={disabled}

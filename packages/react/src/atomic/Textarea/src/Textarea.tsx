@@ -14,7 +14,7 @@ const Textarea: React.FC<TextareaProps> & TextareaComponents = ({
 }: TextareaProps) => (
   <textarea
     {...rest}
-    className={textarea.style.appearance[appearance]}
+    className={textarea.classnames.appearance[appearance]}
     rows={lines}
     id={id}
   />
