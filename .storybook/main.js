@@ -52,7 +52,7 @@ const convertTsConfigPathsToWebpackAliases = () => {
   const tsconfigPaths = Object.entries(tsconfig.compilerOptions.paths);
 
   const paths = tsconfigPaths.reduce((aliases, [realPath, mappedPath]) => {
-    const packageName = mappedPath[0].split("/")[4];
+    const packageName = mappedPath[0].split("/")[5];
     const alias = `${mappedPath[0]}/${packageName}.tsx`;
     aliases[realPath] = path.join(rootDir, alias);
     return aliases;

@@ -36,12 +36,10 @@
     "types": ["node", "jest"],
     "typeRoots": ["./node_modules/@types", "./types"],
     "paths": {
-      //core
       "@nimbus-ds/tokens": ["./packages/core/tokens/dist"],
       "@nimbus-ds/styles": ["./packages/core/styles/src"],
       "@nimbus-ds/webpack": ["./packages/core/webpack/src"],
-      //atomics
-      "@nimbus-ds/components": ["./packages/react"],
+      "@nimbus-ds/components": ["./packages/react/src"],
       "@nimbus-ds/badge": ["./packages/react/src/atomic/Badge/src"],
       "@nimbus-ds/box": ["./packages/react/src/atomic/Box/src"],
       "@nimbus-ds/button": ["./packages/react/src/atomic/Button/src"],
@@ -70,7 +68,6 @@
       "@nimbus-ds/toast": ["./packages/react/src/atomic/Toast/src"],
       "@nimbus-ds/toggle": ["./packages/react/src/atomic/Toggle/src"],
       "@nimbus-ds/tooltip": ["./packages/react/src/atomic/Tooltip/src"],
-      //composites
       "@nimbus-ds/alert": ["./packages/react/src/composite/Alert/src"],
       "@nimbus-ds/card": ["./packages/react/src/composite/Card/src"],
       "@nimbus-ds/sidebar": ["./packages/react/src/composite/Sidebar/src"],

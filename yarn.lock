@@ -3056,6 +3056,7 @@ __metadata:
     typescript: ^4.9.3
     webpack: ^5.75.0
   peerDependencies:
+    "@floating-ui/react-dom-interactions": ^0.10.1
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
   languageName: unknown

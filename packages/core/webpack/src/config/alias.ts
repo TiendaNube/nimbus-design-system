@@ -9,8 +9,16 @@ export const aliasItems = {
   "@nimbus-ds/tokens": join(rootDir, "./packages/core/tokens"),
   "@nimbus-ds/styles": join(rootDir, "./packages/core/styles/dist"),
   "@nimbus-ds/webpack": join(rootDir, "./packages/core/webpack/src"),
-  "@nimbus-ds/icon": join(rootDir, "./packages/react/atomic/Icon/src"),
-  "@nimbus-ds/skeleton": join(rootDir, "./packages/react/atomic/Skeleton/src"),
-  "@nimbus-ds/spinner": join(rootDir, "./packages/react/atomic/Spinner/src"),
-  "@nimbus-ds/text": join(rootDir, "./packages/react/atomic/Text/src"),
+  "@nimbus-ds/icon": join(rootDir, "./packages/react/src/atomic/Icon/src"),
+  "@nimbus-ds/link": join(rootDir, "./packages/react/src/atomic/Link/src"),
+  "@nimbus-ds/skeleton": join(
+    rootDir,
+    "./packages/react/src/atomic/Skeleton/src"
+  ),
+  "@nimbus-ds/spinner": join(
+    rootDir,
+    "./packages/react/src/atomic/Spinner/src"
+  ),
+  "@nimbus-ds/text": join(rootDir, "./packages/react/src/atomic/Text/src"),
+  "@nimbus-ds/toggle": join(rootDir, "./packages/react/src/atomic/Toggle/src"),
 };

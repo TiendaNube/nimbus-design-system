@@ -12,9 +12,11 @@
     ]
   },
   "scripts": {
-    "build": "yarn clean && yarn build:styles && yarn build:essentials && turbo run build --filter=[origin/master]...",
-    "build:styles": "turbo run build --filter=@nimbus-ds/styles...",
+    "build": "yarn clean && yarn build:styles && yarn build:essentials && npm run build:packages && yarn build:components",
     "build:essentials": "turbo run build --filter=@nimbus-ds/skeleton --filter=@nimbus-ds/text --filter=@nimbus-ds/title --filter=@nimbus-ds/badge --filter=@nimbus-ds/spinner --filter=@nimbus-ds/icon",
+    "build:packages": "turbo run build --filter=!@nimbus-ds/components --filter=[origin/master]...",
+    "build:components": "turbo run build --filter=@nimbus-ds/components",
+    "build:styles": "turbo run build --filter=@nimbus-ds/styles...",
     "build:storybook": "build-storybook -c .storybook -o .build-storybook",
     "bump:check": "yarn version check",
     "bump:next": "yarn version apply --all --prerelease",

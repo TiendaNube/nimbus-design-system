@@ -6,6 +6,7 @@ import { Configuration } from "webpack";
 
 import { arrayFilterEmpty, isProduction } from "../utils";
 import { typescriptRule, svgRule } from "../rules";
+import { dtsBundleGeneratorPlugin } from "../plugins";
 import { aliasItems } from "./alias";
 import { externalItems } from "./external";
 
@@ -24,7 +25,7 @@ const webpack: Configuration = {
   module: {
     rules: arrayFilterEmpty([typescriptRule, svgRule]),
   },
-  plugins: [],
+  plugins: [dtsBundleGeneratorPlugin],
   resolve: {
     alias: aliasItems,
     extensions: [".tsx", ".ts", ".js"],

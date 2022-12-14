@@ -1,10 +1,25 @@
-import { getConfiguration, development, production, base } from "./config";
-import { vanillaExtractPlugin, miniCssExtractPlugin } from "./plugins";
+import {
+  getConfiguration,
+  development,
+  production,
+  base,
+  externalLibs,
+} from "./config";
+import {
+  vanillaExtractPlugin,
+  miniCssExtractPlugin,
+  dtsBundleGeneratorPlugin,
+} from "./plugins";
 import { cssLoaderExtractRule, styleLoaderCssRule } from "./rules";
 
-export const plugins = { vanillaExtractPlugin, miniCssExtractPlugin };
 export const rules = { cssLoaderExtractRule, styleLoaderCssRule };
+export const plugins = {
+  vanillaExtractPlugin,
+  miniCssExtractPlugin,
+  dtsBundleGeneratorPlugin,
+};
 export const configuration = {
+  externalLibs,
   development,
   production,
   base,
