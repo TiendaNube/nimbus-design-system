@@ -6,7 +6,7 @@ This package is intended for internal use in generating builds of each design sy
 
 ### 🐛 Bug fixes
 
-- Fixed bug in the `textDecoration` property where the `none` option was not applied when the link contained the `href` property. ([#64](https://github.com/TiendaNube/nimbus-design-system/pull/64) by [@juniorconquista](https://github.com/juniorconquista))
+- Fixed bug in the `textDecoration` property where the `none` option was not applied when the link contained the `href` property. ([#66](https://github.com/TiendaNube/nimbus-design-system/pull/66) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2022-12-07 `1.0.0`
 
