@@ -17,8 +17,10 @@
     "url": "https://github.com/TiendaNube/nimbus-design-system/issues"
   },
   "devDependencies": {
+    "@types/dashify": "^1.0.1",
     "@types/webpack": "^5.28.0",
     "@vanilla-extract/webpack-plugin": "^2.2.0",
+    "dashify": "^2.0.0",
     "dotenv": "^16.0.3",
     "mini-css-extract-plugin": "^2.7.2",
     "terser-webpack-plugin": "^5.3.6",
