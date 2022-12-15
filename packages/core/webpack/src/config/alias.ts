@@ -13,6 +13,7 @@ export const aliasItems = {
     rootDir,
     "./packages/react/src/atomic/Checkbox/src"
   ),
+  "@nimbus-ds/chip": join(rootDir, "./packages/react/src/atomic/Chip/src"),
   "@nimbus-ds/file-uploader": join(
     rootDir,
     "./packages/react/src/atomic/FileUploader/src"
@@ -24,6 +25,11 @@ export const aliasItems = {
   ),
   "@nimbus-ds/label": join(rootDir, "./packages/react/src/atomic/Label/src"),
   "@nimbus-ds/link": join(rootDir, "./packages/react/src/atomic/Link/src"),
+  "@nimbus-ds/list": join(rootDir, "./packages/react/src/atomic/List/src"),
+  "@nimbus-ds/popover": join(
+    rootDir,
+    "./packages/react/src/atomic/Popover/src"
+  ),
   "@nimbus-ds/radio": join(rootDir, "./packages/react/src/atomic/Radio/src"),
   "@nimbus-ds/skeleton": join(
     rootDir,
