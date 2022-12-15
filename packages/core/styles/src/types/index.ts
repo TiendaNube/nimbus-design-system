@@ -31,3 +31,4 @@ export type AlignItems =
   | "center"
   | "baseline";
 export type TextAlign = "left" | "right" | "center" | "justify";
+export type TextDecoration = "none" | "underline";
