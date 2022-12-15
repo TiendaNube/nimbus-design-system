@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/webpack",
-  "version": "1.0.0-rc.7",
+  "version": "1.0.0",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -28,6 +28,5 @@
     "webpack": "^5.75.0",
     "webpack-merge": "^5.8.0",
     "webpack-shell-plugin-next": "^2.3.1"
-  },
-  "stableVersion": "0.0.0"
+  }
 }
