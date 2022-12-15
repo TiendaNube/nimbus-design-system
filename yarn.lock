@@ -2933,590 +2933,498 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nimbus-ds/alert@workspace:packages/react/Alert":
+"@nimbus-ds/alert@workspace:packages/react/src/composite/Alert":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/alert@workspace:packages/react/Alert"
+  resolution: "@nimbus-ds/alert@workspace:packages/react/src/composite/Alert"
   dependencies:
-    "@nimbus-ds/button": "workspace:*"
-    "@nimbus-ds/icon": "workspace:*"
-    "@nimbus-ds/skeleton": "workspace:*"
-    "@nimbus-ds/styles": "workspace:*"
-    "@nimbus-ds/title": "workspace:*"
-    terser-webpack-plugin: ^5.3.5
-    ts-loader: ^9.3.1
-    typescript: ^4.7.4
+    "@nimbus-ds/button": "workspace:^"
+    "@nimbus-ds/icon": "workspace:^"
+    "@nimbus-ds/skeleton": "workspace:^"
+    "@nimbus-ds/styles": "workspace:^"
+    "@nimbus-ds/title": "workspace:^"
     webpack: ^5.74.0
-    webpack-cli: ^4.10.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/badge@workspace:*, @nimbus-ds/badge@workspace:packages/react/Badge":
+"@nimbus-ds/badge@workspace:^, @nimbus-ds/badge@workspace:packages/react/src/atomic/Badge":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/badge@workspace:packages/react/Badge"
+  resolution: "@nimbus-ds/badge@workspace:packages/react/src/atomic/Badge"
   dependencies:
-    "@nimbus-ds/skeleton": "workspace:*"
-    "@nimbus-ds/styles": "workspace:*"
-    "@nimbus-ds/text": "workspace:*"
-    terser-webpack-plugin: ^5.3.5
-    ts-loader: ^9.3.1
-    typescript: ^4.7.4
+    "@nimbus-ds/skeleton": "workspace:^"
+    "@nimbus-ds/styles": "workspace:^"
+    "@nimbus-ds/text": "workspace:^"
     webpack: ^5.74.0
-    webpack-cli: ^4.10.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/box@workspace:*, @nimbus-ds/box@workspace:packages/react/Box":
+"@nimbus-ds/box@workspace:^, @nimbus-ds/box@workspace:packages/react/src/atomic/Box":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/box@workspace:packages/react/Box"
+  resolution: "@nimbus-ds/box@workspace:packages/react/src/atomic/Box"
   dependencies:
-    "@nimbus-ds/styles": "workspace:*"
+    "@nimbus-ds/styles": "workspace:^"
     "@vanilla-extract/dynamic": ^2.0.2
-    terser-webpack-plugin: ^5.3.5
-    ts-loader: ^9.3.1
-    typescript: ^4.7.4
     webpack: ^5.74.0
-    webpack-cli: ^4.10.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/button@workspace:*, @nimbus-ds/button@workspace:packages/react/Button":
+"@nimbus-ds/button@workspace:^, @nimbus-ds/button@workspace:packages/react/src/atomic/Button":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/button@workspace:packages/react/Button"
+  resolution: "@nimbus-ds/button@workspace:packages/react/src/atomic/Button"
   dependencies:
-    "@nimbus-ds/badge": "workspace:*"
-    "@nimbus-ds/icon": "workspace:*"
-    "@nimbus-ds/skeleton": "workspace:*"
-    "@nimbus-ds/styles": "workspace:*"
+    "@nimbus-ds/badge": "workspace:^"
+    "@nimbus-ds/icon": "workspace:^"
+    "@nimbus-ds/skeleton": "workspace:^"
+    "@nimbus-ds/styles": "workspace:^"
     "@tiendanube/icons": ^0.3.1
-    terser-webpack-plugin: ^5.3.5
-    ts-loader: ^9.3.1
-    typescript: ^4.7.4
     webpack: ^5.74.0
-    webpack-cli: ^4.10.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/card@workspace:packages/react/Card":
+"@nimbus-ds/card@workspace:packages/react/src/composite/Card":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/card@workspace:packages/react/Card"
+  resolution: "@nimbus-ds/card@workspace:packages/react/src/composite/Card"
   dependencies:
-    "@nimbus-ds/box": "workspace:*"
-    "@nimbus-ds/button": "workspace:*"
-    "@nimbus-ds/stack": "workspace:*"
-    "@nimbus-ds/styles": "workspace:*"
-    "@nimbus-ds/tag": "workspace:*"
-    "@nimbus-ds/text": "workspace:*"
-    "@nimbus-ds/title": "workspace:*"
-    terser-webpack-plugin: ^5.3.5
-    ts-loader: ^9.3.1
-    typescript: ^4.7.4
+    "@nimbus-ds/box": "workspace:^"
+    "@nimbus-ds/button": "workspace:^"
+    "@nimbus-ds/stack": "workspace:^"
+    "@nimbus-ds/styles": "workspace:^"
+    "@nimbus-ds/tag": "workspace:^"
+    "@nimbus-ds/text": "workspace:^"
+    "@nimbus-ds/title": "workspace:^"
     webpack: ^5.74.0
-    webpack-cli: ^4.10.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/checkbox@workspace:packages/react/Checkbox":
+"@nimbus-ds/checkbox@workspace:packages/react/src/atomic/Checkbox":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/checkbox@workspace:packages/react/Checkbox"
+  resolution: "@nimbus-ds/checkbox@workspace:packages/react/src/atomic/Checkbox"
   dependencies:
-    "@nimbus-ds/icon": "workspace:*"
-    "@nimbus-ds/skeleton": "workspace:*"
-    "@nimbus-ds/styles": "workspace:*"
-    "@nimbus-ds/text": "workspace:*"
-    terser-webpack-plugin: ^5.3.5
-    ts-loader: ^9.3.1
-    typescript: ^4.7.4
+    "@nimbus-ds/icon": "workspace:^"
+    "@nimbus-ds/skeleton": "workspace:^"
+    "@nimbus-ds/styles": "workspace:^"
+    "@nimbus-ds/text": "workspace:^"
     webpack: ^5.74.0
-    webpack-cli: ^4.10.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/chip@workspace:packages/react/Chip":
+"@nimbus-ds/chip@workspace:packages/react/src/atomic/Chip":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/chip@workspace:packages/react/Chip"
+  resolution: "@nimbus-ds/chip@workspace:packages/react/src/atomic/Chip"
   dependencies:
-    "@nimbus-ds/icon": "workspace:*"
-    "@nimbus-ds/skeleton": "workspace:*"
-    "@nimbus-ds/styles": "workspace:*"
-    "@nimbus-ds/text": "workspace:*"
+    "@nimbus-ds/icon": "workspace:^"
+    "@nimbus-ds/skeleton": "workspace:^"
+    "@nimbus-ds/styles": "workspace:^"
+    "@nimbus-ds/text": "workspace:^"
     "@tiendanube/icons": ^0.3.1
-    terser-webpack-plugin: ^5.3.5
-    ts-loader: ^9.3.1
-    typescript: ^4.7.4
     webpack: ^5.74.0
-    webpack-cli: ^4.10.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/file-uploader@workspace:packages/react/FileUploader":
+"@nimbus-ds/components@workspace:packages/react":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/file-uploader@workspace:packages/react/FileUploader"
+  resolution: "@nimbus-ds/components@workspace:packages/react"
   dependencies:
-    "@nimbus-ds/icon": "workspace:*"
-    "@nimbus-ds/skeleton": "workspace:*"
-    "@nimbus-ds/styles": "workspace:*"
-    "@nimbus-ds/text": "workspace:*"
+    "@nimbus-ds/styles": "workspace:^"
+    webpack: ^5.75.0
+  peerDependencies:
+    "@floating-ui/react-dom-interactions": ^0.10.1
+    react: ^16.8 || ^17.0 || ^18.0
+    react-dom: ^16.8 || ^17.0 || ^18.0
+  languageName: unknown
+  linkType: soft
+
+"@nimbus-ds/file-uploader@workspace:packages/react/src/atomic/FileUploader":
+  version: 0.0.0-use.local
+  resolution: "@nimbus-ds/file-uploader@workspace:packages/react/src/atomic/FileUploader"
+  dependencies:
+    "@nimbus-ds/icon": "workspace:^"
+    "@nimbus-ds/skeleton": "workspace:^"
+    "@nimbus-ds/styles": "workspace:^"
+    "@nimbus-ds/text": "workspace:^"
     "@tiendanube/icons": ^0.3.1
     "@vanilla-extract/dynamic": ^2.0.2
-    "@vanilla-extract/webpack-plugin": ^2.1.11
-    terser-webpack-plugin: ^5.3.5
-    ts-loader: ^9.3.1
-    typescript: ^4.7.4
     webpack: ^5.74.0
-    webpack-cli: ^4.10.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/icon-button@workspace:packages/react/IconButton":
+"@nimbus-ds/icon-button@workspace:packages/react/src/atomic/IconButton":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/icon-button@workspace:packages/react/IconButton"
+  resolution: "@nimbus-ds/icon-button@workspace:packages/react/src/atomic/IconButton"
   dependencies:
-    "@nimbus-ds/icon": "workspace:*"
-    "@nimbus-ds/skeleton": "workspace:*"
-    "@nimbus-ds/styles": "workspace:*"
+    "@nimbus-ds/icon": "workspace:^"
+    "@nimbus-ds/skeleton": "workspace:^"
+    "@nimbus-ds/styles": "workspace:^"
     "@tiendanube/icons": ^0.3.1
-    terser-webpack-plugin: ^5.3.5
-    ts-loader: ^9.3.1
-    typescript: ^4.7.4
     webpack: ^5.74.0
-    webpack-cli: ^4.10.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/icon@workspace:*, @nimbus-ds/icon@workspace:packages/react/Icon":
+"@nimbus-ds/icon@workspace:^, @nimbus-ds/icon@workspace:packages/react/src/atomic/Icon":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/icon@workspace:packages/react/Icon"
+  resolution: "@nimbus-ds/icon@workspace:packages/react/src/atomic/Icon"
   dependencies:
-    "@nimbus-ds/skeleton": "workspace:*"
-    "@nimbus-ds/styles": "workspace:*"
+    "@nimbus-ds/skeleton": "workspace:^"
+    "@nimbus-ds/styles": "workspace:^"
     "@tiendanube/icons": ^0.3.1
-    terser-webpack-plugin: ^5.3.5
-    ts-loader: ^9.3.1
-    typescript: ^4.7.4
     webpack: ^5.74.0
-    webpack-cli: ^4.10.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/input@workspace:packages/react/Input":
+"@nimbus-ds/input@workspace:packages/react/src/atomic/Input":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/input@workspace:packages/react/Input"
+  resolution: "@nimbus-ds/input@workspace:packages/react/src/atomic/Input"
   dependencies:
-    "@nimbus-ds/icon": "workspace:*"
-    "@nimbus-ds/skeleton": "workspace:*"
-    "@nimbus-ds/styles": "workspace:*"
+    "@nimbus-ds/icon": "workspace:^"
+    "@nimbus-ds/skeleton": "workspace:^"
+    "@nimbus-ds/styles": "workspace:^"
     "@tiendanube/icons": ^0.3.1
-    terser-webpack-plugin: ^5.3.5
-    ts-loader: ^9.3.1
-    typescript: ^4.7.4
     webpack: ^5.74.0
-    webpack-cli: ^4.10.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/label@workspace:packages/react/Label":
+"@nimbus-ds/label@workspace:packages/react/src/atomic/Label":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/label@workspace:packages/react/Label"
+  resolution: "@nimbus-ds/label@workspace:packages/react/src/atomic/Label"
   dependencies:
-    "@nimbus-ds/icon": "workspace:*"
-    "@nimbus-ds/skeleton": "workspace:*"
-    "@nimbus-ds/styles": "workspace:*"
+    "@nimbus-ds/icon": "workspace:^"
+    "@nimbus-ds/skeleton": "workspace:^"
+    "@nimbus-ds/styles": "workspace:^"
     "@tiendanube/icons": ^0.3.1
-    terser-webpack-plugin: ^5.3.5
-    ts-loader: ^9.3.1
-    typescript: ^4.7.4
     webpack: ^5.74.0
-    webpack-cli: ^4.10.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/link@workspace:packages/react/Link":
+"@nimbus-ds/link@workspace:packages/react/src/atomic/Link":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/link@workspace:packages/react/Link"
+  resolution: "@nimbus-ds/link@workspace:packages/react/src/atomic/Link"
   dependencies:
-    "@nimbus-ds/skeleton": "workspace:*"
-    "@nimbus-ds/styles": "workspace:*"
+    "@nimbus-ds/skeleton": "workspace:^"
+    "@nimbus-ds/styles": "workspace:^"
     "@tiendanube/icons": ^0.3.1
-    terser-webpack-plugin: ^5.3.5
-    ts-loader: ^9.3.1
-    typescript: ^4.7.4
     webpack: ^5.74.0
-    webpack-cli: ^4.10.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/list@workspace:packages/react/List":
+"@nimbus-ds/list@workspace:packages/react/src/atomic/List":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/list@workspace:packages/react/List"
+  resolution: "@nimbus-ds/list@workspace:packages/react/src/atomic/List"
   dependencies:
-    "@nimbus-ds/skeleton": "workspace:*"
-    "@nimbus-ds/styles": "workspace:*"
-    terser-webpack-plugin: ^5.3.5
-    ts-loader: ^9.3.1
-    typescript: ^4.7.4
+    "@nimbus-ds/skeleton": "workspace:^"
+    "@nimbus-ds/styles": "workspace:^"
     webpack: ^5.74.0
-    webpack-cli: ^4.10.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/popover@workspace:packages/react/Popover":
+"@nimbus-ds/popover@workspace:packages/react/src/atomic/Popover":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/popover@workspace:packages/react/Popover"
+  resolution: "@nimbus-ds/popover@workspace:packages/react/src/atomic/Popover"
   dependencies:
     "@floating-ui/react-dom-interactions": ^0.10.1
-    "@nimbus-ds/box": "workspace:*"
-    "@nimbus-ds/stack": "workspace:*"
-    "@nimbus-ds/styles": "workspace:*"
+    "@nimbus-ds/box": "workspace:^"
+    "@nimbus-ds/stack": "workspace:^"
+    "@nimbus-ds/styles": "workspace:^"
     "@vanilla-extract/dynamic": ^2.0.2
-    terser-webpack-plugin: ^5.3.5
-    ts-loader: ^9.3.1
-    typescript: ^4.7.4
     webpack: ^5.74.0
-    webpack-cli: ^4.10.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/radio@workspace:packages/react/Radio":
+"@nimbus-ds/radio@workspace:packages/react/src/atomic/Radio":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/radio@workspace:packages/react/Radio"
+  resolution: "@nimbus-ds/radio@workspace:packages/react/src/atomic/Radio"
   dependencies:
-    "@nimbus-ds/skeleton": "workspace:*"
-    "@nimbus-ds/styles": "workspace:*"
-    "@nimbus-ds/text": "workspace:*"
-    terser-webpack-plugin: ^5.3.5
-    ts-loader: ^9.3.1
-    typescript: ^4.7.4
+    "@nimbus-ds/skeleton": "workspace:^"
+    "@nimbus-ds/styles": "workspace:^"
+    "@nimbus-ds/text": "workspace:^"
     webpack: ^5.74.0
-    webpack-cli: ^4.10.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/select@workspace:packages/react/Select":
+"@nimbus-ds/select@workspace:packages/react/src/atomic/Select":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/select@workspace:packages/react/Select"
+  resolution: "@nimbus-ds/select@workspace:packages/react/src/atomic/Select"
   dependencies:
-    "@nimbus-ds/skeleton": "workspace:*"
-    "@nimbus-ds/styles": "workspace:*"
-    terser-webpack-plugin: ^5.3.5
-    ts-loader: ^9.3.1
-    typescript: ^4.7.4
+    "@nimbus-ds/skeleton": "workspace:^"
+    "@nimbus-ds/styles": "workspace:^"
     webpack: ^5.74.0
-    webpack-cli: ^4.10.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/sidebar@workspace:packages/react/Sidebar":
+"@nimbus-ds/sidebar@workspace:packages/react/src/composite/Sidebar":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/sidebar@workspace:packages/react/Sidebar"
+  resolution: "@nimbus-ds/sidebar@workspace:packages/react/src/composite/Sidebar"
   dependencies:
-    "@nimbus-ds/box": "workspace:*"
-    "@nimbus-ds/button": "workspace:*"
-    "@nimbus-ds/stack": "workspace:*"
-    "@nimbus-ds/styles": "workspace:*"
-    "@nimbus-ds/text": "workspace:*"
-    "@nimbus-ds/title": "workspace:*"
-    terser-webpack-plugin: ^5.3.5
-    ts-loader: ^9.3.1
-    typescript: ^4.7.4
+    "@floating-ui/react-dom-interactions": ^0.10.1
+    "@nimbus-ds/box": "workspace:^"
+    "@nimbus-ds/button": "workspace:^"
+    "@nimbus-ds/stack": "workspace:^"
+    "@nimbus-ds/styles": "workspace:^"
+    "@nimbus-ds/text": "workspace:^"
+    "@nimbus-ds/title": "workspace:^"
     webpack: ^5.74.0
-    webpack-cli: ^4.10.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/skeleton@workspace:*, @nimbus-ds/skeleton@workspace:packages/react/Skeleton":
+"@nimbus-ds/skeleton@workspace:^, @nimbus-ds/skeleton@workspace:packages/react/src/atomic/Skeleton":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/skeleton@workspace:packages/react/Skeleton"
+  resolution: "@nimbus-ds/skeleton@workspace:packages/react/src/atomic/Skeleton"
   dependencies:
-    "@nimbus-ds/styles": "workspace:*"
+    "@nimbus-ds/styles": "workspace:^"
+    "@nimbus-ds/webpack": "workspace:^"
     "@vanilla-extract/dynamic": ^2.0.2
-    "@vanilla-extract/webpack-plugin": ^2.1.11
-    terser-webpack-plugin: ^5.3.5
-    ts-loader: ^9.3.1
-    typescript: ^4.7.4
     webpack: ^5.74.0
-    webpack-cli: ^4.10.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/spinner@workspace:*, @nimbus-ds/spinner@workspace:packages/react/Spinner":
+"@nimbus-ds/spinner@workspace:^, @nimbus-ds/spinner@workspace:packages/react/src/atomic/Spinner":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/spinner@workspace:packages/react/Spinner"
+  resolution: "@nimbus-ds/spinner@workspace:packages/react/src/atomic/Spinner"
   dependencies:
-    "@nimbus-ds/styles": "workspace:*"
+    "@nimbus-ds/styles": "workspace:^"
     "@vanilla-extract/dynamic": ^2.0.2
-    terser-webpack-plugin: ^5.3.5
-    ts-loader: ^9.3.1
-    typescript: ^4.7.4
     webpack: ^5.74.0
-    webpack-cli: ^4.10.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/stack@workspace:*, @nimbus-ds/stack@workspace:packages/react/Stack":
+"@nimbus-ds/stack@workspace:^, @nimbus-ds/stack@workspace:packages/react/src/atomic/Stack":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/stack@workspace:packages/react/Stack"
+  resolution: "@nimbus-ds/stack@workspace:packages/react/src/atomic/Stack"
   dependencies:
-    "@nimbus-ds/box": "workspace:*"
-    "@nimbus-ds/styles": "workspace:*"
+    "@nimbus-ds/box": "workspace:^"
+    "@nimbus-ds/styles": "workspace:^"
     "@vanilla-extract/dynamic": ^2.0.2
-    terser-webpack-plugin: ^5.3.5
-    ts-loader: ^9.3.1
-    typescript: ^4.7.4
     webpack: ^5.74.0
-    webpack-cli: ^4.10.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/styles@workspace:*, @nimbus-ds/styles@workspace:packages/styles":
+"@nimbus-ds/styles@workspace:^, @nimbus-ds/styles@workspace:packages/core/styles":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/styles@workspace:packages/styles"
+  resolution: "@nimbus-ds/styles@workspace:packages/core/styles"
   dependencies:
-    "@nimbus-ds/tokens": "workspace:*"
+    "@nimbus-ds/tokens": "workspace:^"
+    "@nimbus-ds/webpack": "workspace:^"
+    "@types/glob": ^8
     "@vanilla-extract/css": ^1.9.2
     "@vanilla-extract/recipes": ^0.3.0
     "@vanilla-extract/sprinkles": ^1.5.1
-    "@vanilla-extract/webpack-plugin": ^2.2.0
-    mini-css-extract-plugin: ^2.7.0
+    glob: ^8.0.3
     rainbow-sprinkles: ^0.14.0
-    ts-loader: ^9.4.1
+    ts-node: ^10.9.1
     webpack: ^5.75.0
-    webpack-cli: ^5.0.0
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/tabs@workspace:packages/react/Tabs":
+"@nimbus-ds/tabs@workspace:packages/react/src/composite/Tabs":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/tabs@workspace:packages/react/Tabs"
+  resolution: "@nimbus-ds/tabs@workspace:packages/react/src/composite/Tabs"
   dependencies:
-    "@nimbus-ds/styles": "workspace:*"
+    "@nimbus-ds/styles": "workspace:^"
     "@vanilla-extract/dynamic": ^2.0.2
-    terser-webpack-plugin: ^5.3.5
-    ts-loader: ^9.3.1
-    typescript: ^4.7.4
     webpack: ^5.74.0
-    webpack-cli: ^4.10.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/tag@workspace:*, @nimbus-ds/tag@workspace:packages/react/Tag":
+"@nimbus-ds/tag@workspace:^, @nimbus-ds/tag@workspace:packages/react/src/atomic/Tag":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/tag@workspace:packages/react/Tag"
+  resolution: "@nimbus-ds/tag@workspace:packages/react/src/atomic/Tag"
   dependencies:
-    "@nimbus-ds/skeleton": "workspace:*"
-    "@nimbus-ds/styles": "workspace:*"
-    "@nimbus-ds/text": "workspace:*"
+    "@nimbus-ds/skeleton": "workspace:^"
+    "@nimbus-ds/styles": "workspace:^"
+    "@nimbus-ds/text": "workspace:^"
     "@tiendanube/icons": ^0.3.1
-    terser-webpack-plugin: ^5.3.5
-    ts-loader: ^9.3.1
-    typescript: ^4.7.4
     webpack: ^5.74.0
-    webpack-cli: ^4.10.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/text@workspace:*, @nimbus-ds/text@workspace:packages/react/Text":
+"@nimbus-ds/text@workspace:^, @nimbus-ds/text@workspace:packages/react/src/atomic/Text":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/text@workspace:packages/react/Text"
+  resolution: "@nimbus-ds/text@workspace:packages/react/src/atomic/Text"
   dependencies:
-    "@nimbus-ds/skeleton": "workspace:*"
-    "@nimbus-ds/styles": "workspace:*"
-    terser-webpack-plugin: ^5.3.5
-    ts-loader: ^9.3.1
-    typescript: ^4.7.4
+    "@nimbus-ds/skeleton": "workspace:^"
+    "@nimbus-ds/styles": "workspace:^"
     webpack: ^5.74.0
-    webpack-cli: ^4.10.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/textarea@workspace:packages/react/Textarea":
+"@nimbus-ds/textarea@workspace:packages/react/src/atomic/Textarea":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/textarea@workspace:packages/react/Textarea"
+  resolution: "@nimbus-ds/textarea@workspace:packages/react/src/atomic/Textarea"
   dependencies:
-    "@nimbus-ds/skeleton": "workspace:*"
-    "@nimbus-ds/styles": "workspace:*"
-    terser-webpack-plugin: ^5.3.5
-    ts-loader: ^9.3.1
-    typescript: ^4.7.4
+    "@nimbus-ds/skeleton": "workspace:^"
+    "@nimbus-ds/styles": "workspace:^"
     webpack: ^5.74.0
-    webpack-cli: ^4.10.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/thumbnail@workspace:packages/react/Thumbnail":
+"@nimbus-ds/thumbnail@workspace:packages/react/src/atomic/Thumbnail":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/thumbnail@workspace:packages/react/Thumbnail"
+  resolution: "@nimbus-ds/thumbnail@workspace:packages/react/src/atomic/Thumbnail"
   dependencies:
-    "@nimbus-ds/icon": "workspace:*"
-    "@nimbus-ds/skeleton": "workspace:*"
-    "@nimbus-ds/styles": "workspace:*"
+    "@nimbus-ds/icon": "workspace:^"
+    "@nimbus-ds/skeleton": "workspace:^"
+    "@nimbus-ds/styles": "workspace:^"
     "@tiendanube/icons": ^0.3.1
     "@vanilla-extract/dynamic": ^2.0.2
-    "@vanilla-extract/webpack-plugin": ^2.1.11
-    terser-webpack-plugin: ^5.3.5
-    ts-loader: ^9.3.1
-    typescript: ^4.7.4
     webpack: ^5.74.0
-    webpack-cli: ^4.10.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/title@workspace:*, @nimbus-ds/title@workspace:packages/react/Title":
+"@nimbus-ds/title@workspace:^, @nimbus-ds/title@workspace:packages/react/src/atomic/Title":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/title@workspace:packages/react/Title"
+  resolution: "@nimbus-ds/title@workspace:packages/react/src/atomic/Title"
   dependencies:
-    "@nimbus-ds/skeleton": "workspace:*"
-    "@nimbus-ds/styles": "workspace:*"
-    terser-webpack-plugin: ^5.3.5
-    ts-loader: ^9.3.1
-    typescript: ^4.7.4
+    "@nimbus-ds/skeleton": "workspace:^"
+    "@nimbus-ds/styles": "workspace:^"
     webpack: ^5.74.0
-    webpack-cli: ^4.10.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/toast@workspace:packages/react/Toast":
+"@nimbus-ds/toast@workspace:packages/react/src/atomic/Toast":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/toast@workspace:packages/react/Toast"
+  resolution: "@nimbus-ds/toast@workspace:packages/react/src/atomic/Toast"
   dependencies:
-    "@nimbus-ds/icon": "workspace:*"
-    "@nimbus-ds/spinner": "workspace:*"
-    "@nimbus-ds/styles": "workspace:*"
-    "@nimbus-ds/text": "workspace:*"
+    "@nimbus-ds/icon": "workspace:^"
+    "@nimbus-ds/spinner": "workspace:^"
+    "@nimbus-ds/styles": "workspace:^"
+    "@nimbus-ds/text": "workspace:^"
     "@tiendanube/icons": ^0.3.1
-    terser-webpack-plugin: ^5.3.5
-    ts-loader: ^9.3.1
-    typescript: ^4.7.4
     webpack: ^5.74.0
-    webpack-cli: ^4.10.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/toggle@workspace:packages/react/Toggle":
+"@nimbus-ds/toggle@workspace:packages/react/src/atomic/Toggle":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/toggle@workspace:packages/react/Toggle"
+  resolution: "@nimbus-ds/toggle@workspace:packages/react/src/atomic/Toggle"
   dependencies:
-    "@nimbus-ds/skeleton": "workspace:*"
-    "@nimbus-ds/styles": "workspace:*"
-    "@nimbus-ds/text": "workspace:*"
-    terser-webpack-plugin: ^5.3.5
-    ts-loader: ^9.3.1
-    typescript: ^4.7.4
+    "@nimbus-ds/skeleton": "workspace:^"
+    "@nimbus-ds/styles": "workspace:^"
+    "@nimbus-ds/text": "workspace:^"
     webpack: ^5.74.0
-    webpack-cli: ^4.10.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/tokens@workspace:*, @nimbus-ds/tokens@workspace:packages/tokens":
+"@nimbus-ds/tokens@workspace:^, @nimbus-ds/tokens@workspace:packages/core/tokens":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/tokens@workspace:packages/tokens"
+  resolution: "@nimbus-ds/tokens@workspace:packages/core/tokens"
   dependencies:
     style-dictionary: ^3.7.1
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/tooltip@workspace:packages/react/Tooltip":
+"@nimbus-ds/tooltip@workspace:packages/react/src/atomic/Tooltip":
   version: 0.0.0-use.local
-  resolution: "@nimbus-ds/tooltip@workspace:packages/react/Tooltip"
+  resolution: "@nimbus-ds/tooltip@workspace:packages/react/src/atomic/Tooltip"
   dependencies:
     "@floating-ui/react-dom-interactions": ^0.10.1
-    "@nimbus-ds/stack": "workspace:*"
-    "@nimbus-ds/styles": "workspace:*"
+    "@nimbus-ds/stack": "workspace:^"
+    "@nimbus-ds/styles": "workspace:^"
     "@vanilla-extract/dynamic": ^2.0.2
-    terser-webpack-plugin: ^5.3.5
-    ts-loader: ^9.3.1
-    typescript: ^4.7.4
     webpack: ^5.74.0
-    webpack-cli: ^4.10.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
+  languageName: unknown
+  linkType: soft
+
+"@nimbus-ds/webpack@workspace:^, @nimbus-ds/webpack@workspace:packages/core/webpack":
+  version: 0.0.0-use.local
+  resolution: "@nimbus-ds/webpack@workspace:packages/core/webpack"
+  dependencies:
+    "@types/webpack": ^5.28.0
+    "@vanilla-extract/webpack-plugin": ^2.2.0
+    dotenv: ^16.0.3
+    mini-css-extract-plugin: ^2.7.2
+    terser-webpack-plugin: ^5.3.6
+    typescript: ^4.9.3
+    webpack: ^5.75.0
+    webpack-merge: ^5.8.0
+    webpack-shell-plugin-next: ^2.3.1
   languageName: unknown
   linkType: soft
 
@@ -5332,6 +5240,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/glob@npm:^8":
+  version: 8.0.0
+  resolution: "@types/glob@npm:8.0.0"
+  dependencies:
+    "@types/minimatch": "*"
+    "@types/node": "*"
+  checksum: 1817b05f5a8aed851d102a65b5e926d5c777bef927ea62b36d635860eef5364f2046bb5a692d135b6f2b28f34e4a9d44ade9396122c0845bcc7636d35f624747
+  languageName: node
+  linkType: hard
+
 "@types/graceful-fs@npm:^4.1.2, @types/graceful-fs@npm:^4.1.3":
   version: 4.1.5
   resolution: "@types/graceful-fs@npm:4.1.5"
@@ -5489,6 +5407,13 @@ __metadata:
   version: 16.11.47
   resolution: "@types/node@npm:16.11.47"
   checksum: 26811000753fd1bb9a90a563fc72942ac3ad5d5b6c97609a090c1e24210e040597ba060e55a7a46cb22cc84dafee112d741f45652139c6166e8ce0c970b4f05a
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^18.11.13":
+  version: 18.11.13
+  resolution: "@types/node@npm:18.11.13"
+  checksum: b0c1aa3bd2f5df8240e61096a49d6d4be600109b824d23408ec4ba1ec057dc0c60588e09f73b8a60455ad26d367e9c5562fad8403099f885cbc7b4cace83ec4c
   languageName: node
   linkType: hard
 
@@ -5655,6 +5580,17 @@ __metadata:
     anymatch: ^3.0.0
     source-map: ^0.6.0
   checksum: e594a1357cbbc2f7c6ca47785c5a11adb5591a774a69afaeab07cd6f6bff6c6aea2030bd37b32bdd19d0ec2336a346db754e8d8d236ba8effeab542716fb32b7
+  languageName: node
+  linkType: hard
+
+"@types/webpack@npm:^5.28.0":
+  version: 5.28.0
+  resolution: "@types/webpack@npm:5.28.0"
+  dependencies:
+    "@types/node": "*"
+    tapable: ^2.2.0
+    webpack: ^5
+  checksum: a038d7e12dd109c6a8d2eb744fd32070ef94f1655e730fb1443b370db98864c3a0e408638b02d12ba08269b9c012b3be8b801117ced2d1102e7676203fd663ed
   languageName: node
   linkType: hard
 
@@ -5992,20 +5928,6 @@ __metadata:
   peerDependencies:
     "@vanilla-extract/css": ^1.0.0
   checksum: a99d5a89cd56f1da7dd32fcc05c12d85fa9f2253a68431398e671861a7f8b48a8cd2c1057af364f8c74e69207038d7e1cd52fd84abcfb0dc63516beeea91e944
-  languageName: node
-  linkType: hard
-
-"@vanilla-extract/webpack-plugin@npm:^2.1.11":
-  version: 2.1.11
-  resolution: "@vanilla-extract/webpack-plugin@npm:2.1.11"
-  dependencies:
-    "@vanilla-extract/integration": ^5.0.0
-    chalk: ^4.1.1
-    debug: ^4.3.1
-    loader-utils: ^2.0.0
-  peerDependencies:
-    webpack: ^4.30.0 || ^5.20.2
-  checksum: 7104ef7a8809442bb586be417021c52d9c02cfa3c7b6aa182f95d9c6cab2da1c4b9aa2f4500f75e2c465715f989c0795acd2ccad56ec3b0936cf86617b9a69ef
   languageName: node
   linkType: hard
 
@@ -6355,69 +6277,36 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@webpack-cli/configtest@npm:^1.2.0":
-  version: 1.2.0
-  resolution: "@webpack-cli/configtest@npm:1.2.0"
-  peerDependencies:
-    webpack: 4.x.x || 5.x.x
-    webpack-cli: 4.x.x
-  checksum: a2726cd9ec601d2b57e5fc15e0ebf5200a8892065e735911269ac2038e62be4bfc176ea1f88c2c46ff09b4d05d4c10ae045e87b3679372483d47da625a327e28
-  languageName: node
-  linkType: hard
-
-"@webpack-cli/configtest@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "@webpack-cli/configtest@npm:2.0.0"
+"@webpack-cli/configtest@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "@webpack-cli/configtest@npm:2.0.1"
   peerDependencies:
     webpack: 5.x.x
     webpack-cli: 5.x.x
-  checksum: 7d1977c833c4dcd7cc30a6873bf5f79564a194e4799bcdaf8158081595409adf64e3179beada4f7b6522086c8e18ee802f7b505692d6359aab6503e8caa82de8
+  checksum: 15d0ca835f2e16ec99e9f295f07b676435b9e706d7700df0ad088692fea065e34772fc44b96a4f6a86178b9ca8cf1ff941fbce15269587cf0925d70b18928cea
   languageName: node
   linkType: hard
 
-"@webpack-cli/info@npm:^1.5.0":
-  version: 1.5.0
-  resolution: "@webpack-cli/info@npm:1.5.0"
-  dependencies:
-    envinfo: ^7.7.3
-  peerDependencies:
-    webpack-cli: 4.x.x
-  checksum: 7f56fe037cd7d1fd5c7428588519fbf04a0cad33925ee4202ffbafd00f8ec1f2f67d991245e687d50e0f3e23f7b7814273d56cb9f7da4b05eed47c8d815c6296
-  languageName: node
-  linkType: hard
-
-"@webpack-cli/info@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "@webpack-cli/info@npm:2.0.0"
+"@webpack-cli/info@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "@webpack-cli/info@npm:2.0.1"
   peerDependencies:
     webpack: 5.x.x
     webpack-cli: 5.x.x
-  checksum: d354d50dbef180066279b548e91b84372a99e1026fa1c228dcb4a6923a6aefc76e8a9c4e328e048732dc086c60fab967ff323690f170cc6a3c1a83c06bbf043e
+  checksum: b8fba49fee10d297c2affb0b064c9a81e9038d75517c6728fb85f9fb254cae634e5d33e696dac5171e6944ae329d85fddac72f781c7d833f7e9dfe43151ce60d
   languageName: node
   linkType: hard
 
-"@webpack-cli/serve@npm:^1.7.0":
-  version: 1.7.0
-  resolution: "@webpack-cli/serve@npm:1.7.0"
-  peerDependencies:
-    webpack-cli: 4.x.x
-  peerDependenciesMeta:
-    webpack-dev-server:
-      optional: true
-  checksum: d475e8effa23eb7ff9a48b14d4de425989fd82f906ce71c210921cc3852327c22873be00c35e181a25a6bd03d424ae2b83e7f3b3f410ac7ee31b128ab4ac7713
-  languageName: node
-  linkType: hard
-
-"@webpack-cli/serve@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "@webpack-cli/serve@npm:2.0.0"
+"@webpack-cli/serve@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "@webpack-cli/serve@npm:2.0.1"
   peerDependencies:
     webpack: 5.x.x
     webpack-cli: 5.x.x
   peerDependenciesMeta:
     webpack-dev-server:
       optional: true
-  checksum: d5cd72589d3563e21dedbd9e05102ef87f7e325a1de15fb7db0906132440556920719ce012e0f052efd1bc4c1fbaf3fb123552c5f3476339657ebf29c5c81732
+  checksum: 75c55f8398dd60e4821f81bec6e96287cebb3ab1837ef016779bc2f0c76a1d29c45b99e53daa99ba1fa156b5e2b61c19abf58098de20c2b58391b1f496ecc145
   languageName: node
   linkType: hard
 
@@ -8387,6 +8276,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"cliui@npm:^8.0.1":
+  version: 8.0.1
+  resolution: "cliui@npm:8.0.1"
+  dependencies:
+    string-width: ^4.2.0
+    strip-ansi: ^6.0.1
+    wrap-ansi: ^7.0.0
+  checksum: 79648b3b0045f2e285b76fb2e24e207c6db44323581e421c3acbd0e86454cba1b37aea976ab50195a49e7384b871e6dfb2247ad7dec53c02454ac6497394cb56
+  languageName: node
+  linkType: hard
+
 "clone-deep@npm:^4.0.1":
   version: 4.0.1
   resolution: "clone-deep@npm:4.0.1"
@@ -8535,7 +8435,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"commander@npm:^7.0.0, commander@npm:^7.2.0":
+"commander@npm:^7.2.0":
   version: 7.2.0
   resolution: "commander@npm:7.2.0"
   checksum: 53501cbeee61d5157546c0bef0fedb6cdfc763a882136284bed9a07225f09a14b82d2a84e7637edfd1a679fb35ed9502fd58ef1d091e6287f60d790147f68ddc
@@ -9634,10 +9534,29 @@ __metadata:
   languageName: node
   linkType: hard
 
+"dotenv@npm:^16.0.3":
+  version: 16.0.3
+  resolution: "dotenv@npm:16.0.3"
+  checksum: afcf03f373d7a6d62c7e9afea6328e62851d627a4e73f2e12d0a8deae1cd375892004f3021883f8aec85932cd2834b091f568ced92b4774625b321db83b827f8
+  languageName: node
+  linkType: hard
+
 "dotenv@npm:^8.0.0":
   version: 8.6.0
   resolution: "dotenv@npm:8.6.0"
   checksum: 38e902c80b0666ab59e9310a3d24ed237029a7ce34d976796349765ac96b8d769f6df19090f1f471b77a25ca391971efde8a1ea63bb83111bd8bec8e5cc9b2cd
+  languageName: node
+  linkType: hard
+
+"dts-bundle-generator@npm:^7.1.0":
+  version: 7.1.0
+  resolution: "dts-bundle-generator@npm:7.1.0"
+  dependencies:
+    typescript: ">=4.5.2"
+    yargs: ^17.6.0
+  bin:
+    dts-bundle-generator: dist/bin/dts-bundle-generator.js
+  checksum: 120c6b0724da0d91076714f45a27ff62776e1b64319e0dfd7a88fb28e6bf0b47bced738ecb25380dfb0afdf5232ce48ac6a2aaeef90da867810c00012321d9ba
   languageName: node
   linkType: hard
 
@@ -9780,7 +9699,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"enhanced-resolve@npm:^5.0.0, enhanced-resolve@npm:^5.10.0":
+"enhanced-resolve@npm:^5.0.0":
+  version: 5.12.0
+  resolution: "enhanced-resolve@npm:5.12.0"
+  dependencies:
+    graceful-fs: ^4.2.4
+    tapable: ^2.2.0
+  checksum: bf3f787facaf4ce3439bef59d148646344e372bef5557f0d37ea8aa02c51f50a925cd1f07b8d338f18992c29f544ec235a8c64bcdb56030196c48832a5494174
+  languageName: node
+  linkType: hard
+
+"enhanced-resolve@npm:^5.10.0":
   version: 5.10.0
   resolution: "enhanced-resolve@npm:5.10.0"
   dependencies:
@@ -11461,7 +11390,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"glob@npm:^8.0.1":
+"glob@npm:^8.0.1, glob@npm:^8.0.3":
   version: 8.0.3
   resolution: "glob@npm:8.0.3"
   dependencies:
@@ -15077,14 +15006,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mini-css-extract-plugin@npm:^2.7.0":
-  version: 2.7.0
-  resolution: "mini-css-extract-plugin@npm:2.7.0"
+"mini-css-extract-plugin@npm:^2.7.2":
+  version: 2.7.2
+  resolution: "mini-css-extract-plugin@npm:2.7.2"
   dependencies:
     schema-utils: ^4.0.0
   peerDependencies:
     webpack: ^5.0.0
-  checksum: e6b111d4289132bd496286eec42801c74c83af7eac71af630a5babae48ca65377f47d8b39e1f0653b449e68e67b57dbd0d36917242f08fc3e7770e70c0cb56cd
+  checksum: cd65611d6dc452f230c6ebba8a47bc5f5146b813b13b0b402c6f4a69f6451242eeea781152bebd31cad8ca7c7e95dac91e7e464087f18fb65b2d1097b58cf4ae
   languageName: node
   linkType: hard
 
@@ -15399,15 +15328,18 @@ __metadata:
     "@testing-library/react": ^13.3.0
     "@tiendanube/eslint-config": ^0.3.2
     "@types/jest": 28.1.6
+    "@types/node": ^18.11.13
     "@types/react": ^18.0.15
     "@types/react-dom": ^18.0.6
     "@typescript-eslint/eslint-plugin": ^5.30.6
     "@typescript-eslint/parser": ^5.30.6
     "@vanilla-extract/babel-plugin": ^1.1.7
+    "@vanilla-extract/webpack-plugin": ^2.2.0
     babel-jest: ^28.1.3
     babel-loader: ^8.2.5
     babel-plugin-module-resolver: ^4.1.0
     copy-webpack-plugin: ^11.0.0
+    dts-bundle-generator: ^7.1.0
     eslint: ^8.19.0
     eslint-config-airbnb: ^19.0.4
     eslint-config-prettier: ^8.5.0
@@ -15430,14 +15362,16 @@ __metadata:
     jest-svg-transformer: ^1.0.0
     jsdom: ^20.0.0
     lint-staged: ^13.0.3
-    mini-css-extract-plugin: ^2.7.0
+    mini-css-extract-plugin: ^2.7.2
     prettier: ^2.7.1
     react: ^18.2.0
     react-dom: ^18.2.0
     ts-jest: ^28.0.7
+    ts-loader: ^9.4.2
     ts-node: ^10.9.1
     turbo: ^1.6.1
     typescript: ^4.7.4
+    webpack-cli: ^5.0.1
   languageName: unknown
   linkType: soft
 
@@ -17248,15 +17182,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rechoir@npm:^0.7.0":
-  version: 0.7.1
-  resolution: "rechoir@npm:0.7.1"
-  dependencies:
-    resolve: ^1.9.0
-  checksum: 2a04aab4e28c05fcd6ee6768446bc8b859d8f108e71fc7f5bcbc5ef25e53330ce2c11d10f82a24591a2df4c49c4f61feabe1fd11f844c66feedd4cd7bb61146a
-  languageName: node
-  linkType: hard
-
 "rechoir@npm:^0.8.0":
   version: 0.8.0
   resolution: "rechoir@npm:0.8.0"
@@ -17634,7 +17559,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"resolve@npm:^1.10.0, resolve@npm:^1.13.1, resolve@npm:^1.14.2, resolve@npm:^1.19.0, resolve@npm:^1.20.0, resolve@npm:^1.22.0, resolve@npm:^1.3.2, resolve@npm:^1.9.0":
+"resolve@npm:^1.10.0, resolve@npm:^1.13.1, resolve@npm:^1.14.2, resolve@npm:^1.19.0, resolve@npm:^1.20.0, resolve@npm:^1.22.0, resolve@npm:^1.3.2":
   version: 1.22.1
   resolution: "resolve@npm:1.22.1"
   dependencies:
@@ -17660,7 +17585,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"resolve@patch:resolve@^1.10.0#~builtin<compat/resolve>, resolve@patch:resolve@^1.13.1#~builtin<compat/resolve>, resolve@patch:resolve@^1.14.2#~builtin<compat/resolve>, resolve@patch:resolve@^1.19.0#~builtin<compat/resolve>, resolve@patch:resolve@^1.20.0#~builtin<compat/resolve>, resolve@patch:resolve@^1.22.0#~builtin<compat/resolve>, resolve@patch:resolve@^1.3.2#~builtin<compat/resolve>, resolve@patch:resolve@^1.9.0#~builtin<compat/resolve>":
+"resolve@patch:resolve@^1.10.0#~builtin<compat/resolve>, resolve@patch:resolve@^1.13.1#~builtin<compat/resolve>, resolve@patch:resolve@^1.14.2#~builtin<compat/resolve>, resolve@patch:resolve@^1.19.0#~builtin<compat/resolve>, resolve@patch:resolve@^1.20.0#~builtin<compat/resolve>, resolve@patch:resolve@^1.22.0#~builtin<compat/resolve>, resolve@patch:resolve@^1.3.2#~builtin<compat/resolve>":
   version: 1.22.1
   resolution: "resolve@patch:resolve@npm%3A1.22.1#~builtin<compat/resolve>::version=1.22.1&hash=07638b"
   dependencies:
@@ -19110,9 +19035,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"terser-webpack-plugin@npm:^5.3.5":
-  version: 5.3.5
-  resolution: "terser-webpack-plugin@npm:5.3.5"
+"terser-webpack-plugin@npm:^5.3.6":
+  version: 5.3.6
+  resolution: "terser-webpack-plugin@npm:5.3.6"
   dependencies:
     "@jridgewell/trace-mapping": ^0.3.14
     jest-worker: ^27.4.5
@@ -19128,7 +19053,7 @@ __metadata:
       optional: true
     uglify-js:
       optional: true
-  checksum: 611c7b38d6fa0213dc03f48da9efe29c7edd098fc128a64905f7c9b61af8e7c36c13113d46b50be19ee2b8378442f4e1b8b4ddac9bba2cb73499ed32fc0e18f4
+  checksum: 8f3448d7fdb0434ce6a0c09d95c462bfd2f4a5a430233d854163337f734a7f5c07c74513d16081e06d4ca33d366d5b1a36f5444219bc41a7403afd6162107bad
   languageName: node
   linkType: hard
 
@@ -19420,9 +19345,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ts-loader@npm:^9.3.1":
-  version: 9.3.1
-  resolution: "ts-loader@npm:9.3.1"
+"ts-loader@npm:^9.4.2":
+  version: 9.4.2
+  resolution: "ts-loader@npm:9.4.2"
   dependencies:
     chalk: ^4.1.0
     enhanced-resolve: ^5.0.0
@@ -19431,22 +19356,7 @@ __metadata:
   peerDependencies:
     typescript: "*"
     webpack: ^5.0.0
-  checksum: 462a8ac315017cf4961dafd2be29d5abe7c3af63c4515e325269f79b9d0212b35c59184d7fd01fc378749c88454752e1599301d2190eb6844ea5fe332de5f695
-  languageName: node
-  linkType: hard
-
-"ts-loader@npm:^9.4.1":
-  version: 9.4.1
-  resolution: "ts-loader@npm:9.4.1"
-  dependencies:
-    chalk: ^4.1.0
-    enhanced-resolve: ^5.0.0
-    micromatch: ^4.0.0
-    semver: ^7.3.4
-  peerDependencies:
-    typescript: "*"
-    webpack: ^5.0.0
-  checksum: b8947f6d396621cc3f6ba8d4c14fa09eba03c4b7eeabbc429481e923a973c244fb80feb44e900f03fc1010755a6bf14fc561c574fb79e324f39b5b6ef1dcca6c
+  checksum: 6f306ee4c615c2a159fb177561e3fb86ca2cbd6c641e710d408a64b4978e1ff3f2c9733df07bff27d3f82efbfa7c287523d4306049510c7485ac2669a9c37eb0
   languageName: node
   linkType: hard
 
@@ -19699,6 +19609,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"typescript@npm:>=4.5.2":
+  version: 4.9.4
+  resolution: "typescript@npm:4.9.4"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: e782fb9e0031cb258a80000f6c13530288c6d63f1177ed43f770533fdc15740d271554cdae86701c1dd2c83b082cea808b07e97fd68b38a172a83dbf9e0d0ef9
+  languageName: node
+  linkType: hard
+
 "typescript@npm:^4.6.4, typescript@npm:^4.7.4":
   version: 4.7.4
   resolution: "typescript@npm:4.7.4"
@@ -19709,6 +19629,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"typescript@npm:^4.9.3":
+  version: 4.9.3
+  resolution: "typescript@npm:4.9.3"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 17b8f816050b412403e38d48eef0e893deb6be522d6dc7caf105e54a72e34daf6835c447735fd2b28b66784e72bfbf87f627abb4818a8e43d1fa8106396128dc
+  languageName: node
+  linkType: hard
+
+"typescript@patch:typescript@>=4.5.2#~builtin<compat/typescript>":
+  version: 4.9.4
+  resolution: "typescript@patch:typescript@npm%3A4.9.4#~builtin<compat/typescript>::version=4.9.4&hash=f456af"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 37f6e2c3c5e2aa5934b85b0fddbf32eeac8b1bacf3a5b51d01946936d03f5377fe86255d4e5a4ae628fd0cd553386355ad362c57f13b4635064400f3e8e05b9d
+  languageName: node
+  linkType: hard
+
 "typescript@patch:typescript@^4.6.4#~builtin<compat/typescript>, typescript@patch:typescript@^4.7.4#~builtin<compat/typescript>":
   version: 4.7.4
   resolution: "typescript@patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=f456af"
@@ -19716,6 +19656,16 @@ __metadata:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: 9096d8f6c16cb80ef3bf96fcbbd055bf1c4a43bd14f3b7be45a9fbe7ada46ec977f604d5feed3263b4f2aa7d4c7477ce5f9cd87de0d6feedec69a983f3a4f93e
+  languageName: node
+  linkType: hard
+
+"typescript@patch:typescript@^4.9.3#~builtin<compat/typescript>":
+  version: 4.9.3
+  resolution: "typescript@patch:typescript@npm%3A4.9.3#~builtin<compat/typescript>::version=4.9.3&hash=f456af"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: ef65c22622d864497d0a0c5db693523329b3284c15fe632e93ad9aa059e8dc38ef3bd767d6f26b1e5ecf9446f49bd0f6c4e5714a2eeaf352805dc002479843d1
   languageName: node
   linkType: hard
 
@@ -20404,47 +20354,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"webpack-cli@npm:^4.10.0":
-  version: 4.10.0
-  resolution: "webpack-cli@npm:4.10.0"
+"webpack-cli@npm:^5.0.1":
+  version: 5.0.1
+  resolution: "webpack-cli@npm:5.0.1"
   dependencies:
     "@discoveryjs/json-ext": ^0.5.0
-    "@webpack-cli/configtest": ^1.2.0
-    "@webpack-cli/info": ^1.5.0
-    "@webpack-cli/serve": ^1.7.0
-    colorette: ^2.0.14
-    commander: ^7.0.0
-    cross-spawn: ^7.0.3
-    fastest-levenshtein: ^1.0.12
-    import-local: ^3.0.2
-    interpret: ^2.2.0
-    rechoir: ^0.7.0
-    webpack-merge: ^5.7.3
-  peerDependencies:
-    webpack: 4.x.x || 5.x.x
-  peerDependenciesMeta:
-    "@webpack-cli/generators":
-      optional: true
-    "@webpack-cli/migrate":
-      optional: true
-    webpack-bundle-analyzer:
-      optional: true
-    webpack-dev-server:
-      optional: true
-  bin:
-    webpack-cli: bin/cli.js
-  checksum: 2ff5355ac348e6b40f2630a203b981728834dca96d6d621be96249764b2d0fc01dd54edfcc37f02214d02935de2cf0eefd6ce689d970d154ef493f01ba922390
-  languageName: node
-  linkType: hard
-
-"webpack-cli@npm:^5.0.0":
-  version: 5.0.0
-  resolution: "webpack-cli@npm:5.0.0"
-  dependencies:
-    "@discoveryjs/json-ext": ^0.5.0
-    "@webpack-cli/configtest": ^2.0.0
-    "@webpack-cli/info": ^2.0.0
-    "@webpack-cli/serve": ^2.0.0
+    "@webpack-cli/configtest": ^2.0.1
+    "@webpack-cli/info": ^2.0.1
+    "@webpack-cli/serve": ^2.0.1
     colorette: ^2.0.14
     commander: ^9.4.1
     cross-spawn: ^7.0.3
@@ -20465,7 +20382,7 @@ __metadata:
       optional: true
   bin:
     webpack-cli: bin/cli.js
-  checksum: 514874b6625d5a0077d9f52fe67dd0528115823d15612dbdc99fece271d26825fbedd3e7b209ed7726edc8528c0e7f787acbba57929ac4cb6d0618ec1c834933
+  checksum: b1544eea669442e78c3dba9f79c0f8d0136759b8b2fe9cd32c0d410250fd719988ae037778ba88993215d44971169f2c268c0c934068be561711615f1951bd53
   languageName: node
   linkType: hard
 
@@ -20531,13 +20448,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"webpack-merge@npm:^5.7.3":
+"webpack-merge@npm:^5.7.3, webpack-merge@npm:^5.8.0":
   version: 5.8.0
   resolution: "webpack-merge@npm:5.8.0"
   dependencies:
     clone-deep: ^4.0.1
     wildcard: ^2.0.0
   checksum: 88786ab91013f1bd2a683834ff381be81c245a4b0f63304a5103e90f6653f44dab496a0768287f8531761f8ad957d1f9f3ccb2cb55df0de1bd9ee343e079da26
+  languageName: node
+  linkType: hard
+
+"webpack-shell-plugin-next@npm:^2.3.1":
+  version: 2.3.1
+  resolution: "webpack-shell-plugin-next@npm:2.3.1"
+  peerDependencies:
+    webpack: ^5.18.0
+  checksum: a5976d01281ba68e9f86ad8e48c70fe5088c1e69638a97e4ed215f5dd5f50372ca4735f92ac295ad1973612f6fd98df7829adf4afbbee669529e7c9c36b99207
   languageName: node
   linkType: hard
 
@@ -20649,7 +20575,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"webpack@npm:^5.75.0":
+"webpack@npm:^5, webpack@npm:^5.75.0":
   version: 5.75.0
   resolution: "webpack@npm:5.75.0"
   dependencies:
@@ -20991,7 +20917,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yargs-parser@npm:^21.0.0, yargs-parser@npm:^21.0.1":
+"yargs-parser@npm:^21.0.0, yargs-parser@npm:^21.0.1, yargs-parser@npm:^21.1.1":
   version: 21.1.1
   resolution: "yargs-parser@npm:21.1.1"
   checksum: ed2d96a616a9e3e1cc7d204c62ecc61f7aaab633dcbfab2c6df50f7f87b393993fe6640d017759fe112d0cb1e0119f2b4150a87305cc873fd90831c6a58ccf1c
@@ -21044,6 +20970,21 @@ __metadata:
     y18n: ^5.0.5
     yargs-parser: ^21.0.0
   checksum: 00d58a2c052937fa044834313f07910fd0a115dec5ee35919e857eeee3736b21a4eafa8264535800ba8bac312991ce785ecb8a51f4d2cc8c4676d865af1cfbde
+  languageName: node
+  linkType: hard
+
+"yargs@npm:^17.6.0":
+  version: 17.6.2
+  resolution: "yargs@npm:17.6.2"
+  dependencies:
+    cliui: ^8.0.1
+    escalade: ^3.1.1
+    get-caller-file: ^2.0.5
+    require-directory: ^2.1.1
+    string-width: ^4.2.3
+    y18n: ^5.0.5
+    yargs-parser: ^21.1.1
+  checksum: 47da1b0d854fa16d45a3ded57b716b013b2179022352a5f7467409da5a04a1eef5b3b3d97a2dfc13e8bbe5f2ffc0afe3bc6a4a72f8254e60f5a4bd7947138643
   languageName: node
   linkType: hard
 

@@ -1,0 +1,70 @@
+import React, { useMemo } from "react";
+import { Text } from "@nimbus-ds/text";
+import { radio } from "@nimbus-ds/styles";
+
+import { RadioProps, RadioComponents } from "./radio.types";
+import { RadioSkeleton } from "./components";
+
+const Radio: React.FC<RadioProps> & RadioComponents = ({
+  className: _className,
+  style: _style,
+  as = "radio",
+  label,
+  id,
+  name,
+  disabled,
+  ...rest
+}: RadioProps) => {
+  const isRadio = useMemo(() => as === "radio", [as]);
+  const isDisabled = useMemo(() => disabled && !isRadio, [isRadio, disabled]);
+
+  return (
+    <label
+      htmlFor={id || name}
+      className={[
+        radio.classnames.container,
+        radio.sprinkle({ cursor: disabled ? "auto" : "pointer" }),
+      ].join(" ")}
+    >
+      <input
+        {...rest}
+        id={id || name}
+        name={name}
+        type="radio"
+        className={radio.classnames.input}
+        disabled={disabled}
+      />
+      {isRadio && (
+        <span
+          data-testid="checkmark-element"
+          className={radio.classnames.checkmark}
+        >
+          <div
+            data-testid="checkicon-element"
+            className={radio.classnames.checkicon}
+          />
+        </span>
+      )}
+      <div
+        data-testid="content-element"
+        className={radio.classnames.content[isDisabled ? "disabled" : as]}
+      >
+        {label && (
+          <Text
+            data-testid="text"
+            color="currentColor"
+            fontSize="base"
+            lineHeight="base"
+          >
+            {label}
+          </Text>
+        )}
+      </div>
+    </label>
+  );
+};
+
+Radio.Skeleton = RadioSkeleton;
+Radio.displayName = "Radio";
+
+export { Radio };

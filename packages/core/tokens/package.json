@@ -1,0 +1,27 @@
+{
+  "name": "@nimbus-ds/tokens",
+  "version": "5.0.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "style-dictionary build",
+    "clean": "rm -rf dist",
+    "version": "yarn version"
+  },
+  "homepage": "https://nimbus.nuvemshop.com.br/documentation",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TiendaNube/nimbus-design-system.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TiendaNube/nimbus-design-system/issues"
+  },
+  "devDependencies": {
+    "style-dictionary": "^3.7.1"
+  }
+}

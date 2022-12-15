@@ -1,0 +1,15 @@
+{
+  "extends": "../../tsconfig.json",
+  "include": [
+    "src/index.ts",
+    "./atomic/*",
+    "./composite/*",
+    "../../index.d.ts"
+  ],
+  "exclude": ["src/**/*.spec.tsx"],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "commonJS"
+    }
+  }
+}

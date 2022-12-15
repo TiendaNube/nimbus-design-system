@@ -3,11 +3,23 @@
 This is the log of notable changes to the Design System Nimbus that are developer-facing.
 Package-specific changes not released in any package will be added here just before the release. Until then, you can find them in changelogs of the individual packages (see [packages](./packages) directory).
 
+## 2022-12-07
+
+- Renamed babel file jest from `babel-jest.config` to `babel.config`. ([#63](https://github.com/TiendaNube/nimbus-design-system/pull/63) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `@vanilla-extract/webpack-plugin@^2.2.0`. ([#63](https://github.com/TiendaNube/nimbus-design-system/pull/63) by [@juniorconquista](https://github.com/juniorconquista))
+
+## 2022-12-05
+
+### 💡 Others
+
+- Restructuring folder and organizing the design system packages. ([#62](https://github.com/TiendaNube/nimbus-design-system/pull/62) by [@juniorconquista](https://github.com/juniorconquista))
+- Renamed babel file jest from `babel.config` to `babel-jest.config`. ([#62](https://github.com/TiendaNube/nimbus-design-system/pull/62) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2022-11-18
 
-Added `mini-css-extract-plugin@2.7.0`. ([#56](https://github.com/TiendaNube/nimbus-design-system/pull/56) by [@juniorconquista](https://github.com/juniorconquista))
-
 ### 📚 3rd party library updates
+
+- Added `mini-css-extract-plugin@2.7.0`. ([#56](https://github.com/TiendaNube/nimbus-design-system/pull/56) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2022-11-02
 

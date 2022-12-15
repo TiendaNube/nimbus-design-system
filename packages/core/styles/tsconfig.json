@@ -1,0 +1,19 @@
+{
+  "extends": "../../../tsconfig.json",
+  "include": ["./src"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "declaration": true,
+    "module": "esnext",
+    "declarationDir": "./dist",
+    "paths": {
+      "@nimbus-ds/tokens": ["../tokens"],
+      "@nimbus-ds/webpack": ["../webpack"]
+    }
+  },
+  "ts-node": {
+    "compilerOptions": {
+      "module": "commonJS"
+    }
+  }
+}
