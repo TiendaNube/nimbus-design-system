@@ -11,6 +11,9 @@ export default {
     "List.SkeletonItem": List.SkeletonItem,
     "List.Skeleton": List.Skeleton,
   },
+  argTypes: {
+    children: { control: { disable: true } },
+  },
   parameters: {
     withA11y: { decorators: [withA11y] },
   },

@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/components",
-  "version": "1.0.0-rc.6",
+  "version": "1.0.0-rc.7",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -14,7 +14,7 @@
     "version": "yarn version"
   },
   "dependencies": {
-    "@nimbus-ds/styles": "workspace:*"
+    "@nimbus-ds/styles": "workspace:^"
   },
   "peerDependencies": {
     "@floating-ui/react-dom-interactions": "^0.10.1",
@@ -30,7 +30,6 @@
     "url": "https://github.com/TiendaNube/nimbus-design-system/issues"
   },
   "devDependencies": {
-    "typescript": "^4.9.3",
     "webpack": "^5.75.0"
   },
   "stableVersion": "0.0.0"

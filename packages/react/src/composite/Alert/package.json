@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/alert",
-  "version": "1.1.0-rc.5",
+  "version": "1.1.0-rc.6",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -14,10 +14,10 @@
     "version": "yarn version"
   },
   "dependencies": {
-    "@nimbus-ds/icon": "workspace:*",
-    "@nimbus-ds/skeleton": "workspace:*",
-    "@nimbus-ds/styles": "workspace:*",
-    "@nimbus-ds/title": "workspace:*"
+    "@nimbus-ds/icon": "workspace:^",
+    "@nimbus-ds/skeleton": "workspace:^",
+    "@nimbus-ds/styles": "workspace:^",
+    "@nimbus-ds/title": "workspace:^"
   },
   "peerDependencies": {
     "react": "^16.8 || ^17.0 || ^18.0",
@@ -32,8 +32,7 @@
     "url": "https://github.com/TiendaNube/nimbus-design-system/issues"
   },
   "devDependencies": {
-    "@nimbus-ds/button": "workspace:*",
-    "typescript": "^4.7.4",
+    "@nimbus-ds/button": "workspace:^",
     "webpack": "^5.74.0"
   },
   "stableVersion": "1.0.1"

@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/input",
-  "version": "1.2.0-rc.5",
+  "version": "1.2.0-rc.6",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -14,9 +14,9 @@
     "version": "yarn version"
   },
   "dependencies": {
-    "@nimbus-ds/icon": "workspace:*",
-    "@nimbus-ds/skeleton": "workspace:*",
-    "@nimbus-ds/styles": "workspace:*",
+    "@nimbus-ds/icon": "workspace:^",
+    "@nimbus-ds/skeleton": "workspace:^",
+    "@nimbus-ds/styles": "workspace:^",
     "@tiendanube/icons": "^0.3.1"
   },
   "peerDependencies": {
@@ -32,7 +32,6 @@
     "url": "https://github.com/TiendaNube/nimbus-design-system/issues"
   },
   "devDependencies": {
-    "typescript": "^4.7.4",
     "webpack": "^5.74.0"
   },
   "stableVersion": "1.1.0"

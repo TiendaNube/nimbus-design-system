@@ -9,12 +9,6 @@ export default {
   title: "Atomic/File Uploader",
   component: FileUploader,
   subcomponents: { "FileUploader.Skeleton": FileUploader.Skeleton },
-  argTypes: {
-    aspectRatio: { options: Object.keys(fileUploader.properties.aspectRatio) },
-    flexDirection: {
-      options: Object.keys(fileUploader.properties.flexDirection),
-    },
-  },
   parameters: {
     withA11y: { decorators: [withA11y] },
   },

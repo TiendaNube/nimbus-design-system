@@ -11,6 +11,9 @@ export default {
     "Tabs.Button": Tabs.Button,
     "Tabs.Item": Tabs.Item,
   },
+  argTypes: {
+    children: { control: { disable: true } },
+  },
   parameters: {
     withA11y: { decorators: [withA11y] },
   },

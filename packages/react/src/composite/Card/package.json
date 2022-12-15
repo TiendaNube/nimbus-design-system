@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/card",
-  "version": "1.1.0-rc.5",
+  "version": "1.1.0-rc.6",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -14,8 +14,8 @@
     "version": "yarn version"
   },
   "dependencies": {
-    "@nimbus-ds/styles": "workspace:*",
-    "@nimbus-ds/title": "workspace:*"
+    "@nimbus-ds/styles": "workspace:^",
+    "@nimbus-ds/title": "workspace:^"
   },
   "peerDependencies": {
     "react": "^16.8 || ^17.0 || ^18.0",
@@ -30,12 +30,11 @@
     "url": "https://github.com/TiendaNube/nimbus-design-system/issues"
   },
   "devDependencies": {
-    "@nimbus-ds/box": "workspace:*",
-    "@nimbus-ds/button": "workspace:*",
-    "@nimbus-ds/stack": "workspace:*",
-    "@nimbus-ds/tag": "workspace:*",
-    "@nimbus-ds/text": "workspace:*",
-    "typescript": "^4.7.4",
+    "@nimbus-ds/box": "workspace:^",
+    "@nimbus-ds/button": "workspace:^",
+    "@nimbus-ds/stack": "workspace:^",
+    "@nimbus-ds/tag": "workspace:^",
+    "@nimbus-ds/text": "workspace:^",
     "webpack": "^5.74.0"
   },
   "stableVersion": "1.0.0"

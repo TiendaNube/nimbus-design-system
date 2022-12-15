@@ -8,6 +8,9 @@ import { SelectGroup, SelectOption, SelectSkeleton } from "./components";
 export default {
   title: "Atomic/Select",
   component: Select,
+  argTypes: {
+    children: { control: { disable: true } },
+  },
   parameters: {
     withA11y: { decorators: [withA11y] },
   },
