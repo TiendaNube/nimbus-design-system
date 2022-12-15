@@ -33,6 +33,7 @@ const SkeletonTemplate: ComponentStory<typeof Link.Skeleton> = (args) => (
 export const base = Template.bind({});
 base.args = {
   children: "Link",
+  href: "mailto: hola@tiendanube.com",
 };
 
 export const icon = Template.bind({});
