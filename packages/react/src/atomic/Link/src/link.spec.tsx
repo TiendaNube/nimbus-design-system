@@ -38,13 +38,6 @@ describe("GIVEN <Link />", () => {
       ).toContain("appearance_neutral");
     });
 
-    it("THEN should correctly render without underline", () => {
-      makeSut({ textDecoration: "none", href: "#", children: "link" });
-      expect(
-        screen.getByRole("link", { name: "link" }).getAttribute("class")
-      ).toContain("textDecoration_none");
-    });
-
     it("THEN should correctly render with size caption", () => {
       makeSut({ size: "caption", href: "#", children: "link" });
       expect(
@@ -64,6 +57,20 @@ describe("GIVEN <Link />", () => {
       expect(
         screen.getByRole("link", { name: "link" }).getAttribute("class")
       ).toContain("size_highlight");
+    });
+
+    it("THEN should correctly render with textDecoration none", () => {
+      makeSut({ textDecoration: "none", href: "#", children: "link" });
+      expect(
+        screen.getByRole("link", { name: "link" }).getAttribute("class")
+      ).toContain("textDecoration_none");
+    });
+
+    it("THEN should correctly render with textDecoration underline", () => {
+      makeSut({ textDecoration: "underline", href: "#", children: "link" });
+      expect(
+        screen.getByRole("link", { name: "link" }).getAttribute("class")
+      ).toContain("textDecoration_underline");
     });
   });
 });

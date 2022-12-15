@@ -18,7 +18,7 @@ const Link: React.FC<LinkProps> & LinkComponents = ({
     className={[
       link.classnames.appearance[appearance],
       link.classnames.size[size],
-      link.classnames.textDecoration[textDecoration],
+      link.sprinkle({ textDecoration }),
     ].join(" ")}
   >
     {children}

@@ -33,13 +33,6 @@ export const size = styleVariants({
   },
 });
 
-export const textDecoration = styleVariants({
-  underline: {
-    textDecoration: "underline",
-  },
-  none: {},
-});
-
 export const appearance = styleVariants({
   primary: [
     base,
