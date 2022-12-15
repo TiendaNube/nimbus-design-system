@@ -9,9 +9,9 @@ Nimbus components is a component library built with [React](https://reactjs.org)
 Install `@nimbus-ds/components` using any package manager.
 
 ```sh
-$ yarn add @nimbus-ds/webpack
+$ yarn add @nimbus-ds/components
 # or
-$ npm install @nimbus-ds/webpack
+$ npm install @nimbus-ds/components
 ```
 
 ## 💻 Usage
