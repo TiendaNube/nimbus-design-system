@@ -11,6 +11,8 @@ export const container = vanillaStyle({
   padding: 0,
   listStyle: "none",
   display: "flex",
+
+  transition: varsThemeBase.motion.speed.base,
 });
 
 export const tabElement = styleVariants({
@@ -50,8 +52,12 @@ const buttonBase = vanillaStyle({
     backgroundColor: varsThemeBase.colors.primary.surface,
   },
 
+  ":active": {
+    backgroundColor: varsThemeBase.colors.primary.surfaceHighlight,
+  },
+
   ":focus": {
-    boxShadow: `0px 0px 0px 3px ${varsThemeBase.colors.primary.surfaceHighlight}`,
+    boxShadow: varsThemeBase.utils.focus,
   },
 });
 
@@ -61,7 +67,6 @@ export const tabButton = styleVariants({
     buttonBase,
     {
       color: varsThemeBase.colors.primary.interactive,
-      fontWeight: varsThemeBase.fontWeight.bold,
 
       ":before": {
         content: "",
@@ -81,6 +86,6 @@ export const panel = vanillaStyle({
   paddingTop: varsThemeBase.spacing[4],
 
   ":focus": {
-    boxShadow: `0px 0px 0px 3px ${varsThemeBase.colors.primary.surfaceHighlight}`,
+    boxShadow: varsThemeBase.utils.focus,
   },
 });

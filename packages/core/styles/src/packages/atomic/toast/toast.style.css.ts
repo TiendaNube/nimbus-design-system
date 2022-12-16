@@ -11,12 +11,10 @@ const base = vanillaStyle({
   height: "2rem",
   width: "fit-content",
 
-  padding: varsThemeBase.spacing[1],
+  padding: varsThemeBase.spacing[2],
   boxSizing: "border-box",
 
-  borderWidth: "0.063rem",
-  borderStyle: "solid",
-  borderRadius: varsThemeBase.spacing[1],
+  borderRadius: varsThemeBase.spacing[2],
 
   transition: `${varsThemeBase.motion.speed.fast} ease`,
 });
@@ -35,29 +33,25 @@ export const content = styleVariants({
   primary: [
     base,
     {
-      background: varsThemeBase.colors.primary.surface,
-      borderColor: varsThemeBase.colors.primary.surfaceHighlight,
+      background: varsThemeBase.colors.primary.textLow,
     },
   ],
   success: [
     base,
     {
-      background: varsThemeBase.colors.success.surface,
-      borderColor: varsThemeBase.colors.success.surfaceHighlight,
+      background: varsThemeBase.colors.success.textLow,
     },
   ],
   danger: [
     base,
     {
-      background: varsThemeBase.colors.danger.surface,
-      borderColor: varsThemeBase.colors.danger.surfaceHighlight,
+      background: varsThemeBase.colors.danger.textLow,
     },
   ],
   progress: [
     base,
     {
-      background: varsThemeBase.colors.neutral.surface,
-      borderColor: varsThemeBase.colors.neutral.surfaceHighlight,
+      background: varsThemeBase.colors.neutral.textLow,
     },
   ],
 });

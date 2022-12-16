@@ -2,6 +2,15 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2022-12-16 `5.1.0`
+
+#### 🎉 New features
+
+- Add `focus` ring utility to base theme. ([#67](https://github.com/TiendaNube/nimbus-design-system/pull/67) by [@juanchigallego](https://github.com/juanchigallego))
+- Add new color sprinkles for `surface` colors on `Icon`, `Spinner` and `Text` components. ([#67](https://github.com/TiendaNube/nimbus-design-system/pull/67) by [@juanchigallego](https://github.com/juanchigallego))
+- Add new font weight `medium`. ([#67](https://github.com/TiendaNube/nimbus-design-system/pull/67) by [@juanchigallego](https://github.com/juanchigallego))
+- Update styles on `Button`, `Badge`, `Checkbox`, `Chip`, `IconButton`, `Input`, `Link`, `Radio`, `Title`, `Toast`, `Toggle`, `Alert` and `Tabs` components. ([#67](https://github.com/TiendaNube/nimbus-design-system/pull/67) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2022-12-07 `5.0.0`
 
 ### 🎉 New features

@@ -36,7 +36,7 @@ const baseInput = vanillaStyle({
   transition: `all ${varsThemeBase.motion.speed.fast} ease`,
   ":focus": {
     outline: "none",
-    boxShadow: `0px 0px 0px 3px ${varsThemeBase.colors.primary.surfaceHighlight}`,
+    boxShadow: varsThemeBase.utils.focus,
   },
   ":disabled": {
     borderColor: varsThemeBase.colors.neutral.interactive,

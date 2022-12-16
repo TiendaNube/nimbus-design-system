@@ -104,8 +104,8 @@ export const close = vanillaStyle({
 
   transition: `all ${varsThemeBase.motion.speed.base}`,
 
-  ":focus-visible": {
-    boxShadow: `0px 0px 0px 3px ${varsThemeBase.colors.primary.surfaceHighlight}`,
+  ":focus": {
+    boxShadow: varsThemeBase.utils.focus,
   },
 });
 
@@ -116,8 +116,9 @@ export const closeAppearance = styleVariants({
       ":hover": {
         backgroundColor: varsThemeBase.colors.primary.surfaceHighlight,
       },
-      ":focus": {
-        borderColor: varsThemeBase.colors.primary.interactivePressed,
+
+      ":active": {
+        backgroundColor: varsThemeBase.colors.primary.interactivePressed,
       },
     },
   ],
@@ -127,8 +128,9 @@ export const closeAppearance = styleVariants({
       ":hover": {
         backgroundColor: varsThemeBase.colors.success.surfaceHighlight,
       },
-      ":focus": {
-        borderColor: varsThemeBase.colors.success.interactivePressed,
+
+      ":active": {
+        backgroundColor: varsThemeBase.colors.success.interactivePressed,
       },
     },
   ],
@@ -138,8 +140,9 @@ export const closeAppearance = styleVariants({
       ":hover": {
         backgroundColor: varsThemeBase.colors.warning.surfaceHighlight,
       },
-      ":focus": {
-        borderColor: varsThemeBase.colors.warning.interactivePressed,
+
+      ":active": {
+        backgroundColor: varsThemeBase.colors.warning.interactivePressed,
       },
     },
   ],
@@ -149,8 +152,9 @@ export const closeAppearance = styleVariants({
       ":hover": {
         backgroundColor: varsThemeBase.colors.danger.surfaceHighlight,
       },
-      ":focus": {
-        borderColor: varsThemeBase.colors.danger.interactivePressed,
+
+      ":active": {
+        backgroundColor: varsThemeBase.colors.danger.interactivePressed,
       },
     },
   ],
@@ -160,8 +164,9 @@ export const closeAppearance = styleVariants({
       ":hover": {
         backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
       },
-      ":focus": {
-        borderColor: varsThemeBase.colors.neutral.interactivePressed,
+
+      ":active": {
+        backgroundColor: varsThemeBase.colors.neutral.interactivePressed,
       },
     },
   ],

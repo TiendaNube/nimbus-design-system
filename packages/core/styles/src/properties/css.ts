@@ -76,6 +76,7 @@ export const textAlignProperties: TextAlign[] = [
 ];
 export const fontWeightProperties = {
   regular: varsThemeBase.fontWeight.regular,
+  medium: varsThemeBase.fontWeight.medium,
   bold: varsThemeBase.fontWeight.bold,
 };
 export const fontSizeProperties = {

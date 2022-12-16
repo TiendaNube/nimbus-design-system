@@ -12,7 +12,7 @@ const base = vanillaStyle({
   width: "fit-content",
   gap: varsThemeBase.spacing[1],
 
-  fontWeight: varsThemeBase.fontWeight.bold,
+  fontWeight: varsThemeBase.fontWeight.medium,
   lineHeight: varsThemeBase.lineWeight.body.base,
   fontSize: varsThemeBase.fontSize.body.base,
   fontFamily: varsThemeBase.fontFamily.centranube,
@@ -29,7 +29,10 @@ const base = vanillaStyle({
   transition: `all ${varsThemeBase.motion.speed.fast} ease`,
   ":disabled": {
     color: varsThemeBase.colors.neutral.textDisabled,
-    cursor: "auto",
+    cursor: "not-allowed",
+  },
+  ":focus": {
+    boxShadow: varsThemeBase.utils.focus,
   },
 });
 
@@ -83,15 +86,15 @@ export const appearance = styleVariants({
   neutral: [
     base,
     {
-      background: varsThemeBase.colors.neutral.interactive,
+      background: varsThemeBase.colors.neutral.surface,
       borderColor: varsThemeBase.colors.neutral.interactive,
       color: varsThemeBase.colors.neutral.textLow,
       ":hover": {
-        background: varsThemeBase.colors.neutral.interactiveHover,
+        backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
         borderColor: varsThemeBase.colors.neutral.interactiveHover,
       },
       ":active": {
-        background: varsThemeBase.colors.neutral.interactivePressed,
+        backgroundColor: varsThemeBase.colors.neutral.interactive,
         borderColor: varsThemeBase.colors.neutral.interactivePressed,
       },
       ":disabled": {
@@ -99,7 +102,23 @@ export const appearance = styleVariants({
         borderColor: varsThemeBase.colors.neutral.surfaceHighlight,
       },
       ":focus": {
+        borderColor: varsThemeBase.colors.primary.interactive,
+      },
+    },
+  ],
+  transparent: [
+    base,
+    {
+      background: "transparent",
+      borderColor: "transparent",
+      color: varsThemeBase.colors.neutral.textLow,
+      ":hover": {
+        backgroundColor: varsThemeBase.colors.neutral.surface,
         borderColor: varsThemeBase.colors.neutral.interactiveHover,
+      },
+      ":active": {
+        backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
+        borderColor: varsThemeBase.colors.neutral.interactivePressed,
       },
     },
   ],
