@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/tokens",
-  "version": "5.0.0",
+  "version": "5.1.0-rc.2",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -23,5 +23,6 @@
   },
   "devDependencies": {
     "style-dictionary": "^3.7.1"
-  }
+  },
+  "stableVersion": "5.0.0"
 }
