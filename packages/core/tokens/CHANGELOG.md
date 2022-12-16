@@ -2,6 +2,13 @@
 
 Our design tokens are the foundations of Nimbus Design System.
 
+## 2022-12-16
+
+### 💡 Others
+
+- Changed `neutral-99` token from `#F1F1F1` to `#FAFAFA`. ([#67](https://github.com/TiendaNube/nimbus-design-system/pull/67) by [@juanchigallego](https://github.com/juanchigallego))
+- Changed `neutral-95` token from `#F3F3F4` to `#F5F5F5`. ([#67](https://github.com/TiendaNube/nimbus-design-system/pull/67) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2022-09-28
 
 ### 💡 Others
