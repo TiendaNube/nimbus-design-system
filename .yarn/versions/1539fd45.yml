@@ -8,6 +8,7 @@ releases:
   "@nimbus-ds/tokens": minor
 
 declined:
+  - nimbus-design-system
   - "@nimbus-ds/badge"
   - "@nimbus-ds/box"
   - "@nimbus-ds/checkbox"
@@ -34,6 +35,3 @@ declined:
   - "@nimbus-ds/card"
   - "@nimbus-ds/sidebar"
   - "@nimbus-ds/tabs"
-
-undecided:
-  - nimbus-design-system
