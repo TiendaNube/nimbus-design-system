@@ -10,17 +10,19 @@ import { mediaQueries } from "../../../themes";
 
 const iconButtonBackgroundColorProperties = {
   transparent: "transparent",
+  "neutral.surface": backgroundColorProperties["neutral.surface"],
   "neutral.interactive": backgroundColorProperties["neutral.interactive"],
   "neutral.surfaceHighlight":
     backgroundColorProperties["neutral.surfaceHighlight"],
-  "neutral.interactivePressed":
-    backgroundColorProperties["neutral.interactivePressed"],
 };
 
 const iconButtonBorderColorProperties = {
   ...iconButtonBackgroundColorProperties,
   "neutral.interactive": borderColorProperties["neutral.interactive"],
   "neutral.interactiveHover": borderColorProperties["neutral.interactiveHover"],
+  "neutral.interactivePressed":
+    borderColorProperties["neutral.interactivePressed"],
+  "primary.interactive": borderColorProperties["primary.interactive"],
 };
 
 const properties = {
