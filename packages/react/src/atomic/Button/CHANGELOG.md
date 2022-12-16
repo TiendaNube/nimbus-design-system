@@ -2,6 +2,10 @@
 
 The Button component allows us to initiate actions, make state or page changes.
 
+## 2022-12-14 `1.3.0`
+
+- Add new `transparent` appearance.
+
 ## 2022-12-07 `1.2.0`
 
 ### 🎉 New features

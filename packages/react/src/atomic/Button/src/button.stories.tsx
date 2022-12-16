@@ -87,5 +87,11 @@ neutral.args = {
   children: "Button",
 };
 
+export const transparent = Template.bind({});
+transparent.args = {
+  appearance: "transparent",
+  children: "Button",
+};
+
 export const skeleton = SkeletonTemplate.bind({});
 skeleton.args = {};
