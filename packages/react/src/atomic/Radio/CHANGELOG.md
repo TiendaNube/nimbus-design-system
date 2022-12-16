@@ -2,6 +2,12 @@
 
 Use radios when a user needs to select one option from a list.
 
+## 2022-12-16 `1.1.1`
+
+### 🎉 New features
+
+- Update label font size on `as: button` variant. ([#67](https://github.com/TiendaNube/nimbus-design-system/pull/67) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2022-12-07 `1.1.0`
 
 ### 🎉 New features
