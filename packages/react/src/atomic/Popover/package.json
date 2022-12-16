@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/popover",
-  "version": "1.3.0-rc.6",
+  "version": "1.3.0",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -34,6 +34,5 @@
     "@nimbus-ds/stack": "workspace:^",
     "@vanilla-extract/dynamic": "^2.0.2",
     "webpack": "^5.74.0"
-  },
-  "stableVersion": "1.2.0"
+  }
 }

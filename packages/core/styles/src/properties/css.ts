@@ -10,6 +10,7 @@ import {
   FlexWrap,
   JustifyContent,
   TextAlign,
+  TextDecoration,
 } from "../types";
 import { baseColors } from "./base";
 
@@ -74,6 +75,7 @@ export const textAlignProperties: TextAlign[] = [
   "center",
   "justify",
 ];
+export const textDecorationProperties: TextDecoration[] = ["none", "underline"];
 export const fontWeightProperties = {
   regular: varsThemeBase.fontWeight.regular,
   medium: varsThemeBase.fontWeight.medium,

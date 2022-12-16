@@ -3416,8 +3416,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/webpack@workspace:packages/core/webpack"
   dependencies:
+    "@types/dashify": ^1.0.1
     "@types/webpack": ^5.28.0
     "@vanilla-extract/webpack-plugin": ^2.2.0
+    dashify: ^2.0.0
     dotenv: ^16.0.3
     mini-css-extract-plugin: ^2.7.2
     terser-webpack-plugin: ^5.3.6
@@ -5175,6 +5177,13 @@ __metadata:
   dependencies:
     "@babel/types": ^7.3.0
   checksum: 5fd7f4ea0963f9669b1bd6bd928b2d81452b98e4acfcfeb26ca4476162b87f9c1d8f66ff13567fd9f760a31ad04c36d767fa874f569aded6fb46890e379327c1
+  languageName: node
+  linkType: hard
+
+"@types/dashify@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "@types/dashify@npm:1.0.1"
+  checksum: 25b25d036312ab6928fdd82c13e292a6e79b14104d2417c8105223c0644a98e53a822b35510922a44d7d4629e0adcbe4ec6547e62be2d6ecb84fb2feef61bc4c
   languageName: node
   linkType: hard
 
@@ -9072,6 +9081,13 @@ __metadata:
   version: 7.0.0
   resolution: "dargs@npm:7.0.0"
   checksum: b8f1e3cba59c42e1f13a114ad4848c3fc1cf7470f633ee9e9f1043762429bc97d91ae31b826fb135eefde203a3fdb20deb0c0a0222ac29d937b8046085d668d1
+  languageName: node
+  linkType: hard
+
+"dashify@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "dashify@npm:2.0.0"
+  checksum: f13233f38fc39ea8dabe3a5bef51421906aa8a52e4403fcb56e3e6464428f5c0bdd75562706929a245c698bceccf68a82e30e9e327a0c582469868522a163f8c
   languageName: node
   linkType: hard
 

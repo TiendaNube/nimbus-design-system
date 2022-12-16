@@ -1,4 +1,5 @@
 import { ReactNode, AnchorHTMLAttributes } from "react";
+import { link } from "@nimbus-ds/styles";
 import { LinkSkeleton } from "./components";
 
 export interface LinkComponents {
@@ -11,7 +12,7 @@ export interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   /** Link appearance */
   appearance?: "primary" | "danger" | "neutral";
   /** Decoration for the link text */
-  textDecoration?: "underline" | "none";
+  textDecoration?: typeof link.properties.textDecoration[number];
   /** Size of the link text */
   size?: "caption" | "base" | "highlight";
 }

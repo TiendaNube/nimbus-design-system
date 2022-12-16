@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/card",
-  "version": "1.1.0-rc.6",
+  "version": "1.1.0",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -36,6 +36,5 @@
     "@nimbus-ds/tag": "workspace:^",
     "@nimbus-ds/text": "workspace:^",
     "webpack": "^5.74.0"
-  },
-  "stableVersion": "1.0.0"
+  }
 }
