@@ -64,8 +64,8 @@
         },
         "neutral": {
           "100": { "value": "#FFFFFF" },
-          "99": { "value": "#F1F1F1" },
-          "97": { "value": "#F3F3F4" },
+          "99": { "value": "#FAFAFA" },
+          "97": { "value": "#F5F5F5" },
           "95": { "value": "#E7E8E9" },
           "90": { "value": "#CFD1D2" },
           "80": { "value": "#B7BABC" },

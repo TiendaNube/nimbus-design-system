@@ -145,6 +145,9 @@ export const varsThemeBase = createThemeContract({
     md: "breakpoint.md",
     lg: "breakpoint.lg",
   },
+  utils: {
+    focus: "0 0 0 3px primary.surfaceHighlight",
+  },
 });
 
 const colors = tokens.color.sys.light;
@@ -297,5 +300,8 @@ createGlobalTheme(":root", varsThemeBase, {
     xs: breakpoint.xs.value,
     md: breakpoint.md.value,
     lg: breakpoint.lg.value,
+  },
+  utils: {
+    focus: `0 0 0 3px ${colors.primary["surface-highlight"].value as string}`,
   },
 });

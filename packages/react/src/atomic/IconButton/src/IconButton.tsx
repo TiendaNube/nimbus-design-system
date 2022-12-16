@@ -11,15 +11,15 @@ const IconButton: React.FC<IconButtonProps> & IconButtonComponents = ({
   as: As = "button",
   size = "2.75rem",
   backgroundColor = {
-    xs: "neutral.surfaceHighlight",
-    active: "neutral.interactivePressed",
-    hover: "neutral.interactive",
+    xs: "neutral.surface",
+    active: "neutral.interactive",
+    hover: "neutral.surfaceHighlight",
   },
   borderColor = {
-    xs: "neutral.surfaceHighlight",
+    xs: "neutral.interactive",
     active: "neutral.interactivePressed",
-    hover: "neutral.interactive",
-    focus: "neutral.interactiveHover",
+    hover: "neutral.interactiveHover",
+    focus: "primary.interactive",
   },
   source,
   ...rest
@@ -39,7 +39,7 @@ const IconButton: React.FC<IconButtonProps> & IconButtonComponents = ({
     >
       <Icon
         data-testid="icon-element"
-        color="primary.interactive"
+        color="neutral.textLow"
         cursor="pointer"
         source={source}
       />

@@ -16,7 +16,7 @@ export const container = vanillaStyle({
   fontSize: varsThemeBase.fontSize.body.caption,
   fontFamily: varsThemeBase.fontFamily.centranube,
 
-  background: varsThemeBase.colors.neutral.interactive,
+  background: varsThemeBase.colors.neutral.surface,
   color: varsThemeBase.colors.neutral.textLow,
   borderRadius: "0.25rem",
   boxSizing: "border-box",
@@ -29,14 +29,15 @@ export const container = vanillaStyle({
   transition: `all ${varsThemeBase.motion.speed.fast} ease`,
 
   ":hover": {
-    background: varsThemeBase.colors.neutral.interactiveHover,
+    background: varsThemeBase.colors.neutral.surfaceHighlight,
     borderColor: varsThemeBase.colors.neutral.interactiveHover,
   },
   ":focus": {
-    borderColor: varsThemeBase.colors.neutral.interactiveHover,
+    borderColor: varsThemeBase.colors.primary.interactive,
+    boxShadow: varsThemeBase.utils.focus,
   },
   ":active": {
-    background: varsThemeBase.colors.neutral.interactivePressed,
+    background: varsThemeBase.colors.neutral.interactive,
     borderColor: varsThemeBase.colors.neutral.interactivePressed,
   },
 });

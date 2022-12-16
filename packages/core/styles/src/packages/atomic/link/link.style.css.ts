@@ -16,6 +16,10 @@ const base = vanillaStyle({
   boxSizing: "border-box",
 
   transition: `all ${varsThemeBase.motion.speed.fast} ease`,
+
+  ":focus": {
+    boxShadow: varsThemeBase.utils.focus,
+  },
 });
 
 export const size = styleVariants({
@@ -44,9 +48,6 @@ export const appearance = styleVariants({
       ":active": {
         color: varsThemeBase.colors.primary.interactivePressed,
       },
-      ":focus": {
-        outline: `${varsThemeBase.colors.primary.interactivePressed} auto 1px`,
-      },
     },
   ],
   danger: [
@@ -59,9 +60,6 @@ export const appearance = styleVariants({
       ":active": {
         color: varsThemeBase.colors.danger.interactivePressed,
       },
-      ":focus": {
-        outline: `${varsThemeBase.colors.danger.interactivePressed} auto 1px`,
-      },
     },
   ],
   neutral: [
@@ -73,9 +71,6 @@ export const appearance = styleVariants({
       },
       ":active": {
         color: varsThemeBase.colors.neutral.textHigh,
-      },
-      ":focus": {
-        outline: `${varsThemeBase.colors.neutral.textHigh} auto 1px`,
       },
     },
   ],

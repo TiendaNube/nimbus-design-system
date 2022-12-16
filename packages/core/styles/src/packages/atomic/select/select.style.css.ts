@@ -51,7 +51,7 @@ const base = style({
   },
 
   ":focus-visible": {
-    boxShadow: `0px 0px 0px 3px ${varsThemeBase.colors.primary.surfaceHighlight}`,
+    boxShadow: varsThemeBase.utils.focus,
   },
 });
 

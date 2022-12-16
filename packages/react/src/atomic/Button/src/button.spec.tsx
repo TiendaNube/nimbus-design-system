@@ -46,5 +46,12 @@ describe("GIVEN <Button />", () => {
         screen.getByRole("button", { name: "button" }).getAttribute("class")
       ).toContain("appearance_neutral");
     });
+
+    it("THEN should correctly render the appearance transparent", () => {
+      makeSut({ appearance: "transparent", children: "button" });
+      expect(
+        screen.getByRole("button", { name: "button" }).getAttribute("class")
+      ).toContain("appearance_transparent");
+    });
   });
 });

@@ -17,12 +17,14 @@ export const container = style({
   borderColor: "transparent",
   borderRadius: varsThemeBase.sizes[1],
   transition: `all ${varsThemeBase.motion.speed.fast} ease`,
-  ":focus": {
-    borderColor: varsThemeBase.colors.neutral.interactiveHover,
+  ":focus-within": {
+    boxShadow: varsThemeBase.utils.focus,
   },
 });
 
 const base = style({
+  borderStyle: "solid",
+  borderWidth: "1px",
   display: "flex",
   padding: `${varsThemeBase.spacing[1]} ${varsThemeBase.sizes["1,5"]}`,
   borderRadius: varsThemeBase.sizes[1],
@@ -40,21 +42,25 @@ export const content = styleVariants({
   button: [
     base,
     {
-      backgroundColor: varsThemeBase.colors.neutral.interactive,
+      backgroundColor: varsThemeBase.colors.neutral.surface,
+      borderColor: varsThemeBase.colors.neutral.interactive,
       color: varsThemeBase.colors.neutral.textLow,
       ":active": {
-        background: varsThemeBase.colors.neutral.interactivePressed,
-        color: varsThemeBase.colors.neutral.textHigh,
+        backgroundColor: varsThemeBase.colors.neutral.interactive,
+        borderColor: varsThemeBase.colors.neutral.interactiveHover,
       },
       ":hover": {
-        background: varsThemeBase.colors.neutral.interactiveHover,
+        background: varsThemeBase.colors.neutral.surfaceHighlight,
+        borderColor: varsThemeBase.colors.neutral.interactivePressed,
       },
     },
   ],
   disabled: [
     base,
     {
+      cursor: "not-allowed",
       backgroundColor: varsThemeBase.colors.neutral.surfaceDisabled,
+      borderColor: varsThemeBase.colors.neutral.surfaceHighlight,
       color: varsThemeBase.colors.neutral.textDisabled,
     },
   ],
@@ -118,10 +124,12 @@ globalStyle(`${input}:disabled ~ ${checkmark} ${checkicon}`, {
 
 globalStyle(`${input}:checked ~ ${content.button}`, {
   backgroundColor: varsThemeBase.colors.primary.interactive,
+  borderColor: varsThemeBase.colors.primary.interactive,
   color: varsThemeBase.colors.neutral.background,
 });
 
 globalStyle(`${input}:checked ~ ${content.disabled}`, {
-  backgroundColor: varsThemeBase.colors.neutral.textDisabled,
-  color: varsThemeBase.colors.neutral.background,
+  backgroundColor: varsThemeBase.colors.neutral.surfaceDisabled,
+  borderColor: varsThemeBase.colors.neutral.surfaceHighlight,
+  color: varsThemeBase.colors.neutral.textDisabled,
 });

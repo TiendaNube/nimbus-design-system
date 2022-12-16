@@ -97,18 +97,18 @@ const Toast: React.FC<ToastProps> = ({
       {!isProgress && (
         <Icon
           data-testid={`toast-icon-${types}`}
-          color={`${types}.textLow`}
+          color={`${types}.surface`}
           source={icons[type]}
         />
       )}
       {isProgress && (
         <Spinner
           data-testid={`toast-spinner-${types}`}
-          color="neutral.textLow"
+          color="neutral.surface"
           size="small"
         />
       )}
-      <Text color={`${types}.textLow`} fontSize="caption" lineHeight="caption">
+      <Text color={`${types}.surface`} fontSize="caption" lineHeight="caption">
         {text}
       </Text>
     </div>

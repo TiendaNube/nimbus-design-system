@@ -24,29 +24,29 @@ export const surface = styleVariants({
   primary: [
     base,
     {
-      backgroundColor: varsThemeBase.colors.primary.surfaceHighlight,
-      color: varsThemeBase.colors.primary.textHigh,
+      backgroundColor: varsThemeBase.colors.primary.textLow,
+      color: varsThemeBase.colors.neutral.background,
     },
   ],
   success: [
     base,
     {
-      backgroundColor: varsThemeBase.colors.success.surfaceHighlight,
-      color: varsThemeBase.colors.success.textHigh,
+      backgroundColor: varsThemeBase.colors.success.textLow,
+      color: varsThemeBase.colors.neutral.background,
     },
   ],
   warning: [
     base,
     {
-      backgroundColor: varsThemeBase.colors.warning.surfaceHighlight,
-      color: varsThemeBase.colors.warning.textHigh,
+      backgroundColor: varsThemeBase.colors.warning.textLow,
+      color: varsThemeBase.colors.neutral.background,
     },
   ],
   danger: [
     base,
     {
-      backgroundColor: varsThemeBase.colors.danger.surfaceHighlight,
-      color: varsThemeBase.colors.danger.textHigh,
+      backgroundColor: varsThemeBase.colors.danger.textLow,
+      color: varsThemeBase.colors.neutral.background,
     },
   ],
   neutral: [

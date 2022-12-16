@@ -11,8 +11,13 @@ export const container = vanillaStyle({
   borderWidth: "0.063rem",
   borderStyle: "solid",
   transition: `all ${varsThemeBase.motion.speed.fast} ease`,
+
   ":active": {
-    backgroundColor: varsThemeBase.colors.neutral.interactivePressed,
+    backgroundColor: varsThemeBase.colors.neutral.interactive,
     borderColor: varsThemeBase.colors.neutral.interactivePressed,
+  },
+
+  ":focus": {
+    boxShadow: varsThemeBase.utils.focus,
   },
 });

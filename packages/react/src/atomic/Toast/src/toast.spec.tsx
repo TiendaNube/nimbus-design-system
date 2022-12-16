@@ -36,7 +36,7 @@ describe("GIVEN <Toast />", () => {
 
       const icon = screen.getByTestId("toast-icon-primary");
       expect(icon.getAttribute("class")).toContain(
-        "icon.sprinkle_color_primary.textLow"
+        "icon.sprinkle_color_primary.surface"
       );
       expect(icon.firstChild?.nodeName).toEqual("svg");
     });
@@ -49,7 +49,7 @@ describe("GIVEN <Toast />", () => {
 
       const icon = screen.getByTestId("toast-icon-success");
       expect(icon.getAttribute("class")).toContain(
-        "icon.sprinkle_color_success.textLow"
+        "icon.sprinkle_color_success.surface"
       );
       expect(icon.firstChild?.nodeName).toEqual("svg");
     });
@@ -62,7 +62,7 @@ describe("GIVEN <Toast />", () => {
 
       const icon = screen.getByTestId("toast-icon-danger");
       expect(icon.getAttribute("class")).toContain(
-        "icon.sprinkle_color_danger.textLow"
+        "icon.sprinkle_color_danger.surface"
       );
       expect(icon.firstChild?.nodeName).toEqual("svg");
     });
@@ -75,7 +75,7 @@ describe("GIVEN <Toast />", () => {
 
       const icon = screen.getByTestId("toast-spinner-neutral");
       expect(icon.getAttribute("class")).toContain(
-        "spinner.sprinkle_color_neutral.textLow"
+        "spinner.sprinkle_color_neutral.surface"
       );
       expect(icon.firstChild?.nodeName).toEqual("circle");
     });
@@ -88,7 +88,7 @@ describe("GIVEN <Toast />", () => {
 
       const icon = screen.getByTestId("toast-icon-primary");
       expect(icon.getAttribute("class")).toContain(
-        "icon.sprinkle_color_primary.textLow"
+        "icon.sprinkle_color_primary.surface"
       );
       expect(icon.firstChild?.nodeName).toEqual("svg");
     });

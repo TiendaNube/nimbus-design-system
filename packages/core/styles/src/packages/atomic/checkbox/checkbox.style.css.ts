@@ -8,6 +8,11 @@ export const container = vanillaStyle({
   width: "fit-content",
   gap: varsThemeBase.spacing[1],
   position: "relative",
+  borderRadius: varsThemeBase.sizes[1],
+
+  ":focus-within": {
+    boxShadow: varsThemeBase.utils.focus,
+  },
 });
 
 export const input = vanillaStyle({
@@ -29,6 +34,7 @@ export const checkmark = vanillaStyle({
   borderWidth: "0.063rem",
   borderStyle: "solid",
   borderRadius: varsThemeBase.spacing[1],
+  backgroundColor: varsThemeBase.colors.neutral.background,
 });
 
 export const checkicon = vanillaStyle({

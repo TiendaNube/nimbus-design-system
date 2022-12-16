@@ -53,7 +53,7 @@ const Radio: React.FC<RadioProps> & RadioComponents = ({
           <Text
             data-testid="text"
             color="currentColor"
-            fontSize="base"
+            fontSize={isRadio ? "base" : "caption"}
             lineHeight="base"
           >
             {label}
