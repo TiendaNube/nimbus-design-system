@@ -2,9 +2,9 @@
 
 The Button component allows us to initiate actions, make state or page changes.
 
-## 2022-12-14 `1.3.0`
+## 2022-12-14 `1.6.0`
 
-- Add new `transparent` appearance.
+- Add new `transparent` appearance. ([#67](https://github.com/TiendaNube/nimbus-design-system/pull/67) by [@juanchigallego](https://github.com/juanchigallego))
 
 ## 2022-12-07 `1.2.0`
 
