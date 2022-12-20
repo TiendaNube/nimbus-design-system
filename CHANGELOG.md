@@ -5,6 +5,10 @@ Package-specific changes not released in any package will be added here just bef
 
 ## 2022-12-20
 
+### 🎉 New features
+
+- Creating build script for building packages to parts of release versions. ([#68](https://github.com/TiendaNube/nimbus-design-system/pull/#68) by [@juniorconquista](https://github.com/juniorconquista))
+
 ### 📚 3rd party library updates
 
 - Updated `child_process@1.0.2`. ([#68](https://github.com/TiendaNube/nimbus-design-system/pull/#68) by [@juniorconquista](https://github.com/juniorconquista))
