@@ -1,7 +1,6 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { withA11y } from "@storybook/addon-a11y";
-import { fileUploader } from "@nimbus-ds/styles";
 
 import { FileUploader } from "./FileUploader";
 
@@ -13,8 +12,6 @@ export default {
     withA11y: { decorators: [withA11y] },
   },
 } as ComponentMeta<typeof FileUploader>;
-
-console.log(fileUploader.properties.flexDirection);
 
 const Template: ComponentStory<typeof FileUploader> = (args) => (
   <FileUploader {...args} />
