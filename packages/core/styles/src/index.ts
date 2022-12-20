@@ -29,6 +29,7 @@ export { textarea } from "./packages/atomic/textarea";
 
 export { alert } from "./packages/composite/alert";
 export { card } from "./packages/composite/card";
+export { pagination } from "./packages/composite/pagination";
 export { sidebar } from "./packages/composite/sidebar";
 export { tabs } from "./packages/composite/tabs";
 

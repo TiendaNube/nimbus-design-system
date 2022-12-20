@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2022-12-20 `5.3.0`
+
+#### 🎉 New features
+
+- Added new style pack for pagination component. [#68](https://github.com/TiendaNube/nimbus-design-system/pull/#68) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2022-12-16 `5.2.0`
 
 #### 🎉 New features
