@@ -26,7 +26,7 @@
     "pre-push": "yarn test:coverage && yarn lint && yarn types:check && yarn bump:check",
     "prepare-husky": "husky install",
     "publish:next": "yarn bump:check && yarn bump:next && npm run build && yarn workspaces foreach -pv -pt --exclude nimbus-design-system npm publish --tolerate-republish --access public --tag next",
-    "publish:stable": "yarn bump:stable && npm run build && yarn workspaces foreach -pv -pt --exclude nimbus-design-system npm publish --tolerate-republish --access public",
+    "publish:stable": "npm run build && yarn bump:stable && yarn workspaces foreach -pv -pt --exclude nimbus-design-system npm publish --tolerate-republish --access public",
     "reset": "yarn clean && rm -rf node_modules .yarn/cache",
     "storybook": "start-storybook -p 6006 --ci",
     "start:dev": "yarn storybook",
