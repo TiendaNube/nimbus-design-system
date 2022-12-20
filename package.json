@@ -14,6 +14,7 @@
   "scripts": {
     "build": "yarn clean && yarn build:packages",
     "build:packages": "node ./.scripts/build:packages",
+    "build:styles": "turbo run build --filter=@nimbus-ds/styles...",
     "build:storybook": "build-storybook -c .storybook -o .build-storybook",
     "bump:check": "yarn version check",
     "bump:next": "yarn version apply --all --prerelease",

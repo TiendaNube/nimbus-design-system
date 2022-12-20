@@ -3157,6 +3157,19 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@nimbus-ds/pagination@workspace:packages/react/src/composite/Pagination":
+  version: 0.0.0-use.local
+  resolution: "@nimbus-ds/pagination@workspace:packages/react/src/composite/Pagination"
+  dependencies:
+    "@nimbus-ds/button": "workspace:^"
+    "@nimbus-ds/styles": "workspace:^"
+    webpack: ^5.74.0
+  peerDependencies:
+    react: ^16.8 || ^17.0 || ^18.0
+    react-dom: ^16.8 || ^17.0 || ^18.0
+  languageName: unknown
+  linkType: soft
+
 "@nimbus-ds/popover@workspace:packages/react/src/atomic/Popover":
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/popover@workspace:packages/react/src/atomic/Popover"

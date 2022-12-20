@@ -1,5 +1,4 @@
 import { style as vanillaStyle, styleVariants } from "@vanilla-extract/css";
-
 import { varsThemeBase } from "../../../themes";
 
 const base = vanillaStyle({
@@ -119,6 +118,11 @@ export const appearance = styleVariants({
       ":active": {
         backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
         borderColor: varsThemeBase.colors.neutral.interactivePressed,
+      },
+      ":disabled": {
+        color: varsThemeBase.colors.neutral.textDisabled,
+        background: "transparent",
+        borderColor: "transparent",
       },
     },
   ],
