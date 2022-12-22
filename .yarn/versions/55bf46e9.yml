@@ -31,6 +31,7 @@ releases:
   "@nimbus-ds/title": major
   "@nimbus-ds/toast": major
   "@nimbus-ds/toggle": major
+  "@nimbus-ds/tokens": major
   "@nimbus-ds/tooltip": major
 
 declined:
