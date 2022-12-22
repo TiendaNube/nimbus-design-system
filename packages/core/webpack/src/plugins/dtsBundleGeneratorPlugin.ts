@@ -5,16 +5,20 @@
 import WebpackShellPluginNextPlugin from "webpack-shell-plugin-next";
 import { rootDir } from "../utils";
 
-const config = {
-  onBuildEnd: {
-    scripts: [
-      `node ${rootDir}/node_modules/.bin/dts-bundle-generator -o ./dist/index.d.ts ./src/index.ts`,
-    ],
-    blocking: false,
-    parallel: true,
-  },
-};
+const entry = [
+  `node ${rootDir}/node_modules/.bin/dts-bundle-generator -o ./dist/index.d.ts ./src/index.ts`,
+];
 
-export const dtsBundleGeneratorPlugin = new WebpackShellPluginNextPlugin(
-  config
-);
+export const dtsBundleGeneratorPlugin = (
+  configuration: { entries: string[] } = { entries: [] }
+) => {
+  const config = {
+    onBuildEnd: {
+      scripts: [...entry, ...configuration.entries],
+      blocking: false,
+      parallel: true,
+    },
+  };
+
+  return new WebpackShellPluginNextPlugin(config);
+};
