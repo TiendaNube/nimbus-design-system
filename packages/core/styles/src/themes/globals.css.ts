@@ -99,9 +99,9 @@ createGlobalTheme(":root", vars, {
     },
   },
   shadow: {
-    card: shadow.card.value,
-    popover: shadow.popover.value,
-    modal: shadow.modal.value,
+    card: shadow.light.card.value,
+    popover: shadow.light.popover.value,
+    modal: shadow.light.modal.value,
   },
   spacing: {
     "0,5": spacing["0,5"].value,

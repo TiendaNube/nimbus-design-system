@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2022-12-22 `6.0.1`
+
+#### 🎉 New features
+
+- Adjusted shadow tokens for dark theme support. ([#70](https://github.com/TiendaNube/nimbus-design-system/pull/70) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2022-12-20 `6.0.0`
 
 #### 🎉 New features
