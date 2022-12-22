@@ -14,7 +14,8 @@
     "version": "yarn version"
   },
   "dependencies": {
-    "@floating-ui/react-dom-interactions": "^0.10.1"
+    "@floating-ui/react-dom-interactions": "^0.10.1",
+    "@tiendanube/icons": "^0.3.1"
   },
   "peerDependencies": {
     "react": "^16.8 || ^17.0 || ^18.0",

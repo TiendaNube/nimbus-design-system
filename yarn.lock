@@ -2940,7 +2940,6 @@ __metadata:
     "@nimbus-ds/button": "workspace:^"
     "@nimbus-ds/icon": "workspace:^"
     "@nimbus-ds/skeleton": "workspace:^"
-    "@nimbus-ds/styles": "workspace:^"
     "@nimbus-ds/title": "workspace:^"
     webpack: ^5.74.0
   peerDependencies:
@@ -2954,7 +2953,6 @@ __metadata:
   resolution: "@nimbus-ds/badge@workspace:packages/react/src/atomic/Badge"
   dependencies:
     "@nimbus-ds/skeleton": "workspace:^"
-    "@nimbus-ds/styles": "workspace:^"
     "@nimbus-ds/text": "workspace:^"
     webpack: ^5.74.0
   peerDependencies:
@@ -2967,7 +2965,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/box@workspace:packages/react/src/atomic/Box"
   dependencies:
-    "@nimbus-ds/styles": "workspace:^"
     "@vanilla-extract/dynamic": ^2.0.2
     webpack: ^5.74.0
   peerDependencies:
@@ -2983,10 +2980,10 @@ __metadata:
     "@nimbus-ds/badge": "workspace:^"
     "@nimbus-ds/icon": "workspace:^"
     "@nimbus-ds/skeleton": "workspace:^"
-    "@nimbus-ds/styles": "workspace:^"
     "@tiendanube/icons": ^0.3.1
     webpack: ^5.74.0
   peerDependencies:
+    "@nimbus-ds/styles": "workspace:^"
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
   languageName: unknown
@@ -2999,12 +2996,11 @@ __metadata:
     "@nimbus-ds/box": "workspace:^"
     "@nimbus-ds/button": "workspace:^"
     "@nimbus-ds/stack": "workspace:^"
-    "@nimbus-ds/styles": "workspace:^"
     "@nimbus-ds/tag": "workspace:^"
     "@nimbus-ds/text": "workspace:^"
-    "@nimbus-ds/title": "workspace:^"
     webpack: ^5.74.0
   peerDependencies:
+    "@nimbus-ds/title": "workspace:^"
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
   languageName: unknown
@@ -3016,7 +3012,6 @@ __metadata:
   dependencies:
     "@nimbus-ds/icon": "workspace:^"
     "@nimbus-ds/skeleton": "workspace:^"
-    "@nimbus-ds/styles": "workspace:^"
     "@nimbus-ds/text": "workspace:^"
     webpack: ^5.74.0
   peerDependencies:
@@ -3031,7 +3026,6 @@ __metadata:
   dependencies:
     "@nimbus-ds/icon": "workspace:^"
     "@nimbus-ds/skeleton": "workspace:^"
-    "@nimbus-ds/styles": "workspace:^"
     "@nimbus-ds/text": "workspace:^"
     "@tiendanube/icons": ^0.3.1
     webpack: ^5.74.0
@@ -3045,10 +3039,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/components@workspace:packages/react"
   dependencies:
-    "@nimbus-ds/styles": "workspace:^"
+    "@floating-ui/react-dom-interactions": ^0.10.1
+    "@tiendanube/icons": ^0.3.1
     webpack: ^5.75.0
   peerDependencies:
-    "@floating-ui/react-dom-interactions": ^0.10.1
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
   languageName: unknown
@@ -3060,7 +3054,6 @@ __metadata:
   dependencies:
     "@nimbus-ds/icon": "workspace:^"
     "@nimbus-ds/skeleton": "workspace:^"
-    "@nimbus-ds/styles": "workspace:^"
     "@nimbus-ds/text": "workspace:^"
     "@tiendanube/icons": ^0.3.1
     "@vanilla-extract/dynamic": ^2.0.2
@@ -3077,7 +3070,6 @@ __metadata:
   dependencies:
     "@nimbus-ds/icon": "workspace:^"
     "@nimbus-ds/skeleton": "workspace:^"
-    "@nimbus-ds/styles": "workspace:^"
     "@tiendanube/icons": ^0.3.1
     webpack: ^5.74.0
   peerDependencies:
@@ -3091,7 +3083,6 @@ __metadata:
   resolution: "@nimbus-ds/icon@workspace:packages/react/src/atomic/Icon"
   dependencies:
     "@nimbus-ds/skeleton": "workspace:^"
-    "@nimbus-ds/styles": "workspace:^"
     "@tiendanube/icons": ^0.3.1
     webpack: ^5.74.0
   peerDependencies:
@@ -3106,7 +3097,6 @@ __metadata:
   dependencies:
     "@nimbus-ds/icon": "workspace:^"
     "@nimbus-ds/skeleton": "workspace:^"
-    "@nimbus-ds/styles": "workspace:^"
     "@tiendanube/icons": ^0.3.1
     webpack: ^5.74.0
   peerDependencies:
@@ -3121,7 +3111,6 @@ __metadata:
   dependencies:
     "@nimbus-ds/icon": "workspace:^"
     "@nimbus-ds/skeleton": "workspace:^"
-    "@nimbus-ds/styles": "workspace:^"
     "@tiendanube/icons": ^0.3.1
     webpack: ^5.74.0
   peerDependencies:
@@ -3135,7 +3124,6 @@ __metadata:
   resolution: "@nimbus-ds/link@workspace:packages/react/src/atomic/Link"
   dependencies:
     "@nimbus-ds/skeleton": "workspace:^"
-    "@nimbus-ds/styles": "workspace:^"
     "@tiendanube/icons": ^0.3.1
     webpack: ^5.74.0
   peerDependencies:
@@ -3149,7 +3137,6 @@ __metadata:
   resolution: "@nimbus-ds/list@workspace:packages/react/src/atomic/List"
   dependencies:
     "@nimbus-ds/skeleton": "workspace:^"
-    "@nimbus-ds/styles": "workspace:^"
     webpack: ^5.74.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
@@ -3162,7 +3149,6 @@ __metadata:
   resolution: "@nimbus-ds/pagination@workspace:packages/react/src/composite/Pagination"
   dependencies:
     "@nimbus-ds/button": "workspace:^"
-    "@nimbus-ds/styles": "workspace:^"
     webpack: ^5.74.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
@@ -3177,7 +3163,6 @@ __metadata:
     "@floating-ui/react-dom-interactions": ^0.10.1
     "@nimbus-ds/box": "workspace:^"
     "@nimbus-ds/stack": "workspace:^"
-    "@nimbus-ds/styles": "workspace:^"
     "@vanilla-extract/dynamic": ^2.0.2
     webpack: ^5.74.0
   peerDependencies:
@@ -3191,7 +3176,6 @@ __metadata:
   resolution: "@nimbus-ds/radio@workspace:packages/react/src/atomic/Radio"
   dependencies:
     "@nimbus-ds/skeleton": "workspace:^"
-    "@nimbus-ds/styles": "workspace:^"
     "@nimbus-ds/text": "workspace:^"
     webpack: ^5.74.0
   peerDependencies:
@@ -3205,7 +3189,6 @@ __metadata:
   resolution: "@nimbus-ds/select@workspace:packages/react/src/atomic/Select"
   dependencies:
     "@nimbus-ds/skeleton": "workspace:^"
-    "@nimbus-ds/styles": "workspace:^"
     webpack: ^5.74.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
@@ -3221,7 +3204,6 @@ __metadata:
     "@nimbus-ds/box": "workspace:^"
     "@nimbus-ds/button": "workspace:^"
     "@nimbus-ds/stack": "workspace:^"
-    "@nimbus-ds/styles": "workspace:^"
     "@nimbus-ds/text": "workspace:^"
     "@nimbus-ds/title": "workspace:^"
     webpack: ^5.74.0
@@ -3235,7 +3217,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/skeleton@workspace:packages/react/src/atomic/Skeleton"
   dependencies:
-    "@nimbus-ds/styles": "workspace:^"
     "@nimbus-ds/webpack": "workspace:^"
     "@vanilla-extract/dynamic": ^2.0.2
     webpack: ^5.74.0
@@ -3249,7 +3230,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/spinner@workspace:packages/react/src/atomic/Spinner"
   dependencies:
-    "@nimbus-ds/styles": "workspace:^"
     "@vanilla-extract/dynamic": ^2.0.2
     webpack: ^5.74.0
   peerDependencies:
@@ -3263,7 +3243,6 @@ __metadata:
   resolution: "@nimbus-ds/stack@workspace:packages/react/src/atomic/Stack"
   dependencies:
     "@nimbus-ds/box": "workspace:^"
-    "@nimbus-ds/styles": "workspace:^"
     "@vanilla-extract/dynamic": ^2.0.2
     webpack: ^5.74.0
   peerDependencies:
@@ -3272,7 +3251,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/styles@workspace:^, @nimbus-ds/styles@workspace:packages/core/styles":
+"@nimbus-ds/styles@workspace:packages/core/styles":
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/styles@workspace:packages/core/styles"
   dependencies:
@@ -3293,7 +3272,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/tabs@workspace:packages/react/src/composite/Tabs"
   dependencies:
-    "@nimbus-ds/styles": "workspace:^"
     "@vanilla-extract/dynamic": ^2.0.2
     webpack: ^5.74.0
   peerDependencies:
@@ -3307,7 +3285,6 @@ __metadata:
   resolution: "@nimbus-ds/tag@workspace:packages/react/src/atomic/Tag"
   dependencies:
     "@nimbus-ds/skeleton": "workspace:^"
-    "@nimbus-ds/styles": "workspace:^"
     "@nimbus-ds/text": "workspace:^"
     "@tiendanube/icons": ^0.3.1
     webpack: ^5.74.0
@@ -3322,7 +3299,6 @@ __metadata:
   resolution: "@nimbus-ds/text@workspace:packages/react/src/atomic/Text"
   dependencies:
     "@nimbus-ds/skeleton": "workspace:^"
-    "@nimbus-ds/styles": "workspace:^"
     webpack: ^5.74.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
@@ -3335,7 +3311,6 @@ __metadata:
   resolution: "@nimbus-ds/textarea@workspace:packages/react/src/atomic/Textarea"
   dependencies:
     "@nimbus-ds/skeleton": "workspace:^"
-    "@nimbus-ds/styles": "workspace:^"
     webpack: ^5.74.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
@@ -3349,7 +3324,6 @@ __metadata:
   dependencies:
     "@nimbus-ds/icon": "workspace:^"
     "@nimbus-ds/skeleton": "workspace:^"
-    "@nimbus-ds/styles": "workspace:^"
     "@tiendanube/icons": ^0.3.1
     "@vanilla-extract/dynamic": ^2.0.2
     webpack: ^5.74.0
@@ -3364,7 +3338,6 @@ __metadata:
   resolution: "@nimbus-ds/title@workspace:packages/react/src/atomic/Title"
   dependencies:
     "@nimbus-ds/skeleton": "workspace:^"
-    "@nimbus-ds/styles": "workspace:^"
     webpack: ^5.74.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
@@ -3378,7 +3351,6 @@ __metadata:
   dependencies:
     "@nimbus-ds/icon": "workspace:^"
     "@nimbus-ds/spinner": "workspace:^"
-    "@nimbus-ds/styles": "workspace:^"
     "@nimbus-ds/text": "workspace:^"
     "@tiendanube/icons": ^0.3.1
     webpack: ^5.74.0
@@ -3393,7 +3365,6 @@ __metadata:
   resolution: "@nimbus-ds/toggle@workspace:packages/react/src/atomic/Toggle"
   dependencies:
     "@nimbus-ds/skeleton": "workspace:^"
-    "@nimbus-ds/styles": "workspace:^"
     "@nimbus-ds/text": "workspace:^"
     webpack: ^5.74.0
   peerDependencies:
@@ -3416,7 +3387,6 @@ __metadata:
   dependencies:
     "@floating-ui/react-dom-interactions": ^0.10.1
     "@nimbus-ds/stack": "workspace:^"
-    "@nimbus-ds/styles": "workspace:^"
     "@vanilla-extract/dynamic": ^2.0.2
     webpack: ^5.74.0
   peerDependencies:
