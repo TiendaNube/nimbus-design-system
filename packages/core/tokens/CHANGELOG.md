@@ -2,6 +2,12 @@
 
 Our design tokens are the foundations of Nimbus Design System.
 
+## 2022-12-22 `5.2.1`
+
+### 🎉 New features
+
+- Added support for themes on shadow tokens. ([#70](https://github.com/TiendaNube/nimbus-design-system/pull/70) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2022-12-22 `5.2.0`
 
 ### 🎉 New features
