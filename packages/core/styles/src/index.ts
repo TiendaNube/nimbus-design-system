@@ -1,3 +1,5 @@
+export * from "./components";
+
 export { vars } from "./utils";
 
 export { badge } from "./packages/atomic/badge";
@@ -36,5 +38,4 @@ export { tabs } from "./packages/composite/tabs";
 export type { BoxSprinkle } from "./packages/atomic/box";
 export type { IconButtonSprinkle } from "./packages/atomic/iconButton";
 export type { StackSprinkle } from "./packages/atomic/stack";
-
 export type { SidebarSprinkle } from "./packages/composite/sidebar";

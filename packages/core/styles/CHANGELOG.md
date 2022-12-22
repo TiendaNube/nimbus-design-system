@@ -2,6 +2,14 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2022-12-20 `6.0.0`
+
+#### 🎉 New features
+
+- Adjusted color tokens for dark theme. [#69](https://github.com/TiendaNube/nimbus-design-system/pull/#69) by [@juniorconquista](https://github.com/juniorconquista))
+- Created new `ThemeProvider` component. ([#69](https://github.com/TiendaNube/nimbus-design-system/pull/69) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `theme` property to the Component `ThemeProvider`. ([#69](https://github.com/TiendaNube/nimbus-design-system/pull/69) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2022-12-20 `5.3.0`
 
 #### 🎉 New features
