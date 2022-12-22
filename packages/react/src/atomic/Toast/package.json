@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/toast",
-  "version": "1.5.1",
+  "version": "2.0.0-rc.2",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -16,7 +16,6 @@
   "dependencies": {
     "@nimbus-ds/icon": "workspace:^",
     "@nimbus-ds/spinner": "workspace:^",
-    "@nimbus-ds/styles": "workspace:^",
     "@nimbus-ds/text": "workspace:^",
     "@tiendanube/icons": "^0.3.1"
   },
@@ -34,5 +33,6 @@
   },
   "devDependencies": {
     "webpack": "^5.74.0"
-  }
+  },
+  "stableVersion": "1.5.1"
 }

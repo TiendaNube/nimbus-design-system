@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/stack",
-  "version": "1.2.0",
+  "version": "2.0.0-rc.2",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -12,9 +12,6 @@
     "build": "webpack",
     "clean": "rm -rf dist",
     "version": "yarn version"
-  },
-  "dependencies": {
-    "@nimbus-ds/styles": "workspace:^"
   },
   "peerDependencies": {
     "react": "^16.8 || ^17.0 || ^18.0",
@@ -32,5 +29,6 @@
     "@nimbus-ds/box": "workspace:^",
     "@vanilla-extract/dynamic": "^2.0.2",
     "webpack": "^5.74.0"
-  }
+  },
+  "stableVersion": "1.2.0"
 }

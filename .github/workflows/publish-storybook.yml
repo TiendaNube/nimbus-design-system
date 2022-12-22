@@ -15,10 +15,8 @@ jobs:
       - name: Install dependencies
         run: yarn
 
-      - name: Run build styles
-        run: |
-          export NODE_OPTIONS="--max_old_space_size=8192"
-          npm run build:styles
+      - name: Run build tokens
+        run: npm run build:tokens
 
       - name: build storybook
         run: yarn build:storybook

@@ -4,6 +4,12 @@ This package is intended for internal use in generating builds of each design sy
 
 ## 2022-12-07 `1.0.0`
 
+### 💡 Others
+
+- Add support for multiple inputs in type generation plugin. ([#69](https://github.com/TiendaNube/nimbus-design-system/pull/69) by [@juniorconquista](https://github.com/juniorconquista))
+
+## 2022-12-07 `1.0.0`
+
 ### 📚 3rd party library updates
 
 - Added `@types/webpack@5.28.0`. ([#63](https://github.com/TiendaNube/nimbus-design-system/pull/63) by [@juniorconquista](https://github.com/juniorconquista))

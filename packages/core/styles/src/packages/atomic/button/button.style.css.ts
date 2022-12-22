@@ -101,7 +101,7 @@ export const appearance = styleVariants({
         borderColor: varsThemeBase.colors.neutral.surfaceHighlight,
       },
       ":focus": {
-        borderColor: varsThemeBase.colors.primary.interactive,
+        borderColor: varsThemeBase.colors.neutral.interactiveHover,
       },
     },
   ],

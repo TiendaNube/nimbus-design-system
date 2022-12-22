@@ -11,6 +11,7 @@ import {
   dtsBundleGeneratorPlugin,
 } from "./plugins";
 import { cssLoaderExtractRule, styleLoaderCssRule } from "./rules";
+import { rootDir } from "./utils";
 
 export const rules = { cssLoaderExtractRule, styleLoaderCssRule };
 export const plugins = {
@@ -26,10 +27,13 @@ export const configuration = {
   getConfiguration,
 };
 
+export const utils = { rootDir };
+
 const webpack = {
   rules,
   plugins,
   configuration,
+  utils,
 };
 
 export default webpack;

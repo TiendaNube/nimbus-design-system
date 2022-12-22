@@ -1,0 +1,39 @@
+releases:
+  "@nimbus-ds/alert": major
+  "@nimbus-ds/badge": major
+  "@nimbus-ds/box": major
+  "@nimbus-ds/button": major
+  "@nimbus-ds/card": major
+  "@nimbus-ds/checkbox": major
+  "@nimbus-ds/chip": major
+  "@nimbus-ds/components": major
+  "@nimbus-ds/file-uploader": major
+  "@nimbus-ds/icon": major
+  "@nimbus-ds/icon-button": major
+  "@nimbus-ds/input": major
+  "@nimbus-ds/label": major
+  "@nimbus-ds/link": major
+  "@nimbus-ds/list": major
+  "@nimbus-ds/pagination": major
+  "@nimbus-ds/popover": major
+  "@nimbus-ds/radio": major
+  "@nimbus-ds/select": major
+  "@nimbus-ds/sidebar": major
+  "@nimbus-ds/skeleton": major
+  "@nimbus-ds/spinner": major
+  "@nimbus-ds/stack": major
+  "@nimbus-ds/styles": major
+  "@nimbus-ds/tabs": major
+  "@nimbus-ds/tag": major
+  "@nimbus-ds/text": major
+  "@nimbus-ds/textarea": major
+  "@nimbus-ds/thumbnail": major
+  "@nimbus-ds/title": major
+  "@nimbus-ds/toast": major
+  "@nimbus-ds/toggle": major
+  "@nimbus-ds/tokens": major
+  "@nimbus-ds/tooltip": major
+
+declined:
+  - nimbus-design-system
+  - "@nimbus-ds/webpack"

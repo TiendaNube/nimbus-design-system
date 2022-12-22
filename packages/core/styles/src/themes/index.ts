@@ -1,3 +1,2 @@
-export * from "./base.css";
-export * from "./dark.css";
 export * from "./mediaQueries";
+export * from "./globals.css";

@@ -25,7 +25,7 @@ const webpack: Configuration = {
   module: {
     rules: arrayFilterEmpty([typescriptRule, svgRule]),
   },
-  plugins: [dtsBundleGeneratorPlugin],
+  plugins: [dtsBundleGeneratorPlugin()],
   resolve: {
     alias: aliasItems,
     extensions: [".tsx", ".ts", ".js"],

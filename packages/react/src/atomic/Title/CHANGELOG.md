@@ -1,6 +1,12 @@
 # Changelog
 
-Tilte is a basic component that allows you to give titles and more hierarchy to blocks of text for sections or header components
+Tilte is a basic component that allows you to give titles and more hierarchy to blocks of text for sections or header components.
+
+## 2022-12-22 `2.0.0`
+
+### 💡 Others
+
+- Removed direct dependency on `nimbus-ds/styles` package from component build. ([#69](https://github.com/TiendaNube/nimbus-design-system/pull/69) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2022-09-07 `1.6.0`
 
