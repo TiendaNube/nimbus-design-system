@@ -2,7 +2,7 @@
 
 Our design tokens are the foundations of Nimbus Design System.
 
-## 2022-12-22 `5.2.1`
+## 2022-12-22 `6.0.1`
 
 ### 🎉 New features
 
