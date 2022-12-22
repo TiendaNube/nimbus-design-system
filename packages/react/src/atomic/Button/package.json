@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/button",
-  "version": "1.6.0",
+  "version": "2.0.0-rc.2",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -14,10 +14,10 @@
     "version": "yarn version"
   },
   "dependencies": {
-    "@nimbus-ds/skeleton": "workspace:^",
-    "@nimbus-ds/styles": "workspace:^"
+    "@nimbus-ds/skeleton": "workspace:^"
   },
   "peerDependencies": {
+    "@nimbus-ds/styles": "workspace:^",
     "react": "^16.8 || ^17.0 || ^18.0",
     "react-dom": "^16.8 || ^17.0 || ^18.0"
   },
@@ -35,5 +35,6 @@
     "@nimbus-ds/skeleton": "workspace:^",
     "@tiendanube/icons": "^0.3.1",
     "webpack": "^5.74.0"
-  }
+  },
+  "stableVersion": "1.6.0"
 }

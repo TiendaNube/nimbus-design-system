@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/badge",
-  "version": "2.2.0",
+  "version": "3.0.0-rc.2",
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -16,7 +16,6 @@
   },
   "dependencies": {
     "@nimbus-ds/skeleton": "workspace:^",
-    "@nimbus-ds/styles": "workspace:^",
     "@nimbus-ds/text": "workspace:^"
   },
   "peerDependencies": {
@@ -33,5 +32,6 @@
   },
   "devDependencies": {
     "webpack": "^5.74.0"
-  }
+  },
+  "stableVersion": "2.2.0"
 }

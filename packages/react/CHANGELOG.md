@@ -2,6 +2,12 @@
 
 This package is intended for internal use in generating builds of each design system package. It contains all the necessary settings and dependencies to optimize the creation of our builds.
 
+## 2022-12-22 `2.0.0`
+
+### 💡 Others
+
+- Removed direct dependency on package 'nimbus-ds/styles' from compilation of all components. ([#69](https://github.com/TiendaNube/nimbus-design-system/pull/69) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2022-12-20 `1.1.0`
 
 ### 🎉 New features

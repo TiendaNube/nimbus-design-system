@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/input",
-  "version": "1.2.0",
+  "version": "2.0.0-rc.2",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -16,7 +16,6 @@
   "dependencies": {
     "@nimbus-ds/icon": "workspace:^",
     "@nimbus-ds/skeleton": "workspace:^",
-    "@nimbus-ds/styles": "workspace:^",
     "@tiendanube/icons": "^0.3.1"
   },
   "peerDependencies": {
@@ -33,5 +32,6 @@
   },
   "devDependencies": {
     "webpack": "^5.74.0"
-  }
+  },
+  "stableVersion": "1.2.0"
 }

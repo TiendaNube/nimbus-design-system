@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/icon-button",
-  "version": "2.1.1",
+  "version": "3.0.0-rc.2",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -15,8 +15,7 @@
   },
   "dependencies": {
     "@nimbus-ds/icon": "workspace:^",
-    "@nimbus-ds/skeleton": "workspace:^",
-    "@nimbus-ds/styles": "workspace:^"
+    "@nimbus-ds/skeleton": "workspace:^"
   },
   "peerDependencies": {
     "react": "^16.8 || ^17.0 || ^18.0",
@@ -33,5 +32,6 @@
   "devDependencies": {
     "@tiendanube/icons": "^0.3.1",
     "webpack": "^5.74.0"
-  }
+  },
+  "stableVersion": "2.1.1"
 }

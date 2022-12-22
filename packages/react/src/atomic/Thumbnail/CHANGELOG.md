@@ -2,6 +2,12 @@
 
 The Thumbnail component allows us to present thumbnails of images.
 
+## 2022-12-22 `2.0.0`
+
+### 💡 Others
+
+- Removed direct dependency on `nimbus-ds/styles` package from component build. ([#69](https://github.com/TiendaNube/nimbus-design-system/pull/69) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2022-12-07 `1.2.0`
 
 ### 🎉 New features
