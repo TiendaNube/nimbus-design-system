@@ -100,9 +100,9 @@ export const dark = createTheme(vars, {
     },
   },
   shadow: {
-    card: shadow.card.value,
-    popover: shadow.popover.value,
-    modal: shadow.modal.value,
+    card: shadow.dark.card.value,
+    popover: shadow.dark.popover.value,
+    modal: shadow.dark.modal.value,
   },
   spacing: {
     "0,5": spacing["0,5"].value,
