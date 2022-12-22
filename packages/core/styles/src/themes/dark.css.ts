@@ -1,16 +1,16 @@
 import { createTheme } from "@vanilla-extract/css";
 import tokens from "@nimbus-ds/tokens/dist/js/tokens";
 
-import { varsThemeBase } from "./base.css";
+import { vars } from "./contract.css";
 
-const colors = tokens.color.sys.light;
+const colors = tokens.color.sys.dark;
 const fontFamily = tokens.font.family;
 const fontSize = tokens.font.size.sys;
 const fontWeight = tokens.font.weight;
 const lineWeight = tokens.line.height.sys;
 const { motion, spacing, sizes, shadow, breakpoint } = tokens;
 
-export const ThemeDark = createTheme(varsThemeBase, {
+export const dark = createTheme(vars, {
   colors: {
     primary: {
       surface: colors.primary.surface.value as string,
@@ -18,8 +18,8 @@ export const ThemeDark = createTheme(varsThemeBase, {
       interactive: colors.primary.interactive.value as string,
       interactiveHover: colors.primary["interactive-hover"].value as string,
       interactivePressed: colors.primary["interactive-pressed"].value as string,
-      textLow: "red",
-      textHigh: "blue",
+      textLow: colors.primary["text-low"].value as string,
+      textHigh: colors.primary["text-high"].value as string,
     },
     success: {
       surface: colors.success.surface.value as string,
@@ -158,3 +158,5 @@ export const ThemeDark = createTheme(varsThemeBase, {
     focus: `0 0 0 3px ${colors.primary["surface-highlight"].value as string}`,
   },
 });
+
+export default dark;

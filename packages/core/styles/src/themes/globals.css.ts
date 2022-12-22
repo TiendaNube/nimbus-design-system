@@ -1,154 +1,6 @@
-import { createGlobalTheme, createThemeContract } from "@vanilla-extract/css";
 import tokens from "@nimbus-ds/tokens/dist/js/tokens";
-
-export const varsThemeBase = createThemeContract({
-  colors: {
-    primary: {
-      surface: "primary.surface",
-      surfaceHighlight: "primary.surfaceHighlight",
-      interactive: "primary.interactive",
-      interactiveHover: "primary.interactiveHover",
-      interactivePressed: "primary.interactivePressed",
-      textLow: "primary.textLow",
-      textHigh: "primary.textHigh",
-    },
-    success: {
-      surface: "success.surface",
-      surfaceHighlight: "success.surfaceHighlight",
-      interactive: "success.interactive",
-      interactiveHover: "success.interactiveHover",
-      interactivePressed: "success.interactivePressed",
-      textLow: "success.textLow",
-      textHigh: "success.textHigh",
-    },
-    warning: {
-      surface: "warning.surface",
-      surfaceHighlight: "warning.surfaceHighlight",
-      interactive: "warning.interactive",
-      interactiveHover: "warning.interactiveHover",
-      interactivePressed: "warning.interactivePressed",
-      textLow: "warning.textLow",
-      textHigh: "warning.textHigh",
-    },
-    danger: {
-      surface: "danger.surface",
-      surfaceHighlight: "danger.surfaceHighlight",
-      interactive: "danger.interactive",
-      interactiveHover: "danger.interactiveHover",
-      interactivePressed: "danger.interactivePressed",
-      textLow: "danger.textLow",
-      textHigh: "danger.textHigh",
-    },
-    neutral: {
-      background: "neutral.background",
-      surface: "neutral.surface",
-      surfaceDisabled: "neutral.surfaceDisabled",
-      surfaceHighlight: "neutral.surfaceHighlight",
-      interactive: "neutral.interactive",
-      interactiveHover: "neutral.interactiveHover",
-      interactivePressed: "neutral.interactivePressed",
-      textDisabled: "neutral.textDisabled",
-      textLow: "neutral.textLow",
-      textHigh: "neutral.textHigh",
-    },
-  },
-  fontFamily: {
-    centranube: "fontFamily.centranube",
-  },
-  fontSize: {
-    body: {
-      caption: "fontSize.body.caption",
-      base: "fontSize.body.base",
-      highlight: "fontSize.body.highlight",
-    },
-    title: {
-      h1: "fontSize.title.h1",
-      h2: "fontSize.title.h2",
-      h3: "fontSize.title.h3",
-      h4: "fontSize.title.h4",
-      h5: "fontSize.title.h5",
-      h6: "fontSize.title.h6",
-    },
-  },
-  fontWeight: {
-    regular: "fontWeight.regular",
-    medium: "fontWeight.medium",
-    bold: "fontWeight.bold",
-  },
-  lineWeight: {
-    body: {
-      caption: "lineWeight.caption.small",
-      base: "lineWeight.base.small",
-      highlight: "lineWeight.body.highlight",
-    },
-    title: {
-      h1: "lineWeight.title.h1",
-      h2: "lineWeight.title.h2",
-      h3: "lineWeight.title.h3",
-      h4: "lineWeight.title.h4",
-      h5: "lineWeight.title.h5",
-      h6: "lineWeight.title.h6",
-    },
-  },
-  shadow: {
-    card: "shadow.card",
-    popover: "shadow.popover",
-    modal: "shadow.modal",
-  },
-  spacing: {
-    "0,5": "spacing.0,5",
-    "1": "spacing.1",
-    "2": "spacing.2",
-    "4": "spacing.4",
-    "6": "spacing.6",
-    "8": "spacing.8",
-    "10": "spacing.10",
-    "12": "spacing.12",
-    "14": "spacing.14",
-    "16": "spacing.16",
-    "18": "spacing.18",
-    "20": "spacing.20",
-  },
-  sizes: {
-    "0,5": "sizes.0,5",
-    "1": "sizes.1",
-    "1,5": "sizes.1,5",
-    "2": "sizes.2",
-    "2,5": "sizes.2,5",
-    "3": "sizes.3",
-    "3,5": "sizes.3,5",
-    "4": "sizes.4",
-    "4,5": "sizes.4,5",
-    "5": "sizes.5",
-    "6": "sizes.6",
-    "7": "sizes.7",
-    "8": "sizes.8",
-    "9": "sizes.9",
-    "10": "sizes.10",
-    "11": "sizes.11",
-    "12": "sizes.12",
-    "14": "sizes.14",
-    "16": "sizes.16",
-    "18": "sizes.18",
-    "20": "sizes.20",
-  },
-  motion: {
-    speed: {
-      base: "motion.speed.base",
-      fast: "motion.speed.fast",
-      slow: "motion.speed.slow",
-      slower: "motion.speed.slower",
-    },
-  },
-  breakpoint: {
-    xs: "breakpoint.xs",
-    md: "breakpoint.md",
-    lg: "breakpoint.lg",
-  },
-  utils: {
-    focus: "0 0 0 3px primary.surfaceHighlight",
-  },
-});
+import { createGlobalTheme } from "@vanilla-extract/css";
+import { vars } from "./contract.css";
 
 const colors = tokens.color.sys.light;
 const fontFamily = tokens.font.family;
@@ -157,7 +9,7 @@ const fontWeight = tokens.font.weight;
 const lineWeight = tokens.line.height.sys;
 const { motion, spacing, sizes, shadow, breakpoint } = tokens;
 
-createGlobalTheme(":root", varsThemeBase, {
+createGlobalTheme(":root", vars, {
   colors: {
     primary: {
       surface: colors.primary.surface.value as string,
@@ -305,3 +157,5 @@ createGlobalTheme(":root", varsThemeBase, {
     focus: `0 0 0 3px ${colors.primary["surface-highlight"].value as string}`,
   },
 });
+
+export const varsThemeBase = vars;
