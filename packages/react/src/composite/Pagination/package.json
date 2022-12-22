@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/pagination",
-  "version": "2.0.0-rc.2",
+  "version": "2.0.0",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -30,6 +30,5 @@
   },
   "devDependencies": {
     "webpack": "^5.74.0"
-  },
-  "stableVersion": "1.0.0"
+  }
 }

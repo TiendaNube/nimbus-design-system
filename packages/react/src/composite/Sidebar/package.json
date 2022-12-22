@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/sidebar",
-  "version": "2.0.0-rc.2",
+  "version": "2.0.0",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -35,6 +35,5 @@
     "@nimbus-ds/stack": "workspace:^",
     "@nimbus-ds/text": "workspace:^",
     "webpack": "^5.74.0"
-  },
-  "stableVersion": "1.3.0"
+  }
 }
