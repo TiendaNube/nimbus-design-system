@@ -62,15 +62,15 @@ export const appearance = styleVariants({
   danger: [
     base,
     {
-      background: varsThemeBase.colors.danger.interactive,
+      background: varsThemeBase.colors.danger.surface,
       borderColor: varsThemeBase.colors.danger.interactive,
-      color: varsThemeBase.colors.neutral.background,
+      color: varsThemeBase.colors.neutral.textLow,
       ":hover": {
-        background: varsThemeBase.colors.danger.interactiveHover,
+        background: varsThemeBase.colors.danger.surfaceHighlight,
         borderColor: varsThemeBase.colors.danger.interactiveHover,
       },
       ":active": {
-        background: varsThemeBase.colors.danger.interactivePressed,
+        background: varsThemeBase.colors.danger.interactive,
         borderColor: varsThemeBase.colors.danger.interactivePressed,
       },
       ":disabled": {
@@ -78,7 +78,7 @@ export const appearance = styleVariants({
         borderColor: varsThemeBase.colors.danger.surfaceHighlight,
       },
       ":focus": {
-        borderColor: varsThemeBase.colors.danger.interactiveHover,
+        borderColor: varsThemeBase.colors.danger.interactive,
       },
     },
   ],
@@ -101,7 +101,7 @@ export const appearance = styleVariants({
         borderColor: varsThemeBase.colors.neutral.surfaceHighlight,
       },
       ":focus": {
-        borderColor: varsThemeBase.colors.neutral.interactiveHover,
+        borderColor: varsThemeBase.colors.primary.interactive,
       },
     },
   ],

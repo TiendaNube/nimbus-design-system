@@ -4,6 +4,10 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 ## 2022-12-23 `6.0.2`
 
+#### 🎉 New features
+
+- Update color rules on danger button variant. ([#71](https://github.com/TiendaNube/nimbus-design-system/pull/71) by [@juanchigallego](https://github.com/juanchigallego))
+
 #### 🐛 Bug fixes
 
 - Correct background color on sidebar component. ([#71](https://github.com/TiendaNube/nimbus-design-system/pull/71) by [@juanchigallego](https://github.com/juanchigallego))
