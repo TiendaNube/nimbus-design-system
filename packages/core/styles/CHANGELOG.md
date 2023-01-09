@@ -2,6 +2,13 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2023-01-09 `6.1.0`
+
+#### 🎉 New features
+
+- Added new style pack for table component. ([#72](https://github.com/TiendaNube/nimbus-design-system/pull/72) by [@juanchigallego](https://github.com/juanchigallego))
+- Added "small" as a new padding property. ([#72](https://github.com/TiendaNube/nimbus-design-system/pull/72) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2022-12-23 `6.0.2`
 
 #### 🎉 New features
