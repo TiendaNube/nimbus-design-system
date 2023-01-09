@@ -41,6 +41,7 @@ const config: Config.InitialOptions = {
     "@nimbus-ds/card": "<rootDir>/packages/react/src/composite/Card/src",
     "@nimbus-ds/sidebar": "<rootDir>/packages/react/src/composite/Sidebar/src",
     "@nimbus-ds/tabs": "<rootDir>/packages/react/src/composite/Tabs/src",
+    "@nimbus-ds/table": "<rootDir>/packages/react/src/composite/Table/src",
     // commons
     "^.+\\.svg$": "jest-svg-transformer",
   },
