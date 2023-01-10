@@ -37,4 +37,6 @@ export const row = style({
   borderWidth: "1px 0 1px 0",
 });
 
-export const cell = style({});
+export const cell = style({
+  verticalAlign: "top",
+});
