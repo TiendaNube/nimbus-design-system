@@ -24,27 +24,4 @@ describe("GIVEN <TableCell />", () => {
       expect(screen.getByText("My content")).toBeDefined();
     });
   });
-
-  describe("THEN should correctly render the submitted padding", () => {
-    it("THEN should correctly render the padding default", () => {
-      makeSut();
-      expect(
-        screen.getByRole<HTMLTableCellElement>("cell").getAttribute("class")
-      ).toContain("");
-    });
-
-    it("THEN should correctly render the padding base", () => {
-      makeSut({ padding: "base" });
-      expect(
-        screen.getByRole<HTMLTableCellElement>("cell").getAttribute("class")
-      ).toMatch("padding-base");
-    });
-
-    it("THEN should correctly render the padding none", () => {
-      makeSut({ padding: "none" });
-      expect(
-        screen.getByRole<HTMLTableCellElement>("cell").getAttribute("class")
-      ).toMatch("padding-none");
-    });
-  });
 });

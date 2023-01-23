@@ -9,8 +9,6 @@ const defineProperties = defineRainbowProperties({
     width: true,
     maxWidth: true,
     minWidth: true,
-  },
-  staticProperties: {
     padding: paddingProperties,
   },
 });

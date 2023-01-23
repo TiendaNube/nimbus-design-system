@@ -28,18 +28,18 @@ base.args = {
   children: (
     <>
       <Table.Head>
-        <Table.Cell padding="small">Header 1</Table.Cell>
-        <Table.Cell padding="small">Header 2</Table.Cell>
-        <Table.Cell padding="small">Header 3</Table.Cell>
-        <Table.Cell padding="small">Header 4</Table.Cell>
+        <Table.Cell>Header 1</Table.Cell>
+        <Table.Cell>Header 2</Table.Cell>
+        <Table.Cell>Header 3</Table.Cell>
+        <Table.Cell>Header 4</Table.Cell>
       </Table.Head>
       <Table.Body>
         {Array.from({ length: 10 }, (_, i) => (
           <Table.Row key={i}>
-            <Table.Cell padding="small">Cell 1</Table.Cell>
-            <Table.Cell padding="small">Cell 2</Table.Cell>
-            <Table.Cell padding="small">Cell 3</Table.Cell>
-            <Table.Cell padding="small">Cell 4</Table.Cell>
+            <Table.Cell>Cell 1</Table.Cell>
+            <Table.Cell>Cell 2</Table.Cell>
+            <Table.Cell>Cell 3</Table.Cell>
+            <Table.Cell>Cell 4</Table.Cell>
           </Table.Row>
         ))}
       </Table.Body>
@@ -52,20 +52,16 @@ withCustomCellWidth.args = {
   children: (
     <>
       <Table.Head>
-        <Table.Cell padding="small" width="180px">
-          This column has fixed width
-        </Table.Cell>
-        <Table.Cell padding="small">This column has auto width</Table.Cell>
-        <Table.Cell padding="small" width="180px">
-          This column has fixed width
-        </Table.Cell>
+        <Table.Cell width="180px">This column has fixed width</Table.Cell>
+        <Table.Cell>This column has auto width</Table.Cell>
+        <Table.Cell width="180px">This column has fixed width</Table.Cell>
       </Table.Head>
       <Table.Body>
         {Array.from({ length: 10 }, (_, i) => (
           <Table.Row key={i}>
-            <Table.Cell padding="small">Cell 1</Table.Cell>
-            <Table.Cell padding="small">Cell 2</Table.Cell>
-            <Table.Cell padding="small">Cell 3</Table.Cell>
+            <Table.Cell>Cell 1</Table.Cell>
+            <Table.Cell>Cell 2</Table.Cell>
+            <Table.Cell>Cell 3</Table.Cell>
           </Table.Row>
         ))}
       </Table.Body>
@@ -78,16 +74,16 @@ withNoPadding.args = {
   children: (
     <>
       <Table.Head>
-        <Table.Cell>Header 1</Table.Cell>
-        <Table.Cell>Header 2</Table.Cell>
-        <Table.Cell>Header 3</Table.Cell>
+        <Table.Cell padding="none">Header 1</Table.Cell>
+        <Table.Cell padding="none">Header 2</Table.Cell>
+        <Table.Cell padding="none">Header 3</Table.Cell>
       </Table.Head>
       <Table.Body>
         {Array.from({ length: 10 }, (_, i) => (
           <Table.Row key={i}>
-            <Table.Cell>Cell 1</Table.Cell>
-            <Table.Cell>Cell 2</Table.Cell>
-            <Table.Cell>Cell 3</Table.Cell>
+            <Table.Cell padding="none">Cell 1</Table.Cell>
+            <Table.Cell padding="none">Cell 2</Table.Cell>
+            <Table.Cell padding="none">Cell 3</Table.Cell>
           </Table.Row>
         ))}
       </Table.Body>

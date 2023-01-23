@@ -117,5 +117,5 @@
     "node": ">=14.17 <=16.x",
     "yarn": ">=3.2.0"
   },
-  "packageManager": "yarn@1.22.19"
+  "packageManager": "yarn@3.2.2"
 }

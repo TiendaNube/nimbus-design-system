@@ -7,11 +7,13 @@ const TableCell: React.FC<TableCellProps> = ({
   className: _className,
   style: _style,
   children,
+  padding = "small",
   ...rest
 }: TableCellProps) => {
-  const { className, style, otherProps } = table.sprinkle(
-    rest as Parameters<typeof table.sprinkle>[0]
-  );
+  const { className, style, otherProps } = table.sprinkle({
+    ...(rest as Parameters<typeof table.sprinkle>[0]),
+    padding,
+  });
 
   return (
     <td
