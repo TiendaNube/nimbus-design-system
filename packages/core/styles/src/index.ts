@@ -34,8 +34,10 @@ export { card } from "./packages/composite/card";
 export { pagination } from "./packages/composite/pagination";
 export { sidebar } from "./packages/composite/sidebar";
 export { tabs } from "./packages/composite/tabs";
+export { table } from "./packages/composite/table";
 
 export type { BoxSprinkle } from "./packages/atomic/box";
 export type { IconButtonSprinkle } from "./packages/atomic/iconButton";
 export type { StackSprinkle } from "./packages/atomic/stack";
 export type { SidebarSprinkle } from "./packages/composite/sidebar";
+export type { TableSprinkle } from "./packages/composite/table";

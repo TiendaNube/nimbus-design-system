@@ -3268,6 +3268,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@nimbus-ds/table@workspace:packages/react/src/composite/Table":
+  version: 0.0.0-use.local
+  resolution: "@nimbus-ds/table@workspace:packages/react/src/composite/Table"
+  dependencies:
+    webpack: ^5.74.0
+  peerDependencies:
+    react: ^16.8 || ^17.0 || ^18.0
+    react-dom: ^16.8 || ^17.0 || ^18.0
+  languageName: unknown
+  linkType: soft
+
 "@nimbus-ds/tabs@workspace:packages/react/src/composite/Tabs":
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/tabs@workspace:packages/react/src/composite/Tabs"

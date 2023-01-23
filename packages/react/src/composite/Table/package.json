@@ -1,6 +1,6 @@
 {
-  "name": "@nimbus-ds/styles",
-  "version": "6.1.0-rc.4",
+  "name": "@nimbus-ds/table",
+  "version": "1.0.0-rc.4",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -13,6 +13,10 @@
     "clean": "rm -rf dist",
     "version": "yarn version"
   },
+  "peerDependencies": {
+    "react": "^16.8 || ^17.0 || ^18.0",
+    "react-dom": "^16.8 || ^17.0 || ^18.0"
+  },
   "homepage": "https://nimbus.nuvemshop.com.br/documentation",
   "repository": {
     "type": "git",
@@ -22,16 +26,7 @@
     "url": "https://github.com/TiendaNube/nimbus-design-system/issues"
   },
   "devDependencies": {
-    "@nimbus-ds/tokens": "workspace:^",
-    "@nimbus-ds/webpack": "workspace:^",
-    "@types/glob": "^8",
-    "@vanilla-extract/css": "^1.9.2",
-    "@vanilla-extract/recipes": "^0.3.0",
-    "@vanilla-extract/sprinkles": "^1.5.1",
-    "glob": "^8.0.3",
-    "rainbow-sprinkles": "^0.14.0",
-    "ts-node": "^10.9.1",
-    "webpack": "^5.75.0"
+    "webpack": "^5.74.0"
   },
-  "stableVersion": "6.0.2"
+  "stableVersion": "0.0.0"
 }

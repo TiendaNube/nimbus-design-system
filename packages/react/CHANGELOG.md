@@ -2,6 +2,12 @@
 
 This package is intended for internal use in generating builds of each design system package. It contains all the necessary settings and dependencies to optimize the creation of our builds.
 
+## 2023-01-09 `2.1.0`
+
+### 🎉 New features
+
+- Added new composite `Table` component. ([#72](https://github.com/TiendaNube/nimbus-design-system/pull/72) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2022-12-22 `2.0.0`
 
 ### 💡 Others

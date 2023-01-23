@@ -93,7 +93,8 @@ export const lineHeightProperties = {
 } as const;
 export const paddingProperties = {
   base: varsThemeBase.spacing[4],
-  none: 0,
+  small: varsThemeBase.spacing[2],
+  none: "0",
 };
 export const gapProperties = {
   none: "0",
