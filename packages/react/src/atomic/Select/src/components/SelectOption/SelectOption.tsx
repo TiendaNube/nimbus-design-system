@@ -10,6 +10,4 @@ const SelectOption: React.FC<SelectOptionProps> = ({
   ...rest
 }) => <option {...rest} label={label} value={value} />;
 
-SelectOption.displayName = "Select.Option";
-
 export { SelectOption };

@@ -16,6 +16,4 @@ const ListSkeletonItem: React.FC<ListSkeletonItemProps> = ({
   />
 );
 
-ListSkeletonItem.displayName = "List.SkeletonItem";
-
 export { ListSkeletonItem };

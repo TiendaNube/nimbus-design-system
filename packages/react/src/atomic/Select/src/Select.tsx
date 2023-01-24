@@ -34,5 +34,8 @@ Select.Group = SelectGroup;
 Select.Option = SelectOption;
 Select.Skeleton = SelectSkeleton;
 Select.displayName = "Select";
+Select.Group.displayName = "Select.Group";
+Select.Option.displayName = "Select.Option";
+Select.Skeleton.displayName = "Select.Skeleton";
 
 export { Select };

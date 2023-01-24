@@ -16,5 +16,4 @@ const IconSkeleton: React.FC<IconSkeletonProps> = ({
   />
 );
 
-IconSkeleton.displayName = "Icon.Skeleton";
 export { IconSkeleton };

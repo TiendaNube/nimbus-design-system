@@ -16,5 +16,4 @@ const AlertSkeleton: React.FC<AlertSkeletonProps> = ({
   />
 );
 
-AlertSkeleton.displayName = "Alert.Skeleton";
 export { AlertSkeleton };

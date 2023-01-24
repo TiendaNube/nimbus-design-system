@@ -15,5 +15,4 @@ const ButtonSkeleton: React.FC<ButtonSkeletonProps> = ({
   />
 );
 
-ButtonSkeleton.displayName = "Button.Skeleton";
 export { ButtonSkeleton };

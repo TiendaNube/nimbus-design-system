@@ -16,5 +16,4 @@ const BadgeSkeleton: React.FC<BadgeSkeletonProps> = ({
   />
 );
 
-BadgeSkeleton.displayName = "Badge.Skeleton";
 export { BadgeSkeleton };

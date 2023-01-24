@@ -19,5 +19,4 @@ const CheckboxSkeleton: React.FC<CheckboxSkeletonProps> = ({
   </div>
 );
 
-CheckboxSkeleton.displayName = "Checkbox.Skeleton";
 export { CheckboxSkeleton };

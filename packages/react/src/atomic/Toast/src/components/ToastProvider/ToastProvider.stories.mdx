@@ -75,18 +75,38 @@ import { ToastProvider } from "./ToastProvider";
 # Basic usage
 
 ```jsx
-<ToastProvider>
-  const {addToast} = useToast();
-  <button
-    onClick={() => {
-      addToast({
-        type: "primary",
-        text: "Toast",
-        duration: 4000,
-      });
-    }}
-  >
-    Toast
-  </button>
-</ToastProvider>
+// App.tsx
+import React from "react";
+import Home from "home";
+import "@nimbus-ds/styles/dist/index.css";
+
+const App: React.FC = () => {
+  const { addToast } = useToast();
+    return (
+      <ToastProvider>
+        <Home />
+      </ToastProvider>;
+    );
+};
+
+// Home.tsx
+import React from "react";
+import { ToastProvider } from "@nimbus-ds/toast";
+
+const Home: React.FC = () => {
+  const { addToast } = useToast();
+    return (
+      <button
+        onClick={() => {
+          addToast({
+            type: "primary",
+            text: "Toast",
+            duration: 4000,
+          });
+        }}
+      >
+        Toast
+      </button>
+    );
+};
 ```

@@ -60,5 +60,6 @@ const Alert: React.FC<AlertProps> & AlertComponents = ({
 
 Alert.Skeleton = AlertSkeleton;
 Alert.displayName = "Alert";
+Alert.Skeleton.displayName = "Alert.Skeleton";
 
 export { Alert };

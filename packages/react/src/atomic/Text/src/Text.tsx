@@ -29,4 +29,6 @@ const Text: React.FC<TextProps> & TextComponents = ({
 
 Text.Skeleton = TextSkeleton;
 Text.displayName = "Text";
+Text.Skeleton.displayName = "Text.Skeleton";
+
 export { Text };

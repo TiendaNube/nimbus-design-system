@@ -5,8 +5,8 @@ export interface PaginationProps extends HTMLAttributes<HTMLElement> {
   activePage: number;
   /** Page count */
   pageCount: number;
-  /** Function to be passed on actioning the dismiss button */
+  /** Function to be passed when performing a page change */
   onPageChange: (page: number) => void;
-  /** Determines if the alert is shown or not */
+  /** Determines whether page numbers should be shown */
   showNumbers?: boolean;
 }

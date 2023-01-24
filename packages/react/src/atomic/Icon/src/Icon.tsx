@@ -25,5 +25,6 @@ const Icon: React.FC<IconProps> & IconComponents = ({
 
 Icon.Skeleton = IconSkeleton;
 Icon.displayName = "Icon";
+Icon.Skeleton.displayName = "Icon.Skeleton";
 
 export { Icon };

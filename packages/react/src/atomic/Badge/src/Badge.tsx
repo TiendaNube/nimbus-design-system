@@ -20,5 +20,6 @@ const Badge: React.FC<BadgeProps> & BadgeComponents = ({
 
 Badge.Skeleton = BadgeSkeleton;
 Badge.displayName = "Badge";
+Badge.Skeleton.displayName = "Badge.Skeleton";
 
 export { Badge };

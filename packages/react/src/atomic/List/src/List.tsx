@@ -21,5 +21,8 @@ List.SkeletonItem = ListSkeletonItem;
 List.Item = ListItem;
 
 List.displayName = "List";
+List.Item.displayName = "List.Item";
+List.Skeleton.displayName = "List.Skeleton";
+List.SkeletonItem.displayName = "List.SkeletonItem";
 
 export { List };

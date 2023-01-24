@@ -26,5 +26,4 @@ const TabsItem: React.FC<TabsItemProps> = ({
   );
 };
 
-TabsItem.displayName = "Tabs.Item";
 export { TabsItem };

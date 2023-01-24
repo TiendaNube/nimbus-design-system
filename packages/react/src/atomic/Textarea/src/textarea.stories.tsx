@@ -8,9 +8,6 @@ export default {
   title: "Atomic/Textarea",
   component: Textarea,
   subcomponents: { "Textarea.Skeleton": Textarea.Skeleton },
-  argTypes: {
-    children: { control: { disable: true } },
-  },
   parameters: {
     withA11y: { decorators: [withA11y] },
   },

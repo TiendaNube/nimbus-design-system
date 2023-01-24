@@ -41,5 +41,7 @@ Tabs.Button = TabsButton;
 Tabs.Item = TabsItem;
 
 Tabs.displayName = "Tabs";
+Tabs.Item.displayName = "Tabs.Item";
+Tabs.Button.displayName = "Tabs.Button";
 
 export { Tabs };

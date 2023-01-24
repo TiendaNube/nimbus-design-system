@@ -20,6 +20,8 @@ const Textarea: React.FC<TextareaProps> & TextareaComponents = ({
   />
 );
 
+Textarea.displayName = "Textarea";
 Textarea.Skeleton = TextareaSkeleton;
+Textarea.Skeleton.displayName = "Textarea.Skeleton";
 
 export { Textarea };

@@ -27,5 +27,6 @@ const Link: React.FC<LinkProps> & LinkComponents = ({
 
 Link.Skeleton = LinkSkeleton;
 Link.displayName = "Link";
+Link.Skeleton.displayName = "Link.Skeleton";
 
 export { Link };

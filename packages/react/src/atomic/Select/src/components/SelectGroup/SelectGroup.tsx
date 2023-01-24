@@ -14,6 +14,4 @@ const SelectGroup: React.FC<SelectGroupProps> = ({
   </optgroup>
 );
 
-SelectGroup.displayName = "Select.Group";
-
 export { SelectGroup };

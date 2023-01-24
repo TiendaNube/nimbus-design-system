@@ -44,5 +44,4 @@ const TabsButton: React.FC<TabsButtonProps> = ({
   );
 };
 
-TabsButton.displayName = "Tabs.Button";
 export { TabsButton };

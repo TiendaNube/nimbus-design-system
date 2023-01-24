@@ -30,5 +30,4 @@ const RadioSkeleton: React.FC<RadioSkeletonProps> = ({
   );
 };
 
-RadioSkeleton.displayName = "Radio.Skeleton";
 export { RadioSkeleton };

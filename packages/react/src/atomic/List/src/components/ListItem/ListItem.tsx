@@ -14,6 +14,4 @@ const ListItem: React.FC<ListItemProps> = ({
   </li>
 );
 
-ListItem.displayName = "List.Item";
-
 export { ListItem };

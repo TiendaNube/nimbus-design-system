@@ -15,6 +15,4 @@ const TextareaSkeleton: React.FC<TextareaSkeletonProps> = ({
   />
 );
 
-TextareaSkeleton.displayName = "Select.Skeleton";
-
 export { TextareaSkeleton };

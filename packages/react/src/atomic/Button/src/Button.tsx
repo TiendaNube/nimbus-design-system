@@ -22,5 +22,6 @@ const Button: React.FC<ButtonProps> & ButtonComponents = ({
 
 Button.Skeleton = ButtonSkeleton;
 Button.displayName = "Button";
+Button.Skeleton.displayName = "Button.Skeleton";
 
 export { Button };

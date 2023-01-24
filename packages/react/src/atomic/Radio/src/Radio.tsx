@@ -66,5 +66,6 @@ const Radio: React.FC<RadioProps> & RadioComponents = ({
 
 Radio.Skeleton = RadioSkeleton;
 Radio.displayName = "Radio";
+Radio.Skeleton.displayName = "Radio";
 
 export { Radio };

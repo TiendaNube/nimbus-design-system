@@ -15,6 +15,4 @@ const ListSkeleton: React.FC<ListSkeletonProps> = ({
   </div>
 );
 
-ListSkeleton.displayName = "List.Skeleton";
-
 export { ListSkeleton };

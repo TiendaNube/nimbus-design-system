@@ -15,5 +15,4 @@ const LinkSkeleton: React.FC<LinkSkeletonProps> = ({
   />
 );
 
-LinkSkeleton.displayName = "Button.Skeleton";
 export { LinkSkeleton };

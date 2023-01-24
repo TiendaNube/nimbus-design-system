@@ -53,6 +53,4 @@ const InputPassword: React.FC<InputPasswordProps> = ({
   );
 };
 
-InputPassword.displayName = "Input.Password";
-
 export { InputPassword };

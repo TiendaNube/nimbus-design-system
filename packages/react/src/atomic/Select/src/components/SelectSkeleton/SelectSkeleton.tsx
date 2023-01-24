@@ -15,6 +15,4 @@ const SelectSkeleton: React.FC<SelectSkeletonProps> = ({
   />
 );
 
-SelectSkeleton.displayName = "Select.Skeleton";
-
 export { SelectSkeleton };

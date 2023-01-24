@@ -94,5 +94,6 @@ const Checkbox: React.FC<CheckboxProps> & CheckboxComponents = ({
 
 Checkbox.Skeleton = CheckboxSkeleton;
 Checkbox.displayName = "Checkbox";
+Checkbox.Skeleton.displayName = "Checkbox.Skeleton";
 
 export { Checkbox };

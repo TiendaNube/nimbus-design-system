@@ -26,6 +26,4 @@ const InputSearch: React.FC<InputSearchProps> = ({
   </div>
 );
 
-InputSearch.displayName = "Input.Search";
-
 export { InputSearch };
