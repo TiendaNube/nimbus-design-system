@@ -2,6 +2,7 @@ import { defineProperties, createSprinkles } from "@vanilla-extract/sprinkles";
 import { colorProperties } from "../../../properties";
 
 const spinnerColorProperties = {
+  currentColor: "currentColor",
   "primary.surface": colorProperties["primary.surface"],
   "primary.interactive": colorProperties["primary.interactive"],
   "primary.textLow": colorProperties["primary.textLow"],
