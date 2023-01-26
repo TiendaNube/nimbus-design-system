@@ -2,5 +2,5 @@ releases:
   "@nimbus-ds/icon-button": minor
   "@nimbus-ds/styles": minor
 
-undecided:
+declined:
   - nimbus-design-system
