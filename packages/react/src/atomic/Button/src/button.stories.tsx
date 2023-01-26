@@ -47,7 +47,7 @@ icon.args = {
   children: (
     <>
       Button
-      <Icon color="neutral.background" source={<ExternalLinkIcon />} />
+      <Icon color="currentColor" source={<ExternalLinkIcon />} />
     </>
   ),
 };
@@ -57,7 +57,7 @@ loading.args = {
   appearance: "primary",
   children: (
     <>
-      <Spinner color="neutral.background" size="small" />
+      <Spinner color="currentColor" size="small" />
       Button
     </>
   ),
