@@ -2,6 +2,13 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2023-01-26 `6.2.0`
+
+#### 🎉 New features
+
+- Added `currentColor` color properties from sprinkle icon. ([#74](https://github.com/TiendaNube/nimbus-design-system/pull/74) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `currentColor` color properties from sprinkle spinner. ([#74](https://github.com/TiendaNube/nimbus-design-system/pull/74) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-01-09 `6.1.0`
 
 #### 🎉 New features
