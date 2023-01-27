@@ -22,7 +22,7 @@ const Popover: React.FC<PopoverProps> = ({
   style: _style,
   visible,
   onVisibility,
-  appearance = "light",
+  appearance = "neutral.background",
   position = "bottom",
   padding = "base",
   arrow = true,

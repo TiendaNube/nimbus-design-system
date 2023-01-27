@@ -15,12 +15,13 @@ export interface PopoverProps extends HTMLAttributes<HTMLDivElement> {
   arrow?: boolean;
   /** Popover appearance */
   appearance?:
-    | "primary"
-    | "success"
-    | "danger"
-    | "neutral"
-    | "warning"
-    | "light";
+    | "primary.surfaceHighlight"
+    | "primary.interactiveHover"
+    | "success.surfaceHighlight"
+    | "danger.surfaceHighlight"
+    | "neutral.surfaceHighlight"
+    | "warning.surfaceHighlight"
+    | "neutral.background";
   /** Position of the Popover */
   position?: Placement;
   /** Popover padding */

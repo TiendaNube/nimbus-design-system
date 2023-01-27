@@ -5,12 +5,19 @@ import {
 } from "../../../properties";
 
 const popoverBackgroundColorProperties = {
-  primary: backgroundColorProperties["primary.surfaceHighlight"],
-  success: backgroundColorProperties["success.surfaceHighlight"],
-  danger: backgroundColorProperties["danger.surfaceHighlight"],
-  neutral: backgroundColorProperties["neutral.surfaceHighlight"],
-  warning: backgroundColorProperties["warning.surfaceHighlight"],
-  light: backgroundColorProperties["neutral.background"],
+  "primary.surfaceHighlight":
+    backgroundColorProperties["primary.surfaceHighlight"],
+  "primary.interactiveHover":
+    backgroundColorProperties["primary.interactiveHover"],
+  "success.surfaceHighlight":
+    backgroundColorProperties["success.surfaceHighlight"],
+  "danger.surfaceHighlight":
+    backgroundColorProperties["danger.surfaceHighlight"],
+  "neutral.surfaceHighlight":
+    backgroundColorProperties["neutral.surfaceHighlight"],
+  "warning.surfaceHighlight":
+    backgroundColorProperties["warning.surfaceHighlight"],
+  "neutral.background": backgroundColorProperties["neutral.background"],
 };
 
 const popoverColorProperties = popoverBackgroundColorProperties;
