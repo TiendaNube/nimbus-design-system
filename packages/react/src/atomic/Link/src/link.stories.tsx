@@ -76,5 +76,11 @@ neutral.args = {
   children: "Link",
 };
 
+export const neutralBackground = Template.bind({});
+neutralBackground.args = {
+  appearance: "neutral.background",
+  children: "Link",
+};
+
 export const skeleton = SkeletonTemplate.bind({});
 skeleton.args = {};

@@ -10,7 +10,7 @@ export interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   /** Text to be displayed on link */
   children: ReactNode;
   /** Link appearance */
-  appearance?: "primary" | "danger" | "neutral";
+  appearance?: "primary" | "danger" | "neutral" | "neutral.background";
   /** Decoration for the link text */
   textDecoration?: typeof link.properties.textDecoration[number];
   /** Size of the link text */

@@ -2,6 +2,14 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2023-01-27 `6.3.0`
+
+#### 🎉 New features
+
+- Rename color sprinkles on `Popover` component to `neutral.background`, `primary.surfaceHighlight`, `success.surfaceHighlight`, `warning.surfaceHighlight`, `danger.surfaceHighlight` and `neutral.surfaceHighlight`. ([#76](https://github.com/TiendaNube/nimbus-design-system/pull/76) by [@juanchigallego](https://github.com/juanchigallego))
+- Add `primary.interactiveHover` option to `Popover` sprinkles. ([#76](https://github.com/TiendaNube/nimbus-design-system/pull/76) by [@juanchigallego](https://github.com/juanchigallego))
+- Add `neutral.background` option to `Link` styles. ([#76](https://github.com/TiendaNube/nimbus-design-system/pull/76) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-01-26 `6.2.0`
 
 #### 🎉 New features
