@@ -12,10 +12,12 @@ const run = () => {
   }
 
   const source = fs.readFileSync(paths[0], "utf8");
+
   const packages = source
-    .match(/"\@\w+\-\w+\/\w+": (minor|major|patch)/gm)
+    .match(/"\@\w+\-\w+\/\w+?-?\w+": (minor|major|patch)/gm)
     .reduce((prev, curr) => {
       const packageName = curr.replace(/(: (minor|major|patch)|")/gm, "");
+      console.log(curr);
       prev = prev + ` --filter=${packageName}...`;
       return prev;
     }, "");
