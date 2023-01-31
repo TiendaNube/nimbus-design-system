@@ -8,6 +8,7 @@ This package is intended for internal use in generating builds of each design sy
 
 - Added new options to `appearance` property on `Popover` component. ([#76](https://github.com/TiendaNube/nimbus-design-system/pull/76) by [@juanchigallego](https://github.com/juanchigallego))
 - Added new options to `appearance` property on `Link` component. ([#76](https://github.com/TiendaNube/nimbus-design-system/pull/76) by [@juanchigallego](https://github.com/juanchigallego))
+- Added new properties to `Box` component. ([#76](https://github.com/TiendaNube/nimbus-design-system/pull/76) by [@juanchigallego](https://github.com/juanchigallego))
 
 ## 2023-01-09 `2.1.0`
 
