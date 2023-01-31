@@ -10,6 +10,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 - Add `primary.interactiveHover` option to `Popover` sprinkles. ([#76](https://github.com/TiendaNube/nimbus-design-system/pull/76) by [@juanchigallego](https://github.com/juanchigallego))
 - Add `neutral.background` option to `Link` styles. ([#76](https://github.com/TiendaNube/nimbus-design-system/pull/76) by [@juanchigallego](https://github.com/juanchigallego))
 - Add `overflow`, `position`, `maxHeight`, `maxWidth`, `top`, `bottom`, `left` and `right` properties to `Box` sprinkles. ([#76](https://github.com/TiendaNube/nimbus-design-system/pull/76) by [@juanchigallego](https://github.com/juanchigallego))
+- Add `gridArea` property to `Stack` sprinkles. ([#76](https://github.com/TiendaNube/nimbus-design-system/pull/76) by [@juanchigallego](https://github.com/juanchigallego))
 
 ## 2023-01-26 `6.2.0`
 
