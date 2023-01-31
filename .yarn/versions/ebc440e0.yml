@@ -1,4 +1,5 @@
 releases:
+  "@nimbus-ds/box": minor
   "@nimbus-ds/components": minor
   "@nimbus-ds/link": minor
   "@nimbus-ds/popover": minor
@@ -6,3 +7,6 @@ releases:
 
 declined:
   - nimbus-design-system
+  - "@nimbus-ds/stack"
+  - "@nimbus-ds/card"
+  - "@nimbus-ds/sidebar"
