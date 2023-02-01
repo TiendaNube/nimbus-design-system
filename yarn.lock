@@ -3144,6 +3144,23 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@nimbus-ds/modal@workspace:packages/react/src/composite/Modal":
+  version: 0.0.0-use.local
+  resolution: "@nimbus-ds/modal@workspace:packages/react/src/composite/Modal"
+  dependencies:
+    "@nimbus-ds/box": "workspace:^"
+    "@nimbus-ds/button": "workspace:^"
+    "@nimbus-ds/stack": "workspace:^"
+    "@nimbus-ds/tag": "workspace:^"
+    "@nimbus-ds/text": "workspace:^"
+    webpack: ^5.74.0
+  peerDependencies:
+    "@nimbus-ds/title": "workspace:^"
+    react: ^16.8 || ^17.0 || ^18.0
+    react-dom: ^16.8 || ^17.0 || ^18.0
+  languageName: unknown
+  linkType: soft
+
 "@nimbus-ds/pagination@workspace:packages/react/src/composite/Pagination":
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/pagination@workspace:packages/react/src/composite/Pagination"
