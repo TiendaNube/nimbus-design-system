@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2023-02-01 `6.4.0`
+
+#### 🎉 New features
+
+- Added new style pack for modal component. [#77](https://github.com/TiendaNube/nimbus-design-system/pull/#77) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-01-27 `6.3.0`
 
 #### 🎉 New features

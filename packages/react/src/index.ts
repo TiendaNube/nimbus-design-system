@@ -28,6 +28,7 @@ export * from "@nimbus-ds/tooltip";
 // composite
 export * from "@nimbus-ds/alert";
 export * from "@nimbus-ds/card";
+export * from "@nimbus-ds/modal";
 export * from "@nimbus-ds/sidebar";
 export * from "@nimbus-ds/tabs";
 export * from "@nimbus-ds/table";
