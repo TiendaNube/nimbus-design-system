@@ -31,6 +31,7 @@ export { textarea } from "./packages/atomic/textarea";
 
 export { alert } from "./packages/composite/alert";
 export { card } from "./packages/composite/card";
+export { modal } from "./packages/composite/modal";
 export { pagination } from "./packages/composite/pagination";
 export { sidebar } from "./packages/composite/sidebar";
 export { tabs } from "./packages/composite/tabs";
@@ -39,5 +40,6 @@ export { table } from "./packages/composite/table";
 export type { BoxSprinkle } from "./packages/atomic/box";
 export type { IconButtonSprinkle } from "./packages/atomic/iconButton";
 export type { StackSprinkle } from "./packages/atomic/stack";
+export type { ModalSprinkle } from "./packages/composite/modal";
 export type { SidebarSprinkle } from "./packages/composite/sidebar";
 export type { TableSprinkle } from "./packages/composite/table";

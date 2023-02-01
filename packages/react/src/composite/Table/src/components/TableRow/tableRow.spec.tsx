@@ -13,9 +13,13 @@ const makeSut = (
   children = cellChildren
 ) => {
   render(
-    <TableRow {...rest} data-testid="table-element">
-      {children}
-    </TableRow>
+    <table>
+      <tbody>
+        <TableRow {...rest} data-testid="table-element">
+          {children}
+        </TableRow>
+      </tbody>
+    </table>
   );
 };
 

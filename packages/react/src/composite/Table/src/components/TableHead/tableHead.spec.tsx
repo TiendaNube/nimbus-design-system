@@ -5,7 +5,11 @@ import { TableHead } from "./TableHead";
 import { TableHeadProps } from "./tableHead.types";
 
 const makeSut = (rest: TableHeadProps) => {
-  render(<TableHead {...rest} data-testid="table-element" />);
+  render(
+    <table>
+      <TableHead {...rest} data-testid="table-element" />
+    </table>
+  );
 };
 
 describe("GIVEN <TableHead />", () => {

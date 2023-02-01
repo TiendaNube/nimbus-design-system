@@ -11,7 +11,15 @@ const makeSut = (rest: TableProps) => {
 describe("GIVEN <Table />", () => {
   describe("WHEN rendered", () => {
     it("THEN should correctly render the submitted content", () => {
-      makeSut({ children: <div>My content</div> });
+      makeSut({
+        children: (
+          <tbody>
+            <tr>
+              <td>My content</td>
+            </tr>
+          </tbody>
+        ),
+      });
       expect(screen.getByText("My content")).toBeDefined();
     });
   });

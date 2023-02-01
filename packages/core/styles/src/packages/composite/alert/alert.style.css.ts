@@ -82,7 +82,7 @@ export const content = vanillaStyle({
   fontFamily: varsThemeBase.fontFamily.centranube,
 });
 
-export const close = vanillaStyle({
+const close = vanillaStyle({
   appearance: "none",
   borderStyle: "solid",
   borderColor: "transparent",
