@@ -3148,14 +3148,16 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/modal@workspace:packages/react/src/composite/Modal"
   dependencies:
+    "@floating-ui/react-dom-interactions": ^0.10.1
     "@nimbus-ds/box": "workspace:^"
     "@nimbus-ds/button": "workspace:^"
+    "@nimbus-ds/icon": "workspace:^"
     "@nimbus-ds/stack": "workspace:^"
-    "@nimbus-ds/tag": "workspace:^"
     "@nimbus-ds/text": "workspace:^"
+    "@nimbus-ds/title": "workspace:^"
+    "@tiendanube/icons": ^0.3.1
     webpack: ^5.74.0
   peerDependencies:
-    "@nimbus-ds/title": "workspace:^"
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
   languageName: unknown

@@ -14,8 +14,8 @@
     "version": "yarn version"
   },
   "dependencies": {
-    "@nimbus-ds/icon": "workspace:^",
     "@floating-ui/react-dom-interactions": "^0.10.1",
+    "@nimbus-ds/icon": "workspace:^",
     "@tiendanube/icons": "^0.3.1"
   },
   "peerDependencies": {
