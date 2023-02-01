@@ -2,6 +2,12 @@
 
 This package is intended for internal use in generating builds of each design system package. It contains all the necessary settings and dependencies to optimize the creation of our builds.
 
+## 2023-02-01 `2.3.0`
+
+### 🎉 New features
+
+- Added new composite `Modal` component. ([#77](https://github.com/TiendaNube/nimbus-design-system/pull/77) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-01-27 `2.2.0`
 
 ### 🎉 New features
