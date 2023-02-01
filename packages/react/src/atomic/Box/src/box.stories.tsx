@@ -15,6 +15,10 @@ export default {
     borderStyle: { options: box.properties.borderStyle },
     boxSizing: { options: box.properties.boxSizing },
     cursor: { options: box.properties.cursor },
+    position: { options: box.properties.position },
+    overflow: { options: box.properties.overflow },
+    overflowX: { options: box.properties.overflowX },
+    overflowY: { options: box.properties.overflowY },
   },
   parameters: {
     withA11y: { decorators: [withA11y] },

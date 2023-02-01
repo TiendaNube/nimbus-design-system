@@ -1,4 +1,11 @@
-import { Conditions, BorderStyle, Cursor, BoxSizing } from "../../../types";
+import {
+  Conditions,
+  BorderStyle,
+  Cursor,
+  BoxSizing,
+  Position,
+  Overflow,
+} from "../../../types";
 import { boxSprinkle } from "./box.sprinkle.css";
 
 const { properties: propertiesBox } = boxSprinkle;
@@ -10,6 +17,16 @@ type BoxSpaceProperties = keyof typeof propertiesBox.space;
 export interface BoxSprinkle {
   width?: string | Conditions<string>;
   height?: string | Conditions<string>;
+  maxWidth?: string | Conditions<string>;
+  maxHeight?: string | Conditions<string>;
+  bottom?: string | Conditions<string>;
+  left?: string | Conditions<string>;
+  right?: string | Conditions<string>;
+  top?: string | Conditions<string>;
+  position?: Position | Conditions<Position>;
+  overflow?: Overflow | Conditions<Overflow>;
+  overflowX?: Overflow | Conditions<Overflow>;
+  overflowY?: Overflow | Conditions<Overflow>;
   cursor?: Cursor | Conditions<Cursor>;
   backgroundColor?:
     | BoxBackgroundColorProperties

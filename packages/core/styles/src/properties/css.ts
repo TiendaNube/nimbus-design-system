@@ -11,6 +11,8 @@ import {
   JustifyContent,
   TextAlign,
   TextDecoration,
+  Position,
+  Overflow,
 } from "../types";
 import { baseColors } from "./base";
 
@@ -113,5 +115,18 @@ export const gapProperties = {
   "18": varsThemeBase.spacing[18],
   "20": varsThemeBase.spacing[20],
 };
+export const positionProperties: Position[] = [
+  "absolute",
+  "fixed",
+  "relative",
+  "static",
+  "sticky",
+];
+export const overflowProperties: Overflow[] = [
+  "visible",
+  "hidden",
+  "scroll",
+  "auto",
+];
 
 export const gridGapProperties = gapProperties;

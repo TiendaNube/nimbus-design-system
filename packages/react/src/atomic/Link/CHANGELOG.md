@@ -2,6 +2,12 @@
 
 The Link component allows us to navigate to external addresses.
 
+## 2023-01-27 `3.1.0`
+
+### 🎉 New features
+
+- Add `neutral.background` option to `appearance` property. ([#76](https://github.com/TiendaNube/nimbus-design-system/pull/76) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2022-12-22 `3.0.0`
 
 ### 💡 Others

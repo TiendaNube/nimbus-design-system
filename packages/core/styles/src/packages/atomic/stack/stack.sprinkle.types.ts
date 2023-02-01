@@ -20,6 +20,7 @@ export interface StackSprinkle {
   gridTemplateColumns?: string | Conditions<string>;
   gridTemplateAreas?: string | Conditions<string>;
   gridTemplateRows?: string | Conditions<string>;
+  gridArea?: string | Conditions<string>;
   display?: Display | Conditions<Display>;
   flexWrap?: FlexWrap | Conditions<FlexWrap>;
   justifyContent?: JustifyContent | Conditions<JustifyContent>;

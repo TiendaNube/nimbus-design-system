@@ -8,6 +8,8 @@ import {
   borderStyleProperties,
   boxSizingProperties,
   cursorProperties,
+  positionProperties,
+  overflowProperties,
 } from "../../../properties";
 import { varsThemeBase, mediaQueries } from "../../../themes";
 
@@ -99,6 +101,8 @@ const defineProperties = defineRainbowProperties({
   dynamicProperties: {
     width: true,
     height: true,
+    maxWidth: true,
+    maxHeight: true,
     borderRadius: true,
     borderWidth: true,
     backgroundColor: boxBackgroundColorProperties,
@@ -113,11 +117,19 @@ const defineProperties = defineRainbowProperties({
     marginBottom: boxSpaceProperties,
     marginLeft: boxSpaceProperties,
     marginRight: boxSpaceProperties,
+    bottom: true,
+    left: true,
+    right: true,
+    top: true,
   },
   staticProperties: {
     borderStyle: borderStyleProperties,
     boxSizing: boxSizingProperties,
     cursor: cursorProperties,
+    position: positionProperties,
+    overflow: overflowProperties,
+    overflowX: overflowProperties,
+    overflowY: overflowProperties,
   },
   shorthands: {
     padding: ["paddingTop", "paddingBottom", "paddingLeft", "paddingRight"],
@@ -150,6 +162,10 @@ const properties = {
   boxSizing: boxSizingProperties,
   cursor: cursorProperties,
   space: boxSpaceProperties,
+  position: positionProperties,
+  overflow: overflowProperties,
+  overflowX: overflowProperties,
+  overflowY: overflowProperties,
 };
 
 const sprinkle = createRainbowSprinkles(defineProperties);

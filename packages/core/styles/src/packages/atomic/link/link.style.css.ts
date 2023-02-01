@@ -74,4 +74,16 @@ export const appearance = styleVariants({
       },
     },
   ],
+  "neutral.background": [
+    base,
+    {
+      color: varsThemeBase.colors.neutral.background,
+      ":hover": {
+        color: varsThemeBase.colors.neutral.surface,
+      },
+      ":active": {
+        color: varsThemeBase.colors.neutral.surfaceDisabled,
+      },
+    },
+  ],
 });

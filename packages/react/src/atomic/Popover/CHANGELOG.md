@@ -2,6 +2,13 @@
 
 Use Popovers to bring attention to specific user interface elements and suggest an action or to guide users through a new experience
 
+## 2023-01-27 `2.1.0`
+
+### 🎉 New features
+
+- Rename color properties to `neutral.background`, `primary.surfaceHighlight`, `success.surfaceHighlight`, `warning.surfaceHighlight`, `danger.surfaceHighlight` and `neutral.surfaceHighlight`. ([#76](https://github.com/TiendaNube/nimbus-design-system/pull/76) by [@juanchigallego](https://github.com/juanchigallego))
+- Add `primary.interactiveHover` option to `appearance` property. ([#76](https://github.com/TiendaNube/nimbus-design-system/pull/76) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2022-12-22 `2.0.0`
 
 ### 💡 Others

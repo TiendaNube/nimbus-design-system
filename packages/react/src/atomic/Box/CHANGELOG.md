@@ -2,6 +2,12 @@
 
 A low-level utility component that accepts styled system props to enable custom theme-aware styling
 
+## 2023-01-31 `2.1.0`
+
+### 🎉 New features
+
+- Add new sprinkles properties `overflow`, `position`, `maxHeight`, `maxWidth`, `top`, `bottom`, `left` and `right` to Component Story. ([#76](https://github.com/TiendaNube/nimbus-design-system/pull/76) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2022-12-22 `2.0.0`
 
 ### 💡 Others

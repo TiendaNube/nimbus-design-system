@@ -33,6 +33,7 @@ const defineProperties = defineRainbowProperties({
     gridTemplateAreas: true,
     gridTemplateColumns: true,
     gridTemplateRows: true,
+    gridArea: true,
     gap: gapProperties,
     gridGap: gridGapProperties,
   },

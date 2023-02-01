@@ -167,13 +167,13 @@ describe("GIVEN <Popover />", () => {
       });
       expect(
         screen.getByTestId("popover-element").getAttribute("class")
-      ).toContain("light");
+      ).toContain("neutral.background");
     });
 
-    it("THEN should correctly render the appearance light", async () => {
+    it("THEN should correctly render the appearance neutral.background", async () => {
       makeSut({
         content: <p>string</p>,
-        appearance: "light",
+        appearance: "neutral.background",
         enabledHover: true,
       });
       await act(() => {
@@ -181,13 +181,13 @@ describe("GIVEN <Popover />", () => {
       });
       expect(
         screen.getByTestId("popover-element").getAttribute("class")
-      ).toContain("light");
+      ).toContain("neutral.background");
     });
 
-    it("THEN should correctly render the appearance primary", async () => {
+    it("THEN should correctly render the appearance primary.surfaceHighlight", async () => {
       makeSut({
         content: <p>string</p>,
-        appearance: "primary",
+        appearance: "primary.surfaceHighlight",
         enabledHover: true,
       });
       await act(() => {
@@ -195,13 +195,13 @@ describe("GIVEN <Popover />", () => {
       });
       expect(
         screen.getByTestId("popover-element").getAttribute("class")
-      ).toContain("primary");
+      ).toContain("primary.surfaceHighlight");
     });
 
-    it("THEN should correctly render the appearance danger", async () => {
+    it("THEN should correctly render the appearance primary.interactiveHover", async () => {
       makeSut({
         content: <p>string</p>,
-        appearance: "danger",
+        appearance: "primary.interactiveHover",
         enabledHover: true,
       });
       await act(() => {
@@ -209,13 +209,13 @@ describe("GIVEN <Popover />", () => {
       });
       expect(
         screen.getByTestId("popover-element").getAttribute("class")
-      ).toContain("danger");
+      ).toContain("primary.interactiveHover");
     });
 
-    it("THEN should correctly render the appearance neutral", async () => {
+    it("THEN should correctly render the appearance danger.surfaceHighlight", async () => {
       makeSut({
         content: <p>string</p>,
-        appearance: "neutral",
+        appearance: "danger.surfaceHighlight",
         enabledHover: true,
       });
       await act(() => {
@@ -223,13 +223,13 @@ describe("GIVEN <Popover />", () => {
       });
       expect(
         screen.getByTestId("popover-element").getAttribute("class")
-      ).toContain("neutral");
+      ).toContain("danger.surfaceHighlight");
     });
 
-    it("THEN should correctly render the appearance success", async () => {
+    it("THEN should correctly render the appearance neutral.surfaceHighlight", async () => {
       makeSut({
         content: <p>string</p>,
-        appearance: "success",
+        appearance: "neutral.surfaceHighlight",
         enabledHover: true,
       });
       await act(() => {
@@ -237,13 +237,13 @@ describe("GIVEN <Popover />", () => {
       });
       expect(
         screen.getByTestId("popover-element").getAttribute("class")
-      ).toContain("success");
+      ).toContain("neutral.surfaceHighlight");
     });
 
-    it("THEN should correctly render the appearance warning", async () => {
+    it("THEN should correctly render the appearance success.surfaceHighlight", async () => {
       makeSut({
         content: <p>string</p>,
-        appearance: "warning",
+        appearance: "success.surfaceHighlight",
         enabledHover: true,
       });
       await act(() => {
@@ -251,7 +251,21 @@ describe("GIVEN <Popover />", () => {
       });
       expect(
         screen.getByTestId("popover-element").getAttribute("class")
-      ).toContain("warning");
+      ).toContain("success.surfaceHighlight");
+    });
+
+    it("THEN should correctly render the appearance warning.surfaceHighlight", async () => {
+      makeSut({
+        content: <p>string</p>,
+        appearance: "warning.surfaceHighlight",
+        enabledHover: true,
+      });
+      await act(() => {
+        fireEvent.mouseEnter(screen.getByTestId("popover-container"));
+      });
+      expect(
+        screen.getByTestId("popover-element").getAttribute("class")
+      ).toContain("warning.surfaceHighlight");
     });
   });
 
