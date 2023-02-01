@@ -5,7 +5,11 @@ import { TableBody } from "./TableBody";
 import { TableBodyProps } from "./tableBody.types";
 
 const makeSut = (rest: TableBodyProps) => {
-  render(<TableBody {...rest} data-testid="table-element" />);
+  render(
+    <table>
+      <TableBody {...rest} data-testid="table-element" />
+    </table>
+  );
 };
 
 describe("GIVEN <TableBody />", () => {

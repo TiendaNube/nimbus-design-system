@@ -11,9 +11,15 @@ const makeSut = (
   children = cellContent
 ) => {
   render(
-    <TableCell {...rest} data-testid="table-element">
-      {children}
-    </TableCell>
+    <table>
+      <tbody>
+        <tr>
+          <TableCell {...rest} data-testid="table-element">
+            {children}
+          </TableCell>
+        </tr>
+      </tbody>
+    </table>
   );
 };
 

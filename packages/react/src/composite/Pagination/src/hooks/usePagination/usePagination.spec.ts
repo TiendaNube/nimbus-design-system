@@ -39,5 +39,13 @@ describe("GIVEN usePagination", () => {
       });
       expect(result.current).toEqual([1, "...", 4, 5, 6, "...", 20]);
     });
+
+    it("AND should render the default return", () => {
+      const { result } = makeSut({
+        activePage: NaN,
+        pageCount: 20,
+      });
+      expect(result.current).toEqual([]);
+    });
   });
 });
