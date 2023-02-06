@@ -15,6 +15,7 @@ const base = vanillaStyle({
   lineHeight: varsThemeBase.lineWeight.body.base,
   fontSize: varsThemeBase.fontSize.body.base,
   fontFamily: varsThemeBase.fontFamily.centranube,
+  textDecoration: "none",
 
   color: varsThemeBase.colors.neutral.textLow,
   borderRadius: "0.5rem",

@@ -11,7 +11,10 @@ import { Button } from "./Button";
 export default {
   title: "Atomic/Button",
   component: Button,
-  subcomponents: { "Button.Skeleton": Button.Skeleton },
+  subcomponents: {
+    "Button.Skeleton": Button.Skeleton,
+    "Button.Anchor": Button.Anchor,
+  },
   argTypes: {
     children: { control: { disable: true } },
   },
@@ -23,6 +26,9 @@ export default {
 const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 const SkeletonTemplate: ComponentStory<typeof Button.Skeleton> = (args) => (
   <Button.Skeleton {...args} />
+);
+const AnchorTemplate: ComponentStory<typeof Button.Anchor> = (args) => (
+  <Button.Anchor {...args} />
 );
 
 export const base = Template.bind({});
@@ -95,3 +101,10 @@ transparent.args = {
 
 export const skeleton = SkeletonTemplate.bind({});
 skeleton.args = {};
+
+export const asAnchor = AnchorTemplate.bind({});
+asAnchor.args = {
+  children: "Button as anchor",
+  href: "https://nimbus.tiendanube.com/",
+  target: "_blank",
+};
