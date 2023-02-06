@@ -17,6 +17,9 @@ const base = vanillaStyle({
 
   transition: `all ${varsThemeBase.motion.speed.fast} ease`,
 
+  backgroundColor: "transparent",
+  border: 0,
+
   ":focus": {
     boxShadow: varsThemeBase.utils.focus,
   },
