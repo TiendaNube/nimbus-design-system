@@ -2,7 +2,7 @@ import React from "react";
 import { link } from "@nimbus-ds/styles";
 
 import { LinkProps, LinkComponents } from "./link.types";
-import { LinkSkeleton } from "./components";
+import { LinkSkeleton, LinkButton } from "./components";
 
 const Link: React.FC<LinkProps> & LinkComponents = ({
   className: _className,
@@ -26,6 +26,7 @@ const Link: React.FC<LinkProps> & LinkComponents = ({
 );
 
 Link.Skeleton = LinkSkeleton;
+Link.Button = LinkButton;
 Link.displayName = "Link";
 Link.Skeleton.displayName = "Link.Skeleton";
 

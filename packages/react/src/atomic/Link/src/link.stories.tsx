@@ -10,7 +10,7 @@ import { Link } from "./Link";
 export default {
   title: "Atomic/Link",
   component: Link,
-  subcomponents: { "Link.Skeleton": Link.Skeleton },
+  subcomponents: { "Link.Skeleton": Link.Skeleton, "Link.Button": Link.Button },
   argTypes: {
     children: { control: { disable: true } },
   },
@@ -28,6 +28,9 @@ const StressedTemplate: ComponentStory<typeof Link> = (args) => (
 );
 const SkeletonTemplate: ComponentStory<typeof Link.Skeleton> = (args) => (
   <Link.Skeleton {...args} />
+);
+const LinkButtonTemplate: ComponentStory<typeof Link.Button> = (args) => (
+  <Link.Button {...args} />
 );
 
 export const base = Template.bind({});
@@ -84,3 +87,8 @@ neutralBackground.args = {
 
 export const skeleton = SkeletonTemplate.bind({});
 skeleton.args = {};
+
+export const asButton = LinkButtonTemplate.bind({});
+asButton.args = {
+  children: "Link as button",
+};

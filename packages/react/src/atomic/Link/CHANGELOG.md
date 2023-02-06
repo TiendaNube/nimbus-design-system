@@ -2,6 +2,13 @@
 
 The Link component allows us to navigate to external addresses.
 
+## 2023-02-06 `3.2.0`
+
+### 🎉 New features
+
+- Added new `Link.Button` subcomponent. [#78](https://github.com/TiendaNube/nimbus-design-system/pull/#78) by [@juanchigallego](https://github.com/juanchigallego))
+- Added `Link.Button` stories documentation to `Link` stories. [#78](https://github.com/TiendaNube/nimbus-design-system/pull/#78) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-01-27 `3.1.0`
 
 ### 🎉 New features

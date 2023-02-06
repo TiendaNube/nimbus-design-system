@@ -2,7 +2,7 @@ import React from "react";
 import { button } from "@nimbus-ds/styles";
 
 import { ButtonProps, ButtonComponents } from "./button.types";
-import { ButtonSkeleton } from "./components";
+import { ButtonSkeleton, ButtonLink } from "./components";
 
 const Button: React.FC<ButtonProps> & ButtonComponents = ({
   className: _className,
@@ -21,6 +21,7 @@ const Button: React.FC<ButtonProps> & ButtonComponents = ({
 );
 
 Button.Skeleton = ButtonSkeleton;
+Button.Link = ButtonLink;
 Button.displayName = "Button";
 Button.Skeleton.displayName = "Button.Skeleton";
 

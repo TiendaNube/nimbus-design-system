@@ -1,9 +1,10 @@
 import { ReactNode, AnchorHTMLAttributes } from "react";
 import { link } from "@nimbus-ds/styles";
-import { LinkSkeleton } from "./components";
+import { LinkSkeleton, LinkButton } from "./components";
 
 export interface LinkComponents {
   Skeleton: typeof LinkSkeleton;
+  Button: typeof LinkButton;
 }
 
 export interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
