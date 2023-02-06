@@ -6,7 +6,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 #### 🎉 New features
 
-- Added stlyes for `Link.Button` subcomponent. [#78](https://github.com/TiendaNube/nimbus-design-system/pull/#78) by [@juanchigallego](https://github.com/juanchigallego))
+- Added styles for `Link.Button` subcomponent. [#78](https://github.com/TiendaNube/nimbus-design-system/pull/#78) by [@juanchigallego](https://github.com/juanchigallego))
 - Added styles for `Button.Anchor` subcomponent. [#78](https://github.com/TiendaNube/nimbus-design-system/pull/#78) by [@juanchigallego](https://github.com/juanchigallego))
 
 ## 2023-02-01 `6.4.0`
