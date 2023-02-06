@@ -6,8 +6,8 @@ The Button component allows us to initiate actions, make state or page changes.
 
 ### 🎉 New features
 
-- Added new `Button.Anchor` subcomponent. [#78](https://github.com/TiendaNube/nimbus-design-system/pull/#78) by [@juanchigallego](https://github.com/juanchigallego))
-- Added `Button.Anchor` stories documentation to `Button` stories. [#78](https://github.com/TiendaNube/nimbus-design-system/pull/#78) by [@juanchigallego](https://github.com/juanchigallego))
+- Added new `Button.Link` subcomponent. [#78](https://github.com/TiendaNube/nimbus-design-system/pull/#78) by [@juanchigallego](https://github.com/juanchigallego))
+- Added `Button.Link` stories documentation to `Button` stories. [#78](https://github.com/TiendaNube/nimbus-design-system/pull/#78) by [@juanchigallego](https://github.com/juanchigallego))
 
 ## 2022-12-22 `2.0.0`
 

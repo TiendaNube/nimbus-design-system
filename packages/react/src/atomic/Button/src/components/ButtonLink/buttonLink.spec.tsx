@@ -1,14 +1,14 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 
-import { ButtonAnchor } from "./ButtonAnchor";
-import { ButtonAnchorProps } from "./buttonAnchor.types";
+import { ButtonLink } from "./ButtonLink";
+import { ButtonLinkProps } from "./buttonLink.types";
 
-const makeSut = (rest: Omit<ButtonAnchorProps, "href">) => {
-  render(<ButtonAnchor {...rest} href="#" data-testid="button-element" />);
+const makeSut = (rest: Omit<ButtonLinkProps, "href">) => {
+  render(<ButtonLink {...rest} href="#" data-testid="button-element" />);
 };
 
-describe("GIVEN <ButtonAnchor />", () => {
+describe("GIVEN <ButtonLink />", () => {
   describe("THEN should correctly render the submitted appearance", () => {
     it("THEN should correctly render the appearance default", () => {
       makeSut({ children: "button" });

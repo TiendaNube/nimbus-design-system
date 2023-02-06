@@ -1,2 +1,2 @@
 export * from "./ButtonSkeleton";
-export * from "./ButtonAnchor";
+export * from "./ButtonLink";

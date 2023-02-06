@@ -1,20 +1,20 @@
 import React from "react";
 import { button } from "@nimbus-ds/styles";
 
-import { ButtonAnchorProps } from "./buttonAnchor.types";
+import { ButtonLinkProps } from "./buttonLink.types";
 
-const ButtonAnchor: React.FC<ButtonAnchorProps> = ({
+const ButtonLink: React.FC<ButtonLinkProps> = ({
   className: _className,
   style: _style,
   appearance = "neutral",
   href,
   ...rest
-}: ButtonAnchorProps) => (
+}: ButtonLinkProps) => (
   <a href={href} className={button.classnames.appearance[appearance]} {...rest}>
     {rest.children}
   </a>
 );
 
-ButtonAnchor.displayName = "Button.Anchor";
+ButtonLink.displayName = "Button.Link";
 
-export { ButtonAnchor };
+export { ButtonLink };

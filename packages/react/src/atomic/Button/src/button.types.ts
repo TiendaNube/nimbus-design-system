@@ -1,9 +1,9 @@
 import { ReactNode, ButtonHTMLAttributes } from "react";
-import { ButtonSkeleton, ButtonAnchor } from "./components";
+import { ButtonSkeleton, ButtonLink } from "./components";
 
 export interface ButtonComponents {
   Skeleton: typeof ButtonSkeleton;
-  Anchor: typeof ButtonAnchor;
+  Link: typeof ButtonLink;
 }
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {

@@ -13,7 +13,7 @@ export default {
   component: Button,
   subcomponents: {
     "Button.Skeleton": Button.Skeleton,
-    "Button.Anchor": Button.Anchor,
+    "Button.Link": Button.Link,
   },
   argTypes: {
     children: { control: { disable: true } },
@@ -27,8 +27,8 @@ const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 const SkeletonTemplate: ComponentStory<typeof Button.Skeleton> = (args) => (
   <Button.Skeleton {...args} />
 );
-const AnchorTemplate: ComponentStory<typeof Button.Anchor> = (args) => (
-  <Button.Anchor {...args} />
+const LinkTemplate: ComponentStory<typeof Button.Link> = (args) => (
+  <Button.Link {...args} />
 );
 
 export const base = Template.bind({});
@@ -102,8 +102,8 @@ transparent.args = {
 export const skeleton = SkeletonTemplate.bind({});
 skeleton.args = {};
 
-export const asAnchor = AnchorTemplate.bind({});
-asAnchor.args = {
+export const asLink = LinkTemplate.bind({});
+asLink.args = {
   children: "Button as anchor",
   href: "https://nimbus.tiendanube.com/",
   target: "_blank",
