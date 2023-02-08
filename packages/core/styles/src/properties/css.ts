@@ -13,6 +13,7 @@ import {
   TextDecoration,
   Position,
   Overflow,
+  PointerEvents,
 } from "../types";
 import { baseColors } from "./base";
 
@@ -77,6 +78,20 @@ export const textAlignProperties: TextAlign[] = [
   "center",
   "justify",
 ];
+export const pointerEventsProperties: PointerEvents[] = [
+  "auto",
+  "none",
+  "visiblePainted",
+  "visibleFill",
+  "visibleStroke",
+  "visible",
+  "painted",
+  "fill",
+  "stroke",
+  "all",
+  "inherit",
+];
+
 export const textDecorationProperties: TextDecoration[] = ["none", "underline"];
 export const fontWeightProperties = {
   regular: varsThemeBase.fontWeight.regular,

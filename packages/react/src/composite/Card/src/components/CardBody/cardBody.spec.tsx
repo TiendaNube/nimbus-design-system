@@ -8,7 +8,7 @@ const makeSut = (props: CardBodyProps) => {
   render(<CardBody {...props} data-testid="body-element" />);
 };
 
-describe("GIVEN <Body />", () => {
+describe("GIVEN <Card.Body />", () => {
   describe("WHEN rendered", () => {
     it("THEN should render the submitted content", () => {
       makeSut({ children: "My content" });

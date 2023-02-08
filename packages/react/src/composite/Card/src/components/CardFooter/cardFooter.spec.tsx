@@ -8,7 +8,7 @@ const makeSut = (props: CardFooterProps) => {
   render(<CardFooter {...props} data-testid="footer-element" />);
 };
 
-describe("GIVEN <Footer />", () => {
+describe("GIVEN <Card.Footer />", () => {
   describe("WHEN rendered", () => {
     it("THEN should render the submitted content", () => {
       makeSut({ children: "My content" });

@@ -2933,6 +2933,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@nimbus-ds/accordion@workspace:packages/react/src/composite/Accordion":
+  version: 0.0.0-use.local
+  resolution: "@nimbus-ds/accordion@workspace:packages/react/src/composite/Accordion"
+  dependencies:
+    "@nimbus-ds/box": "workspace:^"
+    "@nimbus-ds/card": "workspace:^"
+    "@nimbus-ds/icon": "workspace:^"
+    "@nimbus-ds/radio": "workspace:^"
+    "@nimbus-ds/stack": "workspace:^"
+    "@nimbus-ds/text": "workspace:^"
+    "@nimbus-ds/title": "workspace:^"
+    "@tiendanube/icons": ^0.3.1
+    webpack: ^5.74.0
+  peerDependencies:
+    react: ^16.8 || ^17.0 || ^18.0
+    react-dom: ^16.8 || ^17.0 || ^18.0
+  languageName: unknown
+  linkType: soft
+
 "@nimbus-ds/alert@workspace:packages/react/src/composite/Alert":
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/alert@workspace:packages/react/src/composite/Alert"
@@ -2989,7 +3008,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/card@workspace:packages/react/src/composite/Card":
+"@nimbus-ds/card@workspace:^, @nimbus-ds/card@workspace:packages/react/src/composite/Card":
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/card@workspace:packages/react/src/composite/Card"
   dependencies:
@@ -3190,7 +3209,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/radio@workspace:packages/react/src/atomic/Radio":
+"@nimbus-ds/radio@workspace:^, @nimbus-ds/radio@workspace:packages/react/src/atomic/Radio":
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/radio@workspace:packages/react/src/atomic/Radio"
   dependencies:

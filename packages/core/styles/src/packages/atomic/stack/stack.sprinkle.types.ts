@@ -5,6 +5,7 @@ import {
   FlexDirection,
   FlexWrap,
   JustifyContent,
+  PointerEvents,
 } from "../../../types";
 import { stackSprinkle } from "./stack.sprinkle.css";
 
@@ -17,6 +18,7 @@ export interface StackSprinkle {
   width?: string | Conditions<string>;
   height?: string | Conditions<string>;
   flex?: string | Conditions<string>;
+  flexShrink?: string | Conditions<string>;
   gridTemplateColumns?: string | Conditions<string>;
   gridTemplateAreas?: string | Conditions<string>;
   gridTemplateRows?: string | Conditions<string>;
@@ -28,4 +30,5 @@ export interface StackSprinkle {
   alignItems?: AlignItems | Conditions<AlignItems>;
   gap?: StackGapProperties | Conditions<StackGapProperties>;
   gridGap?: StackGridGapProperties | Conditions<StackGridGapProperties>;
+  pointerEvents?: PointerEvents | Conditions<PointerEvents>;
 }

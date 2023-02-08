@@ -34,3 +34,15 @@ export type TextAlign = "left" | "right" | "center" | "justify";
 export type TextDecoration = "none" | "underline";
 export type Position = "absolute" | "fixed" | "relative" | "static" | "sticky";
 export type Overflow = "visible" | "hidden" | "scroll" | "auto";
+export type PointerEvents =
+  | "auto"
+  | "none"
+  | "visiblePainted"
+  | "visibleFill"
+  | "visibleStroke"
+  | "visible"
+  | "painted"
+  | "fill"
+  | "stroke"
+  | "all"
+  | "inherit";

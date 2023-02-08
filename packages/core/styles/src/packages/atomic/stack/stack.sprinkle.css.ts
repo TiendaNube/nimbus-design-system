@@ -11,6 +11,7 @@ import {
   gapProperties,
   gridGapProperties,
   justifyContentProperties,
+  pointerEventsProperties,
 } from "../../../properties";
 
 const defineProperties = defineRainbowProperties({
@@ -34,6 +35,7 @@ const defineProperties = defineRainbowProperties({
     gridTemplateColumns: true,
     gridTemplateRows: true,
     gridArea: true,
+    flexShrink: true,
     gap: gapProperties,
     gridGap: gridGapProperties,
   },
@@ -43,6 +45,7 @@ const defineProperties = defineRainbowProperties({
     flexWrap: flexWrapProperties,
     justifyContent: justifyContentProperties,
     alignItems: alignItemsProperties,
+    pointerEvents: pointerEventsProperties,
   },
   shorthands: {},
 });
@@ -55,6 +58,7 @@ const properties = {
   flexWrap: flexWrapProperties,
   justifyContent: justifyContentProperties,
   alignItems: alignItemsProperties,
+  pointerEvents: pointerEventsProperties,
 };
 
 const sprinkle = createRainbowSprinkles(defineProperties);

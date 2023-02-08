@@ -8,7 +8,7 @@ const makeSut = (props: SidebarFooterProps) => {
   render(<SidebarFooter {...props} data-testid="footer-element" />);
 };
 
-describe("GIVEN <Footer />", () => {
+describe("GIVEN <Sidebar.Footer />", () => {
   describe("WHEN rendered", () => {
     it("THEN should render the submitted content", () => {
       makeSut({ children: "My content" });

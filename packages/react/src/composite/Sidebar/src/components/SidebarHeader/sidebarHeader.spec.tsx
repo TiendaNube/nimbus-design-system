@@ -8,7 +8,7 @@ const makeSut = (props?: SidebarHeaderProps) => {
   render(<SidebarHeader {...props} data-testid="header-element" />);
 };
 
-describe("GIVEN <Header />", () => {
+describe("GIVEN <Sidebar.Header />", () => {
   describe("WHEN rendered", () => {
     it("THEN should render the submitted title", () => {
       makeSut({ title: "My Title" });
