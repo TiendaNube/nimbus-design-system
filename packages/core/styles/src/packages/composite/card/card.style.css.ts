@@ -12,6 +12,7 @@ export const container = style({
   borderRadius: varsThemeBase.spacing[2],
   boxShadow: varsThemeBase.shadow.card,
   boxSizing: "border-box",
+  overflow: "hidden",
 });
 
 export const header = style({
