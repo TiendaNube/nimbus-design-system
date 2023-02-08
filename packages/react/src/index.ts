@@ -26,6 +26,7 @@ export * from "@nimbus-ds/toast";
 export * from "@nimbus-ds/toggle";
 export * from "@nimbus-ds/tooltip";
 // composite
+export * from "@nimbus-ds/accordion";
 export * from "@nimbus-ds/alert";
 export * from "@nimbus-ds/card";
 export * from "@nimbus-ds/modal";

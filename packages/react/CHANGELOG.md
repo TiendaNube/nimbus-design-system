@@ -2,6 +2,12 @@
 
 This package is intended for internal use in generating builds of each design system package. It contains all the necessary settings and dependencies to optimize the creation of our builds.
 
+## 2023-02-07 `2.4.0`
+
+### 🎉 New features
+
+- Added new composite `Accordion` component. ([#79](https://github.com/TiendaNube/nimbus-design-system/pull/79) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-02-01 `2.3.0`
 
 ### 🎉 New features
