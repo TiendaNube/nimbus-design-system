@@ -29,6 +29,7 @@ export { tooltip } from "./packages/atomic/tooltip";
 export { thumbnail } from "./packages/atomic/thumbnail";
 export { textarea } from "./packages/atomic/textarea";
 
+export { accordion } from "./packages/composite/accordion";
 export { alert } from "./packages/composite/alert";
 export { card } from "./packages/composite/card";
 export { modal } from "./packages/composite/modal";
