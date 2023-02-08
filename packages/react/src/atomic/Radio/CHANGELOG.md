@@ -2,6 +2,12 @@
 
 Use radios when a user needs to select one option from a list.
 
+## 2023-02-07 `2.0.1`
+
+### 🐛 Bug fixes
+
+- Fixed component rendering when there is no label to display. ([#79](https://github.com/TiendaNube/nimbus-design-system/pull/79) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2022-12-22 `2.0.0`
 
 ### 💡 Others

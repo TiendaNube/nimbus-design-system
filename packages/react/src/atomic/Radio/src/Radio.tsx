@@ -45,11 +45,11 @@ const Radio: React.FC<RadioProps> & RadioComponents = ({
           />
         </span>
       )}
-      <div
-        data-testid="content-element"
-        className={radio.classnames.content[isDisabled ? "disabled" : as]}
-      >
-        {label && (
+      {label && (
+        <div
+          data-testid="content-element"
+          className={radio.classnames.content[isDisabled ? "disabled" : as]}
+        >
           <Text
             data-testid="text"
             color="currentColor"
@@ -58,8 +58,8 @@ const Radio: React.FC<RadioProps> & RadioComponents = ({
           >
             {label}
           </Text>
-        )}
-      </div>
+        </div>
+      )}
     </label>
   );
 };
