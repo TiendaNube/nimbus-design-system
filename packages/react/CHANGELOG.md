@@ -6,7 +6,7 @@ This package is intended for internal use in generating builds of each design sy
 
 ### 🎉 New features
 
-- Added new composite `Accordion` component. ([#79](https://github.com/TiendaNube/nimbus-design-system/pull/79) by [@juniorconquista](https://github.com/juniorconquista))
+- Added new composite `Accordion` component. ([#80](https://github.com/TiendaNube/nimbus-design-system/pull/80) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2023-02-01 `2.3.0`
 

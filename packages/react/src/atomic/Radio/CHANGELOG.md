@@ -6,7 +6,7 @@ Use radios when a user needs to select one option from a list.
 
 ### 🐛 Bug fixes
 
-- Fixed component rendering when there is no label to display. ([#79](https://github.com/TiendaNube/nimbus-design-system/pull/79) by [@juniorconquista](https://github.com/juniorconquista))
+- Fixed component rendering when there is no label to display. ([#80](https://github.com/TiendaNube/nimbus-design-system/pull/80) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2022-12-22 `2.0.0`
 

@@ -6,9 +6,9 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 #### 🎉 New features
 
-- Added new style pack for accordion component. [#79](https://github.com/TiendaNube/nimbus-design-system/pull/#79) by [@juniorconquista](https://github.com/juniorconquista))
-- Added overflow hidden property to card component. [#79](https://github.com/TiendaNube/nimbus-design-system/pull/#79) by [@juniorconquista](https://github.com/juniorconquista))
-- Added `pointerEvents` property in box sprinkle. ([#79](https://github.com/TiendaNube/nimbus-design-system/pull/79) by [@juniorconquista](https://github.com/juniorconquista))
+- Added new style pack for accordion component. [#80](https://github.com/TiendaNube/nimbus-design-system/pull/80) by [@juniorconquista](https://github.com/juniorconquista))
+- Added overflow hidden property to card component. [#80](https://github.com/TiendaNube/nimbus-design-system/pull/80) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `pointerEvents` property in box sprinkle. ([#80](https://github.com/TiendaNube/nimbus-design-system/pull/80) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2023-02-06 `6.5.0`
 
