@@ -8,7 +8,7 @@ const makeSut = (props?: AlertSkeletonProps) => {
   render(<AlertSkeleton {...props} data-testid="skeleton-element" />);
 };
 
-describe("GIVEN <Tag.Skeleton />", () => {
+describe("GIVEN <Alert.Skeleton />", () => {
   describe("WHEN rendered", () => {
     it("THEN should render skeleton base", () => {
       makeSut();

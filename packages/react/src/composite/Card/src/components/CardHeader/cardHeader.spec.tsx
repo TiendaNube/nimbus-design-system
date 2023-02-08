@@ -8,7 +8,7 @@ const makeSut = (props?: CardHeaderProps) => {
   render(<CardHeader {...props} data-testid="header-element" />);
 };
 
-describe("GIVEN <Header />", () => {
+describe("GIVEN <Card.Header />", () => {
   describe("WHEN rendered", () => {
     it("THEN should render the submitted title", () => {
       makeSut({ title: "My Title" });

@@ -8,7 +8,7 @@ const makeSut = (props: SidebarBodyProps) => {
   render(<SidebarBody {...props} data-testid="body-element" />);
 };
 
-describe("GIVEN <Body />", () => {
+describe("GIVEN <Sidebar.Body />", () => {
   describe("WHEN rendered", () => {
     it("THEN should render the submitted content", () => {
       makeSut({ children: "My content" });

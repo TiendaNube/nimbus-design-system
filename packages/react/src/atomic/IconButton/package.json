@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/icon-button",
-  "version": "3.1.0",
+  "version": "3.3.0",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
