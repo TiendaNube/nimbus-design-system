@@ -1,0 +1,10 @@
+releases:
+  "@nimbus-ds/accordion": major
+  "@nimbus-ds/components": minor
+  "@nimbus-ds/radio": patch
+  "@nimbus-ds/styles": minor
+
+declined:
+  - nimbus-design-system
+  - "@nimbus-ds/file-uploader"
+  - "@nimbus-ds/icon-button"
