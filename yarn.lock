@@ -2933,6 +2933,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@nimbus-ds/accordion@workspace:packages/react/src/composite/Accordion":
+  version: 0.0.0-use.local
+  resolution: "@nimbus-ds/accordion@workspace:packages/react/src/composite/Accordion"
+  dependencies:
+    "@nimbus-ds/box": "workspace:^"
+    "@nimbus-ds/button": "workspace:^"
+    "@nimbus-ds/stack": "workspace:^"
+    "@nimbus-ds/tag": "workspace:^"
+    "@nimbus-ds/text": "workspace:^"
+    webpack: ^5.74.0
+  peerDependencies:
+    "@nimbus-ds/title": "workspace:^"
+    react: ^16.8 || ^17.0 || ^18.0
+    react-dom: ^16.8 || ^17.0 || ^18.0
+  languageName: unknown
+  linkType: soft
+
 "@nimbus-ds/alert@workspace:packages/react/src/composite/Alert":
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/alert@workspace:packages/react/src/composite/Alert"

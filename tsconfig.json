@@ -68,6 +68,7 @@
       "@nimbus-ds/toast": ["./packages/react/src/atomic/Toast/src"],
       "@nimbus-ds/toggle": ["./packages/react/src/atomic/Toggle/src"],
       "@nimbus-ds/tooltip": ["./packages/react/src/atomic/Tooltip/src"],
+      "@nimbus-ds/accordion": ["./packages/react/src/composite/Accordion/src"],
       "@nimbus-ds/alert": ["./packages/react/src/composite/Alert/src"],
       "@nimbus-ds/card": ["./packages/react/src/composite/Card/src"],
       "@nimbus-ds/modal": ["./packages/react/src/composite/Modal/src"],
