@@ -43,10 +43,10 @@ export interface BoxSprinkle {
   paddingLeft?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
   paddingRight?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
   margin?: BoxMarginProperties | Conditions<BoxMarginProperties>;
-  marginTop?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
-  marginBottom?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
-  marginLeft?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
-  marginRight?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
+  marginTop?: BoxMarginProperties | Conditions<BoxMarginProperties>;
+  marginBottom?: BoxMarginProperties | Conditions<BoxMarginProperties>;
+  marginLeft?: BoxMarginProperties | Conditions<BoxMarginProperties>;
+  marginRight?: BoxMarginProperties | Conditions<BoxMarginProperties>;
   paddingX?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
   paddingY?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
   p?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
@@ -56,13 +56,13 @@ export interface BoxSprinkle {
   pb?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
   px?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
   py?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
-  marginX?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
-  marginY?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
+  marginX?: BoxMarginProperties | Conditions<BoxMarginProperties>;
+  marginY?: BoxMarginProperties | Conditions<BoxMarginProperties>;
   m?: BoxMarginProperties | Conditions<BoxMarginProperties>;
-  mr?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
-  ml?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
-  mt?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
-  mb?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
-  mx?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
-  my?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
+  mr?: BoxMarginProperties | Conditions<BoxMarginProperties>;
+  ml?: BoxMarginProperties | Conditions<BoxMarginProperties>;
+  mt?: BoxMarginProperties | Conditions<BoxMarginProperties>;
+  mb?: BoxMarginProperties | Conditions<BoxMarginProperties>;
+  mx?: BoxMarginProperties | Conditions<BoxMarginProperties>;
+  my?: BoxMarginProperties | Conditions<BoxMarginProperties>;
 }

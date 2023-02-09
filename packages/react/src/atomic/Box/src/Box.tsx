@@ -6,7 +6,12 @@ import { BoxProps } from "./box.types";
 
 const Box = forwardRef(
   (
-    { className: _className, style: _style, as: As = "div", ...rest }: BoxProps,
+    {
+      className: _className,
+      style: _style,
+      as: As = "div",
+      ...rest
+    }: BoxProps & { as: any },
     ref
   ) => {
     const { className, style, otherProps } = box.sprinkle(
