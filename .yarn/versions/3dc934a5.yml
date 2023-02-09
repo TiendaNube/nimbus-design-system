@@ -1,0 +1,17 @@
+releases:
+  "@nimbus-ds/box": minor
+  "@nimbus-ds/components": minor
+  "@nimbus-ds/styles": minor
+  "@nimbus-ds/typings": major
+
+declined:
+  - "@nimbus-ds/webpack"
+  - "@nimbus-ds/popover"
+  - "@nimbus-ds/stack"
+  - "@nimbus-ds/accordion"
+  - "@nimbus-ds/card"
+  - "@nimbus-ds/modal"
+  - "@nimbus-ds/sidebar"
+
+undecided:
+  - nimbus-design-system
