@@ -1,10 +1,10 @@
 releases:
   "@nimbus-ds/components": minor
   "@nimbus-ds/styles": minor
+  "@nimbus-ds/box": minor
 
 declined:
   - nimbus-design-system
-  - "@nimbus-ds/box"
   - "@nimbus-ds/popover"
   - "@nimbus-ds/tooltip"
   - "@nimbus-ds/accordion"
