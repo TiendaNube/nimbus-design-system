@@ -5,6 +5,12 @@ import {
   BoxSizing,
   Position,
   Overflow,
+  Display,
+  FlexWrap,
+  JustifyContent,
+  FlexDirection,
+  AlignItems,
+  PointerEvents,
 } from "../../../types";
 import { boxSprinkle } from "./box.sprinkle.css";
 
@@ -14,55 +20,79 @@ type BoxBorderColorProperties = keyof typeof propertiesBox.borderColor;
 type BoxBackgroundColorProperties = keyof typeof propertiesBox.backgroundColor;
 type BoxSpaceProperties = keyof typeof propertiesBox.space;
 type BoxMarginProperties = keyof typeof propertiesBox.margin;
+type BoxGapProperties = keyof typeof propertiesBox.gap;
+type BoxGridGapProperties = keyof typeof propertiesBox.gridGap;
+
+interface BoxConditions<T> extends Conditions<T> {
+  focus?: T;
+  active?: T;
+  hover?: T;
+}
 
 export interface BoxSprinkle {
-  width?: string | Conditions<string>;
-  height?: string | Conditions<string>;
-  maxWidth?: string | Conditions<string>;
-  maxHeight?: string | Conditions<string>;
-  bottom?: string | Conditions<string>;
-  left?: string | Conditions<string>;
-  right?: string | Conditions<string>;
-  top?: string | Conditions<string>;
-  position?: Position | Conditions<Position>;
-  overflow?: Overflow | Conditions<Overflow>;
-  overflowX?: Overflow | Conditions<Overflow>;
-  overflowY?: Overflow | Conditions<Overflow>;
-  cursor?: Cursor | Conditions<Cursor>;
+  width?: string | BoxConditions<string>;
+  height?: string | BoxConditions<string>;
+  maxWidth?: string | BoxConditions<string>;
+  maxHeight?: string | BoxConditions<string>;
+  bottom?: string | BoxConditions<string>;
+  left?: string | BoxConditions<string>;
+  right?: string | BoxConditions<string>;
+  top?: string | BoxConditions<string>;
+  flex?: string | BoxConditions<string>;
+  flexShrink?: string | BoxConditions<string>;
+  gridTemplateColumns?: string | BoxConditions<string>;
+  gridTemplateAreas?: string | BoxConditions<string>;
+  gridTemplateRows?: string | BoxConditions<string>;
+  gridArea?: string | BoxConditions<string>;
+  display?: Display | BoxConditions<Display>;
+  flexWrap?: FlexWrap | BoxConditions<FlexWrap>;
+  justifyContent?: JustifyContent | BoxConditions<JustifyContent>;
+  flexDirection?: FlexDirection | BoxConditions<FlexDirection>;
+  alignItems?: AlignItems | BoxConditions<AlignItems>;
+  gap?: BoxGapProperties | BoxConditions<BoxGapProperties>;
+  gridGap?: BoxGridGapProperties | BoxConditions<BoxGridGapProperties>;
+  pointerEvents?: PointerEvents | BoxConditions<PointerEvents>;
+  position?: Position | BoxConditions<Position>;
+  overflow?: Overflow | BoxConditions<Overflow>;
+  overflowX?: Overflow | BoxConditions<Overflow>;
+  overflowY?: Overflow | BoxConditions<Overflow>;
+  cursor?: Cursor | BoxConditions<Cursor>;
   backgroundColor?:
     | BoxBackgroundColorProperties
-    | Conditions<BoxBackgroundColorProperties>;
-  borderRadius?: string | Conditions<string>;
-  borderWidth?: string | Conditions<string>;
-  borderColor?: BoxBorderColorProperties | Conditions<BoxBorderColorProperties>;
-  borderStyle?: BorderStyle | Conditions<BorderStyle>;
-  boxSizing?: BoxSizing | Conditions<BoxSizing>;
-  padding?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
-  paddingTop?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
-  paddingBottom?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
-  paddingLeft?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
-  paddingRight?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
-  margin?: BoxMarginProperties | Conditions<BoxMarginProperties>;
-  marginTop?: BoxMarginProperties | Conditions<BoxMarginProperties>;
-  marginBottom?: BoxMarginProperties | Conditions<BoxMarginProperties>;
-  marginLeft?: BoxMarginProperties | Conditions<BoxMarginProperties>;
-  marginRight?: BoxMarginProperties | Conditions<BoxMarginProperties>;
-  paddingX?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
-  paddingY?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
-  p?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
-  pl?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
-  pr?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
-  pt?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
-  pb?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
-  px?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
-  py?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
-  marginX?: BoxMarginProperties | Conditions<BoxMarginProperties>;
-  marginY?: BoxMarginProperties | Conditions<BoxMarginProperties>;
-  m?: BoxMarginProperties | Conditions<BoxMarginProperties>;
-  mr?: BoxMarginProperties | Conditions<BoxMarginProperties>;
-  ml?: BoxMarginProperties | Conditions<BoxMarginProperties>;
-  mt?: BoxMarginProperties | Conditions<BoxMarginProperties>;
-  mb?: BoxMarginProperties | Conditions<BoxMarginProperties>;
-  mx?: BoxMarginProperties | Conditions<BoxMarginProperties>;
-  my?: BoxMarginProperties | Conditions<BoxMarginProperties>;
+    | BoxConditions<BoxBackgroundColorProperties>;
+  borderRadius?: string | BoxConditions<string>;
+  borderWidth?: string | BoxConditions<string>;
+  borderColor?:
+    | BoxBorderColorProperties
+    | BoxConditions<BoxBorderColorProperties>;
+  borderStyle?: BorderStyle | BoxConditions<BorderStyle>;
+  boxSizing?: BoxSizing | BoxConditions<BoxSizing>;
+  padding?: BoxSpaceProperties | BoxConditions<BoxSpaceProperties>;
+  paddingTop?: BoxSpaceProperties | BoxConditions<BoxSpaceProperties>;
+  paddingBottom?: BoxSpaceProperties | BoxConditions<BoxSpaceProperties>;
+  paddingLeft?: BoxSpaceProperties | BoxConditions<BoxSpaceProperties>;
+  paddingRight?: BoxSpaceProperties | BoxConditions<BoxSpaceProperties>;
+  margin?: BoxMarginProperties | BoxConditions<BoxMarginProperties>;
+  marginTop?: BoxMarginProperties | BoxConditions<BoxMarginProperties>;
+  marginBottom?: BoxMarginProperties | BoxConditions<BoxMarginProperties>;
+  marginLeft?: BoxMarginProperties | BoxConditions<BoxMarginProperties>;
+  marginRight?: BoxMarginProperties | BoxConditions<BoxMarginProperties>;
+  paddingX?: BoxSpaceProperties | BoxConditions<BoxSpaceProperties>;
+  paddingY?: BoxSpaceProperties | BoxConditions<BoxSpaceProperties>;
+  p?: BoxSpaceProperties | BoxConditions<BoxSpaceProperties>;
+  pl?: BoxSpaceProperties | BoxConditions<BoxSpaceProperties>;
+  pr?: BoxSpaceProperties | BoxConditions<BoxSpaceProperties>;
+  pt?: BoxSpaceProperties | BoxConditions<BoxSpaceProperties>;
+  pb?: BoxSpaceProperties | BoxConditions<BoxSpaceProperties>;
+  px?: BoxSpaceProperties | BoxConditions<BoxSpaceProperties>;
+  py?: BoxSpaceProperties | BoxConditions<BoxSpaceProperties>;
+  marginX?: BoxMarginProperties | BoxConditions<BoxMarginProperties>;
+  marginY?: BoxMarginProperties | BoxConditions<BoxMarginProperties>;
+  m?: BoxMarginProperties | BoxConditions<BoxMarginProperties>;
+  mr?: BoxMarginProperties | BoxConditions<BoxMarginProperties>;
+  ml?: BoxMarginProperties | BoxConditions<BoxMarginProperties>;
+  mt?: BoxMarginProperties | BoxConditions<BoxMarginProperties>;
+  mb?: BoxMarginProperties | BoxConditions<BoxMarginProperties>;
+  mx?: BoxMarginProperties | BoxConditions<BoxMarginProperties>;
+  my?: BoxMarginProperties | BoxConditions<BoxMarginProperties>;
 }

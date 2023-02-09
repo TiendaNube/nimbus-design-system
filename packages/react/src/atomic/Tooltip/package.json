@@ -29,7 +29,6 @@
     "url": "https://github.com/TiendaNube/nimbus-design-system/issues"
   },
   "devDependencies": {
-    "@nimbus-ds/stack": "workspace:^",
     "@vanilla-extract/dynamic": "^2.0.2",
     "webpack": "^5.74.0"
   }

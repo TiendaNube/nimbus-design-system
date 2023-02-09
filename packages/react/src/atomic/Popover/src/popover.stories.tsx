@@ -2,7 +2,7 @@ import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { withA11y } from "@storybook/addon-a11y";
 import { Text } from "@nimbus-ds/text";
-import { Stack } from "@nimbus-ds/stack";
+import { Box } from "@nimbus-ds/box";
 
 import { Popover } from "./Popover";
 
@@ -19,11 +19,11 @@ export default {
 } as ComponentMeta<typeof Popover>;
 
 const Template: ComponentStory<typeof Popover> = (args) => (
-  <Stack display="flex" justifyContent="center">
+  <Box display="flex" justifyContent="center">
     <Popover {...args} onVisibility={undefined}>
       <Text>Click-Hover</Text>
     </Popover>
-  </Stack>
+  </Box>
 );
 
 export const base = Template.bind({});

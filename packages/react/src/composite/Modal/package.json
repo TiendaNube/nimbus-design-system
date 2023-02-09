@@ -33,7 +33,6 @@
   "devDependencies": {
     "@nimbus-ds/box": "workspace:^",
     "@nimbus-ds/button": "workspace:^",
-    "@nimbus-ds/stack": "workspace:^",
     "@nimbus-ds/text": "workspace:^",
     "@nimbus-ds/title": "workspace:^",
     "webpack": "^5.74.0"

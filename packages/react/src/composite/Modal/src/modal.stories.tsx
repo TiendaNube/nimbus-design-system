@@ -7,7 +7,6 @@ import { modal } from "@nimbus-ds/styles";
 import { Text } from "@nimbus-ds/text";
 import { Button } from "@nimbus-ds/button";
 import { Box } from "@nimbus-ds/box";
-import { Stack } from "@nimbus-ds/stack";
 import { Title } from "@nimbus-ds/title";
 
 import { Modal } from "./Modal";
@@ -120,14 +119,14 @@ skeleton.args = {
   children: (
     <>
       <Modal.Header>
-        <Stack
+        <Box
           display="flex"
           justifyContent="space-between"
           alignItems="center"
           gap="4"
         >
           <Title.Skeleton as="h3" width="80%" />
-        </Stack>
+        </Box>
       </Modal.Header>
       <Modal.Body>
         <Text.Skeleton width="100%" />

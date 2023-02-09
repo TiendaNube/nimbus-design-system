@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2023-02-09 `6.8.0`
+
+#### 🎉 New features
+
+- Added properties present in the `@nimbus-ds/stack` package sprinkle to the component because `Stack` has been deprecated. ([#83](https://github.com/TiendaNube/nimbus-design-system/pull/83) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-02-08 `6.7.0`
 
 #### 🎉 New features

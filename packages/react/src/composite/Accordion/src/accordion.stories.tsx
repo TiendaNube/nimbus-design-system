@@ -6,7 +6,6 @@ import { TiendanubeIcon, UserGroupIcon } from "@tiendanube/icons";
 import { Text } from "@nimbus-ds/text";
 import { Icon } from "@nimbus-ds/icon";
 import { Box } from "@nimbus-ds/box";
-import { Stack } from "@nimbus-ds/stack";
 import { Card } from "@nimbus-ds/card";
 import { Title } from "@nimbus-ds/title";
 import { Radio } from "@nimbus-ds/radio";
@@ -251,7 +250,7 @@ withoutIconToogle.args = {
       <Accordion.Item index="0">
         <Accordion.Header noIconToggle borderTop="none">
           {({ selected }) => (
-            <Stack
+            <Box
               width="100%"
               display="flex"
               justifyContent="space-between"
@@ -259,7 +258,7 @@ withoutIconToogle.args = {
             >
               <Title as="h5">Lorem Ipsum one</Title>
               <Radio name="accordion-radio-0" checked={selected === "0"} />
-            </Stack>
+            </Box>
           )}
         </Accordion.Header>
         <Accordion.Body>
@@ -279,7 +278,7 @@ withoutIconToogle.args = {
       <Accordion.Item index="1">
         <Accordion.Header noIconToggle>
           {({ selected }) => (
-            <Stack
+            <Box
               width="100%"
               display="flex"
               justifyContent="space-between"
@@ -287,7 +286,7 @@ withoutIconToogle.args = {
             >
               <Title as="h5">Lorem Ipsum two</Title>
               <Radio name="accordion-radio-0" checked={selected === "1"} />
-            </Stack>
+            </Box>
           )}
         </Accordion.Header>
         <Accordion.Body>

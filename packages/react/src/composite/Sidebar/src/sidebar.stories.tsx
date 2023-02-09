@@ -6,7 +6,6 @@ import { useArgs } from "@storybook/client-api";
 import { Box } from "@nimbus-ds/box";
 import { Button } from "@nimbus-ds/button";
 import { Text } from "@nimbus-ds/text";
-import { Stack } from "@nimbus-ds/stack";
 
 import { Sidebar } from "./Sidebar";
 
@@ -41,23 +40,19 @@ export const base = Template.bind({});
 base.args = {
   children: (
     <Box
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      height="100%"
       borderStyle="dashed"
       padding="2"
       borderWidth="1px"
       borderColor="neutral.interactive"
-      height="100%"
       boxSizing="border-box"
     >
-      <Stack
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        height="100%"
-      >
-        <Text textAlign="center" fontSize="base">
-          Replace me with your content
-        </Text>
-      </Stack>
+      <Text textAlign="center" fontSize="base">
+        Replace me with your content
+      </Text>
     </Box>
   ),
 };
@@ -67,23 +62,19 @@ withPadding.args = {
   padding: "base",
   children: (
     <Box
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      height="100%"
       borderStyle="dashed"
       padding="2"
       borderWidth="1px"
       borderColor="neutral.interactive"
-      height="100%"
       boxSizing="border-box"
     >
-      <Stack
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        height="100%"
-      >
-        <Text textAlign="center" fontSize="base">
-          Replace me with your content
-        </Text>
-      </Stack>
+      <Text textAlign="center" fontSize="base">
+        Replace me with your content
+      </Text>
     </Box>
   ),
 };
@@ -95,44 +86,36 @@ withHeader.args = {
     <>
       <Sidebar.Header>
         <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          height="100%"
           borderStyle="dashed"
           padding="2"
           borderWidth="1px"
           borderColor="neutral.interactive"
-          height="100%"
           boxSizing="border-box"
         >
-          <Stack
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            height="100%"
-          >
-            <Text textAlign="center" fontSize="base">
-              Header
-            </Text>
-          </Stack>
+          <Text textAlign="center" fontSize="base">
+            Header
+          </Text>
         </Box>
       </Sidebar.Header>
       <Sidebar.Body>
         <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          height="100%"
           borderStyle="dashed"
           padding="2"
           borderWidth="1px"
           borderColor="neutral.interactive"
-          height="100%"
           boxSizing="border-box"
         >
-          <Stack
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            height="100%"
-          >
-            <Text textAlign="center" fontSize="base">
-              Body
-            </Text>
-          </Stack>
+          <Text textAlign="center" fontSize="base">
+            Body
+          </Text>
         </Box>
       </Sidebar.Body>
     </>
@@ -146,23 +129,19 @@ withHeaderAndTitle.args = {
     <>
       <Sidebar.Header title="Title" />
       <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        height="100%"
         borderStyle="dashed"
         padding="2"
         borderWidth="1px"
         borderColor="neutral.interactive"
-        height="100%"
         boxSizing="border-box"
       >
-        <Stack
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          height="100%"
-        >
-          <Text textAlign="center" fontSize="base">
-            Replace me with your content
-          </Text>
-        </Stack>
+        <Text textAlign="center" fontSize="base">
+          Replace me with your content
+        </Text>
       </Box>
     </>
   ),
@@ -175,66 +154,54 @@ withFooter.args = {
     <>
       <Sidebar.Header>
         <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          height="100%"
           borderStyle="dashed"
           padding="2"
           borderWidth="1px"
           borderColor="neutral.interactive"
-          height="100%"
           boxSizing="border-box"
         >
-          <Stack
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            height="100%"
-          >
-            <Text textAlign="center" fontSize="base">
-              Header
-            </Text>
-          </Stack>
+          <Text textAlign="center" fontSize="base">
+            Header
+          </Text>
         </Box>
       </Sidebar.Header>
       <Sidebar.Body>
         <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          height="100%"
           borderStyle="dashed"
           padding="2"
           borderWidth="1px"
           borderColor="neutral.interactive"
-          height="100%"
           boxSizing="border-box"
         >
-          <Stack
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            height="100%"
-          >
-            <Text textAlign="center" fontSize="base">
-              Body
-            </Text>
-          </Stack>
+          <Text textAlign="center" fontSize="base">
+            Body
+          </Text>
         </Box>
       </Sidebar.Body>
       <Sidebar.Footer>
         <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          height="100%"
           borderStyle="dashed"
           padding="2"
           borderWidth="1px"
           borderColor="neutral.interactive"
-          height="100%"
           width="100%"
           boxSizing="border-box"
         >
-          <Stack
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            height="100%"
-          >
-            <Text textAlign="center" fontSize="base">
-              Footer
-            </Text>
-          </Stack>
+          <Text textAlign="center" fontSize="base">
+            Footer
+          </Text>
         </Box>
       </Sidebar.Footer>
     </>

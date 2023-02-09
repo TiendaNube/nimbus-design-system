@@ -16,7 +16,6 @@ export * from "@nimbus-ds/radio";
 export * from "@nimbus-ds/select";
 export * from "@nimbus-ds/skeleton";
 export * from "@nimbus-ds/spinner";
-export * from "@nimbus-ds/stack";
 export * from "@nimbus-ds/tag";
 export * from "@nimbus-ds/text";
 export * from "@nimbus-ds/textarea";

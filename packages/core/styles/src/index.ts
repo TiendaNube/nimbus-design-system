@@ -22,7 +22,6 @@ export { radio } from "./packages/atomic/radio";
 export { select } from "./packages/atomic/select";
 export { skeleton } from "./packages/atomic/skeleton";
 export { spinner } from "./packages/atomic/spinner";
-export { stack } from "./packages/atomic/stack";
 export { toggle } from "./packages/atomic/toggle";
 export { link } from "./packages/atomic/link";
 export { tooltip } from "./packages/atomic/tooltip";
@@ -40,7 +39,6 @@ export { table } from "./packages/composite/table";
 
 export type { BoxSprinkle } from "./packages/atomic/box";
 export type { IconButtonSprinkle } from "./packages/atomic/iconButton";
-export type { StackSprinkle } from "./packages/atomic/stack";
 export type { ModalSprinkle } from "./packages/composite/modal";
 export type { SidebarSprinkle } from "./packages/composite/sidebar";
 export type { TableSprinkle } from "./packages/composite/table";

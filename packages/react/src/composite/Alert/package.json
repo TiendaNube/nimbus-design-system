@@ -31,6 +31,7 @@
     "url": "https://github.com/TiendaNube/nimbus-design-system/issues"
   },
   "devDependencies": {
+    "@nimbus-ds/box": "workspace:^",
     "@nimbus-ds/button": "workspace:^",
     "webpack": "^5.74.0"
   }

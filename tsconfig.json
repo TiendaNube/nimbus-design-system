@@ -60,7 +60,6 @@
       "@nimbus-ds/select": ["./packages/react/src/atomic/Select/src"],
       "@nimbus-ds/skeleton": ["./packages/react/src/atomic/Skeleton/src"],
       "@nimbus-ds/spinner": ["./packages/react/src/atomic/Spinner/src"],
-      "@nimbus-ds/stack": ["./packages/react/src/atomic/Stack/src"],
       "@nimbus-ds/tag": ["./packages/react/src/atomic/Tag/src"],
       "@nimbus-ds/text": ["./packages/react/src/atomic/Text/src"],
       "@nimbus-ds/textarea": ["./packages/react/src/atomic/Textarea/src"],

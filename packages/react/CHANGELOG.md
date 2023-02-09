@@ -2,6 +2,16 @@
 
 This package is intended for internal use in generating builds of each design system package. It contains all the necessary settings and dependencies to optimize the creation of our builds.
 
+## 2023-02-09 `2.3.0`
+
+### 🎉 New features
+
+- Added properties present in the `@nimbus-ds/stack` package to the box component package. ([#83](https://github.com/TiendaNube/nimbus-design-system/pull/83) by [@juniorconquista](https://github.com/juniorconquista))
+
+### 💡 Others
+
+- Deprecated package `@nimbus-ds/stack`. ([#83](https://github.com/TiendaNube/nimbus-design-system/pull/83) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-02-08 `2.2.0`
 
 ### 🎉 New features

@@ -2,7 +2,7 @@ import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { withA11y } from "@storybook/addon-a11y";
 
-import { Stack } from "@nimbus-ds/stack";
+import { Box } from "@nimbus-ds/box";
 import { Button } from "@nimbus-ds/button";
 
 import { Alert } from "./Alert";
@@ -69,10 +69,10 @@ variableContent.args = {
   children: (
     <>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eget.
-      <Stack display="flex" gap="2" flexWrap="wrap">
+      <Box display="flex" gap="2" flexWrap="wrap">
         <Button>Primary action</Button>
         <Button>Secondary action</Button>
-      </Stack>
+      </Box>
     </>
   ),
 };
