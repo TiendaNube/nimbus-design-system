@@ -30,7 +30,6 @@
   },
   "devDependencies": {
     "@nimbus-ds/box": "workspace:^",
-    "@nimbus-ds/stack": "workspace:^",
     "@vanilla-extract/dynamic": "^2.0.2",
     "webpack": "^5.74.0"
   }

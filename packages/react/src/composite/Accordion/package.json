@@ -35,7 +35,6 @@
     "@nimbus-ds/box": "workspace:^",
     "@nimbus-ds/card": "workspace:^",
     "@nimbus-ds/radio": "workspace:^",
-    "@nimbus-ds/stack": "workspace:^",
     "webpack": "^5.74.0"
   }
 }

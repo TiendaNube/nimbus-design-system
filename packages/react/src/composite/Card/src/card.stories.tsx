@@ -7,7 +7,6 @@ import { Tag } from "@nimbus-ds/tag";
 import { Text } from "@nimbus-ds/text";
 import { Button } from "@nimbus-ds/button";
 import { Box } from "@nimbus-ds/box";
-import { Stack } from "@nimbus-ds/stack";
 
 import { Card } from "./Card";
 
@@ -37,14 +36,10 @@ base.args = {
   children: (
     <>
       <Card.Header>
-        <Stack
-          display="flex"
-          justifyContent="space-between"
-          alignItems="center"
-        >
+        <Box display="flex" justifyContent="space-between" alignItems="center">
           <Title as="h3">Title</Title>
           <Tag appearance="primary">Text</Tag>
-        </Stack>
+        </Box>
       </Card.Header>
       <Card.Body>
         <Text textAlign="left" fontSize="base" lineHeight="base">
@@ -120,7 +115,7 @@ skeleton.args = {
   children: (
     <>
       <Card.Header>
-        <Stack
+        <Box
           display="flex"
           justifyContent="space-between"
           alignItems="center"
@@ -128,7 +123,7 @@ skeleton.args = {
         >
           <Title.Skeleton as="h3" width="100%" />
           <Tag.Skeleton />
-        </Stack>
+        </Box>
       </Card.Header>
       <Card.Body>
         <Text.Skeleton width="100%" />

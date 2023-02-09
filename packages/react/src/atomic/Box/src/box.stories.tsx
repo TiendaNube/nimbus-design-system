@@ -33,6 +33,13 @@ export default {
     overflow: { options: box.properties.overflow },
     overflowX: { options: box.properties.overflowX },
     overflowY: { options: box.properties.overflowY },
+    display: { options: box.properties.display },
+    flexDirection: { options: box.properties.flexDirection },
+    flexWrap: { options: box.properties.flexWrap },
+    justifyContent: { options: box.properties.justifyContent },
+    alignItems: { options: box.properties.alignItems },
+    gridGap: { options: Object.keys(box.properties.gridGap) },
+    gap: { options: Object.keys(box.properties.gap) },
   },
   parameters: {
     withA11y: { decorators: [withA11y] },

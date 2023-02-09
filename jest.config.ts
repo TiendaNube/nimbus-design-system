@@ -27,7 +27,6 @@ const config: Config.InitialOptions = {
     "@nimbus-ds/select": "<rootDir>/packages/react/src/atomic/Select/src",
     "@nimbus-ds/skeleton": "<rootDir>/packages/react/src/atomic/Skeleton/src",
     "@nimbus-ds/spinner": "<rootDir>/packages/react/src/atomic/Spinner/src",
-    "@nimbus-ds/stack": "<rootDir>/packages/react/src/atomic/Stack/src",
     "@nimbus-ds/tag": "<rootDir>/packages/react/src/atomic/Tag/src",
     "@nimbus-ds/text": "<rootDir>/packages/react/src/atomic/Text/src",
     "@nimbus-ds/textarea": "<rootDir>/packages/react/src/atomic/Textarea/src",
