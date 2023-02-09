@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - "!dependabot/**"
     paths-ignore:
       - "**/package.json"
       - ".yarn/versions/**"
@@ -11,7 +12,6 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    if: ${{ github.actor != 'dependabot[bot]' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
