@@ -1,9 +1,11 @@
-import { HTMLAttributes, ReactNode } from "react";
+import { ReactNode, CSSProperties } from "react";
 import { BoxSprinkle } from "@nimbus-ds/styles";
 
-type BoxExtends = BoxSprinkle & HTMLAttributes<HTMLDivElement>;
-
-export interface BoxProps extends BoxExtends {
+export interface BoxProps extends BoxSprinkle {
+  className?: string;
+  style?: CSSProperties;
   /** Element to be rendered inside the Box component */
   children?: ReactNode;
+  /** The underlying element to render — either a HTML element name or a React component.  */
+  as?: any;
 }
