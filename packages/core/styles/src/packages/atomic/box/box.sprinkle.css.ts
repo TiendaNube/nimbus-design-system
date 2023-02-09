@@ -85,6 +85,11 @@ const boxSpaceProperties = {
   "20": varsThemeBase.spacing[20],
 };
 
+const marginProperties = {
+  auto: "auto",
+  ...boxSpaceProperties,
+};
+
 const defineProperties = defineRainbowProperties({
   conditions: {
     xs: {
@@ -112,7 +117,7 @@ const defineProperties = defineRainbowProperties({
     paddingBottom: boxSpaceProperties,
     paddingLeft: boxSpaceProperties,
     paddingRight: boxSpaceProperties,
-    margin: boxSpaceProperties,
+    margin: marginProperties,
     marginTop: boxSpaceProperties,
     marginBottom: boxSpaceProperties,
     marginLeft: boxSpaceProperties,
@@ -162,6 +167,7 @@ const properties = {
   boxSizing: boxSizingProperties,
   cursor: cursorProperties,
   space: boxSpaceProperties,
+  margin: marginProperties,
   position: positionProperties,
   overflow: overflowProperties,
   overflowX: overflowProperties,

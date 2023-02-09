@@ -13,6 +13,7 @@ const { properties: propertiesBox } = boxSprinkle;
 type BoxBorderColorProperties = keyof typeof propertiesBox.borderColor;
 type BoxBackgroundColorProperties = keyof typeof propertiesBox.backgroundColor;
 type BoxSpaceProperties = keyof typeof propertiesBox.space;
+type BoxMarginProperties = keyof typeof propertiesBox.margin;
 
 export interface BoxSprinkle {
   width?: string | Conditions<string>;
@@ -41,7 +42,7 @@ export interface BoxSprinkle {
   paddingBottom?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
   paddingLeft?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
   paddingRight?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
-  margin?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
+  margin?: BoxMarginProperties | Conditions<BoxMarginProperties>;
   marginTop?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
   marginBottom?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
   marginLeft?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
@@ -57,7 +58,7 @@ export interface BoxSprinkle {
   py?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
   marginX?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
   marginY?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
-  m?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
+  m?: BoxMarginProperties | Conditions<BoxMarginProperties>;
   mr?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
   ml?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
   mt?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;

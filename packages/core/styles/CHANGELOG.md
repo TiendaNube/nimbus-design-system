@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2023-02-08 `6.7.0`
+
+#### 🎉 New features
+
+- Added `auto` margin properties from sprinkle box. ([#81](https://github.com/TiendaNube/nimbus-design-system/pull/81) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-02-07 `6.6.0`
 
 #### 🎉 New features
