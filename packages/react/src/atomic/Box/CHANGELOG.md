@@ -2,6 +2,12 @@
 
 A low-level utility component that accepts styled system props to enable custom theme-aware styling
 
+## 2023-02-09 `2.2.0`
+
+### 🎉 New features
+
+- Added properties present in the `@nimbus-ds/stack` package to the component because `Stack` has been deprecated. ([#83](https://github.com/TiendaNube/nimbus-design-system/pull/83) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-02-08 `2.2.0`
 
 ### 🎉 New features
