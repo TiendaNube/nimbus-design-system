@@ -5,7 +5,7 @@
  * @see https://github.com/radix-ui/primitives/blob/17ffcb7aaa42cbd36b3c210ba86d7d73d218e5be/packages/react/polymorphic/src/polymorphic.ts
  */
 
-import * as React from "react";
+import React from "react";
 
 /* -------------------------------------------------------------------------------------------------
  * Utility types
