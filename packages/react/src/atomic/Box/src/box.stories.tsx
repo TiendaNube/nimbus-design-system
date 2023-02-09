@@ -4,12 +4,26 @@ import { withA11y } from "@storybook/addon-a11y";
 import { box } from "@nimbus-ds/styles";
 
 import { Box } from "./Box";
+import { BoxProps } from "./box.types";
+
+export const Base: React.FC<BoxProps> = (props) => <Box {...props} />;
 
 export default {
   title: "Atomic/Box",
-  component: Box,
+  component: Base,
   argTypes: {
     children: { control: { disable: true } },
+    as: {
+      control: { disable: true },
+      defaultValue: "div",
+      description:
+        "The underlying element to render — either a HTML element name or a React component.",
+    },
+    ref: {
+      control: { disable: true },
+      description:
+        "A ref to the element rendered by this component. Because this component is polymorphic, the type will vary based on the value of the as prop.",
+    },
     backgroundColor: { options: Object.keys(box.properties.backgroundColor) },
     borderColor: { options: Object.keys(box.properties.borderColor) },
     borderStyle: { options: box.properties.borderStyle },
@@ -23,9 +37,9 @@ export default {
   parameters: {
     withA11y: { decorators: [withA11y] },
   },
-} as ComponentMeta<typeof Box>;
+} as ComponentMeta<typeof Base>;
 
-const Template: ComponentStory<typeof Box> = (args) => <Box {...args} />;
+const Template: ComponentStory<typeof Base> = (args) => <Box {...args} />;
 
 export const base = Template.bind({});
 base.args = {

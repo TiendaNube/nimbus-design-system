@@ -13,6 +13,7 @@ const { properties: propertiesBox } = boxSprinkle;
 type BoxBorderColorProperties = keyof typeof propertiesBox.borderColor;
 type BoxBackgroundColorProperties = keyof typeof propertiesBox.backgroundColor;
 type BoxSpaceProperties = keyof typeof propertiesBox.space;
+type BoxMarginProperties = keyof typeof propertiesBox.margin;
 
 export interface BoxSprinkle {
   width?: string | Conditions<string>;
@@ -41,11 +42,11 @@ export interface BoxSprinkle {
   paddingBottom?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
   paddingLeft?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
   paddingRight?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
-  margin?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
-  marginTop?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
-  marginBottom?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
-  marginLeft?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
-  marginRight?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
+  margin?: BoxMarginProperties | Conditions<BoxMarginProperties>;
+  marginTop?: BoxMarginProperties | Conditions<BoxMarginProperties>;
+  marginBottom?: BoxMarginProperties | Conditions<BoxMarginProperties>;
+  marginLeft?: BoxMarginProperties | Conditions<BoxMarginProperties>;
+  marginRight?: BoxMarginProperties | Conditions<BoxMarginProperties>;
   paddingX?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
   paddingY?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
   p?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
@@ -55,13 +56,13 @@ export interface BoxSprinkle {
   pb?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
   px?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
   py?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
-  marginX?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
-  marginY?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
-  m?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
-  mr?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
-  ml?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
-  mt?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
-  mb?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
-  mx?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
-  my?: BoxSpaceProperties | Conditions<BoxSpaceProperties>;
+  marginX?: BoxMarginProperties | Conditions<BoxMarginProperties>;
+  marginY?: BoxMarginProperties | Conditions<BoxMarginProperties>;
+  m?: BoxMarginProperties | Conditions<BoxMarginProperties>;
+  mr?: BoxMarginProperties | Conditions<BoxMarginProperties>;
+  ml?: BoxMarginProperties | Conditions<BoxMarginProperties>;
+  mt?: BoxMarginProperties | Conditions<BoxMarginProperties>;
+  mb?: BoxMarginProperties | Conditions<BoxMarginProperties>;
+  mx?: BoxMarginProperties | Conditions<BoxMarginProperties>;
+  my?: BoxMarginProperties | Conditions<BoxMarginProperties>;
 }

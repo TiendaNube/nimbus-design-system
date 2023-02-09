@@ -2,3 +2,4 @@ dist
 webpack.config.ts
 alias.ts
 index.d.ts
+packages/core/typings

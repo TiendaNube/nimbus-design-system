@@ -2,6 +2,14 @@
 
 A low-level utility component that accepts styled system props to enable custom theme-aware styling
 
+## 2023-02-08 `2.2.0`
+
+### 🎉 New features
+
+- Added polymorphic typing support to component. ([#81](https://github.com/TiendaNube/nimbus-design-system/pull/81) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `as` property to the Component. ([#81](https://github.com/TiendaNube/nimbus-design-system/pull/81) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `auto` margin properties to the Component. ([#81](https://github.com/TiendaNube/nimbus-design-system/pull/81) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-01-31 `2.1.0`
 
 ### 🎉 New features

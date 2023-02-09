@@ -3444,6 +3444,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@nimbus-ds/typings@workspace:packages/core/typings":
+  version: 0.0.0-use.local
+  resolution: "@nimbus-ds/typings@workspace:packages/core/typings"
+  languageName: unknown
+  linkType: soft
+
 "@nimbus-ds/webpack@workspace:^, @nimbus-ds/webpack@workspace:packages/core/webpack":
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/webpack@workspace:packages/core/webpack"
