@@ -5,6 +5,7 @@ releases:
   "@nimbus-ds/typings": major
 
 declined:
+  - nimbus-design-system
   - "@nimbus-ds/webpack"
   - "@nimbus-ds/popover"
   - "@nimbus-ds/stack"
@@ -12,6 +13,3 @@ declined:
   - "@nimbus-ds/card"
   - "@nimbus-ds/modal"
   - "@nimbus-ds/sidebar"
-
-undecided:
-  - nimbus-design-system
