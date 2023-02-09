@@ -57,6 +57,7 @@ const boxBackgroundColorProperties = {
   "neutral.surfaceDisabled":
     backgroundColorProperties["neutral.surfaceDisabled"],
   "neutral.textLow": backgroundColorProperties["neutral.textLow"],
+  transparent: "transparent",
 };
 
 const boxBorderColorProperties = {
@@ -79,6 +80,7 @@ const boxBorderColorProperties = {
   "neutral.interactive": borderColorProperties["neutral.interactive"],
   "neutral.surface": borderColorProperties["neutral.surface"],
   "neutral.surfaceHighlight": borderColorProperties["neutral.surfaceHighlight"],
+  transparent: "transparent",
 };
 
 const boxSpaceProperties = {
