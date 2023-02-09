@@ -2,6 +2,14 @@
 
 This package is intended for internal use in generating builds of each design system package. It contains all the necessary settings and dependencies to optimize the creation of our builds.
 
+## 2023-02-08 `2.2.0`
+
+### 🎉 New features
+
+- Added polymorphic typing support to component `Box`. ([#81](https://github.com/TiendaNube/nimbus-design-system/pull/81) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `as` property to the Component `Box`. ([#81](https://github.com/TiendaNube/nimbus-design-system/pull/81) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `auto` margin properties to the Component `Box`. ([#81](https://github.com/TiendaNube/nimbus-design-system/pull/81) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-02-07 `2.4.0`
 
 ### 🎉 New features
