@@ -37,6 +37,7 @@
     "typeRoots": ["./node_modules/@types", "./types"],
     "paths": {
       "@nimbus-ds/tokens": ["./packages/core/tokens/dist"],
+      "@nimbus-ds/typings": ["./packages/core/typings/src"],
       "@nimbus-ds/styles": ["./packages/core/styles/src"],
       "@nimbus-ds/webpack": ["./packages/core/webpack/src"],
       "@nimbus-ds/components": ["./packages/react/src"],

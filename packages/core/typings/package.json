@@ -1,0 +1,19 @@
+{
+  "name": "@nimbus-ds/typings",
+  "version": "0.0.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "sideEffects": false,
+  "homepage": "https://nimbus.nuvemshop.com.br/documentation",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TiendaNube/nimbus-design-system.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TiendaNube/nimbus-design-system/issues"
+  }
+}
