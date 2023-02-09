@@ -18,6 +18,9 @@ import {
   flexWrapProperties,
   alignItemsProperties,
   pointerEventsProperties,
+  boxShadowProperties,
+  transitionSpeedProperties,
+  transitionTimingProperties,
 } from "../../../properties";
 import { varsThemeBase, mediaQueries } from "../../../themes";
 
@@ -51,6 +54,8 @@ const boxBackgroundColorProperties = {
   "neutral.surface": backgroundColorProperties["neutral.surface"],
   "neutral.surfaceHighlight":
     backgroundColorProperties["neutral.surfaceHighlight"],
+  "neutral.surfaceDisabled":
+    backgroundColorProperties["neutral.surfaceDisabled"],
   "neutral.textLow": backgroundColorProperties["neutral.textLow"],
 };
 
@@ -112,6 +117,7 @@ const defineProperties = defineRainbowProperties({
     active: { selector: "&:active" },
     hover: { selector: "&:hover" },
     focus: { selector: "&:focus" },
+    disabled: { selector: "&:disabled" },
   },
   defaultCondition: "xs",
   dynamicProperties: {
@@ -131,8 +137,12 @@ const defineProperties = defineRainbowProperties({
     flexShrink: true,
     borderRadius: true,
     borderWidth: true,
+    transitionDelay: true,
+    transitionProperty: true,
+    transitionDuration: transitionSpeedProperties,
     backgroundColor: boxBackgroundColorProperties,
     borderColor: boxBorderColorProperties,
+    boxShadow: boxShadowProperties,
     padding: boxSpaceProperties,
     paddingTop: boxSpaceProperties,
     paddingBottom: boxSpaceProperties,
@@ -160,6 +170,7 @@ const defineProperties = defineRainbowProperties({
     overflow: overflowProperties,
     overflowX: overflowProperties,
     overflowY: overflowProperties,
+    transitionTimingFunction: transitionTimingProperties,
   },
   shorthands: {
     padding: ["paddingTop", "paddingBottom", "paddingLeft", "paddingRight"],
@@ -205,6 +216,9 @@ const properties = {
   overflow: overflowProperties,
   overflowX: overflowProperties,
   overflowY: overflowProperties,
+  boxShadow: boxShadowProperties,
+  transitionDuration: transitionSpeedProperties,
+  transitionTimingFunction: transitionTimingProperties,
 };
 
 const sprinkle = createRainbowSprinkles(defineProperties);

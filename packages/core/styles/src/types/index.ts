@@ -13,7 +13,7 @@ export type AspectRatio =
   | "1/2";
 export type BorderStyle = "solid" | "none" | "hidden" | "dashed" | "dotted";
 export type BoxSizing = "border-box" | "content-box";
-export type Cursor = "auto" | "pointer";
+export type Cursor = "auto" | "pointer" | "not-allowed" | "grab";
 export type Display = "block" | "flex" | "inline-flex" | "grid" | "inline-grid";
 export type FlexWrap = "nowrap" | "wrap" | "wrap-reverse";
 export type FlexDirection = "row" | "row-reverse" | "column" | "column-reverse";
@@ -46,3 +46,11 @@ export type PointerEvents =
   | "stroke"
   | "all"
   | "inherit";
+export type TransitionTiming =
+  | "ease"
+  | "ease-in"
+  | "ease-out"
+  | "ease-in-out"
+  | "linear"
+  | "step-start"
+  | "step-end";

@@ -11,6 +11,7 @@ import {
   FlexDirection,
   AlignItems,
   PointerEvents,
+  TransitionTiming,
 } from "../../../types";
 import { boxSprinkle } from "./box.sprinkle.css";
 
@@ -18,15 +19,19 @@ const { properties: propertiesBox } = boxSprinkle;
 
 type BoxBorderColorProperties = keyof typeof propertiesBox.borderColor;
 type BoxBackgroundColorProperties = keyof typeof propertiesBox.backgroundColor;
+type BoxShadowProperties = keyof typeof propertiesBox.boxShadow;
 type BoxSpaceProperties = keyof typeof propertiesBox.space;
 type BoxMarginProperties = keyof typeof propertiesBox.margin;
 type BoxGapProperties = keyof typeof propertiesBox.gap;
 type BoxGridGapProperties = keyof typeof propertiesBox.gridGap;
+type TransitionDurationProperties =
+  keyof typeof propertiesBox.transitionDuration;
 
 interface BoxConditions<T> extends Conditions<T> {
   focus?: T;
   active?: T;
   hover?: T;
+  disabled?: T;
 }
 
 export interface BoxSprinkle {
@@ -67,6 +72,7 @@ export interface BoxSprinkle {
     | BoxConditions<BoxBorderColorProperties>;
   borderStyle?: BorderStyle | BoxConditions<BorderStyle>;
   boxSizing?: BoxSizing | BoxConditions<BoxSizing>;
+  boxShadow?: BoxShadowProperties | BoxConditions<BoxShadowProperties>;
   padding?: BoxSpaceProperties | BoxConditions<BoxSpaceProperties>;
   paddingTop?: BoxSpaceProperties | BoxConditions<BoxSpaceProperties>;
   paddingBottom?: BoxSpaceProperties | BoxConditions<BoxSpaceProperties>;
@@ -95,4 +101,10 @@ export interface BoxSprinkle {
   mb?: BoxMarginProperties | BoxConditions<BoxMarginProperties>;
   mx?: BoxMarginProperties | BoxConditions<BoxMarginProperties>;
   my?: BoxMarginProperties | BoxConditions<BoxMarginProperties>;
+  transitionTiming?: TransitionTiming | BoxConditions<TransitionTiming>;
+  transitionProperty?: string | BoxConditions<string>;
+  transitionDelay?: string | BoxConditions<string>;
+  transitionDuration?:
+    | TransitionDurationProperties
+    | BoxConditions<TransitionDurationProperties>;
 }
