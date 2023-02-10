@@ -57,6 +57,7 @@ export const displayProperties: Display[] = [
   "inline-flex",
   "grid",
   "inline-grid",
+  "none",
 ];
 export const flexDirectionProperties: FlexDirection[] = [
   "row",

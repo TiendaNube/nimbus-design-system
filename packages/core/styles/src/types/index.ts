@@ -14,7 +14,13 @@ export type AspectRatio =
 export type BorderStyle = "solid" | "none" | "hidden" | "dashed" | "dotted";
 export type BoxSizing = "border-box" | "content-box";
 export type Cursor = "auto" | "pointer" | "not-allowed" | "grab";
-export type Display = "block" | "flex" | "inline-flex" | "grid" | "inline-grid";
+export type Display =
+  | "block"
+  | "flex"
+  | "inline-flex"
+  | "grid"
+  | "inline-grid"
+  | "none";
 export type FlexWrap = "nowrap" | "wrap" | "wrap-reverse";
 export type FlexDirection = "row" | "row-reverse" | "column" | "column-reverse";
 export type JustifyContent =
