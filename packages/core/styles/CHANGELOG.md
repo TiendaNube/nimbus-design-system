@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2023-02-10 `6.10.0`
+
+#### 🎉 New features
+
+- Added `none` as option in `display` sprinkles type. ([#88](https://github.com/TiendaNube/nimbus-design-system/pull/88) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-02-09 `6.9.0`
 
 #### 🎉 New features
