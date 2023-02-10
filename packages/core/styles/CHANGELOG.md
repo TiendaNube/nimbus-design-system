@@ -2,6 +2,15 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2023-02-09 `6.9.0`
+
+#### 🎉 New features
+
+- Added `boxShadow`, `transitionDuration`, `transitionDelay`, `transitionTimingFunction` and `transitionProperty` to `Box` component sprinkles. ([#87](https://github.com/TiendaNube/nimbus-design-system/pull/87) by [@juanchigallego](https://github.com/juanchigallego))
+- Added `not-allowed` and `grab` options to `cursor` property. ([#87](https://github.com/TiendaNube/nimbus-design-system/pull/87) by [@juanchigallego](https://github.com/juanchigallego))
+- Added `disabled` state to `Box` conditions. ([#87](https://github.com/TiendaNube/nimbus-design-system/pull/87) by [@juanchigallego](https://github.com/juanchigallego))
+- Added `transparent` option to `backgroundColor` and `borderColor` sprinkles in `Box` component. ([#87](https://github.com/TiendaNube/nimbus-design-system/pull/87) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-02-09 `6.8.0`
 
 #### 🎉 New features

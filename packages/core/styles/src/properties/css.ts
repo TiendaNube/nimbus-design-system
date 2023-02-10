@@ -14,6 +14,7 @@ import {
   Position,
   Overflow,
   PointerEvents,
+  TransitionTiming,
 } from "../types";
 import { baseColors } from "./base";
 
@@ -30,8 +31,19 @@ export const aspectRatioProperties: AspectRatio[] = [
 export const backgroundColorProperties = baseColors;
 export const borderColorProperties = baseColors;
 export const colorProperties = baseColors;
+export const boxShadowProperties = {
+  card: varsThemeBase.shadow.card,
+  popover: varsThemeBase.shadow.popover,
+  modal: varsThemeBase.shadow.modal,
+  focusRing: varsThemeBase.utils.focus,
+};
 export const boxSizingProperties: BoxSizing[] = ["border-box", "content-box"];
-export const cursorProperties: Cursor[] = ["auto", "pointer"];
+export const cursorProperties: Cursor[] = [
+  "auto",
+  "pointer",
+  "not-allowed",
+  "grab",
+];
 export const borderStyleProperties: BorderStyle[] = [
   "solid",
   "none",
@@ -143,5 +155,21 @@ export const overflowProperties: Overflow[] = [
   "scroll",
   "auto",
 ];
+
+export const transitionTimingProperties: TransitionTiming[] = [
+  "ease",
+  "ease-in",
+  "ease-out",
+  "ease-in-out",
+  "linear",
+  "step-start",
+  "step-end",
+];
+export const transitionSpeedProperties = {
+  base: varsThemeBase.motion.speed.base,
+  fast: varsThemeBase.motion.speed.fast,
+  slow: varsThemeBase.motion.speed.slow,
+  slower: varsThemeBase.motion.speed.slower,
+};
 
 export const gridGapProperties = gapProperties;
