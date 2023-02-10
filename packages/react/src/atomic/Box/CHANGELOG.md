@@ -2,6 +2,15 @@
 
 A low-level utility component that accepts styled system props to enable custom theme-aware styling
 
+## 2023-02-10 `2.4.0`
+
+### 🎉 New features
+
+- Added `boxShadow`, `transitionDuration`, `transitionDelay`, `transitionTimingFunction` and `transitionProperty` to component sprinkles. ([#87](https://github.com/TiendaNube/nimbus-design-system/pull/87) by [@juanchigallego](https://github.com/juanchigallego))
+- Added `not-allowed` and `grab` options to `cursor` property. ([#87](https://github.com/TiendaNube/nimbus-design-system/pull/87) by [@juanchigallego](https://github.com/juanchigallego))
+- Added `disabled` state to conditions. ([#87](https://github.com/TiendaNube/nimbus-design-system/pull/87) by [@juanchigallego](https://github.com/juanchigallego))
+- Added `transparent` option to `backgroundColor` and `borderColor` sprinkles. ([#87](https://github.com/TiendaNube/nimbus-design-system/pull/87) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-02-09 `2.3.0`
 
 ### 🎉 New features
