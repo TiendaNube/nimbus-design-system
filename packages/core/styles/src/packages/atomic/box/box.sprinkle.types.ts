@@ -101,7 +101,7 @@ export interface BoxSprinkle {
   mb?: BoxMarginProperties | BoxConditions<BoxMarginProperties>;
   mx?: BoxMarginProperties | BoxConditions<BoxMarginProperties>;
   my?: BoxMarginProperties | BoxConditions<BoxMarginProperties>;
-  transitionTiming?: TransitionTiming | BoxConditions<TransitionTiming>;
+  transitionTimingFunction?: TransitionTiming | BoxConditions<TransitionTiming>;
   transitionProperty?: string | BoxConditions<string>;
   transitionDelay?: string | BoxConditions<string>;
   transitionDuration?:
