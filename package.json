@@ -13,7 +13,7 @@
   },
   "scripts": {
     "build": "yarn clean && yarn build:packages",
-    "build:packages": "node ./.scripts/build:packages",
+    "build:packages": "yarn build:tokens && node ./.scripts/build:packages",
     "build:tokens": "turbo run build --filter=@nimbus-ds/tokens",
     "build:storybook": "build-storybook -c .storybook -o .build-storybook",
     "bump:check": "yarn version check",
