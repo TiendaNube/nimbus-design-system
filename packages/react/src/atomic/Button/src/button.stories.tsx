@@ -6,33 +6,55 @@ import { Icon } from "@nimbus-ds/icon";
 import { Badge } from "@nimbus-ds/badge";
 import { Spinner } from "@nimbus-ds/spinner";
 
-import { Button } from "./Button";
+import { Button as ButtonComponent } from "./Button";
+import { ButtonProps } from "./button.types";
+
+export const Button: React.FC<ButtonProps> = (props) => (
+  <ButtonComponent {...props} />
+);
 
 export default {
   title: "Atomic/Button",
   component: Button,
   subcomponents: {
-    "Button.Skeleton": Button.Skeleton,
-    "Button.Link": Button.Link,
+    "Button.Skeleton": ButtonComponent.Skeleton,
   },
   argTypes: {
     children: { control: { disable: true } },
+    as: {
+      control: { type: "radio" },
+      options: ["a", "button"],
+      table: {
+        type: {
+          required: false,
+          summary:
+            '"a" | "button" | "ReactNode of type HTMLAnchorElement" | "ReactNode of type HTMLButtonElement"',
+        },
+        defaultValue: { summary: "button" },
+      },
+      description:
+        "The underlying element to render — either a HTML element name or a React component.",
+    },
+    ref: {
+      control: { disable: true },
+      description:
+        "A ref to the element rendered by this component. Because this component is polymorphic, the type will vary based on the value of the as prop.",
+    },
   },
   parameters: {
     withA11y: { decorators: [withA11y] },
   },
-} as ComponentMeta<typeof Button>;
+} as ComponentMeta<typeof ButtonComponent>;
 
-const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
-const SkeletonTemplate: ComponentStory<typeof Button.Skeleton> = (args) => (
-  <Button.Skeleton {...args} />
+const Template: ComponentStory<typeof ButtonComponent> = (args) => (
+  <Button {...args} />
 );
-const LinkTemplate: ComponentStory<typeof Button.Link> = (args) => (
-  <Button.Link {...args} />
-);
+const SkeletonTemplate: ComponentStory<typeof ButtonComponent.Skeleton> = (
+  args
+) => <ButtonComponent.Skeleton {...args} />;
 
-export const base = Template.bind({});
-base.args = {
+export const button = Template.bind({});
+button.args = {
   children: "Button",
 };
 
@@ -99,12 +121,15 @@ transparent.args = {
   children: "Button",
 };
 
-export const skeleton = SkeletonTemplate.bind({});
-skeleton.args = {};
-
-export const asLink = LinkTemplate.bind({});
+export const asLink = Template.bind({});
 asLink.args = {
+  as: "a",
   children: "Button as anchor",
+  // eslint-disable-next-line
+  // @ts-ignore
   href: "https://nimbus.tiendanube.com/",
   target: "_blank",
 };
+
+export const skeleton = SkeletonTemplate.bind({});
+skeleton.args = {};
