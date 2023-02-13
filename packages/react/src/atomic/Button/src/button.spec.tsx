@@ -4,7 +4,9 @@ import { render, screen } from "@testing-library/react";
 import { Button } from "./Button";
 import { ButtonProps } from "./button.types";
 
-const makeSut = (rest: ButtonProps) => {
+const makeSut = (
+  rest: ButtonProps & { as?: "button" | "a"; href?: string }
+) => {
   render(<Button {...rest} data-testid="button-element" />);
 };
 
@@ -16,6 +18,11 @@ describe("GIVEN <Button />", () => {
         screen.getByRole<HTMLButtonElement>("button").disabled
       ).toBeTruthy();
     });
+
+    it("THEN should correctly render the button element", () => {
+      makeSut({ children: "Link", as: "a", href: "/" });
+      expect(screen.getByRole("link")).toBeDefined();
+    });
   });
 
   describe("THEN should correctly render the submitted appearance", () => {
@@ -26,28 +33,28 @@ describe("GIVEN <Button />", () => {
       );
     });
 
-    it("THEN should correctly render the appearance primary", () => {
+    it("AND should correctly render the appearance primary", () => {
       makeSut({ appearance: "primary", children: "button" });
       expect(
         screen.getByRole("button", { name: "button" }).getAttribute("class")
       ).toContain("appearance_primary");
     });
 
-    it("THEN should correctly render the appearance danger", () => {
+    it("AND should correctly render the appearance danger", () => {
       makeSut({ appearance: "danger", children: "button" });
       expect(
         screen.getByRole("button", { name: "button" }).getAttribute("class")
       ).toContain("appearance_danger");
     });
 
-    it("THEN should correctly render the appearance neutral", () => {
+    it("AND should correctly render the appearance neutral", () => {
       makeSut({ appearance: "neutral", children: "button" });
       expect(
         screen.getByRole("button", { name: "button" }).getAttribute("class")
       ).toContain("appearance_neutral");
     });
 
-    it("THEN should correctly render the appearance transparent", () => {
+    it("AND should correctly render the appearance transparent", () => {
       makeSut({ appearance: "transparent", children: "button" });
       expect(
         screen.getByRole("button", { name: "button" }).getAttribute("class")
