@@ -1,6 +1,7 @@
 releases:
   "@nimbus-ds/box": minor
   "@nimbus-ds/button": minor
+  "@nimbus-ds/components": minor
   "@nimbus-ds/link": minor
 
 declined:

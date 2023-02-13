@@ -2,7 +2,7 @@
 
 The Button component allows us to initiate actions, make state or page changes.
 
-## 2023-02-10 `2.2.0`
+## 2023-02-13 `2.2.0`
 
 ### 🎉 New features
 
