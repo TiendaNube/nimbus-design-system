@@ -2,6 +2,12 @@
 
 A low-level utility component that accepts styled system props to enable custom theme-aware styling
 
+## 2023-02-13 `2.6.0`
+
+### 💡 Others
+
+- Adjusted component typing and documentation. ([#89](https://github.com/TiendaNube/nimbus-design-system/pull/89) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-02-10 `2.5.0`
 
 ### 🎉 New features

@@ -1,21 +1,27 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { withA11y } from "@storybook/addon-a11y";
-import { box } from "@nimbus-ds/styles";
+import { box as boxStyles } from "@nimbus-ds/styles";
 
-import { Box } from "./Box";
+import { Box as BoxComponent } from "./Box";
 import { BoxProps } from "./box.types";
 
-export const Base: React.FC<BoxProps> = (props) => <Box {...props} />;
+export const Box: React.FC<BoxProps> = (props) => <BoxComponent {...props} />;
 
 export default {
   title: "Atomic/Box",
-  component: Base,
+  component: Box,
   argTypes: {
     children: { control: { disable: true } },
     as: {
       control: { disable: true },
-      defaultValue: "div",
+      table: {
+        type: {
+          required: false,
+          summary: '"HTML tags" | "ReactNode of type HTML tag"',
+        },
+        defaultValue: { summary: "div" },
+      },
       description:
         "The underlying element to render — either a HTML element name or a React component.",
     },
@@ -24,32 +30,78 @@ export default {
       description:
         "A ref to the element rendered by this component. Because this component is polymorphic, the type will vary based on the value of the as prop.",
     },
-    backgroundColor: { options: Object.keys(box.properties.backgroundColor) },
-    borderColor: { options: Object.keys(box.properties.borderColor) },
-    borderStyle: { options: box.properties.borderStyle },
-    boxSizing: { options: box.properties.boxSizing },
-    cursor: { options: box.properties.cursor },
-    position: { options: box.properties.position },
-    overflow: { options: box.properties.overflow },
-    overflowX: { options: box.properties.overflowX },
-    overflowY: { options: box.properties.overflowY },
-    display: { options: box.properties.display },
-    flexDirection: { options: box.properties.flexDirection },
-    flexWrap: { options: box.properties.flexWrap },
-    justifyContent: { options: box.properties.justifyContent },
-    alignItems: { options: box.properties.alignItems },
-    gridGap: { options: Object.keys(box.properties.gridGap) },
-    gap: { options: Object.keys(box.properties.gap) },
+    backgroundColor: {
+      options: Object.keys(boxStyles.properties.backgroundColor),
+    },
+    borderColor: {
+      options: Object.keys(boxStyles.properties.borderColor),
+    },
+    borderStyle: {
+      control: { type: "radio" },
+      options: boxStyles.properties.borderStyle,
+    },
+    boxSizing: {
+      control: { type: "radio" },
+      options: boxStyles.properties.boxSizing,
+    },
+    cursor: {
+      control: { type: "radio" },
+      options: boxStyles.properties.cursor,
+    },
+    position: {
+      control: { type: "radio" },
+      options: boxStyles.properties.position,
+    },
+    overflow: {
+      control: { type: "radio" },
+      options: boxStyles.properties.overflow,
+    },
+    overflowX: {
+      control: { type: "radio" },
+      options: boxStyles.properties.overflowX,
+    },
+    overflowY: {
+      control: { type: "radio" },
+      options: boxStyles.properties.overflowY,
+    },
+    display: {
+      control: { type: "radio" },
+      options: boxStyles.properties.display,
+    },
+    flexDirection: {
+      control: { type: "radio" },
+      options: boxStyles.properties.flexDirection,
+    },
+    flexWrap: {
+      control: { type: "radio" },
+      options: boxStyles.properties.flexWrap,
+    },
+    justifyContent: {
+      control: { type: "radio" },
+      options: boxStyles.properties.justifyContent,
+    },
+    alignItems: {
+      control: { type: "radio" },
+      options: boxStyles.properties.alignItems,
+    },
+    gridGap: {
+      options: Object.keys(boxStyles.properties.gridGap),
+    },
+    gap: {
+      options: Object.keys(boxStyles.properties.gap),
+    },
   },
   parameters: {
     withA11y: { decorators: [withA11y] },
   },
-} as ComponentMeta<typeof Base>;
+} as ComponentMeta<typeof BoxComponent>;
 
-const Template: ComponentStory<typeof Base> = (args) => <Box {...args} />;
+const Template: ComponentStory<typeof BoxComponent> = (args) => (
+  <Box {...args} />
+);
 
-export const base = Template.bind({});
-base.args = {
+export const box = Template.bind({});
+box.args = {
   height: "5rem",
   width: "12rem",
   borderColor: "neutral.interactive",

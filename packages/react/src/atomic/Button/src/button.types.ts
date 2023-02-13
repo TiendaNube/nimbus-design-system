@@ -1,12 +1,11 @@
-import { ReactNode, ButtonHTMLAttributes } from "react";
-import { ButtonSkeleton, ButtonLink } from "./components";
+import { ReactNode, HTMLAttributes } from "react";
+import { ButtonSkeleton } from "./components";
 
 export interface ButtonComponents {
   Skeleton: typeof ButtonSkeleton;
-  Link: typeof ButtonLink;
 }
 
-export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends HTMLAttributes<HTMLElement> {
   /** Text to be displayed on chip */
   children: ReactNode;
   /** Button appearance */

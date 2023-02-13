@@ -5,37 +5,62 @@ import { ExternalLinkIcon } from "@tiendanube/icons";
 import { Icon } from "@nimbus-ds/icon";
 import { Text } from "@nimbus-ds/text";
 
-import { Link } from "./Link";
+import { Link as LinkComponent } from "./Link";
+import { LinkProps } from "./link.types";
+
+export const Link: React.FC<LinkProps> = (props) => (
+  <LinkComponent {...props} />
+);
 
 export default {
   title: "Atomic/Link",
   component: Link,
-  subcomponents: { "Link.Skeleton": Link.Skeleton, "Link.Button": Link.Button },
+  subcomponents: { "Link.Skeleton": LinkComponent.Skeleton },
   argTypes: {
     children: { control: { disable: true } },
+    as: {
+      control: { type: "radio" },
+      options: ["a", "button"],
+      table: {
+        type: {
+          required: false,
+          summary:
+            '"a" | "button" | "ReactNode of type HTMLAnchorElement" | "ReactNode of type HTMLButtonElement"',
+        },
+        defaultValue: { summary: "a" },
+      },
+      description:
+        "The underlying element to render — either a HTML element name or a React component.",
+    },
+    ref: {
+      control: { disable: true },
+      description:
+        "A ref to the element rendered by this component. Because this component is polymorphic, the type will vary based on the value of the as prop.",
+    },
   },
   parameters: {
     withA11y: { decorators: [withA11y] },
   },
-} as ComponentMeta<typeof Link>;
+} as ComponentMeta<typeof LinkComponent>;
 
-const Template: ComponentStory<typeof Link> = (args) => <Link {...args} />;
-const StressedTemplate: ComponentStory<typeof Link> = (args) => (
+const Template: ComponentStory<typeof LinkComponent> = (args) => (
+  <Link as="a" {...args} />
+);
+const StressedTemplate: ComponentStory<typeof LinkComponent> = (args) => (
   <Text fontSize="base" color="neutral.textLow">
     This is a paragraph followed by a link.
     <Link {...args} />
   </Text>
 );
-const SkeletonTemplate: ComponentStory<typeof Link.Skeleton> = (args) => (
-  <Link.Skeleton {...args} />
-);
-const LinkButtonTemplate: ComponentStory<typeof Link.Button> = (args) => (
-  <Link.Button {...args} />
-);
+const SkeletonTemplate: ComponentStory<typeof LinkComponent.Skeleton> = (
+  args
+) => <LinkComponent.Skeleton {...args} />;
 
-export const base = Template.bind({});
-base.args = {
+export const link = Template.bind({});
+link.args = {
   children: "Link",
+  // eslint-disable-next-line
+  // @ts-ignore
   href: "mailto: hola@tiendanube.com",
 };
 
@@ -85,10 +110,11 @@ neutralBackground.args = {
   children: "Link",
 };
 
-export const skeleton = SkeletonTemplate.bind({});
-skeleton.args = {};
-
-export const asButton = LinkButtonTemplate.bind({});
+export const asButton = Template.bind({});
 asButton.args = {
   children: "Link as button",
+  as: "button",
 };
+
+export const skeleton = SkeletonTemplate.bind({});
+skeleton.args = {};
