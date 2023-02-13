@@ -2,6 +2,17 @@
 
 The Link component allows us to navigate to external addresses.
 
+## 2023-02-10 `3.3.0`
+
+### 🎉 New features
+
+- Added polymorphic typing support to component. ([#89](https://github.com/TiendaNube/nimbus-design-system/pull/89) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `as` property to the Component. ([#89](https://github.com/TiendaNube/nimbus-design-system/pull/89) by [@juniorconquista](https://github.com/juniorconquista))
+
+### 💡 Others
+
+- Removed subcomponent `Link.Button`. [#89](https://github.com/TiendaNube/nimbus-design-system/pull/#89) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-02-06 `3.2.0`
 
 ### 🎉 New features
