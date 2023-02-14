@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2023-02-14 `6.11.0`
+
+#### 🎉 New features
+
+- Added `backgroundColor` to `Table` component sprinkles. ([#90](https://github.com/TiendaNube/nimbus-design-system/pull/90) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-02-10 `6.10.0`
 
 #### 🎉 New features
