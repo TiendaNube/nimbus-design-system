@@ -1,0 +1,44 @@
+.darkClass .docs-story,
+.darkClass .sbdocs-wrapper {
+  background: rgba(51, 51, 51);
+}
+
+.darkClass .sbdocs-preview {
+  background: rgba(153 153 153);
+}
+
+.darkClass .sbdocs-title,
+.darkClass .sbdocs-h2,
+.darkClass .sbdocs-h3,
+.darkClass .docblock-code-toggle {
+  color: #ffffff;
+}
+
+.darkClass .os-content {
+  background: rgba(51, 51, 51);
+  border: 1px solid rgba(153, 153, 153);
+}
+
+.darkClass .os-content pre {
+  background: rgb(178 178 178) !important;
+}
+
+.darkClass .docblock-code-toggle {
+  color: #ffffff;
+  background: rgba(51, 51, 51);
+  border-top: 1px solid rgba(153, 153, 153);
+  border-left: 1px solid rgba(153, 153, 153);
+  border-radius: 0px 0 0 0;
+}
+
+.darkClass .docblock-argstable thead th span {
+  color: rgb(145 145 145);
+}
+
+.darkClass .docblock-argstable tbody td {
+  background: rgb(178 178 178) !important;
+}
+
+.darkClass #panel-tab-content {
+  background: transparent;
+}

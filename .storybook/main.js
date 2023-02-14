@@ -21,6 +21,7 @@ module.exports = {
     "@storybook/addon-interactions",
     "@storybook/addon-a11y",
     "@storybook/addon-controls",
+    "storybook-dark-mode",
   ],
   framework: "@storybook/react",
   // we need to add aliases to webpack so it knows how to follow
