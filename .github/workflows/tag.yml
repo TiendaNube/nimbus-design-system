@@ -19,29 +19,14 @@ jobs:
         with:
           node-version: "${{ steps.node_version.outputs.NVMRC }}"
           registry-url: "https://registry.npmjs.org"
-      
-#       - name: Get current date
-#         id: date
-#         run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
-        
-#       - name: Get current date
-#         id: date
-#         run: |
-#           echo "{date}={$(date +'%Y-%m-%d')}" >> $GITHUB_STATE
-          
+
       - name: "Set current date as env variable"
         run: |
-          echo "builddate=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+          echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
         id: version  # this is used on variable path
-        
-      - name: Test with environment variables
-        run: echo $TAG_NAME - $RELEASE_NAME
-        env:
-          TAG_NAME: nightly-tag-${{ steps.version.outputs.builddate }}
-          RELEASE_NAME: nightly-release-${{ steps.version.outputs.builddate }}
 
       - uses: actions/checkout@v3
       - uses: rickstaa/action-create-tag@v1
         with:
-          tag: "latest"
-          message: "Latest release"
+          tag: ${{ steps.version.outputs.date }}
+          message: ${{ steps.version.outputs.date }}
