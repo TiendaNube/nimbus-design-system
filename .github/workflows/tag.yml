@@ -37,8 +37,7 @@ jobs:
           DAY: "${{ steps.current-time.outputs.day }}"
         run: echo $TIME $R_TIME $F_TIME $YEAR $DAY
 
-#       - uses: actions/checkout@v3
-#       - uses: rickstaa/action-create-tag@v1
-#         with:
-#           tag: ${{ steps.version.outputs.date }}
-#           message: ${{ steps.version.outputs.date }}
+      - uses: actions/checkout@v3
+      - uses: rickstaa/action-create-tag@v1
+        with:
+          tag: "${{ steps.current-time.outputs.year }}-${{ steps.current-time.outputs.month }}-${{ steps.current-time.outputs.month }}T${{ steps.current-time.outputs.hour }}"
