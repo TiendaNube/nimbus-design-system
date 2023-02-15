@@ -49,5 +49,6 @@ jobs:
           tag_name: ${{ steps.calver.outputs.release }}
           release_name: ${{ steps.calver.outputs.release }}
           body: ${{ steps.PR.outputs.pr_body }}
+          discussion_category_name: "announcements"
           draft: false
           prerelease: false
