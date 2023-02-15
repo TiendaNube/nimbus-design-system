@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/icons",
-  "version": "1.0.0-rc.2",
+  "version": "1.0.0-rc.3",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -9,7 +9,7 @@
   ],
   "sideEffects": false,
   "scripts": {
-    "build": "yarn optimize && yarn build:components && webpack && clean:tmp",
+    "build": "yarn optimize && yarn build:components && webpack && yarn clean:tmp",
     "build:components": "svgr src/assets -d tmp",
     "optimize": "svgo src/assets",
     "clean": "yarn clean:tmp && rm -rf dist",
