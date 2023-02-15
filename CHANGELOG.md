@@ -3,6 +3,12 @@
 This is the log of notable changes to the Design System Nimbus that are developer-facing.
 Package-specific changes not released in any package will be added here just before the release. Until then, you can find them in changelogs of the individual packages (see [packages](./packages) directory).
 
+## 2023-02-15
+
+### 🎉 New features
+
+- Adjust storybook dark mode colors to use Nimbus tokens. ([#95](https://github.com/TiendaNube/nimbus-design-system/pull/95) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-02-13
 
 ### 🎉 New features
