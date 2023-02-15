@@ -20,24 +20,16 @@ jobs:
           node-version: "${{ steps.node_version.outputs.NVMRC }}"
           registry-url: "https://registry.npmjs.org"
 
-      - name: Get current time
-        uses: josStorer/get-current-time@v2
-        id: current-time
+      - name: Generate tag release
+        uses: StephaneBour/actions-calver@master
+        id: calver
         with:
-          format: YYYYMMDD-HH
-          utcOffset: "-03:00"
-          
-      - name: Use current time
+          date_format: "%Y-%m-%d"
+#           release: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
         env:
-          TIME: "${{ steps.current-time.outputs.time }}"
-          R_TIME: "${{ steps.current-time.outputs.readableTime }}"
-          F_TIME: "${{ steps.current-time.outputs.formattedTime }}"
-          YEAR: "${{ steps.current-time.outputs.year }}"
-          MONTH: "${{ steps.current-time.outputs.month }}"
-          DAY: "${{ steps.current-time.outputs.day }}"
-        run: echo $TIME $R_TIME $F_TIME $YEAR $DAY
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: actions/checkout@v3
-      - uses: rickstaa/action-create-tag@v1
-        with:
-          tag: "${{ steps.current-time.outputs.year }}-${{ steps.current-time.outputs.month }}-${{ steps.current-time.outputs.day }}T${{ steps.current-time.outputs.hour }}:${{ steps.current-time.outputs.minute }}"
+      - name: Deploy
+        env:
+          VERSION: ${{ steps.calver.outputs.release }}
+        run: ./deploy ${VERSION}
