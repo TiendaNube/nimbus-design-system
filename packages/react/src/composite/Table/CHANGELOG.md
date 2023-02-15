@@ -2,7 +2,7 @@
 
 Tables allow users to display large amounts of data in a tabular manner, using columns and rows to group the different types of data.
 
-## 2023-01-14 `1.1.0`
+## 2023-01-15 `1.1.0`
 
 ### 🎉 New features
 
