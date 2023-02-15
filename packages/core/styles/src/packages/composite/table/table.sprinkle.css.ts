@@ -18,11 +18,6 @@ const tableRowBackgroundColorProperties = {
     backgroundColorProperties["primary.surfaceHighlight"],
 };
 
-const properties = {
-  backgroundColor: tableRowBackgroundColorProperties,
-  padding: paddingProperties,
-};
-
 const defineProperties = defineRainbowProperties({
   conditions: {
     rest: { selector: "&" },
@@ -36,11 +31,17 @@ const defineProperties = defineRainbowProperties({
     width: true,
     maxWidth: true,
     minWidth: true,
-    ...properties,
+    backgroundColor: tableRowBackgroundColorProperties,
+    padding: paddingProperties,
   },
 });
 
 const sprinkle = createRainbowSprinkles(defineProperties);
+
+const properties = {
+  backgroundColor: tableRowBackgroundColorProperties,
+  padding: paddingProperties,
+};
 
 export const tableSprinkle = {
   sprinkle,

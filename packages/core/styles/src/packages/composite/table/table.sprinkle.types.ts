@@ -1,11 +1,11 @@
 import { Conditions } from "../../../types";
 import { tableSprinkle } from "./table.sprinkle.css";
 
-const { properties } = tableSprinkle;
+const { properties: propertiesTable } = tableSprinkle;
 
-type TablePaddingProperties = keyof typeof tableSprinkle.properties.padding;
+type TablePaddingProperties = keyof typeof propertiesTable.padding;
 type TableRowBackgroundColorProperties =
-  keyof typeof properties.backgroundColor;
+  keyof typeof propertiesTable.backgroundColor;
 
 interface TableConditions<T> extends Conditions<T> {
   rest?: T;

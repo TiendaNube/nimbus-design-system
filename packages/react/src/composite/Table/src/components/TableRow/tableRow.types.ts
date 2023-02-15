@@ -1,9 +1,9 @@
 import { ReactNode, HTMLAttributes } from "react";
 import { TableSprinkle } from "@nimbus-ds/styles";
 
-type TableExtends = TableSprinkle & HTMLAttributes<HTMLTableRowElement>;
+type TableRowExtends = TableSprinkle & HTMLAttributes<HTMLTableRowElement>;
 
-export interface TableRowProps extends TableExtends {
+export interface TableRowProps extends TableRowExtends {
   children: ReactNode;
   id?: string;
   onClick?: () => void;

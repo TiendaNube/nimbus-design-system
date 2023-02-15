@@ -2,11 +2,20 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
-## 2023-02-14 `6.11.0`
+## 2023-02-15 `6.11.0`
 
 #### 🎉 New features
 
 - Added `backgroundColor` to `Table` component sprinkles. ([#90](https://github.com/TiendaNube/nimbus-design-system/pull/90) by [@juanchigallego](https://github.com/juanchigallego))
+
+#### 🐛 Bug fixes
+
+- Fix sprinkles properties naming bug on `Table` and `IconButton` components. ([#90](https://github.com/TiendaNube/nimbus-design-system/pull/90) by [@juanchigallego](https://github.com/juanchigallego))
+
+### 💡 Others
+
+- Correct line-height property on `Select` component. ([#90](https://github.com/TiendaNube/nimbus-design-system/pull/90) by [@juanchigallego](https://github.com/juanchigallego))
+- Remove default margin on `Pagination` component. ([#90](https://github.com/TiendaNube/nimbus-design-system/pull/90) by [@juanchigallego](https://github.com/juanchigallego))
 
 ## 2023-02-10 `6.10.0`
 
