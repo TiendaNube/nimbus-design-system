@@ -29,7 +29,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Deploy
-        env:
-          VERSION: ${{ steps.calver.outputs.release }}
-        run: echo ${VERSION}
+      - name: Create Tag
+      - uses: actions/checkout@v3
+      - uses: rickstaa/action-create-tag@v1
+        with:
+          tag: ${{ steps.calver.outputs.release }}
