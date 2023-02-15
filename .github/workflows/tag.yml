@@ -54,8 +54,68 @@ jobs:
           prerelease: false
           
       - name: Send Slack Notification
-        run: |
-          curl --request PUT \
-          --url 'https://hooks.slack.com/services/${{ secrets.SLACK_BOT }}/${{ secrets.SLACK_CHANEL }}/${{ secrets.SLACK_TOKEN }}' \
-          --header 'Content-type: application/json'
-          --data '{ "blocks": [{"type": "header", "text": { "type": "plain_text", "text": "${{ github.actor }} published new versions of Nimbus components 🚀", "emoji": true }}, { "type": "section", "text": { "type": "mrkdwn", "text": "The release of these updates can be found in the <https://github.com/TiendaNube/nimbus-design-system/discussions/95|repository> and also on our official website." }}, { "type": "section", "text": { "type": "mrkdwn", "text": "Release Notes" }, "accessory": { "type": "button", "text": { "type": "plain_text", "text": "Go", "emoji": true }, "url": "https://nimbus.nuvemshop.com.br/documentation/overview/releases", "action_id": "button-action" } }, { "type": "section", "text": { "type": "mrkdwn", "text": "Storybook documentation" }, "accessory": { "type": "button", "text": { "type": "plain_text", "text": "Go", "emoji": true }, "url": "https://tiendanube.github.io/nimbus-design-system", "action_id": "button-action" }}, { "type": "divider" }]}'
+        id: slack
+        uses: slackapi/slack-github-action@v1.23.0
+        with:
+          # This data can be any valid JSON from a previous step in the GitHub Action
+          payload: |
+            {
+            "blocks": [
+              {
+                "type": "header",
+                "text": {
+                  "type": "plain_text",
+                  "text": "${{ github.actor }} published new versions of Nimbus components 🚀",
+                  "emoji": true
+                }
+              },
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "The release of these updates can be found in the <https://github.com/TiendaNube/nimbus-design-system/discussions/95|repository> and also on our official website."
+                }
+              },
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "Release Notes"
+                },
+                "accessory": {
+                  "type": "button",
+                  "text": {
+                    "type": "plain_text",
+                    "text": "Go",
+                    "emoji": true
+                  },
+                  "value": "click_me_123",
+                  "url": "https://nimbus.nuvemshop.com.br/documentation/overview/releases",
+                  "action_id": "button-action"
+                }
+              },
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "Storybook documentation"
+                },
+                "accessory": {
+                  "type": "button",
+                  "text": {
+                    "type": "plain_text",
+                    "text": "Go",
+                    "emoji": true
+                  },
+                  "value": "click_me_123",
+                  "url": "https://tiendanube.github.io/nimbus-design-system",
+                  "action_id": "button-action"
+                }
+              },
+              {
+                "type": "divider"
+              }
+            ]
+            }
+        env:
+         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
