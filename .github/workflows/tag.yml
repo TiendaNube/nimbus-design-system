@@ -40,4 +40,4 @@ jobs:
       - uses: actions/checkout@v3
       - uses: rickstaa/action-create-tag@v1
         with:
-          tag: "${{ steps.current-time.outputs.year }}-${{ steps.current-time.outputs.month }}-${{ steps.current-time.outputs.month }}T${{ steps.current-time.outputs.hour }}"
+          tag: "${{ steps.current-time.outputs.year }}-${{ steps.current-time.outputs.month }}-${{ steps.current-time.outputs.day }}T${{ steps.current-time.outputs.hour }}:${{ steps.current-time.outputs.minute }}"
