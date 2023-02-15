@@ -5,6 +5,7 @@ module.exports = {
   typescript: true,
   icon: true,
   svgProps: {
+    fill: "currentColor",
     height: "{sizes[size] || Number(size) || 0}",
     width: "{sizes[size] || Number(size) || 0}",
   },
