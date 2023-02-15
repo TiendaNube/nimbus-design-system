@@ -27,7 +27,3 @@ Please make sure you read our documentation on how to [write code for components
 -
 -
 -
-
-## Screenshots 🏞
-
-## Related issues 🐛

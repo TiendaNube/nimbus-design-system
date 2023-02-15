@@ -10,11 +10,11 @@ const entry = [
 ];
 
 export const dtsBundleGeneratorPlugin = (
-  configuration: { entries: string[] } = { entries: [] }
+  configuration: { entries: string[] } = { entries: entry }
 ) => {
   const config = {
     onBuildEnd: {
-      scripts: [...entry, ...configuration.entries],
+      scripts: [...configuration.entries],
       blocking: false,
       parallel: true,
     },

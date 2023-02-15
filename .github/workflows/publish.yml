@@ -53,3 +53,44 @@ jobs:
           --header 'Authorization: token ${{ secrets.PAT_CHANGE_BRANCH_PROTECTION_RULES_FROM_JUNIOR_CONQUISTA }}' \
           --header 'Accept: application/vnd.github.luke-cage-preview+json' \
           --data '{"enforce_admins":true,"required_pull_request_reviews":{"dismiss_stale_reviews":true,"require_code_owner_reviews":true,"required_approving_review_count":2},"required_conversation_resolution":true,"required_status_checks":null,"restrictions":null,"required_linear_history":true}'
+
+      - name: Generate tag release
+        uses: StephaneBour/actions-calver@master
+        id: calver
+        with:
+          date_format: "%Y.%m.%d"
+          release: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/checkout@v3
+      - uses: rickstaa/action-create-tag@v1
+        with:
+          tag: ${{ steps.calver.outputs.release }}
+      
+      - name: Get current PR
+        uses: 8BitJonny/gh-get-current-pr@2.2.0
+        id: PR
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: ${{ steps.calver.outputs.release }}
+          release_name: ${{ steps.calver.outputs.release }}
+          body: ${{ steps.PR.outputs.pr_body }}
+          discussion_category_name: "announcements"
+          draft: false
+          prerelease: false
+          
+      # - name: Send Slack Notification
+      #   id: slack
+      #   uses: slackapi/slack-github-action@v1.23.0
+      #   with:
+      #     payload-file-path: "./payload-slack-content.json"
+      #   env:
+      #    SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

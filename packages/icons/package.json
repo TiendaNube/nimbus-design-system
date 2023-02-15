@@ -1,0 +1,33 @@
+{
+  "name": "@nimbus-ds/icons",
+  "version": "1.0.0-rc.3",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "yarn optimize && yarn build:components && webpack && yarn clean:tmp",
+    "build:components": "svgr src/assets -d tmp",
+    "optimize": "svgo src/assets",
+    "clean": "yarn clean:tmp && rm -rf dist",
+    "clean:tmp": "rm -rf tmp",
+    "version": "yarn version"
+  },
+  "homepage": "https://nimbus.nuvemshop.com.br/documentation",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TiendaNube/nimbus-design-system.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TiendaNube/nimbus-design-system/issues"
+  },
+  "devDependencies": {
+    "@svgr/cli": "^6.5.1",
+    "svgo": "^3.0.2",
+    "webpack": "^5.75.0"
+  },
+  "stableVersion": "0.0.0"
+}

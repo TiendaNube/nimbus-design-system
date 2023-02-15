@@ -1,0 +1,7 @@
+releases:
+  "@nimbus-ds/icons": major
+
+declined:
+  - nimbus-design-system
+  - "@nimbus-ds/styles"
+  - "@nimbus-ds/webpack"
