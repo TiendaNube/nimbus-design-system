@@ -32,4 +32,4 @@ jobs:
       - name: Deploy
         env:
           VERSION: ${{ steps.calver.outputs.release }}
-        run: ./deploy ${VERSION}
+        run: echo ${VERSION}
