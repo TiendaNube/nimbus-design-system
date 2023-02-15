@@ -1,0 +1,10 @@
+name: "Crate Tag"
+
+on:
+  push:
+    branches:
+      - ECNIM-642
+
+jobs:
+  create-tag:
+    runs-on: ubuntu-latest
