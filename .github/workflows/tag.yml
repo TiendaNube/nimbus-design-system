@@ -33,6 +33,12 @@ jobs:
       - uses: rickstaa/action-create-tag@v1
         with:
           tag: ${{ steps.calver.outputs.release }}
+      
+      - name: Get current PR
+        uses: 8BitJonny/gh-get-current-pr@2.2.0
+        id: PR
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
       - name: Create Release
         id: create_release
@@ -42,9 +48,6 @@ jobs:
         with:
           tag_name: ${{ steps.calver.outputs.release }}
           release_name: ${{ steps.calver.outputs.release }}
-          body: |
-            Changes in this Release
-            - First Change
-            - Second Change
+          body: ${{ steps.PR.outputs.pr_body }}
           draft: false
           prerelease: false
