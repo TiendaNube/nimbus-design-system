@@ -3109,6 +3109,16 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@nimbus-ds/icons@workspace:packages/icons":
+  version: 0.0.0-use.local
+  resolution: "@nimbus-ds/icons@workspace:packages/icons"
+  dependencies:
+    "@svgr/cli": ^6.5.1
+    svgo: ^3.0.2
+    webpack: ^5.75.0
+  languageName: unknown
+  linkType: soft
+
 "@nimbus-ds/input@workspace:packages/react/src/atomic/Input":
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/input@workspace:packages/react/src/atomic/Input"
@@ -4988,6 +4998,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@svgr/cli@npm:^6.5.1":
+  version: 6.5.1
+  resolution: "@svgr/cli@npm:6.5.1"
+  dependencies:
+    "@svgr/core": ^6.5.1
+    "@svgr/plugin-jsx": ^6.5.1
+    "@svgr/plugin-prettier": ^6.5.1
+    "@svgr/plugin-svgo": ^6.5.1
+    camelcase: ^6.2.0
+    chalk: ^4.1.2
+    commander: ^9.4.1
+    dashify: ^2.0.0
+    glob: ^8.0.3
+  bin:
+    svgr: bin/svgr
+  checksum: 508c76809463d9e7e4a3cd10e0fed7a43d2d91804d8a8f31146780c3dc7e9b187bdf919a57fe8156842061ce292b5358d4b77ae2dff9ecf8682617e5e98b6cee
+  languageName: node
+  linkType: hard
+
 "@svgr/core@npm:^6.5.1":
   version: 6.5.1
   resolution: "@svgr/core@npm:6.5.1"
@@ -5022,6 +5051,18 @@ __metadata:
   peerDependencies:
     "@svgr/core": ^6.0.0
   checksum: 42f22847a6bdf930514d7bedd3c5e1fd8d53eb3594779f9db16cb94c762425907c375cd8ec789114e100a4d38068aca6c7ab5efea4c612fba63f0630c44cc859
+  languageName: node
+  linkType: hard
+
+"@svgr/plugin-prettier@npm:^6.5.1":
+  version: 6.5.1
+  resolution: "@svgr/plugin-prettier@npm:6.5.1"
+  dependencies:
+    deepmerge: ^4.2.2
+    prettier: ^2.7.1
+  peerDependencies:
+    "@svgr/core": "*"
+  checksum: 59340ff467d0cb1f07dbbde2d8f15d6d740aa5d904faed0fad7684a6dc53137a384e63bb801e177df50f486c1f765218a35e9a15ffa23e0a1035de16c316b372
   languageName: node
   linkType: hard
 
@@ -7995,7 +8036,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chalk@npm:^4.0.0, chalk@npm:^4.1.0, chalk@npm:^4.1.1":
+"chalk@npm:^4.0.0, chalk@npm:^4.1.0, chalk@npm:^4.1.1, chalk@npm:^4.1.2":
   version: 4.1.2
   resolution: "chalk@npm:4.1.2"
   dependencies:
@@ -18946,6 +18987,22 @@ __metadata:
   bin:
     svgo: bin/svgo
   checksum: b92f71a8541468ffd0b81b8cdb36b1e242eea320bf3c1a9b2c8809945853e9d8c80c19744267eb91cabf06ae9d5fff3592d677df85a31be4ed59ff78534fa420
+  languageName: node
+  linkType: hard
+
+"svgo@npm:^3.0.2":
+  version: 3.0.2
+  resolution: "svgo@npm:3.0.2"
+  dependencies:
+    "@trysound/sax": 0.2.0
+    commander: ^7.2.0
+    css-select: ^5.1.0
+    css-tree: ^2.2.1
+    csso: ^5.0.5
+    picocolors: ^1.0.0
+  bin:
+    svgo: bin/svgo
+  checksum: 381ba14aa782e71ab7033227634a3041c11fa3e2769aeaf0df43a08a615de61925108e34f55af6e7c5146f4a3109e78deabb4fa9d687e36d45d1f848b4e23d17
   languageName: node
   linkType: hard
 
