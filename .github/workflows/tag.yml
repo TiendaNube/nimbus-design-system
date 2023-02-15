@@ -22,7 +22,7 @@ jobs:
 
       - name: "Set current date as env variable"
         run: |
-          echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+          echo "date=$(date +'%Y-%m-%d|%H:%M:%S')" >> $GITHUB_OUTPUT
         id: version  # this is used on variable path
 
       - uses: actions/checkout@v3
