@@ -20,13 +20,24 @@ jobs:
           node-version: "${{ steps.node_version.outputs.NVMRC }}"
           registry-url: "https://registry.npmjs.org"
 
-      - name: "Set current date as env variable"
-        run: |
-          echo "date=$(date +'%Y-%m-%d|%H:%M:%S')" >> $GITHUB_OUTPUT
-        id: version  # this is used on variable path
-
-      - uses: actions/checkout@v3
-      - uses: rickstaa/action-create-tag@v1
+      - name: Get current time
+        uses: josStorer/get-current-time@v2
+        id: current-time
         with:
-          tag: ${{ steps.version.outputs.date }}
-          message: ${{ steps.version.outputs.date }}
+          format: YYYYMMDD-HH
+          utcOffset: "+08:00"
+          
+      - name: Use current time
+        env:
+          TIME: "${{ steps.current-time.outputs.time }}"
+          R_TIME: "${{ steps.current-time.outputs.readableTime }}"
+          F_TIME: "${{ steps.current-time.outputs.formattedTime }}"
+          YEAR: "${{ steps.current-time.outputs.year }}"
+          DAY: "${{ steps.current-time.outputs.day }}"
+        run: echo $TIME $R_TIME $F_TIME $YEAR $DAY
+
+#       - uses: actions/checkout@v3
+#       - uses: rickstaa/action-create-tag@v1
+#         with:
+#           tag: ${{ steps.version.outputs.date }}
+#           message: ${{ steps.version.outputs.date }}
