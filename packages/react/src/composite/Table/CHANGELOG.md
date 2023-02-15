@@ -6,7 +6,7 @@ Tables allow users to display large amounts of data in a tabular manner, using c
 
 ### 🎉 New features
 
-- Add `backgroundColor` property to `Table.Row` subcomponent sprinkles. ([#90](https://github.com/TiendaNube/nimbus-design-system/pull/90) by [@juanchigallego](https://github.com/juanchigallego))
+- Add `backgroundColor` property to `Table.Row` subcomponent sprinkles. ([#94](https://github.com/TiendaNube/nimbus-design-system/pull/94) by [@juanchigallego](https://github.com/juanchigallego))
 
 ## 2023-01-09 `1.0.0`
 
