@@ -1,4 +1,4 @@
-name: "Create Tag"
+name: "Create Release"
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - ECNIM-642
 
 jobs:
-  create-tag:
+  create-release:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -33,3 +33,18 @@ jobs:
       - uses: rickstaa/action-create-tag@v1
         with:
           tag: ${{ steps.calver.outputs.release }}
+          
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: ${{ steps.calver.outputs.release }}
+          release_name: Release ${{ steps.calver.outputs.release }}
+          body: |
+            Changes in this Release
+            - First Change
+            - Second Change
+          draft: false
+          prerelease: false
