@@ -1,4 +1,4 @@
-name: "Crate Tag"
+name: "Create Tag"
 
 on:
   push:
@@ -34,3 +34,9 @@ jobs:
         env:
           TAG_NAME: ${{ env.date }}
           RELEASE_NAME: ${{ env.date }}
+
+      - uses: actions/checkout@v3
+      - uses: rickstaa/action-create-tag@v1
+        with:
+          tag: ${{ env.date }}
+          message: ${{ env.date }}
