@@ -20,7 +20,7 @@ export const icon = style({
 const base = style({
   fontFamily: varsThemeBase.fontFamily.centranube,
   fontSize: varsThemeBase.fontSize.body.base,
-  lineHeight: varsThemeBase.lineWeight.body.base,
+  lineHeight: varsThemeBase.lineWeight.body.caption,
   textAlign: "left",
 
   color: varsThemeBase.colors.neutral.textHigh,

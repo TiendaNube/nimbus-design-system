@@ -35,6 +35,7 @@ export const row = style({
 
   borderStyle: "solid",
   borderWidth: "1px 0 1px 0",
+  transition: `background-color ${varsThemeBase.motion.speed.fast} ease-in-out`,
 });
 
 export const cell = style({

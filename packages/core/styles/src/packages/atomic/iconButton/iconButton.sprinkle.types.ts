@@ -1,11 +1,12 @@
 import { Conditions } from "../../../types";
 import { iconButtonSprinkle } from "./iconButton.sprinkle.css";
 
-const { properties } = iconButtonSprinkle;
+const { properties: propertiesIconButton } = iconButtonSprinkle;
 
 type IconButtonBackgroundColorProperties =
-  keyof typeof properties.backgroundColor;
-type IconButtonBorderColorProperties = keyof typeof properties.borderColor;
+  keyof typeof propertiesIconButton.backgroundColor;
+type IconButtonBorderColorProperties =
+  keyof typeof propertiesIconButton.borderColor;
 
 interface IconButtonConditions<T> extends Conditions<T> {
   focus?: T;

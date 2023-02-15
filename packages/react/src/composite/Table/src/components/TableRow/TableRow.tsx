@@ -9,11 +9,29 @@ const TableRow: React.FC<TableRowProps> = ({
   children,
   id,
   onClick,
+  backgroundColor = {
+    rest: "neutral.background",
+    active: "primary.surface",
+    hover: "neutral.surface",
+  },
   ...rest
-}: TableRowProps) => (
-    <tr {...rest} id={id} onClick={onClick} className={table.classnames.row}>
+}: TableRowProps) => {
+  const { className, style, otherProps } = table.sprinkle({
+    ...(rest as Parameters<typeof table.sprinkle>[0]),
+    backgroundColor,
+  });
+
+  return (
+    <tr
+      className={[table.classnames.row, className].join(" ")}
+      style={style}
+      {...otherProps}
+      id={id}
+      onClick={onClick}
+    >
       {children}
     </tr>
   );
+};
 
 export { TableRow };

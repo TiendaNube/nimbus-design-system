@@ -2,6 +2,12 @@
 
 Tables allow users to display large amounts of data in a tabular manner, using columns and rows to group the different types of data.
 
+## 2023-01-15 `1.1.0`
+
+### 🎉 New features
+
+- Add `backgroundColor` property to `Table.Row` subcomponent sprinkles. ([#94](https://github.com/TiendaNube/nimbus-design-system/pull/94) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-01-09 `1.0.0`
 
 ### 📚 3rd party library updates
