@@ -1,5 +1,5 @@
 import React from "react";
-import { SearchIcon } from "@tiendanube/icons";
+import { SearchIcon } from "@nimbus-ds/icons";
 import { input } from "@nimbus-ds/styles";
 import { Icon } from "@nimbus-ds/icon";
 

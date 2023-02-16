@@ -1,6 +1,6 @@
 import React from "react";
 import { pagination } from "@nimbus-ds/styles";
-import { ChevronLeftIcon, ChevronRightIcon } from "@tiendanube/icons";
+import { ChevronLeftIcon, ChevronRightIcon } from "@nimbus-ds/icons";
 import { Button } from "@nimbus-ds/button";
 
 import { usePagination, DOTS } from "./hooks";

@@ -26,7 +26,7 @@ You can also use them for react development, using `yarn` to install.
 | size       | number<br/>'small' = 16px (default)<br/>'medium' = 24px<br/>'large' = 32px<br/>'fixed' | (optional) |
 
 ```jsx
-import { CloudIcon, AlertIcon, StoreIcon } from "@tiendanube/icons";
+import { CloudIcon, AlertIcon, StoreIcon } from "@nimbus-ds/icons";
 
 <CloudIcon />
 <AlertIcon size="large" />
@@ -39,7 +39,8 @@ For more information about our components, check out our [Storybook](https://tie
 
 Do you want to contribute? **Excellent!** You have two ways to do it.
 
-1. You can request a new icon through an [icon request](https://github.com/TiendaNube/nimbus-icons/issues/new?assignees=&labels=&template=icon-request.md&title=%5BIcon+request%5D "Nimbus Icons - Icon request") or
+1. You can request a new icon through an [icon request](https://github.com/TiendaNube/nimbus-design-system/issues/new?assignees=&labels=&template=ICON_REQUEST
+   .md&title=%5BIcon+request%5D "Nimbus Icons - Icon request") or
 2. Create and upload an icon following the instructions in our [contribution guide](.github/CONTRIBUTING.md "Nimbus Icons - Contributing").
 
 **Thanks for contributing! :heart:**

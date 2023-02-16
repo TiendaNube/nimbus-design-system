@@ -1,8 +1,8 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { withA11y } from "@storybook/addon-a11y";
-import { BoxPackedIcon } from "@tiendanube/icons";
 
+import { BoxPackedIcon } from "@nimbus-ds/icons";
 import { Icon } from "@nimbus-ds/icon";
 import { Label } from "./Label";
 

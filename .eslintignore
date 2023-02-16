@@ -1,4 +1,5 @@
 dist
+tmp
 webpack.config.ts
 alias.ts
 index.d.ts

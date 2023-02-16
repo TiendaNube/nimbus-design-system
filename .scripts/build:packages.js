@@ -17,7 +17,7 @@ const run = () => {
     .match(/"\@\w+\-\w+\/\w+?-?\w+": (minor|major|patch)/gm)
     .reduce((prev, curr) => {
       const packageName = curr.replace(/(: (minor|major|patch)|")/gm, "");
-      console.log(curr);
+
       prev = prev + ` --filter=${packageName}...`;
       return prev;
     }, "");

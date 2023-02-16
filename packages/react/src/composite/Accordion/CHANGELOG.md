@@ -2,6 +2,16 @@
 
 The Accordion component allows us to compress content into containers that can be opened or closed.
 
+## 2023-02-16 `1.1.0`
+
+### 🎉 New features
+
+- Removed external dependency from `@tiendanube/icons` package to now use internal `@nimbus-ds/icons` package. ([#94](https://github.com/TiendaNube/nimbus-design-system/pull/#94) by [@juniorconquista](https://github.com/juniorconquista))
+
+### 📚 3rd party library updates
+
+- Removed `@tiendanube/icons@0.3.1`. ([#94](https://github.com/TiendaNube/nimbus-design-system/pull/#94) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-02-07 `1.0.0`
 
 ### 📚 3rd party library updates

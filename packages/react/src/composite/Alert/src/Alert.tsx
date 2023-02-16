@@ -1,8 +1,6 @@
 import React from "react";
 import { alert } from "@nimbus-ds/styles";
-
-import { CloseIcon } from "@tiendanube/icons";
-
+import { CloseIcon } from "@nimbus-ds/icons";
 import { Title } from "@nimbus-ds/title";
 import { Icon } from "@nimbus-ds/icon";
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { withA11y } from "@storybook/addon-a11y";
-import { ExternalLinkIcon } from "@tiendanube/icons";
+import { ExternalLinkIcon } from "@nimbus-ds/icons";
 import { Icon } from "@nimbus-ds/icon";
 import { Badge } from "@nimbus-ds/badge";
 import { Spinner } from "@nimbus-ds/spinner";

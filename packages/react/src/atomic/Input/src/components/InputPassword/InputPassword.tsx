@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { EyeIcon, EyeOffIcon } from "@tiendanube/icons";
+import { EyeIcon, EyeOffIcon } from "@nimbus-ds/icons";
 import { input } from "@nimbus-ds/styles";
 import { Icon } from "@nimbus-ds/icon";
 

@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
 import { fileUploader, vars } from "@nimbus-ds/styles";
-import { PlusCircleIcon } from "@tiendanube/icons";
+import { PlusCircleIcon } from "@nimbus-ds/icons";
 import { Icon } from "@nimbus-ds/icon";
 import { Text } from "@nimbus-ds/text";
 
