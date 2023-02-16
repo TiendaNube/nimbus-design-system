@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/icon",
-  "version": "2.1.0-rc.1",
+  "version": "2.1.0",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -31,6 +31,5 @@
   "devDependencies": {
     "@nimbus-ds/icons": "workspace:^",
     "webpack": "^5.74.0"
-  },
-  "stableVersion": "2.0.0"
+  }
 }

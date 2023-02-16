@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/icon-button",
-  "version": "3.4.0-rc.1",
+  "version": "3.4.0",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -32,6 +32,5 @@
   "devDependencies": {
     "@nimbus-ds/icons": "workspace:^",
     "webpack": "^5.74.0"
-  },
-  "stableVersion": "3.3.0"
+  }
 }
