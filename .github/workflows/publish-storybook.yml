@@ -18,6 +18,9 @@ jobs:
       - name: Run build tokens
         run: npm run build:tokens
 
+      - name: Run build icons
+        run: yarn build:icons
+
       - name: build storybook
         run: yarn build:storybook
 

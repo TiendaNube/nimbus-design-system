@@ -40,6 +40,9 @@ jobs:
       - name: Run build tokens
         run: yarn build:tokens
 
+      - name: Run build icons
+        run: yarn build:icons
+
       - name: Run tests
         run: yarn test:ci
 
