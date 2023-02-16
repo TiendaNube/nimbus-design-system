@@ -2,7 +2,7 @@
 
 The Link component allows us to navigate to external addresses.
 
-## 2023-02-14 `3.4.0`
+## 2023-02-16 `3.4.0`
 
 ### 🎉 New features
 
