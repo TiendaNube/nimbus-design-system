@@ -6,7 +6,7 @@ This package is intended for internal use in generating builds of each design sy
 
 ### 🎉 New features
 
-- Removed external dependency of `@tiendanube/icons` package to now use `@nimbus-ds/icons` internal package in `@nimbus-ds/button`, `@nimbus-ds/chip`, `@nimbus-ds` packages /file-uploader`, `@nimbus-ds/icon`, `@nimbus-ds/icon-button`, `@nimbus-ds/input`, `@nimbus-ds/label`, `@nimbus-ds/ link`, `@nimbus-ds/tag`, `@nimbus-ds/thumbnail`and`@nimbus-ds/toast`. ([#94](https://github.com/TiendaNube/nimbus-design-system/pull/#94) by [@juniorconquista](https://github.com/juniorconquista))
+- Removed external dependency from `@tiendanube/icons` package to now use inner package `@nimbus-ds/icons` in packages `@nimbus-ds/button`, `@nimbus-ds/chip`, `@nimbus-ds /file-uploader`, `@nimbus-ds/icon`, `@nimbus-ds/icon-button`, `@nimbus-ds/input`, `@nimbus-ds/label`, `@nimbus-ds/link`, `@nimbus-ds/tag`, `@nimbus-ds/thumbnail` and `@nimbus-ds/toast`. ([#94](https://github.com/TiendaNube/nimbus-design-system/pull/#94) by [@juniorconquista](https://github.com/juniorconquista))
 
 ### 📚 3rd party library updates
 

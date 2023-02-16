@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/accordion",
-  "version": "1.0.0",
+  "version": "1.1.0-rc.1",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -36,5 +36,6 @@
     "@nimbus-ds/card": "workspace:^",
     "@nimbus-ds/radio": "workspace:^",
     "webpack": "^5.74.0"
-  }
+  },
+  "stableVersion": "1.0.0"
 }
