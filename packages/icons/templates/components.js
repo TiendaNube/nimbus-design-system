@@ -1,5 +1,13 @@
 module.exports = (variables, { tpl }) => {
-  const componentName = `${variables.componentName}: React.FC<IconProps>`;
+  const name = `${variables.componentName.replace("Svg", "")}Icon`;
+  const exp = [
+    {
+      type: "ExportDefaultDeclaration",
+      declaration: { type: "Identifier", name },
+    },
+  ];
+
+  const componentName = `${name}: React.FC<IconProps>`;
 
   return tpl`
         import React from "react";
@@ -8,12 +16,9 @@ module.exports = (variables, { tpl }) => {
 
         ${variables.interfaces};
         
-        const ${componentName} = ({ size="small", ...props }) => {
-            return (
-                ${variables.jsx}
-            );
-        }
+        export const ${componentName} = ({ size="small", ...props }) => (
+          ${variables.jsx}
+        );
         
-        ${variables.exports};
   `;
 };

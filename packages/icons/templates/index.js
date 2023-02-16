@@ -5,7 +5,7 @@ module.exports = (filePaths) => {
     const basename = path.basename(filePath, path.extname(filePath));
     const exportName = /^\d/.test(basename) ? `${basename}` : `${basename}Icon`;
 
-    return `export { default as ${exportName} } from './${basename}'`;
+    return `export { ${exportName} } from './${basename}'`;
   });
 
   return exportEntries.join("\n");
