@@ -33,6 +33,9 @@ jobs:
       - name: Run build tokens
         run: npm run build:tokens
 
+      - name: Run build icons
+        run: npm run build:icons
+
       - name: Run lint
         run: yarn lint
 
