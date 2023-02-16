@@ -2958,6 +2958,7 @@ __metadata:
     "@nimbus-ds/box": "workspace:^"
     "@nimbus-ds/button": "workspace:^"
     "@nimbus-ds/icon": "workspace:^"
+    "@nimbus-ds/icons": "workspace:^"
     "@nimbus-ds/skeleton": "workspace:^"
     "@nimbus-ds/title": "workspace:^"
     webpack: ^5.74.0
@@ -3195,6 +3196,7 @@ __metadata:
   resolution: "@nimbus-ds/pagination@workspace:packages/react/src/composite/Pagination"
   dependencies:
     "@nimbus-ds/button": "workspace:^"
+    "@nimbus-ds/icons": "workspace:^"
     webpack: ^5.74.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
@@ -3233,6 +3235,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/select@workspace:packages/react/src/atomic/Select"
   dependencies:
+    "@nimbus-ds/icons": "workspace:^"
     "@nimbus-ds/skeleton": "workspace:^"
     webpack: ^5.74.0
   peerDependencies:
