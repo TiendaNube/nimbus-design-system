@@ -1,5 +1,5 @@
 import React from "react";
-import { TiendanubeIcon } from "@tiendanube/icons";
+import { TiendanubeIcon } from "@nimbus-ds/icons";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { withA11y } from "@storybook/addon-a11y";
 

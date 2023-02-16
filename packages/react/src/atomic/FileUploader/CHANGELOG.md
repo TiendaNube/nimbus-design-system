@@ -2,6 +2,16 @@
 
 The File Uploader component is used to upload files.
 
+## 2023-02-14 `2.1.0`
+
+### 🎉 New features
+
+- Removed external dependency from `@tiendanube/icons` package to now use internal `@nimbus-ds/icons` package. ([#94](https://github.com/TiendaNube/nimbus-design-system/pull/#94) by [@juniorconquista](https://github.com/juniorconquista))
+
+### 📚 3rd party library updates
+
+- Removed `@tiendanube/icons@0.3.1`. ([#94](https://github.com/TiendaNube/nimbus-design-system/pull/#94) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2022-12-22 `2.0.0`
 
 ### 💡 Others

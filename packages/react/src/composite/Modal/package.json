@@ -16,7 +16,7 @@
   "dependencies": {
     "@floating-ui/react-dom-interactions": "^0.10.1",
     "@nimbus-ds/icon": "workspace:^",
-    "@tiendanube/icons": "^0.3.1"
+    "@nimbus-ds/icons": "workspace:^"
   },
   "peerDependencies": {
     "react": "^16.8 || ^17.0 || ^18.0",

@@ -12,7 +12,7 @@ import {
   InfoCircleIcon,
   CheckCircleIcon,
   ExclamationTriangleIcon,
-} from "@tiendanube/icons";
+} from "@nimbus-ds/icons";
 import { toast } from "@nimbus-ds/styles";
 
 import { ToastProps, TypesColors } from "./toast.types";

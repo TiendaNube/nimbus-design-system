@@ -15,9 +15,9 @@
   },
   "dependencies": {
     "@nimbus-ds/icon": "workspace:^",
+    "@nimbus-ds/icons": "workspace:^",
     "@nimbus-ds/text": "workspace:^",
-    "@nimbus-ds/title": "workspace:^",
-    "@tiendanube/icons": "^0.3.1"
+    "@nimbus-ds/title": "workspace:^"
   },
   "peerDependencies": {
     "react": "^16.8 || ^17.0 || ^18.0",

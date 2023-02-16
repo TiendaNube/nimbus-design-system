@@ -1,5 +1,5 @@
 import React from "react";
-import { CloseIcon } from "@tiendanube/icons";
+import { CloseIcon } from "@nimbus-ds/icons";
 import { chip } from "@nimbus-ds/styles";
 import { Text } from "@nimbus-ds/text";
 import { Icon } from "@nimbus-ds/icon";
