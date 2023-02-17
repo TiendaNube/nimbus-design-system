@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/pagination",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -14,7 +14,8 @@
     "version": "yarn version"
   },
   "dependencies": {
-    "@nimbus-ds/button": "workspace:^"
+    "@nimbus-ds/button": "workspace:^",
+    "@nimbus-ds/icons": "workspace:^"
   },
   "peerDependencies": {
     "react": "^16.8 || ^17.0 || ^18.0",

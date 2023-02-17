@@ -3,7 +3,7 @@ import {
   CheckCircleIcon,
   ExclamationCircleIcon,
   ExclamationTriangleIcon,
-} from "@tiendanube/icons";
+} from "@nimbus-ds/icons";
 
 export const alertVariants = {
   neutral: {

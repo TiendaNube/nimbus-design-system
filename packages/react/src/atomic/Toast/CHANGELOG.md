@@ -3,6 +3,16 @@
 Toast allows us to send short messages to the user in a non-intrusive way to communicate component or feedback resulting from some action.
 It is a component that appears and disappears after a few seconds. By default, we set the user detection time to 4 seconds, which should be enough for the user to read the message and interfere with its operation.
 
+## 2023-02-16 `2.1.0`
+
+### 🎉 New features
+
+- Removed external dependency from `@tiendanube/icons` package to now use internal `@nimbus-ds/icons` package. ([#94](https://github.com/TiendaNube/nimbus-design-system/pull/#94) by [@juniorconquista](https://github.com/juniorconquista))
+
+### 📚 3rd party library updates
+
+- Removed `@tiendanube/icons@0.3.1`. ([#94](https://github.com/TiendaNube/nimbus-design-system/pull/#94) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2022-12-22 `2.0.0`
 
 ### 💡 Others

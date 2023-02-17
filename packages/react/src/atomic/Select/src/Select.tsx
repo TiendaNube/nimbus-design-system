@@ -1,7 +1,7 @@
 import React from "react";
 import { select } from "@nimbus-ds/styles";
 import { Icon } from "@nimbus-ds/icon";
-import { ChevronDownIcon } from "@tiendanube/icons";
+import { ChevronDownIcon } from "@nimbus-ds/icons";
 
 import { SelectComponents, SelectProps } from "./select.types";
 import { SelectGroup, SelectOption, SelectSkeleton } from "./components";

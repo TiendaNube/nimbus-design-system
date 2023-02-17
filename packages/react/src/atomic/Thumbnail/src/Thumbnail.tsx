@@ -1,6 +1,6 @@
 import React from "react";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
-import { CameraIcon } from "@tiendanube/icons";
+import { CameraIcon } from "@nimbus-ds/icons";
 import { thumbnail, vars } from "@nimbus-ds/styles";
 import { Icon } from "@nimbus-ds/icon";
 

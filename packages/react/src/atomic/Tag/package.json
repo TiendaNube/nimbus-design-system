@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/tag",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -29,8 +29,8 @@
     "url": "https://github.com/TiendaNube/nimbus-design-system/issues"
   },
   "devDependencies": {
+    "@nimbus-ds/icons": "workspace:^",
     "@nimbus-ds/text": "workspace:^",
-    "@tiendanube/icons": "^0.3.1",
     "webpack": "^5.74.0"
   }
 }

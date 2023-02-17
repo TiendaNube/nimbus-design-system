@@ -60,6 +60,7 @@ const convertTsConfigPathsToWebpackAliases = () => {
   }, {});
 
   paths["@nimbus-ds/tokens"] = path.join(rootDir, "packages/core/tokens");
+  paths["@nimbus-ds/icons"] = path.join(rootDir, "packages/icons");
   paths["@nimbus-ds/styles"] = path.join(
     rootDir,
     "packages/core/styles/src/index.ts"

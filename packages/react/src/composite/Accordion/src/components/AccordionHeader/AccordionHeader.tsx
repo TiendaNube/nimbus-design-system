@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import { Title } from "@nimbus-ds/title";
 import { Text } from "@nimbus-ds/text";
 import { Icon as NimbusIcon } from "@nimbus-ds/icon";
-import { ChevronDownIcon, ChevronUpIcon } from "@tiendanube/icons";
+import { ChevronDownIcon, ChevronUpIcon } from "@nimbus-ds/icons";
 import { accordion } from "@nimbus-ds/styles";
 
 import { AccordionHeaderProps } from "./accordionHeader.types";

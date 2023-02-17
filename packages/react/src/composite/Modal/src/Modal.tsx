@@ -10,7 +10,7 @@ import {
   FloatingOverlay,
   FloatingPortal,
 } from "@floating-ui/react-dom-interactions";
-import { CloseIcon } from "@tiendanube/icons";
+import { CloseIcon } from "@nimbus-ds/icons";
 import { Icon } from "@nimbus-ds/icon";
 import { modal } from "@nimbus-ds/styles";
 

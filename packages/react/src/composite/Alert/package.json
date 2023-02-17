@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/alert",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@nimbus-ds/icon": "workspace:^",
+    "@nimbus-ds/icons": "workspace:^",
     "@nimbus-ds/skeleton": "workspace:^",
     "@nimbus-ds/title": "workspace:^"
   },

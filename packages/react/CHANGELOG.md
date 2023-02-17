@@ -2,6 +2,16 @@
 
 This package is intended for internal use in generating builds of each design system package. It contains all the necessary settings and dependencies to optimize the creation of our builds.
 
+## 2023-02-16 `2.8.0`
+
+### 🎉 New features
+
+- Removed external dependency from `@tiendanube/icons` package to now use inner package `@nimbus-ds/icons` in packages `@nimbus-ds/button`, `@nimbus-ds/chip`, `@nimbus-ds /file-uploader`, `@nimbus-ds/icon`, `@nimbus-ds/icon-button`, `@nimbus-ds/input`, `@nimbus-ds/label`, `@nimbus-ds/link`, `@nimbus-ds/tag`, `@nimbus-ds/thumbnail` and `@nimbus-ds/toast`. ([#94](https://github.com/TiendaNube/nimbus-design-system/pull/#94) by [@juniorconquista](https://github.com/juniorconquista))
+
+### 📚 3rd party library updates
+
+- Removed `@tiendanube/icons@0.3.1`. ([#94](https://github.com/TiendaNube/nimbus-design-system/pull/#94) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-02-13 `2.7.0`
 
 ### 🎉 New features

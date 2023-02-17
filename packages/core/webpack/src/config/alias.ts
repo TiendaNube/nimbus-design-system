@@ -16,6 +16,7 @@ const packages = paths.reduce((prev: { [key: string]: string }, curr) => {
 }, {});
 
 export const aliasItems = {
+  "@nimbus-ds/icons": join(rootDir, "./packages/icons"),
   "@nimbus-ds/tokens": join(rootDir, "./packages/core/tokens"),
   "@nimbus-ds/typings": join(rootDir, "./packages/core/typings/src"),
   "@nimbus-ds/styles": join(rootDir, "./packages/core/styles/src"),

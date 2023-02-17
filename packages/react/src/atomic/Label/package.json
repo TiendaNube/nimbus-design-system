@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/label",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@nimbus-ds/icon": "workspace:^",
-    "@tiendanube/icons": "^0.3.1",
+    "@nimbus-ds/icons": "workspace:^",
     "webpack": "^5.74.0"
   }
 }

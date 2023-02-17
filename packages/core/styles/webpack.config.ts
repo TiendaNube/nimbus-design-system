@@ -20,6 +20,7 @@ config.plugins = [
   plugins.miniCssExtractPlugin,
   plugins.dtsBundleGeneratorPlugin({
     entries: [
+      `node ${utils.rootDir}/node_modules/.bin/dts-bundle-generator -o ./dist/index.d.ts ./src/index.ts`,
       `node ${utils.rootDir}/node_modules/.bin/dts-bundle-generator -o ./dist/themes/dark.d.ts ./src/themes/dark.css.ts`,
     ],
   }),
