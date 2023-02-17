@@ -14,20 +14,22 @@ const run = () => {
   const source = fs.readFileSync(paths[0], "utf8");
 
   const packages = source
-    .match(/"\@\w+\-\w+\/\w+?-?\w+": (minor|major|patch)/gm)
-    .reduce((prev, curr) => {
+    ?.match(/"\@\w+\-\w+\/\w+?-?\w+": (minor|major|patch)/gm)
+    ?.reduce((prev, curr) => {
       const packageName = curr.replace(/(: (minor|major|patch)|")/gm, "");
 
       prev = prev + ` --filter=${packageName}...`;
       return prev;
     }, "");
 
-  console.log(`\x1b[32m 🏃‍♂️ Running building packages... \x1b[0m`);
-  const execOpts = { stdio: "inherit" };
-  execSync(
-    `turbo run build --filter=!@nimbus-ds/webpack ${packages}`,
-    execOpts
-  );
+  if (packages) {
+    console.log(`\x1b[32m 🏃‍♂️ Running building packages... \x1b[0m`);
+    const execOpts = { stdio: "inherit" };
+    execSync(
+      `turbo run build --filter=!@nimbus-ds/webpack ${packages}`,
+      execOpts
+    );
+  }
 };
 
 try {
