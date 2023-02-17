@@ -13,6 +13,12 @@ Package-specific changes not released in any package will be added here just bef
 
 - Remove deprecated set-output usage in github actions. ([#94](https://github.com/TiendaNube/nimbus-design-system/pull/94) by [@juniorconquista](https://github.com/juniorconquista))
 
+## 2023-02-15
+
+### 🎉 New features
+
+- Adjust storybook dark mode colors to use Nimbus tokens. ([#95](https://github.com/TiendaNube/nimbus-design-system/pull/95) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-02-13
 
 ### 🎉 New features

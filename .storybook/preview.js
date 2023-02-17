@@ -1,7 +1,7 @@
 import React from "react";
 import { themes } from "@storybook/theming";
 
-import { base } from "./theme";
+import { base, darkExtend } from "./theme";
 import ThemeProvider from "./ThemeProvider";
 import theme from "./theme";
 import "./style.css";
@@ -17,7 +17,7 @@ export const parameters = {
       ...base,
     },
     dark: {
-      ...themes.dark,
+      ...darkExtend,
       ...base,
     },
   },
