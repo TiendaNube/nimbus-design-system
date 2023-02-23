@@ -58,6 +58,9 @@ jobs:
   create-github-relase:
     runs-on: ubuntu-latest
     needs: publish-packages-npm
+    permissions:
+      contents: write
+      discussions: write
     steps:
       - name: Generate tag release
         uses: StephaneBour/actions-calver@master
@@ -72,30 +75,53 @@ jobs:
       - uses: rickstaa/action-create-tag@v1
         with:
           tag: ${{ steps.calver.outputs.release }}
-      
+
       - name: Get current PR
         uses: 8BitJonny/gh-get-current-pr@2.2.0
         id: PR
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
+
       - name: Create Release
         id: create_release
-        uses: actions/create-release@v1
+        uses: ncipollo/release-action@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.calver.outputs.release }}
-          release_name: ${{ steps.calver.outputs.release }}
+          tag: ${{ steps.calver.outputs.release }}
+          name: ${{ steps.calver.outputs.release }}
           body: ${{ steps.PR.outputs.pr_body }}
-          discussion_category_name: "announcements"
+          discussionCategory: "announcements"
           draft: false
           prerelease: false
           
-      # - name: Send Slack Notification
-      #   id: slack
-      #   uses: slackapi/slack-github-action@v1.23.0
-      #   with:
-      #     payload-file-path: "./payload-slack-content.json"
-      #   env:
-      #    SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+  send-slack-notifications:
+    needs: [publish-packages-npm, create-github-relase]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Send slack notification on chanel Ninbus updates
+        id: slack-nimbus-updates
+        uses: slackapi/slack-github-action@v1.23.0
+        with:
+          payload-file-path: ./.github/resources/payload-notification.json
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL_NIMBUS_UPDATES }}
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
+      - name: Send slack notification on chanel Ninbus deploying
+        id: slack-deploying
+        uses: slackapi/slack-github-action@v1.23.0
+        with:
+          payload-file-path: ./.github/resources/payload-notification.json
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL_DEPLOYING }}
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
+      - name: Send slack notification on chanel Tech product updates
+        id: slack-tech-product-updates
+        uses: slackapi/slack-github-action@v1.23.0
+        with:
+          payload-file-path: ./.github/resources/payload-notification.json
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL_TECH_PRODUCT_UPDATES }}
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK

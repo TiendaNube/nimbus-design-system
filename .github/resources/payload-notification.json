@@ -1,0 +1,105 @@
+{
+  "text": "Deployment finished (Completed)",
+  "blocks": [
+    {
+      "type": "header",
+      "text": {
+        "type": "plain_text",
+        "text": "Published new versions of Nimbus components 🚀",
+        "emoji": true
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "The release of these updates can be found in the <https://github.com/TiendaNube/nimbus-design-system/releases|repository> and also on our official website."
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "Github Releases"
+      },
+      "accessory": {
+        "type": "button",
+        "text": {
+          "type": "plain_text",
+          "text": "Go",
+          "emoji": true
+        },
+        "value": "click_me_123",
+        "url": "https://github.com/TiendaNube/nimbus-design-system/releases",
+        "action_id": "button-action"
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "Release Notes"
+      },
+      "accessory": {
+        "type": "button",
+        "text": {
+          "type": "plain_text",
+          "text": "Go",
+          "emoji": true
+        },
+        "value": "click_me_123",
+        "url": "https://nimbus.nuvemshop.com.br/documentation/overview/releases",
+        "action_id": "button-action"
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "Storybook documentation"
+      },
+      "accessory": {
+        "type": "button",
+        "text": {
+          "type": "plain_text",
+          "text": "Go",
+          "emoji": true
+        },
+        "value": "click_me_123",
+        "url": "https://tiendanube.github.io/nimbus-design-system",
+        "action_id": "button-action"
+      }
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "context",
+      "elements": [
+        {
+          "type": "mrkdwn",
+          "text": "Thanks for submitting your update *<https://github.com/${{ github.actor }}|{{ github.actor }}>* !"
+        },
+        {
+          "type": "image",
+          "image_url": "https://emoji.slack-edge.com/T0C2G1ACC/fastparrot/22ab858b448a1afc.gif",
+          "alt_text": "thanks"
+        }
+      ]
+    },
+    {
+      "type": "context",
+      "elements": [
+        {
+          "type": "mrkdwn",
+          "text": "“Try not. Do, or do not. There is no try.” – Yoda"
+        },
+        {
+          "type": "image",
+          "image_url": "https://emoji.slack-edge.com/T0C2G1ACC/yoda-aaa/9814ac41e1a9f010.png",
+          "alt_text": "yoda"
+        }
+      ]
+    }
+  ]
+}
