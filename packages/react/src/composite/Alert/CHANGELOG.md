@@ -1,6 +1,12 @@
 # Changelog
 
-The alert component is used to showcase relevant or time-sensitive information to the user in a visually prominent banner.
+The Alert component allows us to communicate about changes or special conditions in pages or sections.
+
+## 2023-02-23 `2.2.0`
+
+### 🎉 New features
+
+- Added server side-rendering support to component. ([#99](https://github.com/TiendaNube/nimbus-design-system/pull/99) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2023-02-16 `2.1.0`
 
