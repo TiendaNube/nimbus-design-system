@@ -1,6 +1,12 @@
 # Changelog
 
-Use a textarea when the user needs to input large amounts of text on a form
+The Textarea component allows the user to enter or edit information in long text format.
+
+## 2023-02-23 `2.1.0`
+
+### 🎉 New features
+
+- Added server side-rendering support to component. ([#99](https://github.com/TiendaNube/nimbus-design-system/pull/99) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2022-12-22 `2.0.0`
 

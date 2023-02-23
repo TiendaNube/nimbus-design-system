@@ -2,6 +2,12 @@
 
 A low-level utility component that accepts styled system props to enable custom theme-aware styling
 
+## 2023-02-23 `2.7.0`
+
+### 🎉 New features
+
+- Added server side-rendering support to component. ([#99](https://github.com/TiendaNube/nimbus-design-system/pull/99) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-02-13 `2.6.0`
 
 ### 💡 Others

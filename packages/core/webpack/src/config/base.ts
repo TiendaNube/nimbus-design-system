@@ -14,6 +14,7 @@ import production from "./production";
 import development from "./development";
 
 const webpack: Configuration = {
+  target: "node",
   mode: isProduction ? "production" : "development",
   entry: {
     "./index": "./src/index.ts",

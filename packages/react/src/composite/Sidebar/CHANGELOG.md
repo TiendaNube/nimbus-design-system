@@ -1,6 +1,12 @@
 # Changelog
 
-Sidebars navigation provides access to the parts within its application. The side sections have the supplementary content that is linked on the left or right side of the screen.
+The Sidebar component is a large floating container that goes into the page from the corners. It allows us to present actions, forms or sections with a lot of information about the context of the page.
+
+## 2023-02-23 `2.1.0`
+
+### 🎉 New features
+
+- Added server side-rendering support to component. ([#99](https://github.com/TiendaNube/nimbus-design-system/pull/99) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2022-12-22 `2.0.0`
 

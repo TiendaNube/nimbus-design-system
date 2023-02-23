@@ -1,6 +1,12 @@
 # Changelog
 
-The Tabs component allows the user to switch between related sections of content displaying one at a time.
+The Tabs component allows us to separate content from the same hierarchy into different tabs.
+
+## 2023-02-23 `2.1.0`
+
+### 🎉 New features
+
+- Added server side-rendering support to component. ([#99](https://github.com/TiendaNube/nimbus-design-system/pull/99) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2022-12-22 `2.0.0`
 
