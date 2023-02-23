@@ -6,7 +6,7 @@ The skeleton is a basic component that displays a placeholder preview of its con
 
 ### 🎉 New features
 
-- Added server side-rendering support to component. ([#99](https://github.com/TiendaNube/nimbus-design-system/pull/99) by [@juniorconquista](https://github.com/juniorconquista))
+- Added server side-rendering support to component. ([#105](https://github.com/TiendaNube/nimbus-design-system/pull/105) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2022-12-22 `2.0.0`
 

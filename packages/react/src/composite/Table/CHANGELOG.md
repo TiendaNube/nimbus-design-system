@@ -6,7 +6,7 @@ The Table component allows us to organize data with a tabular structure in a tab
 
 ### 🎉 New features
 
-- Added server side-rendering support to component. ([#99](https://github.com/TiendaNube/nimbus-design-system/pull/99) by [@juniorconquista](https://github.com/juniorconquista))
+- Added server side-rendering support to component. ([#105](https://github.com/TiendaNube/nimbus-design-system/pull/105) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2023-01-15 `1.1.0`
 

@@ -6,7 +6,7 @@ The badge component is used to communicate quantities of items or pending action
 
 ### 🎉 New features
 
-- Added server side-rendering support to component. ([#99](https://github.com/TiendaNube/nimbus-design-system/pull/99) by [@juniorconquista](https://github.com/juniorconquista))
+- Added server side-rendering support to component. ([#105](https://github.com/TiendaNube/nimbus-design-system/pull/105) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2022-12-22 `3.0.0`
 

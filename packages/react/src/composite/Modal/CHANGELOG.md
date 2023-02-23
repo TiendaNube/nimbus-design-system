@@ -6,7 +6,7 @@ The Modal component allows us to call the user's attention to a floating box tha
 
 ### 🎉 New features
 
-- Added server side-rendering support to component. ([#99](https://github.com/TiendaNube/nimbus-design-system/pull/99) by [@juniorconquista](https://github.com/juniorconquista))
+- Added server side-rendering support to component. ([#105](https://github.com/TiendaNube/nimbus-design-system/pull/105) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2023-02-16 `1.1.0`
 
