@@ -29,7 +29,9 @@ neutral.args = {
   children: (
     <>
       <BoxPackedIcon size={12} />
-      <Text color="neutral.textLow">Text</Text>
+      <Text fontSize="caption" lineHeight="caption">
+        Text
+      </Text>
     </>
   ),
 };
@@ -40,7 +42,9 @@ primary.args = {
   children: (
     <>
       <BoxPackedIcon size={12} />
-      <Text color="primary.textLow">Text</Text>
+      <Text fontSize="caption" lineHeight="caption" color="primary.textLow">
+        Text
+      </Text>
     </>
   ),
 };
@@ -51,7 +55,9 @@ success.args = {
   children: (
     <>
       <BoxPackedIcon size={12} />
-      <Text color="success.textLow">Text</Text>
+      <Text fontSize="caption" lineHeight="caption" color="success.textLow">
+        Text
+      </Text>
     </>
   ),
 };
@@ -62,7 +68,9 @@ warning.args = {
   children: (
     <>
       <BoxPackedIcon size={12} />
-      <Text color="warning.textLow">Text</Text>
+      <Text fontSize="caption" lineHeight="caption" color="warning.textLow">
+        Text
+      </Text>
     </>
   ),
 };
@@ -73,7 +81,9 @@ danger.args = {
   children: (
     <>
       <BoxPackedIcon size={12} />
-      <Text color="danger.textLow">Text</Text>
+      <Text fontSize="caption" lineHeight="caption" color="danger.textLow">
+        Text
+      </Text>
     </>
   ),
 };

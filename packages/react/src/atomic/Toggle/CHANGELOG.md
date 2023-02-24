@@ -2,6 +2,12 @@
 
 The Tooltip component allows us to show additional information in a non-intrusive way.
 
+## 2023-02-24 `2.1.1`
+
+### 💡 Others
+
+- Adjust `Text` component default values. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-02-23 `2.1.0`
 
 ### 🎉 New features

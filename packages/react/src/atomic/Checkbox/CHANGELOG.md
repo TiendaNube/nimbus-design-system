@@ -2,6 +2,12 @@
 
 The Checkbox component allows us to choose one or several options from a selection list.
 
+## 2023-02-24 `2.1.1`
+
+### 💡 Others
+
+- Reset font size and line height values on `Text` component to default values. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-02-23 `2.1.0`
 
 ### 🎉 New features

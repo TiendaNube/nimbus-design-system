@@ -2,17 +2,17 @@
 
 The Table component allows us to organize data with a tabular structure in a table.
 
+## 2023-02-24 `1.2.1`
+
+### 🐛 Bug fixes
+
+- Fixed a bug where `rest` condition selector sprinkle would not work. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-02-23 `1.2.0`
 
 ### 🎉 New features
 
 - Added server side-rendering support to component. ([#105](https://github.com/TiendaNube/nimbus-design-system/pull/105) by [@juniorconquista](https://github.com/juniorconquista))
-
-## 2023-01-15 `1.1.1`
-
-### 🐛 Bug fixes
-
-- Fixed a bug where `rest` condition selector sprinkle would not work. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
 
 ## 2023-01-15 `1.1.0`
 

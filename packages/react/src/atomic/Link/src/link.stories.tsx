@@ -47,7 +47,7 @@ const Template: ComponentStory<typeof LinkComponent> = (args) => (
   <Link as="a" {...args} />
 );
 const StressedTemplate: ComponentStory<typeof LinkComponent> = (args) => (
-  <Text fontSize="base" color="neutral.textLow">
+  <Text>
     This is a paragraph followed by a link.
     <Link {...args} />
   </Text>

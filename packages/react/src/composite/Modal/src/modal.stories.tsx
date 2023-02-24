@@ -45,7 +45,7 @@ base.args = {
     <>
       <Modal.Header title="Title" />
       <Modal.Body>
-        <Text textAlign="left" fontSize="base" lineHeight="base">
+        <Text textAlign="left">
           Arcu condimentum enim at tristique aenean in. Fringilla urna, nec
           dignissim malesuada lobortis faucibus volutpat. Purus tincidunt
           adipiscing id felis, tincidunt nunc nibh urna ac.
@@ -71,9 +71,7 @@ WithHeader.args = {
           borderWidth="1px"
           borderColor="neutral.interactive"
         >
-          <Text textAlign="center" fontSize="base">
-            Replace me with your content
-          </Text>
+          <Text textAlign="center">Replace me with your content</Text>
         </Box>
       </Modal.Body>
     </>
@@ -92,9 +90,7 @@ WithFooterAndHeader.args = {
           borderWidth="1px"
           borderColor="neutral.interactive"
         >
-          <Text textAlign="center" fontSize="base">
-            Replace me with your content
-          </Text>
+          <Text textAlign="center">Replace me with your content</Text>
         </Box>
       </Modal.Body>
       <Modal.Footer>
@@ -107,11 +103,7 @@ WithFooterAndHeader.args = {
 export const content = Template.bind({});
 content.args = {
   padding: "none",
-  children: (
-    <Text textAlign="center" fontSize="base" lineHeight="base">
-      Replace me with your content
-    </Text>
-  ),
+  children: <Text textAlign="center">Replace me with your content</Text>,
 };
 
 export const skeleton = Template.bind({});

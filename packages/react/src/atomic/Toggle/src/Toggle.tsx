@@ -25,12 +25,7 @@ const Toggle: React.FC<ToggleProps> & ToggleComponents = ({
     />
     <span data-testid="slider" className={toggle.classnames.slider} />
     {label && (
-      <Text
-        data-testid="text"
-        color="neutral.textLow"
-        fontSize="base"
-        lineHeight="highlight"
-      >
+      <Text data-testid="text" color="neutral.textLow" lineHeight="highlight">
         {label}
       </Text>
     )}

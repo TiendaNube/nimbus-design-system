@@ -50,9 +50,7 @@ base.args = {
       borderColor="neutral.interactive"
       boxSizing="border-box"
     >
-      <Text textAlign="center" fontSize="base">
-        Replace me with your content
-      </Text>
+      <Text textAlign="center">Replace me with your content</Text>
     </Box>
   ),
 };
@@ -72,9 +70,7 @@ withPadding.args = {
       borderColor="neutral.interactive"
       boxSizing="border-box"
     >
-      <Text textAlign="center" fontSize="base">
-        Replace me with your content
-      </Text>
+      <Text textAlign="center">Replace me with your content</Text>
     </Box>
   ),
 };
@@ -96,9 +92,7 @@ withHeader.args = {
           borderColor="neutral.interactive"
           boxSizing="border-box"
         >
-          <Text textAlign="center" fontSize="base">
-            Header
-          </Text>
+          <Text textAlign="center">Header</Text>
         </Box>
       </Sidebar.Header>
       <Sidebar.Body>
@@ -113,9 +107,7 @@ withHeader.args = {
           borderColor="neutral.interactive"
           boxSizing="border-box"
         >
-          <Text textAlign="center" fontSize="base">
-            Body
-          </Text>
+          <Text textAlign="center">Body</Text>
         </Box>
       </Sidebar.Body>
     </>
@@ -139,9 +131,7 @@ withHeaderAndTitle.args = {
         borderColor="neutral.interactive"
         boxSizing="border-box"
       >
-        <Text textAlign="center" fontSize="base">
-          Replace me with your content
-        </Text>
+        <Text textAlign="center">Replace me with your content</Text>
       </Box>
     </>
   ),
@@ -164,9 +154,7 @@ withFooter.args = {
           borderColor="neutral.interactive"
           boxSizing="border-box"
         >
-          <Text textAlign="center" fontSize="base">
-            Header
-          </Text>
+          <Text textAlign="center">Header</Text>
         </Box>
       </Sidebar.Header>
       <Sidebar.Body>
@@ -181,9 +169,7 @@ withFooter.args = {
           borderColor="neutral.interactive"
           boxSizing="border-box"
         >
-          <Text textAlign="center" fontSize="base">
-            Body
-          </Text>
+          <Text textAlign="center">Body</Text>
         </Box>
       </Sidebar.Body>
       <Sidebar.Footer>
@@ -199,9 +185,7 @@ withFooter.args = {
           width="100%"
           boxSizing="border-box"
         >
-          <Text textAlign="center" fontSize="base">
-            Footer
-          </Text>
+          <Text textAlign="center">Footer</Text>
         </Box>
       </Sidebar.Footer>
     </>

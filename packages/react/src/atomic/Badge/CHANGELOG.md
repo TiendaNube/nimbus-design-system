@@ -2,6 +2,12 @@
 
 The badge component is used to communicate quantities of items or pending actions.
 
+## 2023-02-24 `3.1.1`
+
+### 💡 Others
+
+- Replaced font size and line height on `Text` component. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-02-23 `3.1.0`
 
 ### 🎉 New features

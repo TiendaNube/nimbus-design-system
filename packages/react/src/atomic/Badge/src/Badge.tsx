@@ -14,7 +14,9 @@ const Badge: React.FC<BadgeProps> & BadgeComponents = ({
   ...rest
 }: BadgeProps) => (
   <div {...rest} className={badge.classnames[theme][appearance]}>
-    <Text color="currentColor">{count}</Text>
+    <Text fontSize="caption" lineHeight="caption" color="currentColor">
+      {count}
+    </Text>
   </div>
 );
 

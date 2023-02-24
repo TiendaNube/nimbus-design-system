@@ -47,7 +47,11 @@ const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
         source={<PlusCircleIcon size={20} />}
       />
       {placeholder && (
-        <Text color={`${color}.interactive`} fontWeight="bold">
+        <Text
+          color={`${color}.interactive`}
+          fontWeight="bold"
+          fontSize="caption"
+        >
           {placeholder}
         </Text>
       )}

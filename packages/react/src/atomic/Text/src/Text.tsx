@@ -10,7 +10,7 @@ const Text: React.FC<TextProps> & TextComponents = ({
   as: As = "p",
   color = "neutral.textLow",
   textAlign = "left",
-  lineHeight = "caption",
+  lineHeight = "base",
   fontWeight = "regular",
   fontSize = "base",
   children,

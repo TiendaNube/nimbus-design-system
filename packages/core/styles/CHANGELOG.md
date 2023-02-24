@@ -12,6 +12,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 - Added `fontWeight`, `fontSize` and `lineHeight` properties to `Title` component sprinkles. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
 - Added `sizeProperties` tokens to `Title` component sprinkles. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
 - Added `inherit` to `cursor` property values. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+- Added `minWidth` and `minHeight` properties to `Box` sprinkles. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
 
 #### 🐛 Bug fixes
 

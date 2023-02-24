@@ -2,6 +2,11 @@
 
 The Accordion component allows us to compress content into containers that can be opened or closed.
 
+## 2023-02-24 `1.2.1`
+
+- Adjust `Text` component default values. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+- Adjust `Text` component default values in stories documentation. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-02-23 `1.2.0`
 
 ### 🎉 New features

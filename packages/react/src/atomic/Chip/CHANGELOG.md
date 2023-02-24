@@ -2,6 +2,13 @@
 
 The Chip component is used to flag criteria or attributes related to searches or filters of a list of information.
 
+## 2023-02-24 `2.2.1`
+
+### 💡 Others
+
+- Reset color value on `Text` component to default value. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+- Add `lineHeight caption` property on `Text` component. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-02-23 `2.2.0`
 
 ### 🎉 New features

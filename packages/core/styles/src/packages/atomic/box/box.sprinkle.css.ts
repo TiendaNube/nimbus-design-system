@@ -127,6 +127,8 @@ const defineProperties = defineRainbowProperties({
     height: true,
     maxWidth: true,
     maxHeight: true,
+    minWidth: true,
+    minHeight: true,
     bottom: true,
     left: true,
     right: true,

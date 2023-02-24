@@ -51,9 +51,7 @@ base.args = {
             borderWidth="1px"
             borderColor="neutral.interactive"
           >
-            <Text textAlign="center" fontSize="base">
-              Replace me with your content
-            </Text>
+            <Text textAlign="center">Replace me with your content</Text>
           </Box>
         </Accordion.Body>
       </Accordion.Item>
@@ -72,9 +70,7 @@ base.args = {
             borderWidth="1px"
             borderColor="neutral.interactive"
           >
-            <Text textAlign="center" fontSize="base">
-              Replace me with your content
-            </Text>
+            <Text textAlign="center">Replace me with your content</Text>
           </Box>
         </Accordion.Body>
       </Accordion.Item>
@@ -101,9 +97,7 @@ WithCard.args = {
             borderWidth="1px"
             borderColor="neutral.interactive"
           >
-            <Text textAlign="center" fontSize="base">
-              Replace me with your content
-            </Text>
+            <Text textAlign="center">Replace me with your content</Text>
           </Box>
         </Accordion.Body>
       </Accordion.Item>
@@ -121,9 +115,7 @@ WithCard.args = {
             borderWidth="1px"
             borderColor="neutral.interactive"
           >
-            <Text textAlign="center" fontSize="base">
-              Replace me with your content
-            </Text>
+            <Text textAlign="center">Replace me with your content</Text>
           </Box>
         </Accordion.Body>
       </Accordion.Item>
@@ -149,9 +141,7 @@ withoutIcon.args = {
             borderWidth="1px"
             borderColor="neutral.interactive"
           >
-            <Text textAlign="center" fontSize="base">
-              Replace me with your content
-            </Text>
+            <Text textAlign="center">Replace me with your content</Text>
           </Box>
         </Accordion.Body>
       </Accordion.Item>
@@ -165,9 +155,7 @@ withoutIcon.args = {
             borderWidth="1px"
             borderColor="neutral.interactive"
           >
-            <Text textAlign="center" fontSize="base">
-              Replace me with your content
-            </Text>
+            <Text textAlign="center">Replace me with your content</Text>
           </Box>
         </Accordion.Body>
       </Accordion.Item>
@@ -205,9 +193,7 @@ WithCustomIcon.args = {
             borderWidth="1px"
             borderColor="neutral.interactive"
           >
-            <Text textAlign="center" fontSize="base">
-              Replace me with your content
-            </Text>
+            <Text textAlign="center">Replace me with your content</Text>
           </Box>
         </Accordion.Body>
       </Accordion.Item>
@@ -233,9 +219,7 @@ WithCustomIcon.args = {
             borderWidth="1px"
             borderColor="neutral.interactive"
           >
-            <Text textAlign="center" fontSize="base">
-              Replace me with your content
-            </Text>
+            <Text textAlign="center">Replace me with your content</Text>
           </Box>
         </Accordion.Body>
       </Accordion.Item>
@@ -269,9 +253,7 @@ withoutIconToogle.args = {
             borderWidth="1px"
             borderColor="neutral.interactive"
           >
-            <Text textAlign="center" fontSize="base">
-              Replace me with your content
-            </Text>
+            <Text textAlign="center">Replace me with your content</Text>
           </Box>
         </Accordion.Body>
       </Accordion.Item>
@@ -297,9 +279,7 @@ withoutIconToogle.args = {
             borderWidth="1px"
             borderColor="neutral.interactive"
           >
-            <Text textAlign="center" fontSize="base">
-              Replace me with your content
-            </Text>
+            <Text textAlign="center">Replace me with your content</Text>
           </Box>
         </Accordion.Body>
       </Accordion.Item>
