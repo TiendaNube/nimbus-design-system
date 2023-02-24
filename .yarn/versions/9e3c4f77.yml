@@ -8,7 +8,7 @@ releases:
   "@nimbus-ds/components": minor
   "@nimbus-ds/file-uploader": patch
   "@nimbus-ds/icon": patch
-  "@nimbus-ds/link": patch
+  "@nimbus-ds/link": minor
   "@nimbus-ds/modal": patch
   "@nimbus-ds/sidebar": patch
   "@nimbus-ds/styles": minor
