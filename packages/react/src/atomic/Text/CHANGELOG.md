@@ -2,6 +2,13 @@
 
 Text is a basic component that allows us to write blocks of text and give it formatting to use within other components, sections and pages of our application or website.
 
+## 2023-02-23 `5.1.0`
+
+### 🎉 New features
+
+- Changed `fontSize` default value to `base`. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+- Changed `color` default value to `neutral.textLow`. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2022-12-22 `5.0.0`
 
 ### 💡 Others

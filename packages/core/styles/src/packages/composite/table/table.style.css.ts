@@ -14,6 +14,7 @@ export const table = style({
   fontFamily: varsThemeBase.fontFamily.centranube,
   overflow: "hidden",
   width: "100%",
+  tableLayout: "fixed",
 });
 
 export const head = style({

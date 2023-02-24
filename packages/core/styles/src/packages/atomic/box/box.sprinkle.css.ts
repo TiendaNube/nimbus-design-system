@@ -139,6 +139,7 @@ const defineProperties = defineRainbowProperties({
     flexShrink: true,
     borderRadius: true,
     borderWidth: true,
+    zIndex: true,
     transitionDelay: true,
     transitionProperty: true,
     transitionDuration: transitionSpeedProperties,

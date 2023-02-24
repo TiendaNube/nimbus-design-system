@@ -43,6 +43,7 @@ export const cursorProperties: Cursor[] = [
   "pointer",
   "not-allowed",
   "grab",
+  "inherit",
 ];
 export const borderStyleProperties: BorderStyle[] = [
   "solid",
@@ -121,6 +122,22 @@ export const lineHeightProperties = {
   base: varsThemeBase.lineWeight.body.base,
   highlight: varsThemeBase.lineWeight.body.highlight,
 } as const;
+export const titleFontSizeProperties = {
+  h1: varsThemeBase.fontSize.title.h1,
+  h2: varsThemeBase.fontSize.title.h2,
+  h3: varsThemeBase.fontSize.title.h3,
+  h4: varsThemeBase.fontSize.title.h4,
+  h5: varsThemeBase.fontSize.title.h5,
+  h6: varsThemeBase.fontSize.title.h6,
+};
+export const titleLineHeightProperties = {
+  h1: varsThemeBase.lineWeight.title.h1,
+  h2: varsThemeBase.lineWeight.title.h2,
+  h3: varsThemeBase.lineWeight.title.h3,
+  h4: varsThemeBase.lineWeight.title.h4,
+  h5: varsThemeBase.lineWeight.title.h5,
+  h6: varsThemeBase.lineWeight.title.h6,
+};
 export const paddingProperties = {
   base: varsThemeBase.spacing[4],
   small: varsThemeBase.spacing[2],
@@ -174,3 +191,27 @@ export const transitionSpeedProperties = {
 };
 
 export const gridGapProperties = gapProperties;
+
+export const sizeProperties = {
+  "0,5": varsThemeBase.sizes["0,5"],
+  "1": varsThemeBase.sizes[1],
+  "1,5": varsThemeBase.sizes["1,5"],
+  "2": varsThemeBase.sizes[2],
+  "2,5": varsThemeBase.sizes["2,5"],
+  "3": varsThemeBase.sizes[3],
+  "3,5": varsThemeBase.sizes["3,5"],
+  "4": varsThemeBase.sizes[4],
+  "4,5": varsThemeBase.sizes["4,5"],
+  "5": varsThemeBase.sizes[5],
+  "6": varsThemeBase.sizes[6],
+  "7": varsThemeBase.sizes[7],
+  "8": varsThemeBase.sizes[8],
+  "9": varsThemeBase.sizes[9],
+  "10": varsThemeBase.sizes[10],
+  "11": varsThemeBase.sizes[11],
+  "12": varsThemeBase.sizes[12],
+  "14": varsThemeBase.sizes[14],
+  "16": varsThemeBase.sizes[16],
+  "18": varsThemeBase.sizes[18],
+  "20": varsThemeBase.sizes[20],
+};

@@ -2,6 +2,13 @@
 
 A low-level utility component that accepts styled system props to enable custom theme-aware styling
 
+## 2023-02-23 `2.7.0`
+
+### 🎉 New features
+
+- Added `zIndex` property to component sprinkles. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+- Added `"border-box"` as default value for `boxSizing` property. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-02-13 `2.6.0`
 
 ### 💡 Others

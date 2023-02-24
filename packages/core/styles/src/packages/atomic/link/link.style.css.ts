@@ -20,6 +20,7 @@ const base = vanillaStyle({
   backgroundColor: "transparent",
   border: 0,
   padding: 0,
+  width: "fit-content",
 
   ":focus": {
     boxShadow: varsThemeBase.utils.focus,

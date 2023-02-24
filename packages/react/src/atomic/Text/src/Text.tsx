@@ -8,11 +8,11 @@ const Text: React.FC<TextProps> & TextComponents = ({
   className: _className,
   style: _style,
   as: As = "p",
-  color = "primary.textLow",
+  color = "neutral.textLow",
   textAlign = "left",
   lineHeight = "caption",
   fontWeight = "regular",
-  fontSize = "caption",
+  fontSize = "base",
   children,
   ...rest
 }: TextProps) => (

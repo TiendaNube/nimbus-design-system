@@ -65,6 +65,13 @@ describe("GIVEN <Text />", () => {
       ).toContain("fontWeight_bold");
     });
 
+    it("THEN should correctly render a medium", () => {
+      makeSut({ fontWeight: "medium" });
+      expect(
+        screen.getByTestId("text-element").getAttribute("class")
+      ).toContain("fontWeight_medium");
+    });
+
     it("THEN should correctly render a regular", () => {
       makeSut({ fontWeight: "regular" });
       expect(

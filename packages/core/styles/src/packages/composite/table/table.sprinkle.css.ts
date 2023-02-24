@@ -20,7 +20,7 @@ const tableRowBackgroundColorProperties = {
 
 const defineProperties = defineRainbowProperties({
   conditions: {
-    rest: { selector: "&" },
+    rest: {},
     active: { selector: "&:active" },
     hover: { selector: "&:hover" },
     focus: { selector: "&:focus" },

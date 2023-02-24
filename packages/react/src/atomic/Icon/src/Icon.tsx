@@ -8,7 +8,7 @@ const Icon: React.FC<IconProps> & IconComponents = ({
   className: _className,
   style: _style,
   color = "neutral.textLow",
-  cursor = "auto",
+  cursor = "inherit",
   source,
   ...rest
 }: IconProps) => (

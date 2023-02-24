@@ -2,6 +2,7 @@ export interface Conditions<T> {
   xs?: T;
   md?: T;
   lg?: T;
+  xl?: T;
 }
 export type AspectRatio =
   | "1/1"
@@ -13,7 +14,7 @@ export type AspectRatio =
   | "1/2";
 export type BorderStyle = "solid" | "none" | "hidden" | "dashed" | "dotted";
 export type BoxSizing = "border-box" | "content-box";
-export type Cursor = "auto" | "pointer" | "not-allowed" | "grab";
+export type Cursor = "auto" | "pointer" | "not-allowed" | "grab" | "inherit";
 export type Display =
   | "block"
   | "flex"

@@ -90,6 +90,9 @@ export default {
     gap: {
       options: Object.keys(boxStyles.properties.gap),
     },
+    zIndex: {
+      control: { type: "number" },
+    },
   },
   parameters: {
     withA11y: { decorators: [withA11y] },
