@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/chip",
-  "version": "2.2.1-rc.1",
+  "version": "2.2.1-rc.2",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
