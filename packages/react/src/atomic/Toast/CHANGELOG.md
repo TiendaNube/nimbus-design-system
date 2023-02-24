@@ -1,7 +1,12 @@
 # Changelog
 
-Toast allows us to send short messages to the user in a non-intrusive way to communicate component or feedback resulting from some action.
-It is a component that appears and disappears after a few seconds. By default, we set the user detection time to 4 seconds, which should be enough for the user to read the message and interfere with its operation.
+The Toast component allows us to notify users in an informational tone, describing that something has happened or is happening, without interrupting navigation.
+
+## 2023-02-23 `2.2.0`
+
+### 🎉 New features
+
+- Added server side-rendering support to component. ([#105](https://github.com/TiendaNube/nimbus-design-system/pull/105) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2023-02-16 `2.1.0`
 

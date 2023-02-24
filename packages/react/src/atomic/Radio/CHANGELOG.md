@@ -2,6 +2,12 @@
 
 Use radios when a user needs to select one option from a list.
 
+## 2023-02-23 `2.1.0`
+
+### 🎉 New features
+
+- Added server side-rendering support to component. ([#105](https://github.com/TiendaNube/nimbus-design-system/pull/105) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-02-07 `2.0.1`
 
 ### 🐛 Bug fixes

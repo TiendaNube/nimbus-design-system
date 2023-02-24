@@ -2,6 +2,12 @@
 
 The Checkbox component allows us to choose one or several options from a selection list.
 
+## 2023-02-23 `2.1.0`
+
+### 🎉 New features
+
+- Added server side-rendering support to component. ([#105](https://github.com/TiendaNube/nimbus-design-system/pull/105) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2022-12-22 `2.0.0`
 
 ### 💡 Others

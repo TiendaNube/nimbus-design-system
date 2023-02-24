@@ -2,6 +2,12 @@
 
 The Button component allows us to initiate actions, make state or page changes.
 
+## 2023-02-23 `2.4.0`
+
+### 🎉 New features
+
+- Added server side-rendering support to component. ([#105](https://github.com/TiendaNube/nimbus-design-system/pull/105) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-02-16 `2.3.0`
 
 ### 🎉 New features

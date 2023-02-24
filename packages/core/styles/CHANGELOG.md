@@ -2,7 +2,7 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
-## 2023-02-23 `6.12.0`
+## 2023-02-24 `6.13.0`
 
 #### 🎉 New features
 
@@ -17,6 +17,12 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 - Added 100% width on `Input` container. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
 - Added `overflowY: auto` on `Sidebar` container. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+
+## 2023-02-23 `6.12.0`
+
+#### 🎉 New features
+
+- Added server side-rendering support in style packs. ([#105](https://github.com/TiendaNube/nimbus-design-system/pull/105) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2023-02-15 `6.11.0`
 

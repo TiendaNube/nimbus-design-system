@@ -2,6 +2,12 @@
 
 The Link component allows us to navigate to external addresses.
 
+## 2023-02-23 `3.5.0`
+
+### 🎉 New features
+
+- Added server side-rendering support to component. ([#105](https://github.com/TiendaNube/nimbus-design-system/pull/105) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-02-16 `3.4.0`
 
 ### 🎉 New features

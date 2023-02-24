@@ -1,6 +1,12 @@
 # Changelog
 
-Tables allow users to display large amounts of data in a tabular manner, using columns and rows to group the different types of data.
+The Table component allows us to organize data with a tabular structure in a table.
+
+## 2023-02-23 `1.2.0`
+
+### 🎉 New features
+
+- Added server side-rendering support to component. ([#105](https://github.com/TiendaNube/nimbus-design-system/pull/105) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2023-01-15 `1.1.1`
 

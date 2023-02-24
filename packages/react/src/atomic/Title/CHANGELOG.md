@@ -2,9 +2,17 @@
 
 Tilte is a basic component that allows you to give titles and more hierarchy to blocks of text for sections or header components.
 
-## 2023-02-23 `2.1.0`
+## 2023-02-23 `2.2.0`
+
+### 🎉 New features
 
 - Added `fontSize`, `fontWeight` and `lineHeight` properties to component API. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+
+## 2023-02-23 `2.1.0`
+
+### 🎉 New features
+
+- Added server side-rendering support to component. ([#105](https://github.com/TiendaNube/nimbus-design-system/pull/105) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2022-12-22 `2.0.0`
 
