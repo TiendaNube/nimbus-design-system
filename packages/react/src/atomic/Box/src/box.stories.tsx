@@ -93,6 +93,15 @@ export default {
     zIndex: {
       control: { type: "number" },
     },
+    backgroundImage: {
+      control: { type: "text" },
+    },
+    minWidth: {
+      control: { type: "text" },
+    },
+    minHeight: {
+      control: { type: "text" },
+    },
   },
   parameters: {
     withA11y: { decorators: [withA11y] },

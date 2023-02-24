@@ -144,6 +144,7 @@ const defineProperties = defineRainbowProperties({
     zIndex: true,
     transitionDelay: true,
     transitionProperty: true,
+    backgroundImage: true,
     transitionDuration: transitionSpeedProperties,
     backgroundColor: boxBackgroundColorProperties,
     borderColor: boxBorderColorProperties,
