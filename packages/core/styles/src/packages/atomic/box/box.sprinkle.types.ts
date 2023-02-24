@@ -109,4 +109,8 @@ export interface BoxSprinkle {
     | BoxConditions<TransitionDurationProperties>;
   zIndex?: number | BoxConditions<number>;
   backgroundImage?: string | BoxConditions<string>;
+  backgroundPosition?: string | BoxConditions<string>;
+  backgroundBlendMode?: string | BoxConditions<string>;
+  backgroundRepeat?: string | BoxConditions<string>;
+  backgroundSize?: string | BoxConditions<string>;
 }

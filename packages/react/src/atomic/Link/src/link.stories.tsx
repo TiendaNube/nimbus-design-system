@@ -70,7 +70,7 @@ icon.args = {
   children: (
     <>
       Link
-      <Icon color="primary.interactive" source={<ExternalLinkIcon />} />
+      <Icon color="currentColor" source={<ExternalLinkIcon />} />
     </>
   ),
 };
@@ -81,7 +81,7 @@ stressed.args = {
   children: (
     <>
       Stressed link with a lot of characters
-      <Icon color="primary.interactive" source={<ExternalLinkIcon />} />
+      <Icon color="currentColor" source={<ExternalLinkIcon />} />
     </>
   ),
 };

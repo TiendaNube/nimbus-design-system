@@ -6,6 +6,7 @@ import {
   paddingProperties,
   backgroundColorProperties,
 } from "../../../properties";
+import { mediaQueries } from "../../../themes";
 
 const tableRowBackgroundColorProperties = {
   transparent: "transparent",
@@ -20,6 +21,18 @@ const tableRowBackgroundColorProperties = {
 
 const defineProperties = defineRainbowProperties({
   conditions: {
+    xs: {
+      "@media": mediaQueries.xs(),
+    },
+    md: {
+      "@media": mediaQueries.md(),
+    },
+    lg: {
+      "@media": mediaQueries.lg(),
+    },
+    xl: {
+      "@media": mediaQueries.xl(),
+    },
     rest: {},
     active: { selector: "&:active" },
     hover: { selector: "&:hover" },

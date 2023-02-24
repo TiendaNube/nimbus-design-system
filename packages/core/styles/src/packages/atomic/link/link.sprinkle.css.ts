@@ -1,8 +1,14 @@
 import { defineProperties, createSprinkles } from "@vanilla-extract/sprinkles";
-import { textDecorationProperties } from "../../../properties";
+import {
+  textDecorationProperties,
+  lineHeightProperties,
+  fontSizeProperties,
+} from "../../../properties";
 
 const properties = {
   textDecoration: textDecorationProperties,
+  fontSize: fontSizeProperties,
+  lineHeight: lineHeightProperties,
 };
 
 const sprinkle = createSprinkles(

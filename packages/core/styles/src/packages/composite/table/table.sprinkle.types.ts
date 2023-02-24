@@ -15,10 +15,10 @@ interface TableConditions<T> extends Conditions<T> {
 }
 
 export interface TableSprinkle {
-  padding?: TablePaddingProperties;
-  width?: string;
-  maxWidth?: string;
-  minWidth?: string;
+  padding?: TablePaddingProperties | TableConditions<TablePaddingProperties>;
+  width?: string | TableConditions<string>;
+  maxWidth?: string | TableConditions<string>;
+  minWidth?: string | TableConditions<string>;
   backgroundColor?:
     | TableRowBackgroundColorProperties
     | TableConditions<TableRowBackgroundColorProperties>;

@@ -27,21 +27,6 @@ const base = vanillaStyle({
   },
 });
 
-export const size = styleVariants({
-  caption: {
-    fontSize: varsThemeBase.fontSize.body.caption,
-    lineHeight: varsThemeBase.lineWeight.body.caption,
-  },
-  base: {
-    fontSize: varsThemeBase.fontSize.body.base,
-    lineHeight: varsThemeBase.lineWeight.body.base,
-  },
-  highlight: {
-    fontSize: varsThemeBase.fontSize.body.highlight,
-    lineHeight: varsThemeBase.lineWeight.body.highlight,
-  },
-});
-
 export const appearance = styleVariants({
   primary: [
     base,

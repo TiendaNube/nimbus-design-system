@@ -4,6 +4,10 @@ The Table component allows us to organize data with a tabular structure in a tab
 
 ## 2023-02-24 `1.2.1`
 
+### 🎉 New features
+
+- Added `as` prop on `Table.Cell` subcomponente API. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+
 ### 🐛 Bug fixes
 
 - Fixed a bug where `rest` condition selector sprinkle would not work. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))

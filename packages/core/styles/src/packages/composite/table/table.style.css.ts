@@ -1,6 +1,11 @@
-import { style } from "@vanilla-extract/css";
+import { style, globalStyle } from "@vanilla-extract/css";
 
 import { varsThemeBase } from "../../../themes";
+
+globalStyle("th", {
+  fontWeight: "unset",
+  textAlign: "unset",
+});
 
 export const table = style({
   backgroundColor: varsThemeBase.colors.neutral.background,

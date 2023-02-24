@@ -116,6 +116,9 @@ const defineProperties = defineRainbowProperties({
     lg: {
       "@media": mediaQueries.lg(),
     },
+    xl: {
+      "@media": mediaQueries.xl(),
+    },
     active: { selector: "&:active" },
     hover: { selector: "&:hover" },
     focus: { selector: "&:focus" },
@@ -145,6 +148,10 @@ const defineProperties = defineRainbowProperties({
     transitionDelay: true,
     transitionProperty: true,
     backgroundImage: true,
+    backgroundPosition: true,
+    backgroundBlendMode: true,
+    backgroundRepeat: true,
+    backgroundSize: true,
     transitionDuration: transitionSpeedProperties,
     backgroundColor: boxBackgroundColorProperties,
     borderColor: boxBorderColorProperties,
