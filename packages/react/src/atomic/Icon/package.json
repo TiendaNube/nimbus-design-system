@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/icon",
-  "version": "2.2.1-rc.4",
+  "version": "2.2.1-rc.6",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [

@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/file-uploader",
-  "version": "2.4.1-rc.4",
+  "version": "2.4.1-rc.6",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [

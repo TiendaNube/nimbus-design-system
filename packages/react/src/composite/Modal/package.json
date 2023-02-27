@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/modal",
-  "version": "1.2.1-rc.4",
+  "version": "1.2.1-rc.6",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [

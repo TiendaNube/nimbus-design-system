@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/card",
-  "version": "2.1.1-rc.4",
+  "version": "2.1.1-rc.6",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
