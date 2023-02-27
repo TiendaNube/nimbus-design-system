@@ -23,8 +23,6 @@ export const table = style({
 });
 
 export const head = style({
-  backgroundColor: varsThemeBase.colors.neutral.surface,
-
   fontWeight: varsThemeBase.fontWeight.medium,
   fontSize: varsThemeBase.fontSize.body.base,
   lineHeight: varsThemeBase.lineWeight.body.base,

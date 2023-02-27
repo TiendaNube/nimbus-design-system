@@ -8,6 +8,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 - Added `table-layout: fixed` css property to `Table` styles. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
 - Added breakpoint and state conditions to `width`, `maxWidth` and `minWidth` properties on `Table` sprinkles. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+- Remove background color from `Table` header. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
 - Added `zIndex` property to `Box` sprinkles. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
 - Added support for new `xl` breakpoint on conditions. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
 - Added `fontWeight`, `fontSize` and `lineHeight` properties to `Title` component sprinkles. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))

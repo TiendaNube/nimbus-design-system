@@ -28,10 +28,12 @@ base.args = {
   children: (
     <>
       <Table.Head>
-        <Table.Cell as="th">Header 1</Table.Cell>
-        <Table.Cell as="th">Header 2</Table.Cell>
-        <Table.Cell as="th">Header 3</Table.Cell>
-        <Table.Cell as="th">Header 4</Table.Cell>
+        <Table.Row backgroundColor="neutral.surface">
+          <Table.Cell as="th">Header 1</Table.Cell>
+          <Table.Cell as="th">Header 2</Table.Cell>
+          <Table.Cell as="th">Header 3</Table.Cell>
+          <Table.Cell as="th">Header 4</Table.Cell>
+        </Table.Row>
       </Table.Head>
       <Table.Body>
         {Array.from({ length: 10 }, (_, i) => (
@@ -52,13 +54,15 @@ withCustomCellWidth.args = {
   children: (
     <>
       <Table.Head>
-        <Table.Cell as="th" width="180px">
-          This column has fixed width
-        </Table.Cell>
-        <Table.Cell as="th">This column has auto width</Table.Cell>
-        <Table.Cell as="th" width="180px">
-          This column has fixed width
-        </Table.Cell>
+        <Table.Row backgroundColor="neutral.surface">
+          <Table.Cell as="th" width="180px">
+            This column has fixed width
+          </Table.Cell>
+          <Table.Cell as="th">This column has auto width</Table.Cell>
+          <Table.Cell as="th" width="180px">
+            This column has fixed width
+          </Table.Cell>
+        </Table.Row>
       </Table.Head>
       <Table.Body>
         {Array.from({ length: 10 }, (_, i) => (
@@ -78,15 +82,17 @@ withNoPadding.args = {
   children: (
     <>
       <Table.Head>
-        <Table.Cell as="th" padding="none">
-          Header 1
-        </Table.Cell>
-        <Table.Cell as="th" padding="none">
-          Header 2
-        </Table.Cell>
-        <Table.Cell as="th" padding="none">
-          Header 3
-        </Table.Cell>
+        <Table.Row backgroundColor="neutral.surface">
+          <Table.Cell as="th" padding="none">
+            Header 1
+          </Table.Cell>
+          <Table.Cell as="th" padding="none">
+            Header 2
+          </Table.Cell>
+          <Table.Cell as="th" padding="none">
+            Header 3
+          </Table.Cell>
+        </Table.Row>
       </Table.Head>
       <Table.Body>
         {Array.from({ length: 10 }, (_, i) => (
