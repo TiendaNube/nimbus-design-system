@@ -37,6 +37,7 @@ This package is intended for internal use in generating builds of each design sy
 ### 🐛 Bug fixes
 
 - Fixed a bug where `rest` condition selector sprinkle would not work in `Table` component. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+- Fixed a bug where `Pagination` component was not being exported in the package. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
 
 ## 2023-02-23 `2.9.0`
 
