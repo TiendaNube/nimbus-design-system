@@ -26,6 +26,7 @@ type BoxGapProperties = keyof typeof propertiesBox.gap;
 type BoxGridGapProperties = keyof typeof propertiesBox.gridGap;
 type TransitionDurationProperties =
   keyof typeof propertiesBox.transitionDuration;
+type BoxColorProperties = keyof typeof propertiesBox.color;
 
 interface BoxConditions<T> extends Conditions<T> {
   focus?: T;
@@ -113,4 +114,5 @@ export interface BoxSprinkle {
   backgroundBlendMode?: string | BoxConditions<string>;
   backgroundRepeat?: string | BoxConditions<string>;
   backgroundSize?: string | BoxConditions<string>;
+  color?: BoxColorProperties | BoxConditions<BoxColorProperties>;
 }

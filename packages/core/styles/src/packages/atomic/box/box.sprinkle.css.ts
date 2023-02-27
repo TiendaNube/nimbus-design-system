@@ -83,6 +83,11 @@ const boxBorderColorProperties = {
   transparent: "transparent",
 };
 
+const boxColorProperties = {
+  ...boxBackgroundColorProperties,
+  currentColor: "currentColor",
+};
+
 const boxSpaceProperties = {
   none: "0",
   "0,5": varsThemeBase.spacing["0,5"],
@@ -168,6 +173,7 @@ const defineProperties = defineRainbowProperties({
     marginRight: marginProperties,
     gap: gapProperties,
     gridGap: gridGapProperties,
+    color: boxColorProperties,
   },
   staticProperties: {
     display: displayProperties,
@@ -232,6 +238,7 @@ const properties = {
   boxShadow: boxShadowProperties,
   transitionDuration: transitionSpeedProperties,
   transitionTimingFunction: transitionTimingProperties,
+  color: boxColorProperties,
 };
 
 const sprinkle = createRainbowSprinkles(defineProperties);

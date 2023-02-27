@@ -36,6 +36,9 @@ export default {
     borderColor: {
       options: Object.keys(boxStyles.properties.borderColor),
     },
+    color: {
+      options: Object.keys(boxStyles.properties.color),
+    },
     borderStyle: {
       control: { type: "radio" },
       options: boxStyles.properties.borderStyle,

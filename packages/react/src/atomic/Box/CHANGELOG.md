@@ -9,7 +9,7 @@ A low-level utility component that accepts styled system props to enable custom 
 - Added server side-rendering support to component. ([#105](https://github.com/TiendaNube/nimbus-design-system/pull/105) by [@juniorconquista](https://github.com/juniorconquista))
 - Added `zIndex` property to component sprinkles. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
 - Added `"border-box"` as default value for `boxSizing` property. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
-- Added `backgroundImage`, `backgroundPosition`, `backgroundBlendMode`, `backgroundRepeat`, `backgroundSize` `minWidth` and `minHeight` properties to component sprinkles. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+- Added `backgroundImage`, `backgroundPosition`, `backgroundBlendMode`, `backgroundRepeat`, `backgroundSize`, `color`, `minWidth` and `minHeight` properties to component sprinkles. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
 
 ## 2023-02-13 `2.6.0`
 
