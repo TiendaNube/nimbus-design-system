@@ -2,6 +2,12 @@
 
 Use Popovers to bring attention to specific user interface elements and suggest an action or to guide users through a new experience
 
+## 2023-02-24 `2.3.0`
+
+### 🎉 New features
+
+- Added `backgroundColor`, `color`, `zIndex`, `height` and `width` properties to the Component. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-02-23 `2.2.0`
 
 ### 🎉 New features

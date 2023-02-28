@@ -5,3 +5,5 @@ export const popover = {
   classnames: { ...styles },
   ...popoverSprinkle,
 };
+
+export type { PopoverSprinkle } from "./popover.sprinkle.types";

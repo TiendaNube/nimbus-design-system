@@ -1,8 +1,10 @@
 import { HTMLAttributes, ReactNode } from "react";
 import { Placement } from "@floating-ui/react-dom-interactions";
-import { popover } from "@nimbus-ds/styles";
+import { PopoverSprinkle } from "@nimbus-ds/styles";
 
-export interface PopoverProps extends HTMLAttributes<HTMLDivElement> {
+type PopoverExtends = PopoverSprinkle & HTMLAttributes<HTMLDivElement>;
+
+export interface PopoverProps extends PopoverExtends {
   /** Popover anchor */
   children: ReactNode;
   /** Content for the Popover */
@@ -13,19 +15,8 @@ export interface PopoverProps extends HTMLAttributes<HTMLDivElement> {
   onVisibility?: (visible: boolean) => void;
   /** Conditional for displaying the popover arrow */
   arrow?: boolean;
-  /** Popover appearance */
-  appearance?:
-    | "primary.surfaceHighlight"
-    | "primary.interactiveHover"
-    | "success.surfaceHighlight"
-    | "danger.surfaceHighlight"
-    | "neutral.surfaceHighlight"
-    | "warning.surfaceHighlight"
-    | "neutral.background";
   /** Position of the Popover */
   position?: Placement;
-  /** Popover padding */
-  padding?: keyof typeof popover.properties.padding;
   /** Adds hover event listeners that change the open state, like CSS :hover */
   enabledHover?: boolean;
   /** Adds click event listeners that change the open state */

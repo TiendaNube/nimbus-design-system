@@ -19,6 +19,7 @@ const { properties: propertiesBox } = boxSprinkle;
 
 type BoxBorderColorProperties = keyof typeof propertiesBox.borderColor;
 type BoxBackgroundColorProperties = keyof typeof propertiesBox.backgroundColor;
+type BoxColorProperties = keyof typeof propertiesBox.color;
 type BoxShadowProperties = keyof typeof propertiesBox.boxShadow;
 type BoxSpaceProperties = keyof typeof propertiesBox.space;
 type BoxMarginProperties = keyof typeof propertiesBox.margin;
@@ -26,7 +27,6 @@ type BoxGapProperties = keyof typeof propertiesBox.gap;
 type BoxGridGapProperties = keyof typeof propertiesBox.gridGap;
 type TransitionDurationProperties =
   keyof typeof propertiesBox.transitionDuration;
-type BoxColorProperties = keyof typeof propertiesBox.color;
 
 interface BoxConditions<T> extends Conditions<T> {
   focus?: T;
@@ -40,6 +40,8 @@ export interface BoxSprinkle {
   height?: string | BoxConditions<string>;
   maxWidth?: string | BoxConditions<string>;
   maxHeight?: string | BoxConditions<string>;
+  minWidth?: string | BoxConditions<string>;
+  minHeight?: string | BoxConditions<string>;
   bottom?: string | BoxConditions<string>;
   left?: string | BoxConditions<string>;
   right?: string | BoxConditions<string>;
@@ -66,6 +68,7 @@ export interface BoxSprinkle {
   backgroundColor?:
     | BoxBackgroundColorProperties
     | BoxConditions<BoxBackgroundColorProperties>;
+  color?: BoxColorProperties | BoxConditions<BoxColorProperties>;
   borderRadius?: string | BoxConditions<string>;
   borderWidth?: string | BoxConditions<string>;
   borderColor?:
@@ -114,5 +117,4 @@ export interface BoxSprinkle {
   backgroundBlendMode?: string | BoxConditions<string>;
   backgroundRepeat?: string | BoxConditions<string>;
   backgroundSize?: string | BoxConditions<string>;
-  color?: BoxColorProperties | BoxConditions<BoxColorProperties>;
 }

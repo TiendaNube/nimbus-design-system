@@ -1,4 +1,9 @@
-import { defineProperties, createSprinkles } from "@vanilla-extract/sprinkles";
+import {
+  createRainbowSprinkles,
+  defineProperties as defineRainbowProperties,
+} from "rainbow-sprinkles";
+import { mediaQueries } from "../../../themes";
+
 import {
   backgroundColorProperties,
   paddingProperties,
@@ -22,17 +27,41 @@ const popoverBackgroundColorProperties = {
 
 const popoverColorProperties = popoverBackgroundColorProperties;
 
+const defineProperties = defineRainbowProperties({
+  conditions: {
+    xs: {
+      "@media": mediaQueries.xs(),
+    },
+    md: {
+      "@media": mediaQueries.md(),
+    },
+    lg: {
+      "@media": mediaQueries.lg(),
+    },
+    xl: {
+      "@media": mediaQueries.xl(),
+    },
+  },
+  defaultCondition: "xs",
+  dynamicProperties: {
+    width: true,
+    height: true,
+    zIndex: true,
+  },
+  staticProperties: {
+    backgroundColor: popoverBackgroundColorProperties,
+    padding: paddingProperties,
+    color: popoverColorProperties,
+  },
+});
+
 const properties = {
   backgroundColor: popoverBackgroundColorProperties,
   color: popoverColorProperties,
   padding: paddingProperties,
 };
 
-const sprinkle = createSprinkles(
-  defineProperties({
-    properties,
-  })
-);
+const sprinkle = createRainbowSprinkles(defineProperties);
 
 export const popoverSprinkle = {
   sprinkle,

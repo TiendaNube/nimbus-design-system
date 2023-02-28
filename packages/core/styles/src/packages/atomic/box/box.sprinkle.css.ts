@@ -225,6 +225,7 @@ const properties = {
   alignItems: alignItemsProperties,
   pointerEvents: pointerEventsProperties,
   backgroundColor: boxBackgroundColorProperties,
+  color: boxColorProperties,
   borderColor: boxBorderColorProperties,
   borderStyle: borderStyleProperties,
   boxSizing: boxSizingProperties,
@@ -238,7 +239,6 @@ const properties = {
   boxShadow: boxShadowProperties,
   transitionDuration: transitionSpeedProperties,
   transitionTimingFunction: transitionTimingProperties,
-  color: boxColorProperties,
 };
 
 const sprinkle = createRainbowSprinkles(defineProperties);

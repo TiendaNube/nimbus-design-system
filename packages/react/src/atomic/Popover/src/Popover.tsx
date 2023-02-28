@@ -22,9 +22,10 @@ const Popover: React.FC<PopoverProps> = ({
   style: _style,
   visible,
   onVisibility,
-  appearance = "neutral.background",
+  backgroundColor = "neutral.background",
   position = "bottom",
   padding = "base",
+  width = "17.5rem",
   arrow = true,
   offset = 10,
   enabledHover = false,
@@ -34,6 +35,14 @@ const Popover: React.FC<PopoverProps> = ({
   content,
   ...rest
 }) => {
+  const { className, style, otherProps } = popover.sprinkle({
+    ...(rest as Parameters<typeof popover.sprinkle>[0]),
+    width,
+    padding: padding as any,
+    backgroundColor: backgroundColor as any,
+    color: backgroundColor as any,
+  });
+
   const arrowRef = useRef(null);
   const [isVisible, setVisibility] = useState(false);
 
@@ -89,16 +98,11 @@ const Popover: React.FC<PopoverProps> = ({
       <FloatingPortal id="nimbus-popover-floating">
         {open && (
           <div
-            {...rest}
+            {...otherProps}
             ref={floating}
-            className={[
-              popover.classnames.content,
-              popover.sprinkle({
-                backgroundColor: appearance,
-                padding,
-              }),
-            ].join(" ")}
+            className={[popover.classnames.content, className].join(" ")}
             style={{
+              ...style,
               position: strategy,
               top: y ?? 0,
               left: x ?? 0,
@@ -113,9 +117,6 @@ const Popover: React.FC<PopoverProps> = ({
                 className={[
                   popover.classnames.arrow[side],
                   popover.classnames.placement[position],
-                  popover.sprinkle({
-                    color: appearance,
-                  }),
                 ].join(" ")}
                 style={{
                   position: "absolute",

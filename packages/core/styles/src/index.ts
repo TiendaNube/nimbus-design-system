@@ -39,6 +39,7 @@ export { table } from "./packages/composite/table";
 
 export type { BoxSprinkle } from "./packages/atomic/box";
 export type { IconButtonSprinkle } from "./packages/atomic/iconButton";
+export type { PopoverSprinkle } from "./packages/atomic/popover";
 export type { ModalSprinkle } from "./packages/composite/modal";
 export type { SidebarSprinkle } from "./packages/composite/sidebar";
 export type { TableSprinkle } from "./packages/composite/table";
