@@ -18,6 +18,7 @@ releases:
   "@nimbus-ds/title": minor
   "@nimbus-ds/toggle": patch
   "@nimbus-ds/tokens": patch
+  "@nimbus-ds/popover": minor
 
 declined:
   - nimbus-design-system
@@ -25,7 +26,6 @@ declined:
   - "@nimbus-ds/icon-button"
   - "@nimbus-ds/input"
   - "@nimbus-ds/label"
-  - "@nimbus-ds/popover"
   - "@nimbus-ds/radio"
   - "@nimbus-ds/thumbnail"
   - "@nimbus-ds/toast"
