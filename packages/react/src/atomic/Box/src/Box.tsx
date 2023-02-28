@@ -20,8 +20,6 @@ const Box = forwardRef(
       boxSizing,
     });
 
-    console.log("color", rest.color);
-
     return <As ref={ref} className={className} style={style} {...otherProps} />;
   }
 ) as PolymorphicForwardRefComponent<"div", BoxProps>;
