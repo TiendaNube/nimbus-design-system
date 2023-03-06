@@ -42,7 +42,7 @@ base.args = {
         </Box>
       </Card.Header>
       <Card.Body>
-        <Text textAlign="left" fontSize="base" lineHeight="base">
+        <Text textAlign="left">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sed
           tortor hendrerit, varius nulla tristique.
         </Text>
@@ -67,9 +67,7 @@ WithHeader.args = {
           borderWidth="1px"
           borderColor="neutral.interactive"
         >
-          <Text textAlign="center" fontSize="base">
-            Replace me with your content
-          </Text>
+          <Text textAlign="center">Replace me with your content</Text>
         </Box>
       </Card.Body>
     </>
@@ -88,9 +86,7 @@ WithFooterAndHeader.args = {
           borderWidth="1px"
           borderColor="neutral.interactive"
         >
-          <Text textAlign="center" fontSize="base">
-            Replace me with your content
-          </Text>
+          <Text textAlign="center">Replace me with your content</Text>
         </Box>
       </Card.Body>
       <Card.Footer>
@@ -103,11 +99,7 @@ WithFooterAndHeader.args = {
 export const content = Template.bind({});
 content.args = {
   padding: "none",
-  children: (
-    <Text textAlign="center" fontSize="base" lineHeight="base">
-      Replace me with your content
-    </Text>
-  ),
+  children: <Text textAlign="center">Replace me with your content</Text>,
 };
 
 export const skeleton = Template.bind({});

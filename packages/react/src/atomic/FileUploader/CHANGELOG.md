@@ -2,6 +2,12 @@
 
 The File Uploader component is used to upload files.
 
+## 2023-02-24 `2.4.1`
+
+### 💡 Others
+
+- Add `fontSize caption` property on `Text` component. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-02-23 `2.2.0`
 
 ### 🎉 New features

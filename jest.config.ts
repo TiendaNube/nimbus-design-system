@@ -41,6 +41,8 @@ const config: Config.InitialOptions = {
     "@nimbus-ds/alert": "<rootDir>/packages/react/src/composite/Alert/src",
     "@nimbus-ds/card": "<rootDir>/packages/react/src/composite/Card/src",
     "@nimbus-ds/modal": "<rootDir>/packages/react/src/composite/Modal/src",
+    "@nimbus-ds/pagination":
+      "<rootDir>/packages/react/src/composite/Pagination/src",
     "@nimbus-ds/sidebar": "<rootDir>/packages/react/src/composite/Sidebar/src",
     "@nimbus-ds/tabs": "<rootDir>/packages/react/src/composite/Tabs/src",
     "@nimbus-ds/table": "<rootDir>/packages/react/src/composite/Table/src",

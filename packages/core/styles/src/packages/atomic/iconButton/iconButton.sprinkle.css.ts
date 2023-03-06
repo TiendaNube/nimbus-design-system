@@ -41,6 +41,9 @@ const defineProperties = defineRainbowProperties({
     lg: {
       "@media": mediaQueries.lg(),
     },
+    xl: {
+      "@media": mediaQueries.xl(),
+    },
     active: { selector: "&:active" },
     hover: { selector: "&:hover" },
     focus: { selector: "&:focus" },

@@ -35,6 +35,7 @@ export const container = style({
   zIndex: 200,
   top: 0,
   opacity: 0,
+  overflowY: "auto",
   transition: `opacity ${varsThemeBase.motion.speed.base} ease, transform ${varsThemeBase.motion.speed.base} ease`,
   boxSizing: "border-box",
 });

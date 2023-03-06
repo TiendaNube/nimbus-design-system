@@ -2,7 +2,45 @@
 
 This package is intended for internal use in generating builds of each design system package. It contains all the necessary settings and dependencies to optimize the creation of our builds.
 
-## 2023-02-23 `2.8.0`
+## 2023-02-24 `2.10.0`
+
+### 🎉 New features
+
+- Added `fontSize`, `fontWeight` and `lineHeight` properties to `Title` component API. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+- Changed `cursor` property default value to `inherit` on `Icon` component. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+- Added `zIndex`, `minHeight`, `minWidth`, `flexGrow`, `order` and `alignSelf` property to `Box` component API. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+- Added `"border-box"` as default value for `boxSizing` property on `Box` component. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+- Added `backgroundImage`, `backgroundPosition`, `backgroundBlendMode`, `backgroundRepeat`, `backgroundSize`, `color`, `minWidth` and `minHeight` properties to `Box` component API. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+- Changed `fontSize` default value to `base` on `Text` component. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+- Changed `lineHeight` default value to `base` on `Text` component. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+- Changed `color` default value to `neutral.textLow` on `Text` component. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+- Added `as` prop on `Table.Cell` subcomponente API. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+- Replaced `size` property with `fontSize` on `Link` component. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+- Added `lineHeight` property to `Link` component API. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+- Added `backgroundColor`, `color`, `zIndex`, `height` and `width` property to `Popover` component API. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juniorconquista](https://github.com/juniorconquista))
+
+### 💡 Others
+
+- Replaced font size and line height on `Text` component on `Badge` component. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+- Reset font size and line height values on `Text` component to default values on `Checkbox` component. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+- Reset color value on `Text` component to default value on `Chip` component. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+- Add `lineHeight caption` property on `Text` component on `Chip` component. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+- Add `fontSize caption` property on `Text` component on `FileUploader` component. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+- Adjust `fontSize` and `color` properties in `Text` component on stories documentation on `Link` component. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+- Adjust `fontSize` and `lineHeight` properties in `Text` component on stories documentation on `Tag` component. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+- Adjust `Text` component default values on `Toggle` component. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+- Adjust `Text` component default values on `Accordion` component. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+- Adjust `Text` component default values in stories documentation on `Accordion` component. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+- Adjust `fontSize` and `lineHeight` properties in `Text` component on stories documentation on `Card` component. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+- Adjust `fontSize` and `lineHeight` properties in `Text` component on stories documentation on `Modal` component. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+- Adjust `fontSize` and `lineHeight` properties in `Text` component on stories documentation on `Sidebar` component. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+
+### 🐛 Bug fixes
+
+- Fixed a bug where `rest` condition selector sprinkle would not work in `Table` component. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+- Fixed a bug where `Pagination` component was not being exported in the package. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+
+## 2023-02-23 `2.9.0`
 
 ### 🎉 New features
 

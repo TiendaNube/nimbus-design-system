@@ -29,5 +29,11 @@ describe("GIVEN <Box />", () => {
       expect(box.getAttribute("style")).toMatch(/--height-md__\w{0,9}: 8rem;/);
       expect(box.getAttribute("style")).toMatch(/--height-lg__\w{0,9}: 10rem;/);
     });
+
+    it("THEN should render the default box sizing property", () => {
+      makeSut({});
+      const box = screen.getByTestId("box-element");
+      expect(box.getAttribute("class")).toContain("boxSizing-border-box");
+    });
   });
 });

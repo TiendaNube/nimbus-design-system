@@ -1,6 +1,11 @@
-import { style } from "@vanilla-extract/css";
+import { style, globalStyle } from "@vanilla-extract/css";
 
 import { varsThemeBase } from "../../../themes";
+
+globalStyle("th", {
+  fontWeight: "unset",
+  textAlign: "unset",
+});
 
 export const table = style({
   backgroundColor: varsThemeBase.colors.neutral.background,
@@ -14,11 +19,10 @@ export const table = style({
   fontFamily: varsThemeBase.fontFamily.centranube,
   overflow: "hidden",
   width: "100%",
+  tableLayout: "fixed",
 });
 
 export const head = style({
-  backgroundColor: varsThemeBase.colors.neutral.surface,
-
   fontWeight: varsThemeBase.fontWeight.medium,
   fontSize: varsThemeBase.fontSize.body.base,
   lineHeight: varsThemeBase.lineWeight.body.base,

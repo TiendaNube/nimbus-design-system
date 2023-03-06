@@ -17,6 +17,7 @@ import {
   justifyContentProperties,
   flexWrapProperties,
   alignItemsProperties,
+  alignSelfProperties,
   pointerEventsProperties,
   boxShadowProperties,
   transitionSpeedProperties,
@@ -83,6 +84,11 @@ const boxBorderColorProperties = {
   transparent: "transparent",
 };
 
+const boxColorProperties = {
+  ...boxBackgroundColorProperties,
+  currentColor: "currentColor",
+};
+
 const boxSpaceProperties = {
   none: "0",
   "0,5": varsThemeBase.spacing["0,5"],
@@ -116,6 +122,9 @@ const defineProperties = defineRainbowProperties({
     lg: {
       "@media": mediaQueries.lg(),
     },
+    xl: {
+      "@media": mediaQueries.xl(),
+    },
     active: { selector: "&:active" },
     hover: { selector: "&:hover" },
     focus: { selector: "&:focus" },
@@ -127,6 +136,8 @@ const defineProperties = defineRainbowProperties({
     height: true,
     maxWidth: true,
     maxHeight: true,
+    minWidth: true,
+    minHeight: true,
     bottom: true,
     left: true,
     right: true,
@@ -137,10 +148,18 @@ const defineProperties = defineRainbowProperties({
     gridTemplateRows: true,
     gridArea: true,
     flexShrink: true,
+    flexGrow: true,
+    order: true,
     borderRadius: true,
     borderWidth: true,
+    zIndex: true,
     transitionDelay: true,
     transitionProperty: true,
+    backgroundImage: true,
+    backgroundPosition: true,
+    backgroundBlendMode: true,
+    backgroundRepeat: true,
+    backgroundSize: true,
     transitionDuration: transitionSpeedProperties,
     backgroundColor: boxBackgroundColorProperties,
     borderColor: boxBorderColorProperties,
@@ -157,6 +176,7 @@ const defineProperties = defineRainbowProperties({
     marginRight: marginProperties,
     gap: gapProperties,
     gridGap: gridGapProperties,
+    color: boxColorProperties,
   },
   staticProperties: {
     display: displayProperties,
@@ -164,6 +184,7 @@ const defineProperties = defineRainbowProperties({
     flexWrap: flexWrapProperties,
     justifyContent: justifyContentProperties,
     alignItems: alignItemsProperties,
+    alignSelf: alignSelfProperties,
     pointerEvents: pointerEventsProperties,
     borderStyle: borderStyleProperties,
     boxSizing: boxSizingProperties,
@@ -206,8 +227,10 @@ const properties = {
   flexWrap: flexWrapProperties,
   justifyContent: justifyContentProperties,
   alignItems: alignItemsProperties,
+  alignSelf: alignSelfProperties,
   pointerEvents: pointerEventsProperties,
   backgroundColor: boxBackgroundColorProperties,
+  color: boxColorProperties,
   borderColor: boxBorderColorProperties,
   borderStyle: borderStyleProperties,
   boxSizing: boxSizingProperties,

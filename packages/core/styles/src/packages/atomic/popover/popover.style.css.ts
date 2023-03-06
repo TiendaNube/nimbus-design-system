@@ -29,6 +29,7 @@ export const arrow = styleVariants({
     {
       "::after": {
         top: "100%",
+        color: "currentcolor",
         borderColor: `currentColor transparent transparent transparent`,
         marginLeft: "-0.5rem",
         left: "50%",

@@ -1,6 +1,7 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { withA11y } from "@storybook/addon-a11y";
+import { popover } from "@nimbus-ds/styles";
 import { Text } from "@nimbus-ds/text";
 import { Box } from "@nimbus-ds/box";
 
@@ -15,6 +16,24 @@ export default {
   argTypes: {
     children: { control: { disable: true } },
     content: { control: { disable: true } },
+    backgroundColor: {
+      options: Object.keys(popover.properties.backgroundColor),
+    },
+    color: {
+      options: Object.keys(popover.properties.color),
+    },
+    padding: {
+      options: Object.keys(popover.properties.padding),
+    },
+    zIndex: {
+      control: { type: "number" },
+    },
+    width: {
+      control: { type: "text" },
+    },
+    height: {
+      control: { type: "text" },
+    },
   },
 } as ComponentMeta<typeof Popover>;
 

@@ -62,7 +62,9 @@ const AccordionHeader: React.FC<AccordionHeaderProps> = ({
               </Title>
             )}
             {subtitle && (
-              <Text data-testid="accordion-header-subtitle">{subtitle}</Text>
+              <Text fontSize="caption" data-testid="accordion-header-subtitle">
+                {subtitle}
+              </Text>
             )}
           </div>
         </div>

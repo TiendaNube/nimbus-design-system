@@ -159,8 +159,8 @@ describe("GIVEN <Popover />", () => {
     });
   });
 
-  describe("THEN should correctly render the submitted appearance", () => {
-    it("THEN should correctly render the appearance default", async () => {
+  describe("THEN should correctly render the submitted backgroundColor", () => {
+    it("THEN should correctly render the backgroundColor default", async () => {
       makeSut({ content: <p>string</p>, enabledHover: true });
       await act(() => {
         fireEvent.mouseEnter(screen.getByTestId("popover-container"));
@@ -170,10 +170,10 @@ describe("GIVEN <Popover />", () => {
       ).toContain("neutral.background");
     });
 
-    it("THEN should correctly render the appearance neutral.background", async () => {
+    it("THEN should correctly render the backgroundColor neutral.background", async () => {
       makeSut({
         content: <p>string</p>,
-        appearance: "neutral.background",
+        backgroundColor: "neutral.background",
         enabledHover: true,
       });
       await act(() => {
@@ -184,10 +184,10 @@ describe("GIVEN <Popover />", () => {
       ).toContain("neutral.background");
     });
 
-    it("THEN should correctly render the appearance primary.surfaceHighlight", async () => {
+    it("THEN should correctly render the backgroundColor primary.surfaceHighlight", async () => {
       makeSut({
         content: <p>string</p>,
-        appearance: "primary.surfaceHighlight",
+        backgroundColor: "primary.surfaceHighlight",
         enabledHover: true,
       });
       await act(() => {
@@ -198,10 +198,10 @@ describe("GIVEN <Popover />", () => {
       ).toContain("primary.surfaceHighlight");
     });
 
-    it("THEN should correctly render the appearance primary.interactiveHover", async () => {
+    it("THEN should correctly render the backgroundColor primary.interactiveHover", async () => {
       makeSut({
         content: <p>string</p>,
-        appearance: "primary.interactiveHover",
+        backgroundColor: "primary.interactiveHover",
         enabledHover: true,
       });
       await act(() => {
@@ -212,10 +212,10 @@ describe("GIVEN <Popover />", () => {
       ).toContain("primary.interactiveHover");
     });
 
-    it("THEN should correctly render the appearance danger.surfaceHighlight", async () => {
+    it("THEN should correctly render the backgroundColor danger.surfaceHighlight", async () => {
       makeSut({
         content: <p>string</p>,
-        appearance: "danger.surfaceHighlight",
+        backgroundColor: "danger.surfaceHighlight",
         enabledHover: true,
       });
       await act(() => {
@@ -226,10 +226,10 @@ describe("GIVEN <Popover />", () => {
       ).toContain("danger.surfaceHighlight");
     });
 
-    it("THEN should correctly render the appearance neutral.surfaceHighlight", async () => {
+    it("THEN should correctly render the backgroundColor neutral.surfaceHighlight", async () => {
       makeSut({
         content: <p>string</p>,
-        appearance: "neutral.surfaceHighlight",
+        backgroundColor: "neutral.surfaceHighlight",
         enabledHover: true,
       });
       await act(() => {
@@ -240,10 +240,10 @@ describe("GIVEN <Popover />", () => {
       ).toContain("neutral.surfaceHighlight");
     });
 
-    it("THEN should correctly render the appearance success.surfaceHighlight", async () => {
+    it("THEN should correctly render the backgroundColor success.surfaceHighlight", async () => {
       makeSut({
         content: <p>string</p>,
-        appearance: "success.surfaceHighlight",
+        backgroundColor: "success.surfaceHighlight",
         enabledHover: true,
       });
       await act(() => {
@@ -254,10 +254,10 @@ describe("GIVEN <Popover />", () => {
       ).toContain("success.surfaceHighlight");
     });
 
-    it("THEN should correctly render the appearance warning.surfaceHighlight", async () => {
+    it("THEN should correctly render the backgroundColor warning.surfaceHighlight", async () => {
       makeSut({
         content: <p>string</p>,
-        appearance: "warning.surfaceHighlight",
+        backgroundColor: "warning.surfaceHighlight",
         enabledHover: true,
       });
       await act(() => {
@@ -277,7 +277,7 @@ describe("GIVEN <Popover />", () => {
       });
       expect(
         screen.getByTestId("popover-element").getAttribute("class")
-      ).toContain("padding_base");
+      ).toContain("padding-base");
     });
 
     it("THEN should correctly render the padding none", async () => {
@@ -287,7 +287,17 @@ describe("GIVEN <Popover />", () => {
       });
       expect(
         screen.getByTestId("popover-element").getAttribute("class")
-      ).toContain("padding_none");
+      ).toContain("padding-none");
+    });
+
+    it("THEN should correctly render the padding small", async () => {
+      makeSut({ content: <p>string</p>, padding: "small", enabledHover: true });
+      await act(() => {
+        fireEvent.mouseEnter(screen.getByTestId("popover-container"));
+      });
+      expect(
+        screen.getByTestId("popover-element").getAttribute("class")
+      ).toContain("padding-small");
     });
   });
 });

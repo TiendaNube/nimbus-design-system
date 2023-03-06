@@ -2,6 +2,13 @@
 
 Our design tokens are the foundations of Nimbus Design System.
 
+## 2023-02-24 `6.0.2`
+
+### 🎉 New features
+
+- Added `breakpoint-xl` token. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+- Remove `background` shades from dark mode system colors on primary, success, warning and danger scales. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2022-12-22 `6.0.1`
 
 ### 🎉 New features

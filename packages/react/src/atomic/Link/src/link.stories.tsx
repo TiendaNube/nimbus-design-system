@@ -47,7 +47,7 @@ const Template: ComponentStory<typeof LinkComponent> = (args) => (
   <Link as="a" {...args} />
 );
 const StressedTemplate: ComponentStory<typeof LinkComponent> = (args) => (
-  <Text fontSize="base" color="neutral.textLow">
+  <Text>
     This is a paragraph followed by a link.
     <Link {...args} />
   </Text>
@@ -70,7 +70,7 @@ icon.args = {
   children: (
     <>
       Link
-      <Icon color="primary.interactive" source={<ExternalLinkIcon />} />
+      <Icon color="currentColor" source={<ExternalLinkIcon />} />
     </>
   ),
 };
@@ -81,7 +81,7 @@ stressed.args = {
   children: (
     <>
       Stressed link with a lot of characters
-      <Icon color="primary.interactive" source={<ExternalLinkIcon />} />
+      <Icon color="currentColor" source={<ExternalLinkIcon />} />
     </>
   ),
 };

@@ -2,6 +2,17 @@
 
 The Link component allows us to navigate to external addresses.
 
+## 2023-02-24 `3.6.0`
+
+### 🎉 New features
+
+- Replaced `size` property with `fontSize`. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+- Added `lineHeight` property to component API. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+
+### 💡 Others
+
+- Adjust `fontSize` and `color` properties in `Text` component on stories documentation. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-02-23 `3.5.0`
 
 ### 🎉 New features

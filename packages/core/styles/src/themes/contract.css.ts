@@ -143,6 +143,7 @@ export const vars = createThemeContract({
     xs: "breakpoint.xs",
     md: "breakpoint.md",
     lg: "breakpoint.lg",
+    xl: "breakpoint.xl",
   },
   utils: {
     focus: "0 0 0 3px primary.surfaceHighlight",

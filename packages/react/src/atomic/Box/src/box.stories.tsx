@@ -36,6 +36,9 @@ export default {
     borderColor: {
       options: Object.keys(boxStyles.properties.borderColor),
     },
+    color: {
+      options: Object.keys(boxStyles.properties.color),
+    },
     borderStyle: {
       control: { type: "radio" },
       options: boxStyles.properties.borderStyle,
@@ -84,11 +87,45 @@ export default {
       control: { type: "radio" },
       options: boxStyles.properties.alignItems,
     },
+    alignSelf: {
+      control: { type: "radio" },
+      options: boxStyles.properties.alignSelf,
+    },
     gridGap: {
       options: Object.keys(boxStyles.properties.gridGap),
     },
     gap: {
       options: Object.keys(boxStyles.properties.gap),
+    },
+    zIndex: {
+      control: { type: "number" },
+    },
+    backgroundImage: {
+      control: { type: "text" },
+    },
+    backgroundPosition: {
+      control: { type: "text" },
+    },
+    backgroundBlendMode: {
+      control: { type: "text" },
+    },
+    backgroundRepeat: {
+      control: { type: "text" },
+    },
+    backgroundSize: {
+      control: { type: "text" },
+    },
+    minWidth: {
+      control: { type: "text" },
+    },
+    minHeight: {
+      control: { type: "text" },
+    },
+    order: {
+      control: { type: "text" },
+    },
+    flexGrow: {
+      control: { type: "text" },
     },
   },
   parameters: {
@@ -113,26 +150,31 @@ box.args = {
 export const responsive = Template.bind({});
 responsive.args = {
   height: {
+    xl: "6rem",
     lg: "4rem",
     md: "3rem",
     xs: "2rem",
   },
   width: {
+    xl: "12rem",
     lg: "10rem",
     md: "8rem",
     xs: "2rem",
   },
   backgroundColor: {
+    xl: "warning.interactive",
     lg: "success.interactive",
     md: "danger.interactive",
     xs: "primary.interactive",
   },
   paddingX: {
+    xl: "8",
     lg: "6",
     md: "4",
     xs: "none",
   },
   borderRadius: {
+    xl: "1rem",
     lg: "0.5rem",
     md: "0.2rem",
     xs: "100%",

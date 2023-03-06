@@ -8,6 +8,7 @@ const TableCell: React.FC<TableCellProps> = ({
   style: _style,
   children,
   padding = "small",
+  as: As = "td",
   ...rest
 }: TableCellProps) => {
   const { className, style, otherProps } = table.sprinkle({
@@ -16,13 +17,13 @@ const TableCell: React.FC<TableCellProps> = ({
   });
 
   return (
-    <td
+    <As
       {...otherProps}
       style={style}
       className={[table.classnames.cell, className].join(" ")}
     >
       {children}
-    </td>
+    </As>
   );
 };
 

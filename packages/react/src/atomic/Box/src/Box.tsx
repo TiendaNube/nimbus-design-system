@@ -10,13 +10,15 @@ const Box = forwardRef(
       className: _className,
       style: _style,
       as: As = "div",
+      boxSizing = "border-box",
       ...rest
     }: BoxProps & { as: any },
     ref
   ) => {
-    const { className, style, otherProps } = box.sprinkle(
-      rest as Parameters<typeof box.sprinkle>[0]
-    );
+    const { className, style, otherProps } = box.sprinkle({
+      ...(rest as Parameters<typeof box.sprinkle>[0]),
+      boxSizing,
+    });
 
     return <As ref={ref} className={className} style={style} {...otherProps} />;
   }

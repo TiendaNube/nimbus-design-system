@@ -1,0 +1,32 @@
+releases:
+  "@nimbus-ds/accordion": patch
+  "@nimbus-ds/badge": patch
+  "@nimbus-ds/box": minor
+  "@nimbus-ds/card": patch
+  "@nimbus-ds/checkbox": patch
+  "@nimbus-ds/chip": patch
+  "@nimbus-ds/components": minor
+  "@nimbus-ds/file-uploader": patch
+  "@nimbus-ds/icon": patch
+  "@nimbus-ds/link": minor
+  "@nimbus-ds/modal": patch
+  "@nimbus-ds/sidebar": patch
+  "@nimbus-ds/styles": minor
+  "@nimbus-ds/table": patch
+  "@nimbus-ds/tag": patch
+  "@nimbus-ds/text": minor
+  "@nimbus-ds/title": minor
+  "@nimbus-ds/toggle": patch
+  "@nimbus-ds/tokens": patch
+  "@nimbus-ds/popover": minor
+
+declined:
+  - nimbus-design-system
+  - "@nimbus-ds/button"
+  - "@nimbus-ds/icon-button"
+  - "@nimbus-ds/input"
+  - "@nimbus-ds/label"
+  - "@nimbus-ds/radio"
+  - "@nimbus-ds/thumbnail"
+  - "@nimbus-ds/toast"
+  - "@nimbus-ds/alert"

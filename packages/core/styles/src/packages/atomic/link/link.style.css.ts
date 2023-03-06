@@ -20,24 +20,10 @@ const base = vanillaStyle({
   backgroundColor: "transparent",
   border: 0,
   padding: 0,
+  width: "fit-content",
 
   ":focus": {
     boxShadow: varsThemeBase.utils.focus,
-  },
-});
-
-export const size = styleVariants({
-  caption: {
-    fontSize: varsThemeBase.fontSize.body.caption,
-    lineHeight: varsThemeBase.lineWeight.body.caption,
-  },
-  base: {
-    fontSize: varsThemeBase.fontSize.body.base,
-    lineHeight: varsThemeBase.lineWeight.body.base,
-  },
-  highlight: {
-    fontSize: varsThemeBase.fontSize.body.highlight,
-    lineHeight: varsThemeBase.lineWeight.body.highlight,
   },
 });
 

@@ -15,4 +15,10 @@ export interface TitleProps extends HTMLAttributes<HTMLHeadingElement> {
   textAlign?: typeof title.properties.textAlign[number];
   /** Title color */
   color?: keyof typeof title.properties.color;
+  /** Text size */
+  fontSize?: keyof typeof title.properties.fontSize;
+  /** Bold font for the title component */
+  fontWeight?: keyof typeof title.properties.fontWeight;
+  /** Text line height */
+  lineHeight?: keyof typeof title.properties.lineHeight;
 }

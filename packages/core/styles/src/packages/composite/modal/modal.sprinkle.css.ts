@@ -20,6 +20,9 @@ const defineProperties = defineRainbowProperties({
     lg: {
       "@media": mediaQueries.lg(),
     },
+    xl: {
+      "@media": mediaQueries.xl(),
+    },
   },
   defaultCondition: "xs",
   dynamicProperties: {

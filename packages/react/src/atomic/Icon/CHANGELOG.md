@@ -2,6 +2,12 @@
 
 Icons are used to visually communicate core parts of the product and available actions. They can act as wayfinding tools to help merchants more easily understand where they are in the product, and common interaction patterns that are available.
 
+## 2023-02-24 `2.2.1`
+
+### 🎉 New features
+
+- Changed `cursor` property default value to `inherit`. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-02-23 `2.2.0`
 
 ### 🎉 New features

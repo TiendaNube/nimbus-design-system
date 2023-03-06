@@ -54,25 +54,46 @@ describe("GIVEN <Link />", () => {
       ).toContain("appearance_neutral.background");
     });
 
-    it("AND should correctly render with size caption", () => {
-      makeSut({ size: "caption", href: "#", children: "link" });
+    it("AND should correctly render with fontSize caption", () => {
+      makeSut({ fontSize: "caption", href: "#", children: "link" });
       expect(
         screen.getByRole("link", { name: "link" }).getAttribute("class")
-      ).toContain("size_caption");
+      ).toContain("fontSize_caption");
     });
 
-    it("AND should correctly render with size base", () => {
-      makeSut({ size: "base", href: "#", children: "link" });
+    it("AND should correctly render with fontSize base", () => {
+      makeSut({ fontSize: "base", href: "#", children: "link" });
       expect(
         screen.getByRole("link", { name: "link" }).getAttribute("class")
-      ).toContain("size_base");
+      ).toContain("fontSize_base");
     });
 
-    it("AND should correctly render with size highlight", () => {
-      makeSut({ size: "highlight", href: "#", children: "link" });
+    it("AND should correctly render with fontSize highlight", () => {
+      makeSut({ fontSize: "highlight", href: "#", children: "link" });
       expect(
         screen.getByRole("link", { name: "link" }).getAttribute("class")
-      ).toContain("size_highlight");
+      ).toContain("fontSize_highlight");
+    });
+
+    it("AND should correctly render with lineHeight caption", () => {
+      makeSut({ lineHeight: "caption", href: "#", children: "link" });
+      expect(
+        screen.getByRole("link", { name: "link" }).getAttribute("class")
+      ).toContain("lineHeight_caption");
+    });
+
+    it("AND should correctly render with lineHeight base", () => {
+      makeSut({ lineHeight: "base", href: "#", children: "link" });
+      expect(
+        screen.getByRole("link", { name: "link" }).getAttribute("class")
+      ).toContain("lineHeight_base");
+    });
+
+    it("AND should correctly render with lineHeight highlight", () => {
+      makeSut({ lineHeight: "highlight", href: "#", children: "link" });
+      expect(
+        screen.getByRole("link", { name: "link" }).getAttribute("class")
+      ).toContain("lineHeight_highlight");
     });
 
     it("AND should correctly render with textDecoration none", () => {

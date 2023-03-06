@@ -2,6 +2,28 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2023-02-24 `6.13.0`
+
+#### 🎉 New features
+
+- Added `table-layout: fixed` css property to `Table` styles. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+- Added breakpoint and state conditions to `width`, `maxWidth` and `minWidth` properties on `Table` sprinkles. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+- Remove background color from `Table` header. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+- Added `zIndex` property to `Box` sprinkles. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+- Added support for new `xl` breakpoint on conditions. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+- Added `fontWeight`, `fontSize` and `lineHeight` properties to `Title` component sprinkles. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+- Added `sizeProperties` tokens to `Title` component sprinkles. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+- Added `inherit` to `cursor` property values. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+- Added `backgroundImage`, `backgroundPosition`, `backgroundBlendMode`, `backgroundRepeat`, `backgroundSize`, `color`, `minWidth` and `minHeight` properties to `Box` sprinkles. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+- Added `fontSize` and `lineHeight` properties to `Link` component sprinkles. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+- Added `backgroundColor`, `color`, `zIndex`, `height` and `width` properties to `Popover` component sprinkles. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juniorconquista](https://github.com/juniorconquista))
+- Added breakpoint and state conditions to `minHeight`, `minWidth`, `flexGrow`, `order`and `alignSelf` properties on`Box` sprinkles. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juniorconquista](https://github.com/juniorconquista))
+
+#### 🐛 Bug fixes
+
+- Added 100% width on `Input` container. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+- Added `overflowY: auto` on `Sidebar` container. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-02-23 `6.12.0`
 
 #### 🎉 New features

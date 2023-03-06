@@ -5,6 +5,7 @@ export const container = vanillaStyle({
   display: "flex",
   alignItems: "center",
   position: "relative",
+  width: "100%",
 });
 
 export const baseAppend = vanillaStyle({

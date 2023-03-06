@@ -10,6 +10,7 @@ import {
   JustifyContent,
   FlexDirection,
   AlignItems,
+  AlignSelf,
   PointerEvents,
   TransitionTiming,
 } from "../../../types";
@@ -19,6 +20,7 @@ const { properties: propertiesBox } = boxSprinkle;
 
 type BoxBorderColorProperties = keyof typeof propertiesBox.borderColor;
 type BoxBackgroundColorProperties = keyof typeof propertiesBox.backgroundColor;
+type BoxColorProperties = keyof typeof propertiesBox.color;
 type BoxShadowProperties = keyof typeof propertiesBox.boxShadow;
 type BoxSpaceProperties = keyof typeof propertiesBox.space;
 type BoxMarginProperties = keyof typeof propertiesBox.margin;
@@ -39,12 +41,16 @@ export interface BoxSprinkle {
   height?: string | BoxConditions<string>;
   maxWidth?: string | BoxConditions<string>;
   maxHeight?: string | BoxConditions<string>;
+  minWidth?: string | BoxConditions<string>;
+  minHeight?: string | BoxConditions<string>;
   bottom?: string | BoxConditions<string>;
   left?: string | BoxConditions<string>;
   right?: string | BoxConditions<string>;
   top?: string | BoxConditions<string>;
   flex?: string | BoxConditions<string>;
   flexShrink?: string | BoxConditions<string>;
+  flexGrow?: string | BoxConditions<string>;
+  order?: string | BoxConditions<string>;
   gridTemplateColumns?: string | BoxConditions<string>;
   gridTemplateAreas?: string | BoxConditions<string>;
   gridTemplateRows?: string | BoxConditions<string>;
@@ -54,6 +60,7 @@ export interface BoxSprinkle {
   justifyContent?: JustifyContent | BoxConditions<JustifyContent>;
   flexDirection?: FlexDirection | BoxConditions<FlexDirection>;
   alignItems?: AlignItems | BoxConditions<AlignItems>;
+  alignSelf?: AlignSelf | BoxConditions<AlignSelf>;
   gap?: BoxGapProperties | BoxConditions<BoxGapProperties>;
   gridGap?: BoxGridGapProperties | BoxConditions<BoxGridGapProperties>;
   pointerEvents?: PointerEvents | BoxConditions<PointerEvents>;
@@ -65,6 +72,7 @@ export interface BoxSprinkle {
   backgroundColor?:
     | BoxBackgroundColorProperties
     | BoxConditions<BoxBackgroundColorProperties>;
+  color?: BoxColorProperties | BoxConditions<BoxColorProperties>;
   borderRadius?: string | BoxConditions<string>;
   borderWidth?: string | BoxConditions<string>;
   borderColor?:
@@ -107,4 +115,10 @@ export interface BoxSprinkle {
   transitionDuration?:
     | TransitionDurationProperties
     | BoxConditions<TransitionDurationProperties>;
+  zIndex?: number | BoxConditions<number>;
+  backgroundImage?: string | BoxConditions<string>;
+  backgroundPosition?: string | BoxConditions<string>;
+  backgroundBlendMode?: string | BoxConditions<string>;
+  backgroundRepeat?: string | BoxConditions<string>;
+  backgroundSize?: string | BoxConditions<string>;
 }

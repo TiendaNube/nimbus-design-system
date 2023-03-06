@@ -18,7 +18,8 @@ const Link = forwardRef(
       as: As = "a",
       appearance = "neutral",
       textDecoration = "underline",
-      size = "base",
+      fontSize = "base",
+      lineHeight = "base",
       children,
       ...rest
     }: LinkProps & { as: any },
@@ -49,8 +50,7 @@ const Link = forwardRef(
         {...rest}
         className={[
           link.classnames.appearance[appearance],
-          link.classnames.size[size],
-          link.sprinkle({ textDecoration }),
+          link.sprinkle({ textDecoration, fontSize, lineHeight }),
         ].join(" ")}
         ref={innerRef}
       >

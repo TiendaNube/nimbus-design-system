@@ -2,6 +2,12 @@
 
 The Modal component allows us to call the user's attention to a floating box that can have text, actions or forms to perform tasks by changing the focus from the background. It is an intrusive component as it interrupts the user's operation to present a message or content.
 
+## 2023-02-24 `1.2.1`
+
+### 💡 Others
+
+- Adjust `fontSize` and `lineHeight` properties in `Text` component on stories documentation. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-02-23 `1.2.0`
 
 ### 🎉 New features

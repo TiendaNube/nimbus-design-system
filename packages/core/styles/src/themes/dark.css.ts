@@ -153,6 +153,7 @@ export const dark = createTheme(vars, {
     xs: breakpoint.xs.value,
     md: breakpoint.md.value,
     lg: breakpoint.lg.value,
+    xl: breakpoint.xl.value,
   },
   utils: {
     focus: `0 0 0 3px ${colors.primary["surface-highlight"].value as string}`,

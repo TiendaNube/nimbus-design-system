@@ -2,6 +2,12 @@
 
 The Tag component is used to categorize information, organize or indicate the status of elements or components using keywords, icons or colors.
 
+## 2023-02-24 `2.2.1`
+
+### 💡 Others
+
+- Adjust `fontSize` and `lineHeight` properties in `Text` component on stories documentation. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-02-23 `2.2.0`
 
 ### 🎉 New features

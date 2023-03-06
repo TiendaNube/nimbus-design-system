@@ -73,6 +73,9 @@
       "@nimbus-ds/alert": ["./packages/react/src/composite/Alert/src"],
       "@nimbus-ds/card": ["./packages/react/src/composite/Card/src"],
       "@nimbus-ds/modal": ["./packages/react/src/composite/Modal/src"],
+      "@nimbus-ds/pagination": [
+        "./packages/react/src/composite/Pagination/src"
+      ],
       "@nimbus-ds/sidebar": ["./packages/react/src/composite/Sidebar/src"],
       "@nimbus-ds/tabs": ["./packages/react/src/composite/Tabs/src"],
       "@nimbus-ds/table": ["./packages/react/src/composite/Table/src"]

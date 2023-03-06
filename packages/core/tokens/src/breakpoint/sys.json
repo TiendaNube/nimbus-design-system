@@ -2,6 +2,7 @@
   "breakpoint": {
     "xs": { "value": "0px" },
     "md": { "value": "672px" },
-    "lg": { "value": "1024px" }
+    "lg": { "value": "1024px" },
+    "xl": { "value": "1200px" }
   }
 }

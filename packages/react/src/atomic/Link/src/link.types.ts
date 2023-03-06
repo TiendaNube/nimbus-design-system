@@ -14,5 +14,7 @@ export interface LinkProps extends HTMLAttributes<HTMLElement> {
   /** Decoration for the link text */
   textDecoration?: typeof link.properties.textDecoration[number];
   /** Size of the link text */
-  size?: "caption" | "base" | "highlight";
+  fontSize?: keyof typeof link.properties.fontSize;
+  /** Link text line height */
+  lineHeight?: keyof typeof link.properties.lineHeight;
 }
