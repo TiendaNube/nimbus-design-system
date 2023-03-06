@@ -87,6 +87,10 @@ export default {
       control: { type: "radio" },
       options: boxStyles.properties.alignItems,
     },
+    alignSelf: {
+      control: { type: "radio" },
+      options: boxStyles.properties.alignSelf,
+    },
     gridGap: {
       options: Object.keys(boxStyles.properties.gridGap),
     },
@@ -115,6 +119,12 @@ export default {
       control: { type: "text" },
     },
     minHeight: {
+      control: { type: "text" },
+    },
+    order: {
+      control: { type: "text" },
+    },
+    flexGrow: {
       control: { type: "text" },
     },
   },

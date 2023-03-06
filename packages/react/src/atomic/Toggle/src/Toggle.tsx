@@ -33,5 +33,6 @@ const Toggle: React.FC<ToggleProps> & ToggleComponents = ({
 );
 
 Toggle.Skeleton = ToggleSkeleton;
+Toggle.Skeleton.displayName = "Toggle.Skeleton";
 
 export { Toggle };

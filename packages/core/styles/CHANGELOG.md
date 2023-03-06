@@ -17,7 +17,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 - Added `backgroundImage`, `backgroundPosition`, `backgroundBlendMode`, `backgroundRepeat`, `backgroundSize`, `color`, `minWidth` and `minHeight` properties to `Box` sprinkles. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
 - Added `fontSize` and `lineHeight` properties to `Link` component sprinkles. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juanchigallego](https://github.com/juanchigallego))
 - Added `backgroundColor`, `color`, `zIndex`, `height` and `width` properties to `Popover` component sprinkles. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juniorconquista](https://github.com/juniorconquista))
-- Added breakpoint and state conditions to `minHeight` and `minWidth` properties on `Box` sprinkles. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juniorconquista](https://github.com/juniorconquista))
+- Added breakpoint and state conditions to `minHeight`, `minWidth`, `flexGrow`, `order`and `alignSelf` properties on`Box` sprinkles. ([#106](https://github.com/TiendaNube/nimbus-design-system/pull/106) by [@juniorconquista](https://github.com/juniorconquista))
 
 #### 🐛 Bug fixes
 

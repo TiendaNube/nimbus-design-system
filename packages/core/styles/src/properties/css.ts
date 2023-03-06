@@ -15,6 +15,7 @@ import {
   Overflow,
   PointerEvents,
   TransitionTiming,
+  AlignSelf,
 } from "../types";
 import { baseColors } from "./base";
 
@@ -77,6 +78,14 @@ export const alignItemsProperties: AlignItems[] = [
   "flex-end",
   "center",
   "baseline",
+];
+export const alignSelfProperties: AlignSelf[] = [
+  "auto",
+  "flex-start",
+  "flex-end",
+  "center",
+  "baseline",
+  "stretch",
 ];
 export const justifyContentProperties: JustifyContent[] = [
   "flex-start",

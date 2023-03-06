@@ -10,6 +10,7 @@ import {
   JustifyContent,
   FlexDirection,
   AlignItems,
+  AlignSelf,
   PointerEvents,
   TransitionTiming,
 } from "../../../types";
@@ -48,6 +49,8 @@ export interface BoxSprinkle {
   top?: string | BoxConditions<string>;
   flex?: string | BoxConditions<string>;
   flexShrink?: string | BoxConditions<string>;
+  flexGrow?: string | BoxConditions<string>;
+  order?: string | BoxConditions<string>;
   gridTemplateColumns?: string | BoxConditions<string>;
   gridTemplateAreas?: string | BoxConditions<string>;
   gridTemplateRows?: string | BoxConditions<string>;
@@ -57,6 +60,7 @@ export interface BoxSprinkle {
   justifyContent?: JustifyContent | BoxConditions<JustifyContent>;
   flexDirection?: FlexDirection | BoxConditions<FlexDirection>;
   alignItems?: AlignItems | BoxConditions<AlignItems>;
+  alignSelf?: AlignSelf | BoxConditions<AlignSelf>;
   gap?: BoxGapProperties | BoxConditions<BoxGapProperties>;
   gridGap?: BoxGridGapProperties | BoxConditions<BoxGridGapProperties>;
   pointerEvents?: PointerEvents | BoxConditions<PointerEvents>;

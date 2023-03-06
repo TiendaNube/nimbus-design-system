@@ -37,6 +37,13 @@ export type AlignItems =
   | "flex-end"
   | "center"
   | "baseline";
+export type AlignSelf =
+  | "auto"
+  | "flex-start"
+  | "flex-end"
+  | "center"
+  | "baseline"
+  | "stretch";
 export type TextAlign = "left" | "right" | "center" | "justify";
 export type TextDecoration = "none" | "underline";
 export type Position = "absolute" | "fixed" | "relative" | "static" | "sticky";

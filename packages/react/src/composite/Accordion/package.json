@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/accordion",
-  "version": "1.2.1-rc.7",
+  "version": "1.2.1-rc.8",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
