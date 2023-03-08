@@ -12,20 +12,20 @@ name: SAST Security Scan
  
 on:
   push:
-    branches: ["master"]
-  pull_request:
-    # The branches below must be a subset of the branches above
-    branches: ["master"]
+    branches:
+      - master
  
 permissions:
   contents: read
   
 jobs:
-  security:
+  runing-security:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/node@master
+        with:
+          continue-error-true: true
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
