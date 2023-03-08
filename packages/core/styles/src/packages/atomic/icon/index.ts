@@ -1,5 +1,4 @@
-import * as styles from "./icon.style.css";
-import { iconSprinkle } from "./icon.sprinkle.css";
+import { styles, iconSprinkle } from "./nimbus-icon.css";
 
 export const icon = {
   classnames: { ...styles },

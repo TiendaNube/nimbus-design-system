@@ -1,4 +1,4 @@
-import * as styles from "./badge.style.css";
+import * as styles from "./nimbus-badge.css";
 
 export const badge = {
   classnames: { ...styles },

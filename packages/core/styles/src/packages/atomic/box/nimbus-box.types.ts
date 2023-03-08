@@ -14,7 +14,7 @@ import {
   PointerEvents,
   TransitionTiming,
 } from "../../../types";
-import { boxSprinkle } from "./box.sprinkle.css";
+import { boxSprinkle } from "./nimbus-box.css";
 
 const { properties: propertiesBox } = boxSprinkle;
 

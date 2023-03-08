@@ -1,4 +1,4 @@
-import * as styles from "./button.style.css";
+import * as styles from "./nimbus-button.css";
 
 export const button = {
   classnames: { ...styles },

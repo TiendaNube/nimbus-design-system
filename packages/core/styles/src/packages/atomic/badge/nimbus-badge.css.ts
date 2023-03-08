@@ -1,8 +1,8 @@
-import { style as vanillaStyle, styleVariants } from "@vanilla-extract/css";
+import { style, styleVariants } from "@vanilla-extract/css";
 
 import { varsThemeBase } from "../../../themes";
 
-const base = vanillaStyle({
+const base = style({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",

@@ -9,7 +9,6 @@ export const container = vanillaStyle({
   margin: "0",
   paddingInlineStart: varsThemeBase.spacing[6],
 });
-
 export const item = vanillaStyle({
   lineHeight: varsThemeBase.lineWeight.body.base,
   fontSize: varsThemeBase.fontSize.body.base,

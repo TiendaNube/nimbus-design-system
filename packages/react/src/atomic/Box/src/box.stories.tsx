@@ -141,7 +141,7 @@ export const box = Template.bind({});
 box.args = {
   height: "5rem",
   width: "12rem",
-  borderColor: "neutral.interactive",
+  borderColor: "neutral-interactive",
   borderWidth: "2px",
   borderStyle: "dashed",
   borderRadius: "0.5rem",
@@ -162,10 +162,10 @@ responsive.args = {
     xs: "2rem",
   },
   backgroundColor: {
-    xl: "warning.interactive",
-    lg: "success.interactive",
-    md: "danger.interactive",
-    xs: "primary.interactive",
+    xl: "warning-interactive",
+    lg: "success-interactive",
+    md: "danger-interactive",
+    xs: "primary-interactive",
   },
   paddingX: {
     xl: "8",

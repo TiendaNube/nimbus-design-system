@@ -8,7 +8,7 @@ import { sizes } from "./spinner.definitions";
 const Spinner: React.FC<SpinnerProps> = ({
   className: _className,
   style: _style,
-  color = "primary.interactive",
+  color = "primary-interactive",
   size = "large",
   ...rest
 }) => {
@@ -20,10 +20,9 @@ const Spinner: React.FC<SpinnerProps> = ({
   return (
     <svg
       viewBox="0 0 50 50"
-      className={[
-        spinner.sprinkle({ color }),
-        spinner.classnames.container,
-      ].join(" ")}
+      className={[spinner.sprinkle({ color }), spinner.classnames.base].join(
+        " "
+      )}
       style={assignInlineVars({
         [vars.width]: scale,
         [vars.height]: scale,

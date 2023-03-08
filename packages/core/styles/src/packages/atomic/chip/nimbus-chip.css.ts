@@ -2,7 +2,7 @@ import { style as vanillaStyle } from "@vanilla-extract/css";
 
 import { varsThemeBase } from "../../../themes";
 
-export const container = vanillaStyle({
+export const base = vanillaStyle({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",

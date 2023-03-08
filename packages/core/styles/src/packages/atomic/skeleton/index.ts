@@ -1,4 +1,4 @@
-import * as styles from "./skeleton.style.css";
+import * as styles from "./nimbus-skeleton.css";
 
 export const skeleton = {
   classnames: { ...styles },

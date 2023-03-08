@@ -10,7 +10,7 @@ const fontWeight = tokens.font.weight;
 const lineWeight = tokens.line.height.sys;
 const { motion, spacing, sizes, shadow, breakpoint } = tokens;
 
-export const dark = createTheme(vars, {
+export const variables = createTheme(vars, {
   colors: {
     primary: {
       surface: colors.primary.surface.value as string,
@@ -160,4 +160,4 @@ export const dark = createTheme(vars, {
   },
 });
 
-export default dark;
+export default variables;

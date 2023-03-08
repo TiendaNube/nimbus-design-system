@@ -10,6 +10,7 @@
   "sideEffects": false,
   "scripts": {
     "build": "webpack",
+    "build:css": "node ./.scripts/bla",
     "clean": "rm -rf dist",
     "version": "yarn version"
   },
