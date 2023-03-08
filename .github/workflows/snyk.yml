@@ -35,7 +35,12 @@ jobs:
 
       - uses: actions/checkout@master
       - name: Run Snyk to check for vulnerabilities
-        run: yarn scan:snyk
+        uses: snyk/actions/node@master
         continue-on-error: true
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+      - name: Install dependencies
+        run: yarn scan:snyk
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
