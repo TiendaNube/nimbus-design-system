@@ -1,5 +1,5 @@
 # documentation.
-
+ 
 # This workflow checks out code, performs a Codacy security scan
 # and integrates the results with the
 # GitHub Advanced Security code scanning feature.  For more information on
@@ -7,40 +7,26 @@
 # https://github.com/codacy/codacy-analysis-cli-action.
 # For more information on Codacy Analysis CLI in general, see
 # https://github.com/codacy/codacy-analysis-cli.
-
+ 
 name: SAST Security Scan
-
+ 
 on:
   push:
     branches:
       - master
-
+ 
 permissions:
   contents: read
-
+  
 jobs:
   runing-security:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Set Node version
-        uses: actions/setup-node@v2
-        with:
-          node-version: "${{ steps.node_version.outputs.NVMRC }}"
-
-      - name: Install dependencies
-        run: yarn
-
       - uses: actions/checkout@master
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/node@master
         continue-on-error: true
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-
-      - name: Install dependencies
-        run: yarn scan:snyk
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --all-projects
