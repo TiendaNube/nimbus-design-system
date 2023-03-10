@@ -1,11 +1,12 @@
 type Compiler = import("webpack").Compiler;
 
 class CssHashRemoverPlugin {
-  options = {} as any;
+  options;
+
   content = "";
 
   static defaultOptions = {
-    outputFile: "css/index.css",
+    outputFile: "styles.css",
   };
 
   // Any options should be passed in the constructor of your plugin,
@@ -39,7 +40,6 @@ class CssHashRemoverPlugin {
       compilation.hooks.processAssets.tap(
         {
           name: pluginName,
-
           // Using one of the later asset processing stages to ensure
           // that all assets were already added to the compilation by other plugins.
           stage: Compilation.PROCESS_ASSETS_STAGE_SUMMARIZE,
@@ -48,7 +48,7 @@ class CssHashRemoverPlugin {
           const source = assets?.["./index.css"]?.source()?.toString();
           const matches = Array.from(
             source.matchAll(
-              /(?:\.nimbus-[\w|-]+)(?:(__\w{7,}))(?:\:{0,2}(?:disabled|focus|active|hover)?) {$/gm
+              /(?:\.nimbus-[\w|-]+)(?:(__\w{7,}))(?::{0,2}(?:disabled|focus|active|hover|placeholder|focus-visible|after)?) ?{/gm
             ),
             (m) => m[1]
           );
