@@ -4,11 +4,10 @@ import {
   defineProperties as defineRainbowProperties,
 } from "rainbow-sprinkles";
 import { paddingProperties } from "../../../properties";
-import { mediaQueries } from "../../../themes";
-import { varsThemeBase } from "../../../themes";
+import { mediaQueries, varsThemeBase } from "../../../themes";
 
 /* -------------------------------------------------------------------------------------------------
- * Styles
+ * Style
  * -----------------------------------------------------------------------------------------------*/
 
 const container = style({
@@ -95,7 +94,7 @@ export const styles = {
 };
 
 /* -------------------------------------------------------------------------------------------------
- * Sprinkles
+ * Sprinkle
  * -----------------------------------------------------------------------------------------------*/
 
 const defineProperties = defineRainbowProperties({

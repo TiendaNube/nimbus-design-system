@@ -10,7 +10,7 @@ import {
 import { mediaQueries, varsThemeBase } from "../../../themes";
 
 /* -------------------------------------------------------------------------------------------------
- * Styles
+ * Style
  * -----------------------------------------------------------------------------------------------*/
 
 const container = style({
@@ -64,18 +64,18 @@ export const styles = {
 };
 
 /* -------------------------------------------------------------------------------------------------
- * Sprinkles
+ * Sprinkle
  * -----------------------------------------------------------------------------------------------*/
 
 const tableRowBackgroundColorProperties = {
   transparent: "transparent",
-  "neutral-background": backgroundColorProperties["neutral.background"],
-  "neutral-surface": backgroundColorProperties["neutral.surface"],
+  "neutral-background": backgroundColorProperties["neutral-background"],
+  "neutral-surface": backgroundColorProperties["neutral-surface"],
   "neutral-surfaceHighlight":
-    backgroundColorProperties["neutral.surfaceHighlight"],
-  "primary-surface": backgroundColorProperties["primary.surface"],
+    backgroundColorProperties["neutral-surfaceHighlight"],
+  "primary-surface": backgroundColorProperties["primary-surface"],
   "primary-surfaceHighlight":
-    backgroundColorProperties["primary.surfaceHighlight"],
+    backgroundColorProperties["primary-surfaceHighlight"],
 };
 
 const defineProperties = defineRainbowProperties({

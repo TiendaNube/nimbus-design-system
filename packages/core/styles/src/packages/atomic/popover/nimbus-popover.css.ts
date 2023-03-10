@@ -3,15 +3,14 @@ import {
   createRainbowSprinkles,
   defineProperties as defineRainbowProperties,
 } from "rainbow-sprinkles";
-import { mediaQueries } from "../../../themes";
-import { varsThemeBase } from "../../../themes";
+import { mediaQueries, varsThemeBase } from "../../../themes";
 import {
   backgroundColorProperties,
   paddingProperties,
 } from "../../../properties";
 
 /* -------------------------------------------------------------------------------------------------
- * Styles
+ * Style
  * -----------------------------------------------------------------------------------------------*/
 
 const content = style({
@@ -107,23 +106,23 @@ export const styles = {
 };
 
 /* -------------------------------------------------------------------------------------------------
- * Sprinkles
+ * Sprinkle
  * -----------------------------------------------------------------------------------------------*/
 
 const popoverBackgroundColorProperties = {
   "primary-surfaceHighlight":
-    backgroundColorProperties["primary.surfaceHighlight"],
+    backgroundColorProperties["primary-surfaceHighlight"],
   "primary-interactiveHover":
-    backgroundColorProperties["primary.interactiveHover"],
+    backgroundColorProperties["primary-interactiveHover"],
   "success-surfaceHighlight":
-    backgroundColorProperties["success.surfaceHighlight"],
+    backgroundColorProperties["success-surfaceHighlight"],
   "danger-surfaceHighlight":
-    backgroundColorProperties["danger.surfaceHighlight"],
+    backgroundColorProperties["danger-surfaceHighlight"],
   "neutral-surfaceHighlight":
-    backgroundColorProperties["neutral.surfaceHighlight"],
+    backgroundColorProperties["neutral-surfaceHighlight"],
   "warning-surfaceHighlight":
-    backgroundColorProperties["warning.surfaceHighlight"],
-  "neutral-background": backgroundColorProperties["neutral.background"],
+    backgroundColorProperties["warning-surfaceHighlight"],
+  "neutral-background": backgroundColorProperties["neutral-background"],
 };
 
 const popoverColorProperties = popoverBackgroundColorProperties;

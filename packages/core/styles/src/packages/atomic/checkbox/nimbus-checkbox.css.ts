@@ -5,7 +5,7 @@ import { varsThemeBase } from "../../../themes";
 import { borderColorProperties, cursorProperties } from "../../../properties";
 
 /* -------------------------------------------------------------------------------------------------
- * Styles
+ * Style
  * -----------------------------------------------------------------------------------------------*/
 
 const container = style({
@@ -84,13 +84,13 @@ export const styles = {
 };
 
 /* -------------------------------------------------------------------------------------------------
- * Sprinkles
+ * Sprinkle
  * -----------------------------------------------------------------------------------------------*/
 
 const checkboxBorderColorProperties = {
-  "primary-interactive": borderColorProperties["primary.interactive"],
-  "danger-interactive": borderColorProperties["danger.interactive"],
-  "neutral-interactive": borderColorProperties["neutral.interactive"],
+  "primary-interactive": borderColorProperties["primary-interactive"],
+  "danger-interactive": borderColorProperties["danger-interactive"],
+  "neutral-interactive": borderColorProperties["neutral-interactive"],
 };
 
 const properties = {

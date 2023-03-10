@@ -26,61 +26,61 @@ import {
 import { varsThemeBase, mediaQueries } from "../../../themes";
 
 const boxBackgroundColorProperties = {
-  "primary-interactive": backgroundColorProperties["primary.interactive"],
-  "primary-surface": backgroundColorProperties["primary.surface"],
+  "primary-interactive": backgroundColorProperties["primary-interactive"],
+  "primary-surface": backgroundColorProperties["primary-surface"],
   "primary-surfaceHighlight":
-    backgroundColorProperties["primary.surfaceHighlight"],
-  "primary-textLow": backgroundColorProperties["primary.textLow"],
+    backgroundColorProperties["primary-surfaceHighlight"],
+  "primary-textLow": backgroundColorProperties["primary-textLow"],
 
-  "success-interactive": backgroundColorProperties["success.interactive"],
-  "success-surface": backgroundColorProperties["success.surface"],
+  "success-interactive": backgroundColorProperties["success-textLow"],
+  "success-surface": backgroundColorProperties["success-surface"],
   "success-surfaceHighlight":
-    backgroundColorProperties["success.surfaceHighlight"],
-  "success-textLow": backgroundColorProperties["success.textLow"],
+    backgroundColorProperties["success-surfaceHighlight"],
+  "success-textLow": backgroundColorProperties["success-textLow"],
 
-  "warning-interactive": backgroundColorProperties["warning.interactive"],
-  "warning-surface": backgroundColorProperties["warning.surface"],
+  "warning-interactive": backgroundColorProperties["warning-interactive"],
+  "warning-surface": backgroundColorProperties["warning-surface"],
   "warning-surfaceHighlight":
-    backgroundColorProperties["warning.surfaceHighlight"],
-  "warning-textLow": backgroundColorProperties["warning.textLow"],
+    backgroundColorProperties["warning-surfaceHighlight"],
+  "warning-textLow": backgroundColorProperties["warning-textLow"],
 
-  "danger-interactive": backgroundColorProperties["danger.interactive"],
-  "danger-surface": backgroundColorProperties["danger.surface"],
+  "danger-interactive": backgroundColorProperties["danger-interactive"],
+  "danger-surface": backgroundColorProperties["danger-surface"],
   "danger-surfaceHighlight":
-    backgroundColorProperties["danger.surfaceHighlight"],
-  "danger-textLow": backgroundColorProperties["danger.textLow"],
+    backgroundColorProperties["danger-surfaceHighlight"],
+  "danger-textLow": backgroundColorProperties["danger-textLow"],
 
-  "neutral-background": backgroundColorProperties["neutral.background"],
-  "neutral-interactive": backgroundColorProperties["neutral.interactive"],
-  "neutral-surface": backgroundColorProperties["neutral.surface"],
+  "neutral-background": backgroundColorProperties["neutral-background"],
+  "neutral-interactive": backgroundColorProperties["neutral-interactive"],
+  "neutral-surface": backgroundColorProperties["neutral-surface"],
   "neutral-surfaceHighlight":
-    backgroundColorProperties["neutral.surfaceHighlight"],
+    backgroundColorProperties["neutral-surfaceHighlight"],
   "neutral-surfaceDisabled":
-    backgroundColorProperties["neutral.surfaceDisabled"],
-  "neutral-textLow": backgroundColorProperties["neutral.textLow"],
+    backgroundColorProperties["neutral-surfaceDisabled"],
+  "neutral-textLow": backgroundColorProperties["neutral-textLow"],
   transparent: "transparent",
 };
 
 const boxBorderColorProperties = {
-  "primary-interactive": borderColorProperties["primary.interactive"],
-  "primary-surface": borderColorProperties["primary.surface"],
-  "primary-surfaceHighlight": borderColorProperties["primary.surfaceHighlight"],
+  "primary-interactive": borderColorProperties["primary-interactive"],
+  "primary-surface": borderColorProperties["primary-surface"],
+  "primary-surfaceHighlight": borderColorProperties["primary-surfaceHighlight"],
 
-  "success-interactive": borderColorProperties["success.interactive"],
-  "success-surface": borderColorProperties["success.surface"],
-  "success-surfaceHighlight": borderColorProperties["success.surfaceHighlight"],
+  "success-interactive": borderColorProperties["success-textLow"],
+  "success-surface": borderColorProperties["success-surface"],
+  "success-surfaceHighlight": borderColorProperties["success-surfaceHighlight"],
 
-  "warning-interactive": borderColorProperties["warning.interactive"],
-  "warning-surface": borderColorProperties["warning.surface"],
-  "warning-surfaceHighlight": borderColorProperties["warning.surfaceHighlight"],
+  "warning-interactive": borderColorProperties["warning-interactive"],
+  "warning-surface": borderColorProperties["warning-surface"],
+  "warning-surfaceHighlight": borderColorProperties["warning-surfaceHighlight"],
 
-  "danger-interactive": borderColorProperties["danger.interactive"],
-  "danger-surface": borderColorProperties["danger.surface"],
-  "danger-surfaceHighlight": borderColorProperties["danger.surfaceHighlight"],
+  "danger-interactive": borderColorProperties["danger-interactive"],
+  "danger-surface": borderColorProperties["danger-surface"],
+  "danger-surfaceHighlight": borderColorProperties["danger-surfaceHighlight"],
 
-  "neutral-interactive": borderColorProperties["neutral.interactive"],
-  "neutral-surface": borderColorProperties["neutral.surface"],
-  "neutral-surfaceHighlight": borderColorProperties["neutral.surfaceHighlight"],
+  "neutral-interactive": borderColorProperties["neutral-interactive"],
+  "neutral-surface": borderColorProperties["neutral-surface"],
+  "neutral-surfaceHighlight": borderColorProperties["neutral-surfaceHighlight"],
   transparent: "transparent",
 };
 

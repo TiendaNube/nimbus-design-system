@@ -12,7 +12,7 @@ import {
 } from "../../../properties";
 
 /* -------------------------------------------------------------------------------------------------
- * Styles
+ * Style
  * -----------------------------------------------------------------------------------------------*/
 
 const base = style({
@@ -77,20 +77,20 @@ export const styles = {
 };
 
 /* -------------------------------------------------------------------------------------------------
- * Sprinkles
+ * Sprinkle
  * -----------------------------------------------------------------------------------------------*/
 
 const titleColorProperties = {
-  "primary-textHigh": colorProperties["primary.textHigh"],
-  "primary-textLow": colorProperties["primary.textLow"],
-  "success-textHigh": colorProperties["success.textHigh"],
-  "success-textLow": colorProperties["success.textLow"],
-  "warning-textHigh": colorProperties["warning.textHigh"],
-  "warning-textLow": colorProperties["warning.textLow"],
-  "danger-textHigh": colorProperties["danger.textHigh"],
-  "danger-textLow": colorProperties["danger.textLow"],
-  "neutral-textHigh": colorProperties["neutral.textHigh"],
-  "neutral-textLow": colorProperties["neutral.textLow"],
+  "primary-textHigh": colorProperties["primary-textHigh"],
+  "primary-textLow": colorProperties["primary-textLow"],
+  "success-textHigh": colorProperties["success-textHigh"],
+  "success-textLow": colorProperties["success-textLow"],
+  "warning-textHigh": colorProperties["warning-textHigh"],
+  "warning-textLow": colorProperties["warning-textLow"],
+  "danger-textHigh": colorProperties["danger-textHigh"],
+  "danger-textLow": colorProperties["danger-textLow"],
+  "neutral-textHigh": colorProperties["neutral-textHigh"],
+  "neutral-textLow": colorProperties["neutral-textLow"],
 };
 
 const fontSizeProperties = {

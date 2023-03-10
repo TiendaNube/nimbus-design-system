@@ -6,11 +6,9 @@ export const base = style({
   display: "flex",
   alignItems: "center",
   gap: varsThemeBase.spacing[1],
-
   lineHeight: varsThemeBase.lineWeight.body.caption,
   fontSize: varsThemeBase.fontSize.body.caption,
   fontFamily: varsThemeBase.fontFamily.centranube,
-
   color: varsThemeBase.colors.neutral.textLow,
 });
 

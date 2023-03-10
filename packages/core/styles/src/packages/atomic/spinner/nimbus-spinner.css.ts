@@ -4,7 +4,7 @@ import { vars } from "../../../utils";
 import { colorProperties } from "../../../properties";
 
 /* -------------------------------------------------------------------------------------------------
- * Styles
+ * Style
  * -----------------------------------------------------------------------------------------------*/
 
 const rotateAnimation = keyframes({
@@ -49,22 +49,22 @@ export const styles = {
 
 const spinnerColorProperties = {
   currentColor: "currentColor",
-  "primary-surface": colorProperties["primary.surface"],
-  "primary-interactive": colorProperties["primary.interactive"],
-  "primary-textLow": colorProperties["primary.textLow"],
+  "primary-surface": colorProperties["primary-surface"],
+  "primary-interactive": colorProperties["primary-interactive"],
+  "primary-textLow": colorProperties["primary-textLow"],
 
-  "success-surface": colorProperties["success.surface"],
-  "success-interactive": colorProperties["success.interactive"],
-  "success-textLow": colorProperties["success.textLow"],
+  "success-surface": colorProperties["success-surface"],
+  "success-interactive": colorProperties["success-textLow"],
+  "success-textLow": colorProperties["success-textLow"],
 
-  "danger-surface": colorProperties["danger.surface"],
-  "danger-interactive": colorProperties["danger.interactive"],
-  "danger-textLow": colorProperties["danger.textLow"],
+  "danger-surface": colorProperties["danger-surface"],
+  "danger-interactive": colorProperties["danger-interactive"],
+  "danger-textLow": colorProperties["danger-textLow"],
 
-  "neutral-background": colorProperties["neutral.background"],
-  "neutral-surface": colorProperties["neutral.surface"],
-  "neutral-interactive": colorProperties["neutral.interactive"],
-  "neutral-textLow": colorProperties["neutral.textLow"],
+  "neutral-background": colorProperties["neutral-background"],
+  "neutral-surface": colorProperties["neutral-surface"],
+  "neutral-interactive": colorProperties["neutral-interactive"],
+  "neutral-textLow": colorProperties["neutral-textLow"],
 };
 
 const properties = {

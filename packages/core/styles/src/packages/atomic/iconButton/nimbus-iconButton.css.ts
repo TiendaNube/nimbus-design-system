@@ -7,11 +7,10 @@ import {
   backgroundColorProperties,
   borderColorProperties,
 } from "../../../properties";
-import { varsThemeBase } from "../../../themes";
-import { mediaQueries } from "../../../themes";
+import { varsThemeBase, mediaQueries } from "../../../themes";
 
 /* -------------------------------------------------------------------------------------------------
- * Styles
+ * Style
  * -----------------------------------------------------------------------------------------------*/
 
 const base = style({
@@ -37,24 +36,24 @@ export const styles = {
 };
 
 /* -------------------------------------------------------------------------------------------------
- * Sprinkles
+ * Sprinkle
  * -----------------------------------------------------------------------------------------------*/
 
 const iconButtonBackgroundColorProperties = {
   transparent: "transparent",
-  "neutral-surface": backgroundColorProperties["neutral.surface"],
-  "neutral-interactive": backgroundColorProperties["neutral.interactive"],
+  "neutral-surface": backgroundColorProperties["neutral-surface"],
+  "neutral-interactive": backgroundColorProperties["neutral-interactive"],
   "neutral-surfaceHighlight":
-    backgroundColorProperties["neutral.surfaceHighlight"],
+    backgroundColorProperties["neutral-surfaceHighlight"],
 };
 
 const iconButtonBorderColorProperties = {
   ...iconButtonBackgroundColorProperties,
-  "neutral-interactive": borderColorProperties["neutral.interactive"],
-  "neutral-interactiveHover": borderColorProperties["neutral.interactiveHover"],
+  "neutral-interactive": borderColorProperties["neutral-interactive"],
+  "neutral-interactiveHover": borderColorProperties["neutral-interactiveHover"],
   "neutral-interactivePressed":
-    borderColorProperties["neutral.interactivePressed"],
-  "primary-interactive": borderColorProperties["primary.interactive"],
+    borderColorProperties["neutral-interactivePressed"],
+  "primary-interactive": borderColorProperties["primary-interactive"],
 };
 
 const properties = {

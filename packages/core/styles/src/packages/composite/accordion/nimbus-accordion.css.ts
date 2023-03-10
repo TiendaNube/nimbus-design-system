@@ -4,7 +4,7 @@ import { baseColors } from "../../../properties";
 import { varsThemeBase } from "../../../themes";
 
 /* -------------------------------------------------------------------------------------------------
- * Styles
+ * Style
  * -----------------------------------------------------------------------------------------------*/
 
 const header = style({
@@ -59,12 +59,12 @@ export const styles = {
 };
 
 /* -------------------------------------------------------------------------------------------------
- * Sprinkles
+ * Sprinkle
  * -----------------------------------------------------------------------------------------------*/
 
 const border = {
   none: "none",
-  base: `1px solid ${baseColors["neutral.surfaceHighlight"]}`,
+  base: `1px solid ${baseColors["neutral-surfaceHighlight"]}`,
 };
 
 const properties = {
