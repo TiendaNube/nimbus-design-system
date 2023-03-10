@@ -20,6 +20,7 @@
     "@types/dashify": "^1.0.1",
     "@types/webpack": "^5.28.0",
     "@vanilla-extract/webpack-plugin": "^2.2.0",
+    "css-minimizer-webpack-plugin": "^4.2.2",
     "dashify": "^2.0.0",
     "dotenv": "^16.0.3",
     "mini-css-extract-plugin": "^2.7.2",
