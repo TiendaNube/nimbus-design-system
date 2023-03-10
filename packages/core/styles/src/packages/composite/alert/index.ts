@@ -1,4 +1,4 @@
-import * as styles from "./alert.style.css";
+import * as styles from "./nimbus-alert.css";
 
 export const alert = {
   classnames: { ...styles },

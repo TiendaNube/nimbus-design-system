@@ -1,5 +1,4 @@
-import * as styles from "./radio.style.css";
-import { radioSprinkle } from "./radio.sprinkle.css";
+import { styles, radioSprinkle } from "./nimbus-radio.css";
 
 export const radio = {
   classnames: { ...styles },

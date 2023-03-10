@@ -1,5 +1,4 @@
-import * as styles from "./fileUploader.style.css";
-import { fileUploaderSprinkle } from "./fileUploader.sprinkle.css";
+import { styles, fileUploaderSprinkle } from "./nimbus-fileUploader.css";
 
 export const fileUploader = {
   classnames: { ...styles },

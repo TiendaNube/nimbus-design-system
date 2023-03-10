@@ -1,5 +1,4 @@
-import * as styles from "./accordion.style.css";
-import { accordionSprinkle } from "./accordion.sprinkle.css";
+import { styles, accordionSprinkle } from "./nimbus-accordion.css";
 
 export const accordion = {
   classnames: { ...styles },

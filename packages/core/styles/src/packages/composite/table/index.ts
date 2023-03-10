@@ -1,9 +1,8 @@
-import * as styles from "./table.style.css";
-import { tableSprinkle } from "./table.sprinkle.css";
+import { styles, tableSprinkle } from "./nimbus-table.css";
 
 export const table = {
   classnames: { ...styles },
   ...tableSprinkle,
 };
 
-export type { TableSprinkle } from "./table.sprinkle.types";
+export type { TableSprinkle } from "./nimbus-table.types";

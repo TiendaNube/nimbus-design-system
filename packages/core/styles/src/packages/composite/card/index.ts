@@ -1,5 +1,4 @@
-import * as styles from "./card.style.css";
-import { cardSprinkle } from "./card.sprinkle.css";
+import { styles, cardSprinkle } from "./nimbus-card.css";
 
 export const card = {
   classnames: { ...styles },

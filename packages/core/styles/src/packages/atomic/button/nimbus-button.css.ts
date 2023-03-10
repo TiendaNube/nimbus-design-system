@@ -5,26 +5,21 @@ const base = style({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-
   padding: `${varsThemeBase.spacing[2]} ${varsThemeBase.spacing[4]}`,
   height: "2.125rem",
   width: "fit-content",
   gap: varsThemeBase.spacing[1],
-
   fontWeight: varsThemeBase.fontWeight.medium,
   lineHeight: varsThemeBase.lineWeight.body.base,
   fontSize: varsThemeBase.fontSize.body.base,
   fontFamily: varsThemeBase.fontFamily.centranube,
   textDecoration: "none",
-
   color: varsThemeBase.colors.neutral.textLow,
   borderRadius: "0.5rem",
   boxSizing: "border-box",
-
   borderWidth: "0.063rem",
   borderStyle: "solid",
   borderColor: varsThemeBase.colors.neutral.interactive,
-
   cursor: "pointer",
   transition: `all ${varsThemeBase.motion.speed.fast} ease`,
   ":disabled": {

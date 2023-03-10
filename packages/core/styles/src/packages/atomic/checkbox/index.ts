@@ -1,5 +1,4 @@
-import * as styles from "./checkbox.style.css";
-import { checkboxSprinkle } from "./checkbox.sprinkle.css";
+import { styles, checkboxSprinkle } from "./nimbus-checkbox.css";
 
 export const checkbox = {
   classnames: { ...styles },

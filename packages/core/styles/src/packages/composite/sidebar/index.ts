@@ -1,9 +1,8 @@
-import * as styles from "./sidebar.style.css";
-import { sidebarSprinkle } from "./sidebar.sprinkle.css";
+import { styles, sidebarSprinkle } from "./nimbus-sidebar.css";
 
 export const sidebar = {
   classnames: { ...styles },
   ...sidebarSprinkle,
 };
 
-export type { SidebarSprinkle } from "./sidebar.sprinkle.types";
+export type { SidebarSprinkle } from "./nimbus-sidebar.types";

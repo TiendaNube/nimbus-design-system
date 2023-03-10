@@ -21,7 +21,6 @@ config.plugins = [
   plugins.vanillaExtractPlugin,
   plugins.miniCssExtractPlugin,
   plugins.cssHashRemoverPlugin,
-
   // plugins.dtsBundleGeneratorPlugin({
   //   entries: [
   //     `node ${utils.rootDir}/node_modules/.bin/dts-bundle-generator -o ./dist/index.d.ts ./src/index.ts`,
