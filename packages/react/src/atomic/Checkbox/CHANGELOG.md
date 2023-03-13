@@ -2,7 +2,7 @@
 
 The Checkbox component allows us to choose one or several options from a selection list.
 
-## 2023-02-24 `2.2.0`
+## 2023-03-13 `2.2.0`
 
 ### 💡 Others
 

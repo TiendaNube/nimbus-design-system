@@ -2,6 +2,13 @@
 
 The File Uploader component is used to upload files.
 
+## 2023-03-13 `2.5.0`
+
+### 💡 Others
+
+- Refactored use of color tokens in internal components by removing "." per "-". ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
+- Refactored style classes to have more semantic names. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-02-24 `2.4.1`
 
 ### 💡 Others
