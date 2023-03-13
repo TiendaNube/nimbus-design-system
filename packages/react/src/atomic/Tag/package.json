@@ -14,7 +14,7 @@
     "version": "yarn version"
   },
   "dependencies": {
-    "@nimbus-ds/skeleton": "workspace:^"
+    "@nimbus-ds/skeleton": "1.0.0"
   },
   "peerDependencies": {
     "react": "^16.8 || ^17.0 || ^18.0",
