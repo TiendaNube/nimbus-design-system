@@ -32,7 +32,7 @@ describe("GIVEN <Input />", () => {
       });
       expect(screen.getByTestId("my-icon")).toBeDefined();
       expect(screen.getByRole("textbox").getAttribute("class")).toContain(
-        "inputAppend_start"
+        "append_start"
       );
     });
 
@@ -44,7 +44,7 @@ describe("GIVEN <Input />", () => {
       });
       expect(screen.getByTestId("my-icon")).toBeDefined();
       expect(screen.getByRole("textbox").getAttribute("class")).toContain(
-        "inputAppend_end"
+        "append_end"
       );
     });
   });
@@ -53,35 +53,35 @@ describe("GIVEN <Input />", () => {
     it("THEN should correctly render the appearance default", () => {
       makeSut();
       expect(screen.getByRole("textbox").getAttribute("class")).toContain(
-        "inputAppearance_neutral"
+        "appearance_neutral"
       );
     });
 
     it("THEN should correctly render the appearance neutral", () => {
       makeSut({ appearance: "neutral" });
       expect(screen.getByRole("textbox").getAttribute("class")).toContain(
-        "inputAppearance_neutral"
+        "appearance_neutral"
       );
     });
 
     it("THEN should correctly render the appearance success", () => {
       makeSut({ appearance: "success" });
       expect(screen.getByRole("textbox").getAttribute("class")).toContain(
-        "inputAppearance_success"
+        "appearance_success"
       );
     });
 
     it("THEN should correctly render the appearance warning", () => {
       makeSut({ appearance: "warning" });
       expect(screen.getByRole("textbox").getAttribute("class")).toContain(
-        "inputAppearance_warning"
+        "appearance_warning"
       );
     });
 
     it("THEN should correctly render the appearance danger", () => {
       makeSut({ appearance: "danger" });
       expect(screen.getByRole("textbox").getAttribute("class")).toContain(
-        "inputAppearance_danger"
+        "appearance_danger"
       );
     });
   });

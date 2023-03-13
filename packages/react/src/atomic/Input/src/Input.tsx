@@ -14,13 +14,15 @@ const Input: React.FC<InputProps> & InputComponents = ({
 }: InputProps) => (
   <div className={input.classnames.container}>
     {append && (
-      <div className={input.classnames.append[appendPosition]}>{append}</div>
+      <div className={input.classnames.container__icon_append[appendPosition]}>
+        {append}
+      </div>
     )}
     <input
       {...rest}
       className={[
-        input.classnames.inputAppearance[appearance],
-        append && input.classnames.inputAppend[appendPosition],
+        input.classnames.appearance[appearance],
+        append && input.classnames.container__input_append[appendPosition],
       ].join(" ")}
     />
   </div>

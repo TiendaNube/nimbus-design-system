@@ -12,14 +12,17 @@ const InputSearch: React.FC<InputSearchProps> = ({
   ...rest
 }) => (
   <div className={input.classnames.container}>
-    <div data-testid="icon-search" className={input.classnames.append.start}>
-      <Icon color="neutral.textDisabled" source={<SearchIcon />} />
+    <div
+      data-testid="icon-search"
+      className={input.classnames.container__icon_append.start}
+    >
+      <Icon color="neutral-textDisabled" source={<SearchIcon />} />
     </div>
     <input
       {...rest}
       className={[
-        input.classnames.inputAppearance[appearance],
-        input.classnames.inputAppend.start,
+        input.classnames.appearance[appearance],
+        input.classnames.container__input_append.start,
       ].join(" ")}
       type="search"
     />

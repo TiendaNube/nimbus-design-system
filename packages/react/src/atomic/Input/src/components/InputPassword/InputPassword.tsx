@@ -23,13 +23,13 @@ const InputPassword: React.FC<InputPasswordProps> = ({
           data-testid="button-password-show"
           type="button"
           className={[
-            input.classnames.password,
-            input.classnames.append.end,
+            input.classnames.container__button,
+            input.classnames.container__icon_append.end,
           ].join(" ")}
           onClick={handleShow}
         >
           <Icon
-            color="primary.interactive"
+            color="primary-interactive"
             source={show ? <EyeOffIcon /> : <EyeIcon />}
           />
         </button>
@@ -37,8 +37,8 @@ const InputPassword: React.FC<InputPasswordProps> = ({
       <input
         {...rest}
         className={[
-          input.classnames.inputAppearance[appearance],
-          input.classnames.inputAppend.end,
+          input.classnames.appearance[appearance],
+          input.classnames.container__input_append.end,
         ].join(" ")}
         type={show ? "text" : "password"}
         value={value}
