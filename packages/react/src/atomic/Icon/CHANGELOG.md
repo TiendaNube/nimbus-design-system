@@ -4,7 +4,7 @@ Icons are used to visually communicate core parts of the product and available a
 
 ## 2023-02-24 `3.0.0`
 
-🛠 Breaking changes
+### 🛠 Breaking changes
 
 - Changed the `color` properties to `primary-interactive`, `primary-surface`, `primary-textLow`, `success-textLow`, `success-surface`, `warning-interactive`, `warning-surface`, `warning-textLow`, `danger-interactive`, `danger-surface`, `danger-textLow`, `neutral-background`, `neutral-interactive`, `neutral-surface`, `neutral-textLow`, `currentColor`, `success-interactive`, `primary-textHigh`, `success-textHigh`, `warning-textHigh`, `danger-textHigh`, `neutral-textDisabled` and `neutral-textHigh`. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
 

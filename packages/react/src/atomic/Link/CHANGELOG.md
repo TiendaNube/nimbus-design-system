@@ -4,7 +4,7 @@ The Link component allows us to navigate to external addresses.
 
 ## 2023-03-13 `4.0.0`
 
-🛠 Breaking changes
+### 🛠 Breaking changes
 
 - Changed appearance property from `neutral.background` to `neutral-background`. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
 
