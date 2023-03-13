@@ -16,7 +16,7 @@
   "dependencies": {
     "@nimbus-ds/icon": "workspace:^",
     "@nimbus-ds/skeleton": "workspace:^",
-    "@nimbus-ds/text": "workspace:^"
+    "@nimbus-ds/text": "1.0.0"
   },
   "peerDependencies": {
     "react": "^16.8 || ^17.0 || ^18.0",
