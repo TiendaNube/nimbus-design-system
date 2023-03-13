@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { Skeleton } from "@nimbus-ds/skeleton";
-import { checkbox } from "@nimbus-ds/styles";
+import { radio } from "@nimbus-ds/styles";
 
 import { RadioSkeletonProps } from "./radioSkeleton.types";
 
@@ -11,7 +11,7 @@ const RadioSkeleton: React.FC<RadioSkeletonProps> = ({
 }) => {
   const isRadio = useMemo(() => as === "radio", [as]);
   return (
-    <div className={checkbox.classnames.container}>
+    <div className={radio.classnames.container}>
       {isRadio && (
         <Skeleton
           data-testid="checkmark-element"

@@ -2,6 +2,12 @@
 
 Use radios when a user needs to select one option from a list.
 
+## 2023-03-13 `2.2.0`
+
+### 💡 Others
+
+- Refactored style classes to have more semantic names. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-02-23 `2.1.0`
 
 ### 🎉 New features

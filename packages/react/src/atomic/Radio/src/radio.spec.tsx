@@ -33,7 +33,7 @@ describe("GIVEN <Radio />", () => {
       expect(screen.getByTestId("checkmark-element")).toBeDefined();
       expect(
         screen.getByTestId("content-element").getAttribute("class")
-      ).toContain("radio.style_content_radio");
+      ).toContain("content_radio");
     });
 
     it("THEN should correctly render the appearance disabled", () => {
@@ -44,7 +44,7 @@ describe("GIVEN <Radio />", () => {
       expect(screen.getByTestId("checkmark-element")).toBeDefined();
       expect(
         screen.getByTestId("content-element").getAttribute("class")
-      ).toContain("radio.style_content_radio");
+      ).toContain("content_radio");
     });
   });
 
@@ -54,7 +54,7 @@ describe("GIVEN <Radio />", () => {
       expect(screen.queryByTestId("checkmark-element")).toBeNull();
       expect(
         screen.getByTestId("content-element").getAttribute("class")
-      ).toContain("radio.style_content_button");
+      ).toContain("content_button");
     });
 
     it("THEN should correctly render the appearance disabled", () => {
@@ -69,7 +69,7 @@ describe("GIVEN <Radio />", () => {
       ).toBeTruthy();
       expect(
         screen.getByTestId("content-element").getAttribute("class")
-      ).toContain("radio.style_content_disabled");
+      ).toContain("content_disabled");
     });
   });
 });
