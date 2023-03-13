@@ -50,27 +50,31 @@ const Checkbox: React.FC<CheckboxProps> & CheckboxComponents = ({
         id={id || name}
         name={name}
         type="checkbox"
-        className={checkbox.classnames.input}
+        className={checkbox.classnames.container__input}
         disabled={disabled}
       />
       <span
         data-testid="checkmark"
         className={[
-          checkbox.classnames.checkmark,
+          checkbox.classnames.container__checkmark,
           checkbox.sprinkle({
             borderColor,
           }),
         ].join(" ")}
       >
-        <div className={checkbox.classnames.checkicon}>
+        <div className={checkbox.classnames.container__checkmark_checkicon}>
           <Icon
             data-testid="icon-check"
-            color={disabled ? "neutral.textLow" : "neutral.background"}
+            color={disabled ? "neutral-textLow" : "neutral-background"}
             source={<CheckIcon />}
           />
         </div>
         {indeterminate && (
-          <div className={checkbox.classnames.checkindeterminate}>
+          <div
+            className={
+              checkbox.classnames.container__checkmark_checkindeterminate
+            }
+          >
             <Icon
               data-testid="icon-indeterminate"
               source={<IndeterminateIcon />}

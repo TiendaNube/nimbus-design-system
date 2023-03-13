@@ -37,10 +37,10 @@ describe("GIVEN <Checkbox />", () => {
         screen.getByTestId<HTMLInputElement>("chekbox-input").disabled
       ).toBeTruthy();
       expect(screen.getByTestId("checkmark").getAttribute("class")).toContain(
-        "borderColor_neutral.interactive"
+        "borderColor_neutral-interactive"
       );
       expect(screen.getByTestId("text").getAttribute("class")).toContain(
-        "color_neutral.textDisabled"
+        "color_neutral-textDisabled"
       );
     });
 
@@ -48,7 +48,7 @@ describe("GIVEN <Checkbox />", () => {
       makeSut({ name: "checkbox", label: "My Checkbox", indeterminate: true });
       expect(screen.getByTestId("icon-indeterminate")).toBeDefined();
       expect(screen.getByTestId("checkmark").getAttribute("class")).toContain(
-        "borderColor_primary.interactive"
+        "borderColor_primary-interactive"
       );
     });
 
@@ -59,10 +59,10 @@ describe("GIVEN <Checkbox />", () => {
         appearance: "primary",
       });
       expect(screen.getByTestId("checkmark").getAttribute("class")).toContain(
-        "borderColor_neutral.interactive"
+        "borderColor_neutral-interactive"
       );
       expect(screen.getByTestId("text").getAttribute("class")).toContain(
-        "color_neutral.textLow"
+        "color_neutral-textLow"
       );
       expect(screen.getByText("My Checkbox")).toBeDefined();
     });
@@ -70,10 +70,10 @@ describe("GIVEN <Checkbox />", () => {
     it("THEN should correctly render the appearance danger", () => {
       makeSut({ name: "checkbox", label: "My Checkbox", appearance: "danger" });
       expect(screen.getByTestId("checkmark").getAttribute("class")).toContain(
-        "borderColor_danger.interactive"
+        "borderColor_danger-interactive"
       );
       expect(screen.getByTestId("text").getAttribute("class")).toContain(
-        "color_danger.textLow"
+        "color_danger-textLow"
       );
       expect(screen.getByText("My Checkbox")).toBeDefined();
     });
