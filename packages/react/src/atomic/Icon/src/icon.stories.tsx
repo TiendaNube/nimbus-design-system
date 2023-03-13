@@ -25,19 +25,19 @@ const SkeletonTemplate: ComponentStory<typeof Icon.Skeleton> = (args) => (
 export const large = IconTemplate.bind({});
 large.args = {
   source: <TiendanubeIcon size="large" />,
-  color: "primary.textLow",
+  color: "primary-textLow",
 };
 
 export const medium = IconTemplate.bind({});
 medium.args = {
   source: <TiendanubeIcon size="medium" />,
-  color: "primary.textLow",
+  color: "primary-textLow",
 };
 
 export const small = IconTemplate.bind({});
 small.args = {
   source: <TiendanubeIcon size="small" />,
-  color: "primary.textLow",
+  color: "primary-textLow",
 };
 
 export const skeleton = SkeletonTemplate.bind({});
