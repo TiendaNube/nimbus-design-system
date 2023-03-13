@@ -2,6 +2,13 @@
 
 Use a select box when a user needs to select one option from a list.
 
+## 2023-03-13 `2.3.0`
+
+### 💡 Others
+
+- Refactored use of color tokens in internal components by removing "." per "-". ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
+- Refactored style classes to have more semantic names. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-02-23 `2.2.0`
 
 ### 🎉 New features
