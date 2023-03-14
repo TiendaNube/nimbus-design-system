@@ -17,7 +17,7 @@ const SidebarBody: React.FC<SidebarBodyProps> = ({
     <div
       {...otherProps}
       style={style}
-      className={[sidebar.classnames.body, className].join(" ")}
+      className={[sidebar.classnames.container__body, className].join(" ")}
     >
       {children}
     </div>
