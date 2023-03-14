@@ -2,7 +2,7 @@
 
 The Tag component is used to categorize information, organize or indicate the status of elements or components using keywords, icons or colors.
 
-## 2023-02-24 `2.3.0`
+## 2023-03-13 `2.3.0`
 
 ### 💡 Others
 

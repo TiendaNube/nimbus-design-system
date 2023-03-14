@@ -25,6 +25,7 @@ This package is intended for internal use in generating builds of each design sy
 ### 💡 Others
 
 - Refactored style classes to have more semantic names on `Checkbox` component. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
+- Refactored style classes to have more semantic names on `Chip` component. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
 - Refactored style classes to have more semantic names on `FileUploader` component. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
 - Refactored style classes to have more semantic names on `Icon` component. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
 - Refactored style classes to have more semantic names on `IconButton` component. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
@@ -35,6 +36,7 @@ This package is intended for internal use in generating builds of each design sy
 - Refactored style classes to have more semantic names on `Radio` component. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
 - Refactored style classes to have more semantic names on `Select` component. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
 - Refactored style classes to have more semantic names on `Spinner` component. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
+- Refactored style classes to have more semantic names on `Skeleton` component. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
 - Refactored style classes to have more semantic names on `Tag` component. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
 - Refactored style classes to have more semantic names on `Text` component. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
 - Refactored style classes to have more semantic names on `Thumbnail` component. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
@@ -48,6 +50,7 @@ This package is intended for internal use in generating builds of each design sy
 - Refactored style classes to have more semantic names on `Modal` component. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
 - Refactored style classes to have more semantic names on `Sidebar` component. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
 - Refactored use of `color tokens` in internal components by removing `.` per `-` on `Checkbox` component. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
+- Refactored use of `color tokens` in internal components by removing `.` per `-` on `Chip` component. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
 - Refactored use of `color tokens` in internal components by removing `.` per `-` on `FileUploader` component. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
 - Refactored use of `color tokens` in internal components by removing `.` per `-` on `Input` component. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
 - Refactored use of `color tokens` in internal components by removing `.` per `-` on `Select` component. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
