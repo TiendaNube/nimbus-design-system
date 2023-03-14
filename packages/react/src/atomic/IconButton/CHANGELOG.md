@@ -7,7 +7,7 @@ Icons are used to visually communicate core parts of the product and available a
 ### 🛠 Breaking changes
 
 - Changed the `borderColor` properties to `neutral-surface`, `neutral-interactive` and `neutral-surfaceHighlight`. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
-- Changed the `backgroundColor` properties to `neutral-interactive`, `neutral-interactiveHover`, `neutral-interactivePressed` and `primary-interactive`. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
+- Changed the `backgroundColor` properties to `neutral-surface`, `neutral-surfaceHighlight`, `neutral-interactive`, `neutral-interactiveHover`, `neutral-interactivePressed` and `primary-interactive`. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
 
 ### 💡 Others
 
