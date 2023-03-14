@@ -85,7 +85,7 @@ const Toast: React.FC<ToastProps> = ({
   return (
     <div
       id={id}
-      className={toast.classnames.content[type]}
+      className={toast.classnames.appearance[type]}
       style={{
         transform: isVisible
           ? `translateY(${position * -HEIGHT_TOAST}%)`
@@ -97,18 +97,18 @@ const Toast: React.FC<ToastProps> = ({
       {!isProgress && (
         <Icon
           data-testid={`toast-icon-${types}`}
-          color={`${types}.surface`}
+          color={`${types}-surface`}
           source={icons[type]}
         />
       )}
       {isProgress && (
         <Spinner
           data-testid={`toast-spinner-${types}`}
-          color="neutral.surface"
+          color="neutral-surface"
           size="small"
         />
       )}
-      <Text color={`${types}.surface`} fontSize="caption" lineHeight="caption">
+      <Text color={`${types}-surface`} fontSize="caption" lineHeight="caption">
         {text}
       </Text>
     </div>

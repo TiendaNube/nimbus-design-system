@@ -46,9 +46,7 @@ describe("GIVEN <ToastProvider />", () => {
       ).toContain("primary");
 
       const icon = screen.getByTestId("toast-icon-primary");
-      expect(icon.getAttribute("class")).toContain(
-        "icon.sprinkle_color_primary.surface"
-      );
+      expect(icon.getAttribute("class")).toContain("color_primary-surface");
       expect(icon.firstChild?.nodeName).toEqual("svg");
     });
 
@@ -62,9 +60,7 @@ describe("GIVEN <ToastProvider />", () => {
       ).toContain("primary");
 
       const icon = screen.getByTestId("toast-icon-primary");
-      expect(icon.getAttribute("class")).toContain(
-        "icon.sprinkle_color_primary.surface"
-      );
+      expect(icon.getAttribute("class")).toContain("color_primary-surface");
       expect(icon.firstChild?.nodeName).toEqual("svg");
       act(() => {
         screen.getByText("close").click();
@@ -82,9 +78,7 @@ describe("GIVEN <ToastProvider />", () => {
       ).toContain("primary");
 
       const icon = screen.getByTestId("toast-icon-primary");
-      expect(icon.getAttribute("class")).toContain(
-        "icon.sprinkle_color_primary.surface"
-      );
+      expect(icon.getAttribute("class")).toContain("color_primary-surface");
       expect(icon.firstChild?.nodeName).toEqual("svg");
     });
   });
