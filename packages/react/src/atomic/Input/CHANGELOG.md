@@ -6,7 +6,7 @@ The Input component allows the user to enter or edit information in text format.
 
 ### 💡 Others
 
-- Refactored use of color tokens in internal components by removing "." per "-". ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
+- Refactored use of `color tokens` in internal components by removing `.` per `-`. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
 - Refactored style classes to have more semantic names. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2023-02-23 `2.2.0`

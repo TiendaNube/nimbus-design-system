@@ -47,7 +47,7 @@ base.args = {
       borderStyle="dashed"
       padding="2"
       borderWidth="1px"
-      borderColor="neutral.interactive"
+      borderColor="neutral-interactive"
       boxSizing="border-box"
     >
       <Text textAlign="center">Replace me with your content</Text>
@@ -67,7 +67,7 @@ withPadding.args = {
       borderStyle="dashed"
       padding="2"
       borderWidth="1px"
-      borderColor="neutral.interactive"
+      borderColor="neutral-interactive"
       boxSizing="border-box"
     >
       <Text textAlign="center">Replace me with your content</Text>
@@ -89,7 +89,7 @@ withHeader.args = {
           borderStyle="dashed"
           padding="2"
           borderWidth="1px"
-          borderColor="neutral.interactive"
+          borderColor="neutral-interactive"
           boxSizing="border-box"
         >
           <Text textAlign="center">Header</Text>
@@ -104,7 +104,7 @@ withHeader.args = {
           borderStyle="dashed"
           padding="2"
           borderWidth="1px"
-          borderColor="neutral.interactive"
+          borderColor="neutral-interactive"
           boxSizing="border-box"
         >
           <Text textAlign="center">Body</Text>
@@ -128,7 +128,7 @@ withHeaderAndTitle.args = {
         borderStyle="dashed"
         padding="2"
         borderWidth="1px"
-        borderColor="neutral.interactive"
+        borderColor="neutral-interactive"
         boxSizing="border-box"
       >
         <Text textAlign="center">Replace me with your content</Text>
@@ -151,7 +151,7 @@ withFooter.args = {
           borderStyle="dashed"
           padding="2"
           borderWidth="1px"
-          borderColor="neutral.interactive"
+          borderColor="neutral-interactive"
           boxSizing="border-box"
         >
           <Text textAlign="center">Header</Text>
@@ -166,7 +166,7 @@ withFooter.args = {
           borderStyle="dashed"
           padding="2"
           borderWidth="1px"
-          borderColor="neutral.interactive"
+          borderColor="neutral-interactive"
           boxSizing="border-box"
         >
           <Text textAlign="center">Body</Text>
@@ -181,7 +181,7 @@ withFooter.args = {
           borderStyle="dashed"
           padding="2"
           borderWidth="1px"
-          borderColor="neutral.interactive"
+          borderColor="neutral-interactive"
           width="100%"
           boxSizing="border-box"
         >
