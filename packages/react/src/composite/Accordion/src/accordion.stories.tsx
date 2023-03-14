@@ -49,7 +49,7 @@ base.args = {
             borderStyle="dashed"
             padding="2"
             borderWidth="1px"
-            borderColor="neutral.interactive"
+            borderColor="neutral-interactive"
           >
             <Text textAlign="center">Replace me with your content</Text>
           </Box>
@@ -68,7 +68,7 @@ base.args = {
             borderStyle="dashed"
             padding="2"
             borderWidth="1px"
-            borderColor="neutral.interactive"
+            borderColor="neutral-interactive"
           >
             <Text textAlign="center">Replace me with your content</Text>
           </Box>
@@ -95,7 +95,7 @@ WithCard.args = {
             borderStyle="dashed"
             padding="2"
             borderWidth="1px"
-            borderColor="neutral.interactive"
+            borderColor="neutral-interactive"
           >
             <Text textAlign="center">Replace me with your content</Text>
           </Box>
@@ -113,7 +113,7 @@ WithCard.args = {
             borderStyle="dashed"
             padding="2"
             borderWidth="1px"
-            borderColor="neutral.interactive"
+            borderColor="neutral-interactive"
           >
             <Text textAlign="center">Replace me with your content</Text>
           </Box>
@@ -139,7 +139,7 @@ withoutIcon.args = {
             borderStyle="dashed"
             padding="2"
             borderWidth="1px"
-            borderColor="neutral.interactive"
+            borderColor="neutral-interactive"
           >
             <Text textAlign="center">Replace me with your content</Text>
           </Box>
@@ -153,7 +153,7 @@ withoutIcon.args = {
             borderStyle="dashed"
             padding="2"
             borderWidth="1px"
-            borderColor="neutral.interactive"
+            borderColor="neutral-interactive"
           >
             <Text textAlign="center">Replace me with your content</Text>
           </Box>
@@ -174,13 +174,13 @@ WithCustomIcon.args = {
           borderTop="none"
         >
           <Box
-            backgroundColor="primary.surface"
+            backgroundColor="primary-surface"
             padding="2,5"
             borderRadius="8px"
             marginRight="2,5"
           >
             <Icon
-              color="neutral.textHigh"
+              color="neutral-textHigh"
               source={<TiendanubeIcon size="medium" />}
             />
           </Box>
@@ -191,7 +191,7 @@ WithCustomIcon.args = {
             borderStyle="dashed"
             padding="2"
             borderWidth="1px"
-            borderColor="neutral.interactive"
+            borderColor="neutral-interactive"
           >
             <Text textAlign="center">Replace me with your content</Text>
           </Box>
@@ -200,13 +200,13 @@ WithCustomIcon.args = {
       <Accordion.Item index="1">
         <Accordion.Header title="Title two" subtitle="Caption two">
           <Box
-            backgroundColor="primary.surface"
+            backgroundColor="primary-surface"
             padding="2,5"
             borderRadius="8px"
             marginRight="2,5"
           >
             <Icon
-              color="neutral.textHigh"
+              color="neutral-textHigh"
               source={<UserGroupIcon size="medium" />}
             />
           </Box>
@@ -217,7 +217,7 @@ WithCustomIcon.args = {
             borderStyle="dashed"
             padding="2"
             borderWidth="1px"
-            borderColor="neutral.interactive"
+            borderColor="neutral-interactive"
           >
             <Text textAlign="center">Replace me with your content</Text>
           </Box>
@@ -251,7 +251,7 @@ withoutIconToogle.args = {
             borderStyle="dashed"
             padding="2"
             borderWidth="1px"
-            borderColor="neutral.interactive"
+            borderColor="neutral-interactive"
           >
             <Text textAlign="center">Replace me with your content</Text>
           </Box>
@@ -277,7 +277,7 @@ withoutIconToogle.args = {
             borderStyle="dashed"
             padding="2"
             borderWidth="1px"
-            borderColor="neutral.interactive"
+            borderColor="neutral-interactive"
           >
             <Text textAlign="center">Replace me with your content</Text>
           </Box>
