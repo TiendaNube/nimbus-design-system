@@ -128,6 +128,7 @@ const defineProperties = defineRainbowProperties({
     active: { selector: "&:active" },
     hover: { selector: "&:hover" },
     focus: { selector: "&:focus" },
+    focusWithin: { selector: "&:focus-within" },
     disabled: { selector: "&:disabled" },
   },
   defaultCondition: "xs",

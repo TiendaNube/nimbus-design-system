@@ -31,6 +31,7 @@ type TransitionDurationProperties =
 
 interface BoxConditions<T> extends Conditions<T> {
   focus?: T;
+  focusWithin?: T;
   active?: T;
   hover?: T;
   disabled?: T;
