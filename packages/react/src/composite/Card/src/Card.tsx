@@ -9,7 +9,7 @@ const Card: React.FC<CardProps> & CardComponents = ({
   style: _style,
   children,
   padding = "base",
-  backgroundColor = "neutral.background",
+  backgroundColor = "neutral-background",
   ...rest
 }: CardProps) => (
   <div

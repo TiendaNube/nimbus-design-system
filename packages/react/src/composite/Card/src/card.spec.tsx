@@ -43,92 +43,92 @@ describe("GIVEN <Card />", () => {
         makeSut({ children: "My content" });
         expect(
           screen.getByTestId("card-element").getAttribute("class")
-        ).toContain("backgroundColor_neutral.background");
+        ).toContain("backgroundColor_neutral-background");
       });
 
-      it("THEN should correctly render the backgroundColor primary.surface", () => {
-        makeSut({ children: "My content", backgroundColor: "primary.surface" });
+      it("THEN should correctly render the backgroundColor primary-surface", () => {
+        makeSut({ children: "My content", backgroundColor: "primary-surface" });
         expect(
           screen.getByTestId("card-element").getAttribute("class")
-        ).toContain("backgroundColor_primary.surface");
+        ).toContain("backgroundColor_primary-surface");
       });
 
-      it("THEN should correctly render the backgroundColor primary.surfaceHighlight", () => {
+      it("THEN should correctly render the backgroundColor primary-surfaceHighlight", () => {
         makeSut({
           children: "My content",
-          backgroundColor: "primary.surfaceHighlight",
+          backgroundColor: "primary-surfaceHighlight",
         });
         expect(
           screen.getByTestId("card-element").getAttribute("class")
-        ).toContain("backgroundColor_primary.surfaceHighlight");
+        ).toContain("backgroundColor_primary-surfaceHighlight");
       });
 
-      it("THEN should correctly render the backgroundColor success.surface", () => {
-        makeSut({ children: "My content", backgroundColor: "success.surface" });
+      it("THEN should correctly render the backgroundColor success-surface", () => {
+        makeSut({ children: "My content", backgroundColor: "success-surface" });
         expect(
           screen.getByTestId("card-element").getAttribute("class")
-        ).toContain("backgroundColor_success.surface");
+        ).toContain("backgroundColor_success-surface");
       });
 
-      it("THEN should correctly render the backgroundColor success.surfaceHighlight", () => {
+      it("THEN should correctly render the backgroundColor success-surfaceHighlight", () => {
         makeSut({
           children: "My content",
-          backgroundColor: "success.surfaceHighlight",
+          backgroundColor: "success-surfaceHighlight",
         });
         expect(
           screen.getByTestId("card-element").getAttribute("class")
-        ).toContain("backgroundColor_success.surfaceHighlight");
+        ).toContain("backgroundColor_success-surfaceHighlight");
       });
 
-      it("THEN should correctly render the backgroundColor warning.surface", () => {
-        makeSut({ children: "My content", backgroundColor: "warning.surface" });
+      it("THEN should correctly render the backgroundColor warning-surface", () => {
+        makeSut({ children: "My content", backgroundColor: "warning-surface" });
         expect(
           screen.getByTestId("card-element").getAttribute("class")
-        ).toContain("backgroundColor_warning.surface");
+        ).toContain("backgroundColor_warning-surface");
       });
 
-      it("THEN should correctly render the backgroundColor warning.surfaceHighlight", () => {
+      it("THEN should correctly render the backgroundColor warning-surfaceHighlight", () => {
         makeSut({
           children: "My content",
-          backgroundColor: "warning.surfaceHighlight",
+          backgroundColor: "warning-surfaceHighlight",
         });
         expect(
           screen.getByTestId("card-element").getAttribute("class")
-        ).toContain("backgroundColor_warning.surfaceHighlight");
+        ).toContain("backgroundColor_warning-surfaceHighlight");
       });
 
-      it("THEN should correctly render the backgroundColor danger.surface", () => {
-        makeSut({ children: "My content", backgroundColor: "danger.surface" });
+      it("THEN should correctly render the backgroundColor danger-surface", () => {
+        makeSut({ children: "My content", backgroundColor: "danger-surface" });
         expect(
           screen.getByTestId("card-element").getAttribute("class")
-        ).toContain("backgroundColor_danger.surface");
+        ).toContain("backgroundColor_danger-surface");
       });
 
-      it("THEN should correctly render the backgroundColor danger.surfaceHighlight", () => {
+      it("THEN should correctly render the backgroundColor danger-surfaceHighlight", () => {
         makeSut({
           children: "My content",
-          backgroundColor: "danger.surfaceHighlight",
+          backgroundColor: "danger-surfaceHighlight",
         });
         expect(
           screen.getByTestId("card-element").getAttribute("class")
-        ).toContain("backgroundColor_danger.surfaceHighlight");
+        ).toContain("backgroundColor_danger-surfaceHighlight");
       });
 
-      it("THEN should correctly render the backgroundColor neutral.surface", () => {
-        makeSut({ children: "My content", backgroundColor: "neutral.surface" });
+      it("THEN should correctly render the backgroundColor neutral-surface", () => {
+        makeSut({ children: "My content", backgroundColor: "neutral-surface" });
         expect(
           screen.getByTestId("card-element").getAttribute("class")
-        ).toContain("backgroundColor_neutral.surface");
+        ).toContain("backgroundColor_neutral-surface");
       });
 
-      it("THEN should correctly render the backgroundColor neutral.surfaceHighlight", () => {
+      it("THEN should correctly render the backgroundColor neutral-surfaceHighlight", () => {
         makeSut({
           children: "My content",
-          backgroundColor: "neutral.surfaceHighlight",
+          backgroundColor: "neutral-surfaceHighlight",
         });
         expect(
           screen.getByTestId("card-element").getAttribute("class")
-        ).toContain("backgroundColor_neutral.surfaceHighlight");
+        ).toContain("backgroundColor_neutral-surfaceHighlight");
       });
     });
   });

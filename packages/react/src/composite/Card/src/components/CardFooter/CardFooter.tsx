@@ -9,7 +9,7 @@ const CardFooter: React.FC<CardFooterProps> = ({
   children,
   ...rest
 }) => (
-  <div className={card.classnames.footer} {...rest}>
+  <div className={card.classnames.container__footer} {...rest}>
     {children}
   </div>
 );

@@ -11,7 +11,7 @@ const CardHeader: React.FC<CardHeaderProps> = ({
   children,
   ...rest
 }) => (
-  <div {...rest} className={card.classnames.header}>
+  <div {...rest} className={card.classnames.container__header}>
     {title && (
       <Title data-testid="header-title" as="h3">
         {title}

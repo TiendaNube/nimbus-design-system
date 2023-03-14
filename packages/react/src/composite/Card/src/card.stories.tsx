@@ -65,7 +65,7 @@ WithHeader.args = {
           borderStyle="dashed"
           padding="2"
           borderWidth="1px"
-          borderColor="neutral.interactive"
+          borderColor="neutral-interactive"
         >
           <Text textAlign="center">Replace me with your content</Text>
         </Box>
@@ -84,7 +84,7 @@ WithFooterAndHeader.args = {
           borderStyle="dashed"
           padding="2"
           borderWidth="1px"
-          borderColor="neutral.interactive"
+          borderColor="neutral-interactive"
         >
           <Text textAlign="center">Replace me with your content</Text>
         </Box>
