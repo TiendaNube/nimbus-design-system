@@ -28,7 +28,7 @@ const Thumbnail: React.FC<ThumbnailProps> & ThumbnailComponents = ({
       <img
         {...rest}
         className={[
-          thumbnail.classnames.image,
+          thumbnail.classnames.container__image,
           thumbnail.sprinkle({ aspectRatio }),
         ].join(" ")}
         src={src}
@@ -39,12 +39,12 @@ const Thumbnail: React.FC<ThumbnailProps> & ThumbnailComponents = ({
       <div
         data-testid="thumbnail-empty"
         className={[
-          thumbnail.classnames.placeholder,
+          thumbnail.classnames.container__placeholder,
           thumbnail.sprinkle({ aspectRatio }),
         ].join(" ")}
       >
         <Icon
-          color="neutral.interactive"
+          color="neutral-interactive"
           source={<CameraIcon size="large" />}
         />
       </div>

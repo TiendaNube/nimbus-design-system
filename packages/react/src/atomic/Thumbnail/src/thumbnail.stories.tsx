@@ -11,7 +11,10 @@ export default {
   subcomponents: { "Thumbnail.Skeleton": Thumbnail.Skeleton },
   argTypes: {
     children: { control: { disable: true } },
-    aspectRatio: { options: Object.keys(thumbnail.properties.aspectRatio) },
+    aspectRatio: {
+      control: { type: "radio" },
+      options: thumbnail.properties.aspectRatio,
+    },
   },
   parameters: {
     withA11y: { decorators: [withA11y] },
