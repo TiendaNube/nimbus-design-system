@@ -9,9 +9,9 @@ const TableBody: React.FC<TableBodyProps> = ({
   children,
   ...rest
 }: TableBodyProps) => (
-    <tbody {...rest} className={table.classnames.body}>
-      {children}
-    </tbody>
-  );
+  <tbody {...rest} className={table.classnames.container__body}>
+    {children}
+  </tbody>
+);
 
 export { TableBody };

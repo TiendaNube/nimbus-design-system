@@ -9,9 +9,9 @@ const TableHead: React.FC<TableHeadProps> = ({
   children,
   ...rest
 }: TableHeadProps) => (
-    <thead {...rest} className={table.classnames.head}>
-      {children}
-    </thead>
-  );
+  <thead {...rest} className={table.classnames.container__head}>
+    {children}
+  </thead>
+);
 
 export { TableHead };

@@ -20,7 +20,7 @@ const TableCell: React.FC<TableCellProps> = ({
     <As
       {...otherProps}
       style={style}
-      className={[table.classnames.cell, className].join(" ")}
+      className={[table.classnames.container__cell, className].join(" ")}
     >
       {children}
     </As>

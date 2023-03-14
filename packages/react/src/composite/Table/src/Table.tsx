@@ -10,10 +10,10 @@ const Table: React.FC<TableProps> & TableComponents = ({
   children,
   ...rest
 }: TableProps) => (
-    <table {...rest} className={table.classnames.table}>
-      {children}
-    </table>
-  );
+  <table {...rest} className={table.classnames.container}>
+    {children}
+  </table>
+);
 
 Table.Body = TableBody;
 Table.Cell = TableCell;
