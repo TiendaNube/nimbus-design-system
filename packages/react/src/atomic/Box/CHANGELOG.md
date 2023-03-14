@@ -2,6 +2,14 @@
 
 A low-level utility component that accepts styled system props to enable custom theme-aware styling
 
+## 2023-03-13 `3.0.0`
+
+### 🛠 Breaking changes
+
+- Changed the `backgroundColor` properties to `primary-interactive`, `primary-surface`, `primary-surfaceHighlight`, `primary-textLow`, `success-interactive`, `success-surface`, `success-surfaceHighlight`, `success-textLow`, `warning-interactive`, `warning-surface`, `warning-surfaceHighlight`, `warning-textLow`, `danger-interactive`, `danger-surface`, `danger-surfaceHighlight`, `danger-textLow`, `neutral-background`, `neutral-interactive`, `neutral-surface`, `neutral-surfaceHighlight`, `neutral-surfaceDisabled` and `neutral-textLow`. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
+- Changed the `color` properties to `primary-interactive`, `primary-surface`, `primary-surfaceHighlight`, `primary-textLow`, `success-interactive`, `success-surface`, `success-surfaceHighlight`, `success-textLow`, `warning-interactive`, `warning-surface`, `warning-surfaceHighlight`, `warning-textLow`, `danger-interactive`, `danger-surface`, `danger-surfaceHighlight`, `danger-textLow`, `neutral-background`, `neutral-interactive`, `neutral-surface`, `neutral-surfaceHighlight`, `neutral-surfaceDisabled` and `neutral-textLow`. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
+- Changed the `borderColor` properties to `primary-interactive`, `primary-surface`, `primary-surfaceHighlight`, `success-interactive`, `success-surface`, `success-surfaceHighlight`, `warning-interactive`, `warning-surface`, `warning-surfaceHighlight`, `danger-interactive`, `danger-surface`, `danger-surfaceHighlight`, `neutral-interactive`, `neutral-surface` and `neutral-surfaceHighlight`. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-02-23 `2.7.0`
 
 ### 🎉 New features
