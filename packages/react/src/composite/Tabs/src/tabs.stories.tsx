@@ -1,6 +1,8 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { withA11y } from "@storybook/addon-a11y";
+import { Box } from "@nimbus-ds/box";
+import { Text } from "@nimbus-ds/text";
 
 import { Tabs } from "./Tabs";
 
@@ -21,9 +23,42 @@ export default {
 
 const Template: ComponentStory<typeof Tabs> = (args) => (
   <Tabs {...args}>
-    <Tabs.Item label="Tab 1">Tab 1 content</Tabs.Item>
-    <Tabs.Item label="Tab 2">Tab 2 content</Tabs.Item>
-    <Tabs.Item label="Tab 3">Tab 3 content</Tabs.Item>
+    <Tabs.Item label="Tab 1">
+      <Box
+        borderColor="neutral-interactive"
+        borderStyle="dashed"
+        borderWidth="1px"
+        padding="2"
+      >
+        <Text fontSize="base" textAlign="center">
+          Replace me with your tab 1 content
+        </Text>
+      </Box>
+    </Tabs.Item>
+    <Tabs.Item label="Tab 2">
+      <Box
+        borderColor="neutral-interactive"
+        borderStyle="dashed"
+        borderWidth="1px"
+        padding="2"
+      >
+        <Text fontSize="base" textAlign="center">
+          Replace me with your tab 2 content
+        </Text>
+      </Box>
+    </Tabs.Item>
+    <Tabs.Item label="Tab 3">
+      <Box
+        borderColor="neutral-interactive"
+        borderStyle="dashed"
+        borderWidth="1px"
+        padding="2"
+      >
+        <Text fontSize="base" textAlign="center">
+          Replace me with your tab 3 content
+        </Text>
+      </Box>
+    </Tabs.Item>
   </Tabs>
 );
 
