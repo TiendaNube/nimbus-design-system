@@ -9,7 +9,7 @@ const ModalFooter: React.FC<ModalFooterProps> = ({
   children,
   ...rest
 }) => (
-  <div className={modal.classnames.footer} {...rest}>
+  <div className={modal.classnames.container__footer} {...rest}>
     {children}
   </div>
 );

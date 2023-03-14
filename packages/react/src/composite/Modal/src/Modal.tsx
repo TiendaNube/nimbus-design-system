@@ -66,13 +66,13 @@ const Modal: React.FC<ModalProps> & ModalComponents = ({
               {onDismiss && (
                 <button
                   aria-label="Dismiss modal"
-                  className={modal.classnames.close}
+                  className={modal.classnames.container__close}
                   data-testid="dismiss-modal-button"
                   type="button"
                   onClick={() => onDismiss(!open)}
                   tabIndex={0}
                 >
-                  <Icon color="neutral.textLow" source={<CloseIcon />} />
+                  <Icon color="neutral-textLow" source={<CloseIcon />} />
                 </button>
               )}
             </div>
