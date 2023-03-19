@@ -1,0 +1,12 @@
+{
+  "root": true,
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "detect"
+    }
+  },
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "extends": ["@tiendanube/eslint-config"]
+}
