@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/alert",
-  "version": "2.3.0-rc.1",
+  "version": "2.3.0",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -35,6 +35,5 @@
     "@nimbus-ds/box": "workspace:^",
     "@nimbus-ds/button": "workspace:^",
     "webpack": "^5.74.0"
-  },
-  "stableVersion": "2.2.0"
+  }
 }
