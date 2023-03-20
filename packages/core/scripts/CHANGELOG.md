@@ -1,6 +1,6 @@
 # Changelog
 
-This package is intended for internal use in generating builds of each design system package. It contains all the necessary settings and dependencies to optimize the creation of our builds.
+This package is intended for internal use in generating custom script builds at design system build time.
 
 ## 2023-03-19 `1.0.0`
 

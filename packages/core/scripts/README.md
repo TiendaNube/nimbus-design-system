@@ -2,7 +2,7 @@
 
 [![@nimbus-ds/scripts](https://img.shields.io/npm/v/@nimbus-ds/scripts?label=%40nimbus-ds%2Fscripts)](https://www.npmjs.com/package/@nimbus-ds/scripts)
 
-This package is intended for internal use in generating builds of each design system package. It contains all the necessary settings and dependencies to optimize the creation of our builds.
+This package is intended for internal use in generating custom script builds at design system build time.
 
 ## Installation
 
