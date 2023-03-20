@@ -25,7 +25,8 @@ jobs:
         with:
           node-version: "${{ steps.node_version.outputs.NVMRC }}"
           cache: "yarn"
-          cache-dependency-path: subdir/package-lock.json
+          # cache-dependency-path: subdir/package-lock.json
+          # run: yarn
 
       # - uses: actions/cache@v2
       #   with:
