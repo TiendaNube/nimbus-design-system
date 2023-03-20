@@ -6,21 +6,33 @@
     {
       "description": "Change the visual style of the badge.",
       "default": "neutral",
-      "enum": ["danger", "neutral", "primary", "success", "warning"],
+      "enum": [
+        "danger",
+        "neutral",
+        "primary",
+        "success",
+        "warning"
+      ],
       "type": "string",
       "title": "appearance",
       "required": false
     },
     {
       "description": "Total items to be displayed without badge",
-      "type": ["string", "number"],
+      "type": [
+        "string",
+        "number"
+      ],
       "title": "count",
       "required": true
     },
     {
       "description": "Change the color scheme of the badge.",
       "default": "surface",
-      "enum": ["light", "surface"],
+      "enum": [
+        "light",
+        "surface"
+      ],
       "type": "string",
       "title": "theme",
       "required": false

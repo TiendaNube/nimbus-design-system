@@ -12,7 +12,12 @@
     {
       "description": "Change the visual style of the link.",
       "default": "neutral",
-      "enum": ["danger", "neutral", "neutral-background", "primary"],
+      "enum": [
+        "danger",
+        "neutral",
+        "neutral-background",
+        "primary"
+      ],
       "type": "string",
       "title": "appearance",
       "required": false
@@ -20,7 +25,10 @@
     {
       "description": "The textDecoration property specifies the decoration added to link.",
       "default": "neutral",
-      "enum": ["none", "underline"],
+      "enum": [
+        "none",
+        "underline"
+      ],
       "type": "string",
       "title": "textDecoration",
       "required": false
@@ -28,7 +36,11 @@
     {
       "description": "The fontSize property sets the size of the link.",
       "default": "base",
-      "enum": ["base", "caption", "highlight"],
+      "enum": [
+        "base",
+        "caption",
+        "highlight"
+      ],
       "type": "string",
       "title": "fontSize",
       "required": false
@@ -36,7 +48,11 @@
     {
       "description": "The lineHeight property specifies the line height of the link",
       "default": "base",
-      "enum": ["base", "caption", "highlight"],
+      "enum": [
+        "base",
+        "caption",
+        "highlight"
+      ],
       "type": "string",
       "title": "lineHeight",
       "required": false

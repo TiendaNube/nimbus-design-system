@@ -8,7 +8,11 @@
       "default": "large",
       "anyOf": [
         {
-          "enum": ["large", "medium", "small"],
+          "enum": [
+            "large",
+            "medium",
+            "small"
+          ],
           "type": "string"
         },
         {

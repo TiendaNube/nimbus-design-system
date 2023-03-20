@@ -6,7 +6,10 @@
     {
       "description": "Side from which the sidebar will appear.",
       "default": "right",
-      "enum": ["left", "right"],
+      "enum": [
+        "left",
+        "right"
+      ],
       "type": "string",
       "title": "position",
       "required": false
@@ -14,7 +17,11 @@
     {
       "description": "The padding properties are used to generate space around an sidebar's content area.",
       "default": "base",
-      "enum": ["base", "none", "small"],
+      "enum": [
+        "base",
+        "none",
+        "small"
+      ],
       "type": "string",
       "title": "padding",
       "required": false
@@ -65,7 +72,12 @@
             }
           },
           "additionalProperties": false,
-          "propertyOrder": ["xs", "md", "lg", "xl"]
+          "propertyOrder": [
+            "xs",
+            "md",
+            "lg",
+            "xl"
+          ]
         },
         {
           "type": "string"
@@ -98,7 +110,12 @@
             }
           },
           "additionalProperties": false,
-          "propertyOrder": ["xs", "md", "lg", "xl"]
+          "propertyOrder": [
+            "xs",
+            "md",
+            "lg",
+            "xl"
+          ]
         },
         {
           "type": "number"
@@ -122,7 +139,11 @@
         {
           "description": "The padding properties are used to generate space around an sidebar's body content area.",
           "default": "base",
-          "enum": ["base", "none", "small"],
+          "enum": [
+            "base",
+            "none",
+            "small"
+          ],
           "type": "string",
           "title": "padding",
           "required": false
@@ -142,7 +163,11 @@
         {
           "description": "The padding properties are used to generate space around an sidebar's footer content area.",
           "default": "base",
-          "enum": ["base", "none", "small"],
+          "enum": [
+            "base",
+            "none",
+            "small"
+          ],
           "type": "string",
           "title": "padding",
           "required": false
@@ -168,7 +193,11 @@
         {
           "description": "The padding properties are used to generate space around an sidebar's header content area.",
           "default": "base",
-          "enum": ["base", "none", "small"],
+          "enum": [
+            "base",
+            "none",
+            "small"
+          ],
           "type": "string",
           "title": "padding",
           "required": false

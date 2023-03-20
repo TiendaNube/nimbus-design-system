@@ -24,7 +24,12 @@
     {
       "description": "Change the visual style of the select.",
       "default": "neutral",
-      "enum": ["danger", "neutral", "success", "warning"],
+      "enum": [
+        "danger",
+        "neutral",
+        "success",
+        "warning"
+      ],
       "type": "string",
       "title": "appearance",
       "required": false

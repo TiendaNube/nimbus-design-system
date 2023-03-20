@@ -12,7 +12,10 @@
     {
       "description": "Type of html tag to create for the Text component.",
       "default": "p",
-      "enum": ["p", "span"],
+      "enum": [
+        "p",
+        "span"
+      ],
       "type": "string",
       "title": "as",
       "required": false
@@ -20,7 +23,11 @@
     {
       "description": "The fontSize property sets the size of the text.",
       "default": "base",
-      "enum": ["base", "caption", "highlight"],
+      "enum": [
+        "base",
+        "caption",
+        "highlight"
+      ],
       "type": "string",
       "title": "fontSize",
       "required": false
@@ -28,7 +35,11 @@
     {
       "description": "The fontWeight property sets how thick or thin characters in text should be displayed.",
       "default": "regular",
-      "enum": ["bold", "medium", "regular"],
+      "enum": [
+        "bold",
+        "medium",
+        "regular"
+      ],
       "type": "string",
       "title": "fontWeight",
       "required": false
@@ -36,7 +47,11 @@
     {
       "description": "The lineHeight property specifies the line height of the text.",
       "default": "base",
-      "enum": ["base", "caption", "highlight"],
+      "enum": [
+        "base",
+        "caption",
+        "highlight"
+      ],
       "type": "string",
       "title": "lineHeight",
       "required": false
@@ -44,7 +59,12 @@
     {
       "description": "The textAlign property specifies the horizontal alignment of text.",
       "default": "left",
-      "enum": ["center", "justify", "left", "right"],
+      "enum": [
+        "center",
+        "justify",
+        "left",
+        "right"
+      ],
       "type": "string",
       "title": "textAlign",
       "required": false
@@ -90,7 +110,11 @@
         {
           "description": "The fontSize property sets the size of the text.",
           "default": "base",
-          "enum": ["base", "caption", "highlight"],
+          "enum": [
+            "base",
+            "caption",
+            "highlight"
+          ],
           "type": "string",
           "title": "fontSize",
           "required": false

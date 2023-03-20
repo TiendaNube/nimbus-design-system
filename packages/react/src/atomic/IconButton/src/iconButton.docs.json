@@ -6,7 +6,10 @@
     {
       "description": "Type of html tag to create for the Icon Button component.",
       "default": "button",
-      "enum": ["button", "div"],
+      "enum": [
+        "button",
+        "div"
+      ],
       "type": "string",
       "title": "as",
       "required": false
@@ -54,7 +57,15 @@
             }
           },
           "additionalProperties": false,
-          "propertyOrder": ["focus", "active", "hover", "xs", "md", "lg", "xl"]
+          "propertyOrder": [
+            "focus",
+            "active",
+            "hover",
+            "xs",
+            "md",
+            "lg",
+            "xl"
+          ]
         },
         {
           "type": "string"
@@ -163,7 +174,15 @@
             }
           },
           "additionalProperties": false,
-          "propertyOrder": ["focus", "active", "hover", "xs", "md", "lg", "xl"]
+          "propertyOrder": [
+            "focus",
+            "active",
+            "hover",
+            "xs",
+            "md",
+            "lg",
+            "xl"
+          ]
         },
         {
           "enum": [
@@ -260,7 +279,15 @@
             }
           },
           "additionalProperties": false,
-          "propertyOrder": ["focus", "active", "hover", "xs", "md", "lg", "xl"]
+          "propertyOrder": [
+            "focus",
+            "active",
+            "hover",
+            "xs",
+            "md",
+            "lg",
+            "xl"
+          ]
         },
         {
           "enum": [

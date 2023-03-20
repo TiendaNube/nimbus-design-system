@@ -18,7 +18,12 @@
     {
       "description": "Position of the popover.",
       "default": "bottom",
-      "enum": ["bottom", "left", "right", "top"],
+      "enum": [
+        "bottom",
+        "left",
+        "right",
+        "top"
+      ],
       "type": "string",
       "title": "position",
       "required": false

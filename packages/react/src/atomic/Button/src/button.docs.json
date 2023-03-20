@@ -12,7 +12,12 @@
     {
       "description": "Change the visual style of the button.",
       "default": "neutral",
-      "enum": ["danger", "neutral", "primary", "transparent"],
+      "enum": [
+        "danger",
+        "neutral",
+        "primary",
+        "transparent"
+      ],
       "type": "string",
       "title": "appearance",
       "required": false

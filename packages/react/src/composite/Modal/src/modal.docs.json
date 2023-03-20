@@ -30,7 +30,11 @@
     {
       "description": "The padding properties are used to generate space around an modal's content area.",
       "default": "base",
-      "enum": ["base", "none", "small"],
+      "enum": [
+        "base",
+        "none",
+        "small"
+      ],
       "type": "string",
       "title": "padding",
       "required": false
@@ -60,7 +64,12 @@
             }
           },
           "additionalProperties": false,
-          "propertyOrder": ["xs", "md", "lg", "xl"]
+          "propertyOrder": [
+            "xs",
+            "md",
+            "lg",
+            "xl"
+          ]
         },
         {
           "type": "string"
@@ -84,7 +93,11 @@
         {
           "description": "The padding properties are used to generate space around an modal's body content area.",
           "default": "base",
-          "enum": ["base", "none", "small"],
+          "enum": [
+            "base",
+            "none",
+            "small"
+          ],
           "type": "string",
           "title": "padding",
           "required": false
