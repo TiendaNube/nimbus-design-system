@@ -33,7 +33,7 @@ jobs:
         id: cache-dependencies
         with:
           path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
 
       # - uses: actions/cache@v2
       #   with:
@@ -48,6 +48,10 @@ jobs:
     needs: setup
     runs-on: ubuntu-latest
     steps:
+      - name: Install dependencies
+        if: steps.cache-dependencies.outputs.cache-hit != 'true'
+        run: yarn
+
       - name: Generate documents
         run: yarn build:docs
 
