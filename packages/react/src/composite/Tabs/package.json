@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/tabs",
-  "version": "2.2.0-rc.1",
+  "version": "2.2.0",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -29,6 +29,5 @@
     "@nimbus-ds/box": "workspace:^",
     "@nimbus-ds/text": "workspace:^",
     "webpack": "^5.74.0"
-  },
-  "stableVersion": "2.1.0"
+  }
 }
