@@ -1,9 +1,8 @@
 releases:
-  - "@nimbus-ds/scripts": major
+  "@nimbus-ds/scripts": major
 
 declined:
   - nimbus-design-system
-  - "@nimbus-ds/scripts"
   - "@nimbus-ds/styles"
   - "@nimbus-ds/webpack"
   - "@nimbus-ds/components"
