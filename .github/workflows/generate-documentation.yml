@@ -16,17 +16,24 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Read Node version
-        id: node_version
-        run: echo "NVMRC=$(cat .nvmrc)" >> $GITHUB_OUTPUT
+      # - name: Read Node version
+      #   id: node_version
+      #   run: echo "NVMRC=$(cat .nvmrc)" >> $GITHUB_OUTPUT
 
       - name: Set Node version
         uses: actions/setup-node@v3
         with:
-          node-version: "${{ steps.node_version.outputs.NVMRC }}"
+          node-version-file: ".nvmrc"
           cache: "yarn"
           # cache-dependency-path: subdir/package-lock.json
           # run: yarn
+
+      - name: Cache NPM dependencies # (2)
+        uses: actions/cache@v3
+        id: cache-dependencies
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
 
       # - uses: actions/cache@v2
       #   with:
@@ -34,6 +41,7 @@ jobs:
       #     key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
       - name: Install dependencies
+        if: steps.cache-dependencies.outputs.cache-hit != 'true'
         run: yarn
 
   generate-documents:
