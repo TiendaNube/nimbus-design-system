@@ -43,15 +43,15 @@ describe("GIVEN <Link />", () => {
       ).toContain("appearance_neutral");
     });
 
-    it("AND should correctly render the appearance neutral.background", () => {
+    it("AND should correctly render the appearance neutral-background", () => {
       makeSut({
-        appearance: "neutral.background",
+        appearance: "neutral-background",
         href: "#",
         children: "link",
       });
       expect(
         screen.getByRole("link", { name: "link" }).getAttribute("class")
-      ).toContain("appearance_neutral.background");
+      ).toContain("appearance_neutral-background");
     });
 
     it("AND should correctly render with fontSize caption", () => {

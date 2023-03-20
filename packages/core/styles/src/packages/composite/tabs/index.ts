@@ -1,4 +1,4 @@
-import * as styles from "./tabs.style.css";
+import * as styles from "./nimbus-tabs.css";
 
 export const tabs = {
   classnames: { ...styles },

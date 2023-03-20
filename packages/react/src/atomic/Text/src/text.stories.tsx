@@ -35,31 +35,31 @@ span.args = {
 
 export const primary = Template.bind({});
 primary.args = {
-  color: "primary.textLow",
+  color: "primary-textLow",
   children: "Lorem ipsum dolor sit amet",
 };
 
 export const success = Template.bind({});
 success.args = {
-  color: "success.textLow",
+  color: "success-textLow",
   children: "Lorem ipsum dolor sit amet",
 };
 
 export const warning = Template.bind({});
 warning.args = {
-  color: "warning.textLow",
+  color: "warning-textLow",
   children: "Lorem ipsum dolor sit amet",
 };
 
 export const danger = Template.bind({});
 danger.args = {
-  color: "danger.textLow",
+  color: "danger-textLow",
   children: "Lorem ipsum dolor sit amet",
 };
 
 export const neutral = Template.bind({});
 neutral.args = {
-  color: "neutral.textLow",
+  color: "neutral-textLow",
   children: "Lorem ipsum dolor sit amet",
 };
 

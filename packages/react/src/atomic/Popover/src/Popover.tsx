@@ -22,7 +22,7 @@ const Popover: React.FC<PopoverProps> = ({
   style: _style,
   visible,
   onVisibility,
-  backgroundColor = "neutral.background",
+  backgroundColor = "neutral-background",
   position = "bottom",
   padding = "base",
   width = "17.5rem",
@@ -115,8 +115,8 @@ const Popover: React.FC<PopoverProps> = ({
                 data-testid="arrow-element"
                 ref={arrowRef}
                 className={[
-                  popover.classnames.arrow[side],
-                  popover.classnames.placement[position],
+                  popover.classnames.content__arrow[side],
+                  popover.classnames.content__placement[position],
                 ].join(" ")}
                 style={{
                   position: "absolute",

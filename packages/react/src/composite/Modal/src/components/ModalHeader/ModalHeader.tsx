@@ -11,7 +11,7 @@ const ModalHeader: React.FC<ModalHeaderProps> = ({
   children,
   ...rest
 }) => (
-  <div {...rest} className={modal.classnames.header}>
+  <div {...rest} className={modal.classnames.container__header}>
     {title && (
       <Title data-testid="header-title" as="h3">
         {title}

@@ -29,7 +29,7 @@ const Sidebar: React.FC<SidebarProps> & SidebarComponents = ({
         style={style}
         className={[
           sidebar.classnames.container,
-          sidebar.classnames.positions[position],
+          sidebar.classnames.position[position],
           className,
           open && sidebar.classnames.isVisible,
         ].join(" ")}

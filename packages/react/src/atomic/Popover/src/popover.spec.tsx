@@ -167,13 +167,13 @@ describe("GIVEN <Popover />", () => {
       });
       expect(
         screen.getByTestId("popover-element").getAttribute("class")
-      ).toContain("neutral.background");
+      ).toContain("neutral-background");
     });
 
-    it("THEN should correctly render the backgroundColor neutral.background", async () => {
+    it("THEN should correctly render the backgroundColor neutral-background", async () => {
       makeSut({
         content: <p>string</p>,
-        backgroundColor: "neutral.background",
+        backgroundColor: "neutral-background",
         enabledHover: true,
       });
       await act(() => {
@@ -181,13 +181,13 @@ describe("GIVEN <Popover />", () => {
       });
       expect(
         screen.getByTestId("popover-element").getAttribute("class")
-      ).toContain("neutral.background");
+      ).toContain("neutral-background");
     });
 
-    it("THEN should correctly render the backgroundColor primary.surfaceHighlight", async () => {
+    it("THEN should correctly render the backgroundColor primary-surfaceHighlight", async () => {
       makeSut({
         content: <p>string</p>,
-        backgroundColor: "primary.surfaceHighlight",
+        backgroundColor: "primary-surfaceHighlight",
         enabledHover: true,
       });
       await act(() => {
@@ -195,13 +195,13 @@ describe("GIVEN <Popover />", () => {
       });
       expect(
         screen.getByTestId("popover-element").getAttribute("class")
-      ).toContain("primary.surfaceHighlight");
+      ).toContain("primary-surfaceHighlight");
     });
 
-    it("THEN should correctly render the backgroundColor primary.interactiveHover", async () => {
+    it("THEN should correctly render the backgroundColor primary-interactiveHover", async () => {
       makeSut({
         content: <p>string</p>,
-        backgroundColor: "primary.interactiveHover",
+        backgroundColor: "primary-interactiveHover",
         enabledHover: true,
       });
       await act(() => {
@@ -209,13 +209,13 @@ describe("GIVEN <Popover />", () => {
       });
       expect(
         screen.getByTestId("popover-element").getAttribute("class")
-      ).toContain("primary.interactiveHover");
+      ).toContain("primary-interactiveHover");
     });
 
-    it("THEN should correctly render the backgroundColor danger.surfaceHighlight", async () => {
+    it("THEN should correctly render the backgroundColor danger-surfaceHighlight", async () => {
       makeSut({
         content: <p>string</p>,
-        backgroundColor: "danger.surfaceHighlight",
+        backgroundColor: "danger-surfaceHighlight",
         enabledHover: true,
       });
       await act(() => {
@@ -223,13 +223,13 @@ describe("GIVEN <Popover />", () => {
       });
       expect(
         screen.getByTestId("popover-element").getAttribute("class")
-      ).toContain("danger.surfaceHighlight");
+      ).toContain("danger-surfaceHighlight");
     });
 
-    it("THEN should correctly render the backgroundColor neutral.surfaceHighlight", async () => {
+    it("THEN should correctly render the backgroundColor neutral-surfaceHighlight", async () => {
       makeSut({
         content: <p>string</p>,
-        backgroundColor: "neutral.surfaceHighlight",
+        backgroundColor: "neutral-surfaceHighlight",
         enabledHover: true,
       });
       await act(() => {
@@ -237,13 +237,13 @@ describe("GIVEN <Popover />", () => {
       });
       expect(
         screen.getByTestId("popover-element").getAttribute("class")
-      ).toContain("neutral.surfaceHighlight");
+      ).toContain("neutral-surfaceHighlight");
     });
 
-    it("THEN should correctly render the backgroundColor success.surfaceHighlight", async () => {
+    it("THEN should correctly render the backgroundColor success-surfaceHighlight", async () => {
       makeSut({
         content: <p>string</p>,
-        backgroundColor: "success.surfaceHighlight",
+        backgroundColor: "success-surfaceHighlight",
         enabledHover: true,
       });
       await act(() => {
@@ -251,13 +251,13 @@ describe("GIVEN <Popover />", () => {
       });
       expect(
         screen.getByTestId("popover-element").getAttribute("class")
-      ).toContain("success.surfaceHighlight");
+      ).toContain("success-surfaceHighlight");
     });
 
-    it("THEN should correctly render the backgroundColor warning.surfaceHighlight", async () => {
+    it("THEN should correctly render the backgroundColor warning-surfaceHighlight", async () => {
       makeSut({
         content: <p>string</p>,
-        backgroundColor: "warning.surfaceHighlight",
+        backgroundColor: "warning-surfaceHighlight",
         enabledHover: true,
       });
       await act(() => {
@@ -265,7 +265,7 @@ describe("GIVEN <Popover />", () => {
       });
       expect(
         screen.getByTestId("popover-element").getAttribute("class")
-      ).toContain("warning.surfaceHighlight");
+      ).toContain("warning-surfaceHighlight");
     });
   });
 

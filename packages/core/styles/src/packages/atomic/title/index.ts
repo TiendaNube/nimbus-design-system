@@ -1,5 +1,4 @@
-import * as styles from "./title.style.css";
-import { titleSprinkle } from "./title.sprinkle.css";
+import { styles, titleSprinkle } from "./nimbus-title.css";
 
 export const title = {
   classnames: { ...styles },

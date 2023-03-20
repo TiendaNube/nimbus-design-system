@@ -31,24 +31,26 @@ const Radio: React.FC<RadioProps> & RadioComponents = ({
         id={id || name}
         name={name}
         type="radio"
-        className={radio.classnames.input}
+        className={radio.classnames.container__input}
         disabled={disabled}
       />
       {isRadio && (
         <span
           data-testid="checkmark-element"
-          className={radio.classnames.checkmark}
+          className={radio.classnames.container__checkmark}
         >
           <div
             data-testid="checkicon-element"
-            className={radio.classnames.checkicon}
+            className={radio.classnames.container__checkicon}
           />
         </span>
       )}
       {label && (
         <div
           data-testid="content-element"
-          className={radio.classnames.content[isDisabled ? "disabled" : as]}
+          className={
+            radio.classnames.container__content[isDisabled ? "disabled" : as]
+          }
         >
           <Text
             data-testid="text"

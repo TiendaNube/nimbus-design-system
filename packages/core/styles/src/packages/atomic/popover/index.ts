@@ -1,9 +1,8 @@
-import * as styles from "./popover.style.css";
-import { popoverSprinkle } from "./popover.sprinkle.css";
+import { styles, popoverSprinkle } from "./nimbus-popover.css";
 
 export const popover = {
   classnames: { ...styles },
   ...popoverSprinkle,
 };
 
-export type { PopoverSprinkle } from "./popover.sprinkle.types";
+export type { PopoverSprinkle } from "./nimbus-popover.types";

@@ -2,6 +2,17 @@
 
 The Table component allows us to organize data with a tabular structure in a table.
 
+## 2023-03-13 `2.0.0`
+
+### 🛠 Breaking changes
+
+- Changed the `backgroundColor` properties to `neutral-background`, `neutral-surface`, `neutral-surfaceHighlight`, `primary-surface` and `primary-surfaceHighlight` on `Table.Cell` subcomponente. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
+- Changed the `backgroundColor` properties to `neutral-background`, `neutral-surface`, `neutral-surfaceHighlight`, `primary-surface` and `primary-surfaceHighlight` on `Table.Row` subcomponente. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
+
+### 💡 Others
+
+- Refactored style classes to have more semantic names. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-02-24 `1.2.1`
 
 ### 🎉 New features

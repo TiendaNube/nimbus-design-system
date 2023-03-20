@@ -22,7 +22,6 @@ describe("GIVEN <Title />", () => {
       const input = screen.getByTestId("my-input");
       fireEvent.change(input, { target: { value: "my password" } });
       const icon = screen.getByTestId("icon-search");
-      expect(input.getAttribute("class")).toContain("inputAppend_start");
       expect(icon.getAttribute("class")).toContain("append_start");
     });
   });

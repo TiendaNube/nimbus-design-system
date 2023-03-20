@@ -28,7 +28,7 @@ base.args = {
   children: (
     <>
       <Table.Head>
-        <Table.Row backgroundColor="neutral.surface">
+        <Table.Row backgroundColor="neutral-surface">
           <Table.Cell as="th">Header 1</Table.Cell>
           <Table.Cell as="th">Header 2</Table.Cell>
           <Table.Cell as="th">Header 3</Table.Cell>
@@ -54,7 +54,7 @@ withCustomCellWidth.args = {
   children: (
     <>
       <Table.Head>
-        <Table.Row backgroundColor="neutral.surface">
+        <Table.Row backgroundColor="neutral-surface">
           <Table.Cell as="th" width="180px">
             This column has fixed width
           </Table.Cell>
@@ -82,7 +82,7 @@ withNoPadding.args = {
   children: (
     <>
       <Table.Head>
-        <Table.Row backgroundColor="neutral.surface">
+        <Table.Row backgroundColor="neutral-surface">
           <Table.Cell as="th" padding="none">
             Header 1
           </Table.Cell>

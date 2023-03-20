@@ -8,7 +8,7 @@ const Title: React.FC<TitleProps> & TitleComponents = ({
   className: _className,
   style: _style,
   as: As = "h1",
-  color = "primary.textHigh",
+  color = "primary-textHigh",
   textAlign = "left",
   lineHeight,
   fontWeight = "medium",
@@ -20,7 +20,7 @@ const Title: React.FC<TitleProps> & TitleComponents = ({
     {...rest}
     className={[
       title.sprinkle({ color, textAlign, lineHeight, fontWeight, fontSize }),
-      title.classnames.container({ as: As }),
+      title.classnames.appearance[As],
     ].join(" ")}
   >
     {children}

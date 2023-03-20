@@ -13,7 +13,7 @@ const Skeleton: React.FC<SkeletonProps> = ({
   ...rest
 }) => (
   <div
-    className={skeleton.classnames.container}
+    className={skeleton.classnames.base}
     style={assignInlineVars({
       [vars.width]: width,
       [vars.height]: height,

@@ -1,13 +1,13 @@
 /**
  * Created by: Júnior Conquista (junior.conquista@nuvemshop.com.br)
  */
-import TerserJSPlugin from "terser-webpack-plugin";
 import { Configuration } from "webpack";
+import { cssMinimizerPlugin, terserJSPlugin } from "../plugins";
 
 const webpack: Configuration = {
   optimization: {
     minimize: true,
-    minimizer: [new TerserJSPlugin({})],
+    minimizer: [terserJSPlugin, cssMinimizerPlugin],
   },
   performance: {
     hints: false,

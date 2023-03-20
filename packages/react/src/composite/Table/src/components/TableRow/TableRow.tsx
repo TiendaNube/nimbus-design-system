@@ -10,9 +10,9 @@ const TableRow: React.FC<TableRowProps> = ({
   id,
   onClick,
   backgroundColor = {
-    rest: "neutral.background",
-    active: "primary.surface",
-    hover: "neutral.surface",
+    rest: "neutral-background",
+    active: "primary-surface",
+    hover: "neutral-surface",
   },
   ...rest
 }: TableRowProps) => {
@@ -23,7 +23,7 @@ const TableRow: React.FC<TableRowProps> = ({
 
   return (
     <tr
-      className={[table.classnames.row, className].join(" ")}
+      className={[table.classnames.container__row, className].join(" ")}
       style={style}
       {...otherProps}
       id={id}

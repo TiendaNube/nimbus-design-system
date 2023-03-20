@@ -1,6 +1,6 @@
-import { dark } from "../../themes/dark.css";
+import { variables as variablesDark } from "../../themes/nimbus-theme-dark.css";
 
 export const themes = {
-  dark,
+  dark: variablesDark,
   base: "",
 };

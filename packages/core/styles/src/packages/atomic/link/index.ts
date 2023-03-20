@@ -1,5 +1,4 @@
-import * as styles from "./link.style.css";
-import { linkSprinkle } from "./link.sprinkle.css";
+import { styles, linkSprinkle } from "./nimbus-link.css";
 
 export const link = {
   classnames: { ...styles },

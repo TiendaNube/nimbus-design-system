@@ -104,116 +104,116 @@ describe("GIVEN <Text />", () => {
   });
 
   describe("THEN should correctly render the submitted color", () => {
-    it("THEN should correctly render the color primary.textLow", () => {
-      makeSut({ color: "primary.textLow" });
+    it("THEN should correctly render the color primary-textLow", () => {
+      makeSut({ color: "primary-textLow" });
       expect(
         screen.getByTestId("text-element").getAttribute("class")
-      ).toContain("text.sprinkle_color_primary.textLow");
+      ).toContain("color_primary-textLow");
     });
 
-    it("THEN should correctly render the color primary.textHigh", () => {
-      makeSut({ color: "primary.textHigh" });
+    it("THEN should correctly render the color primary-textHigh", () => {
+      makeSut({ color: "primary-textHigh" });
       expect(
         screen.getByTestId("text-element").getAttribute("class")
-      ).toContain("text.sprinkle_color_primary.textHigh");
+      ).toContain("color_primary-textHigh");
     });
 
-    it("THEN should correctly render the color primary.interactive", () => {
-      makeSut({ color: "primary.interactive" });
+    it("THEN should correctly render the color primary-interactive", () => {
+      makeSut({ color: "primary-interactive" });
       expect(
         screen.getByTestId("text-element").getAttribute("class")
-      ).toContain("text.sprinkle_color_primary.interactive");
+      ).toContain("color_primary-interactive");
     });
 
-    it("THEN should correctly render the color success.textLow", () => {
-      makeSut({ color: "success.textLow" });
+    it("THEN should correctly render the color success-textLow", () => {
+      makeSut({ color: "success-textLow" });
       expect(
         screen.getByTestId("text-element").getAttribute("class")
-      ).toContain("text.sprinkle_color_success.textLow");
+      ).toContain("color_success-textLow");
     });
 
-    it("THEN should correctly render the color success.textHigh", () => {
-      makeSut({ color: "success.textHigh" });
+    it("THEN should correctly render the color success-textHigh", () => {
+      makeSut({ color: "success-textHigh" });
       expect(
         screen.getByTestId("text-element").getAttribute("class")
-      ).toContain("text.sprinkle_color_success.textHigh");
+      ).toContain("color_success-textHigh");
     });
 
-    it("THEN should correctly render the color success.interactive", () => {
-      makeSut({ color: "success.interactive" });
+    it("THEN should correctly render the color success-interactive", () => {
+      makeSut({ color: "success-interactive" });
       expect(
         screen.getByTestId("text-element").getAttribute("class")
-      ).toContain("text.sprinkle_color_success.interactive");
+      ).toContain("color_success-interactive");
     });
 
-    it("THEN should correctly render the color warning.textLow", () => {
-      makeSut({ color: "warning.textLow" });
+    it("THEN should correctly render the color warning-textLow", () => {
+      makeSut({ color: "warning-textLow" });
       expect(
         screen.getByTestId("text-element").getAttribute("class")
-      ).toContain("text.sprinkle_color_warning.textLow");
+      ).toContain("color_warning-textLow");
     });
 
-    it("THEN should correctly render the color warning.textHigh", () => {
-      makeSut({ color: "warning.textHigh" });
+    it("THEN should correctly render the color warning-textHigh", () => {
+      makeSut({ color: "warning-textHigh" });
       expect(
         screen.getByTestId("text-element").getAttribute("class")
-      ).toContain("text.sprinkle_color_warning.textHigh");
+      ).toContain("color_warning-textHigh");
     });
 
-    it("THEN should correctly render the color warning.interactive", () => {
-      makeSut({ color: "warning.interactive" });
+    it("THEN should correctly render the color warning-interactive", () => {
+      makeSut({ color: "warning-interactive" });
       expect(
         screen.getByTestId("text-element").getAttribute("class")
-      ).toContain("text.sprinkle_color_warning.interactive");
+      ).toContain("color_warning-interactive");
     });
 
-    it("THEN should correctly render the color danger.textLow", () => {
-      makeSut({ color: "danger.textLow" });
+    it("THEN should correctly render the color danger-textLow", () => {
+      makeSut({ color: "danger-textLow" });
       expect(
         screen.getByTestId("text-element").getAttribute("class")
-      ).toContain("text.sprinkle_color_danger.textLow");
+      ).toContain("color_danger-textLow");
     });
 
-    it("THEN should correctly render the color danger.textHigh", () => {
-      makeSut({ color: "danger.textHigh" });
+    it("THEN should correctly render the color danger-textHigh", () => {
+      makeSut({ color: "danger-textHigh" });
       expect(
         screen.getByTestId("text-element").getAttribute("class")
-      ).toContain("text.sprinkle_color_danger.textHigh");
+      ).toContain("color_danger-textHigh");
     });
 
-    it("THEN should correctly render the color danger.interactive", () => {
-      makeSut({ color: "danger.interactive" });
+    it("THEN should correctly render the color danger-interactive", () => {
+      makeSut({ color: "danger-interactive" });
       expect(
         screen.getByTestId("text-element").getAttribute("class")
-      ).toContain("text.sprinkle_color_danger.interactive");
+      ).toContain("color_danger-interactive");
     });
 
-    it("THEN should correctly render the color neutral.background", () => {
-      makeSut({ color: "neutral.background" });
+    it("THEN should correctly render the color neutral-background", () => {
+      makeSut({ color: "neutral-background" });
       expect(
         screen.getByTestId("text-element").getAttribute("class")
-      ).toContain("text.sprinkle_color_neutral.background");
+      ).toContain("color_neutral-background");
     });
 
-    it("THEN should correctly render the color neutral.textLow", () => {
-      makeSut({ color: "neutral.textLow" });
+    it("THEN should correctly render the color neutral-textLow", () => {
+      makeSut({ color: "neutral-textLow" });
       expect(
         screen.getByTestId("text-element").getAttribute("class")
-      ).toContain("text.sprinkle_color_neutral.textLow");
+      ).toContain("color_neutral-textLow");
     });
 
-    it("THEN should correctly render the color neutral.textHigh", () => {
-      makeSut({ color: "neutral.textHigh" });
+    it("THEN should correctly render the color neutral-textHigh", () => {
+      makeSut({ color: "neutral-textHigh" });
       expect(
         screen.getByTestId("text-element").getAttribute("class")
-      ).toContain("text.sprinkle_color_neutral.textHigh");
+      ).toContain("color_neutral-textHigh");
     });
 
-    it("THEN should correctly render the color neutral.interactive", () => {
-      makeSut({ color: "neutral.interactive" });
+    it("THEN should correctly render the color neutral-interactive", () => {
+      makeSut({ color: "neutral-interactive" });
       expect(
         screen.getByTestId("text-element").getAttribute("class")
-      ).toContain("text.sprinkle_color_neutral.interactive");
+      ).toContain("color_neutral-interactive");
     });
   });
 

@@ -1,4 +1,4 @@
-import * as styles from "./label.style.css";
+import * as styles from "./nimbus-label.css";
 
 export const label = {
   classnames: { ...styles },

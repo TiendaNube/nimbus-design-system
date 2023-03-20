@@ -73,7 +73,7 @@ const Tooltip: React.FC<TooltipProps> = ({
             {...getFloatingProps()}
           >
             <Text
-              color="neutral.background"
+              color="neutral-background"
               fontSize="caption"
               lineHeight="caption"
             >
@@ -82,7 +82,7 @@ const Tooltip: React.FC<TooltipProps> = ({
             <div
               data-testid="arrow-element"
               ref={arrowRef}
-              className={tooltip.classnames.arrow[position]}
+              className={tooltip.classnames.content__arrow[position]}
               style={{
                 position: "absolute",
                 left: arrowX != null ? `${arrowX}px` : "",

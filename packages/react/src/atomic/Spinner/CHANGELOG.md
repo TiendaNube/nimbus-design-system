@@ -2,6 +2,16 @@
 
 The Spinner component is used to inform the processing of tasks.
 
+## 2023-03-13 `3.0.0`
+
+### 🛠 Breaking changes
+
+- Changed the `color` properties to `primary-interactive`, `primary-surface`, `primary-textLow`, `success-textLow`, `success-surface`, `danger-interactive`, `danger-surface`, `danger-textLow`, `neutral-background`, `neutral-interactive`, `neutral-surface`, `neutral-textLow`, `currentColor` and `success-interactive`. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
+
+### 💡 Others
+
+- Refactored style classes to have more semantic names. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-02-23 `2.1.0`
 
 ### 🎉 New features

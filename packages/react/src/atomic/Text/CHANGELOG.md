@@ -2,6 +2,16 @@
 
 Text is a basic component that allows us to write blocks of text and give it formatting to use within other components, sections and pages of our application or website.
 
+## 2023-03-13 `6.0.0`
+
+### 🛠 Breaking changes
+
+- Changed the `color` properties to `primary-interactive`, `primary-surface`, `primary-textLow`, `success-textLow`, `success-surface`, `warning-interactive`, `warning-surface`, `warning-textLow`, `danger-interactive`, `danger-surface`, `danger-textLow`, `neutral-background`, `neutral-interactive`, `neutral-surface`, `neutral-textLow`, `success-interactive`, `primary-textHigh`, `success-textHigh`, `warning-textHigh`, `danger-textHigh`, `neutral-textDisabled` and `neutral-textHigh`. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
+
+### 💡 Others
+
+- Refactored style classes to have more semantic names. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-02-24 `5.2.0`
 
 ### 🎉 New features

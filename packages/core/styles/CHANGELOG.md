@@ -2,6 +2,21 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2023-02-24 `7.0.0`
+
+### 🛠 Breaking changes
+
+- Refactored color tokens by removing `.` separator to `-`. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
+
+#### 🎉 New features
+
+- Created new css file that contains all nimbus utility classes. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `focusWithin` state to `Box` conditions. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
+
+### 💡 Others
+
+- Refactored style classes to have more semantic names. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-02-24 `6.13.0`
 
 #### 🎉 New features

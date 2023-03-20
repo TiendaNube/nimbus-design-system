@@ -1,5 +1,4 @@
-import * as styles from "./thumbnail.style.css";
-import { thumbnailSprinkle } from "./thumbnail.sprinkle.css";
+import { styles, thumbnailSprinkle } from "./nimbus-thumbnail.css";
 
 export const thumbnail = {
   classnames: { ...styles },

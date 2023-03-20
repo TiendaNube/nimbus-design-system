@@ -10,60 +10,60 @@ const makeSut = (rest?: SpinnerProps) => {
 
 describe("GIVEN <Spinner />", () => {
   describe("THEN should correctly render the submitted color", () => {
-    it("THEN should correctly render the color primary.interactive", () => {
-      makeSut({ color: "primary.interactive" });
+    it("THEN should correctly render the color primary-interactive", () => {
+      makeSut({ color: "primary-interactive" });
       expect(
         screen.getByTestId("spinner-element").getAttribute("class")
-      ).toContain("color_primary.interactive");
+      ).toContain("color_primary-interactive");
     });
 
-    it("THEN should correctly render the color primary.textLow", () => {
-      makeSut({ color: "primary.textLow" });
+    it("THEN should correctly render the color primary-textLow", () => {
+      makeSut({ color: "primary-textLow" });
       expect(
         screen.getByTestId("spinner-element").getAttribute("class")
-      ).toContain("color_primary.textLow");
+      ).toContain("color_primary-textLow");
     });
 
-    it("THEN should correctly render the color success.interactive", () => {
-      makeSut({ color: "success.interactive" });
+    it("THEN should correctly render the color success-interactive", () => {
+      makeSut({ color: "success-interactive" });
       expect(
         screen.getByTestId("spinner-element").getAttribute("class")
-      ).toContain("color_success.interactive");
+      ).toContain("color_success-interactive");
     });
 
-    it("THEN should correctly render the color success.textLow", () => {
-      makeSut({ color: "success.textLow" });
+    it("THEN should correctly render the color success-textLow", () => {
+      makeSut({ color: "success-textLow" });
       expect(
         screen.getByTestId("spinner-element").getAttribute("class")
-      ).toContain("color_success.textLow");
+      ).toContain("color_success-textLow");
     });
 
-    it("THEN should correctly render the color danger.interactive", () => {
-      makeSut({ color: "danger.interactive" });
+    it("THEN should correctly render the color danger-interactive", () => {
+      makeSut({ color: "danger-interactive" });
       expect(
         screen.getByTestId("spinner-element").getAttribute("class")
-      ).toContain("color_danger.interactive");
+      ).toContain("color_danger-interactive");
     });
 
-    it("THEN should correctly render the color danger.textLow", () => {
-      makeSut({ color: "danger.textLow" });
+    it("THEN should correctly render the color danger-textLow", () => {
+      makeSut({ color: "danger-textLow" });
       expect(
         screen.getByTestId("spinner-element").getAttribute("class")
-      ).toContain("color_danger.textLow");
+      ).toContain("color_danger-textLow");
     });
 
-    it("THEN should correctly render the color neutral.interactive", () => {
-      makeSut({ color: "neutral.interactive" });
+    it("THEN should correctly render the color neutral-interactive", () => {
+      makeSut({ color: "neutral-interactive" });
       expect(
         screen.getByTestId("spinner-element").getAttribute("class")
-      ).toContain("color_neutral.interactive");
+      ).toContain("color_neutral-interactive");
     });
 
-    it("THEN should correctly render the color neutral.textLow", () => {
-      makeSut({ color: "neutral.textLow" });
+    it("THEN should correctly render the color neutral-textLow", () => {
+      makeSut({ color: "neutral-textLow" });
       expect(
         screen.getByTestId("spinner-element").getAttribute("class")
-      ).toContain("color_neutral.textLow");
+      ).toContain("color_neutral-textLow");
     });
   });
 

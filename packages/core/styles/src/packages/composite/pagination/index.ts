@@ -1,4 +1,4 @@
-import * as styles from "./pagination.style.css";
+import * as styles from "./nimbus-pagination.css";
 
 export const pagination = {
   classnames: { ...styles },

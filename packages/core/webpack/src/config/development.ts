@@ -2,13 +2,13 @@
  * Created by: Júnior Conquista (junior.conquista@nuvemshop.com.br)
  */
 import { Configuration } from "webpack";
-import TerserJSPlugin from "terser-webpack-plugin";
+import { terserJSPlugin } from "../plugins";
 
 const webpack: Configuration = {
   devtool: "source-map",
   optimization: {
     minimize: true,
-    minimizer: [new TerserJSPlugin({})],
+    minimizer: [terserJSPlugin],
   },
 };
 

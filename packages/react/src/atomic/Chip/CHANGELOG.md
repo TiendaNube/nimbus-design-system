@@ -2,6 +2,13 @@
 
 The Chip component is used to flag criteria or attributes related to searches or filters of a list of information.
 
+## 2023-02-24 `2.3.0`
+
+### 💡 Others
+
+- Refactored use of `color tokens` in internal components by removing `.` per `-`. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
+- Refactored style classes to have more semantic names. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-02-24 `2.2.1`
 
 ### 💡 Others

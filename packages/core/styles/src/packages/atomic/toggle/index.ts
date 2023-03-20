@@ -1,4 +1,4 @@
-import * as styles from "./toggle.style.css";
+import * as styles from "./nimbus-toggle.css";
 
 export const toggle = {
   classnames: { ...styles },

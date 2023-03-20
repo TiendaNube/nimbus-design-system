@@ -106,7 +106,7 @@ neutral.args = {
 
 export const neutralBackground = Template.bind({});
 neutralBackground.args = {
-  appearance: "neutral.background",
+  appearance: "neutral-background",
   children: "Link",
 };
 

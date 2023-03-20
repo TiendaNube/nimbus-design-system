@@ -20,7 +20,7 @@ describe("GIVEN <Modal.Body />", () => {
     it("THEN should correctly render the padding default", () => {
       makeSut({ children: "My content" });
       expect(screen.getByTestId("body-element").getAttribute("style")).toMatch(
-        /--padding-xs__\w{0,9}: 0;/
+        /--padding-xs__\w{0,9}: var\(--spacing-4__\w{0,9}\);/
       );
     });
 

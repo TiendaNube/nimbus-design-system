@@ -15,9 +15,9 @@ const Select: React.FC<SelectProps> & SelectComponents = ({
   appearance = "neutral",
   ...rest
 }: SelectProps) => (
-  <div className={select.classnames.wrapper}>
-    <div className={select.classnames.icon}>
-      <Icon source={<ChevronDownIcon />} color="primary.textHigh" />
+  <div className={select.classnames.container}>
+    <div className={select.classnames.container__icon}>
+      <Icon source={<ChevronDownIcon />} color="primary-textHigh" />
     </div>
     <select
       {...rest}

@@ -33,7 +33,6 @@ describe("GIVEN <Password />", () => {
       const input = screen.getByTestId("my-input");
       fireEvent.change(input, { target: { value: "my password" } });
       const button = screen.getByTestId("button-password-show");
-      expect(input.getAttribute("class")).toContain("inputAppend_end");
       expect(button.getAttribute("class")).toContain("append_end");
     });
   });

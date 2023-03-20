@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/tabs",
-  "version": "2.1.0",
+  "version": "2.2.0-rc.1",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -26,7 +26,9 @@
     "url": "https://github.com/TiendaNube/nimbus-design-system/issues"
   },
   "devDependencies": {
-    "@vanilla-extract/dynamic": "^2.0.2",
+    "@nimbus-ds/box": "workspace:^",
+    "@nimbus-ds/text": "workspace:^",
     "webpack": "^5.74.0"
-  }
+  },
+  "stableVersion": "2.1.0"
 }

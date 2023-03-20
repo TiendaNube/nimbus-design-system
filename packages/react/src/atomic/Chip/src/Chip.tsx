@@ -15,16 +15,16 @@ const Chip: React.FC<ChipProps> & ChipComponents = ({
   removable,
   ...rest
 }: ChipProps) => (
-  <button type="button" {...rest} className={chip.classnames.container}>
-    {icon && <Icon source={icon} color="neutral.textLow" />}
-    <Text color="neutral.textLow" fontSize="caption" lineHeight="caption">
+  <button type="button" {...rest} className={chip.classnames.base}>
+    {icon && <Icon source={icon} color="neutral-textLow" />}
+    <Text color="neutral-textLow" fontSize="caption" lineHeight="caption">
       {text}
     </Text>
     {removable && (
       <Icon
         data-testid="close-chip"
         source={<CloseIcon size={12} />}
-        color="neutral.textLow"
+        color="neutral-textLow"
       />
     )}
   </button>

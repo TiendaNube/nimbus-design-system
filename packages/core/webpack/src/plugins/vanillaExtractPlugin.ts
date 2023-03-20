@@ -3,4 +3,6 @@
  */
 import { VanillaExtractPlugin } from "@vanilla-extract/webpack-plugin";
 
-export const vanillaExtractPlugin = new VanillaExtractPlugin();
+export const vanillaExtractPlugin = new VanillaExtractPlugin({
+  identifiers: "debug",
+});

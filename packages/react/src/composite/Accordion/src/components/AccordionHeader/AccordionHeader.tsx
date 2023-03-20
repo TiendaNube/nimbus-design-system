@@ -37,15 +37,15 @@ const AccordionHeader: React.FC<AccordionHeaderProps> = ({
       {...rest}
       onClick={handleSelect}
       className={[
-        accordion.classnames.container,
+        accordion.classnames.header,
         accordion.sprinkle({
           borderTop,
           borderBottom: !isOpen ? borderBottom : "none",
         }),
-        isOpen && accordion.classnames.active,
+        isOpen && accordion.classnames.header_active,
       ].join(" ")}
     >
-      <div className={accordion.classnames.content}>
+      <div className={accordion.classnames.header__content}>
         {typeof children === "function"
           ? children({
               selected,
@@ -53,9 +53,9 @@ const AccordionHeader: React.FC<AccordionHeaderProps> = ({
             })
           : children}
 
-        <div className={accordion.classnames.description}>
-          {icon && <NimbusIcon source={icon} color="primary.textHigh" />}
-          <div className={accordion.classnames.title}>
+        <div className={accordion.classnames.header__description}>
+          {icon && <NimbusIcon source={icon} color="primary-textHigh" />}
+          <div className={accordion.classnames.header__title}>
             {title && (
               <Title data-testid="accordion-header-title" as="h5">
                 {title}
@@ -72,7 +72,7 @@ const AccordionHeader: React.FC<AccordionHeaderProps> = ({
         {!noIconToggle && (
           <NimbusIcon
             data-testid="accordion-icon-Toggle"
-            color="primary.textHigh"
+            color="primary-textHigh"
             source={isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
           />
         )}

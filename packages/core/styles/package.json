@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/styles",
-  "version": "6.13.0",
+  "version": "7.0.0-rc.3",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -10,6 +10,7 @@
   "sideEffects": false,
   "scripts": {
     "build": "webpack",
+    "build:css": "node ./.scripts/bla",
     "clean": "rm -rf dist",
     "version": "yarn version"
   },
@@ -32,5 +33,6 @@
     "rainbow-sprinkles": "^0.14.0",
     "ts-node": "^10.9.1",
     "webpack": "^5.75.0"
-  }
+  },
+  "stableVersion": "6.13.0"
 }

@@ -8,7 +8,7 @@ const Text: React.FC<TextProps> & TextComponents = ({
   className: _className,
   style: _style,
   as: As = "p",
-  color = "neutral.textLow",
+  color = "neutral-textLow",
   textAlign = "left",
   lineHeight = "base",
   fontWeight = "regular",
@@ -20,7 +20,7 @@ const Text: React.FC<TextProps> & TextComponents = ({
     {...rest}
     className={[
       text.sprinkle({ color, textAlign, lineHeight, fontWeight, fontSize }),
-      text.classnames.container,
+      text.classnames.base,
     ].join(" ")}
   >
     {children}

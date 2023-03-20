@@ -1,4 +1,4 @@
-import * as styles from "./chip.style.css";
+import * as styles from "./nimbus-chip.css";
 
 export const chip = {
   classnames: { ...styles },

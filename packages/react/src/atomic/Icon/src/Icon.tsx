@@ -7,17 +7,16 @@ import { IconSkeleton } from "./components";
 const Icon: React.FC<IconProps> & IconComponents = ({
   className: _className,
   style: _style,
-  color = "neutral.textLow",
+  color = "neutral-textLow",
   cursor = "inherit",
   source,
   ...rest
 }: IconProps) => (
   <div
     {...rest}
-    className={[
-      icon.sprinkle({ color, cursor }),
-      icon.classnames.container,
-    ].join(" ")}
+    className={[icon.sprinkle({ color, cursor }), icon.classnames.base].join(
+      " "
+    )}
   >
     {source}
   </div>

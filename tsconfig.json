@@ -1,5 +1,5 @@
 {
-  "include": ["packages", "index.d.ts"],
+  "include": ["packages", "index.d.ts", "packages/core/styles/.scripts/bla.js"],
   "compilerOptions": {
     "target": "esnext",
     "module": "commonjs",

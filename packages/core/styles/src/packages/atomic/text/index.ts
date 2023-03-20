@@ -1,5 +1,4 @@
-import * as styles from "./text.style.css";
-import { textSprinkle } from "./text.sprinkle.css";
+import { styles, textSprinkle } from "./nimbus-text.css";
 
 export const text = {
   classnames: { ...styles },

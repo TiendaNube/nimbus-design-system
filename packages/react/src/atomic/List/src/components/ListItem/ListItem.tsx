@@ -9,7 +9,7 @@ const ListItem: React.FC<ListItemProps> = ({
   children,
   ...rest
 }) => (
-  <li {...rest} className={list.classnames.item}>
+  <li {...rest} className={list.classnames.container__item}>
     {children}
   </li>
 );

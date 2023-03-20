@@ -1,4 +1,4 @@
-import * as styles from "./textarea.style.css";
+import * as styles from "./nimbus-textarea.css";
 
 export const textarea = {
   classnames: { ...styles },

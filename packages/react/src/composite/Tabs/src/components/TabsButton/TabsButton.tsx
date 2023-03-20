@@ -23,13 +23,15 @@ const TabsButton: React.FC<TabsButtonProps> = ({
   return (
     <li
       className={
-        tabs.classnames.tabElement[fullWidth ? "fullWidth" : "default"]
+        tabs.classnames.container__item[fullWidth ? "fullWidth" : "default"]
       }
       role="presentation"
       {...rest}
     >
       <button
-        className={tabs.classnames.tabButton[active ? "active" : "default"]}
+        className={
+          tabs.classnames.container__button[active ? "active" : "default"]
+        }
         onClick={handleOnClick}
         type="button"
         id={`tab-${ariaID}`}

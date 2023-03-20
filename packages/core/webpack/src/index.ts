@@ -9,6 +9,8 @@ import {
   vanillaExtractPlugin,
   miniCssExtractPlugin,
   dtsBundleGeneratorPlugin,
+  cssHashRemoverPlugin,
+  cssMinimizerPlugin,
 } from "./plugins";
 import { cssLoaderExtractRule, styleLoaderCssRule } from "./rules";
 import { rootDir } from "./utils";
@@ -17,6 +19,8 @@ export const rules = { cssLoaderExtractRule, styleLoaderCssRule };
 export const plugins = {
   vanillaExtractPlugin,
   miniCssExtractPlugin,
+  cssHashRemoverPlugin,
+  cssMinimizerPlugin,
   dtsBundleGeneratorPlugin,
 };
 export const configuration = {

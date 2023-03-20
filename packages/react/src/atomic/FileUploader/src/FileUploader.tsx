@@ -43,12 +43,12 @@ const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
       })}
     >
       <Icon
-        color={`${color}.interactive`}
+        color={`${color}-interactive`}
         source={<PlusCircleIcon size={20} />}
       />
       {placeholder && (
         <Text
-          color={`${color}.interactive`}
+          color={`${color}-interactive`}
           fontWeight="bold"
           fontSize="caption"
         >
@@ -56,7 +56,7 @@ const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
         </Text>
       )}
       <input
-        className={fileUploader.classnames.input}
+        className={fileUploader.classnames.container__input}
         type="file"
         accept={accept}
         disabled={disabled}

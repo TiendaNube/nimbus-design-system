@@ -1,5 +1,4 @@
-import * as styles from "./spinner.style.css";
-import { spinnerSprinkle } from "./spinner.sprinkle.css";
+import { styles, spinnerSprinkle } from "./nimbus-spinner.css";
 
 export const spinner = {
   classnames: { ...styles },

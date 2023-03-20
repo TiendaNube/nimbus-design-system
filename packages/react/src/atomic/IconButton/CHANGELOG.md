@@ -2,6 +2,17 @@
 
 Icons are used to visually communicate core parts of the product and available actions. They can act as wayfinding tools to help merchants more easily understand where they are in the product, and common interaction patterns that are available.
 
+## 2023-02-23 `4.0.0`
+
+### 🛠 Breaking changes
+
+- Changed the `borderColor` properties to `neutral-surface`, `neutral-interactive` and `neutral-surfaceHighlight`. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
+- Changed the `backgroundColor` properties to `neutral-surface`, `neutral-surfaceHighlight`, `neutral-interactive`, `neutral-interactiveHover`, `neutral-interactivePressed` and `primary-interactive`. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
+
+### 💡 Others
+
+- Refactored style classes to have more semantic names. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-02-23 `3.2.0`
 
 ### 🎉 New features
