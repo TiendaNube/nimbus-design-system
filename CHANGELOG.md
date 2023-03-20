@@ -3,6 +3,12 @@
 This is the log of notable changes to the Design System Nimbus that are developer-facing.
 Package-specific changes not released in any package will be added here just before the release. Until then, you can find them in changelogs of the individual packages (see [packages](./packages) directory).
 
+## 2023-03-19
+
+### 🎉 New features
+
+- Creating a build script to build documentation for components and subcomponents. ([#126](https://github.com/TiendaNube/nimbus-design-system/pull/#126) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-02-16
 
 ### 🎉 New features
