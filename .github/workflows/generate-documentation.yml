@@ -30,7 +30,8 @@ jobs:
         uses: actions/cache@v3
         id: cache-dependencies
         with:
-          path: node_modules
+          path: |
+            **/node_modules
           key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
 
       # - uses: actions/cache@v2
