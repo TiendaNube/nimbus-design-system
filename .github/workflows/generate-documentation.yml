@@ -10,7 +10,7 @@ on:
       - ".yarn/versions/**"
 
 jobs:
-  generate-documents:
+  setup:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -28,6 +28,10 @@ jobs:
       - name: Install dependencies
         run: yarn
 
+  generate-documents:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
       - name: Generate documents
         run: yarn build:docs
 

@@ -3,7 +3,7 @@ import { BoxSprinkle } from "@nimbus-ds/styles";
 
 export interface BoxProperties extends BoxSprinkle {
   /**
-   * Element to be rendered inside the Box component.
+   * Element to be rendered inside the Box component. Meu teste
    * @TJS-type React.ReactNode
    */
   children?: ReactNode;
