@@ -4,7 +4,7 @@
   "totalProps": 79,
   "props": [
     {
-      "description": "Element to be rendered inside the Box component.",
+      "description": "Element to be rendered inside the Box component. Meu teste",
       "type": "React.ReactNode",
       "title": "children",
       "required": false
