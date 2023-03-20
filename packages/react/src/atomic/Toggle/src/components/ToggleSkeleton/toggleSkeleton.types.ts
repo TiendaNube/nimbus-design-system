@@ -1,5 +1,7 @@
 import { SkeletonProps } from "@nimbus-ds/skeleton";
 
-export type ToggleSkeletonProps = Partial<Pick<SkeletonProps, "width">> & {
-  "data-testid"?: string;
-};
+export type ToggleSkeletonProperties = Partial<
+  Pick<SkeletonProps, "width" | "data-testid">
+>;
+
+export type ToggleSkeletonProps = ToggleSkeletonProperties;

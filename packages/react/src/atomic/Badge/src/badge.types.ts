@@ -5,11 +5,21 @@ export interface BadgeComponents {
   Skeleton: typeof BadgeSkeleton;
 }
 
-export interface BadgeProps extends HTMLAttributes<HTMLElement> {
-  /** Badge color */
+export interface BadgeProperties {
+  /**
+   * Change the visual style of the badge.
+   * @default neutral
+   */
   appearance?: "primary" | "success" | "warning" | "danger" | "neutral";
-  /** Total items to be displayed without badge */
+  /**
+   * Total items to be displayed without badge
+   */
   count: number | string;
-  /** Badge appearance color scheme */
+  /**
+   * Change the color scheme of the badge.
+   * @default surface
+   */
   theme?: "surface" | "light";
 }
+
+export type BadgeProps = BadgeProperties & HTMLAttributes<HTMLElement>;

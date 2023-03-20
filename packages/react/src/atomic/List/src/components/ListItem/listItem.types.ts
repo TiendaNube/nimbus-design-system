@@ -1,6 +1,11 @@
 import { HTMLAttributes, ReactNode } from "react";
 
-export interface ListItemProps extends HTMLAttributes<HTMLLIElement> {
-  /** Element to be rendered inside the Item component */
+export interface ListItemProperties {
+  /**
+   * The content of the list item.
+   * @TJS-type React.ReactNode
+   */
   children: ReactNode;
 }
+
+export type ListItemProps = ListItemProperties & HTMLAttributes<HTMLLIElement>;

@@ -31,5 +31,7 @@ const Chip: React.FC<ChipProps> & ChipComponents = ({
 );
 
 Chip.Skeleton = ChipSkeleton;
+Chip.displayName = "Chip";
+Chip.Skeleton.displayName = "Chip.Skeleton";
 
 export { Chip };

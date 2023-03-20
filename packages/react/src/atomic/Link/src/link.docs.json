@@ -1,0 +1,65 @@
+{
+  "id": "link",
+  "name": "Link",
+  "totalProps": 5,
+  "props": [
+    {
+      "description": "The content of the link.",
+      "type": "React.ReactNode",
+      "title": "children",
+      "required": true
+    },
+    {
+      "description": "Change the visual style of the link.",
+      "default": "neutral",
+      "enum": ["danger", "neutral", "neutral-background", "primary"],
+      "type": "string",
+      "title": "appearance",
+      "required": false
+    },
+    {
+      "description": "The textDecoration property specifies the decoration added to link.",
+      "default": "neutral",
+      "enum": ["none", "underline"],
+      "type": "string",
+      "title": "textDecoration",
+      "required": false
+    },
+    {
+      "description": "The fontSize property sets the size of the link.",
+      "default": "base",
+      "enum": ["base", "caption", "highlight"],
+      "type": "string",
+      "title": "fontSize",
+      "required": false
+    },
+    {
+      "description": "The lineHeight property specifies the line height of the link",
+      "default": "base",
+      "enum": ["base", "caption", "highlight"],
+      "type": "string",
+      "title": "lineHeight",
+      "required": false
+    }
+  ],
+  "subComponents": [
+    {
+      "name": "Link.Skeleton",
+      "totalProps": 2,
+      "props": [
+        {
+          "description": "Width of the skeleton. Useful when the skeleton is inside an inline element with no width of its own.",
+          "type": "string",
+          "title": "width",
+          "required": false
+        },
+        {
+          "description": "This is an attribute used to identify a DOM node for testing purposes.",
+          "type": "string",
+          "title": "data-testid",
+          "required": false
+        }
+      ]
+    }
+  ]
+}

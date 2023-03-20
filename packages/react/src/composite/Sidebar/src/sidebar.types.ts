@@ -2,23 +2,38 @@ import { HTMLAttributes, ReactNode } from "react";
 import { sidebar, SidebarSprinkle } from "@nimbus-ds/styles";
 import { SidebarBody, SidebarFooter, SidebarHeader } from "./components";
 
-type SidebarExtends = SidebarSprinkle & HTMLAttributes<HTMLDivElement>;
-
 export interface SidebarComponents {
   Body: typeof SidebarBody;
   Footer: typeof SidebarFooter;
   Header: typeof SidebarHeader;
 }
 
-export interface SidebarProps extends SidebarExtends {
-  /** Sidebar position */
+export interface SidebarProperties extends SidebarSprinkle {
+  /**
+   * Side from which the sidebar will appear.
+   * @default right
+   */
   position?: "right" | "left";
-  /** Sidebar padding */
+  /**
+   * The padding properties are used to generate space around an sidebar's content area.
+   * @default base
+   */
   padding?: keyof typeof sidebar.properties.padding;
-  /** Sidebar body content */
+  /**
+   * The content of the sidebar.
+   * @TJS-type React.ReactNode
+   */
   children: ReactNode;
-  /** Function to be passed on actioning the dismiss button */
+  /**
+   * Callback fired when the component requests to be closed.
+   * () => void;
+   */
   onRemove?: () => void;
-  /** Controls the menu display */
+  /**
+   * Determines if the sidebar is shown or not.
+   * @default true
+   */
   open?: boolean;
 }
+
+export type SidebarProps = SidebarProperties & HTMLAttributes<HTMLDivElement>;

@@ -1,0 +1,48 @@
+{
+  "id": "textarea",
+  "name": "Textarea",
+  "totalProps": 3,
+  "props": [
+    {
+      "description": "Change the visual style of the textarea.",
+      "default": "neutral",
+      "enum": ["danger", "neutral", "success", "warning"],
+      "type": "string",
+      "title": "appearance",
+      "required": false
+    },
+    {
+      "description": "Number of lines to be rendered for the user to input text",
+      "default": 2,
+      "type": "number",
+      "title": "lines",
+      "required": false
+    },
+    {
+      "description": "ID of the textarea",
+      "type": "string",
+      "title": "id",
+      "required": true
+    }
+  ],
+  "subComponents": [
+    {
+      "name": "Textarea.Skeleton",
+      "totalProps": 2,
+      "props": [
+        {
+          "description": "Width of the skeleton. Useful when the skeleton is inside an inline element with no width of its own.",
+          "type": "string",
+          "title": "width",
+          "required": false
+        },
+        {
+          "description": "This is an attribute used to identify a DOM node for testing purposes.",
+          "type": "string",
+          "title": "data-testid",
+          "required": false
+        }
+      ]
+    }
+  ]
+}

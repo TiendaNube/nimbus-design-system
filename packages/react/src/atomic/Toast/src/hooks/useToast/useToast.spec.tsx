@@ -1,13 +1,13 @@
 import React from "react";
 import { renderHook } from "@testing-library/react";
 
-import { ToastProvider } from "../../components/ToastProvider";
+import { Toast } from "../../Toast";
 import { useToast } from "./useToast";
 
 const makeSut = () =>
   renderHook(() => useToast(), {
     wrapper: ({ children }: { children: React.ReactNode }) => (
-      <ToastProvider>{children}</ToastProvider>
+      <Toast.Provider>{children}</Toast.Provider>
     ),
   });
 

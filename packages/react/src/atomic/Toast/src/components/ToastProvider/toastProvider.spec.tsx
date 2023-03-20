@@ -3,7 +3,7 @@ import { render, screen, act } from "@testing-library/react";
 
 import { useToast } from "../../hooks";
 import { ToastProps } from "../../toast.types";
-import { ToastProvider } from "./ToastProvider";
+import { Toast } from "../../Toast";
 
 const Button: React.FC<{ toast: ToastProps; id: string }> = ({ toast, id }) => {
   const { addToast, closeToast } = useToast();
@@ -21,9 +21,9 @@ const Button: React.FC<{ toast: ToastProps; id: string }> = ({ toast, id }) => {
 
 const makeSut = (rest: ToastProps) => {
   render(
-    <ToastProvider>
+    <Toast.Provider>
       <Button toast={rest} id={rest.id} />
-    </ToastProvider>
+    </Toast.Provider>
   );
 };
 

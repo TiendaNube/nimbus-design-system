@@ -5,11 +5,20 @@ export interface ToggleComponents {
   Skeleton: typeof ToggleSkeleton;
 }
 
-export interface ToggleProps extends InputHTMLAttributes<HTMLInputElement> {
-  /** Toggle name */
+export interface ToggleProperties {
+  /**
+   * The name of the input element.
+   */
   name: string;
-  /** Set whether Toggle state is checked */
+  /**
+   * Sets toggle state to activated or deactivated.
+   */
   active?: boolean;
-  /** Text to be rendered inside the component */
+  /**
+   * Text to be rendered inside the component
+   */
   label?: string;
 }
+
+export type ToggleProps = ToggleProperties &
+  InputHTMLAttributes<HTMLInputElement>;

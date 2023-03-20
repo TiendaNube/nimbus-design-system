@@ -7,10 +7,18 @@ export interface ListComponents {
   Item: typeof ListItem;
 }
 
-export interface ListProps
-  extends HTMLAttributes<HTMLUListElement | HTMLOListElement> {
-  /** Element to be rendered inside the List component */
+export interface ListProperties {
+  /**
+   * The content of the list.
+   * @TJS-type React.ReactNode
+   */
   children: ReactNode;
-  /** Determines the type of html list that will be rendered */
+  /**
+   * Determines the type of html list that will be rendered
+   * @default ul
+   */
   as?: "ul" | "ol";
 }
+
+export type ListProps = ListProperties &
+  HTMLAttributes<HTMLUListElement | HTMLOListElement>;

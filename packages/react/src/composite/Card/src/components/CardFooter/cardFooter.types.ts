@@ -1,6 +1,12 @@
 import { HTMLAttributes, ReactNode } from "react";
 
-export interface CardFooterProps extends HTMLAttributes<HTMLElement> {
-  /** Footer content */
+export interface CardFooterProperties {
+  /**
+   * The content of the card footer.
+   * @TJS-type React.ReactNode
+   */
   children: ReactNode;
 }
+
+export type CardFooterProps = CardFooterProperties &
+  HTMLAttributes<HTMLElement>;

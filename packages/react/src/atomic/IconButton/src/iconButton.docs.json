@@ -1,0 +1,293 @@
+{
+  "id": "iconButton",
+  "name": "IconButton",
+  "totalProps": 5,
+  "props": [
+    {
+      "description": "Type of html tag to create for the Icon Button component.",
+      "default": "button",
+      "enum": ["button", "div"],
+      "type": "string",
+      "title": "as",
+      "required": false
+    },
+    {
+      "description": "The SVG contents to display in the Icon button.",
+      "type": "React.ReactNode",
+      "title": "source",
+      "required": true
+    },
+    {
+      "description": "The size of the component.",
+      "default": "2.75rem",
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "focus": {
+              "type": "string",
+              "title": "focus"
+            },
+            "active": {
+              "type": "string",
+              "title": "active"
+            },
+            "hover": {
+              "type": "string",
+              "title": "hover"
+            },
+            "xs": {
+              "type": "string",
+              "title": "xs"
+            },
+            "md": {
+              "type": "string",
+              "title": "md"
+            },
+            "lg": {
+              "type": "string",
+              "title": "lg"
+            },
+            "xl": {
+              "type": "string",
+              "title": "xl"
+            }
+          },
+          "additionalProperties": false,
+          "propertyOrder": ["focus", "active", "hover", "xs", "md", "lg", "xl"]
+        },
+        {
+          "type": "string"
+        }
+      ],
+      "title": "size",
+      "required": false
+    },
+    {
+      "description": "The borderColor property sets the color of the icon button's four borders.",
+      "default": "{ xs: \"neutral-interactive\", active: \"neutral-interactivePressed\", hover: \"neutral-interactiveHover\", focus: \"primary-interactive\" }",
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "focus": {
+              "enum": [
+                "neutral-interactive",
+                "neutral-interactiveHover",
+                "neutral-interactivePressed",
+                "neutral-surface",
+                "neutral-surfaceHighlight",
+                "primary-interactive",
+                "transparent"
+              ],
+              "type": "string",
+              "title": "focus"
+            },
+            "active": {
+              "enum": [
+                "neutral-interactive",
+                "neutral-interactiveHover",
+                "neutral-interactivePressed",
+                "neutral-surface",
+                "neutral-surfaceHighlight",
+                "primary-interactive",
+                "transparent"
+              ],
+              "type": "string",
+              "title": "active"
+            },
+            "hover": {
+              "enum": [
+                "neutral-interactive",
+                "neutral-interactiveHover",
+                "neutral-interactivePressed",
+                "neutral-surface",
+                "neutral-surfaceHighlight",
+                "primary-interactive",
+                "transparent"
+              ],
+              "type": "string",
+              "title": "hover"
+            },
+            "xs": {
+              "enum": [
+                "neutral-interactive",
+                "neutral-interactiveHover",
+                "neutral-interactivePressed",
+                "neutral-surface",
+                "neutral-surfaceHighlight",
+                "primary-interactive",
+                "transparent"
+              ],
+              "type": "string",
+              "title": "xs"
+            },
+            "md": {
+              "enum": [
+                "neutral-interactive",
+                "neutral-interactiveHover",
+                "neutral-interactivePressed",
+                "neutral-surface",
+                "neutral-surfaceHighlight",
+                "primary-interactive",
+                "transparent"
+              ],
+              "type": "string",
+              "title": "md"
+            },
+            "lg": {
+              "enum": [
+                "neutral-interactive",
+                "neutral-interactiveHover",
+                "neutral-interactivePressed",
+                "neutral-surface",
+                "neutral-surfaceHighlight",
+                "primary-interactive",
+                "transparent"
+              ],
+              "type": "string",
+              "title": "lg"
+            },
+            "xl": {
+              "enum": [
+                "neutral-interactive",
+                "neutral-interactiveHover",
+                "neutral-interactivePressed",
+                "neutral-surface",
+                "neutral-surfaceHighlight",
+                "primary-interactive",
+                "transparent"
+              ],
+              "type": "string",
+              "title": "xl"
+            }
+          },
+          "additionalProperties": false,
+          "propertyOrder": ["focus", "active", "hover", "xs", "md", "lg", "xl"]
+        },
+        {
+          "enum": [
+            "neutral-interactive",
+            "neutral-interactiveHover",
+            "neutral-interactivePressed",
+            "neutral-surface",
+            "neutral-surfaceHighlight",
+            "primary-interactive",
+            "transparent"
+          ],
+          "type": "string"
+        }
+      ],
+      "title": "borderColor",
+      "required": false
+    },
+    {
+      "description": "The backgroundColor property sets the background color of the icon button.",
+      "default": "{  xs: \"neutral-surface\", active: \"neutral-interactive\", hover: \"neutral-surfaceHighlight\" }",
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "focus": {
+              "enum": [
+                "neutral-interactive",
+                "neutral-surface",
+                "neutral-surfaceHighlight",
+                "transparent"
+              ],
+              "type": "string",
+              "title": "focus"
+            },
+            "active": {
+              "enum": [
+                "neutral-interactive",
+                "neutral-surface",
+                "neutral-surfaceHighlight",
+                "transparent"
+              ],
+              "type": "string",
+              "title": "active"
+            },
+            "hover": {
+              "enum": [
+                "neutral-interactive",
+                "neutral-surface",
+                "neutral-surfaceHighlight",
+                "transparent"
+              ],
+              "type": "string",
+              "title": "hover"
+            },
+            "xs": {
+              "enum": [
+                "neutral-interactive",
+                "neutral-surface",
+                "neutral-surfaceHighlight",
+                "transparent"
+              ],
+              "type": "string",
+              "title": "xs"
+            },
+            "md": {
+              "enum": [
+                "neutral-interactive",
+                "neutral-surface",
+                "neutral-surfaceHighlight",
+                "transparent"
+              ],
+              "type": "string",
+              "title": "md"
+            },
+            "lg": {
+              "enum": [
+                "neutral-interactive",
+                "neutral-surface",
+                "neutral-surfaceHighlight",
+                "transparent"
+              ],
+              "type": "string",
+              "title": "lg"
+            },
+            "xl": {
+              "enum": [
+                "neutral-interactive",
+                "neutral-surface",
+                "neutral-surfaceHighlight",
+                "transparent"
+              ],
+              "type": "string",
+              "title": "xl"
+            }
+          },
+          "additionalProperties": false,
+          "propertyOrder": ["focus", "active", "hover", "xs", "md", "lg", "xl"]
+        },
+        {
+          "enum": [
+            "neutral-interactive",
+            "neutral-surface",
+            "neutral-surfaceHighlight",
+            "transparent"
+          ],
+          "type": "string"
+        }
+      ],
+      "title": "backgroundColor",
+      "required": false
+    }
+  ],
+  "subComponents": [
+    {
+      "name": "IconButton.Skeleton",
+      "totalProps": 1,
+      "props": [
+        {
+          "description": "This is an attribute used to identify a DOM node for testing purposes.",
+          "type": "string",
+          "title": "data-testid",
+          "required": false
+        }
+      ]
+    }
+  ]
+}

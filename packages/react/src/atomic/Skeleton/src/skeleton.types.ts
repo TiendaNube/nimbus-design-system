@@ -1,10 +1,22 @@
 import { HTMLAttributes } from "react";
 
-export interface SkeletonProps extends HTMLAttributes<HTMLDivElement> {
-  /** width alignment in content */
+export interface SkeletonProperties {
+  /**
+   * Width of the skeleton. Useful when the skeleton is inside an inline element with no width of its own.
+   */
   width: string;
-  /** height alignment in content */
+  /**
+   * Height of the skeleton. Useful when you don't want to adapt the skeleton to a text element but for instance a card.
+   */
   height: string;
-  /** borderRadius alignment in content */
+  /**
+   * The border radius of the skeleton.
+   */
   borderRadius?: string;
+  /**
+   * This is an attribute used to identify a DOM node for testing purposes.
+   */
+  "data-testid"?: string;
 }
+
+export type SkeletonProps = SkeletonProperties & HTMLAttributes<HTMLDivElement>;

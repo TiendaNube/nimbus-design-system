@@ -1,8 +1,16 @@
 import { HTMLAttributes, ReactNode } from "react";
 
-export interface ModalHeaderProps extends HTMLAttributes<HTMLElement> {
-  /** Header content */
+export interface ModalHeaderProperties {
+  /**
+   * The content of the modal header.
+   * @TJS-type React.ReactNode
+   */
   children?: ReactNode;
-  /** Header title */
+  /**
+   * The title to display in the modal header.
+   */
   title?: string;
 }
+
+export type ModalHeaderProps = ModalHeaderProperties &
+  HTMLAttributes<HTMLElement>;

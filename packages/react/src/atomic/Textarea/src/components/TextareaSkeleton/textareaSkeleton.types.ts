@@ -1,5 +1,7 @@
 import { SkeletonProps } from "@nimbus-ds/skeleton";
 
-export type TextareaSkeletonProps = Partial<Pick<SkeletonProps, "width">> & {
-  "data-testid"?: string;
-};
+export type TextareaSkeletonProperties = Partial<
+  Pick<SkeletonProps, "width" | "data-testid">
+>;
+
+export type TextareaSkeletonProps = TextareaSkeletonProperties;

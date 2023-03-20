@@ -1,6 +1,7 @@
 import { SkeletonProps } from "@nimbus-ds/skeleton";
 
-export type AlertSkeletonProps = Partial<Pick<SkeletonProps, "width">> &
-  Partial<Pick<SkeletonProps, "height">> & {
-    "data-testid"?: string;
-  };
+export type AlertSkeletonProperties = Partial<
+  Pick<SkeletonProps, "width" | "height" | "data-testid">
+>;
+
+export type AlertSkeletonProps = AlertSkeletonProperties;

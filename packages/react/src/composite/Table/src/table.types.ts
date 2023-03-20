@@ -9,6 +9,12 @@ export interface TableComponents {
   Row: typeof TableRow;
 }
 
-export interface TableProps extends HTMLAttributes<HTMLTableElement> {
+export interface TableProperties {
+  /**
+   * The content of the table.
+   * @TJS-type React.ReactNode
+   */
   children: ReactNode;
 }
+
+export type TableProps = TableProperties & HTMLAttributes<HTMLTableElement>;

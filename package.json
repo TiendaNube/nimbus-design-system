@@ -13,7 +13,8 @@
   },
   "scripts": {
     "build": "yarn clean && yarn build:packages",
-    "build:packages": "yarn build:tokens && node ./.scripts/build:packages",
+    "build:packages": "yarn build:tokens && babel-node -x .ts ./.scripts/build-packages",
+    "build:docs": "babel-node -x .ts ./.scripts/json-documentation",
     "build:icons": "turbo run build --filter=@nimbus-ds/icons",
     "build:tokens": "turbo run build --filter=@nimbus-ds/tokens",
     "build:storybook": "build-storybook -c .storybook -o .build-storybook",
@@ -53,6 +54,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.18.10",
+    "@babel/node": "^7.20.7",
     "@babel/preset-typescript": "^7.18.6",
     "@commitlint/cli": "^17.0.3",
     "@commitlint/config-conventional": "^17.0.3",

@@ -1,12 +1,25 @@
 import { HTMLAttributes } from "react";
 
-export interface PaginationProps extends HTMLAttributes<HTMLElement> {
-  /** Active page */
+export interface PaginationProperties {
+  /**
+   * The currently selected page.
+   */
   activePage: number;
-  /** Page count */
+  /**
+   * The total number of pages.
+   */
   pageCount: number;
-  /** Function to be passed when performing a page change */
+  /**
+   * Called with event and page number when a page is clicked.
+   * @TJS-type (page: number) => void;
+   */
   onPageChange: (page: number) => void;
-  /** Determines whether page numbers should be shown */
+  /**
+   * Determines whether page numbers should be shown.
+   * @default true
+   */
   showNumbers?: boolean;
 }
+
+export type PaginationProps = PaginationProperties &
+  HTMLAttributes<HTMLElement>;

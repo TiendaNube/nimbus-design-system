@@ -5,15 +5,29 @@ export interface RadioComponents {
   Skeleton: typeof RadioSkeleton;
 }
 
-export interface RadioProps extends InputHTMLAttributes<HTMLInputElement> {
-  /** Radio name */
+export interface RadioProperties {
+  /**
+   * Name attribute of the input element.
+   */
   name: string;
-  /** Radio appareance */
+  /**
+   * Change the visual style of the radio.
+   * @default radio
+   */
   as?: "radio" | "button";
-  /** Set whether radio state is checked */
+  /**
+   * Modifies true/false value of the native radio.
+   */
   checked?: boolean;
-  /** Set whether radio state is disabled */
+  /**
+   * Modifies the native disabled state of the native radio.
+   */
   disabled?: boolean;
-  /** Text to be rendered inside the component */
+  /**
+   * Text to be rendered inside the component.
+   */
   label?: string;
 }
+
+export type RadioProps = RadioProperties &
+  InputHTMLAttributes<HTMLInputElement>;

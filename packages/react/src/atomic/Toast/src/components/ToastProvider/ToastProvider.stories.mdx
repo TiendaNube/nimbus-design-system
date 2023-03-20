@@ -78,20 +78,19 @@ import { ToastProvider } from "./ToastProvider";
 // App.tsx
 import React from "react";
 import Home from "home";
+import { Toast } from "@nimbus-ds/toast";
 import "@nimbus-ds/styles/dist/index.css";
 
-const App: React.FC = () => {
-  const { addToast } = useToast();
-    return (
-      <ToastProvider>
-        <Home />
-      </ToastProvider>;
-    );
-};
+const App: React.FC = () =>  (
+  <Toast.Provider>
+    <Home />
+  </Toast.Provider>;
+);
+
 
 // Home.tsx
 import React from "react";
-import { ToastProvider } from "@nimbus-ds/toast";
+import { useToast } from "@nimbus-ds/toast";
 
 const Home: React.FC = () => {
   const { addToast } = useToast();

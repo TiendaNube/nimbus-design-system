@@ -5,11 +5,22 @@ export interface TextareaComponents {
   Skeleton: typeof TextareaSkeleton;
 }
 
-export interface TextareaProps
-  extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+export interface TextareaProperties {
+  /**
+   * Change the visual style of the textarea.
+   * @default neutral
+   */
   appearance?: "neutral" | "success" | "warning" | "danger";
-  /** Number of lines to be rendered for the user to input text */
+  /**
+   * Number of lines to be rendered for the user to input text
+   * @default 2
+   */
   lines?: number;
-  /** ID of the textarea element */
+  /**
+   * ID of the textarea
+   * */
   id: string;
 }
+
+export type TextareaProps = TextareaProperties &
+  TextareaHTMLAttributes<HTMLTextAreaElement>;

@@ -1,22 +1,42 @@
 import { HTMLAttributes, ReactNode } from "react";
 import { accordion } from "@nimbus-ds/styles";
 
-export interface AccordionHeaderProps
-  extends Omit<HTMLAttributes<HTMLElement>, "children"> {
-  /** Accordion Header content */
+export interface AccordionHeaderProperties {
+  /**
+   * The content of the accordion header.
+   * @TJS-type React.ReactNode | ((data: { selected: string; index: string }) => React.ReactNode);
+   */
   children?:
     | ReactNode
     | ((data: { selected: string; index: string }) => ReactNode);
-  /** Accordion Header title */
+  /**
+   * The title to display in the accordion header.
+   */
   title?: string;
-  /** Accordion Header subtitle */
+  /**
+   * The subtitle to display in the accordion header.
+   */
   subtitle?: string;
-  /** Accordion Header icon */
+  /**
+   * The SVG contents to display in the accordion header.
+   * @TJS-type React.ReactNode
+   */
   icon?: ReactNode;
-  /** Removes the arrow icon that shows if the accordion item is open or not which makes it possible to create a custom indicator  */
+  /**
+   * Removes the arrow icon that shows if the accordion item is open or not which makes it possible to create a custom indicator.
+   * @default false
+   */
   noIconToggle?: boolean;
-  /** Accordion Header borderTop */
+  /**
+   * The borderTop property defines a lower border of the accordion header.
+   * @default base
+   */
   borderTop?: keyof typeof accordion.properties.borderTop;
-  /** Accordion Header borderBottom */
+  /**
+   * The borderBottom property defines a lower border of the accordion header.
+   */
   borderBottom?: keyof typeof accordion.properties.borderBottom;
 }
+
+export type AccordionHeaderProps = AccordionHeaderProperties &
+  Omit<HTMLAttributes<HTMLElement>, "children">;

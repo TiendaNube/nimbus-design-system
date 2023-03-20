@@ -1,0 +1,825 @@
+{
+  "id": "table",
+  "name": "Table",
+  "totalProps": 1,
+  "props": [
+    {
+      "description": "The content of the table.",
+      "type": "React.ReactNode",
+      "title": "children",
+      "required": true
+    }
+  ],
+  "subComponents": [
+    {
+      "name": "Table.Body",
+      "totalProps": 1,
+      "props": [
+        {
+          "description": "The content of the table body.",
+          "type": "React.ReactNode",
+          "title": "children",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Table.Cell",
+      "totalProps": 7,
+      "props": [
+        {
+          "description": "The content of the table cell.",
+          "type": "React.ReactNode",
+          "title": "children",
+          "required": true
+        },
+        {
+          "description": "Type of html tag to create for the table cell.",
+          "default": "td",
+          "enum": ["td", "th"],
+          "type": "string",
+          "title": "as",
+          "required": false
+        },
+        {
+          "description": "The width property specifies the width of a table's content area.",
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "rest": {
+                  "type": "string",
+                  "title": "rest"
+                },
+                "focus": {
+                  "type": "string",
+                  "title": "focus"
+                },
+                "active": {
+                  "type": "string",
+                  "title": "active"
+                },
+                "hover": {
+                  "type": "string",
+                  "title": "hover"
+                },
+                "xs": {
+                  "type": "string",
+                  "title": "xs"
+                },
+                "md": {
+                  "type": "string",
+                  "title": "md"
+                },
+                "lg": {
+                  "type": "string",
+                  "title": "lg"
+                },
+                "xl": {
+                  "type": "string",
+                  "title": "xl"
+                }
+              },
+              "additionalProperties": false,
+              "propertyOrder": [
+                "rest",
+                "focus",
+                "active",
+                "hover",
+                "xs",
+                "md",
+                "lg",
+                "xl"
+              ]
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "title": "width",
+          "required": false
+        },
+        {
+          "description": "The maxWidth property specifies the maxWidth of a table's content area.",
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "rest": {
+                  "type": "string",
+                  "title": "rest"
+                },
+                "focus": {
+                  "type": "string",
+                  "title": "focus"
+                },
+                "active": {
+                  "type": "string",
+                  "title": "active"
+                },
+                "hover": {
+                  "type": "string",
+                  "title": "hover"
+                },
+                "xs": {
+                  "type": "string",
+                  "title": "xs"
+                },
+                "md": {
+                  "type": "string",
+                  "title": "md"
+                },
+                "lg": {
+                  "type": "string",
+                  "title": "lg"
+                },
+                "xl": {
+                  "type": "string",
+                  "title": "xl"
+                }
+              },
+              "additionalProperties": false,
+              "propertyOrder": [
+                "rest",
+                "focus",
+                "active",
+                "hover",
+                "xs",
+                "md",
+                "lg",
+                "xl"
+              ]
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "title": "maxWidth",
+          "required": false
+        },
+        {
+          "description": "The minWidth property specifies the minWidth of a table's content area.",
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "rest": {
+                  "type": "string",
+                  "title": "rest"
+                },
+                "focus": {
+                  "type": "string",
+                  "title": "focus"
+                },
+                "active": {
+                  "type": "string",
+                  "title": "active"
+                },
+                "hover": {
+                  "type": "string",
+                  "title": "hover"
+                },
+                "xs": {
+                  "type": "string",
+                  "title": "xs"
+                },
+                "md": {
+                  "type": "string",
+                  "title": "md"
+                },
+                "lg": {
+                  "type": "string",
+                  "title": "lg"
+                },
+                "xl": {
+                  "type": "string",
+                  "title": "xl"
+                }
+              },
+              "additionalProperties": false,
+              "propertyOrder": [
+                "rest",
+                "focus",
+                "active",
+                "hover",
+                "xs",
+                "md",
+                "lg",
+                "xl"
+              ]
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "title": "minWidth",
+          "required": false
+        },
+        {
+          "description": "The backgroundColor property sets the background color of the table.",
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "rest": {
+                  "enum": [
+                    "neutral-background",
+                    "neutral-surface",
+                    "neutral-surfaceHighlight",
+                    "primary-surface",
+                    "primary-surfaceHighlight",
+                    "transparent"
+                  ],
+                  "type": "string",
+                  "title": "rest"
+                },
+                "focus": {
+                  "enum": [
+                    "neutral-background",
+                    "neutral-surface",
+                    "neutral-surfaceHighlight",
+                    "primary-surface",
+                    "primary-surfaceHighlight",
+                    "transparent"
+                  ],
+                  "type": "string",
+                  "title": "focus"
+                },
+                "active": {
+                  "enum": [
+                    "neutral-background",
+                    "neutral-surface",
+                    "neutral-surfaceHighlight",
+                    "primary-surface",
+                    "primary-surfaceHighlight",
+                    "transparent"
+                  ],
+                  "type": "string",
+                  "title": "active"
+                },
+                "hover": {
+                  "enum": [
+                    "neutral-background",
+                    "neutral-surface",
+                    "neutral-surfaceHighlight",
+                    "primary-surface",
+                    "primary-surfaceHighlight",
+                    "transparent"
+                  ],
+                  "type": "string",
+                  "title": "hover"
+                },
+                "xs": {
+                  "enum": [
+                    "neutral-background",
+                    "neutral-surface",
+                    "neutral-surfaceHighlight",
+                    "primary-surface",
+                    "primary-surfaceHighlight",
+                    "transparent"
+                  ],
+                  "type": "string",
+                  "title": "xs"
+                },
+                "md": {
+                  "enum": [
+                    "neutral-background",
+                    "neutral-surface",
+                    "neutral-surfaceHighlight",
+                    "primary-surface",
+                    "primary-surfaceHighlight",
+                    "transparent"
+                  ],
+                  "type": "string",
+                  "title": "md"
+                },
+                "lg": {
+                  "enum": [
+                    "neutral-background",
+                    "neutral-surface",
+                    "neutral-surfaceHighlight",
+                    "primary-surface",
+                    "primary-surfaceHighlight",
+                    "transparent"
+                  ],
+                  "type": "string",
+                  "title": "lg"
+                },
+                "xl": {
+                  "enum": [
+                    "neutral-background",
+                    "neutral-surface",
+                    "neutral-surfaceHighlight",
+                    "primary-surface",
+                    "primary-surfaceHighlight",
+                    "transparent"
+                  ],
+                  "type": "string",
+                  "title": "xl"
+                }
+              },
+              "additionalProperties": false,
+              "propertyOrder": [
+                "rest",
+                "focus",
+                "active",
+                "hover",
+                "xs",
+                "md",
+                "lg",
+                "xl"
+              ]
+            },
+            {
+              "enum": [
+                "neutral-background",
+                "neutral-surface",
+                "neutral-surfaceHighlight",
+                "primary-surface",
+                "primary-surfaceHighlight",
+                "transparent"
+              ],
+              "type": "string"
+            }
+          ],
+          "title": "backgroundColor",
+          "required": false
+        },
+        {
+          "description": "The padding properties are used to generate space around an table's content area.",
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "rest": {
+                  "enum": ["base", "none", "small"],
+                  "type": "string",
+                  "title": "rest"
+                },
+                "focus": {
+                  "enum": ["base", "none", "small"],
+                  "type": "string",
+                  "title": "focus"
+                },
+                "active": {
+                  "enum": ["base", "none", "small"],
+                  "type": "string",
+                  "title": "active"
+                },
+                "hover": {
+                  "enum": ["base", "none", "small"],
+                  "type": "string",
+                  "title": "hover"
+                },
+                "xs": {
+                  "enum": ["base", "none", "small"],
+                  "type": "string",
+                  "title": "xs"
+                },
+                "md": {
+                  "enum": ["base", "none", "small"],
+                  "type": "string",
+                  "title": "md"
+                },
+                "lg": {
+                  "enum": ["base", "none", "small"],
+                  "type": "string",
+                  "title": "lg"
+                },
+                "xl": {
+                  "enum": ["base", "none", "small"],
+                  "type": "string",
+                  "title": "xl"
+                }
+              },
+              "additionalProperties": false,
+              "propertyOrder": [
+                "rest",
+                "focus",
+                "active",
+                "hover",
+                "xs",
+                "md",
+                "lg",
+                "xl"
+              ]
+            },
+            {
+              "enum": ["base", "none", "small"],
+              "type": "string"
+            }
+          ],
+          "title": "padding",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Table.Head",
+      "totalProps": 1,
+      "props": [
+        {
+          "description": "The content of the table head.",
+          "type": "React.ReactNode",
+          "title": "children",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Table.Row",
+      "totalProps": 8,
+      "props": [
+        {
+          "description": "The content of the table row.",
+          "type": "React.ReactNode",
+          "title": "children",
+          "required": true
+        },
+        {
+          "description": "The ID of the table row.",
+          "type": "string",
+          "title": "id",
+          "required": false
+        },
+        {
+          "description": "Function to be passed when clicking on the table row.",
+          "type": "() => void;",
+          "title": "onClick",
+          "required": false
+        },
+        {
+          "description": "The width property specifies the width of a table's content area.",
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "rest": {
+                  "type": "string",
+                  "title": "rest"
+                },
+                "focus": {
+                  "type": "string",
+                  "title": "focus"
+                },
+                "active": {
+                  "type": "string",
+                  "title": "active"
+                },
+                "hover": {
+                  "type": "string",
+                  "title": "hover"
+                },
+                "xs": {
+                  "type": "string",
+                  "title": "xs"
+                },
+                "md": {
+                  "type": "string",
+                  "title": "md"
+                },
+                "lg": {
+                  "type": "string",
+                  "title": "lg"
+                },
+                "xl": {
+                  "type": "string",
+                  "title": "xl"
+                }
+              },
+              "additionalProperties": false,
+              "propertyOrder": [
+                "rest",
+                "focus",
+                "active",
+                "hover",
+                "xs",
+                "md",
+                "lg",
+                "xl"
+              ]
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "title": "width",
+          "required": false
+        },
+        {
+          "description": "The maxWidth property specifies the maxWidth of a table's content area.",
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "rest": {
+                  "type": "string",
+                  "title": "rest"
+                },
+                "focus": {
+                  "type": "string",
+                  "title": "focus"
+                },
+                "active": {
+                  "type": "string",
+                  "title": "active"
+                },
+                "hover": {
+                  "type": "string",
+                  "title": "hover"
+                },
+                "xs": {
+                  "type": "string",
+                  "title": "xs"
+                },
+                "md": {
+                  "type": "string",
+                  "title": "md"
+                },
+                "lg": {
+                  "type": "string",
+                  "title": "lg"
+                },
+                "xl": {
+                  "type": "string",
+                  "title": "xl"
+                }
+              },
+              "additionalProperties": false,
+              "propertyOrder": [
+                "rest",
+                "focus",
+                "active",
+                "hover",
+                "xs",
+                "md",
+                "lg",
+                "xl"
+              ]
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "title": "maxWidth",
+          "required": false
+        },
+        {
+          "description": "The minWidth property specifies the minWidth of a table's content area.",
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "rest": {
+                  "type": "string",
+                  "title": "rest"
+                },
+                "focus": {
+                  "type": "string",
+                  "title": "focus"
+                },
+                "active": {
+                  "type": "string",
+                  "title": "active"
+                },
+                "hover": {
+                  "type": "string",
+                  "title": "hover"
+                },
+                "xs": {
+                  "type": "string",
+                  "title": "xs"
+                },
+                "md": {
+                  "type": "string",
+                  "title": "md"
+                },
+                "lg": {
+                  "type": "string",
+                  "title": "lg"
+                },
+                "xl": {
+                  "type": "string",
+                  "title": "xl"
+                }
+              },
+              "additionalProperties": false,
+              "propertyOrder": [
+                "rest",
+                "focus",
+                "active",
+                "hover",
+                "xs",
+                "md",
+                "lg",
+                "xl"
+              ]
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "title": "minWidth",
+          "required": false
+        },
+        {
+          "description": "The backgroundColor property sets the background color of the table.",
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "rest": {
+                  "enum": [
+                    "neutral-background",
+                    "neutral-surface",
+                    "neutral-surfaceHighlight",
+                    "primary-surface",
+                    "primary-surfaceHighlight",
+                    "transparent"
+                  ],
+                  "type": "string",
+                  "title": "rest"
+                },
+                "focus": {
+                  "enum": [
+                    "neutral-background",
+                    "neutral-surface",
+                    "neutral-surfaceHighlight",
+                    "primary-surface",
+                    "primary-surfaceHighlight",
+                    "transparent"
+                  ],
+                  "type": "string",
+                  "title": "focus"
+                },
+                "active": {
+                  "enum": [
+                    "neutral-background",
+                    "neutral-surface",
+                    "neutral-surfaceHighlight",
+                    "primary-surface",
+                    "primary-surfaceHighlight",
+                    "transparent"
+                  ],
+                  "type": "string",
+                  "title": "active"
+                },
+                "hover": {
+                  "enum": [
+                    "neutral-background",
+                    "neutral-surface",
+                    "neutral-surfaceHighlight",
+                    "primary-surface",
+                    "primary-surfaceHighlight",
+                    "transparent"
+                  ],
+                  "type": "string",
+                  "title": "hover"
+                },
+                "xs": {
+                  "enum": [
+                    "neutral-background",
+                    "neutral-surface",
+                    "neutral-surfaceHighlight",
+                    "primary-surface",
+                    "primary-surfaceHighlight",
+                    "transparent"
+                  ],
+                  "type": "string",
+                  "title": "xs"
+                },
+                "md": {
+                  "enum": [
+                    "neutral-background",
+                    "neutral-surface",
+                    "neutral-surfaceHighlight",
+                    "primary-surface",
+                    "primary-surfaceHighlight",
+                    "transparent"
+                  ],
+                  "type": "string",
+                  "title": "md"
+                },
+                "lg": {
+                  "enum": [
+                    "neutral-background",
+                    "neutral-surface",
+                    "neutral-surfaceHighlight",
+                    "primary-surface",
+                    "primary-surfaceHighlight",
+                    "transparent"
+                  ],
+                  "type": "string",
+                  "title": "lg"
+                },
+                "xl": {
+                  "enum": [
+                    "neutral-background",
+                    "neutral-surface",
+                    "neutral-surfaceHighlight",
+                    "primary-surface",
+                    "primary-surfaceHighlight",
+                    "transparent"
+                  ],
+                  "type": "string",
+                  "title": "xl"
+                }
+              },
+              "additionalProperties": false,
+              "propertyOrder": [
+                "rest",
+                "focus",
+                "active",
+                "hover",
+                "xs",
+                "md",
+                "lg",
+                "xl"
+              ]
+            },
+            {
+              "enum": [
+                "neutral-background",
+                "neutral-surface",
+                "neutral-surfaceHighlight",
+                "primary-surface",
+                "primary-surfaceHighlight",
+                "transparent"
+              ],
+              "type": "string"
+            }
+          ],
+          "title": "backgroundColor",
+          "required": false
+        },
+        {
+          "description": "The padding properties are used to generate space around an table's content area.",
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "rest": {
+                  "enum": ["base", "none", "small"],
+                  "type": "string",
+                  "title": "rest"
+                },
+                "focus": {
+                  "enum": ["base", "none", "small"],
+                  "type": "string",
+                  "title": "focus"
+                },
+                "active": {
+                  "enum": ["base", "none", "small"],
+                  "type": "string",
+                  "title": "active"
+                },
+                "hover": {
+                  "enum": ["base", "none", "small"],
+                  "type": "string",
+                  "title": "hover"
+                },
+                "xs": {
+                  "enum": ["base", "none", "small"],
+                  "type": "string",
+                  "title": "xs"
+                },
+                "md": {
+                  "enum": ["base", "none", "small"],
+                  "type": "string",
+                  "title": "md"
+                },
+                "lg": {
+                  "enum": ["base", "none", "small"],
+                  "type": "string",
+                  "title": "lg"
+                },
+                "xl": {
+                  "enum": ["base", "none", "small"],
+                  "type": "string",
+                  "title": "xl"
+                }
+              },
+              "additionalProperties": false,
+              "propertyOrder": [
+                "rest",
+                "focus",
+                "active",
+                "hover",
+                "xs",
+                "md",
+                "lg",
+                "xl"
+              ]
+            },
+            {
+              "enum": ["base", "none", "small"],
+              "type": "string"
+            }
+          ],
+          "title": "padding",
+          "required": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,11 +1,22 @@
 import { HTMLAttributes, ReactNode } from "react";
 import { sidebar } from "@nimbus-ds/styles";
 
-export interface SidebarHeaderProps extends HTMLAttributes<HTMLElement> {
-  /** Header content */
+export interface SidebarHeaderProperties {
+  /**
+   * The content of the sidebar header.
+   * @TJS-type React.ReactNode
+   */
   children?: ReactNode;
-  /** Header title */
+  /**
+   * The title to display in the sidebar header.
+   */
   title?: string;
-  /** Sidebar padding */
+  /**
+   * The padding properties are used to generate space around an sidebar's header content area.
+   * @default base
+   */
   padding?: keyof typeof sidebar.properties.padding;
 }
+
+export type SidebarHeaderProps = SidebarHeaderProperties &
+  HTMLAttributes<HTMLElement>;

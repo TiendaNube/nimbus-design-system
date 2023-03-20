@@ -8,13 +8,27 @@ export interface InputComponents {
   Skeleton: typeof InputSkeleton;
 }
 
-export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  /** Input appearance */
+export interface InputProperties {
+  /**
+   * Change the visual style of the input.
+   * @default neutral
+   */
   appearance?: "neutral" | "success" | "warning" | "danger";
-  /** Input disabled */
+  /**
+   * Disables the input, disallowing user interaction.
+   */
   disabled?: boolean;
-  /** Input append position icon */
+  /**
+   * Sent icon display position
+   * @default start
+   */
   appendPosition?: "end" | "start";
-  /** Input append icon */
+  /**
+   * SVG icon to be displayed on input.
+   * @TJS-type React.ReactNode
+   */
   append?: ReactNode;
 }
+
+export type InputProps = InputProperties &
+  InputHTMLAttributes<HTMLInputElement>;
