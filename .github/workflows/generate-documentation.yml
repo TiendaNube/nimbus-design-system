@@ -34,10 +34,6 @@ jobs:
         if: steps.cache-dependencies.outputs.cache-hit != 'true'
         run: yarn
 
-  build-tokens:
-    needs: setup
-    runs-on: ubuntu-latest
-
   generate-documents:
     needs: [setup]
     runs-on: ubuntu-latest
