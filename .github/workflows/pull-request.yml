@@ -1,10 +1,13 @@
-name: Quality
+name: check-quality
 
 on: [pull_request]
 
 jobs:
   pipeline-quality:
     runs-on: ubuntu-latest
+    env:
+      TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+      TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
