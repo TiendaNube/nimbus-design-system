@@ -11,6 +11,7 @@ on:
 
 jobs:
   publish-packages-npm:
+    if: ${{ github.event_name != 'push' }}
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
@@ -73,7 +74,7 @@ jobs:
       discussions: write
     steps:
       - name: Generate tag release
-        uses: StephaneBour/actions-calver@master
+        uses: StephaneBour/actions-calver@v1.5
         id: calver
         with:
           date_format: "%Y.%m.%d"
@@ -129,7 +130,7 @@ jobs:
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL_DEPLOYING }}
           SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
-          
+
       - name: Send slack notification on chanel Tech product updates
         id: slack-tech-product-updates
         uses: slackapi/slack-github-action@v1.23.0
