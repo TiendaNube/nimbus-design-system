@@ -3,7 +3,7 @@ name: "generate-documentation"
 on:
   push:
     branches:
-      - ECNIM-707
+      - master
       - "!dependabot/**/**"
     paths-ignore:
       - "**/package.json"
