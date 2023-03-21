@@ -1,13 +1,71 @@
 {
   "id": "toast",
   "name": "Toast",
-  "totalProps": 0,
-  "props": [],
+  "totalProps": 6,
+  "props": [
+    {
+      "description": "Unique toast ID used when hiding or removing a toast.",
+      "type": "string",
+      "title": "id",
+      "required": true
+    },
+    {
+      "description": "The text that should appear in the toast message.",
+      "type": "string",
+      "title": "text",
+      "required": true
+    },
+    {
+      "description": "Change the visual style of the toast.",
+      "default": "primary",
+      "enum": [
+        "danger",
+        "primary",
+        "progress",
+        "success"
+      ],
+      "type": "string",
+      "title": "type",
+      "required": false
+    },
+    {
+      "description": "The time in milliseconds that the toast message should persist.",
+      "default": 4000,
+      "enum": [
+        16000,
+        4000,
+        8000
+      ],
+      "type": "number",
+      "title": "duration",
+      "required": false
+    },
+    {
+      "description": "Tells you whether or not Toast should close automatically.",
+      "default": true,
+      "type": "boolean",
+      "title": "autoClose",
+      "required": false
+    },
+    {
+      "description": "Tells the toast position when we are using multiple toasts.",
+      "default": 0,
+      "type": "number",
+      "title": "position",
+      "required": false
+    }
+  ],
   "subComponents": [
     {
       "name": "Toast.Provider",
-      "totalProps": 0,
-      "props": []
+      "totalProps": 1,
+      "props": [
+        {
+          "type": "React.ReactNode",
+          "title": "children",
+          "required": true
+        }
+      ]
     }
   ]
 }

@@ -1,13 +1,53 @@
 {
   "id": "button",
   "name": "Button",
-  "totalProps": 0,
-  "props": [],
+  "totalProps": 3,
+  "props": [
+    {
+      "description": "The content of the button.",
+      "type": "React.ReactNode",
+      "title": "children",
+      "required": true
+    },
+    {
+      "description": "Change the visual style of the button.",
+      "default": "neutral",
+      "enum": [
+        "danger",
+        "neutral",
+        "primary",
+        "transparent"
+      ],
+      "type": "string",
+      "title": "appearance",
+      "required": false
+    },
+    {
+      "description": "Disables the button, disallowing user interaction.",
+      "default": false,
+      "type": "boolean",
+      "title": "disabled",
+      "required": false
+    }
+  ],
   "subComponents": [
     {
       "name": "Button.Skeleton",
-      "totalProps": 0,
-      "props": []
+      "totalProps": 2,
+      "props": [
+        {
+          "description": "Width of the skeleton. Useful when the skeleton is inside an inline element with no width of its own.",
+          "type": "string",
+          "title": "width",
+          "required": false
+        },
+        {
+          "description": "This is an attribute used to identify a DOM node for testing purposes.",
+          "type": "string",
+          "title": "data-testid",
+          "required": false
+        }
+      ]
     }
   ]
 }

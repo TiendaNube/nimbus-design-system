@@ -1,23 +1,101 @@
 {
   "id": "card",
   "name": "Card",
-  "totalProps": 0,
-  "props": [],
+  "totalProps": 3,
+  "props": [
+    {
+      "description": "The content of the card.",
+      "type": "React.ReactNode",
+      "title": "children",
+      "required": true
+    },
+    {
+      "description": "The padding properties are used to generate space around an card's content area.",
+      "default": "base",
+      "enum": [
+        "base",
+        "none",
+        "small"
+      ],
+      "type": "string",
+      "title": "padding",
+      "required": false
+    },
+    {
+      "description": "The backgroundColor property sets the background color of the card.",
+      "default": "neutral-background",
+      "enum": [
+        "danger-surface",
+        "danger-surfaceHighlight",
+        "neutral-background",
+        "neutral-surface",
+        "neutral-surfaceHighlight",
+        "primary-surface",
+        "primary-surfaceHighlight",
+        "success-surface",
+        "success-surfaceHighlight",
+        "warning-surface",
+        "warning-surfaceHighlight"
+      ],
+      "type": "string",
+      "title": "backgroundColor",
+      "required": false
+    }
+  ],
   "subComponents": [
     {
       "name": "Card.Body",
-      "totalProps": 0,
-      "props": []
+      "totalProps": 2,
+      "props": [
+        {
+          "description": "The content of the card body.",
+          "type": "React.ReactNode",
+          "title": "children",
+          "required": true
+        },
+        {
+          "description": "The padding properties are used to generate space around an card's body content area.",
+          "default": "none",
+          "enum": [
+            "base",
+            "none",
+            "small"
+          ],
+          "type": "string",
+          "title": "padding",
+          "required": false
+        }
+      ]
     },
     {
       "name": "Card.Footer",
-      "totalProps": 0,
-      "props": []
+      "totalProps": 1,
+      "props": [
+        {
+          "description": "The content of the card footer.",
+          "type": "React.ReactNode",
+          "title": "children",
+          "required": true
+        }
+      ]
     },
     {
       "name": "Card.Header",
-      "totalProps": 0,
-      "props": []
+      "totalProps": 2,
+      "props": [
+        {
+          "description": "The content of the card header.",
+          "type": "React.ReactNode",
+          "title": "children",
+          "required": false
+        },
+        {
+          "description": "The title to display in the card header.",
+          "type": "string",
+          "title": "title",
+          "required": false
+        }
+      ]
     }
   ]
 }
