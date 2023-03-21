@@ -9,7 +9,7 @@
   ],
   "sideEffects": false,
   "scripts": {
-    "build": "webpack",
+    "build": "yarn g:webpack",
     "clean": "rm -rf dist",
     "version": "yarn version"
   },
@@ -35,6 +35,6 @@
     "@nimbus-ds/box": "workspace:^",
     "@nimbus-ds/card": "workspace:^",
     "@nimbus-ds/radio": "workspace:^",
-    "webpack": "^5.76.0"
+    "@nimbus-ds/webpack": "workspace:^"
   }
 }

@@ -8,6 +8,9 @@
     "README.md"
   ],
   "sideEffects": false,
+  "scripts": {
+    "g:webpack": "cd $INIT_CWD && webpack"
+  },
   "homepage": "https://nimbus.nuvemshop.com.br/documentation",
   "repository": {
     "type": "git",

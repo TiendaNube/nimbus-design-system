@@ -9,7 +9,7 @@
   ],
   "sideEffects": false,
   "scripts": {
-    "build": "webpack",
+    "build": "yarn g:webpack",
     "clean": "rm -rf dist",
     "version": "yarn version"
   },
@@ -30,6 +30,6 @@
     "url": "https://github.com/TiendaNube/nimbus-design-system/issues"
   },
   "devDependencies": {
-    "webpack": "^5.76.0"
+    "@nimbus-ds/webpack": "workspace:^"
   }
 }

@@ -32,10 +32,6 @@ The Accordion component allows us to compress content into containers that can b
 
 ## 2023-02-07 `1.0.0`
 
-### 📚 3rd party library updates
-
-- Added `webpack@5.74.0`. ([#80](https://github.com/TiendaNube/nimbus-design-system/pull/80) by [@juniorconquista](https://github.com/juniorconquista))
-
 ### 🎉 New features
 
 - Added `children` and `selectedDefault` properties to the Component. ([#80](https://github.com/TiendaNube/nimbus-design-system/pull/80) by [@juniorconquista](https://github.com/juniorconquista))

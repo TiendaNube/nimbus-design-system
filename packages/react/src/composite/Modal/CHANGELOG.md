@@ -33,10 +33,6 @@ The Modal component allows us to call the user's attention to a floating box tha
 
 ## 2023-01-22 `1.0.0`
 
-### 📚 3rd party library updates
-
-- Added `webpack@5.74.0`. ([#77](https://github.com/TiendaNube/nimbus-design-system/pull/77) by [@juniorconquista](https://github.com/juniorconquista))
-
 ### 🎉 New features
 
 - Added `children`, `open`, `onDismiss`, `portalId` and `padding` properties to the Component. ([#77](https://github.com/TiendaNube/nimbus-design-system/pull/77) by [@juniorconquista](https://github.com/juniorconquista))

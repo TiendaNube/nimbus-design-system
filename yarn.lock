@@ -3000,7 +3000,7 @@ __metadata:
     "@nimbus-ds/radio": "workspace:^"
     "@nimbus-ds/text": "workspace:^"
     "@nimbus-ds/title": "workspace:^"
-    webpack: ^5.76.0
+    "@nimbus-ds/webpack": "workspace:^"
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3017,7 +3017,7 @@ __metadata:
     "@nimbus-ds/icons": "workspace:^"
     "@nimbus-ds/skeleton": "workspace:^"
     "@nimbus-ds/title": "workspace:^"
-    webpack: ^5.76.0
+    "@nimbus-ds/webpack": "workspace:^"
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3030,7 +3030,7 @@ __metadata:
   dependencies:
     "@nimbus-ds/skeleton": "workspace:^"
     "@nimbus-ds/text": "workspace:^"
-    webpack: ^5.76.0
+    "@nimbus-ds/webpack": "workspace:^"
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3041,8 +3041,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/box@workspace:packages/react/src/atomic/Box"
   dependencies:
+    "@nimbus-ds/webpack": "workspace:^"
     "@vanilla-extract/dynamic": ^2.0.2
-    webpack: ^5.76.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3057,7 +3057,7 @@ __metadata:
     "@nimbus-ds/icon": "workspace:^"
     "@nimbus-ds/icons": "workspace:^"
     "@nimbus-ds/skeleton": "workspace:^"
-    webpack: ^5.76.0
+    "@nimbus-ds/webpack": "workspace:^"
   peerDependencies:
     "@nimbus-ds/styles": "workspace:^"
     react: ^16.8 || ^17.0 || ^18.0
@@ -3073,7 +3073,7 @@ __metadata:
     "@nimbus-ds/button": "workspace:^"
     "@nimbus-ds/tag": "workspace:^"
     "@nimbus-ds/text": "workspace:^"
-    webpack: ^5.76.0
+    "@nimbus-ds/webpack": "workspace:^"
   peerDependencies:
     "@nimbus-ds/title": "workspace:^"
     react: ^16.8 || ^17.0 || ^18.0
@@ -3088,7 +3088,7 @@ __metadata:
     "@nimbus-ds/icon": "workspace:^"
     "@nimbus-ds/skeleton": "workspace:^"
     "@nimbus-ds/text": "workspace:^"
-    webpack: ^5.76.0
+    "@nimbus-ds/webpack": "workspace:^"
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3103,7 +3103,7 @@ __metadata:
     "@nimbus-ds/icons": "workspace:^"
     "@nimbus-ds/skeleton": "workspace:^"
     "@nimbus-ds/text": "workspace:^"
-    webpack: ^5.76.0
+    "@nimbus-ds/webpack": "workspace:^"
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3116,7 +3116,7 @@ __metadata:
   dependencies:
     "@floating-ui/react-dom-interactions": ^0.10.1
     "@nimbus-ds/icons": "workspace:^"
-    webpack: ^5.76.0
+    "@nimbus-ds/webpack": "workspace:^"
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3131,8 +3131,8 @@ __metadata:
     "@nimbus-ds/icons": "workspace:^"
     "@nimbus-ds/skeleton": "workspace:^"
     "@nimbus-ds/text": "workspace:^"
+    "@nimbus-ds/webpack": "workspace:^"
     "@vanilla-extract/dynamic": ^2.0.2
-    webpack: ^5.76.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3146,7 +3146,7 @@ __metadata:
     "@nimbus-ds/icon": "workspace:^"
     "@nimbus-ds/icons": "workspace:^"
     "@nimbus-ds/skeleton": "workspace:^"
-    webpack: ^5.76.0
+    "@nimbus-ds/webpack": "workspace:^"
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3159,7 +3159,7 @@ __metadata:
   dependencies:
     "@nimbus-ds/icons": "workspace:^"
     "@nimbus-ds/skeleton": "workspace:^"
-    webpack: ^5.76.0
+    "@nimbus-ds/webpack": "workspace:^"
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3170,9 +3170,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/icons@workspace:packages/icons"
   dependencies:
+    "@nimbus-ds/webpack": "workspace:^"
     "@svgr/cli": ^6.5.1
     svgo: ^3.0.2
-    webpack: ^5.76.0
   languageName: unknown
   linkType: soft
 
@@ -3183,7 +3183,7 @@ __metadata:
     "@nimbus-ds/icon": "workspace:^"
     "@nimbus-ds/icons": "workspace:^"
     "@nimbus-ds/skeleton": "workspace:^"
-    webpack: ^5.76.0
+    "@nimbus-ds/webpack": "workspace:^"
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3197,7 +3197,7 @@ __metadata:
     "@nimbus-ds/icon": "workspace:^"
     "@nimbus-ds/icons": "workspace:^"
     "@nimbus-ds/skeleton": "workspace:^"
-    webpack: ^5.76.0
+    "@nimbus-ds/webpack": "workspace:^"
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3210,7 +3210,7 @@ __metadata:
   dependencies:
     "@nimbus-ds/icons": "workspace:^"
     "@nimbus-ds/skeleton": "workspace:^"
-    webpack: ^5.76.0
+    "@nimbus-ds/webpack": "workspace:^"
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3222,7 +3222,7 @@ __metadata:
   resolution: "@nimbus-ds/list@workspace:packages/react/src/atomic/List"
   dependencies:
     "@nimbus-ds/skeleton": "workspace:^"
-    webpack: ^5.76.0
+    "@nimbus-ds/webpack": "workspace:^"
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3240,7 +3240,7 @@ __metadata:
     "@nimbus-ds/icons": "workspace:^"
     "@nimbus-ds/text": "workspace:^"
     "@nimbus-ds/title": "workspace:^"
-    webpack: ^5.76.0
+    "@nimbus-ds/webpack": "workspace:^"
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3253,7 +3253,7 @@ __metadata:
   dependencies:
     "@nimbus-ds/button": "workspace:^"
     "@nimbus-ds/icons": "workspace:^"
-    webpack: ^5.76.0
+    "@nimbus-ds/webpack": "workspace:^"
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3266,8 +3266,8 @@ __metadata:
   dependencies:
     "@floating-ui/react-dom-interactions": ^0.10.1
     "@nimbus-ds/box": "workspace:^"
+    "@nimbus-ds/webpack": "workspace:^"
     "@vanilla-extract/dynamic": ^2.0.2
-    webpack: ^5.76.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3280,7 +3280,7 @@ __metadata:
   dependencies:
     "@nimbus-ds/skeleton": "workspace:^"
     "@nimbus-ds/text": "workspace:^"
-    webpack: ^5.76.0
+    "@nimbus-ds/webpack": "workspace:^"
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3302,7 +3302,7 @@ __metadata:
   dependencies:
     "@nimbus-ds/icons": "workspace:^"
     "@nimbus-ds/skeleton": "workspace:^"
-    webpack: ^5.76.0
+    "@nimbus-ds/webpack": "workspace:^"
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3318,7 +3318,7 @@ __metadata:
     "@nimbus-ds/button": "workspace:^"
     "@nimbus-ds/text": "workspace:^"
     "@nimbus-ds/title": "workspace:^"
-    webpack: ^5.76.0
+    "@nimbus-ds/webpack": "workspace:^"
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3331,7 +3331,6 @@ __metadata:
   dependencies:
     "@nimbus-ds/webpack": "workspace:^"
     "@vanilla-extract/dynamic": ^2.0.2
-    webpack: ^5.76.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3342,8 +3341,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/spinner@workspace:packages/react/src/atomic/Spinner"
   dependencies:
+    "@nimbus-ds/webpack": "workspace:^"
     "@vanilla-extract/dynamic": ^2.0.2
-    webpack: ^5.76.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3363,7 +3362,6 @@ __metadata:
     glob: ^8.0.3
     rainbow-sprinkles: ^0.14.0
     ts-node: ^10.9.1
-    webpack: ^5.76.0
   languageName: unknown
   linkType: soft
 
@@ -3371,7 +3369,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/table@workspace:packages/react/src/composite/Table"
   dependencies:
-    webpack: ^5.76.0
+    "@nimbus-ds/webpack": "workspace:^"
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3384,7 +3382,7 @@ __metadata:
   dependencies:
     "@nimbus-ds/box": "workspace:^"
     "@nimbus-ds/text": "workspace:^"
-    webpack: ^5.76.0
+    "@nimbus-ds/webpack": "workspace:^"
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3398,7 +3396,7 @@ __metadata:
     "@nimbus-ds/icons": "workspace:^"
     "@nimbus-ds/skeleton": "workspace:^"
     "@nimbus-ds/text": "workspace:^"
-    webpack: ^5.76.0
+    "@nimbus-ds/webpack": "workspace:^"
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3410,7 +3408,7 @@ __metadata:
   resolution: "@nimbus-ds/text@workspace:packages/react/src/atomic/Text"
   dependencies:
     "@nimbus-ds/skeleton": "workspace:^"
-    webpack: ^5.76.0
+    "@nimbus-ds/webpack": "workspace:^"
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3422,7 +3420,7 @@ __metadata:
   resolution: "@nimbus-ds/textarea@workspace:packages/react/src/atomic/Textarea"
   dependencies:
     "@nimbus-ds/skeleton": "workspace:^"
-    webpack: ^5.76.0
+    "@nimbus-ds/webpack": "workspace:^"
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3436,8 +3434,8 @@ __metadata:
     "@nimbus-ds/icon": "workspace:^"
     "@nimbus-ds/icons": "workspace:^"
     "@nimbus-ds/skeleton": "workspace:^"
+    "@nimbus-ds/webpack": "workspace:^"
     "@vanilla-extract/dynamic": ^2.0.2
-    webpack: ^5.76.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3449,7 +3447,7 @@ __metadata:
   resolution: "@nimbus-ds/title@workspace:packages/react/src/atomic/Title"
   dependencies:
     "@nimbus-ds/skeleton": "workspace:^"
-    webpack: ^5.76.0
+    "@nimbus-ds/webpack": "workspace:^"
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3464,7 +3462,7 @@ __metadata:
     "@nimbus-ds/icons": "workspace:^"
     "@nimbus-ds/spinner": "workspace:^"
     "@nimbus-ds/text": "workspace:^"
-    webpack: ^5.76.0
+    "@nimbus-ds/webpack": "workspace:^"
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3477,7 +3475,7 @@ __metadata:
   dependencies:
     "@nimbus-ds/skeleton": "workspace:^"
     "@nimbus-ds/text": "workspace:^"
-    webpack: ^5.76.0
+    "@nimbus-ds/webpack": "workspace:^"
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3497,8 +3495,8 @@ __metadata:
   resolution: "@nimbus-ds/tooltip@workspace:packages/react/src/atomic/Tooltip"
   dependencies:
     "@floating-ui/react-dom-interactions": ^0.10.1
+    "@nimbus-ds/webpack": "workspace:^"
     "@vanilla-extract/dynamic": ^2.0.2
-    webpack: ^5.76.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0

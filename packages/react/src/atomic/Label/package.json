@@ -9,7 +9,7 @@
   ],
   "sideEffects": false,
   "scripts": {
-    "build": "webpack",
+    "build": "yarn g:webpack",
     "clean": "rm -rf dist",
     "version": "yarn version"
   },
@@ -31,6 +31,6 @@
   "devDependencies": {
     "@nimbus-ds/icon": "workspace:^",
     "@nimbus-ds/icons": "workspace:^",
-    "webpack": "^5.76.0"
+    "@nimbus-ds/webpack": "workspace:^"
   }
 }
