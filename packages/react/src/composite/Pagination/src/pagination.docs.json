@@ -1,33 +1,7 @@
 {
   "id": "pagination",
   "name": "Pagination",
-  "totalProps": 4,
-  "props": [
-    {
-      "description": "The currently selected page.",
-      "type": "number",
-      "title": "activePage",
-      "required": true
-    },
-    {
-      "description": "The total number of pages.",
-      "type": "number",
-      "title": "pageCount",
-      "required": true
-    },
-    {
-      "description": "Called with event and page number when a page is clicked.",
-      "type": "(page: number) => void;",
-      "title": "onPageChange",
-      "required": true
-    },
-    {
-      "description": "Determines whether page numbers should be shown.",
-      "default": true,
-      "type": "boolean",
-      "title": "showNumbers",
-      "required": false
-    }
-  ],
+  "totalProps": 0,
+  "props": [],
   "subComponents": []
 }

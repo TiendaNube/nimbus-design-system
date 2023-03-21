@@ -1,138 +1,23 @@
 {
   "id": "modal",
   "name": "Modal",
-  "totalProps": 6,
-  "props": [
-    {
-      "description": "The content of the modal.",
-      "type": "React.ReactNode",
-      "title": "children",
-      "required": true
-    },
-    {
-      "description": "Whether the modal is open or not.",
-      "type": "boolean",
-      "title": "open",
-      "required": true
-    },
-    {
-      "description": "Callback fired when the component requests to be closed.",
-      "type": "(open: boolean) => void;",
-      "title": "onDismiss",
-      "required": true
-    },
-    {
-      "description": "Id to be embedded in the portal element",
-      "type": "string",
-      "title": "portalId",
-      "required": false
-    },
-    {
-      "description": "The padding properties are used to generate space around an modal's content area.",
-      "default": "base",
-      "enum": [
-        "base",
-        "none",
-        "small"
-      ],
-      "type": "string",
-      "title": "padding",
-      "required": false
-    },
-    {
-      "description": "The maxWidth property specifies the maxWidth of a modal's content area.",
-      "default": "{ xs: \"100%\", md: \"500px\" }",
-      "anyOf": [
-        {
-          "type": "object",
-          "properties": {
-            "xs": {
-              "type": "string",
-              "title": "xs"
-            },
-            "md": {
-              "type": "string",
-              "title": "md"
-            },
-            "lg": {
-              "type": "string",
-              "title": "lg"
-            },
-            "xl": {
-              "type": "string",
-              "title": "xl"
-            }
-          },
-          "additionalProperties": false,
-          "propertyOrder": [
-            "xs",
-            "md",
-            "lg",
-            "xl"
-          ]
-        },
-        {
-          "type": "string"
-        }
-      ],
-      "title": "maxWidth",
-      "required": false
-    }
-  ],
+  "totalProps": 0,
+  "props": [],
   "subComponents": [
     {
       "name": "Modal.Body",
-      "totalProps": 2,
-      "props": [
-        {
-          "description": "The content of the modal body.",
-          "type": "React.ReactNode",
-          "title": "children",
-          "required": true
-        },
-        {
-          "description": "The padding properties are used to generate space around an modal's body content area.",
-          "default": "base",
-          "enum": [
-            "base",
-            "none",
-            "small"
-          ],
-          "type": "string",
-          "title": "padding",
-          "required": false
-        }
-      ]
+      "totalProps": 0,
+      "props": []
     },
     {
       "name": "Modal.Footer",
-      "totalProps": 1,
-      "props": [
-        {
-          "description": "The content of the modal footer.",
-          "type": "React.ReactNode",
-          "title": "children",
-          "required": true
-        }
-      ]
+      "totalProps": 0,
+      "props": []
     },
     {
       "name": "Modal.Header",
-      "totalProps": 2,
-      "props": [
-        {
-          "description": "The content of the modal header.",
-          "type": "React.ReactNode",
-          "title": "children",
-          "required": false
-        },
-        {
-          "description": "The title to display in the modal header.",
-          "type": "string",
-          "title": "title",
-          "required": false
-        }
-      ]
+      "totalProps": 0,
+      "props": []
     }
   ]
 }

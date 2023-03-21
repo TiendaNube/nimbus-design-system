@@ -1,85 +1,13 @@
 {
   "id": "icon",
   "name": "Icon",
-  "totalProps": 3,
-  "props": [
-    {
-      "description": "The SVG contents to display in the Icon.",
-      "type": "React.ReactNode",
-      "title": "source",
-      "required": true
-    },
-    {
-      "description": "Set the color for the SVG fill.",
-      "default": "neutral-textLow",
-      "enum": [
-        "currentColor",
-        "danger-interactive",
-        "danger-surface",
-        "danger-textHigh",
-        "danger-textLow",
-        "neutral-background",
-        "neutral-interactive",
-        "neutral-surface",
-        "neutral-textDisabled",
-        "neutral-textHigh",
-        "neutral-textLow",
-        "primary-interactive",
-        "primary-surface",
-        "primary-textHigh",
-        "primary-textLow",
-        "success-interactive",
-        "success-surface",
-        "success-textHigh",
-        "success-textLow",
-        "warning-interactive",
-        "warning-surface",
-        "warning-textHigh",
-        "warning-textLow"
-      ],
-      "type": "string",
-      "title": "color",
-      "required": false
-    },
-    {
-      "description": "The cursor property specifies the mouse cursor to be displayed when pointing over an element.",
-      "default": "inherit",
-      "enum": [
-        "auto",
-        "grab",
-        "inherit",
-        "not-allowed",
-        "pointer"
-      ],
-      "type": "string",
-      "title": "cursor",
-      "required": false
-    }
-  ],
+  "totalProps": 0,
+  "props": [],
   "subComponents": [
     {
       "name": "Icon.Skeleton",
-      "totalProps": 3,
-      "props": [
-        {
-          "description": "Width of the skeleton. Useful when the skeleton is inside an inline element with no width of its own.",
-          "type": "string",
-          "title": "width",
-          "required": false
-        },
-        {
-          "description": "Height of the skeleton. Useful when you don't want to adapt the skeleton to a text element but for instance a card.",
-          "type": "string",
-          "title": "height",
-          "required": false
-        },
-        {
-          "description": "This is an attribute used to identify a DOM node for testing purposes.",
-          "type": "string",
-          "title": "data-testid",
-          "required": false
-        }
-      ]
+      "totalProps": 0,
+      "props": []
     }
   ]
 }
