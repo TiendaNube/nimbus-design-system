@@ -29,6 +29,6 @@
     "url": "https://github.com/TiendaNube/nimbus-design-system/issues"
   },
   "devDependencies": {
-    "webpack": "^5.74.0"
+    "webpack": "^5.76.0"
   }
 }

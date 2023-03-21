@@ -35,6 +35,6 @@
     "@nimbus-ds/button": "workspace:^",
     "@nimbus-ds/text": "workspace:^",
     "@nimbus-ds/title": "workspace:^",
-    "webpack": "^5.74.0"
+    "webpack": "^5.76.0"
   }
 }

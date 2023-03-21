@@ -34,6 +34,6 @@
     "@nimbus-ds/icon": "workspace:^",
     "@nimbus-ds/icons": "workspace:^",
     "@nimbus-ds/skeleton": "workspace:^",
-    "webpack": "^5.74.0"
+    "webpack": "^5.76.0"
   }
 }

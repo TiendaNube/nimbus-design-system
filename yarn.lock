@@ -3000,7 +3000,7 @@ __metadata:
     "@nimbus-ds/radio": "workspace:^"
     "@nimbus-ds/text": "workspace:^"
     "@nimbus-ds/title": "workspace:^"
-    webpack: ^5.74.0
+    webpack: ^5.76.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3017,7 +3017,7 @@ __metadata:
     "@nimbus-ds/icons": "workspace:^"
     "@nimbus-ds/skeleton": "workspace:^"
     "@nimbus-ds/title": "workspace:^"
-    webpack: ^5.74.0
+    webpack: ^5.76.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3030,7 +3030,7 @@ __metadata:
   dependencies:
     "@nimbus-ds/skeleton": "workspace:^"
     "@nimbus-ds/text": "workspace:^"
-    webpack: ^5.74.0
+    webpack: ^5.76.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3042,7 +3042,7 @@ __metadata:
   resolution: "@nimbus-ds/box@workspace:packages/react/src/atomic/Box"
   dependencies:
     "@vanilla-extract/dynamic": ^2.0.2
-    webpack: ^5.74.0
+    webpack: ^5.76.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3057,7 +3057,7 @@ __metadata:
     "@nimbus-ds/icon": "workspace:^"
     "@nimbus-ds/icons": "workspace:^"
     "@nimbus-ds/skeleton": "workspace:^"
-    webpack: ^5.74.0
+    webpack: ^5.76.0
   peerDependencies:
     "@nimbus-ds/styles": "workspace:^"
     react: ^16.8 || ^17.0 || ^18.0
@@ -3073,7 +3073,7 @@ __metadata:
     "@nimbus-ds/button": "workspace:^"
     "@nimbus-ds/tag": "workspace:^"
     "@nimbus-ds/text": "workspace:^"
-    webpack: ^5.74.0
+    webpack: ^5.76.0
   peerDependencies:
     "@nimbus-ds/title": "workspace:^"
     react: ^16.8 || ^17.0 || ^18.0
@@ -3088,7 +3088,7 @@ __metadata:
     "@nimbus-ds/icon": "workspace:^"
     "@nimbus-ds/skeleton": "workspace:^"
     "@nimbus-ds/text": "workspace:^"
-    webpack: ^5.74.0
+    webpack: ^5.76.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3103,7 +3103,7 @@ __metadata:
     "@nimbus-ds/icons": "workspace:^"
     "@nimbus-ds/skeleton": "workspace:^"
     "@nimbus-ds/text": "workspace:^"
-    webpack: ^5.74.0
+    webpack: ^5.76.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3116,7 +3116,7 @@ __metadata:
   dependencies:
     "@floating-ui/react-dom-interactions": ^0.10.1
     "@nimbus-ds/icons": "workspace:^"
-    webpack: ^5.75.0
+    webpack: ^5.76.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3132,7 +3132,7 @@ __metadata:
     "@nimbus-ds/skeleton": "workspace:^"
     "@nimbus-ds/text": "workspace:^"
     "@vanilla-extract/dynamic": ^2.0.2
-    webpack: ^5.74.0
+    webpack: ^5.76.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3146,7 +3146,7 @@ __metadata:
     "@nimbus-ds/icon": "workspace:^"
     "@nimbus-ds/icons": "workspace:^"
     "@nimbus-ds/skeleton": "workspace:^"
-    webpack: ^5.74.0
+    webpack: ^5.76.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3159,7 +3159,7 @@ __metadata:
   dependencies:
     "@nimbus-ds/icons": "workspace:^"
     "@nimbus-ds/skeleton": "workspace:^"
-    webpack: ^5.74.0
+    webpack: ^5.76.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3172,7 +3172,7 @@ __metadata:
   dependencies:
     "@svgr/cli": ^6.5.1
     svgo: ^3.0.2
-    webpack: ^5.75.0
+    webpack: ^5.76.0
   languageName: unknown
   linkType: soft
 
@@ -3183,7 +3183,7 @@ __metadata:
     "@nimbus-ds/icon": "workspace:^"
     "@nimbus-ds/icons": "workspace:^"
     "@nimbus-ds/skeleton": "workspace:^"
-    webpack: ^5.74.0
+    webpack: ^5.76.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3197,7 +3197,7 @@ __metadata:
     "@nimbus-ds/icon": "workspace:^"
     "@nimbus-ds/icons": "workspace:^"
     "@nimbus-ds/skeleton": "workspace:^"
-    webpack: ^5.74.0
+    webpack: ^5.76.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3210,7 +3210,7 @@ __metadata:
   dependencies:
     "@nimbus-ds/icons": "workspace:^"
     "@nimbus-ds/skeleton": "workspace:^"
-    webpack: ^5.74.0
+    webpack: ^5.76.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3222,7 +3222,7 @@ __metadata:
   resolution: "@nimbus-ds/list@workspace:packages/react/src/atomic/List"
   dependencies:
     "@nimbus-ds/skeleton": "workspace:^"
-    webpack: ^5.74.0
+    webpack: ^5.76.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3240,7 +3240,7 @@ __metadata:
     "@nimbus-ds/icons": "workspace:^"
     "@nimbus-ds/text": "workspace:^"
     "@nimbus-ds/title": "workspace:^"
-    webpack: ^5.74.0
+    webpack: ^5.76.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3253,7 +3253,7 @@ __metadata:
   dependencies:
     "@nimbus-ds/button": "workspace:^"
     "@nimbus-ds/icons": "workspace:^"
-    webpack: ^5.74.0
+    webpack: ^5.76.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3267,7 +3267,7 @@ __metadata:
     "@floating-ui/react-dom-interactions": ^0.10.1
     "@nimbus-ds/box": "workspace:^"
     "@vanilla-extract/dynamic": ^2.0.2
-    webpack: ^5.74.0
+    webpack: ^5.76.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3280,7 +3280,7 @@ __metadata:
   dependencies:
     "@nimbus-ds/skeleton": "workspace:^"
     "@nimbus-ds/text": "workspace:^"
-    webpack: ^5.74.0
+    webpack: ^5.76.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3302,7 +3302,7 @@ __metadata:
   dependencies:
     "@nimbus-ds/icons": "workspace:^"
     "@nimbus-ds/skeleton": "workspace:^"
-    webpack: ^5.74.0
+    webpack: ^5.76.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3318,7 +3318,7 @@ __metadata:
     "@nimbus-ds/button": "workspace:^"
     "@nimbus-ds/text": "workspace:^"
     "@nimbus-ds/title": "workspace:^"
-    webpack: ^5.74.0
+    webpack: ^5.76.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3331,7 +3331,7 @@ __metadata:
   dependencies:
     "@nimbus-ds/webpack": "workspace:^"
     "@vanilla-extract/dynamic": ^2.0.2
-    webpack: ^5.74.0
+    webpack: ^5.76.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3343,7 +3343,7 @@ __metadata:
   resolution: "@nimbus-ds/spinner@workspace:packages/react/src/atomic/Spinner"
   dependencies:
     "@vanilla-extract/dynamic": ^2.0.2
-    webpack: ^5.74.0
+    webpack: ^5.76.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3363,7 +3363,7 @@ __metadata:
     glob: ^8.0.3
     rainbow-sprinkles: ^0.14.0
     ts-node: ^10.9.1
-    webpack: ^5.75.0
+    webpack: ^5.76.0
   languageName: unknown
   linkType: soft
 
@@ -3371,7 +3371,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/table@workspace:packages/react/src/composite/Table"
   dependencies:
-    webpack: ^5.74.0
+    webpack: ^5.76.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3384,7 +3384,7 @@ __metadata:
   dependencies:
     "@nimbus-ds/box": "workspace:^"
     "@nimbus-ds/text": "workspace:^"
-    webpack: ^5.74.0
+    webpack: ^5.76.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3398,7 +3398,7 @@ __metadata:
     "@nimbus-ds/icons": "workspace:^"
     "@nimbus-ds/skeleton": "workspace:^"
     "@nimbus-ds/text": "workspace:^"
-    webpack: ^5.74.0
+    webpack: ^5.76.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3410,7 +3410,7 @@ __metadata:
   resolution: "@nimbus-ds/text@workspace:packages/react/src/atomic/Text"
   dependencies:
     "@nimbus-ds/skeleton": "workspace:^"
-    webpack: ^5.74.0
+    webpack: ^5.76.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3422,7 +3422,7 @@ __metadata:
   resolution: "@nimbus-ds/textarea@workspace:packages/react/src/atomic/Textarea"
   dependencies:
     "@nimbus-ds/skeleton": "workspace:^"
-    webpack: ^5.74.0
+    webpack: ^5.76.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3437,7 +3437,7 @@ __metadata:
     "@nimbus-ds/icons": "workspace:^"
     "@nimbus-ds/skeleton": "workspace:^"
     "@vanilla-extract/dynamic": ^2.0.2
-    webpack: ^5.74.0
+    webpack: ^5.76.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3449,7 +3449,7 @@ __metadata:
   resolution: "@nimbus-ds/title@workspace:packages/react/src/atomic/Title"
   dependencies:
     "@nimbus-ds/skeleton": "workspace:^"
-    webpack: ^5.74.0
+    webpack: ^5.76.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3464,7 +3464,7 @@ __metadata:
     "@nimbus-ds/icons": "workspace:^"
     "@nimbus-ds/spinner": "workspace:^"
     "@nimbus-ds/text": "workspace:^"
-    webpack: ^5.74.0
+    webpack: ^5.76.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3477,7 +3477,7 @@ __metadata:
   dependencies:
     "@nimbus-ds/skeleton": "workspace:^"
     "@nimbus-ds/text": "workspace:^"
-    webpack: ^5.74.0
+    webpack: ^5.76.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3498,7 +3498,7 @@ __metadata:
   dependencies:
     "@floating-ui/react-dom-interactions": ^0.10.1
     "@vanilla-extract/dynamic": ^2.0.2
-    webpack: ^5.74.0
+    webpack: ^5.76.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3524,7 +3524,7 @@ __metadata:
     mini-css-extract-plugin: ^2.7.2
     terser-webpack-plugin: ^5.3.6
     typescript: ^4.9.3
-    webpack: ^5.75.0
+    webpack: ^5.76.0
     webpack-merge: ^5.8.0
     webpack-shell-plugin-next: ^2.3.1
   languageName: unknown
@@ -21289,7 +21289,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"webpack@npm:>=4.43.0 <6.0.0, webpack@npm:^5.74.0, webpack@npm:^5.9.0":
+"webpack@npm:>=4.43.0 <6.0.0, webpack@npm:^5.9.0":
   version: 5.74.0
   resolution: "webpack@npm:5.74.0"
   dependencies:
@@ -21326,7 +21326,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"webpack@npm:^5, webpack@npm:^5.75.0":
+"webpack@npm:^5":
   version: 5.75.0
   resolution: "webpack@npm:5.75.0"
   dependencies:
@@ -21360,6 +21360,43 @@ __metadata:
   bin:
     webpack: bin/webpack.js
   checksum: 2bcc5f3c195f375944e8af2f00bf2feea39cb9fda5f763b0d1b00077f1c51783db25c94d3fae96a07dead9fa085e6ae7474417e5ab31719c9776ea5969ceb83a
+  languageName: node
+  linkType: hard
+
+"webpack@npm:^5.76.0":
+  version: 5.76.2
+  resolution: "webpack@npm:5.76.2"
+  dependencies:
+    "@types/eslint-scope": ^3.7.3
+    "@types/estree": ^0.0.51
+    "@webassemblyjs/ast": 1.11.1
+    "@webassemblyjs/wasm-edit": 1.11.1
+    "@webassemblyjs/wasm-parser": 1.11.1
+    acorn: ^8.7.1
+    acorn-import-assertions: ^1.7.6
+    browserslist: ^4.14.5
+    chrome-trace-event: ^1.0.2
+    enhanced-resolve: ^5.10.0
+    es-module-lexer: ^0.9.0
+    eslint-scope: 5.1.1
+    events: ^3.2.0
+    glob-to-regexp: ^0.4.1
+    graceful-fs: ^4.2.9
+    json-parse-even-better-errors: ^2.3.1
+    loader-runner: ^4.2.0
+    mime-types: ^2.1.27
+    neo-async: ^2.6.2
+    schema-utils: ^3.1.0
+    tapable: ^2.1.1
+    terser-webpack-plugin: ^5.1.3
+    watchpack: ^2.4.0
+    webpack-sources: ^3.2.3
+  peerDependenciesMeta:
+    webpack-cli:
+      optional: true
+  bin:
+    webpack: bin/webpack.js
+  checksum: 86db98299a175c371031449c26077e87b33acd8f45de7f7945ed4b9b37c8ca11bc5169af9c44743efccd4d55e08042a3aa3a3bc42aff831309a0821ffbcd395e
   languageName: node
   linkType: hard
 
