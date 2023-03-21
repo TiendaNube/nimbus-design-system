@@ -1,11 +1,18 @@
 import { ReactNode, HTMLAttributes } from "react";
 import { TableSprinkle } from "@nimbus-ds/styles";
 
-type TableExtends = TableSprinkle & HTMLAttributes<HTMLTableCellElement>;
-
-export interface TableCellProps extends TableExtends {
-  /** Content of the cell */
+export interface TableCellProperties extends TableSprinkle {
+  /**
+   * The content of the table cell.
+   * @TJS-type React.ReactNode
+   */
   children: ReactNode;
-  /** Defines the type of html element to be rendered */
+  /**
+   * Type of html tag to create for the table cell.
+   * @default td
+   */
   as?: "td" | "th";
 }
+
+export type TableCellProps = TableCellProperties &
+  HTMLAttributes<HTMLTableCellElement>;

@@ -35,6 +35,7 @@ const Toggle: React.FC<ToggleProps> & ToggleComponents = ({
   </label>
 );
 
+Toggle.displayName = "Toggle";
 Toggle.Skeleton = ToggleSkeleton;
 Toggle.Skeleton.displayName = "Toggle.Skeleton";
 

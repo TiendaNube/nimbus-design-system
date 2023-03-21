@@ -1,9 +1,13 @@
 import { ReactNode, HTMLAttributes } from "react";
 import { BoxSprinkle } from "@nimbus-ds/styles";
 
-type BoxExtends = BoxSprinkle & Omit<HTMLAttributes<HTMLElement>, "color">;
-
-export interface BoxProps extends BoxExtends {
-  /** Element to be rendered inside the Box component */
+export interface BoxProperties extends BoxSprinkle {
+  /**
+   * Element to be rendered inside the Box component. Meu teste
+   * @TJS-type React.ReactNode
+   */
   children?: ReactNode;
 }
+
+export type BoxProps = BoxProperties &
+  Omit<HTMLAttributes<HTMLElement>, "color">;

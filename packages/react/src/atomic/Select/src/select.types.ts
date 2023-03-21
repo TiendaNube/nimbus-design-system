@@ -7,13 +7,26 @@ export interface SelectComponents {
   Skeleton: typeof SelectSkeleton;
 }
 
-export interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
-  /** Select name */
+export interface SelectProperties {
+  /**
+   * The name of the wrapper element or the select element when native.
+   */
   name: string;
-  /** Select id */
+  /**
+   * The id of the wrapper element or the select element when native.
+   */
   id: string;
-  /** Elements to be rendered inside the select list */
+  /**
+   * The content of the select.
+   * @TJS-type React.ReactNode
+   */
   children: ReactNode;
-  /** Select color */
+  /**
+   * Change the visual style of the select.
+   * @default neutral
+   */
   appearance?: "success" | "warning" | "danger" | "neutral";
 }
+
+export type SelectProps = SelectProperties &
+  SelectHTMLAttributes<HTMLSelectElement>;

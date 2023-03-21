@@ -1,0 +1,73 @@
+{
+  "id": "radio",
+  "name": "Radio",
+  "totalProps": 5,
+  "props": [
+    {
+      "description": "Name attribute of the input element.",
+      "type": "string",
+      "title": "name",
+      "required": true
+    },
+    {
+      "description": "Change the visual style of the radio.",
+      "default": "radio",
+      "enum": [
+        "button",
+        "radio"
+      ],
+      "type": "string",
+      "title": "as",
+      "required": false
+    },
+    {
+      "description": "Modifies true/false value of the native radio.",
+      "type": "boolean",
+      "title": "checked",
+      "required": false
+    },
+    {
+      "description": "Modifies the native disabled state of the native radio.",
+      "type": "boolean",
+      "title": "disabled",
+      "required": false
+    },
+    {
+      "description": "Text to be rendered inside the component.",
+      "type": "string",
+      "title": "label",
+      "required": false
+    }
+  ],
+  "subComponents": [
+    {
+      "name": "Radio.Skeleton",
+      "totalProps": 3,
+      "props": [
+        {
+          "description": "Width of the skeleton. Useful when the skeleton is inside an inline element with no width of its own.",
+          "type": "string",
+          "title": "width",
+          "required": false
+        },
+        {
+          "description": "Change the visual style of the radio.",
+          "default": "radio",
+          "enum": [
+            "button",
+            "radio"
+          ],
+          "type": "string",
+          "title": "as",
+          "required": false
+        },
+        {
+          "description": "This is an attribute used to identify a DOM node for testing purposes.",
+          "type": "string",
+          "title": "data-testid",
+          "required": false
+        }
+      ]
+    }
+  ]
+}

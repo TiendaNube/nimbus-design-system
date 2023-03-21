@@ -28,10 +28,10 @@ const Input: React.FC<InputProps> & InputComponents = ({
   </div>
 );
 
-Input.displayName = "Input";
 Input.Password = InputPassword;
 Input.Search = InputSearch;
 Input.Skeleton = InputSkeleton;
+Input.displayName = "Input";
 Input.Password.displayName = "Input.Password";
 Input.Search.displayName = "Input.Search";
 Input.Skeleton.displayName = "Input.Skeleton";

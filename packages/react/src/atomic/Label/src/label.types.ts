@@ -5,11 +5,21 @@ export interface LabelComponents {
   Skeleton: typeof LabelSkeleton;
 }
 
-export interface LabelProps extends HTMLAttributes<HTMLLabelElement> {
-  /** Element to be rendered inside the Label component */
+export interface LabelProperties {
+  /**
+   * The content of the label.
+   * @TJS-type React.ReactNode
+   */
   children: ReactNode;
-  /** ID of the node with which the label is associated */
+  /**
+   * The for attribute specifies which form element a label is bound to.
+   */
   htmlFor?: string;
-  /** If true the label will be visually hidden but maintain accessibility purpose */
+  /**
+   * If true the label will be visually hidden but maintain accessibility purpose
+   * @default false
+   */
   hidden?: boolean;
 }
+
+export type LabelProps = LabelProperties & HTMLAttributes<HTMLElement>;

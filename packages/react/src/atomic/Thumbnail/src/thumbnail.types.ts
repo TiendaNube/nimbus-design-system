@@ -6,13 +6,27 @@ export interface ThumbnailComponents {
   Skeleton: typeof ThumbnailSkeleton;
 }
 
-export interface ThumbnailProps extends ImgHTMLAttributes<HTMLImageElement> {
-  /** The required alt attribute specifies an alternate text for an image, if the image cannot be displayed. */
+export interface ThumbnailProperties {
+  /**
+   * The required alt attribute specifies an alternate text for an image, if the image cannot be displayed.
+   */
   alt: string;
-  /** Element to be displayed on thumbnail */
+  /**
+   * The content of the thumbnail.
+   * @TJS-type React.ReactNode
+   */
   children?: ReactNode;
-  /** Permitted aspect ratios for the size of the image */
+  /**
+   * Permitted aspect ratios for the size of the thumbnail image.
+   * @default 1/1
+   */
   aspectRatio?: typeof thumbnail.properties.aspectRatio[number];
-  /** Width value of the image. Defaults to 100% */
+  /**
+   * Width value of the thumbnail image. Defaults to 100%.
+   * @default 100%
+   */
   width?: string;
 }
+
+export type ThumbnailProps = ThumbnailProperties &
+  ImgHTMLAttributes<HTMLImageElement>;

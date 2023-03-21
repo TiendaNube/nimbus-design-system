@@ -1,7 +1,9 @@
 import { SkeletonProps } from "@nimbus-ds/skeleton";
 import { ThumbnailProps } from "../../thumbnail.types";
 
-export type ThumbnailSkeletonProps = Partial<Pick<SkeletonProps, "width">> &
-  Partial<Pick<ThumbnailProps, "aspectRatio">> & {
-    "data-testid"?: string;
-  };
+export type ThumbnailSkeletonProperties = Partial<
+  Pick<ThumbnailProps, "aspectRatio">
+> &
+  Partial<Pick<SkeletonProps, "width" | "data-testid">>;
+
+export type ThumbnailSkeletonProps = ThumbnailSkeletonProperties;

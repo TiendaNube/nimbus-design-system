@@ -7,19 +7,42 @@ export interface TextComponents {
   Skeleton: typeof TextSkeleton;
 }
 
-export interface TextProps extends HTMLAttributes<HTMLParagraphElement> {
-  /** Element to be rendered inside the Text component */
+export interface TextProperties {
+  /**
+   * The content of the link.
+   * @TJS-type React.ReactNode
+   */
   children: ReactNode;
-  /** Type of html tag to create for the Text component */
+  /**
+   * Type of html tag to create for the Text component.
+   * @default p
+   */
   as?: "p" | "span";
-  /** Text size */
+  /**
+   * The fontSize property sets the size of the text.
+   * @default base
+   */
   fontSize?: keyof typeof text.properties.fontSize;
-  /** Bold font for the text component */
+  /**
+   * The fontWeight property sets how thick or thin characters in text should be displayed.
+   * @default regular
+   */
   fontWeight?: keyof typeof text.properties.fontWeight;
-  /** Text line height */
+  /**
+   * The lineHeight property specifies the line height of the text.
+   * @default base
+   */
   lineHeight?: keyof typeof text.properties.lineHeight;
-  /** Text alignment in content */
+  /**
+   * The textAlign property specifies the horizontal alignment of text.
+   * @default left
+   */
   textAlign?: typeof text.properties.textAlign[number];
-  /** Text color */
+  /**
+   * The color property is used to set the color of the text.
+   * @default neutral-textLow
+   */
   color?: keyof typeof text.properties.color;
 }
+
+export type TextProps = TextProperties & HTMLAttributes<HTMLParagraphElement>;

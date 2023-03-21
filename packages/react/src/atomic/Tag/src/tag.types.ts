@@ -5,9 +5,17 @@ export interface TagComponents {
   Skeleton: typeof TagSkeleton;
 }
 
-export interface TagProps extends HTMLAttributes<HTMLDivElement> {
-  /** Element to be rendered inside the Title component */
+export interface TagProperties {
+  /**
+   * The content of the tag.
+   * @TJS-type React.ReactNode
+   */
   children: ReactNode;
-  /** Tag color */
+  /**
+   * Change the visual style of the tag.
+   * @default neutral
+   */
   appearance?: "primary" | "success" | "warning" | "danger" | "neutral";
 }
+
+export type TagProps = TagProperties & HTMLAttributes<HTMLDivElement>;

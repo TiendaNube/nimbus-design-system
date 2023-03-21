@@ -3,6 +3,14 @@
 This is the log of notable changes to the Design System Nimbus that are developer-facing.
 Package-specific changes not released in any package will be added here just before the release. Until then, you can find them in changelogs of the individual packages (see [packages](./packages) directory).
 
+## 2023-03-19
+
+### 🎉 New features
+
+- Creating a build script to build documentation for components and subcomponents. ([#126](https://github.com/TiendaNube/nimbus-design-system/pull/#126) by [@juniorconquista](https://github.com/juniorconquista))
+- Configuring use of [turborepo](https://turbo.build/repo/docs/core-concepts/remote-caching) cache to publish artifacts generated from each package and share in local and pipeline environments. ([#126](https://github.com/TiendaNube/nimbus-design-system/pull/#126) by [@juniorconquista](https://github.com/juniorconquista))
+- Restructured action build steps to create a cache of `node_modules` folders and therefore not unnecessarily perform package installs. ([#126](https://github.com/TiendaNube/nimbus-design-system/pull/#126) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-02-16
 
 ### 🎉 New features

@@ -1,6 +1,12 @@
 import { ReactNode, HTMLAttributes } from "react";
 
-export interface TableHeadProps
-  extends HTMLAttributes<HTMLTableSectionElement> {
+export interface TableHeadProperties {
+  /**
+   * The content of the table head.
+   * @TJS-type React.ReactNode
+   */
   children: ReactNode;
 }
+
+export type TableHeadProps = TableHeadProperties &
+  HTMLAttributes<HTMLTableSectionElement>;

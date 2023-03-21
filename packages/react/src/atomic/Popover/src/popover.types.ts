@@ -2,27 +2,56 @@ import { HTMLAttributes, ReactNode } from "react";
 import { Placement } from "@floating-ui/react-dom-interactions";
 import { PopoverSprinkle } from "@nimbus-ds/styles";
 
-type PopoverExtends = PopoverSprinkle & HTMLAttributes<HTMLDivElement>;
-
-export interface PopoverProps extends PopoverExtends {
-  /** Popover anchor */
+export interface PopoverProperties extends PopoverSprinkle {
+  /**
+   * An HTML element, or a function that returns one. It's used to set the position of the popover.
+   * @TJS-type React.ReactNode
+   */
   children: ReactNode;
-  /** Content for the Popover */
+  /**
+   * The content of the popover.
+   * @TJS-type React.ReactNode
+   */
   content: ReactNode;
-  /** Default open popover */
+  /**
+   * If true, the component is shown.
+   */
   visible?: boolean;
-  /** Function to control popover opening and closing */
+  /**
+   * Function to control popover opening and closing.
+   * @TJS-type (visible: boolean) => void;
+   */
   onVisibility?: (visible: boolean) => void;
-  /** Conditional for displaying the popover arrow */
+  /**
+   * Conditional for displaying the popover arrow.
+   * @default true
+   */
   arrow?: boolean;
-  /** Position of the Popover */
+  /**
+   * Position of the popover.
+   * @default bottom
+   */
   position?: Placement;
-  /** Adds hover event listeners that change the open state, like CSS :hover */
+  /**
+   * Adds hover event listeners that change the open state, like CSS :hover.
+   * @default false
+   */
   enabledHover?: boolean;
-  /** Adds click event listeners that change the open state */
+  /**
+   * Adds click event listeners that change the open state.
+   * @default true
+   */
   enabledClick?: boolean;
-  /** Adds listeners that dismiss (close) the floating element */
+  /**
+   * Adds listeners that dismiss (close) the floating element.
+   * @default true
+   */
   enabledDismiss?: boolean;
-  /** offset() displaces the floating element from its core placement along the specified axes */
+  /**
+   * Offest displaces the floating element from its core placement along the specified axes.
+   * @default 10
+   */
   offset?: number;
 }
+
+export type PopoverProps = PopoverProperties & HTMLAttributes<HTMLDivElement>;

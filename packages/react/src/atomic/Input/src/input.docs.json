@@ -1,0 +1,113 @@
+{
+  "id": "input",
+  "name": "Input",
+  "totalProps": 4,
+  "props": [
+    {
+      "description": "Change the visual style of the input.",
+      "default": "neutral",
+      "enum": [
+        "danger",
+        "neutral",
+        "success",
+        "warning"
+      ],
+      "type": "string",
+      "title": "appearance",
+      "required": false
+    },
+    {
+      "description": "Disables the input, disallowing user interaction.",
+      "type": "boolean",
+      "title": "disabled",
+      "required": false
+    },
+    {
+      "description": "Sent icon display position",
+      "default": "start",
+      "enum": [
+        "end",
+        "start"
+      ],
+      "type": "string",
+      "title": "appendPosition",
+      "required": false
+    },
+    {
+      "description": "SVG icon to be displayed on input.",
+      "type": "React.ReactNode",
+      "title": "append",
+      "required": false
+    }
+  ],
+  "subComponents": [
+    {
+      "name": "Input.Password",
+      "totalProps": 2,
+      "props": [
+        {
+          "description": "Change the visual style of the input.",
+          "default": "neutral",
+          "enum": [
+            "danger",
+            "neutral",
+            "success",
+            "warning"
+          ],
+          "type": "string",
+          "title": "appearance",
+          "required": false
+        },
+        {
+          "description": "Disables the input, disallowing user interaction.",
+          "type": "boolean",
+          "title": "disabled",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Input.Search",
+      "totalProps": 2,
+      "props": [
+        {
+          "description": "Change the visual style of the input.",
+          "default": "neutral",
+          "enum": [
+            "danger",
+            "neutral",
+            "success",
+            "warning"
+          ],
+          "type": "string",
+          "title": "appearance",
+          "required": false
+        },
+        {
+          "description": "Disables the input, disallowing user interaction.",
+          "type": "boolean",
+          "title": "disabled",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Input.Skeleton",
+      "totalProps": 2,
+      "props": [
+        {
+          "description": "Width of the skeleton. Useful when the skeleton is inside an inline element with no width of its own.",
+          "type": "string",
+          "title": "width",
+          "required": false
+        },
+        {
+          "description": "This is an attribute used to identify a DOM node for testing purposes.",
+          "type": "string",
+          "title": "data-testid",
+          "required": false
+        }
+      ]
+    }
+  ]
+}

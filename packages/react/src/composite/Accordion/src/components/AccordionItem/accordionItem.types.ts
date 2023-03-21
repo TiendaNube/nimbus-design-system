@@ -1,10 +1,19 @@
 import { ReactNode } from "react";
 
-export interface AccordionItemProps {
-  /** Accordion Item content */
+export interface AccordionItemProperties {
+  /**
+   * The content of the accordion body.
+   * @TJS-type React.ReactNode
+   */
   children: ReactNode;
-  /** Unique indicator to identify accordion items */
+  /**
+   * Unique indicator to identify accordion items
+   */
   index: string;
-  /** Accordion Item testId */
+  /**
+   * This is an attribute used to identify a DOM node for testing purposes.
+   */
   testId?: string;
 }
+
+export type AccordionItemProps = AccordionItemProperties;

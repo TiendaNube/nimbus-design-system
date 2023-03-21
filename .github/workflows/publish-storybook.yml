@@ -1,4 +1,4 @@
-name: "Publish Storybook"
+name: "publish-storybook"
 
 on:
   push:
@@ -8,11 +8,23 @@ on:
 jobs:
   publish-storybook:
     runs-on: ubuntu-latest
+    env:
+      TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+      TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+
+      - name: Cache NPM dependencies
+        uses: actions/cache@v3
+        id: cache-dependencies
+        with:
+          path: |
+            **/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
 
       - name: Install dependencies
+        if: steps.cache-dependencies.outputs.cache-hit != 'true'
         run: yarn
 
       - name: Run build tokens

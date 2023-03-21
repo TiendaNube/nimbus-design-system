@@ -5,17 +5,34 @@ export interface CheckboxComponents {
   Skeleton: typeof CheckboxSkeleton;
 }
 
-export interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
-  /** Checkbox name */
+export interface CheckboxProperties {
+  /**
+   * 	The name of the input element.
+   */
   name: string;
-  /** Checkbox color */
+  /**
+   * Change the visual style of the checkbox.
+   * @default neutral
+   */
   appearance?: "primary" | "danger";
-  /** Set whether checkbox state is checked */
+  /**
+   * Modifies true/false value of the native checkbox.
+   */
   checked?: boolean;
-  /** Set whether checkbox state is disabled */
+  /**
+   * Modifies the native disabled state of the native checkbox.
+   */
   disabled?: boolean;
-  /** Set whether checkbox state is indeterminate */
+  /**
+   * If true, the component appears indeterminate. This does not set the native input element to indeterminate due to inconsistent behavior across browsers. However, we set a data-indeterminate attribute on the input.
+   * @default false
+   */
   indeterminate?: boolean;
-  /** Text to be rendered inside the component */
+  /**
+   * Text to be rendered inside the component.
+   */
   label?: string;
 }
+
+export type CheckboxProps = CheckboxProperties &
+  InputHTMLAttributes<HTMLInputElement>;

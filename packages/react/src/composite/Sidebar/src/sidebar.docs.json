@@ -1,0 +1,208 @@
+{
+  "id": "sidebar",
+  "name": "Sidebar",
+  "totalProps": 7,
+  "props": [
+    {
+      "description": "Side from which the sidebar will appear.",
+      "default": "right",
+      "enum": [
+        "left",
+        "right"
+      ],
+      "type": "string",
+      "title": "position",
+      "required": false
+    },
+    {
+      "description": "The padding properties are used to generate space around an sidebar's content area.",
+      "default": "base",
+      "enum": [
+        "base",
+        "none",
+        "small"
+      ],
+      "type": "string",
+      "title": "padding",
+      "required": false
+    },
+    {
+      "description": "The content of the sidebar.",
+      "type": "React.ReactNode",
+      "title": "children",
+      "required": true
+    },
+    {
+      "description": "Callback fired when the component requests to be closed.\n() => void;",
+      "type": "object",
+      "additionalProperties": false,
+      "propertyOrder": [],
+      "title": "onRemove",
+      "required": false
+    },
+    {
+      "description": "Determines if the sidebar is shown or not.",
+      "default": true,
+      "type": "boolean",
+      "title": "open",
+      "required": false
+    },
+    {
+      "description": "The maxWidth property specifies the maxWidth of a sidebar's content area.",
+      "default": "375px",
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "xs": {
+              "type": "string",
+              "title": "xs"
+            },
+            "md": {
+              "type": "string",
+              "title": "md"
+            },
+            "lg": {
+              "type": "string",
+              "title": "lg"
+            },
+            "xl": {
+              "type": "string",
+              "title": "xl"
+            }
+          },
+          "additionalProperties": false,
+          "propertyOrder": [
+            "xs",
+            "md",
+            "lg",
+            "xl"
+          ]
+        },
+        {
+          "type": "string"
+        }
+      ],
+      "title": "maxWidth",
+      "required": false
+    },
+    {
+      "description": "The zIndex property specifies the stack order of the sidebar.",
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "xs": {
+              "type": "number",
+              "title": "xs"
+            },
+            "md": {
+              "type": "number",
+              "title": "md"
+            },
+            "lg": {
+              "type": "number",
+              "title": "lg"
+            },
+            "xl": {
+              "type": "number",
+              "title": "xl"
+            }
+          },
+          "additionalProperties": false,
+          "propertyOrder": [
+            "xs",
+            "md",
+            "lg",
+            "xl"
+          ]
+        },
+        {
+          "type": "number"
+        }
+      ],
+      "title": "zIndex",
+      "required": false
+    }
+  ],
+  "subComponents": [
+    {
+      "name": "Sidebar.Body",
+      "totalProps": 2,
+      "props": [
+        {
+          "description": "The content of the sidebar body.",
+          "type": "React.ReactNode",
+          "title": "children",
+          "required": true
+        },
+        {
+          "description": "The padding properties are used to generate space around an sidebar's body content area.",
+          "default": "base",
+          "enum": [
+            "base",
+            "none",
+            "small"
+          ],
+          "type": "string",
+          "title": "padding",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Sidebar.Footer",
+      "totalProps": 2,
+      "props": [
+        {
+          "description": "The content of the sidebar footer.",
+          "type": "React.ReactNode",
+          "title": "children",
+          "required": true
+        },
+        {
+          "description": "The padding properties are used to generate space around an sidebar's footer content area.",
+          "default": "base",
+          "enum": [
+            "base",
+            "none",
+            "small"
+          ],
+          "type": "string",
+          "title": "padding",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Sidebar.Header",
+      "totalProps": 3,
+      "props": [
+        {
+          "description": "The content of the sidebar header.",
+          "type": "React.ReactNode",
+          "title": "children",
+          "required": false
+        },
+        {
+          "description": "The title to display in the sidebar header.",
+          "type": "string",
+          "title": "title",
+          "required": false
+        },
+        {
+          "description": "The padding properties are used to generate space around an sidebar's header content area.",
+          "default": "base",
+          "enum": [
+            "base",
+            "none",
+            "small"
+          ],
+          "type": "string",
+          "title": "padding",
+          "required": false
+        }
+      ]
+    }
+  ]
+}

@@ -7,11 +7,22 @@ export interface TabsComponents {
   Item: typeof TabsItem;
 }
 
-export interface TabsProps extends HTMLAttributes<HTMLElement> {
-  /** Tabs content. */
+export interface TabsProperties {
+  /**
+   * The content of the tabs.
+   * @TJS-type ReactElement<TabsButtonProps>[];
+   */
   children: ReactElement<TabsButtonProps>[];
-  /** Sets the indicated tab as active by default. If unset, defaults to first tab. */
+  /**
+   * Sets the indicated tab as active by default. If unset, defaults to first tab.
+   */
   preSelectedTab?: number;
-  /** Determines if tabs should span available width. */
+  /**
+   * Determines if tabs should span available width.
+   * @default false
+   */
   fullWidth?: boolean;
 }
+
+export type TabsProps = TabsProperties &
+  Omit<HTMLAttributes<HTMLElement>, "children">;

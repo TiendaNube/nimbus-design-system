@@ -7,9 +7,16 @@ export interface AccordionComponents {
   Header: typeof AccordionHeader;
 }
 
-export interface AccordionProps extends HTMLAttributes<HTMLElement> {
-  /** Accordion Item content */
+export interface AccordionProperties {
+  /**
+   * The content of the accordion.
+   * @TJS-type React.ReactNode
+   */
   children?: ReactNode;
-  /** Informs which accordion item is open by default, this value must be the same as informed in the index of each item */
+  /**
+   * Informs which accordion item is open by default, this value must be the same as informed in the index of each item
+   */
   selectedDefault?: string;
 }
+
+export type AccordionProps = AccordionProperties & HTMLAttributes<HTMLElement>;

@@ -15,8 +15,9 @@ import {
 } from "@nimbus-ds/icons";
 import { toast } from "@nimbus-ds/styles";
 
-import { ToastProps, TypesColors } from "./toast.types";
+import { ToastComponents, ToastProps, TypesColors } from "./toast.types";
 import { useToast } from "./hooks";
+import { ToastProvider } from "./components";
 
 const HEIGHT_TOAST = 32;
 
@@ -27,7 +28,7 @@ const icons = {
   progress: <CheckCircleIcon />,
 };
 
-const Toast: React.FC<ToastProps> = ({
+const Toast: React.FC<ToastProps> & ToastComponents = ({
   className: _className,
   style: _style,
   type = "primary",
@@ -37,7 +38,7 @@ const Toast: React.FC<ToastProps> = ({
   id,
   text,
   ...rest
-}) => {
+}: ToastProps) => {
   const closeIntervalRef = useRef<any>();
   const animationIntervalRef = useRef<any>();
 
@@ -115,6 +116,8 @@ const Toast: React.FC<ToastProps> = ({
   );
 };
 
+Toast.Provider = ToastProvider;
 Toast.displayName = "Toast";
+Toast.Provider.displayName = "Toast.Provider";
 
 export { Toast };

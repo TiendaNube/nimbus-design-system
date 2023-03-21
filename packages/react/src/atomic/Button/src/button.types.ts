@@ -5,11 +5,22 @@ export interface ButtonComponents {
   Skeleton: typeof ButtonSkeleton;
 }
 
-export interface ButtonProps extends HTMLAttributes<HTMLElement> {
-  /** Text to be displayed on chip */
+export interface ButtonProperties {
+  /**
+   * The content of the button.
+   * @TJS-type React.ReactNode
+   */
   children: ReactNode;
-  /** Button appearance */
+  /**
+   * Change the visual style of the button.
+   * @default neutral
+   */
   appearance?: "primary" | "danger" | "neutral" | "transparent";
-  /** Set whether button state is disabled */
+  /**
+   * Disables the button, disallowing user interaction.
+   * @default false
+   */
   disabled?: boolean;
 }
+
+export type ButtonProps = ButtonProperties & HTMLAttributes<HTMLElement>;

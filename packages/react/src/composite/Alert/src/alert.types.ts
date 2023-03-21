@@ -5,15 +5,31 @@ export interface AlertComponents {
   Skeleton: typeof AlertSkeleton;
 }
 
-export interface AlertProps extends HTMLAttributes<HTMLElement> {
-  /** Alert title */
+export interface AlertProperties {
+  /**
+   * The content for the title of the alert.
+   */
   title?: string;
-  /** Alert appearance */
+  /**
+   * Change the visual style of the alert.
+   * @default neutral
+   */
   appearance?: "primary" | "success" | "warning" | "danger" | "neutral";
-  /** Alert body content */
+  /**
+   * The content of the alert.
+   * @TJS-type React.ReactNode
+   */
   children: ReactNode;
-  /** Function to be passed on actioning the dismiss button */
+  /**
+   * Function to be passed on actioning the dismiss button.
+   * @TJS-type () => void;
+   */
   onRemove?: () => void;
-  /** Determines if the alert is shown or not */
+  /**
+   * Determines if the alert is shown or not.
+   * @default true
+   */
   show?: boolean;
 }
+
+export type AlertProps = AlertProperties & HTMLAttributes<HTMLElement>;

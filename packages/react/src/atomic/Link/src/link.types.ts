@@ -6,15 +6,32 @@ export interface LinkComponents {
   Skeleton: typeof LinkSkeleton;
 }
 
-export interface LinkProps extends HTMLAttributes<HTMLElement> {
-  /** Text to be displayed on link */
+export interface LinkProperties {
+  /**
+   * The content of the link.
+   * @TJS-type React.ReactNode
+   */
   children: ReactNode;
-  /** Link appearance */
+  /**
+   * Change the visual style of the link.
+   * @default neutral
+   */
   appearance?: "primary" | "danger" | "neutral" | "neutral-background";
-  /** Decoration for the link text */
+  /**
+   * The textDecoration property specifies the decoration added to link.
+   * @default neutral
+   */
   textDecoration?: typeof link.properties.textDecoration[number];
-  /** Size of the link text */
+  /**
+   * The fontSize property sets the size of the link.
+   * @default base
+   */
   fontSize?: keyof typeof link.properties.fontSize;
-  /** Link text line height */
+  /**
+   * The lineHeight property specifies the line height of the link
+   * @default base
+   */
   lineHeight?: keyof typeof link.properties.lineHeight;
 }
+
+export type LinkProps = LinkProperties & HTMLAttributes<HTMLElement>;

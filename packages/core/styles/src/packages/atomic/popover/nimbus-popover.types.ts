@@ -9,12 +9,35 @@ type PopoverBackgroundColorProperties =
 type PopoverPaddingProperties = keyof typeof propertiesPopover.padding;
 
 export interface PopoverSprinkle {
+  /**
+   * The width property specifies the width of a popover's content area.
+   * @default 17.5rem
+   */
   width?: string | Conditions<string>;
+  /**
+   * The height property specifies the height of a popover's content area.
+   */
   height?: string | Conditions<string>;
+  /**
+   * The zIndex property specifies the stack order of the popover.
+   */
   zIndex?: number | Conditions<number>;
+  /**
+   * The backgroundColor property sets the background color of the popover.
+   * @default neutral-background
+   * @examples ["neutral-interactive", { xs: "neutral-surface", md: "neutral-interactive" }]
+   */
   backgroundColor?:
     | PopoverBackgroundColorProperties
     | Conditions<PopoverBackgroundColorProperties>;
+  /**
+   * The color property is used to set the color of the popover.
+   * @default neutral-background
+   */
   color?: PopoverColorProperties | Conditions<PopoverColorProperties>;
+  /**
+   * The padding properties are used to generate space around an popover's content area.
+   * @default base
+   */
   padding?: PopoverPaddingProperties | Conditions<PopoverPaddingProperties>;
 }

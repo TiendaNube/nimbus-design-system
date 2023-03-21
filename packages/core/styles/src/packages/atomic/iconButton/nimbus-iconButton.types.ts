@@ -15,10 +15,22 @@ interface IconButtonConditions<T> extends Conditions<T> {
 }
 
 export interface IconButtonSprinkle {
+  /**
+   * The size of the component.
+   * @default 2.75rem
+   */
   size?: string | IconButtonConditions<string>;
+  /**
+   * The borderColor property sets the color of the icon button's four borders.
+   * @default { xs: "neutral-interactive", active: "neutral-interactivePressed", hover: "neutral-interactiveHover", focus: "primary-interactive" }
+   */
   borderColor?:
     | IconButtonBorderColorProperties
     | IconButtonConditions<IconButtonBorderColorProperties>;
+  /**
+   * The backgroundColor property sets the background color of the icon button.
+   * @default {  xs: "neutral-surface", active: "neutral-interactive", hover: "neutral-surfaceHighlight" }
+   */
   backgroundColor?:
     | IconButtonBackgroundColorProperties
     | IconButtonConditions<IconButtonBackgroundColorProperties>;

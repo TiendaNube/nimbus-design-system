@@ -7,11 +7,22 @@ export interface IconComponents {
   Skeleton: typeof IconSkeleton;
 }
 
-export interface IconProps extends HTMLAttributes<HTMLDivElement> {
-  /** Icon SVG */
+export interface IconProperties {
+  /**
+   * The SVG contents to display in the Icon.
+   * @TJS-type React.ReactNode
+   */
   source: ReactNode;
-  /** Icon color */
+  /**
+   * Set the color for the SVG fill.
+   * @default neutral-textLow
+   */
   color?: keyof typeof icon.properties.color;
-  /** Icon cursor */
+  /**
+   * The cursor property specifies the mouse cursor to be displayed when pointing over an element.
+   * @default inherit
+   */
   cursor?: typeof icon.properties.cursor[number];
 }
+
+export type IconProps = IconProperties & HTMLAttributes<HTMLDivElement>;

@@ -1,9 +1,18 @@
 import { HTMLAttributes, ReactNode } from "react";
 import { sidebar } from "@nimbus-ds/styles";
 
-export interface SidebarFooterProps extends HTMLAttributes<HTMLElement> {
-  /** Footer content */
+export interface SidebarFooterProperties {
+  /**
+   * The content of the sidebar footer.
+   * @TJS-type React.ReactNode
+   */
   children: ReactNode;
-  /** Sidebar padding */
+  /**
+   * The padding properties are used to generate space around an sidebar's footer content area.
+   * @default base
+   */
   padding?: keyof typeof sidebar.properties.padding;
 }
+
+export type SidebarFooterProps = SidebarFooterProperties &
+  HTMLAttributes<HTMLElement>;

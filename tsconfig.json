@@ -1,5 +1,5 @@
 {
-  "include": ["packages", "index.d.ts", "packages/core/styles/.scripts/bla.js"],
+  "include": ["packages", ".scripts", "index.d.ts"],
   "compilerOptions": {
     "target": "esnext",
     "module": "commonjs",
@@ -40,6 +40,7 @@
       "@nimbus-ds/tokens": ["./packages/core/tokens/dist"],
       "@nimbus-ds/typings": ["./packages/core/typings/src"],
       "@nimbus-ds/styles": ["./packages/core/styles/src"],
+      "@nimbus-ds/scripts": ["./packages/core/scripts/src"],
       "@nimbus-ds/webpack": ["./packages/core/webpack/src"],
       "@nimbus-ds/components": ["./packages/react/src"],
       "@nimbus-ds/badge": ["./packages/react/src/atomic/Badge/src"],

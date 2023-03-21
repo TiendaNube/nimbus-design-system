@@ -1,8 +1,16 @@
 import { HTMLAttributes, ReactNode } from "react";
 
-export interface ListSkeletonProps extends HTMLAttributes<HTMLDivElement> {
-  /** Element to be rendered inside the Skeleton component */
+export interface ListSkeletonProperties {
+  /**
+   * The content of the list skeleton.
+   * @TJS-type React.ReactNode
+   */
   children: ReactNode;
-  /** Data element to reference during testing */
+  /**
+   * This is an attribute used to identify a DOM node for testing purposes.
+   */
   "data-testid"?: string;
 }
+
+export type ListSkeletonProps = ListSkeletonProperties &
+  HTMLAttributes<HTMLDivElement>;

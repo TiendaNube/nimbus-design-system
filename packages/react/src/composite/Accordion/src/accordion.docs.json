@@ -1,0 +1,126 @@
+{
+  "id": "accordion",
+  "name": "Accordion",
+  "totalProps": 2,
+  "props": [
+    {
+      "description": "The content of the accordion.",
+      "type": "React.ReactNode",
+      "title": "children",
+      "required": false
+    },
+    {
+      "description": "Informs which accordion item is open by default, this value must be the same as informed in the index of each item",
+      "type": "string",
+      "title": "selectedDefault",
+      "required": false
+    }
+  ],
+  "subComponents": [
+    {
+      "name": "Accordion.Body",
+      "totalProps": 2,
+      "props": [
+        {
+          "description": "The content of the accordion body.",
+          "type": "React.ReactNode",
+          "title": "children",
+          "required": true
+        },
+        {
+          "description": "The borderBottom property defines a lower border of the accordion body.",
+          "default": "none",
+          "enum": [
+            "base",
+            "none"
+          ],
+          "type": "string",
+          "title": "borderBottom",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Accordion.Item",
+      "totalProps": 3,
+      "props": [
+        {
+          "description": "The content of the accordion body.",
+          "type": "React.ReactNode",
+          "title": "children",
+          "required": true
+        },
+        {
+          "description": "Unique indicator to identify accordion items",
+          "type": "string",
+          "title": "index",
+          "required": true
+        },
+        {
+          "description": "This is an attribute used to identify a DOM node for testing purposes.",
+          "type": "string",
+          "title": "testId",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Accordion.Header",
+      "totalProps": 7,
+      "props": [
+        {
+          "description": "The content of the accordion header.",
+          "type": "React.ReactNode | ((data: { selected: string; index: string }) => React.ReactNode);",
+          "title": "children",
+          "required": false
+        },
+        {
+          "description": "The title to display in the accordion header.",
+          "type": "string",
+          "title": "title",
+          "required": false
+        },
+        {
+          "description": "The subtitle to display in the accordion header.",
+          "type": "string",
+          "title": "subtitle",
+          "required": false
+        },
+        {
+          "description": "The SVG contents to display in the accordion header.",
+          "type": "React.ReactNode",
+          "title": "icon",
+          "required": false
+        },
+        {
+          "description": "Removes the arrow icon that shows if the accordion item is open or not which makes it possible to create a custom indicator.",
+          "default": false,
+          "type": "boolean",
+          "title": "noIconToggle",
+          "required": false
+        },
+        {
+          "description": "The borderTop property defines a lower border of the accordion header.",
+          "default": "base",
+          "enum": [
+            "base",
+            "none"
+          ],
+          "type": "string",
+          "title": "borderTop",
+          "required": false
+        },
+        {
+          "description": "The borderBottom property defines a lower border of the accordion header.",
+          "enum": [
+            "base",
+            "none"
+          ],
+          "type": "string",
+          "title": "borderBottom",
+          "required": false
+        }
+      ]
+    }
+  ]
+}
