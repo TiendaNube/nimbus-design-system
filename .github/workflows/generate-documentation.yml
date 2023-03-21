@@ -1,4 +1,4 @@
-name: "Generate documentation"
+name: "generate-documentation"
 
 on:
   push:
@@ -34,8 +34,12 @@ jobs:
         if: steps.cache-dependencies.outputs.cache-hit != 'true'
         run: yarn
 
-  generate-documents:
+  build-tokens:
     needs: setup
+    runs-on: ubuntu-latest
+
+  generate-documents:
+    needs: [setup]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -52,6 +56,12 @@ jobs:
       - name: Install dependencies
         if: steps.cache-dependencies.outputs.cache-hit != 'true'
         run: yarn
+
+      - name: Build tokena
+        run: yarn build:tokens
+
+      - name: Build tokena
+        run: yarn build:tokens
 
       - name: Generate documents
         run: yarn build:docs
