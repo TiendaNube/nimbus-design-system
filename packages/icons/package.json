@@ -9,7 +9,7 @@
   ],
   "sideEffects": false,
   "scripts": {
-    "build": "yarn optimize && yarn build:components && webpack",
+    "build": "yarn optimize && yarn build:components && yarn g:webpack",
     "build:components": "svgr src/assets -d tmp",
     "optimize": "svgo src/assets",
     "clean": "yarn clean:tmp && rm -rf dist",
@@ -25,8 +25,8 @@
     "url": "https://github.com/TiendaNube/nimbus-design-system/issues"
   },
   "devDependencies": {
+    "@nimbus-ds/webpack": "workspace:^",
     "@svgr/cli": "^6.5.1",
-    "svgo": "^3.0.2",
-    "webpack": "^5.75.0"
+    "svgo": "^3.0.2"
   }
 }

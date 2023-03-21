@@ -9,7 +9,7 @@
   ],
   "sideEffects": false,
   "scripts": {
-    "build": "webpack",
+    "build": "yarn g:webpack",
     "clean": "rm -rf dist",
     "version": "yarn version"
   },
@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@nimbus-ds/box": "workspace:^",
-    "@vanilla-extract/dynamic": "^2.0.2",
-    "webpack": "^5.74.0"
+    "@nimbus-ds/webpack": "workspace:^",
+    "@vanilla-extract/dynamic": "^2.0.2"
   }
 }

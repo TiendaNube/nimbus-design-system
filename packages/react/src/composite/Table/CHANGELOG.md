@@ -37,10 +37,6 @@ The Table component allows us to organize data with a tabular structure in a tab
 
 ## 2023-01-09 `1.0.0`
 
-### 📚 3rd party library updates
-
-- Added `webpack@5.74.0`. ([#72](https://github.com/TiendaNube/nimbus-design-system/pull/72) by [@juanchigallego](https://github.com/juanchigallego))
-
 ### 🎉 New features
 
 - Added property `children` to the component. ([#72](https://github.com/TiendaNube/nimbus-design-system/pull/72) by [@juanchigallego](https://github.com/juanchigallego))

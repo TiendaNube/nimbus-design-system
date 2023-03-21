@@ -9,7 +9,7 @@
   ],
   "sideEffects": false,
   "scripts": {
-    "build": "webpack",
+    "build": "yarn g:webpack",
     "clean": "rm -rf dist",
     "version": "yarn version"
   },
@@ -30,7 +30,6 @@
     "@vanilla-extract/sprinkles": "^1.5.1",
     "glob": "^8.0.3",
     "rainbow-sprinkles": "^0.14.0",
-    "ts-node": "^10.9.1",
-    "webpack": "^5.75.0"
+    "ts-node": "^10.9.1"
   }
 }
