@@ -1,4 +1,4 @@
-name: "Publish Release Candidate"
+name: "publish-release-candidate"
 
 on:
   push:
