@@ -8,6 +8,10 @@ const SelectOption: React.FC<SelectOptionProps> = ({
   label,
   value,
   ...rest
-}) => <option {...rest} label={label} value={value} />;
+}) => (
+  <option {...rest} label={label} value={value}>
+    {label}
+  </option>
+);
 
 export { SelectOption };
