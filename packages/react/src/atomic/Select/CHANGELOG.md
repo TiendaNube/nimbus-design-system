@@ -2,6 +2,12 @@
 
 Use a select box when a user needs to select one option from a list.
 
+## 2023-03-27 `2.3.1`
+
+### 🐛 Bug fixes
+
+- Fixes bug where `Select.Option` subcomponent would not render the HTML option elements on IOS devices. ([#129](https://github.com/TiendaNube/nimbus-design-system/pull/129) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-03-13 `2.3.0`
 
 ### 💡 Others

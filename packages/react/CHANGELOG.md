@@ -2,6 +2,12 @@
 
 This package is intended for internal use in generating builds of each design system package. It contains all the necessary settings and dependencies to optimize the creation of our builds.
 
+## 2023-03-27 `3.0.1`
+
+### 🐛 Bug fixes
+
+- Fixes bug where `Select.Option` subcomponent would not render the HTML option elements on IOS devices. ([#129](https://github.com/TiendaNube/nimbus-design-system/pull/129) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-03-10 `3.0.0`
 
 ### 🛠 Breaking changes
