@@ -10,6 +10,12 @@ This package is intended for internal use in generating builds of each design sy
 - Adjusted the `Button` component properties interface to use `ComponentPropsWithRef` and include the `as` prop in the output interface. ([#132](https://github.com/TiendaNube/nimbus-design-system/pull/132) by [@juniorconquista](https://github.com/juniorconquista))
 - Adjusted the `Link` component properties interface to use `ComponentPropsWithRef` and include the `as` prop in the output interface. ([#132](https://github.com/TiendaNube/nimbus-design-system/pull/132) by [@juniorconquista](https://github.com/juniorconquista))
 
+## 2023-03-27 `3.0.1`
+
+### 🐛 Bug fixes
+
+- Fixes bug where `Select.Option` subcomponent would not render the HTML option elements on IOS devices. ([#129](https://github.com/TiendaNube/nimbus-design-system/pull/129) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-03-10 `3.0.0`
 
 ### 🛠 Breaking changes
