@@ -1,13 +1,17 @@
 import React, {
+  ComponentPropsWithRef,
   forwardRef,
-  createRef,
   useEffect,
   useImperativeHandle,
+  useRef,
 } from "react";
-import { PolymorphicForwardRefComponent } from "@nimbus-ds/typings";
+import {
+  PolymorphicForwardRefComponent,
+  useRefObjectAsForwardedRef,
+} from "@nimbus-ds/typings";
 import { link } from "@nimbus-ds/styles";
 
-import { LinkProps, LinkComponents } from "./link.types";
+import { LinkBaseProps, LinkComponents } from "./link.types";
 import { LinkSkeleton } from "./components";
 
 const Link = forwardRef(
@@ -16,16 +20,22 @@ const Link = forwardRef(
       className: _className,
       style: _style,
       as: As = "a",
+      children,
+      ...props
+    }: LinkBaseProps & { as: any },
+    ref
+  ) => {
+    const {
       appearance = "neutral",
       textDecoration = "underline",
       fontSize = "base",
       lineHeight = "base",
-      children,
       ...rest
-    }: LinkProps & { as: any },
-    ref
-  ) => {
-    const innerRef = createRef<HTMLAnchorElement>();
+    } = props;
+
+    const innerRef = useRef<HTMLAnchorElement>(null);
+    useRefObjectAsForwardedRef(ref, innerRef);
+
     useImperativeHandle<
       HTMLAnchorElement | HTMLButtonElement | null,
       HTMLAnchorElement | null
@@ -47,7 +57,7 @@ const Link = forwardRef(
 
     return (
       <As
-        {...rest}
+        {...(rest as any)}
         className={[
           link.classnames.appearance[appearance],
           link.sprinkle({ textDecoration, fontSize, lineHeight }),
@@ -58,10 +68,12 @@ const Link = forwardRef(
       </As>
     );
   }
-) as PolymorphicForwardRefComponent<"a" | "button", LinkProps> & LinkComponents;
+) as PolymorphicForwardRefComponent<"a" | "button", LinkBaseProps> &
+  LinkComponents;
 
 Link.Skeleton = LinkSkeleton;
 Link.displayName = "Link";
 Link.Skeleton.displayName = "Link.Skeleton";
 
+export type LinkProps = ComponentPropsWithRef<typeof Link>;
 export { Link };

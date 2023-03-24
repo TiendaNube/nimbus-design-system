@@ -34,4 +34,4 @@ export interface LinkProperties {
   lineHeight?: keyof typeof link.properties.lineHeight;
 }
 
-export type LinkProps = LinkProperties & HTMLAttributes<HTMLElement>;
+export type LinkBaseProps = LinkProperties & HTMLAttributes<HTMLElement>;
