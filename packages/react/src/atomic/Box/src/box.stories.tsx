@@ -3,14 +3,13 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { withA11y } from "@storybook/addon-a11y";
 import { box as boxStyles } from "@nimbus-ds/styles";
 
-import { Box as BoxComponent } from "./Box";
-import { BoxProps } from "./box.types";
+import { Box as BoxComponent, BoxProps } from "./Box";
 
-export const Box: React.FC<BoxProps> = (props) => <BoxComponent {...props} />;
+export const Base: React.FC<BoxProps> = (props) => <BoxComponent {...props} />;
 
 export default {
   title: "Atomic/Box",
-  component: Box,
+  component: Base,
   argTypes: {
     children: { control: { disable: true } },
     as: {
@@ -134,11 +133,11 @@ export default {
 } as ComponentMeta<typeof BoxComponent>;
 
 const Template: ComponentStory<typeof BoxComponent> = (args) => (
-  <Box {...args} />
+  <Base {...args} />
 );
 
-export const box = Template.bind({});
-box.args = {
+export const base = Template.bind({});
+base.args = {
   height: "5rem",
   width: "12rem",
   borderColor: "neutral-interactive",

@@ -1,8 +1,8 @@
-import React, { forwardRef } from "react";
+import React, { ComponentPropsWithRef, forwardRef } from "react";
 import { PolymorphicForwardRefComponent } from "@nimbus-ds/typings";
 import { box } from "@nimbus-ds/styles";
 
-import { BoxProps } from "./box.types";
+import { BoxBaseProps } from "./box.types";
 
 const Box = forwardRef(
   (
@@ -12,7 +12,7 @@ const Box = forwardRef(
       as: As = "div",
       boxSizing = "border-box",
       ...rest
-    }: BoxProps & { as: any },
+    }: BoxBaseProps & { as: any },
     ref
   ) => {
     const { className, style, otherProps } = box.sprinkle({
@@ -22,7 +22,9 @@ const Box = forwardRef(
 
     return <As ref={ref} className={className} style={style} {...otherProps} />;
   }
-) as PolymorphicForwardRefComponent<"div", BoxProps>;
+) as PolymorphicForwardRefComponent<"div", BoxBaseProps>;
 
 Box.displayName = "Box";
+
+export type BoxProps = ComponentPropsWithRef<typeof Box>;
 export { Box };
