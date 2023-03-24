@@ -5,16 +5,15 @@ import { ExternalLinkIcon } from "@nimbus-ds/icons";
 import { Icon } from "@nimbus-ds/icon";
 import { Text } from "@nimbus-ds/text";
 
-import { Link as LinkComponent } from "./Link";
-import { LinkProps } from "./link.types";
+import { Link as LinkComponent, LinkProps } from "./Link";
 
-export const Link: React.FC<LinkProps> = (props) => (
+export const Base: React.FC<LinkProps> = (props) => (
   <LinkComponent {...props} />
 );
 
 export default {
   title: "Atomic/Link",
-  component: Link,
+  component: Base,
   subcomponents: { "Link.Skeleton": LinkComponent.Skeleton },
   argTypes: {
     children: { control: { disable: true } },
@@ -44,20 +43,20 @@ export default {
 } as ComponentMeta<typeof LinkComponent>;
 
 const Template: ComponentStory<typeof LinkComponent> = (args) => (
-  <Link as="a" {...args} />
+  <Base as="a" {...args} />
 );
 const StressedTemplate: ComponentStory<typeof LinkComponent> = (args) => (
   <Text>
     This is a paragraph followed by a link.
-    <Link {...args} />
+    <Base {...args} />
   </Text>
 );
 const SkeletonTemplate: ComponentStory<typeof LinkComponent.Skeleton> = (
   args
 ) => <LinkComponent.Skeleton {...args} />;
 
-export const link = Template.bind({});
-link.args = {
+export const base = Template.bind({});
+base.args = {
   children: "Link",
   // eslint-disable-next-line
   // @ts-ignore
