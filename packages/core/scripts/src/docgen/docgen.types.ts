@@ -1,12 +1,13 @@
 import { PartialArgs, CompilerOptions } from "typescript-json-schema";
 
 export interface Prop {
-  name: string;
+  title: string;
   description: string;
-  defaultValue: string;
+  defaultValue?: string;
   required: boolean;
   type?: string;
   enum?: string[];
+  anyOf?: {};
 }
 
 export interface Doc {

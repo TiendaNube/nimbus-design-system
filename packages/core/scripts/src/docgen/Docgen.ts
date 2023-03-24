@@ -63,9 +63,9 @@ export class Docgen {
     this.sourceComponent = this.getSource(
       `${this.componentPath}/${this.componentName}.tsx`
     );
-
+    const polymorphicProps = this.getPolymorphicProps();
     const schema = this.getSchema(`${this.componentName}Properties`);
-    const props = this.formatProps(schema);
+    const props = this.formatProps(schema, polymorphicProps);
     const subComponents = this.getSubComponents();
 
     const doc = {
@@ -81,7 +81,10 @@ export class Docgen {
     console.log(`created ${dist} ✅`);
   }
 
-  private formatProps(schema: TJS.Definition): Prop[] {
+  private formatProps(
+    schema: TJS.Definition,
+    polymorphicProps?: string[]
+  ): Prop[] {
     const props = Object.keys(schema?.properties ?? {}).reduce(
       (prev: Prop[], curr) => {
         const property = schema?.properties?.[curr] as unknown as Prop;
@@ -94,6 +97,27 @@ export class Docgen {
       },
       []
     );
+
+    if (!!polymorphicProps?.length) {
+      const asDefault = this.sourceComponent.match(/As = "(\w+)",/m)?.[1] ?? "";
+
+      props.unshift({
+        defaultValue: asDefault,
+        description:
+          "The underlying element to render — either a HTML element name or a React component.",
+        anyOf: [
+          {
+            enum: polymorphicProps,
+            type: "string",
+          },
+          {
+            type: "React.ElementType",
+          },
+        ],
+        title: "as",
+        required: false,
+      });
+    }
     return props;
   }
 
@@ -116,6 +140,14 @@ export class Docgen {
   private getComponentName(path: string): string {
     const fullPatch = path.match(/(\w+)\.types\.ts/gm)?.[0] ?? "";
     return pascalCase(fullPatch.replace(".types.ts", ""));
+  }
+
+  private getPolymorphicProps(): string[] {
+    const match = this.sourceComponent.match(
+      /PolymorphicForwardRefComponent<(["\w+" \| ]{1,}),\s\S+>/m
+    )?.[1];
+
+    return match ? match.replace(/"| /gm, "").split("|") : [];
   }
 
   private getComponentId(): string {
