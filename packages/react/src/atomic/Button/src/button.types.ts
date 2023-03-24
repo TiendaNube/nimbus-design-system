@@ -1,4 +1,4 @@
-import { ReactNode, HTMLAttributes } from "react";
+import { ReactNode, ButtonHTMLAttributes } from "react";
 import { ButtonSkeleton } from "./components";
 
 export interface ButtonComponents {
@@ -23,4 +23,5 @@ export interface ButtonProperties {
   disabled?: boolean;
 }
 
-export type ButtonProps = ButtonProperties & HTMLAttributes<HTMLElement>;
+export type ButtonBaseProps = ButtonProperties &
+  ButtonHTMLAttributes<HTMLButtonElement>;

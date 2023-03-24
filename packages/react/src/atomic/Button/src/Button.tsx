@@ -1,13 +1,17 @@
 import React, {
+  ComponentPropsWithRef,
   forwardRef,
-  createRef,
+  useRef,
   useEffect,
   useImperativeHandle,
 } from "react";
-import { PolymorphicForwardRefComponent } from "@nimbus-ds/typings";
+import {
+  PolymorphicForwardRefComponent,
+  useRefObjectAsForwardedRef,
+} from "@nimbus-ds/typings";
 import { button } from "@nimbus-ds/styles";
 
-import { ButtonProps, ButtonComponents } from "./button.types";
+import { ButtonBaseProps, ButtonComponents } from "./button.types";
 import { ButtonSkeleton } from "./components";
 
 const Button = forwardRef(
@@ -16,13 +20,15 @@ const Button = forwardRef(
       className: _className,
       style: _style,
       as: As = "button",
-      appearance = "neutral",
       children,
-      ...rest
-    }: ButtonProps & { as: any },
+      ...props
+    }: ButtonBaseProps & { as: any },
     ref
   ) => {
-    const innerRef = createRef<HTMLButtonElement>();
+    const { appearance = "neutral", ...rest } = props;
+    const innerRef = useRef<HTMLButtonElement>(null);
+    useRefObjectAsForwardedRef(ref, innerRef);
+
     useImperativeHandle<
       HTMLButtonElement | HTMLAnchorElement | null,
       HTMLButtonElement | null
@@ -44,7 +50,7 @@ const Button = forwardRef(
 
     return (
       <As
-        {...rest}
+        {...(rest as any)}
         className={button.classnames.appearance[appearance]}
         ref={innerRef}
       >
@@ -52,11 +58,12 @@ const Button = forwardRef(
       </As>
     );
   }
-) as PolymorphicForwardRefComponent<"button" | "a", ButtonProps> &
+) as PolymorphicForwardRefComponent<"button" | "a", ButtonBaseProps> &
   ButtonComponents;
 
 Button.Skeleton = ButtonSkeleton;
 Button.displayName = "Button";
 Button.Skeleton.displayName = "Button.Skeleton";
 
+export type ButtonProps = ComponentPropsWithRef<typeof Button>;
 export { Button };

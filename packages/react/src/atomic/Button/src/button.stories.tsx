@@ -6,16 +6,15 @@ import { Icon } from "@nimbus-ds/icon";
 import { Badge } from "@nimbus-ds/badge";
 import { Spinner } from "@nimbus-ds/spinner";
 
-import { Button as ButtonComponent } from "./Button";
-import { ButtonProps } from "./button.types";
+import { Button as ButtonComponent, ButtonProps } from "./Button";
 
-export const Button: React.FC<ButtonProps> = (props) => (
+export const Base: React.FC<ButtonProps> = (props) => (
   <ButtonComponent {...props} />
 );
 
 export default {
   title: "Atomic/Button",
-  component: Button,
+  component: Base,
   subcomponents: {
     "Button.Skeleton": ButtonComponent.Skeleton,
   },
@@ -47,14 +46,14 @@ export default {
 } as ComponentMeta<typeof ButtonComponent>;
 
 const Template: ComponentStory<typeof ButtonComponent> = (args) => (
-  <Button {...args} />
+  <Base {...args} />
 );
 const SkeletonTemplate: ComponentStory<typeof ButtonComponent.Skeleton> = (
   args
 ) => <ButtonComponent.Skeleton {...args} />;
 
-export const button = Template.bind({});
-button.args = {
+export const base = Template.bind({});
+base.args = {
   children: "Button",
 };
 
