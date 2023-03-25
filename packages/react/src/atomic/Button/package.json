@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/button",
-  "version": "2.4.0",
+  "version": "2.5.0-rc.3",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -35,5 +35,6 @@
     "@nimbus-ds/icons": "workspace:^",
     "@nimbus-ds/skeleton": "workspace:^",
     "@nimbus-ds/webpack": "workspace:^"
-  }
+  },
+  "stableVersion": "2.4.0"
 }
