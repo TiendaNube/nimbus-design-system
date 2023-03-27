@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2023-03-27 `7.0.1`
+
+### 🐛 Bug fixes
+
+- Adjusted internal spacing of components when the alert does not have the removal function. ([#134](https://github.com/TiendaNube/nimbus-design-system/pull/134) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-02-24 `7.0.0`
 
 ### 🛠 Breaking changes

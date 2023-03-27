@@ -2,6 +2,12 @@
 
 The Alert component allows us to communicate about changes or special conditions in pages or sections.
 
+## 2023-03-27 `2.3.1`
+
+### 🐛 Bug fixes
+
+- Adjusted internal spacing of components when the alert does not have the removal function. ([#134](https://github.com/TiendaNube/nimbus-design-system/pull/134) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-03-13 `2.3.0`
 
 ### 💡 Others

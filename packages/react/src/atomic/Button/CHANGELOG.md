@@ -6,7 +6,7 @@ The Button component allows us to initiate actions, make state or page changes.
 
 ### 💡 Others
 
-- Adjusted the component properties interface to use `ComponentPropsWithRef` and include the `as` prop in the output interface. ([#132](https://github.com/TiendaNube/nimbus-design-system/pull/132) by [@juniorconquista](https://github.com/juniorconquista))
+- Adjusted the component properties interface to use `ComponentPropsWithRef` and include the `as` prop in the output interface. ([#134](https://github.com/TiendaNube/nimbus-design-system/pull/134) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2023-02-23 `2.4.0`
 

@@ -24,6 +24,8 @@ const Alert: React.FC<AlertProps> & AlertComponents = ({
     return null;
   }
 
+  console.log(onRemove);
+
   return (
     <div
       {...rest}
@@ -31,14 +33,16 @@ const Alert: React.FC<AlertProps> & AlertComponents = ({
       role={alertVariants[appearance].role}
       className={alert.classnames.appearance[appearance]}
     >
-      <Icon color={`${appearance}-textLow`} source={<AlertIcon />} />
-      <div className={alert.classnames.container__body}>
-        {title && (
-          <Title as="h6" color={`${appearance}-textLow`}>
-            {title}
-          </Title>
-        )}
-        <div className={alert.classnames.container__content}>{children}</div>
+      <div className={alert.classnames.container}>
+        <Icon color={`${appearance}-textLow`} source={<AlertIcon />} />
+        <div className={alert.classnames.container__body}>
+          {title && (
+            <Title as="h6" color={`${appearance}-textLow`}>
+              {title}
+            </Title>
+          )}
+          <div className={alert.classnames.container__content}>{children}</div>
+        </div>
       </div>
       {onRemove && (
         <button

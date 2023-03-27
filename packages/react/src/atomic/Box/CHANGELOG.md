@@ -6,7 +6,7 @@ A low-level utility component that accepts styled system props to enable custom 
 
 ### 💡 Others
 
-- Adjusted the component properties interface to use `ComponentPropsWithRef` and include the `as` prop in the output interface. ([#132](https://github.com/TiendaNube/nimbus-design-system/pull/132) by [@juniorconquista](https://github.com/juniorconquista))
+- Adjusted the component properties interface to use `ComponentPropsWithRef` and include the `as` prop in the output interface. ([#134](https://github.com/TiendaNube/nimbus-design-system/pull/134) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2023-03-13 `3.0.0`
 

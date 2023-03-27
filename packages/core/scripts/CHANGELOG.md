@@ -6,7 +6,7 @@ This package is intended for internal use in generating custom script builds at 
 
 ### 💡 Others
 
-- Added feature to generate as property on polymorphic components. ([#132](https://github.com/TiendaNube/nimbus-design-system/pull/132) by [@juniorconquista](https://github.com/juniorconquista))
+- Added feature to generate as property on polymorphic components. ([#134](https://github.com/TiendaNube/nimbus-design-system/pull/134) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2023-03-19 `1.0.0`
 
