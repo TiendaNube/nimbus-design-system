@@ -144,10 +144,10 @@ export class Docgen {
 
   private getPolymorphicProps(): string[] {
     const match = this.sourceComponent.match(
-      /PolymorphicForwardRefComponent<(["\w+" \| ]{1,}),\s\S+>/m
+      /PolymorphicForwardRefComponent<([\W\w]+),.+$/m
     )?.[1];
 
-    return match ? match.replace(/"| /gm, "").split("|") : [];
+    return match ? match.replace(/[" ]/gm, "").split("|") : [];
   }
 
   private getComponentId(): string {
