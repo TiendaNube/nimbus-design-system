@@ -144,7 +144,7 @@ export class Docgen {
 
   private getPolymorphicProps(): string[] {
     const match = this.sourceComponent.match(
-      /PolymorphicForwardRefComponent<(.+),.+$/m
+      /PolymorphicForwardRefComponent<(.+),.+> &$/m
     )?.[1];
 
     return match ? match.replace(/[" ]/gm, "").split("|") : [];
