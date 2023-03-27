@@ -54,6 +54,6 @@ const config: Config.InitialOptions = {
     "^.+\\.css\\.ts$": "babel-jest",
     ".+\\.(ts|tsx)$": "ts-jest",
   },
-  coveragePathIgnorePatterns: ["dist"],
+  coveragePathIgnorePatterns: ["dist", ".scripts", "packages/core/typings"],
 };
 export default config;
