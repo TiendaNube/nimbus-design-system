@@ -3506,6 +3506,8 @@ __metadata:
 "@nimbus-ds/typings@workspace:packages/core/typings":
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/typings@workspace:packages/core/typings"
+  dependencies:
+    "@nimbus-ds/webpack": "workspace:^"
   languageName: unknown
   linkType: soft
 
