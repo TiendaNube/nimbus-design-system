@@ -10,13 +10,7 @@ const base = vanillaStyle({
   width: "100%",
   borderStyle: "solid",
   borderWidth: 1,
-  paddingBottom: varsThemeBase.spacing[4],
-  paddingLeft: varsThemeBase.spacing[4],
-  paddingRight: varsThemeBase.spacing[12],
-  paddingTop: varsThemeBase.spacing[4],
-  boxSizing: "border-box",
   borderRadius: varsThemeBase.spacing[2],
-  gap: varsThemeBase.spacing[4],
 });
 
 export const appearance = styleVariants({
@@ -62,6 +56,19 @@ export const appearance = styleVariants({
   ],
 });
 
+export const container = vanillaStyle({
+  display: "flex",
+  alignItems: "flex-start",
+  justifyContent: "flex-start",
+  paddingTop: varsThemeBase.spacing[4],
+  paddingBottom: varsThemeBase.spacing[4],
+  paddingLeft: varsThemeBase.spacing[4],
+  paddingRight: varsThemeBase.spacing[4],
+  boxSizing: "border-box",
+  flex: 1,
+  gap: varsThemeBase.spacing[4],
+});
+
 export const container__body = vanillaStyle({
   display: "flex",
   flexDirection: "column",
@@ -85,10 +92,6 @@ const container__close = vanillaStyle({
   borderWidth: 1,
   background: "transparent",
   cursor: "pointer",
-  margin: 0,
-  position: "absolute",
-  top: 0,
-  right: 0,
   display: "flex",
   alignItems: "center",
   justifyContent: "center",

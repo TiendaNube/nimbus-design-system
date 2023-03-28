@@ -7,6 +7,7 @@ const config: Config.InitialOptions = {
   moduleNameMapper: {
     // core
     "@nimbus-ds/styles": "<rootDir>/packages/core/styles/src",
+    "@nimbus-ds/typings": "<rootDir>/packages/core/typings/src",
     // atomics
     "@nimbus-ds/badge": "<rootDir>/packages/react/src/atomic/Badge/src",
     "@nimbus-ds/box": "<rootDir>/packages/react/src/atomic/Box/src",
@@ -53,6 +54,6 @@ const config: Config.InitialOptions = {
     "^.+\\.css\\.ts$": "babel-jest",
     ".+\\.(ts|tsx)$": "ts-jest",
   },
-  coveragePathIgnorePatterns: ["dist"],
+  coveragePathIgnorePatterns: ["dist", ".scripts", "packages/core/typings"],
 };
 export default config;

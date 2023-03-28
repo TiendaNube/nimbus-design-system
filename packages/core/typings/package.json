@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/typings",
-  "version": "1.0.0",
+  "version": "1.1.0-rc.3",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -8,6 +8,11 @@
     "README.md"
   ],
   "sideEffects": false,
+  "scripts": {
+    "build": "yarn g:webpack",
+    "clean": "rm -rf dist",
+    "version": "yarn version"
+  },
   "homepage": "https://nimbus.nuvemshop.com.br/documentation",
   "repository": {
     "type": "git",
@@ -15,5 +20,9 @@
   },
   "bugs": {
     "url": "https://github.com/TiendaNube/nimbus-design-system/issues"
-  }
+  },
+  "devDependencies": {
+    "@nimbus-ds/webpack": "workspace:^"
+  },
+  "stableVersion": "1.0.0"
 }

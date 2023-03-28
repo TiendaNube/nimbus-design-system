@@ -69,6 +69,10 @@ const convertTsConfigPathsToWebpackAliases = () => {
     rootDir,
     "packages/core/webpack/src/index.ts"
   );
+  paths["@nimbus-ds/typings"] = path.join(
+    rootDir,
+    "packages/core/typings/src/index.ts"
+  );
 
   return paths;
 };
