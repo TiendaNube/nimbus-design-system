@@ -3,7 +3,7 @@ import { PartialArgs, CompilerOptions } from "typescript-json-schema";
 export interface Prop {
   title: string;
   description: string;
-  defaultValue?: string;
+  default?: string;
   required: boolean;
   type?: string;
   enum?: string[];

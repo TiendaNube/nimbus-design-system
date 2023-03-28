@@ -102,7 +102,7 @@ export class Docgen {
       const asDefault = this.sourceComponent.match(/As = "(\w+)",/m)?.[1] ?? "";
 
       props.unshift({
-        defaultValue: asDefault,
+        default: asDefault,
         description:
           "The underlying element to render — either a HTML element name or a React component.",
         anyOf: [
