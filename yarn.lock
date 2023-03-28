@@ -3359,6 +3359,7 @@ __metadata:
     "@vanilla-extract/css": ^1.9.2
     "@vanilla-extract/recipes": ^0.3.0
     "@vanilla-extract/sprinkles": ^1.5.1
+    css-loader: ^6.7.3
     glob: ^8.0.3
     rainbow-sprinkles: ^0.14.0
     ts-node: ^10.9.1
@@ -9094,6 +9095,24 @@ __metadata:
   peerDependencies:
     webpack: ^4.27.0 || ^5.0.0
   checksum: fb0742b30ac0919f94b99a323bdefe6d48ae46d66c7d966aae59031350532f368f8bba5951fcd268f2e053c5e6e4655551076268e9073ccb58e453f98ae58f8e
+  languageName: node
+  linkType: hard
+
+"css-loader@npm:^6.7.3":
+  version: 6.7.3
+  resolution: "css-loader@npm:6.7.3"
+  dependencies:
+    icss-utils: ^5.1.0
+    postcss: ^8.4.19
+    postcss-modules-extract-imports: ^3.0.0
+    postcss-modules-local-by-default: ^4.0.0
+    postcss-modules-scope: ^3.0.0
+    postcss-modules-values: ^4.0.0
+    postcss-value-parser: ^4.2.0
+    semver: ^7.3.8
+  peerDependencies:
+    webpack: ^5.0.0
+  checksum: 473cc32b6c837c2848e2051ad1ba331c1457449f47442e75a8c480d9891451434ada241f7e3de2347e57de17fcd84610b3bcfc4a9da41102cdaedd1e17902d31
   languageName: node
   linkType: hard
 
@@ -17219,7 +17238,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:^8.4.17":
+"postcss@npm:^8.4.17, postcss@npm:^8.4.19":
   version: 8.4.21
   resolution: "postcss@npm:8.4.21"
   dependencies:
@@ -18561,6 +18580,17 @@ __metadata:
   bin:
     semver: ./bin/semver.js
   checksum: 1b26ecf6db9e8292dd90df4e781d91875c0dcc1b1909e70f5d12959a23c7eebb8f01ea581c00783bbee72ceeaad9505797c381756326073850dc36ed284b21b9
+  languageName: node
+  linkType: hard
+
+"semver@npm:^7.3.8":
+  version: 7.3.8
+  resolution: "semver@npm:7.3.8"
+  dependencies:
+    lru-cache: ^6.0.0
+  bin:
+    semver: bin/semver.js
+  checksum: ba9c7cbbf2b7884696523450a61fee1a09930d888b7a8d7579025ad93d459b2d1949ee5bbfeb188b2be5f4ac163544c5e98491ad6152df34154feebc2cc337c1
   languageName: node
   linkType: hard
 

@@ -45,9 +45,9 @@ class CssHashRemoverPlugin {
           stage: Compilation.PROCESS_ASSETS_STAGE_SUMMARIZE,
         },
         (assets) => {
-          const source = assets?.["./index.css"]?.source()?.toString();
+          const source = assets?.["./index.css"]?.source()?.toString() ?? "";
           const matches = Array.from(
-            source.matchAll(
+            source?.matchAll(
               /(?:\.nimbus-[\w|-]+)(?:(__\w{7,}))(?::{0,2}(?:disabled|focus|active|hover|placeholder|focus-visible|after)?) ?{/gm
             ),
             (m) => m[1]
