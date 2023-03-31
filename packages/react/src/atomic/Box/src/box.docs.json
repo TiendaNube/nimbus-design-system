@@ -1,7 +1,7 @@
 {
   "id": "box",
   "name": "Box",
-  "totalProps": 79,
+  "totalProps": 80,
   "props": [
     {
       "description": "Element to be rendered inside the Box component. Meu teste",
@@ -7597,6 +7597,109 @@
         }
       ],
       "title": "backgroundRepeat",
+      "required": false
+    },
+    {
+      "description": "The textDecoration shorthand property sets the appearance of decorative lines on text.",
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "focus": {
+              "enum": [
+                "none",
+                "underline"
+              ],
+              "type": "string",
+              "title": "focus"
+            },
+            "focusWithin": {
+              "enum": [
+                "none",
+                "underline"
+              ],
+              "type": "string",
+              "title": "focusWithin"
+            },
+            "active": {
+              "enum": [
+                "none",
+                "underline"
+              ],
+              "type": "string",
+              "title": "active"
+            },
+            "hover": {
+              "enum": [
+                "none",
+                "underline"
+              ],
+              "type": "string",
+              "title": "hover"
+            },
+            "disabled": {
+              "enum": [
+                "none",
+                "underline"
+              ],
+              "type": "string",
+              "title": "disabled"
+            },
+            "xs": {
+              "enum": [
+                "none",
+                "underline"
+              ],
+              "type": "string",
+              "title": "xs"
+            },
+            "md": {
+              "enum": [
+                "none",
+                "underline"
+              ],
+              "type": "string",
+              "title": "md"
+            },
+            "lg": {
+              "enum": [
+                "none",
+                "underline"
+              ],
+              "type": "string",
+              "title": "lg"
+            },
+            "xl": {
+              "enum": [
+                "none",
+                "underline"
+              ],
+              "type": "string",
+              "title": "xl"
+            }
+          },
+          "additionalProperties": false,
+          "propertyOrder": [
+            "focus",
+            "focusWithin",
+            "active",
+            "hover",
+            "disabled",
+            "xs",
+            "md",
+            "lg",
+            "xl"
+          ]
+        },
+        {
+          "enum": [
+            "none",
+            "underline"
+          ],
+          "type": "string"
+        }
+      ],
+      "title": "textDecoration",
       "required": false
     },
     {
