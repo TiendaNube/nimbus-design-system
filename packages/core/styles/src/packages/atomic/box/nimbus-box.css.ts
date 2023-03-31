@@ -22,6 +22,7 @@ import {
   boxShadowProperties,
   transitionSpeedProperties,
   transitionTimingProperties,
+  textDecorationProperties,
 } from "../../../properties";
 import { varsThemeBase, mediaQueries } from "../../../themes";
 
@@ -161,6 +162,7 @@ const defineProperties = defineRainbowProperties({
     backgroundBlendMode: true,
     backgroundRepeat: true,
     backgroundSize: true,
+
     transitionDuration: transitionSpeedProperties,
     backgroundColor: boxBackgroundColorProperties,
     borderColor: boxBorderColorProperties,
@@ -195,6 +197,7 @@ const defineProperties = defineRainbowProperties({
     overflowX: overflowProperties,
     overflowY: overflowProperties,
     transitionTimingFunction: transitionTimingProperties,
+    textDecoration: textDecorationProperties,
   },
   shorthands: {
     padding: ["paddingTop", "paddingBottom", "paddingLeft", "paddingRight"],
@@ -245,6 +248,7 @@ const properties = {
   boxShadow: boxShadowProperties,
   transitionDuration: transitionSpeedProperties,
   transitionTimingFunction: transitionTimingProperties,
+  textDecoration: textDecorationProperties,
 };
 
 const sprinkle = createRainbowSprinkles(defineProperties);

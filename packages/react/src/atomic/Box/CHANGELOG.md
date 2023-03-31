@@ -2,6 +2,12 @@
 
 A low-level utility component that accepts styled system props to enable custom theme-aware styling
 
+## 2023-03-31 `3.2.0`
+
+### 🎉 New features
+
+- Added `textDecoration` property to the Component. ([#136](https://github.com/TiendaNube/nimbus-design-system/pull/136) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-03-24 `3.1.0`
 
 ### 💡 Others

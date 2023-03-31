@@ -1,6 +1,16 @@
 releases:
-  "@nimbus-ds/components": patch
+  "@nimbus-ds/box": minor
+  "@nimbus-ds/components": minor
   "@nimbus-ds/select": patch
+  "@nimbus-ds/styles": minor
 
 declined:
   - nimbus-design-system
+  - "@nimbus-ds/tokens"
+  - "@nimbus-ds/popover"
+  - "@nimbus-ds/accordion"
+  - "@nimbus-ds/alert"
+  - "@nimbus-ds/card"
+  - "@nimbus-ds/modal"
+  - "@nimbus-ds/sidebar"
+  - "@nimbus-ds/tabs"

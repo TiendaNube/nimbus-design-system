@@ -2,11 +2,15 @@
 
 This package is intended for internal use in generating builds of each design system package. It contains all the necessary settings and dependencies to optimize the creation of our builds.
 
-## 2023-04-03 `3.1.1`
+## 2023-03-31 `3.2.0`
+
+### 🎉 New features
+
+- Added `textDecoration` property to `Box` component API. ([#136](https://github.com/TiendaNube/nimbus-design-system/pull/106) by
 
 ### 🐛 Bug fixes
 
-- Add missing dependency for `@nimbus-ds/icon` external package on `Select` component. ([#135](https://github.com/TiendaNube/nimbus-design-system/pull/135) by [@juanchigallego](https://github.com/juanchigallego))
+- Add missing dependency for `@nimbus-ds/icon` external package on `Select` component. ([#136](https://github.com/TiendaNube/nimbus-design-system/pull/136) by [@juanchigallego](https://github.com/juanchigallego))
 
 ## 2023-03-24 `3.1.0`
 
