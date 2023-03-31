@@ -13,6 +13,7 @@ import {
   AlignSelf,
   PointerEvents,
   TransitionTiming,
+  TextDecoration,
 } from "../../../types";
 import { boxSprinkle } from "./nimbus-box.css";
 
@@ -290,6 +291,10 @@ export interface BoxSprinkle {
    * The backgroundRepeat property sets how background images are repeated. A background image can be repeated along the horizontal and vertical axes, or not repeated at all.
    */
   backgroundRepeat?: string | BoxConditions<string>;
+  /**
+   * The textDecoration shorthand property sets the appearance of decorative lines on text.
+   */
+  textDecoration?: TextDecoration | BoxConditions<TextDecoration>;
   /**
    * The backgroundSize property sets the size of the element's background image. The image can be left to its natural size, stretched, or constrained to fit the available space.
    */

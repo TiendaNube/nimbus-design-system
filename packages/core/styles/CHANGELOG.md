@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2023-03-31 `7.1.0`
+
+#### 🎉 New features
+
+- Added `textDecoration` to `Box` component sprinkles. ([#136](https://github.com/TiendaNube/nimbus-design-system/pull/136) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-03-27 `7.0.1`
 
 ### 🐛 Bug fixes

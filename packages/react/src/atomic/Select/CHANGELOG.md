@@ -2,6 +2,12 @@
 
 Use a select box when a user needs to select one option from a list.
 
+## 2023-04-03 `2.3.2`
+
+### 🐛 Bug fixes
+
+- Add missing dependency for `@nimbus-ds/icon` external package. ([#135](https://github.com/TiendaNube/nimbus-design-system/pull/135) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-03-27 `2.3.1`
 
 ### 🐛 Bug fixes

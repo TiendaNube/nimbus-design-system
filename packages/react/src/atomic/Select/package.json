@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/select",
-  "version": "2.3.1",
+  "version": "2.3.2-rc.1",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -14,6 +14,7 @@
     "version": "yarn version"
   },
   "dependencies": {
+    "@nimbus-ds/icon": "workspace:^",
     "@nimbus-ds/icons": "workspace:^",
     "@nimbus-ds/skeleton": "workspace:^"
   },
@@ -31,5 +32,6 @@
   },
   "devDependencies": {
     "@nimbus-ds/webpack": "workspace:^"
-  }
+  },
+  "stableVersion": "2.3.1"
 }
