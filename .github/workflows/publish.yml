@@ -106,7 +106,8 @@ jobs:
           prerelease: false
 
   send-slack-notifications:
-    needs: [publish-packages-npm, create-github-relase]
+    # needs: [publish-packages-npm, create-github-relase]
+    needs: [create-github-relase]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
