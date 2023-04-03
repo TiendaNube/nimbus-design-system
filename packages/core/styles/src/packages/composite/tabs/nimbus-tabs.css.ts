@@ -5,7 +5,7 @@ import { varsThemeBase } from "../../../themes";
 export const container = vanillaStyle({
   borderColor: varsThemeBase.colors.neutral.interactive,
   borderStyle: "none none solid",
-  borderWidth: 2,
+  borderWidth: varsThemeBase.shape.border.width[2],
   margin: 0,
   padding: 0,
   listStyle: "none",
@@ -28,7 +28,7 @@ const button = vanillaStyle({
   border: 0,
   display: "block",
   margin: "0 auto",
-  borderRadius: varsThemeBase.sizes[1],
+  borderRadius: varsThemeBase.shape.border.radius[1],
   paddingBottom: varsThemeBase.spacing[2],
   paddingLeft: varsThemeBase.spacing[6],
   paddingRight: varsThemeBase.spacing[6],

@@ -5,8 +5,8 @@ import { varsThemeBase } from "../../../themes";
 export const container = vanillaStyle({
   display: "flex",
   flexDirection: "column",
-  gap: varsThemeBase.spacing[1],
   margin: "0",
+  gap: varsThemeBase.spacing[1],
   paddingInlineStart: varsThemeBase.spacing[6],
 });
 

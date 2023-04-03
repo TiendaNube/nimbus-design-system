@@ -6,26 +6,24 @@ export const base = vanillaStyle({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
+  cursor: "pointer",
 
   padding: `${varsThemeBase.spacing[1]} ${varsThemeBase.spacing[2]}`,
+  gap: varsThemeBase.spacing[1],
   height: "1.5rem",
   width: "fit-content",
-  gap: varsThemeBase.spacing[1],
+  boxSizing: "border-box",
 
   lineHeight: varsThemeBase.lineWeight.body.caption,
   fontSize: varsThemeBase.fontSize.body.caption,
   fontFamily: varsThemeBase.fontFamily.centranube,
-
   background: varsThemeBase.colors.neutral.surface,
   color: varsThemeBase.colors.neutral.textLow,
-  borderRadius: "0.25rem",
-  boxSizing: "border-box",
 
-  borderWidth: "0.063rem",
   borderStyle: "solid",
+  borderRadius: varsThemeBase.shape.border.radius[1],
+  borderWidth: varsThemeBase.shape.border.width[1],
   borderColor: varsThemeBase.colors.neutral.interactive,
-
-  cursor: "pointer",
   transition: `all ${varsThemeBase.motion.speed.fast} ease`,
 
   ":hover": {

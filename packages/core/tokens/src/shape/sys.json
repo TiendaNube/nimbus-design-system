@@ -1,0 +1,25 @@
+{
+  "shape": {
+    "border": {
+      "radius": {
+        "0,5": { "value": "{sizes.0,5}" },
+        "1": { "value": "{sizes.1}" },
+        "2": { "value": "{sizes.2}" },
+        "3": { "value": "{sizes.3}" },
+        "4": { "value": "{sizes.4}" },
+        "5": { "value": "{sizes.5}" },
+        "6": { "value": "{sizes.6}" },
+        "full": { "value": "9999px" },
+        "base": { "value": "{sizes.1,5}" },
+        "half": { "value": "50%" }
+      },
+      "width": {
+        "1": { "value": "0.0625rem" },
+        "2": { "value": "0.125rem" },
+        "3": { "value": "0.1875rem" },
+        "4": { "value": "1rem" },
+        "5": { "value": "0.3125rem" }
+      }
+    }
+  }
+}

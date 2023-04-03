@@ -33,9 +33,12 @@ export const backgroundColorProperties = baseColors;
 export const borderColorProperties = baseColors;
 export const colorProperties = baseColors;
 export const boxShadowProperties = {
-  card: varsThemeBase.shadow.card,
-  popover: varsThemeBase.shadow.popover,
-  modal: varsThemeBase.shadow.modal,
+  "level-0": varsThemeBase.shadow.level[0],
+  "level-1": varsThemeBase.shadow.level[1],
+  "level-2": varsThemeBase.shadow.level[2],
+  "level-3": varsThemeBase.shadow.level[3],
+  "level-4": varsThemeBase.shadow.level[4],
+  "level-5": varsThemeBase.shadow.level[5],
   focusRing: varsThemeBase.utils.focus,
 };
 export const boxSizingProperties: BoxSizing[] = ["border-box", "content-box"];

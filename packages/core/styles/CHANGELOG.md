@@ -2,6 +2,16 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2023-04-02 `7.2.0`
+
+#### 🎉 New features
+
+- Added new shape tokens to components. ([#137](https://github.com/TiendaNube/nimbus-design-system/pull/137) by [@juniorconquista](https://github.com/juniorconquista))
+
+#### 🛠 Breaking changes
+
+- Refactored shadow tokens in components. ([#137](https://github.com/TiendaNube/nimbus-design-system/pull/137) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-03-31 `7.1.0`
 
 #### 🎉 New features
@@ -10,13 +20,13 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 ## 2023-03-27 `7.0.1`
 
-### 🐛 Bug fixes
+#### 🐛 Bug fixes
 
 - Adjusted internal spacing of components when the alert does not have the removal function. ([#134](https://github.com/TiendaNube/nimbus-design-system/pull/134) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2023-02-24 `7.0.0`
 
-### 🛠 Breaking changes
+#### 🛠 Breaking changes
 
 - Refactored color tokens by removing `.` separator to `-`. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
 
@@ -25,7 +35,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 - Created new css file that contains all nimbus utility classes. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
 - Added `focusWithin` state to `Box` conditions. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
 
-### 💡 Others
+#### 💡 Others
 
 - Refactored style classes to have more semantic names. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/110) by [@juniorconquista](https://github.com/juniorconquista))
 
@@ -67,7 +77,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 - Fix sprinkles properties naming bug on `Table` and `IconButton` components. ([#94](https://github.com/TiendaNube/nimbus-design-system/pull/94) by [@juanchigallego](https://github.com/juanchigallego))
 
-### 💡 Others
+#### 💡 Others
 
 - Correct line-height property on `Select` component. ([#94](https://github.com/TiendaNube/nimbus-design-system/pull/94) by [@juanchigallego](https://github.com/juanchigallego))
 - Remove default margin on `Pagination` component. ([#94](https://github.com/TiendaNube/nimbus-design-system/pull/94) by [@juanchigallego](https://github.com/juanchigallego))
@@ -209,7 +219,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 ## 2022-12-02 `4.20.0`
 
-### 🐛 Bug fixes
+#### 🐛 Bug fixes
 
 - Fixed minimum package size of checkbox and radio components. ([#62](https://github.com/TiendaNube/nimbus-design-system/pull/62) by [@juniorconquista](https://github.com/juniorconquista))
 
@@ -220,7 +230,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 - Added `zIndex` property in sidebar sprinkle. ([#61](https://github.com/TiendaNube/nimbus-design-system/pull/61) by [@juniorconquista](https://github.com/juniorconquista))
 - Added `size`, `backgroundColor` and `borderColor` properties in iconButton sprinkle. ([#61](https://github.com/TiendaNube/nimbus-design-system/pull/61) by [@juniorconquista](https://github.com/juniorconquista))
 
-### 💡 Others
+#### 💡 Others
 
 - Refactored link component style pack. ([#61](https://github.com/TiendaNube/nimbus-design-system/pull/61) by [@juniorconquista](https://github.com/juniorconquista))
 
@@ -253,7 +263,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 - Added new style pack for sidebar component. ([#56](https://github.com/TiendaNube/nimbus-design-system/pull/#56) by [@juniorconquista](https://github.com/juniorconquista))
 
-### 🐛 Bug fixes
+#### 🐛 Bug fixes
 
 - Added `box-sizing` to box component styling. ([#56](https://github.com/TiendaNube/nimbus-design-system/pull/#56) by [@juniorconquista](https://github.com/juniorconquista))
 
@@ -265,7 +275,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 ## 2022-11-09 `4.14.1`
 
-### 🐛 Bug fixes
+#### 🐛 Bug fixes
 
 - Fixed typing of box and stack packages. ([#53](https://github.com/TiendaNube/nimbus-design-system/pull/#53) by [@juniorconquista](https://github.com/juniorconquista))
 
@@ -299,7 +309,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 - Added new styles for positioning the arrow in positions `right-start`, `right-end`, `left-start` and `left-end`. ([#45](https://github.com/TiendaNube/nimbus-design-system/pull/45) by [@juniorconquista](https://github.com/juniorconquista))
 
-### 💡 Others
+#### 💡 Others
 
 - Removed styles so that the popover container has a maximum width relative to its anchor size. ([#45](https://github.com/TiendaNube/nimbus-design-system/pull/45) by [@juniorconquista](https://github.com/juniorconquista))
 
@@ -316,7 +326,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 - Added new style pack for textarea component. ([#41](https://github.com/TiendaNube/nimbus-design-system/pull/41) by [@juanchigallego](https://github.com/juanchigallego))
 
-### 💡 Others
+#### 💡 Others
 
 - Adjust focus styles on select component. ([#41](https://github.com/TiendaNube/nimbus-design-system/pull/41) by [@juanchigallego](https://github.com/juanchigallego))
 
@@ -328,7 +338,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 - Added new style pack for stack component. ([#40](https://github.com/TiendaNube/nimbus-design-system/pull/40) by [@juniorconquista](https://github.com/juniorconquista))
 - Added box-shadow to popover arrow. ([#40](https://github.com/TiendaNube/nimbus-design-system/pull/40) by [@juniorconquista](https://github.com/juniorconquista))
 
-### 💡 Others
+#### 💡 Others
 
 - Added styles so that the popover container has a maximum width relative to its anchor size. ([#40](https://github.com/TiendaNube/nimbus-design-system/pull/40) by [@juniorconquista](https://github.com/juniorconquista))
 - Added styles so that the tooltip container has a maximum width relative to its anchor size. ([#40](https://github.com/TiendaNube/nimbus-design-system/pull/40) by [@juniorconquista](https://github.com/juniorconquista))
@@ -351,7 +361,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 - Added new style pack for popover component. ([#37](https://github.com/TiendaNube/nimbus-design-system/pull/37) by [@juniorconquista](https://github.com/juniorconquista))
 - Added new shadow tokens to theme base. ([#37](https://github.com/TiendaNube/nimbus-design-system/pull/37) by [@juniorconquista](https://github.com/juniorconquista))
 
-### 💡 Others
+#### 💡 Others
 
 - Refactored tooltip package color scheme. ([#37](https://github.com/TiendaNube/nimbus-design-system/pull/37) by [@juniorconquista](https://github.com/juniorconquista))
 
@@ -388,7 +398,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 - Added `neutral.background` color properties from sprinkle sppiner. ([#32](https://github.com/TiendaNube/nimbus-design-system/pull/32) by [@juniorconquista](https://github.com/juniorconquista))
 - Added `currentColor` color properties from sprinkle text. ([#32](https://github.com/TiendaNube/nimbus-design-system/pull/32) by [@juniorconquista](https://github.com/juniorconquista))
 
-### 💡 Others
+#### 💡 Others
 
 - Removed background colors from `primary`, `success`, `warning` and `danger` scales for basic and dark themes. ([#32](https://github.com/TiendaNube/nimbus-design-system/pull/32) by [@juniorconquista](https://github.com/juniorconquista))
 - Removed `primary.background`, `danger.background`, `success.background`, `waring.background` properties from sprinkle colors. ([#32](https://github.com/TiendaNube/nimbus-design-system/pull/32) by [@juniorconquista](https://github.com/juniorconquista))
@@ -405,7 +415,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 ## 2022-09-24 `3.0.0` - `2.4.0`
 
-### 💡 Others
+#### 💡 Others
 
 - Refactored typography spacing sizes and tokens. ([#29](https://github.com/TiendaNube/nimbus-design-system/pull/29) by [@juniorconquista](https://github.com/juniorconquista))
 
@@ -443,7 +453,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 - Added new `textAlign` sprinkle in `Title` package. ([#23](https://github.com/TiendaNube/nimbus-design-system/pull/23) by [@juniorconquista](https://github.com/juniorconquista))
 - Added new `textAlign`, `fontSize`, `lineHeight` and `fontWeight` sprinkle in `Text` package. ([#23](https://github.com/TiendaNube/nimbus-design-system/pull/23) by [@juniorconquista](https://github.com/juniorconquista))
 
-### 💡 Others
+#### 💡 Others
 
 - Removed `textAlign` variant in `Title` package. ([#23](https://github.com/TiendaNube/nimbus-design-system/pull/23) by [@juniorconquista](https://github.com/juniorconquista))
 - Removed `textAlign`, `size`, `lineHeight` and `bold` variant in `Text` package. ([#23](https://github.com/TiendaNube/nimbus-design-system/pull/23) by [@juniorconquista](https://github.com/juniorconquista))
@@ -458,7 +468,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 - Updated `@vanilla-extract/css@1.7.3`. ([#21](https://github.com/TiendaNube/nimbus-design-system/pull/21) by [@juniorconquista](https://github.com/juniorconquista))
 - Added `@vanilla-extract/sprinkles@1.4.1`. ([#21](https://github.com/TiendaNube/nimbus-design-system/pull/21) by [@juniorconquista](https://github.com/juniorconquista))
 
-### 💡 Others
+#### 💡 Others
 
 - Restructured folders and style organization concepts. ([#21](https://github.com/TiendaNube/nimbus-design-system/pull/21) by [@juniorconquista](https://github.com/juniorconquista))
 
@@ -479,7 +489,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 - Added new style pack for tag component. ([#17](https://github.com/TiendaNube/nimbus-design-system/pull/17) by [@juniorconquista](https://github.com/juniorconquista))
 
-### 🐛 Bug fixes
+#### 🐛 Bug fixes
 
 - Changed `text` component appearance tokens from interactive color variations to low colors. ([#17](https://github.com/TiendaNube/nimbus-design-system/pull/17) by [@juniorconquista](https://github.com/juniorconquista))
 
@@ -513,12 +523,12 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 <!-- ### 📚 3rd party library updates -->
 
-<!-- ### 🛠 Breaking changes -->
+<!-- #### 🛠 Breaking changes -->
 
 <!-- ### 🎉 New features -->
 
-<!-- ### 🐛 Bug fixes -->
+<!-- #### 🐛 Bug fixes -->
 
-<!-- ### 💡 Others -->
+<!-- #### 💡 Others -->
 
 <!-- ### ⚠️ Notices  -->

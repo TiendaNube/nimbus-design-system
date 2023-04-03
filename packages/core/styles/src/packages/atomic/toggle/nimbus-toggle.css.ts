@@ -3,14 +3,13 @@ import { style as vanillaStyle, globalStyle } from "@vanilla-extract/css";
 import { varsThemeBase } from "../../../themes";
 
 export const container = vanillaStyle({
-  borderRadius: "9px",
   display: "flex",
   alignItems: "center",
   width: "fit-content",
   gap: varsThemeBase.spacing[1],
   position: "relative",
   cursor: "pointer",
-
+  borderRadius: varsThemeBase.shape.border.radius.full,
   ":focus-within": {
     boxShadow: varsThemeBase.utils.focus,
   },
@@ -33,9 +32,9 @@ export const container__slider = vanillaStyle({
   justifyContent: "center",
   position: "relative",
 
-  borderRadius: "9px",
   borderStyle: "solid",
-  borderWidth: "1px",
+  borderRadius: varsThemeBase.shape.border.radius.full,
+  borderWidth: varsThemeBase.shape.border.width[1],
   borderColor: varsThemeBase.colors.neutral.interactive,
   backgroundColor: varsThemeBase.colors.neutral.surface,
   transition: `all ${varsThemeBase.motion.speed.fast} ease`,
@@ -44,10 +43,10 @@ export const container__slider = vanillaStyle({
     position: "absolute",
     width: "0.875rem",
     height: "0.875rem",
+    left: "0.063rem",
 
     backgroundColor: varsThemeBase.colors.neutral.interactive,
-    borderRadius: "50%",
-    left: "0.063rem",
+    borderRadius: varsThemeBase.shape.border.radius.half,
     transition: `all ${varsThemeBase.motion.speed.fast} ease`,
   },
 

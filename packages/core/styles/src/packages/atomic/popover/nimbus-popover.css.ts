@@ -20,8 +20,8 @@ const content = style({
   width: "17.5rem",
   minHeight: "2rem",
   filter: `drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.2))`,
-  borderRadius: varsThemeBase.spacing[2],
   boxSizing: "border-box",
+  borderRadius: varsThemeBase.shape.border.radius[2],
   transition: `opacity ${varsThemeBase.motion.speed.fast} ease`,
 });
 
@@ -29,7 +29,7 @@ const base = style({
   "::after": {
     content: " ",
     position: "absolute",
-    borderWidth: varsThemeBase.spacing[2],
+    borderWidth: "0.5rem",
     borderStyle: "solid",
   },
 });

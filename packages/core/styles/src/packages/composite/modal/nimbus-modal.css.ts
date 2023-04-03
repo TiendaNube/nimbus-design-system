@@ -21,7 +21,7 @@ export const container = style({
   height: "auto",
 
   backgroundColor: varsThemeBase.colors.neutral.background,
-  borderRadius: varsThemeBase.spacing[2],
+  borderRadius: varsThemeBase.shape.border.radius[2],
   boxSizing: "border-box",
   zIndex: 200,
 });
@@ -30,7 +30,7 @@ const container__close = style({
   appearance: "none",
   borderStyle: "solid",
   borderColor: "transparent",
-  borderWidth: 1,
+  borderWidth: varsThemeBase.shape.border.width[1],
   background: "transparent",
   cursor: "pointer",
   margin: 0,
@@ -41,7 +41,7 @@ const container__close = style({
   alignItems: "center",
   justifyContent: "center",
   padding: varsThemeBase.spacing[4],
-  borderRadius: varsThemeBase.spacing[2],
+  borderRadius: varsThemeBase.shape.border.radius[2],
   ":focus": {
     boxShadow: varsThemeBase.utils.focus,
   },
