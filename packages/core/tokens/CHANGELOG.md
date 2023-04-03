@@ -6,11 +6,11 @@ Our design tokens are the foundations of Nimbus Design System.
 
 #### 🛠 Breaking changes
 
-- Refactored shadow tokens. ([#137](https://github.com/TiendaNube/nimbus-design-system/pull/137) by [@juniorconquista](https://github.com/juniorconquista))
+- Refactored shadow tokens. ([#139](https://github.com/TiendaNube/nimbus-design-system/pull/139) by [@juniorconquista](https://github.com/juniorconquista))
 
 ##### 🎉 New features
 
-- Added new shape tokens. ([#137](https://github.com/TiendaNube/nimbus-design-system/pull/137) by [@juniorconquista](https://github.com/juniorconquista))
+- Added new shape tokens. ([#139](https://github.com/TiendaNube/nimbus-design-system/pull/139) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2023-02-24 `6.0.2`
 

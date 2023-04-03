@@ -2,15 +2,15 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
-## 2023-04-02 `7.2.0`
+## 2023-04-02 `8.0.0`
 
 #### 🎉 New features
 
-- Added new shape tokens to components. ([#137](https://github.com/TiendaNube/nimbus-design-system/pull/137) by [@juniorconquista](https://github.com/juniorconquista))
+- Added new shape tokens to components. ([#139](https://github.com/TiendaNube/nimbus-design-system/pull/139) by [@juniorconquista](https://github.com/juniorconquista))
 
 #### 🛠 Breaking changes
 
-- Refactored shadow tokens in components. ([#137](https://github.com/TiendaNube/nimbus-design-system/pull/137) by [@juniorconquista](https://github.com/juniorconquista))
+- Refactored shadow tokens in components. ([#139](https://github.com/TiendaNube/nimbus-design-system/pull/139) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2023-03-31 `7.1.0`
 

@@ -6,7 +6,7 @@ This package is intended for internal use in generating builds of each design sy
 
 #### 🛠 Breaking changes
 
-- Refactored shadow tokens in components. ([#137](https://github.com/TiendaNube/nimbus-design-system/pull/137) by [@juniorconquista](https://github.com/juniorconquista))
+- Refactored shadow tokens in components. ([#139](https://github.com/TiendaNube/nimbus-design-system/pull/139) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2023-03-31 `3.2.0`
 
