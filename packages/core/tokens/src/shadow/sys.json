@@ -1,25 +1,45 @@
 {
   "shadow": {
     "light": {
-      "card": {
-        "value": "0px 2px 1px {color.sys.light.neutral.surface-highlight}, 0px 0px 2px {color.sys.light.neutral.surface-highlight}"
-      },
-      "popover": {
-        "value": "0px 0px 2px {color.sys.light.neutral.surface-highlight}, 0px 3px 10px {color.sys.light.neutral.surface-highlight}"
-      },
-      "modal": {
-        "value": "0px 20px 20px {color.sys.light.neutral.surface-highlight}, 0px 2px 2px {color.sys.light.neutral.surface-highlight}"
+      "level": {
+        "0": {
+          "value": "{shadow.level.0}"
+        },
+        "1": {
+          "value": "{shadow.level.1}"
+        },
+        "2": {
+          "value": "{shadow.level.2}"
+        },
+        "3": {
+          "value": "{shadow.level.3}"
+        },
+        "4": {
+          "value": "{shadow.level.4}"
+        },
+        "5": {
+          "value": "{shadow.level.5}"
+        }
       }
     },
     "dark": {
-      "card": {
-        "value": "0px 2px 1px {color.sys.dark.neutral.surface-highlight}, 0px 0px 2px {color.sys.dark.neutral.surface-highlight}"
-      },
-      "popover": {
-        "value": "0px 0px 2px {color.sys.dark.neutral.surface-highlight}, 0px 3px 10px {color.sys.dark.neutral.surface-highlight}"
-      },
-      "modal": {
-        "value": "0px 20px 20px {color.sys.dark.neutral.surface-highlight}, 0px 2px 2px {color.sys.dark.neutral.surface-highlight}"
+      "level": {
+        "0": { "value": "none" },
+        "1": {
+          "value": "0px 0px 1px 0px {color.sys.dark.neutral.interactive}"
+        },
+        "2": {
+          "value": "0px 0px 2px 0px {color.sys.dark.neutral.surface-highlight}, 0px 1px 1px 0px {color.sys.dark.neutral.surface-highlight}"
+        },
+        "3": {
+          "value": "0px 2px 4px 0px {color.sys.dark.neutral.surface-highlight}, 0px 0px 1px 0px {color.sys.dark.neutral.surface-highlight}"
+        },
+        "4": {
+          "value": "0px 12px 16px 0px {color.sys.dark.neutral.surface-highlight}, 0px 0px 1px 0px {color.sys.dark.neutral.surface-highlight}"
+        },
+        "5": {
+          "value": "0px 24px 32px 0px {color.sys.dark.neutral.surface-highlight}, 0px 0px 1px 0px {color.sys.dark.neutral.surface-highlight}"
+        }
       }
     }
   }
