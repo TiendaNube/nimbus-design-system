@@ -10,7 +10,6 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 #### 🛠 Breaking changes
 
-- Changed the export form of the `ThemeProvider` component. ([#137](https://github.com/TiendaNube/nimbus-design-system/pull/137) by [@juniorconquista](https://github.com/juniorconquista))
 - Refactored shadow tokens in components. ([#137](https://github.com/TiendaNube/nimbus-design-system/pull/137) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2023-03-31 `7.1.0`
