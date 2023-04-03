@@ -13,7 +13,7 @@ const base = style({
 
   padding: `0 ${varsThemeBase.spacing[1]}`,
   boxSizing: "border-box",
-  borderRadius: "0.75rem",
+  borderRadius: varsThemeBase.shape.border.radius.full,
 
   lineHeight: varsThemeBase.lineWeight.body.caption,
   fontSize: varsThemeBase.fontSize.body.caption,

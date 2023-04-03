@@ -17,9 +17,9 @@ const container = style({
   backgroundColor: varsThemeBase.colors.neutral.background,
   borderColor: varsThemeBase.colors.neutral.surface,
   color: varsThemeBase.colors.neutral.textHigh,
-  boxShadow: varsThemeBase.shadow.card,
+  boxShadow: varsThemeBase.shadow.level[2],
   borderCollapse: "collapse",
-  borderRadius: varsThemeBase.spacing[2],
+  borderRadius: varsThemeBase.shape.border.radius[2],
   borderSpacing: 0,
   fontFamily: varsThemeBase.fontFamily.centranube,
   overflow: "hidden",
@@ -42,7 +42,7 @@ const container__body = style({
 const container__row = style({
   borderColor: varsThemeBase.colors.neutral.surface,
   borderStyle: "solid",
-  borderWidth: "1px 0 1px 0",
+  borderWidth: `${varsThemeBase.shape.border.width[1]} 0 ${varsThemeBase.shape.border.width[1]} 0`,
   transition: `background-color ${varsThemeBase.motion.speed.fast} ease-in-out`,
 });
 

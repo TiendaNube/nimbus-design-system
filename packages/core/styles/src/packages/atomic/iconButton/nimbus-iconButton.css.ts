@@ -18,9 +18,9 @@ const base = style({
   alignItems: "center",
   justifyContent: "center",
   cursor: "pointer",
-  borderRadius: "100%",
-  borderWidth: "0.063rem",
   borderStyle: "solid",
+  borderRadius: varsThemeBase.shape.border.radius.full,
+  borderWidth: varsThemeBase.shape.border.width[1],
   transition: `all ${varsThemeBase.motion.speed.fast} ease`,
   ":active": {
     backgroundColor: varsThemeBase.colors.neutral.interactive,

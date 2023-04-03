@@ -6,12 +6,12 @@ const base = vanillaStyle({
   display: "flex",
   flexDirection: "row",
   alignItems: "center",
-  gap: varsThemeBase.spacing[1],
   height: "2rem",
   width: "fit-content",
-  padding: varsThemeBase.spacing[2],
   boxSizing: "border-box",
-  borderRadius: varsThemeBase.spacing[2],
+  gap: varsThemeBase.spacing[1],
+  padding: varsThemeBase.spacing[2],
+  borderRadius: varsThemeBase.shape.border.radius[2],
   transition: `${varsThemeBase.motion.speed.fast} ease`,
 });
 

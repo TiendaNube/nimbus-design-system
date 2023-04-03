@@ -12,10 +12,9 @@ const container = style({
   display: "flex",
   alignItems: "flex-start",
   width: "fit-content",
-  gap: varsThemeBase.spacing[1],
   position: "relative",
-  borderRadius: varsThemeBase.sizes[1],
-
+  gap: varsThemeBase.spacing[1],
+  borderRadius: varsThemeBase.shape.border.radius[1],
   ":focus-within": {
     boxShadow: varsThemeBase.utils.focus,
   },
@@ -37,8 +36,8 @@ const container__checkmark = style({
   justifyContent: "center",
   position: "relative",
 
-  borderWidth: "0.063rem",
   borderStyle: "solid",
+  borderWidth: varsThemeBase.shape.border.width[1],
   borderRadius: varsThemeBase.spacing[1],
   backgroundColor: varsThemeBase.colors.neutral.background,
 });

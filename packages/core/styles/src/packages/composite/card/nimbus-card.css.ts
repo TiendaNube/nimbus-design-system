@@ -16,8 +16,8 @@ const container = style({
   width: "100%",
   minHeight: "1.5rem",
   justifyContent: "center",
-  borderRadius: varsThemeBase.spacing[2],
-  boxShadow: varsThemeBase.shadow.card,
+  borderRadius: varsThemeBase.shape.border.radius[2],
+  boxShadow: varsThemeBase.shadow.level[2],
   boxSizing: "border-box",
   overflow: "hidden",
 });

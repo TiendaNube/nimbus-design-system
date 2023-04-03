@@ -9,8 +9,8 @@ const base = vanillaStyle({
   position: "relative",
   width: "100%",
   borderStyle: "solid",
-  borderWidth: 1,
-  borderRadius: varsThemeBase.spacing[2],
+  borderWidth: varsThemeBase.shape.border.width[1],
+  borderRadius: varsThemeBase.shape.border.radius[2],
 });
 
 export const appearance = styleVariants({
@@ -87,16 +87,16 @@ export const container__content = vanillaStyle({
 
 const container__close = vanillaStyle({
   appearance: "none",
-  borderStyle: "solid",
-  borderColor: "transparent",
-  borderWidth: 1,
   background: "transparent",
   cursor: "pointer",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
   padding: varsThemeBase.spacing[4],
-  borderRadius: varsThemeBase.spacing[2],
+  borderStyle: "solid",
+  borderColor: "transparent",
+  borderWidth: varsThemeBase.shape.border.width[1],
+  borderRadius: varsThemeBase.shape.border.radius[2],
   transition: `all ${varsThemeBase.motion.speed.base}`,
   ":focus": {
     boxShadow: varsThemeBase.utils.focus,

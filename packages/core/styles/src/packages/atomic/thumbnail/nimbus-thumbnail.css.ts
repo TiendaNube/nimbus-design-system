@@ -7,10 +7,10 @@ import { aspectRatioProperties } from "../../../properties";
 
 export const container = style({
   display: "flex",
-  background: varsThemeBase.colors.neutral.surfaceDisabled,
-  borderRadius: varsThemeBase.spacing[2],
-  width: vars.width,
   overflow: "hidden",
+  background: varsThemeBase.colors.neutral.surfaceDisabled,
+  borderRadius: varsThemeBase.shape.border.radius[2],
+  width: vars.width,
 });
 
 export const container__image = style({

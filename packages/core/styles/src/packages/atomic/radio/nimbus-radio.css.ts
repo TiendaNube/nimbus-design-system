@@ -9,10 +9,10 @@ import { varsThemeBase } from "../../../themes";
 
 const base = style({
   borderStyle: "solid",
-  borderWidth: "1px",
   display: "flex",
+  borderWidth: varsThemeBase.shape.border.width[1],
   padding: `${varsThemeBase.spacing[1]} ${varsThemeBase.sizes["1,5"]}`,
-  borderRadius: varsThemeBase.sizes[1],
+  borderRadius: varsThemeBase.shape.border.radius[1],
   transition: `all ${varsThemeBase.motion.speed.fast} ease`,
 });
 
@@ -22,10 +22,10 @@ const container = style({
   alignItems: "flex-start",
   width: "fit-content",
   gap: varsThemeBase.spacing[1],
-  borderWidth: "0.063rem",
   borderStyle: "solid",
   borderColor: "transparent",
-  borderRadius: varsThemeBase.sizes[1],
+  borderWidth: varsThemeBase.shape.border.width[1],
+  borderRadius: varsThemeBase.shape.border.radius[1],
   transition: `all ${varsThemeBase.motion.speed.fast} ease`,
   ":focus-within": {
     boxShadow: varsThemeBase.utils.focus,
@@ -88,9 +88,9 @@ export const container__checkmark = style({
   justifyContent: "center",
   position: "relative",
 
-  borderWidth: "0.063rem",
   borderStyle: "solid",
-  borderRadius: varsThemeBase.sizes[3],
+  borderWidth: varsThemeBase.shape.border.width[1],
+  borderRadius: varsThemeBase.shape.border.radius.full,
   borderColor: varsThemeBase.colors.neutral.interactive,
 });
 
@@ -98,7 +98,7 @@ export const container__checkicon = style({
   display: "none",
   width: "0.563rem",
   height: "0.563rem",
-  borderRadius: "0.563rem",
+  borderRadius: varsThemeBase.shape.border.radius.full,
 });
 
 globalStyle(`${container__input}:checked ~ ${container__checkmark}`, {

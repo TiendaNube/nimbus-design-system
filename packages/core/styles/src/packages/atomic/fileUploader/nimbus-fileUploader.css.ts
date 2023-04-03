@@ -13,15 +13,15 @@ export const container = style({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
+  cursor: "pointer",
   gap: varsThemeBase.sizes[1],
   width: vars.width,
   height: vars.height,
   background: varsThemeBase.colors.primary.surface,
-  borderRadius: varsThemeBase.spacing[2],
-  borderWidth: varsThemeBase.sizes["0,5"],
-  borderStyle: "dashed",
+  borderRadius: varsThemeBase.shape.border.radius[2],
+  borderWidth: varsThemeBase.shape.border.width[2],
   borderColor: varsThemeBase.colors.primary.interactive,
-  cursor: "pointer",
+  borderStyle: "dashed",
 });
 
 const container__input = style({
