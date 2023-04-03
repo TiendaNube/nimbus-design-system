@@ -2,15 +2,13 @@ import { createTheme } from "@vanilla-extract/css";
 import tokens from "@nimbus-ds/tokens/dist/js/tokens";
 
 import { vars } from "./contract.css";
+import { globalTheme } from "./globals.css";
 
 const colors = tokens.color.sys.dark;
-const fontFamily = tokens.font.family;
-const fontSize = tokens.font.size.sys;
-const fontWeight = tokens.font.weight;
-const lineWeight = tokens.line.height.sys;
-const { motion, spacing, sizes, shadow, breakpoint } = tokens;
+const { shadow } = tokens;
 
-export const variables = createTheme(vars, {
+const darkTheme = {
+  ...globalTheme,
   colors: {
     primary: {
       surface: colors.primary.surface.value as string,
@@ -61,103 +59,18 @@ export const variables = createTheme(vars, {
       textHigh: colors.neutral["text-high"].value as string,
     },
   },
-  fontFamily: {
-    centranube: fontFamily.value as string,
-  },
-  fontSize: {
-    body: {
-      caption: fontSize.body.caption.value as string,
-      base: fontSize.body.base.value as string,
-      highlight: fontSize.body.highlight.value as string,
-    },
-    title: {
-      h1: fontSize.title.h1.value as string,
-      h2: fontSize.title.h2.value as string,
-      h3: fontSize.title.h3.value as string,
-      h4: fontSize.title.h4.value as string,
-      h5: fontSize.title.h5.value as string,
-      h6: fontSize.title.h6.value as string,
-    },
-  },
-  fontWeight: {
-    regular: fontWeight.regular.value as string,
-    medium: fontWeight.medium.value as string,
-    bold: fontWeight.bold.value as string,
-  },
-  lineWeight: {
-    body: {
-      caption: lineWeight.body.caption.value as string,
-      base: lineWeight.body.base.value as string,
-      highlight: lineWeight.body.highlight.value as string,
-    },
-    title: {
-      h1: lineWeight.title.h1.value as string,
-      h2: lineWeight.title.h2.value as string,
-      h3: lineWeight.title.h3.value as string,
-      h4: lineWeight.title.h4.value as string,
-      h5: lineWeight.title.h5.value as string,
-      h6: lineWeight.title.h6.value as string,
-    },
-  },
   shadow: {
-    card: shadow.dark.card.value,
-    popover: shadow.dark.popover.value,
-    modal: shadow.dark.modal.value,
-  },
-  spacing: {
-    "0,5": spacing["0,5"].value,
-    "1": spacing[1].value,
-    "2": spacing[2].value,
-    "4": spacing[4].value,
-    "6": spacing[6].value,
-    "8": spacing[8].value,
-    "10": spacing[10].value,
-    "12": spacing[12].value,
-    "14": spacing[14].value,
-    "16": spacing[16].value,
-    "18": spacing[18].value,
-    "20": spacing[20].value,
-  },
-  sizes: {
-    "0,5": sizes["0,5"].value,
-    "1": sizes[1].value,
-    "1,5": sizes["1,5"].value,
-    "2": sizes[2].value,
-    "2,5": sizes["2,5"].value,
-    "3": sizes[3].value,
-    "3,5": sizes["3,5"].value,
-    "4": sizes[4].value,
-    "4,5": sizes["4,5"].value,
-    "5": sizes[5].value,
-    "6": sizes[6].value,
-    "7": sizes[7].value,
-    "8": sizes[8].value,
-    "9": sizes[9].value,
-    "10": sizes[10].value,
-    "11": sizes[11].value,
-    "12": sizes[12].value,
-    "14": sizes[14].value,
-    "16": sizes[16].value,
-    "18": sizes[18].value,
-    "20": sizes[20].value,
-  },
-  motion: {
-    speed: {
-      base: motion.speed.base.value as string,
-      fast: motion.speed.fast.value as string,
-      slow: motion.speed.slow.value as string,
-      slower: motion.speed.slower.value as string,
+    level: {
+      0: shadow.dark.level[0].value,
+      1: shadow.dark.level[1].value,
+      2: shadow.dark.level[2].value,
+      3: shadow.dark.level[3].value,
+      4: shadow.dark.level[4].value,
+      5: shadow.dark.level[5].value,
     },
   },
-  breakpoint: {
-    xs: breakpoint.xs.value,
-    md: breakpoint.md.value,
-    lg: breakpoint.lg.value,
-    xl: breakpoint.xl.value,
-  },
-  utils: {
-    focus: `0 0 0 3px ${colors.primary["surface-highlight"].value as string}`,
-  },
-});
+};
+
+export const variables = createTheme(vars, darkTheme);
 
 export default variables;

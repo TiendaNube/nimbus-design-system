@@ -7,9 +7,10 @@ const fontFamily = tokens.font.family;
 const fontSize = tokens.font.size.sys;
 const fontWeight = tokens.font.weight;
 const lineWeight = tokens.line.height.sys;
+const { shape } = tokens;
 const { motion, spacing, sizes, shadow, breakpoint } = tokens;
 
-createGlobalTheme(":root", vars, {
+export const globalTheme = {
   colors: {
     primary: {
       surface: colors.primary.surface.value as string,
@@ -99,9 +100,37 @@ createGlobalTheme(":root", vars, {
     },
   },
   shadow: {
-    card: shadow.light.card.value,
-    popover: shadow.light.popover.value,
-    modal: shadow.light.modal.value,
+    level: {
+      0: shadow.light.level[0].value,
+      1: shadow.light.level[1].value,
+      2: shadow.light.level[2].value,
+      3: shadow.light.level[3].value,
+      4: shadow.light.level[4].value,
+      5: shadow.light.level[5].value,
+    },
+  },
+  shape: {
+    border: {
+      radius: {
+        "0,5": shape.border.radius["0,5"].value,
+        "1": shape.border.radius[1].value,
+        "2": shape.border.radius[2].value,
+        "3": shape.border.radius[3].value,
+        "4": shape.border.radius[4].value,
+        "5": shape.border.radius[5].value,
+        "6": shape.border.radius[6].value,
+        full: shape.border.radius.full.value,
+        base: shape.border.radius.base.value,
+        half: shape.border.radius.half.value,
+      },
+      width: {
+        "1": shape.border.width[1].value,
+        "2": shape.border.width[2].value,
+        "3": shape.border.width[3].value,
+        "4": shape.border.width[4].value,
+        "5": shape.border.width[5].value,
+      },
+    },
   },
   spacing: {
     "0,5": spacing["0,5"].value,
@@ -157,6 +186,8 @@ createGlobalTheme(":root", vars, {
   utils: {
     focus: `0 0 0 3px ${colors.primary["surface-highlight"].value as string}`,
   },
-});
+};
+
+createGlobalTheme(":root", vars, globalTheme);
 
 export const varsThemeBase = vars;

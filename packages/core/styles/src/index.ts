@@ -1,4 +1,3 @@
-export * from "./components";
 export { vars } from "./utils";
 
 export { badge } from "./packages/atomic/badge";
