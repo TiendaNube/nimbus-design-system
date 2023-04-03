@@ -1,13 +1,6 @@
 name: "generate-documentation"
 
-on:
-  push:
-    branches:
-      - master
-      - "!dependabot/**/**"
-    paths-ignore:
-      - "**/package.json"
-      - ".yarn/versions/**"
+on: workflow_dispatch
 
 jobs:
   setup:
