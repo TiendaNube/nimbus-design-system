@@ -7,7 +7,7 @@ type PaddingProperties = keyof typeof propertiesModal.padding;
 
 export interface ModalSprinkle {
   /**
-   * The maxWidth property specifies the maxWidth of a modal's content area.
+   * The maxWidth property specifies the maxWidth of a modal's content area. The width of the modal will be defined by the width of the content in this prop.
    * @default { xs: "100%", md: "500px" }
    */
   maxWidth?: string | Conditions<string>;
