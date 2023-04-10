@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/scripts",
-  "version": "1.1.0",
+  "version": "1.2.0-rc.2",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -8,6 +8,10 @@
     "README.md"
   ],
   "sideEffects": false,
+  "scripts": {
+    "build": "tsc --outDir dist --declaration true",
+    "clean": "rm -rf dist"
+  },
   "homepage": "https://nimbus.nuvemshop.com.br/documentation",
   "repository": {
     "type": "git",
@@ -16,8 +20,12 @@
   "bugs": {
     "url": "https://github.com/TiendaNube/nimbus-design-system/issues"
   },
-  "devDependencies": {
+  "dependencies": {
     "change-case": "^4.1.2",
     "typescript-json-schema": "^0.55.0"
-  }
+  },
+  "devDependencies": {
+    "typescript": "^4.9.3"
+  },
+  "stableVersion": "1.1.0"
 }

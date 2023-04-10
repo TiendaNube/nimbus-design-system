@@ -1,6 +1,19 @@
 import { HTMLAttributes, ReactNode } from "react";
-import { Placement } from "@floating-ui/react-dom-interactions";
 import { PopoverSprinkle } from "@nimbus-ds/styles";
+
+type PopoverPlacement =
+  | "top"
+  | "right"
+  | "bottom"
+  | "left"
+  | "bottom-start"
+  | "bottom-end"
+  | "left-start"
+  | "left-end"
+  | "right-start"
+  | "right-end"
+  | "top-start"
+  | "top-end";
 
 export interface PopoverProperties extends PopoverSprinkle {
   /**
@@ -31,7 +44,7 @@ export interface PopoverProperties extends PopoverSprinkle {
    * Position of the popover.
    * @default bottom
    */
-  position?: Placement;
+  position?: PopoverPlacement;
   /**
    * Adds hover event listeners that change the open state, like CSS :hover.
    * @default false

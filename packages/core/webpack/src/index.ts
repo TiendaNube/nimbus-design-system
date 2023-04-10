@@ -4,6 +4,7 @@ import {
   production,
   base,
   externalLibs,
+  aliasItems,
 } from "./config";
 import {
   vanillaExtractPlugin,
@@ -12,10 +13,27 @@ import {
   cssHashRemoverPlugin,
   cssMinimizerPlugin,
 } from "./plugins";
-import { cssLoaderExtractRule, styleLoaderCssRule } from "./rules";
-import { rootDir } from "./utils";
+import {
+  cssLoaderExtractRule,
+  styleLoaderCssRule,
+  miniCssExtractRule,
+  typescriptRule,
+  svgRule,
+} from "./rules";
+import {
+  rootDir,
+  arrayFilterEmpty,
+  isProduction,
+  isDevelopment,
+} from "./utils";
 
-export const rules = { cssLoaderExtractRule, styleLoaderCssRule };
+export const rules = {
+  cssLoaderExtractRule,
+  styleLoaderCssRule,
+  miniCssExtractRule,
+  typescriptRule,
+  svgRule,
+};
 export const plugins = {
   vanillaExtractPlugin,
   miniCssExtractPlugin,
@@ -24,6 +42,7 @@ export const plugins = {
   dtsBundleGeneratorPlugin,
 };
 export const configuration = {
+  aliasItems,
   externalLibs,
   development,
   production,
@@ -31,7 +50,7 @@ export const configuration = {
   getConfiguration,
 };
 
-export const utils = { rootDir };
+export const utils = { rootDir, arrayFilterEmpty, isProduction, isDevelopment };
 
 const webpack = {
   rules,
