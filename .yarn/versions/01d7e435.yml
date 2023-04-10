@@ -1,0 +1,43 @@
+releases:
+  "@nimbus-ds/components": minor
+  "@nimbus-ds/popover": minor
+  "@nimbus-ds/scripts": minor
+  "@nimbus-ds/webpack": minor
+
+declined:
+  - nimbus-design-system
+  - "@nimbus-ds/styles"
+  - "@nimbus-ds/typings"
+  - "@nimbus-ds/icons"
+  - "@nimbus-ds/badge"
+  - "@nimbus-ds/box"
+  - "@nimbus-ds/button"
+  - "@nimbus-ds/checkbox"
+  - "@nimbus-ds/chip"
+  - "@nimbus-ds/file-uploader"
+  - "@nimbus-ds/icon"
+  - "@nimbus-ds/icon-button"
+  - "@nimbus-ds/input"
+  - "@nimbus-ds/label"
+  - "@nimbus-ds/link"
+  - "@nimbus-ds/list"
+  - "@nimbus-ds/radio"
+  - "@nimbus-ds/select"
+  - "@nimbus-ds/skeleton"
+  - "@nimbus-ds/spinner"
+  - "@nimbus-ds/tag"
+  - "@nimbus-ds/text"
+  - "@nimbus-ds/textarea"
+  - "@nimbus-ds/thumbnail"
+  - "@nimbus-ds/title"
+  - "@nimbus-ds/toast"
+  - "@nimbus-ds/toggle"
+  - "@nimbus-ds/tooltip"
+  - "@nimbus-ds/accordion"
+  - "@nimbus-ds/alert"
+  - "@nimbus-ds/card"
+  - "@nimbus-ds/modal"
+  - "@nimbus-ds/pagination"
+  - "@nimbus-ds/sidebar"
+  - "@nimbus-ds/table"
+  - "@nimbus-ds/tabs"

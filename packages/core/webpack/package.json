@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/webpack",
-  "version": "1.1.0",
+  "version": "1.3.0-rc.3",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -9,6 +9,8 @@
   ],
   "sideEffects": false,
   "scripts": {
+    "build": "tsc --outDir dist --declaration true",
+    "clean": "rm -rf dist",
     "g:webpack": "cd $INIT_CWD && webpack"
   },
   "homepage": "https://nimbus.nuvemshop.com.br/documentation",
@@ -32,5 +34,6 @@
     "webpack": "^5.76.0",
     "webpack-merge": "^5.8.0",
     "webpack-shell-plugin-next": "^2.3.1"
-  }
+  },
+  "stableVersion": "1.2.0"
 }

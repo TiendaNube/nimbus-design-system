@@ -2,7 +2,7 @@
 
 Use Popovers to bring attention to specific user interface elements and suggest an action or to guide users through a new experience
 
-## 2023-02-24 `3.0.0`
+## 2023-03-13 `3.0.0`
 
 ### 🛠 Breaking changes
 
