@@ -2,6 +2,12 @@
 
 This package is intended for internal use in generating custom script builds at design system build time.
 
+## 2023-04-11 `1.2.1`
+
+#### 🐛 Bug fixes
+
+- Fixed regex creating list of subcomponents of a component. ([#142](https://github.com/TiendaNube/nimbus-design-system/pull/142) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-03-24 `1.1.0`
 
 ### 💡 Others
