@@ -156,7 +156,7 @@ export class Docgen {
 
   private getSubComponentsNames(): string[] {
     return Array.from(
-      this.sourceComponent.matchAll(/^\w+\.\w+\.displayName = "(.+)";/gm),
+      this.sourceComponent.matchAll(/^\w+\.\w+\.displayName =\n?.+"(.+)";/gm),
       (m) => m[1]
     );
   }

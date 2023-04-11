@@ -2,6 +2,12 @@
 
 Nimbus is an open-source Design System created by Tiendanube / Nuvesmhop’s team to empower and enhance more stories every day, with simplicity, accessibility, consistency and performance.
 
+## 2023-04-10 `4.1.0`
+
+#### 💡 Others
+
+- Changed `maxWidth` type description to reflect on prop documentation `Modal` component. ([#141](https://github.com/TiendaNube/nimbus-design-system/pull/141) by [@diegopsilverio](https://github.com/diegopsilverio))
+
 ## 2023-04-03 `4.0.0`
 
 #### 🛠 Breaking changes
