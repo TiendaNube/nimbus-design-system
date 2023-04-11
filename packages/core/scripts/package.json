@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/scripts",
-  "version": "1.2.1-rc.1",
+  "version": "1.2.1",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -26,6 +26,5 @@
   },
   "devDependencies": {
     "typescript": "^4.9.3"
-  },
-  "stableVersion": "1.2.0"
+  }
 }
