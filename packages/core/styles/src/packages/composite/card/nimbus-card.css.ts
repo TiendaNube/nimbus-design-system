@@ -16,18 +16,11 @@ const container = style({
   width: "100%",
   minHeight: "1.5rem",
   justifyContent: "center",
+  gap: varsThemeBase.spacing[4],
   borderRadius: varsThemeBase.shape.border.radius[2],
   boxShadow: varsThemeBase.shadow.level[2],
   boxSizing: "border-box",
   overflow: "hidden",
-});
-
-const container__header = style({
-  marginBottom: "1.125rem",
-});
-
-const container__body = style({
-  marginBottom: "1rem",
 });
 
 const container__footer = style({
@@ -37,8 +30,7 @@ const container__footer = style({
 
 export const styles = {
   container,
-  container__header,
-  container__body,
+
   container__footer,
 };
 
