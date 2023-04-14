@@ -18,9 +18,14 @@ type PopoverPlacement =
 export interface PopoverProperties extends PopoverSprinkle {
   /**
    * An HTML element, or a function that returns one. It's used to set the position of the popover.
-   * @TJS-type React.ReactNode
+   * @TJS-type React.ReactNode | ((data: { open: boolean, setVisibility: (visibility: boolean) => void }) => React.ReactNode);
    */
-  children: ReactNode;
+  children:
+    | ReactNode
+    | ((data: {
+        open: boolean;
+        setVisibility: (visibility: boolean) => void;
+      }) => ReactNode);
   /**
    * The content of the popover.
    * @TJS-type React.ReactNode
@@ -67,4 +72,5 @@ export interface PopoverProperties extends PopoverSprinkle {
   offset?: number;
 }
 
-export type PopoverProps = PopoverProperties & HTMLAttributes<HTMLDivElement>;
+export type PopoverProps = PopoverProperties &
+  Omit<HTMLAttributes<HTMLDivElement>, "children">;
