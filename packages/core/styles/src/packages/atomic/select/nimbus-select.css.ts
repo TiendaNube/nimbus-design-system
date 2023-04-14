@@ -11,6 +11,7 @@ export const container__icon = style({
   top: "50%",
   right: varsThemeBase.spacing[2],
   transform: "translateY(-50%)",
+  pointerEvents: "none",
 });
 
 const base = style({
@@ -93,4 +94,8 @@ globalStyle(`${base} option`, {
 
 globalStyle(`${base} option[value=""][disabled]`, {
   color: varsThemeBase.colors.neutral.textDisabled,
+});
+
+globalStyle(`${container__icon} div`, {
+  pointerEvents: "none",
 });
