@@ -1,4 +1,4 @@
-import { style } from "@vanilla-extract/css";
+import { globalStyle, style } from "@vanilla-extract/css";
 import {
   createRainbowSprinkles,
   defineProperties as defineRainbowProperties,
@@ -29,11 +29,20 @@ const base = style({
   ":focus": {
     boxShadow: varsThemeBase.utils.focus,
   },
+  ":disabled": {
+    backgroundColor: `${varsThemeBase.colors.neutral.surfaceDisabled}`,
+    borderColor: `${varsThemeBase.colors.neutral.surfaceHighlight}`,
+    pointerEvents: "none",
+  },
 });
 
 export const styles = {
   base,
 };
+
+globalStyle(`${base}:disabled div`, {
+  pointerEvents: "none",
+});
 
 /* -------------------------------------------------------------------------------------------------
  * Sprinkle
