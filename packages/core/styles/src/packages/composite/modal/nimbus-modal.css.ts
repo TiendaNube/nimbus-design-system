@@ -14,7 +14,7 @@ export const container = style({
   position: "relative",
   display: "flex",
   flexDirection: "column",
-  width: "100%",
+  width: "calc(100% - 2rem)",
   minHeight: "3rem",
   justifyContent: "center",
   flexWrap: "nowrap",
