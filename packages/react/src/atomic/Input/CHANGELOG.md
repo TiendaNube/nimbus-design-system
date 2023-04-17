@@ -2,6 +2,12 @@
 
 The Input component allows the user to enter or edit information in text format.
 
+## 2023-04-13 `2.3.1`
+
+#### 🐛 Bug fixes
+
+- Fixed bug in input component where Icon sent was overlapping text. ([#144](https://github.com/TiendaNube/nimbus-design-system/pull/144) by [@juniorconquista](https://github.com/juniorconquista)).
+
 ## 2023-03-13 `2.3.0`
 
 ### 💡 Others

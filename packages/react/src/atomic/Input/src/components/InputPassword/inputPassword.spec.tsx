@@ -8,7 +8,7 @@ const makeSut = (rest?: InputPasswordProps) => {
   render(<InputPassword {...rest} data-testid="my-input" />);
 };
 
-describe("GIVEN <Password />", () => {
+describe("GIVEN <Input.Password />", () => {
   describe("WHEN rendered", () => {
     it("should display the password correctly to the user", () => {
       makeSut();
