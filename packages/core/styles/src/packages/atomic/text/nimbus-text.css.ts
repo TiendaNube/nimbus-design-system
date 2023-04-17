@@ -8,7 +8,7 @@ import {
   lineHeightProperties,
   textAlignProperties,
 } from "../../../properties";
-import { varsThemeBase } from "../../../themes";
+import { mediaQueries, varsThemeBase } from "../../../themes";
 
 /* -------------------------------------------------------------------------------------------------
  * Style
@@ -69,6 +69,21 @@ const properties = {
 
 const sprinkle = createSprinkles(
   defineProperties({
+    conditions: {
+      xs: {
+        "@media": mediaQueries.xs(),
+      },
+      md: {
+        "@media": mediaQueries.md(),
+      },
+      lg: {
+        "@media": mediaQueries.lg(),
+      },
+      xl: {
+        "@media": mediaQueries.xl(),
+      },
+    },
+    defaultCondition: "xs",
     properties,
   })
 );

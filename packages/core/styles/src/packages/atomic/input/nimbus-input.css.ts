@@ -1,7 +1,7 @@
 import { style as vanillaStyle, styleVariants } from "@vanilla-extract/css";
 import { varsThemeBase } from "../../../themes";
 
-const base = vanillaStyle({
+export const input = vanillaStyle({
   padding: varsThemeBase.spacing[2],
   height: "2rem",
   width: "100%",
@@ -10,14 +10,12 @@ const base = vanillaStyle({
   fontSize: varsThemeBase.fontSize.body.base,
   fontFamily: varsThemeBase.fontFamily.centranube,
   color: varsThemeBase.colors.neutral.textLow,
-  borderRadius: varsThemeBase.shape.border.radius[2],
-  borderWidth: varsThemeBase.shape.border.width[1],
-  borderStyle: "solid",
-  borderColor: varsThemeBase.colors.neutral.interactive,
+  border: "none",
+  backgroundColor: "transparent",
   transition: `all ${varsThemeBase.motion.speed.fast} ease`,
-  ":focus": {
+  ":focus-within": {
     outline: "none",
-    boxShadow: varsThemeBase.utils.focus,
+    boxShadow: "none",
   },
   ":disabled": {
     borderColor: varsThemeBase.colors.neutral.interactive,
@@ -31,20 +29,27 @@ export const container = vanillaStyle({
   alignItems: "center",
   position: "relative",
   width: "100%",
+  borderWidth: varsThemeBase.shape.border.width[1],
+  borderRadius: varsThemeBase.shape.border.radius[2],
+  borderStyle: "solid",
+  borderColor: varsThemeBase.colors.neutral.interactive,
+  overflow: "hidden",
+  ":focus-within": {
+    outline: "none",
+    boxShadow: varsThemeBase.utils.focus,
+  },
+});
+
+export const container__icon = vanillaStyle({
+  background: "transparent",
+  border: "none",
+  appearance: "none",
+  padding: 0,
 });
 
 export const container__icon_append = styleVariants({
-  start: { position: "absolute", left: "8px" },
-  end: { position: "absolute", right: "8px" },
-});
-
-export const container__input_append = styleVariants({
-  start: {
-    paddingLeft: "32px",
-  },
-  end: {
-    paddingRight: "32px",
-  },
+  start: { paddingLeft: varsThemeBase.spacing[2] },
+  end: { paddingRight: varsThemeBase.spacing[2] },
 });
 
 export const container__button = vanillaStyle({
@@ -52,45 +57,48 @@ export const container__button = vanillaStyle({
   cursor: "pointer",
   background: "transparent",
   border: "none",
+  ":focus": {
+    boxShadow: "none",
+  },
 });
 
 export const appearance = styleVariants({
   neutral: [
-    base,
+    container,
     {
       background: varsThemeBase.colors.neutral.background,
       borderColor: varsThemeBase.colors.neutral.interactive,
-      ":focus": {
+      ":focus-within": {
         borderColor: varsThemeBase.colors.primary.interactiveHover,
       },
     },
   ],
   success: [
-    base,
+    container,
     {
       background: varsThemeBase.colors.success.surface,
       borderColor: varsThemeBase.colors.success.interactive,
-      ":focus": {
+      ":focus-within": {
         borderColor: varsThemeBase.colors.success.interactiveHover,
       },
     },
   ],
   warning: [
-    base,
+    container,
     {
       background: varsThemeBase.colors.warning.surface,
       borderColor: varsThemeBase.colors.warning.interactive,
-      ":focus": {
+      ":focus-within": {
         borderColor: varsThemeBase.colors.warning.interactiveHover,
       },
     },
   ],
   danger: [
-    base,
+    container,
     {
       background: varsThemeBase.colors.danger.surface,
       borderColor: varsThemeBase.colors.danger.interactive,
-      ":focus": {
+      ":focus-within": {
         borderColor: varsThemeBase.colors.danger.interactiveHover,
       },
     },

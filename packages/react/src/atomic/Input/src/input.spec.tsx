@@ -5,7 +5,7 @@ import { Input } from "./Input";
 import { InputProps } from "./input.types";
 
 const makeSut = (rest?: Omit<InputProps, "children">) => {
-  render(<Input {...rest} />);
+  render(<Input {...rest} data-testid="input-element" />);
 };
 
 describe("GIVEN <Input />", () => {
@@ -31,9 +31,9 @@ describe("GIVEN <Input />", () => {
         appendPosition: "start",
       });
       expect(screen.getByTestId("my-icon")).toBeDefined();
-      expect(screen.getByRole("textbox").getAttribute("class")).toContain(
-        "append_start"
-      );
+      expect(
+        screen.getByTestId("input-element-icon").getAttribute("class")
+      ).toContain("append_start");
     });
 
     it("should render the icon sent to the end", () => {
@@ -43,46 +43,46 @@ describe("GIVEN <Input />", () => {
         appendPosition: "end",
       });
       expect(screen.getByTestId("my-icon")).toBeDefined();
-      expect(screen.getByRole("textbox").getAttribute("class")).toContain(
-        "append_end"
-      );
+      expect(
+        screen.getByTestId("input-element-icon").getAttribute("class")
+      ).toContain("append_end");
     });
   });
 
   describe("THEN should correctly render the submitted appearance", () => {
     it("THEN should correctly render the appearance default", () => {
       makeSut();
-      expect(screen.getByRole("textbox").getAttribute("class")).toContain(
-        "appearance_neutral"
-      );
+      expect(
+        screen.getByTestId("input-element-container").getAttribute("class")
+      ).toContain("appearance_neutral");
     });
 
     it("THEN should correctly render the appearance neutral", () => {
       makeSut({ appearance: "neutral" });
-      expect(screen.getByRole("textbox").getAttribute("class")).toContain(
-        "appearance_neutral"
-      );
+      expect(
+        screen.getByTestId("input-element-container").getAttribute("class")
+      ).toContain("appearance_neutral");
     });
 
     it("THEN should correctly render the appearance success", () => {
       makeSut({ appearance: "success" });
-      expect(screen.getByRole("textbox").getAttribute("class")).toContain(
-        "appearance_success"
-      );
+      expect(
+        screen.getByTestId("input-element-container").getAttribute("class")
+      ).toContain("appearance_success");
     });
 
     it("THEN should correctly render the appearance warning", () => {
       makeSut({ appearance: "warning" });
-      expect(screen.getByRole("textbox").getAttribute("class")).toContain(
-        "appearance_warning"
-      );
+      expect(
+        screen.getByTestId("input-element-container").getAttribute("class")
+      ).toContain("appearance_warning");
     });
 
     it("THEN should correctly render the appearance danger", () => {
       makeSut({ appearance: "danger" });
-      expect(screen.getByRole("textbox").getAttribute("class")).toContain(
-        "appearance_danger"
-      );
+      expect(
+        screen.getByTestId("input-element-container").getAttribute("class")
+      ).toContain("appearance_danger");
     });
   });
 });

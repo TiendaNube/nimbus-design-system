@@ -9,7 +9,6 @@ import { cursorProperties, colorProperties } from "../../../properties";
 const base = style({
   display: "flex",
   alignItems: "center",
-  pointerEvents: "all",
 });
 
 export const styles = {

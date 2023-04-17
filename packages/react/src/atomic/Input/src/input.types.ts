@@ -28,6 +28,10 @@ export interface InputProperties {
    * @TJS-type React.ReactNode
    */
   append?: ReactNode;
+  /**
+   * This is an attribute used to identify a DOM node for testing purposes.
+   */
+  "data-testid"?: string;
 }
 
 export type InputProps = InputProperties &

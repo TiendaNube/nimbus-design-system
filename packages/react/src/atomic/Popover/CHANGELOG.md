@@ -2,6 +2,12 @@
 
 Use Popovers to bring attention to specific user interface elements and suggest an action or to guide users through a new experience
 
+## 2023-04-13 `3.1.0`
+
+#### 🎉 New features
+
+- Added renderProps functionality to the component so that it is possible to obtain the internal state of the popover in the component's children. ([#149](https://github.com/TiendaNube/nimbus-design-system/pull/149) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-03-13 `3.0.0`
 
 ### 🛠 Breaking changes

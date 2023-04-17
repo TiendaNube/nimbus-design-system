@@ -93,7 +93,12 @@ const Popover: React.FC<PopoverProps> = ({
         ref={reference}
         {...getReferenceProps()}
       >
-        {children}
+        {typeof children === "function"
+          ? children({
+              open,
+              setVisibility,
+            })
+          : children}
       </div>
       <FloatingPortal id="nimbus-popover-floating">
         {open && (

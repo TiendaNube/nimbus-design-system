@@ -11,6 +11,7 @@ export const container__icon = style({
   top: "50%",
   right: varsThemeBase.spacing[2],
   transform: "translateY(-50%)",
+  pointerEvents: "none",
 });
 
 const base = style({

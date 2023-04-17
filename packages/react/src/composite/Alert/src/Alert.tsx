@@ -24,8 +24,6 @@ const Alert: React.FC<AlertProps> & AlertComponents = ({
     return null;
   }
 
-  console.log(onRemove);
-
   return (
     <div
       {...rest}

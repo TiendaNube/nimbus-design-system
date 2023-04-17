@@ -1,6 +1,5 @@
 import React from "react";
 import { Title } from "@nimbus-ds/title";
-import { card } from "@nimbus-ds/styles";
 
 import { CardHeaderProps } from "./cardHeader.types";
 
@@ -11,7 +10,7 @@ const CardHeader: React.FC<CardHeaderProps> = ({
   children,
   ...rest
 }) => (
-  <div {...rest} className={card.classnames.container__header}>
+  <div {...rest}>
     {title && (
       <Title data-testid="header-title" as="h3">
         {title}

@@ -10,13 +10,7 @@ const CardBody: React.FC<CardBodyProps> = ({
   children,
   ...rest
 }) => (
-  <div
-    className={[
-      card.classnames.container__body,
-      card.sprinkle({ padding }),
-    ].join(" ")}
-    {...rest}
-  >
+  <div className={card.sprinkle({ padding })} {...rest}>
     {children}
   </div>
 );

@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useRef } from "react";
 import { SearchIcon } from "@nimbus-ds/icons";
 import { input } from "@nimbus-ds/styles";
 import { Icon } from "@nimbus-ds/icon";
 
+import { InputIcon } from "../InputIcon";
 import { InputSearchProps } from "./inputSearch.types";
 
 const InputSearch: React.FC<InputSearchProps> = ({
@@ -10,23 +11,27 @@ const InputSearch: React.FC<InputSearchProps> = ({
   style: _style,
   appearance = "neutral",
   ...rest
-}) => (
-  <div className={input.classnames.container}>
-    <div
-      data-testid="icon-search"
-      className={input.classnames.container__icon_append.start}
-    >
-      <Icon color="neutral-textDisabled" source={<SearchIcon />} />
+}) => {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const focusInput = () => inputRef.current?.focus();
+
+  return (
+    <div className={input.classnames.appearance[appearance]}>
+      <InputIcon
+        data-testid="icon-search"
+        appendPosition="start"
+        onClick={focusInput}
+      >
+        <Icon color="neutral-textDisabled" source={<SearchIcon />} />
+      </InputIcon>
+      <input
+        {...rest}
+        ref={inputRef}
+        className={input.classnames.input}
+        type="search"
+      />
     </div>
-    <input
-      {...rest}
-      className={[
-        input.classnames.appearance[appearance],
-        input.classnames.container__input_append.start,
-      ].join(" ")}
-      type="search"
-    />
-  </div>
-);
+  );
+};
 
 export { InputSearch };

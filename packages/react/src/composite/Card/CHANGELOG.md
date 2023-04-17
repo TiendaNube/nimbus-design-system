@@ -2,6 +2,12 @@
 
 The Card component allows us to group contents and related actions, making it easier to identify groups of information.
 
+## 2023-04-13 `3.0.1`
+
+#### 🐛 Bug fixes
+
+- Removed additional margin generated in component `Card` when using subcomponent `Card.Header` without a `Card.Footer`. ([#149](https://github.com/TiendaNube/nimbus-design-system/pull/149) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-03-13 `3.0.0`
 
 ### 🛠 Breaking changes

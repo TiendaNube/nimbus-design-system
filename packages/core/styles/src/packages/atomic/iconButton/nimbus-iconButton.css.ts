@@ -29,6 +29,11 @@ const base = style({
   ":focus": {
     boxShadow: varsThemeBase.utils.focus,
   },
+  ":disabled": {
+    backgroundColor: `${varsThemeBase.colors.neutral.surfaceDisabled}`,
+    borderColor: `${varsThemeBase.colors.neutral.surfaceHighlight}`,
+    pointerEvents: "none",
+  },
 });
 
 export const styles = {

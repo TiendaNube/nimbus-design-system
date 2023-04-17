@@ -8,19 +8,19 @@ const makeSut = (rest?: InputSearchProps) => {
   render(<InputSearch {...rest} data-testid="my-input" />);
 };
 
-describe("GIVEN <Title />", () => {
+describe("GIVEN <Input.Search />", () => {
   describe("WHEN rendered", () => {
     it("should correctly render the input type", () => {
       makeSut();
       const input = screen.getByTestId<HTMLInputElement>("my-input");
-      fireEvent.change(input, { target: { value: "my password" } });
+      fireEvent.change(input, { target: { value: "my search" } });
       expect(input.type).toEqual("search");
     });
 
-    it("should position the password icon correctly", () => {
+    it("should position the search icon correctly", () => {
       makeSut();
       const input = screen.getByTestId("my-input");
-      fireEvent.change(input, { target: { value: "my password" } });
+      fireEvent.change(input, { target: { value: "my search" } });
       const icon = screen.getByTestId("icon-search");
       expect(icon.getAttribute("class")).toContain("append_start");
     });

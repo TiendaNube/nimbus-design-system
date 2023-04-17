@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { EyeIcon, EyeOffIcon } from "@nimbus-ds/icons";
 import { input } from "@nimbus-ds/styles";
 import { Icon } from "@nimbus-ds/icon";
 
+import { InputIcon } from "../InputIcon";
 import { InputPasswordProps } from "./inputPassword.types";
 
 const InputPassword: React.FC<InputPasswordProps> = ({
@@ -12,36 +13,20 @@ const InputPassword: React.FC<InputPasswordProps> = ({
   onChange,
   ...rest
 }) => {
+  const inputRef = useRef<HTMLInputElement>(null);
   const [value, setValue] = useState(rest.value || "");
   const [show, setShow] = useState(false);
   const handleShow = () => setShow((prevState) => !prevState);
+  const focusInput = () => inputRef.current?.focus();
 
   return (
-    <div className={input.classnames.container}>
-      {value && (
-        <button
-          data-testid="button-password-show"
-          type="button"
-          className={[
-            input.classnames.container__button,
-            input.classnames.container__icon_append.end,
-          ].join(" ")}
-          onClick={handleShow}
-        >
-          <Icon
-            color="primary-interactive"
-            source={show ? <EyeOffIcon /> : <EyeIcon />}
-          />
-        </button>
-      )}
+    <div className={input.classnames.appearance[appearance]}>
       <input
         {...rest}
-        className={[
-          input.classnames.appearance[appearance],
-          input.classnames.container__input_append.end,
-        ].join(" ")}
-        type={show ? "text" : "password"}
+        ref={inputRef}
+        className={input.classnames.input}
         value={value}
+        type={show ? "text" : "password"}
         onChange={(evt) => {
           if (onChange) {
             onChange(evt);
@@ -49,6 +34,26 @@ const InputPassword: React.FC<InputPasswordProps> = ({
           setValue(evt.target.value);
         }}
       />
+      {value && (
+        <InputIcon
+          data-testid="button-password-show"
+          appendPosition="end"
+          onClick={() => {
+            focusInput();
+            handleShow();
+          }}
+        >
+          <Icon
+            color="neutral-textDisabled"
+            source={
+              <Icon
+                color="primary-interactive"
+                source={show ? <EyeOffIcon /> : <EyeIcon />}
+              />
+            }
+          />
+        </InputIcon>
+      )}
     </div>
   );
 };

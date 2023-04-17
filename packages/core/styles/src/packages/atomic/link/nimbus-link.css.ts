@@ -30,6 +30,10 @@ const base = style({
   ":focus": {
     boxShadow: varsThemeBase.utils.focus,
   },
+  ":disabled": {
+    opacity: 0.5,
+    cursor: "inherit",
+  },
 });
 
 export const appearance = styleVariants({
