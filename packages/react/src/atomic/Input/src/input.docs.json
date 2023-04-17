@@ -1,7 +1,7 @@
 {
   "id": "input",
   "name": "Input",
-  "totalProps": 4,
+  "totalProps": 5,
   "props": [
     {
       "description": "Change the visual style of the input.",
@@ -37,6 +37,12 @@
       "description": "SVG icon to be displayed on input.",
       "type": "React.ReactNode",
       "title": "append",
+      "required": false
+    },
+    {
+      "description": "This is an attribute used to identify a DOM node for testing purposes.",
+      "type": "string",
+      "title": "data-testid",
       "required": false
     }
   ],
