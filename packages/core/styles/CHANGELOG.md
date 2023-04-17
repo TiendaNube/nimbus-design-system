@@ -6,15 +6,15 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 #### 🎉 New features
 
-- Added opacity property to `Link` style pack when component is disabled. ([#144](https://github.com/TiendaNube/nimbus-design-system/pull/144) by [@juniorconquista](https://github.com/juniorconquista))
-- Added responsive conditions to `Text` component properties. ([#144](https://github.com/TiendaNube/nimbus-design-system/pull/144) by [@juniorconquista](https://github.com/juniorconquista))
+- Added opacity property to `Link` style pack when component is disabled. ([#149](https://github.com/TiendaNube/nimbus-design-system/pull/149) by [@juniorconquista](https://github.com/juniorconquista))
+- Added responsive conditions to `Text` component properties. ([#149](https://github.com/TiendaNube/nimbus-design-system/pull/149) by [@juniorconquista](https://github.com/juniorconquista))
 
 #### 🐛 Bug fixes
 
-- Removed additional margin generated in component `Card` when using subcomponent `Card.Header` without a `Card.Footer`. ([#144](https://github.com/TiendaNube/nimbus-design-system/pull/144) by [@juniorconquista](https://github.com/juniorconquista))
-- Removed hover effect in `IconButton` package when component is disabled. ([#144](https://github.com/TiendaNube/nimbus-design-system/pull/144) by [@juniorconquista](https://github.com/juniorconquista))
-- Added side spacing to `Modal` component package. ([#144](https://github.com/TiendaNube/nimbus-design-system/pull/144) by [@juniorconquista](https://github.com/juniorconquista))
-- Added the pointerEvents property to none to the arrow icon in the `Select` component package. ([#144](https://github.com/TiendaNube/nimbus-design-system/pull/144) by [@juniorconquista](https://github.com/juniorconquista))
+- Removed additional margin generated in component `Card` when using subcomponent `Card.Header` without a `Card.Footer`. ([#149](https://github.com/TiendaNube/nimbus-design-system/pull/149) by [@juniorconquista](https://github.com/juniorconquista))
+- Removed hover effect in `IconButton` package when component is disabled. ([#149](https://github.com/TiendaNube/nimbus-design-system/pull/149) by [@juniorconquista](https://github.com/juniorconquista))
+- Added side spacing to `Modal` component package. ([#149](https://github.com/TiendaNube/nimbus-design-system/pull/149) by [@juniorconquista](https://github.com/juniorconquista))
+- Added the pointerEvents property to none to the arrow icon in the `Select` component package. ([#149](https://github.com/TiendaNube/nimbus-design-system/pull/149) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2023-04-02 `8.0.0`
 

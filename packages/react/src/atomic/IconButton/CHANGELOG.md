@@ -6,7 +6,7 @@ Icons are used to visually communicate core parts of the product and available a
 
 #### 🎉 New features
 
-- Added `width` and `height` properties to the `IconButton.Skeleton` subcomponent api. ([#144](https://github.com/TiendaNube/nimbus-design-system/pull/144) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `width` and `height` properties to the `IconButton.Skeleton` subcomponent api. ([#149](https://github.com/TiendaNube/nimbus-design-system/pull/149) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2023-03-13 `4.0.0`
 

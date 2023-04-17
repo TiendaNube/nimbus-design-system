@@ -6,7 +6,7 @@ Text is a basic component that allows us to write blocks of text and give it for
 
 #### 🎉 New features
 
-- Added responsive conditions to `Text` component properties. ([#144](https://github.com/TiendaNube/nimbus-design-system/pull/144) by [@juniorconquista](https://github.com/juniorconquista))
+- Added responsive conditions to `Text` component properties. ([#149](https://github.com/TiendaNube/nimbus-design-system/pull/149) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2023-03-13 `6.0.0`
 

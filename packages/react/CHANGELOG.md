@@ -6,15 +6,15 @@ Nimbus is an open-source Design System created by Tiendanube / Nuvesmhop’s tea
 
 #### 🎉 New features
 
-- Added renderProps functionality to the component `Popover` so that it is possible to obtain the internal state of the popover in the component's children. ([#144](https://github.com/TiendaNube/nimbus-design-system/pull/144) by [@juniorconquista](https://github.com/juniorconquista))
-- Added responsive conditions to `Text` component properties. ([#144](https://github.com/TiendaNube/nimbus-design-system/pull/144) by [@juniorconquista](https://github.com/juniorconquista))
+- Added renderProps functionality to the component `Popover` so that it is possible to obtain the internal state of the popover in the component's children. ([#149](https://github.com/TiendaNube/nimbus-design-system/pull/149) by [@juniorconquista](https://github.com/juniorconquista))
+- Added responsive conditions to `Text` component properties. ([#149](https://github.com/TiendaNube/nimbus-design-system/pull/149) by [@juniorconquista](https://github.com/juniorconquista))
 
 #### 🐛 Bug fixes
 
-- Removed additional margin generated in component `Card` when using subcomponent `Card.Header` without a `Card.Footer`. ([#144](https://github.com/TiendaNube/nimbus-design-system/pull/144) by [@juniorconquista](https://github.com/juniorconquista))
-- Removed hover effect on `IconButton` component when disabled. ([#144](https://github.com/TiendaNube/nimbus-design-system/pull/144) by [@juniorconquista](https://github.com/juniorconquista))
-- Added side spacing to `Modal` component. ([#144](https://github.com/TiendaNube/nimbus-design-system/pull/144) by [@juniorconquista](https://github.com/juniorconquista))
-- Fixed bug in `Select` component where clicking on arrow icon didn't work. ([#144](https://github.com/TiendaNube/nimbus-design-system/pull/144) by [@juniorconquista](https://github.com/juniorconquista))
+- Removed additional margin generated in component `Card` when using subcomponent `Card.Header` without a `Card.Footer`. ([#149](https://github.com/TiendaNube/nimbus-design-system/pull/149) by [@juniorconquista](https://github.com/juniorconquista))
+- Removed hover effect on `IconButton` component when disabled. ([#149](https://github.com/TiendaNube/nimbus-design-system/pull/149) by [@juniorconquista](https://github.com/juniorconquista))
+- Added side spacing to `Modal` component. ([#149](https://github.com/TiendaNube/nimbus-design-system/pull/149) by [@juniorconquista](https://github.com/juniorconquista))
+- Fixed bug in `Select` component where clicking on arrow icon didn't work. ([#149](https://github.com/TiendaNube/nimbus-design-system/pull/149) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2023-04-10 `4.1.0`
 
