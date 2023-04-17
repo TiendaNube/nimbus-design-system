@@ -13,7 +13,7 @@ export default {
 } as ComponentMeta<typeof TextSkeleton>;
 
 const Template: ComponentStory<typeof TextSkeleton> = (args) => (
-  <TextSkeleton {...args} />
+  <TextSkeleton {...args} fontSize="base" />
 );
 
 export const Text = Template.bind({});

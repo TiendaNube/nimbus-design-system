@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 
-import { Text } from "./Text";
+import { Text } from ".";
 import { TextProps } from "./text.types";
 
 const content = "myText";
