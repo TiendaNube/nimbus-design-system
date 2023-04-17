@@ -95,7 +95,3 @@ globalStyle(`${base} option`, {
 globalStyle(`${base} option[value=""][disabled]`, {
   color: varsThemeBase.colors.neutral.textDisabled,
 });
-
-globalStyle(`${container__icon} div`, {
-  pointerEvents: "none",
-});

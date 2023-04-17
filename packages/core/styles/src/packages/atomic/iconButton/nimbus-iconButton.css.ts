@@ -1,4 +1,4 @@
-import { globalStyle, style } from "@vanilla-extract/css";
+import { style } from "@vanilla-extract/css";
 import {
   createRainbowSprinkles,
   defineProperties as defineRainbowProperties,
@@ -39,10 +39,6 @@ const base = style({
 export const styles = {
   base,
 };
-
-globalStyle(`${base}:disabled div`, {
-  pointerEvents: "none",
-});
 
 /* -------------------------------------------------------------------------------------------------
  * Sprinkle
