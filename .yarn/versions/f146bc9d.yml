@@ -9,4 +9,16 @@ releases:
 
 declined:
   - nimbus-design-system
+  - "@nimbus-ds/badge"
+  - "@nimbus-ds/checkbox"
+  - "@nimbus-ds/chip"
+  - "@nimbus-ds/file-uploader"
+  - "@nimbus-ds/radio"
+  - "@nimbus-ds/tag"
+  - "@nimbus-ds/toast"
+  - "@nimbus-ds/toggle"
+  - "@nimbus-ds/accordion"
   - "@nimbus-ds/alert"
+  - "@nimbus-ds/modal"
+  - "@nimbus-ds/sidebar"
+  - "@nimbus-ds/tabs"
