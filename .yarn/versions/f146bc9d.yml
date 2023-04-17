@@ -1,0 +1,14 @@
+releases:
+  "@nimbus-ds/card": patch
+  "@nimbus-ds/components": patch
+  "@nimbus-ds/icon-button": minor
+  "@nimbus-ds/input": patch
+  "@nimbus-ds/popover": minor
+  "@nimbus-ds/styles": patch
+  "@nimbus-ds/text": minor
+
+declined:
+  - "@nimbus-ds/alert"
+
+undecided:
+  - nimbus-design-system
