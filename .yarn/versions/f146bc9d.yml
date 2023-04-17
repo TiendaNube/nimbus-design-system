@@ -8,7 +8,5 @@ releases:
   "@nimbus-ds/text": minor
 
 declined:
-  - "@nimbus-ds/alert"
-
-undecided:
   - nimbus-design-system
+  - "@nimbus-ds/alert"
