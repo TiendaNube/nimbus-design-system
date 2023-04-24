@@ -55,7 +55,12 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       </div>
     );
   }
-) as ForwardRefExoticComponent<InputProps> & InputComponents;
+) as ForwardRefExoticComponent<
+  InputProps &
+    React.InputHTMLAttributes<HTMLInputElement> &
+    React.RefAttributes<HTMLInputElement>
+> &
+  InputComponents;
 
 Input.Password = InputPassword;
 Input.Search = InputSearch;
