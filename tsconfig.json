@@ -36,7 +36,7 @@
     "types": ["node", "jest"],
     "typeRoots": ["./node_modules/@types", "./types"],
     "paths": {
-      "@nimbus-ds/icons": ["./packages/icons/tmp"],
+      "@nimbus-ds/icons": ["./packages/icons/dist"],
       "@nimbus-ds/tokens": ["./packages/core/tokens/dist"],
       "@nimbus-ds/typings": ["./packages/core/typings/src"],
       "@nimbus-ds/styles": ["./packages/core/styles/src"],

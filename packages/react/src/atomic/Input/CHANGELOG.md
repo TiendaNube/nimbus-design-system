@@ -2,6 +2,14 @@
 
 The Input component allows the user to enter or edit information in text format.
 
+## 2023-04-24 `2.4.0`
+
+#### 🎉 New features
+
+- Added `ref` property to `Input` component API. ([#151](https://github.com/TiendaNube/nimbus-design-system/pull/151) by [@juniorconquista](https://github.com/juniorconquista)).
+- Added `ref` property to `Input.Password` component API. ([#151](https://github.com/TiendaNube/nimbus-design-system/pull/151) by [@juniorconquista](https://github.com/juniorconquista)).
+- Added `ref` property to `Input.Search` component API. ([#151](https://github.com/TiendaNube/nimbus-design-system/pull/151) by [@juniorconquista](https://github.com/juniorconquista)).
+
 ## 2023-04-13 `2.3.1`
 
 #### 🐛 Bug fixes

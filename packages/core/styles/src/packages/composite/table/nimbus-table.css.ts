@@ -48,6 +48,7 @@ const container__row = style({
 
 const container__cell = style({
   verticalAlign: "top",
+  boxSizing: "content-box",
 });
 
 globalStyle(`${container} th`, {
