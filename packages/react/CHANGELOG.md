@@ -6,7 +6,7 @@ Nimbus is an open-source Design System created by Tiendanube / Nuvesmhop’s tea
 
 #### 🎉 New features
 
-- Added `ref` property to `Input` component API. ([#150](https://github.com/TiendaNube/nimbus-design-system/pull/150) by [@juniorconquista](https://github.com/juniorconquista)).
+- Added `ref` property to `Input` component API. ([#151](https://github.com/TiendaNube/nimbus-design-system/pull/151) by [@juniorconquista](https://github.com/juniorconquista)).
 
 ## 2023-04-13 `4.1.1`
 

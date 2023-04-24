@@ -6,7 +6,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 #### 🎉 New features
 
-- Added boxSizing property as content-box in `Table.Cell` component styles package. ([#150](https://github.com/TiendaNube/nimbus-design-system/pull/150) by [@juniorconquista](https://github.com/juniorconquista))
+- Added boxSizing property as content-box in `Table.Cell` component styles package. ([#151](https://github.com/TiendaNube/nimbus-design-system/pull/151) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2023-04-13 `8.0.1`
 
