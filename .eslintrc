@@ -95,7 +95,7 @@
     "prettier/prettier": [
       "warn",
       {
-        "singleQuote": true,
+        "singleQuote": false,
         "semi": true,
         "trailingComma": "none"
       }
