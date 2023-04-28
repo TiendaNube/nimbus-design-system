@@ -73,7 +73,4 @@ export const container__button = styleVariants({
 
 export const container__panel = vanillaStyle({
   paddingTop: varsThemeBase.spacing[4],
-  ":focus": {
-    boxShadow: varsThemeBase.utils.focus,
-  },
 });
