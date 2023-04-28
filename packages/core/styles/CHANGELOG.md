@@ -7,6 +7,11 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 #### 🐛 Bug fixes
 
 - Added disabled background color to `Input` component with append icon. ([#152](https://github.com/TiendaNube/nimbus-design-system/pull/152) by [@juanchigallego](https://github.com/juanchigallego))
+- Remove focus styles from `Tabs` content. ([#152](https://github.com/TiendaNube/nimbus-design-system/pull/152) by [@juanchigallego](https://github.com/juanchigallego))
+
+#### 🎉 New features
+
+- Added responsive conditions to `Title` component properties. ([#152](https://github.com/TiendaNube/nimbus-design-system/pull/152) by [@juanchigallego](https://github.com/juanchigallego))
 
 ## 2023-04-13 `8.1.0`
 

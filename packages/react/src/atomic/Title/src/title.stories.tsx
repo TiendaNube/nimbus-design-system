@@ -1,6 +1,7 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { withA11y } from "@storybook/addon-a11y";
+import { title } from "@nimbus-ds/styles";
 
 import { Title } from "./Title";
 
@@ -10,6 +11,25 @@ export default {
   subcomponents: { "Title.Skeleton": Title.Skeleton },
   argTypes: {
     children: { control: { disable: true } },
+    color: {
+      options: Object.keys(title.properties.color),
+    },
+    textAlign: {
+      control: { type: "radio" },
+      options: title.properties.textAlign,
+    },
+    fontWeight: {
+      control: { type: "radio" },
+      options: Object.keys(title.properties.fontWeight),
+    },
+    fontSize: {
+      control: { type: "select" },
+      options: Object.keys(title.properties.fontSize),
+    },
+    lineHeight: {
+      control: { type: "select" },
+      options: Object.keys(title.properties.lineHeight),
+    },
   },
   parameters: {
     withA11y: { decorators: [withA11y] },
@@ -54,6 +74,16 @@ h5.args = {
 export const h6 = Template.bind({});
 h6.args = {
   as: "h6",
+  children: "Lorem ipsum dolor sit amet",
+};
+
+export const responsive = Template.bind({});
+responsive.args = {
+  textAlign: {
+    xs: "left",
+    md: "center",
+    lg: "right",
+  },
   children: "Lorem ipsum dolor sit amet",
 };
 

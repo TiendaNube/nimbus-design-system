@@ -4,3 +4,5 @@ export const title = {
   classnames: { ...styles },
   ...titleSprinkle,
 };
+
+export type { TitleSprinkle } from "./nimbus-title.types";

@@ -2,6 +2,16 @@
 
 Nimbus is an open-source Design System created by Tiendanube / Nuvesmhop’s team to empower and enhance more stories every day, with simplicity, accessibility, consistency and performance.
 
+## 2023-05-02 `4.2.1`
+
+### 🎉 New features
+
+- Added responsive conditions to `Title` component properties. ([#152](https://github.com/TiendaNube/nimbus-design-system/pull/152) by [@juanchigallego](https://github.com/juanchigallego))
+
+#### 🐛 Bug fixes
+
+- Omit `content` HTML prop on `Popover` API. ([#152](https://github.com/TiendaNube/nimbus-design-system/pull/152) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-04-24 `4.2.0`
 
 #### 🎉 New features
