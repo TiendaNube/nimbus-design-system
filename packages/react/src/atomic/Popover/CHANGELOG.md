@@ -2,6 +2,12 @@
 
 Use Popovers to bring attention to specific user interface elements and suggest an action or to guide users through a new experience
 
+## 2023-05-02 `3.1.1`
+
+#### 🐛 Bug fixes
+
+- Omit `content` HTML prop on `Popover` API. ([#152](https://github.com/TiendaNube/nimbus-design-system/pull/152) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-04-13 `3.1.0`
 
 #### 🎉 New features
