@@ -1,7 +1,7 @@
 import { style, styleVariants } from "@vanilla-extract/css";
 import { defineProperties, createSprinkles } from "@vanilla-extract/sprinkles";
 
-import { varsThemeBase } from "../../../themes";
+import { mediaQueries, varsThemeBase } from "../../../themes";
 import {
   colorProperties,
   titleFontSizeProperties,
@@ -113,6 +113,21 @@ const properties = {
 
 const sprinkle = createSprinkles(
   defineProperties({
+    conditions: {
+      xs: {
+        "@media": mediaQueries.xs(),
+      },
+      md: {
+        "@media": mediaQueries.md(),
+      },
+      lg: {
+        "@media": mediaQueries.lg(),
+      },
+      xl: {
+        "@media": mediaQueries.xl(),
+      },
+    },
+    defaultCondition: "xs",
     properties,
   })
 );

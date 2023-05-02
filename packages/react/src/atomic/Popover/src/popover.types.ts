@@ -73,4 +73,4 @@ export interface PopoverProperties extends PopoverSprinkle {
 }
 
 export type PopoverProps = PopoverProperties &
-  Omit<HTMLAttributes<HTMLDivElement>, "children">;
+  Omit<HTMLAttributes<HTMLDivElement>, "children" | "content">;

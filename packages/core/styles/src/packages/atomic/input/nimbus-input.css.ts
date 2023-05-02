@@ -38,6 +38,12 @@ export const container = vanillaStyle({
     outline: "none",
     boxShadow: varsThemeBase.utils.focus,
   },
+
+  selectors: {
+    "&:has(input:disabled)": {
+      backgroundColor: varsThemeBase.colors.neutral.surfaceDisabled,
+    },
+  },
 });
 
 export const container__icon = vanillaStyle({
