@@ -23,7 +23,7 @@ const run = () => {
     }, "");
 
   if (packages) {
-    console.log(`\x1b[32m 🏃‍♂️ Running building packages... \x1b[0m`);
+    console.log(`\x1b[32m 🏃‍♂️ Running building packages...  \x1b[0m`);
     const execOpts = { stdio: "inherit" };
     execSync(
       `turbo run build --filter=!@nimbus-ds/webpack ${packages}`,
