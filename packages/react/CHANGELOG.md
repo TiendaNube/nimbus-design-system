@@ -6,7 +6,7 @@ Nimbus is an open-source Design System created by Tiendanube / Nuvesmhop’s tea
 
 ### 🎉 New features
 
-- Added `padding` property to the Component `Accordion.Body`. ([#154](https://github.com/TiendaNube/nimbus-design-system/pull/154) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `padding` property to the Component `Accordion.Body`. ([#156](https://github.com/TiendaNube/nimbus-design-system/pull/156) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2023-05-02 `4.2.1`
 
