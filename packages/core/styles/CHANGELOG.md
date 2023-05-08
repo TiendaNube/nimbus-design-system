@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2023-05-08 `8.2.0`
+
+#### 🎉 New features
+
+- Added `padding` to `Accordion.Body` component sprinkles. ([#156](https://github.com/TiendaNube/nimbus-design-system/pull/156) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-05-02 `8.1.1`
 
 #### 🐛 Bug fixes

@@ -11,7 +11,17 @@ export interface AccordionBodyProperties {
    * The borderBottom property defines a lower border of the accordion body.
    * @default none
    */
-  borderBottom?: keyof typeof accordion.properties.borderTop;
+  borderBottom?: keyof typeof accordion.properties.borderBottom;
+  /**
+   * The borderTop property defines a top border of the accordion body.
+   * @default none
+   */
+  borderTop?: keyof typeof accordion.properties.borderTop;
+  /**
+   * Padding properties are used to generate space around the content area of an Accordion.Body..
+   * @default base
+   */
+  padding?: keyof typeof accordion.properties.padding;
 }
 
 export type AccordionBodyProps = AccordionBodyProperties &

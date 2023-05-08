@@ -9,6 +9,8 @@ const AccordionBody: React.FC<AccordionBodyProps> = ({
   style: _style,
   children,
   borderBottom = "none",
+  borderTop = "none",
+  padding = "base",
   ...rest
 }) => {
   const { selected } = useAccordion();
@@ -24,7 +26,7 @@ const AccordionBody: React.FC<AccordionBodyProps> = ({
     <div
       className={[
         accordion.classnames.body,
-        accordion.sprinkle({ borderBottom }),
+        accordion.sprinkle({ borderBottom, borderTop, padding }),
       ].join(" ")}
       {...rest}
     >

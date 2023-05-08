@@ -2,6 +2,12 @@
 
 Nimbus is an open-source Design System created by Tiendanube / Nuvesmhop’s team to empower and enhance more stories every day, with simplicity, accessibility, consistency and performance.
 
+## 2023-05-08 `4.3.0`
+
+### 🎉 New features
+
+- Added `padding` property to the Component `Accordion.Body`. ([#156](https://github.com/TiendaNube/nimbus-design-system/pull/156) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-05-02 `4.2.1`
 
 ### 🎉 New features
