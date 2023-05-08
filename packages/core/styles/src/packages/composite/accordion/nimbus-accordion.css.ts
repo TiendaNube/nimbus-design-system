@@ -44,8 +44,6 @@ const body = style({
   display: "flex",
   backgroundColor: varsThemeBase.colors.neutral.surface,
   boxSizing: "border-box",
-  padding: varsThemeBase.sizes[4],
-  paddingTop: 0,
   fontFamily: varsThemeBase.fontFamily.centranube,
 });
 
@@ -67,9 +65,15 @@ const border = {
   base: `1px solid ${baseColors["neutral-surfaceHighlight"]}`,
 };
 
+const padding = {
+  none: "none",
+  base: `0px ${varsThemeBase.sizes[4]} ${varsThemeBase.sizes[4]} ${varsThemeBase.sizes[4]}`,
+};
+
 const properties = {
   borderTop: border,
   borderBottom: border,
+  padding,
 };
 
 const sprinkle = createSprinkles(
