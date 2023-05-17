@@ -9,7 +9,7 @@ import {
   FloatingFocusManager,
   FloatingOverlay,
   FloatingPortal,
-} from "@floating-ui/react-dom-interactions";
+} from "@floating-ui/react";
 import { CloseIcon } from "@nimbus-ds/icons";
 import { Icon } from "@nimbus-ds/icon";
 import { modal } from "@nimbus-ds/styles";
@@ -48,37 +48,38 @@ const Modal: React.FC<ModalProps> & ModalComponents = ({
   const headingId = useId();
   const descriptionId = useId();
 
+  if (!open) return null;
+
   return (
     <FloatingPortal id={portalId || "nimbus-modal-floating"}>
-      {open && (
-        <FloatingOverlay className={modal.classnames.overlay} lockScroll>
-          <FloatingFocusManager context={context}>
-            <div
-              {...otherProps}
-              style={style}
-              className={[modal.classnames.container, className].join(" ")}
-              aria-labelledby={headingId}
-              aria-describedby={descriptionId}
-              {...getFloatingProps()}
-              {...rest}
-            >
-              {children}
-              {onDismiss && (
-                <button
-                  aria-label="Dismiss modal"
-                  className={modal.classnames.container__close}
-                  data-testid="dismiss-modal-button"
-                  type="button"
-                  onClick={() => onDismiss(!open)}
-                  tabIndex={0}
-                >
-                  <Icon color="neutral-textLow" source={<CloseIcon />} />
-                </button>
-              )}
-            </div>
-          </FloatingFocusManager>
-        </FloatingOverlay>
-      )}
+      <FloatingOverlay className={modal.classnames.overlay} lockScroll>
+        <FloatingFocusManager context={context}>
+          <div
+            {...otherProps}
+            ref={context.refs.setFloating}
+            style={style}
+            className={[modal.classnames.container, className].join(" ")}
+            aria-labelledby={headingId}
+            aria-describedby={descriptionId}
+            {...getFloatingProps()}
+            {...rest}
+          >
+            {children}
+            {onDismiss && (
+              <button
+                aria-label="Dismiss modal"
+                className={modal.classnames.container__close}
+                data-testid="dismiss-modal-button"
+                type="button"
+                onClick={() => onDismiss(!open)}
+                tabIndex={0}
+              >
+                <Icon color="neutral-textLow" source={<CloseIcon />} />
+              </button>
+            )}
+          </div>
+        </FloatingFocusManager>
+      </FloatingOverlay>
     </FloatingPortal>
   );
 };

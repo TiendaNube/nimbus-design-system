@@ -2,6 +2,21 @@
 
 Nimbus is an open-source Design System created by Tiendanube / Nuvesmhop’s team to empower and enhance more stories every day, with simplicity, accessibility, consistency and performance.
 
+## 2023-05-22 `4.4.0`
+
+### 🎉 New features
+
+- Added new `lineClamp` property on `Text` component. ([#157](https://github.com/TiendaNube/nimbus-design-system/pull/157) by [@juanchigallego](https://github.com/juanchigallego))
+
+### 🐛 Bug fixes
+
+- Fixes a bug on `Modal` component where focus wasn't correctly moved to the modal dialog when pressing tab key. ([#157](https://github.com/TiendaNube/nimbus-design-system/pull/157) by [@juanchigallego](https://github.com/juanchigallego))
+
+### 📚 3rd party library updates
+
+- Removed `@floating-ui/react-dom-interactions`. ([#157](https://github.com/TiendaNube/nimbus-design-system/pull/157) by [@juanchigallego](https://github.com/juanchigallego))
+- Added `@floating-ui/react`. ([#157](https://github.com/TiendaNube/nimbus-design-system/pull/157) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-05-08 `4.3.0`
 
 ### 🎉 New features

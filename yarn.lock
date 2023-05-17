@@ -2465,44 +2465,45 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@floating-ui/core@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "@floating-ui/core@npm:1.0.1"
-  checksum: c8a5f1a491788e5bebfe747e9372df2c7cbee0d8790ddf95e25149ac91ccf1a2cca8f768029826cfd3d687617c1d0f3241b97f1648bdf2a28d421f39e79c2eee
+"@floating-ui/core@npm:^1.2.6":
+  version: 1.2.6
+  resolution: "@floating-ui/core@npm:1.2.6"
+  checksum: e4aa96c435277f1720d4bc939e17a79b1e1eebd589c20b622d3c646a5273590ff889b8c6e126f7be61873cf8c4d7db7d418895986ea19b8b0d0530de32504c3a
   languageName: node
   linkType: hard
 
-"@floating-ui/dom@npm:^1.0.0":
-  version: 1.0.2
-  resolution: "@floating-ui/dom@npm:1.0.2"
+"@floating-ui/dom@npm:^1.2.7":
+  version: 1.2.8
+  resolution: "@floating-ui/dom@npm:1.2.8"
   dependencies:
-    "@floating-ui/core": ^1.0.1
-  checksum: 4494db572d953f1f0544b91e6c16c63eae890c96befc5a60528e01b8e93182458ac4aec08873d6544c18353fb90d46b1ff4e19407bc48ea8f27a1bce372e48e5
+    "@floating-ui/core": ^1.2.6
+  checksum: 02894774475a17baa498c86cd25d2825598e7de0734b8c08f7b8797b19c0bec13c4c726e529feb8bf26c6dee219c153ac1f90d8530a93534f765b3c04cfa3b4a
   languageName: node
   linkType: hard
 
-"@floating-ui/react-dom-interactions@npm:^0.10.1":
-  version: 0.10.1
-  resolution: "@floating-ui/react-dom-interactions@npm:0.10.1"
+"@floating-ui/react-dom@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@floating-ui/react-dom@npm:2.0.0"
   dependencies:
-    "@floating-ui/react-dom": ^1.0.0
+    "@floating-ui/dom": ^1.2.7
+  peerDependencies:
+    react: ">=16.8.0"
+    react-dom: ">=16.8.0"
+  checksum: c5dd02b7babf9c26d5e11b8ebe58411131b37844f7d6362a767cd1eedfb506ca6db3228fb192e0a5822c9289a5b500e2ef31e069dce28a0fbec4722f22bcdd95
+  languageName: node
+  linkType: hard
+
+"@floating-ui/react@npm:^0.24.1":
+  version: 0.24.1
+  resolution: "@floating-ui/react@npm:0.24.1"
+  dependencies:
+    "@floating-ui/react-dom": ^2.0.0
     aria-hidden: ^1.1.3
+    tabbable: ^6.0.1
   peerDependencies:
     react: ">=16.8.0"
     react-dom: ">=16.8.0"
-  checksum: 6dad13e7d288b0ef72c2ea489570c05309829a00acf4b56a37329aafec6835ceedf61a4e9e97257d74677a7251196e6bd12990f0b491af445e6eb0a34724bda2
-  languageName: node
-  linkType: hard
-
-"@floating-ui/react-dom@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "@floating-ui/react-dom@npm:1.0.0"
-  dependencies:
-    "@floating-ui/dom": ^1.0.0
-  peerDependencies:
-    react: ">=16.8.0"
-    react-dom: ">=16.8.0"
-  checksum: d79e3c8570b0eaef5e968cd9c69de2c6bb372a5316e4e69a1cd12dae81771863ef430e81b74a0c21cefba663a2f971d8540c7294d7fb3b9807e32ba2a00c1e76
+  checksum: 89e525412a5f71be1437ce74a3a76f4a6c771074e1dca62dddf11062dd9eca7b967091906c369427a0c8f9c9a7c6c7ae06525917e6809d60d832443a4acfc3f3
   languageName: node
   linkType: hard
 
@@ -3114,7 +3115,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/components@workspace:packages/react"
   dependencies:
-    "@floating-ui/react-dom-interactions": ^0.10.1
+    "@floating-ui/react": ^0.24.1
     "@nimbus-ds/icons": "workspace:^"
     "@nimbus-ds/webpack": "workspace:^"
   peerDependencies:
@@ -3233,7 +3234,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/modal@workspace:packages/react/src/composite/Modal"
   dependencies:
-    "@floating-ui/react-dom-interactions": ^0.10.1
+    "@floating-ui/react": ^0.24.1
     "@nimbus-ds/box": "workspace:^"
     "@nimbus-ds/button": "workspace:^"
     "@nimbus-ds/icon": "workspace:^"
@@ -3264,7 +3265,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/popover@workspace:packages/react/src/atomic/Popover"
   dependencies:
-    "@floating-ui/react-dom-interactions": ^0.10.1
+    "@floating-ui/react": ^0.24.1
     "@nimbus-ds/box": "workspace:^"
     "@nimbus-ds/webpack": "workspace:^"
     "@vanilla-extract/dynamic": ^2.0.2
@@ -3315,7 +3316,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/sidebar@workspace:packages/react/src/composite/Sidebar"
   dependencies:
-    "@floating-ui/react-dom-interactions": ^0.10.1
+    "@floating-ui/react": ^0.24.1
     "@nimbus-ds/box": "workspace:^"
     "@nimbus-ds/button": "workspace:^"
     "@nimbus-ds/text": "workspace:^"
@@ -3497,7 +3498,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/tooltip@workspace:packages/react/src/atomic/Tooltip"
   dependencies:
-    "@floating-ui/react-dom-interactions": ^0.10.1
+    "@floating-ui/react": ^0.24.1
     "@nimbus-ds/webpack": "workspace:^"
     "@vanilla-extract/dynamic": ^2.0.2
   peerDependencies:
@@ -19627,6 +19628,13 @@ __metadata:
     "@pkgr/utils": ^2.3.0
     tslib: ^2.4.0
   checksum: 36a1b699996f3bb251c8f828364e101cf08b2a20225cb39df9d7c2186380554b8172374babfe10f03f4b52ab8c453c16447c3cbf61108221f2c58c446bf8425a
+  languageName: node
+  linkType: hard
+
+"tabbable@npm:^6.0.1":
+  version: 6.1.2
+  resolution: "tabbable@npm:6.1.2"
+  checksum: 1e2d9af4f172a3793f491bab10263c26903c2be6a5c4ab723d69d1ba2054828d22a50add9ba7fc42735468871d40054d906fa4f0a9dc2fbd4feff875e84c1a89
   languageName: node
   linkType: hard
 

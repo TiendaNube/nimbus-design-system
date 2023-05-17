@@ -1,5 +1,12 @@
 import React from "react";
-import { FloatingPortal } from "@floating-ui/react-dom-interactions";
+import {
+  FloatingFocusManager,
+  FloatingOverlay,
+  FloatingPortal,
+  useFloating,
+  useDismiss,
+  useInteractions,
+} from "@floating-ui/react";
 import { sidebar } from "@nimbus-ds/styles";
 
 import { SidebarBody, SidebarFooter, SidebarHeader } from "./components";
@@ -8,7 +15,6 @@ import { SidebarComponents, SidebarProps } from "./sidebar.types";
 const Sidebar: React.FC<SidebarProps> & SidebarComponents = ({
   className: _className,
   style: _style,
-  title,
   position = "right",
   maxWidth = "375px",
   open = false,
@@ -21,30 +27,42 @@ const Sidebar: React.FC<SidebarProps> & SidebarComponents = ({
     maxWidth,
   });
 
+  const { context } = useFloating({
+    open,
+    onOpenChange: onRemove,
+  });
+
+  const dismiss = useDismiss(context, { outsidePressEvent: "mousedown" });
+
+  const { getFloatingProps } = useInteractions([dismiss]);
+
+  if (!open) return null;
+
   return (
     <FloatingPortal id="nimbus-sidebar">
-      <div
-        {...otherProps}
-        role={rest.role || "presentation"}
-        style={style}
-        className={[
-          sidebar.classnames.container,
-          sidebar.classnames.position[position],
-          className,
-          open && sidebar.classnames.isVisible,
-        ].join(" ")}
+      <FloatingOverlay
+        className={sidebar.classnames.overlay}
+        lockScroll
+        data-testid="overlay-sidebar-button"
       >
-        {children}
-      </div>
-      {open && (
-        <button
-          aria-label="overlay"
-          data-testid="overlay-sidebar-button"
-          type="button"
-          className={sidebar.classnames.overlay}
-          onClick={onRemove}
-        />
-      )}
+        <FloatingFocusManager context={context}>
+          <div
+            {...otherProps}
+            ref={context.refs.setFloating}
+            role={rest.role || "presentation"}
+            style={style}
+            {...getFloatingProps()}
+            className={[
+              sidebar.classnames.container,
+              sidebar.classnames.position[position],
+              className,
+              open && sidebar.classnames.isVisible,
+            ].join(" ")}
+          >
+            {children}
+          </div>
+        </FloatingFocusManager>
+      </FloatingOverlay>
     </FloatingPortal>
   );
 };

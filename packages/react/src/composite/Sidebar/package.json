@@ -14,7 +14,7 @@
     "version": "yarn version"
   },
   "dependencies": {
-    "@floating-ui/react-dom-interactions": "^0.10.1",
+    "@floating-ui/react": "^0.24.1",
     "@nimbus-ds/title": "workspace:^"
   },
   "peerDependencies": {

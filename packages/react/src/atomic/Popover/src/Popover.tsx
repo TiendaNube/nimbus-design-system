@@ -11,7 +11,7 @@ import {
   safePolygon,
   arrow as arrowUI,
   offset as offsetUI,
-} from "@floating-ui/react-dom-interactions";
+} from "@floating-ui/react";
 import { popover } from "@nimbus-ds/styles";
 
 import { staticSide } from "./popover.definitions";
@@ -56,8 +56,6 @@ const Popover: React.FC<PopoverProps> = ({
     y,
     context,
     strategy,
-    reference,
-    floating,
     middlewareData: { arrow: { x: arrowX, y: arrowY } = {} },
   } = useFloating({
     open,
@@ -71,9 +69,12 @@ const Popover: React.FC<PopoverProps> = ({
   const { getReferenceProps, getFloatingProps } = useInteractions([
     useHover(context, {
       enabled: enabledHover,
+      restMs: 50,
+      delay: {
+        close: 100,
+      },
       handleClose: safePolygon({
         buffer: 1,
-        restMs: 50,
       }),
     }),
     useClick(context, {
@@ -90,7 +91,7 @@ const Popover: React.FC<PopoverProps> = ({
     <>
       <div
         data-testid="popover-container"
-        ref={reference}
+        ref={context.refs.setReference}
         {...getReferenceProps()}
       >
         {typeof children === "function"
@@ -104,7 +105,7 @@ const Popover: React.FC<PopoverProps> = ({
         {open && (
           <div
             {...otherProps}
-            ref={floating}
+            ref={context.refs.setFloating}
             className={[popover.classnames.content, className].join(" ")}
             style={{
               ...style,

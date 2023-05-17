@@ -44,7 +44,7 @@ base.args = {
   children: (
     <>
       <Modal.Header title="Title" />
-      <Modal.Body>
+      <Modal.Body padding="none">
         <Text textAlign="left">
           Arcu condimentum enim at tristique aenean in. Fringilla urna, nec
           dignissim malesuada lobortis faucibus volutpat. Purus tincidunt

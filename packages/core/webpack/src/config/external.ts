@@ -3,7 +3,7 @@
  * @see https://webpack.js.org/configuration/externals/
  */
 export const externalLibs = {
-  "@floating-ui/react-dom-interactions": "@floating-ui/react-dom-interactions",
+  "@floating-ui/react": "@floating-ui/react",
   "@nimbus-ds/styles": "@nimbus-ds/styles",
   react: "react",
   "react-dom": "react-dom",
