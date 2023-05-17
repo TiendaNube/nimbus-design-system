@@ -2,6 +2,12 @@
 
 Text is a basic component that allows us to write blocks of text and give it formatting to use within other components, sections and pages of our application or website.
 
+## 2023-05-22 `6.2.0`
+
+#### 🎉 New features
+
+- Added new `lineClamp` property. ([#157](https://github.com/TiendaNube/nimbus-design-system/pull/157) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-04-13 `6.1.0`
 
 #### 🎉 New features

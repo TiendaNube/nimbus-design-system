@@ -7,7 +7,7 @@ export interface TextComponents {
   Skeleton: typeof TextSkeleton;
 }
 
-export interface TextProperties extends TextSprinkle {
+export interface TextProperties extends Omit<TextSprinkle, "WebkitLineClamp"> {
   /**
    * The content of the link.
    * @TJS-type React.ReactNode
@@ -21,5 +21,5 @@ export interface TextProperties extends TextSprinkle {
 }
 
 export type TextProps = TextProperties &
-  TextSprinkle &
+  Omit<TextSprinkle, "WebkitLineClamp"> &
   HTMLAttributes<HTMLParagraphElement>;

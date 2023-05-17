@@ -40,4 +40,12 @@ export interface TextSprinkle {
    * @default neutral-textLow
    */
   color?: TextColorProperties | TextConditions<TextColorProperties>;
+  /**
+   * The amount of lines at which the text will be trimmed, showing an ellipsis when overflowed.
+   */
+  lineClamp?: number | TextConditions<number>;
+  /**
+   * The amount of lines at which the text will be trimmed, showing an ellipsis when overflowed.
+   */
+  WebkitLineClamp?: number | TextConditions<number>;
 }

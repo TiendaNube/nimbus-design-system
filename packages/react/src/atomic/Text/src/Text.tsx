@@ -14,18 +14,34 @@ const Text: React.FC<TextProps> & TextComponents = ({
   fontWeight = "regular",
   fontSize = "base",
   children,
+  lineClamp,
   ...rest
-}: TextProps) => (
-  <As
-    {...rest}
-    className={[
-      text.sprinkle({ color, textAlign, lineHeight, fontWeight, fontSize }),
-      text.classnames.base,
-    ].join(" ")}
-  >
-    {children}
-  </As>
-);
+}: TextProps) => {
+  const { className, style, otherProps } = text.sprinkle({
+    ...(rest as Parameters<typeof text.sprinkle>[0]),
+    color: color as any,
+    textAlign,
+    lineHeight: lineHeight as any,
+    fontWeight: fontWeight as any,
+    fontSize: fontSize as any,
+    WebkitLineClamp: lineClamp as any,
+  });
+
+  return (
+    <As
+      {...rest}
+      className={[
+        text.classnames.base,
+        lineClamp && text.classnames.trim,
+        className,
+      ].join(" ")}
+      style={style}
+      {...otherProps}
+    >
+      {children}
+    </As>
+  );
+};
 
 Text.Skeleton = TextSkeleton;
 Text.displayName = "Text";

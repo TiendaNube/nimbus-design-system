@@ -30,6 +30,9 @@ export default {
       control: { type: "radio" },
       options: Object.keys(text.properties.lineHeight),
     },
+    lineClamp: {
+      control: { type: "number" },
+    },
   },
   parameters: {
     withA11y: { decorators: [withA11y] },
@@ -89,6 +92,14 @@ export const responsive = Template.bind({});
 responsive.args = {
   children: "Lorem ipsum dolor sit amet",
   textAlign: { xs: "center", md: "center", lg: "right", xl: "center" },
+};
+
+export const lineClamp = Template.bind({});
+lineClamp.args = {
+  children:
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus et nisi sit amet quam convallis consectetur. Vestibulum hendrerit ac urna eget rhoncus. Aliquam non velit finibus sem gravida pretium. In neque metus, interdum a quam id, pulvinar consequat leo. Proin sapien mauris, efficitur ut mi at, finibus commodo metus. Pellentesque ac pellentesque risus. Nulla facilisi.",
+  textAlign: "left",
+  lineClamp: 1,
 };
 
 export const skeleton = SkeletonTemplate.bind({});
