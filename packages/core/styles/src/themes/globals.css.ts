@@ -2,13 +2,13 @@ import tokens from "@nimbus-ds/tokens/dist/js/tokens";
 import { createGlobalTheme } from "@vanilla-extract/css";
 import { vars } from "./contract.css";
 
-const colors = tokens.color.sys.light;
+const colors = tokens.color.light;
 const fontFamily = tokens.font.family;
-const fontSize = tokens.font.size.sys;
+const fontSize = tokens.font.size;
 const fontWeight = tokens.font.weight;
-const lineWeight = tokens.line.height.sys;
+const lineWeight = tokens.line.height;
 const { shape } = tokens;
-const { motion, spacing, sizes, shadow, breakpoint } = tokens;
+const { motion, spacing, shadow, breakpoint, zIndex } = tokens;
 
 export const globalTheme = {
   colors: {
@@ -112,7 +112,7 @@ export const globalTheme = {
   shape: {
     border: {
       radius: {
-        "0,5": shape.border.radius["0,5"].value,
+        "0-5": shape.border.radius["0-5"].value,
         "1": shape.border.radius[1].value,
         "2": shape.border.radius[2].value,
         "3": shape.border.radius[3].value,
@@ -133,41 +133,38 @@ export const globalTheme = {
     },
   },
   spacing: {
-    "0,5": spacing["0,5"].value,
-    "1": spacing[1].value,
-    "2": spacing[2].value,
-    "4": spacing[4].value,
-    "6": spacing[6].value,
-    "8": spacing[8].value,
-    "10": spacing[10].value,
-    "12": spacing[12].value,
-    "14": spacing[14].value,
-    "16": spacing[16].value,
-    "18": spacing[18].value,
-    "20": spacing[20].value,
+    "0-5": spacing["0-5"].value,
+    "1": spacing["1"].value,
+    "1-5": spacing["1-5"].value,
+    "2": spacing["2"].value,
+    "2-5": spacing["2-5"].value,
+    "3": spacing["3"].value,
+    "3-5": spacing["3-5"].value,
+    "4": spacing["4"].value,
+    "4-5": spacing["4-5"].value,
+    "5": spacing["5"].value,
+    "6": spacing["6"].value,
+    "7": spacing["7"].value,
+    "8": spacing["8"].value,
+    "9": spacing["9"].value,
+    "10": spacing["10"].value,
+    "11": spacing["11"].value,
+    "12": spacing["12"].value,
+    "14": spacing["14"].value,
+    "16": spacing["16"].value,
+    "18": spacing["18"].value,
+    "20": spacing["20"].value,
   },
-  sizes: {
-    "0,5": sizes["0,5"].value,
-    "1": sizes[1].value,
-    "1,5": sizes["1,5"].value,
-    "2": sizes[2].value,
-    "2,5": sizes["2,5"].value,
-    "3": sizes[3].value,
-    "3,5": sizes["3,5"].value,
-    "4": sizes[4].value,
-    "4,5": sizes["4,5"].value,
-    "5": sizes[5].value,
-    "6": sizes[6].value,
-    "7": sizes[7].value,
-    "8": sizes[8].value,
-    "9": sizes[9].value,
-    "10": sizes[10].value,
-    "11": sizes[11].value,
-    "12": sizes[12].value,
-    "14": sizes[14].value,
-    "16": sizes[16].value,
-    "18": sizes[18].value,
-    "20": sizes[20].value,
+  zIndex: {
+    100: zIndex[100].value,
+    200: zIndex[200].value,
+    300: zIndex[300].value,
+    400: zIndex[400].value,
+    500: zIndex[500].value,
+    600: zIndex[600].value,
+    700: zIndex[700].value,
+    800: zIndex[800].value,
+    900: zIndex[900].value,
   },
   motion: {
     speed: {
