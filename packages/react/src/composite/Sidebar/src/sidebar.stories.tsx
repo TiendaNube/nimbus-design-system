@@ -46,7 +46,7 @@ base.args = {
       height="100%"
       borderStyle="dashed"
       padding="2"
-      borderWidth="1px"
+      borderWidth="1"
       borderColor="neutral-interactive"
       boxSizing="border-box"
     >
@@ -66,7 +66,7 @@ withPadding.args = {
       height="100%"
       borderStyle="dashed"
       padding="2"
-      borderWidth="1px"
+      borderWidth="1"
       borderColor="neutral-interactive"
       boxSizing="border-box"
     >
@@ -88,7 +88,7 @@ withHeader.args = {
           height="100%"
           borderStyle="dashed"
           padding="2"
-          borderWidth="1px"
+          borderWidth="1"
           borderColor="neutral-interactive"
           boxSizing="border-box"
         >
@@ -103,7 +103,7 @@ withHeader.args = {
           height="100%"
           borderStyle="dashed"
           padding="2"
-          borderWidth="1px"
+          borderWidth="1"
           borderColor="neutral-interactive"
           boxSizing="border-box"
         >
@@ -127,7 +127,7 @@ withHeaderAndTitle.args = {
         height="100%"
         borderStyle="dashed"
         padding="2"
-        borderWidth="1px"
+        borderWidth="1"
         borderColor="neutral-interactive"
         boxSizing="border-box"
       >
@@ -150,7 +150,7 @@ withFooter.args = {
           height="100%"
           borderStyle="dashed"
           padding="2"
-          borderWidth="1px"
+          borderWidth="1"
           borderColor="neutral-interactive"
           boxSizing="border-box"
         >
@@ -165,7 +165,7 @@ withFooter.args = {
           height="100%"
           borderStyle="dashed"
           padding="2"
-          borderWidth="1px"
+          borderWidth="1"
           borderColor="neutral-interactive"
           boxSizing="border-box"
         >
@@ -180,7 +180,7 @@ withFooter.args = {
           height="100%"
           borderStyle="dashed"
           padding="2"
-          borderWidth="1px"
+          borderWidth="1"
           borderColor="neutral-interactive"
           width="100%"
           boxSizing="border-box"
