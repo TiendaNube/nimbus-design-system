@@ -200,6 +200,30 @@ export interface BoxSprinkle {
     | BoxBorderWidthProperties
     | BoxConditions<BoxBorderWidthProperties>;
   /**
+   * The borderTopWidth property defines the width of the border at the top of a box.
+   */
+  borderTopWidth?:
+    | BoxBorderWidthProperties
+    | BoxConditions<BoxBorderWidthProperties>;
+  /**
+   * The borderBottomWidth property defines the width of the border at the bottom of a box.
+   */
+  borderBottomWidth?:
+    | BoxBorderWidthProperties
+    | BoxConditions<BoxBorderWidthProperties>;
+  /**
+   * The borderLeftWidth property defines the width of the border at the left of a box.
+   */
+  borderLeftWidth?:
+    | BoxBorderWidthProperties
+    | BoxConditions<BoxBorderWidthProperties>;
+  /**
+   * The borderRightWidth property defines the width of the border at the right of a box.
+   */
+  borderRightWidth?:
+    | BoxBorderWidthProperties
+    | BoxConditions<BoxBorderWidthProperties>;
+  /**
    * The borderWidthX shorthand property defines the width of the element's border on the left and right.
    */
   borderWidthX?:

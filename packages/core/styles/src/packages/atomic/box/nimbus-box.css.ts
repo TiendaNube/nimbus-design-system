@@ -99,6 +99,7 @@ const boxSpacingProperties = {
 
 const boxMarginProperties = {
   auto: "auto",
+  none: "0",
   ...spacingProperties,
 };
 
@@ -180,8 +181,8 @@ const defineProperties = defineRainbowProperties({
     marginBottom: boxMarginProperties,
     marginLeft: boxMarginProperties,
     marginRight: boxMarginProperties,
-    gap: spacingProperties,
-    gridGap: spacingProperties,
+    gap: boxSpacingProperties,
+    gridGap: boxSpacingProperties,
     color: boxColorProperties,
     zIndex: zIndexProperties,
   },
@@ -236,8 +237,8 @@ const defineProperties = defineRainbowProperties({
 });
 
 const properties = {
-  gap: spacingProperties,
-  gridGap: spacingProperties,
+  gap: boxSpacingProperties,
+  gridGap: boxSpacingProperties,
   display: displayProperties,
   flexDirection: flexDirectionProperties,
   flexWrap: flexWrapProperties,

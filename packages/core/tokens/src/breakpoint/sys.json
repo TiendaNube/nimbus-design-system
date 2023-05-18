@@ -1,8 +1,20 @@
 {
   "breakpoint": {
-    "xs": { "value": "0px" },
-    "md": { "value": "672px" },
-    "lg": { "value": "1024px" },
-    "xl": { "value": "1200px" }
+    "xs": {
+      "value": "0px",
+      "comment": "Commonly used for mobile resolutions."
+    },
+    "md": {
+      "value": "672px",
+      "comment": "Commonly used for tablet resolutions."
+    },
+    "lg": {
+      "value": "1024px",
+      "comment": "Commonly used for small desktop resolutions."
+    },
+    "xl": {
+      "value": "1200px",
+      "comment": "Commonly used for bigger desktop resolutions."
+    }
   }
 }
