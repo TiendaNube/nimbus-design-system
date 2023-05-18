@@ -23,7 +23,7 @@ export const container = style({
   backgroundColor: varsThemeBase.colors.neutral.background,
   borderRadius: varsThemeBase.shape.border.radius[2],
   boxSizing: "border-box",
-  zIndex: 200,
+  zIndex: varsThemeBase.zIndex[700],
 });
 
 const container__close = style({
@@ -88,7 +88,7 @@ const overlay = style({
   left: 0,
   right: 0,
   backgroundColor: "rgba(0, 0, 0, 0.5)",
-  zIndex: 100,
+  zIndex: varsThemeBase.zIndex[600],
   animation: `${overlayAnimation} 0.5s ease`,
 });
 

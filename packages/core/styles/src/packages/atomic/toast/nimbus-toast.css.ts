@@ -13,6 +13,7 @@ const base = vanillaStyle({
   padding: varsThemeBase.spacing[2],
   borderRadius: varsThemeBase.shape.border.radius[2],
   transition: `${varsThemeBase.motion.speed.fast} ease`,
+  zIndex: varsThemeBase.zIndex[800],
 });
 
 export const container = vanillaStyle({
