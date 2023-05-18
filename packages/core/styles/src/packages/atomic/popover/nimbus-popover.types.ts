@@ -7,6 +7,7 @@ type PopoverColorProperties = keyof typeof propertiesPopover.color;
 type PopoverBackgroundColorProperties =
   keyof typeof propertiesPopover.backgroundColor;
 type PopoverPaddingProperties = keyof typeof propertiesPopover.padding;
+type PopoverZIndexProperties = keyof typeof propertiesPopover.zIndex;
 
 export interface PopoverSprinkle {
   /**
@@ -21,7 +22,7 @@ export interface PopoverSprinkle {
   /**
    * The zIndex property specifies the stack order of the popover.
    */
-  zIndex?: number | Conditions<number>;
+  zIndex?: PopoverZIndexProperties | Conditions<PopoverZIndexProperties>;
   /**
    * The backgroundColor property sets the background color of the popover.
    * @default neutral-background
