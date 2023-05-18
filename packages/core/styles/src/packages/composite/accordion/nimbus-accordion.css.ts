@@ -11,7 +11,7 @@ const header = style({
   width: "100%",
   cursor: "pointer",
   backgroundColor: varsThemeBase.colors.neutral.background,
-  padding: varsThemeBase.sizes[4],
+  padding: varsThemeBase.spacing[4],
   border: "none",
 });
 
@@ -29,13 +29,13 @@ const header__description = style({
   width: "100%",
   display: "flex",
   alignItems: "flex-start",
-  gap: varsThemeBase.sizes["2,5"],
+  gap: varsThemeBase.spacing["2-5"],
 });
 
 const header__title = style({
   display: "flex",
   flexDirection: "column",
-  gap: varsThemeBase.sizes[1],
+  gap: varsThemeBase.spacing[1],
 });
 
 const body = style({
@@ -67,7 +67,7 @@ const border = {
 
 const padding = {
   none: "none",
-  base: `0px ${varsThemeBase.sizes[4]} ${varsThemeBase.sizes[4]} ${varsThemeBase.sizes[4]}`,
+  base: `0px ${varsThemeBase.spacing[4]} ${varsThemeBase.spacing[4]} ${varsThemeBase.spacing[4]}`,
 };
 
 const properties = {

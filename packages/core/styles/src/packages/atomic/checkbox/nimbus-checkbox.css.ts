@@ -38,7 +38,7 @@ const container__checkmark = style({
 
   borderStyle: "solid",
   borderWidth: varsThemeBase.shape.border.width[1],
-  borderRadius: varsThemeBase.spacing[1],
+  borderRadius: varsThemeBase.shape.border.radius[1],
   backgroundColor: varsThemeBase.colors.neutral.background,
 });
 

@@ -8,7 +8,7 @@ import {
   fontWeightProperties,
   titleLineHeightProperties,
   textAlignProperties,
-  sizeProperties,
+  spacingProperties,
 } from "../../../properties";
 
 /* -------------------------------------------------------------------------------------------------
@@ -95,12 +95,12 @@ const titleColorProperties = {
 
 const fontSizeProperties = {
   ...titleFontSizeProperties,
-  ...sizeProperties,
+  ...spacingProperties,
 };
 
 const lineHeightProperties = {
   ...titleLineHeightProperties,
-  ...sizeProperties,
+  ...spacingProperties,
 };
 
 const properties = {
