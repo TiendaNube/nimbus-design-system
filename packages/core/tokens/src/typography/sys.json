@@ -1,46 +1,100 @@
 {
   "font": {
     "family": {
-      "value": "CentraNube, -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', arial, sans-serif"
+      "value": "CentraNube, -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', arial, sans-serif",
+      "comment": "Font family value by default, to use in css and set components font."
     },
     "size": {
-      "sys": {
-        "body": {
-          "caption": { "value": "{font.size.ref.3}" },
-          "base": { "value": "{font.size.ref.3,5}" },
-          "highlight": { "value": "{font.size.ref.4}" }
+      "body": {
+        "caption": {
+          "value": "{font.size.3}",
+          "comment": "It can be used for caption text and very small components like labels, inputs or chips. Must not be used for body text."
         },
-        "title": {
-          "h1": { "value": "{font.size.ref.8}" },
-          "h2": { "value": "{font.size.ref.6}" },
-          "h3": { "value": "{font.size.ref.5}" },
-          "h4": { "value": "{font.size.ref.4,5}" },
-          "h5": { "value": "{font.size.ref.4}" },
-          "h6": { "value": "{font.size.ref.3,5}" }
+        "base": {
+          "value": "{font.size.3-5}",
+          "comment": "It can be used for plain text and large amounts of content."
+        },
+        "highlight": {
+          "value": "{font.size.4}",
+          "comment": "It can be used for highlighted text or titles with the lowest possible importance."
         }
+      },
+      "title": {
+        "h1": {
+          "value": "{font.size.8}",
+          "comment": "Main hierarchy headings, reserved for a single use per page."
+        },
+        "h2": {
+          "value": "{font.size.6}",
+          "comment": "Secondary hierarchy headings that are used to divide large sections of content on a page"
+        },
+        "h3": { "value": "{font.size.5}" },
+        "h4": {
+          "value": "{font.size.4-5}",
+          "comment": "It can be used for low hierarchy headings with the second lowest possible importance."
+        },
+        "h5": {
+          "value": "{font.size.4}",
+          "comment": "It can be used for highlighted text or titles with the lowest possible importance."
+        },
+        "h6": { "value": "{font.size.3-5}" }
       }
     },
     "weight": {
-      "regular": { "value": "400" },
-      "medium": { "value": "500" },
-      "bold": { "value": "700" }
+      "regular": {
+        "value": "400",
+        "comment": "Plain text with regular weight, can be combined with highlight, base or caption font-size."
+      },
+      "medium": {
+        "value": "500",
+        "comment": "Plain text with medium weight, can be combined with every font-size."
+      },
+      "bold": {
+        "value": "700",
+        "comment": "Plain text with bold weight, can be combined with highlight, base or caption font-size."
+      }
     }
   },
   "line": {
     "height": {
-      "sys": {
-        "body": {
-          "caption": { "value": "{line.height.ref.3,5}" },
-          "base": { "value": "{line.height.ref.4,5}" },
-          "highlight": { "value": "{line.height.ref.5}" }
+      "body": {
+        "caption": {
+          "value": "{line.height.3-5}",
+          "comment": "Combined use with: font-size-body-caption"
         },
-        "title": {
-          "h1": { "value": "{line.height.ref.11}" },
-          "h2": { "value": "{line.height.ref.8}" },
-          "h3": { "value": "{line.height.ref.7}" },
-          "h4": { "value": "{line.height.ref.6}" },
-          "h5": { "value": "{line.height.ref.5}" },
-          "h6": { "value": "{line.height.ref.4,5}" }
+        "base": {
+          "value": "{line.height.4-5}",
+          "comment": "Combined use with: font-size-body-base"
+        },
+        "highlight": {
+          "value": "{line.height.5}",
+          "comment": "Combined use with: font-size-body-highlight"
+        }
+      },
+      "title": {
+        "h1": {
+          "value": "{line.height.11}",
+          "comment": "Combined use with: font-size-title-h1"
+        },
+        "h2": {
+          "value": "{line.height.8}",
+          "comment": "Combined use with: font-size-title-h2"
+        },
+        "h3": {
+          "value": "{line.height.7}",
+          "comment": "Combined use with: font-size-title-h3"
+        },
+        "h4": {
+          "value": "{line.height.6}",
+          "comment": "Combined use with: font-size-title-h4"
+        },
+        "h5": {
+          "value": "{line.height.5}",
+          "comment": "Combined use with: font-size-title-h5"
+        },
+        "h6": {
+          "value": "{line.height.4-5}",
+          "comment": "Combined use with: font-size-title-h6"
         }
       }
     }

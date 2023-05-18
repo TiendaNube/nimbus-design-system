@@ -2,15 +2,24 @@
   "shape": {
     "border": {
       "radius": {
-        "0,5": { "value": "{sizes.0,5}" },
-        "1": { "value": "{sizes.1}" },
-        "2": { "value": "{sizes.2}" },
-        "3": { "value": "{sizes.3}" },
-        "4": { "value": "{sizes.4}" },
-        "5": { "value": "{sizes.5}" },
-        "6": { "value": "{sizes.6}" },
-        "full": { "value": "9999px" },
-        "base": { "value": "{sizes.1,5}" },
+        "0-5": { "value": "{spacing.0-5}" },
+        "1": {
+          "value": "{spacing.1}",
+          "comment": "It can be used in medium or small elements with or without interactions."
+        },
+        "2": {
+          "value": "{spacing.2}",
+          "comment": "It can be used on medium or large elements with or without interactions."
+        },
+        "3": { "value": "{spacing.3}" },
+        "4": { "value": "{spacing.4}" },
+        "5": { "value": "{spacing.5}" },
+        "6": { "value": "{spacing.6}" },
+        "full": {
+          "value": "9999px",
+          "comment": "It can be used in small or fully rounded elements with or without interactions."
+        },
+        "base": { "value": "{spacing.1-5}" },
         "half": { "value": "50%" }
       },
       "width": {
