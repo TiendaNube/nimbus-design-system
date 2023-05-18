@@ -141,9 +141,9 @@ base.args = {
   height: "5rem",
   width: "12rem",
   borderColor: "neutral-interactive",
-  borderWidth: "2px",
+  borderWidth: "2",
   borderStyle: "dashed",
-  borderRadius: "0.5rem",
+  borderRadius: "2",
 };
 
 export const responsive = Template.bind({});
@@ -173,9 +173,9 @@ responsive.args = {
     xs: "none",
   },
   borderRadius: {
-    xl: "1rem",
-    lg: "0.5rem",
-    md: "0.2rem",
-    xs: "100%",
+    xl: "0-5",
+    lg: "2",
+    md: "4",
+    xs: "full",
   },
 };

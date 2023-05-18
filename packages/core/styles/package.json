@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/styles",
-  "version": "8.3.0",
+  "version": "8.0.0",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [

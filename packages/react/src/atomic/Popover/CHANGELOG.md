@@ -2,6 +2,12 @@
 
 Use Popovers to bring attention to specific user interface elements and suggest an action or to guide users through a new experience
 
+## 2023-05-18 `4.0.0`
+
+#### 🛠 Breaking changes
+
+- Changed the dynamic sending option of the `zIndex` property to use `zIndex` in the component API. ([#162](https://github.com/TiendaNube/nimbus-design-system/pull/162) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-05-22 `3.2.2`
 
 ### 📚 3rd party library updates

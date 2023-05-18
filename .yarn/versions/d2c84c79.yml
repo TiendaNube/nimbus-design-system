@@ -1,0 +1,10 @@
+releases:
+  "@nimbus-ds/box": major
+  "@nimbus-ds/components": major
+  "@nimbus-ds/popover": major
+  "@nimbus-ds/sidebar": major
+  "@nimbus-ds/styles": major
+  "@nimbus-ds/tokens": major
+
+declined:
+  - nimbus-design-system

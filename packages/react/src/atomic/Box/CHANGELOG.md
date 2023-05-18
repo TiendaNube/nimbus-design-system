@@ -2,6 +2,12 @@
 
 A low-level utility component that accepts styled system props to enable custom theme-aware styling
 
+## 2023-05-18 `4.0.0`
+
+#### 🛠 Breaking changes
+
+- Removed `level-` prefix from `boxShadow` component API property. ([#162](https://github.com/TiendaNube/nimbus-design-system/pull/162) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-03-31 `3.2.0`
 
 ### 🎉 New features
