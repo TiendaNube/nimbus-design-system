@@ -10,7 +10,7 @@ const base = style({
   height: "1.25rem",
   boxSizing: "border-box",
   gap: varsThemeBase.spacing[1],
-  padding: `${varsThemeBase.spacing["0,5"]} ${varsThemeBase.spacing[2]}`,
+  padding: `${varsThemeBase.spacing["0-5"]} ${varsThemeBase.spacing[2]}`,
   borderStyle: "solid",
   borderWidth: varsThemeBase.shape.border.width[1],
   borderRadius: varsThemeBase.shape.border.radius.full,
