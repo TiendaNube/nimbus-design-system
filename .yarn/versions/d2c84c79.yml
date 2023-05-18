@@ -8,3 +8,8 @@ releases:
 
 declined:
   - nimbus-design-system
+  - "@nimbus-ds/accordion"
+  - "@nimbus-ds/alert"
+  - "@nimbus-ds/card"
+  - "@nimbus-ds/modal"
+  - "@nimbus-ds/tabs"
