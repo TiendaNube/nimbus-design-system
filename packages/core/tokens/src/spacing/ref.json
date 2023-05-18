@@ -1,16 +1,43 @@
 {
   "spacing": {
-    "0,5": { "value": "{sizes.0,5}" },
-    "1": { "value": "{sizes.1}" },
-    "2": { "value": "{sizes.2}" },
-    "4": { "value": "{sizes.4}" },
-    "6": { "value": "{sizes.6}" },
-    "8": { "value": "{sizes.8}" },
-    "10": { "value": "{sizes.10}" },
-    "12": { "value": "{sizes.12}" },
-    "14": { "value": "{sizes.14}" },
-    "16": { "value": "{sizes.16}" },
-    "18": { "value": "{sizes.18}" },
-    "20": { "value": "{sizes.20}" }
+    "0-5": {
+      "value": "0.125rem",
+      "comment": "Padding of small atomic elements such as labels or chips."
+    },
+    "1": {
+      "value": "0.25rem",
+      "comment": "Internal spaces in atomic components such as buttons or links."
+    },
+    "1-5": { "value": "0.375rem" },
+    "2": {
+      "value": "0.5rem",
+      "comment": "Separation of elements within a container or component padding."
+    },
+    "2-5": { "value": "0.625rem" },
+    "3": { "value": "0.75rem" },
+    "3-5": { "value": "0.875rem" },
+    "4": {
+      "value": "1rem",
+      "comment": "Internal spacing of components such as containers or cards."
+    },
+    "4-5": { "value": "1.125rem" },
+    "5": { "value": "1.25rem" },
+    "6": {
+      "value": "1.5rem",
+      "comment": "Separation of content blocks that are not related to each other."
+    },
+    "7": { "value": "1.75rem" },
+    "8": {
+      "value": "2rem",
+      "comment": "Spacing between page elements and content."
+    },
+    "9": { "value": "2.25rem" },
+    "10": { "value": "2.5rem" },
+    "11": { "value": "2.75rem" },
+    "12": { "value": "3rem" },
+    "14": { "value": "3.5rem" },
+    "16": { "value": "4rem" },
+    "18": { "value": "4.5rem" },
+    "20": { "value": "5rem" }
   }
 }
