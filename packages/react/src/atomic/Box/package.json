@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/box",
-  "version": "4.0.0-rc.5",
+  "version": "4.0.0",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -28,6 +28,5 @@
   "devDependencies": {
     "@nimbus-ds/webpack": "workspace:^",
     "@vanilla-extract/dynamic": "^2.0.2"
-  },
-  "stableVersion": "3.2.0"
+  }
 }
