@@ -2,6 +2,13 @@
 
 The Tooltip component allows us to display additional information in a non-intrusive way.
 
+## 2023-05-22 `2.2.1`
+
+### 📚 3rd party library updates
+
+- Removed `@floating-ui/react-dom-interactions`. ([#157](https://github.com/TiendaNube/nimbus-design-system/pull/157) by [@juanchigallego](https://github.com/juanchigallego))
+- Added `@floating-ui/react`. ([#157](https://github.com/TiendaNube/nimbus-design-system/pull/157) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-03-13 `2.2.0`
 
 ### 💡 Others

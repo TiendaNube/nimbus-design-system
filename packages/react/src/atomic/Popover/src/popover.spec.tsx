@@ -47,7 +47,7 @@ describe("GIVEN <Popover />", () => {
       expect(popover).toBeDefined();
 
       expect(popover.style.top).toEqual("-10px");
-      expect(popover.style.left).toEqual("-5px");
+      expect(popover.style.left).toEqual("0px");
       expect(popover.style.position).toEqual("fixed");
 
       expect(arrow.style.bottom).toEqual("0px");
@@ -69,7 +69,7 @@ describe("GIVEN <Popover />", () => {
       expect(popover).toBeDefined();
 
       expect(popover.style.top).toEqual("10px");
-      expect(popover.style.left).toEqual("-5px");
+      expect(popover.style.left).toEqual("0px");
       expect(popover.style.position).toEqual("fixed");
 
       expect(arrow.style.top).toEqual("0px");
@@ -86,7 +86,7 @@ describe("GIVEN <Popover />", () => {
       const arrow = screen.getByTestId("arrow-element");
       expect(popover).toBeDefined();
 
-      expect(popover.style.top).toEqual("-5px");
+      expect(popover.style.top).toEqual("0px");
       expect(popover.style.left).toEqual("-10px");
       expect(popover.style.position).toEqual("fixed");
 
@@ -108,7 +108,7 @@ describe("GIVEN <Popover />", () => {
       const arrow = screen.getByTestId("arrow-element");
       expect(popover).toBeDefined();
 
-      expect(popover.style.top).toEqual("-5px");
+      expect(popover.style.top).toEqual("0px");
       expect(popover.style.left).toEqual("10px");
       expect(popover.style.position).toEqual("fixed");
 

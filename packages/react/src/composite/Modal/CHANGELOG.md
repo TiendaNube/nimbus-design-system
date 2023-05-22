@@ -2,6 +2,17 @@
 
 The Modal component allows us to call the user's attention to a floating box that can have text, actions or forms to perform tasks by changing the focus from the background. It is an intrusive component as it interrupts the user's operation to present a message or content.
 
+## 2023-05-22 `1.3.1`
+
+### 🐛 Bug fixes
+
+- Fixes a bug where focus wasn't correctly moved to the modal dialog when pressing tab key. ([#157](https://github.com/TiendaNube/nimbus-design-system/pull/157) by [@juanchigallego](https://github.com/juanchigallego))
+
+### 📚 3rd party library updates
+
+- Removed `@floating-ui/react-dom-interactions`. ([#157](https://github.com/TiendaNube/nimbus-design-system/pull/157) by [@juanchigallego](https://github.com/juanchigallego))
+- Added `@floating-ui/react`. ([#157](https://github.com/TiendaNube/nimbus-design-system/pull/157) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-03-13 `1.3.0`
 
 ### 💡 Others

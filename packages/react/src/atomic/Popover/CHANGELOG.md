@@ -2,6 +2,13 @@
 
 Use Popovers to bring attention to specific user interface elements and suggest an action or to guide users through a new experience
 
+## 2023-05-22 `3.2.2`
+
+### 📚 3rd party library updates
+
+- Removed `@floating-ui/react-dom-interactions`. ([#157](https://github.com/TiendaNube/nimbus-design-system/pull/157) by [@juanchigallego](https://github.com/juanchigallego))
+- Added `@floating-ui/react`. ([#157](https://github.com/TiendaNube/nimbus-design-system/pull/157) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-05-02 `3.1.1`
 
 #### 🐛 Bug fixes

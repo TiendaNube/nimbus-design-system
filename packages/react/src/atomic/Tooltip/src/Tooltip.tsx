@@ -7,7 +7,7 @@ import {
   arrow,
   offset,
   safePolygon,
-} from "@floating-ui/react-dom-interactions";
+} from "@floating-ui/react";
 import { tooltip } from "@nimbus-ds/styles";
 import { Text } from "@nimbus-ds/text";
 
@@ -29,8 +29,6 @@ const Tooltip: React.FC<TooltipProps> = ({
     y,
     context,
     strategy,
-    reference,
-    floating,
     middlewareData: { arrow: { x: arrowX, y: arrowY } = {} },
   } = useFloating({
     open: isVisible,
@@ -42,9 +40,12 @@ const Tooltip: React.FC<TooltipProps> = ({
 
   const { getReferenceProps, getFloatingProps } = useInteractions([
     useHover(context, {
+      restMs: 50,
+      delay: {
+        close: 100,
+      },
       handleClose: safePolygon({
         buffer: 1,
-        restMs: 50,
       }),
     }),
   ]);
@@ -53,7 +54,7 @@ const Tooltip: React.FC<TooltipProps> = ({
     <>
       <div
         data-testid="tooltip-container"
-        ref={reference}
+        ref={context.refs.setReference}
         className={tooltip.classnames.container}
         {...getReferenceProps()}
       >
@@ -63,7 +64,7 @@ const Tooltip: React.FC<TooltipProps> = ({
         {isVisible && (
           <div
             {...rest}
-            ref={floating}
+            ref={context.refs.setFloating}
             className={tooltip.classnames.content}
             style={{
               position: strategy,

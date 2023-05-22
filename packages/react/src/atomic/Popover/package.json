@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/popover",
-  "version": "3.2.1",
+  "version": "3.2.2-rc.1",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -14,7 +14,7 @@
     "version": "yarn version"
   },
   "dependencies": {
-    "@floating-ui/react-dom-interactions": "^0.10.1"
+    "@floating-ui/react": "^0.24.1"
   },
   "peerDependencies": {
     "react": "^16.8 || ^17.0 || ^18.0",
@@ -32,5 +32,6 @@
     "@nimbus-ds/box": "workspace:^",
     "@nimbus-ds/webpack": "workspace:^",
     "@vanilla-extract/dynamic": "^2.0.2"
-  }
+  },
+  "stableVersion": "3.2.1"
 }

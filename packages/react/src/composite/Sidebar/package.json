@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/sidebar",
-  "version": "2.2.0",
+  "version": "2.2.1-rc.1",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -14,7 +14,7 @@
     "version": "yarn version"
   },
   "dependencies": {
-    "@floating-ui/react-dom-interactions": "^0.10.1",
+    "@floating-ui/react": "^0.24.1",
     "@nimbus-ds/title": "workspace:^"
   },
   "peerDependencies": {
@@ -34,5 +34,6 @@
     "@nimbus-ds/button": "workspace:^",
     "@nimbus-ds/text": "workspace:^",
     "@nimbus-ds/webpack": "workspace:^"
-  }
+  },
+  "stableVersion": "2.2.0"
 }

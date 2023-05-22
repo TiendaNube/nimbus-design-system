@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/modal",
-  "version": "1.3.0",
+  "version": "1.3.1-rc.1",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -14,7 +14,7 @@
     "version": "yarn version"
   },
   "dependencies": {
-    "@floating-ui/react-dom-interactions": "^0.10.1",
+    "@floating-ui/react": "^0.24.1",
     "@nimbus-ds/icon": "workspace:^",
     "@nimbus-ds/icons": "workspace:^"
   },
@@ -36,5 +36,6 @@
     "@nimbus-ds/text": "workspace:^",
     "@nimbus-ds/title": "workspace:^",
     "@nimbus-ds/webpack": "workspace:^"
-  }
+  },
+  "stableVersion": "1.3.0"
 }

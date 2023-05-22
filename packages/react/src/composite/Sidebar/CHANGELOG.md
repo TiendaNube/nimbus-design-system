@@ -2,6 +2,13 @@
 
 The Sidebar component is a large floating container that goes into the page from the corners. It allows us to present actions, forms or sections with a lot of information about the context of the page.
 
+## 2023-05-22 `2.2.1`
+
+### 📚 3rd party library updates
+
+- Removed `@floating-ui/react-dom-interactions`. ([#157](https://github.com/TiendaNube/nimbus-design-system/pull/157) by [@juanchigallego](https://github.com/juanchigallego))
+- Added `@floating-ui/react`. ([#157](https://github.com/TiendaNube/nimbus-design-system/pull/157) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-03-13 `2.2.0`
 
 ### 💡 Others

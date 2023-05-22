@@ -40,7 +40,7 @@ describe("GIVEN <Checkbox />", () => {
         "borderColor_neutral-interactive"
       );
       expect(screen.getByTestId("text").getAttribute("class")).toContain(
-        "color_neutral-textDisabled"
+        "color-neutral-textDisabled"
       );
     });
 
@@ -62,7 +62,7 @@ describe("GIVEN <Checkbox />", () => {
         "borderColor_neutral-interactive"
       );
       expect(screen.getByTestId("text").getAttribute("class")).toContain(
-        "color_neutral-textLow"
+        "color-neutral-textLow"
       );
       expect(screen.getByText("My Checkbox")).toBeDefined();
     });
@@ -73,7 +73,7 @@ describe("GIVEN <Checkbox />", () => {
         "borderColor_danger-interactive"
       );
       expect(screen.getByTestId("text").getAttribute("class")).toContain(
-        "color_danger-textLow"
+        "color-danger-textLow"
       );
       expect(screen.getByText("My Checkbox")).toBeDefined();
     });

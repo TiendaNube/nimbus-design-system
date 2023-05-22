@@ -1,5 +1,8 @@
 import { style } from "@vanilla-extract/css";
-import { defineProperties, createSprinkles } from "@vanilla-extract/sprinkles";
+import {
+  createRainbowSprinkles,
+  defineProperties as defineRainbowProperties,
+} from "rainbow-sprinkles";
 
 import {
   colorProperties,
@@ -20,8 +23,16 @@ const base = style({
   margin: 0,
 });
 
+const trim = style({
+  display: "-webkit-box",
+  overflow: "hidden",
+  textOverflow: "ellipsis",
+  WebkitBoxOrient: "vertical",
+});
+
 export const styles = {
   base,
+  trim,
 };
 
 /* -------------------------------------------------------------------------------------------------
@@ -67,26 +78,32 @@ const properties = {
   fontSize: fontSizeProperties,
 };
 
-const sprinkle = createSprinkles(
-  defineProperties({
-    conditions: {
-      xs: {
-        "@media": mediaQueries.xs(),
-      },
-      md: {
-        "@media": mediaQueries.md(),
-      },
-      lg: {
-        "@media": mediaQueries.lg(),
-      },
-      xl: {
-        "@media": mediaQueries.xl(),
-      },
+const defineProperties = defineRainbowProperties({
+  conditions: {
+    xs: {
+      "@media": mediaQueries.xs(),
     },
-    defaultCondition: "xs",
-    properties,
-  })
-);
+    md: {
+      "@media": mediaQueries.md(),
+    },
+    lg: {
+      "@media": mediaQueries.lg(),
+    },
+    xl: {
+      "@media": mediaQueries.xl(),
+    },
+  },
+  defaultCondition: "xs",
+  dynamicProperties: {
+    lineClamp: true,
+    WebkitLineClamp: true,
+  },
+  staticProperties: {
+    ...properties,
+  },
+});
+
+const sprinkle = createRainbowSprinkles(defineProperties);
 
 export const textSprinkle = {
   sprinkle,
