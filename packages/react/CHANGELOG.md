@@ -2,6 +2,12 @@
 
 Nimbus is an open-source Design System created by Tiendanube / Nuvesmhop’s team to empower and enhance more stories every day, with simplicity, accessibility, consistency and performance.
 
+## 2023-05-23 `5.0.0`
+
+#### 🛠 Breaking changes
+
+- Changed the dynamic sending option of the `zIndex` property to use `zIndex` in the `Popover` component API. ([#162](https://github.com/TiendaNube/nimbus-design-system/pull/162) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-05-22 `4.4.0`
 
 ### 🎉 New features

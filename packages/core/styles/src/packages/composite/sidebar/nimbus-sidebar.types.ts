@@ -2,6 +2,7 @@ import { Conditions } from "../../../types";
 import { sidebarSprinkle } from "./nimbus-sidebar.css";
 
 type SidebarPaddingProperties = keyof typeof sidebarSprinkle.properties.padding;
+type SidebarZIndexProperties = keyof typeof sidebarSprinkle.properties.zIndex;
 
 export interface SidebarSprinkle {
   /**
@@ -12,7 +13,7 @@ export interface SidebarSprinkle {
   /**
    * The zIndex property specifies the stack order of the sidebar.
    */
-  zIndex?: number | Conditions<number>;
+  zIndex?: SidebarZIndexProperties | Conditions<SidebarZIndexProperties>;
   /**
    * The padding properties are used to generate space around an sidebar's content area.
    * @default base

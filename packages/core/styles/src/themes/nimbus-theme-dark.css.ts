@@ -4,7 +4,7 @@ import tokens from "@nimbus-ds/tokens/dist/js/tokens";
 import { vars } from "./contract.css";
 import { globalTheme } from "./globals.css";
 
-const colors = tokens.color.sys.dark;
+const colors = tokens.color.dark;
 const { shadow } = tokens;
 
 const darkTheme = {

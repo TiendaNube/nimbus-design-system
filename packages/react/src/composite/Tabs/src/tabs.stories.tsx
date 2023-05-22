@@ -27,7 +27,7 @@ const Template: ComponentStory<typeof Tabs> = (args) => (
       <Box
         borderColor="neutral-interactive"
         borderStyle="dashed"
-        borderWidth="1px"
+        borderWidth="1"
         padding="2"
       >
         <Text fontSize="base" textAlign="center">
@@ -39,7 +39,7 @@ const Template: ComponentStory<typeof Tabs> = (args) => (
       <Box
         borderColor="neutral-interactive"
         borderStyle="dashed"
-        borderWidth="1px"
+        borderWidth="1"
         padding="2"
       >
         <Text fontSize="base" textAlign="center">
@@ -51,7 +51,7 @@ const Template: ComponentStory<typeof Tabs> = (args) => (
       <Box
         borderColor="neutral-interactive"
         borderStyle="dashed"
-        borderWidth="1px"
+        borderWidth="1"
         padding="2"
       >
         <Text fontSize="base" textAlign="center">

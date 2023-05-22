@@ -11,7 +11,7 @@ const base = style({
   borderStyle: "solid",
   display: "flex",
   borderWidth: varsThemeBase.shape.border.width[1],
-  padding: `${varsThemeBase.spacing[1]} ${varsThemeBase.sizes["1,5"]}`,
+  padding: `${varsThemeBase.spacing[1]} ${varsThemeBase.spacing["1-5"]}`,
   borderRadius: varsThemeBase.shape.border.radius[1],
   transition: `all ${varsThemeBase.motion.speed.fast} ease`,
 });

@@ -6,12 +6,13 @@ import {
   backgroundColorProperties,
   borderColorProperties,
   borderStyleProperties,
+  borderRadiusProperties,
+  borderWidthProperties,
   boxSizingProperties,
   cursorProperties,
   positionProperties,
   overflowProperties,
-  gapProperties,
-  gridGapProperties,
+  spacingProperties,
   displayProperties,
   flexDirectionProperties,
   justifyContentProperties,
@@ -23,8 +24,9 @@ import {
   transitionSpeedProperties,
   transitionTimingProperties,
   textDecorationProperties,
+  zIndexProperties,
 } from "../../../properties";
-import { varsThemeBase, mediaQueries } from "../../../themes";
+import { mediaQueries } from "../../../themes";
 
 const boxBackgroundColorProperties = {
   "primary-interactive": backgroundColorProperties["primary-interactive"],
@@ -90,26 +92,25 @@ const boxColorProperties = {
   currentColor: "currentColor",
 };
 
-const boxSpaceProperties = {
+const boxSpacingProperties = {
+  ...spacingProperties,
   none: "0",
-  "0,5": varsThemeBase.spacing["0,5"],
-  "1": varsThemeBase.spacing[1],
-  "2": varsThemeBase.spacing[2],
-  "2,5": varsThemeBase.spacing[2],
-  "4": varsThemeBase.spacing[4],
-  "6": varsThemeBase.spacing[6],
-  "8": varsThemeBase.spacing[8],
-  "10": varsThemeBase.spacing[10],
-  "12": varsThemeBase.spacing[12],
-  "14": varsThemeBase.spacing[14],
-  "16": varsThemeBase.spacing[16],
-  "18": varsThemeBase.spacing[18],
-  "20": varsThemeBase.spacing[20],
 };
 
-const marginProperties = {
+const boxMarginProperties = {
   auto: "auto",
-  ...boxSpaceProperties,
+  none: "0",
+  ...spacingProperties,
+};
+
+const boxBorderRadiusProperties = {
+  none: "0",
+  ...borderRadiusProperties,
+};
+
+const boxBorderWidthProperties = {
+  none: "0",
+  ...borderWidthProperties,
 };
 
 const defineProperties = defineRainbowProperties({
@@ -152,9 +153,6 @@ const defineProperties = defineRainbowProperties({
     flexShrink: true,
     flexGrow: true,
     order: true,
-    borderRadius: true,
-    borderWidth: true,
-    zIndex: true,
     transitionDelay: true,
     transitionProperty: true,
     backgroundImage: true,
@@ -166,20 +164,27 @@ const defineProperties = defineRainbowProperties({
     transitionDuration: transitionSpeedProperties,
     backgroundColor: boxBackgroundColorProperties,
     borderColor: boxBorderColorProperties,
+    borderRadius: boxBorderRadiusProperties,
+    borderWidth: boxBorderWidthProperties,
+    borderTopWidth: boxBorderWidthProperties,
+    borderBottomWidth: boxBorderWidthProperties,
+    borderLeftWidth: boxBorderWidthProperties,
+    borderRightWidth: boxBorderWidthProperties,
     boxShadow: boxShadowProperties,
-    padding: boxSpaceProperties,
-    paddingTop: boxSpaceProperties,
-    paddingBottom: boxSpaceProperties,
-    paddingLeft: boxSpaceProperties,
-    paddingRight: boxSpaceProperties,
-    margin: marginProperties,
-    marginTop: marginProperties,
-    marginBottom: marginProperties,
-    marginLeft: marginProperties,
-    marginRight: marginProperties,
-    gap: gapProperties,
-    gridGap: gridGapProperties,
+    padding: boxSpacingProperties,
+    paddingTop: boxSpacingProperties,
+    paddingBottom: boxSpacingProperties,
+    paddingLeft: boxSpacingProperties,
+    paddingRight: boxSpacingProperties,
+    margin: boxMarginProperties,
+    marginTop: boxMarginProperties,
+    marginBottom: boxMarginProperties,
+    marginLeft: boxMarginProperties,
+    marginRight: boxMarginProperties,
+    gap: boxSpacingProperties,
+    gridGap: boxSpacingProperties,
     color: boxColorProperties,
+    zIndex: zIndexProperties,
   },
   staticProperties: {
     display: displayProperties,
@@ -200,6 +205,14 @@ const defineProperties = defineRainbowProperties({
     textDecoration: textDecorationProperties,
   },
   shorthands: {
+    borderWidth: [
+      "borderTopWidth",
+      "borderBottomWidth",
+      "borderLeftWidth",
+      "borderRightWidth",
+    ],
+    borderWidthX: ["borderLeftWidth", "borderRightWidth"],
+    borderWidthY: ["borderTopWidth", "borderBottomWidth"],
     padding: ["paddingTop", "paddingBottom", "paddingLeft", "paddingRight"],
     paddingX: ["paddingLeft", "paddingRight"],
     paddingY: ["paddingTop", "paddingBottom"],
@@ -224,8 +237,8 @@ const defineProperties = defineRainbowProperties({
 });
 
 const properties = {
-  gap: gapProperties,
-  gridGap: gridGapProperties,
+  gap: boxSpacingProperties,
+  gridGap: boxSpacingProperties,
   display: displayProperties,
   flexDirection: flexDirectionProperties,
   flexWrap: flexWrapProperties,
@@ -236,11 +249,13 @@ const properties = {
   backgroundColor: boxBackgroundColorProperties,
   color: boxColorProperties,
   borderColor: boxBorderColorProperties,
+  borderRadius: boxBorderRadiusProperties,
+  borderWidth: boxBorderWidthProperties,
   borderStyle: borderStyleProperties,
   boxSizing: boxSizingProperties,
   cursor: cursorProperties,
-  space: boxSpaceProperties,
-  margin: marginProperties,
+  spacing: boxSpacingProperties,
+  margin: boxMarginProperties,
   position: positionProperties,
   overflow: overflowProperties,
   overflowX: overflowProperties,
@@ -249,6 +264,7 @@ const properties = {
   transitionDuration: transitionSpeedProperties,
   transitionTimingFunction: transitionTimingProperties,
   textDecoration: textDecorationProperties,
+  zIndex: zIndexProperties,
 };
 
 const sprinkle = createRainbowSprinkles(defineProperties);

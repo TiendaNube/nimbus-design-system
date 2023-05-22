@@ -2,6 +2,24 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2023-05-18 `9.0.0`
+
+#### 🛠 Breaking changes
+
+- Removed the dynamic shipping option from the `zIndex` property to use the new `zIndex` tokens in the `Sidebar` component. ([#162](https://github.com/TiendaNube/nimbus-design-system/pull/162) by [@juniorconquista](https://github.com/juniorconquista))
+- Removed the dynamic shipping option from the `zIndex` property to use the new `zIndex` tokens in the `Popover` component. ([#162](https://github.com/TiendaNube/nimbus-design-system/pull/162) by [@juniorconquista](https://github.com/juniorconquista))
+- Removed `sys` and `ref` prefixes from `colors` and `typrography` tokens. ([#162](https://github.com/TiendaNube/nimbus-design-system/pull/162) by [@juniorconquista](https://github.com/juniorconquista))
+- Removed `level-` prefix from `boxShadow` tokens of `Box` component. ([#162](https://github.com/TiendaNube/nimbus-design-system/pull/162) by [@juniorconquista](https://github.com/juniorconquista))
+- Changed `spacing` token separator prefix from `,` to `-`. ([#162](https://github.com/TiendaNube/nimbus-design-system/pull/162) by [@juniorconquista](https://github.com/juniorconquista))
+- Removed the dynamic shipping option from the `borderRadius` property to use the new `shape` tokens in the `Box` component. ([#162](https://github.com/TiendaNube/nimbus-design-system/pull/162) by [@juniorconquista](https://github.com/juniorconquista))
+- Removed the dynamic shipping option from the `borderWidth` property to use the new `shape` tokens in the `Box` component. ([#162](https://github.com/TiendaNube/nimbus-design-system/pull/162) by [@juniorconquista](https://github.com/juniorconquista))
+- Usage tokens for `sizes` have been removed and moved to `spacing` tokens. ([#162](https://github.com/TiendaNube/nimbus-design-system/pull/162) by [@juniorconquista](https://github.com/juniorconquista))
+
+#### 🎉 New features
+
+- Added new `zIndex` tokens to components. ([#162](https://github.com/TiendaNube/nimbus-design-system/pull/162) by [@juniorconquista](https://github.com/juniorconquista))
+- Added new `spacing` tokens to `padding`, `margin` and `gaps` properties of `Box` component. ([#162](https://github.com/TiendaNube/nimbus-design-system/pull/162) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-05-22 `8.3.0`
 
 #### 🎉 New features

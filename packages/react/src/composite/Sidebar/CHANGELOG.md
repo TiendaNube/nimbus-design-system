@@ -2,6 +2,12 @@
 
 The Sidebar component is a large floating container that goes into the page from the corners. It allows us to present actions, forms or sections with a lot of information about the context of the page.
 
+## 2023-05-18 `3.0.0`
+
+#### 🛠 Breaking changes
+
+- Changed the dynamic sending option of the `zIndex` property to use `zIndex` in the component API. ([#162](https://github.com/TiendaNube/nimbus-design-system/pull/162) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-05-22 `2.2.1`
 
 ### 📚 3rd party library updates

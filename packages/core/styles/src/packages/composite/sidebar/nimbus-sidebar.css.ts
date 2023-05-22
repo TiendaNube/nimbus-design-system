@@ -3,7 +3,7 @@ import {
   createRainbowSprinkles,
   defineProperties as defineRainbowProperties,
 } from "rainbow-sprinkles";
-import { paddingProperties } from "../../../properties";
+import { paddingProperties, zIndexProperties } from "../../../properties";
 import { mediaQueries, varsThemeBase } from "../../../themes";
 
 /* -------------------------------------------------------------------------------------------------
@@ -19,7 +19,7 @@ const container = style({
   height: "100%",
   minHeight: "100%",
   width: "100%",
-  zIndex: 200,
+  zIndex: varsThemeBase.zIndex[700],
   top: 0,
   opacity: 0,
   overflowY: "auto",
@@ -54,7 +54,7 @@ const overlay = style({
   bottom: 0,
   left: 0,
   right: 0,
-  zIndex: 100,
+  zIndex: varsThemeBase.zIndex[600],
   border: "none",
   animation: `${overlayAnimation} 0.5s ease`,
 });
@@ -115,9 +115,9 @@ const defineProperties = defineRainbowProperties({
   defaultCondition: "xs",
   dynamicProperties: {
     maxWidth: true,
-    zIndex: true,
   },
   staticProperties: {
+    zIndex: zIndexProperties,
     padding: paddingProperties,
   },
 });
@@ -127,6 +127,7 @@ const sprinkle = createRainbowSprinkles(defineProperties);
 export const sidebarSprinkle = {
   sprinkle,
   properties: {
+    zIndex: zIndexProperties,
     padding: paddingProperties,
   },
 };

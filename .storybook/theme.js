@@ -15,12 +15,12 @@ export const base = {
 export const darkExtend = {
   base: "dark",
 
-  appBg: tokens.color.sys.dark.neutral.background.value,
-  appContentBg: tokens.color.sys.dark.neutral.surface.value,
+  appBg: tokens.color.dark.neutral.background.value,
+  appContentBg: tokens.color.dark.neutral.surface.value,
 
-  barBg: tokens.color.sys.dark.neutral.surface.value,
+  barBg: tokens.color.dark.neutral.surface.value,
 
-  textColor: tokens.color.sys.dark.neutral["text-high"].value,
+  textColor: tokens.color.dark.neutral["text-high"].value,
 };
 
 export default create(base, darkExtend);

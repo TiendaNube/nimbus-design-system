@@ -20,14 +20,17 @@ import { boxSprinkle } from "./nimbus-box.css";
 const { properties: propertiesBox } = boxSprinkle;
 
 type BoxBorderColorProperties = keyof typeof propertiesBox.borderColor;
+type BoxBorderRadiusProperties = keyof typeof propertiesBox.borderRadius;
+type BoxBorderWidthProperties = keyof typeof propertiesBox.borderWidth;
 type BoxBackgroundColorProperties = keyof typeof propertiesBox.backgroundColor;
 type BoxColorProperties = keyof typeof propertiesBox.color;
 type BoxShadowProperties = keyof typeof propertiesBox.boxShadow;
-type BoxSpaceProperties = keyof typeof propertiesBox.space;
+type BoxSpacingProperties = keyof typeof propertiesBox.spacing;
 type BoxMarginProperties = keyof typeof propertiesBox.margin;
 type BoxGapProperties = keyof typeof propertiesBox.gap;
 type BoxGridGapProperties = keyof typeof propertiesBox.gridGap;
-type TransitionDurationProperties =
+type BoxZIndexProperties = keyof typeof propertiesBox.zIndex;
+type BoxTransitionDurationProperties =
   keyof typeof propertiesBox.transitionDuration;
 
 interface BoxConditions<T> extends Conditions<T> {
@@ -187,11 +190,51 @@ export interface BoxSprinkle {
   /**
    * The borderRadius property rounds the corners of an box's outer border edge.
    */
-  borderRadius?: string | BoxConditions<string>;
+  borderRadius?:
+    | BoxBorderRadiusProperties
+    | BoxConditions<BoxBorderRadiusProperties>;
   /**
    * The borderWidth property sets the width of an box's border.
    */
-  borderWidth?: string | BoxConditions<string>;
+  borderWidth?:
+    | BoxBorderWidthProperties
+    | BoxConditions<BoxBorderWidthProperties>;
+  /**
+   * The borderTopWidth property defines the width of the border at the top of a box.
+   */
+  borderTopWidth?:
+    | BoxBorderWidthProperties
+    | BoxConditions<BoxBorderWidthProperties>;
+  /**
+   * The borderBottomWidth property defines the width of the border at the bottom of a box.
+   */
+  borderBottomWidth?:
+    | BoxBorderWidthProperties
+    | BoxConditions<BoxBorderWidthProperties>;
+  /**
+   * The borderLeftWidth property defines the width of the border at the left of a box.
+   */
+  borderLeftWidth?:
+    | BoxBorderWidthProperties
+    | BoxConditions<BoxBorderWidthProperties>;
+  /**
+   * The borderRightWidth property defines the width of the border at the right of a box.
+   */
+  borderRightWidth?:
+    | BoxBorderWidthProperties
+    | BoxConditions<BoxBorderWidthProperties>;
+  /**
+   * The borderWidthX shorthand property defines the width of the element's border on the left and right.
+   */
+  borderWidthX?:
+    | BoxBorderWidthProperties
+    | BoxConditions<BoxBorderWidthProperties>;
+  /**
+   * The borderWidthY shorthand property defines the width of the element's border on the top and bottom.
+   */
+  borderWidthY?:
+    | BoxBorderWidthProperties
+    | BoxConditions<BoxBorderWidthProperties>;
   /**
    * The borderColor property sets the color of the box's four borders.
    */
@@ -214,23 +257,23 @@ export interface BoxSprinkle {
   /**
    * The padding properties are used to generate space around an box's content area.
    */
-  padding?: BoxSpaceProperties | BoxConditions<BoxSpaceProperties>;
+  padding?: BoxSpacingProperties | BoxConditions<BoxSpacingProperties>;
   /**
    * The paddingTop property sets the height of the padding area on the top of an box.
    */
-  paddingTop?: BoxSpaceProperties | BoxConditions<BoxSpaceProperties>;
+  paddingTop?: BoxSpacingProperties | BoxConditions<BoxSpacingProperties>;
   /**
    * The paddingBottom property sets the height of the padding area on the bottom of an box.
    */
-  paddingBottom?: BoxSpaceProperties | BoxConditions<BoxSpaceProperties>;
+  paddingBottom?: BoxSpacingProperties | BoxConditions<BoxSpacingProperties>;
   /**
    * The paddingLeft property sets the width of the padding area to the left of an box.
    */
-  paddingLeft?: BoxSpaceProperties | BoxConditions<BoxSpaceProperties>;
+  paddingLeft?: BoxSpacingProperties | BoxConditions<BoxSpacingProperties>;
   /**
    * The paddingLeft property sets the width of the padding area to the right of an box.
    */
-  paddingRight?: BoxSpaceProperties | BoxConditions<BoxSpaceProperties>;
+  paddingRight?: BoxSpacingProperties | BoxConditions<BoxSpacingProperties>;
   /**
    * The margin shorthand property sets the margin area on all four sides of an box.
    */
@@ -267,12 +310,12 @@ export interface BoxSprinkle {
    * The transitionDuration property sets the length of time a transition animation should take to complete. By default, the value is 0s, meaning that no animation will occur.
    */
   transitionDuration?:
-    | TransitionDurationProperties
-    | BoxConditions<TransitionDurationProperties>;
+    | BoxTransitionDurationProperties
+    | BoxConditions<BoxTransitionDurationProperties>;
   /**
    * The zIndex property specifies the stack order of the box.
    */
-  zIndex?: number | BoxConditions<number>;
+  zIndex?: BoxZIndexProperties | BoxConditions<BoxZIndexProperties>;
   /**
    * The backgroundImage property sets one or more background images on an element.
    */
@@ -302,39 +345,39 @@ export interface BoxSprinkle {
   /**
    * The p shorthand property sets the margin area on all four sides of an box.
    */
-  p?: BoxSpaceProperties | BoxConditions<BoxSpaceProperties>;
+  p?: BoxSpacingProperties | BoxConditions<BoxSpacingProperties>;
   /**
    * The pl shorthand property sets the width of the padding area to the left of an box.
    */
-  pl?: BoxSpaceProperties | BoxConditions<BoxSpaceProperties>;
+  pl?: BoxSpacingProperties | BoxConditions<BoxSpacingProperties>;
   /**
    * The pl shorthand property sets the width of the padding area to the right of an box.
    */
-  pr?: BoxSpaceProperties | BoxConditions<BoxSpaceProperties>;
+  pr?: BoxSpacingProperties | BoxConditions<BoxSpacingProperties>;
   /**
    * The pt shorthand property sets the height of the padding area on the top of an box.
    */
-  pt?: BoxSpaceProperties | BoxConditions<BoxSpaceProperties>;
+  pt?: BoxSpacingProperties | BoxConditions<BoxSpacingProperties>;
   /**
    * The pb shorthand property sets the height of the padding area on the botton of an box.
    */
-  pb?: BoxSpaceProperties | BoxConditions<BoxSpaceProperties>;
+  pb?: BoxSpacingProperties | BoxConditions<BoxSpacingProperties>;
   /**
    * The px shorthand property defines the width of the left and right padding area of a box.
    */
-  px?: BoxSpaceProperties | BoxConditions<BoxSpaceProperties>;
+  px?: BoxSpacingProperties | BoxConditions<BoxSpacingProperties>;
   /**
    * The py pt shorthand property sets the height of the padding area at the top and bottom of a box.
    */
-  py?: BoxSpaceProperties | BoxConditions<BoxSpaceProperties>;
+  py?: BoxSpacingProperties | BoxConditions<BoxSpacingProperties>;
   /**
    * The paddingX shorthand property defines the width of the left and right padding area of a box.
    */
-  paddingX?: BoxSpaceProperties | BoxConditions<BoxSpaceProperties>;
+  paddingX?: BoxSpacingProperties | BoxConditions<BoxSpacingProperties>;
   /**
    * The paddingY pt shorthand property sets the height of the padding area at the top and bottom of a box.
    */
-  paddingY?: BoxSpaceProperties | BoxConditions<BoxSpaceProperties>;
+  paddingY?: BoxSpacingProperties | BoxConditions<BoxSpacingProperties>;
   /**
    * The m shorthand property sets the margin area on all four sides of an box.
    */

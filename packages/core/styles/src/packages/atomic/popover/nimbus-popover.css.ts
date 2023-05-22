@@ -7,6 +7,7 @@ import { mediaQueries, varsThemeBase } from "../../../themes";
 import {
   backgroundColorProperties,
   paddingProperties,
+  zIndexProperties,
 } from "../../../properties";
 
 /* -------------------------------------------------------------------------------------------------
@@ -23,6 +24,7 @@ const content = style({
   boxSizing: "border-box",
   borderRadius: varsThemeBase.shape.border.radius[2],
   transition: `opacity ${varsThemeBase.motion.speed.fast} ease`,
+  zIndex: varsThemeBase.zIndex[800],
 });
 
 const base = style({
@@ -146,12 +148,12 @@ const defineProperties = defineRainbowProperties({
   dynamicProperties: {
     width: true,
     height: true,
-    zIndex: true,
   },
   staticProperties: {
     backgroundColor: popoverBackgroundColorProperties,
     padding: paddingProperties,
     color: popoverColorProperties,
+    zIndex: zIndexProperties,
   },
 });
 
@@ -159,6 +161,7 @@ const properties = {
   backgroundColor: popoverBackgroundColorProperties,
   color: popoverColorProperties,
   padding: paddingProperties,
+  zIndex: zIndexProperties,
 };
 
 const sprinkle = createRainbowSprinkles(defineProperties);

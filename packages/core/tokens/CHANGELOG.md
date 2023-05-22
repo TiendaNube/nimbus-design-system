@@ -2,15 +2,26 @@
 
 Our design tokens are the foundations of Nimbus Design System.
 
+## 2023-05-18 `8.0.0`
+
+#### 🛠 Breaking changes
+
+- Removed `sys` and `ref` prefixes from `colors` and `typrography` tokens. ([#162](https://github.com/TiendaNube/nimbus-design-system/pull/162) by [@juniorconquista](https://github.com/juniorconquista))
+- Usage tokens for `sizes` have been removed and moved to `spacing` tokens. ([#162](https://github.com/TiendaNube/nimbus-design-system/pull/162) by [@juniorconquista](https://github.com/juniorconquista))
+
+##### 🎉 New features
+
+- Added new `zIndex` tokens. ([#162](https://github.com/TiendaNube/nimbus-design-system/pull/162) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-04-02 `7.0.0`
 
 #### 🛠 Breaking changes
 
-- Refactored shadow tokens. ([#139](https://github.com/TiendaNube/nimbus-design-system/pull/139) by [@juniorconquista](https://github.com/juniorconquista))
+- Refactored `shadow` tokens. ([#139](https://github.com/TiendaNube/nimbus-design-system/pull/139) by [@juniorconquista](https://github.com/juniorconquista))
 
 ##### 🎉 New features
 
-- Added new shape tokens. ([#139](https://github.com/TiendaNube/nimbus-design-system/pull/139) by [@juniorconquista](https://github.com/juniorconquista))
+- Added new `shape` tokens. ([#139](https://github.com/TiendaNube/nimbus-design-system/pull/139) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2023-02-24 `6.0.2`
 
@@ -23,7 +34,7 @@ Our design tokens are the foundations of Nimbus Design System.
 
 #### 🎉 New features
 
-- Added support for themes on shadow tokens. ([#70](https://github.com/TiendaNube/nimbus-design-system/pull/70) by [@juanchigallego](https://github.com/juanchigallego))
+- Added support for themes on `shadow` tokens. ([#70](https://github.com/TiendaNube/nimbus-design-system/pull/70) by [@juanchigallego](https://github.com/juanchigallego))
 
 ## 2022-12-22 `5.2.0`
 
@@ -50,7 +61,7 @@ Our design tokens are the foundations of Nimbus Design System.
 
 #### 💡 Others
 
-- Refactored typography spacing sizes and tokens. ([#29](https://github.com/TiendaNube/nimbus-design-system/pull/29) by [@juniorconquista](https://github.com/juniorconquista))
+- Refactored `typography`, `spacing` and `sizes` tokens. ([#29](https://github.com/TiendaNube/nimbus-design-system/pull/29) by [@juniorconquista](https://github.com/juniorconquista))
 
 #### 🎉 New features
 

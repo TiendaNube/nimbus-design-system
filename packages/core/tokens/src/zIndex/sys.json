@@ -1,0 +1,28 @@
+{
+  "zIndex": {
+    "100": {
+      "value": "100",
+      "comment": "The minimum z-index value, use not defined."
+    },
+    "200": { "value": "200" },
+    "300": { "value": "300" },
+    "400": { "value": "400" },
+    "500": { "value": "500" },
+    "600": {
+      "value": "600",
+      "comment": "Value commonly used for overlay elements, modals and sidebars."
+    },
+    "700": {
+      "value": "700",
+      "comment": "Value commonly used for modals and sidebars."
+    },
+    "800": {
+      "value": "800",
+      "comment": "Value commonly used floating components like toasts, tooltips and popovers."
+    },
+    "900": {
+      "value": "900",
+      "comment": "The highest z-index value, use not defined."
+    }
+  }
+}

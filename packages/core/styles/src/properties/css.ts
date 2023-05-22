@@ -32,15 +32,17 @@ export const aspectRatioProperties: AspectRatio[] = [
 export const backgroundColorProperties = baseColors;
 export const borderColorProperties = baseColors;
 export const colorProperties = baseColors;
+
 export const boxShadowProperties = {
-  "level-0": varsThemeBase.shadow.level[0],
-  "level-1": varsThemeBase.shadow.level[1],
-  "level-2": varsThemeBase.shadow.level[2],
-  "level-3": varsThemeBase.shadow.level[3],
-  "level-4": varsThemeBase.shadow.level[4],
-  "level-5": varsThemeBase.shadow.level[5],
+  "0": varsThemeBase.shadow.level[0],
+  "1": varsThemeBase.shadow.level[1],
+  "2": varsThemeBase.shadow.level[2],
+  "3": varsThemeBase.shadow.level[3],
+  "4": varsThemeBase.shadow.level[4],
+  "5": varsThemeBase.shadow.level[5],
   focusRing: varsThemeBase.utils.focus,
 };
+
 export const boxSizingProperties: BoxSizing[] = ["border-box", "content-box"];
 export const cursorProperties: Cursor[] = [
   "auto",
@@ -49,6 +51,7 @@ export const cursorProperties: Cursor[] = [
   "grab",
   "inherit",
 ];
+
 export const borderStyleProperties: BorderStyle[] = [
   "solid",
   "none",
@@ -56,6 +59,7 @@ export const borderStyleProperties: BorderStyle[] = [
   "dashed",
   "dotted",
 ];
+
 export const displayProperties: Display[] = [
   "block",
   "flex",
@@ -70,11 +74,13 @@ export const flexDirectionProperties: FlexDirection[] = [
   "column",
   "column-reverse",
 ];
+
 export const flexWrapProperties: FlexWrap[] = [
   "nowrap",
   "wrap",
   "wrap-reverse",
 ];
+
 export const alignItemsProperties: AlignItems[] = [
   "stretch",
   "flex-start",
@@ -82,6 +88,7 @@ export const alignItemsProperties: AlignItems[] = [
   "center",
   "baseline",
 ];
+
 export const alignSelfProperties: AlignSelf[] = [
   "auto",
   "flex-start",
@@ -90,6 +97,7 @@ export const alignSelfProperties: AlignSelf[] = [
   "baseline",
   "stretch",
 ];
+
 export const justifyContentProperties: JustifyContent[] = [
   "flex-start",
   "flex-end",
@@ -98,12 +106,14 @@ export const justifyContentProperties: JustifyContent[] = [
   "space-around",
   "space-evenly",
 ];
+
 export const textAlignProperties: TextAlign[] = [
   "left",
   "right",
   "center",
   "justify",
 ];
+
 export const pointerEventsProperties: PointerEvents[] = [
   "auto",
   "none",
@@ -119,21 +129,25 @@ export const pointerEventsProperties: PointerEvents[] = [
 ];
 
 export const textDecorationProperties: TextDecoration[] = ["none", "underline"];
+
 export const fontWeightProperties = {
   regular: varsThemeBase.fontWeight.regular,
   medium: varsThemeBase.fontWeight.medium,
   bold: varsThemeBase.fontWeight.bold,
 };
+
 export const fontSizeProperties = {
   caption: varsThemeBase.fontSize.body.caption,
   base: varsThemeBase.fontSize.body.base,
   highlight: varsThemeBase.fontSize.body.highlight,
 };
+
 export const lineHeightProperties = {
   caption: varsThemeBase.lineWeight.body.caption,
   base: varsThemeBase.lineWeight.body.base,
   highlight: varsThemeBase.lineWeight.body.highlight,
 } as const;
+
 export const titleFontSizeProperties = {
   h1: varsThemeBase.fontSize.title.h1,
   h2: varsThemeBase.fontSize.title.h2,
@@ -142,6 +156,7 @@ export const titleFontSizeProperties = {
   h5: varsThemeBase.fontSize.title.h5,
   h6: varsThemeBase.fontSize.title.h6,
 };
+
 export const titleLineHeightProperties = {
   h1: varsThemeBase.lineWeight.title.h1,
   h2: varsThemeBase.lineWeight.title.h2,
@@ -150,28 +165,13 @@ export const titleLineHeightProperties = {
   h5: varsThemeBase.lineWeight.title.h5,
   h6: varsThemeBase.lineWeight.title.h6,
 };
+
 export const paddingProperties = {
   base: varsThemeBase.spacing[4],
   small: varsThemeBase.spacing[2],
   none: "0",
 };
-export const gapProperties = {
-  none: "0",
-  "0,5": varsThemeBase.spacing["0,5"],
-  "1": varsThemeBase.spacing[1],
-  "1,5": varsThemeBase.sizes["1,5"],
-  "2": varsThemeBase.spacing[2],
-  "2,5": varsThemeBase.sizes["2,5"],
-  "4": varsThemeBase.spacing[4],
-  "6": varsThemeBase.spacing[6],
-  "8": varsThemeBase.spacing[8],
-  "10": varsThemeBase.spacing[10],
-  "12": varsThemeBase.spacing[12],
-  "14": varsThemeBase.spacing[14],
-  "16": varsThemeBase.spacing[16],
-  "18": varsThemeBase.spacing[18],
-  "20": varsThemeBase.spacing[20],
-};
+
 export const positionProperties: Position[] = [
   "absolute",
   "fixed",
@@ -179,6 +179,7 @@ export const positionProperties: Position[] = [
   "static",
   "sticky",
 ];
+
 export const overflowProperties: Overflow[] = [
   "visible",
   "hidden",
@@ -195,6 +196,7 @@ export const transitionTimingProperties: TransitionTiming[] = [
   "step-start",
   "step-end",
 ];
+
 export const transitionSpeedProperties = {
   base: varsThemeBase.motion.speed.base,
   fast: varsThemeBase.motion.speed.fast,
@@ -202,28 +204,59 @@ export const transitionSpeedProperties = {
   slower: varsThemeBase.motion.speed.slower,
 };
 
-export const gridGapProperties = gapProperties;
+export const spacingProperties = {
+  "0-5": varsThemeBase.spacing["0-5"],
+  "1": varsThemeBase.spacing[1],
+  "1-5": varsThemeBase.spacing["1-5"],
+  "2": varsThemeBase.spacing[2],
+  "2-5": varsThemeBase.spacing["2-5"],
+  "3": varsThemeBase.spacing[3],
+  "3-5": varsThemeBase.spacing["3-5"],
+  "4": varsThemeBase.spacing[4],
+  "4-5": varsThemeBase.spacing["4-5"],
+  "5": varsThemeBase.spacing[5],
+  "6": varsThemeBase.spacing[6],
+  "7": varsThemeBase.spacing[7],
+  "8": varsThemeBase.spacing[8],
+  "9": varsThemeBase.spacing[9],
+  "10": varsThemeBase.spacing[10],
+  "11": varsThemeBase.spacing[11],
+  "12": varsThemeBase.spacing[12],
+  "14": varsThemeBase.spacing[14],
+  "16": varsThemeBase.spacing[16],
+  "18": varsThemeBase.spacing[18],
+  "20": varsThemeBase.spacing[20],
+};
 
-export const sizeProperties = {
-  "0,5": varsThemeBase.sizes["0,5"],
-  "1": varsThemeBase.sizes[1],
-  "1,5": varsThemeBase.sizes["1,5"],
-  "2": varsThemeBase.sizes[2],
-  "2,5": varsThemeBase.sizes["2,5"],
-  "3": varsThemeBase.sizes[3],
-  "3,5": varsThemeBase.sizes["3,5"],
-  "4": varsThemeBase.sizes[4],
-  "4,5": varsThemeBase.sizes["4,5"],
-  "5": varsThemeBase.sizes[5],
-  "6": varsThemeBase.sizes[6],
-  "7": varsThemeBase.sizes[7],
-  "8": varsThemeBase.sizes[8],
-  "9": varsThemeBase.sizes[9],
-  "10": varsThemeBase.sizes[10],
-  "11": varsThemeBase.sizes[11],
-  "12": varsThemeBase.sizes[12],
-  "14": varsThemeBase.sizes[14],
-  "16": varsThemeBase.sizes[16],
-  "18": varsThemeBase.sizes[18],
-  "20": varsThemeBase.sizes[20],
+export const borderRadiusProperties = {
+  "0-5": varsThemeBase.shape.border.radius["0-5"],
+  "1": varsThemeBase.shape.border.radius[1],
+  "2": varsThemeBase.shape.border.radius[2],
+  "3": varsThemeBase.shape.border.radius[3],
+  "4": varsThemeBase.shape.border.radius[4],
+  "5": varsThemeBase.shape.border.radius[5],
+  "6": varsThemeBase.shape.border.radius[6],
+  full: varsThemeBase.shape.border.radius.full,
+  base: varsThemeBase.shape.border.radius.base,
+  half: varsThemeBase.shape.border.radius.half,
+};
+
+export const borderWidthProperties = {
+  "1": varsThemeBase.shape.border.width[1],
+  "2": varsThemeBase.shape.border.width[2],
+  "3": varsThemeBase.shape.border.width[3],
+  "4": varsThemeBase.shape.border.width[4],
+  "5": varsThemeBase.shape.border.width[5],
+};
+
+export const zIndexProperties = {
+  "100": varsThemeBase.zIndex[100],
+  "200": varsThemeBase.zIndex[200],
+  "300": varsThemeBase.zIndex[300],
+  "400": varsThemeBase.zIndex[400],
+  "500": varsThemeBase.zIndex[500],
+  "600": varsThemeBase.zIndex[600],
+  "700": varsThemeBase.zIndex[700],
+  "800": varsThemeBase.zIndex[800],
+  "900": varsThemeBase.zIndex[900],
 };

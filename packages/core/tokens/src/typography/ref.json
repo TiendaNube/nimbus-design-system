@@ -1,31 +1,27 @@
 {
   "font": {
     "size": {
-      "ref": {
-        "3": { "value": "{sizes.3}" },
-        "3,5": { "value": "{sizes.3,5}" },
-        "4": { "value": "{sizes.4}" },
-        "4,5": { "value": "{sizes.4,5}" },
-        "5": { "value": "{sizes.5}" },
-        "6": { "value": "{sizes.6}" },
-        "8": { "value": "{sizes.8}" },
-        "12": { "value": "{sizes.12}" },
-        "16": { "value": "{sizes.16}" }
-      }
+      "3": { "value": "0.75rem" },
+      "3-5": { "value": "0.875rem" },
+      "4": { "value": "1rem" },
+      "4-5": { "value": "1.125rem" },
+      "5": { "value": "1.25rem" },
+      "6": { "value": "1.5rem" },
+      "8": { "value": "2rem" },
+      "12": { "value": "3rem" },
+      "16": { "value": "4rem" }
     }
   },
   "line": {
     "height": {
-      "ref": {
-        "3,5": { "value": "{sizes.3,5}" },
-        "4": { "value": "{sizes.4}" },
-        "4,5": { "value": "{sizes.4,5}" },
-        "5": { "value": "{sizes.5}" },
-        "6": { "value": "{sizes.6}" },
-        "7": { "value": "{sizes.7}" },
-        "8": { "value": "{sizes.8}" },
-        "11": { "value": "{sizes.11}" }
-      }
+      "3-5": { "value": "0.875rem" },
+      "4": { "value": "1rem" },
+      "4-5": { "value": "1.125rem" },
+      "5": { "value": "1.25rem" },
+      "6": { "value": "1.5rem" },
+      "7": { "value": "1.75rem" },
+      "8": { "value": "2rem" },
+      "11": { "value": "2.75rem" }
     }
   }
 }

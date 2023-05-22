@@ -12,6 +12,7 @@ export const content = style({
   padding: varsThemeBase.spacing[1],
   borderRadius: varsThemeBase.shape.border.radius[1],
   transition: `opacity ${varsThemeBase.motion.speed.fast} ease`,
+  zIndex: varsThemeBase.zIndex[800],
 });
 
 export const base = style({

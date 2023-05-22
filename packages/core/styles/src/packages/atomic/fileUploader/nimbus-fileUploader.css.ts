@@ -14,7 +14,7 @@ export const container = style({
   alignItems: "center",
   justifyContent: "center",
   cursor: "pointer",
-  gap: varsThemeBase.sizes[1],
+  gap: varsThemeBase.spacing[1],
   width: vars.width,
   height: vars.height,
   background: varsThemeBase.colors.primary.surface,
