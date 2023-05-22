@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/tooltip",
-  "version": "2.2.1-rc.1",
+  "version": "2.2.1",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -31,6 +31,5 @@
   "devDependencies": {
     "@nimbus-ds/webpack": "workspace:^",
     "@vanilla-extract/dynamic": "^2.0.2"
-  },
-  "stableVersion": "2.2.0"
+  }
 }
