@@ -1,7 +1,7 @@
 {
   "id": "text",
   "name": "Text",
-  "totalProps": 7,
+  "totalProps": 8,
   "props": [
     {
       "description": "The content of the link.",
@@ -18,6 +18,170 @@
       ],
       "type": "string",
       "title": "as",
+      "required": false
+    },
+    {
+      "description": "The color property is used to set the color of the text.",
+      "default": "neutral-textLow",
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "xs": {
+              "enum": [
+                "currentColor",
+                "danger-interactive",
+                "danger-surface",
+                "danger-textHigh",
+                "danger-textLow",
+                "neutral-background",
+                "neutral-interactive",
+                "neutral-surface",
+                "neutral-textDisabled",
+                "neutral-textHigh",
+                "neutral-textLow",
+                "primary-interactive",
+                "primary-surface",
+                "primary-textHigh",
+                "primary-textLow",
+                "success-interactive",
+                "success-surface",
+                "success-textHigh",
+                "success-textLow",
+                "warning-interactive",
+                "warning-surface",
+                "warning-textHigh",
+                "warning-textLow"
+              ],
+              "type": "string",
+              "title": "xs"
+            },
+            "md": {
+              "enum": [
+                "currentColor",
+                "danger-interactive",
+                "danger-surface",
+                "danger-textHigh",
+                "danger-textLow",
+                "neutral-background",
+                "neutral-interactive",
+                "neutral-surface",
+                "neutral-textDisabled",
+                "neutral-textHigh",
+                "neutral-textLow",
+                "primary-interactive",
+                "primary-surface",
+                "primary-textHigh",
+                "primary-textLow",
+                "success-interactive",
+                "success-surface",
+                "success-textHigh",
+                "success-textLow",
+                "warning-interactive",
+                "warning-surface",
+                "warning-textHigh",
+                "warning-textLow"
+              ],
+              "type": "string",
+              "title": "md"
+            },
+            "lg": {
+              "enum": [
+                "currentColor",
+                "danger-interactive",
+                "danger-surface",
+                "danger-textHigh",
+                "danger-textLow",
+                "neutral-background",
+                "neutral-interactive",
+                "neutral-surface",
+                "neutral-textDisabled",
+                "neutral-textHigh",
+                "neutral-textLow",
+                "primary-interactive",
+                "primary-surface",
+                "primary-textHigh",
+                "primary-textLow",
+                "success-interactive",
+                "success-surface",
+                "success-textHigh",
+                "success-textLow",
+                "warning-interactive",
+                "warning-surface",
+                "warning-textHigh",
+                "warning-textLow"
+              ],
+              "type": "string",
+              "title": "lg"
+            },
+            "xl": {
+              "enum": [
+                "currentColor",
+                "danger-interactive",
+                "danger-surface",
+                "danger-textHigh",
+                "danger-textLow",
+                "neutral-background",
+                "neutral-interactive",
+                "neutral-surface",
+                "neutral-textDisabled",
+                "neutral-textHigh",
+                "neutral-textLow",
+                "primary-interactive",
+                "primary-surface",
+                "primary-textHigh",
+                "primary-textLow",
+                "success-interactive",
+                "success-surface",
+                "success-textHigh",
+                "success-textLow",
+                "warning-interactive",
+                "warning-surface",
+                "warning-textHigh",
+                "warning-textLow"
+              ],
+              "type": "string",
+              "title": "xl"
+            }
+          },
+          "additionalProperties": false,
+          "propertyOrder": [
+            "xs",
+            "md",
+            "lg",
+            "xl"
+          ]
+        },
+        {
+          "enum": [
+            "currentColor",
+            "danger-interactive",
+            "danger-surface",
+            "danger-textHigh",
+            "danger-textLow",
+            "neutral-background",
+            "neutral-interactive",
+            "neutral-surface",
+            "neutral-textDisabled",
+            "neutral-textHigh",
+            "neutral-textLow",
+            "primary-interactive",
+            "primary-surface",
+            "primary-textHigh",
+            "primary-textLow",
+            "success-interactive",
+            "success-surface",
+            "success-textHigh",
+            "success-textLow",
+            "warning-interactive",
+            "warning-surface",
+            "warning-textHigh",
+            "warning-textLow"
+          ],
+          "type": "string"
+        }
+      ],
+      "title": "color",
       "required": false
     },
     {
@@ -282,126 +446,25 @@
       "required": false
     },
     {
-      "description": "The color property is used to set the color of the text.",
-      "default": "neutral-textLow",
+      "description": "The amount of lines at which the text will be trimmed, showing an ellipsis when overflowed.",
       "anyOf": [
         {
           "type": "object",
           "properties": {
             "xs": {
-              "enum": [
-                "currentColor",
-                "danger-interactive",
-                "danger-surface",
-                "danger-textHigh",
-                "danger-textLow",
-                "neutral-background",
-                "neutral-interactive",
-                "neutral-surface",
-                "neutral-textDisabled",
-                "neutral-textHigh",
-                "neutral-textLow",
-                "primary-interactive",
-                "primary-surface",
-                "primary-textHigh",
-                "primary-textLow",
-                "success-interactive",
-                "success-surface",
-                "success-textHigh",
-                "success-textLow",
-                "warning-interactive",
-                "warning-surface",
-                "warning-textHigh",
-                "warning-textLow"
-              ],
-              "type": "string",
+              "type": "number",
               "title": "xs"
             },
             "md": {
-              "enum": [
-                "currentColor",
-                "danger-interactive",
-                "danger-surface",
-                "danger-textHigh",
-                "danger-textLow",
-                "neutral-background",
-                "neutral-interactive",
-                "neutral-surface",
-                "neutral-textDisabled",
-                "neutral-textHigh",
-                "neutral-textLow",
-                "primary-interactive",
-                "primary-surface",
-                "primary-textHigh",
-                "primary-textLow",
-                "success-interactive",
-                "success-surface",
-                "success-textHigh",
-                "success-textLow",
-                "warning-interactive",
-                "warning-surface",
-                "warning-textHigh",
-                "warning-textLow"
-              ],
-              "type": "string",
+              "type": "number",
               "title": "md"
             },
             "lg": {
-              "enum": [
-                "currentColor",
-                "danger-interactive",
-                "danger-surface",
-                "danger-textHigh",
-                "danger-textLow",
-                "neutral-background",
-                "neutral-interactive",
-                "neutral-surface",
-                "neutral-textDisabled",
-                "neutral-textHigh",
-                "neutral-textLow",
-                "primary-interactive",
-                "primary-surface",
-                "primary-textHigh",
-                "primary-textLow",
-                "success-interactive",
-                "success-surface",
-                "success-textHigh",
-                "success-textLow",
-                "warning-interactive",
-                "warning-surface",
-                "warning-textHigh",
-                "warning-textLow"
-              ],
-              "type": "string",
+              "type": "number",
               "title": "lg"
             },
             "xl": {
-              "enum": [
-                "currentColor",
-                "danger-interactive",
-                "danger-surface",
-                "danger-textHigh",
-                "danger-textLow",
-                "neutral-background",
-                "neutral-interactive",
-                "neutral-surface",
-                "neutral-textDisabled",
-                "neutral-textHigh",
-                "neutral-textLow",
-                "primary-interactive",
-                "primary-surface",
-                "primary-textHigh",
-                "primary-textLow",
-                "success-interactive",
-                "success-surface",
-                "success-textHigh",
-                "success-textLow",
-                "warning-interactive",
-                "warning-surface",
-                "warning-textHigh",
-                "warning-textLow"
-              ],
-              "type": "string",
+              "type": "number",
               "title": "xl"
             }
           },
@@ -414,35 +477,10 @@
           ]
         },
         {
-          "enum": [
-            "currentColor",
-            "danger-interactive",
-            "danger-surface",
-            "danger-textHigh",
-            "danger-textLow",
-            "neutral-background",
-            "neutral-interactive",
-            "neutral-surface",
-            "neutral-textDisabled",
-            "neutral-textHigh",
-            "neutral-textLow",
-            "primary-interactive",
-            "primary-surface",
-            "primary-textHigh",
-            "primary-textLow",
-            "success-interactive",
-            "success-surface",
-            "success-textHigh",
-            "success-textLow",
-            "warning-interactive",
-            "warning-surface",
-            "warning-textHigh",
-            "warning-textLow"
-          ],
-          "type": "string"
+          "type": "number"
         }
       ],
-      "title": "color",
+      "title": "lineClamp",
       "required": false
     }
   ],
