@@ -2,6 +2,8 @@
   "id": "select",
   "name": "Select",
   "totalProps": 4,
+  "packageName": "@nimbus-ds/select",
+  "version": "2.3.2",
   "props": [
     {
       "description": "The name of the wrapper element or the select element when native.",

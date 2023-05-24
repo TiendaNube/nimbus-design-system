@@ -2,6 +2,8 @@
   "id": "link",
   "name": "Link",
   "totalProps": 6,
+  "packageName": "@nimbus-ds/link",
+  "version": "4.1.0",
   "props": [
     {
       "default": "a",

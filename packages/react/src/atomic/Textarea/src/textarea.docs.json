@@ -2,6 +2,8 @@
   "id": "textarea",
   "name": "Textarea",
   "totalProps": 3,
+  "packageName": "@nimbus-ds/textarea",
+  "version": "2.1.0",
   "props": [
     {
       "description": "Change the visual style of the textarea.",

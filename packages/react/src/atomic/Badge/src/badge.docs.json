@@ -2,6 +2,8 @@
   "id": "badge",
   "name": "Badge",
   "totalProps": 3,
+  "packageName": "@nimbus-ds/badge",
+  "version": "3.1.1",
   "props": [
     {
       "description": "Change the visual style of the badge.",

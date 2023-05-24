@@ -2,6 +2,8 @@
   "id": "title",
   "name": "Title",
   "totalProps": 2,
+  "packageName": "@nimbus-ds/title",
+  "version": "3.1.0",
   "props": [
     {
       "description": "The content of the title.",

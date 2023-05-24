@@ -2,6 +2,8 @@
   "id": "iconButton",
   "name": "IconButton",
   "totalProps": 5,
+  "packageName": "@nimbus-ds/icon-button",
+  "version": "4.1.0",
   "props": [
     {
       "description": "Type of html tag to create for the Icon Button component.",

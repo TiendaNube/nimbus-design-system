@@ -2,6 +2,8 @@
   "id": "fileUploader",
   "name": "FileUploader",
   "totalProps": 6,
+  "packageName": "@nimbus-ds/file-uploader",
+  "version": "2.5.0",
   "props": [
     {
       "description": "Provide additional context to the action.",

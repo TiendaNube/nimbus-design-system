@@ -2,6 +2,8 @@
   "id": "tooltip",
   "name": "Tooltip",
   "totalProps": 3,
+  "packageName": "@nimbus-ds/tooltip",
+  "version": "2.2.1",
   "props": [
     {
       "description": "An HTML element, or a function that returns one. It's used to set the position of the tooltip.",

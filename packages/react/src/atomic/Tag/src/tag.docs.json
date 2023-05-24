@@ -2,6 +2,8 @@
   "id": "tag",
   "name": "Tag",
   "totalProps": 2,
+  "packageName": "@nimbus-ds/tag",
+  "version": "2.3.0",
   "props": [
     {
       "description": "The content of the tag.",

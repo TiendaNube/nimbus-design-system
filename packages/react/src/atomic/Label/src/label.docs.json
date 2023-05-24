@@ -2,6 +2,8 @@
   "id": "label",
   "name": "Label",
   "totalProps": 3,
+  "packageName": "@nimbus-ds/label",
+  "version": "2.2.0",
   "props": [
     {
       "description": "The content of the label.",

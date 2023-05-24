@@ -2,6 +2,8 @@
   "id": "button",
   "name": "Button",
   "totalProps": 4,
+  "packageName": "@nimbus-ds/button",
+  "version": "2.5.0",
   "props": [
     {
       "default": "button",

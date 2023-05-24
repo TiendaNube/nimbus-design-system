@@ -2,6 +2,8 @@
   "id": "input",
   "name": "Input",
   "totalProps": 5,
+  "packageName": "@nimbus-ds/input",
+  "version": "2.4.0",
   "props": [
     {
       "description": "Change the visual style of the input.",

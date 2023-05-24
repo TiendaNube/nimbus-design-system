@@ -2,6 +2,8 @@
   "id": "pagination",
   "name": "Pagination",
   "totalProps": 4,
+  "packageName": "@nimbus-ds/pagination",
+  "version": "2.2.0",
   "props": [
     {
       "description": "The currently selected page.",

@@ -2,6 +2,8 @@
   "id": "skeleton",
   "name": "Skeleton",
   "totalProps": 4,
+  "packageName": "@nimbus-ds/skeleton",
+  "version": "3.0.0",
   "props": [
     {
       "description": "Width of the skeleton. Useful when the skeleton is inside an inline element with no width of its own.",

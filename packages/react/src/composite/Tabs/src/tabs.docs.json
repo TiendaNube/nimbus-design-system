@@ -2,6 +2,8 @@
   "id": "tabs",
   "name": "Tabs",
   "totalProps": 3,
+  "packageName": "@nimbus-ds/tabs",
+  "version": "2.2.0",
   "props": [
     {
       "description": "The content of the tabs.",

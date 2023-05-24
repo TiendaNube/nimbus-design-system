@@ -2,6 +2,8 @@
   "id": "spinner",
   "name": "Spinner",
   "totalProps": 2,
+  "packageName": "@nimbus-ds/spinner",
+  "version": "3.0.0",
   "props": [
     {
       "description": "Sets the width and height of the spinner.",

@@ -2,6 +2,8 @@
   "id": "card",
   "name": "Card",
   "totalProps": 3,
+  "packageName": "@nimbus-ds/card",
+  "version": "3.0.1",
   "props": [
     {
       "description": "The content of the card.",

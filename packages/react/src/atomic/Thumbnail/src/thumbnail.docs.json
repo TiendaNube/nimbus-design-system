@@ -2,6 +2,8 @@
   "id": "thumbnail",
   "name": "Thumbnail",
   "totalProps": 4,
+  "packageName": "@nimbus-ds/thumbnail",
+  "version": "2.3.0",
   "props": [
     {
       "description": "The required alt attribute specifies an alternate text for an image, if the image cannot be displayed.",

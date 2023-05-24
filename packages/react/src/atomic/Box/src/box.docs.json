@@ -2,6 +2,8 @@
   "id": "box",
   "name": "Box",
   "totalProps": 86,
+  "packageName": "@nimbus-ds/box",
+  "version": "4.0.0",
   "props": [
     {
       "description": "Element to be rendered inside the Box component. Meu teste",

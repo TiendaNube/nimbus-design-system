@@ -2,6 +2,8 @@
   "id": "table",
   "name": "Table",
   "totalProps": 1,
+  "packageName": "@nimbus-ds/table",
+  "version": "2.0.0",
   "props": [
     {
       "description": "The content of the table.",

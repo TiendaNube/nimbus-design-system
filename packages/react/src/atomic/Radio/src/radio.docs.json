@@ -2,6 +2,8 @@
   "id": "radio",
   "name": "Radio",
   "totalProps": 5,
+  "packageName": "@nimbus-ds/radio",
+  "version": "2.2.0",
   "props": [
     {
       "description": "Name attribute of the input element.",

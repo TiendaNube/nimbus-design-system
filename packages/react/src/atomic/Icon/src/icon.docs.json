@@ -2,6 +2,8 @@
   "id": "icon",
   "name": "Icon",
   "totalProps": 3,
+  "packageName": "@nimbus-ds/icon",
+  "version": "3.0.0",
   "props": [
     {
       "description": "The SVG contents to display in the Icon.",

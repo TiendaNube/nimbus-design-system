@@ -2,6 +2,8 @@
   "id": "text",
   "name": "Text",
   "totalProps": 8,
+  "packageName": "@nimbus-ds/text",
+  "version": "6.2.0",
   "props": [
     {
       "description": "The content of the link.",

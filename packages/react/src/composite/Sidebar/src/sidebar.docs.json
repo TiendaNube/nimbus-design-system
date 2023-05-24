@@ -2,6 +2,8 @@
   "id": "sidebar",
   "name": "Sidebar",
   "totalProps": 7,
+  "packageName": "@nimbus-ds/sidebar",
+  "version": "3.0.0",
   "props": [
     {
       "description": "Side from which the sidebar will appear.",

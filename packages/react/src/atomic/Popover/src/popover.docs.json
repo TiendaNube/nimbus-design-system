@@ -2,6 +2,8 @@
   "id": "popover",
   "name": "Popover",
   "totalProps": 16,
+  "packageName": "@nimbus-ds/popover",
+  "version": "4.0.0",
   "props": [
     {
       "description": "An HTML element, or a function that returns one. It's used to set the position of the popover.",

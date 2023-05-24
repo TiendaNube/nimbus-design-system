@@ -2,6 +2,8 @@
   "id": "toast",
   "name": "Toast",
   "totalProps": 6,
+  "packageName": "@nimbus-ds/toast",
+  "version": "2.3.0",
   "props": [
     {
       "description": "Unique toast ID used when hiding or removing a toast.",
