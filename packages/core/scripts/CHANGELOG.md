@@ -2,6 +2,12 @@
 
 This package is intended for internal use in generating custom script builds at design system build time.
 
+## 2023-05-24 `1.3.0`
+
+#### 🎉 New features
+
+- Added the `packageName` and `version` props to the documentation generation script. ([#165](https://github.com/TiendaNube/nimbus-design-system/pull/165) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-04-11 `1.2.1`
 
 #### 🐛 Bug fixes

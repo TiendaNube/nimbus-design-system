@@ -17,6 +17,8 @@ export class Docgen {
 
   private sourceComponent = "";
 
+  private sourcePackage = "";
+
   private componentName = "";
 
   private componentId = "";
@@ -63,15 +65,27 @@ export class Docgen {
     this.sourceComponent = this.getSource(
       `${this.componentPath}/${this.componentName}.tsx`
     );
+
+    this.sourcePackage = this.getSource(
+      `${this.componentPath.replace(
+        `${this.componentName}/src`,
+        this.componentName
+      )}/package.json`
+    );
+
     const polymorphicProps = this.getPolymorphicProps();
     const schema = this.getSchema(`${this.componentName}Properties`);
     const props = this.formatProps(schema, polymorphicProps);
+    const packageName = this.getPackageName();
+    const version = this.getVersion();
     const subComponents = this.getSubComponents();
 
     const doc = {
       id: this.componentId,
       name: this.componentName,
       totalProps: props.length,
+      packageName,
+      version,
       props,
       subComponents,
     };
@@ -140,6 +154,14 @@ export class Docgen {
   private getComponentName(path: string): string {
     const fullPatch = path.match(/(\w+)\.types\.ts/gm)?.[0] ?? "";
     return pascalCase(fullPatch.replace(".types.ts", ""));
+  }
+
+  private getPackageName(): string {
+    return this.sourcePackage.match(/"name": "(.+)",/m)?.[1] ?? "";
+  }
+
+  private getVersion(): string {
+    return this.sourcePackage.match(/"version": "(.+)",/m)?.[1] ?? "";
   }
 
   private getPolymorphicProps(): string[] {
