@@ -110,8 +110,3 @@ export const withPlaceholderOption: Story = {
     ),
   },
 };
-
-// export const skeleton = SkeletonTemplate.bind({});
-// skeleton.args = {
-//   width: "100%",
-// };
