@@ -1,7 +1,9 @@
 import { ButtonHTMLAttributes } from "react";
-import { InputProps } from "../../input.types";
+import { InputBaseProps } from "../../input.types";
 
-export type InputIconProperties = Required<Pick<InputProps, "appendPosition">>;
+export type InputIconProperties = Required<
+  Pick<InputBaseProps, "appendPosition">
+>;
 
 export type InputIconProps = InputIconProperties &
   ButtonHTMLAttributes<HTMLButtonElement>;

@@ -1,20 +1,13 @@
-import React from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { withA11y } from "@storybook/addon-a11y";
+import type { Meta, StoryObj } from "@storybook/react";
+import { Textarea } from "../../Textarea";
 
-import { TextareaSkeleton } from "./TextareaSkeleton";
+const meta: Meta<typeof Textarea.Skeleton> = {
+  title: "atomic/Textarea/Textarea.Skeleton",
+  component: Textarea.Skeleton,
+  tags: ["autodocs"],
+};
 
-export default {
-  title: "Skeleton/Textarea",
-  component: TextareaSkeleton,
-  parameters: {
-    withA11y: { decorators: [withA11y] },
-  },
-} as ComponentMeta<typeof TextareaSkeleton>;
+export default meta;
+type Story = StoryObj<typeof Textarea.Skeleton>;
 
-const Template: ComponentStory<typeof TextareaSkeleton> = (args) => (
-  <TextareaSkeleton {...args} />
-);
-
-export const textarea = Template.bind({});
-textarea.args = {};
+export const basic: Story = { args: {} };

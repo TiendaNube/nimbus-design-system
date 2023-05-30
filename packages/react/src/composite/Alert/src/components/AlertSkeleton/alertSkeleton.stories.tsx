@@ -1,20 +1,13 @@
-import React from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { withA11y } from "@storybook/addon-a11y";
+import type { Meta, StoryObj } from "@storybook/react";
+import { Alert } from "../../Alert";
 
-import { AlertSkeleton } from "./AlertSkeleton";
+const meta: Meta<typeof Alert.Skeleton> = {
+  title: "composite/Alert/Alert.Skeleton",
+  component: Alert.Skeleton,
+  tags: ["autodocs"],
+};
 
-export default {
-  title: "Skeleton/Alert",
-  component: AlertSkeleton,
-  parameters: {
-    withA11y: { decorators: [withA11y] },
-  },
-} as ComponentMeta<typeof AlertSkeleton>;
+export default meta;
+type Story = StoryObj<typeof Alert.Skeleton>;
 
-const Template: ComponentStory<typeof AlertSkeleton> = (args) => (
-  <AlertSkeleton {...args} />
-);
-
-export const alert = Template.bind({});
-alert.args = {};
+export const basic: Story = { args: {} };

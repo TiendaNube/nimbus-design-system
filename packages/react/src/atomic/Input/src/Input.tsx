@@ -1,8 +1,13 @@
-import React, { ForwardRefExoticComponent, forwardRef, useRef } from "react";
+import React, {
+  ComponentPropsWithRef,
+  ForwardRefExoticComponent,
+  forwardRef,
+  useRef,
+} from "react";
 import { useRefObjectAsForwardedRef } from "@nimbus-ds/typings";
 import { input } from "@nimbus-ds/styles";
 
-import { InputProps, InputComponents } from "./input.types";
+import { InputBaseProps, InputComponents } from "./input.types";
 import {
   InputPassword,
   InputSearch,
@@ -10,7 +15,7 @@ import {
   InputIcon,
 } from "./components";
 
-const Input = forwardRef<HTMLInputElement, InputProps>(
+const Input = forwardRef<HTMLInputElement, InputBaseProps>(
   (
     {
       className: _className,
@@ -56,7 +61,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     );
   }
 ) as ForwardRefExoticComponent<
-  InputProps &
+  InputBaseProps &
     React.InputHTMLAttributes<HTMLInputElement> &
     React.RefAttributes<HTMLInputElement>
 > &
@@ -70,4 +75,5 @@ Input.Password.displayName = "Input.Password";
 Input.Search.displayName = "Input.Search";
 Input.Skeleton.displayName = "Input.Skeleton";
 
+export type InputProps = ComponentPropsWithRef<typeof Input>;
 export { Input };

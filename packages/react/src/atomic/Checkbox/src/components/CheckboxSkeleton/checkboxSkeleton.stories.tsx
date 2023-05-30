@@ -1,20 +1,13 @@
-import React from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { withA11y } from "@storybook/addon-a11y";
+import type { Meta, StoryObj } from "@storybook/react";
+import { Checkbox } from "../../Checkbox";
 
-import { CheckboxSkeleton } from "./CheckboxSkeleton";
+const meta: Meta<typeof Checkbox.Skeleton> = {
+  title: "atomic/Checkbox/Checkbox.Skeleton",
+  component: Checkbox.Skeleton,
+  tags: ["autodocs"],
+};
 
-export default {
-  title: "Skeleton/Checkbox",
-  component: CheckboxSkeleton,
-  parameters: {
-    withA11y: { decorators: [withA11y] },
-  },
-} as ComponentMeta<typeof CheckboxSkeleton>;
+export default meta;
+type Story = StoryObj<typeof Checkbox.Skeleton>;
 
-const Template: ComponentStory<typeof CheckboxSkeleton> = (args) => (
-  <CheckboxSkeleton {...args} />
-);
-
-export const checkbox = Template.bind({});
-checkbox.args = {};
+export const basic: Story = { args: {} };

@@ -1,26 +1,13 @@
-import React from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { withA11y } from "@storybook/addon-a11y";
-import { thumbnail as thumbnailStyle } from "@nimbus-ds/styles";
+import type { Meta, StoryObj } from "@storybook/react";
+import { Thumbnail } from "../../Thumbnail";
 
-import { ThumbnailSkeleton } from "./ThumbnailSkeleton";
+const meta: Meta<typeof Thumbnail.Skeleton> = {
+  title: "atomic/Thumbnail/Thumbnail.Skeleton",
+  component: Thumbnail.Skeleton,
+  tags: ["autodocs"],
+};
 
-export default {
-  title: "Skeleton/Thumbnail",
-  component: ThumbnailSkeleton,
-  argTypes: {
-    aspectRatio: {
-      options: Object.keys(thumbnailStyle.properties.aspectRatio),
-    },
-  },
-  parameters: {
-    withA11y: { decorators: [withA11y] },
-  },
-} as ComponentMeta<typeof ThumbnailSkeleton>;
+export default meta;
+type Story = StoryObj<typeof Thumbnail.Skeleton>;
 
-const Template: ComponentStory<typeof ThumbnailSkeleton> = (args) => (
-  <ThumbnailSkeleton {...args} />
-);
-
-export const thumbnail = Template.bind({});
-thumbnail.args = {};
+export const basic: Story = { args: {} };

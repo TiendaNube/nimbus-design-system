@@ -1,23 +1,15 @@
-import React from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { withA11y } from "@storybook/addon-a11y";
+import type { Meta, StoryObj } from "@storybook/react";
+import { Radio } from "../../Radio";
 
-import { RadioSkeleton } from "./RadioSkeleton";
+const meta: Meta<typeof Radio.Skeleton> = {
+  title: "atomic/Radio/Radio.Skeleton",
+  component: Radio.Skeleton,
+  tags: ["autodocs"],
+};
 
-export default {
-  title: "Skeleton/Radio",
-  component: RadioSkeleton,
-  parameters: {
-    withA11y: { decorators: [withA11y] },
-  },
-} as ComponentMeta<typeof RadioSkeleton>;
+export default meta;
+type Story = StoryObj<typeof Radio.Skeleton>;
 
-const Template: ComponentStory<typeof RadioSkeleton> = (args) => (
-  <RadioSkeleton {...args} />
-);
+export const basic: Story = { args: {} };
 
-export const radio = Template.bind({});
-radio.args = {};
-
-export const button = Template.bind({});
-button.args = { as: "button" };
+export const button: Story = { args: { as: "button" } };

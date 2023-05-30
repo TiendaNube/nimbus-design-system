@@ -1,26 +1,13 @@
-import React from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { withA11y } from "@storybook/addon-a11y";
-import { fileUploader as fileUploaderlStyle } from "@nimbus-ds/styles";
+import type { Meta, StoryObj } from "@storybook/react";
+import { FileUploader } from "../../FileUploader";
 
-import { FileUploaderSkeleton } from "./FileUploaderSkeleton";
+const meta: Meta<typeof FileUploader.Skeleton> = {
+  title: "atomic/FileUploader/FileUploader.Skeleton",
+  component: FileUploader.Skeleton,
+  tags: ["autodocs"],
+};
 
-export default {
-  title: "Skeleton/File Uploader",
-  component: FileUploaderSkeleton,
-  argTypes: {
-    aspectRatio: {
-      options: Object.keys(fileUploaderlStyle.properties.aspectRatio),
-    },
-  },
-  parameters: {
-    withA11y: { decorators: [withA11y] },
-  },
-} as ComponentMeta<typeof FileUploaderSkeleton>;
+export default meta;
+type Story = StoryObj<typeof FileUploader.Skeleton>;
 
-const Template: ComponentStory<typeof FileUploaderSkeleton> = (args) => (
-  <FileUploaderSkeleton {...args} />
-);
-
-export const fileUploader = Template.bind({});
-fileUploader.args = {};
+export const basic: Story = { args: {} };

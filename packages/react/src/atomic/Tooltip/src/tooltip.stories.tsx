@@ -1,55 +1,58 @@
 import React from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { withA11y } from "@storybook/addon-a11y";
+import type { Meta, StoryObj } from "@storybook/react";
 import { Text } from "@nimbus-ds/text";
 import { Box } from "@nimbus-ds/box";
-
 import { Tooltip } from "./Tooltip";
 
-export default {
-  title: "Atomic/Tooltip",
+const meta: Meta<typeof Tooltip> = {
+  title: "Atomic/Tooltip/Tooltip",
   component: Tooltip,
-  parameters: {
-    withA11y: { decorators: [withA11y] },
-  },
+  render: (args) => (
+    <Box display="flex" justifyContent="center">
+      <Tooltip {...args}>
+        <Text>Hover</Text>
+      </Tooltip>
+    </Box>
+  ),
   argTypes: {
-    children: { control: { disable: true } },
+    children: { control: { type: "text" } },
   },
-} as ComponentMeta<typeof Tooltip>;
-
-const Template: ComponentStory<typeof Tooltip> = (args) => (
-  <Box display="flex" justifyContent="center">
-    <Tooltip {...args}>
-      <Text>Hover</Text>
-    </Tooltip>
-  </Box>
-);
-
-export const base = Template.bind({});
-base.args = {
-  content: "Lorem ipsum dolor site amet",
+  tags: ["autodocs"],
 };
 
-export const top = Template.bind({});
-top.args = {
-  content: "Lorem ipsum dolor site amet",
-  position: "top",
+export default meta;
+type Story = StoryObj<typeof Tooltip>;
+
+export const basic: Story = {
+  args: {
+    content: "Lorem ipsum dolor site amet",
+  },
 };
 
-export const bottom = Template.bind({});
-bottom.args = {
-  content: "Lorem ipsum dolor site amet",
-  position: "bottom",
+export const top: Story = {
+  args: {
+    content: "Lorem ipsum dolor site amet",
+    position: "top",
+  },
 };
 
-export const right = Template.bind({});
-right.args = {
-  content: "Lorem ipsum dolor site amet",
-  position: "right",
+export const bottom: Story = {
+  args: {
+    content: "Lorem ipsum dolor site amet",
+    position: "bottom",
+  },
 };
 
-export const left = Template.bind({});
-left.args = {
-  content: "Lorem ipsum dolor site amet",
-  position: "left",
+export const right: Story = {
+  args: {
+    content: "Lorem ipsum dolor site amet",
+    position: "right",
+  },
+};
+
+export const left: Story = {
+  args: {
+    content: "Lorem ipsum dolor site amet",
+    position: "left",
+  },
 };

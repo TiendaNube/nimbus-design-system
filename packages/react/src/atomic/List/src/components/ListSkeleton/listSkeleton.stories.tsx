@@ -1,28 +1,25 @@
 import React from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { withA11y } from "@storybook/addon-a11y";
+import type { Meta, StoryObj } from "@storybook/react";
+import { List } from "../../List";
 
-import { ListSkeletonItem } from "../ListSkeletonItem";
-import { ListSkeleton } from "./ListSkeleton";
+const meta: Meta<typeof List.Skeleton> = {
+  title: "atomic/List/List.Skeleton",
+  component: List.Skeleton,
+  render: (args) => (
+    <List.Skeleton {...args}>
+      <List.SkeletonItem />
+      <List.SkeletonItem />
+      <List.SkeletonItem />
+      <List.SkeletonItem />
+      <List.SkeletonItem />
+    </List.Skeleton>
+  ),
+  tags: ["autodocs"],
+};
 
-export default {
-  title: "Skeleton/List",
-  component: ListSkeletonItem,
-  ListSkeleton,
-  parameters: {
-    withA11y: { decorators: [withA11y] },
-  },
-} as ComponentMeta<typeof ListSkeletonItem>;
+export default meta;
+type Story = StoryObj<typeof List.Skeleton>;
 
-const Template: ComponentStory<typeof ListSkeleton> = (args) => (
-  <ListSkeleton>
-    <ListSkeletonItem {...args} />
-    <ListSkeletonItem {...args} />
-    <ListSkeletonItem {...args} />
-    <ListSkeletonItem {...args} />
-    <ListSkeletonItem {...args} />
-  </ListSkeleton>
-);
-
-export const List = Template.bind({});
-List.args = {};
+export const basice: Story = {
+  args: {},
+};

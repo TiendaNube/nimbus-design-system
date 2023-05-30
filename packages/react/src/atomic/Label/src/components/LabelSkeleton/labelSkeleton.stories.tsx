@@ -1,20 +1,13 @@
-import React from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { withA11y } from "@storybook/addon-a11y";
+import type { Meta, StoryObj } from "@storybook/react";
+import { Label } from "../../Label";
 
-import { LabelSkeleton } from "./LabelSkeleton";
+const meta: Meta<typeof Label.Skeleton> = {
+  title: "atomic/Label/Label.Skeleton",
+  component: Label.Skeleton,
+  tags: ["autodocs"],
+};
 
-export default {
-  title: "Skeleton/Label",
-  component: LabelSkeleton,
-  parameters: {
-    withA11y: { decorators: [withA11y] },
-  },
-} as ComponentMeta<typeof LabelSkeleton>;
+export default meta;
+type Story = StoryObj<typeof Label.Skeleton>;
 
-const Template: ComponentStory<typeof LabelSkeleton> = (args) => (
-  <LabelSkeleton {...args} />
-);
-
-export const Label = Template.bind({});
-Label.args = {};
+export const basic: Story = { args: {} };

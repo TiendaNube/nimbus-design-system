@@ -1,7 +1,10 @@
 import { InputHTMLAttributes } from "react";
-import { InputProps } from "../../input.types";
+import { InputBaseProps } from "../../input.types";
 
-export type InputSearchProperties = Pick<InputProps, "appearance" | "disabled">;
+export type InputSearchProperties = Pick<
+  InputBaseProps,
+  "appearance" | "disabled"
+>;
 
-export type InputSearchProps = InputSearchProperties &
+export type InputSearchBaseProps = InputSearchProperties &
   InputHTMLAttributes<HTMLInputElement>;

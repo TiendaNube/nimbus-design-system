@@ -1,20 +1,13 @@
-import React from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { withA11y } from "@storybook/addon-a11y";
+import type { Meta, StoryObj } from "@storybook/react";
+import { Badge } from "../../Badge";
 
-import { BadgeSkeleton } from "./BadgeSkeleton";
+const meta: Meta<typeof Badge.Skeleton> = {
+  title: "atomic/Badge/Badge.Skeleton",
+  component: Badge.Skeleton,
+  tags: ["autodocs"],
+};
 
-export default {
-  title: "Skeleton/Badge",
-  component: BadgeSkeleton,
-  parameters: {
-    withA11y: { decorators: [withA11y] },
-  },
-} as ComponentMeta<typeof BadgeSkeleton>;
+export default meta;
+type Story = StoryObj<typeof Badge.Skeleton>;
 
-const Template: ComponentStory<typeof BadgeSkeleton> = (args) => (
-  <BadgeSkeleton {...args} />
-);
-
-export const badge = Template.bind({});
-badge.args = {};
+export const basic: Story = { args: {} };

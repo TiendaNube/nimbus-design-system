@@ -1,91 +1,73 @@
-import React from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { withA11y } from "@storybook/addon-a11y";
-import { title } from "@nimbus-ds/styles";
-
+import type { Meta, StoryObj } from "@storybook/react";
 import { Title } from "./Title";
 
-export default {
-  title: "Atomic/Title",
+const meta: Meta<typeof Title> = {
+  title: "Atomic/Title/Title",
   component: Title,
-  subcomponents: { "Title.Skeleton": Title.Skeleton },
   argTypes: {
-    children: { control: { disable: true } },
-    color: {
-      options: Object.keys(title.properties.color),
-    },
+    children: { control: { type: "text" } },
+  },
+  tags: ["autodocs"],
+};
+
+export default meta;
+type Story = StoryObj<typeof Title>;
+
+export const basic: Story = {
+  args: {
+    children: "Lorem ipsum dolor sit amet",
+  },
+};
+
+export const h1: Story = {
+  args: {
+    as: "h1",
+    children: "Lorem ipsum dolor sit amet",
+  },
+};
+
+export const h2: Story = {
+  args: {
+    as: "h2",
+    children: "Lorem ipsum dolor sit amet",
+  },
+};
+
+export const h3: Story = {
+  args: {
+    as: "h3",
+    children: "Lorem ipsum dolor sit amet",
+  },
+};
+
+export const h4: Story = {
+  args: {
+    as: "h4",
+    children: "Lorem ipsum dolor sit amet",
+  },
+};
+
+export const h5: Story = {
+  args: {
+    as: "h5",
+    children: "Lorem ipsum dolor sit amet",
+  },
+};
+
+export const h6: Story = {
+  args: {
+    as: "h6",
+    children: "Lorem ipsum dolor sit amet",
+  },
+};
+
+export const responsive: Story = {
+  args: {
     textAlign: {
-      control: { type: "radio" },
-      options: title.properties.textAlign,
+      xs: "left",
+      md: "center",
+      lg: "right",
     },
-    fontWeight: {
-      control: { type: "radio" },
-      options: Object.keys(title.properties.fontWeight),
-    },
-    fontSize: {
-      control: { type: "select" },
-      options: Object.keys(title.properties.fontSize),
-    },
-    lineHeight: {
-      control: { type: "select" },
-      options: Object.keys(title.properties.lineHeight),
-    },
+    children: "Lorem ipsum dolor sit amet",
   },
-  parameters: {
-    withA11y: { decorators: [withA11y] },
-  },
-} as ComponentMeta<typeof Title>;
-
-const Template: ComponentStory<typeof Title> = (args) => <Title {...args} />;
-const SkeletonTemplate: ComponentStory<typeof Title.Skeleton> = (args) => (
-  <Title.Skeleton {...args} />
-);
-
-export const h1 = Template.bind({});
-h1.args = {
-  as: "h1",
-  children: "Lorem ipsum dolor sit amet",
 };
-
-export const h2 = Template.bind({});
-h2.args = {
-  as: "h2",
-  children: "Lorem ipsum dolor sit amet",
-};
-
-export const h3 = Template.bind({});
-h3.args = {
-  as: "h3",
-  children: "Lorem ipsum dolor sit amet",
-};
-
-export const h4 = Template.bind({});
-h4.args = {
-  as: "h4",
-  children: "Lorem ipsum dolor sit amet",
-};
-
-export const h5 = Template.bind({});
-h5.args = {
-  as: "h5",
-  children: "Lorem ipsum dolor sit amet",
-};
-
-export const h6 = Template.bind({});
-h6.args = {
-  as: "h6",
-  children: "Lorem ipsum dolor sit amet",
-};
-
-export const responsive = Template.bind({});
-responsive.args = {
-  textAlign: {
-    xs: "left",
-    md: "center",
-    lg: "right",
-  },
-  children: "Lorem ipsum dolor sit amet",
-};
-
-export const skeleton = SkeletonTemplate.bind({});
-skeleton.args = {};

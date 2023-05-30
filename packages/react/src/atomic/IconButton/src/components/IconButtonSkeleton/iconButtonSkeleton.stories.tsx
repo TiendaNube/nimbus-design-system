@@ -1,20 +1,13 @@
-import React from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { withA11y } from "@storybook/addon-a11y";
+import type { Meta, StoryObj } from "@storybook/react";
+import { IconButton } from "../../IconButton";
 
-import { IconButtonSkeleton } from "./IconButtonSkeleton";
+const meta: Meta<typeof IconButton.Skeleton> = {
+  title: "atomic/IconButton/IconButton.Skeleton",
+  component: IconButton.Skeleton,
+  tags: ["autodocs"],
+};
 
-export default {
-  title: "Skeleton/Icon Button",
-  component: IconButtonSkeleton,
-  parameters: {
-    withA11y: { decorators: [withA11y] },
-  },
-} as ComponentMeta<typeof IconButtonSkeleton>;
+export default meta;
+type Story = StoryObj<typeof IconButton.Skeleton>;
 
-const Template: ComponentStory<typeof IconButtonSkeleton> = (args) => (
-  <IconButtonSkeleton {...args} />
-);
-
-export const iconButton = Template.bind({});
-iconButton.args = {};
+export const basic: Story = { args: {} };

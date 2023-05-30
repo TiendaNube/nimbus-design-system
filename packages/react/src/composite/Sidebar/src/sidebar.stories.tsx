@@ -1,125 +1,37 @@
-import React from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { withA11y } from "@storybook/addon-a11y";
-// eslint-disable-next-line
+import React, { useState } from "react";
+import type { Meta, StoryObj } from "@storybook/react";
 import { useArgs } from "@storybook/client-api";
 import { Box } from "@nimbus-ds/box";
 import { Button } from "@nimbus-ds/button";
 import { Text } from "@nimbus-ds/text";
-
 import { Sidebar } from "./Sidebar";
+import { SidebarProps } from "./sidebar.types";
 
-export default {
-  title: "Composite/Sidebar",
+const meta: Meta<typeof Sidebar> = {
+  title: "Composite/Sidebar/Sidebar",
   component: Sidebar,
-  subcomponents: {
-    "Sidebar.Header": Sidebar.Header,
-    "Sidebar.Body": Sidebar.Body,
-    "Sidebar.Footer": Sidebar.Footer,
-  },
   argTypes: {
     children: { control: { disable: true } },
   },
-  parameters: {
-    withA11y: { decorators: [withA11y] },
+  tags: ["autodocs"],
+};
+
+export default meta;
+type Story = StoryObj<typeof Sidebar>;
+
+export const basic: Story = {
+  render: (args) => {
+    const [{ open }, updateArgs] = useArgs();
+    const handleClose = () => updateArgs({ open: !open });
+    return (
+      <>
+        <Button onClick={handleClose}>Open</Button>
+        <Sidebar {...args} onRemove={handleClose} open={open} />
+      </>
+    );
   },
-} as ComponentMeta<typeof Sidebar>;
-
-const Template: ComponentStory<typeof Sidebar> = (args) => {
-  const [{ open }, updateArgs] = useArgs();
-  const handleClose = () => updateArgs({ open: !open });
-  return (
-    <>
-      <Button onClick={handleClose}>Open</Button>
-      <Sidebar {...args} onRemove={handleClose} open={open} />
-    </>
-  );
-};
-
-export const base = Template.bind({});
-base.args = {
-  children: (
-    <Box
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      height="100%"
-      borderStyle="dashed"
-      padding="2"
-      borderWidth="1"
-      borderColor="neutral-interactive"
-      boxSizing="border-box"
-    >
-      <Text textAlign="center">Replace me with your content</Text>
-    </Box>
-  ),
-};
-
-export const withPadding = Template.bind({});
-withPadding.args = {
-  padding: "base",
-  children: (
-    <Box
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      height="100%"
-      borderStyle="dashed"
-      padding="2"
-      borderWidth="1"
-      borderColor="neutral-interactive"
-      boxSizing="border-box"
-    >
-      <Text textAlign="center">Replace me with your content</Text>
-    </Box>
-  ),
-};
-
-export const withHeader = Template.bind({});
-withHeader.args = {
-  padding: "base",
-  children: (
-    <>
-      <Sidebar.Header>
-        <Box
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          height="100%"
-          borderStyle="dashed"
-          padding="2"
-          borderWidth="1"
-          borderColor="neutral-interactive"
-          boxSizing="border-box"
-        >
-          <Text textAlign="center">Header</Text>
-        </Box>
-      </Sidebar.Header>
-      <Sidebar.Body>
-        <Box
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          height="100%"
-          borderStyle="dashed"
-          padding="2"
-          borderWidth="1"
-          borderColor="neutral-interactive"
-          boxSizing="border-box"
-        >
-          <Text textAlign="center">Body</Text>
-        </Box>
-      </Sidebar.Body>
-    </>
-  ),
-};
-
-export const withHeaderAndTitle = Template.bind({});
-withHeaderAndTitle.args = {
-  padding: "base",
-  children: (
-    <>
-      <Sidebar.Header title="Title" />
+  args: {
+    children: (
       <Box
         display="flex"
         justifyContent="center"
@@ -133,61 +45,162 @@ withHeaderAndTitle.args = {
       >
         <Text textAlign="center">Replace me with your content</Text>
       </Box>
-    </>
-  ),
+    ),
+  },
 };
 
-export const withFooter = Template.bind({});
-withFooter.args = {
-  padding: "base",
-  children: (
+const render = (args: SidebarProps) => {
+  const [open, setOpen] = useState(false);
+  const handleClose = () => setOpen((prevState) => !prevState);
+  return (
     <>
-      <Sidebar.Header>
-        <Box
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          height="100%"
-          borderStyle="dashed"
-          padding="2"
-          borderWidth="1"
-          borderColor="neutral-interactive"
-          boxSizing="border-box"
-        >
-          <Text textAlign="center">Header</Text>
-        </Box>
-      </Sidebar.Header>
-      <Sidebar.Body>
-        <Box
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          height="100%"
-          borderStyle="dashed"
-          padding="2"
-          borderWidth="1"
-          borderColor="neutral-interactive"
-          boxSizing="border-box"
-        >
-          <Text textAlign="center">Body</Text>
-        </Box>
-      </Sidebar.Body>
-      <Sidebar.Footer>
-        <Box
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          height="100%"
-          borderStyle="dashed"
-          padding="2"
-          borderWidth="1"
-          borderColor="neutral-interactive"
-          width="100%"
-          boxSizing="border-box"
-        >
-          <Text textAlign="center">Footer</Text>
-        </Box>
-      </Sidebar.Footer>
+      <Button onClick={handleClose}>Open</Button>
+      <Sidebar {...args} onRemove={handleClose} open={open} />
     </>
-  ),
+  );
+};
+
+export const withPadding: Story = {
+  render,
+  args: {
+    padding: "base",
+    children: (
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        height="100%"
+        borderStyle="dashed"
+        padding="2"
+        borderWidth="1"
+        borderColor="neutral-interactive"
+        boxSizing="border-box"
+      >
+        <Text textAlign="center">Replace me with your content</Text>
+      </Box>
+    ),
+  },
+};
+
+export const withHeader: Story = {
+  render,
+  args: {
+    padding: "base",
+    children: (
+      <>
+        <Sidebar.Header>
+          <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            height="100%"
+            borderStyle="dashed"
+            padding="2"
+            borderWidth="1"
+            borderColor="neutral-interactive"
+            boxSizing="border-box"
+          >
+            <Text textAlign="center">Header</Text>
+          </Box>
+        </Sidebar.Header>
+        <Sidebar.Body>
+          <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            height="100%"
+            borderStyle="dashed"
+            padding="2"
+            borderWidth="1"
+            borderColor="neutral-interactive"
+            boxSizing="border-box"
+          >
+            <Text textAlign="center">Body</Text>
+          </Box>
+        </Sidebar.Body>
+      </>
+    ),
+  },
+};
+
+export const withHeaderAndTitle: Story = {
+  render,
+  args: {
+    padding: "base",
+    children: (
+      <>
+        <Sidebar.Header title="Title" />
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          height="100%"
+          borderStyle="dashed"
+          padding="2"
+          borderWidth="1"
+          borderColor="neutral-interactive"
+          boxSizing="border-box"
+        >
+          <Text textAlign="center">Replace me with your content</Text>
+        </Box>
+      </>
+    ),
+  },
+};
+
+export const withFooter: Story = {
+  render,
+  args: {
+    padding: "base",
+    children: (
+      <>
+        <Sidebar.Header>
+          <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            height="100%"
+            borderStyle="dashed"
+            padding="2"
+            borderWidth="1"
+            borderColor="neutral-interactive"
+            boxSizing="border-box"
+          >
+            <Text textAlign="center">Header</Text>
+          </Box>
+        </Sidebar.Header>
+        <Sidebar.Body>
+          <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            height="100%"
+            borderStyle="dashed"
+            padding="2"
+            borderWidth="1"
+            borderColor="neutral-interactive"
+            boxSizing="border-box"
+          >
+            <Text textAlign="center">Body</Text>
+          </Box>
+        </Sidebar.Body>
+        <Sidebar.Footer>
+          <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            height="100%"
+            borderStyle="dashed"
+            padding="2"
+            borderWidth="1"
+            borderColor="neutral-interactive"
+            width="100%"
+            boxSizing="border-box"
+          >
+            <Text textAlign="center">Footer</Text>
+          </Box>
+        </Sidebar.Footer>
+      </>
+    ),
+  },
 };

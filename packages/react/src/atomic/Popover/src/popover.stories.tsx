@@ -1,83 +1,68 @@
 import React from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { withA11y } from "@storybook/addon-a11y";
-import { popover } from "@nimbus-ds/styles";
+import type { Meta, StoryObj } from "@storybook/react";
 import { Text } from "@nimbus-ds/text";
 import { Box } from "@nimbus-ds/box";
 
 import { Popover } from "./Popover";
 
-export default {
-  title: "Atomic/Popover",
+const meta: Meta<typeof Popover> = {
+  title: "Atomic/Popover/Popover",
   component: Popover,
-  parameters: {
-    withA11y: { decorators: [withA11y] },
-  },
+  render: (args) => (
+    <Box display="flex" justifyContent="center">
+      <Popover {...args} onVisibility={undefined}>
+        <Text>Click-Hover</Text>
+      </Popover>
+    </Box>
+  ),
   argTypes: {
     children: { control: { disable: true } },
     content: { control: { disable: true } },
-    backgroundColor: {
-      options: Object.keys(popover.properties.backgroundColor),
-    },
-    color: {
-      options: Object.keys(popover.properties.color),
-    },
-    padding: {
-      options: Object.keys(popover.properties.padding),
-    },
-    zIndex: {
-      control: { type: "number" },
-    },
-    width: {
-      control: { type: "text" },
-    },
-    height: {
-      control: { type: "text" },
-    },
   },
-} as ComponentMeta<typeof Popover>;
-
-const Template: ComponentStory<typeof Popover> = (args) => (
-  <Box display="flex" justifyContent="center">
-    <Popover {...args} onVisibility={undefined}>
-      <Text>Click-Hover</Text>
-    </Popover>
-  </Box>
-);
-
-export const base = Template.bind({});
-base.args = {
-  content: <Text color="primary-textLow">Replace me with your content</Text>,
+  tags: ["autodocs"],
 };
 
-export const top = Template.bind({});
-top.args = {
-  content: <Text color="primary-textLow">Replace me with your content</Text>,
-  position: "top",
-  enabledHover: true,
-  enabledDismiss: false,
+export default meta;
+type Story = StoryObj<typeof Popover>;
+
+export const basic: Story = {
+  args: {
+    content: <Text color="primary-textLow">Replace me with your content</Text>,
+  },
 };
 
-export const bottom = Template.bind({});
-bottom.args = {
-  content: <Text color="primary-textLow">Replace me with your content</Text>,
-  position: "bottom",
-  enabledHover: true,
-  enabledDismiss: false,
+export const top: Story = {
+  args: {
+    content: <Text color="primary-textLow">Replace me with your content</Text>,
+    position: "top",
+    enabledHover: true,
+    enabledDismiss: false,
+  },
 };
 
-export const right = Template.bind({});
-right.args = {
-  content: <Text color="primary-textLow">Replace me with your content</Text>,
-  position: "right",
-  enabledHover: true,
-  enabledDismiss: false,
+export const bottom: Story = {
+  args: {
+    content: <Text color="primary-textLow">Replace me with your content</Text>,
+    position: "bottom",
+    enabledHover: true,
+    enabledDismiss: false,
+  },
 };
 
-export const left = Template.bind({});
-left.args = {
-  content: <Text color="primary-textLow">Replace me with your content</Text>,
-  position: "left",
-  enabledHover: true,
-  enabledDismiss: false,
+export const right: Story = {
+  args: {
+    content: <Text color="primary-textLow">Replace me with your content</Text>,
+    position: "right",
+    enabledHover: true,
+    enabledDismiss: false,
+  },
+};
+
+export const left: Story = {
+  args: {
+    content: <Text color="primary-textLow">Replace me with your content</Text>,
+    position: "left",
+    enabledHover: true,
+    enabledDismiss: false,
+  },
 };

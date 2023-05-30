@@ -1,20 +1,13 @@
-import React from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { withA11y } from "@storybook/addon-a11y";
+import type { Meta, StoryObj } from "@storybook/react";
+import { Text } from "../../Text";
 
-import { TextSkeleton } from "./TextSkeleton";
+const meta: Meta<typeof Text.Skeleton> = {
+  title: "atomic/Text/Text.Skeleton",
+  component: Text.Skeleton,
+  tags: ["autodocs"],
+};
 
-export default {
-  title: "Skeleton/Text",
-  component: TextSkeleton,
-  parameters: {
-    withA11y: { decorators: [withA11y] },
-  },
-} as ComponentMeta<typeof TextSkeleton>;
+export default meta;
+type Story = StoryObj<typeof Text.Skeleton>;
 
-const Template: ComponentStory<typeof TextSkeleton> = (args) => (
-  <TextSkeleton {...args} fontSize="base" />
-);
-
-export const Text = Template.bind({});
-Text.args = {};
+export const basic: Story = { args: {} };
