@@ -23,10 +23,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: "Test"
+      - name: "Show return"
         run: |
-          echo "tag ${{ steps.previoustag.outputs.tag }}"
-          echo "body ${{ steps.PR.outputs.pr_body }}"
+          echo "Tag: ${{ steps.previoustag.outputs.tag }}"
+          echo "Body:  ${{ steps.PR.outputs.pr_body }}"
 
       - name: Create Release
         id: create_release
