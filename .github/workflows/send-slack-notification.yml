@@ -1,0 +1,37 @@
+name: "send-slack-notification"
+
+on: workflow_dispatch
+
+jobs:
+  send-slack-notification:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Send slack notification on chanel Ninbus updates
+        id: slack-nimbus-updates
+        uses: slackapi/slack-github-action@v1.23.0
+        with:
+          payload-file-path: ./.github/resources/payload-notification.json
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL_NIMBUS_UPDATES }}
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
+
+      - name: Send slack notification on chanel Ninbus deploying
+        id: slack-deploying
+        uses: slackapi/slack-github-action@v1.23.0
+        with:
+          payload-file-path: ./.github/resources/payload-notification.json
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL_DEPLOYING }}
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
+
+      - name: Send slack notification on chanel Tech product updates
+        id: slack-tech-product-updates
+        uses: slackapi/slack-github-action@v1.23.0
+        with:
+          payload-file-path: ./.github/resources/payload-notification.json
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL_TECH_PRODUCT_UPDATES }}
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
