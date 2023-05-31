@@ -1,9 +1,9 @@
-name: "create-tag"
+name: "create-github-tag"
 
 on: workflow_dispatch
 
 jobs:
-  create-tag:
+  create-github-tag:
     runs-on: ubuntu-latest
     permissions:
       contents: write

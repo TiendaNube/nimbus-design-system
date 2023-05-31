@@ -1,9 +1,9 @@
-name: "create-release"
+name: "create-github-relase"
 
 on: workflow_dispatch
 
 jobs:
-  create-release:
+  create-github-relase:
     runs-on: ubuntu-latest
     permissions:
       contents: write
