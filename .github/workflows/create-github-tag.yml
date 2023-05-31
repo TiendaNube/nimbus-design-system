@@ -30,7 +30,7 @@ jobs:
     steps:
       - name: Trigger github action create github release
         run: |
-          curl --request PUT \
+          curl --request POST \
           --url 'https://api.github.com/repos/tiendanube/nimbus-design-system/actions/workflows/58856078/dispatches' \
           --header 'Authorization: token ${{ secrets.PAT_CHANGE_BRANCH_PROTECTION_RULES_FROM_JUNIOR_CONQUISTA }}' \
           --data '{"ref":"master"}'
