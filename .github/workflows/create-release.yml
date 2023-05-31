@@ -28,14 +28,14 @@ jobs:
           echo "tag ${{ steps.previoustag.outputs.tag }}"
           echo "body ${{ steps.PR.outputs.pr_body }}"
 
-      # - name: Create Release
-      #   id: create_release
-      #   uses: ncipollo/release-action@v1
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   with:
-      #     tag: ${{ steps.previoustag.outputs.tag }}
-      #     name: ${{ steps.previoustag.outputs.tag }}
-      #     body: ${{ steps.PR.outputs.pr_body }}
-      #     draft: false
-      #     prerelease: false
+      - name: Create Release
+        id: create_release
+        uses: ncipollo/release-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag: ${{ steps.previoustag.outputs.tag }}
+          name: ${{ steps.previoustag.outputs.tag }}
+          body: ${{ steps.PR.outputs.pr_body }}
+          draft: false
+          prerelease: false
