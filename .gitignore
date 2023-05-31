@@ -13,7 +13,7 @@ test-output.*
 .env
 .eslintcache
 
-# Yarn 2 build artifacts
+# Yarn 3 build artifacts
 ### yarn ###
 # https://yarnpkg.com/getting-started/qa#which-files-should-be-gitignored
 

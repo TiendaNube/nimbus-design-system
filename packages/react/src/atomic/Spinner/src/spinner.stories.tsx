@@ -1,32 +1,33 @@
-import React from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { withA11y } from "@storybook/addon-a11y";
-
+import type { Meta, StoryObj } from "@storybook/react";
 import { Spinner } from "./Spinner";
 
-export default {
-  title: "Atomic/Spinner",
+const meta: Meta<typeof Spinner> = {
+  title: "Atomic/Spinner/Spinner",
   component: Spinner,
-  parameters: {
-    withA11y: { decorators: [withA11y] },
+  tags: ["autodocs"],
+};
+
+export default meta;
+type Story = StoryObj<typeof Spinner>;
+
+export const basic: Story = {
+  args: {},
+};
+
+export const large: Story = {
+  args: {
+    size: "large",
   },
-} as ComponentMeta<typeof Spinner>;
-
-const SpinnerTemplate: ComponentStory<typeof Spinner> = (args) => (
-  <Spinner {...args} />
-);
-
-export const large = SpinnerTemplate.bind({});
-large.args = {
-  size: "large",
 };
 
-export const medium = SpinnerTemplate.bind({});
-medium.args = {
-  size: "medium",
+export const medium: Story = {
+  args: {
+    size: "medium",
+  },
 };
 
-export const small = SpinnerTemplate.bind({});
-small.args = {
-  size: "small",
+export const small: Story = {
+  args: {
+    size: "small",
+  },
 };

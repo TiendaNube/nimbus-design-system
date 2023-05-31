@@ -1,52 +1,52 @@
-import React from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { withA11y } from "@storybook/addon-a11y";
-
+import type { Meta, StoryObj } from "@storybook/react";
 import { Badge } from "./Badge";
 
-export default {
-  title: "Atomic/Badge",
+const meta: Meta<typeof Badge> = {
+  title: "Atomic/Badge/Badge",
   component: Badge,
-  subcomponents: { "Badge.Skeleton": Badge.Skeleton },
-  parameters: {
-    withA11y: { decorators: [withA11y] },
+  tags: ["autodocs"],
+};
+
+export default meta;
+type Story = StoryObj<typeof Badge>;
+
+export const basic: Story = {
+  args: {
+    count: "+99",
   },
-} as ComponentMeta<typeof Badge>;
-
-const Template: ComponentStory<typeof Badge> = (args) => <Badge {...args} />;
-const SkeletonTemplate: ComponentStory<typeof Badge.Skeleton> = (args) => (
-  <Badge.Skeleton {...args} />
-);
-
-export const neutral = Template.bind({});
-neutral.args = {
-  appearance: "neutral",
-  count: "+99",
 };
 
-export const primary = Template.bind({});
-primary.args = {
-  appearance: "primary",
-  count: "+99",
+export const neutral: Story = {
+  args: {
+    appearance: "neutral",
+    count: "+99",
+  },
 };
 
-export const success = Template.bind({});
-success.args = {
-  appearance: "success",
-  count: "+99",
+export const primary: Story = {
+  args: {
+    appearance: "primary",
+    count: "+99",
+  },
 };
 
-export const warning = Template.bind({});
-warning.args = {
-  appearance: "warning",
-  count: "+99",
+export const success: Story = {
+  args: {
+    appearance: "success",
+    count: "+99",
+  },
 };
 
-export const danger = Template.bind({});
-danger.args = {
-  appearance: "danger",
-  count: "+99",
+export const warning: Story = {
+  args: {
+    appearance: "warning",
+    count: "+99",
+  },
 };
 
-export const skeleton = SkeletonTemplate.bind({});
-skeleton.args = {};
+export const danger: Story = {
+  args: {
+    appearance: "danger",
+    count: "+99",
+  },
+};

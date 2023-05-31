@@ -1,46 +1,39 @@
-import React from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { withA11y } from "@storybook/addon-a11y";
-
+import type { Meta, StoryObj } from "@storybook/react";
 import { Checkbox } from "./Checkbox";
 
-export default {
-  title: "Atomic/Checkbox",
+const meta: Meta<typeof Checkbox> = {
+  title: "Atomic/Checkbox/Checkbox",
   component: Checkbox,
-  subcomponents: { "Checkbox.Skeleton": Checkbox.Skeleton },
-  parameters: {
-    withA11y: { decorators: [withA11y] },
+  tags: ["autodocs"],
+};
+
+export default meta;
+type Story = StoryObj<typeof Checkbox>;
+
+export const basic: Story = {
+  args: {
+    label: "Label",
   },
-} as ComponentMeta<typeof Checkbox>;
-
-const Template: ComponentStory<typeof Checkbox> = (args) => (
-  <Checkbox {...args} />
-);
-const SkeletonTemplate: ComponentStory<typeof Checkbox.Skeleton> = (args) => (
-  <Checkbox.Skeleton {...args} />
-);
-
-export const base = Template.bind({});
-base.args = { label: "Label" };
-
-export const indeterminate = Template.bind({});
-indeterminate.args = {
-  indeterminate: true,
-  label: "Indeterminate",
 };
 
-export const disabled = Template.bind({});
-disabled.args = {
-  checked: true,
-  disabled: true,
-  label: "Disabled",
+export const indeterminate: Story = {
+  args: {
+    indeterminate: true,
+    label: "Indeterminate",
+  },
 };
 
-export const danger = Template.bind({});
-danger.args = {
-  appearance: "danger",
-  label: "Danger",
+export const disabled: Story = {
+  args: {
+    checked: true,
+    disabled: true,
+    label: "Disabled",
+  },
 };
 
-export const skeleton = SkeletonTemplate.bind({});
-skeleton.args = {};
+export const danger: Story = {
+  args: {
+    appearance: "danger",
+    label: "Danger",
+  },
+};

@@ -1,20 +1,13 @@
-import React from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { withA11y } from "@storybook/addon-a11y";
+import type { Meta, StoryObj } from "@storybook/react";
+import { Chip } from "../../Chip";
 
-import { ChipSkeleton } from "./ChipSkeleton";
+const meta: Meta<typeof Chip.Skeleton> = {
+  title: "atomic/Chip/Chip.Skeleton",
+  component: Chip.Skeleton,
+  tags: ["autodocs"],
+};
 
-export default {
-  title: "Skeleton/Chip",
-  component: ChipSkeleton,
-  parameters: {
-    withA11y: { decorators: [withA11y] },
-  },
-} as ComponentMeta<typeof ChipSkeleton>;
+export default meta;
+type Story = StoryObj<typeof Chip.Skeleton>;
 
-const Template: ComponentStory<typeof ChipSkeleton> = (args) => (
-  <ChipSkeleton {...args} />
-);
-
-export const Chip = Template.bind({});
-Chip.args = {};
+export const basic: Story = { args: {} };

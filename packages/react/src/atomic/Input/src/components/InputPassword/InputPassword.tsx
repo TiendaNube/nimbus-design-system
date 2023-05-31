@@ -1,13 +1,18 @@
-import React, { forwardRef, useRef, useState } from "react";
+import React, {
+  ComponentPropsWithRef,
+  forwardRef,
+  useRef,
+  useState,
+} from "react";
 import { useRefObjectAsForwardedRef } from "@nimbus-ds/typings";
 import { EyeIcon, EyeOffIcon } from "@nimbus-ds/icons";
 import { input } from "@nimbus-ds/styles";
 import { Icon } from "@nimbus-ds/icon";
 
 import { InputIcon } from "../InputIcon";
-import { InputPasswordProps } from "./inputPassword.types";
+import { InputPasswordBaseProps } from "./inputPassword.types";
 
-const InputPassword = forwardRef<HTMLInputElement, InputPasswordProps>(
+const InputPassword = forwardRef<HTMLInputElement, InputPasswordBaseProps>(
   (
     {
       className: _className,
@@ -66,4 +71,5 @@ const InputPassword = forwardRef<HTMLInputElement, InputPasswordProps>(
   }
 );
 
+export type InputPasswordProps = ComponentPropsWithRef<typeof InputPassword>;
 export { InputPassword };

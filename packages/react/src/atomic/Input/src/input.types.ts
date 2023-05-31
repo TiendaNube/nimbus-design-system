@@ -34,5 +34,5 @@ export interface InputProperties {
   "data-testid"?: string;
 }
 
-export type InputProps = InputProperties &
+export type InputBaseProps = InputProperties &
   InputHTMLAttributes<HTMLInputElement>;

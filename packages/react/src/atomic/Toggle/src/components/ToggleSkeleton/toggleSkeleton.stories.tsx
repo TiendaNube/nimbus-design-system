@@ -1,20 +1,13 @@
-import React from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { withA11y } from "@storybook/addon-a11y";
+import type { Meta, StoryObj } from "@storybook/react";
+import { Toggle } from "../../Toggle";
 
-import { ToggleSkeleton } from "./ToggleSkeleton";
+const meta: Meta<typeof Toggle.Skeleton> = {
+  title: "atomic/Toggle/Toggle.Skeleton",
+  component: Toggle.Skeleton,
+  tags: ["autodocs"],
+};
 
-export default {
-  title: "Skeleton/Toggle",
-  component: ToggleSkeleton,
-  parameters: {
-    withA11y: { decorators: [withA11y] },
-  },
-} as ComponentMeta<typeof ToggleSkeleton>;
+export default meta;
+type Story = StoryObj<typeof Toggle.Skeleton>;
 
-const Template: ComponentStory<typeof ToggleSkeleton> = (args) => (
-  <ToggleSkeleton {...args} />
-);
-
-export const toggle = Template.bind({});
-toggle.args = {};
+export const basic: Story = { args: {} };

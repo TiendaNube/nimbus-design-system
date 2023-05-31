@@ -1,52 +1,41 @@
 import React from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { withA11y } from "@storybook/addon-a11y";
+import type { Meta, StoryObj } from "@storybook/react";
 
 import { List } from "./List";
 
-export default {
-  title: "Atomic/List",
+const meta: Meta<typeof List> = {
+  title: "Atomic/List/List",
   component: List,
-  subcomponents: {
-    "List.SkeletonItem": List.SkeletonItem,
-    "List.Skeleton": List.Skeleton,
-  },
+  render: (args) => (
+    <List {...args}>
+      <List.Item>Aliquam vitae eleifend nulla. Duis</List.Item>
+      <List.Item>Nullam malesuada sapien sit amet</List.Item>
+      <List.Item>Vivamus diam eros, pretium a</List.Item>
+      <List.Item>Mauris ut feugiat quam. Fusce</List.Item>
+      <List.Item>Duis leo orci, consectetur pulvinar</List.Item>
+    </List>
+  ),
   argTypes: {
-    children: { control: { disable: true } },
+    children: { control: { type: "text" } },
   },
-  parameters: {
-    withA11y: { decorators: [withA11y] },
-  },
-} as ComponentMeta<typeof List>;
-
-const Template: ComponentStory<typeof List> = (args) => (
-  <List {...args}>
-    <List.Item>Aliquam vitae eleifend nulla. Duis</List.Item>
-    <List.Item>Nullam malesuada sapien sit amet</List.Item>
-    <List.Item>Vivamus diam eros, pretium a</List.Item>
-    <List.Item>Mauris ut feugiat quam. Fusce</List.Item>
-    <List.Item>Duis leo orci, consectetur pulvinar</List.Item>
-  </List>
-);
-const SkeletonTemplate: ComponentStory<typeof List.Skeleton> = (args) => (
-  <List.Skeleton>
-    <List.SkeletonItem {...args} />
-    <List.SkeletonItem {...args} />
-    <List.SkeletonItem {...args} />
-    <List.SkeletonItem {...args} />
-    <List.SkeletonItem {...args} />
-  </List.Skeleton>
-);
-
-export const unordered = Template.bind({});
-unordered.args = {
-  as: "ul",
+  tags: ["autodocs"],
 };
 
-export const ordered = Template.bind({});
-ordered.args = {
-  as: "ol",
+export default meta;
+type Story = StoryObj<typeof List>;
+
+export const basic: Story = {
+  args: {},
 };
 
-export const skeleton = SkeletonTemplate.bind({});
-skeleton.args = {};
+export const unordered: Story = {
+  args: {
+    as: "ul",
+  },
+};
+
+export const ordered: Story = {
+  args: {
+    as: "ol",
+  },
+};

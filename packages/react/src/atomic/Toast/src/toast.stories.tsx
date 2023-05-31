@@ -1,45 +1,50 @@
-import React from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { withA11y } from "@storybook/addon-a11y";
-
+import type { Meta, StoryObj } from "@storybook/react";
 import { Toast } from "./Toast";
 
-export default {
-  title: "Atomic/Toast",
+const meta: Meta<typeof Toast> = {
+  title: "Atomic/Toast/Toast",
   component: Toast,
-  parameters: {
-    withA11y: { decorators: [withA11y] },
+  tags: ["autodocs"],
+};
+
+export default meta;
+type Story = StoryObj<typeof Toast>;
+
+export const basic: Story = {
+  args: {
+    text: "Primary toast",
+    autoClose: false,
   },
-} as ComponentMeta<typeof Toast>;
-
-const ToastTemplate: ComponentStory<typeof Toast> = (args) => (
-  <Toast {...args} />
-);
-
-export const primary = ToastTemplate.bind({});
-primary.args = {
-  text: "Primary toast",
-  type: "primary",
-  autoClose: false,
 };
 
-export const success = ToastTemplate.bind({});
-success.args = {
-  text: "Success toast",
-  type: "success",
-  autoClose: false,
+export const primary: Story = {
+  args: {
+    text: "Primary toast",
+    type: "primary",
+    autoClose: false,
+  },
 };
 
-export const danger = ToastTemplate.bind({});
-danger.args = {
-  text: "Danger toast",
-  type: "danger",
-  autoClose: false,
+export const success: Story = {
+  args: {
+    text: "Success toast",
+    type: "success",
+    autoClose: false,
+  },
 };
 
-export const progress = ToastTemplate.bind({});
-progress.args = {
-  text: "Progress toast",
-  type: "progress",
-  autoClose: false,
+export const danger: Story = {
+  args: {
+    text: "Danger toast",
+    type: "danger",
+    autoClose: false,
+  },
+};
+
+export const progress: Story = {
+  args: {
+    text: "Progress toast",
+    type: "progress",
+    autoClose: false,
+  },
 };

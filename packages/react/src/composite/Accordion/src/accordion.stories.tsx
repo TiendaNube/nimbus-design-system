@@ -1,7 +1,5 @@
 import React from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { withA11y } from "@storybook/addon-a11y";
-
+import type { Meta, StoryObj } from "@storybook/react";
 import { TiendanubeIcon, UserGroupIcon } from "@nimbus-ds/icons";
 import { Text } from "@nimbus-ds/text";
 import { Icon } from "@nimbus-ds/icon";
@@ -12,83 +10,27 @@ import { Radio } from "@nimbus-ds/radio";
 
 import { Accordion } from "./Accordion";
 
-export default {
-  title: "Composite/Accordion",
+const meta: Meta<typeof Accordion> = {
+  title: "Composite/Accordion/Accordion",
   component: Accordion,
-  subcomponents: {
-    "Accordion.Header": Accordion.Header,
-    "Accordion.Body": Accordion.Body,
-    "Accordion.Item": Accordion.Item,
-  },
-
-  parameters: {
-    withA11y: { decorators: [withA11y] },
-  },
   argTypes: {
     children: { control: { disable: true } },
   },
-} as ComponentMeta<typeof Accordion>;
-
-const Template: ComponentStory<typeof Accordion> = (args) => (
-  <Accordion {...args} />
-);
-
-export const base = Template.bind({});
-base.args = {
-  children: (
-    <>
-      <Accordion.Item index="0">
-        <Accordion.Header
-          title="Title one"
-          subtitle="Caption one"
-          icon={<TiendanubeIcon size={18} />}
-        />
-        <Accordion.Body>
-          <Box
-            width="100%"
-            borderStyle="dashed"
-            padding="2"
-            borderWidth="1"
-            borderColor="neutral-interactive"
-          >
-            <Text textAlign="center">Replace me with your content</Text>
-          </Box>
-        </Accordion.Body>
-      </Accordion.Item>
-      <Accordion.Item index="1">
-        <Accordion.Header
-          title="Title two"
-          subtitle="Caption two"
-          icon={<UserGroupIcon size={18} />}
-          borderBottom="base"
-        />
-        <Accordion.Body borderBottom="base">
-          <Box
-            width="100%"
-            borderStyle="dashed"
-            padding="2"
-            borderWidth="1"
-            borderColor="neutral-interactive"
-          >
-            <Text textAlign="center">Replace me with your content</Text>
-          </Box>
-        </Accordion.Body>
-      </Accordion.Item>
-    </>
-  ),
+  tags: ["autodocs"],
 };
 
-export const WithCard = Template.bind({});
-WithCard.args = {
-  children: (
-    <Card padding="none">
-      <div>
+export default meta;
+type Story = StoryObj<typeof Accordion>;
+
+export const basic: Story = {
+  args: {
+    children: (
+      <>
         <Accordion.Item index="0">
           <Accordion.Header
             title="Title one"
             subtitle="Caption one"
             icon={<TiendanubeIcon size={18} />}
-            borderTop="none"
           />
           <Accordion.Body>
             <Box
@@ -107,8 +49,9 @@ WithCard.args = {
             title="Title two"
             subtitle="Caption two"
             icon={<UserGroupIcon size={18} />}
+            borderBottom="base"
           />
-          <Accordion.Body>
+          <Accordion.Body borderBottom="base">
             <Box
               width="100%"
               borderStyle="dashed"
@@ -120,177 +63,228 @@ WithCard.args = {
             </Box>
           </Accordion.Body>
         </Accordion.Item>
-      </div>
-    </Card>
-  ),
+      </>
+    ),
+  },
 };
 
-export const withoutIcon = Template.bind({});
-withoutIcon.args = {
-  children: (
-    <Card padding="none">
-      <div>
-        <Accordion.Item index="0">
-          <Accordion.Header
-            title="Title one"
-            subtitle="Caption one"
-            borderTop="none"
-          />
-          <Accordion.Body>
-            <Box
-              width="100%"
-              borderStyle="dashed"
-              padding="2"
-              borderWidth="1"
-              borderColor="neutral-interactive"
-            >
-              <Text textAlign="center">Replace me with your content</Text>
-            </Box>
-          </Accordion.Body>
-        </Accordion.Item>
-        <Accordion.Item index="1">
-          <Accordion.Header title="Title two" subtitle="Caption two" />
-          <Accordion.Body>
-            <Box
-              width="100%"
-              borderStyle="dashed"
-              padding="2"
-              borderWidth="1"
-              borderColor="neutral-interactive"
-            >
-              <Text textAlign="center">Replace me with your content</Text>
-            </Box>
-          </Accordion.Body>
-        </Accordion.Item>
-      </div>
-    </Card>
-  ),
-};
-
-export const WithCustomIcon = Template.bind({});
-WithCustomIcon.args = {
-  children: (
-    <Card padding="none">
-      <div>
-        <Accordion.Item index="0">
-          <Accordion.Header
-            title="Title one"
-            subtitle="Caption one"
-            borderTop="none"
-          >
-            <Box
-              backgroundColor="primary-surface"
-              padding="2-5"
-              borderRadius="5"
-              marginRight="2-5"
-            >
-              <Icon
-                color="neutral-textHigh"
-                source={<TiendanubeIcon size="medium" />}
-              />
-            </Box>
-          </Accordion.Header>
-          <Accordion.Body>
-            <Box
-              width="100%"
-              borderStyle="dashed"
-              padding="2"
-              borderWidth="1"
-              borderColor="neutral-interactive"
-            >
-              <Text textAlign="center">Replace me with your content</Text>
-            </Box>
-          </Accordion.Body>
-        </Accordion.Item>
-        <Accordion.Item index="1">
-          <Accordion.Header title="Title two" subtitle="Caption two">
-            <Box
-              backgroundColor="primary-surface"
-              padding="2-5"
-              borderRadius="5"
-              marginRight="2-5"
-            >
-              <Icon
-                color="neutral-textHigh"
-                source={<UserGroupIcon size="medium" />}
-              />
-            </Box>
-          </Accordion.Header>
-          <Accordion.Body>
-            <Box
-              width="100%"
-              borderStyle="dashed"
-              padding="2"
-              borderWidth="1"
-              borderColor="neutral-interactive"
-            >
-              <Text textAlign="center">Replace me with your content</Text>
-            </Box>
-          </Accordion.Body>
-        </Accordion.Item>
-      </div>
-    </Card>
-  ),
-};
-
-export const withoutIconToogle = Template.bind({});
-withoutIconToogle.args = {
-  children: (
-    <Card padding="none">
-      <div>
-        <Accordion.Item index="0">
-          <Accordion.Header noIconToggle borderTop="none">
-            {({ selected }) => (
+export const WithCard: Story = {
+  args: {
+    children: (
+      <Card padding="none">
+        <div>
+          <Accordion.Item index="0">
+            <Accordion.Header
+              title="Title one"
+              subtitle="Caption one"
+              icon={<TiendanubeIcon size={18} />}
+              borderTop="none"
+            />
+            <Accordion.Body>
               <Box
                 width="100%"
-                display="flex"
-                justifyContent="space-between"
-                flexShrink="0"
+                borderStyle="dashed"
+                padding="2"
+                borderWidth="1"
+                borderColor="neutral-interactive"
               >
-                <Title as="h5">Lorem Ipsum one</Title>
-                <Radio name="accordion-radio-0" checked={selected === "0"} />
+                <Text textAlign="center">Replace me with your content</Text>
               </Box>
-            )}
-          </Accordion.Header>
-          <Accordion.Body>
-            <Box
-              width="100%"
-              borderStyle="dashed"
-              padding="2"
-              borderWidth="1"
-              borderColor="neutral-interactive"
-            >
-              <Text textAlign="center">Replace me with your content</Text>
-            </Box>
-          </Accordion.Body>
-        </Accordion.Item>
-        <Accordion.Item index="1">
-          <Accordion.Header noIconToggle>
-            {({ selected }) => (
+            </Accordion.Body>
+          </Accordion.Item>
+          <Accordion.Item index="1">
+            <Accordion.Header
+              title="Title two"
+              subtitle="Caption two"
+              icon={<UserGroupIcon size={18} />}
+            />
+            <Accordion.Body>
               <Box
                 width="100%"
-                display="flex"
-                justifyContent="space-between"
-                flexShrink="0"
+                borderStyle="dashed"
+                padding="2"
+                borderWidth="1"
+                borderColor="neutral-interactive"
               >
-                <Title as="h5">Lorem Ipsum two</Title>
-                <Radio name="accordion-radio-0" checked={selected === "1"} />
+                <Text textAlign="center">Replace me with your content</Text>
               </Box>
-            )}
-          </Accordion.Header>
-          <Accordion.Body>
-            <Box
-              width="100%"
-              borderStyle="dashed"
-              padding="2"
-              borderWidth="1"
-              borderColor="neutral-interactive"
+            </Accordion.Body>
+          </Accordion.Item>
+        </div>
+      </Card>
+    ),
+  },
+};
+
+export const withoutIcon: Story = {
+  args: {
+    children: (
+      <Card padding="none">
+        <div>
+          <Accordion.Item index="0">
+            <Accordion.Header
+              title="Title one"
+              subtitle="Caption one"
+              borderTop="none"
+            />
+            <Accordion.Body>
+              <Box
+                width="100%"
+                borderStyle="dashed"
+                padding="2"
+                borderWidth="1"
+                borderColor="neutral-interactive"
+              >
+                <Text textAlign="center">Replace me with your content</Text>
+              </Box>
+            </Accordion.Body>
+          </Accordion.Item>
+          <Accordion.Item index="1">
+            <Accordion.Header title="Title two" subtitle="Caption two" />
+            <Accordion.Body>
+              <Box
+                width="100%"
+                borderStyle="dashed"
+                padding="2"
+                borderWidth="1"
+                borderColor="neutral-interactive"
+              >
+                <Text textAlign="center">Replace me with your content</Text>
+              </Box>
+            </Accordion.Body>
+          </Accordion.Item>
+        </div>
+      </Card>
+    ),
+  },
+};
+
+export const WithCustomIcon: Story = {
+  args: {
+    children: (
+      <Card padding="none">
+        <div>
+          <Accordion.Item index="0">
+            <Accordion.Header
+              title="Title one"
+              subtitle="Caption one"
+              borderTop="none"
             >
-              <Text textAlign="center">Replace me with your content</Text>
-            </Box>
-          </Accordion.Body>
-        </Accordion.Item>
-      </div>
-    </Card>
-  ),
+              <Box
+                backgroundColor="primary-surface"
+                padding="2-5"
+                borderRadius="5"
+                marginRight="2-5"
+              >
+                <Icon
+                  color="neutral-textHigh"
+                  source={<TiendanubeIcon size="medium" />}
+                />
+              </Box>
+            </Accordion.Header>
+            <Accordion.Body>
+              <Box
+                width="100%"
+                borderStyle="dashed"
+                padding="2"
+                borderWidth="1"
+                borderColor="neutral-interactive"
+              >
+                <Text textAlign="center">Replace me with your content</Text>
+              </Box>
+            </Accordion.Body>
+          </Accordion.Item>
+          <Accordion.Item index="1">
+            <Accordion.Header title="Title two" subtitle="Caption two">
+              <Box
+                backgroundColor="primary-surface"
+                padding="2-5"
+                borderRadius="5"
+                marginRight="2-5"
+              >
+                <Icon
+                  color="neutral-textHigh"
+                  source={<UserGroupIcon size="medium" />}
+                />
+              </Box>
+            </Accordion.Header>
+            <Accordion.Body>
+              <Box
+                width="100%"
+                borderStyle="dashed"
+                padding="2"
+                borderWidth="1"
+                borderColor="neutral-interactive"
+              >
+                <Text textAlign="center">Replace me with your content</Text>
+              </Box>
+            </Accordion.Body>
+          </Accordion.Item>
+        </div>
+      </Card>
+    ),
+  },
+};
+
+export const withoutIconToogle: Story = {
+  args: {
+    children: (
+      <Card padding="none">
+        <div>
+          <Accordion.Item index="0">
+            <Accordion.Header noIconToggle borderTop="none">
+              {({ selected }) => (
+                <Box
+                  width="100%"
+                  display="flex"
+                  justifyContent="space-between"
+                  flexShrink="0"
+                >
+                  <Title as="h5">Lorem Ipsum one</Title>
+                  <Radio name="accordion-radio-0" checked={selected === "0"} />
+                </Box>
+              )}
+            </Accordion.Header>
+            <Accordion.Body>
+              <Box
+                width="100%"
+                borderStyle="dashed"
+                padding="2"
+                borderWidth="1"
+                borderColor="neutral-interactive"
+              >
+                <Text textAlign="center">Replace me with your content</Text>
+              </Box>
+            </Accordion.Body>
+          </Accordion.Item>
+          <Accordion.Item index="1">
+            <Accordion.Header noIconToggle>
+              {({ selected }) => (
+                <Box
+                  width="100%"
+                  display="flex"
+                  justifyContent="space-between"
+                  flexShrink="0"
+                >
+                  <Title as="h5">Lorem Ipsum two</Title>
+                  <Radio name="accordion-radio-0" checked={selected === "1"} />
+                </Box>
+              )}
+            </Accordion.Header>
+            <Accordion.Body>
+              <Box
+                width="100%"
+                borderStyle="dashed"
+                padding="2"
+                borderWidth="1"
+                borderColor="neutral-interactive"
+              >
+                <Text textAlign="center">Replace me with your content</Text>
+              </Box>
+            </Accordion.Body>
+          </Accordion.Item>
+        </div>
+      </Card>
+    ),
+  },
 };

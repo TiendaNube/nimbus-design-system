@@ -1,10 +1,10 @@
 import { InputHTMLAttributes } from "react";
-import { InputProps } from "../../input.types";
+import { InputBaseProps } from "../../input.types";
 
 export type InputPasswordProperties = Pick<
-  InputProps,
+  InputBaseProps,
   "appearance" | "disabled"
 >;
 
-export type InputPasswordProps = InputPasswordProperties &
+export type InputPasswordBaseProps = InputPasswordProperties &
   InputHTMLAttributes<HTMLInputElement>;

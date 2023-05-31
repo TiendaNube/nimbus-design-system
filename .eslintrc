@@ -25,6 +25,7 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
     "plugin:jest/recommended",
+    "plugin:storybook/recommended",
     "@tiendanube/eslint-config",
     "airbnb",
     "prettier"
@@ -44,6 +45,12 @@
     {
       "files": ["*.mdx"],
       "extends": ["plugin:mdx/overrides"]
+    },
+    {
+      "files": ["*.stories.*"],
+      "rules": {
+        "react-hooks/rules-of-hooks": "off"
+      }
     },
     {
       "files": ["nimbus-*.css.ts"],

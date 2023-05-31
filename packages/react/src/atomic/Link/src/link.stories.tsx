@@ -1,119 +1,106 @@
-import React from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { withA11y } from "@storybook/addon-a11y";
+import React, { forwardRef } from "react";
+import type { Meta, StoryObj } from "@storybook/react";
 import { ExternalLinkIcon } from "@nimbus-ds/icons";
 import { Icon } from "@nimbus-ds/icon";
 import { Text } from "@nimbus-ds/text";
 
 import { Link as LinkComponent, LinkProps } from "./Link";
 
-export const Base: React.FC<LinkProps> = (props) => (
-  <LinkComponent {...props} />
-);
+export const Basic: React.FC<LinkProps> = forwardRef(
+  ({ children = "Link", ...props }: LinkProps) => (
+    <LinkComponent {...props}>{children}</LinkComponent>
+  )
+) as React.FC<LinkProps>;
+Basic.displayName = "Link";
 
-export default {
-  title: "Atomic/Link",
-  component: Base,
-  subcomponents: { "Link.Skeleton": LinkComponent.Skeleton },
+const meta: Meta<typeof Basic> = {
+  title: "Atomic/Link/Link",
+  component: Basic,
   argTypes: {
-    children: { control: { disable: true } },
     as: {
-      control: { type: "radio" },
-      options: ["a", "button"],
-      table: {
-        type: {
-          required: false,
-          summary:
-            '"a" | "button" | "ReactNode of type HTMLAnchorElement" | "ReactNode of type HTMLButtonElement"',
-        },
-        defaultValue: { summary: "a" },
-      },
       description:
-        "The underlying element to render — either a HTML element name or a React component.",
+        "The underlying element to render — an HTML element name of type a or button or a React component of type HTMLAnchorElement or HTMLButtonElement.",
     },
     ref: {
-      control: { disable: true },
       description:
         "A ref to the element rendered by this component. Because this component is polymorphic, the type will vary based on the value of the as prop.",
     },
+    children: { control: { type: "text" } },
   },
-  parameters: {
-    withA11y: { decorators: [withA11y] },
+  tags: ["autodocs"],
+};
+
+export default meta;
+type Story = StoryObj<typeof Basic>;
+
+export const basic = {
+  args: {
+    children: "Link",
+    href: "mailto: hola@tiendanube.com",
   },
-} as ComponentMeta<typeof LinkComponent>;
-
-const Template: ComponentStory<typeof LinkComponent> = (args) => (
-  <Base as="a" {...args} />
-);
-const StressedTemplate: ComponentStory<typeof LinkComponent> = (args) => (
-  <Text>
-    This is a paragraph followed by a link.
-    <Base {...args} />
-  </Text>
-);
-const SkeletonTemplate: ComponentStory<typeof LinkComponent.Skeleton> = (
-  args
-) => <LinkComponent.Skeleton {...args} />;
-
-export const base = Template.bind({});
-base.args = {
-  children: "Link",
-  // eslint-disable-next-line
-  // @ts-ignore
-  href: "mailto: hola@tiendanube.com",
 };
 
-export const icon = Template.bind({});
-icon.args = {
-  appearance: "primary",
-  children: (
-    <>
-      Link
-      <Icon color="currentColor" source={<ExternalLinkIcon />} />
-    </>
+export const icon: Story = {
+  args: {
+    appearance: "primary",
+    children: (
+      <>
+        Link
+        <Icon color="currentColor" source={<ExternalLinkIcon />} />
+      </>
+    ),
+  },
+};
+
+export const stressed: Story = {
+  render: (props) => (
+    <Text>
+      This is a paragraph followed by a link.
+      <Basic {...props} />
+    </Text>
   ),
+  args: {
+    appearance: "primary",
+    children: (
+      <>
+        Stressed link with a lot of characters
+        <Icon color="currentColor" source={<ExternalLinkIcon />} />
+      </>
+    ),
+  },
 };
 
-export const stressed = StressedTemplate.bind({});
-stressed.args = {
-  appearance: "primary",
-  children: (
-    <>
-      Stressed link with a lot of characters
-      <Icon color="currentColor" source={<ExternalLinkIcon />} />
-    </>
-  ),
+export const primary: Story = {
+  args: {
+    appearance: "primary",
+    children: "Link",
+  },
 };
 
-export const primary = Template.bind({});
-primary.args = {
-  appearance: "primary",
-  children: "Link",
+export const danger: Story = {
+  args: {
+    appearance: "danger",
+    children: "Link",
+  },
 };
 
-export const danger = Template.bind({});
-danger.args = {
-  appearance: "danger",
-  children: "Link",
+export const neutral: Story = {
+  args: {
+    appearance: "neutral",
+    children: "Link",
+  },
 };
 
-export const neutral = Template.bind({});
-neutral.args = {
-  appearance: "neutral",
-  children: "Link",
+export const neutralBackground: Story = {
+  args: {
+    appearance: "neutral-background",
+    children: "Link",
+  },
 };
 
-export const neutralBackground = Template.bind({});
-neutralBackground.args = {
-  appearance: "neutral-background",
-  children: "Link",
+export const asButton: Story = {
+  args: {
+    children: "Link as button",
+    as: "button",
+  },
 };
-
-export const asButton = Template.bind({});
-asButton.args = {
-  children: "Link as button",
-  as: "button",
-};
-
-export const skeleton = SkeletonTemplate.bind({});
-skeleton.args = {};

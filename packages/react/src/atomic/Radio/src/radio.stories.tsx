@@ -1,40 +1,33 @@
-import React from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { withA11y } from "@storybook/addon-a11y";
+import type { Meta, StoryObj } from "@storybook/react";
 
 import { Radio } from "./Radio";
 
-export default {
-  title: "Atomic/Radio",
+const meta: Meta<typeof Radio> = {
+  title: "Atomic/Radio/Radio",
   component: Radio,
-  subcomponents: { "Radio.Skeleton": Radio.Skeleton },
-  parameters: {
-    withA11y: { decorators: [withA11y] },
+  argTypes: {
+    children: { label: { type: "text" } },
   },
-} as ComponentMeta<typeof Radio>;
-
-const Template: ComponentStory<typeof Radio> = (args) => <Radio {...args} />;
-const SkeletonTemplate: ComponentStory<typeof Radio.Skeleton> = (args) => (
-  <Radio.Skeleton {...args} />
-);
-
-export const base = Template.bind({});
-base.args = { label: "Label" };
-
-export const disabled = Template.bind({});
-disabled.args = {
-  disabled: true,
-  label: "Disabled",
+  tags: ["autodocs"],
 };
 
-export const button = Template.bind({});
-button.args = {
-  as: "button",
-  label: "Button",
+export default meta;
+type Story = StoryObj<typeof Radio>;
+
+export const basic: Story = {
+  args: { label: "Label" },
 };
 
-export const skeletonRadio = SkeletonTemplate.bind({});
-skeletonRadio.args = {};
+export const disabled: Story = {
+  args: {
+    disabled: true,
+    label: "Disabled",
+  },
+};
 
-export const skeletonButton = SkeletonTemplate.bind({});
-skeletonButton.args = { as: "button" };
+export const button: Story = {
+  args: {
+    as: "button",
+    label: "Button",
+  },
+};

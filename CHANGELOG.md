@@ -3,6 +3,32 @@
 This is the log of notable changes to the Design System Nimbus that are developer-facing.
 Package-specific changes not released in any package will be added here just before the release. Until then, you can find them in changelogs of the individual packages (see [packages](./packages) directory).
 
+## 2023-05-30
+
+### 🎉 New features
+
+- Updated storybook version to new major. ([#166](https://github.com/TiendaNube/nimbus-design-system/pull/#166) by [@juniorconquista](https://github.com/juniorconquista))
+
+#### 📚 3rd party library updates
+
+- Added `@babel/preset-env@7.21.5`. ([#166](https://github.com/TiendaNube/nimbus-design-system/pull/#166) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `eslint-plugin-storybook@0.6.12`. ([#166](https://github.com/TiendaNube/nimbus-design-system/pull/#166) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `prop-types@15.8.1`. ([#166](https://github.com/TiendaNube/nimbus-design-system/pull/#166) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `storybook@7.0.18`. ([#166](https://github.com/TiendaNube/nimbus-design-system/pull/#166) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `@storybook/blocks@7.0.18`. ([#166](https://github.com/TiendaNube/nimbus-design-system/pull/#166) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `@storybook/react-webpack5@7.0.18`. ([#166](https://github.com/TiendaNube/nimbus-design-system/pull/#166) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `@storybook/testing-library@7.0.18`. ([#166](https://github.com/TiendaNube/nimbus-design-system/pull/#166) by [@juniorconquista](https://github.com/juniorconquista))
+- Updated `@storybook/addon-essentials@7.0.18`. ([#166](https://github.com/TiendaNube/nimbus-design-system/pull/#166) by [@juniorconquista](https://github.com/juniorconquista))
+- Updated `@storybook/addon-interactions@7.0.18`. ([#166](https://github.com/TiendaNube/nimbus-design-system/pull/#166) by [@juniorconquista](https://github.com/juniorconquista))
+- Updated `@storybook/addon-links@7.0.18`. ([#166](https://github.com/TiendaNube/nimbus-design-system/pull/#166) by [@juniorconquista](https://github.com/juniorconquista))
+- Updated `@storybook/react@7.0.18`. ([#166](https://github.com/TiendaNube/nimbus-design-system/pull/#166) by [@juniorconquista](https://github.com/juniorconquista))
+- Updated `storybook-dark-mode@3.0.0`. ([#166](https://github.com/TiendaNube/nimbus-design-system/pull/#166) by [@juniorconquista](https://github.com/juniorconquista))
+- Removed `@storybook/addon-a11y@6.5.16`. ([#166](https://github.com/TiendaNube/nimbus-design-system/pull/#166) by [@juniorconquista](https://github.com/juniorconquista))
+- Removed `@storybook/addon-controls@6.5.16`. ([#166](https://github.com/TiendaNube/nimbus-design-system/pull/#166) by [@juniorconquista](https://github.com/juniorconquista))
+- Removed `@storybook/addon-actions@6.5.16`. ([#166](https://github.com/TiendaNube/nimbus-design-system/pull/#166) by [@juniorconquista](https://github.com/juniorconquista))
+- Removed `@storybook/builder-webpack5@6.5.16`. ([#166](https://github.com/TiendaNube/nimbus-design-system/pull/#166) by [@juniorconquista](https://github.com/juniorconquista))
+- Removed `@storybook/manager-webpack5@6.5.16`. ([#166](https://github.com/TiendaNube/nimbus-design-system/pull/#166) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-03-19
 
 ### 🎉 New features
@@ -100,7 +126,7 @@ Package-specific changes not released in any package will be added here just bef
 ### 📚 3rd party library updates
 
 - Updated `@storybook/addon-a11y@6.5.13`. ([#52](https://github.com/TiendaNube/nimbus-design-system/pull/#52) by [@juniorconquista](https://github.com/juniorconquista))
-- Updated `@@storybook/addon-controls@6.5.13`. ([#52](https://github.com/TiendaNube/nimbus-design-system/pull/#52) by [@juniorconquista](https://github.com/juniorconquista))
+- Updated `@storybook/addon-controls@6.5.13`. ([#52](https://github.com/TiendaNube/nimbus-design-system/pull/#52) by [@juniorconquista](https://github.com/juniorconquista))
 - Updated `@storybook/addon-actions@6.5.13`. ([#52](https://github.com/TiendaNube/nimbus-design-system/pull/#52) by [@juniorconquista](https://github.com/juniorconquista))
 - Updated `@storybook/addon-essentials@6.5.13`. ([#52](https://github.com/TiendaNube/nimbus-design-system/pull/#52) by [@juniorconquista](https://github.com/juniorconquista))
 - Updated `@storybook/addon-interactions@6.5.13`. ([#52](https://github.com/TiendaNube/nimbus-design-system/pull/#52) by [@juniorconquista](https://github.com/juniorconquista))
@@ -138,7 +164,7 @@ Package-specific changes not released in any package will be added here just bef
 ### 📚 3rd party library updates
 
 - Updated `@storybook/addon-a11y@6.5.12`. ([#27](https://github.com/TiendaNube/nimbus-design-system/pull/27) by [@juniorconquista](https://github.com/juniorconquista))
-- Updated `@@storybook/addon-controls@6.5.12`. ([#27](https://github.com/TiendaNube/nimbus-design-system/pull/27) by [@juniorconquista](https://github.com/juniorconquista))
+- Updated `@storybook/addon-controls@6.5.12`. ([#27](https://github.com/TiendaNube/nimbus-design-system/pull/27) by [@juniorconquista](https://github.com/juniorconquista))
 - Updated `@storybook/addon-actions@6.5.12`. ([#27](https://github.com/TiendaNube/nimbus-design-system/pull/27) by [@juniorconquista](https://github.com/juniorconquista))
 - Updated `@storybook/addon-essentials@6.5.12`. ([#27](https://github.com/TiendaNube/nimbus-design-system/pull/27) by [@juniorconquista](https://github.com/juniorconquista))
 - Updated `@storybook/addon-interactions@6.5.12`. ([#27](https://github.com/TiendaNube/nimbus-design-system/pull/27) by [@juniorconquista](https://github.com/juniorconquista))
