@@ -23,3 +23,14 @@ jobs:
       - uses: rickstaa/action-create-tag@v1
         with:
           tag: ${{ steps.calver.outputs.release }}
+
+  trigger-action-create-github-release:
+    needs: [create-github-tag]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger github action create github release
+        run: |
+          curl --request PUT \
+          --url 'https://api.github.com/repos/tiendanube/nimbus-design-system/actions/workflows/58856078/dispatches' \
+          --header 'Authorization: token ${{ secrets.PAT_CHANGE_BRANCH_PROTECTION_RULES_FROM_JUNIOR_CONQUISTA }}' \
+          --data '{"ref":"master"}'
