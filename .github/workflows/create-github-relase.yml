@@ -1,0 +1,41 @@
+name: "create-github-relase"
+
+on: workflow_dispatch
+
+jobs:
+  create-github-relase:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      discussions: write
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: "Get Previous tag"
+        id: previoustag
+        uses: "WyriHaximus/github-action-get-previous-tag@v1"
+
+      - name: Get current PR
+        uses: 8BitJonny/gh-get-current-pr@2.2.0
+        id: PR
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: "Show return"
+        run: |
+          echo "Tag: ${{ steps.previoustag.outputs.tag }}"
+          echo "Body:  ${{ steps.PR.outputs.pr_body }}"
+
+      - name: Create Release
+        id: create_release
+        uses: ncipollo/release-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag: ${{ steps.previoustag.outputs.tag }}
+          name: ${{ steps.previoustag.outputs.tag }}
+          body: ${{ steps.PR.outputs.pr_body }}
+          draft: false
+          prerelease: false
