@@ -5,7 +5,7 @@ import { Text } from "@nimbus-ds/text";
 import { Tabs } from "./Tabs";
 
 const meta: Meta<typeof Tabs> = {
-  title: "Composite/Tabs/Tabs",
+  title: "Composite/Tabs",
   component: Tabs,
   render: (args) => (
     <Tabs {...args}>

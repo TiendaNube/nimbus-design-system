@@ -14,7 +14,7 @@ export const Basic: React.FC<LinkProps> = forwardRef(
 Basic.displayName = "Link";
 
 const meta: Meta<typeof Basic> = {
-  title: "Atomic/Link/Link",
+  title: "Atomic/Link",
   component: Basic,
   argTypes: {
     as: {

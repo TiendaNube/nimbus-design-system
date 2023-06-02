@@ -4,7 +4,7 @@ import { TiendanubeIcon } from "@nimbus-ds/icons";
 import { Icon } from "./Icon";
 
 const meta: Meta<typeof Icon> = {
-  title: "Atomic/Icon/Icon",
+  title: "Atomic/Icon",
   component: Icon,
   argTypes: {
     source: { control: { disable: true } },

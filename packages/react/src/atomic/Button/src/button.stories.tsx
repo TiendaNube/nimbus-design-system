@@ -15,7 +15,7 @@ export const Basic: React.FC<ButtonProps> = forwardRef(
 Basic.displayName = "Button";
 
 const meta: Meta<typeof Basic> = {
-  title: "Atomic/Button/button",
+  title: "Atomic/Button",
   component: Basic,
   argTypes: {
     as: {

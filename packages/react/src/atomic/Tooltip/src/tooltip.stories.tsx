@@ -5,7 +5,7 @@ import { Box } from "@nimbus-ds/box";
 import { Tooltip } from "./Tooltip";
 
 const meta: Meta<typeof Tooltip> = {
-  title: "Atomic/Tooltip/Tooltip",
+  title: "Atomic/Tooltip",
   component: Tooltip,
   render: (args) => (
     <Box display="flex" justifyContent="center">

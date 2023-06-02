@@ -6,7 +6,7 @@ import { Box } from "@nimbus-ds/box";
 import { Popover } from "./Popover";
 
 const meta: Meta<typeof Popover> = {
-  title: "Atomic/Popover/Popover",
+  title: "Atomic/Popover",
   component: Popover,
   render: (args) => (
     <Box display="flex" justifyContent="center">

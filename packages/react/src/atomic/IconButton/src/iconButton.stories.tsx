@@ -7,7 +7,7 @@ import { IconButton } from "./IconButton";
 TiendanubeIcon.displayName = "TiendanubeIcon";
 
 const meta: Meta<typeof IconButton> = {
-  title: "Atomic/IconButton/IconButton",
+  title: "Atomic/IconButton",
   component: IconButton,
   argTypes: {
     source: { control: { disable: true } },

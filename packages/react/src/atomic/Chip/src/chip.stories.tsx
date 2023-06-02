@@ -4,7 +4,7 @@ import { BoxPackedIcon } from "@nimbus-ds/icons";
 import { Chip } from "./Chip";
 
 const meta: Meta<typeof Chip> = {
-  title: "Atomic/Chip/Chip",
+  title: "Atomic/Chip",
   component: Chip,
   argTypes: {
     icon: { control: { disable: true } },

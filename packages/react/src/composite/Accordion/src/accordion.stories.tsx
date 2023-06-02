@@ -11,7 +11,7 @@ import { Radio } from "@nimbus-ds/radio";
 import { Accordion } from "./Accordion";
 
 const meta: Meta<typeof Accordion> = {
-  title: "Composite/Accordion/Accordion",
+  title: "Composite/Accordion",
   component: Accordion,
   argTypes: {
     children: { control: { disable: true } },

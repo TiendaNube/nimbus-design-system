@@ -11,7 +11,7 @@ export const Basic: React.FC<InputProps> = forwardRef((props: InputProps) => (
 Basic.displayName = "Input";
 
 const meta: Meta<typeof Basic> = {
-  title: "Atomic/Input/Input",
+  title: "Atomic/Input",
   component: Basic,
   tags: ["autodocs"],
 };

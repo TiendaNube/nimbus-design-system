@@ -5,7 +5,7 @@ import { Icon } from "@nimbus-ds/icon";
 import { Label } from "./Label";
 
 const meta: Meta<typeof Label> = {
-  title: "Atomic/Label/Label",
+  title: "Atomic/Label",
   component: Label,
   argTypes: {
     children: { control: { type: "text" } },

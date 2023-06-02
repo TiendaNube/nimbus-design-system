@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Table } from "./Table";
 
 const meta: Meta<typeof Table> = {
-  title: "Composite/Table/Table",
+  title: "Composite/Table",
   component: Table,
   argTypes: {
     children: { control: { disable: true } },

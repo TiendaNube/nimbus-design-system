@@ -8,7 +8,7 @@ import { Box } from "@nimbus-ds/box";
 import { Card } from "./Card";
 
 const meta: Meta<typeof Card> = {
-  title: "Composite/Card/Card",
+  title: "Composite/Card",
   component: Card,
   argTypes: {
     children: { control: { disable: true } },

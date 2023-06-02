@@ -4,7 +4,7 @@ import { useArgs } from "@storybook/client-api";
 import { Pagination } from "./Pagination";
 
 const meta: Meta<typeof Pagination> = {
-  title: "Composite/Pagination/Pagination",
+  title: "Composite/Pagination",
   component: Pagination,
   tags: ["autodocs"],
 };

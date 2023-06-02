@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Radio } from "./Radio";
 
 const meta: Meta<typeof Radio> = {
-  title: "Atomic/Radio/Radio",
+  title: "Atomic/Radio",
   component: Radio,
   argTypes: {
     children: { label: { type: "text" } },

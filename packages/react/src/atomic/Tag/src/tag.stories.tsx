@@ -5,7 +5,7 @@ import { Text } from "@nimbus-ds/text";
 import { Tag } from "./Tag";
 
 const meta: Meta<typeof Tag> = {
-  title: "Atomic/Tag/Tag",
+  title: "Atomic/Tag",
   component: Tag,
   argTypes: {
     children: { control: { type: "text" } },

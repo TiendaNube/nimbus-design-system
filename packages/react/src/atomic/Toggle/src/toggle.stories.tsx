@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Toggle } from "./Toggle";
 
 const meta: Meta<typeof Toggle> = {
-  title: "Atomic/Toggle/Toggle",
+  title: "Atomic/Toggle",
   component: Toggle,
   argTypes: {
     children: { control: { type: "text" } },

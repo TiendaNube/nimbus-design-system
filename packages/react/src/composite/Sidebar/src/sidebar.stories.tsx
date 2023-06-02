@@ -8,7 +8,7 @@ import { Sidebar } from "./Sidebar";
 import { SidebarProps } from "./sidebar.types";
 
 const meta: Meta<typeof Sidebar> = {
-  title: "Composite/Sidebar/Sidebar",
+  title: "Composite/Sidebar",
   component: Sidebar,
   argTypes: {
     children: { control: { disable: true } },

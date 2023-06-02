@@ -8,7 +8,7 @@ export const Basic: React.FC<BoxProps> = forwardRef((props: BoxProps) => (
 Basic.displayName = "Box";
 
 const meta: Meta<typeof Basic> = {
-  title: "Atomic/Box/Box",
+  title: "Atomic/Box",
   component: Basic,
   argTypes: {
     as: {

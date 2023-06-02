@@ -5,7 +5,7 @@ import { Button } from "@nimbus-ds/button";
 import { Alert } from "./Alert";
 
 const meta: Meta<typeof Alert> = {
-  title: "Composite/Alert/Alert",
+  title: "Composite/Alert",
   component: Alert,
   argTypes: {
     children: { control: { disable: true } },

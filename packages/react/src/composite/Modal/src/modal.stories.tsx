@@ -9,7 +9,7 @@ import { Modal } from "./Modal";
 import { ModalProps } from "./modal.types";
 
 const meta: Meta<typeof Modal> = {
-  title: "Composite/Modal/Modal",
+  title: "Composite/Modal",
   component: Modal,
   argTypes: {
     children: { control: { disable: true } },
