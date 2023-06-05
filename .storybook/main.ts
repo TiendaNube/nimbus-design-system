@@ -5,6 +5,12 @@ import { convertTsConfigPathsToWebpackAliases } from "./utils";
 
 const config: StorybookConfig = {
   stories: ["../packages/react/*/**/*.stories.@(js|jsx|ts|tsx)"],
+  refs: {
+    patterns: {
+      title: "@nimbus-ds/patterns",
+      url: "https://tiendanube.github.io/nimbus-patterns",
+    },
+  },
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
