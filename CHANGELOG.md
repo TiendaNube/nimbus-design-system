@@ -3,6 +3,12 @@
 This is the log of notable changes to the Design System Nimbus that are developer-facing.
 Package-specific changes not released in any package will be added here just before the release. Until then, you can find them in changelogs of the individual packages (see [packages](./packages) directory).
 
+## 2023-06-06
+
+#### 🎉 New features
+
+- Added new github action to comment quality checklist on every pull request. ([#167](https://github.com/TiendaNube/nimbus-design-system/pull/#167) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-05-30
 
 ### 🎉 New features

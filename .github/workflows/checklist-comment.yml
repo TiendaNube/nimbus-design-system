@@ -1,0 +1,16 @@
+name: checklist-comment
+
+on: pull_request
+
+jobs:
+  checklist-comment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Comment PR
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          filePath: ./.github/resources/checklist.txt
+          comment_tag: execution
