@@ -2,6 +2,7 @@ releases:
   "@nimbus-ds/icons": minor
 
 declined:
+  - nimbus-design-system
   - "@nimbus-ds/components"
   - "@nimbus-ds/button"
   - "@nimbus-ds/chip"
