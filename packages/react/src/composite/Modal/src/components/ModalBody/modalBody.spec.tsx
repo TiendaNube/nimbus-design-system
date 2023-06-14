@@ -19,30 +19,31 @@ describe("GIVEN <Modal.Body />", () => {
   describe("THEN should correctly render the submitted padding", () => {
     it("THEN should correctly render the padding default", () => {
       makeSut({ children: "My content" });
-      expect(screen.getByTestId("body-element").getAttribute("style")).toMatch(
-        /--padding-xs__\w{0,9}: var\(--spacing-4__\w{0,9}\);/
-      );
+      expect(
+        screen.getByTestId("body-element").getAttribute("class")
+      ).toContain("padding_base");
     });
 
     it("AND should correctly render the padding none", () => {
       makeSut({ padding: "none", children: "My content" });
-      expect(screen.getByTestId("body-element").getAttribute("style")).toMatch(
-        /--padding-xs__\w{0,9}: 0;/
-      );
+      expect(
+        screen.getByTestId("body-element").getAttribute("class")
+      ).toContain("padding_none");
     });
 
     it("AND should correctly render the padding base", () => {
       makeSut({ padding: "base", children: "My content" });
-      expect(screen.getByTestId("body-element").getAttribute("style")).toMatch(
-        /--padding-xs__\w{0,9}: var\(--spacing-4__\w{0,9}\);/
-      );
+      screen.debug();
+      expect(
+        screen.getByTestId("body-element").getAttribute("class")
+      ).toContain("padding_base");
     });
 
     it("AND should correctly render the padding small", () => {
       makeSut({ padding: "small", children: "My content" });
-      expect(screen.getByTestId("body-element").getAttribute("style")).toMatch(
-        /--padding-xs__\w{0,9}: var\(--spacing-2__\w{0,9}\);/
-      );
+      expect(
+        screen.getByTestId("body-element").getAttribute("class")
+      ).toContain("padding_small");
     });
   });
 });
