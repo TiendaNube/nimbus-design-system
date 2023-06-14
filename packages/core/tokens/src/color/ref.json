@@ -64,8 +64,7 @@
       "neutral": {
         "100": { "value": "#FFFFFF" },
         "99": { "value": "#FAFAFA" },
-        "97": { "value": "#F5F5F5" },
-        "95": { "value": "#E7E8E9" },
+        "95": { "value": "#F5F5F5" },
         "90": { "value": "#CFD1D2" },
         "80": { "value": "#B7BABC" },
         "70": { "value": "#A0A3A6" },

@@ -2,6 +2,12 @@
 
 Our design tokens are the foundations of Nimbus Design System.
 
+## 2023-06-13 `8.0.1`
+
+#### 💡 Others
+
+- Fixed `neutral-disababled` color token for `#F5F5F5`. ([#168](https://github.com/TiendaNube/nimbus-design-system/pull/168) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-05-18 `8.0.0`
 
 #### 🛠 Breaking changes
