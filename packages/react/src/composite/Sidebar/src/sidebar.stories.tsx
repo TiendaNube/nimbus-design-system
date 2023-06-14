@@ -4,6 +4,8 @@ import { useArgs } from "@storybook/client-api";
 import { Box } from "@nimbus-ds/box";
 import { Button } from "@nimbus-ds/button";
 import { Text } from "@nimbus-ds/text";
+import { sidebar } from "@nimbus-ds/styles";
+import { argTypesConvert } from ".storybook/utils";
 import { Sidebar } from "./Sidebar";
 import { SidebarProps } from "./sidebar.types";
 
@@ -12,6 +14,7 @@ const meta: Meta<typeof Sidebar> = {
   component: Sidebar,
   argTypes: {
     children: { control: { disable: true } },
+    ...argTypesConvert(sidebar.properties),
   },
   tags: ["autodocs"],
 };

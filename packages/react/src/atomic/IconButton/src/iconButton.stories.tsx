@@ -1,7 +1,8 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { TiendanubeIcon } from "@nimbus-ds/icons";
-
+import { iconButton } from "@nimbus-ds/styles";
+import { argTypesConvert } from ".storybook/utils";
 import { IconButton } from "./IconButton";
 
 TiendanubeIcon.displayName = "TiendanubeIcon";
@@ -11,6 +12,7 @@ const meta: Meta<typeof IconButton> = {
   component: IconButton,
   argTypes: {
     source: { control: { disable: true } },
+    ...argTypesConvert(iconButton.properties),
   },
   tags: ["autodocs"],
 };
