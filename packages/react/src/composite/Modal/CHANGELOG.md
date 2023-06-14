@@ -6,8 +6,8 @@ The Modal component allows us to call the user's attention to a floating box tha
 
 #### 🎉 New features
 
-- Added `Padding` property to the Component `Modal.Header`. ([#168](https://github.com/TiendaNube/nimbus-design-system/pull/168) by [@juniorconquista](https://github.com/juniorconquista))
-- Added `Padding` property to the Component `Modal.Footer`. ([#168](https://github.com/TiendaNube/nimbus-design-system/pull/168) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `Padding` property to the Component `Modal.Header`. ([#169](https://github.com/TiendaNube/nimbus-design-system/pull/169) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `Padding` property to the Component `Modal.Footer`. ([#169](https://github.com/TiendaNube/nimbus-design-system/pull/169) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2023-05-22 `1.3.1`
 

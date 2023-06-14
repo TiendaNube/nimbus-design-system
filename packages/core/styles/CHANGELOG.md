@@ -2,6 +2,16 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2023-06-13 `9.1.0`
+
+#### 🎉 New features
+
+- Added new wordbreak prop in Text component style pack. ([#169](https://github.com/TiendaNube/nimbus-design-system/pull/169) by [@juniorconquista](https://github.com/juniorconquista))
+
+#### 💡 Others
+
+- Spacing adjustments in Card, Modal and Sidebar component style packs. ([#169](https://github.com/TiendaNube/nimbus-design-system/pull/169) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-05-18 `9.0.0`
 
 #### 🛠 Breaking changes

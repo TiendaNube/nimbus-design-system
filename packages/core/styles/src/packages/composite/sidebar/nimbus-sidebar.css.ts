@@ -25,6 +25,7 @@ const container = style({
   overflowY: "auto",
   transition: `opacity ${varsThemeBase.motion.speed.base} ease, transform ${varsThemeBase.motion.speed.base} ease`,
   boxSizing: "border-box",
+  gap: varsThemeBase.spacing[4],
 });
 
 const position = styleVariants({
@@ -65,7 +66,6 @@ const isVisible = style({
 });
 
 const container__header = style({
-  marginBottom: "1rem",
   boxSizing: "border-box",
 });
 
@@ -78,7 +78,6 @@ const container__footer = style({
   width: "100%",
   display: "flex",
   gap: varsThemeBase.spacing[2],
-  marginTop: "1rem",
   boxSizing: "border-box",
   justifyContent: "flex-end",
 });

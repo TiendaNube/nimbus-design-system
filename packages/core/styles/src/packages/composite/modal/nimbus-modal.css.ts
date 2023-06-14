@@ -1,5 +1,9 @@
 import { style, keyframes } from "@vanilla-extract/css";
 import {
+  defineProperties as defineSprinkleProperties,
+  createSprinkles,
+} from "@vanilla-extract/sprinkles";
+import {
   createRainbowSprinkles,
   defineProperties as defineRainbowProperties,
 } from "rainbow-sprinkles";
@@ -20,6 +24,7 @@ export const container = style({
   flexWrap: "nowrap",
   height: "auto",
 
+  gap: varsThemeBase.spacing[4],
   backgroundColor: varsThemeBase.colors.neutral.background,
   borderRadius: varsThemeBase.shape.border.radius[2],
   boxSizing: "border-box",
@@ -51,14 +56,6 @@ const container__close = style({
   ":active": {
     backgroundColor: varsThemeBase.colors.neutral.interactivePressed,
   },
-});
-
-const container__header = style({
-  marginBottom: "1.125rem",
-});
-
-const container__body = style({
-  marginBottom: "1rem",
 });
 
 const container__footer = style({
@@ -96,8 +93,6 @@ export const styles = {
   overlay,
   container,
   container__close,
-  container__header,
-  container__body,
   container__footer,
 };
 
@@ -105,7 +100,7 @@ export const styles = {
  * Sprinkle
  * -----------------------------------------------------------------------------------------------*/
 
-const properties = {
+const modalProperties = {
   padding: paddingProperties,
 };
 
@@ -131,9 +126,58 @@ const defineProperties = defineRainbowProperties({
   },
 });
 
-const sprinkle = createRainbowSprinkles(defineProperties);
-
 export const modalSprinkle = {
-  sprinkle,
-  properties,
+  sprinkle: createRainbowSprinkles(defineProperties),
+  properties: modalProperties,
+};
+
+const modalHeaderProperties = {
+  padding: {
+    base: `${varsThemeBase.spacing[4]} ${varsThemeBase.spacing[4]} 0 ${varsThemeBase.spacing[4]}`,
+    small: `${varsThemeBase.spacing[2]} ${varsThemeBase.spacing[2]} 0 ${varsThemeBase.spacing[2]}`,
+    none: "0",
+  },
+};
+
+export const modalHeaderSprinkle = {
+  sprinkle: createSprinkles(
+    defineSprinkleProperties({
+      properties: modalHeaderProperties,
+    })
+  ),
+  properties: modalHeaderProperties,
+};
+
+const modalBodyProperties = {
+  padding: {
+    base: `0 ${varsThemeBase.spacing[4]}`,
+    small: `0 ${varsThemeBase.spacing[2]}`,
+    none: "0",
+  },
+};
+
+export const modalBodySprinkle = {
+  sprinkle: createSprinkles(
+    defineSprinkleProperties({
+      properties: modalBodyProperties,
+    })
+  ),
+  properties: modalBodyProperties,
+};
+
+const modalFooterProperties = {
+  padding: {
+    base: `0 ${varsThemeBase.spacing[4]} ${varsThemeBase.spacing[4]} ${varsThemeBase.spacing[4]}`,
+    small: `0 ${varsThemeBase.spacing[2]} ${varsThemeBase.spacing[2]} ${varsThemeBase.spacing[2]}`,
+    none: "0",
+  },
+};
+
+export const modalFooterSprinkle = {
+  sprinkle: createSprinkles(
+    defineSprinkleProperties({
+      properties: modalFooterProperties,
+    })
+  ),
+  properties: modalFooterProperties,
 };

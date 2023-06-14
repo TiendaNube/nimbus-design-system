@@ -30,7 +30,6 @@ const container__footer = style({
 
 export const styles = {
   container,
-
   container__footer,
 };
 
@@ -57,18 +56,67 @@ const cardBackgroundColorProperties = {
     backgroundColorProperties["neutral-surfaceHighlight"],
 };
 
-const properties = {
+const cardProperties = {
   backgroundColor: cardBackgroundColorProperties,
   padding: paddingProperties,
 };
 
-const sprinkle = createSprinkles(
-  defineProperties({
-    properties,
-  })
-);
-
 export const cardSprinkle = {
-  sprinkle,
-  properties,
+  sprinkle: createSprinkles(
+    defineProperties({
+      properties: cardProperties,
+    })
+  ),
+  properties: cardProperties,
+};
+
+const cardHeaderProperties = {
+  padding: {
+    base: `${varsThemeBase.spacing[4]} ${varsThemeBase.spacing[4]} 0 ${varsThemeBase.spacing[4]}`,
+    small: `${varsThemeBase.spacing[2]} ${varsThemeBase.spacing[2]} 0 ${varsThemeBase.spacing[2]}`,
+    none: "0",
+  },
+};
+
+export const cardHeaderSprinkle = {
+  sprinkle: createSprinkles(
+    defineProperties({
+      properties: cardHeaderProperties,
+    })
+  ),
+  properties: cardHeaderProperties,
+};
+
+const cardBodyProperties = {
+  padding: {
+    base: `0 ${varsThemeBase.spacing[4]}`,
+    small: `0 ${varsThemeBase.spacing[2]}`,
+    none: "0",
+  },
+};
+
+export const cardBodySprinkle = {
+  sprinkle: createSprinkles(
+    defineProperties({
+      properties: cardBodyProperties,
+    })
+  ),
+  properties: cardBodyProperties,
+};
+
+const cardFooterProperties = {
+  padding: {
+    base: `0 ${varsThemeBase.spacing[4]} ${varsThemeBase.spacing[4]} ${varsThemeBase.spacing[4]}`,
+    small: `0 ${varsThemeBase.spacing[2]} ${varsThemeBase.spacing[2]} ${varsThemeBase.spacing[2]}`,
+    none: "0",
+  },
+};
+
+export const cardFooterSprinkle = {
+  sprinkle: createSprinkles(
+    defineProperties({
+      properties: cardFooterProperties,
+    })
+  ),
+  properties: cardFooterProperties,
 };

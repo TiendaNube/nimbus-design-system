@@ -16,6 +16,7 @@ import {
   PointerEvents,
   TransitionTiming,
   AlignSelf,
+  WordBreak,
 } from "../types";
 import { baseColors } from "./base";
 
@@ -260,3 +261,10 @@ export const zIndexProperties = {
   "800": varsThemeBase.zIndex[800],
   "900": varsThemeBase.zIndex[900],
 };
+
+export const wordBreakProperties: WordBreak[] = [
+  "normal",
+  "break-all",
+  "keep-all",
+  "break-word",
+];
