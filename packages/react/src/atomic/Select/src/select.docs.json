@@ -1,96 +1,25 @@
 {
   "id": "select",
   "name": "Select",
-  "totalProps": 4,
+  "totalProps": 0,
   "packageName": "@nimbus-ds/select",
   "version": "2.3.2",
-  "props": [
-    {
-      "description": "The name of the wrapper element or the select element when native.",
-      "type": "string",
-      "title": "name",
-      "required": true
-    },
-    {
-      "description": "The id of the wrapper element or the select element when native.",
-      "type": "string",
-      "title": "id",
-      "required": true
-    },
-    {
-      "description": "The content of the select.",
-      "type": "React.ReactNode",
-      "title": "children",
-      "required": true
-    },
-    {
-      "description": "Change the visual style of the select.",
-      "default": "neutral",
-      "enum": [
-        "danger",
-        "neutral",
-        "success",
-        "warning"
-      ],
-      "type": "string",
-      "title": "appearance",
-      "required": false
-    }
-  ],
+  "props": [],
   "subComponents": [
     {
       "name": "Select.Group",
-      "totalProps": 2,
-      "props": [
-        {
-          "description": "Label for the option group.",
-          "type": "string",
-          "title": "label",
-          "required": true
-        },
-        {
-          "description": "The content of the option group.",
-          "type": "React.ReactNode",
-          "title": "children",
-          "required": true
-        }
-      ]
+      "totalProps": 0,
+      "props": []
     },
     {
       "name": "Select.Option",
-      "totalProps": 2,
-      "props": [
-        {
-          "description": "Label for the option.",
-          "type": "string",
-          "title": "label",
-          "required": true
-        },
-        {
-          "description": "Value of the option",
-          "type": "string",
-          "title": "value",
-          "required": true
-        }
-      ]
+      "totalProps": 0,
+      "props": []
     },
     {
       "name": "Select.Skeleton",
-      "totalProps": 2,
-      "props": [
-        {
-          "description": "Width of the skeleton. Useful when the skeleton is inside an inline element with no width of its own.",
-          "type": "string",
-          "title": "width",
-          "required": false
-        },
-        {
-          "description": "This is an attribute used to identify a DOM node for testing purposes.",
-          "type": "string",
-          "title": "data-testid",
-          "required": false
-        }
-      ]
+      "totalProps": 0,
+      "props": []
     }
   ]
 }
