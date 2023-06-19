@@ -2,6 +2,16 @@
 
 Nimbus is an open-source Design System created by Tiendanube / Nuvesmhop’s team to empower and enhance more stories every day, with simplicity, accessibility, consistency and performance.
 
+## 2023-06-13 `5.1.0`
+
+### 🎉 New features
+
+- Added `Padding` property to the Component `Card.Header`. ([#169](https://github.com/TiendaNube/nimbus-design-system/pull/169) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `Padding` property to the Component `Card.Footer`. ([#169](https://github.com/TiendaNube/nimbus-design-system/pull/169) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `Padding` property to the Component `Modal.Header`. ([#169](https://github.com/TiendaNube/nimbus-design-system/pull/169) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `Padding` property to the Component `Modal.Footer`. ([#169](https://github.com/TiendaNube/nimbus-design-system/pull/169) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `wordBreak` property to the Component `Text` API. ([#169](https://github.com/TiendaNube/nimbus-design-system/pull/169) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-05-23 `5.0.0`
 
 #### 🛠 Breaking changes

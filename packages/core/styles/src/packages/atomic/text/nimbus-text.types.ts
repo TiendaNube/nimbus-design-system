@@ -1,4 +1,4 @@
-import { Conditions, TextAlign } from "../../../types";
+import { Conditions, TextAlign, WordBreak } from "../../../types";
 import { textSprinkle } from "./nimbus-text.css";
 
 const { properties: propertiesText } = textSprinkle;
@@ -48,4 +48,8 @@ export interface TextSprinkle {
    * The amount of lines at which the text will be trimmed, showing an ellipsis when overflowed.
    */
   WebkitLineClamp?: number | TextConditions<number>;
+  /**
+   * The amount of lines at which the text will be trimmed, showing an ellipsis when overflowed.
+   */
+  wordBreak?: WordBreak | TextConditions<WordBreak>;
 }

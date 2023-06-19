@@ -21,9 +21,10 @@ type Story = StoryObj<typeof Card>;
 
 export const basic: Story = {
   args: {
+    padding: "none",
     children: (
       <>
-        <Card.Header>
+        <Card.Header padding="base">
           <Box
             display="flex"
             justifyContent="space-between"
@@ -33,13 +34,13 @@ export const basic: Story = {
             <Tag appearance="primary">Text</Tag>
           </Box>
         </Card.Header>
-        <Card.Body>
+        <Card.Body padding="base">
           <Text textAlign="left">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sed
             tortor hendrerit, varius nulla tristique.
           </Text>
         </Card.Body>
-        <Card.Footer>
+        <Card.Footer padding="base">
           <Button appearance="neutral">Button</Button>
           <Button appearance="primary">Button</Button>
         </Card.Footer>

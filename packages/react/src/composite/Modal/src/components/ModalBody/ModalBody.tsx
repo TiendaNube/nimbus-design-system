@@ -9,22 +9,10 @@ const ModalBody: React.FC<ModalBodyProps> = ({
   padding = "base",
   children,
   ...rest
-}) => {
-  const { className, style, otherProps } = modal.sprinkle({
-    ...(rest as Parameters<typeof modal.sprinkle>[0]),
-    padding: padding as any,
-  });
-
-  return (
-    <div
-      {...otherProps}
-      style={style}
-      className={[modal.classnames.container__body, className].join(" ")}
-      {...rest}
-    >
-      {children}
-    </div>
-  );
-};
+}) => (
+  <div className={modal.subComponents.body.sprinkle({ padding })} {...rest}>
+    {children}
+  </div>
+);
 
 export { ModalBody };

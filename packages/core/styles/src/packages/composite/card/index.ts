@@ -1,6 +1,17 @@
-import { styles, cardSprinkle } from "./nimbus-card.css";
+import {
+  styles,
+  cardSprinkle,
+  cardHeaderSprinkle,
+  cardBodySprinkle,
+  cardFooterSprinkle,
+} from "./nimbus-card.css";
 
 export const card = {
-  classnames: { ...styles },
   ...cardSprinkle,
+  classnames: { ...styles },
+  subComponents: {
+    header: cardHeaderSprinkle,
+    body: cardBodySprinkle,
+    footer: cardFooterSprinkle,
+  },
 };

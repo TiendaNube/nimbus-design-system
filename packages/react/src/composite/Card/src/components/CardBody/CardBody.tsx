@@ -10,7 +10,7 @@ const CardBody: React.FC<CardBodyProps> = ({
   children,
   ...rest
 }) => (
-  <div className={card.sprinkle({ padding })} {...rest}>
+  <div className={card.subComponents.body.sprinkle({ padding })} {...rest}>
     {children}
   </div>
 );

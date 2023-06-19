@@ -1,5 +1,5 @@
 import { HTMLAttributes, ReactNode } from "react";
-import { card } from "@nimbus-ds/styles";
+import { modal } from "@nimbus-ds/styles";
 
 export interface ModalBodyProperties {
   /**
@@ -9,9 +9,9 @@ export interface ModalBodyProperties {
   children: ReactNode;
   /**
    * The padding properties are used to generate space around an modal's body content area.
-   * @default base
+   * @default none
    */
-  padding?: keyof typeof card.properties.padding;
+  padding?: keyof typeof modal.subComponents.body.properties.padding;
 }
 
 export type ModalBodyProps = ModalBodyProperties & HTMLAttributes<HTMLElement>;

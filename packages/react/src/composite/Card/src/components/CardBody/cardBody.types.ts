@@ -11,7 +11,7 @@ export interface CardBodyProperties {
    * The padding properties are used to generate space around an card's body content area.
    * @default none
    */
-  padding?: keyof typeof card.properties.padding;
+  padding?: keyof typeof card.subComponents.body.properties.padding;
 }
 
 export type CardBodyProps = CardBodyProperties & HTMLAttributes<HTMLElement>;

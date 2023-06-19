@@ -1,4 +1,5 @@
 import { HTMLAttributes, ReactNode } from "react";
+import { card } from "@nimbus-ds/styles";
 
 export interface CardHeaderProperties {
   /**
@@ -10,6 +11,11 @@ export interface CardHeaderProperties {
    * The title to display in the card header.
    */
   title?: string;
+  /**
+   * The padding properties are used to generate space around an card's header content area.
+   * @default none
+   */
+  padding?: keyof typeof card.subComponents.header.properties.padding;
 }
 
 export type CardHeaderProps = CardHeaderProperties &

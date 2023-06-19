@@ -2,6 +2,13 @@
 
 The Card component allows us to group contents and related actions, making it easier to identify groups of information.
 
+## 2023-06-13 `3.1.0`
+
+#### 🎉 New features
+
+- Added `Padding` property to the Component `Card.Header`. ([#169](https://github.com/TiendaNube/nimbus-design-system/pull/169) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `Padding` property to the Component `Card.Footer`. ([#169](https://github.com/TiendaNube/nimbus-design-system/pull/169) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-04-13 `3.0.1`
 
 #### 🐛 Bug fixes

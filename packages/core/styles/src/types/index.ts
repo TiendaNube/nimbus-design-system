@@ -68,3 +68,4 @@ export type TransitionTiming =
   | "linear"
   | "step-start"
   | "step-end";
+export type WordBreak = "normal" | "break-all" | "keep-all" | "break-word";

@@ -1,4 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { title } from "@nimbus-ds/styles";
+import { argTypesConvert } from ".storybook/utils";
 import { Title } from "./Title";
 
 const meta: Meta<typeof Title> = {
@@ -6,6 +8,7 @@ const meta: Meta<typeof Title> = {
   component: Title,
   argTypes: {
     children: { control: { type: "text" } },
+    ...argTypesConvert(title.properties),
   },
   tags: ["autodocs"],
 };

@@ -2,6 +2,12 @@
 
 Text is a basic component that allows us to write blocks of text and give it formatting to use within other components, sections and pages of our application or website.
 
+## 2023-06-13 `6.3.0`
+
+#### 🎉 New features
+
+- Added `wordBreak` property to the Component `Text` API. ([#169](https://github.com/TiendaNube/nimbus-design-system/pull/169) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-05-22 `6.2.0`
 
 #### 🎉 New features
