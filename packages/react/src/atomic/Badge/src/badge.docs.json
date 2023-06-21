@@ -1,15 +1,69 @@
 {
   "id": "badge",
   "name": "Badge",
-  "totalProps": 0,
+  "totalProps": 3,
   "packageName": "@nimbus-ds/badge",
   "version": "3.1.1",
-  "props": [],
+  "props": [
+    {
+      "description": "Change the visual style of the badge.",
+      "default": "neutral",
+      "enum": [
+        "danger",
+        "neutral",
+        "primary",
+        "success",
+        "warning"
+      ],
+      "type": "string",
+      "title": "appearance",
+      "required": false
+    },
+    {
+      "description": "Total items to be displayed without badge",
+      "type": [
+        "string",
+        "number"
+      ],
+      "title": "count",
+      "required": true
+    },
+    {
+      "description": "Change the color scheme of the badge.",
+      "default": "surface",
+      "enum": [
+        "light",
+        "surface"
+      ],
+      "type": "string",
+      "title": "theme",
+      "required": false
+    }
+  ],
   "subComponents": [
     {
       "name": "Badge.Skeleton",
-      "totalProps": 0,
-      "props": []
+      "totalProps": 3,
+      "props": [
+        {
+          "description": "Width of the skeleton. Useful when the skeleton is inside an inline element with no width of its own.",
+          "type": "string",
+          "title": "width",
+          "required": false
+        },
+        {
+          "description": "Height of the skeleton. Useful when you don't want to adapt the skeleton to a text element but for instance a card.",
+          "type": "string",
+          "title": "height",
+          "required": false
+        },
+        {
+          "description": "This is an attribute used to identify a DOM node for testing purposes.",
+          "type": "string",
+          "title": "data-testid",
+          "required": false
+        }
+      ]
     }
   ]
 }
