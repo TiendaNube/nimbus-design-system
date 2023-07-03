@@ -1,0 +1,9 @@
+.vscode
+.scripts
+.vscode-test/**
+node_modules/**
+webpack.config.ts
+babel.config.js
+tsconfig.json
+**/*.map
+**/*.ts
