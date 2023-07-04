@@ -1,6 +1,6 @@
 {
-  "name": "nimbus-for-vscode",
-  "displayName": "@nimbus-ds/vscode",
+  "name": "nimbus-helper",
+  "displayName": "@nimbus-ds/helper",
   "description": "",
   "version": "0.0.0",
   "engines": {
@@ -23,7 +23,7 @@
     "build": "yarn prepublish && yarn g:webpack ",
     "build:docs": "yarn workspace nimbus-design-system run build:docs",
     "build:elements": "babel-node -x .ts ./.scripts/build-doc-elements",
-    "prepublish": "",
+    "prepublish": "yarn build:docs && yarn build:elements",
     "clean": "rm -rf dist",
     "watch": "yarn g:webpack --watch"
   },
@@ -36,7 +36,6 @@
     "@types/babel__core": "^7",
     "@types/babel__traverse": "^7",
     "@types/vscode": "^1.79.0",
-    "@vscode/vsce": "^2.19.0",
     "change-case": "^4.1.2"
   }
 }

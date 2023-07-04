@@ -1,5 +1,5 @@
 {
-  // "extends": "../../tsconfig.json",
+  "extends": "../../tsconfig.json",
   "include": ["./src"],
   "compilerOptions": {
     "module": "commonjs",
@@ -11,6 +11,5 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "strict": true
-    /* enable all strict type-checking options */
   }
 }

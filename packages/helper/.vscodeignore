@@ -7,3 +7,5 @@ babel.config.js
 tsconfig.json
 **/*.map
 **/*.ts
+../**
+../../**
