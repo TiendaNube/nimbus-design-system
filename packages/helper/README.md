@@ -1,8 +1,8 @@
-# Nimbus Helper <img src="./src/assets/nimbus-helper-logo.png" width="30" height="30">
+# Nimbus Helper <img src="https://raw.githubusercontent.com/TiendaNube/nimbus-design-system/ECNIM-744/packages/helper/src/assets/nimbus-helper-logo.png" width="30" height="30">
 
 > Boost your productivity with **Nimbus Helper**! A magical extension to VS Code that brings complete documentation of all available components and their properties all into your favorite design system. Write stylish code, accelerate development, and break into the programming clouds with the [Nimbus Design System](https://nimbus.nuvemshop.com.br). 💨✨"
 
-<img src="./src/assets/nimbus-helper-demo.gif">
+<img src="https://raw.githubusercontent.com/TiendaNube/nimbus-design-system/ECNIM-744/packages/helper/src/assets/nimbus-helper-demo.gif">
 
 ## 🗃️ Overview
 
