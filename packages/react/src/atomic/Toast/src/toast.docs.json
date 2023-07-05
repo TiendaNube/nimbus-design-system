@@ -4,6 +4,7 @@
   "totalProps": 6,
   "packageName": "@nimbus-ds/toast",
   "version": "2.3.0",
+  "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/toast",
   "props": [
     {
       "description": "Unique toast ID used when hiding or removing a toast.",
@@ -20,12 +21,7 @@
     {
       "description": "Change the visual style of the toast.",
       "default": "primary",
-      "enum": [
-        "danger",
-        "primary",
-        "progress",
-        "success"
-      ],
+      "enum": ["danger", "primary", "progress", "success"],
       "type": "string",
       "title": "type",
       "required": false
@@ -33,11 +29,7 @@
     {
       "description": "The time in milliseconds that the toast message should persist.",
       "default": 4000,
-      "enum": [
-        16000,
-        4000,
-        8000
-      ],
+      "enum": [16000, 4000, 8000],
       "type": "number",
       "title": "duration",
       "required": false

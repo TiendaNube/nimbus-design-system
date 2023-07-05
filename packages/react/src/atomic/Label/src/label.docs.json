@@ -4,6 +4,7 @@
   "totalProps": 3,
   "packageName": "@nimbus-ds/label",
   "version": "2.2.0",
+  "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/label",
   "props": [
     {
       "description": "The content of the label.",

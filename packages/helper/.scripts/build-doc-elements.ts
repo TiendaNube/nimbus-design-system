@@ -18,6 +18,7 @@ export class CopyDocs {
             id: dotCase(docSubComponent.name),
             packageName: document.packageName,
             version: document.version,
+            docLink: document.docLink,
             ...docSubComponent,
           };
           this.createDoc(newDoc);

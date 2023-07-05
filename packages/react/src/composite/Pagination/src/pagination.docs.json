@@ -4,6 +4,7 @@
   "totalProps": 4,
   "packageName": "@nimbus-ds/pagination",
   "version": "2.2.0",
+  "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/pagination",
   "props": [
     {
       "description": "The currently selected page.",

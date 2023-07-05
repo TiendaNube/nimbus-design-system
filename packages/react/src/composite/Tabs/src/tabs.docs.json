@@ -4,6 +4,7 @@
   "totalProps": 3,
   "packageName": "@nimbus-ds/tabs",
   "version": "2.2.0",
+  "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/tabs",
   "props": [
     {
       "description": "The content of the tabs.",

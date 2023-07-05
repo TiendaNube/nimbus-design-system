@@ -4,6 +4,7 @@
   "totalProps": 3,
   "packageName": "@nimbus-ds/toggle",
   "version": "2.2.0",
+  "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/toggle",
   "props": [
     {
       "description": "The name of the input element.",

@@ -1,7 +1,7 @@
 import nodePath from "path";
 import * as TJS from "typescript-json-schema";
 import { readFileSync, writeFileSync } from "fs";
-import { camelCase, pascalCase } from "change-case";
+import { camelCase, pascalCase, paramCase } from "change-case";
 import { defaultCompilerOptions, defaultSettings } from "./docgen.definitions";
 import { DocgenOptions, Prop, Doc, Paths } from "./docgen.types";
 
@@ -78,6 +78,7 @@ export class Docgen {
     const props = this.formatProps(schema, polymorphicProps);
     const packageName = this.getPackageName();
     const version = this.getVersion();
+    const docLink = this.generateDocLink();
     const subComponents = this.getSubComponents();
 
     const doc = {
@@ -86,6 +87,7 @@ export class Docgen {
       totalProps: props.length,
       packageName,
       version,
+      docLink,
       props,
       subComponents,
     };
@@ -162,6 +164,13 @@ export class Docgen {
 
   private getVersion(): string {
     return this.sourcePackage.match(/"version": "(.+)",/m)?.[1] ?? "";
+  }
+
+  private generateDocLink(): string {
+    const context = this.componentPath.split("/")?.[3] || "";
+    return `https://nimbus.nuvemshop.com.br/documentation/${context}-components/${paramCase(
+      this.componentId
+    )}`;
   }
 
   private getPolymorphicProps(): string[] {

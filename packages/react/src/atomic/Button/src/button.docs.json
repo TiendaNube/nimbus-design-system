@@ -4,16 +4,14 @@
   "totalProps": 4,
   "packageName": "@nimbus-ds/button",
   "version": "2.5.0",
+  "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/button",
   "props": [
     {
       "default": "button",
       "description": "The underlying element to render — either a HTML element name or a React component.",
       "anyOf": [
         {
-          "enum": [
-            "button",
-            "a"
-          ],
+          "enum": ["button", "a"],
           "type": "string"
         },
         {
@@ -32,12 +30,7 @@
     {
       "description": "Change the visual style of the button.",
       "default": "neutral",
-      "enum": [
-        "danger",
-        "neutral",
-        "primary",
-        "transparent"
-      ],
+      "enum": ["danger", "neutral", "primary", "transparent"],
       "type": "string",
       "title": "appearance",
       "required": false
