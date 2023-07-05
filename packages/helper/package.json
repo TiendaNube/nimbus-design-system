@@ -1,8 +1,9 @@
 {
   "name": "nimbus-helper",
-  "displayName": "@nimbus-ds/helper",
-  "description": "The Nimbus Helper extension is a powerful tool for developers working with VS Code. It is designed to streamline and enhance your workflow, offering advanced and customized features to maximize productivity.",
-  "version": "0.0.0",
+  "displayName": "Nimbus Helper",
+  "description": "The Nimbus Helper extension is a powerful tool for developers working with VS Code.",
+  "version": "1.0.0",
+  "publisher": "Nuvemshop",
   "icon": "./src/assets/nimbus-helper-logo.png",
   "engines": {
     "vscode": "^1.79.0"
@@ -15,10 +16,9 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/TiendaNube/nimbus-design-system.git"
+    "url": "https://github.com/TiendaNube/nimbus-design-system/blob/master/packages/helper/README.md"
   },
   "main": "./dist/extension.js",
-  "contributes": {},
   "scripts": {
     "vscode:prepublish": "yarn run build",
     "build": "yarn prepublish && yarn g:webpack ",

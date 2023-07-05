@@ -12,6 +12,7 @@ test-output.*
 .build-storybook
 .env
 .eslintcache
+*.vsix
 
 # Yarn 3 build artifacts
 ### yarn ###
