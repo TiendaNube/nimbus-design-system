@@ -9,6 +9,11 @@ import * as babelTraverse from "@babel/traverse";
 import { Document, DocumentProps } from "./types";
 
 export class HoverProvider implements vscode.HoverProvider {
+  private hovered = {
+    tag: "",
+    prop: "",
+  };
+
   public provideHover(
     document: vscode.TextDocument,
     position: vscode.Position
@@ -16,31 +21,25 @@ export class HoverProvider implements vscode.HoverProvider {
     const text = document.getText();
     const wordRange = document.getWordRangeAtPosition(position);
     const currentWord = wordRange ? document.getText(wordRange) : "";
-    const hovered = this.getHoveredElement(
-      document,
-      position,
-      text,
-      currentWord
-    );
+    this.getHoveredElement(document, position, text, currentWord);
+    const documentation = HoverProvider.getDocumentationFile(this.hovered.tag);
 
-    if (hovered.prop) {
-      const documentation = this.getDocumentationFile(hovered.tag);
-      if (documentation) {
+    if (this.isNimbusComponent(text) && documentation) {
+      if (this.hovered.prop) {
         const prop = documentation.props.find(
-          (docprop) => docprop.title === hovered.prop
+          (docprop) => docprop.title === this.hovered.prop
         );
         if (prop) {
-          const md = this.generateDocProps(prop, documentation.docLink);
+          const md = HoverProvider.generateDocProps(
+            prop,
+            documentation.docLink
+          );
           return new vscode.Hover(md, new vscode.Range(position, position));
         }
-      }
-    }
-
-    if (hovered.tag) {
-      const documentation = this.getDocumentationFile(hovered.tag);
-      if (documentation) {
-        const md = this.generateDocTag(documentation);
-        return new vscode.Hover(md, new vscode.Range(position, position));
+        if (this.hovered.tag) {
+          const md = HoverProvider.generateDocTag(documentation);
+          return new vscode.Hover(md, new vscode.Range(position, position));
+        }
       }
     }
 
@@ -49,7 +48,7 @@ export class HoverProvider implements vscode.HoverProvider {
     };
   }
 
-  private generateDocProps(
+  static generateDocProps(
     prop: DocumentProps,
     docLink: string
   ): vscode.MarkdownString {
@@ -58,16 +57,18 @@ export class HoverProvider implements vscode.HoverProvider {
         prop.required ? '<span style="color:#FF0000;">*</span>' : ""
       }</h3>`
     );
-    this.generateDocProp(content, prop);
-    content.appendMarkdown(`<p>${this.getLinkDoc(docLink)}</p>`);
+    HoverProvider.generateDocProp(content, prop);
+    content.appendMarkdown(`<p>${HoverProvider.getLinkDoc(docLink)}</p>`);
     content.supportHtml = true;
     content.isTrusted = true;
     return content;
   }
 
-  private generateDocTag(document: Document): vscode.MarkdownString {
+  static generateDocTag(document: Document): vscode.MarkdownString {
     const content = new vscode.MarkdownString(`<h1>${document.name}</h1>`);
-    content.appendMarkdown(`<p>${this.getLinkDoc(document.docLink)}</p>`);
+    content.appendMarkdown(
+      `<p>${HoverProvider.getLinkDoc(document.docLink)}</p>`
+    );
     document.props.forEach((prop) => {
       content.appendMarkdown(`<hr />`);
       content.appendMarkdown(
@@ -75,7 +76,7 @@ export class HoverProvider implements vscode.HoverProvider {
           prop.required ? '<span style="color:#FF0000;">*</span>' : ""
         }</h3>`
       );
-      this.generateDocProp(content, prop);
+      HoverProvider.generateDocProp(content, prop);
     });
 
     content.supportHtml = true;
@@ -83,10 +84,10 @@ export class HoverProvider implements vscode.HoverProvider {
     return content;
   }
 
-  private generateDocProp(content: vscode.MarkdownString, prop: DocumentProps) {
+  static generateDocProp(content: vscode.MarkdownString, prop: DocumentProps) {
     content.appendMarkdown(`<p>${prop.description}</p>`);
     content.appendMarkdown(`<ul>`);
-    this.formatTypes(content, prop);
+    HoverProvider.formatTypes(content, prop);
     content.appendMarkdown(`</ul>`);
   }
 
@@ -95,10 +96,7 @@ export class HoverProvider implements vscode.HoverProvider {
     position: vscode.Position,
     text: string,
     currentWord: string
-  ): {
-    tag: string;
-    prop: string;
-  } {
+  ) {
     const hovered = { tag: "", prop: "" };
     const ast = babelParser.parse(text, {
       sourceType: "module",
@@ -138,10 +136,10 @@ export class HoverProvider implements vscode.HoverProvider {
       },
     });
 
-    return hovered;
+    this.hovered = hovered;
   }
 
-  private formatTypes(
+  static formatTypes(
     content: vscode.MarkdownString,
     documentProp: DocumentProps
   ) {
@@ -177,11 +175,52 @@ export class HoverProvider implements vscode.HoverProvider {
     }
   }
 
-  private getLinkDoc(link: string): string {
+  private isNimbusComponent(text: string): boolean {
+    const { tag } = this.hovered;
+    const tagName = tag.split(".")?.[0] ?? tag;
+
+    const ast = babelParser.parse(text, {
+      sourceType: "module",
+      plugins: ["typescript", "jsx"],
+    });
+
+    const importComponent = {
+      tag: this.hovered.tag,
+      isNimbusComponent: false,
+    };
+
+    babelTraverse.default(ast, {
+      ImportDeclaration(declarationPath) {
+        const importDeclaration = declarationPath.node;
+        const importSource = importDeclaration.source.value as string;
+        if (importSource.startsWith("@nimbus-ds/")) {
+          const importedSpecifiers = importDeclaration.specifiers;
+          importedSpecifiers.forEach((specifier) => {
+            if (
+              specifier.type === "ImportSpecifier" &&
+              specifier.local.name === tagName
+            ) {
+              const importedComponentName = (
+                specifier.imported as { name: string }
+              ).name;
+              if (tag.indexOf(".") === -1) {
+                importComponent.tag = importedComponentName;
+              }
+              importComponent.isNimbusComponent = true;
+            }
+          });
+        }
+      },
+    });
+    this.hovered.tag = importComponent.tag;
+    return importComponent.isNimbusComponent;
+  }
+
+  static getLinkDoc(link: string): string {
     return `You can see the complete documentation by clicking <a href="${link}">here</a>.`;
   }
 
-  private getDocumentationFile(tag: string): Document | null {
+  static getDocumentationFile(tag: string): Document | null {
     const tagName = dotCase(tag);
     try {
       const content = fs.readFileSync(

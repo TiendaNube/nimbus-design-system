@@ -15,15 +15,13 @@ export class Docgen {
 
   private paths: Paths = { components: [], subComponents: [] };
 
-  private sourceComponent = "";
-
-  private sourcePackage = "";
-
-  private componentName = "";
-
-  private componentId = "";
-
-  private componentPath = "";
+  private component = {
+    id: "",
+    name: "",
+    path: "",
+    source: "",
+    sourcePackage: "",
+  };
 
   static defaultOptions = {
     settings: defaultSettings,
@@ -58,23 +56,23 @@ export class Docgen {
   }
 
   private createDoc(path: string): void {
-    this.componentName = this.getComponentName(path);
-    this.componentPath = this.getComponentPath(path);
-    this.componentId = this.getComponentId();
+    this.component.name = this.getComponentName(path);
+    this.component.path = this.getComponentPath(path);
+    this.component.id = this.getComponentId();
 
-    this.sourceComponent = this.getSource(
-      `${this.componentPath}/${this.componentName}.tsx`
+    this.component.source = this.getSource(
+      `${this.component.path}/${this.component.name}.tsx`
     );
 
-    this.sourcePackage = this.getSource(
-      `${this.componentPath.replace(
-        `${this.componentName}/src`,
-        this.componentName
+    this.component.sourcePackage = this.getSource(
+      `${this.component.path.replace(
+        `${this.component.name}/src`,
+        this.component.name
       )}/package.json`
     );
 
     const polymorphicProps = this.getPolymorphicProps();
-    const schema = this.getSchema(`${this.componentName}Properties`);
+    const schema = this.getSchema(`${this.component.name}Properties`);
     const props = this.formatProps(schema, polymorphicProps);
     const packageName = this.getPackageName();
     const version = this.getVersion();
@@ -82,8 +80,8 @@ export class Docgen {
     const subComponents = this.getSubComponents();
 
     const doc = {
-      id: this.componentId,
-      name: this.componentName,
+      id: this.component.id,
+      name: this.component.name,
       totalProps: props.length,
       packageName,
       version,
@@ -92,7 +90,7 @@ export class Docgen {
       subComponents,
     };
 
-    const dist = `${this.componentPath}/${this.componentId}.docs.json`;
+    const dist = `${this.component.path}/${this.component.id}.docs.json`;
     writeFileSync(dist, JSON.stringify(doc, null, 2));
     console.log(`created ${dist} ✅`);
   }
@@ -115,7 +113,8 @@ export class Docgen {
     );
 
     if (!!polymorphicProps?.length) {
-      const asDefault = this.sourceComponent.match(/As = "(\w+)",/m)?.[1] ?? "";
+      const asDefault =
+        this.component.source.match(/As = "(\w+)",/m)?.[1] ?? "";
 
       props.unshift({
         default: asDefault,
@@ -159,22 +158,22 @@ export class Docgen {
   }
 
   private getPackageName(): string {
-    return this.sourcePackage.match(/"name": "(.+)",/m)?.[1] ?? "";
+    return this.component.sourcePackage.match(/"name": "(.+)",/m)?.[1] ?? "";
   }
 
   private getVersion(): string {
-    return this.sourcePackage.match(/"version": "(.+)",/m)?.[1] ?? "";
+    return this.component.sourcePackage.match(/"version": "(.+)",/m)?.[1] ?? "";
   }
 
   private generateDocLink(): string {
-    const context = this.componentPath.split("/")?.[3] || "";
+    const context = this.component.path.split("/")?.[3] || "";
     return `https://nimbus.nuvemshop.com.br/documentation/${context}-components/${paramCase(
-      this.componentId
+      this.component.id
     )}`;
   }
 
   private getPolymorphicProps(): string[] {
-    const match = this.sourceComponent.match(
+    const match = this.component.source.match(
       /PolymorphicForwardRefComponent<(.+),.+> &$/m
     )?.[1];
 
@@ -182,12 +181,12 @@ export class Docgen {
   }
 
   private getComponentId(): string {
-    return camelCase(this.componentName);
+    return camelCase(this.component.name);
   }
 
   private getSubComponentsNames(): string[] {
     return Array.from(
-      this.sourceComponent.matchAll(/^\w+\.\w+\.displayName =\n?.+"(.+)";/gm),
+      this.component.source.matchAll(/^\w+\.\w+\.displayName =\n?.+"(.+)";/gm),
       (m) => m[1]
     );
   }
