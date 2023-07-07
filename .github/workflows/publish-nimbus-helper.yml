@@ -32,12 +32,6 @@ jobs:
       - name: Install gobal package @vscode/vsce
         run: npm install -g @vscode/vsce
 
-      - name: Build tokens
-        run: yarn build:tokens
-
-      - name: Build icons
-        run: yarn build:icons
-
       - name: Bump version package
         run: yarn bump:stable
 
