@@ -107,8 +107,8 @@ export class HoverProvider implements vscode.HoverProvider {
       JSXOpeningElement(elementPath) {
         const { start, end }: JSXOpeningElement = elementPath.node;
         const tagRange = new vscode.Range(
-          document.positionAt(start || 0),
-          document.positionAt(end || 0)
+          document.positionAt(start ?? 0),
+          document.positionAt(end ?? 0)
         );
         if (tagRange.contains(position)) {
           const { name, object, property } = elementPath.node.name as {
@@ -116,7 +116,7 @@ export class HoverProvider implements vscode.HoverProvider {
             object?: { name: string };
             property?: { name: string };
           };
-          hovered.tag = name || `${object?.name || ""}.${property?.name || ""}`;
+          hovered.tag = name ?? `${object?.name ?? ""}.${property?.name ?? ""}`;
         }
       },
       JSXAttribute(elementPath) {
@@ -124,7 +124,7 @@ export class HoverProvider implements vscode.HoverProvider {
           hovered.prop = currentWord;
         }
         const { name, value } = elementPath.node;
-        if (value && value.start && value.end) {
+        if (value?.start && value?.end) {
           const propValueRange = new vscode.Range(
             document.positionAt(value.start),
             document.positionAt(value.end)
@@ -192,7 +192,7 @@ export class HoverProvider implements vscode.HoverProvider {
     babelTraverse.default(ast, {
       ImportDeclaration(declarationPath) {
         const importDeclaration = declarationPath.node;
-        const importSource = importDeclaration.source.value as string;
+        const importSource = importDeclaration.source.value;
         if (importSource.startsWith("@nimbus-ds/")) {
           const importedSpecifiers = importDeclaration.specifiers;
           importedSpecifiers.forEach((specifier) => {

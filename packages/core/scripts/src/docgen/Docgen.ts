@@ -153,16 +153,19 @@ export class Docgen {
   }
 
   private getComponentName(path: string): string {
-    const fullPatch = path.match(/(\w+)\.types\.ts/gm)?.[0] ?? "";
+    const regex = RegExp("(\\w+)\\.types\\.ts", "gm");
+    const fullPatch = regex.exec(path)?.[0] ?? "";
     return pascalCase(fullPatch.replace(".types.ts", ""));
   }
 
   private getPackageName(): string {
-    return this.component.sourcePackage.match(/"name": "(.+)",/m)?.[1] ?? "";
+    const regex = RegExp('"name": "(.+)"', "m");
+    return regex.exec(this.component.sourcePackage)?.[1] ?? "";
   }
 
   private getVersion(): string {
-    return this.component.sourcePackage.match(/"version": "(.+)",/m)?.[1] ?? "";
+    const regex = RegExp('"version": "(.+)"', "m");
+    return regex.exec(this.component.sourcePackage)?.[1] ?? "";
   }
 
   private generateDocLink(): string {
@@ -173,10 +176,8 @@ export class Docgen {
   }
 
   private getPolymorphicProps(): string[] {
-    const match = this.component.source.match(
-      /PolymorphicForwardRefComponent<(.+),.+> &$/m
-    )?.[1];
-
+    const regex = RegExp("PolymorphicForwardRefComponent<(.+),.+> &$", "m");
+    const match = regex.exec(this.component.source)?.[1] ?? "";
     return match ? match.replace(/[" ]/gm, "").split("|") : [];
   }
 

@@ -34,7 +34,7 @@ try {
 
   if (!!nimbusHelper) {
     packageBuilder.triggerBuildGithubAction(
-      "https://api.github.com/repos/tiendanube/nimbus-design-system/actions/workflows/51785513/dispatches",
+      "https://api.github.com/repos/tiendanube/nimbus-design-system/actions/workflows/62481985/dispatches",
       { ref: "master" }
     );
   }
