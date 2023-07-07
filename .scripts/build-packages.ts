@@ -17,27 +17,27 @@ try {
 
   const packageBuilder = new PackageBuilder();
   const packagesToBuild = packageBuilder.getPackagesToBuild(paths[0]);
-  const removePackages = [
-    "nimbus-design-system",
-    "nimbus-helper",
-    "@nimbus-ds/webpack",
-  ];
-  const command = packageBuilder.getCommmandBuildNPM(
-    packagesToBuild,
-    removePackages
-  );
-  packageBuilder.execCommand(command);
-
   const nimbusHelper = packagesToBuild.find(
     (packageToBuild) => packageToBuild === "nimbus-helper"
   );
-
   if (!!nimbusHelper) {
     packageBuilder.triggerBuildGithubAction(
       "https://api.github.com/repos/tiendanube/nimbus-design-system/actions/workflows/62481985/dispatches",
       { ref: "master" }
     );
   }
+
+  const removePackages = [
+    "nimbus-design-system",
+    "nimbus-helper",
+    "@nimbus-ds/webpack",
+  ];
+
+  const command = packageBuilder.getCommmandBuildNPM(
+    packagesToBuild,
+    removePackages
+  );
+  packageBuilder.execCommand(command);
 } catch (err) {
   console.error(`\x1b[33m ${err.message} \x1b[0m`);
   process.exit(1);
