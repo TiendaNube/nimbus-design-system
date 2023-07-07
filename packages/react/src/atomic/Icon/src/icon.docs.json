@@ -47,7 +47,13 @@
     {
       "description": "The cursor property specifies the mouse cursor to be displayed when pointing over an element.",
       "default": "inherit",
-      "enum": ["auto", "grab", "inherit", "not-allowed", "pointer"],
+      "enum": [
+        "auto",
+        "grab",
+        "inherit",
+        "not-allowed",
+        "pointer"
+      ],
       "type": "string",
       "title": "cursor",
       "required": false

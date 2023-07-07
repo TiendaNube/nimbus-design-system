@@ -39,7 +39,10 @@
         {
           "description": "Type of html tag to create for the table cell.",
           "default": "td",
-          "enum": ["td", "th"],
+          "enum": [
+            "td",
+            "th"
+          ],
           "type": "string",
           "title": "as",
           "required": false
@@ -355,42 +358,74 @@
               "type": "object",
               "properties": {
                 "rest": {
-                  "enum": ["base", "none", "small"],
+                  "enum": [
+                    "base",
+                    "none",
+                    "small"
+                  ],
                   "type": "string",
                   "title": "rest"
                 },
                 "focus": {
-                  "enum": ["base", "none", "small"],
+                  "enum": [
+                    "base",
+                    "none",
+                    "small"
+                  ],
                   "type": "string",
                   "title": "focus"
                 },
                 "active": {
-                  "enum": ["base", "none", "small"],
+                  "enum": [
+                    "base",
+                    "none",
+                    "small"
+                  ],
                   "type": "string",
                   "title": "active"
                 },
                 "hover": {
-                  "enum": ["base", "none", "small"],
+                  "enum": [
+                    "base",
+                    "none",
+                    "small"
+                  ],
                   "type": "string",
                   "title": "hover"
                 },
                 "xs": {
-                  "enum": ["base", "none", "small"],
+                  "enum": [
+                    "base",
+                    "none",
+                    "small"
+                  ],
                   "type": "string",
                   "title": "xs"
                 },
                 "md": {
-                  "enum": ["base", "none", "small"],
+                  "enum": [
+                    "base",
+                    "none",
+                    "small"
+                  ],
                   "type": "string",
                   "title": "md"
                 },
                 "lg": {
-                  "enum": ["base", "none", "small"],
+                  "enum": [
+                    "base",
+                    "none",
+                    "small"
+                  ],
                   "type": "string",
                   "title": "lg"
                 },
                 "xl": {
-                  "enum": ["base", "none", "small"],
+                  "enum": [
+                    "base",
+                    "none",
+                    "small"
+                  ],
                   "type": "string",
                   "title": "xl"
                 }
@@ -408,7 +443,11 @@
               ]
             },
             {
-              "enum": ["base", "none", "small"],
+              "enum": [
+                "base",
+                "none",
+                "small"
+              ],
               "type": "string"
             }
           ],
@@ -762,42 +801,74 @@
               "type": "object",
               "properties": {
                 "rest": {
-                  "enum": ["base", "none", "small"],
+                  "enum": [
+                    "base",
+                    "none",
+                    "small"
+                  ],
                   "type": "string",
                   "title": "rest"
                 },
                 "focus": {
-                  "enum": ["base", "none", "small"],
+                  "enum": [
+                    "base",
+                    "none",
+                    "small"
+                  ],
                   "type": "string",
                   "title": "focus"
                 },
                 "active": {
-                  "enum": ["base", "none", "small"],
+                  "enum": [
+                    "base",
+                    "none",
+                    "small"
+                  ],
                   "type": "string",
                   "title": "active"
                 },
                 "hover": {
-                  "enum": ["base", "none", "small"],
+                  "enum": [
+                    "base",
+                    "none",
+                    "small"
+                  ],
                   "type": "string",
                   "title": "hover"
                 },
                 "xs": {
-                  "enum": ["base", "none", "small"],
+                  "enum": [
+                    "base",
+                    "none",
+                    "small"
+                  ],
                   "type": "string",
                   "title": "xs"
                 },
                 "md": {
-                  "enum": ["base", "none", "small"],
+                  "enum": [
+                    "base",
+                    "none",
+                    "small"
+                  ],
                   "type": "string",
                   "title": "md"
                 },
                 "lg": {
-                  "enum": ["base", "none", "small"],
+                  "enum": [
+                    "base",
+                    "none",
+                    "small"
+                  ],
                   "type": "string",
                   "title": "lg"
                 },
                 "xl": {
-                  "enum": ["base", "none", "small"],
+                  "enum": [
+                    "base",
+                    "none",
+                    "small"
+                  ],
                   "type": "string",
                   "title": "xl"
                 }
@@ -815,7 +886,11 @@
               ]
             },
             {
-              "enum": ["base", "none", "small"],
+              "enum": [
+                "base",
+                "none",
+                "small"
+              ],
               "type": "string"
             }
           ],

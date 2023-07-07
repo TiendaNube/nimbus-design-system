@@ -9,7 +9,12 @@
     {
       "description": "Change the visual style of the input.",
       "default": "neutral",
-      "enum": ["danger", "neutral", "success", "warning"],
+      "enum": [
+        "danger",
+        "neutral",
+        "success",
+        "warning"
+      ],
       "type": "string",
       "title": "appearance",
       "required": false
@@ -23,7 +28,10 @@
     {
       "description": "Sent icon display position",
       "default": "start",
-      "enum": ["end", "start"],
+      "enum": [
+        "end",
+        "start"
+      ],
       "type": "string",
       "title": "appendPosition",
       "required": false
@@ -49,7 +57,12 @@
         {
           "description": "Change the visual style of the input.",
           "default": "neutral",
-          "enum": ["danger", "neutral", "success", "warning"],
+          "enum": [
+            "danger",
+            "neutral",
+            "success",
+            "warning"
+          ],
           "type": "string",
           "title": "appearance",
           "required": false
@@ -69,7 +82,12 @@
         {
           "description": "Change the visual style of the input.",
           "default": "neutral",
-          "enum": ["danger", "neutral", "success", "warning"],
+          "enum": [
+            "danger",
+            "neutral",
+            "success",
+            "warning"
+          ],
           "type": "string",
           "title": "appearance",
           "required": false
