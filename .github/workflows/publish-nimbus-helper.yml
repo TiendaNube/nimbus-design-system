@@ -38,6 +38,9 @@ jobs:
       - name: Build icons
         run: yarn build:icons
 
+      - name: Bump version package
+        run: yarn bump:stable
+
       - name: Publish extension in the marketplace
         working-directory: ./packages/helper
         run: vsce publish

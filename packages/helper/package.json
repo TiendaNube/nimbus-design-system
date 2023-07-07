@@ -21,7 +21,7 @@
   "main": "./dist/extension.js",
   "scripts": {
     "vscode:prepublish": "yarn run build",
-    "build": "yarn prepublish && yarn g:webpack ",
+    "build": "yarn prepublish && yarn g:webpack",
     "build:docs": "yarn workspace nimbus-design-system run build:docs",
     "build:elements": "babel-node -x .ts ./.scripts/build-doc-elements",
     "prepublish": "yarn build:docs && yarn build:elements",
