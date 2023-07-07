@@ -4,6 +4,7 @@
   "totalProps": 3,
   "packageName": "@nimbus-ds/card",
   "version": "3.1.0",
+  "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/card",
   "props": [
     {
       "description": "The content of the card.",
@@ -14,11 +15,7 @@
     {
       "description": "The padding properties are used to generate space around an card's content area.",
       "default": "base",
-      "enum": [
-        "base",
-        "none",
-        "small"
-      ],
+      "enum": ["base", "none", "small"],
       "type": "string",
       "title": "padding",
       "required": false
@@ -58,11 +55,7 @@
         {
           "description": "The padding properties are used to generate space around an card's body content area.",
           "default": "none",
-          "enum": [
-            "base",
-            "none",
-            "small"
-          ],
+          "enum": ["base", "none", "small"],
           "type": "string",
           "title": "padding",
           "required": false
@@ -82,11 +75,7 @@
         {
           "description": "The padding properties are used to generate space around an card's footer content area.",
           "default": "none",
-          "enum": [
-            "base",
-            "none",
-            "small"
-          ],
+          "enum": ["base", "none", "small"],
           "type": "string",
           "title": "padding",
           "required": false
@@ -112,11 +101,7 @@
         {
           "description": "The padding properties are used to generate space around an card's header content area.",
           "default": "none",
-          "enum": [
-            "base",
-            "none",
-            "small"
-          ],
+          "enum": ["base", "none", "small"],
           "type": "string",
           "title": "padding",
           "required": false

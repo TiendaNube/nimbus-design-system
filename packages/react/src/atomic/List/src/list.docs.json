@@ -4,6 +4,7 @@
   "totalProps": 2,
   "packageName": "@nimbus-ds/list",
   "version": "2.2.0",
+  "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/list",
   "props": [
     {
       "description": "The content of the list.",
@@ -14,10 +15,7 @@
     {
       "description": "Determines the type of html list that will be rendered",
       "default": "ul",
-      "enum": [
-        "ol",
-        "ul"
-      ],
+      "enum": ["ol", "ul"],
       "type": "string",
       "title": "as",
       "required": false

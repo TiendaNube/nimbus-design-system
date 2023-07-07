@@ -4,6 +4,7 @@
   "totalProps": 2,
   "packageName": "@nimbus-ds/tag",
   "version": "2.3.0",
+  "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/tag",
   "props": [
     {
       "description": "The content of the tag.",
@@ -14,13 +15,7 @@
     {
       "description": "Change the visual style of the tag.",
       "default": "neutral",
-      "enum": [
-        "danger",
-        "neutral",
-        "primary",
-        "success",
-        "warning"
-      ],
+      "enum": ["danger", "neutral", "primary", "success", "warning"],
       "type": "string",
       "title": "appearance",
       "required": false

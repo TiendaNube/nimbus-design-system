@@ -4,6 +4,7 @@
   "totalProps": 6,
   "packageName": "@nimbus-ds/modal",
   "version": "1.4.0",
+  "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/modal",
   "props": [
     {
       "description": "The content of the modal.",
@@ -32,11 +33,7 @@
     {
       "description": "The padding properties are used to generate space around an modal's content area.",
       "default": "base",
-      "enum": [
-        "base",
-        "none",
-        "small"
-      ],
+      "enum": ["base", "none", "small"],
       "type": "string",
       "title": "padding",
       "required": false
@@ -66,12 +63,7 @@
             }
           },
           "additionalProperties": false,
-          "propertyOrder": [
-            "xs",
-            "md",
-            "lg",
-            "xl"
-          ]
+          "propertyOrder": ["xs", "md", "lg", "xl"]
         },
         {
           "type": "string"
@@ -95,11 +87,7 @@
         {
           "description": "The padding properties are used to generate space around an modal's body content area.",
           "default": "none",
-          "enum": [
-            "base",
-            "none",
-            "small"
-          ],
+          "enum": ["base", "none", "small"],
           "type": "string",
           "title": "padding",
           "required": false
@@ -119,11 +107,7 @@
         {
           "description": "The padding properties are used to generate space around an modal's footer content area.",
           "default": "none",
-          "enum": [
-            "base",
-            "none",
-            "small"
-          ],
+          "enum": ["base", "none", "small"],
           "type": "string",
           "title": "padding",
           "required": false
@@ -149,11 +133,7 @@
         {
           "description": "The padding properties are used to generate space around an modal's header content area.",
           "default": "none",
-          "enum": [
-            "base",
-            "none",
-            "small"
-          ],
+          "enum": ["base", "none", "small"],
           "type": "string",
           "title": "padding",
           "required": false

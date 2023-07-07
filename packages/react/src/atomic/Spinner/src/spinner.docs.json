@@ -4,17 +4,14 @@
   "totalProps": 2,
   "packageName": "@nimbus-ds/spinner",
   "version": "3.0.0",
+  "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/spinner",
   "props": [
     {
       "description": "Sets the width and height of the spinner.",
       "default": "large",
       "anyOf": [
         {
-          "enum": [
-            "large",
-            "medium",
-            "small"
-          ],
+          "enum": ["large", "medium", "small"],
           "type": "string"
         },
         {

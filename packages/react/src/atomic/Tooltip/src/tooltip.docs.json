@@ -4,6 +4,7 @@
   "totalProps": 3,
   "packageName": "@nimbus-ds/tooltip",
   "version": "2.2.1",
+  "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/tooltip",
   "props": [
     {
       "description": "An HTML element, or a function that returns one. It's used to set the position of the tooltip.",
@@ -20,12 +21,7 @@
     {
       "description": "Position of the popover.",
       "default": "bottom",
-      "enum": [
-        "bottom",
-        "left",
-        "right",
-        "top"
-      ],
+      "enum": ["bottom", "left", "right", "top"],
       "type": "string",
       "title": "position",
       "required": false

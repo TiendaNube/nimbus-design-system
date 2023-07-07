@@ -4,6 +4,7 @@
   "totalProps": 4,
   "packageName": "@nimbus-ds/select",
   "version": "2.3.2",
+  "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/select",
   "props": [
     {
       "description": "The name of the wrapper element or the select element when native.",
@@ -26,12 +27,7 @@
     {
       "description": "Change the visual style of the select.",
       "default": "neutral",
-      "enum": [
-        "danger",
-        "neutral",
-        "success",
-        "warning"
-      ],
+      "enum": ["danger", "neutral", "success", "warning"],
       "type": "string",
       "title": "appearance",
       "required": false

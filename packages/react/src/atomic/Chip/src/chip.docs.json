@@ -4,6 +4,7 @@
   "totalProps": 3,
   "packageName": "@nimbus-ds/chip",
   "version": "2.3.0",
+  "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/chip",
   "props": [
     {
       "description": "Text to be displayed on chip.",

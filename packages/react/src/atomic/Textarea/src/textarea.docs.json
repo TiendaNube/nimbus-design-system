@@ -4,16 +4,12 @@
   "totalProps": 3,
   "packageName": "@nimbus-ds/textarea",
   "version": "2.1.0",
+  "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/textarea",
   "props": [
     {
       "description": "Change the visual style of the textarea.",
       "default": "neutral",
-      "enum": [
-        "danger",
-        "neutral",
-        "success",
-        "warning"
-      ],
+      "enum": ["danger", "neutral", "success", "warning"],
       "type": "string",
       "title": "appearance",
       "required": false

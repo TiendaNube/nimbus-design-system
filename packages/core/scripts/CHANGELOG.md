@@ -2,6 +2,12 @@
 
 This package is intended for internal use in generating custom script builds at design system build time.
 
+## 2023-07-07 `1.7.0`
+
+#### 🎉 New features
+
+- Added new script to run builds on npm packages and github actions. ([#172](https://github.com/TiendaNube/nimbus-design-system/pull/172) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-05-24 `1.3.0`
 
 #### 🎉 New features
