@@ -39,9 +39,11 @@ jobs:
         run: yarn
 
       - name: Create .env file
-        uses: ozaytsev86/create-env-file@v1
+        uses: DeveloperRic/action-create-env@v1.0.2
         with:
-          INPUT_ENV_GITHUB_TOKEN: ${{ secrets.PAT_CHANGE_BRANCH_PROTECTION_RULES_FROM_JUNIOR_CONQUISTA }}
+          full_text: |
+            GITHUB_TOKEN=${{ secrets.PAT_CHANGE_BRANCH_PROTECTION_RULES_FROM_JUNIOR_CONQUISTA }}
+          include_env_vars: true
 
       - name: Publish packages
         run: |
