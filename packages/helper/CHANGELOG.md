@@ -2,6 +2,12 @@
 
 The Nimbus Helper extension is a powerful tool for developers working with VS Code. It is designed to streamline and enhance your workflow, offering advanced and customized features to maximize productivity.
 
+## 2023-07-07 `1.0.4`
+
+#### 🐛 Bug fixes
+
+- Fixed bug where documentation was displayed only on hover properties and not tags. ([#172](https://github.com/TiendaNube/nimbus-design-system/pull/172) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-07-07 `1.0.3`
 
 #### 🐛 Bug fixes

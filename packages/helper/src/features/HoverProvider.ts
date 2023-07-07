@@ -22,19 +22,23 @@ export class HoverProvider implements vscode.HoverProvider {
     const wordRange = document.getWordRangeAtPosition(position);
     const currentWord = wordRange ? document.getText(wordRange) : "";
     this.getHoveredElement(document, position, text, currentWord);
-    const documentation = HoverProvider.getDocumentationFile(this.hovered.tag);
 
-    if (this.isNimbusComponent(text) && documentation) {
-      if (this.hovered.prop) {
-        const prop = documentation.props.find(
-          (docprop) => docprop.title === this.hovered.prop
-        );
-        if (prop) {
-          const md = HoverProvider.generateDocProps(
-            prop,
-            documentation.docLink
+    if (this.isNimbusComponent(text)) {
+      const documentation = HoverProvider.getDocumentationFile(
+        this.hovered.tag
+      );
+      if (documentation) {
+        if (this.hovered.prop) {
+          const prop = documentation.props.find(
+            (docprop) => docprop.title === this.hovered.prop
           );
-          return new vscode.Hover(md, new vscode.Range(position, position));
+          if (prop) {
+            const md = HoverProvider.generateDocProps(
+              prop,
+              documentation.docLink
+            );
+            return new vscode.Hover(md, new vscode.Range(position, position));
+          }
         }
         if (this.hovered.tag) {
           const md = HoverProvider.generateDocTag(documentation);

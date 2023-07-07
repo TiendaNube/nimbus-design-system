@@ -2,7 +2,7 @@
   "name": "nimbus-helper",
   "displayName": "Nimbus Helper",
   "description": "The Nimbus Helper extension is a powerful tool for developers working with VS Code.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "publisher": "Nuvemshop",
   "icon": "./src/assets/nimbus-helper-logo.png",
   "engines": {
