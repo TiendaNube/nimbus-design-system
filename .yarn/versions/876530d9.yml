@@ -1,9 +1,10 @@
 releases:
   "@nimbus-ds/scripts": minor
-  nimbus-helper: major
+  nimbus-helper: patch
 
 declined:
   - nimbus-design-system
+  - "@nimbus-ds/webpack"
   - "@nimbus-ds/badge"
   - "@nimbus-ds/box"
   - "@nimbus-ds/button"

@@ -211,5 +211,3 @@ export class Docgen {
     return subComponents;
   }
 }
-
-export const docgen = new Docgen();

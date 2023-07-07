@@ -3696,7 +3696,6 @@ __metadata:
     "@vanilla-extract/webpack-plugin": ^2.2.0
     css-minimizer-webpack-plugin: ^4.2.2
     dashify: ^2.0.0
-    dotenv: ^16.0.3
     mini-css-extract-plugin: ^2.7.2
     terser-webpack-plugin: ^5.3.6
     typescript: ^4.9.3
@@ -8877,10 +8876,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dotenv@npm:^16.0.0, dotenv@npm:^16.0.3":
+"dotenv@npm:^16.0.0":
   version: 16.1.3
   resolution: "dotenv@npm:16.1.3"
   checksum: 8f73bae720161cf365b679de162fe79a05f5b7a21d0d2b8bf9fb0601a2ed30f7e9dc49fa8b752d93206e4b7d427eccea2f383a1622cd5da4a1824f43bf8f780b
+  languageName: node
+  linkType: hard
+
+"dotenv@npm:^16.3.1":
+  version: 16.3.1
+  resolution: "dotenv@npm:16.3.1"
+  checksum: 15d75e7279018f4bafd0ee9706593dd14455ddb71b3bcba9c52574460b7ccaf67d5cf8b2c08a5af1a9da6db36c956a04a1192b101ee102a3e0cf8817bbcf3dfd
   languageName: node
   linkType: hard
 
@@ -14288,6 +14294,7 @@ __metadata:
     babel-loader: ^8.2.5
     babel-plugin-module-resolver: ^5.0.0
     child_process: ^1.0.2
+    dotenv: ^16.3.1
     dts-bundle-generator: ^7.1.0
     eslint: ^8.19.0
     eslint-config-airbnb: ^19.0.4
@@ -14313,6 +14320,7 @@ __metadata:
     jsdom: ^20.0.0
     lint-staged: ^13.0.3
     mini-css-extract-plugin: ^2.7.2
+    node-fetch: 2
     prettier: ^2.7.1
     react: ^18.2.0
     react-dom: ^18.2.0
@@ -14383,6 +14391,20 @@ __metadata:
   version: 1.1.1
   resolution: "node-fetch-native@npm:1.1.1"
   checksum: 41fe59179eb94b6ffb25e657e5ed14b4b50e2ba7f6bf5346622970638c8abbf29653b011141c919c6c081979962edd1eb94424a7621412cd78c47a9cd8be1227
+  languageName: node
+  linkType: hard
+
+"node-fetch@npm:2":
+  version: 2.6.12
+  resolution: "node-fetch@npm:2.6.12"
+  dependencies:
+    whatwg-url: ^5.0.0
+  peerDependencies:
+    encoding: ^0.1.0
+  peerDependenciesMeta:
+    encoding:
+      optional: true
+  checksum: 3bc1655203d47ee8e313c0d96664b9673a3d4dd8002740318e9d27d14ef306693a4b2ef8d6525775056fd912a19e23f3ac0d7111ad8925877b7567b29a625592
   languageName: node
   linkType: hard
 
