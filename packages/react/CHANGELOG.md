@@ -2,6 +2,16 @@
 
 Nimbus is an open-source Design System created by Tiendanube / Nuvesmhop’s team to empower and enhance more stories every day, with simplicity, accessibility, consistency and performance.
 
+## 2023-07-11 `5.1.1`
+
+#### 🐛 Bug fixes
+
+- Adding extra right padding to the modal title to prevent the title from getting overlaid by the close button. ([#179](https://github.com/TiendaNube/nimbus-design-system/pull/179) by [@juniorconquista](https://github.com/juniorconquista))
+
+#### 📚 3rd party library updates
+
+- Updated `@floating-ui/react@0.24.6`. ([#179](https://github.com/TiendaNube/nimbus-design-system/pull/179) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-06-13 `5.1.0`
 
 ### 🎉 New features
