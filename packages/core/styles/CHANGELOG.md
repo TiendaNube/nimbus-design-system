@@ -2,13 +2,17 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
-## 2023-06-13 `9.2.0`
+## 2023-06-13 `9.1.1`
+
+#### 🐛 Bug fixes
+
+- Adding extra right padding to the modal title to prevent the title from getting overlaid by the close button. ([#179](https://github.com/TiendaNube/nimbus-design-system/pull/179) by [@juniorconquista](https://github.com/juniorconquista))
+
+## 2023-06-13 `9.1.0`
 
 #### 🎉 New features
 
 - Added new wordbreak prop in Text component style pack. ([#169](https://github.com/TiendaNube/nimbus-design-system/pull/169) by [@juniorconquista](https://github.com/juniorconquista))
-
-## 2023-06-13 `9.1.0`
 
 #### 💡 Others
 
