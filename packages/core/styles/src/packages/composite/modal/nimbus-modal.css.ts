@@ -133,9 +133,9 @@ export const modalSprinkle = {
 
 const modalHeaderProperties = {
   padding: {
-    base: `${varsThemeBase.spacing[4]} ${varsThemeBase.spacing[4]} 0 ${varsThemeBase.spacing[4]}`,
-    small: `${varsThemeBase.spacing[2]} ${varsThemeBase.spacing[2]} 0 ${varsThemeBase.spacing[2]}`,
-    none: "0",
+    base: `${varsThemeBase.spacing[4]} ${varsThemeBase.spacing[8]} 0 ${varsThemeBase.spacing[4]}`,
+    small: `${varsThemeBase.spacing[2]} ${varsThemeBase.spacing[8]} 0 ${varsThemeBase.spacing[2]}`,
+    none: `0 ${varsThemeBase.spacing[8]} 0 0`,
   },
 };
 
