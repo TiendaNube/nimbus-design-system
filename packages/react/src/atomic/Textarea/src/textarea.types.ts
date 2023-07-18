@@ -22,5 +22,5 @@ export interface TextareaProperties {
   id: string;
 }
 
-export type TextareaProps = TextareaProperties &
+export type TextareaBaseProps = TextareaProperties &
   TextareaHTMLAttributes<HTMLTextAreaElement>;

@@ -28,5 +28,5 @@ export interface SelectProperties {
   appearance?: "success" | "warning" | "danger" | "neutral";
 }
 
-export type SelectProps = SelectProperties &
+export type SelectBaseProps = SelectProperties &
   SelectHTMLAttributes<HTMLSelectElement>;

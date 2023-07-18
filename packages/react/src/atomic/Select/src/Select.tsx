@@ -1,34 +1,49 @@
-import React from "react";
+import React, {
+  forwardRef,
+  ForwardRefExoticComponent,
+  ComponentPropsWithRef,
+} from "react";
 import { select } from "@nimbus-ds/styles";
 import { Icon } from "@nimbus-ds/icon";
 import { ChevronDownIcon } from "@nimbus-ds/icons";
 
-import { SelectComponents, SelectProps } from "./select.types";
+import { SelectComponents, SelectBaseProps } from "./select.types";
 import { SelectGroup, SelectOption, SelectSkeleton } from "./components";
 
-const Select: React.FC<SelectProps> & SelectComponents = ({
-  className: _className,
-  style: _style,
-  name,
-  id,
-  children,
-  appearance = "neutral",
-  ...rest
-}: SelectProps) => (
-  <div className={select.classnames.container}>
-    <div className={select.classnames.container__icon}>
-      <Icon source={<ChevronDownIcon />} color="primary-textHigh" />
+const Select = forwardRef<HTMLSelectElement, SelectBaseProps>(
+  (
+    {
+      className: _className,
+      style: _style,
+      name,
+      id,
+      children,
+      appearance = "neutral",
+      ...rest
+    },
+    ref
+  ) => (
+    <div className={select.classnames.container}>
+      <div className={select.classnames.container__icon}>
+        <Icon source={<ChevronDownIcon />} color="primary-textHigh" />
+      </div>
+      <select
+        {...rest}
+        ref={ref}
+        id={id}
+        name={name}
+        className={select.classnames.appearance[appearance]}
+      >
+        {children}
+      </select>
     </div>
-    <select
-      {...rest}
-      id={id}
-      name={name}
-      className={select.classnames.appearance[appearance]}
-    >
-      {children}
-    </select>
-  </div>
-);
+  )
+) as ForwardRefExoticComponent<
+  SelectBaseProps &
+    React.InputHTMLAttributes<HTMLSelectElement> &
+    React.RefAttributes<HTMLSelectElement>
+> &
+  SelectComponents;
 
 Select.Group = SelectGroup;
 Select.Option = SelectOption;
@@ -38,4 +53,5 @@ Select.Group.displayName = "Select.Group";
 Select.Option.displayName = "Select.Option";
 Select.Skeleton.displayName = "Select.Skeleton";
 
+export type SelectProps = ComponentPropsWithRef<typeof Select>;
 export { Select };

@@ -2,6 +2,12 @@
 
 The Textarea component allows the user to enter or edit information in long text format.
 
+## 2023-07-18 `2.2.0`
+
+#### 🎉 New features
+
+- Added `ref` property to `Textarea` component API. ([#180](https://github.com/TiendaNube/nimbus-design-system/pull/180) by [@juniorconquista](https://github.com/juniorconquista)).
+
 ## 2023-02-23 `2.1.0`
 
 ### 🎉 New features
