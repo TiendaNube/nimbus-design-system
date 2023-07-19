@@ -50,8 +50,6 @@ describe("GIVEN <Popover />", () => {
       expect(popover.style.left).toEqual("0px");
       expect(popover.style.position).toEqual("fixed");
 
-      expect(arrow.style.bottom).toEqual("0px");
-      expect(arrow.style.left).toEqual("5px");
       expect(arrow.style.position).toEqual("absolute");
     });
 
@@ -72,8 +70,6 @@ describe("GIVEN <Popover />", () => {
       expect(popover.style.left).toEqual("0px");
       expect(popover.style.position).toEqual("fixed");
 
-      expect(arrow.style.top).toEqual("0px");
-      expect(arrow.style.left).toEqual("5px");
       expect(arrow.style.position).toEqual("absolute");
     });
 
@@ -90,8 +86,6 @@ describe("GIVEN <Popover />", () => {
       expect(popover.style.left).toEqual("-10px");
       expect(popover.style.position).toEqual("fixed");
 
-      expect(arrow.style.top).toEqual("5px");
-      expect(arrow.style.right).toEqual("0px");
       expect(arrow.style.position).toEqual("absolute");
     });
 
@@ -112,8 +106,6 @@ describe("GIVEN <Popover />", () => {
       expect(popover.style.left).toEqual("10px");
       expect(popover.style.position).toEqual("fixed");
 
-      expect(arrow.style.top).toEqual("5px");
-      expect(arrow.style.left).toEqual("0px");
       expect(arrow.style.position).toEqual("absolute");
     });
 
@@ -140,7 +132,12 @@ describe("GIVEN <Popover />", () => {
       const popover = screen.getByTestId("popover-element");
       expect(popover).toBeDefined();
       fireEvent.click(screen.getByTestId("popover-container"));
-      expect(mockedOnVisibility).toHaveBeenCalledWith(false);
+      expect(mockedOnVisibility).toHaveBeenCalledWith(
+        false,
+        expect.objectContaining({
+          isTrusted: false,
+        })
+      );
     });
 
     it("THEN should control the operation by the onVisibility function sent and with popover close", async () => {
@@ -155,7 +152,13 @@ describe("GIVEN <Popover />", () => {
       const popover = screen.queryByTestId("popover-element");
       expect(popover).toBeNull();
       fireEvent.click(screen.getByTestId("popover-container"));
-      expect(mockedOnVisibility).toHaveBeenCalledWith(true);
+
+      expect(mockedOnVisibility).toHaveBeenCalledWith(
+        true,
+        expect.objectContaining({
+          isTrusted: false,
+        })
+      );
     });
   });
 

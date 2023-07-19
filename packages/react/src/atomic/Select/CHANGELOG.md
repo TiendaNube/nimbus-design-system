@@ -2,6 +2,12 @@
 
 Use a select box when a user needs to select one option from a list.
 
+## 2023-07-18 `2.4.0`
+
+#### 🎉 New features
+
+- Added `ref` property to `Select` component API. ([#180](https://github.com/TiendaNube/nimbus-design-system/pull/180) by [@juniorconquista](https://github.com/juniorconquista)).
+
 ## 2023-04-03 `2.3.2`
 
 ### 🐛 Bug fixes

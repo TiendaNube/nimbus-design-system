@@ -2,6 +2,12 @@
 
 The Modal component allows us to call the user's attention to a floating box that can have text, actions or forms to perform tasks by changing the focus from the background. It is an intrusive component as it interrupts the user's operation to present a message or content.
 
+## 2023-07-11 `1.4.1`
+
+### 🐛 Bug fixes
+
+- Adding extra right padding to the modal title to prevent the title from getting overlaid by the close button. ([#179](https://github.com/TiendaNube/nimbus-design-system/pull/179) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-06-13 `1.4.0`
 
 #### 🎉 New features
