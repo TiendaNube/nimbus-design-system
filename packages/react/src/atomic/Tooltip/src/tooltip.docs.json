@@ -1,10 +1,36 @@
 {
   "id": "tooltip",
   "name": "Tooltip",
-  "totalProps": 0,
+  "totalProps": 3,
   "packageName": "@nimbus-ds/tooltip",
   "version": "2.3.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/tooltip",
-  "props": [],
+  "props": [
+    {
+      "description": "An HTML element, or a function that returns one. It's used to set the position of the tooltip.",
+      "type": "React.ReactNode",
+      "title": "children",
+      "required": true
+    },
+    {
+      "description": "The text that should appear in the tooltip message.",
+      "type": "string",
+      "title": "content",
+      "required": true
+    },
+    {
+      "description": "Position of the popover.",
+      "default": "bottom",
+      "enum": [
+        "bottom",
+        "left",
+        "right",
+        "top"
+      ],
+      "type": "string",
+      "title": "position",
+      "required": false
+    }
+  ],
   "subComponents": []
 }
