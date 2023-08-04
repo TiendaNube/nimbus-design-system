@@ -37,12 +37,11 @@ export class NimbusDependenciesChecker {
     const dependencies: Dependencies = {};
     const dependencyKeys = Object.keys(packageJSON.dependencies);
 
-    dependencyKeys.reduce((acc, dependency) => {
-      if (dependency.startsWith("@nimbus-ds")) {
-        acc[dependency] = packageJSON.dependencies[dependency];
-      }
-      return acc;
-    }, dependencies);
+    dependencyKeys
+      .filter((dependency) => dependency.startsWith("@nimbus-ds"))
+      .forEach((dependency) => {
+        dependencies[dependency] = packageJSON.dependencies[dependency];
+      });
 
     return dependencies;
   }
