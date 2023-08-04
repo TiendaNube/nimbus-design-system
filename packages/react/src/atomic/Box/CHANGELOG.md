@@ -6,10 +6,10 @@ A low-level utility component that accepts styled system props to enable custom 
 
 #### 🎉 New features
 
-- Added `fontSize` property to the Component `Box` API. ([#183](https://github.com/TiendaNube/nimbus-design-system/pull/183) by [@juniorconquista](https://github.com/juniorconquista))
-- Added `fontWeight` property to the Component `Box` API. ([#183](https://github.com/TiendaNube/nimbus-design-system/pull/183) by [@juniorconquista](https://github.com/juniorconquista))
-- Added `lineHeight` property to the Component `Box` API. ([#183](https://github.com/TiendaNube/nimbus-design-system/pull/183) by [@juniorconquista](https://github.com/juniorconquista))
-- Added `textAlign` property to the Component `Box` API. ([#183](https://github.com/TiendaNube/nimbus-design-system/pull/183) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `fontSize` property to the Component `Box` API. ([#184](https://github.com/TiendaNube/nimbus-design-system/pull/184) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `fontWeight` property to the Component `Box` API. ([#184](https://github.com/TiendaNube/nimbus-design-system/pull/184) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `lineHeight` property to the Component `Box` API. ([#184](https://github.com/TiendaNube/nimbus-design-system/pull/184) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `textAlign` property to the Component `Box` API. ([#184](https://github.com/TiendaNube/nimbus-design-system/pull/184) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2023-05-18 `4.0.0`
 

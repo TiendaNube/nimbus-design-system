@@ -6,8 +6,8 @@ The Nimbus Helper extension is a powerful tool for developers working with VS Co
 
 ### 🎉 New features
 
-- Added new feature that checks outdated Nimbus dependencies when opening project. ([#183](https://github.com/TiendaNube/nimbus-design-system/pull/183) by [@juniorconquista](https://github.com/juniorconquista))
-- Added new `Check for updates to nimbus packages` command that checks for outdated Nimbus dependencies . ([#183](https://github.com/TiendaNube/nimbus-design-system/pull/183) by [@juniorconquista](https://github.com/juniorconquista))
+- Added new feature that checks outdated Nimbus dependencies when opening project. ([#184](https://github.com/TiendaNube/nimbus-design-system/pull/184) by [@juniorconquista](https://github.com/juniorconquista))
+- Added new `Check for updates to nimbus packages` command that checks for outdated Nimbus dependencies . ([#184](https://github.com/TiendaNube/nimbus-design-system/pull/184) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2023-07-07 `1.0.4`
 
