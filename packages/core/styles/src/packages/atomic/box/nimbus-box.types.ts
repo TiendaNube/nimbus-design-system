@@ -14,6 +14,7 @@ import {
   PointerEvents,
   TransitionTiming,
   TextDecoration,
+  TextAlign,
 } from "../../../types";
 import { boxSprinkle } from "./nimbus-box.css";
 
@@ -32,6 +33,9 @@ type BoxGridGapProperties = keyof typeof propertiesBox.gridGap;
 type BoxZIndexProperties = keyof typeof propertiesBox.zIndex;
 type BoxTransitionDurationProperties =
   keyof typeof propertiesBox.transitionDuration;
+type BoxFontSizeProperties = keyof typeof propertiesBox.fontSize;
+type BoxFontWeightProperties = keyof typeof propertiesBox.fontWeight;
+type BoxLineHeightProperties = keyof typeof propertiesBox.lineHeight;
 
 interface BoxConditions<T> extends Conditions<T> {
   focus?: T;
@@ -414,4 +418,24 @@ export interface BoxSprinkle {
    * The marginY property defines the margin area on the top and bottom of a box
    */
   marginY?: BoxMarginProperties | BoxConditions<BoxMarginProperties>;
+  /**
+   * The fontSize property sets the size of the box.
+   * @default base
+   */
+  fontSize?: BoxFontSizeProperties | BoxConditions<BoxFontSizeProperties>;
+  /**
+   * The fontWeight property sets how thick or thin characters in box should be displayed.
+   * @default regular
+   */
+  fontWeight?: BoxFontWeightProperties | BoxConditions<BoxFontWeightProperties>;
+  /**
+   * The lineHeight property specifies the line height of the box.
+   * @default base
+   */
+  lineHeight?: BoxLineHeightProperties | BoxConditions<BoxLineHeightProperties>;
+  /**
+   * The textAlign property specifies the horizontal alignment of box.
+   * @default left
+   */
+  textAlign?: TextAlign | BoxConditions<TextAlign>;
 }

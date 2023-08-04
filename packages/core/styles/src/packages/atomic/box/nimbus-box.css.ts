@@ -25,6 +25,10 @@ import {
   transitionTimingProperties,
   textDecorationProperties,
   zIndexProperties,
+  titleFontSizeProperties,
+  titleLineHeightProperties,
+  fontWeightProperties,
+  textAlignProperties,
 } from "../../../properties";
 import { mediaQueries } from "../../../themes";
 
@@ -111,6 +115,16 @@ const boxBorderRadiusProperties = {
 const boxBorderWidthProperties = {
   none: "0",
   ...borderWidthProperties,
+};
+
+const fontSizeProperties = {
+  ...titleFontSizeProperties,
+  ...spacingProperties,
+};
+
+const lineHeightProperties = {
+  ...titleLineHeightProperties,
+  ...spacingProperties,
 };
 
 const defineProperties = defineRainbowProperties({
@@ -203,6 +217,10 @@ const defineProperties = defineRainbowProperties({
     overflowY: overflowProperties,
     transitionTimingFunction: transitionTimingProperties,
     textDecoration: textDecorationProperties,
+    lineHeight: lineHeightProperties,
+    fontWeight: fontWeightProperties,
+    fontSize: fontSizeProperties,
+    textAlign: textAlignProperties,
   },
   shorthands: {
     borderWidth: [
@@ -265,6 +283,10 @@ const properties = {
   transitionTimingFunction: transitionTimingProperties,
   textDecoration: textDecorationProperties,
   zIndex: zIndexProperties,
+  textAlign: textAlignProperties,
+  fontWeight: fontWeightProperties,
+  fontSize: fontSizeProperties,
+  lineHeight: lineHeightProperties,
 };
 
 const sprinkle = createRainbowSprinkles(defineProperties);

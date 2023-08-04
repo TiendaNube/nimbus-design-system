@@ -2,6 +2,15 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2023-08-04 `9.2.0`
+
+#### 🎉 New features
+
+- Added new fontSize prop in Box component style pack. ([#183](https://github.com/TiendaNube/nimbus-design-system/pull/183) by [@juniorconquista](https://github.com/juniorconquista))
+- Added new fontWeight prop in Box component style pack. ([#183](https://github.com/TiendaNube/nimbus-design-system/pull/183) by [@juniorconquista](https://github.com/juniorconquista))
+- Added new lineHeight prop in Box component style pack. ([#183](https://github.com/TiendaNube/nimbus-design-system/pull/183) by [@juniorconquista](https://github.com/juniorconquista))
+- Added new textAlign prop in Box component style pack. ([#183](https://github.com/TiendaNube/nimbus-design-system/pull/183) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-06-13 `9.1.1`
 
 #### 🐛 Bug fixes

@@ -2,6 +2,15 @@
 
 Nimbus is an open-source Design System created by Tiendanube / Nuvesmhop’s team to empower and enhance more stories every day, with simplicity, accessibility, consistency and performance.
 
+## 2023-08-04 `5.2.0`
+
+#### 🎉 New features
+
+- Added `fontSize` property to the Component `Box` API. ([#183](https://github.com/TiendaNube/nimbus-design-system/pull/183) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `fontWeight` property to the Component `Box` API. ([#183](https://github.com/TiendaNube/nimbus-design-system/pull/183) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `lineHeight` property to the Component `Box` API. ([#183](https://github.com/TiendaNube/nimbus-design-system/pull/183) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `textAlign` property to the Component `Box` API. ([#183](https://github.com/TiendaNube/nimbus-design-system/pull/183) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-07-11 `5.1.1`
 
 #### 🎉 New features
