@@ -23,3 +23,15 @@ export interface Document {
   docLink: string;
   props: DocumentProps[];
 }
+
+export interface Dependencies {
+  [key: string]: string;
+}
+
+export interface PackageJSON {
+  dependencies: Dependencies;
+}
+
+export interface OutdatedDependencies {
+  [key: string]: { currentVersion: string; latestVersion: string };
+}

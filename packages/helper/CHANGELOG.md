@@ -2,6 +2,13 @@
 
 The Nimbus Helper extension is a powerful tool for developers working with VS Code. It is designed to streamline and enhance your workflow, offering advanced and customized features to maximize productivity.
 
+## 2023-08-07 `1.1.0`
+
+### 🎉 New features
+
+- Added new feature that checks outdated Nimbus dependencies when opening project. ([#184](https://github.com/TiendaNube/nimbus-design-system/pull/184) by [@juniorconquista](https://github.com/juniorconquista))
+- Added new `Check for updates to nimbus packages` command that checks for outdated Nimbus dependencies . ([#184](https://github.com/TiendaNube/nimbus-design-system/pull/184) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-07-07 `1.0.4`
 
 #### 🐛 Bug fixes

@@ -14,6 +14,14 @@
   "activationEvents": [
     "onStartupFinished"
   ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "nimbus-helper.checknimbusdependencies",
+        "title": "Check for updates to nimbus packages"
+      }
+    ]
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/TiendaNube/nimbus-design-system/blob/master/packages/helper/README.md"
