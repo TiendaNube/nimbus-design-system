@@ -1,48 +1,16 @@
 {
   "id": "toggle",
   "name": "Toggle",
-  "totalProps": 3,
+  "totalProps": 0,
   "packageName": "@nimbus-ds/toggle",
   "version": "2.2.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/toggle",
-  "props": [
-    {
-      "description": "The name of the input element.",
-      "type": "string",
-      "title": "name",
-      "required": true
-    },
-    {
-      "description": "Sets toggle state to activated or deactivated.",
-      "type": "boolean",
-      "title": "active",
-      "required": false
-    },
-    {
-      "description": "Text to be rendered inside the component",
-      "type": "string",
-      "title": "label",
-      "required": false
-    }
-  ],
+  "props": [],
   "subComponents": [
     {
       "name": "Toggle.Skeleton",
-      "totalProps": 2,
-      "props": [
-        {
-          "description": "Width of the skeleton. Useful when the skeleton is inside an inline element with no width of its own.",
-          "type": "string",
-          "title": "width",
-          "required": false
-        },
-        {
-          "description": "This is an attribute used to identify a DOM node for testing purposes.",
-          "type": "string",
-          "title": "data-testid",
-          "required": false
-        }
-      ]
+      "totalProps": 0,
+      "props": []
     }
   ]
 }

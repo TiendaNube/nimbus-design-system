@@ -1,54 +1,16 @@
 {
   "id": "chip",
   "name": "Chip",
-  "totalProps": 3,
+  "totalProps": 0,
   "packageName": "@nimbus-ds/chip",
   "version": "2.3.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/chip",
-  "props": [
-    {
-      "description": "Text to be displayed on chip.",
-      "type": "string",
-      "title": "text",
-      "required": true
-    },
-    {
-      "description": "SVG icon to be displayed on chip.",
-      "type": "React.ReactNode",
-      "title": "icon",
-      "required": false
-    },
-    {
-      "description": "Informs whether the close icon should be displayed.",
-      "type": "boolean",
-      "title": "removable",
-      "required": false
-    }
-  ],
+  "props": [],
   "subComponents": [
     {
       "name": "Chip.Skeleton",
-      "totalProps": 3,
-      "props": [
-        {
-          "description": "Width of the skeleton. Useful when the skeleton is inside an inline element with no width of its own.",
-          "type": "string",
-          "title": "width",
-          "required": false
-        },
-        {
-          "description": "Height of the skeleton. Useful when you don't want to adapt the skeleton to a text element but for instance a card.",
-          "type": "string",
-          "title": "height",
-          "required": false
-        },
-        {
-          "description": "This is an attribute used to identify a DOM node for testing purposes.",
-          "type": "string",
-          "title": "data-testid",
-          "required": false
-        }
-      ]
+      "totalProps": 0,
+      "props": []
     }
   ]
 }
