@@ -2,6 +2,13 @@
 
 Our design tokens are the foundations of Nimbus Design System.
 
+## 2023-09-04 `8.1.0`
+
+##### 🎉 New features
+
+- Added new `next` theme color tokens. ([#185](https://github.com/TiendaNube/nimbus-design-system/pull/185) by [@juanchigallego](https://github.com/juanchigallego))
+- Added new `next-dark` theme color tokens. ([#185](https://github.com/TiendaNube/nimbus-design-system/pull/185) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-06-13 `8.0.1`
 
 #### 💡 Others

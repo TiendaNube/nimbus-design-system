@@ -1,0 +1,6 @@
+releases:
+  "@nimbus-ds/styles": minor
+  "@nimbus-ds/tokens": minor
+
+declined:
+  - nimbus-design-system
