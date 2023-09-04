@@ -2,6 +2,15 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2023-09-04 `9.3.0`
+
+#### 🎉 New features
+
+- Created new `next` theme. ([#185](https://github.com/TiendaNube/nimbus-design-system/pull/185) by [@juanchigallego](https://github.com/juanchigallego))
+- Added new `next` theme option to ThemeProvider component. ([#185](https://github.com/TiendaNube/nimbus-design-system/pull/185) by [@juanchigallego](https://github.com/juanchigallego))
+- Created new `next-dark` theme. ([#185](https://github.com/TiendaNube/nimbus-design-system/pull/185) by [@juanchigallego](https://github.com/juanchigallego))
+- Added new `next-dark` theme option to ThemeProvider component. ([#185](https://github.com/TiendaNube/nimbus-design-system/pull/185) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-08-04 `9.2.0`
 
 #### 🎉 New features

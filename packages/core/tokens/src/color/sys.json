@@ -99,6 +99,28 @@
         "text-low": { "value": "{color.light.neutral.95}" },
         "text-high": { "value": "{color.light.neutral.100}" }
       }
+    },
+    "next": {
+      "primary": {
+        "surface": { "value": "{color.light.next.99}" },
+        "surface-highlight": { "value": "{color.light.next.90}" },
+        "interactive": { "value": "{color.light.next.60}" },
+        "interactive-hover": { "value": "{color.light.next.40}" },
+        "interactive-pressed": { "value": "{color.light.next.30}" },
+        "text-low": { "value": "{color.light.next.20}" },
+        "text-high": { "value": "{color.light.next.5}" }
+      }
+    },
+    "next-dark": {
+      "primary": {
+        "surface": { "value": "{color.light.next.10}" },
+        "surface-highlight": { "value": "{color.light.next.30}" },
+        "interactive": { "value": "{color.light.next.70}" },
+        "interactive-hover": { "value": "{color.light.next.80}" },
+        "interactive-pressed": { "value": "{color.light.next.90}" },
+        "text-low": { "value": "{color.light.next.95}" },
+        "text-high": { "value": "{color.light.next.100}" }
+      }
     }
   }
 }

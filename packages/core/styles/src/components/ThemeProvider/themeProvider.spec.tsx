@@ -37,5 +37,19 @@ describe("GIVEN <ThemeProvider />", () => {
         screen.getByTestId("theme-provider-element").getAttribute("class")
       ).toContain("dark");
     });
+
+    it("THEN should correctly render the theme next", () => {
+      makeSut({ children: "My children", theme: "next" });
+      expect(
+        screen.getByTestId("theme-provider-element").getAttribute("class")
+      ).toContain("next");
+    });
+
+    it("THEN should correctly render the theme next-dark", () => {
+      makeSut({ children: "My children", theme: "next-dark" });
+      expect(
+        screen.getByTestId("theme-provider-element").getAttribute("class")
+      ).toContain("nextDark");
+    });
   });
 });
