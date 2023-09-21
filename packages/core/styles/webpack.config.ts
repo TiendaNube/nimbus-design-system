@@ -5,6 +5,8 @@ import { plugins, rules, configuration, utils } from "@nimbus-ds/webpack/src";
 const baseConfig = {
   entry: {
     "./themes/dark": "./src/themes/nimbus-theme-dark.css.ts",
+    "./themes/next": "./src/themes/nimbus-theme-next.css.ts",
+    "./themes/next-dark": "./src/themes/nimbus-theme-nextDark.css.ts",
   },
   output: {
     path: path.resolve(__dirname, "dist"),

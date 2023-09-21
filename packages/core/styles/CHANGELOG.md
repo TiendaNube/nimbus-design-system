@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2023-09-25 `9.4.0`
+
+#### 🎉 New features
+
+- Added new style pack for `Calendar` pattern. ([#186](https://github.com/TiendaNube/nimbus-design-system/pull/186) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-09-04 `9.3.0`
 
 #### 🎉 New features
