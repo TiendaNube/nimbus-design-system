@@ -33,7 +33,6 @@ describe("GIVEN <Modal.Body />", () => {
 
     it("AND should correctly render the padding base", () => {
       makeSut({ padding: "base", children: "My content" });
-      screen.debug();
       expect(
         screen.getByTestId("body-element").getAttribute("class")
       ).toContain("padding_base");

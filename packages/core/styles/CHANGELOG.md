@@ -2,6 +2,18 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2023-09-26 `9.5.0`
+
+#### 🎉 New features
+
+- Updated vanilla extract to new version. ([#193](https://github.com/TiendaNube/nimbus-design-system/pull/#193) by [@juniorconquista](https://github.com/juniorconquista))
+
+#### 📚 3rd party library updates
+
+- Updated `@vanilla-extract/css"@.13.0`. ([#193](https://github.com/TiendaNube/nimbus-design-system/pull/#193) by [@juniorconquista](https://github.com/juniorconquista))
+- Updated `@vanilla-extract/recipes@0.5.0`. ([#193](https://github.com/TiendaNube/nimbus-design-system/pull/#193) by [@juniorconquista](https://github.com/juniorconquista))
+- Updated `@vanilla-extract/sprinkles@1.6.1`. ([#193](https://github.com/TiendaNube/nimbus-design-system/pull/#193) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-09-25 `9.4.0`
 
 #### 🎉 New features
