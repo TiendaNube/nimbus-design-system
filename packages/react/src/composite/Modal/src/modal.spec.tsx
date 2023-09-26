@@ -35,7 +35,7 @@ describe("GIVEN <Modal />", () => {
     it("THEN should correctly render the padding default", () => {
       makeSut({ children: "My content" });
       expect(screen.getByTestId("modal-element").getAttribute("style")).toMatch(
-        /--padding-xs__\w{0,9}: var\(--spacing-4__\w{0,9}\);/
+        /--padding-xs__\w{0,9}: var\(--nimbus-spacing-4\);/
       );
     });
 
@@ -49,14 +49,14 @@ describe("GIVEN <Modal />", () => {
     it("AND should correctly render the padding base", () => {
       makeSut({ padding: "base", children: "My content" });
       expect(screen.getByTestId("modal-element").getAttribute("style")).toMatch(
-        /--padding-xs__\w{0,9}: var\(--spacing-4__\w{0,9}\);/
+        /--padding-xs__\w{0,9}: var\(--nimbus-spacing-4\);/
       );
     });
 
     it("AND should correctly render the padding small", () => {
       makeSut({ padding: "small", children: "My content" });
       expect(screen.getByTestId("modal-element").getAttribute("style")).toMatch(
-        /--padding-xs__\w{0,9}: var\(--spacing-2__\w{0,9}\);/
+        /--padding-xs__\w{0,9}: var\(--nimbus-spacing-2\);/
       );
     });
   });
