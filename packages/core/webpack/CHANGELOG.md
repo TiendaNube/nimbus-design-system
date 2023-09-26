@@ -2,6 +2,16 @@
 
 This package is intended for internal use in generating builds of each design system package. It contains all the necessary settings and dependencies to optimize the creation of our builds.
 
+## 2023-09-26 `1.2.0`
+
+#### 🎉 New features
+
+- Updated vanilla extract to new version. ([#193](https://github.com/TiendaNube/nimbus-design-system/pull/#193) by [@juniorconquista](https://github.com/juniorconquista))
+
+#### 📚 3rd party library updates
+
+- Updated `@vanilla-extract/webpack-plugin@2.3.1`. ([#193](https://github.com/TiendaNube/nimbus-design-system/pull/#193) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-03-13 `1.1.0`
 
 #### 🎉 New features
