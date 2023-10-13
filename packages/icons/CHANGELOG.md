@@ -2,9 +2,15 @@
 
 Nimbus-icons is an open source icon system built by Nuvemshop / Tiendanube.
 
+## 2023-02-23 `1.3.0`
+
+#### 🎉 New features
+
+- Added play icon. ([#195](https://github.com/TiendaNube/nimbus-design-system/pull/195) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-02-23 `1.1.1`
 
-### 🎉 New icon
+#### 🎉 New features
 
 - Added apps-list icon. ([#168](https://github.com/TiendaNube/nimbus-design-system/pull/168) by [@diegopsilverio](https://github.com/diegopsilverio))
 
