@@ -2,6 +2,17 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2023-10-13 `9.6.0`
+
+#### 🎉 New features
+
+- Added `maxWidth` property to `Popover` component sprinkles. ([#195](https://github.com/TiendaNube/nimbus-design-system/pull/195) by [@juniorconquista](https://github.com/juniorconquista))
+
+#### 💡 Others
+
+- Removed static arrow positioning from `Popover` component. ([#195](https://github.com/TiendaNube/nimbus-design-system/pull/195) by [@juniorconquista](https://github.com/juniorconquista))
+- Removed static arrow positioning from `Tooltip` component. ([#195](https://github.com/TiendaNube/nimbus-design-system/pull/195) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-09-26 `9.5.0`
 
 #### 🎉 New features

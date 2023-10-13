@@ -1,0 +1,25 @@
+releases:
+  "@nimbus-ds/icons": minor
+  "@nimbus-ds/popover": patch
+  "@nimbus-ds/styles": patch
+  "@nimbus-ds/tooltip": patch
+
+declined:
+  - nimbus-design-system
+  - "@nimbus-ds/components"
+  - "@nimbus-ds/button"
+  - "@nimbus-ds/chip"
+  - "@nimbus-ds/file-uploader"
+  - "@nimbus-ds/icon"
+  - "@nimbus-ds/icon-button"
+  - "@nimbus-ds/input"
+  - "@nimbus-ds/label"
+  - "@nimbus-ds/link"
+  - "@nimbus-ds/select"
+  - "@nimbus-ds/tag"
+  - "@nimbus-ds/thumbnail"
+  - "@nimbus-ds/toast"
+  - "@nimbus-ds/accordion"
+  - "@nimbus-ds/alert"
+  - "@nimbus-ds/modal"
+  - "@nimbus-ds/pagination"
