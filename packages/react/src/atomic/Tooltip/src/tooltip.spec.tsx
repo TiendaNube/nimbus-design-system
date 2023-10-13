@@ -6,7 +6,7 @@ import { TooltipProps } from "./tooltip.types";
 
 const makeSut = (rest: Omit<TooltipProps, "children">) => {
   render(
-    <Tooltip {...rest} data-testid="tooltip-element">
+    <Tooltip {...rest} data-testid="tooltip-element" arrow>
       <p data-testid="anchor-element">hover</p>
     </Tooltip>
   );
@@ -32,12 +32,11 @@ describe("GIVEN <Tooltip />", () => {
       const arrow = screen.getByTestId("arrow-element");
       expect(tooltip).toBeDefined();
 
-      expect(tooltip.style.top).toEqual("-6px");
+      expect(tooltip.style.top).toEqual("0px");
       expect(tooltip.style.left).toEqual("0px");
       expect(tooltip.style.position).toEqual("fixed");
 
-      expect(arrow.style.bottom).toEqual("0px");
-      expect(arrow.style.left).toEqual("0px");
+      expect(arrow.style.top).toEqual("100%");
       expect(arrow.style.position).toEqual("absolute");
     });
 
@@ -46,16 +45,17 @@ describe("GIVEN <Tooltip />", () => {
       await act(() => {
         fireEvent.mouseEnter(screen.getByTestId("tooltip-container"));
       });
+
       const tooltip = screen.getByTestId("tooltip-element");
       const arrow = screen.getByTestId("arrow-element");
       expect(tooltip).toBeDefined();
 
-      expect(tooltip.style.top).toEqual("6px");
+      expect(tooltip.style.top).toEqual("0px");
       expect(tooltip.style.left).toEqual("0px");
       expect(tooltip.style.position).toEqual("fixed");
 
-      expect(arrow.style.top).toEqual("0px");
-      expect(arrow.style.left).toEqual("0px");
+      expect(arrow.style.bottom).toEqual("100%");
+      expect(arrow.style.transform).toBe("rotate(180deg)");
       expect(arrow.style.position).toEqual("absolute");
     });
 
@@ -64,16 +64,17 @@ describe("GIVEN <Tooltip />", () => {
       await act(() => {
         fireEvent.mouseEnter(screen.getByTestId("tooltip-container"));
       });
+
       const tooltip = screen.getByTestId("tooltip-element");
       const arrow = screen.getByTestId("arrow-element");
       expect(tooltip).toBeDefined();
 
       expect(tooltip.style.top).toEqual("0px");
-      expect(tooltip.style.left).toEqual("-6px");
+      expect(tooltip.style.left).toEqual("0px");
       expect(tooltip.style.position).toEqual("fixed");
 
-      expect(arrow.style.top).toEqual("0px");
-      expect(arrow.style.right).toEqual("0px");
+      expect(arrow.style.left).toEqual("calc(100% - 0px)");
+      expect(arrow.style.transform).toBe("rotate(-90deg)");
       expect(arrow.style.position).toEqual("absolute");
     });
 
@@ -87,11 +88,11 @@ describe("GIVEN <Tooltip />", () => {
       expect(tooltip).toBeDefined();
 
       expect(tooltip.style.top).toEqual("0px");
-      expect(tooltip.style.left).toEqual("6px");
+      expect(tooltip.style.left).toEqual("0px");
       expect(tooltip.style.position).toEqual("fixed");
 
-      expect(arrow.style.top).toEqual("0px");
-      expect(arrow.style.left).toEqual("0px");
+      expect(arrow.style.right).toEqual("calc(100% - 0px)");
+      expect(arrow.style.transform).toBe("rotate(90deg)");
       expect(arrow.style.position).toEqual("absolute");
     });
   });

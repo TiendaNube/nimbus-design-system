@@ -2,6 +2,16 @@
 
 The Tooltip component allows us to display additional information in a non-intrusive way.
 
+## 2023-10-13 `2.4.0`
+
+#### 🎉 New features
+
+- Added `arrow` property to the Component. ([#195](https://github.com/TiendaNube/nimbus-design-system/pull/195) by [@juniorconquista](https://github.com/juniorconquista))
+
+#### 📚 3rd party library updates
+
+- Updated `@floating-ui/react@0.26.0`. ([#195](https://github.com/TiendaNube/nimbus-design-system/pull/195) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-07-11 `2.3.0`
 
 ### 📚 3rd party library updates

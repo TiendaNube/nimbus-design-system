@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/tooltip",
-  "version": "2.3.0",
+  "version": "2.3.1-rc.2",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -14,7 +14,7 @@
     "version": "yarn version"
   },
   "dependencies": {
-    "@floating-ui/react": "^0.24.6"
+    "@floating-ui/react": "^0.26.0"
   },
   "peerDependencies": {
     "react": "^16.8 || ^17.0 || ^18.0",
@@ -31,5 +31,6 @@
   "devDependencies": {
     "@nimbus-ds/webpack": "workspace:^",
     "@vanilla-extract/dynamic": "^2.0.3"
-  }
+  },
+  "stableVersion": "2.3.0"
 }
