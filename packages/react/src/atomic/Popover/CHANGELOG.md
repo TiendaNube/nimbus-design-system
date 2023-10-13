@@ -2,6 +2,23 @@
 
 Use Popovers to bring attention to specific user interface elements and suggest an action or to guide users through a new experience
 
+## 2023-10-13 `4.1.1`
+
+### 🎉 New features
+
+- Added `maxWidth` and `matchReferenceWidth` properties to the Component. ([#196](https://github.com/TiendaNube/nimbus-design-system/pull/196) by [@juniorconquista](https://github.com/juniorconquista))
+
+#### 🐛 Bug fixes
+
+- Fixed bug where the maximum width of the popover exceeded the maximum size of a screen. ([#196](https://github.com/TiendaNube/nimbus-design-system/pull/196) by [@juniorconquista](https://github.com/juniorconquista))
+- Removed fixed minimum width so that the minimum width respects the content of the popover. ([#196](https://github.com/TiendaNube/nimbus-design-system/pull/196) by [@juniorconquista](https://github.com/juniorconquista))
+- Fixed arrow positioning. ([#196](https://github.com/TiendaNube/nimbus-design-system/pull/196) by [@juniorconquista](https://github.com/juniorconquista))
+- Fixed the positioning of the popover so that if it does not fit in the chosen position, it automatically moves to a position that has positioning space. ([#196](https://github.com/TiendaNube/nimbus-design-system/pull/196) by [@juniorconquista](https://github.com/juniorconquista))
+
+#### 📚 3rd party library updates
+
+- Updated `@floating-ui/react@0.26.0`. ([#196](https://github.com/TiendaNube/nimbus-design-system/pull/196) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-07-11 `4.1.0`
 
 #### 📚 3rd party library updates

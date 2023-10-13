@@ -46,10 +46,12 @@ describe("GIVEN <Popover />", () => {
       const arrow = screen.getByTestId("arrow-element");
       expect(popover).toBeDefined();
 
-      expect(popover.style.top).toEqual("-10px");
+      expect(popover.style.top).toEqual("0px");
       expect(popover.style.left).toEqual("0px");
+      expect(popover.style.transform).toEqual("translate(0px, -10px)");
       expect(popover.style.position).toEqual("fixed");
 
+      expect(arrow.style.top).toEqual("100%");
       expect(arrow.style.position).toEqual("absolute");
     });
 
@@ -66,10 +68,13 @@ describe("GIVEN <Popover />", () => {
       const arrow = screen.getByTestId("arrow-element");
       expect(popover).toBeDefined();
 
-      expect(popover.style.top).toEqual("10px");
+      expect(popover.style.top).toEqual("0px");
       expect(popover.style.left).toEqual("0px");
+      expect(popover.style.transform).toEqual("translate(0px, 10px)");
       expect(popover.style.position).toEqual("fixed");
 
+      expect(arrow.style.bottom).toEqual("100%");
+      expect(arrow.style.transform).toBe("rotate(180deg)");
       expect(arrow.style.position).toEqual("absolute");
     });
 
@@ -83,9 +88,12 @@ describe("GIVEN <Popover />", () => {
       expect(popover).toBeDefined();
 
       expect(popover.style.top).toEqual("0px");
-      expect(popover.style.left).toEqual("-10px");
+      expect(popover.style.left).toEqual("0px");
+      expect(popover.style.transform).toEqual("translate(-10px, 0px)");
       expect(popover.style.position).toEqual("fixed");
 
+      expect(arrow.style.left).toEqual("calc(100% - 0px)");
+      expect(arrow.style.transform).toBe("rotate(-90deg)");
       expect(arrow.style.position).toEqual("absolute");
     });
 
@@ -103,9 +111,12 @@ describe("GIVEN <Popover />", () => {
       expect(popover).toBeDefined();
 
       expect(popover.style.top).toEqual("0px");
-      expect(popover.style.left).toEqual("10px");
+      expect(popover.style.left).toEqual("0px");
+      expect(popover.style.transform).toEqual("translate(10px, 0px)");
       expect(popover.style.position).toEqual("fixed");
 
+      expect(arrow.style.right).toEqual("calc(100% - 0px)");
+      expect(arrow.style.transform).toBe("rotate(90deg)");
       expect(arrow.style.position).toEqual("absolute");
     });
 

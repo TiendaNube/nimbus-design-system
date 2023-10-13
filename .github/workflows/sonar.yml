@@ -38,9 +38,6 @@ jobs:
       - name: Run build icons
         run: yarn build:icons
 
-      - name: Run tests
-        run: yarn test:ci
-
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:

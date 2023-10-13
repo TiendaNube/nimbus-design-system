@@ -4,14 +4,15 @@ import {
   useInteractions,
   useHover,
   FloatingPortal,
-  arrow,
+  FloatingArrow,
+  arrow as arrowUI,
   offset,
+  inline,
   safePolygon,
 } from "@floating-ui/react";
 import { tooltip } from "@nimbus-ds/styles";
 import { Text } from "@nimbus-ds/text";
-
-import { staticSide } from "./toast.definitions";
+import { Box } from "@nimbus-ds/box";
 import { TooltipProps } from "./tooltip.types";
 
 const Tooltip: React.FC<TooltipProps> = ({
@@ -19,22 +20,23 @@ const Tooltip: React.FC<TooltipProps> = ({
   style: _style,
   children,
   content,
+  arrow = false,
   position = "bottom",
   ...rest
 }) => {
   const arrowRef = useRef(null);
   const [isVisible, setVisibility] = useState(false);
-  const {
-    x,
-    y,
-    context,
-    strategy,
-    middlewareData: { arrow: { x: arrowX, y: arrowY } = {} },
-  } = useFloating({
+  const { context, strategy, floatingStyles } = useFloating({
     open: isVisible,
     placement: position,
     strategy: "fixed",
-    middleware: [offset(6), arrow({ element: arrowRef })],
+    middleware: [
+      offset(6),
+      inline(),
+      arrowUI({
+        element: arrowRef,
+      }),
+    ],
     onOpenChange: setVisibility,
   });
 
@@ -67,9 +69,8 @@ const Tooltip: React.FC<TooltipProps> = ({
             ref={context.refs.setFloating}
             className={tooltip.classnames.content}
             style={{
+              ...floatingStyles,
               position: strategy,
-              top: y ?? 0,
-              left: x ?? 0,
             }}
             {...getFloatingProps()}
           >
@@ -80,17 +81,16 @@ const Tooltip: React.FC<TooltipProps> = ({
             >
               {content}
             </Text>
-            <div
-              data-testid="arrow-element"
-              ref={arrowRef}
-              className={tooltip.classnames.content__arrow[position]}
-              style={{
-                position: "absolute",
-                left: arrowX != null ? `${arrowX}px` : "",
-                top: arrowY != null ? `${arrowY}px` : "",
-                [staticSide[position]]: "0px",
-              }}
-            />
+            {arrow && (
+              <Box
+                as={FloatingArrow}
+                data-testid="arrow-element"
+                ref={arrowRef}
+                context={context}
+                color="neutral-textLow"
+                fill="currentColor"
+              />
+            )}
           </div>
         )}
       </FloatingPortal>

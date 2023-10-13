@@ -2,6 +2,24 @@
 
 Nimbus is an open-source Design System created by Tiendanube / Nuvesmhop’s team to empower and enhance more stories every day, with simplicity, accessibility, consistency and performance.
 
+## 2023-10-13 `5.2.1`
+
+#### 🎉 New features
+
+- Added `arrow` property to the Component `Tooltip` API. ([#196](https://github.com/TiendaNube/nimbus-design-system/pull/196) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `maxWidth` and `matchReferenceWidth` properties to the Component `Popover` API. ([#196](https://github.com/TiendaNube/nimbus-design-system/pull/196) by [@juniorconquista](https://github.com/juniorconquista))
+
+#### 🐛 Bug fixes
+
+- Fixed bug where the maximum width of the popover exceeded the maximum size of a screen to the Component `Popover`. ([#196](https://github.com/TiendaNube/nimbus-design-system/pull/196) by [@juniorconquista](https://github.com/juniorconquista))
+- Removed fixed minimum width so that the minimum width respects the content of the popover to the Component `Popover`. ([#196](https://github.com/TiendaNube/nimbus-design-system/pull/196) by [@juniorconquista](https://github.com/juniorconquista))
+- Fixed arrow positioning to the Component `Popover`. ([#196](https://github.com/TiendaNube/nimbus-design-system/pull/196) by [@juniorconquista](https://github.com/juniorconquista))
+- Fixed the positioning of the popover so that if it does not fit in the chosen position, it automatically moves to a position that has positioning space to the Component `Popover`. ([#196](https://github.com/TiendaNube/nimbus-design-system/pull/196) by [@juniorconquista](https://github.com/juniorconquista))
+
+#### 📚 3rd party library updates
+
+- Updated `@floating-ui/react@0.26.0`. ([#195](https://github.com/TiendaNube/nimbus-design-system/pull/195) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-08-04 `5.2.0`
 
 #### 🎉 New features

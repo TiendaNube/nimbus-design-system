@@ -12,9 +12,13 @@ type PopoverZIndexProperties = keyof typeof propertiesPopover.zIndex;
 export interface PopoverSprinkle {
   /**
    * The width property specifies the width of a popover's content area.
-   * @default 17.5rem
+   * @default fit-content
    */
   width?: string | Conditions<string>;
+  /**
+   * The maxWidth property specifies the maximum width of a popover's content area.
+   */
+  maxWidth?: string | Conditions<string>;
   /**
    * The height property specifies the height of a popover's content area.
    */

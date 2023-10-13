@@ -11,6 +11,11 @@ export interface TooltipProperties {
    */
   content: string;
   /**
+   * Conditional for displaying the popover arrow.
+   * @default false
+   */
+  arrow?: boolean;
+  /**
    * Position of the popover.
    * @default bottom
    */
