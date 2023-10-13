@@ -1,9 +1,9 @@
 {
   "id": "tooltip",
   "name": "Tooltip",
-  "totalProps": 3,
+  "totalProps": 4,
   "packageName": "@nimbus-ds/tooltip",
-  "version": "2.3.0",
+  "version": "2.4.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/tooltip",
   "props": [
     {
@@ -17,6 +17,13 @@
       "type": "string",
       "title": "content",
       "required": true
+    },
+    {
+      "description": "Conditional for displaying the popover arrow.",
+      "default": false,
+      "type": "boolean",
+      "title": "arrow",
+      "required": false
     },
     {
       "description": "Position of the popover.",

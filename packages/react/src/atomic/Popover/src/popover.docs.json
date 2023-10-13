@@ -1,9 +1,9 @@
 {
   "id": "popover",
   "name": "Popover",
-  "totalProps": 16,
+  "totalProps": 18,
   "packageName": "@nimbus-ds/popover",
-  "version": "4.1.0",
+  "version": "4.1.1",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/popover",
   "props": [
     {
@@ -35,6 +35,13 @@
       "default": true,
       "type": "boolean",
       "title": "arrow",
+      "required": false
+    },
+    {
+      "description": "A common feature of select dropdowns is that the dropdown matches the width of the reference regardless of its contents.",
+      "default": false,
+      "type": "boolean",
+      "title": "matchReferenceWidth",
       "required": false
     },
     {
@@ -88,7 +95,7 @@
     },
     {
       "description": "The width property specifies the width of a popover's content area.",
-      "default": "17.5rem",
+      "default": "fit-content",
       "anyOf": [
         {
           "type": "object",
@@ -123,6 +130,44 @@
         }
       ],
       "title": "width",
+      "required": false
+    },
+    {
+      "description": "The maxWidth property specifies the maximum width of a popover's content area.",
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "xs": {
+              "type": "string",
+              "title": "xs"
+            },
+            "md": {
+              "type": "string",
+              "title": "md"
+            },
+            "lg": {
+              "type": "string",
+              "title": "lg"
+            },
+            "xl": {
+              "type": "string",
+              "title": "xl"
+            }
+          },
+          "additionalProperties": false,
+          "propertyOrder": [
+            "xs",
+            "md",
+            "lg",
+            "xl"
+          ]
+        },
+        {
+          "type": "string"
+        }
+      ],
+      "title": "maxWidth",
       "required": false
     },
     {
