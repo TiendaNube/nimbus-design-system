@@ -46,6 +46,11 @@ export interface PopoverProperties extends PopoverSprinkle {
    */
   arrow?: boolean;
   /**
+   * A common feature of select dropdowns is that the dropdown matches the width of the reference regardless of its contents.
+   * @default false
+   */
+  matchReferenceWidth?: boolean;
+  /**
    * Position of the popover.
    * @default bottom
    */

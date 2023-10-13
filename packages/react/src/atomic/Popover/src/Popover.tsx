@@ -1,20 +1,22 @@
 import React, { useRef, useState, useMemo } from "react";
 import {
-  Side,
   FloatingPortal,
+  FloatingArrow,
   autoUpdate,
   useFloating,
   useInteractions,
   useHover,
   useDismiss,
   useClick,
+  flip,
+  shift,
+  size,
   safePolygon,
   arrow as arrowUI,
   offset as offsetUI,
 } from "@floating-ui/react";
 import { popover } from "@nimbus-ds/styles";
 
-import { staticSide } from "./popover.definitions";
 import { PopoverProps } from "./popover.types";
 
 const Popover: React.FC<PopoverProps> = ({
@@ -25,12 +27,13 @@ const Popover: React.FC<PopoverProps> = ({
   backgroundColor = "neutral-background",
   position = "bottom",
   padding = "base",
-  width = "17.5rem",
+  width = "fit-content",
   arrow = true,
   offset = 10,
   enabledHover = false,
   enabledDismiss = true,
   enabledClick = true,
+  matchReferenceWidth = false,
   children,
   content,
   ...rest
@@ -51,17 +54,32 @@ const Popover: React.FC<PopoverProps> = ({
     [visible, isVisible]
   );
 
-  const {
-    x,
-    y,
-    context,
-    strategy,
-    middlewareData: { arrow: { x: arrowX, y: arrowY } = {} },
-  } = useFloating({
+  const middlewares = [
+    offsetUI(offset),
+    arrowUI({
+      element: arrowRef,
+    }),
+    shift(),
+    flip({
+      crossAxis: position.includes("-"),
+      fallbackAxisSideDirection: "end",
+      padding: 5,
+    }),
+    matchReferenceWidth &&
+      size({
+        apply({ rects, elements }) {
+          Object.assign(elements.floating.style, {
+            width: `${rects.reference.width}px`,
+          });
+        },
+      }),
+  ].filter((middleware) => middleware !== false);
+
+  const { context, floatingStyles } = useFloating({
     open,
     placement: position,
     strategy: "fixed",
-    middleware: [offsetUI(offset), arrowUI({ element: arrowRef, padding: 5 })],
+    middleware: middlewares,
     whileElementsMounted: autoUpdate,
     onOpenChange: onVisibility !== undefined ? onVisibility : setVisibility,
   });
@@ -85,8 +103,6 @@ const Popover: React.FC<PopoverProps> = ({
     }),
   ]);
 
-  const side = useMemo(() => position.split("-")[0], [position]) as Side;
-
   return (
     <>
       <div
@@ -109,27 +125,17 @@ const Popover: React.FC<PopoverProps> = ({
             className={[popover.classnames.content, className].join(" ")}
             style={{
               ...style,
-              position: strategy,
-              top: y ?? 0,
-              left: x ?? 0,
+              ...floatingStyles,
             }}
             {...getFloatingProps()}
           >
             {content}
             {arrow && (
-              <div
+              <FloatingArrow
                 data-testid="arrow-element"
                 ref={arrowRef}
-                className={[
-                  popover.classnames.content__arrow[side],
-                  popover.classnames.content__placement[position],
-                ].join(" ")}
-                style={{
-                  position: "absolute",
-                  left: arrowX != null ? `${arrowX}px` : "",
-                  top: arrowY != null ? `${arrowY}px` : "",
-                  [staticSide[side]]: "0px",
-                }}
+                context={context}
+                fill="currentColor"
               />
             )}
           </div>
