@@ -1,12 +1,14 @@
 releases:
+  "@nimbus-ds/components": patch
   "@nimbus-ds/icons": minor
+  "@nimbus-ds/modal": minor
   "@nimbus-ds/popover": patch
+  "@nimbus-ds/sidebar": minor
   "@nimbus-ds/styles": patch
-  "@nimbus-ds/tooltip": patch
+  "@nimbus-ds/tooltip": minor
 
 declined:
   - nimbus-design-system
-  - "@nimbus-ds/components"
   - "@nimbus-ds/button"
   - "@nimbus-ds/chip"
   - "@nimbus-ds/file-uploader"
@@ -21,5 +23,4 @@ declined:
   - "@nimbus-ds/toast"
   - "@nimbus-ds/accordion"
   - "@nimbus-ds/alert"
-  - "@nimbus-ds/modal"
   - "@nimbus-ds/pagination"
