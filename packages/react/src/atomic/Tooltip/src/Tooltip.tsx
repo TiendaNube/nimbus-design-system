@@ -25,7 +25,7 @@ const Tooltip: React.FC<TooltipProps> = ({
   ...rest
 }) => {
   const arrowRef = useRef(null);
-  const [isVisible, setVisibility] = useState(true);
+  const [isVisible, setVisibility] = useState(false);
   const { context, strategy, floatingStyles } = useFloating({
     open: isVisible,
     placement: position,
