@@ -6,15 +6,15 @@ Nimbus is an open-source Design System created by Tiendanube / Nuvesmhop’s tea
 
 #### 🎉 New features
 
-- Added `arrow` property to the Component `Tooltip` API. ([#195](https://github.com/TiendaNube/nimbus-design-system/pull/195) by [@juniorconquista](https://github.com/juniorconquista))
-- Added `maxWidth` and `matchReferenceWidth` properties to the Component `Popover` API. ([#195](https://github.com/TiendaNube/nimbus-design-system/pull/195) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `arrow` property to the Component `Tooltip` API. ([#196](https://github.com/TiendaNube/nimbus-design-system/pull/196) by [@juniorconquista](https://github.com/juniorconquista))
+- Added `maxWidth` and `matchReferenceWidth` properties to the Component `Popover` API. ([#196](https://github.com/TiendaNube/nimbus-design-system/pull/196) by [@juniorconquista](https://github.com/juniorconquista))
 
 #### 🐛 Bug fixes
 
-- Fixed bug where the maximum width of the popover exceeded the maximum size of a screen to the Component `Popover`. ([#195](https://github.com/TiendaNube/nimbus-design-system/pull/195) by [@juniorconquista](https://github.com/juniorconquista))
-- Removed fixed minimum width so that the minimum width respects the content of the popover to the Component `Popover`. ([#195](https://github.com/TiendaNube/nimbus-design-system/pull/195) by [@juniorconquista](https://github.com/juniorconquista))
-- Fixed arrow positioning to the Component `Popover`. ([#195](https://github.com/TiendaNube/nimbus-design-system/pull/195) by [@juniorconquista](https://github.com/juniorconquista))
-- Fixed the positioning of the popover so that if it does not fit in the chosen position, it automatically moves to a position that has positioning space to the Component `Popover`. ([#195](https://github.com/TiendaNube/nimbus-design-system/pull/195) by [@juniorconquista](https://github.com/juniorconquista))
+- Fixed bug where the maximum width of the popover exceeded the maximum size of a screen to the Component `Popover`. ([#196](https://github.com/TiendaNube/nimbus-design-system/pull/196) by [@juniorconquista](https://github.com/juniorconquista))
+- Removed fixed minimum width so that the minimum width respects the content of the popover to the Component `Popover`. ([#196](https://github.com/TiendaNube/nimbus-design-system/pull/196) by [@juniorconquista](https://github.com/juniorconquista))
+- Fixed arrow positioning to the Component `Popover`. ([#196](https://github.com/TiendaNube/nimbus-design-system/pull/196) by [@juniorconquista](https://github.com/juniorconquista))
+- Fixed the positioning of the popover so that if it does not fit in the chosen position, it automatically moves to a position that has positioning space to the Component `Popover`. ([#196](https://github.com/TiendaNube/nimbus-design-system/pull/196) by [@juniorconquista](https://github.com/juniorconquista))
 
 #### 📚 3rd party library updates
 
