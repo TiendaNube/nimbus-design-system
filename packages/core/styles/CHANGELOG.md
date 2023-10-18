@@ -2,14 +2,11 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
-## 2023-10-17 `9.7.0`
-
-- Added new style pack for `Editor` pattern. ([#197](https://github.com/TiendaNube/nimbus-design-system/pull/197) by [@juniorconquista](https://github.com/juniorconquista))
-
 ## 2023-10-13 `9.6.0`
 
 #### 🎉 New features
 
+- Added new style pack for `Editor` pattern. ([#197](https://github.com/TiendaNube/nimbus-design-system/pull/197) by [@juniorconquista](https://github.com/juniorconquista))
 - Added `maxWidth` property to `Popover` component sprinkles. ([#196](https://github.com/TiendaNube/nimbus-design-system/pull/196) by [@juniorconquista](https://github.com/juniorconquista))
 
 #### 💡 Others
