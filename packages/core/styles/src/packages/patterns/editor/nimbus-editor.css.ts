@@ -5,7 +5,68 @@ import { varsThemeBase } from "../../../themes";
  * Style
  * -----------------------------------------------------------------------------------------------*/
 
-const base__toolbar = style({
+const base__container = style({
+  position: "relative",
+  borderStyle: "solid",
+  borderColor: varsThemeBase.colors.neutral.interactive,
+  borderRadius: varsThemeBase.shape.border.radius[2],
+  borderWidth: varsThemeBase.shape.border.width[1],
+  paddingBottom: 0,
+  ":focus-within": {
+    outline: "none",
+    boxShadow: varsThemeBase.utils.focus,
+  },
+  "@media": {
+    "screen and (max-width: 672px)": {
+      paddingBottom: varsThemeBase.spacing["3-5"],
+    },
+  },
+});
+
+export const container = styleVariants({
+  neutral: [
+    base__container,
+    {
+      background: varsThemeBase.colors.neutral.background,
+      borderColor: varsThemeBase.colors.neutral.interactive,
+      ":focus-within": {
+        borderColor: varsThemeBase.colors.primary.interactiveHover,
+      },
+    },
+  ],
+  success: [
+    base__container,
+    {
+      background: varsThemeBase.colors.success.surface,
+      borderColor: varsThemeBase.colors.success.interactive,
+      ":focus-within": {
+        borderColor: varsThemeBase.colors.success.interactiveHover,
+      },
+    },
+  ],
+  warning: [
+    base__container,
+    {
+      background: varsThemeBase.colors.warning.surface,
+      borderColor: varsThemeBase.colors.warning.interactive,
+      ":focus-within": {
+        borderColor: varsThemeBase.colors.warning.interactiveHover,
+      },
+    },
+  ],
+  danger: [
+    base__container,
+    {
+      background: varsThemeBase.colors.danger.surface,
+      borderColor: varsThemeBase.colors.danger.interactive,
+      ":focus-within": {
+        borderColor: varsThemeBase.colors.danger.interactiveHover,
+      },
+    },
+  ],
+});
+
+const toolbar = style({
   padding: varsThemeBase.spacing[2],
   verticalAlign: "middle",
   overflow: "auto",
@@ -16,27 +77,13 @@ const base__toolbar = style({
   gap: varsThemeBase.spacing[2],
   position: "sticky",
   top: "0",
-  borderStyle: "solid",
-  borderColor: varsThemeBase.colors.neutral.interactive,
-  borderRadius: varsThemeBase.shape.border.radius[2],
-  borderWidth: varsThemeBase.shape.border.width[1],
-  borderBottomWidth: 0,
-  borderBottomLeftRadius: 0,
-  borderBottomRightRadius: 0,
   boxShadow: `0px -2px 0px 0px ${varsThemeBase.colors.neutral.surfaceDisabled} inset`,
 });
 
-const base__content = style({
+const content = style({
   fontFamily: varsThemeBase.fontFamily.centranube,
   fontSize: varsThemeBase.fontSize.body.highlight,
   minHeight: "150px",
-  borderStyle: "solid",
-  borderRadius: varsThemeBase.shape.border.radius[2],
-  borderWidth: varsThemeBase.shape.border.width[1],
-  borderTopWidth: "0",
-  borderTopLeftRadius: "0",
-  borderTopRightRadius: "0",
-  borderColor: varsThemeBase.colors.neutral.interactive,
   padding: varsThemeBase.spacing["2-5"],
   overflow: "auto",
   resize: "vertical",
@@ -72,69 +119,8 @@ const nested_list__item = style({
   },
 });
 
-export const toolbar = styleVariants({
-  neutral: [
-    base__toolbar,
-    {
-      background: varsThemeBase.colors.neutral.background,
-      borderColor: varsThemeBase.colors.neutral.interactive,
-    },
-  ],
-  success: [
-    base__toolbar,
-    {
-      background: varsThemeBase.colors.success.surface,
-      borderColor: varsThemeBase.colors.success.interactive,
-    },
-  ],
-  warning: [
-    base__toolbar,
-    {
-      background: varsThemeBase.colors.warning.surface,
-      borderColor: varsThemeBase.colors.warning.interactive,
-    },
-  ],
-  danger: [
-    base__toolbar,
-    {
-      background: varsThemeBase.colors.danger.surface,
-      borderColor: varsThemeBase.colors.danger.interactive,
-    },
-  ],
-});
-
-export const content = styleVariants({
-  neutral: [
-    base__content,
-    {
-      background: varsThemeBase.colors.neutral.background,
-      borderColor: varsThemeBase.colors.neutral.interactive,
-    },
-  ],
-  success: [
-    base__content,
-    {
-      background: varsThemeBase.colors.success.surface,
-      borderColor: varsThemeBase.colors.success.interactive,
-    },
-  ],
-  warning: [
-    base__content,
-    {
-      background: varsThemeBase.colors.warning.surface,
-      borderColor: varsThemeBase.colors.warning.interactive,
-    },
-  ],
-  danger: [
-    base__content,
-    {
-      background: varsThemeBase.colors.danger.surface,
-      borderColor: varsThemeBase.colors.danger.interactive,
-    },
-  ],
-});
-
 export const styles = {
+  container,
   toolbar,
   placeholder,
   content,
