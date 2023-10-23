@@ -37,6 +37,7 @@ export { tabs } from "./packages/composite/tabs";
 export { table } from "./packages/composite/table";
 
 export { calendar } from "./packages/patterns/calendar";
+export { editor } from "./packages/patterns/editor";
 
 export type { BoxSprinkle } from "./packages/atomic/box";
 export type { IconButtonSprinkle } from "./packages/atomic/iconButton";
