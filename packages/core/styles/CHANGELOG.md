@@ -6,7 +6,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 #### 🎉 New features
 
-- Added new style pack for `MultiSelect` pattern. ([#199](https://github.com/TiendaNube/nimbus-design-system/pull/199) by [@juniorconquista](https://github.com/juniorconquista))
+- Added new style pack for `MultiSelect` pattern. ([#203](https://github.com/TiendaNube/nimbus-design-system/pull/203) by [@juniorconquista](https://github.com/juniorconquista))
 
 ## 2023-10-17 `9.6.0`
 
