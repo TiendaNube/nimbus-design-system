@@ -49,7 +49,7 @@ const Popover: React.FC<PopoverProps> = ({
   const arrowRef = useRef(null);
   const [isVisible, setVisibility] = useState(false);
 
-  const open = useMemo(
+  const open: boolean = useMemo(
     () => (visible === undefined ? isVisible : visible),
     [visible, isVisible]
   );

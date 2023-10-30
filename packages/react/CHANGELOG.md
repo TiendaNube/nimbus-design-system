@@ -2,6 +2,10 @@
 
 Nimbus is an open-source Design System created by Tiendanube / Nuvesmhop’s team to empower and enhance more stories every day, with simplicity, accessibility, consistency and performance.
 
+## 2023-10-30 `5.3.0`
+
+#### 🎉 New features
+
 ## 2023-10-13 `5.2.1`
 
 #### 🎉 New features

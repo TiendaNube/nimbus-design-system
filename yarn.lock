@@ -4473,6 +4473,20 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@nimbus-ds/multi-select@workspace:packages/react/src/atomic/MultiSelect":
+  version: 0.0.0-use.local
+  resolution: "@nimbus-ds/multi-select@workspace:packages/react/src/atomic/MultiSelect"
+  dependencies:
+    "@nimbus-ds/icon": "workspace:^"
+    "@nimbus-ds/icons": "workspace:^"
+    "@nimbus-ds/skeleton": "workspace:^"
+    "@nimbus-ds/webpack": "workspace:^"
+  peerDependencies:
+    react: ^16.8 || ^17.0 || ^18.0
+    react-dom: ^16.8 || ^17.0 || ^18.0
+  languageName: unknown
+  linkType: soft
+
 "@nimbus-ds/pagination@workspace:packages/react/src/composite/Pagination":
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/pagination@workspace:packages/react/src/composite/Pagination"
