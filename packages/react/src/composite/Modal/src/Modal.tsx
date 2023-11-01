@@ -12,7 +12,7 @@ import {
 } from "@floating-ui/react";
 import { CloseIcon } from "@nimbus-ds/icons";
 import { Icon } from "@nimbus-ds/icon";
-import { modal } from "@nimbus-ds/styles";
+import { modal, useTheme } from "@nimbus-ds/styles";
 
 import { ModalProps, ModalComponents } from "./modal.types";
 import { ModalBody, ModalFooter, ModalHeader } from "./components";
@@ -34,6 +34,8 @@ const Modal: React.FC<ModalProps> & ModalComponents = ({
     padding,
   });
 
+  const { refThemeProvider } = useTheme();
+
   const { context } = useFloating({
     open,
     onOpenChange: onDismiss,
@@ -51,7 +53,10 @@ const Modal: React.FC<ModalProps> & ModalComponents = ({
   if (!open) return null;
 
   return (
-    <FloatingPortal id={portalId || "nimbus-modal-floating"}>
+    <FloatingPortal
+      id={portalId || "nimbus-modal-floating"}
+      root={refThemeProvider?.current}
+    >
       <FloatingOverlay className={modal.classnames.overlay} lockScroll>
         <FloatingFocusManager context={context}>
           <div
