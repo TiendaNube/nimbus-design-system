@@ -1,18 +1,10 @@
 import { globalStyle, style, styleVariants } from "@vanilla-extract/css";
-
+import { select } from "../select";
 import { varsThemeBase } from "../../../themes";
 
-export const container = style({
-  position: "relative",
-});
+export const {container} = select.classnames;
 
-export const container__icon = style({
-  position: "absolute",
-  top: "50%",
-  right: varsThemeBase.spacing[2],
-  transform: "translateY(-50%)",
-  pointerEvents: "none",
-});
+export const {container__icon} = select.classnames;
 
 const base = style({
   cursor: "pointer",
