@@ -1,13 +1,27 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 
 import { MultiSelect, MultiSelectProps } from "./MultiSelect";
 
 const selectName = "myName";
 const selectId = "myId";
+const mockedOptions = [
+  {
+    label: "Option 1",
+    value: "option-1",
+  },
+  {
+    label: "Option 2",
+    value: "option-2",
+  },
+  {
+    label: "Option 3",
+    value: "option-3",
+  },
+];
 
 const makeSut = (
-  rest?: Omit<MultiSelectProps, "options" | "id" | "name">,
+  rest?: Partial<Omit<MultiSelectProps, "id" | "name">>,
   id = selectId,
   name = selectName,
   options = []
@@ -18,7 +32,7 @@ const makeSut = (
       id={id}
       name={name}
       data-testid="multi-select-element"
-      options={options}
+      options={rest?.options || options}
     />
   );
 };
@@ -75,6 +89,18 @@ describe("GIVEN <Select />", () => {
       expect(
         screen.getByTestId<HTMLSelectElement>("multi-select-element").id
       ).toContain(selectId);
+    });
+
+    it("THEN should correctly send the selected options in the onChange prop", () => {
+      const mockedOnChange = jest.fn();
+      makeSut({ onChange: mockedOnChange, options: mockedOptions });
+      fireEvent.click(screen.getByTestId("multi-select-element"));
+      fireEvent.click(screen.getByText(mockedOptions[0].label));
+      expect(mockedOnChange).toBeCalledWith([mockedOptions[0].value]);
+      fireEvent.click(
+        screen.getByTestId(`option-selected-${mockedOptions[0].value}`)
+      );
+      expect(mockedOnChange).toBeCalledWith([]);
     });
   });
 });
