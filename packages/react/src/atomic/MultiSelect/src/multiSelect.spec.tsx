@@ -93,7 +93,11 @@ describe("GIVEN <Select />", () => {
 
     it("THEN should correctly send the selected options in the onChange prop", () => {
       const mockedOnChange = jest.fn();
-      makeSut({ onChange: mockedOnChange, options: mockedOptions });
+      makeSut({
+        onChange: mockedOnChange,
+        options: mockedOptions,
+        placeholder: "Placeholder",
+      });
       fireEvent.click(screen.getByTestId("multi-select-element"));
       fireEvent.click(screen.getByText(mockedOptions[0].label));
       expect(mockedOnChange).toBeCalledWith([mockedOptions[0].value]);

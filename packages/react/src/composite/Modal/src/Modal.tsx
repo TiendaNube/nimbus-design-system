@@ -54,7 +54,7 @@ const Modal: React.FC<ModalProps> & ModalComponents = ({
 
   return (
     <FloatingPortal
-      id={portalId || "nimbus-modal-floating"}
+      id={portalId ?? "nimbus-modal-floating"}
       root={refThemeProvider?.current}
     >
       <FloatingOverlay className={modal.classnames.overlay} lockScroll>
