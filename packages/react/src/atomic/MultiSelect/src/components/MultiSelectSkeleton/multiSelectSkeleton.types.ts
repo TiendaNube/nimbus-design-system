@@ -1,3 +1,4 @@
+import { HTMLAttributes } from "react";
 import { SkeletonProps } from "@nimbus-ds/skeleton";
 
 export type MultiSelectSkeletonSkeletonProperties = Partial<
@@ -5,4 +6,4 @@ export type MultiSelectSkeletonSkeletonProperties = Partial<
 >;
 
 export type MultiSelectSkeletonSkeletonProps =
-  MultiSelectSkeletonSkeletonProperties;
+  MultiSelectSkeletonSkeletonProperties & HTMLAttributes<HTMLDivElement>;

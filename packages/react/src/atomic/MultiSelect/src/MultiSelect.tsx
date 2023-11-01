@@ -93,9 +93,10 @@ const MultiSelect: React.FC<MultiSelectBaseProps> & MultiSelectComponents = ({
           )}
           {selectedOptions.map((selectedOption) => (
             <Chip
-              removable
+              key={selectedOption.value}
               text={selectedOption.label}
               onClick={() => handleRemoveOption(selectedOption)}
+              removable
             />
           ))}
         </Box>

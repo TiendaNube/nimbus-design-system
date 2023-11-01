@@ -8,6 +8,13 @@ Nimbus is an open-source Design System created by Tiendanube / Nuvesmhop’s tea
 
 - Added new `MultiSelect` component. ([#203](https://github.com/TiendaNube/nimbus-design-system/pull/203) by [@juniorconquista](https://github.com/juniorconquista))
 
+#### 🐛 Bug fixes
+
+- Fixed bug where the theme change did not reflect the color change in the component `Popover`.([#203](https://github.com/TiendaNube/nimbus-design-system/pull/203) by [@juniorconquista](https://github.com/juniorconquista))
+- Fixed bug where the theme change did not reflect the color change in the component `Tooltip`.([#203](https://github.com/TiendaNube/nimbus-design-system/pull/203) by [@juniorconquista](https://github.com/juniorconquista))
+- Fixed bug where the theme change did not reflect the color change in the component `Modal`.([#203](https://github.com/TiendaNube/nimbus-design-system/pull/203) by [@juniorconquista](https://github.com/juniorconquista))
+- Fixed bug where the theme change did not reflect the color change in the component `Sidebar`.([#203](https://github.com/TiendaNube/nimbus-design-system/pull/203) by [@juniorconquista](https://github.com/juniorconquista))
+
 ## 2023-10-13 `5.2.1`
 
 #### 🎉 New features

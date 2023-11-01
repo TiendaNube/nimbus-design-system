@@ -1,8 +1,11 @@
 releases:
   "@nimbus-ds/components": minor
+  "@nimbus-ds/modal": patch
   "@nimbus-ds/multi-select": major
+  "@nimbus-ds/popover": patch
+  "@nimbus-ds/sidebar": patch
   "@nimbus-ds/styles": minor
+  "@nimbus-ds/tooltip": patch
 
 declined:
   - nimbus-design-system
-  - "@nimbus-ds/popover"
