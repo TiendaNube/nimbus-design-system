@@ -1,4 +1,4 @@
-import { Conditions } from "../../../types";
+import { Conditions, Overflow } from "../../../types";
 import { popoverSprinkle } from "./nimbus-popover.css";
 
 const { properties: propertiesPopover } = popoverSprinkle;
@@ -45,4 +45,8 @@ export interface PopoverSprinkle {
    * @default base
    */
   padding?: PopoverPaddingProperties | Conditions<PopoverPaddingProperties>;
+  /**
+   * The overflow shorthand property sets the desired behavior for an popover's content overflow.
+   */
+  overflow?: Overflow | Conditions<Overflow>;
 }

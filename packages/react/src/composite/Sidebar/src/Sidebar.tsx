@@ -7,7 +7,7 @@ import {
   useDismiss,
   useInteractions,
 } from "@floating-ui/react";
-import { sidebar } from "@nimbus-ds/styles";
+import { sidebar, useTheme } from "@nimbus-ds/styles";
 
 import { SidebarBody, SidebarFooter, SidebarHeader } from "./components";
 import { SidebarComponents, SidebarProps } from "./sidebar.types";
@@ -27,6 +27,8 @@ const Sidebar: React.FC<SidebarProps> & SidebarComponents = ({
     maxWidth,
   });
 
+  const { refThemeProvider } = useTheme();
+
   const { context } = useFloating({
     open,
     onOpenChange: onRemove,
@@ -39,7 +41,7 @@ const Sidebar: React.FC<SidebarProps> & SidebarComponents = ({
   if (!open) return null;
 
   return (
-    <FloatingPortal id="nimbus-sidebar">
+    <FloatingPortal id="nimbus-sidebar" root={refThemeProvider?.current}>
       <FloatingOverlay
         className={sidebar.classnames.overlay}
         lockScroll

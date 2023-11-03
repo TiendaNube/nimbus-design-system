@@ -8,6 +8,7 @@ import {
   backgroundColorProperties,
   paddingProperties,
   zIndexProperties,
+  overflowProperties,
 } from "../../../properties";
 
 /* -------------------------------------------------------------------------------------------------
@@ -78,6 +79,7 @@ const defineProperties = defineRainbowProperties({
     padding: paddingProperties,
     color: popoverColorProperties,
     zIndex: zIndexProperties,
+    overflow: overflowProperties,
   },
 });
 
@@ -86,6 +88,7 @@ const properties = {
   color: popoverColorProperties,
   padding: paddingProperties,
   zIndex: zIndexProperties,
+  overflow: overflowProperties,
 };
 
 const sprinkle = createRainbowSprinkles(defineProperties);

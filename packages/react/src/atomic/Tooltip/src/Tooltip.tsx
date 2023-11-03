@@ -10,7 +10,7 @@ import {
   inline,
   safePolygon,
 } from "@floating-ui/react";
-import { tooltip } from "@nimbus-ds/styles";
+import { tooltip, useTheme } from "@nimbus-ds/styles";
 import { Text } from "@nimbus-ds/text";
 import { Box } from "@nimbus-ds/box";
 import { TooltipProps } from "./tooltip.types";
@@ -26,6 +26,7 @@ const Tooltip: React.FC<TooltipProps> = ({
 }) => {
   const arrowRef = useRef(null);
   const [isVisible, setVisibility] = useState(false);
+  const { refThemeProvider } = useTheme();
   const { context, strategy, floatingStyles } = useFloating({
     open: isVisible,
     placement: position,
@@ -62,7 +63,10 @@ const Tooltip: React.FC<TooltipProps> = ({
       >
         {children}
       </div>
-      <FloatingPortal id="nimbus-tooltip-floating">
+      <FloatingPortal
+        id="nimbus-tooltip-floating"
+        root={refThemeProvider?.current}
+      >
         {isVisible && (
           <div
             {...rest}

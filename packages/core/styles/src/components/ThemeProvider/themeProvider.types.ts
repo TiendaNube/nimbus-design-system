@@ -1,5 +1,7 @@
 import { HTMLAttributes } from "react";
 
+export type Theme = "dark" | "base" | "next" | "next-dark";
+
 export interface ThemeProviderProps extends HTMLAttributes<HTMLElement> {
-  theme?: "dark" | "base" | "next" | "next-dark";
+  theme?: Theme;
 }
