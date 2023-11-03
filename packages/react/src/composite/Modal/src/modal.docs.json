@@ -1,165 +1,26 @@
 {
   "id": "modal",
   "name": "Modal",
-  "totalProps": 6,
+  "totalProps": 0,
   "packageName": "@nimbus-ds/modal",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/modal",
-  "props": [
-    {
-      "description": "The content of the modal.",
-      "type": "React.ReactNode",
-      "title": "children",
-      "required": true
-    },
-    {
-      "description": "Whether the modal is open or not.",
-      "type": "boolean",
-      "title": "open",
-      "required": true
-    },
-    {
-      "description": "Callback fired when the component requests to be closed.",
-      "type": "(open: boolean) => void;",
-      "title": "onDismiss",
-      "required": true
-    },
-    {
-      "description": "Id to be embedded in the portal element",
-      "type": "string",
-      "title": "portalId",
-      "required": false
-    },
-    {
-      "description": "The padding properties are used to generate space around an modal's content area.",
-      "default": "base",
-      "enum": [
-        "base",
-        "none",
-        "small"
-      ],
-      "type": "string",
-      "title": "padding",
-      "required": false
-    },
-    {
-      "description": "The maxWidth property specifies the maxWidth of a modal's content area. The width of the modal will be defined by the width of the content in this prop.",
-      "default": "{ xs: \"100%\", md: \"500px\" }",
-      "anyOf": [
-        {
-          "type": "object",
-          "properties": {
-            "xs": {
-              "type": "string",
-              "title": "xs"
-            },
-            "md": {
-              "type": "string",
-              "title": "md"
-            },
-            "lg": {
-              "type": "string",
-              "title": "lg"
-            },
-            "xl": {
-              "type": "string",
-              "title": "xl"
-            }
-          },
-          "additionalProperties": false,
-          "propertyOrder": [
-            "xs",
-            "md",
-            "lg",
-            "xl"
-          ]
-        },
-        {
-          "type": "string"
-        }
-      ],
-      "title": "maxWidth",
-      "required": false
-    }
-  ],
+  "props": [],
   "subComponents": [
     {
       "name": "Modal.Body",
-      "totalProps": 2,
-      "props": [
-        {
-          "description": "The content of the modal body.",
-          "type": "React.ReactNode",
-          "title": "children",
-          "required": true
-        },
-        {
-          "description": "The padding properties are used to generate space around an modal's body content area.",
-          "default": "none",
-          "enum": [
-            "base",
-            "none",
-            "small"
-          ],
-          "type": "string",
-          "title": "padding",
-          "required": false
-        }
-      ]
+      "totalProps": 0,
+      "props": []
     },
     {
       "name": "Modal.Footer",
-      "totalProps": 2,
-      "props": [
-        {
-          "description": "The content of the modal footer.",
-          "type": "React.ReactNode",
-          "title": "children",
-          "required": true
-        },
-        {
-          "description": "The padding properties are used to generate space around an modal's footer content area.",
-          "default": "none",
-          "enum": [
-            "base",
-            "none",
-            "small"
-          ],
-          "type": "string",
-          "title": "padding",
-          "required": false
-        }
-      ]
+      "totalProps": 0,
+      "props": []
     },
     {
       "name": "Modal.Header",
-      "totalProps": 3,
-      "props": [
-        {
-          "description": "The content of the modal header.",
-          "type": "React.ReactNode",
-          "title": "children",
-          "required": false
-        },
-        {
-          "description": "The title to display in the modal header.",
-          "type": "string",
-          "title": "title",
-          "required": false
-        },
-        {
-          "description": "The padding properties are used to generate space around an modal's header content area.",
-          "default": "none",
-          "enum": [
-            "base",
-            "none",
-            "small"
-          ],
-          "type": "string",
-          "title": "padding",
-          "required": false
-        }
-      ]
+      "totalProps": 0,
+      "props": []
     }
   ]
 }

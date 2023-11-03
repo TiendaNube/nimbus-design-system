@@ -1,75 +1,16 @@
 {
   "id": "alert",
   "name": "Alert",
-  "totalProps": 5,
+  "totalProps": 0,
   "packageName": "@nimbus-ds/alert",
   "version": "2.3.1",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/alert",
-  "props": [
-    {
-      "description": "The content for the title of the alert.",
-      "type": "string",
-      "title": "title",
-      "required": false
-    },
-    {
-      "description": "Change the visual style of the alert.",
-      "default": "neutral",
-      "enum": [
-        "danger",
-        "neutral",
-        "primary",
-        "success",
-        "warning"
-      ],
-      "type": "string",
-      "title": "appearance",
-      "required": false
-    },
-    {
-      "description": "The content of the alert.",
-      "type": "React.ReactNode",
-      "title": "children",
-      "required": true
-    },
-    {
-      "description": "Function to be passed on actioning the dismiss button.",
-      "type": "() => void;",
-      "title": "onRemove",
-      "required": false
-    },
-    {
-      "description": "Determines if the alert is shown or not.",
-      "default": true,
-      "type": "boolean",
-      "title": "show",
-      "required": false
-    }
-  ],
+  "props": [],
   "subComponents": [
     {
       "name": "Alert.Skeleton",
-      "totalProps": 3,
-      "props": [
-        {
-          "description": "Height of the skeleton. Useful when you don't want to adapt the skeleton to a text element but for instance a card.",
-          "type": "string",
-          "title": "height",
-          "required": false
-        },
-        {
-          "description": "Width of the skeleton. Useful when the skeleton is inside an inline element with no width of its own.",
-          "type": "string",
-          "title": "width",
-          "required": false
-        },
-        {
-          "description": "This is an attribute used to identify a DOM node for testing purposes.",
-          "type": "string",
-          "title": "data-testid",
-          "required": false
-        }
-      ]
+      "totalProps": 0,
+      "props": []
     }
   ]
 }

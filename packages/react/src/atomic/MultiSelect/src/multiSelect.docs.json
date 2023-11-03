@@ -1,0 +1,16 @@
+{
+  "id": "multiSelect",
+  "name": "MultiSelect",
+  "totalProps": 0,
+  "packageName": "@nimbus-ds/multi-select",
+  "version": "1.0.0",
+  "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/multi-select",
+  "props": [],
+  "subComponents": [
+    {
+      "name": "MultiSelect.Skeleton",
+      "totalProps": 0,
+      "props": []
+    }
+  ]
+}

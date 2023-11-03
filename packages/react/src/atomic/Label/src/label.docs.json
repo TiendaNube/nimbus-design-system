@@ -1,55 +1,16 @@
 {
   "id": "label",
   "name": "Label",
-  "totalProps": 3,
+  "totalProps": 0,
   "packageName": "@nimbus-ds/label",
   "version": "2.2.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/label",
-  "props": [
-    {
-      "description": "The content of the label.",
-      "type": "React.ReactNode",
-      "title": "children",
-      "required": true
-    },
-    {
-      "description": "The for attribute specifies which form element a label is bound to.",
-      "type": "string",
-      "title": "htmlFor",
-      "required": false
-    },
-    {
-      "description": "If true the label will be visually hidden but maintain accessibility purpose",
-      "default": false,
-      "type": "boolean",
-      "title": "hidden",
-      "required": false
-    }
-  ],
+  "props": [],
   "subComponents": [
     {
       "name": "Label.Skeleton",
-      "totalProps": 3,
-      "props": [
-        {
-          "description": "Width of the skeleton. Useful when the skeleton is inside an inline element with no width of its own.",
-          "type": "string",
-          "title": "width",
-          "required": false
-        },
-        {
-          "description": "Height of the skeleton. Useful when you don't want to adapt the skeleton to a text element but for instance a card.",
-          "type": "string",
-          "title": "height",
-          "required": false
-        },
-        {
-          "description": "This is an attribute used to identify a DOM node for testing purposes.",
-          "type": "string",
-          "title": "data-testid",
-          "required": false
-        }
-      ]
+      "totalProps": 0,
+      "props": []
     }
   ]
 }
