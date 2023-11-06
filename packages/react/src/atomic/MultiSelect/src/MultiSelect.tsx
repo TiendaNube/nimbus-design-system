@@ -21,11 +21,14 @@ const MultiSelect: React.FC<MultiSelectBaseProps> & MultiSelectComponents = ({
   appearance = "neutral",
   onChange,
   placeholder,
+  value,
+  zIndex,
   ...rest
 }: MultiSelectBaseProps) => {
   const [selectedOptions, setSelectedOptions] = useState<MultiSelectOption[]>(
     []
   );
+
   const [availableOptions, setAvailableOptions] =
     useState<MultiSelectOption[]>(options);
 
@@ -37,7 +40,9 @@ const MultiSelect: React.FC<MultiSelectBaseProps> & MultiSelectComponents = ({
     setAvailableOptions(
       availableOptions.filter((item) => item.value !== option.value)
     );
-    handleOpen();
+    if (open) {
+      handleOpen();
+    }
   };
 
   const handleRemoveOption = (option: MultiSelectOption) => {
@@ -48,8 +53,15 @@ const MultiSelect: React.FC<MultiSelectBaseProps> & MultiSelectComponents = ({
   };
 
   useEffect(() => {
+    if (value) {
+      value.map((val) => handleSelectOption(val));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
     if (onChange) {
-      onChange(selectedOptions.map((selectedOption) => selectedOption.value));
+      onChange(selectedOptions);
     }
   }, [selectedOptions, onChange]);
 
@@ -77,6 +89,7 @@ const MultiSelect: React.FC<MultiSelectBaseProps> & MultiSelectComponents = ({
       offset={8}
       visible={open}
       onVisibility={handleOpen}
+      zIndex={zIndex ?? "900"}
     >
       <div
         className={multiSelect.classnames.appearance[appearance]}

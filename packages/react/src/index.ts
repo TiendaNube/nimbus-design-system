@@ -11,6 +11,7 @@ export * from "@nimbus-ds/input";
 export * from "@nimbus-ds/label";
 export * from "@nimbus-ds/link";
 export * from "@nimbus-ds/list";
+export * from "@nimbus-ds/multi-select";
 export * from "@nimbus-ds/popover";
 export * from "@nimbus-ds/radio";
 export * from "@nimbus-ds/select";

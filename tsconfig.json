@@ -58,6 +58,9 @@
       "@nimbus-ds/label": ["./packages/react/src/atomic/Label/src"],
       "@nimbus-ds/link": ["./packages/react/src/atomic/Link/src"],
       "@nimbus-ds/list": ["./packages/react/src/atomic/List/src"],
+      "@nimbus-ds/multi-select": [
+        "./packages/react/src/atomic/MultiSelect/src"
+      ],
       "@nimbus-ds/popover": ["./packages/react/src/atomic/Popover/src"],
       "@nimbus-ds/radio": ["./packages/react/src/atomic/Radio/src"],
       "@nimbus-ds/select": ["./packages/react/src/atomic/Select/src"],

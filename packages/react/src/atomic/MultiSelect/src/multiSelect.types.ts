@@ -1,4 +1,5 @@
 import { InputHTMLAttributes } from "react";
+import { multiSelect } from "@nimbus-ds/styles";
 import { MultiSelectSkeleton } from "./components";
 
 export interface MultiSelectComponents {
@@ -37,8 +38,16 @@ export interface MultiSelectProperties {
   /**
    * Options of the MultiSelect
    */
-  onChange?: (values: string[]) => void;
+  onChange?: (values: MultiSelectOption[]) => void;
+  /**
+   * Deafult of the MultiSelect
+   */
+  value?: MultiSelectOption[];
+  /**
+   * ZIndex of the MultiSelect
+   */
+  zIndex?: keyof typeof multiSelect.properties.zIndex;
 }
 
 export type MultiSelectBaseProps = MultiSelectProperties &
-  Omit<InputHTMLAttributes<HTMLInputElement>, "children">;
+  Omit<InputHTMLAttributes<HTMLInputElement>, "children" | "value">;

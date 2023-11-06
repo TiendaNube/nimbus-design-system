@@ -17,18 +17,24 @@ export const basic: Story = {
     appearance: "neutral",
     disabled: false,
     placeholder: "Placeholder",
+    value: [
+      {
+        label: "Option 1",
+        value: "option-1",
+      },
+    ],
     options: [
       {
         label: "Option 1",
-        value: "Option 1",
+        value: "option-1",
       },
       {
         label: "Option 2",
-        value: "Option 2",
+        value: "option-2",
       },
       {
         label: "Option 3",
-        value: "Option 3",
+        value: "option-3",
       },
     ],
   },

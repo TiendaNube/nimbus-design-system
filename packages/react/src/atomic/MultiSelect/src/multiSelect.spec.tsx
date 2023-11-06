@@ -100,7 +100,7 @@ describe("GIVEN <Select />", () => {
       });
       fireEvent.click(screen.getByTestId("multi-select-element"));
       fireEvent.click(screen.getByText(mockedOptions[0].label));
-      expect(mockedOnChange).toBeCalledWith([mockedOptions[0].value]);
+      expect(mockedOnChange).toBeCalledWith([mockedOptions[0]]);
       fireEvent.click(
         screen.getByTestId(`option-selected-${mockedOptions[0].value}`)
       );

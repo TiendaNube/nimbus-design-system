@@ -1,10 +1,12 @@
 import { globalStyle, style, styleVariants } from "@vanilla-extract/css";
+import { defineProperties, createSprinkles } from "@vanilla-extract/sprinkles";
 import { select } from "../select";
-import { varsThemeBase } from "../../../themes";
+import { mediaQueries, varsThemeBase } from "../../../themes";
+import { zIndexProperties } from "../../../properties";
 
-export const {container} = select.classnames;
+export const { container } = select.classnames;
 
-export const {container__icon} = select.classnames;
+export const { container__icon } = select.classnames;
 
 const base = style({
   cursor: "pointer",
@@ -109,3 +111,40 @@ globalStyle(`${base} option`, {
 globalStyle(`${base} option[value=""][disabled]`, {
   color: varsThemeBase.colors.neutral.textDisabled,
 });
+
+export const styles = {
+  appearance,
+  container,
+  container__icon,
+  container__button,
+};
+
+const multiSelectProperties = {
+  zIndex: zIndexProperties,
+};
+
+const sprinkle = createSprinkles(
+  defineProperties({
+    conditions: {
+      xs: {
+        "@media": mediaQueries.xs(),
+      },
+      md: {
+        "@media": mediaQueries.md(),
+      },
+      lg: {
+        "@media": mediaQueries.lg(),
+      },
+      xl: {
+        "@media": mediaQueries.xl(),
+      },
+    },
+    defaultCondition: "xs",
+    properties: multiSelectProperties,
+  })
+);
+
+export const multiSelectSprinkle = {
+  sprinkle,
+  properties: multiSelectProperties,
+};
