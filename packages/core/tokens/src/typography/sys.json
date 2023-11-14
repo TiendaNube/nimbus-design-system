@@ -1,8 +1,14 @@
 {
   "font": {
     "family": {
-      "value": "CentraNube, -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', arial, sans-serif",
-      "comment": "Font family value by default, to use in css and set components font."
+      "sans": {
+        "value": "Geist, -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', arial, sans-serif",
+        "comment": "Font family value by default, to use in css and set components font."
+      },
+      "mono": {
+        "value": "Geist Mono, 'Roboto Mono', monospace",
+        "comment": "Monospace font family value for usage within code blocks and code elements."
+      }
     },
     "size": {
       "body": {
@@ -50,7 +56,7 @@
         "comment": "Plain text with medium weight, can be combined with every font-size."
       },
       "bold": {
-        "value": "700",
+        "value": "600",
         "comment": "Plain text with bold weight, can be combined with highlight, base or caption font-size."
       }
     }
