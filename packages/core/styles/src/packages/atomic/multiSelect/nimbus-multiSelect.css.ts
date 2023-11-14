@@ -11,7 +11,7 @@ export const { container__icon } = select.classnames;
 const base = style({
   cursor: "pointer",
   position: "relative",
-  fontFamily: varsThemeBase.fontFamily.centranube,
+  fontFamily: varsThemeBase.fontFamily.sans,
   fontSize: varsThemeBase.fontSize.body.base,
   lineHeight: varsThemeBase.lineWeight.body.caption,
   textAlign: "left",
