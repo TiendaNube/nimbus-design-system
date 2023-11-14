@@ -8,7 +8,7 @@ export const input = vanillaStyle({
   boxSizing: "border-box",
   fontWeight: varsThemeBase.fontWeight.regular,
   fontSize: varsThemeBase.fontSize.body.base,
-  fontFamily: varsThemeBase.fontFamily.centranube,
+  fontFamily: varsThemeBase.fontFamily.sans,
   color: varsThemeBase.colors.neutral.textLow,
   border: "none",
   backgroundColor: "transparent",

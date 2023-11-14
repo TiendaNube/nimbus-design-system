@@ -3,7 +3,7 @@ import { style as vanillaStyle, styleVariants } from "@vanilla-extract/css";
 import { varsThemeBase } from "../../../themes";
 
 export const container = vanillaStyle({
-  borderColor: varsThemeBase.colors.neutral.interactive,
+  borderColor: varsThemeBase.colors.neutral.surfaceHighlight,
   borderStyle: "none none solid",
   borderWidth: varsThemeBase.shape.border.width[2],
   margin: 0,
@@ -34,7 +34,7 @@ const button = vanillaStyle({
   paddingRight: varsThemeBase.spacing[6],
   paddingTop: varsThemeBase.spacing[2],
   width: "100%",
-  fontFamily: varsThemeBase.fontFamily.centranube,
+  fontFamily: varsThemeBase.fontFamily.sans,
   fontSize: varsThemeBase.fontSize.body.base,
   fontWeight: varsThemeBase.fontWeight.regular,
   textAlign: "center",

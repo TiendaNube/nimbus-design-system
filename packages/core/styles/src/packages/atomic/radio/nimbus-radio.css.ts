@@ -80,8 +80,8 @@ const container__input = style({
  * -----------------------------------------------------------------------------------------------*/
 
 export const container__checkmark = style({
-  minWidth: "0.938rem",
-  minHeight: "0.938rem",
+  minWidth: "0.875rem",
+  minHeight: "0.875rem",
 
   display: "flex",
   alignItems: "center",
@@ -92,6 +92,7 @@ export const container__checkmark = style({
   borderWidth: varsThemeBase.shape.border.width[1],
   borderRadius: varsThemeBase.shape.border.radius.full,
   borderColor: varsThemeBase.colors.neutral.interactive,
+  backgroundColor: varsThemeBase.colors.neutral.background,
 });
 
 export const container__checkicon = style({
@@ -124,6 +125,14 @@ globalStyle(
     backgroundColor: varsThemeBase.colors.neutral.textDisabled,
   }
 );
+
+globalStyle(`${container__input}:disabled ~ ${container__content.radio}`, {
+  color: varsThemeBase.colors.neutral.textDisabled,
+});
+
+globalStyle(`${container} p`, {
+  lineHeight: varsThemeBase.spacing[4],
+});
 
 /* -------------------------------------------------------------------------------------------------
  * style as "button"

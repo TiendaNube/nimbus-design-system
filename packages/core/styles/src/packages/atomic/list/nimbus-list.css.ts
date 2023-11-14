@@ -13,7 +13,7 @@ export const container = vanillaStyle({
 export const container__item = vanillaStyle({
   lineHeight: varsThemeBase.lineWeight.body.base,
   fontSize: varsThemeBase.fontSize.body.base,
-  fontFamily: varsThemeBase.fontFamily.centranube,
+  fontFamily: varsThemeBase.fontFamily.sans,
   color: varsThemeBase.colors.neutral.textLow,
   position: "relative",
   selectors: {

@@ -44,7 +44,7 @@ const body = style({
   display: "flex",
   backgroundColor: varsThemeBase.colors.neutral.surface,
   boxSizing: "border-box",
-  fontFamily: varsThemeBase.fontFamily.centranube,
+  fontFamily: varsThemeBase.fontFamily.sans,
 });
 
 export const styles = {

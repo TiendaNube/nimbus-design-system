@@ -15,7 +15,7 @@ export const container__icon = style({
 });
 
 const base = style({
-  fontFamily: varsThemeBase.fontFamily.centranube,
+  fontFamily: varsThemeBase.fontFamily.sans,
   fontSize: varsThemeBase.fontSize.body.base,
   lineHeight: varsThemeBase.lineWeight.body.caption,
   textAlign: "left",
@@ -35,7 +35,7 @@ const base = style({
     color: varsThemeBase.colors.neutral.textDisabled,
   },
   ":disabled": {
-    border: `1px solid ${varsThemeBase.colors.neutral.interactive}`,
+    border: `1px solid ${varsThemeBase.colors.neutral.surfaceHighlight}`,
     backgroundColor: varsThemeBase.colors.neutral.surfaceDisabled,
     color: varsThemeBase.colors.neutral.textDisabled,
     cursor: "not-allowed",

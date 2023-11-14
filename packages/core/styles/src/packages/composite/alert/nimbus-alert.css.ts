@@ -82,7 +82,7 @@ export const container__content = vanillaStyle({
   gap: varsThemeBase.spacing[4],
   lineHeight: varsThemeBase.lineWeight.body.base,
   fontSize: varsThemeBase.fontSize.body.base,
-  fontFamily: varsThemeBase.fontFamily.centranube,
+  fontFamily: varsThemeBase.fontFamily.sans,
 });
 
 const container__close = vanillaStyle({

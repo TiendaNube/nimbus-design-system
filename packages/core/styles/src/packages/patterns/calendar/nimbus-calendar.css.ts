@@ -46,7 +46,7 @@ const cell__head = style([
   {
     fontSize: varsThemeBase.fontSize.body.caption,
     fontWeight: varsThemeBase.fontWeight.medium,
-    fontFamily: varsThemeBase.fontFamily.centranube,
+    fontFamily: varsThemeBase.fontFamily.sans,
     color: varsThemeBase.colors.neutral.textLow,
     width: varsThemeBase.spacing[8],
     height: varsThemeBase.spacing[8],
