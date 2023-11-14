@@ -29,8 +29,8 @@ const container__input = style({
 });
 
 const container__checkmark = style({
-  minWidth: "0.938rem",
-  minHeight: "0.938rem",
+  minWidth: "0.875rem",
+  minHeight: "0.875rem",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
@@ -73,6 +73,10 @@ globalStyle(
     display: "none",
   }
 );
+
+globalStyle(`${container} p`, {
+  lineHeight: varsThemeBase.spacing[4],
+});
 
 export const styles = {
   container,

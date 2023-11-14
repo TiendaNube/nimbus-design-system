@@ -9,7 +9,7 @@ const base = style({
   textAlign: "left",
   boxSizing: "border-box",
   margin: 0,
-  fontFamily: varsThemeBase.fontFamily.centranube,
+  fontFamily: varsThemeBase.fontFamily.sans,
   fontSize: varsThemeBase.fontSize.body.base,
   lineHeight: varsThemeBase.lineWeight.body.caption,
   color: varsThemeBase.colors.neutral.textHigh,
@@ -23,7 +23,7 @@ const base = style({
     color: varsThemeBase.colors.neutral.textDisabled,
   },
   ":disabled": {
-    border: `${varsThemeBase.shape.border.width[1]} solid ${varsThemeBase.colors.neutral.interactive}`,
+    border: `${varsThemeBase.shape.border.width[1]} solid ${varsThemeBase.colors.neutral.surfaceHighlight}`,
     backgroundColor: varsThemeBase.colors.neutral.surfaceDisabled,
     color: varsThemeBase.colors.neutral.textDisabled,
     cursor: "not-allowed",

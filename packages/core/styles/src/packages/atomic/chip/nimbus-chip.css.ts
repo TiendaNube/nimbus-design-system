@@ -16,7 +16,7 @@ export const base = vanillaStyle({
 
   lineHeight: varsThemeBase.lineWeight.body.caption,
   fontSize: varsThemeBase.fontSize.body.caption,
-  fontFamily: varsThemeBase.fontFamily.centranube,
+  fontFamily: varsThemeBase.fontFamily.sans,
   background: varsThemeBase.colors.neutral.surface,
   color: varsThemeBase.colors.neutral.textLow,
 

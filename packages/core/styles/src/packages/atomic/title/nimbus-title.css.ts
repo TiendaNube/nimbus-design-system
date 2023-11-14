@@ -16,7 +16,7 @@ import {
  * -----------------------------------------------------------------------------------------------*/
 
 const base = style({
-  fontFamily: varsThemeBase.fontFamily.centranube,
+  fontFamily: varsThemeBase.fontFamily.sans,
   margin: 0,
 });
 

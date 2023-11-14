@@ -19,7 +19,7 @@ import { mediaQueries, varsThemeBase } from "../../../themes";
  * -----------------------------------------------------------------------------------------------*/
 
 const base = style({
-  fontFamily: varsThemeBase.fontFamily.centranube,
+  fontFamily: varsThemeBase.fontFamily.sans,
   fontWeight: varsThemeBase.fontWeight.regular,
   margin: 0,
 });

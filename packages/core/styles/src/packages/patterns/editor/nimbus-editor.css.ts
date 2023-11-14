@@ -81,7 +81,7 @@ const toolbar = style({
 });
 
 const content = style({
-  fontFamily: varsThemeBase.fontFamily.centranube,
+  fontFamily: varsThemeBase.fontFamily.sans,
   fontSize: varsThemeBase.fontSize.body.highlight,
   minHeight: "150px",
   padding: varsThemeBase.spacing["2-5"],
@@ -92,7 +92,7 @@ const content = style({
 
 const placeholder = style({
   fontSize: varsThemeBase.fontSize.body.base,
-  fontFamily: varsThemeBase.fontFamily.centranube,
+  fontFamily: varsThemeBase.fontFamily.sans,
   color: varsThemeBase.colors.neutral.textDisabled,
   overflow: "hidden",
   position: "absolute",

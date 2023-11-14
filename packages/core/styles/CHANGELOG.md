@@ -2,6 +2,16 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2023-11-20 `9.8.0`
+
+#### 🎉 New features
+
+- Update style packages of various components to update new font values from tokens package. ([#204](https://github.com/TiendaNube/nimbus-design-system/pull/204) by [@juanchigallego](https://github.com/juanchigallego))
+
+#### 🐛 Bug fixes
+
+- Fix next dark theme colors to use dark mode color tokens. ([#204](https://github.com/TiendaNube/nimbus-design-system/pull/204) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-10-30 `9.7.0`
 
 #### 🎉 New features

@@ -16,7 +16,7 @@ const base = style({
   borderRadius: varsThemeBase.shape.border.radius.full,
   lineHeight: varsThemeBase.lineWeight.body.caption,
   fontSize: varsThemeBase.fontSize.body.caption,
-  fontFamily: varsThemeBase.fontFamily.centranube,
+  fontFamily: varsThemeBase.fontFamily.sans,
 });
 
 export const appearance = styleVariants({

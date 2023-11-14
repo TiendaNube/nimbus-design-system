@@ -15,7 +15,7 @@ const base = style({
   fontWeight: varsThemeBase.fontWeight.medium,
   lineHeight: varsThemeBase.lineWeight.body.base,
   fontSize: varsThemeBase.fontSize.body.base,
-  fontFamily: varsThemeBase.fontFamily.centranube,
+  fontFamily: varsThemeBase.fontFamily.sans,
   color: varsThemeBase.colors.neutral.textLow,
   borderRadius: varsThemeBase.shape.border.radius[2],
   borderWidth: varsThemeBase.shape.border.width[1],

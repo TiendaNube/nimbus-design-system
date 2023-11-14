@@ -2,6 +2,12 @@
 
 Our design tokens are the foundations of Nimbus Design System.
 
+## 2023-11-20 `9.0.0`
+
+##### 🎉 New features
+
+- Replace font family tokens with new 'Geist' font. ([#204](https://github.com/TiendaNube/nimbus-design-system/pull/204) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-09-04 `8.1.0`
 
 ##### 🎉 New features

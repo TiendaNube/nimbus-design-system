@@ -7,7 +7,7 @@ export const base = {
   brandImage: "./static/logo.png",
   brandTarget: "_self",
   fontBase:
-    "CentraNube, -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', arial, sans-serif",
+    "Geist, -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', arial, sans-serif",
 };
 
 export const light = create({ ...base, base: "light" });

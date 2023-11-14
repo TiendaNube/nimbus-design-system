@@ -21,7 +21,7 @@ const base = style({
   gap: varsThemeBase.spacing[1],
   fontWeight: varsThemeBase.fontWeight.regular,
   borderRadius: varsThemeBase.shape.border.radius[1],
-  fontFamily: varsThemeBase.fontFamily.centranube,
+  fontFamily: varsThemeBase.fontFamily.sans,
   transition: `all ${varsThemeBase.motion.speed.fast} ease`,
   backgroundColor: "transparent",
   border: 0,

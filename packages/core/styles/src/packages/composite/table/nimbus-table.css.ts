@@ -21,7 +21,7 @@ const container = style({
   borderCollapse: "collapse",
   borderRadius: varsThemeBase.shape.border.radius[2],
   borderSpacing: 0,
-  fontFamily: varsThemeBase.fontFamily.centranube,
+  fontFamily: varsThemeBase.fontFamily.sans,
   overflow: "hidden",
   width: "100%",
   tableLayout: "fixed",

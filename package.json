@@ -12,7 +12,7 @@
     ]
   },
   "scripts": {
-    "build": "yarn clean && yarn build:packages",
+    "build": "yarn build:packages",
     "build:packages": "yarn build:tokens && yarn build:icons && babel-node -x .ts ./.scripts/build-packages",
     "build:docs": "babel-node -x .ts ./.scripts/json-documentation",
     "build:icons": "turbo run build --filter=@nimbus-ds/icons",

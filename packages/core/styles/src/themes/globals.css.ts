@@ -62,7 +62,8 @@ export const globalTheme = {
     },
   },
   fontFamily: {
-    centranube: fontFamily.value as string,
+    sans: fontFamily.sans.value as string,
+    mono: fontFamily.mono.value as string,
   },
   fontSize: {
     body: {

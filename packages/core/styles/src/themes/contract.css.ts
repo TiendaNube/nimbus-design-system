@@ -53,7 +53,8 @@ export const vars = createGlobalThemeContract(
       },
     },
     fontFamily: {
-      centranube: "",
+      sans: "",
+      mono: "",
     },
     fontSize: {
       body: {

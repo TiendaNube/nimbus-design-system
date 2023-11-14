@@ -8,7 +8,7 @@ export const base = style({
   gap: varsThemeBase.spacing[1],
   lineHeight: varsThemeBase.lineWeight.body.caption,
   fontSize: varsThemeBase.fontSize.body.caption,
-  fontFamily: varsThemeBase.fontFamily.centranube,
+  fontFamily: varsThemeBase.fontFamily.sans,
   color: varsThemeBase.colors.neutral.textLow,
 });
 

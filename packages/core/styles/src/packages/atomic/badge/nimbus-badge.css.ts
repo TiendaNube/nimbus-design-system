@@ -17,7 +17,7 @@ const base = style({
 
   lineHeight: varsThemeBase.lineWeight.body.caption,
   fontSize: varsThemeBase.fontSize.body.caption,
-  fontFamily: varsThemeBase.fontFamily.centranube,
+  fontFamily: varsThemeBase.fontFamily.sans,
 });
 
 export const surface = styleVariants({
