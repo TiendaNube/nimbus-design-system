@@ -1,9 +1,9 @@
 import { HTMLAttributes } from "react";
 import { SkeletonProps } from "@nimbus-ds/skeleton";
 
-export type MultiSelectSkeletonSkeletonProperties = Partial<
+export type MultiSelectSkeletonProperties = Partial<
   Pick<SkeletonProps, "width" | "data-testid">
 >;
 
-export type MultiSelectSkeletonSkeletonProps =
-  MultiSelectSkeletonSkeletonProperties & HTMLAttributes<HTMLDivElement>;
+export type MultiSelectSkeletonProps = MultiSelectSkeletonProperties &
+  HTMLAttributes<HTMLDivElement>;
