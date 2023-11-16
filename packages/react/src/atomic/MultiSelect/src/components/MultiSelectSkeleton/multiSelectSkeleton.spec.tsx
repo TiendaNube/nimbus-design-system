@@ -2,9 +2,9 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import { MultiSelectSkeleton } from "./MultiSelectSkeleton";
-import { MultiSelectSkeletonSkeletonProps } from "./multiSelectSkeleton.types";
+import { MultiSelectSkeletonProps } from "./multiSelectSkeleton.types";
 
-const makeSut = (props?: MultiSelectSkeletonSkeletonProps) => {
+const makeSut = (props?: MultiSelectSkeletonProps) => {
   render(<MultiSelectSkeleton {...props} data-testid="skeleton-element" />);
 };
 
