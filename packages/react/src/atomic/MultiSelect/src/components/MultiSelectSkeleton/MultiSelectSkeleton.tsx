@@ -1,9 +1,9 @@
 import React from "react";
 import { Skeleton } from "@nimbus-ds/skeleton";
 
-import { MultiSelectSkeletonSkeletonProps } from "./multiSelectSkeleton.types";
+import { MultiSelectSkeletonProps } from "./multiSelectSkeleton.types";
 
-const MultiSelectSkeleton: React.FC<MultiSelectSkeletonSkeletonProps> = ({
+const MultiSelectSkeleton: React.FC<MultiSelectSkeletonProps> = ({
   width,
   "data-testid": dataTestId,
 }) => (
