@@ -7,11 +7,11 @@ Package-specific changes not released in any package will be added here just bef
 
 #### 📚 3rd party library updates
 
-- Updated `turbo@1.10.16`. ([#x](https://github.com/TiendaNube/nimbus-design-system/pull/#x) by [@vrlopess](https://github.com/vrlopess))
+- Updated `turbo@1.10.16`. ([#207](https://github.com/TiendaNube/nimbus-design-system/pull/#207) by [@vrlopess](https://github.com/vrlopess))
 
 #### 🐛 Bug fixes
 
-- Updated `Fix bug MultiSelect document`. ([#x](https://github.com/TiendaNube/nimbus-design-system/pull/#x) by [@vrlopess](https://github.com/vrlopess))
+- Updated `Fix bug MultiSelect document`. ([#207](https://github.com/TiendaNube/nimbus-design-system/pull/#207) by [@vrlopess](https://github.com/vrlopess))
 
 ## 2023-09-26
 
