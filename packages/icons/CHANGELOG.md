@@ -9,6 +9,7 @@ Nimbus-icons is an open source icon system built by Nuvemshop / Tiendanube.
 - Added `bag` icon. ([#208](https://github.com/TiendaNube/nimbus-design-system/pull/208) by [@juanchigallego](https://github.com/juanchigallego))
 - Added `paper-plane` icon. ([#208](https://github.com/TiendaNube/nimbus-design-system/pull/208) by [@juanchigallego](https://github.com/juanchigallego))
 - Added `subcategory` icon. ([#208](https://github.com/TiendaNube/nimbus-design-system/pull/208) by [@juanchigallego](https://github.com/juanchigallego))
+- Added `magic-wand` icon. ([#208](https://github.com/TiendaNube/nimbus-design-system/pull/208) by [@juanchigallego](https://github.com/juanchigallego))
 
 ## 2023-10-13 `1.3.0`
 
