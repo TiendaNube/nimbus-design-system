@@ -1,6 +1,6 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import { useArgs } from "@storybook/client-api";
+import { useArgs } from "@storybook/preview-api";
 import { Box } from "@nimbus-ds/box";
 import { Text } from "@nimbus-ds/text";
 import { Button } from "@nimbus-ds/button";

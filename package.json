@@ -66,6 +66,7 @@
     "@storybook/addon-links": "^7.6.4",
     "@storybook/addon-mdx-gfm": "^7.6.4",
     "@storybook/blocks": "^7.6.4",
+    "@storybook/preview-api": "^7.6.4",
     "@storybook/react": "^7.6.4",
     "@storybook/react-webpack5": "^7.6.4",
     "@storybook/testing-library": "^0.2.2",
