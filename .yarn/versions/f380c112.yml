@@ -1,0 +1,5 @@
+releases:
+  "@nimbus-ds/multi-select": patch
+
+undecided:
+  - nimbus-design-system
