@@ -1,6 +1,4 @@
 declined:
   - nimbus-design-system
-  - "@nimbus-ds/multi-select"
-
-undecided:
   - "@nimbus-ds/components"
+  - "@nimbus-ds/multi-select"
