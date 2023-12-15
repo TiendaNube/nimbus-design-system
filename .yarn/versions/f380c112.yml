@@ -1,5 +1,6 @@
-releases:
-  "@nimbus-ds/multi-select": patch
-
 declined:
   - nimbus-design-system
+  - "@nimbus-ds/multi-select"
+
+undecided:
+  - "@nimbus-ds/components"
