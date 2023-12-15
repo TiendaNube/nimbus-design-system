@@ -19,6 +19,12 @@ const mockedOptions = [
     value: "option-3",
   },
 ];
+const mockedValues = [
+  {
+    label: "Option 1",
+    value: "option-1",
+  },
+];
 
 const makeSut = (
   rest?: Partial<Omit<MultiSelectProps, "id" | "name">>,
@@ -105,6 +111,18 @@ describe("GIVEN <Select />", () => {
         screen.getByTestId(`option-selected-${mockedOptions[0].value}`)
       );
       expect(mockedOnChange).toBeCalledWith([]);
+    });
+
+    it("THEN should correctly render items when value is changed", () => {
+      makeSut({
+        value: mockedValues,
+        options: mockedOptions,
+      });
+      expect(
+        screen.getByTestId<HTMLSelectElement>(
+          `option-selected-${mockedValues[0].value}`
+        )
+      ).toBeDefined();
     });
   });
 });

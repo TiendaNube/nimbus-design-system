@@ -1,0 +1,4 @@
+declined:
+  - nimbus-design-system
+  - "@nimbus-ds/components"
+  - "@nimbus-ds/multi-select"

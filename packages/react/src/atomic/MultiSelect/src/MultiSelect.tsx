@@ -35,6 +35,17 @@ const MultiSelect: React.FC<MultiSelectBaseProps> & MultiSelectComponents = ({
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen((prevState) => !prevState);
 
+  const reset = (changedValue: MultiSelectOption[]) => {
+    const available = options.flatMap((option) => {
+      const findInChanged = changedValue.find(
+        (item) => item.value === option.value
+      );
+      return findInChanged ? [] : option;
+    });
+    setAvailableOptions(available);
+    setSelectedOptions(changedValue);
+  };
+
   const handleSelectOption = (option: MultiSelectOption) => {
     setSelectedOptions([...selectedOptions, option]);
     setAvailableOptions(
@@ -54,10 +65,10 @@ const MultiSelect: React.FC<MultiSelectBaseProps> & MultiSelectComponents = ({
 
   useEffect(() => {
     if (value) {
-      value.map((val) => handleSelectOption(val));
+      reset(value);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [value, options]);
 
   useEffect(() => {
     if (onChange) {
