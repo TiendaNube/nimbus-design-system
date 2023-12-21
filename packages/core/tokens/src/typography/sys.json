@@ -31,12 +31,12 @@
           "comment": "Main hierarchy headings, reserved for a single use per page."
         },
         "h2": {
-          "value": "{font.size.6}",
+          "value": "{font.size.7}",
           "comment": "Secondary hierarchy headings that are used to divide large sections of content on a page"
         },
-        "h3": { "value": "{font.size.5}" },
+        "h3": { "value": "{font.size.6}" },
         "h4": {
-          "value": "{font.size.4-5}",
+          "value": "{font.size.5}",
           "comment": "It can be used for low hierarchy headings with the second lowest possible importance."
         },
         "h5": {
@@ -57,7 +57,7 @@
       },
       "bold": {
         "value": "600",
-        "comment": "Plain text with bold weight, can be combined with highlight, base or caption font-size."
+        "comment": "Plain text with semi-bold weight, can be combined with highlight, base or caption font-size."
       }
     }
   },
@@ -65,21 +65,21 @@
     "height": {
       "body": {
         "caption": {
-          "value": "{line.height.3-5}",
+          "value": "{line.height.4}",
           "comment": "Combined use with: font-size-body-caption"
         },
         "base": {
-          "value": "{line.height.4-5}",
+          "value": "{line.height.5}",
           "comment": "Combined use with: font-size-body-base"
         },
         "highlight": {
-          "value": "{line.height.5}",
+          "value": "{line.height.6}",
           "comment": "Combined use with: font-size-body-highlight"
         }
       },
       "title": {
         "h1": {
-          "value": "{line.height.11}",
+          "value": "{line.height.10}",
           "comment": "Combined use with: font-size-title-h1"
         },
         "h2": {
@@ -95,11 +95,11 @@
           "comment": "Combined use with: font-size-title-h4"
         },
         "h5": {
-          "value": "{line.height.5}",
+          "value": "{line.height.6}",
           "comment": "Combined use with: font-size-title-h5"
         },
         "h6": {
-          "value": "{line.height.4-5}",
+          "value": "{line.height.5}",
           "comment": "Combined use with: font-size-title-h6"
         }
       }
