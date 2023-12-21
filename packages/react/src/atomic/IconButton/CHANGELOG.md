@@ -2,6 +2,10 @@
 
 Icons are used to visually communicate core parts of the product and available actions. They can act as wayfinding tools to help merchants more easily understand where they are in the product, and common interaction patterns that are available.
 
+## 2023-10-04 `4.1.1`
+
+- Update component with new color tokens from `@nimbus-ds/tokens` package. ([#213](https://github.com/TiendaNube/nimbus-design-system/pull/213) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-04-13 `4.1.0`
 
 #### 🎉 New features

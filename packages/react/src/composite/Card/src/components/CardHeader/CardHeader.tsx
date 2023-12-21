@@ -14,7 +14,7 @@ const CardHeader: React.FC<CardHeaderProps> = ({
 }) => (
   <div className={card.subComponents.header.sprinkle({ padding })} {...rest}>
     {title && (
-      <Title data-testid="header-title" as="h3">
+      <Title data-testid="header-title" as="h4">
         {title}
       </Title>
     )}

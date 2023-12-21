@@ -14,7 +14,7 @@ const ModalHeader: React.FC<ModalHeaderProps> = ({
 }) => (
   <div className={modal.subComponents.header.sprinkle({ padding })} {...rest}>
     {title && (
-      <Title data-testid="header-title" as="h3">
+      <Title data-testid="header-title" as="h4">
         {title}
       </Title>
     )}

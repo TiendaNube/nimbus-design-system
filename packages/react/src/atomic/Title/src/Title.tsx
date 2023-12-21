@@ -8,10 +8,10 @@ const Title: React.FC<TitleProps> & TitleComponents = ({
   className: _className,
   style: _style,
   as: As = "h1",
-  color = "primary-textHigh",
+  color = "neutral-textHigh",
   textAlign = "left",
   lineHeight,
-  fontWeight = "medium",
+  fontWeight = "bold",
   fontSize,
   children,
   ...rest

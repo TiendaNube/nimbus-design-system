@@ -83,7 +83,7 @@ const Checkbox: React.FC<CheckboxProps> & CheckboxComponents = ({
         )}
       </span>
       {label && (
-        <Text data-testid="text" color={textColor}>
+        <Text data-testid="text" color={textColor} lineHeight="caption">
           {label}
         </Text>
       )}

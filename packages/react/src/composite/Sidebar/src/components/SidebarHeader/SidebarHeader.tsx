@@ -20,7 +20,11 @@ const SidebarHeader: React.FC<SidebarHeaderProps> = ({
       style={style}
       className={[className, sidebar.classnames.container__header].join(" ")}
     >
-      {title && <Title data-testid="header-title">{title}</Title>}
+      {title && (
+        <Title as="h2" data-testid="header-title">
+          {title}
+        </Title>
+      )}
       {children}
     </div>
   );

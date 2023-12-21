@@ -2,6 +2,10 @@
 
 The Alert component allows us to communicate about changes or special conditions in pages or sections.
 
+## 2023-10-04 `2.3.2`
+
+- Update component with new color tokens from `@nimbus-ds/tokens` package. ([#213](https://github.com/TiendaNube/nimbus-design-system/pull/213) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-03-27 `2.3.1`
 
 ### 🐛 Bug fixes
