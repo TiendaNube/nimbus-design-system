@@ -2,7 +2,7 @@
 
 The Sidebar component is a large floating container that goes into the page from the corners. It allows us to present actions, forms or sections with a lot of information about the context of the page.
 
-## 2023-12-22 `3.3.0`
+## 2023-12-22 `3.2.1`
 
 #### 🎉 New features
 

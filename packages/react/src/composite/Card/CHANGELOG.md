@@ -2,7 +2,7 @@
 
 The Card component allows us to group contents and related actions, making it easier to identify groups of information.
 
-## 2023-12-22 `3.2.0`
+## 2023-12-22 `3.1.1`
 
 #### 🎉 New features
 

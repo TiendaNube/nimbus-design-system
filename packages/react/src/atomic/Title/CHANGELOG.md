@@ -2,7 +2,7 @@
 
 Tilte is a basic component that allows you to give titles and more hierarchy to blocks of text for sections or header components.
 
-## 2023-12-22 `3.2.0`
+## 2023-12-22 `3.1.1`
 
 ### 🎉 New features
 
