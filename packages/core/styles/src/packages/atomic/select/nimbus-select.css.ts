@@ -32,7 +32,7 @@ const base = style({
   outline: "none",
   transition: `all ${varsThemeBase.motion.speed.fast} ease`,
   "::placeholder": {
-    color: varsThemeBase.colors.neutral.textDisabled,
+    color: varsThemeBase.colors.neutral.textLow,
   },
   ":disabled": {
     border: `1px solid ${varsThemeBase.colors.neutral.surfaceHighlight}`,

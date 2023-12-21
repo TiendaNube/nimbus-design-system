@@ -35,7 +35,7 @@ export const container__slider = vanillaStyle({
   borderStyle: "solid",
   borderRadius: varsThemeBase.shape.border.radius.full,
   borderWidth: varsThemeBase.shape.border.width[1],
-  borderColor: varsThemeBase.colors.neutral.interactive,
+  borderColor: varsThemeBase.colors.neutral.surfaceHighlight,
   backgroundColor: varsThemeBase.colors.neutral.surface,
   transition: `all ${varsThemeBase.motion.speed.fast} ease`,
   ":before": {
@@ -61,10 +61,11 @@ export const container__slider = vanillaStyle({
 
 globalStyle(`${container} input:checked ~ ${container__slider}`, {
   borderColor: varsThemeBase.colors.primary.interactive,
+  backgroundColor: varsThemeBase.colors.primary.interactive,
 });
 
 globalStyle(`${container} input:checked ~ ${container__slider}:before`, {
-  backgroundColor: varsThemeBase.colors.primary.interactive,
+  backgroundColor: varsThemeBase.colors.neutral.background,
   left: "1.063rem",
 });
 
@@ -77,9 +78,9 @@ globalStyle(`${container__slider}:active:before`, {
 });
 
 globalStyle(`${container} input:checked ~ ${container__slider}:hover:before`, {
-  backgroundColor: varsThemeBase.colors.primary.interactiveHover,
+  backgroundColor: varsThemeBase.colors.neutral.surface,
 });
 
 globalStyle(`${container} input:checked ~ ${container__slider}:active:before`, {
-  backgroundColor: varsThemeBase.colors.primary.interactivePressed,
+  backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
 });

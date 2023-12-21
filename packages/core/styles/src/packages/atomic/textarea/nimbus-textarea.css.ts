@@ -20,7 +20,7 @@ const base = style({
   paddingTop: varsThemeBase.spacing[2],
   transition: `all ${varsThemeBase.motion.speed.fast} ease`,
   "::placeholder": {
-    color: varsThemeBase.colors.neutral.textDisabled,
+    color: varsThemeBase.colors.neutral.textLow,
   },
   ":disabled": {
     border: `${varsThemeBase.shape.border.width[1]} solid ${varsThemeBase.colors.neutral.surfaceHighlight}`,

@@ -16,7 +16,7 @@ const base = style({
   lineHeight: varsThemeBase.lineWeight.body.base,
   fontSize: varsThemeBase.fontSize.body.base,
   fontFamily: varsThemeBase.fontFamily.sans,
-  color: varsThemeBase.colors.neutral.textLow,
+  color: varsThemeBase.colors.neutral.textHigh,
   borderRadius: varsThemeBase.shape.border.radius[2],
   borderWidth: varsThemeBase.shape.border.width[1],
   borderStyle: "solid",
@@ -60,7 +60,7 @@ export const appearance = styleVariants({
     {
       background: varsThemeBase.colors.danger.surface,
       borderColor: varsThemeBase.colors.danger.interactive,
-      color: varsThemeBase.colors.neutral.textLow,
+      color: varsThemeBase.colors.danger.textLow,
       ":hover": {
         background: varsThemeBase.colors.danger.surfaceHighlight,
         borderColor: varsThemeBase.colors.danger.interactiveHover,
@@ -83,7 +83,7 @@ export const appearance = styleVariants({
     {
       background: varsThemeBase.colors.neutral.surface,
       borderColor: varsThemeBase.colors.neutral.interactive,
-      color: varsThemeBase.colors.neutral.textLow,
+      color: varsThemeBase.colors.neutral.textHigh,
       ":hover": {
         backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
         borderColor: varsThemeBase.colors.neutral.interactiveHover,
@@ -106,7 +106,7 @@ export const appearance = styleVariants({
     {
       background: "transparent",
       borderColor: "transparent",
-      color: varsThemeBase.colors.neutral.textLow,
+      color: varsThemeBase.colors.neutral.textHigh,
       ":hover": {
         backgroundColor: varsThemeBase.colors.neutral.surface,
         borderColor: varsThemeBase.colors.neutral.interactiveHover,
