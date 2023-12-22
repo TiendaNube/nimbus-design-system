@@ -31,7 +31,7 @@ export const appearance = styleVariants({
   success: [
     base,
     {
-      color: varsThemeBase.colors.success.textHigh,
+      color: varsThemeBase.colors.success.textLow,
       backgroundColor: varsThemeBase.colors.success.surface,
       borderColor: varsThemeBase.colors.success.surfaceHighlight,
     },
@@ -55,7 +55,7 @@ export const appearance = styleVariants({
   neutral: [
     base,
     {
-      color: varsThemeBase.colors.neutral.textLow,
+      color: varsThemeBase.colors.neutral.textHigh,
       backgroundColor: varsThemeBase.colors.neutral.surface,
       borderColor: varsThemeBase.colors.neutral.surfaceHighlight,
     },

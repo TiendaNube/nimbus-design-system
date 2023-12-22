@@ -36,7 +36,7 @@ export const container__slider = vanillaStyle({
   borderRadius: varsThemeBase.shape.border.radius.full,
   borderWidth: varsThemeBase.shape.border.width[1],
   borderColor: varsThemeBase.colors.neutral.surfaceHighlight,
-  backgroundColor: varsThemeBase.colors.neutral.surface,
+  backgroundColor: varsThemeBase.colors.neutral.background,
   transition: `all ${varsThemeBase.motion.speed.fast} ease`,
   ":before": {
     content: "",
