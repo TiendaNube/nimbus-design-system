@@ -15,4 +15,5 @@ releases:
 
 declined:
   - nimbus-design-system
+  - "@nimbus-ds/icons"
   - "@nimbus-ds/accordion"

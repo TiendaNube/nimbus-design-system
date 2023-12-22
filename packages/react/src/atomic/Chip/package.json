@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/chip",
-  "version": "2.3.0",
+  "version": "2.3.1-rc.3",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -33,5 +33,6 @@
   },
   "devDependencies": {
     "@nimbus-ds/webpack": "workspace:^"
-  }
+  },
+  "stableVersion": "2.3.0"
 }
