@@ -2,7 +2,7 @@
 
 The Tooltip component allows us to show additional information in a non-intrusive way.
 
-## 2023-10-04 `2.2.1`
+## 2023-12-22 `2.2.1`
 
 - Update component with new color tokens from `@nimbus-ds/tokens` package. ([#213](https://github.com/TiendaNube/nimbus-design-system/pull/213) by [@juanchigallego](https://github.com/juanchigallego))
 
