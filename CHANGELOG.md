@@ -7,7 +7,7 @@ Package-specific changes not released in any package will be added here just bef
 
 ### 🎉 New features
 
-- Changed `Geist-Bold` font to `SemiBold` variant. ([#213](https://github.com/TiendaNube/nimbus-design-system/pull/213) by [@juanchigallego](https://github.com/juanchigallego))
+- Changed `Geist-Bold` font to `SemiBold` variant. ([#215](https://github.com/TiendaNube/nimbus-design-system/pull/215) by [@juanchigallego](https://github.com/juanchigallego))
 
 ## 2023-11-16
 

@@ -4,7 +4,7 @@ Icons are used to visually communicate core parts of the product and available a
 
 ## 2023-12-22 `4.1.1`
 
-- Update component with new color tokens from `@nimbus-ds/tokens` package. ([#213](https://github.com/TiendaNube/nimbus-design-system/pull/213) by [@juanchigallego](https://github.com/juanchigallego))
+- Update component with new color tokens from `@nimbus-ds/tokens` package. ([#215](https://github.com/TiendaNube/nimbus-design-system/pull/215) by [@juanchigallego](https://github.com/juanchigallego))
 
 ## 2023-04-13 `4.1.0`
 

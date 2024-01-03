@@ -6,8 +6,8 @@ Tilte is a basic component that allows you to give titles and more hierarchy to 
 
 ### 🎉 New features
 
-- Changed default color to `neutral-textHigh`. ([#213](https://github.com/TiendaNube/nimbus-design-system/pull/213) by [@juanchigallego](https://github.com/juanchigallego))
-- Changed default weight to `bold`. ([#213](https://github.com/TiendaNube/nimbus-design-system/pull/213) by [@juanchigallego](https://github.com/juanchigallego))
+- Changed default color to `neutral-textHigh`. ([#215](https://github.com/TiendaNube/nimbus-design-system/pull/215) by [@juanchigallego](https://github.com/juanchigallego))
+- Changed default weight to `bold`. ([#215](https://github.com/TiendaNube/nimbus-design-system/pull/215) by [@juanchigallego](https://github.com/juanchigallego))
 
 ## 2023-05-02 `3.1.0`
 

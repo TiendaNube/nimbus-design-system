@@ -6,11 +6,11 @@ Our design tokens are the foundations of Nimbus Design System.
 
 ##### 🎉 New features
 
-- Replace font family tokens with new 'Geist' font. ([#213](https://github.com/TiendaNube/nimbus-design-system/pull/213) by [@juanchigallego](https://github.com/juanchigallego))
-- Replace neutral reference tokens with new values. ([#213](https://github.com/TiendaNube/nimbus-design-system/pull/213) by [@juanchigallego](https://github.com/juanchigallego))
-- Replace primary reference tokens with new values. ([#213](https://github.com/TiendaNube/nimbus-design-system/pull/213) by [@juanchigallego](https://github.com/juanchigallego))
-- Adjust neutral system tokens with new reference values. ([#213](https://github.com/TiendaNube/nimbus-design-system/pull/213) by [@juanchigallego](https://github.com/juanchigallego))
-- Adjust shadow tokens to match design requirements. ([#213](https://github.com/TiendaNube/nimbus-design-system/pull/213) by [@juanchigallego](https://github.com/juanchigallego))
+- Replace font family tokens with new 'Geist' font. ([#215](https://github.com/TiendaNube/nimbus-design-system/pull/215) by [@juanchigallego](https://github.com/juanchigallego))
+- Replace neutral reference tokens with new values. ([#215](https://github.com/TiendaNube/nimbus-design-system/pull/215) by [@juanchigallego](https://github.com/juanchigallego))
+- Replace primary reference tokens with new values. ([#215](https://github.com/TiendaNube/nimbus-design-system/pull/215) by [@juanchigallego](https://github.com/juanchigallego))
+- Adjust neutral system tokens with new reference values. ([#215](https://github.com/TiendaNube/nimbus-design-system/pull/215) by [@juanchigallego](https://github.com/juanchigallego))
+- Adjust shadow tokens to match design requirements. ([#215](https://github.com/TiendaNube/nimbus-design-system/pull/215) by [@juanchigallego](https://github.com/juanchigallego))
 
 ## 2023-11-20 `9.0.0`
 

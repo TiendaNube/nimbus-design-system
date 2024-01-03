@@ -6,7 +6,7 @@ The Sidebar component is a large floating container that goes into the page from
 
 #### 🎉 New features
 
-- Changed default title size to `h2` on `SidebarHeader` subcomponent. ([#213](https://github.com/TiendaNube/nimbus-design-system/pull/213) by [@juanchigallego](https://github.com/juanchigallego))
+- Changed default title size to `h2` on `SidebarHeader` subcomponent. ([#215](https://github.com/TiendaNube/nimbus-design-system/pull/215) by [@juanchigallego](https://github.com/juanchigallego))
 
 ## 2023-10-13 `3.2.0`
 

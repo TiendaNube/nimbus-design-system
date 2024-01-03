@@ -6,7 +6,7 @@ The Modal component allows us to call the user's attention to a floating box tha
 
 #### 🎉 New features
 
-- Changed default title size to `h4` on `ModalHeader` subcomponent. ([#213](https://github.com/TiendaNube/nimbus-design-system/pull/213) by [@juanchigallego](https://github.com/juanchigallego))
+- Changed default title size to `h4` on `ModalHeader` subcomponent. ([#215](https://github.com/TiendaNube/nimbus-design-system/pull/215) by [@juanchigallego](https://github.com/juanchigallego))
 
 ## 2023-10-13 `1.5.0`
 

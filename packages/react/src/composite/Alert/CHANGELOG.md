@@ -4,7 +4,7 @@ The Alert component allows us to communicate about changes or special conditions
 
 ## 2023-12-22 `2.3.2`
 
-- Update component with new color tokens from `@nimbus-ds/tokens` package. ([#213](https://github.com/TiendaNube/nimbus-design-system/pull/213) by [@juanchigallego](https://github.com/juanchigallego))
+- Update component with new color tokens from `@nimbus-ds/tokens` package. ([#215](https://github.com/TiendaNube/nimbus-design-system/pull/215) by [@juanchigallego](https://github.com/juanchigallego))
 
 ## 2023-03-27 `2.3.1`
 

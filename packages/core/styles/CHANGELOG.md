@@ -6,7 +6,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 #### 🎉 New features
 
-- Update style packages of various components to update new font and color values from tokens package. ([#213](https://github.com/TiendaNube/nimbus-design-system/pull/213) by [@juanchigallego](https://github.com/juanchigallego))
+- Update style packages of various components to update new font and color values from tokens package. ([#215](https://github.com/TiendaNube/nimbus-design-system/pull/215) by [@juanchigallego](https://github.com/juanchigallego))
 
 #### 🐛 Bug fixes
 
