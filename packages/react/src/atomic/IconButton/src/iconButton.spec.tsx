@@ -24,7 +24,7 @@ describe("GIVEN <IconButton />", () => {
       makeSut({ as: "div", source: <div /> });
       expect(
         screen.getByTestId("icon-element").getAttribute("class")
-      ).toContain("color_neutral-textLow");
+      ).toContain("color_neutral-textHigh");
     });
   });
 });

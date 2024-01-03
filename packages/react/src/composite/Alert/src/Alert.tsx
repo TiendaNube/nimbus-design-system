@@ -35,7 +35,7 @@ const Alert: React.FC<AlertProps> & AlertComponents = ({
         <Icon color={`${appearance}-textLow`} source={<AlertIcon />} />
         <div className={alert.classnames.container__body}>
           {title && (
-            <Title as="h6" color={`${appearance}-textLow`}>
+            <Title as="h6" color={`${appearance}-textHigh`} lineHeight="4">
               {title}
             </Title>
           )}

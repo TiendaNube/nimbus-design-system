@@ -35,23 +35,23 @@
           "comment": "Inicial level without shadow. Used for background or elements that do not need to be distinguished from the background."
         },
         "1": {
-          "value": "0px 0px 1px 0px {color.dark.neutral.interactive}",
+          "value": "0px 0px 1px 0px {color.dark.neutral.interactive-hover}",
           "comment": "Shadow level for elements that are floating at minimal distance from the background. Can be used in interactive elements."
         },
         "2": {
-          "value": "0px 0px 2px 0px {color.dark.neutral.surface-highlight}, 0px 1px 1px 0px {color.dark.neutral.surface-highlight}",
+          "value": "0px 0px 2px 0px {color.dark.neutral.interactive-hover}",
           "comment": "Shadow level for elements that are floating at small distance from the background. Can be used in cards."
         },
         "3": {
-          "value": "0px 2px 4px 0px {color.dark.neutral.surface-highlight}, 0px 0px 1px 0px {color.dark.neutral.surface-highlight}",
+          "value": "0px 3px 6px 0px {color.dark.neutral.surface-highlight}, 0px 0px 1px 0px {color.dark.neutral.interactive-hover}",
           "comment": "Shadow level for elements that are floating at medium distance from the background. Can be used in popovers."
         },
         "4": {
-          "value": "0px 12px 16px 0px {color.dark.neutral.surface-highlight}, 0px 0px 1px 0px {color.dark.neutral.surface-highlight}",
+          "value": "0px 12px 16px 0px {color.dark.neutral.surface-highlight}, 0px 0px 1px 0px {color.dark.neutral.interactive-hover}",
           "comment": "Shadow for elements that are floating at a large distance from the background. Can be used in modals."
         },
         "5": {
-          "value": "0px 24px 32px 0px {color.dark.neutral.surface-highlight}, 0px 0px 1px 0px {color.dark.neutral.surface-highlight}",
+          "value": "0px 24px 32px 0px {color.dark.neutral.surface-highlight}, 0px 0px 1px 0px {color.dark.neutral.interactive-hover}",
           "comment": "Shadow level for elements that are floating at maximum distance from the background. Can be used in side modals."
         }
       }

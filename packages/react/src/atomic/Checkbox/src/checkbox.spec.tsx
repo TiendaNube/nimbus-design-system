@@ -62,7 +62,7 @@ describe("GIVEN <Checkbox />", () => {
         "borderColor_neutral-interactive"
       );
       expect(screen.getByTestId("text").getAttribute("class")).toContain(
-        "color-neutral-textLow"
+        "color-neutral-textHigh"
       );
       expect(screen.getByText("My Checkbox")).toBeDefined();
     });

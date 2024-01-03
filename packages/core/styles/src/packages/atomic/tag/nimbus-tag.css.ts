@@ -55,7 +55,7 @@ export const appearance = styleVariants({
   neutral: [
     base,
     {
-      color: varsThemeBase.colors.neutral.textLow,
+      color: varsThemeBase.colors.neutral.textHigh,
       backgroundColor: varsThemeBase.colors.neutral.surface,
       borderColor: varsThemeBase.colors.neutral.surfaceHighlight,
     },

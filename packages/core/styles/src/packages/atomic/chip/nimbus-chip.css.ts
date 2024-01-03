@@ -18,7 +18,7 @@ export const base = vanillaStyle({
   fontSize: varsThemeBase.fontSize.body.caption,
   fontFamily: varsThemeBase.fontFamily.sans,
   background: varsThemeBase.colors.neutral.surface,
-  color: varsThemeBase.colors.neutral.textLow,
+  color: varsThemeBase.colors.neutral.textHigh,
 
   borderStyle: "solid",
   borderRadius: varsThemeBase.shape.border.radius[1],

@@ -20,7 +20,6 @@ const container = style({
   borderRadius: varsThemeBase.shape.border.radius[2],
   boxShadow: varsThemeBase.shadow.level[2],
   boxSizing: "border-box",
-  overflow: "hidden",
 });
 
 const container__footer = style({

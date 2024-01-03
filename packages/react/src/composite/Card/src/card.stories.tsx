@@ -30,7 +30,7 @@ export const basic: Story = {
             justifyContent="space-between"
             alignItems="center"
           >
-            <Title as="h3">Title</Title>
+            <Title as="h4">Title</Title>
             <Tag appearance="primary">Text</Tag>
           </Box>
         </Card.Header>
@@ -110,7 +110,7 @@ export const skeleton: Story = {
             alignItems="center"
             gap="4"
           >
-            <Title.Skeleton as="h3" width="100%" />
+            <Title.Skeleton as="h4" width="100%" />
             <Tag.Skeleton />
           </Box>
         </Card.Header>

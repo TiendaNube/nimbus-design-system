@@ -87,6 +87,7 @@ const boxBorderColorProperties = {
 
   "neutral-interactive": borderColorProperties["neutral-interactive"],
   "neutral-surface": borderColorProperties["neutral-surface"],
+  "neutral-surfaceDisabled": borderColorProperties["neutral-surfaceDisabled"],
   "neutral-surfaceHighlight": borderColorProperties["neutral-surfaceHighlight"],
   transparent: "transparent",
 };

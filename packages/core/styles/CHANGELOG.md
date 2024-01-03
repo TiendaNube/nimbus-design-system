@@ -2,6 +2,16 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2023-12-22 `9.9.0`
+
+#### 🎉 New features
+
+- Update style packages of various components to update new font and color values from tokens package. ([#215](https://github.com/TiendaNube/nimbus-design-system/pull/215) by [@juanchigallego](https://github.com/juanchigallego))
+
+#### 🐛 Bug fixes
+
+- Remove `overflow: hidden` property from `Card` component style package.
+
 ## 2023-11-20 `9.8.0`
 
 #### 🎉 New features

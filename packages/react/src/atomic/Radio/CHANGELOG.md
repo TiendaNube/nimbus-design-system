@@ -2,6 +2,10 @@
 
 Use radios when a user needs to select one option from a list.
 
+## 2023-12-22 `2.2.1`
+
+- Update component with new color tokens from `@nimbus-ds/tokens` package. ([#215](https://github.com/TiendaNube/nimbus-design-system/pull/215) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-03-13 `2.2.0`
 
 ### 💡 Others

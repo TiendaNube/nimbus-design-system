@@ -127,7 +127,7 @@ export const skeleton: Story = {
             alignItems="center"
             gap="4"
           >
-            <Title.Skeleton as="h3" width="80%" />
+            <Title.Skeleton as="h4" width="80%" />
           </Box>
         </Modal.Header>
         <Modal.Body>

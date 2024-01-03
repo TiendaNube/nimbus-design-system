@@ -39,7 +39,7 @@ const IconButton: React.FC<IconButtonProps> & IconButtonComponents = ({
     >
       <Icon
         data-testid="icon-element"
-        color="neutral-textLow"
+        color="neutral-textHigh"
         cursor="pointer"
         source={source}
       />

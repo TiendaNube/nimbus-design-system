@@ -2,6 +2,10 @@
 
 The Chip component is used to flag criteria or attributes related to searches or filters of a list of information.
 
+## 2023-12-22 `2.3.1`
+
+- Update component with new color tokens from `@nimbus-ds/tokens` package. ([#215](https://github.com/TiendaNube/nimbus-design-system/pull/215) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-02-24 `2.3.0`
 
 ### 💡 Others

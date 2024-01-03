@@ -21,7 +21,7 @@ export const basic: Story = {
     children: (
       <>
         <BoxPackedIcon size={12} />
-        <Text fontSize="caption" lineHeight="caption">
+        <Text fontSize="caption" lineHeight="caption" color="neutral-textHigh">
           Text
         </Text>
       </>

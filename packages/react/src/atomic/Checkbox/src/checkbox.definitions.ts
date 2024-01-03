@@ -10,14 +10,14 @@ export const borderColors = {
 };
 
 export const textColors = {
-  primary: "neutral-textLow",
+  primary: "neutral-textHigh",
   danger: "danger-textLow",
-  indeterminate: "neutral-textLow",
+  indeterminate: "neutral-textHigh",
   disabled: "neutral-textDisabled",
 } as {
   [key: string]:
-    | "neutral-textLow"
+    | "neutral-textHigh"
     | "danger-textLow"
-    | "neutral-textLow"
+    | "neutral-textHigh"
     | "neutral-textDisabled";
 };

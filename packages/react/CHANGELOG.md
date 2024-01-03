@@ -2,6 +2,15 @@
 
 Nimbus is an open-source Design System created by Tiendanube / Nuvesmhop’s team to empower and enhance more stories every day, with simplicity, accessibility, consistency and performance.
 
+## 2023-12-22 `5.3.2`
+
+#### 🎉 New features
+
+- Update `Checkbox`, `Chip`, `IconButton`, `Radio`, `Toggle` and `Alert` packages with new color tokens from `@nimbus-ds/tokens` package. ([#215](https://github.com/TiendaNube/nimbus-design-system/pull/215) by [@juanchigallego](https://github.com/juanchigallego))
+- Changed default color to `neutral-textHigh` and default weight to `bold` on `Title` component. ([#215](https://github.com/TiendaNube/nimbus-design-system/pull/215) by [@juanchigallego](https://github.com/juanchigallego))
+- Changed default title size to `h4` on `CardHeader` and `ModalHeader` components. ([#215](https://github.com/TiendaNube/nimbus-design-system/pull/215) by [@juanchigallego](https://github.com/juanchigallego))
+- Changed default title size to `h2` on `SidebarHeader` component. ([#215](https://github.com/TiendaNube/nimbus-design-system/pull/215) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-12-15 `5.3.1`
 
 #### 🐛 Bug fixes

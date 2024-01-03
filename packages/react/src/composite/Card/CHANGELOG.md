@@ -2,6 +2,12 @@
 
 The Card component allows us to group contents and related actions, making it easier to identify groups of information.
 
+## 2023-12-22 `3.1.1`
+
+#### 🎉 New features
+
+- Changed default title size to `h4` on `CardHeader` subcomponent. ([#215](https://github.com/TiendaNube/nimbus-design-system/pull/215) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-06-13 `3.1.0`
 
 #### 🎉 New features

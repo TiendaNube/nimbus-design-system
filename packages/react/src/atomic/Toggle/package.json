@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/toggle",
-  "version": "2.2.0",
+  "version": "2.2.1-rc.3",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -31,5 +31,6 @@
   },
   "devDependencies": {
     "@nimbus-ds/webpack": "workspace:^"
-  }
+  },
+  "stableVersion": "2.2.0"
 }

@@ -1,0 +1,19 @@
+releases:
+  "@nimbus-ds/alert": patch
+  "@nimbus-ds/card": patch
+  "@nimbus-ds/checkbox": patch
+  "@nimbus-ds/chip": patch
+  "@nimbus-ds/components": patch
+  "@nimbus-ds/icon-button": patch
+  "@nimbus-ds/modal": patch
+  "@nimbus-ds/radio": patch
+  "@nimbus-ds/sidebar": patch
+  "@nimbus-ds/styles": minor
+  "@nimbus-ds/title": patch
+  "@nimbus-ds/toggle": patch
+  "@nimbus-ds/tokens": minor
+
+declined:
+  - nimbus-design-system
+  - "@nimbus-ds/icons"
+  - "@nimbus-ds/accordion"

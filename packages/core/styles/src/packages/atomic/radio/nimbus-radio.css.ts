@@ -37,7 +37,7 @@ const container__content = styleVariants({
     {
       transition: `all ${varsThemeBase.motion.speed.fast} ease`,
       display: "flex",
-      color: varsThemeBase.colors.neutral.textLow,
+      color: varsThemeBase.colors.neutral.textHigh,
     },
   ],
   button: [
@@ -45,7 +45,7 @@ const container__content = styleVariants({
     {
       backgroundColor: varsThemeBase.colors.neutral.surface,
       borderColor: varsThemeBase.colors.neutral.interactive,
-      color: varsThemeBase.colors.neutral.textLow,
+      color: varsThemeBase.colors.neutral.textHigh,
       ":active": {
         backgroundColor: varsThemeBase.colors.neutral.interactive,
         borderColor: varsThemeBase.colors.neutral.interactiveHover,

@@ -9,7 +9,7 @@ export const input = vanillaStyle({
   fontWeight: varsThemeBase.fontWeight.regular,
   fontSize: varsThemeBase.fontSize.body.base,
   fontFamily: varsThemeBase.fontFamily.sans,
-  color: varsThemeBase.colors.neutral.textLow,
+  color: varsThemeBase.colors.neutral.textHigh,
   border: "none",
   backgroundColor: "transparent",
   transition: `all ${varsThemeBase.motion.speed.fast} ease`,
@@ -18,7 +18,7 @@ export const input = vanillaStyle({
     boxShadow: "none",
   },
   ":disabled": {
-    borderColor: varsThemeBase.colors.neutral.interactive,
+    borderColor: varsThemeBase.colors.neutral.surfaceHighlight,
     background: varsThemeBase.colors.neutral.surfaceDisabled,
     color: varsThemeBase.colors.neutral.textDisabled,
   },
@@ -42,6 +42,7 @@ export const container = vanillaStyle({
   selectors: {
     "&:has(input:disabled)": {
       backgroundColor: varsThemeBase.colors.neutral.surfaceDisabled,
+      borderColor: varsThemeBase.colors.neutral.surfaceHighlight,
     },
   },
 });
