@@ -21,13 +21,16 @@ export const container__item = styleVariants({
 });
 
 const button = vanillaStyle({
+  alignItems: "center",
   appearance: "none",
   background: "transparent",
   cursor: "pointer",
   position: "relative",
   border: 0,
-  display: "block",
+  display: "flex",
+  gap: varsThemeBase.spacing[1],
   margin: "0 auto",
+  maxHeight: "32px",
   borderRadius: varsThemeBase.shape.border.radius[1],
   paddingBottom: varsThemeBase.spacing[2],
   paddingLeft: varsThemeBase.spacing[6],

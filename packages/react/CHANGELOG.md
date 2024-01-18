@@ -2,6 +2,12 @@
 
 Nimbus is an open-source Design System created by Tiendanube / Nuvesmhop’s team to empower and enhance more stories every day, with simplicity, accessibility, consistency and performance.
 
+## 2024-01-18 `5.4.0`
+
+### 🎉 New features
+
+- Add `labelContent` prop to `Tabs.Item` subcomponent to include a child node on the tab button. ([#216](https://github.com/TiendaNube/nimbus-design-system/pull/216) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-12-22 `5.3.2`
 
 #### 🎉 New features

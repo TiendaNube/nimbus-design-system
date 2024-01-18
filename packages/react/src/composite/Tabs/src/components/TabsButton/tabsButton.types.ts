@@ -1,10 +1,14 @@
-import { HTMLAttributes } from "react";
+import { HTMLAttributes, ReactNode } from "react";
 
 export interface TabsButtonProperties {
   /**
    * Label of the tab button.
    */
   label: string;
+  /**
+   * Content of the tab button.
+   */
+  labelContent?: ReactNode;
   /**
    * Determines if tab is active.
    * @default false
