@@ -2,6 +2,7 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Box } from "@nimbus-ds/box";
 import { Text } from "@nimbus-ds/text";
+import { Tag } from "@nimbus-ds/tag";
 import { Tabs } from "./Tabs";
 
 const meta: Meta<typeof Tabs> = {
@@ -9,7 +10,7 @@ const meta: Meta<typeof Tabs> = {
   component: Tabs,
   render: (args) => (
     <Tabs {...args}>
-      <Tabs.Item label="Tab 1">
+      <Tabs.Item label="Tab 1" labelContent={<Tag>Some tag</Tag>}>
         <Box
           borderColor="neutral-interactive"
           borderStyle="dashed"

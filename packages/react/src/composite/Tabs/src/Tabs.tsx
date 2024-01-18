@@ -18,7 +18,7 @@ const Tabs: React.FC<TabsProps> & TabsComponents = ({
       <ul role="tablist" className={tabs.classnames.container}>
         {React.Children.map(children, (item, index) => {
           const {
-            props: { label },
+            props: { label, labelContent },
           } = item;
           return (
             <Tabs.Button
@@ -28,6 +28,7 @@ const Tabs: React.FC<TabsProps> & TabsComponents = ({
               active={index === selectedTab}
               setActiveTab={setSelectedTab}
               fullWidth={fullWidth}
+              labelContent={labelContent}
             />
           );
         })}

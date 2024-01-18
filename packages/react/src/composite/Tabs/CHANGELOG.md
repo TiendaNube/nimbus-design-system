@@ -2,6 +2,12 @@
 
 The Tabs component allows us to separate content from the same hierarchy into different tabs.
 
+## 2024-01-18 `2.3.0`
+
+### 🎉 New features
+
+- Add `labelContent` prop to `Tabs.Item` subcomponent to include a child node on the tab button. ([#216](https://github.com/TiendaNube/nimbus-design-system/pull/216) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-03-13 `2.2.0`
 
 ### 💡 Others

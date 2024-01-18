@@ -8,6 +8,7 @@ const TabsButton: React.FC<TabsButtonProps> = ({
   className: _className,
   style: _style,
   label,
+  labelContent,
   active = false,
   index,
   setActiveTab,
@@ -41,6 +42,7 @@ const TabsButton: React.FC<TabsButtonProps> = ({
         tabIndex={0}
       >
         {label}
+        {labelContent}
       </button>
     </li>
   );

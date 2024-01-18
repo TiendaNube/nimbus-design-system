@@ -6,6 +6,11 @@ export interface TabsItemProperties {
    */
   label: string;
   /**
+   * Optional content of the tabpanel.
+   * @TJS-type ReactNode;
+   */
+  labelContent?: ReactNode;
+  /**
    * The content of the tabs item.
    * @TJS-type ReactNode | ReactNode[];
    */

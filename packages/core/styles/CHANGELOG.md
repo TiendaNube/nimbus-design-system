@@ -2,6 +2,10 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2024-01-18 `9.10.0`
+
+- Update style package of `Tabs` component. ([#216](https://github.com/TiendaNube/nimbus-design-system/pull/216) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-12-22 `9.9.0`
 
 #### 🎉 New features
