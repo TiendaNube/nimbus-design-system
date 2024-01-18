@@ -5,6 +5,7 @@ import { TabsButton } from "./TabsButton";
 import { TabsButtonProps } from "./tabsButton.types";
 
 const buttonLabel = "myButtonLabel";
+const buttonLabelReactNode = <p data-testid="label-element">myButtonContent</p>;
 const mockedSetActiveTab = jest.fn();
 
 const makeSut = (
@@ -47,5 +48,12 @@ describe("GIVEN <Button />", () => {
     const tabButton = screen.getByRole("tab");
     fireEvent.click(tabButton);
     expect(mockedSetActiveTab).toBeCalled();
+  });
+
+  it("THEN should correctly render the label child node properly", () => {
+    makeSut({ labelContent: buttonLabelReactNode });
+    expect(screen.getByTestId("label-element").textContent).toContain(
+      "myButtonContent"
+    );
   });
 });
