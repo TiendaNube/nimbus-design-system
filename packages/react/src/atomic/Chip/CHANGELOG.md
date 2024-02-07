@@ -2,6 +2,12 @@
 
 The Chip component is used to flag criteria or attributes related to searches or filters of a list of information.
 
+## 2024-02-07 `2.3.2`
+
+### 🐛 Bug fixes
+
+- Added `lineClamp` and `wordBreak` properties to `Chip` Text to allow overflowing text to hide instead of breaking into lines. ([#220](https://github.com/TiendaNube/nimbus-design-system/pull/220) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-12-22 `2.3.1`
 
 - Update component with new color tokens from `@nimbus-ds/tokens` package. ([#215](https://github.com/TiendaNube/nimbus-design-system/pull/215) by [@juanchigallego](https://github.com/juanchigallego))
