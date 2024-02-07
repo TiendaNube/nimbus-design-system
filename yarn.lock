@@ -4473,6 +4473,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/chip@workspace:packages/react/src/atomic/Chip"
   dependencies:
+    "@nimbus-ds/box": "workspace:^"
     "@nimbus-ds/icon": "workspace:^"
     "@nimbus-ds/icons": "workspace:^"
     "@nimbus-ds/skeleton": "workspace:^"

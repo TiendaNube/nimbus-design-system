@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/chip",
-  "version": "2.3.1-rc.3",
+  "version": "2.3.1",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -32,7 +32,7 @@
     "url": "https://github.com/TiendaNube/nimbus-design-system/issues"
   },
   "devDependencies": {
+    "@nimbus-ds/box": "workspace:^",
     "@nimbus-ds/webpack": "workspace:^"
-  },
-  "stableVersion": "2.3.0"
+  }
 }

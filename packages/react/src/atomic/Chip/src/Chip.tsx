@@ -17,7 +17,13 @@ const Chip: React.FC<ChipProps> & ChipComponents = ({
 }: ChipProps) => (
   <button type="button" {...rest} className={chip.classnames.base}>
     {icon && <Icon source={icon} color="neutral-textHigh" />}
-    <Text color="neutral-textHigh" fontSize="caption" lineHeight="caption">
+    <Text
+      color="neutral-textHigh"
+      fontSize="caption"
+      lineHeight="caption"
+      lineClamp={1}
+      wordBreak="break-all"
+    >
       {text}
     </Text>
     {removable && (

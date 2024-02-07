@@ -2,6 +2,12 @@
 
 Nimbus is an open-source Design System created by Tiendanube / Nuvesmhop’s team to empower and enhance more stories every day, with simplicity, accessibility, consistency and performance.
 
+## 2024-02-07 `5.4.1`
+
+### 🐛 Bug fixes
+
+- Added `lineClamp` and `wordBreak` properties to `Chip` Text to allow overflowing text to hide instead of breaking into lines. ([#220](https://github.com/TiendaNube/nimbus-design-system/pull/220) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2024-01-18 `5.4.0`
 
 ### 🎉 New features
