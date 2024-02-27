@@ -1,0 +1,62 @@
+{
+  "id": "collapsible",
+  "name": "Collapsible",
+  "totalProps": 3,
+  "packageName": "@nimbus-ds/collapsible",
+  "version": "1.0.0",
+  "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/collapsible",
+  "props": [
+    {
+      "description": "The content of the collapsible.",
+      "type": "React.ReactNode",
+      "title": "children",
+      "required": false
+    },
+    {
+      "description": "Informs if collapsible body is open. By default, this value is false",
+      "type": "boolean",
+      "title": "open",
+      "required": false
+    }
+  ],
+  "subComponents": [
+    {
+      "name": "Collapsible.Body",
+      "totalProps": 2,
+      "props": [
+        {
+          "description": "The content of the collapsible body.",
+          "type": "React.ReactNode",
+          "title": "children",
+          "required": true
+        },
+        {
+          "description": "Shows or hide body when collapsible status is open",
+          "default": "open",
+          "enum": ["open", "closed"],
+          "type": "string",
+          "title": "visibleWhen",
+          "required": false
+        },
+        {
+          "description": "The direction that the body going to open.",
+          "type": "string",
+          "title": "direction",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Collapsible.Item",
+      "totalProps": 1,
+      "props": [
+        {
+          "description": "The content of the collapsible item.",
+          "type": "React.ReactNode",
+          "title": "children",
+          "required": true
+        }
+      ]
+    }
+  ]
+}

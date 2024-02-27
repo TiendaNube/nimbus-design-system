@@ -1,0 +1,1 @@
+# `@nimbus-ds/collapsible`
