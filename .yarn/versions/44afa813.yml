@@ -1,0 +1,6 @@
+releases:
+  "@nimbus-ds/styles": minor
+
+declined:
+  - nimbus-design-system
+  - "@nimbus-ds/collapsible"
