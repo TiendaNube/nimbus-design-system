@@ -15,7 +15,7 @@ const makeSut = (props: AccordionBodyProps, selectedDefault = "0") => {
   );
 };
 
-describe("GIVEN <Acordion.Body />", () => {
+describe("GIVEN <Accordion.Body />", () => {
   describe("WHEN rendered", () => {
     it("THEN should render the submitted content", () => {
       makeSut({ children: "My content" });

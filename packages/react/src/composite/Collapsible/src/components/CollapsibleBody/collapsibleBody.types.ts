@@ -2,7 +2,7 @@ import { HTMLAttributes, ReactNode } from "react";
 
 export interface CollapsibleBodyProperties {
   /**
-   * The content of the accordion body.
+   * The content of the collapsible body.
    * @TJS-type React.ReactNode
    */
   children: ReactNode;

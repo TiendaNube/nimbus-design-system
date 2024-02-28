@@ -8,7 +8,7 @@ const makeSut = (props: CollapsibleItemProps) => {
   render(<CollapsibleItem {...props} data-testid="element" />);
 };
 
-describe("GIVEN <Cccordion.item />", () => {
+describe("GIVEN <Collapsible.item />", () => {
   describe("WHEN rendered", () => {
     it("THEN should render the submitted content", () => {
       makeSut({ children: "My content" });
