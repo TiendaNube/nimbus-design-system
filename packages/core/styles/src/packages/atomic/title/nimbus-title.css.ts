@@ -91,6 +91,7 @@ const titleColorProperties = {
   "danger-textLow": colorProperties["danger-textLow"],
   "neutral-textHigh": colorProperties["neutral-textHigh"],
   "neutral-textLow": colorProperties["neutral-textLow"],
+  "neutral-background": colorProperties["neutral-background"],
 };
 
 const fontSizeProperties = {
