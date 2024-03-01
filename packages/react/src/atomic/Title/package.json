@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/title",
-  "version": "3.1.2-rc.1",
+  "version": "3.1.2",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -30,6 +30,5 @@
   },
   "devDependencies": {
     "@nimbus-ds/webpack": "workspace:^"
-  },
-  "stableVersion": "3.1.1"
+  }
 }
