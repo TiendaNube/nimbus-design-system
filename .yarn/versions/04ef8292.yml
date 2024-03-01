@@ -1,4 +1,5 @@
 releases:
+  "@nimbus-ds/components": patch
   "@nimbus-ds/title": patch
 
 declined:
