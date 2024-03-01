@@ -1,0 +1,10 @@
+releases:
+  "@nimbus-ds/components": patch
+  "@nimbus-ds/title": patch
+
+declined:
+  - nimbus-design-system
+  - "@nimbus-ds/accordion"
+  - "@nimbus-ds/alert"
+  - "@nimbus-ds/modal"
+  - "@nimbus-ds/sidebar"
