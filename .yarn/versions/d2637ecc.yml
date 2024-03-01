@@ -1,6 +1,0 @@
-releases:
-  "@nimbus-ds/chip": patch
-  "@nimbus-ds/components": patch
-
-declined:
-  - nimbus-design-system
