@@ -1,6 +1,6 @@
 releases:
   "@nimbus-ds/collapsible": major
+  "@nimbus-ds/styles": patch
 
 declined:
   - nimbus-design-system
-  - "@nimbus-ds/styles"
