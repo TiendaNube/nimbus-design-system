@@ -1,0 +1,32 @@
+{
+  "name": "@nimbus-ds/collapsible",
+  "version": "0.0.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "yarn g:webpack",
+    "clean": "rm -rf dist",
+    "version": "yarn version"
+  },
+  "peerDependencies": {
+    "react": "^16.8 || ^17.0 || ^18.0",
+    "react-dom": "^16.8 || ^17.0 || ^18.0"
+  },
+  "homepage": "https://nimbus.nuvemshop.com.br/documentation",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TiendaNube/nimbus-design-system.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TiendaNube/nimbus-design-system/issues"
+  },
+  "devDependencies": {
+    "@nimbus-ds/webpack": "workspace:^",
+    "@vanilla-extract/dynamic": "^2.0.3"
+  }
+}

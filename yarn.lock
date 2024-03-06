@@ -4485,6 +4485,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@nimbus-ds/collapsible@workspace:packages/react/src/composite/Collapsible":
+  version: 0.0.0-use.local
+  resolution: "@nimbus-ds/collapsible@workspace:packages/react/src/composite/Collapsible"
+  dependencies:
+    "@nimbus-ds/webpack": "workspace:^"
+    "@vanilla-extract/dynamic": ^2.0.3
+  peerDependencies:
+    react: ^16.8 || ^17.0 || ^18.0
+    react-dom: ^16.8 || ^17.0 || ^18.0
+  languageName: unknown
+  linkType: soft
+
 "@nimbus-ds/components@workspace:packages/react":
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/components@workspace:packages/react"
