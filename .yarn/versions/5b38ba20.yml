@@ -2,5 +2,5 @@ releases:
   "@nimbus-ds/collapsible": major
   "@nimbus-ds/styles": patch
 
-undecided:
+declined:
   - nimbus-design-system
