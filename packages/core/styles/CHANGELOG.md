@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2024-02-29 `9.11.0`
+
+#### 🎉 New features
+
+- Add `neutral-background` as option for `Title` style properties. ([#223](https://github.com/TiendaNube/nimbus-design-system/pull/223) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2024-01-18 `9.10.0`
 
 - Update style package of `Tabs` component. ([#216](https://github.com/TiendaNube/nimbus-design-system/pull/216) by [@juanchigallego](https://github.com/juanchigallego))
