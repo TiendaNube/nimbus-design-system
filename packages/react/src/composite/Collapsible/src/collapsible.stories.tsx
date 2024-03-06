@@ -2,11 +2,9 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { useArgs } from "@storybook/preview-api";
 import { Button } from "@nimbus-ds/button";
-import { Icon } from "@nimbus-ds/icon";
 import { Box } from "@nimbus-ds/box";
 import { Text } from "@nimbus-ds/text";
 import { Link as LinkComponent } from "@nimbus-ds/link";
-import { ChevronDownIcon, ChevronUpIcon } from "@nimbus-ds/icons";
 import { Collapsible } from "./Collapsible";
 
 const meta: Meta<typeof Collapsible> = {
@@ -105,20 +103,7 @@ export const obfuscatingText: Story = {
             appearance="primary"
             textDecoration="none"
           >
-            {!open ? (
-              <>
-                See more
-                <Icon
-                  color="primary-interactive"
-                  source={<ChevronDownIcon />}
-                />
-              </>
-            ) : (
-              <>
-                See less
-                <Icon color="primary-interactive" source={<ChevronUpIcon />} />
-              </>
-            )}
+            {!open ? <>See more</> : <>See less</>}
           </LinkComponent>
         </Collapsible.Item>
       </Collapsible>
