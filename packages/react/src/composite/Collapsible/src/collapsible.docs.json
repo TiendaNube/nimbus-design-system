@@ -3,7 +3,7 @@
   "name": "Collapsible",
   "totalProps": 3,
   "packageName": "@nimbus-ds/collapsible",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/collapsible",
   "props": [
     {
