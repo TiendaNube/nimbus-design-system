@@ -24,7 +24,7 @@ const bodyAnimation = style({
   backgroundColor: varsThemeBase.colors.neutral.background,
   boxSizing: "border-box",
   fontFamily: varsThemeBase.fontFamily.sans,
-  animation: `${open} .3s`,
+  animation: `${open} .4s`,
 });
 
 const openReversal = keyframes({
