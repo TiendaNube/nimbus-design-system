@@ -9053,9 +9053,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.4.668":
-  version: 1.4.698
-  resolution: "electron-to-chromium@npm:1.4.698"
-  checksum: 0208d70c829c3060c635e3c384a8881d21f69c22fb731d20d34e21e8f2ac9e7b126cfb0709e899945544a1020400c4adef534049573a9429aac0212be7704dc0
+  version: 1.4.699
+  resolution: "electron-to-chromium@npm:1.4.699"
+  checksum: d20cd6b7394e116182f0158dface081e92807fe8a872fbae59d626c4fc2682664b364510c37ffb5f992067cb92bdab368468e166f01d2dddf89e41e329ba2ae7
   languageName: node
   linkType: hard
 
@@ -18703,14 +18703,14 @@ __metadata:
   linkType: hard
 
 "unplugin@npm:^1.3.1":
-  version: 1.8.3
-  resolution: "unplugin@npm:1.8.3"
+  version: 1.9.0
+  resolution: "unplugin@npm:1.9.0"
   dependencies:
     acorn: ^8.11.3
     chokidar: ^3.6.0
     webpack-sources: ^3.2.3
     webpack-virtual-modules: ^0.6.1
-  checksum: 72d63572193396ac3a8cbf991f55b30c54b15de1e9cfdfc4d0ccd0661e4373ca70798a66782f3db3efa54b7cf1127c5cdf9617904fbcaedf2082257aaf6b3aca
+  checksum: 9b72bfee96f29a9ebf8119df59fb236b3f57caba1e30b3a305c582d99eca3671d2724d78ef9f81dfc46b7ada2245b55885272e8d516e25705ed6458023ebd0a9
   languageName: node
   linkType: hard
 

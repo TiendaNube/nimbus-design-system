@@ -3,7 +3,7 @@ name: publish-release
 on:
   push:
     branches:
-      - master
+      - publish
       - "!dependabot/**/**"
     paths-ignore:
       - "**/package.json"

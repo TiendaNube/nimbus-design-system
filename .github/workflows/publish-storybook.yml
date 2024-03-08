@@ -3,7 +3,7 @@ name: "publish-storybook"
 on:
   push:
     branches:
-      - master
+      - publish
 
 jobs:
   publish-storybook:

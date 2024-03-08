@@ -3,7 +3,7 @@ name: create-coverage-report
 on:
   push:
     branches:
-      - master
+      - publish
     paths-ignore:
       - "**/package.json"
       - ".yarn/versions/**"
