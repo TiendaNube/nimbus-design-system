@@ -1,14 +1,13 @@
 name: publish-release
 
-on: pull_request
-# on:
-#   push:
-#     branches:
-#       - master
-#       - "!dependabot/**/**"
-#     paths-ignore:
-#       - "**/package.json"
-#       - ".yarn/versions/**"
+on:
+  push:
+    branches:
+      - master
+      - "!dependabot/**/**"
+    paths-ignore:
+      - "**/package.json"
+      - ".yarn/versions/**"
 
 jobs:
   publish-packages-npm:
