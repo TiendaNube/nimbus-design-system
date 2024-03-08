@@ -1,5 +1,3 @@
 declined:
-  - "@nimbus-ds/icons"
-
-undecided:
   - nimbus-design-system
+  - "@nimbus-ds/icons"
