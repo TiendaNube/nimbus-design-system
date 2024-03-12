@@ -1,8 +1,0 @@
-releases:
-  "@nimbus-ds/collapsible": patch
-  "@nimbus-ds/styles": patch
-
-declined:
-  - nimbus-design-system
-  - "@nimbus-ds/icons"
-  - "@nimbus-ds/components"
