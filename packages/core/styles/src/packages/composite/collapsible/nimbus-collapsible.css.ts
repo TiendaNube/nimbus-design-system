@@ -22,7 +22,7 @@ const bodyAnimation = style({
   display: "flex",
   boxSizing: "border-box",
   fontFamily: varsThemeBase.fontFamily.sans,
-  animation: `${open} .4s`,
+  animation: `${open} .3s`,
 });
 
 const openReversal = keyframes({
@@ -35,7 +35,7 @@ const bodyReversalAnimation = style({
   display: "flex",
   boxSizing: "border-box",
   fontFamily: varsThemeBase.fontFamily.sans,
-  animation: `${openReversal} .4s`,
+  animation: `${openReversal} .3s`,
 });
 
 export const styles = {
