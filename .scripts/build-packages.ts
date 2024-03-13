@@ -33,7 +33,7 @@ try {
     "@nimbus-ds/webpack",
   ];
 
-  const command = packageBuilder.getCommmandBuildNPM(
+  const command = packageBuilder.getCommandBuildNPM(
     packagesToBuild,
     removePackages
   );

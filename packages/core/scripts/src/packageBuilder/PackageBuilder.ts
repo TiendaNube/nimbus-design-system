@@ -16,7 +16,7 @@ export class PackageBuilder {
     );
   }
 
-  public getCommmandBuildNPM(
+  public getCommandBuildNPM(
     packages: string[],
     removePackages: string[] = []
   ): string {
