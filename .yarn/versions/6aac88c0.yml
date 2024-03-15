@@ -1,0 +1,5 @@
+releases:
+  "@nimbus-ds/sidebar": patch
+
+declined:
+  - nimbus-design-system
