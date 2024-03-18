@@ -2,6 +2,16 @@
 
 Nimbus is an open-source Design System created by Tiendanube / Nuvesmhop’s team to empower and enhance more stories every day, with simplicity, accessibility, consistency and performance.
 
+## 2024-03-18 `5.5.2`
+
+### 🐛 Bug fixes
+
+- Added `RemoveScroll` component from `react-remove-scroll` library to prevent scroll resetting on the body of the `Sidebar` component. ([#233](https://github.com/TiendaNube/nimbus-design-system/pull/233) by [@juanchigallego](https://github.com/juanchigallego))
+
+### 📚 3rd party library updates
+
+- Added `react-remove-scroll@2.5.7` to `Sidebar` component. ([#233](https://github.com/TiendaNube/nimbus-design-system/pull/233) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2024-03-01 `5.4.2`
 
 ### 🎉 New features

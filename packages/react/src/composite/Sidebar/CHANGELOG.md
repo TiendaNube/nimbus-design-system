@@ -2,6 +2,16 @@
 
 The Sidebar component is a large floating container that goes into the page from the corners. It allows us to present actions, forms or sections with a lot of information about the context of the page.
 
+## 2024-03-18 `3.2.3`
+
+#### 🐛 Bug fixes
+
+- Added `RemoveScroll` component from `react-remove-scroll` library to prevent scroll resetting on the body of the `Sidebar` component. ([#233](https://github.com/TiendaNube/nimbus-design-system/pull/233) by [@juanchigallego](https://github.com/juanchigallego))
+
+#### 📚 3rd party library updates
+
+- Added `react-remove-scroll@2.5.7`.
+
 ## 2023-12-22 `3.2.1`
 
 #### 🎉 New features
