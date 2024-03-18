@@ -7,7 +7,13 @@ export interface ToastComponents {
 }
 
 export type Types = "primary" | "success" | "danger" | "progress";
-export type TypesColors = Omit<Types, "progress"> & "neutral";
+export type TypesColors = Exclude<Types, "progress"> | "neutral";
+
+export type IconColor =
+  | "primary-surface"
+  | "success-surface"
+  | "danger-surface"
+  | "neutral-surface";
 
 export interface ToastProperties {
   /**

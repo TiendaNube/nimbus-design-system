@@ -15,7 +15,12 @@ import {
 } from "@nimbus-ds/icons";
 import { toast } from "@nimbus-ds/styles";
 
-import { ToastComponents, ToastProps, TypesColors } from "./toast.types";
+import {
+  IconColor,
+  ToastComponents,
+  ToastProps,
+  TypesColors,
+} from "./toast.types";
 import { useToast } from "./hooks";
 import { ToastProvider } from "./components";
 
@@ -83,6 +88,13 @@ const Toast: React.FC<ToastProps> & ToastComponents = ({
     [type]
   ) as TypesColors;
 
+  const colorMapping: Record<TypesColors, IconColor> = {
+    primary: "primary-surface",
+    success: "success-surface",
+    danger: "danger-surface",
+    neutral: "neutral-surface",
+  };
+
   return (
     <div
       id={id}
@@ -98,7 +110,7 @@ const Toast: React.FC<ToastProps> & ToastComponents = ({
       {!isProgress && (
         <Icon
           data-testid={`toast-icon-${types}`}
-          color={`${types}-surface`}
+          color={colorMapping[types]}
           source={icons[type]}
         />
       )}
@@ -109,7 +121,7 @@ const Toast: React.FC<ToastProps> & ToastComponents = ({
           size="small"
         />
       )}
-      <Text color={`${types}-surface`} fontSize="caption" lineHeight="caption">
+      <Text color={colorMapping[types]} fontSize="caption" lineHeight="caption">
         {text}
       </Text>
     </div>
