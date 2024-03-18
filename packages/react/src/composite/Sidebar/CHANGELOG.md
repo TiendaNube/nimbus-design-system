@@ -10,7 +10,7 @@ The Sidebar component is a large floating container that goes into the page from
 
 #### 📚 3rd party library updates
 
-- Added `react-remove-scroll@2.5.7`.
+- Added `react-remove-scroll@2.5.7`. ([#233](https://github.com/TiendaNube/nimbus-design-system/pull/233) by [@juanchigallego](https://github.com/juanchigallego))
 
 ## 2023-12-22 `3.2.1`
 
