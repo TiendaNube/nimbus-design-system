@@ -34,6 +34,11 @@ export interface SidebarProperties extends SidebarSprinkle {
    * @default true
    */
   open?: boolean;
+  /**
+   * Determines if RemoveScroll wraps sidebar's children component.
+   * @default true
+   */
+  needRemoveScroll?: boolean;
 }
 
 export type SidebarProps = SidebarProperties & HTMLAttributes<HTMLDivElement>;

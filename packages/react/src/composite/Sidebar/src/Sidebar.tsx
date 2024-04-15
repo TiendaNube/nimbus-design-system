@@ -19,6 +19,7 @@ const Sidebar: React.FC<SidebarProps> & SidebarComponents = ({
   position = "right",
   maxWidth = "375px",
   open = false,
+  needRemoveScroll = false,
   children,
   onRemove,
   ...rest
@@ -61,7 +62,11 @@ const Sidebar: React.FC<SidebarProps> & SidebarComponents = ({
               open && sidebar.classnames.isVisible,
             ].join(" ")}
           >
-            <RemoveScroll>{children}</RemoveScroll>
+            {needRemoveScroll ? (
+              <RemoveScroll>{children}</RemoveScroll>
+            ) : (
+              children
+            )}
           </div>
         </FloatingFocusManager>
       </FloatingOverlay>
