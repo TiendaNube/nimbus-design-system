@@ -3,7 +3,7 @@
   "name": "Sidebar",
   "totalProps": 0,
   "packageName": "@nimbus-ds/sidebar",
-  "version": "3.2.2",
+  "version": "3.3.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/sidebar",
   "props": [],
   "subComponents": [
