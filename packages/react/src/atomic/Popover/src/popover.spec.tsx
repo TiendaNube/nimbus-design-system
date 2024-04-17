@@ -147,7 +147,8 @@ describe("GIVEN <Popover />", () => {
         false,
         expect.objectContaining({
           isTrusted: false,
-        })
+        }),
+        "click"
       );
     });
 
@@ -168,7 +169,8 @@ describe("GIVEN <Popover />", () => {
         true,
         expect.objectContaining({
           isTrusted: false,
-        })
+        }),
+        "click"
       );
     });
   });
