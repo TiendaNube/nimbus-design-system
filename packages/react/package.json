@@ -31,5 +31,6 @@
   },
   "devDependencies": {
     "@nimbus-ds/webpack": "workspace:^"
-  }
+  },
+  "stableVersion": "5.5.1"
 }

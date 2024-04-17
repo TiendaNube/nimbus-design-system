@@ -1,0 +1,7 @@
+releases:
+  "@nimbus-ds/components": patch
+  "@nimbus-ds/sidebar": minor
+  "@nimbus-ds/toast": patch
+
+declined:
+  - nimbus-design-system

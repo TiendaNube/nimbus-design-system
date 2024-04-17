@@ -2,6 +2,12 @@
 
 The Toast component allows us to notify users in an informational tone, describing that something has happened or is happening, without interrupting navigation.
 
+## 2024-03-18 `2.3.1`
+
+### 🐛 Bug fixes
+
+- Fixed type bug on expected icon and text color values. ([#233](https://github.com/TiendaNube/nimbus-design-system/pull/233) by [@juanchigallego](https://github.com/juanchigallego))
+
 ## 2023-03-13 `2.3.0`
 
 ### 💡 Others

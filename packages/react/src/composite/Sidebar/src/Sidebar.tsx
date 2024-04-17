@@ -1,4 +1,5 @@
 import React from "react";
+import { RemoveScroll } from "react-remove-scroll";
 import {
   FloatingFocusManager,
   FloatingOverlay,
@@ -18,6 +19,7 @@ const Sidebar: React.FC<SidebarProps> & SidebarComponents = ({
   position = "right",
   maxWidth = "375px",
   open = false,
+  needRemoveScroll = false,
   children,
   onRemove,
   ...rest
@@ -44,7 +46,6 @@ const Sidebar: React.FC<SidebarProps> & SidebarComponents = ({
     <FloatingPortal id="nimbus-sidebar" root={refThemeProvider?.current}>
       <FloatingOverlay
         className={sidebar.classnames.overlay}
-        lockScroll
         data-testid="overlay-sidebar-button"
       >
         <FloatingFocusManager context={context}>
@@ -61,7 +62,11 @@ const Sidebar: React.FC<SidebarProps> & SidebarComponents = ({
               open && sidebar.classnames.isVisible,
             ].join(" ")}
           >
-            {children}
+            {needRemoveScroll ? (
+              <RemoveScroll>{children}</RemoveScroll>
+            ) : (
+              children
+            )}
           </div>
         </FloatingFocusManager>
       </FloatingOverlay>
