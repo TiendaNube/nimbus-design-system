@@ -4,6 +4,12 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 ## 2024-02-29 `9.11.0`
 
+#### 💡 Others
+
+- Added `chip_close_icon_container` class for `Chip` component. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/240) by [@nachozullo](https://github.com/nachozullo))
+
+## 2024-02-29 `9.11.0`
+
 #### 🎉 New features
 
 - Add `neutral-background` as option for `Title` style properties. ([#223](https://github.com/TiendaNube/nimbus-design-system/pull/223) by [@juanchigallego](https://github.com/juanchigallego))
