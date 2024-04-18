@@ -22,4 +22,4 @@ export interface ChipProperties {
 }
 
 export type ChipProps = ChipProperties &
-  ButtonHTMLAttributes<HTMLButtonElement>;
+  ButtonHTMLAttributes<HTMLButtonElement | HTMLDivElement>;
