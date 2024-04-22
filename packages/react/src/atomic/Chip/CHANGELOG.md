@@ -2,7 +2,7 @@
 
 The Chip component is used to flag criteria or attributes related to searches or filters of a list of information.
 
-## 2024-04-18 `2.3.3`
+## 2024-04-22 `2.3.3`
 
 ### 💡 Others
 
