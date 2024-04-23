@@ -2,7 +2,13 @@
 
 The Sidebar component is a large floating container that goes into the page from the corners. It allows us to present actions, forms or sections with a lot of information about the context of the page.
 
-## 2024-04-15gs `3.3.0`
+## 2024-04-22 `3.3.1`
+
+#### 🐛 Bug fixes
+
+- Added `lockScroll` to prevent scroll outside of the body of `Sidebar` component. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/240) by [@nachozullo](https://github.com/nachozullo))
+
+## 2024-04-15 `3.3.0`
 
 #### 🐛 Bug fixes
 
