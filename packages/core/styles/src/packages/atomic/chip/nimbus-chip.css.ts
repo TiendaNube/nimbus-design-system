@@ -6,7 +6,7 @@ export const base = vanillaStyle({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  cursor: "pointer",
+  cursor: "default",
 
   padding: `${varsThemeBase.spacing[1]} ${varsThemeBase.spacing[2]}`,
   gap: varsThemeBase.spacing[1],
@@ -38,4 +38,12 @@ export const base = vanillaStyle({
     background: varsThemeBase.colors.neutral.interactive,
     borderColor: varsThemeBase.colors.neutral.interactivePressed,
   },
+});
+
+export const chip_close_icon_container = vanillaStyle({
+  background: "transparent",
+  border: "none",
+  padding: 0,
+  fontSize: 0,
+  cursor: "pointer",
 });

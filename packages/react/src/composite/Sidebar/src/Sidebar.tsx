@@ -47,6 +47,7 @@ const Sidebar: React.FC<SidebarProps> & SidebarComponents = ({
       <FloatingOverlay
         className={sidebar.classnames.overlay}
         data-testid="overlay-sidebar-button"
+        lockScroll={!needRemoveScroll}
       >
         <FloatingFocusManager context={context}>
           <div

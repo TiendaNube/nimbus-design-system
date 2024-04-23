@@ -2,6 +2,12 @@
 
 The Chip component is used to flag criteria or attributes related to searches or filters of a list of information.
 
+## 2024-04-22 `2.3.3`
+
+### 💡 Others
+
+- Trigger `onClick` only when close icon is pressed. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/240) by [@nachozullo](https://github.com/nachozullo))
+
 ## 2024-02-07 `2.3.2`
 
 ### 🐛 Bug fixes

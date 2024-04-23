@@ -2,6 +2,13 @@
 
 Nimbus is an open-source Design System created by Tiendanube / Nuvesmhop’s team to empower and enhance more stories every day, with simplicity, accessibility, consistency and performance.
 
+## 2024-04-22 `5.5.4`
+
+### 💡 Others
+
+- Trigger `onClick` only when close icon is pressed on `Chip` component. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/240) by [@nachozullo](https://github.com/nachozullo))
+- Added `lockScroll` to prevent scroll outside of the body of `Sidebar` component. ([#110](https://github.com/TiendaNube/nimbus-design-system/pull/240) by [@nachozullo](https://github.com/nachozullo))
+
 ## 2024-03-18 `5.5.3`
 
 ### 🐛 Bug fixes

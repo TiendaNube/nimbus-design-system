@@ -3,7 +3,6 @@ import { CloseIcon } from "@nimbus-ds/icons";
 import { chip } from "@nimbus-ds/styles";
 import { Text } from "@nimbus-ds/text";
 import { Icon } from "@nimbus-ds/icon";
-
 import { ChipProps, ChipComponents } from "./chip.types";
 import { ChipSkeleton } from "./components";
 
@@ -13,9 +12,10 @@ const Chip: React.FC<ChipProps> & ChipComponents = ({
   text,
   icon,
   removable,
+  onClick,
   ...rest
 }: ChipProps) => (
-  <button type="button" {...rest} className={chip.classnames.base}>
+  <div {...rest} className={chip.classnames.base}>
     {icon && <Icon source={icon} color="neutral-textHigh" />}
     <Text
       color="neutral-textHigh"
@@ -27,13 +27,21 @@ const Chip: React.FC<ChipProps> & ChipComponents = ({
       {text}
     </Text>
     {removable && (
-      <Icon
-        data-testid="close-chip"
-        source={<CloseIcon size={12} />}
-        color="neutral-textHigh"
-      />
+      <button
+        aria-label="Dismiss chip"
+        data-testid="dismiss-chip-button"
+        type="button"
+        onClick={onClick}
+        className={chip.classnames.chip_close_icon_container}
+      >
+        <Icon
+          data-testid="close-chip"
+          source={<CloseIcon size={12} />}
+          color="neutral-textHigh"
+        />
+      </button>
     )}
-  </button>
+  </div>
 );
 
 Chip.Skeleton = ChipSkeleton;
