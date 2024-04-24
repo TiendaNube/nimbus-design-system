@@ -14,7 +14,6 @@
     "version": "yarn version"
   },
   "dependencies": {
-    "@nimbus-ds/chip": "workspace:^",
     "@nimbus-ds/icon": "workspace:^",
     "@nimbus-ds/icons": "workspace:^",
     "@nimbus-ds/skeleton": "workspace:^"
