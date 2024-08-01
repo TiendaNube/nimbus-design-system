@@ -2,4 +2,4 @@ releases:
   "@nimbus-ds/modal": patch
 
 undecided:
-  - "@nimbus-ds/styles"
+  - nimbus-design-system
