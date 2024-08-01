@@ -1,0 +1,5 @@
+releases:
+  "@nimbus-ds/modal": patch
+
+undecided:
+  - "@nimbus-ds/styles"
