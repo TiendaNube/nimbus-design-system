@@ -3,7 +3,7 @@
 This is the log of notable changes to the Design System Nimbus that are developer-facing.
 Package-specific changes not released in any package will be added here just before the release. Until then, you can find them in changelogs of the individual packages (see [packages](./packages) directory).
 
-## 2024-08-05
+## 2024-08-05 `9.12.0`
 
 ### 🐛 Bug fixes
 

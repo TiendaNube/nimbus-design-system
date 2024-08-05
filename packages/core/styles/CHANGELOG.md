@@ -2,12 +2,6 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
-## 2024-04-22 `9.12.0`
-
-### 🐛 Bug fixes
-
-- Made `onDismiss` property optional for `Modal` component. If `onDismiss` is not provided, the modal can no longer be closed by clicking outside or pressing the close button and removed the close button (X) from `Modal` component when `onDismiss` is not provided. ([#246](https://github.com/TiendaNube/nimbus-design-system/pull/246) by [@dommirr](https://github.com/dommirr))
-
 ## 2024-04-22 `9.11.5`
 
 #### 💡 Others
