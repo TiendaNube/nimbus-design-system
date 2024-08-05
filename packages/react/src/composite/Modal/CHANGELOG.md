@@ -2,7 +2,7 @@
 
 The Modal component allows us to call the user's attention to a floating box that can have text, actions or forms to perform tasks by changing the focus from the background. It is an intrusive component as it interrupts the user's operation to present a message or content.
 
-## 2024-08-05 `1.6.0`
+## 2024-08-05 `1.5.3`
 
 ### 🐛 Bug fixes
 

@@ -1,5 +1,3 @@
 releases:
+  "@nimbus-ds/components": patch
   "@nimbus-ds/modal": patch
-
-declined:
-  - nimbus-design-system
