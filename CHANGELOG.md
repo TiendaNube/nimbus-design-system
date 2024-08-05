@@ -3,6 +3,13 @@
 This is the log of notable changes to the Design System Nimbus that are developer-facing.
 Package-specific changes not released in any package will be added here just before the release. Until then, you can find them in changelogs of the individual packages (see [packages](./packages) directory).
 
+## 2024-08-05
+
+### 🐛 Bug fixes
+
+- Made `onDismiss` property optional for `Modal` component. If `onDismiss` is not provided, the modal can no longer be closed by clicking outside or pressing the close button
+- Removed the close button (X) from `Modal` component when `onDismiss` is not provided. ([#246](https://github.com/TiendaNube/nimbus-design-system/pull/246) by [@dommirr](https://github.com/dommirr))
+
 ## 2023-12-22
 
 ### 🎉 New features
