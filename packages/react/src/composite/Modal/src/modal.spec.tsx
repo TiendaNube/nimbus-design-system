@@ -25,7 +25,7 @@ describe("GIVEN <Modal />", () => {
       expect(mockedOnDismiss).toBeCalledWith(false);
     });
 
-    it("AND should not call the onDismiss function when it is not provided", () => {
+    it("THEN should not close the modal if the close function is not provided", () => {
       makeSut({ children: <div>My content</div> });
       fireEvent.keyDown(document, {
         key: "Escape",
@@ -33,6 +33,7 @@ describe("GIVEN <Modal />", () => {
         keyCode: 27,
       });
       expect(screen.queryByTestId("dismiss-modal-button")).toBeNull();
+      expect(screen.getByText("My content")).toBeDefined();
     });
   });
 
