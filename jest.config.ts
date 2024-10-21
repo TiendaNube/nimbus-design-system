@@ -47,6 +47,7 @@ const config: Config.InitialOptions = {
     "@nimbus-ds/sidebar": "<rootDir>/packages/react/src/composite/Sidebar/src",
     "@nimbus-ds/tabs": "<rootDir>/packages/react/src/composite/Tabs/src",
     "@nimbus-ds/table": "<rootDir>/packages/react/src/composite/Table/src",
+    "@nimbus-ds/timeline": "<rootDir>/packages/react/src/composite/Table/src",
     "@nimbus-ds/collapsible":
       "<rootDir>/packages/react/src/composite/Collapsible/src",
     // commons

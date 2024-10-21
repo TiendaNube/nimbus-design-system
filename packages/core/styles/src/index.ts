@@ -37,6 +37,7 @@ export { pagination } from "./packages/composite/pagination";
 export { sidebar } from "./packages/composite/sidebar";
 export { tabs } from "./packages/composite/tabs";
 export { table } from "./packages/composite/table";
+export { timeline } from "./packages/composite/timeline";
 
 export { calendar } from "./packages/patterns/calendar";
 export { editor } from "./packages/patterns/editor";

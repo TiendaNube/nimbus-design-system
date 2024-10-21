@@ -1,0 +1,16 @@
+{
+  "id": "timeline",
+  "name": "Timeline",
+  "totalProps": 0,
+  "packageName": "@nimbus-ds/timeline",
+  "version": "3.1.1",
+  "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/timeline",
+  "props": [],
+  "subComponents": [
+    {
+      "name": "Timeline.Item",
+      "totalProps": 40,
+      "props": []
+    }
+  ]
+}

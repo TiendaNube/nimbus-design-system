@@ -18,4 +18,7 @@ jest.mock("@nimbus-ds/icons", () => ({
   CameraIcon: () => <svg />,
   ChevronLeftIcon: () => <svg />,
   ChevronRightIcon: () => <svg />,
+  CreditCardIcon: () => <svg />,
+  BoxPackedIcon: () => <svg />,
+  TruckIcon: () => <svg />,
 }));

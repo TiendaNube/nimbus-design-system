@@ -3150,6 +3150,22 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@nimbus-ds/timeline@workspace:packages/react/src/composite/Timeline":
+  version: 0.0.0-use.local
+  resolution: "@nimbus-ds/timeline@workspace:packages/react/src/composite/Timeline"
+  dependencies:
+    "@nimbus-ds/box": "workspace:^"
+    "@nimbus-ds/button": "workspace:^"
+    "@nimbus-ds/tag": "workspace:^"
+    "@nimbus-ds/text": "workspace:^"
+    "@nimbus-ds/webpack": "workspace:^"
+  peerDependencies:
+    "@nimbus-ds/title": "workspace:^"
+    react: ^16.8 || ^17.0 || ^18.0
+    react-dom: ^16.8 || ^17.0 || ^18.0
+  languageName: unknown
+  linkType: soft
+
 "@nimbus-ds/title@workspace:^, @nimbus-ds/title@workspace:packages/react/src/atomic/Title":
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/title@workspace:packages/react/src/atomic/Title"
