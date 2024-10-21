@@ -62,7 +62,7 @@ const getIcon = (
 const TimelineItem: React.FC<TimelineItemProps> = ({
   className: _className,
   style: _style,
-  userName = "",
+  userName,
   happenedAt,
   type,
   action,

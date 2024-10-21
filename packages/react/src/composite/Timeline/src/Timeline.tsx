@@ -1,6 +1,7 @@
 import React from "react";
 import { timeline } from "@nimbus-ds/styles";
 
+import { Text } from "@nimbus-ds/text";
 import { TimelineProps, TimelineComponents } from "./timeline.types";
 import TimelineItem from "./components/TimelineItem";
 
@@ -25,6 +26,9 @@ const Timeline: React.FC<TimelineProps> & TimelineComponents = ({
       {sortedData.map((item) => (
         <TimelineItem key={item.happenedAt + item.happenedAt} {...item} />
       ))}
+      {timelineData.length === 0 ? (
+        <Text>No hay información que mostrar.</Text>
+      ) : null}
     </div>
   );
 };

@@ -45,3 +45,7 @@ export const basic: Story = {
     timelineData: data,
   },
 };
+
+export const emptyData: Story = {
+  args: {},
+};
