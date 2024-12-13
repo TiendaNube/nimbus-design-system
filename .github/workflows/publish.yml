@@ -42,7 +42,7 @@ jobs:
         uses: DeveloperRic/action-create-env@v1.0.2
         with:
           full_text: |
-            GITHUB_TOKEN=${{ secrets.PAT_CHANGE_BRANCH_PROTECTION_RULES_FROM_JUNIOR_CONQUISTA }}
+            GITHUB_TOKEN=${{ secrets.PAT_CHANGE_BRANCH_PROTECTION_RULES_FROM_USER_NIMBUS }}
           include_env_vars: true
 
       - name: Publish packages
@@ -50,13 +50,13 @@ jobs:
           export NODE_OPTIONS="--max_old_space_size=8192"
           yarn publish:stable
         env:
-          YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTOMATION_FROM_JUNIOR_CONQUISTA }}
+          YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTOMATION_PUBLISH }}
 
       - name: Branch protection OFF
         run: |
           curl --request PUT \
           --url 'https://api.github.com/repos/tiendanube/nimbus-design-system/branches/master/protection' \
-          --header 'Authorization: token ${{ secrets.PAT_CHANGE_BRANCH_PROTECTION_RULES_FROM_JUNIOR_CONQUISTA }}' \
+          --header 'Authorization: token ${{ secrets.PAT_CHANGE_BRANCH_PROTECTION_RULES_FROM_USER_NIMBUS }}' \
           --data '{"enforce_admins":false,"required_pull_request_reviews":null,"required_status_checks":null,"required_conversation_resolution":false,"restrictions":null,"required_linear_history":false}'
 
       - name: Commit release
@@ -68,7 +68,7 @@ jobs:
         run: |
           curl --request PUT \
           --url 'https://api.github.com/repos/tiendanube/nimbus-design-system/branches/master/protection' \
-          --header 'Authorization: token ${{ secrets.PAT_CHANGE_BRANCH_PROTECTION_RULES_FROM_JUNIOR_CONQUISTA }}' \
+          --header 'Authorization: token ${{ secrets.PAT_CHANGE_BRANCH_PROTECTION_RULES_FROM_USER_NIMBUS }}' \
           --header 'Accept: application/vnd.github.luke-cage-preview+json' \
           --data '{"enforce_admins":true,"required_pull_request_reviews":{"dismiss_stale_reviews":true,"require_code_owner_reviews":true,"required_approving_review_count":1},"required_conversation_resolution":true,"required_status_checks":null,"restrictions":null,"required_linear_history":true}'
 
@@ -83,7 +83,7 @@ jobs:
         run: |
           curl --request POST \
           --url 'https://api.github.com/repos/tiendanube/nimbus-design-system/actions/workflows/58856079/dispatches' \
-          --header 'Authorization: token ${{ secrets.PAT_CHANGE_BRANCH_PROTECTION_RULES_FROM_JUNIOR_CONQUISTA }}' \
+          --header 'Authorization: token ${{ secrets.PAT_CHANGE_BRANCH_PROTECTION_RULES_FROM_USER_NIMBUS }}' \
           --data '{"ref":"master"}'
 
   trigger-action-send-slack-notifications:
@@ -97,7 +97,7 @@ jobs:
         run: |
           curl --request POST \
           --url 'https://api.github.com/repos/tiendanube/nimbus-design-system/actions/workflows/58847410/dispatches' \
-          --header 'Authorization: token ${{ secrets.PAT_CHANGE_BRANCH_PROTECTION_RULES_FROM_JUNIOR_CONQUISTA }}' \
+          --header 'Authorization: token ${{ secrets.PAT_CHANGE_BRANCH_PROTECTION_RULES_FROM_USER_NIMBUS }}' \
           --data '{"ref":"master"}'
 
   trigger-action-update-generate-documentation:
@@ -116,5 +116,5 @@ jobs:
         run: |
           curl --request POST \
           --url 'https://api.github.com/repos/tiendanube/nimbus-design-system/actions/workflows/51785513/dispatches' \
-          --header 'Authorization: token ${{ secrets.PAT_CHANGE_BRANCH_PROTECTION_RULES_FROM_JUNIOR_CONQUISTA }}' \
+          --header 'Authorization: token ${{ secrets.PAT_CHANGE_BRANCH_PROTECTION_RULES_FROM_USER_NIMBUS }}' \
           --data '{"ref":"master"}'
