@@ -1,26 +1,97 @@
 {
   "id": "select",
   "name": "Select",
-  "totalProps": 0,
+  "totalProps": 4,
   "packageName": "@nimbus-ds/select",
   "version": "2.4.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/select",
-  "props": [],
+  "props": [
+    {
+      "description": "The name of the wrapper element or the select element when native.",
+      "type": "string",
+      "title": "name",
+      "required": true
+    },
+    {
+      "description": "The id of the wrapper element or the select element when native.",
+      "type": "string",
+      "title": "id",
+      "required": true
+    },
+    {
+      "description": "The content of the select.",
+      "type": "React.ReactNode",
+      "title": "children",
+      "required": true
+    },
+    {
+      "description": "Change the visual style of the select.",
+      "default": "neutral",
+      "enum": [
+        "danger",
+        "neutral",
+        "success",
+        "warning"
+      ],
+      "type": "string",
+      "title": "appearance",
+      "required": false
+    }
+  ],
   "subComponents": [
     {
       "name": "Select.Group",
-      "totalProps": 0,
-      "props": []
+      "totalProps": 2,
+      "props": [
+        {
+          "description": "Label for the option group.",
+          "type": "string",
+          "title": "label",
+          "required": true
+        },
+        {
+          "description": "The content of the option group.",
+          "type": "React.ReactNode",
+          "title": "children",
+          "required": true
+        }
+      ]
     },
     {
       "name": "Select.Option",
-      "totalProps": 0,
-      "props": []
+      "totalProps": 2,
+      "props": [
+        {
+          "description": "Label for the option.",
+          "type": "string",
+          "title": "label",
+          "required": true
+        },
+        {
+          "description": "Value of the option",
+          "type": "string",
+          "title": "value",
+          "required": true
+        }
+      ]
     },
     {
       "name": "Select.Skeleton",
-      "totalProps": 0,
-      "props": []
+      "totalProps": 2,
+      "props": [
+        {
+          "description": "Width of the skeleton. Useful when the skeleton is inside an inline element with no width of its own.",
+          "type": "string",
+          "title": "width",
+          "required": false
+        },
+        {
+          "description": "This is an attribute used to identify a DOM node for testing purposes.",
+          "type": "string",
+          "title": "data-testid",
+          "required": false
+        }
+      ]
     }
   ]
 }
