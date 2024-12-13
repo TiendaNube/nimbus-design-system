@@ -17,7 +17,7 @@
     "build:components": "babel-node -x .ts ./.scripts/build-components",
     "build:docs": "babel-node -x .ts ./.scripts/json-documentation",
     "build:icons": "turbo run build --filter=@nimbus-ds/icons",
-    "build:tokens": "turbo run build --filter=@nimbus-ds/tokens",
+    "build:tokens": "yarn workspace @nimbus-ds/tokens build",
     "build:storybook": "storybook build -o .build-storybook",
     "bump:check": "yarn version check",
     "bump:next": "yarn version apply --all --prerelease",
