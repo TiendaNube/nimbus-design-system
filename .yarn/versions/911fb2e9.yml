@@ -1,5 +1,5 @@
 releases:
-  "@nimbus-ds/icons": patch
+  "@nimbus-ds/icons": minor
 
 declined:
   - nimbus-design-system
