@@ -32,5 +32,5 @@ jobs:
         run: |
           curl --request POST \
           --url 'https://api.github.com/repos/tiendanube/nimbus-design-system/actions/workflows/58856078/dispatches' \
-          --header 'Authorization: token ${{ secrets.PAT_CHANGE_BRANCH_PROTECTION_RULES_FROM_JUNIOR_CONQUISTA }}' \
+          --header 'Authorization: token ${{ secrets.PAT_CHANGE_BRANCH_PROTECTION_RULES_FROM_USER_NIMBUS }}' \
           --data '{"ref":"master"}'
