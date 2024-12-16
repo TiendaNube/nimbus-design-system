@@ -9,7 +9,7 @@ Nimbus-icons is an open source icon system built by Nuvemshop / Tiendanube.
 - Added `online-store` icon. ([#259](https://github.com/TiendaNube/nimbus-design-system/pull/259) by @harrytiendanube and @jcampos89)
 - Added `cashier ` icon. ([#259](https://github.com/TiendaNube/nimbus-design-system/pull/259) by @harrytiendanube and @jcampos89)
 - Added `steps` icon. ([#259](https://github.com/TiendaNube/nimbus-design-system/pull/259) by @harrytiendanube and @jcampos89)
-- Added `calculator ` icon. ([#259](https://github.com/TiendaNube/nimbus-design-system/pull/259) by @harrytiendanube and @jcampos89)
+- Added `calculator` icon. ([#259](https://github.com/TiendaNube/nimbus-design-system/pull/259) by @harrytiendanube and @jcampos89)
 
 ## 2023-11-27 `1.4.0`
 
