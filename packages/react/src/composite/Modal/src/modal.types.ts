@@ -22,7 +22,7 @@ export interface ModalProperties extends ModalSprinkle {
    * Callback fired when the component requests to be closed.
    * @TJS-type (open: boolean) => void;
    */
-  onDismiss: (open: boolean) => void;
+  onDismiss?: (open: boolean) => void;
   /**
    * Id to be embedded in the portal element
    */
