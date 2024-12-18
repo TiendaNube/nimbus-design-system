@@ -141,3 +141,34 @@ export const skeleton: Story = {
     ),
   },
 };
+
+export const noDismiss: Story = {
+  render: (args: ModalProps) => {
+    const [open, setOpen] = useState(false);
+    const handleClose = () => setOpen((prevState) => !prevState);
+    return (
+      <>
+        <Button onClick={handleClose}>Open</Button>
+        <Modal {...args} open={open} />
+      </>
+    );
+  },
+  args: {
+    onDismiss: undefined,
+    children: (
+      <>
+        <Modal.Header title="Undismissable Modal" />
+        <Modal.Body padding="none">
+          <Text textAlign="left">
+            This modal cannot be dismissed by clicking the X icon or clicking
+            outside.
+          </Text>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button appearance="neutral">Button</Button>
+          <Button appearance="primary">Button</Button>
+        </Modal.Footer>
+      </>
+    ),
+  },
+};

@@ -43,7 +43,9 @@ const Modal: React.FC<ModalProps> & ModalComponents = ({
 
   const click = useClick(context);
   const role = useRole(context);
-  const dismiss = useDismiss(context, { outsidePressEvent: "mousedown" });
+  const dismiss = useDismiss(context, {
+    outsidePressEvent: onDismiss ? "mousedown" : undefined,
+  });
 
   const { getFloatingProps } = useInteractions([click, role, dismiss]);
 
