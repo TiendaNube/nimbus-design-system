@@ -72,6 +72,9 @@ export const container__button = styleVariants({
       },
     },
   ],
+  fullWidth: {
+    justifyContent: "center",
+  },
 });
 
 export const container__panel = vanillaStyle({

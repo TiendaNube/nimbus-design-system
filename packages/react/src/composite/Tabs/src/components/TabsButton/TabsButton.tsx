@@ -30,9 +30,10 @@ const TabsButton: React.FC<TabsButtonProps> = ({
       {...rest}
     >
       <button
-        className={
-          tabs.classnames.container__button[active ? "active" : "default"]
-        }
+        className={[
+          tabs.classnames.container__button[active ? "active" : "default"],
+          fullWidth ? tabs.classnames.container__button.fullWidth : "",
+        ].join(" ")}
         onClick={handleOnClick}
         type="button"
         id={`tab-${ariaID}`}
