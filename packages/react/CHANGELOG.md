@@ -2,10 +2,11 @@
 
 Nimbus is an open-source Design System created by Tiendanube / Nuvesmhop’s team to empower and enhance more stories every day, with simplicity, accessibility, consistency and performance.
 
-## 2024-08-05 `5.5.5`
+## 2024-12-18 `5.5.5`
 
-### 🐛 Bug fixes
+#### 🐛 Bug fixes
 
+- We detected that the content of the Tabs, when set to full, was not centered but aligned to the left. ([#261](https://github.com/TiendaNube/nimbus-design-system/pull/261) by [@harrytiendanube](https://github.com/harrytiendanube) )
 - Made `onDismiss` property optional for `Modal` component. If `onDismiss` is not provided, the modal can no longer be closed by clicking outside or pressing the close button
 - Removed the close button (X) from `Modal` component when `onDismiss` is not provided. ([#246](https://github.com/TiendaNube/nimbus-design-system/pull/246) by [@dommirr](https://github.com/dommirr))
 
