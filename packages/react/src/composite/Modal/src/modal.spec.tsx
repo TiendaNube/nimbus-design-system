@@ -6,15 +6,10 @@ import { ModalProps } from "./modal.types";
 
 const mockedOnDismiss = jest.fn();
 
-const makeSut = (rest: Pick<ModalProps, "children" | "padding">) => {
-  render(
-    <Modal
-      {...rest}
-      onDismiss={mockedOnDismiss}
-      open
-      data-testid="modal-element"
-    />
-  );
+const makeSut = (
+  rest: Pick<ModalProps, "children" | "padding" | "onDismiss">
+) => {
+  render(<Modal {...rest} open data-testid="modal-element" />);
 };
 
 describe("GIVEN <Modal />", () => {
@@ -25,9 +20,20 @@ describe("GIVEN <Modal />", () => {
     });
 
     it("AND should correctly call the onDismiss function when closing the modal", () => {
-      makeSut({ children: <div>My content</div> });
+      makeSut({ children: <div>My content</div>, onDismiss: mockedOnDismiss });
       fireEvent.click(screen.getByTestId("dismiss-modal-button"));
       expect(mockedOnDismiss).toBeCalledWith(false);
+    });
+
+    it("THEN should not close the modal if the close function is not provided", () => {
+      makeSut({ children: <div>My content</div> });
+      fireEvent.keyDown(document, {
+        key: "Escape",
+        code: "Escape",
+        keyCode: 27,
+      });
+      expect(screen.queryByTestId("dismiss-modal-button")).toBeNull();
+      expect(screen.getByText("My content")).toBeDefined();
     });
   });
 
