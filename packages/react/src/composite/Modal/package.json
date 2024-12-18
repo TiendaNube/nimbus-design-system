@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/modal",
-  "version": "1.5.3-rc.1",
+  "version": "1.5.3",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -36,6 +36,5 @@
     "@nimbus-ds/text": "workspace:^",
     "@nimbus-ds/title": "workspace:^",
     "@nimbus-ds/webpack": "workspace:^"
-  },
-  "stableVersion": "1.5.2"
+  }
 }

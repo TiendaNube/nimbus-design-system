@@ -1,8 +1,0 @@
-releases:
-  "@nimbus-ds/components": patch
-  "@nimbus-ds/modal": patch
-  "@nimbus-ds/styles": patch
-  "@nimbus-ds/tabs": patch
-
-declined:
-  - nimbus-design-system
