@@ -3,7 +3,7 @@
   "name": "Modal",
   "totalProps": 6,
   "packageName": "@nimbus-ds/modal",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/modal",
   "props": [
     {
@@ -22,7 +22,7 @@
       "description": "Callback fired when the component requests to be closed.",
       "type": "(open: boolean) => void;",
       "title": "onDismiss",
-      "required": true
+      "required": false
     },
     {
       "description": "Id to be embedded in the portal element",
