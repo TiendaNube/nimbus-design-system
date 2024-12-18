@@ -2,6 +2,12 @@
 
 Nimbus is an open-source Design System created by Tiendanube / Nuvesmhop’s team to empower and enhance more stories every day, with simplicity, accessibility, consistency and performance.
 
+## 2024-12-18 `5.5.5`
+
+#### 🐛 Bug fixes
+
+- We detected that the content of the Tabs, when set to full, was not centered but aligned to the left. ([#261](https://github.com/TiendaNube/nimbus-design-system/pull/261) by [@harrytiendanube](https://github.com/harrytiendanube) )
+
 ## 2024-04-22 `5.5.4`
 
 ### 💡 Others

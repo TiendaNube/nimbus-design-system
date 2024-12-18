@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2024-12-18 `9.11.6`
+
+#### 🐛 Bug fixes
+
+- We detected that the content of the Tabs, when set to full, was not centered but aligned to the left. ([#261](https://github.com/TiendaNube/nimbus-design-system/pull/261) by [@harrytiendanube](https://github.com/harrytiendanube) )
+
 ## 2024-04-22 `9.11.5`
 
 #### 💡 Others

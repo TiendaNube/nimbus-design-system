@@ -2,6 +2,12 @@
 
 The Tabs component allows us to separate content from the same hierarchy into different tabs.
 
+## 2024-12-18 `2.3.0`
+
+#### 🐛 Bug fixes
+
+- We detected that the content of the Tabs, when set to full, was not centered but aligned to the left. ([#261](https://github.com/TiendaNube/nimbus-design-system/pull/261) by [@harrytiendanube](https://github.com/harrytiendanube) )
+
 ## 2024-01-18 `2.3.0`
 
 ### 🎉 New features
