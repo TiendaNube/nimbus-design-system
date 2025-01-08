@@ -1,2 +1,5 @@
 releases:
   "@nimbus-ds/styles": patch
+
+declined:
+  - nimbus-design-system
