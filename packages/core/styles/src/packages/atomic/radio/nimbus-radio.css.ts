@@ -145,9 +145,9 @@ globalStyle(`${container__input}:checked ~ ${container__content.button}`, {
 });
 
 globalStyle(`${container__input}:checked ~ ${container__content.disabled}`, {
-  backgroundColor: varsThemeBase.colors.neutral.surfaceDisabled,
+  backgroundColor: varsThemeBase.colors.neutral.textDisabled,
   borderColor: varsThemeBase.colors.neutral.surfaceHighlight,
-  color: varsThemeBase.colors.neutral.textDisabled,
+  color: varsThemeBase.colors.neutral.background,
 });
 
 export const styles = {
