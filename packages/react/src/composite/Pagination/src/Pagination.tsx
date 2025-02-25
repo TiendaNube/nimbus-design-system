@@ -14,6 +14,7 @@ const Pagination: React.FC<PaginationProps> = ({
   activePage,
   pageCount,
   onPageChange,
+  customButton,
   ...rest
 }) => {
   const paginationRange = usePagination({
@@ -47,8 +48,11 @@ const Pagination: React.FC<PaginationProps> = ({
             )}
             {pageNumber !== DOTS && (
               <Button
+                {...(customButton && customButton(String(pageNumber)))}
                 data-testid={`button-pagination-page-${pageNumber}`}
-                onClick={() => onPageChange(Number(pageNumber))}
+                {...(!customButton && {
+                  onClick: () => onPageChange(Number(pageNumber)),
+                })}
                 appearance={
                   pageNumber === activePage ? "primary" : "transparent"
                 }

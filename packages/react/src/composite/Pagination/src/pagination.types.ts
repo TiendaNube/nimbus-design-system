@@ -19,6 +19,10 @@ export interface PaginationProperties {
    * @default true
    */
   showNumbers?: boolean;
+
+  customButton?: (
+    pageNumber: string
+  ) => Record<string, string | boolean | number> & { as: any };
 }
 
 export type PaginationProps = PaginationProperties &

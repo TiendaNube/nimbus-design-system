@@ -58,3 +58,25 @@ export const dotsRight: Story = {
     activePage: 2,
   },
 };
+
+export const CustomButton: Story = {
+  render: (args) => {
+    const [{ activePage }, updateArgs] = useArgs();
+    const onPageChange = (page: number) => updateArgs({ activePage: page });
+    return (
+      <Pagination
+        {...args}
+        onPageChange={onPageChange}
+        activePage={activePage}
+        customButton={(pageNumber) => ({
+          as: "a",
+          href: `/orders/${pageNumber}`,
+        })}
+      />
+    );
+  },
+  args: {
+    pageCount: 48,
+    activePage: 2,
+  },
+};
