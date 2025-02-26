@@ -1,4 +1,9 @@
-import { HTMLAttributes } from "react";
+import React, { HTMLAttributes } from "react";
+
+export interface PaginationItemData {
+  pageNumber: number | string;
+  isCurrent: boolean;
+}
 
 export interface PaginationProperties {
   /**
@@ -19,6 +24,11 @@ export interface PaginationProperties {
    * @default true
    */
   showNumbers?: boolean;
+
+  /**
+   * Custom render function for pagination items.
+   */
+  renderItem?: (item: PaginationItemData) => React.ReactNode;
 }
 
 export type PaginationProps = PaginationProperties &

@@ -1,6 +1,7 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { useArgs } from "@storybook/preview-api";
+import { Button } from "@nimbus-ds/button";
 import { Pagination } from "./Pagination";
 
 const meta: Meta<typeof Pagination> = {
@@ -56,5 +57,22 @@ export const dotsRight: Story = {
   args: {
     pageCount: 48,
     activePage: 2,
+  },
+};
+
+export const asLink: Story = {
+  args: {
+    pageCount: 48,
+    activePage: 2,
+    renderItem: ({ isCurrent, pageNumber }) => (
+      <Button
+        as="a"
+        href={`#${pageNumber}`}
+        data-testid={`button-pagination-page-${pageNumber}`}
+        appearance={isCurrent ? "primary" : "transparent"}
+      >
+        {pageNumber}
+      </Button>
+    ),
   },
 };
