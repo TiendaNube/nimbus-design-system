@@ -1,5 +1,6 @@
 import { HTMLAttributes, ReactNode } from "react";
 
+// export interface TooltipProperties extends TooltipSprinkle {
 export interface TooltipProperties {
   /**
    * An HTML element, or a function that returns one. It's used to set the position of the tooltip.

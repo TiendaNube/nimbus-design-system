@@ -7,8 +7,10 @@ import {
   FloatingArrow,
   arrow as arrowUI,
   offset,
-  inline,
   safePolygon,
+  shift,
+  autoUpdate,
+  flip,
 } from "@floating-ui/react";
 import { tooltip, useTheme } from "@nimbus-ds/styles";
 import { Text } from "@nimbus-ds/text";
@@ -20,6 +22,7 @@ const Tooltip: React.FC<TooltipProps> = ({
   style: _style,
   children,
   content,
+  // maxWidth,
   arrow = false,
   position = "bottom",
   ...rest
@@ -33,12 +36,19 @@ const Tooltip: React.FC<TooltipProps> = ({
     strategy: "fixed",
     middleware: [
       offset(6),
-      inline(),
+      shift(),
+      flip({
+        crossAxis: position.includes("-"),
+        fallbackAxisSideDirection: "end",
+        padding: 5,
+      }),
       arrowUI({
         element: arrowRef,
       }),
+      shift(),
     ],
     onOpenChange: setVisibility,
+    whileElementsMounted: autoUpdate,
   });
 
   const { getReferenceProps, getFloatingProps } = useInteractions([
@@ -52,6 +62,11 @@ const Tooltip: React.FC<TooltipProps> = ({
       }),
     }),
   ]);
+
+  // const { className } = tooltip.sprinkle({
+  //   ...(rest as Parameters<typeof tooltip.sprinkle>[0]),
+  //   maxWidth,
+  // });
 
   return (
     <>
@@ -72,6 +87,7 @@ const Tooltip: React.FC<TooltipProps> = ({
             {...rest}
             ref={context.refs.setFloating}
             className={tooltip.classnames.content}
+            // className={[tooltip.classnames.content, className].join(" ")}
             style={{
               ...floatingStyles,
               position: strategy,
