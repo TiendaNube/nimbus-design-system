@@ -63,11 +63,7 @@ const Tooltip: React.FC<TooltipProps> = ({
     }),
   ]);
 
-  const {
-    className: sprinkleClassname,
-    style: sprinkleStyle,
-    otherProps: otherSprinkleProps,
-  } = tooltip.sprinkle({
+  const { className, style, otherProps } = tooltip.sprinkle({
     ...(rest as Parameters<typeof tooltip.sprinkle>[0]),
     maxWidth,
   });
@@ -89,13 +85,11 @@ const Tooltip: React.FC<TooltipProps> = ({
         {isVisible && (
           <div
             {...rest}
-            {...otherSprinkleProps}
+            {...otherProps}
             ref={context.refs.setFloating}
-            className={[tooltip.classnames.content, sprinkleClassname].join(
-              " "
-            )}
+            className={[tooltip.classnames.content, className].join(" ")}
             style={{
-              ...sprinkleStyle,
+              ...style,
               ...floatingStyles,
               position: strategy,
             }}
