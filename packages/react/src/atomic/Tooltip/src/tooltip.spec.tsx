@@ -6,7 +6,7 @@ import { TooltipProps } from "./tooltip.types";
 
 const makeSut = (rest: Omit<TooltipProps, "children">) => {
   render(
-    <Tooltip {...rest} data-testid="tooltip-element" arrow>
+    <Tooltip {...rest} data-testid="tooltip-element" maxWidth="250px">
       <p data-testid="anchor-element">hover</p>
     </Tooltip>
   );
@@ -24,7 +24,7 @@ describe("GIVEN <Tooltip />", () => {
     });
 
     it('THEN should display tooltip in "top" position', async () => {
-      makeSut({ content: "string", position: "top" });
+      makeSut({ content: "string", position: "top", arrow: true });
       await act(() => {
         fireEvent.mouseEnter(screen.getByTestId("tooltip-container"));
       });
@@ -41,7 +41,7 @@ describe("GIVEN <Tooltip />", () => {
     });
 
     it('THEN should display tooltip in "bottom" position', async () => {
-      makeSut({ content: "string", position: "bottom" });
+      makeSut({ content: "string", position: "bottom", arrow: true });
       await act(() => {
         fireEvent.mouseEnter(screen.getByTestId("tooltip-container"));
       });
@@ -60,7 +60,7 @@ describe("GIVEN <Tooltip />", () => {
     });
 
     it('THEN should display tooltip in "left" position', async () => {
-      makeSut({ content: "string", position: "left" });
+      makeSut({ content: "string", position: "left", arrow: true });
       await act(() => {
         fireEvent.mouseEnter(screen.getByTestId("tooltip-container"));
       });
@@ -79,7 +79,7 @@ describe("GIVEN <Tooltip />", () => {
     });
 
     it('THEN should display tooltip in "right" position', async () => {
-      makeSut({ content: "string", position: "right" });
+      makeSut({ content: "string", position: "right", arrow: true });
       await act(() => {
         fireEvent.mouseEnter(screen.getByTestId("tooltip-container"));
       });
@@ -94,6 +94,17 @@ describe("GIVEN <Tooltip />", () => {
       expect(arrow.style.right).toEqual("calc(100% - 0px)");
       expect(arrow.style.transform).toBe("rotate(90deg)");
       expect(arrow.style.position).toEqual("absolute");
+    });
+
+    it('THEN should not display arrow if "arrow" is not passed', async () => {
+      makeSut({ content: "string" });
+      await act(() => {
+        fireEvent.mouseEnter(screen.getByTestId("tooltip-container"));
+      });
+      const tooltip = screen.getByTestId("tooltip-element");
+      const arrow = screen.queryByTestId("arrow-element");
+      expect(tooltip).toBeDefined();
+      expect(arrow).toBeNull();
     });
   });
 });
