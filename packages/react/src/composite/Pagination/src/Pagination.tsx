@@ -4,30 +4,48 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@nimbus-ds/icons";
 import { Button } from "@nimbus-ds/button";
 
 import { usePagination, DOTS } from "./hooks";
-import { PaginationProps } from "./pagination.types";
+import {
+  PaginationComponents,
+  PaginationItemProps,
+  PaginationProps,
+} from "./pagination.types";
 import { generateKey } from "./pagination.definitions";
 
-const Pagination: React.FC<PaginationProps> = ({
+const Pagination: React.FC<PaginationProps> & PaginationComponents = ({
   className: _className,
   style: _style,
   showNumbers = true,
   activePage,
   pageCount,
   onPageChange,
+  renderItem,
   ...rest
-}) => {
+}: PaginationProps) => {
   const paginationRange = usePagination({
     activePage,
     pageCount,
   });
 
+  const handleRenderItem = (page: number, restProps: PaginationItemProps) => {
+    if (renderItem) {
+      return renderItem(page, restProps);
+    }
+
+    return (
+      <Button {...restProps} onClick={() => onPageChange?.(Number(page))}>
+        {page}
+      </Button>
+    );
+  };
+
   return (
     <ul {...rest} className={pagination.classnames.container}>
       <li>
+        
         <Button
           data-testid="button-pagination-prev"
           appearance="transparent"
-          onClick={() => onPageChange(Number(activePage - 1))}
+          onClick={() => onPageChange?.(Number(activePage - 1))}
           disabled={activePage === 1}
         >
           <ChevronLeftIcon />
@@ -45,24 +63,20 @@ const Pagination: React.FC<PaginationProps> = ({
                 {pageNumber}
               </Button>
             )}
-            {pageNumber !== DOTS && (
-              <Button
-                data-testid={`button-pagination-page-${pageNumber}`}
-                onClick={() => onPageChange(Number(pageNumber))}
-                appearance={
-                  pageNumber === activePage ? "primary" : "transparent"
-                }
-              >
-                {pageNumber}
-              </Button>
-            )}
+            {pageNumber !== DOTS &&
+              handleRenderItem(Number(pageNumber), {
+                "data-testid": `button-pagination-page-${pageNumber}`,
+                appearance:
+                  pageNumber === activePage ? "primary" : "transparent",
+                children: pageNumber,
+              })}
           </li>
         ))}
       <li>
         <Button
           data-testid="button-pagination-next"
           appearance="transparent"
-          onClick={() => onPageChange(Number(activePage + 1))}
+          onClick={() => onPageChange?.(Number(activePage + 1))}
           disabled={activePage >= pageCount}
         >
           <ChevronRightIcon />
@@ -72,6 +86,17 @@ const Pagination: React.FC<PaginationProps> = ({
   );
 };
 
+export const PaginationItem: React.FC<PaginationItemProps> = ({
+  children,
+  ...props
+}) => (
+  <Button as="a" {...props}>
+    {children}
+  </Button>
+);
+
+Pagination.Item = PaginationItem;
 Pagination.displayName = "Pagination";
+Pagination.Item.displayName = "Pagination.Item";
 
 export { Pagination };

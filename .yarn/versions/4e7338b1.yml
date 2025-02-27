@@ -1,0 +1,5 @@
+releases:
+  "@nimbus-ds/pagination": prerelease
+
+undecided:
+  - nimbus-design-system
