@@ -2,7 +2,15 @@
 
 Nimbus is an open-source Design System created by Tiendanube / Nuvesmhop’s team to empower and enhance more stories every day, with simplicity, accessibility, consistency and performance.
 
-## 2024-12-18 `5.5.6`
+## 2025-02-27 `5.5.6`
+
+#### 🐛 Bug fixes
+
+- Fixed `Tooltip` overflow when screen size is small enough. ([#268](https://github.com/TiendaNube/nimbus-design-system/pull/268) by [@joacotornello](https://github.com/joacotornello))
+
+#### 🐛 New features
+
+- `Tooltip`: Adds support for maxWidth prop. ([#268](https://github.com/TiendaNube/nimbus-design-system/pull/268) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2024-12-18 `5.5.5`
 

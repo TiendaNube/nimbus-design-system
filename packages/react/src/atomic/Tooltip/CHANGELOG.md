@@ -2,6 +2,16 @@
 
 The Tooltip component allows us to display additional information in a non-intrusive way.
 
+## 2025-02-27 `2.5.0`
+
+#### 🐛 Bug fixes
+
+- Fixed overflow when screen size is small enough. ([#268](https://github.com/TiendaNube/nimbus-design-system/pull/268) by [@joacotornello](https://github.com/joacotornello))
+
+#### 🐛 New features
+
+- Adds support for maxWidth prop. ([#268](https://github.com/TiendaNube/nimbus-design-system/pull/268) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2023-10-13 `2.4.0`
 
 #### 🎉 New features
