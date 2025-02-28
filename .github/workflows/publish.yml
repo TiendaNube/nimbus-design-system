@@ -8,6 +8,8 @@ on:
     paths-ignore:
       - "**/package.json"
       - ".yarn/versions/**"
+  pull_request:
+    types: [opened, synchronize, reopened]
 
 jobs:
   publish-packages-npm:
