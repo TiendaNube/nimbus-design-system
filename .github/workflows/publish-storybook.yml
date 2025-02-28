@@ -4,9 +4,7 @@ on:
   push:
     branches:
       - master
-  pull_request:
-    types: [opened, synchronize, reopened]
-    
+
 jobs:
   publish-storybook:
     runs-on: ubuntu-latest
