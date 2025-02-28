@@ -111,15 +111,16 @@ describe("GIVEN <Tooltip />", () => {
       expect(arrow).toBeNull();
     });
 
-    it("should call tooltip.sprinkle with the merged props", () => {
+    it("should set correctly the className and width using the sprinkle", () => {
       const maxWidth = "400px";
+      const className = "custom-class";
       const rest = { customProp: "value" };
 
       // Set up a spy on tooltip.sprinkle.
       const sprinkleSpy = jest
         .spyOn(tooltipStyles, "sprinkle")
         .mockReturnValue({
-          className: "mock-class",
+          className,
           style: { maxWidth },
           otherProps: { "data-test": "value" },
         });
@@ -133,6 +134,16 @@ describe("GIVEN <Tooltip />", () => {
         maxWidth,
         "data-testid": "tooltip-element",
       });
+
+      // Hover the anchor element to trigger the tooltip.
+      act(() => {
+        fireEvent.mouseEnter(screen.getByTestId("tooltip-container"));
+      });
+
+      // Verify that the tooltip was rendered with the expected props.
+      const tooltip = screen.getByTestId("tooltip-element");
+      expect(tooltip.className).toContain(className);
+      expect(tooltip.style.maxWidth).toEqual(maxWidth);
 
       // Cleanup
       sprinkleSpy.mockRestore();
