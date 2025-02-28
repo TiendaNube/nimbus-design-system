@@ -1,12 +1,13 @@
 import React from "react";
 import { render, screen, fireEvent, act } from "@testing-library/react";
+import { tooltip as tooltipStyles } from "@nimbus-ds/styles";
 
 import { Tooltip } from "./Tooltip";
 import { TooltipProps } from "./tooltip.types";
 
 const makeSut = (rest: Omit<TooltipProps, "children">) => {
   render(
-    <Tooltip {...rest} data-testid="tooltip-element" arrow>
+    <Tooltip {...rest} data-testid="tooltip-element">
       <p data-testid="anchor-element">hover</p>
     </Tooltip>
   );
@@ -24,7 +25,7 @@ describe("GIVEN <Tooltip />", () => {
     });
 
     it('THEN should display tooltip in "top" position', async () => {
-      makeSut({ content: "string", position: "top" });
+      makeSut({ content: "string", position: "top", arrow: true });
       await act(() => {
         fireEvent.mouseEnter(screen.getByTestId("tooltip-container"));
       });
@@ -41,7 +42,7 @@ describe("GIVEN <Tooltip />", () => {
     });
 
     it('THEN should display tooltip in "bottom" position', async () => {
-      makeSut({ content: "string", position: "bottom" });
+      makeSut({ content: "string", position: "bottom", arrow: true });
       await act(() => {
         fireEvent.mouseEnter(screen.getByTestId("tooltip-container"));
       });
@@ -60,7 +61,7 @@ describe("GIVEN <Tooltip />", () => {
     });
 
     it('THEN should display tooltip in "left" position', async () => {
-      makeSut({ content: "string", position: "left" });
+      makeSut({ content: "string", position: "left", arrow: true });
       await act(() => {
         fireEvent.mouseEnter(screen.getByTestId("tooltip-container"));
       });
@@ -79,7 +80,7 @@ describe("GIVEN <Tooltip />", () => {
     });
 
     it('THEN should display tooltip in "right" position', async () => {
-      makeSut({ content: "string", position: "right" });
+      makeSut({ content: "string", position: "right", arrow: true });
       await act(() => {
         fireEvent.mouseEnter(screen.getByTestId("tooltip-container"));
       });
@@ -94,6 +95,58 @@ describe("GIVEN <Tooltip />", () => {
       expect(arrow.style.right).toEqual("calc(100% - 0px)");
       expect(arrow.style.transform).toBe("rotate(90deg)");
       expect(arrow.style.position).toEqual("absolute");
+    });
+
+    it('should not display arrow if "arrow" is not passed', async () => {
+      makeSut({ content: "string" });
+
+      await act(() => {
+        fireEvent.mouseEnter(screen.getByTestId("tooltip-container"));
+      });
+
+      const tooltip = screen.getByTestId("tooltip-element");
+      const arrow = screen.queryByTestId("arrow-element");
+
+      expect(tooltip).toBeDefined();
+      expect(arrow).toBeNull();
+    });
+
+    it("should set correctly the className and width using the sprinkle", () => {
+      const maxWidth = "400px";
+      const className = "custom-class";
+      const rest = { customProp: "value" };
+
+      // Set up a spy on tooltip.sprinkle.
+      const sprinkleSpy = jest
+        .spyOn(tooltipStyles, "sprinkle")
+        .mockReturnValue({
+          className,
+          style: { maxWidth },
+          otherProps: { "data-test": "value" },
+        });
+
+      // Render the component with both maxWidth and the rest props.
+      makeSut({ content: "string", maxWidth, ...rest });
+
+      //  Verify that tooltip.sprinkle was called with the expected merged object.
+      expect(sprinkleSpy).toHaveBeenCalledWith({
+        ...rest,
+        maxWidth,
+        "data-testid": "tooltip-element",
+      });
+
+      // Hover the anchor element to trigger the tooltip.
+      act(() => {
+        fireEvent.mouseEnter(screen.getByTestId("tooltip-container"));
+      });
+
+      // Verify that the tooltip was rendered with the expected props.
+      const tooltip = screen.getByTestId("tooltip-element");
+      expect(tooltip.className).toContain(className);
+      expect(tooltip.style.maxWidth).toEqual(maxWidth);
+
+      // Cleanup
+      sprinkleSpy.mockRestore();
     });
   });
 });
