@@ -22,6 +22,7 @@ const Pagination: React.FC<PaginationProps> = ({
     pageCount,
   });
 
+  // Note: If this 'renderItem' function is declared, it renders the item, and if not, by default it renders the Button with the page number.
   const handleRenderItem = (item: PaginationItemData) => {
     if (renderItem) {
       return renderItem(item);
