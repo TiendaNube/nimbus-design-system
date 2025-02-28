@@ -1,7 +1,0 @@
-releases:
-  "@nimbus-ds/components": minor
-  "@nimbus-ds/styles": minor
-  "@nimbus-ds/tooltip": minor
-
-declined:
-  - nimbus-design-system
