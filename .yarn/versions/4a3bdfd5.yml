@@ -1,6 +1,0 @@
-releases:
-  "@nimbus-ds/pagination": minor
-  "@nimbus-ds/components": minor
-
-declined:
-  - nimbus-design-system
