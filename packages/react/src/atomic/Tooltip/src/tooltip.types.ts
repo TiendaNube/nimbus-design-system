@@ -1,6 +1,7 @@
 import { HTMLAttributes, ReactNode } from "react";
+import { TooltipSprinkle } from "@nimbus-ds/styles";
 
-export interface TooltipProperties {
+export interface TooltipProperties extends TooltipSprinkle {
   /**
    * An HTML element, or a function that returns one. It's used to set the position of the tooltip.
    * @TJS-type React.ReactNode

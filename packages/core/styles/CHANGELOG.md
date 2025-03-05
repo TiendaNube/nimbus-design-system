@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2025-02-27 `9.12.0`
+
+#### 🐛 New features
+
+- `Tooltip`: Adds support for maxWidth prop. ([#268](https://github.com/TiendaNube/nimbus-design-system/pull/268) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-01-09 `9.11.7`
 
 #### 🐛 Bug fixes
