@@ -1,5 +1,6 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
+import { Button } from "@nimbus-ds/button/src";
 
 import { Pagination } from "./Pagination";
 import { PaginationProps } from "./pagination.types";
@@ -120,6 +121,44 @@ describe("GIVEN <Pagination />", () => {
       expect(
         screen.getByTestId<HTMLButtonElement>("button-pagination-next").disabled
       ).toBeTruthy();
+    });
+  });
+  describe("WHEN using renderItem", () => {
+    it("THEN should use the renderItem function to render custom buttons", () => {
+      const mockRenderItem = jest.fn(({ isCurrent, pageNumber }) => (
+        <Button
+          as="a"
+          href={`#${pageNumber}`}
+          data-testid={`button-pagination-page-${pageNumber}`}
+          appearance={isCurrent ? "primary" : "transparent"}
+        >
+          {pageNumber}
+        </Button>
+      ));
+
+      makeSut({
+        activePage: 2,
+        pageCount: 5,
+        renderItem: mockRenderItem,
+      });
+
+      expect(mockRenderItem).toBeDefined();
+      expect(mockRenderItem).toBeCalledWith(
+        expect.objectContaining({
+          isCurrent: expect.any(Boolean),
+          pageNumber: expect.any(Number),
+        })
+      );
+
+      const button = screen.getByTestId("button-pagination-page-2");
+      expect(button).toBeDefined();
+      expect(button).toBeTruthy();
+
+      expect(button.getAttribute("href")).toEqual("#2");
+
+      expect(button.innerHTML).toEqual("2");
+
+      expect(button.className).toContain("primary");
     });
   });
 });

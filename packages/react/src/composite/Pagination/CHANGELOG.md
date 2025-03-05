@@ -2,6 +2,12 @@
 
 The Pagination component allows us to navigate between a very large list of entries.
 
+## 2025-03-03 `2.3.0`
+
+### 🎉 New features
+
+- The `renderItem` property is added to the component, to be able to have the link functionality in the buttons. ([#269](https://github.com/TiendaNube/nimbus-design-system/pull/269) by [@hrchioest](https://github.com/hrchioest))
+
 ## 2023-02-23 `2.2.0`
 
 ### 🎉 New features
