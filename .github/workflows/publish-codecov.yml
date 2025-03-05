@@ -7,6 +7,8 @@ on:
     paths-ignore:
       - "**/package.json"
       - ".yarn/versions/**"
+  pull_request:
+    types: [opened, synchronize, reopened]
 
 jobs:
   setup:
@@ -69,6 +71,6 @@ jobs:
         run: yarn test:ci
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1
+        uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_AUTOMATION_FROM_JUNIOR_CONQUISTA }}
