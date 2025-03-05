@@ -4,7 +4,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@nimbus-ds/icons";
 import { Button } from "@nimbus-ds/button";
 
 import { usePagination, DOTS } from "./hooks";
-import { PaginationProps } from "./pagination.types";
+import { PaginationProps, PaginationItemData } from "./pagination.types";
 import { generateKey } from "./pagination.definitions";
 
 const Pagination: React.FC<PaginationProps> = ({
@@ -14,12 +14,30 @@ const Pagination: React.FC<PaginationProps> = ({
   activePage,
   pageCount,
   onPageChange,
+  renderItem,
   ...rest
 }) => {
   const paginationRange = usePagination({
     activePage,
     pageCount,
   });
+
+  // Note: If this 'renderItem' function is declared, it renders the item, and if not, by default it renders the Button with the page number.
+  const handleRenderItem = (item: PaginationItemData) => {
+    if (renderItem) {
+      return renderItem(item);
+    }
+
+    return (
+      <Button
+        data-testid={`button-pagination-page-${item.pageNumber}`}
+        appearance={item.isCurrent ? "primary" : "transparent"}
+        onClick={() => onPageChange(Number(item.pageNumber))}
+      >
+        {item.pageNumber}
+      </Button>
+    );
+  };
 
   return (
     <ul {...rest} className={pagination.classnames.container}>
@@ -45,17 +63,11 @@ const Pagination: React.FC<PaginationProps> = ({
                 {pageNumber}
               </Button>
             )}
-            {pageNumber !== DOTS && (
-              <Button
-                data-testid={`button-pagination-page-${pageNumber}`}
-                onClick={() => onPageChange(Number(pageNumber))}
-                appearance={
-                  pageNumber === activePage ? "primary" : "transparent"
-                }
-              >
-                {pageNumber}
-              </Button>
-            )}
+            {pageNumber !== DOTS &&
+              handleRenderItem({
+                isCurrent: pageNumber === activePage,
+                pageNumber,
+              })}
           </li>
         ))}
       <li>

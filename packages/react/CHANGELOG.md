@@ -2,6 +2,12 @@
 
 Nimbus is an open-source Design System created by Tiendanube / Nuvesmhop’s team to empower and enhance more stories every day, with simplicity, accessibility, consistency and performance.
 
+## 2025-03-03 `5.5.7`
+
+### 🎉 New features
+
+- The `renderItem` property is added to the `Pagination` component, to be able to have the link functionality in the buttons. ([#269](https://github.com/TiendaNube/nimbus-design-system/pull/269) by [@hrchioest](https://github.com/hrchioest))
+
 ## 2025-02-27 `5.5.6`
 
 #### 🐛 Bug fixes
