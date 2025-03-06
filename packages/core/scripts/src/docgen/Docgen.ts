@@ -26,6 +26,7 @@ export class Docgen {
   static defaultOptions = {
     settings: defaultSettings,
     compilerOptions: defaultCompilerOptions,
+    interfaceNames: ["Properties"],
   };
 
   constructor(options: DocgenOptions = {}) {
@@ -72,7 +73,9 @@ export class Docgen {
     );
 
     const polymorphicProps = this.getPolymorphicProps();
-    const schema = this.getSchema(`${this.component.name}Properties`);
+    const schema = this.getSchema(
+      this.getComponentInterfaceNames(this.component.name)
+    );
     const props = this.formatProps(schema, polymorphicProps);
     const packageName = this.getPackageName();
     const version = this.getVersion();
@@ -136,16 +139,29 @@ export class Docgen {
     return props;
   }
 
-  private getSchema(fullTypeName: string): TJS.Definition {
-    return (
-      TJS.generateSchema(
-        this.program,
-        fullTypeName,
-        this.options.settings,
-        [],
-        this.generator ?? undefined
-      ) ?? {}
-    );
+  private getSchema(interfaceTypeNames: string[]): TJS.Definition {
+    for (const [i, name] of interfaceTypeNames.entries()) {
+      try {
+        const schema = TJS.generateSchema(
+          this.program,
+          name,
+          this.options.settings,
+          [],
+          this.generator ?? undefined
+        );
+
+        if (schema) return schema;
+      } catch (error) {
+        if (i >= interfaceTypeNames.length - 1) {
+          // If the error is the last interface name try, log it
+          console.log(`Error generating the schema for ${name}`, error);
+        }
+
+        continue;
+      }
+    }
+
+    return {};
   }
 
   private getSource(path: string): string {
@@ -198,10 +214,16 @@ export class Docgen {
 
   private getSubComponents(): Doc[] {
     const subComponentsNames = this.getSubComponentsNames();
+
     const subComponents = subComponentsNames.reduce((prev: Doc[], curr) => {
       const subComponent = curr.replace(".", "");
-      const schema = this.getSchema(`${subComponent}Properties`);
+
+      const schema = this.getSchema(
+        this.getComponentInterfaceNames(subComponent)
+      );
+
       const props = this.formatProps(schema);
+
       prev.push({
         name: curr,
         totalProps: props.length,
@@ -209,6 +231,17 @@ export class Docgen {
       });
       return prev;
     }, []);
+
     return subComponents;
+  }
+
+  private getComponentInterfaceNames(componentName: string) {
+    const interfaceNames: string[] = [];
+
+    for (const interfaceName of this.options.interfaceNames ?? []) {
+      interfaceNames.push(`${componentName}${interfaceName}`);
+    }
+
+    return interfaceNames;
   }
 }

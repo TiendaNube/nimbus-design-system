@@ -24,6 +24,7 @@ try {
     compilerOptions: {
       ...defaultCompilerOptionsDocgen,
       paths: tsconfig.compilerOptions.paths,
+      interfaceNames: ["Props", "Properties"],
     },
   };
   const docgen = new Docgen(options);
