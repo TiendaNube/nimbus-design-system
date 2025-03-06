@@ -1,9 +1,9 @@
 {
   "id": "pagination",
   "name": "Pagination",
-  "totalProps": 4,
+  "totalProps": 5,
   "packageName": "@nimbus-ds/pagination",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/pagination",
   "props": [
     {
@@ -29,6 +29,14 @@
       "default": true,
       "type": "boolean",
       "title": "showNumbers",
+      "required": false
+    },
+    {
+      "description": "Custom render function for pagination items.",
+      "type": "object",
+      "additionalProperties": false,
+      "propertyOrder": [],
+      "title": "renderItem",
       "required": false
     }
   ],
