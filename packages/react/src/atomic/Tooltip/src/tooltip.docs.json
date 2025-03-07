@@ -1,9 +1,9 @@
 {
   "id": "tooltip",
   "name": "Tooltip",
-  "totalProps": 4,
+  "totalProps": 5,
   "packageName": "@nimbus-ds/tooltip",
-  "version": "2.4.1",
+  "version": "2.5.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/tooltip",
   "props": [
     {
@@ -28,14 +28,42 @@
     {
       "description": "Position of the popover.",
       "default": "bottom",
-      "enum": [
-        "bottom",
-        "left",
-        "right",
-        "top"
-      ],
+      "enum": ["bottom", "left", "right", "top"],
       "type": "string",
       "title": "position",
+      "required": false
+    },
+    {
+      "description": "The maxWidth property specifies the maximum width of a popover's content area.",
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "xs": {
+              "type": "string",
+              "title": "xs"
+            },
+            "md": {
+              "type": "string",
+              "title": "md"
+            },
+            "lg": {
+              "type": "string",
+              "title": "lg"
+            },
+            "xl": {
+              "type": "string",
+              "title": "xl"
+            }
+          },
+          "additionalProperties": false,
+          "propertyOrder": ["xs", "md", "lg", "xl"]
+        },
+        {
+          "type": "string"
+        }
+      ],
+      "title": "maxWidth",
       "required": false
     }
   ],

@@ -2,6 +2,12 @@
 
 This package is intended for internal use in generating custom script builds at design system build time.
 
+## 2025-03-07 `1.4.1`
+
+#### 🐛 Bug fixes
+
+- Docgen process won't break if some of the builds fails in between ([#272](https://github.com/TiendaNube/nimbus-design-system/pull/272) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2023-07-07 `1.4.0`
 
 #### 🎉 New features

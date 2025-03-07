@@ -56,6 +56,8 @@ export class Docgen {
   }
 
   private createDoc(path: string): void {
+    console.log(`Creating documentation for ${path}...`);
+
     this.component.name = this.getComponentName(path);
     this.component.path = this.getComponentPath(path);
     this.component.id = this.getComponentId();
@@ -137,15 +139,26 @@ export class Docgen {
   }
 
   private getSchema(fullTypeName: string): TJS.Definition {
-    return (
-      TJS.generateSchema(
+    try {
+      const schema = TJS.generateSchema(
         this.program,
         fullTypeName,
         this.options.settings,
         [],
         this.generator ?? undefined
-      ) ?? {}
-    );
+      );
+
+      if (!schema) {
+        // Warn and continue if no schema is found, as it might be the case for some components. We don't want to break the process.
+        console.warn(`No schema found for ${fullTypeName}`);
+        return {};
+      }
+
+      return schema;
+    } catch (error) {
+      console.log(`Error generating the schema for ${fullTypeName}`, error);
+      return {};
+    }
   }
 
   private getSource(path: string): string {
@@ -198,10 +211,14 @@ export class Docgen {
 
   private getSubComponents(): Doc[] {
     const subComponentsNames = this.getSubComponentsNames();
+
     const subComponents = subComponentsNames.reduce((prev: Doc[], curr) => {
       const subComponent = curr.replace(".", "");
+
       const schema = this.getSchema(`${subComponent}Properties`);
+
       const props = this.formatProps(schema);
+
       prev.push({
         name: curr,
         totalProps: props.length,
@@ -209,6 +226,7 @@ export class Docgen {
       });
       return prev;
     }, []);
+
     return subComponents;
   }
 }
