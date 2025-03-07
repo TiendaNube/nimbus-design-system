@@ -24,5 +24,4 @@ export interface Paths {
 export interface DocgenOptions {
   settings?: PartialArgs;
   compilerOptions?: Omit<CompilerOptions, "jsx"> & { jsx: string };
-  interfaceNames?: string[];
 }

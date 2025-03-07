@@ -1,0 +1,8 @@
+releases:
+  "@nimbus-ds/pagination": patch
+  "@nimbus-ds/scripts": patch
+  "@nimbus-ds/tooltip": patch
+  nimbus-helper: patch
+
+declined:
+  - nimbus-design-system

@@ -26,7 +26,6 @@ export class Docgen {
   static defaultOptions = {
     settings: defaultSettings,
     compilerOptions: defaultCompilerOptions,
-    interfaceNames: ["Properties"],
   };
 
   constructor(options: DocgenOptions = {}) {
@@ -57,6 +56,8 @@ export class Docgen {
   }
 
   private createDoc(path: string): void {
+    console.log(`Creating documentation for ${path}...`);
+
     this.component.name = this.getComponentName(path);
     this.component.path = this.getComponentPath(path);
     this.component.id = this.getComponentId();
@@ -73,9 +74,7 @@ export class Docgen {
     );
 
     const polymorphicProps = this.getPolymorphicProps();
-    const schema = this.getSchema(
-      this.getComponentInterfaceNames(this.component.name)
-    );
+    const schema = this.getSchema(`${this.component.name}Properties`);
     const props = this.formatProps(schema, polymorphicProps);
     const packageName = this.getPackageName();
     const version = this.getVersion();
@@ -139,29 +138,27 @@ export class Docgen {
     return props;
   }
 
-  private getSchema(interfaceTypeNames: string[]): TJS.Definition {
-    for (const [i, name] of interfaceTypeNames.entries()) {
-      try {
-        const schema = TJS.generateSchema(
-          this.program,
-          name,
-          this.options.settings,
-          [],
-          this.generator ?? undefined
-        );
+  private getSchema(fullTypeName: string): TJS.Definition {
+    try {
+      const schema = TJS.generateSchema(
+        this.program,
+        fullTypeName,
+        this.options.settings,
+        [],
+        this.generator ?? undefined
+      );
 
-        if (schema) return schema;
-      } catch (error) {
-        if (i >= interfaceTypeNames.length - 1) {
-          // If the error is the last interface name try, log it
-          console.log(`Error generating the schema for ${name}`, error);
-        }
-
-        continue;
+      if (!schema) {
+        // Warn and continue if no schema is found, as it might be the case for some components. We don't want to break the process.
+        console.warn(`No schema found for ${fullTypeName}`);
+        return {};
       }
-    }
 
-    return {};
+      return schema;
+    } catch (error) {
+      console.log(`Error generating the schema for ${fullTypeName}`, error);
+      return {};
+    }
   }
 
   private getSource(path: string): string {
@@ -218,9 +215,7 @@ export class Docgen {
     const subComponents = subComponentsNames.reduce((prev: Doc[], curr) => {
       const subComponent = curr.replace(".", "");
 
-      const schema = this.getSchema(
-        this.getComponentInterfaceNames(subComponent)
-      );
+      const schema = this.getSchema(`${subComponent}Properties`);
 
       const props = this.formatProps(schema);
 
@@ -233,15 +228,5 @@ export class Docgen {
     }, []);
 
     return subComponents;
-  }
-
-  private getComponentInterfaceNames(componentName: string) {
-    const interfaceNames: string[] = [];
-
-    for (const interfaceName of this.options.interfaceNames ?? []) {
-      interfaceNames.push(`${componentName}${interfaceName}`);
-    }
-
-    return interfaceNames;
   }
 }
