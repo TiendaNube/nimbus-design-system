@@ -1,4 +1,5 @@
 releases:
+  "@nimbus-ds/components": patch
   "@nimbus-ds/pagination": patch
   "@nimbus-ds/scripts": patch
   "@nimbus-ds/tooltip": patch

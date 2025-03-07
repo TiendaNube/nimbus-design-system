@@ -2,6 +2,12 @@
 
 The Tooltip component allows us to display additional information in a non-intrusive way.
 
+## 2025-03-07 `2.5.1`
+
+#### 💡 Others
+
+- Added docs. ([#272](https://github.com/TiendaNube/nimbus-design-system/pull/272) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-02-27 `2.5.0`
 
 #### 🐛 Bug fixes

@@ -2,6 +2,12 @@
 
 The Pagination component allows us to navigate between a very large list of entries.
 
+## 2025-03-07 `2.3.1`
+
+#### 💡 Others
+
+- Added docs. ([#272](https://github.com/TiendaNube/nimbus-design-system/pull/272) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-03-03 `2.3.0`
 
 ### 🎉 New features

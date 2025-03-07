@@ -2,6 +2,18 @@
 
 Nimbus is an open-source Design System created by Tiendanube / Nuvesmhop’s team to empower and enhance more stories every day, with simplicity, accessibility, consistency and performance.
 
+## 2025-03-07 `5.5.7`
+
+#### 💡 Others
+
+#### 🐛 Bug fixes
+
+- Docgen process won't break if some of the builds fails in between ([#272](https://github.com/TiendaNube/nimbus-design-system/pull/272) by [@joacotornello](https://github.com/joacotornello))
+
+#### 💡 Others
+
+- Added docs. ([#272](https://github.com/TiendaNube/nimbus-design-system/pull/272) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-03-03 `5.5.7`
 
 ### 🎉 New features
