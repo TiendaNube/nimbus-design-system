@@ -29,7 +29,11 @@ class UseClientInjectionPlugin {
     if (fs.existsSync(sourceFilePath)) {
       try {
         const fileContent = fs.readFileSync(sourceFilePath, "utf8");
-        const firstLine = fileContent.split("\n")[0].trim();
+        const firstLine = fileContent
+          .split("\n")
+          .find((line) => line.trim() !== "")
+          ?.trim();
+
         if (firstLine === `"use client";` || firstLine === `'use client';`) {
           this.shouldInject = true;
         }
@@ -59,7 +63,7 @@ class UseClientInjectionPlugin {
             ) {
               source = `"use client";\n${source}`;
               compilation.assets[assetName] = new RawSource(source) as any;
-              console.log(`Injected "use client" in: ${assetName}`);
+              console.log(`Injected "use client" declarative in: ${assetName}`);
             }
           }
         });
