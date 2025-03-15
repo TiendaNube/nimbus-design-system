@@ -1,6 +1,5 @@
-import fastGlob from "fast-glob";
 import path from "path";
-import { existsSync, writeFileSync } from "fs";
+import { existsSync, writeFileSync, readdirSync, statSync } from "fs";
 import { rootDir } from "./constants";
 
 export const arrayFilterEmpty = (
@@ -12,6 +11,24 @@ export const arrayFilterEmpty = (
   }[]
 ) => array.filter((x) => !!x);
 
+/**
+ * Retrieves all subdirectories in a given list of folders.
+ */
+const getDirectories = (baseDir: string, folders: string[]) => {
+  return folders
+    .map((folder) => {
+      const folderPath = path.join(baseDir, folder);
+      if (!existsSync(folderPath)) return [];
+
+      return readdirSync(folderPath)
+        .map((subfolder) => path.join(folder, subfolder)) // Maintain relative path
+        .filter((subfolderPath) =>
+          statSync(path.join(baseDir, subfolderPath)).isDirectory()
+        );
+    })
+    .flat();
+};
+
 export const getComponentsPackageExports = (
   baseDir: string,
   folders: string[]
@@ -21,14 +38,7 @@ export const getComponentsPackageExports = (
   const webpackEntries: Record<string, string> = {};
   const dtsCommands: string[] = [];
 
-  const allComponents = folders
-    .map((folder) =>
-      fastGlob.sync(`${folder}/*`, {
-        cwd: baseDir,
-        onlyDirectories: true,
-      })
-    )
-    .flat();
+  const allComponents = getDirectories(baseDir, folders);
 
   // Process each component folder
   allComponents.forEach((componentPath) => {

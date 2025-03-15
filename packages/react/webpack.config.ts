@@ -1,30 +1,24 @@
 import path from "path";
-import { configuration, plugins, utils } from "@nimbus-ds/webpack";
+import { configuration } from "@nimbus-ds/webpack";
 
-const baseDir = path.resolve(__dirname, "src");
+// const baseDir = path.resolve(__dirname, "src");
 
-const { dtsCommands, packageExports, webpackEntries } =
-  utils.getComponentsPackageExports(baseDir, ["atomic", "composite"]);
+// const { dtsCommands, packageExports, webpackEntries } =
+//   utils.getComponentsPackageExports(baseDir, ["atomic", "composite"]);
 
 const baseConfig = {
   output: {
     path: path.resolve(__dirname, "dist"),
     library: "@nimbus-ds/components",
   },
-  entry: webpackEntries,
-  plugins: [
-    new plugins.BundleAnalyzerPlugin({
-      analyzerMode: "static", // Generates an HTML report
-      openAnalyzer: true, // Automatically opens the report
-    }),
-  ],
+  // entry: webpackEntries,
 };
 
 const config = configuration.getConfiguration(baseConfig, {
   dtsBundleConfig: {
     entries: [
       `node ../..//node_modules/.bin/dts-bundle-generator -o ./dist/index.d.ts ./src/index.ts`,
-      ...dtsCommands,
+      // ...dtsCommands,
     ],
   },
   packageJsonConfig: {
@@ -35,7 +29,7 @@ const config = configuration.getConfiguration(baseConfig, {
           import: "./dist/index.js",
           require: "./dist/index.js",
         },
-        ...packageExports,
+        // ...packageExports,
       };
       return packageJson;
     },
@@ -46,12 +40,7 @@ const config = configuration.getConfiguration(baseConfig, {
 delete config.externals;
 config.externals = configuration.externalLibs;
 
-const dtsPlugin = config.plugins?.[0];
-
-delete config.plugins;
-config.plugins = [dtsPlugin];
-
-console.log("PLUGINS AMOUNT => ", config.plugins.length);
+console.log("PLUGINS AMOUNT => ", config.plugins?.length);
 console.log("output library => ", config.output?.library);
 
 export default () => config;

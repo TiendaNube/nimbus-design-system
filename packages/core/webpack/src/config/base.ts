@@ -52,9 +52,6 @@ const webpackBase = (
   resolve: {
     alias: aliasItems,
     extensions: [".tsx", ".ts", ".js"],
-    fallback: {
-      process: require.resolve("process/browser"),
-    },
   },
   externals: externalItems,
 });
