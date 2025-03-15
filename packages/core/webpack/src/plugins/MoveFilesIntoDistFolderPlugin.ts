@@ -2,6 +2,11 @@ import { Compiler } from "webpack";
 import { promises as fs } from "fs";
 import path from "path";
 
+/**
+ * Webpack plugin to move files into the output directory after the build.
+ * This is useful for moving files like README.md, CHANGELOG.md, etc. into the dist folder.
+ * Also, it can transform the package.json file before writing it to the output directory (by default, it modifies it inplace).
+ */
 export interface MoveFilesIntoDistFolderPluginOptions {
   transform?: (packageJson: any) => any;
   packageJsonPath?: string;
@@ -39,11 +44,17 @@ export class MoveFilesIntoDistFolderPlugin {
             ? this.options.transform(packageJson)
             : packageJson;
 
-          // ✅ Overwrite package.json in the root project
-          await fs.writeFile(
-            pkgPath,
-            JSON.stringify(transformedPackageJson, null, 2)
-          );
+          // Capture trailing whitespace from the original file.
+          const trailingWhitespaceMatch = packageJsonRaw.match(/(\s*)$/);
+          const trailingWhitespace = trailingWhitespaceMatch
+            ? trailingWhitespaceMatch[1]
+            : "";
+
+          // Overwrite package.json in the root project, preserving trailing whitespace if it had it.
+          const newPackageJsonContent =
+            JSON.stringify(transformedPackageJson, null, 2) +
+            trailingWhitespace;
+          await fs.writeFile(pkgPath, newPackageJsonContent);
 
           // Move additional files (defaults: CHANGELOG.md, README.md)
           const filesToMove = this.options.files || [

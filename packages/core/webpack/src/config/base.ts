@@ -30,11 +30,8 @@ const webpackBase = (
     "./index": "./src/index.ts",
   },
   output: {
-    filename: (pathData) => {
-      return pathData.chunk?.name === "./index"
-        ? "[name].js"
-        : "[name]/index.js";
-    },
+    filename: (pathData) =>
+      pathData.chunk?.name === "./index" ? "[name].js" : "[name]/index.js",
     library: {
       name: ["@nimbus-ds", "[name]"],
       type: "umd",

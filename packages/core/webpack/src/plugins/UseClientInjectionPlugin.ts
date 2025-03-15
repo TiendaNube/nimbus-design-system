@@ -2,6 +2,9 @@ import { Compiler } from "webpack";
 import { existsSync, readFileSync } from "fs";
 import path from "path";
 
+/**
+ * Options for the UseClientInjectionPlugin.
+ */
 export interface UseClientInjectionPluginOptions {
   /**
    * The source file to check for 'use client'. Defaults to 'src/index.ts'.
@@ -9,9 +12,13 @@ export interface UseClientInjectionPluginOptions {
   sourceFile?: string;
 }
 
+/**
+ * A Webpack plugin that injects 'use client'; at the beginning of the asset if the original file contains 'use client' at first line.
+ */
 class UseClientInjectionPlugin {
   private options: UseClientInjectionPluginOptions;
-  private shouldInject: boolean = false; // flag determining if injection should occur
+
+  private shouldInject = false; // flag determining if injection should occur
 
   constructor(options: UseClientInjectionPluginOptions = {}) {
     this.options = options;
@@ -35,41 +42,37 @@ class UseClientInjectionPlugin {
       }
     }
 
-    compiler.hooks.compilation.tap(
+    // Use the emit hook to modify assets before they are emitted.
+    compiler.hooks.emit.tapAsync(
       "UseClientInjectionPlugin",
-      (compilation) => {
-        compilation.hooks.processAssets.tap(
-          {
-            name: "UseClientInjectionPlugin",
-            stage: compiler.webpack.Compilation.PROCESS_ASSETS_STAGE_OPTIMIZE_SIZE, // Ensure we modify assets at the right stage (one of the latest so it doesn't get overridden)
-          },
-          (assets) => {
-            if (!this.shouldInject) return;
+      (compilation, callback) => {
+        if (!this.shouldInject) {
+          return callback();
+        }
 
-            for (const assetName in assets) {
-              if (assetName.endsWith(".js")) {
-                const asset = compilation.getAsset(assetName);
-                if (!asset) continue;
+        // Get RawSource from the webpack sources available in the compiler
+        const { RawSource } = compiler.webpack.sources;
 
-                let source = asset.source.source().toString();
+        Object.keys(compilation.assets).forEach((assetName) => {
+          if (assetName.endsWith(".js")) {
+            let source = compilation.assets[assetName].source().toString();
 
-                if (
-                  !source.startsWith('"use client";') &&
-                  !source.startsWith("'use client';")
-                ) {
-                  source = `"use client";\n${source}`;
+            if (
+              !source.startsWith('"use client";') &&
+              !source.startsWith("'use client';")
+            ) {
+              source = `"use client";\n${source}`;
 
-                  compilation.updateAsset(
-                    assetName,
-                    new compiler.webpack.sources.RawSource(source)
-                  );
-
-                  console.log(`Injected "use client" in: ${assetName}`);
-                }
-              }
+              // Replace the asset with a new instance of RawSource. In the future we can improve this using the new Webpack 5 API,
+              // but after a few tests it doesn't seem to work in the current architecture, it just doesn't update the asset at all.
+              // eslint-disable-next-line no-param-reassign
+              compilation.assets[assetName] = new RawSource(source);
+              console.log(`Injected "use client" in: ${assetName}`);
             }
           }
-        );
+        });
+
+        return callback();
       }
     );
   }

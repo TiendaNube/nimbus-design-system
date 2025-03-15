@@ -14,8 +14,8 @@ export const arrayFilterEmpty = (
 /**
  * Retrieves all subdirectories in a given list of folders.
  */
-const getDirectories = (baseDir: string, folders: string[]) => {
-  return folders
+const getDirectories = (baseDir: string, folders: string[]) =>
+  folders
     .map((folder) => {
       const folderPath = path.join(baseDir, folder);
       if (!existsSync(folderPath)) return [];
@@ -27,7 +27,6 @@ const getDirectories = (baseDir: string, folders: string[]) => {
         );
     })
     .flat();
-};
 
 export const getComponentsPackageExports = (
   baseDir: string,

@@ -1,3 +1,9 @@
+"use client";
+
+/*
+ Styles needs an 'use client' as we're using a React Context for theming purposes.
+*/
+
 export * from "./components";
 export { vars } from "./utils";
 
