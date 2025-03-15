@@ -12,16 +12,24 @@ import { externalItems } from "./external";
 
 import production from "./production";
 import development from "./development";
+import MovePackageJsonPlugin, {
+  MovePackageJsonPluginOptions,
+} from "../plugins/MovePackageJsonPlugin";
 
-const webpack = (dtsBundleConfig?: { entries: string[] }): Configuration => ({
+const webpack = (
+  dtsBundleConfig?: { entries: string[] },
+  packageJsonConfig?: MovePackageJsonPluginOptions
+): Configuration => ({
   target: "node",
   mode: isProduction ? "production" : "development",
   entry: {
-    index: "./src/index.ts",
+    "./index": "./src/index.ts",
   },
   output: {
     filename: (pathData) => {
-      return pathData.chunk?.name === "index" ? "[name].js" : "[name]/index.js";
+      return pathData.chunk?.name === "./index"
+        ? "[name].js"
+        : "[name]/index.js";
     },
     library: {
       name: ["@nimbus-ds", "[name]"],
@@ -32,7 +40,11 @@ const webpack = (dtsBundleConfig?: { entries: string[] }): Configuration => ({
   module: {
     rules: arrayFilterEmpty([typescriptRule, svgRule]),
   },
-  plugins: [dtsBundleGeneratorPlugin(dtsBundleConfig)],
+  plugins: [
+    dtsBundleGeneratorPlugin(dtsBundleConfig),
+    new MovePackageJsonPlugin(packageJsonConfig),
+    new UseClientInjectionPlugin(),
+  ],
   resolve: {
     alias: aliasItems,
     extensions: [".tsx", ".ts", ".js"],
@@ -43,19 +55,15 @@ const webpack = (dtsBundleConfig?: { entries: string[] }): Configuration => ({
 export const getConfiguration = (
   config?: Configuration,
   extraParams?: {
-    isClientSide?: boolean;
     dtsBundleConfig?: { entries: string[] };
+    packageJsonConfig?: MovePackageJsonPluginOptions;
   }
 ) =>
   isProduction
     ? merge(
-        webpack(extraParams?.dtsBundleConfig),
+        webpack(extraParams?.dtsBundleConfig, extraParams?.packageJsonConfig),
         production,
-        config || {},
-        // For production, we need to inject the "use client" statement in the generated files if it's a client-side bundle
-        extraParams?.isClientSide
-          ? { plugins: [new UseClientInjectionPlugin()] }
-          : {}
+        config || {}
       )
     : merge(webpack(), development, config || {});
 

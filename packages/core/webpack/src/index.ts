@@ -14,6 +14,7 @@ import {
   cssMinimizerPlugin,
   UseClientInjectionPlugin
 } from "./plugins";
+import MovePackageJsonPlugin from "./plugins/MovePackageJsonPlugin";
 import {
   cssLoaderExtractRule,
   styleLoaderCssRule,
@@ -42,6 +43,7 @@ export const plugins = {
   cssMinimizerPlugin,
   dtsBundleGeneratorPlugin,
   UseClientInjectionPlugin,
+  MovePackageJsonPlugin
 };
 export const configuration = {
   aliasItems,
