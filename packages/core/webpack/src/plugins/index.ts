@@ -5,3 +5,4 @@ export { cssMinimizerPlugin } from "./cssMinimizerPlugin";
 export { terserJSPlugin } from "./terserJSPlugin";
 export { dtsBundleGeneratorPlugin } from "./dtsBundleGeneratorPlugin";
 export { UseClientInjectionPlugin } from "./UseClientInjectionPlugin";
+// export type { UseClientInjectionPluginOptions } from "./UseClientInjectionPlugin";

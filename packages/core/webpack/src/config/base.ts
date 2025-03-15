@@ -6,19 +6,24 @@ import { Configuration } from "webpack";
 
 import { arrayFilterEmpty, isProduction } from "../utils";
 import { typescriptRule, svgRule } from "../rules";
-import { dtsBundleGeneratorPlugin, UseClientInjectionPlugin } from "../plugins";
+import {
+  dtsBundleGeneratorPlugin,
+  // UseClientInjectionPlugin,
+  // UseClientInjectionPluginOptions,
+} from "../plugins";
 import { aliasItems } from "./alias";
 import { externalItems } from "./external";
 
 import production from "./production";
 import development from "./development";
-import MovePackageJsonPlugin, {
-  MovePackageJsonPluginOptions,
-} from "../plugins/MovePackageJsonPlugin";
+import  {
+  MoveFilesIntoDistFolderPluginOptions,
+} from "../plugins/MoveFilesIntoDistFolderPlugin";
 
-const webpack = (
+const webpackBase = (
   dtsBundleConfig?: { entries: string[] },
-  packageJsonConfig?: MovePackageJsonPluginOptions
+  packageJsonConfig?: MoveFilesIntoDistFolderPluginOptions,
+  // useClientInjectionOptions?: UseClientInjectionPluginOptions
 ): Configuration => ({
   target: "node",
   mode: isProduction ? "production" : "development",
@@ -42,8 +47,8 @@ const webpack = (
   },
   plugins: [
     dtsBundleGeneratorPlugin(dtsBundleConfig),
-    new MovePackageJsonPlugin(packageJsonConfig),
-    new UseClientInjectionPlugin(),
+    // new MoveFilesIntoDistFolderPlugin(packageJsonConfig),
+    // new UseClientInjectionPlugin(),
   ],
   resolve: {
     alias: aliasItems,
@@ -56,15 +61,20 @@ export const getConfiguration = (
   config?: Configuration,
   extraParams?: {
     dtsBundleConfig?: { entries: string[] };
-    packageJsonConfig?: MovePackageJsonPluginOptions;
+    packageJsonConfig?: MoveFilesIntoDistFolderPluginOptions;
+    useClientInjectionOptions?: any;
   }
 ) =>
   isProduction
     ? merge(
-        webpack(extraParams?.dtsBundleConfig, extraParams?.packageJsonConfig),
+        webpackBase(
+          extraParams?.dtsBundleConfig,
+          extraParams?.packageJsonConfig,
+          // extraParams?.useClientInjectionOptions
+        ),
         production,
         config || {}
       )
-    : merge(webpack(), development, config || {});
+    : merge(webpackBase(), development, config || {});
 
 export default getConfiguration();

@@ -8,5 +8,4 @@ const config = {
   },
 };
 
-export default () =>
-  configuration.getConfiguration(config, { isClientSide: true });
+export default () => configuration.getConfiguration(config);

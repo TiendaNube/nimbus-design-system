@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/icons",
-  "version": "1.6.0",
+  "version": "1.7.0-rc.3",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -28,5 +28,6 @@
     "@nimbus-ds/webpack": "workspace:^",
     "@svgr/cli": "^6.5.1",
     "svgo": "^3.0.2"
-  }
+  },
+  "stableVersion": "1.6.0"
 }

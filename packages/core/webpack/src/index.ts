@@ -14,7 +14,7 @@ import {
   cssMinimizerPlugin,
   UseClientInjectionPlugin
 } from "./plugins";
-import MovePackageJsonPlugin from "./plugins/MovePackageJsonPlugin";
+import MoveFilesIntoDistFolderPlugin from "./plugins/MoveFilesIntoDistFolderPlugin";
 import {
   cssLoaderExtractRule,
   styleLoaderCssRule,
@@ -27,6 +27,7 @@ import {
   arrayFilterEmpty,
   isProduction,
   isDevelopment,
+  getComponentsPackageExports
 } from "./utils";
 
 export const rules = {
@@ -43,7 +44,7 @@ export const plugins = {
   cssMinimizerPlugin,
   dtsBundleGeneratorPlugin,
   UseClientInjectionPlugin,
-  MovePackageJsonPlugin
+  MoveFilesIntoDistFolderPlugin
 };
 export const configuration = {
   aliasItems,
@@ -54,7 +55,7 @@ export const configuration = {
   getConfiguration,
 };
 
-export const utils = { rootDir, arrayFilterEmpty, isProduction, isDevelopment };
+export const utils = { rootDir, arrayFilterEmpty, isProduction, isDevelopment, getComponentsPackageExports };
 
 const webpack = {
   rules,
