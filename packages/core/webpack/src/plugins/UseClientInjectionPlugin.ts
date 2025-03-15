@@ -1,7 +1,6 @@
-// UseClientInjectionPlugin.ts
 import { Compiler } from "webpack";
 import { RawSource } from "webpack-sources";
-import fs from "fs-extra";
+import { existsSync, readFileSync } from "fs";
 import path from "path";
 
 export interface UseClientInjectionPluginOptions {
@@ -26,9 +25,9 @@ class UseClientInjectionPlugin {
       : path.resolve(compiler.context, "src/index.ts");
 
     // Read the source file and check if its first non-empty line contains 'use client'
-    if (fs.existsSync(sourceFilePath)) {
+    if (existsSync(sourceFilePath)) {
       try {
-        const fileContent = fs.readFileSync(sourceFilePath, "utf8");
+        const fileContent = readFileSync(sourceFilePath, "utf8");
         const firstLine = fileContent.split("\n")[0].trim();
         if (firstLine === `"use client";` || firstLine === `'use client';`) {
           this.shouldInject = true;
@@ -47,6 +46,7 @@ class UseClientInjectionPlugin {
           callback();
           return;
         }
+
         Object.keys(compilation.assets).forEach((assetName) => {
           if (assetName.endsWith(".js")) {
             const asset = compilation.assets[assetName];
@@ -63,6 +63,7 @@ class UseClientInjectionPlugin {
             }
           }
         });
+
         callback();
       }
     );

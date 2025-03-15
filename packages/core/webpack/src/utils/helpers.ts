@@ -1,6 +1,6 @@
 import fastGlob from "fast-glob";
 import path from "path";
-import fs from "fs-extra";
+import { existsSync, writeFileSync } from "fs";
 import { rootDir } from "./constants";
 
 export const arrayFilterEmpty = (
@@ -40,7 +40,7 @@ export const getComponentsPackageExports = (
     const extraCommands = [];
     // 2. If a src/components folder exists, generate a temporary file to aggregate exports
     const componentsDir = path.join(componentDir, "src", "components");
-    if (fs.existsSync(componentsDir)) {
+    if (existsSync(componentsDir)) {
       const tempFilePath = path.join(
         componentDir,
         "src",
@@ -52,7 +52,7 @@ export const getComponentsPackageExports = (
       export * from "./index";
       export * from "./components/index";
     `;
-      fs.writeFileSync(tempFilePath, tempContent, "utf8");
+      writeFileSync(tempFilePath, tempContent, "utf8");
 
       entryFile = tempFilePath; // override entry to use the temp file
 
@@ -65,7 +65,7 @@ export const getComponentsPackageExports = (
     // 4. Prepare the DTS bundle generator command for this component, removing the temp file after running it for cleanup
     const dtsCommand = `node ${rootDir}/node_modules/.bin/dts-bundle-generator -o ./dist/${componentName}/index.d.ts ${entryFile} ${extraCommands.join(
       ""
-    )}`; // ADD REMOVE HERE? && rm ${entryFile}`;
+    )}`;
     dtsCommands.push(dtsCommand);
 
     // 5. Build the package exports for this component

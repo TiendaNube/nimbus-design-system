@@ -1,5 +1,4 @@
 import path from "path";
-import webpack from "webpack";
 
 import { plugins, rules, configuration, utils } from "@nimbus-ds/webpack/src";
 
@@ -28,8 +27,8 @@ config.plugins = [
       `node ${utils.rootDir}/node_modules/.bin/dts-bundle-generator -o ./dist/themes/dark.d.ts ./src/themes/nimbus-theme-dark.css.ts`,
     ],
   }),
-  // new plugins.MoveFilesIntoDistFolderPlugin(),
-  // new plugins.UseClientInjectionPlugin(),
+  new plugins.MoveFilesIntoDistFolderPlugin(),
+  new plugins.UseClientInjectionPlugin(),
 ];
 
 export default () => config;

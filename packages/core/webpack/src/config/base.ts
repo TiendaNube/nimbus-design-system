@@ -1,6 +1,7 @@
 /**
  * Created by: Júnior Conquista (junior.conquista@nuvemshop.com.br)
  */
+import webpack from "webpack";
 import merge from "webpack-merge";
 import { Configuration } from "webpack";
 
@@ -45,6 +46,9 @@ const webpackBase = (
     rules: arrayFilterEmpty([typescriptRule, svgRule]),
   },
   plugins: [
+    new webpack.DefinePlugin({
+      process: JSON.stringify({}),
+    }),
     dtsBundleGeneratorPlugin(dtsBundleConfig),
     new MoveFilesIntoDistFolderPlugin(packageJsonConfig),
     new UseClientInjectionPlugin(useClientInjectionOptions),
@@ -52,6 +56,9 @@ const webpackBase = (
   resolve: {
     alias: aliasItems,
     extensions: [".tsx", ".ts", ".js"],
+    fallback: {
+      process: require.resolve("process/browser"),
+    },
   },
   externals: externalItems,
 });
