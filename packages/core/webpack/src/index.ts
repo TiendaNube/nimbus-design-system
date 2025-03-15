@@ -12,6 +12,7 @@ import {
   dtsBundleGeneratorPlugin,
   cssHashRemoverPlugin,
   cssMinimizerPlugin,
+  UseClientInjectionPlugin
 } from "./plugins";
 import {
   cssLoaderExtractRule,
@@ -40,6 +41,7 @@ export const plugins = {
   cssHashRemoverPlugin,
   cssMinimizerPlugin,
   dtsBundleGeneratorPlugin,
+  UseClientInjectionPlugin,
 };
 export const configuration = {
   aliasItems,
