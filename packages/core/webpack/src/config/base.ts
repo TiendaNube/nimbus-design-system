@@ -8,22 +8,21 @@ import { arrayFilterEmpty, isProduction } from "../utils";
 import { typescriptRule, svgRule } from "../rules";
 import {
   dtsBundleGeneratorPlugin,
-  // UseClientInjectionPlugin,
-  // UseClientInjectionPluginOptions,
+  UseClientInjectionPlugin,
+  UseClientInjectionPluginOptions,
+  MoveFilesIntoDistFolderPluginOptions,
+  MoveFilesIntoDistFolderPlugin,
 } from "../plugins";
 import { aliasItems } from "./alias";
 import { externalItems } from "./external";
 
 import production from "./production";
 import development from "./development";
-import  {
-  MoveFilesIntoDistFolderPluginOptions,
-} from "../plugins/MoveFilesIntoDistFolderPlugin";
 
 const webpackBase = (
   dtsBundleConfig?: { entries: string[] },
   packageJsonConfig?: MoveFilesIntoDistFolderPluginOptions,
-  // useClientInjectionOptions?: UseClientInjectionPluginOptions
+  useClientInjectionOptions?: UseClientInjectionPluginOptions
 ): Configuration => ({
   target: "node",
   mode: isProduction ? "production" : "development",
@@ -47,8 +46,8 @@ const webpackBase = (
   },
   plugins: [
     dtsBundleGeneratorPlugin(dtsBundleConfig),
-    // new MoveFilesIntoDistFolderPlugin(packageJsonConfig),
-    // new UseClientInjectionPlugin(),
+    new MoveFilesIntoDistFolderPlugin(packageJsonConfig),
+    new UseClientInjectionPlugin(useClientInjectionOptions),
   ],
   resolve: {
     alias: aliasItems,
@@ -70,7 +69,7 @@ export const getConfiguration = (
         webpackBase(
           extraParams?.dtsBundleConfig,
           extraParams?.packageJsonConfig,
-          // extraParams?.useClientInjectionOptions
+          extraParams?.useClientInjectionOptions
         ),
         production,
         config || {}
