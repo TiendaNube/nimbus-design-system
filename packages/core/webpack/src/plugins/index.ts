@@ -6,5 +6,6 @@ export { terserJSPlugin } from "./terserJSPlugin";
 export { dtsBundleGeneratorPlugin } from "./dtsBundleGeneratorPlugin";
 export { UseClientInjectionPlugin } from "./UseClientInjectionPlugin";
 export { MoveFilesIntoDistFolderPlugin } from "./MoveFilesIntoDistFolderPlugin";
+export { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
 export type { MoveFilesIntoDistFolderPluginOptions } from "./MoveFilesIntoDistFolderPlugin";
 export type { UseClientInjectionPluginOptions } from "./UseClientInjectionPlugin";

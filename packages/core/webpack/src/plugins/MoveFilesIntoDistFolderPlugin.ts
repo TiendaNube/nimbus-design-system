@@ -1,10 +1,9 @@
 import { Compiler } from "webpack";
 import { promises as fs } from "fs";
 import path from "path";
-import type { PackageJson } from "type-fest";
 
 export interface MoveFilesIntoDistFolderPluginOptions {
-  transform?: (packageJson: PackageJson) => PackageJson;
+  transform?: (packageJson: any) => any;
   packageJsonPath?: string;
   files?: string[];
 }
@@ -35,7 +34,7 @@ export class MoveFilesIntoDistFolderPlugin {
 
           // Read & transform package.json (overwriting in root)
           const packageJsonRaw = await fs.readFile(pkgPath, "utf-8");
-          const packageJson: PackageJson = JSON.parse(packageJsonRaw);
+          const packageJson = JSON.parse(packageJsonRaw);
           const transformedPackageJson = this.options.transform
             ? this.options.transform(packageJson)
             : packageJson;

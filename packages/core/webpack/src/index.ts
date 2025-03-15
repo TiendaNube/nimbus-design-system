@@ -14,6 +14,7 @@ import {
   cssMinimizerPlugin,
   UseClientInjectionPlugin,
   MoveFilesIntoDistFolderPlugin,
+  BundleAnalyzerPlugin,
 } from "./plugins";
 import {
   cssLoaderExtractRule,
@@ -45,6 +46,7 @@ export const plugins = {
   dtsBundleGeneratorPlugin,
   UseClientInjectionPlugin,
   MoveFilesIntoDistFolderPlugin,
+  BundleAnalyzerPlugin
 };
 export const configuration = {
   aliasItems,

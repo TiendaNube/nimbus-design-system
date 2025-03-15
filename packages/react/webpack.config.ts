@@ -1,5 +1,5 @@
 import path from "path";
-import { configuration, utils } from "@nimbus-ds/webpack";
+import { configuration, plugins, utils } from "@nimbus-ds/webpack";
 
 const baseDir = path.resolve(__dirname, "src");
 
@@ -12,6 +12,12 @@ const baseConfig = {
     library: "@nimbus-ds/components",
   },
   entry: webpackEntries,
+  plugins: [
+    new plugins.BundleAnalyzerPlugin({
+      analyzerMode: "static", // Generates an HTML report
+      openAnalyzer: true, // Automatically opens the report
+    }),
+  ],
 };
 
 const config = configuration.getConfiguration(baseConfig, {
@@ -39,5 +45,13 @@ const config = configuration.getConfiguration(baseConfig, {
 
 delete config.externals;
 config.externals = configuration.externalLibs;
+
+const dtsPlugin = config.plugins?.[0];
+
+delete config.plugins;
+config.plugins = [dtsPlugin];
+
+console.log("PLUGINS AMOUNT => ", config.plugins.length);
+console.log("output library => ", config.output?.library);
 
 export default () => config;
