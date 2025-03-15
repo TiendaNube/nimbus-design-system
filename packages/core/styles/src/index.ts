@@ -1,6 +1,3 @@
-'use client';
-// Styles package needs to be executed client-side as it uses a Context API for theming
-
 export * from "./components";
 export { vars } from "./utils";
 

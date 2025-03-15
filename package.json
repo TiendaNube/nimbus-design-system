@@ -32,7 +32,7 @@
     "publish:stable": "npm run build && yarn bump:stable && yarn publish:npm:stable",
     "publish:npm:next": "yarn workspaces foreach -pv -pt --exclude nimbus-design-system --exclude nimbus-helper npm publish --tolerate-republish --access public --tag next",
     "publish:npm:stable": "yarn workspaces foreach -pv -pt --exclude nimbus-design-system --exclude nimbus-helper npm publish --tolerate-republish --access public",
-    "reset": "yarn clean && rm -rf node_modules .yarn/cache",
+    "reset": "yarn clean && rm -rf node_modules .yarn/cache .turbo",
     "storybook": "storybook dev -p 6006",
     "start:dev": "yarn storybook",
     "test": "jest --passWithNoTests --no-cache --runInBand --watchAll=false",
