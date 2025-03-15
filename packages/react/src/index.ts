@@ -1,3 +1,6 @@
+'use client';
+// Components package needs to be executed client-side as it is bundled with other client-side packages, like @floating-ui/react
+
 // atomics
 export * from "@nimbus-ds/badge";
 export * from "@nimbus-ds/box";
