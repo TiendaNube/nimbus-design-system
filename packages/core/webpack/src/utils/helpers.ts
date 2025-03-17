@@ -68,7 +68,7 @@ export const getComponentsPackageExports = (
       extraCommands.push(`&& rm ${tempFilePath}`); // Cleanup the temp file after running the DTS command
     }
 
-    // 3. Build the webpack entry. Using a relative path works well with webpack.
+    // 3. Build the webpack entry, with relative path.
     webpackEntries[componentName] = entryFile;
 
     // 4. Prepare the DTS bundle generator command for this component, removing the temp file after running it for cleanup

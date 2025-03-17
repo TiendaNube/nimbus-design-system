@@ -4,13 +4,11 @@
 import merge from "webpack-merge";
 import { Configuration } from "webpack";
 
-import { arrayFilterEmpty, isProduction } from "../utils";
+import { arrayFilterEmpty, isProduction, WebpackBaseConfig } from "../utils";
 import { typescriptRule, svgRule } from "../rules";
 import {
   dtsBundleGeneratorPlugin,
   UseClientInjectionPlugin,
-  UseClientInjectionPluginOptions,
-  MoveFilesIntoDistFolderPluginOptions,
   MoveFilesIntoDistFolderPlugin,
 } from "../plugins";
 import { aliasItems } from "./alias";
@@ -19,11 +17,11 @@ import { externalItems } from "./external";
 import production from "./production";
 import development from "./development";
 
-const webpackBase = (
-  dtsBundleConfig?: { entries: string[] },
-  packageJsonConfig?: MoveFilesIntoDistFolderPluginOptions,
-  useClientInjectionOptions?: UseClientInjectionPluginOptions
-): Configuration => ({
+const webpack = ({
+  dtsBundleConfig,
+  packageJsonConfig,
+  useClientInjectionOptions,
+}: WebpackBaseConfig = {}): Configuration => ({
   target: "node",
   mode: isProduction ? "production" : "development",
   entry: {
@@ -55,22 +53,10 @@ const webpackBase = (
 
 export const getConfiguration = (
   config?: Configuration,
-  extraParams?: {
-    dtsBundleConfig?: { entries: string[] };
-    packageJsonConfig?: MoveFilesIntoDistFolderPluginOptions;
-    useClientInjectionOptions?: any;
-  }
+  extraParams?: WebpackBaseConfig
 ) =>
   isProduction
-    ? merge(
-        webpackBase(
-          extraParams?.dtsBundleConfig,
-          extraParams?.packageJsonConfig,
-          extraParams?.useClientInjectionOptions
-        ),
-        production,
-        config || {}
-      )
-    : merge(webpackBase(), development, config || {});
+    ? merge(webpack(extraParams), production, config || {})
+    : merge(webpack(), development, config || {});
 
 export default getConfiguration();

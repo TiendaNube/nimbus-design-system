@@ -17,7 +17,7 @@ const baseConfig = {
 const config = configuration.getConfiguration(baseConfig, {
   dtsBundleConfig: {
     entries: [
-      `node ../..//node_modules/.bin/dts-bundle-generator -o ./dist/index.d.ts ./src/index.ts`,
+      `node ../../node_modules/.bin/dts-bundle-generator -o ./dist/index.d.ts ./src/index.ts`,
       ...dtsCommands,
     ],
   },
@@ -34,13 +34,9 @@ const config = configuration.getConfiguration(baseConfig, {
       return packageJson;
     },
   },
-  useClientInjectionOptions: { shouldInject: true },
 });
 
 delete config.externals;
 config.externals = configuration.externalLibs;
-
-console.log("PLUGINS AMOUNT => ", config.plugins?.length);
-console.log("output library => ", config.output?.library);
 
 export default () => config;

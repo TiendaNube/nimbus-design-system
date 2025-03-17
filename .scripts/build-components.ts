@@ -1,3 +1,3 @@
 import { ComponentsBuilder } from "@nimbus-ds/scripts/src";
 
-new ComponentsBuilder().exec();
+new ComponentsBuilder().exec("atomic", "composite");
