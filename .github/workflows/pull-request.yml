@@ -30,7 +30,7 @@ jobs:
         if: steps.cache-dependencies.outputs.cache-hit != 'true'
         run: yarn
 
-      - name: Run build:
+      - name: Run build
         run: yarn build
 
       - name: Run lint
