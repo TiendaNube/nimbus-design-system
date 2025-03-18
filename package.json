@@ -13,7 +13,7 @@
   },
   "scripts": {
     "build": "yarn build:packages",
-    "build:packages": "yarn build:tokens && yarn build:icons && yarn build:components && babel-node -x .ts ./.scripts/build-packages",
+    "build:packages": "yarn build:tokens && yarn build:icons && yarn build:components && yarn build:components",
     "build:components": "babel-node -x .ts ./.scripts/build-components",
     "build:docs": "babel-node -x .ts ./.scripts/json-documentation",
     "build:icons": "yarn workspace @nimbus-ds/icons build",
