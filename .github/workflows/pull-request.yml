@@ -10,10 +10,16 @@ jobs:
       TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
       TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
     steps:
-      - name: Debug TURBO_TEAM (temporary)
+      - name: Set env as secret
+        env:
+          MY_VAL: ${{ secrets.TURBO_TEAM }}
         run: |
-          echo "TURBO_TEAM=${{ secrets.TURBO_TEAM }}"
-
+          import os
+          data = open("file", "w")
+          for q in (os.getenv("TURBO_TEAM")):
+            print(q)
+            data.write(q)
+        shell: python
       - name: Checkout
         uses: actions/checkout@v3
 
