@@ -1,3 +1,5 @@
+"use client";
+
 import { Spinner } from "./Spinner";
 
 export { Spinner } from "./Spinner";

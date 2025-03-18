@@ -1,3 +1,5 @@
+"use client";
+
 import { Popover } from "./Popover";
 
 export { Popover } from "./Popover";

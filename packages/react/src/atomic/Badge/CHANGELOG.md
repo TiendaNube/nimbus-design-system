@@ -2,6 +2,12 @@
 
 The badge component is used to communicate quantities of items or pending actions.
 
+## 2025-03-18 `3.1.2`
+
+### 💡 Others
+
+- Rebuild after build process changes to add support for modular imports and Server Components. ([#-PULL_REQUEST_NUMBER](https://github.com/TiendaNube/nimbus-design-system/pull/-PULL_REQUEST_NUMBER) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2023-02-24 `3.1.1`
 
 ### 💡 Others

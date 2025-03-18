@@ -1,3 +1,5 @@
+"use client";
+
 import { Tabs } from "./Tabs";
 
 export { Tabs } from "./Tabs";

@@ -24,6 +24,41 @@ class UseClientInjectionPlugin {
     this.options = options;
   }
 
+  /**
+   * Returns the first non-empty, non-comment line of the file.
+   * It skips:
+   * - Lines that are empty.
+   * - Lines starting with // (or ///).
+   * - Lines that are part of a block comment.
+   */
+  private getFirstNonCommentLine(content: string): string | null {
+    const lines = content.split(/\r?\n/);
+    let insideBlockComment = false;
+
+    for (let i = 0; i < lines.length; i++) {
+      const trimmed = lines[i].trim();
+
+      if (insideBlockComment) {
+        if (trimmed.endsWith("*/")) {
+          insideBlockComment = false;
+        }
+        // move to the next iteration implicitly
+      } else if (trimmed.startsWith("/*")) {
+        if (!trimmed.endsWith("*/")) {
+          insideBlockComment = true;
+        }
+        // skip this line as it's a block comment
+      } else if (trimmed.startsWith("//")) {
+        // skip single-line comments
+      } else if (trimmed === "") {
+        // skip empty lines
+      } else {
+        return trimmed;
+      }
+    }
+    return null;
+  }
+
   apply(compiler: Compiler) {
     const sourceFilePath = this.options.sourceFile
       ? path.resolve(compiler.context, this.options.sourceFile)
@@ -33,7 +68,7 @@ class UseClientInjectionPlugin {
     if (existsSync(sourceFilePath)) {
       try {
         const fileContent = readFileSync(sourceFilePath, "utf8");
-        const firstLine = fileContent.split("\n")[0].trim();
+        const firstLine = this.getFirstNonCommentLine(fileContent);
         if (firstLine === `"use client";` || firstLine === `'use client';`) {
           this.shouldInject = true;
         }

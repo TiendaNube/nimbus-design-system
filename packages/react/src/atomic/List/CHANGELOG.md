@@ -2,6 +2,12 @@
 
 Use the list component to arrange a collection of text elements. Each list item begins with either a bullet or a number.
 
+## 2025-03-18 `2.2.1`
+
+### 💡 Others
+
+- Rebuild after build process changes to add support for modular imports and Server Components. ([#-PULL_REQUEST_NUMBER](https://github.com/TiendaNube/nimbus-design-system/pull/-PULL_REQUEST_NUMBER) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2023-03-13 `2.2.0`
 
 ### 💡 Others
