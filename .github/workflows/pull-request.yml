@@ -33,7 +33,7 @@ jobs:
 
       - name: Run build
         run: |
-          export NODE_OPTIONS="--max_old_space_size=8192"
+          export NODE_OPTIONS="--max_old_space_size=12288"
           yarn build
 
       - name: Run lint
