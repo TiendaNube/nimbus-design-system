@@ -13,6 +13,7 @@ import {
   InputSearch,
   InputSkeleton,
   InputIcon,
+  InputTags,
 } from "./components";
 
 const Input = forwardRef<HTMLInputElement, InputBaseProps>(
@@ -70,10 +71,12 @@ const Input = forwardRef<HTMLInputElement, InputBaseProps>(
 Input.Password = InputPassword;
 Input.Search = InputSearch;
 Input.Skeleton = InputSkeleton;
+Input.Tags = InputTags;
 Input.displayName = "Input";
 Input.Password.displayName = "Input.Password";
 Input.Search.displayName = "Input.Search";
 Input.Skeleton.displayName = "Input.Skeleton";
+Input.Tags.displayName = "Input.Tags";
 
 export type InputProps = ComponentPropsWithRef<typeof Input>;
 export { Input };

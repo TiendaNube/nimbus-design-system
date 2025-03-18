@@ -1,11 +1,13 @@
 import { InputHTMLAttributes, ReactNode } from "react";
 
 import { InputPassword, InputSearch, InputSkeleton } from "./components";
+import { InputTags } from "./components/InputTags";
 
 export interface InputComponents {
   Password: typeof InputPassword;
   Search: typeof InputSearch;
   Skeleton: typeof InputSkeleton;
+  Tags: typeof InputTags;
 }
 
 export interface InputProperties {

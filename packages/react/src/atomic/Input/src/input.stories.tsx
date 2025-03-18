@@ -1,23 +1,17 @@
-import React, { forwardRef } from "react";
+import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { TiendanubeIcon } from "@nimbus-ds/icons";
 import { Icon } from "@nimbus-ds/icon";
+import { Input } from "./Input";
 
-import { Input as InputComponent, InputProps } from "./Input";
-
-export const Basic: React.FC<InputProps> = forwardRef((props: InputProps) => (
-  <InputComponent {...props} />
-)) as React.FC<InputProps>;
-Basic.displayName = "Input";
-
-const meta: Meta<typeof Basic> = {
+const meta: Meta<typeof Input> = {
   title: "Atomic/Input",
-  component: Basic,
+  component: Input,
   tags: ["autodocs"],
 };
 
 export default meta;
-type Story = StoryObj<typeof Basic>;
+type Story = StoryObj<typeof Input>;
 
 export const basic: Story = {
   args: {
@@ -66,5 +60,29 @@ export const disabled: Story = {
   args: {
     placeholder: "Placeholder",
     disabled: true,
+  },
+};
+
+export const Tags: Story = {
+  args: {
+    placeholder: "Type and press Enter to add a tag",
+  },
+  render: (args) => {
+    const [tags, setTags] = useState<string[]>([]);
+    return <Input.Tags {...args} tags={tags} onTagsChange={setTags} />;
+  },
+};
+
+export const TagsWithInitialValues: Story = {
+  args: {
+    placeholder: "Type and press Enter to add a tag",
+  },
+  render: (args) => {
+    const [tags, setTags] = useState<string[]>([
+      "React",
+      "TypeScript",
+      "JavaScript",
+    ]);
+    return <Input.Tags {...args} tags={tags} onTagsChange={setTags} />;
   },
 };
