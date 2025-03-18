@@ -7,11 +7,11 @@ Package-specific changes not released in any package will be added here just bef
 
 #### 🐛 Bug fixes
 
-- Adds the removal of '.turbo' folder to `yarn reset` command to ensure a full cleanup. ([#-PULL_REQUEST_NUMBER](https://github.com/TiendaNube/nimbus-design-system/pull/-PULL_REQUEST_NUMBER) by [@joacotornello](https://github.com/joacotornello))
+- Adds the removal of '.turbo' folder to `yarn reset` command to ensure a full cleanup. ([#276](https://github.com/TiendaNube/nimbus-design-system/pull/276) by [@joacotornello](https://github.com/joacotornello))
 
 ### 💡 Others
 
-- Bumps `turbo` version to `1.10.16`. ([#-PULL_REQUEST_NUMBER](https://github.com/TiendaNube/nimbus-design-system/pull/-PULL_REQUEST_NUMBER) by [@joacotornello](https://github.com/joacotornello))
+- Bumps `turbo` version to `1.10.16`. ([#276](https://github.com/TiendaNube/nimbus-design-system/pull/276) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2023-12-22
 

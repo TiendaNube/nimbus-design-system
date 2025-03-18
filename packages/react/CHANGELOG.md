@@ -2,23 +2,17 @@
 
 Nimbus is an open-source Design System created by Tiendanube / Nuvesmhop’s team to empower and enhance more stories every day, with simplicity, accessibility, consistency and performance.
 
-## 2025-03-18 `9.13.0`
+## 2025-03-18 `5.8.0`
 
 #### 🎉 New features
 
-- Adds `use-client` directive to the build output in order to support NextJS applications. ([#-PULL_REQUEST_NUMBER](https://github.com/TiendaNube/nimbus-design-system/pull/-PULL_REQUEST_NUMBER) by [@joacotornello](https://github.com/joacotornello))
+- Adds `use-client` directive to the build output in order to support NextJS applications. ([#276](https://github.com/TiendaNube/nimbus-design-system/pull/276) by [@joacotornello](https://github.com/joacotornello))
 
-- Implemented new webpack configuration to move useful files into the build output directory and inject the `use client` directive. ([#-PULL_REQUEST_NUMBER](https://github.com/TiendaNube/nimbus-design-system/pull/-PULL_REQUEST_NUMBER) by [@joacotornello](https://github.com/joacotornello))
+- Implemented new webpack configuration to move useful files into the build output directory and inject the `use client` directive. ([#276](https://github.com/TiendaNube/nimbus-design-system/pull/276) by [@joacotornello](https://github.com/joacotornello))
 
 ### 💡 Others
 
-- Rebuild after build process changes to add support for modular imports and Server Components. ([#-PULL_REQUEST_NUMBER](https://github.com/TiendaNube/nimbus-design-system/pull/-PULL_REQUEST_NUMBER) by [@joacotornello](https://github.com/joacotornello))
-
-## 2025-03-07 `5.8.0`
-
-### 🎉 New features
-
-- Adds Server Components support for all packages. ([#269](https://github.com/TiendaNube/nimbus-design-system/pull/269) by [@hrchioest](https://github.com/hrchioest))
+- Rebuild after build process changes to add support for modular imports and Server Components. ([#276](https://github.com/TiendaNube/nimbus-design-system/pull/276) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-03-07 `5.7.2`
 
