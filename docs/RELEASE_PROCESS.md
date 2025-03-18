@@ -1,3 +1,5 @@
+<img alt="Nimbus" style="margin-bottom: 30px;" src="https://tiendanube.github.io/design-system-nimbus/static/media/nimbus-logo.ab60bd79.png" height="30" />
+
 # Release process
 
 ## Overview
