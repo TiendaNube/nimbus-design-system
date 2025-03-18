@@ -30,11 +30,8 @@ jobs:
         if: steps.cache-dependencies.outputs.cache-hit != 'true'
         run: yarn
 
-      - name: Run build tokens
-        run: npm run build:tokens
-
-      - name: Run build icons
-        run: npm run build:icons
+      - name: Run build:
+        run: yarn build
 
       - name: Run lint
         run: yarn lint
