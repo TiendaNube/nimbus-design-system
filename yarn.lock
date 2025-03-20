@@ -3203,6 +3203,7 @@ __metadata:
   resolution: "@nimbus-ds/tooltip@workspace:packages/react/src/atomic/Tooltip"
   dependencies:
     "@floating-ui/react": ^0.26.0
+    "@nimbus-ds/box": "workspace:^"
     "@nimbus-ds/webpack": "workspace:^"
     "@vanilla-extract/dynamic": ^2.0.3
   peerDependencies:

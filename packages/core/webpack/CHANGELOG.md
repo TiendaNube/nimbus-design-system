@@ -2,6 +2,12 @@
 
 This package is intended for internal use in generating builds of each design system package. It contains all the necessary settings and dependencies to optimize the creation of our builds.
 
+## 2025-03-18 `1.5.0`
+
+#### 🎉 New features
+
+- Adds new plugins and base configuration in order to support Server Components and Modular Imports, improving and optimizing Tree Shaking for our clients. ([#276](https://github.com/TiendaNube/nimbus-design-system/pull/276) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2023-09-26 `1.2.0`
 
 #### 🎉 New features

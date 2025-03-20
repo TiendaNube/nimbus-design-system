@@ -108,6 +108,7 @@
         "trailingComma": "none"
       }
     ],
-    "no-console": "warn"
+    "no-console": "warn",
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }]
   }
 }

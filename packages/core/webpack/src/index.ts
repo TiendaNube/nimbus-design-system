@@ -12,6 +12,8 @@ import {
   dtsBundleGeneratorPlugin,
   cssHashRemoverPlugin,
   cssMinimizerPlugin,
+  UseClientInjectionPlugin,
+  MoveFilesIntoDistFolderPlugin,
 } from "./plugins";
 import {
   cssLoaderExtractRule,
@@ -25,6 +27,7 @@ import {
   arrayFilterEmpty,
   isProduction,
   isDevelopment,
+  getComponentsPackageExports,
 } from "./utils";
 
 export const rules = {
@@ -40,6 +43,8 @@ export const plugins = {
   cssHashRemoverPlugin,
   cssMinimizerPlugin,
   dtsBundleGeneratorPlugin,
+  UseClientInjectionPlugin,
+  MoveFilesIntoDistFolderPlugin,
 };
 export const configuration = {
   aliasItems,
@@ -50,7 +55,13 @@ export const configuration = {
   getConfiguration,
 };
 
-export const utils = { rootDir, arrayFilterEmpty, isProduction, isDevelopment };
+export const utils = {
+  rootDir,
+  arrayFilterEmpty,
+  isProduction,
+  isDevelopment,
+  getComponentsPackageExports,
+};
 
 const webpack = {
   rules,

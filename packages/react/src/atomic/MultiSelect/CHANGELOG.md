@@ -2,6 +2,16 @@
 
 Use a multi-select box when a user needs to select more than one option from a list.
 
+## 2025-03-18 `1.1.0`
+
+#### 🎉 New features
+
+- Adds `use-client` directive to the build output in order to support NextJS applications. ([#276](https://github.com/TiendaNube/nimbus-design-system/pull/276) by [@joacotornello](https://github.com/joacotornello))
+
+### 💡 Others
+
+- Rebuild after build process changes to add support for modular imports and Server Components. ([#276](https://github.com/TiendaNube/nimbus-design-system/pull/276) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2023-12-15 `1.0.1`
 
 #### 🐛 Bug fixes

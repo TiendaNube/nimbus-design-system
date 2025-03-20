@@ -2,7 +2,17 @@
 
 This package is intended for internal use in generating custom script builds at design system build time.
 
-## 2025-03-07 `1.4.1`
+## 2025-03-18 `1.6.0`
+
+#### 🎉 New features
+
+- Improved ComponentBuilder flexibility to support generic usage, including Nimbus Patterns. ([#276](https://github.com/TiendaNube/nimbus-design-system/pull/276) by [@joacotornello](https://github.com/joacotornello))
+
+### 💡 Others
+
+- Rebuild after build process changes to add support for modular imports and Server Components. ([#276](https://github.com/TiendaNube/nimbus-design-system/pull/276) by [@joacotornello](https://github.com/joacotornello))
+
+## 2025-03-07 `1.5.0`
 
 #### 🐛 Bug fixes
 

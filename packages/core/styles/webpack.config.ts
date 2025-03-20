@@ -15,7 +15,7 @@ const baseConfig = {
   module: { rules: [rules.cssLoaderExtractRule] },
 };
 
-const config = configuration.getConfiguration(baseConfig as any);
+const config = configuration.getConfiguration(baseConfig);
 delete config.plugins;
 config.plugins = [
   plugins.vanillaExtractPlugin,
@@ -27,6 +27,8 @@ config.plugins = [
       `node ${utils.rootDir}/node_modules/.bin/dts-bundle-generator -o ./dist/themes/dark.d.ts ./src/themes/nimbus-theme-dark.css.ts`,
     ],
   }),
+  new plugins.MoveFilesIntoDistFolderPlugin(),
+  new plugins.UseClientInjectionPlugin(),
 ];
 
 export default () => config;

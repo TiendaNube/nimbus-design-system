@@ -1,3 +1,5 @@
+"use client";
+
 import { Radio } from "./Radio";
 
 export { Radio } from "./Radio";

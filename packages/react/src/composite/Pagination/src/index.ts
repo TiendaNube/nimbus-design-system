@@ -1,3 +1,5 @@
+"use client";
+
 import { Pagination } from "./Pagination";
 
 export { Pagination } from "./Pagination";
