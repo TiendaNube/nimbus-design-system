@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2025-03-18 `9.13.1`
+
+#### 🐛 Bug fixes
+
+- Rebuild after failed release. ([#277](https://github.com/TiendaNube/nimbus-design-system/pull/277) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-03-18 `9.13.0`
 
 #### 🎉 New features
@@ -22,7 +28,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 #### 🐛 Bug fixes
 
-- We detected that when the radio component, when displayed as a button, didn't match the [Figma](https://www.figma.com/design/TDwgeblsVNeHKKRvoDRk7n/%E2%98%81%EF%B8%8F-Nimbus-v2.0?node-id=2609-46017&p=f&t=4qBwkk1Tk4JoHDsS-0) specified colors for both **disabled** and **checked** enabled attributes at the same time. ([#264](https://github.com/TiendaNube/nimbus-design-system/pull/264) by [@joacotornello](https://github.com/joacotornello) )
+- We detected that when the radio component, when displayed as a button, didn't match the [Figma](https://www.figma.com/design/TDwgeblsVNeHKKRvoDRk7n/%E2%98%81%EF%B8%8F-Nimbus-v2.0?node-id=2609-46017&p=f&t=4qBwkk1Tk4JoHDsS-0) specified colors for both **disabled** and **checked** enabled attributes at the same time. ([#264](https://github.com/TiendaNube/nimbus-design-system/pull/264) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2024-12-18 `9.11.6`
 
