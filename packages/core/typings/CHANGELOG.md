@@ -2,6 +2,12 @@
 
 This package is intended for internal use in creating components with polymorphic typing.
 
+## 2025-03-20 `1.2.1`
+
+#### 🐛 Bug fixes
+
+- Rebuild after failed release. ([#277](https://github.com/TiendaNube/nimbus-design-system/pull/277) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-03-18 `1.2.0`
 
 #### 🎉 New features
