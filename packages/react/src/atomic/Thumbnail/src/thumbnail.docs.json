@@ -3,7 +3,7 @@
   "name": "Thumbnail",
   "totalProps": 4,
   "packageName": "@nimbus-ds/thumbnail",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/thumbnail",
   "props": [
     {

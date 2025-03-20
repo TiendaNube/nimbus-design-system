@@ -3,7 +3,7 @@
   "name": "Radio",
   "totalProps": 5,
   "packageName": "@nimbus-ds/radio",
-  "version": "2.2.1",
+  "version": "2.3.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/radio",
   "props": [
     {

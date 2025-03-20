@@ -3,7 +3,7 @@
   "name": "Tabs",
   "totalProps": 3,
   "packageName": "@nimbus-ds/tabs",
-  "version": "2.3.1",
+  "version": "2.4.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/tabs",
   "props": [
     {

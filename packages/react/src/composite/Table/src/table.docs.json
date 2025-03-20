@@ -3,7 +3,7 @@
   "name": "Table",
   "totalProps": 1,
   "packageName": "@nimbus-ds/table",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/table",
   "props": [
     {

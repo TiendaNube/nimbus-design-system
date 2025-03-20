@@ -3,7 +3,7 @@
   "name": "MultiSelect",
   "totalProps": 7,
   "packageName": "@nimbus-ds/multi-select",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/multi-select",
   "props": [
     {

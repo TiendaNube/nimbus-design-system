@@ -3,7 +3,7 @@
   "name": "Chip",
   "totalProps": 3,
   "packageName": "@nimbus-ds/chip",
-  "version": "2.3.3",
+  "version": "2.3.4",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/chip",
   "props": [
     {
