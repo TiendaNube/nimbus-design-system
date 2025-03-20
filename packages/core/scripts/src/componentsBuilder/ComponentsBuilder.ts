@@ -29,7 +29,7 @@ export class ComponentsBuilder {
     console.log("⚙️ Building components on paths: ", subPaths.join(", "));
 
     const allComponents: string[] = subPaths
-      .map((subPath) => this.getComponentsFrom(subPath))
+      .map((subPath) => this.getComponentsFrom(subPath).flat())
       .flat();
 
     const componentsCommand = allComponents
