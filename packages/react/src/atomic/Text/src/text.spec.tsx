@@ -248,4 +248,27 @@ describe("GIVEN <Text />", () => {
       ).toContain("WebkitLineClamp");
     });
   });
+
+  describe("THEN should correctly render the textDecoration", () => {
+    it("THEN should correctly render textDecoration none", () => {
+      makeSut({ textDecoration: "none" });
+      expect(
+        screen.getByTestId("text-element").getAttribute("class")
+      ).toContain("textDecoration-none");
+    });
+
+    it("THEN should correctly render textDecoration underline", () => {
+      makeSut({ textDecoration: "underline" });
+      expect(
+        screen.getByTestId("text-element").getAttribute("class")
+      ).toContain("textDecoration-underline");
+    });
+
+    it("THEN should correctly render textDecoration line-through", () => {
+      makeSut({ textDecoration: "line-through" });
+      expect(
+        screen.getByTestId("text-element").getAttribute("class")
+      ).toContain("textDecoration-line-through");
+    });
+  });
 });

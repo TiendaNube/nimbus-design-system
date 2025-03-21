@@ -1,4 +1,9 @@
-import { Conditions, TextAlign, WordBreak } from "../../../types";
+import {
+  Conditions,
+  TextAlign,
+  TextDecoration,
+  WordBreak,
+} from "../../../types";
 import { textSprinkle } from "./nimbus-text.css";
 
 const { properties: propertiesText } = textSprinkle;
@@ -52,4 +57,8 @@ export interface TextSprinkle {
    * The amount of lines at which the text will be trimmed, showing an ellipsis when overflowed.
    */
   wordBreak?: WordBreak | TextConditions<WordBreak>;
+  /**
+   * The textDecoration shorthand property sets the appearance of decorative lines on text.
+   */
+  textDecoration?: TextDecoration | TextConditions<TextDecoration>;
 }

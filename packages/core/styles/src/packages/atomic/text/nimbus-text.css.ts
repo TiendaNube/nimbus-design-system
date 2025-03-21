@@ -10,6 +10,7 @@ import {
   fontWeightProperties,
   lineHeightProperties,
   textAlignProperties,
+  textDecorationProperties,
   wordBreakProperties,
 } from "../../../properties";
 import { mediaQueries, varsThemeBase } from "../../../themes";
@@ -78,6 +79,7 @@ const properties = {
   fontWeight: fontWeightProperties,
   fontSize: fontSizeProperties,
   wordBreak: wordBreakProperties,
+  textDecoration: textDecorationProperties,
 };
 
 const defineProperties = defineRainbowProperties({
