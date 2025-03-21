@@ -129,7 +129,11 @@ export const pointerEventsProperties: PointerEvents[] = [
   "inherit",
 ];
 
-export const textDecorationProperties: TextDecoration[] = ["none", "underline"];
+export const textDecorationProperties: TextDecoration[] = [
+  "none",
+  "underline",
+  "line-through",
+];
 
 export const fontWeightProperties = {
   regular: varsThemeBase.fontWeight.regular,
