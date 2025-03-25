@@ -42,7 +42,7 @@ jobs:
           yarn build:components
 
       - name: Build packages
-        run: babel-node -x .ts ./.scripts/build-packages"
+        run: babel-node -x .ts ./.scripts/build-packages
 
       - name: Run lint
         run: yarn lint
