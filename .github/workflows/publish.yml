@@ -11,12 +11,21 @@ on:
 
 jobs:
   publish-packages-npm:
-    runs-on: ubuntu-latest-large
+    runs-on: ubuntu-latest
     timeout-minutes: 18
     env:
       TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
       TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
     steps:
+      - name: Increase swapfile
+        run: |
+          sudo swapoff -a
+          sudo fallocate -l 15G /swapfile
+          sudo chmod 600 /swapfile
+          sudo mkswap /swapfile
+          sudo swapon /swapfile
+          sudo swapon --show
+
       - name: Checkout
         uses: actions/checkout@v3
 
