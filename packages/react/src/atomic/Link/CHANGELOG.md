@@ -2,6 +2,12 @@
 
 The Link component allows us to navigate to external addresses.
 
+## 2025-03-25 `4.3.0`
+
+### 🎉 New features
+
+- Added `line-through` option to `textDecoration` property. ([#279](https://github.com/TiendaNube/nimbus-design-system/pull/279) by [@guidobotta](https://github.com/guidobotta))
+
 ## 2025-03-18 `4.2.0`
 
 #### 🎉 New features
