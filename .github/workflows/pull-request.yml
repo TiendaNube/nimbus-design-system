@@ -42,7 +42,9 @@ jobs:
           yarn build:components
 
       - name: Build packages
-        run: babel-node -x .ts ./.scripts/build-packages
+        run: |
+          export NODE_OPTIONS="--max_old_space_size=12288"
+          yarn build:packages
 
       - name: Run lint
         run: yarn lint
