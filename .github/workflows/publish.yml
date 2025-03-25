@@ -45,10 +45,24 @@ jobs:
             GITHUB_TOKEN=${{ secrets.PAT_CHANGE_BRANCH_PROTECTION_RULES_FROM_USER_NIMBUS }}
           include_env_vars: true
 
-      - name: Publish packages
+      - name: Build tokens
+        run: yarn build:tokens
+
+      - name: Build icons
+        run: yarn build:icons
+      
+      - name: Build components
         run: |
-          export NODE_OPTIONS="--max_old_space_size=8192"
-          yarn publish:stable
+          export NODE_OPTIONS="--max_old_space_size=12288"
+          yarn build:components
+
+      - name: Build packages
+        run: |
+          export NODE_OPTIONS="--max_old_space_size=12288"
+          yarn build:packages
+
+      - name: Publish packages
+        run: yarn publish:stable
         env:
           YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTOMATION_PUBLISH }}
 
