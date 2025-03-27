@@ -10,6 +10,15 @@ jobs:
       TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
       TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
     steps:
+      - name: Increase swapfile
+        run: |
+          sudo swapoff -a
+          sudo fallocate -l 15G /swapfile
+          sudo chmod 600 /swapfile
+          sudo mkswap /swapfile
+          sudo swapon /swapfile
+          sudo swapon --show
+          
       - name: Checkout
         uses: actions/checkout@v3
 
@@ -30,11 +39,22 @@ jobs:
       - name: Install dependencies
         if: steps.cache-dependencies.outputs.cache-hit != 'true'
         run: yarn
+        
+      - name: Build tokens
+        run: yarn build:tokens
 
-      - name: Run build
+      - name: Build icons
+        run: yarn build:icons
+      
+      - name: Build components
         run: |
           export NODE_OPTIONS="--max_old_space_size=12288"
-          yarn build
+          yarn build:components
+
+      - name: Build packages
+        run: |
+          export NODE_OPTIONS="--max_old_space_size=12288"
+          yarn build:packages
 
       - name: Run lint
         run: yarn lint

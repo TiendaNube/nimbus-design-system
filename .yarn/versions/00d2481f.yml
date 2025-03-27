@@ -1,0 +1,25 @@
+releases:
+  "@nimbus-ds/box": minor
+  "@nimbus-ds/components": minor
+  "@nimbus-ds/link": minor
+  "@nimbus-ds/styles": minor
+  "@nimbus-ds/text": minor
+
+declined:
+  - nimbus-design-system
+  - "@nimbus-ds/badge"
+  - "@nimbus-ds/checkbox"
+  - "@nimbus-ds/chip"
+  - "@nimbus-ds/file-uploader"
+  - "@nimbus-ds/popover"
+  - "@nimbus-ds/radio"
+  - "@nimbus-ds/tag"
+  - "@nimbus-ds/toast"
+  - "@nimbus-ds/toggle"
+  - "@nimbus-ds/tooltip"
+  - "@nimbus-ds/accordion"
+  - "@nimbus-ds/alert"
+  - "@nimbus-ds/card"
+  - "@nimbus-ds/modal"
+  - "@nimbus-ds/sidebar"
+  - "@nimbus-ds/tabs"

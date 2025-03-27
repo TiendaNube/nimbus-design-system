@@ -2,6 +2,12 @@
 
 Text is a basic component that allows us to write blocks of text and give it formatting to use within other components, sections and pages of our application or website.
 
+## 2025-03-25 `6.4.0`
+
+### 🎉 New features
+
+- Added `textDecoration` property to `Text` component. ([#279](https://github.com/TiendaNube/nimbus-design-system/pull/279) by [@guidobotta](https://github.com/guidobotta))
+
 ## 2025-03-18 `6.3.1`
 
 ### 💡 Others

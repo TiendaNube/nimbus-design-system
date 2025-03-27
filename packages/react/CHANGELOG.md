@@ -2,6 +2,13 @@
 
 Nimbus is an open-source Design System created by Tiendanube / Nuvesmhop’s team to empower and enhance more stories every day, with simplicity, accessibility, consistency and performance.
 
+## 2025-03-25 `5.9.0`
+
+#### 🐛 New features
+
+- Added `textDecoration` property to `Text` component. ([#279](https://github.com/TiendaNube/nimbus-design-system/pull/279) by [@guidobotta](https://github.com/guidobotta))
+- Added `line-through` option to `textDecoration` property. ([#279](https://github.com/TiendaNube/nimbus-design-system/pull/279) by [@guidobotta](https://github.com/guidobotta))
+
 ## 2025-03-20 `5.8.1` and `5.8.2`
 
 #### 🐛 Bug fixes
