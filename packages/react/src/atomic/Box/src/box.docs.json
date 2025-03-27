@@ -3,7 +3,7 @@
   "name": "Box",
   "totalProps": 90,
   "packageName": "@nimbus-ds/box",
-  "version": "4.1.1",
+  "version": "4.2.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/box",
   "props": [
     {
@@ -9768,6 +9768,7 @@
           "properties": {
             "focus": {
               "enum": [
+                "line-through",
                 "none",
                 "underline"
               ],
@@ -9776,6 +9777,7 @@
             },
             "focusWithin": {
               "enum": [
+                "line-through",
                 "none",
                 "underline"
               ],
@@ -9784,6 +9786,7 @@
             },
             "active": {
               "enum": [
+                "line-through",
                 "none",
                 "underline"
               ],
@@ -9792,6 +9795,7 @@
             },
             "hover": {
               "enum": [
+                "line-through",
                 "none",
                 "underline"
               ],
@@ -9800,6 +9804,7 @@
             },
             "disabled": {
               "enum": [
+                "line-through",
                 "none",
                 "underline"
               ],
@@ -9808,6 +9813,7 @@
             },
             "xs": {
               "enum": [
+                "line-through",
                 "none",
                 "underline"
               ],
@@ -9816,6 +9822,7 @@
             },
             "md": {
               "enum": [
+                "line-through",
                 "none",
                 "underline"
               ],
@@ -9824,6 +9831,7 @@
             },
             "lg": {
               "enum": [
+                "line-through",
                 "none",
                 "underline"
               ],
@@ -9832,6 +9840,7 @@
             },
             "xl": {
               "enum": [
+                "line-through",
                 "none",
                 "underline"
               ],
@@ -9854,6 +9863,7 @@
         },
         {
           "enum": [
+            "line-through",
             "none",
             "underline"
           ],

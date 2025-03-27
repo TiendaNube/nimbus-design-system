@@ -1,9 +1,9 @@
 {
   "id": "text",
   "name": "Text",
-  "totalProps": 9,
+  "totalProps": 10,
   "packageName": "@nimbus-ds/text",
-  "version": "6.3.1",
+  "version": "6.4.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/text",
   "props": [
     {
@@ -446,6 +446,69 @@
         }
       ],
       "title": "textAlign",
+      "required": false
+    },
+    {
+      "description": "The textDecoration shorthand property sets the appearance of decorative lines on text.",
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "xs": {
+              "enum": [
+                "line-through",
+                "none",
+                "underline"
+              ],
+              "type": "string",
+              "title": "xs"
+            },
+            "md": {
+              "enum": [
+                "line-through",
+                "none",
+                "underline"
+              ],
+              "type": "string",
+              "title": "md"
+            },
+            "lg": {
+              "enum": [
+                "line-through",
+                "none",
+                "underline"
+              ],
+              "type": "string",
+              "title": "lg"
+            },
+            "xl": {
+              "enum": [
+                "line-through",
+                "none",
+                "underline"
+              ],
+              "type": "string",
+              "title": "xl"
+            }
+          },
+          "additionalProperties": false,
+          "propertyOrder": [
+            "xs",
+            "md",
+            "lg",
+            "xl"
+          ]
+        },
+        {
+          "enum": [
+            "line-through",
+            "none",
+            "underline"
+          ],
+          "type": "string"
+        }
+      ],
+      "title": "textDecoration",
       "required": false
     },
     {
