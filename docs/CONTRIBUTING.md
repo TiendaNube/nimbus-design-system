@@ -4,6 +4,10 @@
 
 First of all, **thank you** 🤜🏻💥🤛🏽 for taking the time to contribute to our project!
 
+Feel free to check our contribution flow below to understand the process your contribution will follow:
+
+<img alt="Nimbus Contribution Flow" src="./CONTRIBUTION_FLOW.png" />
+
 Here's how you can contribute to Nimbus:
 
 ## 🐛 Reporting a bug
