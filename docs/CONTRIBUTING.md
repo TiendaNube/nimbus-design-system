@@ -56,6 +56,33 @@ When creating a new component, follow these guidelines:
 
    - Use sprinkle CSS inside `@nimbus-ds/styles` internal core package.
    - Create a specific package folder in `packages/core/styles/src/packages`
+   - Create a package.css.ts file where all the styles should be created, using `vanilla-extract`
+   - Access theme tokens through the `varsThemeBase` import from themes:
+
+     ```ts
+     import { varsThemeBase } from "../../../themes";
+
+     // ✅ Correct way - Use varsThemeBase to access tokens
+     const styles = {
+       color: varsThemeBase.colors.neutral.textLow,
+       spacing: varsThemeBase.spacing[1],
+       borderRadius: varsThemeBase.shape.border.radius[2],
+     };
+
+     // ❌ Incorrect - Don't import tokens directly
+     import { tokens } from "../../../themes";
+     const styles = {
+       color: tokens.colors.neutral100, // Don't do this
+       spacing: tokens.space[1], // Don't do this
+     };
+     ```
+
+     This ensures your styles adapt correctly to different themes. You can see examples of proper token usage in components like:
+
+     - Lists: Using `varsThemeBase.colors.neutral.textLow` for text color
+     - Links: Using `varsThemeBase.colors.primary.interactive` for interactive states
+     - FileUploader: Using `varsThemeBase.colors.primary.surface` for backgrounds
+
    - Export styles in `packages/core/styles/src/index.ts`
 
 3. **Documentation**
@@ -145,6 +172,7 @@ When fixing a bug:
 - Maintain consistent naming conventions
 - Write clear, self-documenting code
 - Include JSDoc comments for complex logic, or small comments for every function that is not self-explanatory by itself
+- Avoid deep imports like `@nimbus-ds/styles/packages/atomic` as it's a bad practice in monorepos. You should use the package's main entry point instead
 
 Remember to:
 
