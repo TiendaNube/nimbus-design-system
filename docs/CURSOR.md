@@ -4,7 +4,11 @@ This document provides a template for creating new components in the Nimbus Desi
 
 ## 📝 Instructions
 
-How to use: - Replace [ComponentName] with the name of the component - Depending on the component, replace [atomic/composite] with the correct folder name - Add more information in the Component specifications, Usage example and Component props sections - Attach the component screenshot to the Cursor prompt chat.
+How to use: 
+    - Replace [ComponentName] with the name of the component
+    - Depending on the component, replace [atomic/composite] with the correct folder name
+    - Add more information in the Component specifications, Usage example and Component props sections
+    - Attach the component screenshot to the Cursor prompt chat.
 
 PROMPT:
 
