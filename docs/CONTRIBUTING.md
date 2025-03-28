@@ -161,6 +161,23 @@ When fixing a bug:
   - Updated `library@version` ([#PR](PR_URL) by [@author](AUTHOR_URL))
   ```
 
+### **Yarn Version Updates**
+
+When updating package versions:
+
+1. Run `yarn bump:check --interactive` to check for version updates
+2. For each package:
+   - Review the changes carefully
+   - Choose appropriate version bump:
+     - `patch` for backwards-compatible bug fixes
+     - `minor` for new features (backwards-compatible)
+     - `major` for breaking changes
+   - Decline updates if changes don't warrant a version bump
+3. **Important:** Always decline version updates for the root project (`nimbus-design-system`)
+4. After confirming version bumps:
+   - Update changelogs accordingly
+   - Commit version changes
+
 ### Pull Request Process
 
 1. Follow our commit message convention
