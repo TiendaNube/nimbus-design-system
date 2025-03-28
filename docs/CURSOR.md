@@ -16,8 +16,7 @@ Build me a new [ComponentName] package component in the Nimbus Design System mon
 It should be a new npm package in the Nimbus Design System monorepo, with the specific structure following the project conventions specified in the docs/CONTRIBUTING.md file.
 
 /// Component specifications
-The ComponentName component should be a [component-description], with a [component-description], composted of [component-description].
-
+The ComponentName component should be a [component-description], with a [component-description], composed of [component-description].
 The use of the component, from the client side, should be in the following format:
 /// Usage example
 
