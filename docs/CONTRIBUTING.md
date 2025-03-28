@@ -20,9 +20,135 @@ None of our components fulfill the needs of your application or feature? Is a co
 - First make sure there's actually _no way_ of achieving what you wish by using our existing components. You can verify all properties and features by browsing our [Storybook library](https://tiendanube.github.io/design-system-nimbus/).
 - If there's no component to suit your needs, you can request a new one (or a new feature for an existing one) by opening an [Issue](https://github.com/TiendaNube/nimbus-design-system/issues/new?assignees=juanchigallego%2C+diegopsilverio%2C+gabifagundes%2C+juniorconquista&labels=enhancement&template=NEW_REQUEST.md&title=%5BREQUEST%5D). Please take the time to describe thoroughly **what** the component should do, **how** it should look (if you could provide sketches or benchmarks it would help us a lot), and **where** in your interface or product it would be used.
 
-## 💻 Patching a bug
+## 💻 Creating new components or fixing bugs
 
-If you wrote a patch that fixes a bug in our [Issues](https://github.com/TiendaNube/nimbus-design-system/issues) directory, please:
+### Creating a new component
 
-- Open a [new Pull Request](https://github.com/TiendaNube/nimbus-design-system/compare) on Github with the patch.
-- Ensure the description clearly addresses the issue and solution. Tag the issue number if applicable.
+When creating a new component, follow these guidelines:
+
+1. **Location and Structure**
+
+   - Place your component in the appropriate folder under `packages/react/src/atomic` or `packages/react/src/composite`
+   - Follow the established folder structure:
+     ```
+     component-name/
+     ├── src/
+     │   ├── components/              # Optional directory for sub-components
+     │   │   └── ComponentNameSubComponentName/
+     │   │       ├── index.ts
+     │   │       ├── ComponentNameSubComponentName.tsx
+     │   │       ├── ComponentNameSubComponentName.spec.tsx
+     │   │       ├── ComponentNameSubComponentName.stories.tsx
+     │   │       └── ComponentNameSubComponentName.types.ts
+     │   ├── index.ts
+     │   ├── ComponentName.tsx
+     │   ├── ComponentName.spec.tsx
+     │   ├── ComponentName.stories.tsx
+     │   └── ComponentName.types.ts
+     ├── CHANGELOG.md
+     └── package.json
+     ├── README.md
+     ├── tsconfig.json
+     └── webpack.config.ts
+     ```
+
+2. **Styling**
+
+   - Use sprinkle CSS inside `@nimbus-ds/styles` internal core package.
+   - Create a specific package folder in `packages/core/styles/src/packages`
+   - Export styles in `packages/core/styles/src/index.ts`
+
+3. **Documentation**
+
+   - Include comprehensive Storybook stories
+   - Document all props and their types
+   - Add usage examples
+   - Update CHANGELOG.md following our internal Changelog format
+   - Ensure docs are correctly generated after running the build:docs script
+   - Make sure all component prop interfaces/types:
+     - End with 'Props' (e.g., for **ComponentName**: props would be **ComponentNameProps**) for proper documentation generation
+     - Are exported to be detected via the Docgen script
+
+4. **Testing**
+
+   - Write Jest unit tests for all component features
+   - Ensure accessibility testing is included
+   - Maintain test coverage standards
+
+5. **Package Configuration**
+   - Only include necessary dependencies in package.json
+   - Avoid duplicating dependencies from root package.json
+   - Follow semantic versioning
+
+### Fixing bugs
+
+When fixing a bug:
+
+1. **Issue Reference**
+
+   - Link your PR to the related issue in the issues
+   - If no issue exists, create one first or explain the reference
+
+2. **Testing**
+
+   - Add tests that reproduce the bug
+   - Ensure fix doesn't break existing functionality
+   - Run full test suite before submitting
+
+3. **Documentation**
+   - Update documentation if behavior changes
+   - Add notes to CHANGELOG.md
+
+### **Changelog Updates**
+
+- Update the component's package-level CHANGELOG.md
+- Update @nimbus-ds/components CHANGELOG.md in packages/react/CHANGELOG.md if a component has been updated.
+- For repository-level changes (build scripts, configs, etc), update root CHANGELOG.md
+- Follow the format:
+
+  ```md
+  ## YYYY-MM-DD `version`
+
+  #### 🛠 Breaking changes
+
+  - Breaking changes that require major version bump ([#PR](PR_URL) by [@author](AUTHOR_URL))
+
+  #### 🎉 New features
+
+  - New features that don't break existing functionality ([#PR](PR_URL) by [@author](AUTHOR_URL))
+
+  #### 🐛 Bug fixes
+
+  - Bug fixes and minor updates ([#PR](PR_URL) by [@author](AUTHOR_URL))
+
+  #### 💡 Others
+
+  - Documentation and build process changes ([#PR](PR_URL) by [@author](AUTHOR_URL))
+
+  #### 📚 3rd party library updates
+
+  - Updated `library@version` ([#PR](PR_URL) by [@author](AUTHOR_URL))
+  ```
+
+### Pull Request Process
+
+1. Follow our commit message convention
+2. Update documentation as needed
+3. Ensure all tests pass
+4. Request review from maintainers
+5. Address review feedback promptly
+
+### Code Style
+
+- Follow TypeScript best practices
+- Use functional components
+- Maintain consistent naming conventions
+- Write clear, self-documenting code
+- Include JSDoc comments for complex logic, or small comments for every function that is not self-explanatory by itself
+
+Remember to:
+
+- Keep components focused and single-purpose
+- Prioritize accessibility
+- Consider backward compatibility
+- Write reusable and maintainable code
