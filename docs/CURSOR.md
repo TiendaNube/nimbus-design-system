@@ -3,7 +3,6 @@
 This document provides a template for creating new components in the Nimbus Design System using Cursor AI. Follow this template to ensure consistency and completeness when requesting new component implementations.
 
 > [!IMPORTANT]
->
 > **Cursor AI Limitations**
 >
 > While Cursor AI is a powerful tool for accelerating component development, please be aware of its current limitations:
