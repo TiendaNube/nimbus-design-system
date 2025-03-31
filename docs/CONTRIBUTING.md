@@ -50,7 +50,7 @@ When creating a new component, follow these guidelines:
      │   ├── ComponentName.stories.tsx
      │   └── ComponentName.types.ts
      ├── CHANGELOG.md
-     └── package.json
+     ├── package.json
      ├── README.md
      ├── tsconfig.json
      └── webpack.config.ts
