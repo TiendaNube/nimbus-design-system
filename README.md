@@ -44,6 +44,10 @@ You can browse through our [playground](https://tiendanube.github.io/nimbus-desi
   $ yarn prepare-husky
   ```
 
+  ```shell
+  $ yarn build
+  ```
+
 - **Start developing**
 
   Start the local environment with
