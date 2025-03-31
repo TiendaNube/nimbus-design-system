@@ -4,8 +4,6 @@ This document provides a template for creating new components in the Nimbus Desi
 
 > [!IMPORTANT]
 >
-> ## ⚠️ Important Warning
->
 > **Cursor AI Limitations**
 >
 > While Cursor AI is a powerful tool for accelerating component development, please be aware of its current limitations:
