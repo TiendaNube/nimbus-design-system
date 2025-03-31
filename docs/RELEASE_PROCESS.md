@@ -28,6 +28,14 @@ Currently also with a gihub action that also validates on each pull request if t
 Stable versions are automatically published when new changes are merged into `master`. If you want to publish a version manually, you can do so by following the candidate process, but replacing `yarn publish:next` with `yarn publish:stable`.
 After merging into `master`, a new version of [our component stories](https://tiendanube.github.io/nimbus-design-system) is generated automatically.
 
+### Updating GitHub Releases
+
+After publishing a stable release, update the GitHub Releases section:
+
+1. Go to https://github.com/TiendaNube/nimbus-design-system/releases
+2. Create a new tag if it doesn't exist (use format YYYY.MM.DD, e.g. 2024.03.20)
+3. Create a new release following the previous releases format.
+
 ## Updating the documentation
 
 Our documentation is in a [separate repository](https://github.com/TiendaNube/nimbus-doc) and updating it is a three-step process:
