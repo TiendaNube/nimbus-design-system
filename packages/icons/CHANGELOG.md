@@ -2,9 +2,15 @@
 
 Nimbus-icons is an open source icon system built by Nuvemshop / Tiendanube.
 
+## 2025-03-31 `1.7.0`
+
+#### 🎉 New features
+
+- Adds `repeat` icon. ([#277](https://github.com/TiendaNube/nimbus-design-system/pull/277) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-03-18 `1.6.1`
 
-### 💡 Others
+#### 💡 Others
 
 - Rebuild after build process changes to add support for modular imports and Server Components. ([#276](https://github.com/TiendaNube/nimbus-design-system/pull/276) by [@joacotornello](https://github.com/joacotornello))
 
