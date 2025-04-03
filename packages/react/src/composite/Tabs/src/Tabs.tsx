@@ -1,29 +1,28 @@
 import React, { useState } from "react";
 import { tabs } from "@nimbus-ds/styles";
 
-import { TabsProps, TabsComponents, ControlledTabsProperties, BaseTabsProperties } from "./tabs.types";
+import { TabsProps, TabsComponents } from "./tabs.types";
 import { TabsButton, TabsItem } from "./components";
+import { isControlled } from "./tabs.definitions";
 
-const isControlled = (props: BaseTabsProperties | ControlledTabsProperties): props is ControlledTabsProperties => {
-  return 'selected' in props && 'onSelect' in props;
-};
-
-const Tabs: React.FC<TabsProps> & TabsComponents = (props) => {
-  const {
-    className: _className,
-    style: _style,
-    children,
-    preSelectedTab,
-    fullWidth = false,
-    ...rest
-  } = props;
-
+const Tabs: React.FC<TabsProps> & TabsComponents = ({
+  className: _className,
+  style: _style,
+  children,
+  preSelectedTab,
+  fullWidth = false,
+  ...rest
+}: TabsProps) => {
   // Internal state for uncontrolled mode
-  const [internalSelectedTab, setInternalSelectedTab] = useState<number>(preSelectedTab || 0);
+  const [internalSelectedTab, setInternalSelectedTab] = useState<number>(
+    preSelectedTab || 0
+  );
 
   // Use controlled or uncontrolled state
-  const selectedTab = isControlled(props) ? props.selected : internalSelectedTab;
-  const setSelectedTab = isControlled(props) ? props.onTabSelect : setInternalSelectedTab;
+  const selectedTab = isControlled(rest) ? rest.selected : internalSelectedTab;
+  const setSelectedTab = isControlled(rest)
+    ? rest.onTabSelect
+    : setInternalSelectedTab;
 
   return (
     <div {...rest}>

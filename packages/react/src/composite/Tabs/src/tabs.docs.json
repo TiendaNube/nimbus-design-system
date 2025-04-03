@@ -1,7 +1,7 @@
 {
   "id": "tabs",
   "name": "Tabs",
-  "totalProps": 3,
+  "totalProps": 5,
   "packageName": "@nimbus-ds/tabs",
   "version": "2.5.0-rc.1",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/tabs",
@@ -24,6 +24,20 @@
       "type": "boolean",
       "title": "fullWidth",
       "required": false
+    },
+    {
+      "description": "The currently selected tab index.",
+      "type": "number",
+      "title": "selected",
+      "required": true
+    },
+    {
+      "description": "Callback fired when the selected tab changes.",
+      "type": "object",
+      "additionalProperties": false,
+      "propertyOrder": [],
+      "title": "onTabSelect",
+      "required": true
     }
   ],
   "subComponents": [

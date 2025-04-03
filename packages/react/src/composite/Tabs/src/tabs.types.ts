@@ -39,5 +39,10 @@ export interface ControlledTabsProperties extends BaseTabsProperties {
   preSelectedTab?: never;
 }
 
-export type TabsProps = (BaseTabsProperties | ControlledTabsProperties) &
-  Omit<HTMLAttributes<HTMLDivElement>, "children" | "onSelect">;
+export type TabsProps =
+  | (BaseTabsProperties | ControlledTabsProperties) &
+      Omit<HTMLAttributes<HTMLDivElement>, "children" | "onSelect">;
+
+// For docs purposes, we need to merge the two types
+export type TabsProperties = BaseTabsProperties &
+  Omit<ControlledTabsProperties, "preSelectedTab">;

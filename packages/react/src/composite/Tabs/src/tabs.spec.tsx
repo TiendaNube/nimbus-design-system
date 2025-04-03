@@ -60,15 +60,16 @@ describe("GIVEN <Tabs />", () => {
       mockOnTabSelect.mockClear();
     });
 
-    const renderControlled = (props: Partial<Omit<ControlledTabsProperties, "children">>) => {
-      return render(
+    const renderControlled = (
+      props: Partial<Omit<ControlledTabsProperties, "children">>
+    ) =>
+      render(
         <Tabs selected={0} onTabSelect={mockOnTabSelect} {...props}>
           <Tabs.Item label="Tab 1">Content 1</Tabs.Item>
           <Tabs.Item label="Tab 2">Content 2</Tabs.Item>
           <Tabs.Item label="Tab 3">Content 3</Tabs.Item>
         </Tabs>
       );
-    };
 
     it("should render with selected tab", () => {
       renderControlled({ selected: 1 });
