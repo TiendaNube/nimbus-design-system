@@ -7,7 +7,7 @@ export interface TabsComponents {
   Item: typeof TabsItem;
 }
 
-export interface TabsProperties {
+export interface BaseTabsProperties {
   /**
    * The content of the tabs.
    * @TJS-type ReactElement<TabsButtonProps>[];
@@ -24,5 +24,20 @@ export interface TabsProperties {
   fullWidth?: boolean;
 }
 
-export type TabsProps = TabsProperties &
-  Omit<HTMLAttributes<HTMLElement>, "children">;
+export interface ControlledTabsProperties extends BaseTabsProperties {
+  /**
+   * The currently selected tab index.
+   */
+  selected: number;
+  /**
+   * Callback fired when the selected tab changes.
+   */
+  onTabSelect: (index: number) => void;
+  /**
+   * preSelectedTab is not used in controlled mode
+   */
+  preSelectedTab?: never;
+}
+
+export type TabsProps = (BaseTabsProperties | ControlledTabsProperties) &
+  Omit<HTMLAttributes<HTMLDivElement>, "children" | "onSelect">;
