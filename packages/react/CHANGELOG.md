@@ -2,6 +2,12 @@
 
 Nimbus is an open-source Design System created by Tiendanube / Nuvesmhop’s team to empower and enhance more stories every day, with simplicity, accessibility, consistency and performance.
 
+## 2025-04-03 `5.10.0`
+
+#### 🐛 New features
+
+- `Tabs`: Adds Controlled component support, with the new `selected` and `onTabSelect` props. ([#282](https://github.com/TiendaNube/nimbus-design-system/pull/282) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-03-25 `5.9.0`
 
 #### 🐛 New features
