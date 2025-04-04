@@ -3,6 +3,7 @@ import { tabs } from "@nimbus-ds/styles";
 
 import { TabsProps, TabsComponents } from "./tabs.types";
 import { TabsButton, TabsItem } from "./components";
+import { isControlled } from "./tabs.definitions";
 
 const Tabs: React.FC<TabsProps> & TabsComponents = ({
   className: _className,
@@ -12,7 +13,17 @@ const Tabs: React.FC<TabsProps> & TabsComponents = ({
   fullWidth = false,
   ...rest
 }: TabsProps) => {
-  const [selectedTab, setSelectedTab] = useState<number>(preSelectedTab || 0);
+  // Internal state for uncontrolled mode
+  const [internalSelectedTab, setInternalSelectedTab] = useState<number>(
+    preSelectedTab || 0
+  );
+
+  // Use controlled or uncontrolled state
+  const selectedTab = isControlled(rest) ? rest.selected : internalSelectedTab;
+  const setSelectedTab = isControlled(rest)
+    ? rest.onTabSelect
+    : setInternalSelectedTab;
+
   return (
     <div {...rest}>
       <ul role="tablist" className={tabs.classnames.container}>

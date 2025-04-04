@@ -2,6 +2,12 @@
 
 The Tabs component allows us to separate content from the same hierarchy into different tabs.
 
+## 2025-04-03 `2.5.0`
+
+#### 🐛 New features
+
+- Adds Controlled component support, with the new `selected` and `onTabSelect` props. ([#282](https://github.com/TiendaNube/nimbus-design-system/pull/282) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-03-18 `2.4.0`
 
 #### 🎉 New features
