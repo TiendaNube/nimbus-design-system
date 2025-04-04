@@ -1,6 +1,0 @@
-releases:
-  "@nimbus-ds/components": minor
-  "@nimbus-ds/tabs": minor
-
-declined:
-  - nimbus-design-system
