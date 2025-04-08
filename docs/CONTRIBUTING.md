@@ -107,9 +107,40 @@ When creating a new component, follow these guidelines:
    - Maintain test coverage standards
 
 5. **Package Configuration**
+
    - Only include necessary dependencies in package.json
    - Avoid duplicating dependencies from root package.json
    - Follow semantic versioning
+
+6. **External Dependencies Configuration**
+   - For both internal and third-party dependencies that are used across multiple packages, they should be added to the webpack external configuration
+   - This prevents duplicate bundling and ensures consistent versions
+   - To add a new external package:
+     1. For internal Nimbus packages, add to `packages/core/webpack/src/config/external.ts` in the `externalPackages` object:
+        ```typescript
+        export const externalPackages = {
+          "@nimbus-ds/your-component": "@nimbus-ds/your-component",
+          // ... other packages
+        };
+        ```
+     2. For third-party libraries, add to the `externalLibs` object:
+        ```typescript
+        export const externalLibs = {
+          "library-name": "library-name",
+          // ... other libraries
+        };
+        ```
+     3. Consider adding a package to externals if:
+        - It's used by multiple components
+        - It's a fundamental building block of the design system
+        - Bundling it multiple times would be inefficient
+        - It's a third-party library that should be provided by the consuming application
+     4. Benefits of externalizing:
+        - Prevents duplicate bundling of shared code
+        - Reduces bundle sizes
+        - Ensures consistent versions across the application
+        - Allows for better tree-shaking
+        - For third-party libraries: allows the consuming application to provide its own version
 
 ### Fixing bugs
 
