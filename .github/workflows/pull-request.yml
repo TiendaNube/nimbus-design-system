@@ -27,6 +27,9 @@ jobs:
         with:
           node-version-file: ".nvmrc"
           cache: "yarn"
+      
+      - name: Install dependencies
+        run: yarn
 
       - name: Cache NPM dependencies
         uses: actions/cache@v3
@@ -36,10 +39,6 @@ jobs:
             **/node_modules
           key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
 
-      - name: Install dependencies
-        if: steps.cache-dependencies.outputs.cache-hit != 'true'
-        run: yarn
-        
       - name: Build tokens
         run: yarn build:tokens
 
