@@ -1,6 +1,6 @@
 {
   "name": "nimbus-design-system",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Nimbus is the open source design system created by the Nuvemshop design team so that together we can leverage more stories every day, with simplicity, accessibility, consistency and performance.",
   "private": true,
   "workspaces": {
