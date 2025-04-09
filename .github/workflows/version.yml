@@ -21,7 +21,7 @@ jobs:
         with:
           node-version-file: ".nvmrc"
 
-      - name: Cache Yarn global cache
+      - name: Cache yarn & dependencies
         uses: actions/cache@v3
         id: yarn-cache
         with:
