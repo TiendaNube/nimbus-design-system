@@ -11,25 +11,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Set Node version
-        uses: actions/setup-node@v3
-        with:
-          node-version-file: ".nvmrc"
-          cache: "yarn"
+      - uses: ./.github/actions/setup-node-deps
 
-      - name: Cache NPM dependencies
-        uses: actions/cache@v3
-        id: cache-dependencies
-        with:
-          path: |
-            **/node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
-
-      - name: Install dependencies
-        if: steps.cache-dependencies.outputs.cache-hit != 'true'
-        run: yarn
-
-      - name: Install gobal package @vscode/vsce
+      - name: Install global package @vscode/vsce
         run: npm install -g @vscode/vsce
 
       - name: Bump version package
