@@ -60,15 +60,14 @@ reviews:
         Review the React and TypeScript code for adherence to component design system best practices, including:
         - Component reusability, composability, and proper prop interfaces
         - Consistent usage of @nimbus-ds/styles package for styling and theming
-        - Proper implementation of design tokens and style utilities
         - Accessibility compliance (WCAG guidelines, ARIA attributes, keyboard navigation)
         - Cross-browser compatibility and progressive enhancement
+        - Maintain comprehensive JSDoc comments with consistent style, documenting complex logic, and relevant references
         - Full testing coverage (Jest unit tests)
-        - Performance optimization (memoization, code-splitting, bundle size)
-        - Responsive design patterns and mobile-first approach
+        - Performance optimization (memoization, loops)
+        - Responsive design patterns
         - Component scalability and maintainability
         - Proper TypeScript types and interfaces usage
-        - Consistent styling patterns and theme integration
         - Component, prop, and storybook documentation
         Highlight any deviations from these standards.
     - path: "**/CHANGELOG.md"
@@ -85,6 +84,17 @@ reviews:
         - Verify that the component is properly exported and consumed by dependent packages
         - Check for circular dependencies and proper dependency tree structure
         Flag components that should be added to webpack 'externals' to optimize bundle size and prevent duplicate code in the monorepo build.
+    - path: "**/*.types.ts"
+      instructions: |
+        Review TypeScript type definitions following these standards:
+        - Always export a 'ComponentNameProperties' interface, where the ComponentName is the name of the component. This interface should NOT inherit HTMLElement properties or BoxProperties, not any big interface as it will be used for documentation. It should ONLY contain the specific props this component defines.
+        - Prefer type aliases for unions, intersections, and simple object types
+        - Keep types and interfaces focused and single-purpose
+        - Use proper JSDoc comments for all exported types
+        - Leverage TypeScript utility types when appropriate (Partial, Pick, Omit)
+        - Ensure type names are descriptive and follow PascalCase convention
+        - Avoid type 'any' - use 'unknown' for truly unknown types
+        Flag any deviations from these patterns.
   abort_on_close: true
   auto_review:
     enabled: true
