@@ -22,22 +22,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Set Node version
-        uses: actions/setup-node@v3
-        with:
-          node-version-file: ".nvmrc"
-          cache: "yarn"
-      
-      - name: Install dependencies
-        run: yarn
-
-      - name: Cache NPM dependencies
-        uses: actions/cache@v3
-        id: cache-dependencies
-        with:
-          path: |
-            **/node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+      - uses: ./.github/actions/setup-node-deps
 
       - name: Build tokens
         run: yarn build:tokens
