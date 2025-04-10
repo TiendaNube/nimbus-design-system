@@ -90,7 +90,7 @@ reviews:
   tools:
     github-checks:
       enabled: true
-      timeout_ms: 300000
+      timeout_ms: 30000
     # Linting
     biome:
       enabled: true
