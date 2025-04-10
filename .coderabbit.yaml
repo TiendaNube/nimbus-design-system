@@ -4,25 +4,11 @@ tone_instructions: "You are an expert code reviewer specializing in TypeScript, 
 auto_resolve_threads: true
 reviews:
   profile: assertive
-  request_changes_workflow: false
   high_level_summary: true
   high_level_summary_placeholder: "@coderabbitai summary"
-  high_level_summary_in_walkthrough: false
   auto_title_placeholder: "@coderabbitai"
   auto_title_instructions: "Generate a concise PR title following the format 'chore/fix/feat(PackageName): Title' where the type is determined by the nature of changes (chore for maintenance, fix for bug fixes, feat for new features), PackageName is the affected package, if any, and Title is a brief description of the changes."
-  review_status: true
-  commit_status: true
-  fail_commit_status: false
-  collapse_walkthrough: false
-  changed_files_summary: true
-  sequence_diagrams: false
-  assess_linked_issues: true
-  related_issues: true
-  related_prs: true
-  suggested_labels: true
-  auto_apply_labels: false
-  suggested_reviewers: true
-  auto_assign_reviewers: false
+  auto_apply_labels: false # If the suggestions are correct, we can apply them automatically.
   poem: false
   labeling_instructions:
     - label: bug
@@ -100,32 +86,10 @@ reviews:
     drafts: false
     base_branches:
       - "master"
-  finishing_touches:
-    docstrings:
-      enabled: true
   tools:
-    ast-grep:
-      rule_dirs: []
-      util_dirs: []
-      essential_rules: true
-      packages: []
-    shellcheck:
-      enabled: true
-    ruff:
-      enabled: true
-    markdownlint:
-      enabled: true
     github-checks:
       enabled: true
-      timeout_ms: 90000
-    languagetool:
-      enabled: true
-      enabled_rules: []
-      disabled_rules: []
-      enabled_categories: []
-      disabled_categories: []
-      enabled_only: false
-      level: default
+      timeout_ms: 300000
     # Linting
     biome:
       enabled: true
