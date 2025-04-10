@@ -75,6 +75,16 @@ reviews:
       instructions: "Ensure CHANGELOG.md updates follow the established format: YYYY-MM-DD version with categorized entries (Breaking changes, New features, Bug fixes, Others). Each entry must include PR reference and author, and changes must be properly versioned (major/minor/patch). Changes MUST be documented in their respective package's CHANGELOG.md."
     - path: "**/package.json"
       instructions: "Verify version updates follow SemVer: major for breaking changes, minor for new features, patch for bug fixes. Ensure dependencies are properly versioned and peer dependencies are correctly specified."
+    - path: "**/packages/react/src/atomic/**/*.{ts,tsx}"
+      instructions: |
+        Review atomic components for dependency management in monorepo context:
+        - Evaluate if the component is a common dependency across multiple packages
+        - If widely used as a dependency, recommend adding the package name to the 'externals' attribute in webpack.config
+        - This prevents the component from being bundled multiple times across different packages
+        - Ensure proper package naming and versioning for external configuration
+        - Verify that the component is properly exported and consumed by dependent packages
+        - Check for circular dependencies and proper dependency tree structure
+        Flag components that should be added to webpack 'externals' to optimize bundle size and prevent duplicate code in the monorepo build.
   abort_on_close: true
   auto_review:
     enabled: true
