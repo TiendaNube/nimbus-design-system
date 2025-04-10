@@ -13,7 +13,7 @@ The Nimbus Design System utilizes a modular build architecture powered by Webpac
 - Components (`atomic` and `composite`)
 - Core packages (`@nimbus-ds/react`, `@nimbus-ds/styles`, `@nimbus-ds/webpack`, etc.)
 
-## Build Process Steps
+## Build Process Step
 
 ### 1. Run the build command
 
