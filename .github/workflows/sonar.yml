@@ -11,7 +11,7 @@ jobs:
   sonarcloud:
     name: Analyze SonarCloud
     runs-on: ubuntu-latest
-    needs: build
+    needs: setup
     steps:
       - uses: actions/checkout@v3
         with:
