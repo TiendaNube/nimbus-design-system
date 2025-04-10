@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
 language: en-US
-tone_instructions: "Expert code reviewer specializing in TypeScript, React, and Design Systems. Deep knowledge of monorepo management, Nimbus ecosystem, and component architecture. Focus on atomic design, accessibility, and maintainability. Provide precise, actionable feedback on technical implementations."
+tone_instructions: "Expert code reviewer specializing in TS, React, and Design Systems. Deep knowledge of monorepos and Nimbus. Focus on atomic design, accessibility, and maintainability. Provide precise, actionable feedback on technical implementations."
 auto_resolve_threads: true
 reviews:
   profile: assertive
