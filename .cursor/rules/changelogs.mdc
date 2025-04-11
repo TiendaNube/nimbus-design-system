@@ -52,9 +52,7 @@ Use the following categories with their respective emojis:
 
 ### Entry Format
 Each entry must follow this format:
-```markdown
-- Description of the change. ([#PR](mdc:https:/github.com/TiendaNube/nimbus-design-system/pull/PR) by [@contributor](mdc:https:/github.com/contributor))
-```
+- Description of the change. ([#PR](https:/github.com/TiendaNube/nimbus-design-system/pull/PR) by [@contributor](https:/github.com/contributor))
 
 ## Rules
 
@@ -95,19 +93,19 @@ Each entry must follow this format:
 
 #### 🎉 New features
 
-- Added new feature description. ([#279](mdc:https:/github.com/TiendaNube/nimbus-design-system/pull/279) by [@contributor](mdc:https:/github.com/contributor))
+- Added new feature description. ([#279](https:/github.com/TiendaNube/nimbus-design-system/pull/279) by [@contributor](https:/github.com/contributor))
 
 #### 🐛 Bug fixes
 
-- Fixed bug description. ([#278](mdc:https:/github.com/TiendaNube/nimbus-design-system/pull/278) by [@contributor](mdc:https:/github.com/contributor))
+- Fixed bug description. ([#278](https:/github.com/TiendaNube/nimbus-design-system/pull/278) by [@contributor](https:/github.com/contributor))
 
 #### 📚 3rd party library updates
 
-- Updated package@version. ([#277](mdc:https:/github.com/TiendaNube/nimbus-design-system/pull/277) by [@contributor](mdc:https:/github.com/contributor))
+- Updated package@version. ([#277](https:/github.com/TiendaNube/nimbus-design-system/pull/277) by [@contributor](https:/github.com/contributor))
 
 #### 💡 Others
 
-- Other change description. ([#276](mdc:https:/github.com/TiendaNube/nimbus-design-system/pull/276) by [@contributor](mdc:https:/github.com/contributor))
+- Other change description. ([#276](https:/github.com/TiendaNube/nimbus-design-system/pull/276) by [@contributor](https:/github.com/contributor))
 ```
 
 ## Maintenance

@@ -76,7 +76,7 @@ alwaysApply: false
 ## Example Structure
 
 ```typescript
-import { Box } from '@nimbus-ds/styles';
+import { button } from "@nimbus-ds/styles";
 import { ButtonProperties } from './Button.types';
 
 /**
@@ -96,7 +96,7 @@ export const Button: React.FC<ButtonProperties> = ({
   return (
     <Box
       as="button"
-      className={styles.button}
+      className={button.classnames.appearance[variant]}
       variant={variant}
       disabled={disabled}
       {...props}
