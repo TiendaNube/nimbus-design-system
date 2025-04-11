@@ -118,6 +118,10 @@ The step by step to perform a release release can be found at the [link](https:/
 
 We encourage all ideas, suggestions and feedback. If you want to collaborate with us, start by reading our [contribution guidelines](./docs/CONTRIBUTING.md).
 
+## 🐰 Coderabbit
+
+See the [Coderabbit Guide](./docs/CODERABBIT.md) for information about our AI-powered code review assistant. This guide explains how Coderabbit automatically reviews pull requests, provides feedback, and helps maintain code quality in the Nimbus Design System.
+
 ## 🤖 Cursor
 
 See the [Cursor Guide](./docs/CURSOR.md) for detailed instructions on using Cursor AI to accelerate component development in the Nimbus Design System. This guide provides templates, best practices, and important considerations when leveraging AI assistance.

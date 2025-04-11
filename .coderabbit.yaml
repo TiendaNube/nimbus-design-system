@@ -1,0 +1,143 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+language: en-US
+tone_instructions: "Expert code reviewer specializing in TS, React, and Design Systems. Deep knowledge of monorepos and Nimbus. Focus on atomic design, accessibility, and maintainability. Provide precise, actionable feedback on technical implementations."
+auto_resolve_threads: true
+reviews:
+  profile: assertive
+  high_level_summary: true
+  high_level_summary_placeholder: "@autosummary"
+  auto_title_placeholder: "@autotitle"
+  auto_title_instructions: "Generate a concise PR title following the format 'chore/fix/feat(PackageName): Title' where the type is determined by the nature of changes (chore for maintenance, fix for bug fixes, feat for new features), PackageName is the affected package, if any, and Title is a brief description of the changes."
+  auto_apply_labels: false # If the suggestions are correct, we can apply them automatically.
+  poem: false
+  collapse_walkthrough: true
+  labeling_instructions:
+    - label: bug
+      instructions: This PR addresses a bug in the project, or fixes an issue that was reported by a user.
+    - label: dependencies
+      instructions: This PR updates dependencies, such as adding a new dependency or removing an unused one.
+    - label: documentation
+      instructions: This PR ONLY adds or updates documentation, such as a README, changelog, or inline comments. It does not include any code changes.
+    - label: duplicate
+      instructions: This PR is a duplicate of another PR. The title and description are identical or very similar to other PRs.
+    - label: enhancement
+      instructions: This PR implements a new feature or improvement to the project.
+    - label: good first issue
+      instructions: This PR is a good first issue. It is a small, self-contained change that is easy to understand and review for newcomers.
+  path_filters:
+    # Documentation and generated files
+    - "!**/*.docs.json"
+
+    # Assets and media
+    - "!**/*.svg"
+    - "!**/*.png"
+    - "!**/*.jpg"
+    - "!**/*.gif"
+    - "!**/*.woff"
+    - "!**/*.woff2"
+    - "!**/*.ttf"
+
+    # Lock files and dependencies
+    - "!**/*.lock"
+    - "!**/*.cjs"
+    - "!**/dist/**"
+    - "!**/build/**"
+    - "!**/coverage/**"
+
+    # Configuration files
+    - "!**/.gitignore"
+    - "!**/.eslintrc*"
+    - "!**/.prettierrc*"
+    # Cursor rules and configuration
+    - "!**/cursor/rules/**"
+
+    # IDE and editor files
+    - "!**/.vscode/**"
+    - "!**/*.swp"
+    - "!**/*.swo"
+  path_instructions:
+    - path: "**/*.{ts,tsx}"
+      instructions: |
+        Review the React and TypeScript code for adherence to component design system best practices, including:
+        - Component reusability, composability, and proper prop interfaces
+        - Consistent usage of @nimbus-ds/styles package for styling and theming
+        - Accessibility compliance (WCAG guidelines, ARIA attributes, keyboard navigation)
+        - Cross-browser compatibility and progressive enhancement
+        - Maintain comprehensive JSDoc comments with consistent style, documenting complex logic, and relevant references
+        - Full testing coverage (Jest unit tests)
+        - Performance optimization (memoization, loops)
+        - Responsive design patterns
+        - Component scalability and maintainability
+        - Proper TypeScript types and interfaces usage
+        - Component, prop, and storybook documentation
+        Highlight any deviations from these standards.
+    - path: "**/CHANGELOG.md"
+      instructions: "Ensure CHANGELOG.md updates follow the established format: YYYY-MM-DD version with categorized entries (Breaking changes, New features, Bug fixes, Others). Each entry must include PR reference and author, and changes must be properly versioned (major/minor/patch). Changes MUST be documented in their respective package's CHANGELOG.md."
+    - path: "**/package.json"
+      instructions: "Verify version updates follow SemVer: major for breaking changes, minor for new features, patch for bug fixes. Ensure dependencies are properly versioned and peer dependencies are correctly specified."
+    - path: "**/packages/react/src/atomic/**/*.{ts,tsx}"
+      instructions: |
+        Review atomic components for dependency management in monorepo context:
+        - Evaluate if the component is a common dependency across multiple packages
+        - If widely used as a dependency, recommend adding the package name to the 'externals' attribute in webpack.config
+        - This prevents the component from being bundled multiple times across different packages
+        - Ensure proper package naming and versioning for external configuration
+        - Verify that the component is properly exported and consumed by dependent packages
+        - Check for circular dependencies and proper dependency tree structure
+        Flag components that should be added to webpack 'externals' to optimize bundle size and prevent duplicate code in the monorepo build.
+    - path: "**/*.types.ts"
+      instructions: |
+        Review TypeScript type definitions following these standards:
+        - Always export a 'ComponentNameProperties' interface, where the ComponentName is the name of the component. This interface should NOT inherit HTMLElement properties or BoxProperties, not any big interface as it will be used for documentation. It should ONLY contain the specific props this component defines.
+        - Prefer type aliases for unions, intersections, and simple object types
+        - Keep types and interfaces focused and single-purpose
+        - Use proper JSDoc comments for all exported types
+        - Leverage TypeScript utility types when appropriate (Partial, Pick, Omit)
+        - Ensure type names are descriptive and follow PascalCase convention
+        - Avoid type 'any' - use 'unknown' for truly unknown types
+        Flag any deviations from these patterns.
+  abort_on_close: true
+  auto_review:
+    enabled: true
+    auto_incremental_review: true
+    ignore_title_keywords:
+      - "DRAFT"
+      - "WIP"
+      - "DO NOT MERGE"
+    labels: []
+    drafts: false
+    base_branches:
+      - "master"
+  tools:
+    github-checks:
+      enabled: true
+      timeout_ms: 30000
+    # Linting
+    biome:
+      enabled: true
+    # Yaml linting
+    yamllint:
+      enabled: true
+    eslint:
+      enabled: true
+    # GH Actions
+    actionlint:
+      enabled: true
+    # Security vulnerabilities and code quality issues
+    semgrep:
+      enabled: true
+    # JS/TS linting
+    oxc:
+      enabled: true
+chat:
+  auto_reply: true
+knowledge_base:
+  # Opt out of all knowledge base features that require data retention.
+  opt_out: true
+  web_search:
+    enabled: true
+  # Check if we can access nimbus-patterns from this
+  learnings:
+    scope: local
+  pull_requests:
+    scope: local

@@ -1,8 +1,6 @@
-<img alt="Nimbus" style="margin-bottom: 30px;" src="https://tiendanube.github.io/design-system-nimbus/static/media/nimbus-logo.ab60bd79.png" height="30" />
+![Nimbus](https://tiendanube.github.io/design-system-nimbus/static/media/nimbus-logo.ab60bd79.png)
 
-# Nimbus Design System - Build Process Documentation
-
-## This document describes the current technical build process followed by Nimbus Design System.
+# Build Process
 
 ## Overview
 
