@@ -49,6 +49,8 @@ reviews:
     - "!**/.gitignore"
     - "!**/.eslintrc*"
     - "!**/.prettierrc*"
+    # Cursor rules and configuration
+    - "!**/cursor/rules/**"
 
     # IDE and editor files
     - "!**/.vscode/**"
