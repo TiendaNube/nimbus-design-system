@@ -27,7 +27,6 @@ reviews:
   path_filters:
     # Documentation and generated files
     - "!**/*.docs.json"
-    - "!**/*.stories.tsx"
 
     # Assets and media
     - "!**/*.svg"
