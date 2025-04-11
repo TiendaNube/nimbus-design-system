@@ -1,10 +1,7 @@
 ---
-description: 
+description: TypeScript type definition standards and best practices
 globs: **/*.types.ts
 alwaysApply: false
----
- ---
-description: TypeScript type definition standards and best practices
 ---
 # TypeScript Type Definition Rules
 

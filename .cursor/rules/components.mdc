@@ -1,10 +1,7 @@
 ---
-description: 
+description: React component development standards and best practices
 globs: **/*.tsx,**/*.ts
 alwaysApply: false
----
- ---
-description: React component development standards and best practices
 ---
 # React Component Development Rules
 

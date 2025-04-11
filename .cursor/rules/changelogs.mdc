@@ -1,5 +1,5 @@
 ---
-description: 
+description: Best practices and formatting standards for maintaining consistent CHANGELOG.md files across the design system
 globs: **/CHANGELOG.md
 alwaysApply: false
 ---
