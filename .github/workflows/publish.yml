@@ -17,26 +17,19 @@ jobs:
       TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
       TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
     steps:
+      - name: Increase swapfile
+        run: |
+          sudo swapoff -a
+          sudo fallocate -l 15G /swapfile
+          sudo chmod 600 /swapfile
+          sudo mkswap /swapfile
+          sudo swapon /swapfile
+          sudo swapon --show
+          
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Set Node version
-        uses: actions/setup-node@v3
-        with:
-          node-version-file: ".nvmrc"
-          cache: "yarn"
-
-      - name: Cache NPM dependencies
-        uses: actions/cache@v3
-        id: cache-dependencies
-        with:
-          path: |
-            **/node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
-
-      - name: Install dependencies
-        if: steps.cache-dependencies.outputs.cache-hit != 'true'
-        run: yarn
+      - uses: ./.github/actions/setup-node-deps
 
       - name: Create .env file
         uses: DeveloperRic/action-create-env@v1.0.2
@@ -45,10 +38,24 @@ jobs:
             GITHUB_TOKEN=${{ secrets.PAT_CHANGE_BRANCH_PROTECTION_RULES_FROM_USER_NIMBUS }}
           include_env_vars: true
 
-      - name: Publish packages
+      - name: Build tokens
+        run: yarn build:tokens
+
+      - name: Build icons
+        run: yarn build:icons
+      
+      - name: Build components
         run: |
-          export NODE_OPTIONS="--max_old_space_size=8192"
-          yarn publish:stable
+          export NODE_OPTIONS="--max_old_space_size=12288"
+          yarn build:components
+
+      - name: Build packages
+        run: |
+          export NODE_OPTIONS="--max_old_space_size=12288"
+          yarn build:packages
+
+      - name: Publish packages
+        run: yarn publish:stable
         env:
           YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTOMATION_PUBLISH }}
 

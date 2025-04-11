@@ -2,6 +2,18 @@
 
 A low-level utility component that accepts styled system props to enable custom theme-aware styling
 
+## 2025-03-25 `4.2.0`
+
+### 🎉 New features
+
+- Added `line-through` option to `textDecoration` property. ([#279](https://github.com/TiendaNube/nimbus-design-system/pull/279) by [@guidobotta](https://github.com/guidobotta))
+
+## 2025-03-18 `4.1.1`
+
+### 💡 Others
+
+- Rebuild after build process changes to add support for modular imports and Server Components. ([#276](https://github.com/TiendaNube/nimbus-design-system/pull/276) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2023-08-04 `4.1.0`
 
 #### 🎉 New features

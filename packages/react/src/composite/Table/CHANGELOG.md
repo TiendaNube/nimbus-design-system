@@ -2,6 +2,12 @@
 
 The Table component allows us to organize data with a tabular structure in a table.
 
+## 2025-03-18 `2.0.1`
+
+### 💡 Others
+
+- Rebuild after build process changes to add support for modular imports and Server Components. ([#276](https://github.com/TiendaNube/nimbus-design-system/pull/276) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2023-03-13 `2.0.0`
 
 ### 🛠 Breaking changes

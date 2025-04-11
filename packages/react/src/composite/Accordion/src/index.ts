@@ -1,3 +1,5 @@
+"use client";
+
 import { Accordion } from "./Accordion";
 
 export { Accordion } from "./Accordion";

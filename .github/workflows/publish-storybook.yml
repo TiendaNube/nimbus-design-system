@@ -15,17 +15,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Cache NPM dependencies
-        uses: actions/cache@v3
-        id: cache-dependencies
-        with:
-          path: |
-            **/node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
-
-      - name: Install dependencies
-        if: steps.cache-dependencies.outputs.cache-hit != 'true'
-        run: yarn
+      - uses: ./.github/actions/setup-node-deps
 
       - name: Run build tokens
         run: npm run build:tokens

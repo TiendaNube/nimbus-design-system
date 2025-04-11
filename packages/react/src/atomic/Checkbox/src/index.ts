@@ -1,5 +1,7 @@
 /// <reference path="../index.d.ts" />
 
+"use client";
+
 import { Checkbox } from "./Checkbox";
 
 export { Checkbox } from "./Checkbox";

@@ -1,6 +1,6 @@
 {
   "name": "nimbus-design-system",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Nimbus is the open source design system created by the Nuvemshop design team so that together we can leverage more stories every day, with simplicity, accessibility, consistency and performance.",
   "private": true,
   "workspaces": {
@@ -12,9 +12,10 @@
     ]
   },
   "scripts": {
-    "build": "yarn build:packages",
-    "build:packages": "yarn build:tokens && yarn build:icons && yarn build:components && babel-node -x .ts ./.scripts/build-packages",
+    "build": "yarn build:all",
+    "build:all": "yarn build:tokens && yarn build:icons && yarn build:components && yarn build:packages",
     "build:components": "babel-node -x .ts ./.scripts/build-components",
+    "build:packages": "babel-node -x .ts ./.scripts/build-packages",
     "build:docs": "babel-node -x .ts ./.scripts/json-documentation",
     "build:icons": "yarn workspace @nimbus-ds/icons build",
     "build:tokens": "yarn workspace @nimbus-ds/tokens build",
@@ -29,10 +30,10 @@
     "pre-push": "yarn test:coverage && yarn lint && yarn types:check && yarn bump:check",
     "prepare-husky": "husky install",
     "publish:next": "yarn bump:check && yarn bump:next && npm run build && yarn publish:npm:next",
-    "publish:stable": "npm run build && yarn bump:stable && yarn publish:npm:stable",
+    "publish:stable": "yarn bump:stable && yarn publish:npm:stable",
     "publish:npm:next": "yarn workspaces foreach -pv -pt --exclude nimbus-design-system --exclude nimbus-helper npm publish --tolerate-republish --access public --tag next",
     "publish:npm:stable": "yarn workspaces foreach -pv -pt --exclude nimbus-design-system --exclude nimbus-helper npm publish --tolerate-republish --access public",
-    "reset": "yarn clean && rm -rf node_modules .yarn/cache",
+    "reset": "yarn clean && rm -rf node_modules .yarn/cache .turbo && git clean -fdX",
     "storybook": "storybook dev -p 6006",
     "start:dev": "yarn storybook",
     "test": "jest --passWithNoTests --no-cache --runInBand --watchAll=false",

@@ -1,3 +1,5 @@
+"use client";
+
 import { Collapsible } from "./Collapsible";
 
 export { Collapsible } from "./Collapsible";

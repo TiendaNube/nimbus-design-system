@@ -3,32 +3,7 @@ name: "generate-documentation"
 on: workflow_dispatch
 
 jobs:
-  setup:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Set Node version
-        uses: actions/setup-node@v3
-        with:
-          node-version-file: ".nvmrc"
-          cache: "yarn"
-
-      - name: Cache NPM dependencies
-        uses: actions/cache@v3
-        id: cache-dependencies
-        with:
-          path: |
-            **/node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
-
-      - name: Install dependencies
-        if: steps.cache-dependencies.outputs.cache-hit != 'true'
-        run: yarn
-
   generate-documents:
-    needs: [setup]
     runs-on: ubuntu-latest
     env:
       TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
@@ -37,17 +12,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Cache NPM dependencies
-        uses: actions/cache@v3
-        id: cache-dependencies
-        with:
-          path: |
-            **/node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
-
-      - name: Install dependencies
-        if: steps.cache-dependencies.outputs.cache-hit != 'true'
-        run: yarn
+      - uses: ./.github/actions/setup-node-deps
 
       - name: Build tokens
         run: yarn build:tokens

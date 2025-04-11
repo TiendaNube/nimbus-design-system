@@ -3,7 +3,7 @@
   "name": "Link",
   "totalProps": 6,
   "packageName": "@nimbus-ds/link",
-  "version": "4.1.0",
+  "version": "4.3.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/link",
   "props": [
     {
@@ -47,6 +47,7 @@
       "description": "The textDecoration property specifies the decoration added to link.",
       "default": "neutral",
       "enum": [
+        "line-through",
         "none",
         "underline"
       ],

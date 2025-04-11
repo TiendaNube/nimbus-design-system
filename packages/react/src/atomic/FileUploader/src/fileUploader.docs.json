@@ -3,7 +3,7 @@
   "name": "FileUploader",
   "totalProps": 6,
   "packageName": "@nimbus-ds/file-uploader",
-  "version": "2.5.0",
+  "version": "2.6.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/file-uploader",
   "props": [
     {

@@ -5,36 +5,40 @@ on: [pull_request]
 jobs:
   pipeline-quality:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     env:
       TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
       TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
     steps:
+      - name: Increase swapfile
+        run: |
+          sudo swapoff -a
+          sudo fallocate -l 15G /swapfile
+          sudo chmod 600 /swapfile
+          sudo mkswap /swapfile
+          sudo swapon /swapfile
+          sudo swapon --show
+          
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Set Node version
-        uses: actions/setup-node@v3
-        with:
-          node-version-file: ".nvmrc"
-          cache: "yarn"
+      - uses: ./.github/actions/setup-node-deps
 
-      - name: Cache NPM dependencies
-        uses: actions/cache@v3
-        id: cache-dependencies
-        with:
-          path: |
-            **/node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+      - name: Build tokens
+        run: yarn build:tokens
 
-      - name: Install dependencies
-        if: steps.cache-dependencies.outputs.cache-hit != 'true'
-        run: yarn
+      - name: Build icons
+        run: yarn build:icons
+      
+      - name: Build components
+        run: |
+          export NODE_OPTIONS="--max_old_space_size=12288"
+          yarn build:components
 
-      - name: Run build tokens
-        run: npm run build:tokens
-
-      - name: Run build icons
-        run: npm run build:icons
+      - name: Build packages
+        run: |
+          export NODE_OPTIONS="--max_old_space_size=12288"
+          yarn build:packages
 
       - name: Run lint
         run: yarn lint

@@ -1,3 +1,5 @@
+"use client";
+
 import { FileUploader } from "./FileUploader";
 
 export { FileUploader } from "./FileUploader";

@@ -1,0 +1,103 @@
+---
+description: TypeScript type definition standards and best practices
+globs: **/*.types.ts
+alwaysApply: false
+---
+# TypeScript Type Definition Rules
+
+## Component Properties Interface
+
+1. **Naming Convention**:
+   - Always export a `ComponentNameProperties` interface
+   - ComponentName should match the component's name
+   - Follow PascalCase convention
+
+2. **Interface Structure**:
+   - Do NOT inherit from HTMLElement properties
+   - Do NOT inherit from BoxProperties
+   - Do NOT inherit from large interfaces
+   - Include ONLY the specific props defined by the component
+   - Use for documentation purposes
+   - You can finally export another interface like ComponentNameProps with the complete inheritance
+
+## Type Definitions
+
+1. **Type Aliases**:
+   - Prefer type aliases for:
+     - Unions
+     - Intersections
+     - Simple object types
+   - Use descriptive names following PascalCase
+
+2. **Type Focus**:
+   - Keep types and interfaces focused
+   - Each type should have a single purpose
+   - Avoid creating large, multi-purpose types
+
+3. **Documentation**:
+   - Add JSDoc comments for all exported types
+   - Include descriptions of the type's purpose
+   - Document any constraints or special cases
+
+## TypeScript Best Practices
+
+1. **Utility Types**:
+   - Leverage TypeScript utility types when appropriate:
+     - `Partial<T>`
+     - `Pick<T, K>`
+     - `Omit<T, K>`
+     - Other built-in utility types
+
+2. **Type Safety**:
+   - Avoid using `any` type
+   - Use `unknown` for truly unknown types
+   - Provide proper type guards when needed
+
+3. **Naming Conventions**:
+   - Use PascalCase for type names
+   - Use camelCase for property names
+   - Use descriptive names that indicate purpose
+
+## Example Structure
+
+```typescript
+/**
+ * Properties specific to the Button component
+ */
+export interface ButtonProperties {
+  /**
+   * The text content of the button
+   */
+  text: string;
+  
+  /**
+   * The variant of the button
+   */
+  variant: 'primary' | 'secondary' | 'tertiary';
+  
+  /**
+   * Whether the button is disabled
+   */
+  disabled?: boolean;
+}
+
+/**
+ * Union type for button sizes
+ */
+export type ButtonSize = 'small' | 'medium' | 'large';
+
+/**
+ * Props that can be passed to the Button component
+ */
+export type ButtonProps = ButtonProperties & {
+  onClick?: (event: React.MouseEvent) => void;
+};
+```
+
+## Maintenance
+
+1. Keep types focused and minimal
+2. Update documentation when types change
+3. Use utility types to reduce duplication
+4. Ensure type safety throughout the codebase
+5. Review types during code reviews

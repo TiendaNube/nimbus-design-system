@@ -3,7 +3,7 @@
   "name": "Textarea",
   "totalProps": 3,
   "packageName": "@nimbus-ds/textarea",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/textarea",
   "props": [
     {

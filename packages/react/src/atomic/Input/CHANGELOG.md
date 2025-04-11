@@ -2,6 +2,16 @@
 
 The Input component allows the user to enter or edit information in text format.
 
+## 2025-03-18 `2.5.0`
+
+#### 🎉 New features
+
+- Adds `use-client` directive to the build output in order to support NextJS applications. ([#276](https://github.com/TiendaNube/nimbus-design-system/pull/276) by [@joacotornello](https://github.com/joacotornello))
+
+### 💡 Others
+
+- Rebuild after build process changes to add support for modular imports and Server Components. ([#276](https://github.com/TiendaNube/nimbus-design-system/pull/276) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2023-04-24 `2.4.0`
 
 #### 🎉 New features

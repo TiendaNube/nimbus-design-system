@@ -2,7 +2,38 @@
 
 Nimbus is an open-source Design System created by Tiendanube / Nuvesmhop’s team to empower and enhance more stories every day, with simplicity, accessibility, consistency and performance.
 
-## 2025-03-07 `5.5.7`
+## 2025-04-03 `5.10.0`
+
+#### 🐛 New features
+
+- `Tabs`: Adds Controlled component support, with the new `selected` and `onTabSelect` props. ([#282](https://github.com/TiendaNube/nimbus-design-system/pull/282) by [@joacotornello](https://github.com/joacotornello))
+
+## 2025-03-25 `5.9.0`
+
+#### 🐛 New features
+
+- Added `textDecoration` property to `Text` component. ([#279](https://github.com/TiendaNube/nimbus-design-system/pull/279) by [@guidobotta](https://github.com/guidobotta))
+- Added `line-through` option to `textDecoration` property. ([#279](https://github.com/TiendaNube/nimbus-design-system/pull/279) by [@guidobotta](https://github.com/guidobotta))
+
+## 2025-03-20 `5.8.1` and `5.8.2`
+
+#### 🐛 Bug fixes
+
+- Rebuild after failed release. ([#277](https://github.com/TiendaNube/nimbus-design-system/pull/277) by [@joacotornello](https://github.com/joacotornello))
+
+## 2025-03-18 `5.8.0`
+
+#### 🎉 New features
+
+- Adds `use-client` directive to the build output in order to support NextJS applications. ([#276](https://github.com/TiendaNube/nimbus-design-system/pull/276) by [@joacotornello](https://github.com/joacotornello))
+
+- Implemented new webpack configuration to move useful files into the build output directory and inject the `use client` directive. ([#276](https://github.com/TiendaNube/nimbus-design-system/pull/276) by [@joacotornello](https://github.com/joacotornello))
+
+### 💡 Others
+
+- Rebuild after build process changes to add support for modular imports and Server Components. ([#276](https://github.com/TiendaNube/nimbus-design-system/pull/276) by [@joacotornello](https://github.com/joacotornello))
+
+## 2025-03-07 `5.7.2`
 
 #### 💡 Others
 
@@ -14,7 +45,7 @@ Nimbus is an open-source Design System created by Tiendanube / Nuvesmhop’s tea
 
 - Added docs. ([#272](https://github.com/TiendaNube/nimbus-design-system/pull/272) by [@joacotornello](https://github.com/joacotornello))
 
-## 2025-03-03 `5.5.7`
+## 2025-03-03 `5.7.1`
 
 ### 🎉 New features
 

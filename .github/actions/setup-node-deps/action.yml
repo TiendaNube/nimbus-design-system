@@ -1,0 +1,22 @@
+name: Setup Node and Install Dependencies
+runs:
+  using: "composite"
+  steps:
+    - name: Set Node version
+      uses: actions/setup-node@v3
+      with:
+        node-version-file: ".nvmrc"
+
+    - name: Cache yarn & dependencies
+      uses: actions/cache@v3
+      id: yarn-cache
+      with:
+        path: |
+          ~/.cache/yarn
+          node_modules
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+    - name: Install dependencies
+      if: steps.yarn-cache.outputs.cache-hit != 'true'
+      run: yarn
+      shell: bash

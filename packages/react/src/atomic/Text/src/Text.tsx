@@ -13,6 +13,7 @@ const Text: React.FC<TextProps> & TextComponents = ({
   lineHeight = "base",
   fontWeight = "regular",
   fontSize = "base",
+  textDecoration = "none",
   children,
   lineClamp,
   ...rest
@@ -24,6 +25,7 @@ const Text: React.FC<TextProps> & TextComponents = ({
     lineHeight: lineHeight as any,
     fontWeight: fontWeight as any,
     fontSize: fontSize as any,
+    textDecoration: textDecoration as any,
     WebkitLineClamp: lineClamp as any,
   });
 

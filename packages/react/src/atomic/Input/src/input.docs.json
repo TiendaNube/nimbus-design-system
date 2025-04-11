@@ -3,7 +3,7 @@
   "name": "Input",
   "totalProps": 5,
   "packageName": "@nimbus-ds/input",
-  "version": "2.4.0",
+  "version": "2.5.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/input",
   "props": [
     {

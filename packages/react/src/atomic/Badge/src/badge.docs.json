@@ -3,7 +3,7 @@
   "name": "Badge",
   "totalProps": 3,
   "packageName": "@nimbus-ds/badge",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/badge",
   "props": [
     {

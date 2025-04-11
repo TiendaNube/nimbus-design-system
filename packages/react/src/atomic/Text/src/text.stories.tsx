@@ -86,3 +86,10 @@ export const lineClamp: Story = {
     lineClamp: 1,
   },
 };
+
+export const textDecoration: Story = {
+  args: {
+    children: "Lorem ipsum dolor sit amet",
+    textDecoration: "line-through",
+  },
+};

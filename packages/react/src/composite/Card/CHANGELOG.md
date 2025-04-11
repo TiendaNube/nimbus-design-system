@@ -2,6 +2,12 @@
 
 The Card component allows us to group contents and related actions, making it easier to identify groups of information.
 
+## 2025-03-18 `3.1.2`
+
+### 💡 Others
+
+- Rebuild after build process changes to add support for modular imports and Server Components. ([#276](https://github.com/TiendaNube/nimbus-design-system/pull/276) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2023-12-22 `3.1.1`
 
 #### 🎉 New features

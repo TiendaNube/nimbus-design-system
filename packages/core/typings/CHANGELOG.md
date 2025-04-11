@@ -2,6 +2,22 @@
 
 This package is intended for internal use in creating components with polymorphic typing.
 
+## 2025-03-20 `1.2.1`
+
+#### 🐛 Bug fixes
+
+- Rebuild after failed release. ([#277](https://github.com/TiendaNube/nimbus-design-system/pull/277) by [@joacotornello](https://github.com/joacotornello))
+
+## 2025-03-18 `1.2.0`
+
+#### 🎉 New features
+
+- Adds `use-client` directive to the build output in order to support NextJS applications. ([#276](https://github.com/TiendaNube/nimbus-design-system/pull/276) by [@joacotornello](https://github.com/joacotornello))
+
+### 💡 Others
+
+- Rebuild after build process changes to add support for modular imports and Server Components. ([#276](https://github.com/TiendaNube/nimbus-design-system/pull/276) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2023-03-24 `1.1.0`
 
 ### 🎉 New features

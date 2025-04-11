@@ -1,0 +1,117 @@
+---
+description: Best practices and formatting standards for maintaining consistent CHANGELOG.md files across the design system
+globs: **/CHANGELOG.md
+alwaysApply: false
+---
+# CHANGELOG.md Formatting Rules
+
+## File Structure
+
+1. Each package must have its own `CHANGELOG.md` file in its root directory
+2. The main repository must have a root `CHANGELOG.md` file
+3. Changes must be documented in both the package-specific and root changelogs
+
+## Entry Format
+
+### Date and Version Header
+```markdown
+## YYYY-MM-DD `version`
+```
+- Use semantic versioning (major.minor.patch)
+- Version must be enclosed in backticks
+- Date format must be YYYY-MM-DD
+
+### Categories
+
+Use the following categories with their respective emojis:
+
+1. Breaking Changes (if any)
+```markdown
+#### 🛠 Breaking changes
+```
+
+2. New Features
+```markdown
+#### 🎉 New features
+```
+
+3. Bug Fixes
+```markdown
+#### 🐛 Bug fixes
+```
+
+4. 3rd Party Library Updates
+```markdown
+#### 📚 3rd party library updates
+```
+
+5. Other Changes
+```markdown
+#### 💡 Others
+```
+
+### Entry Format
+Each entry must follow this format:
+- Description of the change. ([#PR](https:/github.com/TiendaNube/nimbus-design-system/pull/PR) by [@contributor](https:/github.com/contributor))
+
+## Rules
+
+1. **Versioning**:
+   - Major version (x.0.0): Breaking changes
+   - Minor version (0.x.0): New features
+   - Patch version (0.0.x): Bug fixes and minor changes
+
+2. **PR References**:
+   - Every change must reference a PR number
+   - PR links must use the full GitHub URL
+   - PR numbers must be in the format `#PR`
+
+3. **Contributor Attribution**:
+   - Every change must credit the contributor
+   - Use GitHub usernames with @ prefix
+   - Link to contributor's GitHub profile
+
+4. **Content Guidelines**:
+   - Be concise but descriptive
+   - Use present tense
+   - Focus on what changed, not how it was implemented
+   - Group related changes together
+   - List changes in chronological order within each category
+
+5. **Formatting**:
+   - Use proper Markdown syntax
+   - Maintain consistent spacing
+   - Use proper emoji codes
+   - Keep entries in chronological order (newest first)
+
+## Example Structure
+
+```markdown
+# Changelog
+
+## 2025-03-25 `4.2.0`
+
+#### 🎉 New features
+
+- Added new feature description. ([#279](https:/github.com/TiendaNube/nimbus-design-system/pull/279) by [@contributor](https:/github.com/contributor))
+
+#### 🐛 Bug fixes
+
+- Fixed bug description. ([#278](https:/github.com/TiendaNube/nimbus-design-system/pull/278) by [@contributor](https:/github.com/contributor))
+
+#### 📚 3rd party library updates
+
+- Updated package@version. ([#277](https:/github.com/TiendaNube/nimbus-design-system/pull/277) by [@contributor](https:/github.com/contributor))
+
+#### 💡 Others
+
+- Other change description. ([#276](https:/github.com/TiendaNube/nimbus-design-system/pull/276) by [@contributor](https:/github.com/contributor))
+```
+
+## Maintenance
+
+1. Keep changelogs up to date with every PR
+2. Review and update changelogs during release process
+3. Ensure consistency across all package changelogs
+4. Document all significant changes, not just code changes
+5. Include build process, documentation, and tooling updates

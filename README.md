@@ -44,6 +44,10 @@ You can browse through our [playground](https://tiendanube.github.io/nimbus-desi
   $ yarn prepare-husky
   ```
 
+  ```shell
+  $ yarn build
+  ```
+
 - **Start developing**
 
   Start the local environment with
@@ -103,7 +107,7 @@ To standardize our commits we use [Conventional Commits](https://www.conventiona
 ## 🖥️ Release process
 
 While our release schedule is flexible, our general strategy is to release several larger improvements inside each stable release. In order to provide faster access to fixes and enhancements between main releases we provide release candidates which are published on every merge into `master`.
-The step by step to perform a release release can be found at the [link](https://github.com/TiendaNube/nimbus-design-system/blob/master/RELEASE_PROCESS.md).
+The step by step to perform a release release can be found at the [link](https://github.com/TiendaNube/nimbus-design-system/blob/master/docs/RELEASE_PROCESS.md).
 
 ## 🔗 Useful links
 
@@ -112,7 +116,15 @@ The step by step to perform a release release can be found at the [link](https:/
 
 ## 🤝 Contributing
 
-We encourage all ideas, suggestions and feedback. If you want to collaborate with us, start by reading our [contribution guidelines](./CONTRIBUTING.md).
+We encourage all ideas, suggestions and feedback. If you want to collaborate with us, start by reading our [contribution guidelines](./docs/CONTRIBUTING.md).
+
+## 🐰 Coderabbit
+
+See the [Coderabbit Guide](./docs/CODERABBIT.md) for information about our AI-powered code review assistant. This guide explains how Coderabbit automatically reviews pull requests, provides feedback, and helps maintain code quality in the Nimbus Design System.
+
+## 🤖 Cursor
+
+See the [Cursor Guide](./docs/CURSOR.md) for detailed instructions on using Cursor AI to accelerate component development in the Nimbus Design System. This guide provides templates, best practices, and important considerations when leveraging AI assistance.
 
 ## 📄 License
 

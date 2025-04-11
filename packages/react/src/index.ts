@@ -1,3 +1,9 @@
+"use client";
+
+/*
+    @nimbus-ds/components needs to be injected with 'use client' as external libraries, like @floating-ui/react, uses client-side dependencies.
+*/
+
 // atomics
 export * from "@nimbus-ds/badge";
 export * from "@nimbus-ds/box";

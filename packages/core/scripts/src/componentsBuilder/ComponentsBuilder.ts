@@ -2,14 +2,19 @@ import fs from "fs";
 import { PackageBuilder } from "../packageBuilder";
 
 export class ComponentsBuilder {
-  private PATH = "./packages/react/src/";
+  private PATH: string;
+
+  constructor(packagesPath: string = "./packages/react/src/") {
+    this.PATH = packagesPath;
+  }
 
   private getComponentsFrom(path: string): string[] {
     const components = [];
-    const atomicComponents = fs.readdirSync(`${this.PATH}/${path}`);
-    for (const atomicComponent of atomicComponents) {
+
+    const readComponents = fs.readdirSync(`${this.PATH}/${path}`);
+    for (const component of readComponents) {
       const packageJsonContent = fs.readFileSync(
-        `${this.PATH}/${path}/${atomicComponent}/package.json`,
+        `${this.PATH}/${path}/${component}/package.json`,
         "utf-8"
       );
       const json = JSON.parse(packageJsonContent);
@@ -19,11 +24,15 @@ export class ComponentsBuilder {
     return components;
   }
 
-  public exec() {
-    const atomicComponents = this.getComponentsFrom("atomic");
-    const compositeComponents = this.getComponentsFrom("composite");
+  public exec(...subPaths: string[]) {
+    // eslint-disable-next-line no-console
+    console.log("⚙️ Building components on paths: ", subPaths.join(", "));
 
-    const componentsCommand = [...atomicComponents, ...compositeComponents]
+    const allComponents: string[] = subPaths
+      .map((subPath) => this.getComponentsFrom(subPath).flat())
+      .flat();
+
+    const componentsCommand = allComponents
       .map((component) => `--filter=${component}`)
       .join(" ");
 
