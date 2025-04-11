@@ -96,7 +96,14 @@ export const Button: React.FC<ButtonProperties> = ({
   return (
     <Box
       as="button"
+    <Box
+      as="button"
+      {/* Uses Nimbus button styling patterns for consistent appearance */}
       className={button.classnames.appearance[variant]}
+      variant={variant}
+      disabled={disabled}
+      {...props}
+    >
       variant={variant}
       disabled={disabled}
       {...props}
