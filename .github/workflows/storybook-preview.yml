@@ -1,0 +1,78 @@
+name: Preview Storybook
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Check for release files in ./yarn/versions
+        id: check_release
+        run: |
+          has_releases=$(grep -lr '^releases:' ./yarn/versions | wc -l)
+          if [ "$has_releases" -eq "0" ]; then
+            echo "No release files found, skipping..."
+            echo "should_skip=true" >> $GITHUB_OUTPUT
+          else
+            echo "should_skip=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Exit if no release files
+        if: steps.check_release.outputs.should_skip == 'true'
+        run: |
+          echo "Nothing to build. Exiting workflow."
+          exit 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build Storybook
+        run: yarn build:storybook
+
+      - name: 🔐 Configure AWS credentials using OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ env.AWS_ARN_IAM_ROLE }}
+          aws-region: ${{ env.AWS_REGION }}
+          audience: sts.amazonaws.com
+
+      - name: Upload Storybook to S3
+        run: |
+          aws s3 sync ./storybook-static s3://ns-ec-dms-bs3-nimbus-preview/pull/${{ github.event.pull_request.number }} --delete
+
+      - name: Comment Storybook preview URL on PR (only if not commented)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          REPO: ${{ github.repository }}
+          STORYBOOK_URL: https://ns-ec-dms-bs3-nimbus-preview.s3-website-us-west-2.amazonaws.com/pull/${{ github.event.pull_request.number }}/index.html
+        run: |
+          echo "Checking for existing Storybook comment..."
+
+          comments=$(curl -s -H "Authorization: token $GH_TOKEN" \
+            https://api.github.com/repos/$REPO/issues/$PR_NUMBER/comments)
+
+          already_commented=$(echo "$comments" | jq -r '.[] | select(.body | test("View Storybook.*pull/'"$PR_NUMBER"'"))')
+
+          if [ -z "$already_commented" ]; then
+            echo "No previous Storybook comment found. Posting a new one..."
+            curl -s -H "Authorization: token $GH_TOKEN" \
+              -H "Content-Type: application/json" \
+              -X POST -d "{
+                \"body\": \"🚀✨ Your Storybook preview is ready!\n\nTake a look at the visual changes introduced in this PR here:  \n🔗 [View Storybook]($STORYBOOK_URL)\n\nHappy reviewing! 🎉\"
+              }" \
+              https://api.github.com/repos/$REPO/issues/$PR_NUMBER/comments
+          else
+            echo "Storybook comment already exists. Skipping."
+          fi
