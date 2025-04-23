@@ -15,7 +15,7 @@ jobs:
       - name: 🔐 Configure AWS credentials using OIDC
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: ${{ env.AWS_ARN_IAM_ROLE }}
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/${{ secrets.AWS_DEPLOY_ROLE }}
           aws-region: us-east-1
           audience: sts.amazonaws.com        
 
