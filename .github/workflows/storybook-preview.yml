@@ -29,13 +29,13 @@ jobs:
           echo "Nothing to build. Exiting workflow."
           exit 0
 
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
+      - uses: ./.github/actions/setup-node-deps
 
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
+      - name: Run build tokens
+        run: npm run build:tokens
+
+      - name: Run build icons
+        run: yarn build:icons
 
       - name: Build Storybook
         run: yarn build:storybook
