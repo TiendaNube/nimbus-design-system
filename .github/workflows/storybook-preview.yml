@@ -50,11 +50,9 @@ jobs:
       - name: Build Storybook
         run: yarn build:storybook
 
-
-
       - name: Upload Storybook to S3
         run: |
-          aws s3 sync ./storybook-static s3://ns-ec-dms-bs3-nimbus-preview/pull/${{ github.event.pull_request.number }} --delete
+          aws s3 sync ./.build-storybook s3://ns-ec-dms-bs3-nimbus-preview/pull/${{ github.event.pull_request.number }} --delete
 
       - name: Comment Storybook preview URL on PR (only if not commented)
         env:
