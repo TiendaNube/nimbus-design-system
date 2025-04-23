@@ -12,6 +12,13 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
+      - name: 🔐 Configure AWS credentials using OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ env.AWS_ARN_IAM_ROLE }}
+          aws-region: us-east-1
+          audience: sts.amazonaws.com        
+
       - name: Check for release files in ./yarn/versions
         id: check_release
         run: |
@@ -40,12 +47,7 @@ jobs:
       - name: Build Storybook
         run: yarn build:storybook
 
-      - name: 🔐 Configure AWS credentials using OIDC
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ env.AWS_ARN_IAM_ROLE }}
-          aws-region: ${{ env.AWS_REGION }}
-          audience: sts.amazonaws.com
+
 
       - name: Upload Storybook to S3
         run: |
