@@ -19,7 +19,7 @@ jobs:
       - name: Check for release files in ./yarn/versions
         id: check_release
         run: |
-          has_releases=$(grep -lr '^releases:' ./yarn/versions | wc -l)
+          has_releases=$(grep -l "^releases:" .yarn/versions/* | wc -l)
           if [ "$has_releases" -eq "0" ]; then
             echo "No release files found, skipping..."
             echo "should_skip=true" >> $GITHUB_OUTPUT
