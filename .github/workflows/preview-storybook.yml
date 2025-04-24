@@ -1,4 +1,4 @@
-name: Preview Storybook
+name: "preview-storybook"
 
 on:
   pull_request:
@@ -55,7 +55,7 @@ jobs:
         run: |
           aws s3 sync ./.build-storybook s3://ns-ec-dms-bs3-nimbus-preview/components/pull/${{ github.event.pull_request.number }} --delete
 
-      - name: Comment Storybook preview URL on PR (only if not commented)
+      - name: Comment Storybook preview URL on PR
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
@@ -67,16 +67,18 @@ jobs:
           comments=$(curl -s -H "Authorization: token $GH_TOKEN" \
             https://api.github.com/repos/$REPO/issues/$PR_NUMBER/comments)
 
-          already_commented=$(echo "$comments" | jq -r '.[] | select(.body | test("View Storybook.*pull/'"$PR_NUMBER"'"))')
-
-          if [ -z "$already_commented" ]; then
-            echo "No previous Storybook comment found. Posting a new one..."
+          # Encontrar y eliminar el comentario existente si existe
+          comment_id=$(echo "$comments" | jq -r '.[] | select(.body | test("View Storybook.*pull/'"$PR_NUMBER"'")) | .id')
+          
+          if [ ! -z "$comment_id" ]; then
             curl -s -H "Authorization: token $GH_TOKEN" \
-              -H "Content-Type: application/json" \
-              -X POST -d "{
-                \"body\": \"🚀✨ Your Storybook preview is ready!\n\nTake a look at the visual changes introduced in this PR here:  \n🔗 [View Storybook]($STORYBOOK_URL)\n\nHappy reviewing! 🎉\"
-              }" \
-              https://api.github.com/repos/$REPO/issues/$PR_NUMBER/comments
-          else
-            echo "Storybook comment already exists. Skipping."
+              -X DELETE \
+              https://api.github.com/repos/$REPO/issues/comments/$comment_id
           fi
+
+          curl -s -H "Authorization: token $GH_TOKEN" \
+            -H "Content-Type: application/json" \
+            -X POST -d "{
+              \"body\": \"🚀✨ Your Storybook preview is ready!\n\nTake a look at the visual changes introduced in this PR here:  \n🔗 <a href=\\\"$STORYBOOK_URL\\\" target=\\\"_blank\\\">View Storybook</a>\n\nHappy reviewing! 🎉\"
+            }" \
+            https://api.github.com/repos/$REPO/issues/$PR_NUMBER/comments
