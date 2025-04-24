@@ -10,17 +10,11 @@ jobs:
 
     permissions:
       id-token: write
+      pull-requests: write
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
-
-      - name: 🔐 Configure AWS credentials using OIDC
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/${{ secrets.AWS_DEPLOY_ROLE }}
-          aws-region: us-east-1
-          audience: sts.amazonaws.com        
+        uses: actions/checkout@v3    
 
       - name: Check for release files in ./yarn/versions
         id: check_release
@@ -50,6 +44,13 @@ jobs:
       - name: Build Storybook
         run: yarn build:storybook
 
+      - name: 🔐 Configure AWS credentials using OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/${{ secrets.AWS_DEPLOY_ROLE }}
+          aws-region: us-east-1
+          audience: sts.amazonaws.com    
+                  
       - name: Upload Storybook to S3
         run: |
           aws s3 sync ./.build-storybook s3://ns-ec-dms-bs3-nimbus-preview/pull/${{ github.event.pull_request.number }} --delete
@@ -59,7 +60,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
           REPO: ${{ github.repository }}
-          STORYBOOK_URL: https://ns-ec-dms-bs3-nimbus-preview.s3-website-us-west-2.amazonaws.com/pull/${{ github.event.pull_request.number }}/index.html
+          STORYBOOK_URL: https://ns-ec-dms-bs3-nimbus-preview.s3.us-west-2.amazonaws.com/components/pull/${{ github.event.pull_request.number }}/index.html
         run: |
           echo "Checking for existing Storybook comment..."
 
