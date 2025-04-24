@@ -1,2 +1,2 @@
-declined:
-  - nimbus-design-system
+releases:
+  - nimbus-design-system: minor
