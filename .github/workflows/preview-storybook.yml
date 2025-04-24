@@ -1,0 +1,87 @@
+name: "preview-storybook"
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Check for release files in ./yarn/versions
+        id: check_release
+        run: |
+          if grep -q "^releases:" .yarn/versions/* 2>/dev/null; then
+            echo "should_skip=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "should_skip=true" >> "$GITHUB_OUTPUT"
+            echo "## ⚠️ Storybook preview not available" >> "$GITHUB_STEP_SUMMARY"
+            echo "Storybook preview is not available for this PR because there are no changes available for a new release." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - uses: ./.github/actions/setup-node-deps
+        if: steps.check_release.outputs.should_skip == 'false'
+
+      - name: Run build tokens
+        if: steps.check_release.outputs.should_skip == 'false'
+        run: npm run build:tokens
+
+      - name: Run build icons
+        if: steps.check_release.outputs.should_skip == 'false'
+        run: yarn build:icons
+
+      - name: Build Storybook
+        if: steps.check_release.outputs.should_skip == 'false'
+        run: yarn build:storybook
+
+      - name: 🔐 Configure AWS credentials using OIDC
+        if: steps.check_release.outputs.should_skip == 'false'
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/${{ secrets.AWS_DEPLOY_ROLE }}
+          aws-region: us-west-2
+          audience: sts.amazonaws.com
+
+      - name: Upload Storybook to S3
+        if: steps.check_release.outputs.should_skip == 'false'
+        run: |
+          aws s3 sync ./.build-storybook s3://ns-ec-dms-bs3-nimbus-preview/components/pull/${{ github.event.pull_request.number }} --delete
+
+      - name: Comment Storybook preview URL on PR and Check summary
+        if: steps.check_release.outputs.should_skip == 'false'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          REPO: ${{ github.repository }}
+          STORYBOOK_URL: https://ns-ec-dms-bs3-nimbus-preview.s3.us-west-2.amazonaws.com/components/pull/${{ github.event.pull_request.number }}/index.html
+        run: |
+          echo "Checking for existing Storybook comment..."
+
+          comments=$(curl -s -H "Authorization: token $GH_TOKEN" \
+            https://api.github.com/repos/$REPO/issues/$PR_NUMBER/comments)
+
+          comment_id=$(echo "$comments" | jq -r '.[] | select(.body | test("View Storybook.*pull/'"$PR_NUMBER"'")) | .id')
+          
+          if [ ! -z "$comment_id" ]; then
+            curl -s -H "Authorization: token $GH_TOKEN" \
+              -X DELETE \
+              https://api.github.com/repos/$REPO/issues/comments/$comment_id
+          fi
+
+          curl -s -H "Authorization: token $GH_TOKEN" \
+            -H "Content-Type: application/json" \
+            -X POST -d "{
+              \"body\": \"🚀✨ Your Storybook preview is ready!\n\n🔗 [View Storybook]($STORYBOOK_URL)\n\nHappy reviewing! 🎉\"
+            }" \
+            https://api.github.com/repos/$REPO/issues/$PR_NUMBER/comments
+
+          echo "## 🚀 Storybook Preview Ready" >> $GITHUB_STEP_SUMMARY
+          echo "[👉 View Storybook Preview]($STORYBOOK_URL)" >> $GITHUB_STEP_SUMMARY
