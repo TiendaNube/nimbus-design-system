@@ -1,4 +1,5 @@
 name: Setup Node and Install Dependencies
+description: "Set Node.js version from .nvmrc and cache/install Yarn dependencies."
 runs:
   using: "composite"
   steps:
