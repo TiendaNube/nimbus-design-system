@@ -31,7 +31,7 @@ jobs:
         if: steps.check_release.outputs.should_skip == 'true'
         run: |
           echo "Nothing to build. Exiting workflow."
-          exit 0
+          exit 1
 
       - uses: ./.github/actions/setup-node-deps
 
