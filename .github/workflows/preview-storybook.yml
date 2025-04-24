@@ -19,14 +19,12 @@ jobs:
       - name: Check for release files in ./yarn/versions
         id: check_release
         run: |
-          has_releases=$(grep -l "^releases:" .yarn/versions/* 2>/dev/null | wc -l)
-          if [ "$has_releases" -eq "0" ]; then
-            echo "No release files found, skipping..."
-            echo "should_skip=true" >> $GITHUB_OUTPUT
-            echo "## ⚠️ Storybook preview not available" >> $GITHUB_STEP_SUMMARY
-            echo "Storybook preview is not available for this PR because there are no changes available for a new release." >> $GITHUB_STEP_SUMMARY
+          if grep -q "^releases:" .yarn/versions/* 2>/dev/null; then
+            echo "should_skip=false" >> "$GITHUB_OUTPUT"
           else
-            echo "should_skip=false" >> $GITHUB_OUTPUT
+            echo "should_skip=true" >> "$GITHUB_OUTPUT"
+            echo "## ⚠️ Storybook preview not available" >> "$GITHUB_STEP_SUMMARY"
+            echo "Storybook preview is not available for this PR because there are no changes available for a new release." >> "$GITHUB_STEP_SUMMARY"
           fi
 
       - uses: ./.github/actions/setup-node-deps
