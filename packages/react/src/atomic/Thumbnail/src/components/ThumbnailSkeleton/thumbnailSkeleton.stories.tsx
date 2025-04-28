@@ -15,3 +15,9 @@ export const basic: Story = {
     width: "104px",
   },
 };
+
+export const percentage: Story = {
+  args: {
+    width: "30%",
+  },
+};

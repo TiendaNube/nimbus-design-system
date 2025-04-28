@@ -2,6 +2,12 @@
 
 The Thumbnail component allows us to present thumbnails of images.
 
+## 2025-04-28 `2.3.2`
+
+#### 🐛 Bug fixes
+
+- `Thumbnail.Skeleton`: `width` support is extended to include percentages and 100% is defined as default, just like `Thumbnail`. ([Issue](https://github.com/TiendaNube/nimbus-design-system/discussions/248)) ([#289](https://github.com/TiendaNube/nimbus-design-system/pull/289) by [@harrytiendanube](https://github.com/harrytiendanube))
+
 ## 2025-03-18 `2.3.1`
 
 ### 💡 Others
