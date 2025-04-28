@@ -1,0 +1,3 @@
+releases:
+  "@nimbus-ds/styles": patch
+  "@nimbus-ds/thumbnail": patch
