@@ -1,9 +1,12 @@
-import { HTMLAttributes, ReactElement } from "react";
-import { SegmentedControlItem, SegmentedControlItemProps } from "./components";
+import React, { HTMLAttributes, ReactElement } from "react";
 
-export interface SegmentedControlComponents {
-  Item: typeof SegmentedControlItem;
+export interface SegmentedControlItemProps {
+  label: string;
+  disabled?: boolean;
+  selected?: boolean;
 }
+
+type SegmentedControlItem = React.FC<SegmentedControlItemProps>;
 
 export interface SegmentedControlBaseProps {
   /**
@@ -11,6 +14,10 @@ export interface SegmentedControlBaseProps {
    * @TJS-type ReactElement<SegmentedControlButtonProps>[];
    */
   children: ReactElement<SegmentedControlItemProps>[];
+}
+
+export interface SegmentedControlComponents {
+  Button: SegmentedControlItem;
 }
 
 export interface ControlledSegmentedControlProperties

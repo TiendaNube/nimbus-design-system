@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
-import { Box } from "@nimbus-ds/box";
 import { Text } from "@nimbus-ds/text";
 import { SegmentedControl } from "./SegmentedControl";
 import { ControlledSegmentedControlProperties } from "./SegmentedControl.types";
@@ -43,19 +42,7 @@ export const Basic: Story = {
   render: (args) => (
     <SegmentedControl {...args}>
       {["First", "Second", "Third"].map((label) => (
-        <SegmentedControl.Item key={label} label={label}>
-          <Box
-            borderColor="neutral-interactive"
-            borderStyle="dashed"
-            borderWidth="1"
-            padding="2"
-            marginTop="2"
-          >
-            <Text fontSize="base" textAlign="center">
-              Content for {label} segment
-            </Text>
-          </Box>
-        </SegmentedControl.Item>
+        <SegmentedControl.Button key={label} label={label} />
       ))}
     </SegmentedControl>
   ),
@@ -73,7 +60,9 @@ export const Controlled: Story = {
     return (
       <div>
         <div style={{ marginBottom: "16px" }}>
-          <Text fontSize="base">Currently selected: {selectedSegment.join(", ")}</Text>
+          <Text fontSize="base">
+            Currently selected: {selectedSegment.join(", ")}
+          </Text>
         </div>
 
         <SegmentedControl
@@ -81,19 +70,7 @@ export const Controlled: Story = {
           onSegmentsSelect={setSelectedSegment}
         >
           {["First", "Second", "Third"].map((label) => (
-            <SegmentedControl.Item key={label} label={label}>
-              <Box
-                borderColor="neutral-interactive"
-                borderStyle="dashed"
-                borderWidth="1"
-                padding="2"
-                marginTop="2"
-              >
-                <Text fontSize="base" textAlign="center">
-                  Controlled content for {label} segment
-                </Text>
-              </Box>
-            </SegmentedControl.Item>
+            <SegmentedControl.Button key={label} label={label} />
           ))}
         </SegmentedControl>
 
@@ -110,22 +87,13 @@ export const Controlled: Story = {
 /**
  * Example of multiple SegmentedControls working together.
  */
-export const Group = () => {
-  const options = ["Option 1", "Option 2", "Option 3"];
-
-  return (
+export const Group = () => (
     <div style={{ display: "flex", gap: "8px" }}>
       <SegmentedControl>
-        {options.map((option) => (
-          <SegmentedControl.Item key={option} label={option}>
-            <Box padding="2" marginTop="2">
-              <Text fontSize="base" textAlign="center">
-                {option} content
-              </Text>
-            </Box>
-          </SegmentedControl.Item>
-        ))}
+        <SegmentedControl.Button key="Option 1" label="Option 1" />
+        <SegmentedControl.Button key="Option 2" label="Option 2" />
+        <SegmentedControl.Button key="Option 3" label="Option 3" />
+        <SegmentedControl.Button key="Option 4" label="Option 4" disabled />
       </SegmentedControl>
     </div>
   );
-};

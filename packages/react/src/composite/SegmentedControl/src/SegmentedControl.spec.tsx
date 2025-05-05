@@ -5,9 +5,9 @@ import { SegmentedControl } from "./SegmentedControl";
 describe("SegmentedControl", () => {
   const defaultProps = {
     children: [
-      <SegmentedControl.Item key="option1" label="Option 1">Content 1</SegmentedControl.Item>,
-      <SegmentedControl.Item key="option2" label="Option 2">Content 2</SegmentedControl.Item>,
-      <SegmentedControl.Item key="option3" label="Option 3">Content 3</SegmentedControl.Item>,
+      <SegmentedControl.Button key="option1" label="Option 1" />,
+      <SegmentedControl.Button key="option2" label="Option 2" />,
+      <SegmentedControl.Button key="option3" label="Option 3" />,
     ],
   };
 
@@ -35,9 +35,9 @@ describe("SegmentedControl", () => {
   describe("Uncontrolled mode", () => {
     it("initializes with selected segments from children props", () => {
       const children = [
-        <SegmentedControl.Item key="option1" label="Option 1" selected>Content 1</SegmentedControl.Item>,
-        <SegmentedControl.Item key="option2" label="Option 2">Content 2</SegmentedControl.Item>,
-        <SegmentedControl.Item key="option3" label="Option 3" selected>Content 3</SegmentedControl.Item>,
+        <SegmentedControl.Button key="option1" label="Option 1" selected />,
+        <SegmentedControl.Button key="option2" label="Option 2" />,
+        <SegmentedControl.Button key="option3" label="Option 3" selected />,
       ];
 
       render(<SegmentedControl>{children}</SegmentedControl>);
@@ -100,8 +100,8 @@ describe("SegmentedControl", () => {
 
     it("falls back to first segment if no segments have selected prop", () => {
       const children = [
-        <SegmentedControl.Item key="option1" label="Option 1">Content 1</SegmentedControl.Item>,
-        <SegmentedControl.Item key="option2" label="Option 2">Content 2</SegmentedControl.Item>,
+        <SegmentedControl.Button key="option1" label="Option 1" />,
+        <SegmentedControl.Button key="option2" label="Option 2" />,
       ];
 
       render(<SegmentedControl>{children}</SegmentedControl>);
@@ -166,8 +166,8 @@ describe("SegmentedControl", () => {
 
     it("ignores child selected props in controlled mode", () => {
       const children = [
-        <SegmentedControl.Item key="option1" label="Option 1" selected>Content 1</SegmentedControl.Item>,
-        <SegmentedControl.Item key="option2" label="Option 2" selected>Content 2</SegmentedControl.Item>,
+        <SegmentedControl.Button key="option1" label="Option 1" selected />,
+        <SegmentedControl.Button key="option2" label="Option 2" selected />,
       ];
 
       render(
