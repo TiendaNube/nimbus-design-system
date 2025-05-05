@@ -43,9 +43,11 @@ export { pagination } from "./packages/composite/pagination";
 export { sidebar } from "./packages/composite/sidebar";
 export { tabs } from "./packages/composite/tabs";
 export { table } from "./packages/composite/table";
+export { segmentedControl } from "./packages/composite/segmented-control";
 
 export { calendar } from "./packages/patterns/calendar";
 export { editor } from "./packages/patterns/editor";
+
 
 export type { BoxSprinkle } from "./packages/atomic/box";
 export type { IconButtonSprinkle } from "./packages/atomic/iconButton";

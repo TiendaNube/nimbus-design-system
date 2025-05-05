@@ -1,5 +1,5 @@
 {
-  "include": ["packages", ".scripts", "index.d.ts"],
+  "include": ["packages", ".scripts", "index.d.ts", "jest.setup.tsx"],
   "compilerOptions": {
     "target": "esnext",
     "module": "commonjs",
