@@ -1,46 +1,52 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
-import { SegmentedControl } from "./SegmentedControlButton";
+import { SegmentedControlButton } from "./SegmentedControlButton";
 
-describe("SegmentedControl", () => {
+describe("SegmentedControlButton", () => {
+  const defaultProps = {
+    label: "Option 1",
+    index: 0,
+    setActiveSegment: jest.fn(),
+  };
+
   it("renders correctly", () => {
-    render(<SegmentedControl>Option 1</SegmentedControl>);
+    render(<SegmentedControlButton {...defaultProps} />);
     expect(screen.getByRole("button")).toBeInTheDocument();
     expect(screen.getByText("Option 1")).toBeInTheDocument();
   });
 
-  it("handles controlled selected state", () => {
-    render(<SegmentedControl selected>Option 1</SegmentedControl>);
+  it("applies selected style when active", () => {
+    render(<SegmentedControlButton {...defaultProps} active />);
     const button = screen.getByRole("button");
     expect(button).toHaveAttribute("aria-pressed", "true");
-    expect(button).toHaveClass("selected");
   });
 
-  it("handles uncontrolled selected state", () => {
-    render(<SegmentedControl>Option 1</SegmentedControl>);
+  it("applies default style when not active", () => {
+    render(<SegmentedControlButton {...defaultProps} />);
     const button = screen.getByRole("button");
-    expect(button).toHaveAttribute("aria-pressed", "false");
-    
-    fireEvent.click(button);
-    expect(button).toHaveAttribute("aria-pressed", "true");
-    
-    fireEvent.click(button);
     expect(button).toHaveAttribute("aria-pressed", "false");
   });
 
-  it("calls onClick handler", () => {
-    const handleClick = jest.fn();
-    render(<SegmentedControl onClick={handleClick}>Option 1</SegmentedControl>);
+  it("calls setActiveSegment when clicked", () => {
+    const setActiveSegment = jest.fn();
+    render(
+      <SegmentedControlButton
+        {...defaultProps}
+        setActiveSegment={setActiveSegment}
+      />
+    );
     
     fireEvent.click(screen.getByRole("button"));
-    expect(handleClick).toHaveBeenCalledTimes(1);
+    expect(setActiveSegment).toHaveBeenCalledWith(0);
   });
 
   it("renders as an anchor when 'as' prop is set to 'a'", () => {
     render(
-      <SegmentedControl as="a" href="#">
-        Option 1
-      </SegmentedControl>
+      <SegmentedControlButton
+        {...defaultProps}
+        as="a"
+        href="#"
+      />
     );
     const anchor = screen.getByRole("button");
     expect(anchor.tagName).toBe("A");
@@ -49,14 +55,14 @@ describe("SegmentedControl", () => {
 
   it("forwards ref correctly", () => {
     const ref = React.createRef<HTMLButtonElement>();
-    render(<SegmentedControl ref={ref}>Option 1</SegmentedControl>);
+    render(<SegmentedControlButton {...defaultProps} ref={ref} />);
     expect(ref.current).toBeInstanceOf(HTMLButtonElement);
   });
 
-  describe("SegmentedControl.Skeleton", () => {
+  describe("SegmentedControlButton.Skeleton", () => {
     it("renders skeleton component", () => {
-      render(<SegmentedControl.Skeleton />);
-      expect(screen.getByTestId("segmented-control-skeleton")).toBeInTheDocument();
+      render(<SegmentedControlButton.Skeleton data-testid="skeleton" />);
+      expect(screen.getByTestId("skeleton")).toBeInTheDocument();
     });
   });
 }); 

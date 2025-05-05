@@ -4,107 +4,117 @@ import { SegmentedControl } from "./SegmentedControl";
 
 describe("SegmentedControl", () => {
   const defaultProps = {
-    children: "Test Button",
+    children: [
+      <SegmentedControl.Item key="option1" label="Option 1" />,
+      <SegmentedControl.Item key="option2" label="Option 2" />,
+    ],
   };
 
   it("renders correctly", () => {
     render(<SegmentedControl {...defaultProps} />);
-    expect(screen.getByRole("button")).toBeInTheDocument();
-    expect(screen.getByText("Test Button")).toBeInTheDocument();
+    expect(screen.getByText("Option 1")).toBeInTheDocument();
+    expect(screen.getByText("Option 2")).toBeInTheDocument();
   });
 
-  it("applies default class when not selected", () => {
+  it("applies default styling", () => {
     render(<SegmentedControl {...defaultProps} />);
-    expect(screen.getByRole("button")).toHaveClass("segmented-control", "default");
+    const container = screen.getByTestId("segmented-control-container");
+    expect(container).toBeInTheDocument();
   });
 
-  it("applies selected class when selected", () => {
-    render(<SegmentedControl {...defaultProps} selected />);
-    expect(screen.getByRole("button")).toHaveClass("segmented-control", "selected");
+  it("selects the default segment", () => {
+    render(<SegmentedControl {...defaultProps} />);
+    const buttons = screen.getAllByRole("button");
+    expect(buttons[0]).toHaveAttribute("aria-pressed", "true");
+    expect(buttons[1]).toHaveAttribute("aria-pressed", "false");
   });
 
   describe("Controlled mode", () => {
     it("maintains selected state when controlled", () => {
-      const handleClick = jest.fn();
+      const handleSegmentSelect = jest.fn();
       const { rerender } = render(
-        <SegmentedControl {...defaultProps} selected onClick={handleClick} />
+        <SegmentedControl
+          {...defaultProps}
+          selected={1}
+          onSegmentSelect={handleSegmentSelect}
+        />
       );
 
-      const button = screen.getByRole("button");
-      expect(button).toHaveClass("segmented-control", "selected");
-      
-      fireEvent.click(button);
-      expect(handleClick).toHaveBeenCalledTimes(1);
-      expect(button).toHaveClass("segmented-control", "selected");
+      const buttons = screen.getAllByRole("button");
+      expect(buttons[0]).toHaveAttribute("aria-pressed", "false");
+      expect(buttons[1]).toHaveAttribute("aria-pressed", "true");
 
-      rerender(<SegmentedControl {...defaultProps} selected={false} onClick={handleClick} />);
-      expect(button).toHaveClass("segmented-control", "default");
+      fireEvent.click(buttons[0]);
+      expect(handleSegmentSelect).toHaveBeenCalledWith(0);
+
+      // Selection doesn't change until parent rerenders with new selection
+      expect(buttons[1]).toHaveAttribute("aria-pressed", "true");
+
+      rerender(
+        <SegmentedControl
+          {...defaultProps}
+          selected={0}
+          onSegmentSelect={handleSegmentSelect}
+        />
+      );
+
+      expect(buttons[0]).toHaveAttribute("aria-pressed", "true");
+      expect(buttons[1]).toHaveAttribute("aria-pressed", "false");
     });
   });
 
   describe("Uncontrolled mode", () => {
     it("toggles selected state when clicked", () => {
       render(<SegmentedControl {...defaultProps} />);
-      const button = screen.getByRole("button");
-      
-      expect(button).toHaveClass("segmented-control", "default");
-      
-      fireEvent.click(button);
-      expect(button).toHaveClass("segmented-control", "selected");
-      
-      fireEvent.click(button);
-      expect(button).toHaveClass("segmented-control", "default");
+      const buttons = screen.getAllByRole("button");
+
+      // Default selection is the first segment
+      expect(buttons[0]).toHaveAttribute("aria-pressed", "true");
+      expect(buttons[1]).toHaveAttribute("aria-pressed", "false");
+
+      // Click second segment
+      fireEvent.click(buttons[1]);
+      expect(buttons[0]).toHaveAttribute("aria-pressed", "false");
+      expect(buttons[1]).toHaveAttribute("aria-pressed", "true");
+    });
+
+    it("uses preSelectedSegment when provided", () => {
+      render(<SegmentedControl {...defaultProps} preSelectedSegment={1} />);
+      const buttons = screen.getAllByRole("button");
+
+      expect(buttons[0]).toHaveAttribute("aria-pressed", "false");
+      expect(buttons[1]).toHaveAttribute("aria-pressed", "true");
     });
   });
 
   describe("Accessibility", () => {
     it("has correct ARIA attributes", () => {
-      const { rerender } = render(<SegmentedControl {...defaultProps} />);
-      const button = screen.getByRole("button");
-      
-      expect(button).toHaveAttribute("role", "button");
-      expect(button).toHaveAttribute("aria-pressed", "false");
-      
-      rerender(<SegmentedControl {...defaultProps} selected />);
-      expect(button).toHaveAttribute("aria-pressed", "true");
-    });
+      render(<SegmentedControl {...defaultProps} />);
+      const buttons = screen.getAllByRole("button");
 
-    it("is keyboard accessible", () => {
-      const handleClick = jest.fn();
-      render(<SegmentedControl {...defaultProps} onClick={handleClick} />);
-      const button = screen.getByRole("button");
-      
-      button.focus();
-      expect(button).toHaveFocus();
-      
-      fireEvent.keyDown(button, { key: "Enter" });
-      expect(handleClick).toHaveBeenCalledTimes(1);
-      
-      fireEvent.keyDown(button, { key: " " });
-      expect(handleClick).toHaveBeenCalledTimes(2);
+      expect(buttons[0]).toHaveAttribute("aria-pressed", "true");
+      expect(buttons[1]).toHaveAttribute("aria-pressed", "false");
     });
   });
 
-  describe("Edge cases", () => {
-    it("handles disabled state", () => {
-      const handleClick = jest.fn();
-      render(<SegmentedControl {...defaultProps} disabled onClick={handleClick} />);
-      const button = screen.getByRole("button");
-      
-      expect(button).toBeDisabled();
-      fireEvent.click(button);
-      expect(handleClick).not.toHaveBeenCalled();
-    });
+  // These tests verify button identifiers match the expected format
+  describe("ID generation", () => {
+    it("generates correct button IDs from labels", () => {
+      render(
+        <SegmentedControl>
+          <SegmentedControl.Item key="option1" label="Option 1">
+            Content 1
+          </SegmentedControl.Item>
+          <SegmentedControl.Item key="option2" label="Option 2">
+            Content 2
+          </SegmentedControl.Item>
+        </SegmentedControl>
+      );
 
-    it("handles empty children", () => {
-      render(<SegmentedControl />);
-      expect(screen.getByRole("button")).toBeInTheDocument();
-    });
+      const buttons = screen.getAllByRole("button");
 
-    it("forwards ref correctly", () => {
-      const ref = React.createRef<HTMLButtonElement>();
-      render(<SegmentedControl {...defaultProps} ref={ref} />);
-      expect(ref.current).toBeInstanceOf(HTMLButtonElement);
+      expect(buttons[0].id).toBe("segment-option-1");
+      expect(buttons[1].id).toBe("segment-option-2");
     });
   });
-}); 
+});

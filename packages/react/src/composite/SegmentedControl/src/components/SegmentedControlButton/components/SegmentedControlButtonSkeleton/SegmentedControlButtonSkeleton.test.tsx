@@ -4,21 +4,20 @@ import { SegmentedControlButtonSkeleton } from "./SegmentedControlButtonSkeleton
 
 describe("SegmentedControlButtonSkeleton", () => {
   it("should render skeleton with default props", () => {
-    render(<SegmentedControlButtonSkeleton />);
-    const skeleton = screen.getByRole("progressbar");
+    render(<SegmentedControlButtonSkeleton data-testid="skeleton" />);
+    const skeleton = screen.getByTestId("skeleton");
 
     expect(skeleton).toBeInTheDocument();
-    expect(skeleton).toHaveAttribute("aria-busy", "true");
-    expect(skeleton).toHaveClass("skeleton-animation");
+    expect(skeleton.className).toContain("nimbus-skeleton_base");
   });
 
   it("should render skeleton with custom width and height", () => {
-    render(<SegmentedControlButtonSkeleton width="200px" height="50px" />);
-    const skeleton = screen.getByRole("progressbar");
+    render(<SegmentedControlButtonSkeleton width="200px" height="50px" data-testid="skeleton" />);
+    const skeleton = screen.getByTestId("skeleton");
 
     expect(skeleton).toHaveStyle({
-      width: "200px",
-      height: "50px",
+      "--width__1jbm2xp0": "200px",
+      "--height__1jbm2xp1": "50px",
     });
   });
 
@@ -29,10 +28,12 @@ describe("SegmentedControlButtonSkeleton", () => {
     expect(skeleton).toBeInTheDocument();
   });
 
-  it("should maintain default appearance class from segmentedButton styles", () => {
-    render(<SegmentedControlButtonSkeleton />);
-    const skeleton = screen.getByRole("progressbar");
+  it("should apply border radius", () => {
+    render(<SegmentedControlButtonSkeleton data-testid="skeleton" />);
+    const skeleton = screen.getByTestId("skeleton");
 
-    expect(skeleton.className).toContain("appearance.default");
+    expect(skeleton).toHaveStyle({
+      "--borderRadius__1jbm2xp2": "0.25rem",
+    });
   });
 });

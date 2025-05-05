@@ -36,7 +36,7 @@ const SegmentedControl: React.FC<SegmentedControlProps> &
 
   return (
     <div>
-      <div className={segmentedControl.classnames.container} {...htmlProps}>
+      <div className={segmentedControl.classnames.container} data-testid="segmented-control-container" {...htmlProps}>
         {React.Children.map(children, (item, index) => {
           const {
             props: { label },
