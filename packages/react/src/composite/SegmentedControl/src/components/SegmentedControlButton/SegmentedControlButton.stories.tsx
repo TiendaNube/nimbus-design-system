@@ -23,6 +23,10 @@ const meta: Meta<typeof SegmentedControlButton> = {
       options: ["button", "a"],
       description: "HTML element to render as",
     },
+    disabled: {
+      control: "boolean",
+      description: "Controls the disabled state of the button",
+    },
   },
 };
 
@@ -40,6 +44,14 @@ export const active: Story = {
   args: {
     children: "Option 1",
     active: true,
+    label: "Option 1",
+  },
+};
+
+export const disabled: Story = {
+  args: {
+    children: "Option 1",
+    disabled: true,
     label: "Option 1",
   },
 };

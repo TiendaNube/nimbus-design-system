@@ -14,15 +14,11 @@ const meta: Meta<typeof SegmentedControl> = {
       description: "The content of the segmented control",
       control: { disable: true },
     },
-    preSelectedSegment: {
-      description: "The pre-selected segment index for uncontrolled mode",
-      control: "number",
-    },
-    selected: {
+    selectedSegments: {
       description: "The selected segment index for controlled mode",
       control: "number",
     },
-    onSegmentSelect: {
+    onSegmentsSelect: {
       description: "Callback when a segment is selected",
       action: "segment selected",
     },
@@ -66,48 +62,23 @@ export const Basic: Story = {
 };
 
 /**
- * Example of a SegmentedControl with a pre-selected segment.
- */
-export const PreSelected: Story = {
-  render: (args) => (
-    <SegmentedControl {...args} preSelectedSegment={1}>
-      {["Option 1", "Option 2", "Option 3"].map((label) => (
-        <SegmentedControl.Item key={label} label={label}>
-          <Box
-            borderColor="neutral-interactive"
-            borderStyle="dashed"
-            borderWidth="1"
-            padding="2"
-            marginTop="2"
-          >
-            <Text fontSize="base" textAlign="center">
-              Preselected content for {label}
-            </Text>
-          </Box>
-        </SegmentedControl.Item>
-      ))}
-    </SegmentedControl>
-  ),
-};
-
-/**
  * Example of a controlled SegmentedControl with state management.
  */
 export const Controlled: Story = {
   render: (args) => {
-    const [selectedSegment, setSelectedSegment] = useState<number>(
-      (args as ControlledSegmentedControlProperties).selected || 0
+    const [selectedSegment, setSelectedSegment] = useState<number[]>(
+      (args as ControlledSegmentedControlProperties).selectedSegments || [0]
     );
 
     return (
       <div>
         <div style={{ marginBottom: "16px" }}>
-          <Text fontSize="base">Currently selected: {selectedSegment + 1}</Text>
+          <Text fontSize="base">Currently selected: {selectedSegment.join(", ")}</Text>
         </div>
 
         <SegmentedControl
-          selected={selectedSegment}
-          onSegmentSelect={setSelectedSegment}
+          selectedSegments={selectedSegment}
+          onSegmentsSelect={setSelectedSegment}
         >
           {["First", "Second", "Third"].map((label) => (
             <SegmentedControl.Item key={label} label={label}>

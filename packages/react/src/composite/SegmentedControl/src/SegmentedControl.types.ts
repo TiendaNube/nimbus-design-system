@@ -1,6 +1,5 @@
 import { HTMLAttributes, ReactElement } from "react";
-import { SegmentedControlItem } from "./components";
-import { SegmentedControlButtonBaseProps } from "./components/SegmentedControlButton/SegmentedControlButton.types";
+import { SegmentedControlItem, SegmentedControlItemProps } from "./components";
 
 export interface SegmentedControlComponents {
   Item: typeof SegmentedControlItem;
@@ -11,27 +10,21 @@ export interface SegmentedControlBaseProps {
    * The content of the segmented control.
    * @TJS-type ReactElement<SegmentedControlButtonProps>[];
    */
-  children: ReactElement<SegmentedControlButtonBaseProps>[];
-  /**
-   * Sets the indicated segment as active by default. If unset, defaults to first segment.
-   */
-  preSelectedSegment?: number;
+  children: ReactElement<SegmentedControlItemProps>[];
 }
 
 export interface ControlledSegmentedControlProperties
   extends SegmentedControlBaseProps {
   /**
-   * The currently selected segment index.
+   * The currently selected segment indices.
+   * At least one segment must always be selected.
    */
-  selected: number;
+  selectedSegments: number[];
   /**
-   * Callback fired when the selected segment changes.
+   * Callback fired when the selected segments change.
+   * This will only be called if the change results in at least one selected segment.
    */
-  onSegmentSelect: (index: number) => void;
-  /**
-   * preSelectedSegment is not used in controlled mode
-   */
-  preSelectedSegment?: never;
+  onSegmentsSelect: (indices: number[]) => void;
 }
 
 export type SegmentedControlProps =

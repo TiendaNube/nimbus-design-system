@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { segmentedControl } from "@nimbus-ds/styles";
 
 import {
   SegmentedControlProps,
   SegmentedControlComponents,
+  ControlledSegmentedControlProperties
 } from "./SegmentedControl.types";
 import { SegmentedControlButton, SegmentedControlItem } from "./components";
 import { isControlled } from "./segmentedControl.definitions";
@@ -16,42 +17,97 @@ const SegmentedControl: React.FC<SegmentedControlProps> &
   className: _className,
   style: _style,
   children,
-  preSelectedSegment,
   ...rest
 }: SegmentedControlProps) => {
   // Internal state for uncontrolled mode
-  const [internalSelectedSegment, setInternalSelectedSegment] =
-    useState<number>(preSelectedSegment || 0);
+  const [internalSelectedSegments, setInternalSelectedSegments] = useState<number[]>([0]);
+    
+  // Check for controlled mode
+  const isControlledMode = isControlled(rest);
+  
+  // Initialize from selected props (for uncontrolled mode only)
+  useEffect(() => {
+    if (!isControlledMode && React.Children.count(children) > 0) {
+      const initialSelectedIndices: number[] = [];
+      
+      // Check if any children have selected prop
+      React.Children.forEach(children, (child, index) => {
+        if (child.props.selected) {
+          initialSelectedIndices.push(index);
+        }
+      });
+      
+      // Use selected indices or default to first item
+      if (initialSelectedIndices.length > 0) {
+        setInternalSelectedSegments(initialSelectedIndices);
+      } else {
+        setInternalSelectedSegments([0]);
+      }
+    }
+  }, [children, isControlledMode]);
 
-  // Use controlled or uncontrolled state
-  const selectedSegment = isControlled(rest)
-    ? rest.selected
-    : internalSelectedSegment;
-  const setSelectedSegment = isControlled(rest)
-    ? rest.onSegmentSelect
-    : setInternalSelectedSegment;
+  // Get the currently selected segments
+  const selectedSegments = useMemo(() => {
+    if (isControlledMode) {
+      const controlledProps = rest as ControlledSegmentedControlProperties;
+      return controlledProps.selectedSegments?.length > 0 ? controlledProps.selectedSegments : [0];
+    }
+    return internalSelectedSegments;
+  }, [isControlledMode, internalSelectedSegments, rest]);
 
-  // Extract onSegmentSelect from rest, and html props
-  const { onSegmentSelect, selected, ...htmlProps } = rest as any;
+  // Handle toggling a segment
+  const handleToggleSegment = useCallback((index: number) => {
+    const handleChange = (current: number[]) => {
+      const newSelected = [...current];
+      const existingIndex = newSelected.indexOf(index);
+      
+      if (existingIndex !== -1) {
+        // Only remove if there would still be at least one segment selected
+        if (newSelected.length > 1) {
+          newSelected.splice(existingIndex, 1);
+          return newSelected;
+        }
+        return current; // Don't allow deselecting the last item
+      }
+      
+      // Add the segment
+      newSelected.push(index);
+      return newSelected;
+    };
+
+    if (isControlledMode) {
+      const controlledProps = rest as ControlledSegmentedControlProperties;
+      if (controlledProps.onSegmentsSelect) {
+        controlledProps.onSegmentsSelect(handleChange(selectedSegments));
+      }
+    } else {
+      setInternalSelectedSegments(handleChange);
+    }
+  }, [isControlledMode, selectedSegments, rest]);
+
+  // Extract props from rest
+  const { onSegmentsSelect, selectedSegments: _, ...htmlProps } = rest as any;
 
   return (
-    <div>
-      <div className={segmentedControl.classnames.container} data-testid="segmented-control-container" {...htmlProps}>
-        {React.Children.map(children, (item, index) => {
-          const {
-            props: { label },
-          } = item;
-          return (
-            <SegmentedControlButton
-              key={label}
-              label={label}
-              index={index}
-              active={index === selectedSegment}
-              setActiveSegment={setSelectedSegment}
-            />
-          );
-        })}
-      </div>
+    <div
+      className={segmentedControl.classnames.container}
+      data-testid="segmented-control-container"
+      {...htmlProps}
+    >
+      {React.Children.map(children, (item, index) => {
+        const { props: { label } } = item;
+        const isActive = selectedSegments.includes(index);
+        
+        return (
+          <SegmentedControlButton
+            key={label}
+            label={label}
+            index={index}
+            active={isActive}
+            setActiveSegment={handleToggleSegment}
+          />
+        );
+      })}
     </div>
   );
 };

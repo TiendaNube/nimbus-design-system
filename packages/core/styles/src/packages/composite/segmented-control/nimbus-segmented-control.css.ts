@@ -1,5 +1,5 @@
 import { style, styleVariants } from "@vanilla-extract/css";
-import { defineProperties , createSprinkles } from "@vanilla-extract/sprinkles";
+import { defineProperties, createSprinkles } from "@vanilla-extract/sprinkles";
 import { varsThemeBase } from "../../../themes";
 import { paddingProperties } from "../../../properties";
 
@@ -11,6 +11,7 @@ const container = style({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
+  backgroundColor: varsThemeBase.colors.neutral.surface,
   gap: varsThemeBase.spacing[1],
 });
 
@@ -82,6 +83,7 @@ const buttonAppearance = styleVariants({
         background: varsThemeBase.colors.neutral.surface,
       },
       ":focus": {
+        borderRadius: varsThemeBase.shape.border.radius[1],
         borderColor: varsThemeBase.colors.primary.interactivePressed,
       },
     },
@@ -90,7 +92,10 @@ const buttonAppearance = styleVariants({
     buttonBase,
     {
       background: varsThemeBase.colors.primary.surface,
+      borderColor: varsThemeBase.colors.primary.interactive,
       color: varsThemeBase.colors.primary.interactive,
+      // This is to ensure the selected button is on top of the other buttons
+      zIndex: 1,
       ":hover": {
         background: varsThemeBase.colors.primary.surface,
         borderColor: varsThemeBase.colors.primary.interactiveHover,
@@ -99,6 +104,7 @@ const buttonAppearance = styleVariants({
       ":active": {
         background: varsThemeBase.colors.primary.surface,
         borderColor: varsThemeBase.colors.primary.interactivePressed,
+        color: varsThemeBase.colors.primary.textHigh,
       },
       ":disabled": {
         background: varsThemeBase.colors.neutral.surface,

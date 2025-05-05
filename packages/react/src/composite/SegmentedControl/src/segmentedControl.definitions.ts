@@ -16,4 +16,4 @@ export const generateID = (name: string) =>
 export const isControlled = (
   props: any
 ): props is ControlledSegmentedControlProperties =>
-  "selected" in props && "onSegmentSelect" in props; 
+  "selectedSegments" in props && "onSegmentsSelect" in props; 
