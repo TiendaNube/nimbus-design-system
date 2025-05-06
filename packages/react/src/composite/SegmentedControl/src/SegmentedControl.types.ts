@@ -1,17 +1,20 @@
-import React, { HTMLAttributes, ReactElement, PropsWithChildren } from "react";
+import React, { HTMLAttributes, ReactElement } from "react";
+import { SegmentedControlButtonProps } from "./components/SegmentedControlButton/SegmentedControlButton.types";
 
-export type SegmentedControlItemProps = PropsWithChildren<{
-  label: string;
-  disabled?: boolean;
-  selected?: boolean;
-}>;
+/**
+ * Props for the SegmentedControlItem component. This is is a reduced version of the Button props, exposed for external usage.
+ */
+export type SegmentedControlItemProps = Pick<
+  SegmentedControlButtonProps,
+  "label" | "disabled" | "selected" | "children"
+>;
 
 type SegmentedControlItem = React.FC<SegmentedControlItemProps>;
 
 export interface SegmentedControlBaseProps {
   /**
    * The content of the segmented control.
-   * @TJS-type ReactElement<SegmentedControlButtonProps>[];
+   * @TJS-type ReactElement<SegmentedControlItemProps>[];
    */
   children: ReactElement<SegmentedControlItemProps>[];
   /**
@@ -21,6 +24,9 @@ export interface SegmentedControlBaseProps {
   fullWidth?: boolean;
 }
 
+/**
+ * Component composition structure for the SegmentedControl
+ */
 export interface SegmentedControlComponents {
   Button: SegmentedControlItem;
 }
@@ -29,6 +35,7 @@ export interface ControlledSegmentedControlProperties
   extends SegmentedControlBaseProps {
   /**
    * The currently selected segment indices.
+   * Allows for single or multiple selection based on implementation.
    * At least one segment must always be selected.
    */
   selectedSegments: number[];
@@ -39,9 +46,14 @@ export interface ControlledSegmentedControlProperties
   onSegmentsSelect: (indices: number[]) => void;
 }
 
-export type SegmentedControlProps =
-  | (SegmentedControlBaseProps | ControlledSegmentedControlProperties) &
-      Omit<HTMLAttributes<HTMLDivElement>, "children">;
+/**
+ * Props for the SegmentedControl component, supporting both controlled and uncontrolled modes
+ */
+export type SegmentedControlProps = (
+  | SegmentedControlBaseProps
+  | ControlledSegmentedControlProperties
+) &
+  Omit<HTMLAttributes<HTMLDivElement>, "children">;
 
 // For docs purposes, we need to merge the two types
 export type SegmentedControlProperties = SegmentedControlBaseProps &

@@ -6,7 +6,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 #### 🎉 New features
 
-- Added `segmented-control` new composite component styles. ([#282](https://github.com/TiendaNube/nimbus-design-system/pull/282) by [@joacotornello](https://github.com/joacotornello))
+- Added `segmented-control` new composite component styles. ([#290](https://github.com/TiendaNube/nimbus-design-system/pull/290) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-03-25 `9.14.0`
 

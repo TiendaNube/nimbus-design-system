@@ -1,19 +1,7 @@
-import React, {
-  ButtonHTMLAttributes,
-  CSSProperties,
-  PropsWithChildren,
-} from "react";
+import React, { ButtonHTMLAttributes, PropsWithChildren } from "react";
 import { SegmentedControlButtonSkeletonProps } from "./components/SegmentedControlButtonSkeleton/SegmentedControlButtonSkeleton.types";
 
 export type SegmentedControlButtonProperties = PropsWithChildren<{
-  /**
-   * Custom class name
-   */
-  className?: string;
-  /**
-   * Custom style
-   */
-  style?: CSSProperties;
   /**
    * Label of the segment.
    */
@@ -22,16 +10,7 @@ export type SegmentedControlButtonProperties = PropsWithChildren<{
    * Determines if segment is active.
    * @default false
    */
-  active?: boolean;
-  /**
-   * Position of the segment inside the segmented control.
-   */
-  index: number;
-  /**
-   * Function executed when clicking the segment.
-   * @TJS-type (index: number) => void;
-   */
-  setActiveSegment: (index: number) => void;
+  selected?: boolean;
   /**
    * Whether the segment is disabled
    * @default false
@@ -42,7 +21,9 @@ export type SegmentedControlButtonProperties = PropsWithChildren<{
    * @default false
    */
   fullWidth?: boolean;
-}> &
+}>;
+
+export type SegmentedControlButtonProps = SegmentedControlButtonProperties &
   ButtonHTMLAttributes<HTMLButtonElement>;
 
 export interface SegmentedControlButtonComponents {

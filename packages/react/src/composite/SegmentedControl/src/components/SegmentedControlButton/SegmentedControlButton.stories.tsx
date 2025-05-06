@@ -11,9 +11,9 @@ const meta: Meta<typeof SegmentedControlButton> = {
   component: SegmentedControlButton,
   tags: ["autodocs"],
   argTypes: {
-    active: {
+    selected: {
       control: "boolean",
-      description: "Controls the active state of the button",
+      description: "Controls the selected state of the button",
     },
     children: {
       control: { disable: true },
@@ -47,9 +47,9 @@ export const Default: Story = {
   },
 };
 
-export const active: Story = {
+export const Selected: Story = {
   args: {
-    active: true,
+    selected: true,
     label: "Option 1",
     children: "Option 1",
   },
@@ -65,14 +65,7 @@ export const disabled: Story = {
 
 export const AsLink: Story = {
   render: () => (
-    <SegmentedControlButton<"a">
-      as="a"
-      href="#"
-      label="Option 1"
-      index={0}
-      /* eslint-disable-next-line @typescript-eslint/no-empty-function */
-      setActiveSegment={() => {}}
-    >
+    <SegmentedControlButton<"a"> as="a" href="#" label="Option 1">
       Option 1
     </SegmentedControlButton>
   ),
@@ -80,12 +73,7 @@ export const AsLink: Story = {
 
 export const IconButton: Story = {
   render: () => (
-    <SegmentedControlButton
-      label="With icon"
-      index={0}
-      /* eslint-disable-next-line @typescript-eslint/no-empty-function */
-      setActiveSegment={() => {}}
-    >
+    <SegmentedControlButton label="With icon">
       <Icon source={<ExternalLinkIcon />} />
     </SegmentedControlButton>
   ),
@@ -93,12 +81,7 @@ export const IconButton: Story = {
 
 export const WithCustomContent: Story = {
   render: () => (
-    <SegmentedControlButton
-      label="With icon"
-      index={0}
-      /* eslint-disable-next-line @typescript-eslint/no-empty-function */
-      setActiveSegment={() => {}}
-    >
+    <SegmentedControlButton label="With icon">
       With icon
       <Icon source={<ExternalLinkIcon />} />
     </SegmentedControlButton>
@@ -108,12 +91,7 @@ export const WithCustomContent: Story = {
 export const WithTooltip: Story = {
   render: () => (
     <Tooltip content="Tooltip content">
-      <SegmentedControlButton
-        label="With tooltip"
-        index={0}
-        /* eslint-disable-next-line @typescript-eslint/no-empty-function */
-        setActiveSegment={() => {}}
-      >
+      <SegmentedControlButton label="With tooltip">
         With tooltip
       </SegmentedControlButton>
     </Tooltip>
@@ -123,13 +101,7 @@ export const WithTooltip: Story = {
 export const fullWidth: Story = {
   render: () => (
     <div style={{ width: "400px" }}>
-      <SegmentedControlButton
-        label="Full Width Button"
-        index={0}
-        fullWidth
-        /* eslint-disable-next-line @typescript-eslint/no-empty-function */
-        setActiveSegment={() => {}}
-      >
+      <SegmentedControlButton label="Full Width Button" fullWidth>
         Full Width Button
       </SegmentedControlButton>
     </div>
@@ -144,30 +116,9 @@ export const SkeletonState: Story = {
 export const GroupExample: Story = {
   render: () => (
     <Box display="flex" gap="1" padding="1">
-      <SegmentedControlButton
-        label="Option 1"
-        index={0}
-        /* eslint-disable-next-line @typescript-eslint/no-empty-function */
-        setActiveSegment={() => {}}
-      >
-        Option 1
-      </SegmentedControlButton>
-      <SegmentedControlButton
-        label="Option 2"
-        index={1}
-        /* eslint-disable-next-line @typescript-eslint/no-empty-function */
-        setActiveSegment={() => {}}
-      >
-        Option 2
-      </SegmentedControlButton>
-      <SegmentedControlButton
-        label="Option 3"
-        index={2}
-        /* eslint-disable-next-line @typescript-eslint/no-empty-function */
-        setActiveSegment={() => {}}
-      >
-        Option 3
-      </SegmentedControlButton>
+      <SegmentedControlButton label="Option 1">Option 1</SegmentedControlButton>
+      <SegmentedControlButton label="Option 2">Option 2</SegmentedControlButton>
+      <SegmentedControlButton label="Option 3">Option 3</SegmentedControlButton>
     </Box>
   ),
 };
@@ -176,31 +127,13 @@ export const GroupExample: Story = {
 export const FullWidthGroupExample: Story = {
   render: () => (
     <Box display="flex" gap="1" padding="1" width="100%">
-      <SegmentedControlButton
-        label="Option 1"
-        index={0}
-        fullWidth
-        /* eslint-disable-next-line @typescript-eslint/no-empty-function */
-        setActiveSegment={() => {}}
-      >
+      <SegmentedControlButton label="Option 1" fullWidth>
         Option 1
       </SegmentedControlButton>
-      <SegmentedControlButton
-        label="Option 2"
-        index={1}
-        fullWidth
-        /* eslint-disable-next-line @typescript-eslint/no-empty-function */
-        setActiveSegment={() => {}}
-      >
+      <SegmentedControlButton label="Option 2" fullWidth>
         Option 2
       </SegmentedControlButton>
-      <SegmentedControlButton
-        label="Option 3"
-        index={2}
-        fullWidth
-        /* eslint-disable-next-line @typescript-eslint/no-empty-function */
-        setActiveSegment={() => {}}
-      >
+      <SegmentedControlButton label="Option 3" fullWidth>
         Option 3
       </SegmentedControlButton>
     </Box>

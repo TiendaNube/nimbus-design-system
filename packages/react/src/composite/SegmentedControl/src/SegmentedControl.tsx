@@ -107,17 +107,16 @@ const SegmentedControl: React.FC<SegmentedControlProps> &
         const {
           props: { label, disabled, children: buttonChildren },
         } = item;
-        const isActive = selectedSegments.includes(index);
+        const isSelected = selectedSegments.includes(index);
 
         return (
           <SegmentedControlButton
             key={label}
             label={label}
-            index={index}
-            active={isActive}
-            setActiveSegment={handleToggleSegment}
+            selected={isSelected}
             disabled={disabled}
             fullWidth={fullWidth}
+            onClick={() => handleToggleSegment(index)}
           >
             {buttonChildren}
           </SegmentedControlButton>

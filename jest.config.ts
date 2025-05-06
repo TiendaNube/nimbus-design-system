@@ -36,8 +36,6 @@ const config: Config.InitialOptions = {
     "@nimbus-ds/toast": "<rootDir>/packages/react/src/atomic/Toast/src",
     "@nimbus-ds/toggle": "<rootDir>/packages/react/src/atomic/Toggle/src",
     "@nimbus-ds/tooltip": "<rootDir>/packages/react/src/atomic/Tooltip/src",
-    "@nimbus-ds/segmented-control":
-      "<rootDir>/packages/react/src/atomic/SegmentedControl/src",
     // composites
     "@nimbus-ds/accordion":
       "<rootDir>/packages/react/src/composite/Accordion/src",
@@ -51,6 +49,8 @@ const config: Config.InitialOptions = {
     "@nimbus-ds/table": "<rootDir>/packages/react/src/composite/Table/src",
     "@nimbus-ds/collapsible":
       "<rootDir>/packages/react/src/composite/Collapsible/src",
+    "@nimbus-ds/segmented-control":
+      "<rootDir>/packages/react/src/composite/SegmentedControl/src",
     // commons
     "^.+\\.svg$": "jest-svg-transformer",
   },

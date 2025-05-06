@@ -3,7 +3,6 @@ import React, {
   useRef,
   useEffect,
   useImperativeHandle,
-  useCallback,
 } from "react";
 import {
   PolymorphicForwardRefComponent,
@@ -13,8 +12,8 @@ import { segmentedControl } from "@nimbus-ds/styles";
 
 import { generateID } from "../../segmentedControl.definitions";
 import {
-  SegmentedControlButtonProperties,
   SegmentedControlButtonComponents,
+  SegmentedControlButtonProps,
 } from "./SegmentedControlButton.types";
 import { SegmentedControlButtonSkeleton } from "./components/SegmentedControlButtonSkeleton/SegmentedControlButtonSkeleton";
 
@@ -25,14 +24,12 @@ const SegmentedControlButton = forwardRef(
       style: _style,
       as: As = "button",
       label,
-      active = false,
-      index,
-      setActiveSegment,
+      selected = false,
       disabled = false,
       fullWidth = false,
       children,
       ...rest
-    }: SegmentedControlButtonProperties & { as: any },
+    }: SegmentedControlButtonProps & { as: any },
     ref
   ) => {
     const innerRef = useRef<HTMLButtonElement>(null);
@@ -57,18 +54,12 @@ const SegmentedControlButton = forwardRef(
       }
     }, [innerRef]);
 
-    const handleOnClick = useCallback(() => {
-      if (!disabled) {
-        setActiveSegment(index);
-      }
-    }, [setActiveSegment, index, disabled]);
-
     // Generate a unique ID for the button and aria attributes
     const ariaID = generateID(label);
 
     const { classnames } = segmentedControl.subcomponents.button;
     const buttonClassName = [
-      classnames.appearance[active ? "selected" : "default"],
+      classnames.appearance[selected ? "selected" : "default"],
     ]
       .concat(fullWidth && classnames.fullWidth ? classnames.fullWidth : "")
       .filter(Boolean)
@@ -78,10 +69,9 @@ const SegmentedControlButton = forwardRef(
       <As
         {...(rest as any)}
         className={buttonClassName}
-        onClick={handleOnClick}
         id={`segment-${ariaID}`}
         role="button"
-        aria-pressed={active}
+        aria-pressed={selected}
         disabled={disabled}
         ref={innerRef}
       >
@@ -91,7 +81,7 @@ const SegmentedControlButton = forwardRef(
   }
 ) as PolymorphicForwardRefComponent<
   "button" | "a",
-  SegmentedControlButtonProperties
+  SegmentedControlButtonProps
 > &
   SegmentedControlButtonComponents;
 
