@@ -1,2 +1,7 @@
-export * from "./SegmentedControl";
-export * from "./SegmentedControl.types"; 
+"use client";
+
+import { SegmentedControl } from "./SegmentedControl";
+
+export { SegmentedControl } from "./SegmentedControl";
+export type { SegmentedControlProps } from "./SegmentedControl.types";
+export default SegmentedControl;

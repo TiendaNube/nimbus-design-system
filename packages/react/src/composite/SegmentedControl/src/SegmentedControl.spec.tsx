@@ -6,8 +6,8 @@ import {
   act,
   waitFor,
 } from "@testing-library/react";
-import { SegmentedControl } from "./SegmentedControl";
 import userEvent from "@testing-library/user-event";
+import { SegmentedControl } from "./SegmentedControl";
 
 describe("SegmentedControl", () => {
   const defaultProps = {

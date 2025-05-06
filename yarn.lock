@@ -3014,9 +3014,12 @@ __metadata:
   resolution: "@nimbus-ds/segmented-control@workspace:packages/react/src/composite/SegmentedControl"
   dependencies:
     "@nimbus-ds/badge": "workspace:^"
+    "@nimbus-ds/button": "workspace:^"
     "@nimbus-ds/icon": "workspace:^"
     "@nimbus-ds/icons": "workspace:^"
     "@nimbus-ds/skeleton": "workspace:^"
+    "@nimbus-ds/tooltip": "workspace:^"
+    "@nimbus-ds/typings": "workspace:^"
     "@nimbus-ds/webpack": "workspace:^"
   peerDependencies:
     "@nimbus-ds/styles": "workspace:^"
@@ -3222,7 +3225,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/tooltip@workspace:packages/react/src/atomic/Tooltip":
+"@nimbus-ds/tooltip@workspace:^, @nimbus-ds/tooltip@workspace:packages/react/src/atomic/Tooltip":
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/tooltip@workspace:packages/react/src/atomic/Tooltip"
   dependencies:
@@ -3236,7 +3239,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/typings@workspace:packages/core/typings":
+"@nimbus-ds/typings@workspace:^, @nimbus-ds/typings@workspace:packages/core/typings":
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/typings@workspace:packages/core/typings"
   dependencies:

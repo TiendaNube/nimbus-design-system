@@ -1,5 +1,4 @@
 import React, {
-  ComponentPropsWithRef,
   forwardRef,
   useRef,
   useEffect,
@@ -14,7 +13,7 @@ import { segmentedControl } from "@nimbus-ds/styles";
 
 import { generateID } from "../../segmentedControl.definitions";
 import {
-  SegmentedControlButtonBaseProps,
+  SegmentedControlButtonProperties,
   SegmentedControlButtonComponents,
 } from "./SegmentedControlButton.types";
 import { SegmentedControlButtonSkeleton } from "./components/SegmentedControlButtonSkeleton/SegmentedControlButtonSkeleton";
@@ -33,7 +32,7 @@ const SegmentedControlButton = forwardRef(
       fullWidth = false,
       children,
       ...rest
-    }: SegmentedControlButtonBaseProps & { as: any },
+    }: SegmentedControlButtonProperties & { as: any },
     ref
   ) => {
     const innerRef = useRef<HTMLButtonElement>(null);
@@ -92,7 +91,7 @@ const SegmentedControlButton = forwardRef(
   }
 ) as PolymorphicForwardRefComponent<
   "button" | "a",
-  SegmentedControlButtonBaseProps
+  SegmentedControlButtonProperties
 > &
   SegmentedControlButtonComponents;
 
@@ -100,7 +99,4 @@ SegmentedControlButton.Skeleton = SegmentedControlButtonSkeleton;
 SegmentedControlButton.displayName = "SegmentedControlButton";
 SegmentedControlButton.Skeleton.displayName = "SegmentedControlButton.Skeleton";
 
-export type SegmentedControlButtonProps = ComponentPropsWithRef<
-  typeof SegmentedControlButton
->;
 export { SegmentedControlButton };

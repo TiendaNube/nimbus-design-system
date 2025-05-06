@@ -14,7 +14,8 @@
     "version": "yarn version"
   },
   "dependencies": {
-    "@nimbus-ds/skeleton": "workspace:^"
+    "@nimbus-ds/skeleton": "workspace:^",
+    "@nimbus-ds/typings": "workspace:^"
   },
   "peerDependencies": {
     "@nimbus-ds/styles": "workspace:^",
@@ -31,9 +32,10 @@
   },
   "devDependencies": {
     "@nimbus-ds/badge": "workspace:^",
+    "@nimbus-ds/button": "workspace:^",
     "@nimbus-ds/icon": "workspace:^",
     "@nimbus-ds/icons": "workspace:^",
-    "@nimbus-ds/skeleton": "workspace:^",
+    "@nimbus-ds/tooltip": "workspace:^",
     "@nimbus-ds/webpack": "workspace:^"
   }
 }

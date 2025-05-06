@@ -45,4 +45,4 @@ export type SegmentedControlProps =
 
 // For docs purposes, we need to merge the two types
 export type SegmentedControlProperties = SegmentedControlBaseProps &
-  Omit<ControlledSegmentedControlProperties, "preSelectedSegment">;
+  ControlledSegmentedControlProperties;
