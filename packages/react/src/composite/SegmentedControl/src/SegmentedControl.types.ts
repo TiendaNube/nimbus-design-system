@@ -1,10 +1,10 @@
-import React, { HTMLAttributes, ReactElement } from "react";
+import React, { HTMLAttributes, ReactElement, PropsWithChildren } from "react";
 
-export interface SegmentedControlItemProps {
+export type SegmentedControlItemProps = PropsWithChildren<{
   label: string;
   disabled?: boolean;
   selected?: boolean;
-}
+}>;
 
 type SegmentedControlItem = React.FC<SegmentedControlItemProps>;
 

@@ -1,8 +1,8 @@
-import React, { CSSProperties } from "react";
+import React, { CSSProperties, PropsWithChildren } from "react";
 import { PolymorphicForwardRefComponent } from "@nimbus-ds/typings";
 import { SegmentedControlButtonSkeletonProps } from "./components/SegmentedControlButtonSkeleton/SegmentedControlButtonSkeleton.types";
 
-export interface SegmentedControlButtonBaseProps {
+export type SegmentedControlButtonBaseProps = PropsWithChildren<{
   /**
    * Custom class name
    */
@@ -34,7 +34,7 @@ export interface SegmentedControlButtonBaseProps {
    * @default false
    */
   disabled?: boolean;
-}
+}>;
 
 export interface SegmentedControlButtonComponents {
   Skeleton: React.FC<SegmentedControlButtonSkeletonProps>;
@@ -43,7 +43,7 @@ export interface SegmentedControlButtonComponents {
 // Forward declaration to be defined after the component is created
 // This will be properly set after the component definition
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type SegmentedControlButtonProps = PolymorphicForwardRefComponent<
+export type SegmentedControlButtonProperties = PolymorphicForwardRefComponent<
   "button" | "a",
   SegmentedControlButtonBaseProps
 >;

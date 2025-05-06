@@ -1,6 +1,9 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { SegmentedControlButton } from "./SegmentedControlButton";
+import { Icon } from "@nimbus-ds/icon";
+import { ExternalLinkIcon } from "@nimbus-ds/icons";
+import { Tooltip } from "@nimbus-ds/tooltip";
 
 const meta: Meta<typeof SegmentedControlButton> = {
   title: "Composite/SegmentedControl/SegmentedControlButton",
@@ -12,8 +15,7 @@ const meta: Meta<typeof SegmentedControlButton> = {
       description: "Controls the active state of the button",
     },
     children: {
-      control: "text",
-      description: "Content to be displayed inside the button",
+      control: { disable: true },
     },
     onClick: {
       description: "Function called when the button is clicked",
@@ -35,16 +37,16 @@ type Story = StoryObj<typeof SegmentedControlButton>;
 
 export const Default: Story = {
   args: {
-    children: "Option 1",
     label: "Option 1",
+    children: "Option 1",
   },
 };
 
 export const active: Story = {
   args: {
-    children: "Option 1",
     active: true,
     label: "Option 1",
+    children: "Option 1",
   },
 };
 
@@ -71,16 +73,43 @@ export const AsLink: Story = {
   ),
 };
 
+export const IconButton: Story = {
+  render: () => (
+    <SegmentedControlButton
+      label="With icon"
+      index={0}
+      setActiveSegment={() => {}}
+    >
+      <Icon source={<ExternalLinkIcon />} />
+    </SegmentedControlButton>
+  ),
+};
+
 export const WithCustomContent: Story = {
-  args: {
-    children: (
-      <>
-        <span>🌟</span>
-        <span>With Icon</span>
-      </>
-    ),
-    label: "With Icon",
-  },
+  render: () => (
+    <SegmentedControlButton
+      label="With icon"
+      index={0}
+      setActiveSegment={() => {}}
+    >
+      With icon
+      <Icon source={<ExternalLinkIcon />} />
+    </SegmentedControlButton>
+  ),
+};
+
+export const WithTooltip: Story = {
+  render: () => (
+    <Tooltip content="Tooltip content">
+      <SegmentedControlButton
+        label="With tooltip"
+        index={0}
+        setActiveSegment={() => {}}
+      >
+        With tooltip
+      </SegmentedControlButton>
+    </Tooltip>
+  ),
 };
 
 export const SkeletonState: Story = {
@@ -119,9 +148,7 @@ export const GroupExample: Story = {
         index={2}
         /* eslint-disable-next-line @typescript-eslint/no-empty-function */
         setActiveSegment={() => {}}
-      >
-        Option 3
-      </SegmentedControlButton>
+      ></SegmentedControlButton>
     </div>
   ),
 };

@@ -56,11 +56,7 @@ const buttonBase = style({
   borderStyle: "solid",
   borderWidth: varsThemeBase.shape.border.width[1],
   borderColor: "transparent",
-  transition: `all ${varsThemeBase.motion.speed.fast} ease`,
-  ":disabled": {
-    color: varsThemeBase.colors.neutral.textDisabled,
-    cursor: "not-allowed",
-  },
+  transition: `all ${varsThemeBase.motion.speed.slow} ease`,
   ":focus": {
     boxShadow: varsThemeBase.utils.focus,
   },
@@ -72,19 +68,19 @@ const buttonAppearance = styleVariants({
     {
       background: varsThemeBase.colors.neutral.surface,
       color: varsThemeBase.colors.neutral.textHigh,
+      outline: "none",
       ":hover": {
         borderColor: varsThemeBase.colors.neutral.interactiveHover,
       },
       ":active": {
         borderColor: varsThemeBase.colors.neutral.interactivePressed,
+        background: varsThemeBase.colors.neutral.surfaceHighlight,
       },
       ":disabled": {
-        color: varsThemeBase.colors.neutral.textDisabled,
         background: varsThemeBase.colors.neutral.surface,
-      },
-      ":focus": {
-        borderRadius: varsThemeBase.shape.border.radius[1],
-        borderColor: varsThemeBase.colors.primary.interactivePressed,
+        color: varsThemeBase.colors.neutral.textDisabled,
+        border: "none",
+        cursor: "default",
       },
     },
   ],
@@ -99,19 +95,12 @@ const buttonAppearance = styleVariants({
       ":hover": {
         background: varsThemeBase.colors.primary.surface,
         borderColor: varsThemeBase.colors.primary.interactiveHover,
-        color: varsThemeBase.colors.primary.textLow,
+        color: varsThemeBase.colors.primary.interactiveHover,
       },
       ":active": {
-        background: varsThemeBase.colors.primary.surface,
+        background: varsThemeBase.colors.primary.surfaceHighlight,
         borderColor: varsThemeBase.colors.primary.interactivePressed,
-        color: varsThemeBase.colors.primary.textHigh,
-      },
-      ":disabled": {
-        background: varsThemeBase.colors.neutral.surface,
-        color: varsThemeBase.colors.neutral.textDisabled,
-      },
-      ":focus": {
-        borderColor: varsThemeBase.colors.primary.interactiveHover,
+        color: varsThemeBase.colors.primary.interactivePressed,
       },
     },
   ],

@@ -41,8 +41,8 @@ type Story = StoryObj<typeof SegmentedControl>;
 export const Basic: Story = {
   render: (args) => (
     <SegmentedControl {...args}>
-      {["First", "Second", "Third"].map((label) => (
-        <SegmentedControl.Button key={label} label={label} />
+      {["First", "Second", "Third"].map((name) => (
+        <SegmentedControl.Button key={name} label={name} children={name} />
       ))}
     </SegmentedControl>
   ),
@@ -69,8 +69,8 @@ export const Controlled: Story = {
           selectedSegments={selectedSegment}
           onSegmentsSelect={setSelectedSegment}
         >
-          {["First", "Second", "Third"].map((label) => (
-            <SegmentedControl.Button key={label} label={label} />
+          {["First", "Second", "Third"].map((name) => (
+            <SegmentedControl.Button key={name} label={name} children={name} />
           ))}
         </SegmentedControl>
 
@@ -88,12 +88,29 @@ export const Controlled: Story = {
  * Example of multiple SegmentedControls working together.
  */
 export const Group = () => (
-    <div style={{ display: "flex", gap: "8px" }}>
-      <SegmentedControl>
-        <SegmentedControl.Button key="Option 1" label="Option 1" />
-        <SegmentedControl.Button key="Option 2" label="Option 2" />
-        <SegmentedControl.Button key="Option 3" label="Option 3" />
-        <SegmentedControl.Button key="Option 4" label="Option 4" disabled />
-      </SegmentedControl>
-    </div>
-  );
+  <div style={{ display: "flex", gap: "8px" }}>
+    <SegmentedControl>
+      <SegmentedControl.Button
+        key="Option 1"
+        label="Option 1"
+        children="Option 1"
+      />
+      <SegmentedControl.Button
+        key="Option 2"
+        label="Option 2"
+        children="Option 2"
+      />
+      <SegmentedControl.Button
+        key="Option 3"
+        label="Option 3"
+        children="Option 3"
+      />
+      <SegmentedControl.Button
+        key="Option 4"
+        label="Option 4"
+        children="Option 4"
+        disabled
+      />
+    </SegmentedControl>
+  </div>
+);

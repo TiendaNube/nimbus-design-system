@@ -30,6 +30,7 @@ const SegmentedControlButton = forwardRef(
       index,
       setActiveSegment,
       disabled = false,
+      children,
       ...rest
     }: SegmentedControlButtonBaseProps & { as: any },
     ref
@@ -76,14 +77,13 @@ const SegmentedControlButton = forwardRef(
         {...(rest as any)}
         className={buttonClassName}
         onClick={handleOnClick}
-        type={As === "button" ? "button" : undefined}
         id={`segment-${ariaID}`}
         role="button"
         aria-pressed={active}
         disabled={disabled}
         ref={innerRef}
       >
-        {label}
+        {children}
       </As>
     );
   }
