@@ -1,9 +1,9 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import { SegmentedControlButton } from "./SegmentedControlButton";
 import { Icon } from "@nimbus-ds/icon";
 import { ExternalLinkIcon } from "@nimbus-ds/icons";
 import { Tooltip } from "@nimbus-ds/tooltip";
+import { SegmentedControlButton } from "./SegmentedControlButton";
 
 const meta: Meta<typeof SegmentedControlButton> = {
   title: "Composite/SegmentedControl/SegmentedControlButton",
@@ -78,6 +78,7 @@ export const IconButton: Story = {
     <SegmentedControlButton
       label="With icon"
       index={0}
+      /* eslint-disable-next-line @typescript-eslint/no-empty-function */
       setActiveSegment={() => {}}
     >
       <Icon source={<ExternalLinkIcon />} />
@@ -90,6 +91,7 @@ export const WithCustomContent: Story = {
     <SegmentedControlButton
       label="With icon"
       index={0}
+      /* eslint-disable-next-line @typescript-eslint/no-empty-function */
       setActiveSegment={() => {}}
     >
       With icon
@@ -104,6 +106,7 @@ export const WithTooltip: Story = {
       <SegmentedControlButton
         label="With tooltip"
         index={0}
+        /* eslint-disable-next-line @typescript-eslint/no-empty-function */
         setActiveSegment={() => {}}
       >
         With tooltip
@@ -148,7 +151,7 @@ export const GroupExample: Story = {
         index={2}
         /* eslint-disable-next-line @typescript-eslint/no-empty-function */
         setActiveSegment={() => {}}
-      ></SegmentedControlButton>
+       />
     </div>
   ),
 };

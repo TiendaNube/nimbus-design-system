@@ -42,7 +42,9 @@ export const Basic: Story = {
   render: (args) => (
     <SegmentedControl {...args}>
       {["First", "Second", "Third"].map((name) => (
-        <SegmentedControl.Button key={name} label={name} children={name} />
+        <SegmentedControl.Button key={name} label={name}>
+          {name}
+        </SegmentedControl.Button>
       ))}
     </SegmentedControl>
   ),
@@ -70,7 +72,9 @@ export const Controlled: Story = {
           onSegmentsSelect={setSelectedSegment}
         >
           {["First", "Second", "Third"].map((name) => (
-            <SegmentedControl.Button key={name} label={name} children={name} />
+            <SegmentedControl.Button key={name} label={name}>
+              {name}
+            </SegmentedControl.Button>
           ))}
         </SegmentedControl>
 
@@ -93,24 +97,28 @@ export const Group = () => (
       <SegmentedControl.Button
         key="Option 1"
         label="Option 1"
-        children="Option 1"
-      />
+      >
+        Option 1
+      </SegmentedControl.Button>
       <SegmentedControl.Button
         key="Option 2"
         label="Option 2"
-        children="Option 2"
-      />
+      >
+        Option 2
+      </SegmentedControl.Button>
       <SegmentedControl.Button
         key="Option 3"
         label="Option 3"
-        children="Option 3"
-      />
+      >
+        Option 3
+      </SegmentedControl.Button>
       <SegmentedControl.Button
         key="Option 4"
         label="Option 4"
-        children="Option 4"
         disabled
-      />
+      >
+        Option 4
+      </SegmentedControl.Button>
     </SegmentedControl>
   </div>
 );

@@ -104,7 +104,7 @@ const SegmentedControl: React.FC<SegmentedControlProps> &
     >
       {React.Children.map(children, (item, index) => {
         const {
-          props: { label, disabled, children },
+          props: { label, disabled, children: buttonChildren },
         } = item;
         const isActive = selectedSegments.includes(index);
 
@@ -117,7 +117,7 @@ const SegmentedControl: React.FC<SegmentedControlProps> &
             setActiveSegment={handleToggleSegment}
             disabled={disabled}
           >
-            {children}
+            {buttonChildren}
           </SegmentedControlButton>
         );
       })}
