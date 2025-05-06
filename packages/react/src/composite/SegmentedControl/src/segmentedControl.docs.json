@@ -8,7 +8,7 @@
   "props": [
     {
       "description": "The content of the segmented control.",
-      "type": "ReactElement<SegmentedControlButtonProps>[];",
+      "type": "ReactElement<SegmentedControlItemProps>[];",
       "title": "children",
       "required": true
     },
@@ -20,7 +20,7 @@
       "required": false
     },
     {
-      "description": "The currently selected segment indices.\nAt least one segment must always be selected.",
+      "description": "The currently selected segment indices.\nAllows for single or multiple selection based on implementation.\nAt least one segment must always be selected.",
       "type": "array",
       "items": {
         "type": "number"
