@@ -30,6 +30,7 @@ const SegmentedControlButton = forwardRef(
       index,
       setActiveSegment,
       disabled = false,
+      fullWidth = false,
       children,
       ...rest
     }: SegmentedControlButtonBaseProps & { as: any },
@@ -63,14 +64,16 @@ const SegmentedControlButton = forwardRef(
       }
     }, [setActiveSegment, index, disabled]);
 
+    // Generate a unique ID for the button and aria attributes
     const ariaID = generateID(label);
 
-    // Using Nimbus DS styles
-    const appearance = active ? "selected" : "default";
-
-    // Combine classNames for appearance and fullWidth if needed
-    const buttonClassName =
-      segmentedControl.subcomponents.button.classnames.appearance[appearance];
+    const { classnames } = segmentedControl.subcomponents.button;
+    const buttonClassName = [
+      classnames.appearance[active ? "selected" : "default"],
+    ]
+      .concat(fullWidth && classnames.fullWidth ? classnames.fullWidth : "")
+      .filter(Boolean)
+      .join(" ");
 
     return (
       <As

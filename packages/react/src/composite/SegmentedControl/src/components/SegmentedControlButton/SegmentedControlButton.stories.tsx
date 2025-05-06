@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Icon } from "@nimbus-ds/icon";
 import { ExternalLinkIcon } from "@nimbus-ds/icons";
 import { Tooltip } from "@nimbus-ds/tooltip";
+import { Box } from "@nimbus-ds/box";
 import { SegmentedControlButton } from "./SegmentedControlButton";
 
 const meta: Meta<typeof SegmentedControlButton> = {
@@ -28,6 +29,10 @@ const meta: Meta<typeof SegmentedControlButton> = {
     disabled: {
       control: "boolean",
       description: "Controls the disabled state of the button",
+    },
+    fullWidth: {
+      control: "boolean",
+      description: "Controls whether the button spans the full width",
     },
   },
 };
@@ -115,6 +120,22 @@ export const WithTooltip: Story = {
   ),
 };
 
+export const fullWidth: Story = {
+  render: () => (
+    <div style={{ width: "400px" }}>
+      <SegmentedControlButton
+        label="Full Width Button"
+        index={0}
+        fullWidth
+        /* eslint-disable-next-line @typescript-eslint/no-empty-function */
+        setActiveSegment={() => {}}
+      >
+        Full Width Button
+      </SegmentedControlButton>
+    </div>
+  ),
+};
+
 export const SkeletonState: Story = {
   render: () => <SegmentedControlButton.Skeleton />,
 };
@@ -122,14 +143,7 @@ export const SkeletonState: Story = {
 // Example of multiple buttons in a group
 export const GroupExample: Story = {
   render: () => (
-    <div
-      style={{
-        display: "flex",
-        gap: "1px",
-        background: "#e0e0e0",
-        padding: "1px",
-      }}
-    >
+    <Box display="flex" gap="1" padding="1">
       <SegmentedControlButton
         label="Option 1"
         index={0}
@@ -151,7 +165,44 @@ export const GroupExample: Story = {
         index={2}
         /* eslint-disable-next-line @typescript-eslint/no-empty-function */
         setActiveSegment={() => {}}
-       />
-    </div>
+      >
+        Option 3
+      </SegmentedControlButton>
+    </Box>
+  ),
+};
+
+// Example of multiple buttons with fullWidth
+export const FullWidthGroupExample: Story = {
+  render: () => (
+    <Box display="flex" gap="1" padding="1" width="100%">
+      <SegmentedControlButton
+        label="Option 1"
+        index={0}
+        fullWidth
+        /* eslint-disable-next-line @typescript-eslint/no-empty-function */
+        setActiveSegment={() => {}}
+      >
+        Option 1
+      </SegmentedControlButton>
+      <SegmentedControlButton
+        label="Option 2"
+        index={1}
+        fullWidth
+        /* eslint-disable-next-line @typescript-eslint/no-empty-function */
+        setActiveSegment={() => {}}
+      >
+        Option 2
+      </SegmentedControlButton>
+      <SegmentedControlButton
+        label="Option 3"
+        index={2}
+        fullWidth
+        /* eslint-disable-next-line @typescript-eslint/no-empty-function */
+        setActiveSegment={() => {}}
+      >
+        Option 3
+      </SegmentedControlButton>
+    </Box>
   ),
 };

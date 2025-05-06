@@ -14,6 +14,11 @@ export interface SegmentedControlBaseProps {
    * @TJS-type ReactElement<SegmentedControlButtonProps>[];
    */
   children: ReactElement<SegmentedControlItemProps>[];
+  /**
+   * Determines if segments span all available width.
+   * @default false
+   */
+  fullWidth?: boolean;
 }
 
 export interface SegmentedControlComponents {

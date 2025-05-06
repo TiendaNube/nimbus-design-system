@@ -21,6 +21,10 @@ const meta: Meta<typeof SegmentedControl> = {
       description: "Callback when a segment is selected",
       action: "segment selected",
     },
+    fullWidth: {
+      description: "Whether the segments should span the full width",
+      control: "boolean",
+    },
   },
   parameters: {
     docs: {
@@ -122,3 +126,23 @@ export const Group = () => (
     </SegmentedControl>
   </div>
 );
+
+/**
+ * Example of a SegmentedControl with fullWidth buttons.
+ */
+export const FullWidth: Story = {
+  args: {
+    fullWidth: true,
+  },
+  render: (args) => (
+    <div style={{ width: "100%" }}>
+      <SegmentedControl {...args}>
+        {["First", "Second", "Third"].map((name) => (
+          <SegmentedControl.Button key={name} label={name}>
+            {name}
+          </SegmentedControl.Button>
+        ))}
+      </SegmentedControl>
+    </div>
+  ),
+};

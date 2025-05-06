@@ -1,4 +1,4 @@
-import React, { CSSProperties, PropsWithChildren } from "react";
+import React, { ButtonHTMLAttributes, CSSProperties, PropsWithChildren } from "react";
 import { PolymorphicForwardRefComponent } from "@nimbus-ds/typings";
 import { SegmentedControlButtonSkeletonProps } from "./components/SegmentedControlButtonSkeleton/SegmentedControlButtonSkeleton.types";
 
@@ -34,7 +34,12 @@ export type SegmentedControlButtonBaseProps = PropsWithChildren<{
    * @default false
    */
   disabled?: boolean;
-}>;
+  /**
+   * Determines if segment spans all available width.
+   * @default false
+   */
+  fullWidth?: boolean;
+}> & ButtonHTMLAttributes<HTMLButtonElement>;
 
 export interface SegmentedControlButtonComponents {
   Skeleton: React.FC<SegmentedControlButtonSkeletonProps>;

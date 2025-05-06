@@ -106,6 +106,13 @@ const buttonAppearance = styleVariants({
   ],
 });
 
+const fullWidthButton = style({
+  flex: "1 1 auto",
+  justifyContent: "center",
+  width: "100%",
+});
+
 export const buttonStyles = {
   appearance: buttonAppearance,
+  fullWidth: fullWidthButton,
 };

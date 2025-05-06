@@ -18,6 +18,7 @@ const SegmentedControl: React.FC<SegmentedControlProps> &
   className: _className,
   style: _style,
   children,
+  fullWidth = false,
   ...rest
 }: SegmentedControlProps) => {
   // Internal state for uncontrolled mode
@@ -116,6 +117,7 @@ const SegmentedControl: React.FC<SegmentedControlProps> &
             active={isActive}
             setActiveSegment={handleToggleSegment}
             disabled={disabled}
+            fullWidth={fullWidth}
           >
             {buttonChildren}
           </SegmentedControlButton>
