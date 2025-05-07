@@ -3,6 +3,7 @@ import React, {
   useRef,
   useEffect,
   useImperativeHandle,
+  HTMLAttributes,
 } from "react";
 import {
   PolymorphicForwardRefComponent,
@@ -67,10 +68,10 @@ const SegmentedControlButton = forwardRef(
 
     return (
       <As
-        {...(rest as any)}
-        className={buttonClassName}
         id={`segment-${ariaID}`}
         role="button"
+        {...(rest as HTMLAttributes<HTMLButtonElement>)}
+        className={buttonClassName}
         aria-pressed={selected}
         disabled={disabled}
         ref={innerRef}

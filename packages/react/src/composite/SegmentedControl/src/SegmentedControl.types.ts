@@ -1,4 +1,5 @@
-import { HTMLAttributes, ReactElement } from "react";
+import { ReactElement } from "react";
+import { BoxProperties } from "packages/react/src/atomic/Box/src/box.types";
 import {
   SegmentedControlButton,
   SegmentedControlButtonSkeleton,
@@ -51,7 +52,7 @@ export type SegmentedControlProps = (
   | SegmentedControlBaseProps
   | ControlledSegmentedControlProperties
 ) &
-  Omit<HTMLAttributes<HTMLDivElement>, "children">;
+  Omit<BoxProperties, "display" | "backgroundColor" | "gap" | "children">;
 
 // For docs purposes, we need to merge the two types
 export type SegmentedControlProperties = SegmentedControlBaseProps &

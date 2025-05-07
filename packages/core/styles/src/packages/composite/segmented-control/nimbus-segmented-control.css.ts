@@ -1,40 +1,9 @@
 import { style, styleVariants } from "@vanilla-extract/css";
-import { defineProperties, createSprinkles } from "@vanilla-extract/sprinkles";
 import { varsThemeBase } from "../../../themes";
-import { paddingProperties } from "../../../properties";
 
 /* -------------------------------------------------------------------------------------------------
  * Style
  * -----------------------------------------------------------------------------------------------*/
-
-const container = style({
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  backgroundColor: varsThemeBase.colors.neutral.surface,
-  gap: varsThemeBase.spacing[1],
-});
-
-export const styles = {
-  container,
-};
-
-/* -------------------------------------------------------------------------------------------------
- * Sprinkle
- * -----------------------------------------------------------------------------------------------*/
-
-const containerProperties = {
-  padding: paddingProperties,
-};
-
-export const containerSprinkle = {
-  sprinkle: createSprinkles(
-    defineProperties({
-      properties: containerProperties,
-    })
-  ),
-  properties: containerProperties,
-};
 
 const buttonBase = style({
   display: "flex",
@@ -64,6 +33,10 @@ const buttonBase = style({
     boxShadow: varsThemeBase.utils.focus,
   },
 });
+
+/* -------------------------------------------------------------------------------------------------
+ * Variants
+ * -----------------------------------------------------------------------------------------------*/
 
 const buttonAppearance = styleVariants({
   default: [

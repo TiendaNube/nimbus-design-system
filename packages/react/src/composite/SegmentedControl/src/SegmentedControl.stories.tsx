@@ -144,7 +144,7 @@ export const FullWidth: Story = {
   },
   render: (args) => (
     <div style={{ width: "100%" }}>
-      <SegmentedControl {...args}>
+      <SegmentedControl {...args} flexWrap="nowrap">
         {["First", "Second", "Third"].map((name) => (
           <SegmentedControl.Button key={name} label={name}>
             {name}

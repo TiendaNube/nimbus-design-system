@@ -15,7 +15,8 @@
   },
   "dependencies": {
     "@nimbus-ds/skeleton": "workspace:^",
-    "@nimbus-ds/typings": "workspace:^"
+    "@nimbus-ds/typings": "workspace:^",
+    "@nimbus-ds/button": "workspace:^"
   },
   "peerDependencies": {
     "@nimbus-ds/styles": "workspace:^",

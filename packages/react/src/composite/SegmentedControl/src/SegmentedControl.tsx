@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
-import { segmentedControl } from "@nimbus-ds/styles";
 
+import { Box } from "@nimbus-ds/box";
+import { BoxProperties } from "packages/react/src/atomic/Box/src/box.types";
 import {
   SegmentedControlProps,
   SegmentedControlComponents,
@@ -15,8 +16,6 @@ import { SegmentedControlButtonSkeleton } from "./components/SegmentedControlBut
  */
 const SegmentedControl: React.FC<SegmentedControlProps> &
   SegmentedControlComponents = ({
-  className: _className,
-  style: _style,
   children,
   fullWidth = false,
   ...rest
@@ -95,13 +94,24 @@ const SegmentedControl: React.FC<SegmentedControlProps> &
   );
 
   // Extract props from rest
-  const { onSegmentsSelect, selectedSegments: _, ...htmlProps } = rest as any;
+  const {
+    onSegmentsSelect,
+    selectedSegments: _,
+    ...boxProps
+  } = rest as BoxProperties & Partial<ControlledSegmentedControlProperties>;
 
   return (
-    <div
-      className={segmentedControl.classnames.container}
+    <Box
+      flexWrap="wrap"
+      backgroundColor="neutral-surface"
+      aria-label="Segmented control"
+      role="group"
       data-testid="segmented-control-container"
-      {...htmlProps}
+      {...boxProps}
+      // Properties that can't be changed by the consumer
+      display="flex"
+      gap="1"
+      alignItems="center"
     >
       {React.Children.map(children, (item, index) => {
         if (isButton(item.props)) {
@@ -124,12 +134,11 @@ const SegmentedControl: React.FC<SegmentedControlProps> &
               {buttonChildren}
             </SegmentedControlButton>
           );
-        } 
-          // Return the item as is if it's not a button (skeleton case)
-          return item;
-        
+        }
+        // Return the item as is if it's not a button (skeleton case)
+        return item;
       })}
-    </div>
+    </Box>
   );
 };
 
