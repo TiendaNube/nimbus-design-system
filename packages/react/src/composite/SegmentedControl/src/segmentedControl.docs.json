@@ -8,7 +8,7 @@
   "props": [
     {
       "description": "The content of the segmented control.",
-      "type": "ReactElement<SegmentedControlItemProps>[];",
+      "type": "ReactElement<SegmentedControlButtonProps | SegmentedControlButtonSkeletonProps>[];",
       "title": "children",
       "required": true
     },
@@ -40,7 +40,7 @@
   "subComponents": [
     {
       "name": "SegmentedControl.Button",
-      "totalProps": 5,
+      "totalProps": 4,
       "props": [
         {
           "description": "Label of the segment.",
@@ -53,13 +53,6 @@
           "default": false,
           "type": "boolean",
           "title": "selected",
-          "required": false
-        },
-        {
-          "description": "Whether the segment is disabled",
-          "default": false,
-          "type": "boolean",
-          "title": "disabled",
           "required": false
         },
         {
@@ -76,6 +69,11 @@
           "required": false
         }
       ]
+    },
+    {
+      "name": "SegmentedControl.ButtonSkeleton",
+      "totalProps": 0,
+      "props": []
     }
   ]
 }
