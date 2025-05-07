@@ -105,19 +105,19 @@ const SegmentedControl: React.FC<SegmentedControlProps> &
     >
       {React.Children.map(children, (item, index) => {
         const {
-          props: { children: buttonChildren, ...rest },
+          props: { children: buttonChildren, ...childrenRest },
         } = item;
         const isSelected = selectedSegments.includes(index);
 
         return (
           <SegmentedControlButton
-            {...rest}
-            key={rest.label}
+            {...childrenRest}
+            key={childrenRest.label}
             selected={isSelected}
             fullWidth={fullWidth}
             onClick={(event) => {
               handleToggleSegment(index);
-              rest.onClick?.(event);
+              childrenRest.onClick?.(event);
             }}
           >
             {buttonChildren}
