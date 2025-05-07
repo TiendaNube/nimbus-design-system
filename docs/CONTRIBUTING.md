@@ -232,3 +232,21 @@ Remember to:
 - Prioritize accessibility
 - Consider backward compatibility
 - Write reusable and maintainable code
+
+## 🎨 Publishing icons
+
+To publish new icons, follow these steps:
+
+1. Create a new icon file in the `packages/icons/src/assets` folder
+   - Use the `svg` format
+   - The name should be in lower case and separated by dashes (e.g. `shopping-cart`)
+     - The final output name will be `ShoppingCartIcon` (PascalCase, with the word `Icon` at the end)
+   - Use a tool like [SVGOMG](https://jakearchibald.github.io/svgomg/) to reduce the code size and optimize the icon
+     - The build process will optimize the icon even further. This step is optional, but recommended for consistency in the code.
+   - Set the width and height to 16px
+2. Build the icons package
+   - Run `yarn build:icons`
+   - This will generate a new .tsx file in the `packages/icons/tmp` folder
+3. Verify the new icon by running the Storybook and importing the icon in some story
+   - Run `yarn storybook`
+   - Import the icon in a story and verify it renders correctly (e.g. `packages/react/src/atomic/Icon/src/icon.stories.tsx`)
