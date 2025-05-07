@@ -1,22 +1,19 @@
-import React, { ButtonHTMLAttributes, HTMLAttributes, ReactElement } from "react";
-import { SegmentedControlButtonProps } from "./components/SegmentedControlButton/SegmentedControlButton.types";
-
-/**
- * Props for the SegmentedControlItem component. This is is a reduced version of the Button props, exposed for external usage.
- */
-export type SegmentedControlItemProps = Pick<
-  SegmentedControlButtonProps,
-  "label" | "selected" | "children" | "fullWidth"
-> & ButtonHTMLAttributes<HTMLButtonElement>;
-
-type SegmentedControlItem = React.FC<SegmentedControlItemProps>;
+import { HTMLAttributes, ReactElement } from "react";
+import {
+  SegmentedControlButton,
+  SegmentedControlButtonSkeleton,
+  type SegmentedControlButtonSkeletonProps,
+  type SegmentedControlButtonProps,
+} from "./components";
 
 export interface SegmentedControlBaseProps {
   /**
    * The content of the segmented control.
-   * @TJS-type ReactElement<SegmentedControlItemProps>[];
+   * @TJS-type ReactElement<SegmentedControlButtonProps | SegmentedControlButtonSkeletonProps>[];
    */
-  children: ReactElement<SegmentedControlItemProps>[];
+  children: ReactElement<
+    SegmentedControlButtonProps | SegmentedControlButtonSkeletonProps
+  >[];
   /**
    * Determines if segments span all available width.
    * @default false
@@ -28,7 +25,8 @@ export interface SegmentedControlBaseProps {
  * Component composition structure for the SegmentedControl
  */
 export interface SegmentedControlComponents {
-  Button: SegmentedControlItem;
+  Button: typeof SegmentedControlButton;
+  ButtonSkeleton: typeof SegmentedControlButtonSkeleton;
 }
 
 export interface ControlledSegmentedControlProperties

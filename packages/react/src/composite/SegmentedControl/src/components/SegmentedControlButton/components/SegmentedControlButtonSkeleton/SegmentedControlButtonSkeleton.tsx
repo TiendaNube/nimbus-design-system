@@ -21,6 +21,4 @@ const SegmentedControlButtonSkeleton: React.FC<SegmentedControlButtonSkeletonPro
   />
 );
 
-SegmentedControlButtonSkeleton.displayName = "SegmentedControlButtonSkeleton";
-
 export { SegmentedControlButtonSkeleton };

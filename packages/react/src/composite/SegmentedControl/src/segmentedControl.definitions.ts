@@ -1,3 +1,4 @@
+import { SegmentedControlButtonProps } from "./components";
 import { ControlledSegmentedControlProperties } from "./SegmentedControl.types";
 
 /**
@@ -16,4 +17,12 @@ export const generateID = (name: string) =>
 export const isControlled = (
   props: any
 ): props is ControlledSegmentedControlProperties =>
-  "selectedSegments" in props && "onSegmentsSelect" in props; 
+  "selectedSegments" in props && "onSegmentsSelect" in props;
+
+/**
+ * Checks if the component is a button, depending on the props.
+ * @param props - The props of the segmented control children component
+ * @returns True if the component is a button, false otherwise
+ */
+export const isButton = (props: any): props is SegmentedControlButtonProps =>
+  "label" in props;

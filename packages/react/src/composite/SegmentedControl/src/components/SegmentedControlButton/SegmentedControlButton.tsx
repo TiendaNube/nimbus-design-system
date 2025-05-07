@@ -86,7 +86,6 @@ const SegmentedControlButton = forwardRef(
   SegmentedControlButtonComponents;
 
 SegmentedControlButton.Skeleton = SegmentedControlButtonSkeleton;
-SegmentedControlButton.displayName = "SegmentedControlButton";
 SegmentedControlButton.Skeleton.displayName = "SegmentedControlButton.Skeleton";
 
 export { SegmentedControlButton };

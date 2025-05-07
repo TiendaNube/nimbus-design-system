@@ -5,10 +5,10 @@ import {
   SegmentedControlProps,
   SegmentedControlComponents,
   ControlledSegmentedControlProperties,
-  SegmentedControlItemProps,
 } from "./SegmentedControl.types";
 import { SegmentedControlButton } from "./components";
-import { isControlled } from "./segmentedControl.definitions";
+import { isButton, isControlled } from "./segmentedControl.definitions";
+import { SegmentedControlButtonSkeleton } from "./components/SegmentedControlButton/components/SegmentedControlButtonSkeleton/SegmentedControlButtonSkeleton";
 
 /**
  * SegmentedControl component for grouped selection controls
@@ -36,7 +36,7 @@ const SegmentedControl: React.FC<SegmentedControlProps> &
 
       // Check if any children have selected prop
       React.Children.forEach(children, (child, index) => {
-        if (child.props.selected) {
+        if (isButton(child.props) && child.props.selected) {
           initialSelectedIndices.push(index);
         }
       });
@@ -104,35 +104,41 @@ const SegmentedControl: React.FC<SegmentedControlProps> &
       {...htmlProps}
     >
       {React.Children.map(children, (item, index) => {
-        const {
-          props: { children: buttonChildren, ...childrenRest },
-        } = item;
-        const isSelected = selectedSegments.includes(index);
+        if (isButton(item.props)) {
+          const {
+            props: { children: buttonChildren, ...childrenRest },
+          } = item;
+          const isSelected = selectedSegments.includes(index);
 
-        return (
-          <SegmentedControlButton
-            {...childrenRest}
-            key={childrenRest.label}
-            selected={isSelected}
-            fullWidth={fullWidth}
-            onClick={(event) => {
-              handleToggleSegment(index);
-              childrenRest.onClick?.(event);
-            }}
-          >
-            {buttonChildren}
-          </SegmentedControlButton>
-        );
+          return (
+            <SegmentedControlButton
+              {...childrenRest}
+              key={childrenRest.label}
+              selected={isSelected}
+              fullWidth={fullWidth}
+              onClick={(event) => {
+                handleToggleSegment(index);
+                childrenRest.onClick?.(event);
+              }}
+            >
+              {buttonChildren}
+            </SegmentedControlButton>
+          );
+        } 
+          // Return the item as is if it's not a button (skeleton case)
+          return item;
+        
       })}
     </div>
   );
 };
 
-// We export a small version of the Button for consumers to use
-SegmentedControl.Button =
-  SegmentedControlButton as unknown as React.FC<SegmentedControlItemProps>;
-
 SegmentedControl.displayName = "SegmentedControl";
+
+SegmentedControl.Button = SegmentedControlButton;
 SegmentedControl.Button.displayName = "SegmentedControl.Button";
+
+SegmentedControl.ButtonSkeleton = SegmentedControlButtonSkeleton;
+SegmentedControl.ButtonSkeleton.displayName = "SegmentedControl.ButtonSkeleton";
 
 export { SegmentedControl };

@@ -390,4 +390,45 @@ describe("<SegmentedControl />", () => {
     expect(buttons[1]).toHaveAttribute("id", "segment-option-2");
     expect(buttons[2]).toHaveAttribute("id", "segment-option-3");
   });
+
+  it("renders the skeleton component correctly", () => {
+    render(
+      <SegmentedControl>
+        <SegmentedControl.Button label="Option 1">
+          Option 1
+        </SegmentedControl.Button>
+        <SegmentedControl.ButtonSkeleton data-testid="skeleton" />
+        <SegmentedControl.Button label="Option 2">
+          Option 2
+        </SegmentedControl.Button>
+      </SegmentedControl>
+    );
+
+    // Verify the buttons are rendered
+    expect(screen.getByText("Option 1")).toBeInTheDocument();
+    expect(screen.getByText("Option 2")).toBeInTheDocument();
+    
+    // Check that the skeleton is rendered
+    expect(screen.getByTestId("skeleton")).toBeInTheDocument();
+  });
+
+  it("returns non-button children as is", () => {
+    const TestComponent = () => <div data-testid="test-component">Test</div>;
+    
+    render(
+      <SegmentedControl>
+        <SegmentedControl.Button label="Option 1">
+          Option 1
+        </SegmentedControl.Button>
+        <TestComponent />
+      </SegmentedControl>
+    );
+
+    // Verify the button is rendered
+    expect(screen.getByText("Option 1")).toBeInTheDocument();
+    
+    // Check that the custom component is rendered
+    expect(screen.getByTestId("test-component")).toBeInTheDocument();
+    expect(screen.getByText("Test")).toBeInTheDocument();
+  });
 });

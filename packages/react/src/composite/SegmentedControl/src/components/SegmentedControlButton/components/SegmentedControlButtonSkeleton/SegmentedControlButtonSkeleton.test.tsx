@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { SegmentedControlButtonSkeleton } from "./SegmentedControlButtonSkeleton";
+import { SegmentedControlButtonSkeleton } from ".";
 
 describe("SegmentedControlButtonSkeleton", () => {
   it("should render skeleton with default props", () => {

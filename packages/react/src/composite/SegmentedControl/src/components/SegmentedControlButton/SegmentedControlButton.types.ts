@@ -1,5 +1,5 @@
 import React, { ButtonHTMLAttributes, PropsWithChildren } from "react";
-import { SegmentedControlButtonSkeletonProps } from "./components/SegmentedControlButtonSkeleton/SegmentedControlButtonSkeleton.types";
+import type { SegmentedControlButtonSkeletonProps } from "./components/SegmentedControlButtonSkeleton/SegmentedControlButtonSkeleton.types";
 
 export type SegmentedControlButtonProperties = PropsWithChildren<{
   /**
@@ -11,11 +11,6 @@ export type SegmentedControlButtonProperties = PropsWithChildren<{
    * @default false
    */
   selected?: boolean;
-  /**
-   * Whether the segment is disabled
-   * @default false
-   */
-  disabled?: boolean;
   /**
    * Determines if segment spans all available width.
    * @default false

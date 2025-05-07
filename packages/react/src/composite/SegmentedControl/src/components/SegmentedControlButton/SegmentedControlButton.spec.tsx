@@ -1,7 +1,8 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { segmentedControl } from "@nimbus-ds/styles";
-import { SegmentedControlButton } from "./SegmentedControlButton";
+import { SegmentedControlButton } from ".";
+import { SegmentedControlButtonSkeleton } from "./components";
 
 describe("SegmentedControlButton", () => {
   const defaultProps = {
@@ -114,6 +115,44 @@ describe("SegmentedControlButton", () => {
         expect.anything(),
         "Please ensure `SegmentedControlButton` always renders as <a> or <button>"
       );
+    });
+
+    it("should export SegmentedControlButton correctly", () => {
+      render(
+        <SegmentedControlButton label="Test">Test</SegmentedControlButton>
+      );
+      expect(screen.getByText("Test")).toBeInTheDocument();
+    });
+
+    it("should export SegmentedControlButtonSkeleton correctly", () => {
+      render(<SegmentedControlButtonSkeleton data-testid="skeleton" />);
+      expect(screen.getByTestId("skeleton")).toBeInTheDocument();
+    });
+  });
+
+  describe("SegmentedControlButtonSkeleton", () => {
+    it("renders correctly with default props", () => {
+      render(<SegmentedControlButtonSkeleton data-testid="skeleton" />);
+      const skeleton = screen.getByTestId("skeleton");
+      expect(skeleton).toBeInTheDocument();
+      expect(skeleton.className).toContain("nimbus-skeleton_base");
+    });
+
+    it("renders with custom dimensions", () => {
+      render(
+        <SegmentedControlButtonSkeleton
+          width="200px"
+          height="3rem"
+          data-testid="skeleton"
+        />
+      );
+      const skeleton = screen.getByTestId("skeleton");
+      expect(skeleton).toBeInTheDocument();
+      expect(skeleton.className).toContain("nimbus-skeleton_base");
+      expect(skeleton).toHaveStyle({
+        "--width__1jbm2xp0": "200px",
+        "--height__1jbm2xp1": "3rem",
+      });
     });
   });
 });

@@ -55,6 +55,21 @@ export const Basic: Story = {
 };
 
 /**
+ * Basic (uncontrolled) usage example of the SegmentedControl component.
+ */
+export const UncontrolledAllSelected: Story = {
+  render: (args) => (
+    <SegmentedControl {...args}>
+      {["First", "Second", "Third"].map((name) => (
+        <SegmentedControl.Button key={name} label={name} selected>
+          {name}
+        </SegmentedControl.Button>
+      ))}
+    </SegmentedControl>
+  ),
+};
+
+/**
  * Example of a controlled SegmentedControl with state management.
  */
 export const Controlled: Story = {
@@ -96,22 +111,28 @@ export const Controlled: Story = {
  * Example of multiple SegmentedControls working together.
  */
 export const Group = () => (
-  <div style={{ display: "flex", gap: "8px" }}>
-    <SegmentedControl>
-      <SegmentedControl.Button key="Option 1" label="Option 1">
-        Option 1
-      </SegmentedControl.Button>
-      <SegmentedControl.Button key="Option 2" label="Option 2">
-        Option 2
-      </SegmentedControl.Button>
-      <SegmentedControl.Button key="Option 3" label="Option 3">
-        Option 3
-      </SegmentedControl.Button>
-      <SegmentedControl.Button key="Option 4" label="Option 4" disabled>
-        Option 4
-      </SegmentedControl.Button>
-    </SegmentedControl>
-  </div>
+  <SegmentedControl>
+    <SegmentedControl.Button key="Option 1" label="Option 1">
+      Option 1
+    </SegmentedControl.Button>
+    <SegmentedControl.Button key="Option 2" label="Option 2">
+      Option 2
+    </SegmentedControl.Button>
+    <SegmentedControl.Button key="Option 3" label="Option 3">
+      Option 3
+    </SegmentedControl.Button>
+    <SegmentedControl.Button key="Option 4" label="Option 4" disabled>
+      Option 4
+    </SegmentedControl.Button>
+  </SegmentedControl>
+);
+
+export const SkeletonGroup = () => (
+  <SegmentedControl>
+    <SegmentedControl.ButtonSkeleton width="50px" height="2rem"/>
+    <SegmentedControl.ButtonSkeleton width="50px" height="2rem" />
+    <SegmentedControl.ButtonSkeleton width="50px" height="2rem" />
+  </SegmentedControl>
 );
 
 /**

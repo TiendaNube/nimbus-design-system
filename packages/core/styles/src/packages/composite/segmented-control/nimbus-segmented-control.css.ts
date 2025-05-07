@@ -60,6 +60,9 @@ const buttonBase = style({
   ":focus": {
     boxShadow: varsThemeBase.utils.focus,
   },
+  ":focus-visible": {
+    boxShadow: varsThemeBase.utils.focus,
+  },
 });
 
 const buttonAppearance = styleVariants({
