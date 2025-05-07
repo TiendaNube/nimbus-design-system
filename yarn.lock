@@ -3014,6 +3014,7 @@ __metadata:
   resolution: "@nimbus-ds/segmented-control@workspace:packages/react/src/composite/SegmentedControl"
   dependencies:
     "@nimbus-ds/badge": "workspace:^"
+    "@nimbus-ds/box": "workspace:^"
     "@nimbus-ds/button": "workspace:^"
     "@nimbus-ds/icon": "workspace:^"
     "@nimbus-ds/icons": "workspace:^"

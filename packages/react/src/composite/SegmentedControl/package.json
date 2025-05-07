@@ -14,10 +14,10 @@
     "version": "yarn version"
   },
   "dependencies": {
-    "@nimbus-ds/skeleton": "workspace:^",
-    "@nimbus-ds/typings": "workspace:^",
+    "@nimbus-ds/box": "workspace:^",
     "@nimbus-ds/button": "workspace:^",
-    "@nimbus-ds/box": "workspace:^"
+    "@nimbus-ds/skeleton": "workspace:^",
+    "@nimbus-ds/typings": "workspace:^"
   },
   "peerDependencies": {
     "@nimbus-ds/styles": "workspace:^",

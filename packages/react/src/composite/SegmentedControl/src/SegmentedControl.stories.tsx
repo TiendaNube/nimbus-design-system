@@ -30,7 +30,7 @@ const meta: Meta<typeof SegmentedControl> = {
     docs: {
       description: {
         component:
-          "SegmentedControl is a UI control that lets users choose between multiple exclusive options.",
+          "SegmentedControl is a UI control that lets users choose between multiple options. It is a horizontal control that displays a series of segments, each representing a different option. The user can select one or more segments by clicking on them.",
       },
     },
   },
