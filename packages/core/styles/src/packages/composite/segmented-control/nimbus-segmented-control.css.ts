@@ -102,6 +102,12 @@ const buttonAppearance = styleVariants({
         borderColor: varsThemeBase.colors.primary.interactivePressed,
         color: varsThemeBase.colors.primary.interactivePressed,
       },
+      ":disabled": {
+        background: varsThemeBase.colors.neutral.surface,
+        color: varsThemeBase.colors.neutral.textDisabled,
+        border: "none",
+        cursor: "default",
+      },
     },
   ],
 });

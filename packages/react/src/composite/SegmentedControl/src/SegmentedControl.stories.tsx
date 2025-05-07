@@ -98,29 +98,16 @@ export const Controlled: Story = {
 export const Group = () => (
   <div style={{ display: "flex", gap: "8px" }}>
     <SegmentedControl>
-      <SegmentedControl.Button
-        key="Option 1"
-        label="Option 1"
-      >
+      <SegmentedControl.Button key="Option 1" label="Option 1">
         Option 1
       </SegmentedControl.Button>
-      <SegmentedControl.Button
-        key="Option 2"
-        label="Option 2"
-      >
+      <SegmentedControl.Button key="Option 2" label="Option 2">
         Option 2
       </SegmentedControl.Button>
-      <SegmentedControl.Button
-        key="Option 3"
-        label="Option 3"
-      >
+      <SegmentedControl.Button key="Option 3" label="Option 3">
         Option 3
       </SegmentedControl.Button>
-      <SegmentedControl.Button
-        key="Option 4"
-        label="Option 4"
-        disabled
-      >
+      <SegmentedControl.Button key="Option 4" label="Option 4" disabled>
         Option 4
       </SegmentedControl.Button>
     </SegmentedControl>

@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, ReactElement } from "react";
+import React, { ButtonHTMLAttributes, HTMLAttributes, ReactElement } from "react";
 import { SegmentedControlButtonProps } from "./components/SegmentedControlButton/SegmentedControlButton.types";
 
 /**
@@ -6,8 +6,8 @@ import { SegmentedControlButtonProps } from "./components/SegmentedControlButton
  */
 export type SegmentedControlItemProps = Pick<
   SegmentedControlButtonProps,
-  "label" | "disabled" | "selected" | "children"
->;
+  "label" | "selected" | "children" | "fullWidth"
+> & ButtonHTMLAttributes<HTMLButtonElement>;
 
 type SegmentedControlItem = React.FC<SegmentedControlItemProps>;
 
