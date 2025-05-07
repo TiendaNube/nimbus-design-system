@@ -55,7 +55,8 @@ export const Basic: Story = {
 };
 
 /**
- * Basic (uncontrolled) usage example of the SegmentedControl component.
+ * Example of an uncontrolled SegmentedControl with all segments initially selected.
+ * This demonstrates how to create pre-selected segments without using controlled state.
  */
 export const UncontrolledAllSelected: Story = {
   render: (args) => (
@@ -129,7 +130,7 @@ export const Group = () => (
 
 export const SkeletonGroup = () => (
   <SegmentedControl>
-    <SegmentedControl.ButtonSkeleton width="50px" height="2rem"/>
+    <SegmentedControl.ButtonSkeleton width="50px" height="2rem" />
     <SegmentedControl.ButtonSkeleton width="50px" height="2rem" />
     <SegmentedControl.ButtonSkeleton width="50px" height="2rem" />
   </SegmentedControl>

@@ -16,7 +16,8 @@
   "dependencies": {
     "@nimbus-ds/skeleton": "workspace:^",
     "@nimbus-ds/typings": "workspace:^",
-    "@nimbus-ds/button": "workspace:^"
+    "@nimbus-ds/button": "workspace:^",
+    "@nimbus-ds/box": "workspace:^"
   },
   "peerDependencies": {
     "@nimbus-ds/styles": "workspace:^",
@@ -33,7 +34,6 @@
   },
   "devDependencies": {
     "@nimbus-ds/badge": "workspace:^",
-    "@nimbus-ds/button": "workspace:^",
     "@nimbus-ds/icon": "workspace:^",
     "@nimbus-ds/icons": "workspace:^",
     "@nimbus-ds/tooltip": "workspace:^",

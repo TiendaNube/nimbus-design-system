@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 
-import { Box } from "@nimbus-ds/box";
-import { BoxProperties } from "packages/react/src/atomic/Box/src/box.types";
+import { Box, BoxProps } from "@nimbus-ds/box";
+
 import {
   SegmentedControlProps,
   SegmentedControlComponents,
@@ -98,7 +98,7 @@ const SegmentedControl: React.FC<SegmentedControlProps> &
     onSegmentsSelect,
     selectedSegments: _,
     ...boxProps
-  } = rest as BoxProperties & Partial<ControlledSegmentedControlProperties>;
+  } = rest as BoxProps & Partial<ControlledSegmentedControlProperties>;
 
   return (
     <Box
@@ -123,7 +123,7 @@ const SegmentedControl: React.FC<SegmentedControlProps> &
           return (
             <SegmentedControlButton
               {...childrenRest}
-              key={childrenRest.label}
+              key={`segment-${childrenRest.label}`}
               selected={isSelected}
               fullWidth={fullWidth}
               onClick={(event) => {

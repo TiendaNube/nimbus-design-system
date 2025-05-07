@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import { BoxProperties } from "packages/react/src/atomic/Box/src/box.types";
+import type { BoxProps } from "@nimbus-ds/box";
 import {
   SegmentedControlButton,
   SegmentedControlButtonSkeleton,
@@ -52,7 +52,7 @@ export type SegmentedControlProps = (
   | SegmentedControlBaseProps
   | ControlledSegmentedControlProperties
 ) &
-  Omit<BoxProperties, "display" | "backgroundColor" | "gap" | "children">;
+  Omit<BoxProps, "display" | "backgroundColor" | "gap" | "children">;
 
 // For docs purposes, we need to merge the two types
 export type SegmentedControlProperties = SegmentedControlBaseProps &
