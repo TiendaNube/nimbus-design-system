@@ -1,5 +1,5 @@
 {
-  "include": ["packages", ".scripts", "index.d.ts"],
+  "include": ["packages", ".scripts", "index.d.ts", "jest.setup.tsx"],
   "compilerOptions": {
     "target": "esnext",
     "module": "commonjs",
@@ -86,7 +86,10 @@
       ],
       "@nimbus-ds/sidebar": ["./packages/react/src/composite/Sidebar/src"],
       "@nimbus-ds/tabs": ["./packages/react/src/composite/Tabs/src"],
-      "@nimbus-ds/table": ["./packages/react/src/composite/Table/src"]
+      "@nimbus-ds/table": ["./packages/react/src/composite/Table/src"],
+      "@nimbus-ds/segmented-control": [
+        "./packages/react/src/composite/SegmentedControl/src"
+      ]
     }
   }
 }

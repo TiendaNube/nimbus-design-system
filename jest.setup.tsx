@@ -1,5 +1,6 @@
 import "@vanilla-extract/css/disableRuntimeStyles";
 import React from "react";
+import "@testing-library/jest-dom";
 
 jest.mock("@nimbus-ds/icons", () => ({
   __esModule: true,
