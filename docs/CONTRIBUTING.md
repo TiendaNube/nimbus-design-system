@@ -238,7 +238,7 @@ Remember to:
 To publish new icons, follow these steps:
 
 1. Create a new icon file in the `packages/icons/src/assets` folder
-   - Use the `svg` format
+   - Use the `.svg` file format
    - The name should be in lower case and separated by dashes (e.g. `shopping-cart`)
      - The final output name will be `ShoppingCartIcon` (PascalCase, with the word `Icon` at the end)
    - Use a tool like [SVGOMG](https://jakearchibald.github.io/svgomg/) to reduce the code size and optimize the icon
