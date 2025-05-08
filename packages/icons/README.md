@@ -39,8 +39,7 @@ For more information about our components, check out our [Storybook](https://tie
 
 Do you want to contribute? **Excellent!** You have two ways to do it.
 
-1. You can request a new icon through an [icon request](https://github.com/TiendaNube/nimbus-design-system/issues/new?assignees=&labels=&template=ICON_REQUEST
-   .md&title=%5BIcon+request%5D "Nimbus Icons - Icon request") or
-2. Create and upload an icon following the instructions in our [contribution guide](.github/CONTRIBUTING.md "Nimbus Icons - Contributing").
+1. You can request a new icon through an [icon request](https://github.com/TiendaNube/nimbus-design-system/issues/new?assignees=&labels=&template=ICON_REQUEST.md&title=%5BIcon+request%5D "Nimbus Icons - Icon request")
+2. Create and upload an icon following the instructions in our [🎨 Publishing icons](https://github.com/TiendaNube/nimbus-design-system/blob/master/docs/CONTRIBUTING.md#-publishing-icons) contribution guide.
 
 **Thanks for contributing! :heart:**
