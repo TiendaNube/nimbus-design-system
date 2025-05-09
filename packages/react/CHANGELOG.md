@@ -2,11 +2,18 @@
 
 Nimbus is an open-source Design System created by Tiendanube / Nuvesmhop’s team to empower and enhance more stories every day, with simplicity, accessibility, consistency and performance.
 
-## 2025-05-06 `5.11.0`
+## 2025-05-12 `5.11.0`
 
 #### 🎉 New features
 
 - Created `SegmentedControl` new composite component. ([#290](https://github.com/TiendaNube/nimbus-design-system/pull/290) by [@joacotornello](https://github.com/joacotornello))
+
+## 2025-05-09 `5.10.1`
+
+#### 🐛 Bug fixes
+
+- `Thumbnail.Skeleton`: `width` support is extended to include percentages and 100% is defined as default, just like `Thumbnail`. ([Issue](https://github.com/TiendaNube/nimbus-design-system/discussions/248)) ([#289](https://github.com/TiendaNube/nimbus-design-system/pull/289) by [@harrytiendanube](https://github.com/harrytiendanube))
+
 
 ## 2025-04-03 `5.10.0`
 

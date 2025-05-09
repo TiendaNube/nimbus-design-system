@@ -12,10 +12,15 @@ describe("GIVEN <Thumbnail.Skeleton />", () => {
   describe("WHEN rendered", () => {
     it("THEN should render skeleton base", () => {
       makeSut();
-      const skeleton = screen.getByTestId("skeleton-element");
-      expect(skeleton.getAttribute("style")).toMatch(
-        /--width__\w{0,9}: 6.5rem;/
+      const skeletonContainer = screen.getByTestId(
+        "thumbnail-skeleton-container"
       );
+      const skeleton = screen.getByTestId("skeleton-element");
+
+      expect(skeletonContainer.getAttribute("style")).toMatch(
+        /--width__\w{0,9}: 100%;/
+      );
+
       expect(skeleton.getAttribute("style")).toMatch(
         /--height__\w{0,9}: 100%;/
       );

@@ -10,4 +10,14 @@ const meta: Meta<typeof Thumbnail.Skeleton> = {
 export default meta;
 type Story = StoryObj<typeof Thumbnail.Skeleton>;
 
-export const basic: Story = { args: {} };
+export const basic: Story = {
+  args: {
+    width: "104px",
+  },
+};
+
+export const percentage: Story = {
+  args: {
+    width: "30%",
+  },
+};

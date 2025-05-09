@@ -10,6 +10,9 @@ export const container = style({
   overflow: "hidden",
   background: varsThemeBase.colors.neutral.surfaceDisabled,
   borderRadius: varsThemeBase.shape.border.radius[2],
+});
+
+export const width = style({
   width: vars.width,
 });
 
@@ -35,6 +38,7 @@ export const styles = {
   container__image,
   container__placeholder,
   skeleton,
+  width,
 };
 
 /* -------------------------------------------------------------------------------------------------

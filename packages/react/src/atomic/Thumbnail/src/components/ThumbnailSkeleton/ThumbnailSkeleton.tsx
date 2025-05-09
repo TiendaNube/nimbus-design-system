@@ -1,20 +1,27 @@
 import React from "react";
-import { thumbnail } from "@nimbus-ds/styles";
+import { thumbnail, vars } from "@nimbus-ds/styles";
 import { Skeleton } from "@nimbus-ds/skeleton";
+import { assignInlineVars } from "@vanilla-extract/dynamic";
 import { ThumbnailSkeletonProps } from "./thumbnailSkeleton.types";
 
 const ThumbnailSkeleton: React.FC<ThumbnailSkeletonProps> = ({
-  width,
+  width = "100%",
   aspectRatio = "1/1",
   "data-testid": dataTestId,
 }) => (
   <div className={thumbnail.classnames.skeleton}>
     <div
       data-testid="thumbnail-skeleton-container"
-      className={thumbnail.sprinkle({ aspectRatio })}
+      className={[
+        thumbnail.sprinkle({ aspectRatio }),
+        thumbnail.classnames.width,
+      ].join(" ")}
+      style={assignInlineVars({
+        [vars.width]: width,
+      })}
     >
       <Skeleton
-        width={width ?? "6.5rem"}
+        width="auto"
         height="100%"
         borderRadius="0.5rem"
         data-testid={dataTestId}
