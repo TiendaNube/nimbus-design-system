@@ -20,7 +20,7 @@ export const basic: Story = {
   },
 };
 
-export const emnpty: Story = {
+export const empty: Story = {
   args: {
     width: "104px",
   },

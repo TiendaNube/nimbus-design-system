@@ -18,7 +18,10 @@ const Thumbnail: React.FC<ThumbnailProps> & ThumbnailComponents = ({
   ...rest
 }: ThumbnailProps) => (
   <div
-    className={thumbnail.classnames.container}
+    className={[
+      thumbnail.classnames.container,
+      thumbnail.classnames.width,
+    ].join(" ")}
     style={assignInlineVars({
       [vars.width]: width,
     })}

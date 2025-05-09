@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2025-05-09 `9.14.1`
+
+#### 🐛 Bug fixes
+
+- `Thumbnail.Skeleton`: `width` support is extended to include percentages and 100% is defined as default, just like `Thumbnail`. ([Issue](https://github.com/TiendaNube/nimbus-design-system/discussions/248)) ([#289](https://github.com/TiendaNube/nimbus-design-system/pull/289) by [@harrytiendanube](https://github.com/harrytiendanube))
+
 ## 2025-03-25 `9.14.0`
 
 #### 🎉 New features
