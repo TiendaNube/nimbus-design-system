@@ -2,7 +2,7 @@
 
 The Thumbnail component allows us to present thumbnails of images.
 
-## 2025-04-28 `2.3.2`
+## 2025-05-09 `2.3.2`
 
 #### 🐛 Bug fixes
 
