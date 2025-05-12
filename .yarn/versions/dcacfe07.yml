@@ -1,7 +1,0 @@
-releases:
-  "@nimbus-ds/components": minor
-  "@nimbus-ds/segmented-control": major
-  "@nimbus-ds/styles": minor
-
-declined:
-  - nimbus-design-system
