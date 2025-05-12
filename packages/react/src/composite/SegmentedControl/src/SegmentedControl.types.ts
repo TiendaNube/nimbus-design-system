@@ -34,8 +34,7 @@ export interface ControlledSegmentedControlProperties
   extends SegmentedControlBaseProps {
   /**
    * The currently selected segment indices.
-   * Allows for single or multiple selection based on implementation.
-   * At least one segment must always be selected.
+   * Allows for single or multiple selection.
    */
   selectedSegments: number[];
   /**

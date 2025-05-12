@@ -16,7 +16,7 @@ const SegmentedControlButtonSkeleton: React.FC<SegmentedControlButtonSkeletonPro
   <Skeleton
     width={width}
     height={height}
-    borderRadius="0.25rem"
+    borderRadius="0.5rem"
     {...props}
   />
 );

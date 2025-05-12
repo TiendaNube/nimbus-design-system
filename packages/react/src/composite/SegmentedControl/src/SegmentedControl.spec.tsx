@@ -12,7 +12,7 @@ import { SegmentedControl } from "./SegmentedControl";
 describe("<SegmentedControl />", () => {
   const defaultProps = {
     children: [
-      <SegmentedControl.Button key="option1" label="Option 1">
+      <SegmentedControl.Button key="option1" label="Option 1" selected>
         Option 1
       </SegmentedControl.Button>,
       <SegmentedControl.Button key="option2" label="Option 2">
@@ -91,7 +91,7 @@ describe("<SegmentedControl />", () => {
 
     render(
       <SegmentedControl>
-        <SegmentedControl.Button label="Option 1">
+        <SegmentedControl.Button label="Option 1" selected>
           Option 1
         </SegmentedControl.Button>
         <SegmentedControl.Button label="Option 2">
@@ -208,34 +208,6 @@ describe("<SegmentedControl />", () => {
     expect(buttons[1]).toHaveAttribute("aria-pressed", "true");
   });
 
-  it("prevents deselecting the last selected segment in uncontrolled mode", () => {
-    render(<SegmentedControl {...defaultProps} />);
-    const buttons = screen.getAllByRole("button");
-
-    // Try to deselect the only selected segment
-    act(() => {
-      fireEvent.click(buttons[0]);
-    });
-
-    // The segment should remain selected
-    expect(buttons[0]).toHaveAttribute("aria-pressed", "true");
-    expect(buttons[1]).toHaveAttribute("aria-pressed", "false");
-    expect(buttons[2]).toHaveAttribute("aria-pressed", "false");
-  });
-
-  it("falls back to first segment if no segments have selected prop", () => {
-    const children = [
-      <SegmentedControl.Button key="option1" label="Option 1" />,
-      <SegmentedControl.Button key="option2" label="Option 2" />,
-    ];
-
-    render(<SegmentedControl>{children}</SegmentedControl>);
-    const buttons = screen.getAllByRole("button");
-
-    expect(buttons[0]).toHaveAttribute("aria-pressed", "true");
-    expect(buttons[1]).toHaveAttribute("aria-pressed", "false");
-  });
-
   it("renders with selected segments in controlled mode", () => {
     render(
       <SegmentedControl
@@ -305,24 +277,6 @@ describe("<SegmentedControl />", () => {
     expect(buttons[1]).toHaveAttribute("aria-pressed", "true");
   });
 
-  it("prevents deselecting the last selected segment in controlled mode", () => {
-    render(
-      <SegmentedControl
-        {...defaultProps}
-        selectedSegments={[0]}
-        onSegmentsSelect={mockOnSegmentsSelect}
-      />
-    );
-
-    const buttons = screen.getAllByRole("button");
-    act(() => {
-      fireEvent.click(buttons[0]);
-    });
-
-    // In controlled mode, the callback is still called with the same array
-    expect(mockOnSegmentsSelect).toHaveBeenCalledWith([0]);
-  });
-
   it("updates selection when selectedSegments prop changes", () => {
     const { rerender } = render(
       <SegmentedControl
@@ -348,21 +302,6 @@ describe("<SegmentedControl />", () => {
     expect(buttons[0]).toHaveAttribute("aria-pressed", "false");
     expect(buttons[1]).toHaveAttribute("aria-pressed", "true");
     expect(buttons[2]).toHaveAttribute("aria-pressed", "true");
-  });
-
-  it("falls back to first segment if selectedSegments is empty", () => {
-    render(
-      <SegmentedControl
-        {...defaultProps}
-        selectedSegments={[]}
-        onSegmentsSelect={mockOnSegmentsSelect}
-      />
-    );
-
-    const buttons = screen.getAllByRole("button");
-    expect(buttons[0]).toHaveAttribute("aria-pressed", "true");
-    expect(buttons[1]).toHaveAttribute("aria-pressed", "false");
-    expect(buttons[2]).toHaveAttribute("aria-pressed", "false");
   });
 
   it("has correct ARIA attributes", () => {

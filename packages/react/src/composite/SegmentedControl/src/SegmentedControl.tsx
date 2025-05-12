@@ -23,7 +23,7 @@ const SegmentedControl: React.FC<SegmentedControlProps> &
   // Internal state for uncontrolled mode
   const [internalSelectedSegments, setInternalSelectedSegments] = useState<
     number[]
-  >([0]);
+  >([]);
 
   // Check for controlled mode
   const isControlledMode = isControlled(rest);
@@ -40,11 +40,9 @@ const SegmentedControl: React.FC<SegmentedControlProps> &
         }
       });
 
-      // Use selected indices or default to first item
+      // Use selected indices
       if (initialSelectedIndices.length > 0) {
         setInternalSelectedSegments(initialSelectedIndices);
-      } else {
-        setInternalSelectedSegments([0]);
       }
     }
   }, [children, isControlledMode]);
@@ -52,10 +50,7 @@ const SegmentedControl: React.FC<SegmentedControlProps> &
   // Get the currently selected segments
   const selectedSegments = useMemo(() => {
     if (isControlledMode) {
-      const controlledProps = rest as ControlledSegmentedControlProperties;
-      return controlledProps.selectedSegments?.length > 0
-        ? controlledProps.selectedSegments
-        : [0];
+      return rest.selectedSegments;
     }
     return internalSelectedSegments;
   }, [isControlledMode, internalSelectedSegments, rest]);
@@ -68,12 +63,8 @@ const SegmentedControl: React.FC<SegmentedControlProps> &
         const existingIndex = newSelected.indexOf(index);
 
         if (existingIndex !== -1) {
-          // Only remove if there would still be at least one segment selected
-          if (newSelected.length > 1) {
-            newSelected.splice(existingIndex, 1);
-            return newSelected;
-          }
-          return current; // Don't allow deselecting the last item
+          newSelected.splice(existingIndex, 1);
+          return newSelected;
         }
 
         // Add the segment
