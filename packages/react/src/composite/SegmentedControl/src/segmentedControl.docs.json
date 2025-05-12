@@ -3,7 +3,7 @@
   "name": "SegmentedControl",
   "totalProps": 4,
   "packageName": "@nimbus-ds/segmented-control",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/segmented-control",
   "props": [
     {
@@ -20,7 +20,7 @@
       "required": false
     },
     {
-      "description": "The currently selected segment indices.\nAllows for single or multiple selection based on implementation.\nAt least one segment must always be selected.",
+      "description": "The currently selected segment indices.\nAllows for single or multiple selection.",
       "type": "array",
       "items": {
         "type": "number"
