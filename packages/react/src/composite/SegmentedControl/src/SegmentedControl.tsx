@@ -103,15 +103,18 @@ const SegmentedControl: React.FC<SegmentedControlProps> &
   return (
     <Box
       flexWrap="wrap"
-      backgroundColor="neutral-surface"
       aria-label="Segmented control"
       role="group"
       data-testid="segmented-control-container"
+      maxWidth={fullWidth ? "100%" : "fit-content"}
+      alignItems="center"
+      justifyContent="center"
       {...boxProps}
       // Properties that can't be changed by the consumer
       display="flex"
       gap="1"
-      alignItems="center"
+      backgroundColor="neutral-surface"
+      borderRadius="2"
     >
       {React.Children.map(children, (item, index) => {
         if (isButton(item.props)) {

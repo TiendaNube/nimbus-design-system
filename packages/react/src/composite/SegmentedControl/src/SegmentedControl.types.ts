@@ -52,7 +52,7 @@ export type SegmentedControlProps = (
   | SegmentedControlBaseProps
   | ControlledSegmentedControlProperties
 ) &
-  Omit<BoxProps, "display" | "backgroundColor" | "gap" | "children">;
+  Omit<BoxProps, "display" | "backgroundColor" | "gap" | "borderRadius" | "children">;
 
 // For docs purposes, we need to merge the two types
 export type SegmentedControlProperties = SegmentedControlBaseProps &
