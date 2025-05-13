@@ -10,8 +10,12 @@ import { rootDir } from "../utils/constants";
 const paths = glob.sync(`${join(rootDir, "./packages/react/src/*/*/src")}`);
 
 const packages = paths.reduce((prev: { [key: string]: string }, curr) => {
-  const key = `@nimbus-ds/${dashify(curr.split("/")[10])}`;
-  prev[key] = curr;
+  const parts = curr.split("/");
+  const componentName = parts[10];
+  if (componentName) {
+    const key = `@nimbus-ds/${dashify(componentName)}`;
+    prev[key] = curr;
+  }
   return prev;
 }, {});
 
