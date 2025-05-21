@@ -2,6 +2,18 @@
 
 Nimbus-icons is an open source icon system built by Nuvemshop / Tiendanube.
 
+## 2025-05-20 `1.9.0`
+
+#### 🎉 New features
+
+- Adds `id-card` icon. ([#292](https://github.com/TiendaNube/nimbus-design-system/pull/292) by [@guidobotta](https://github.com/guidobotta))
+
+## 2025-05-12 `1.8.0`
+
+#### 🎉 New features
+
+- Adds `generative-stars` icon. ([#291](https://github.com/TiendaNube/nimbus-design-system/pull/291) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-03-31 `1.7.0`
 
 #### 🎉 New features
