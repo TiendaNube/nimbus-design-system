@@ -3,7 +3,7 @@ import * as TJS from "typescript-json-schema";
 import { readFileSync, writeFileSync } from "fs";
 import { camelCase, pascalCase, paramCase } from "change-case";
 import { defaultCompilerOptions, defaultSettings } from "./docgen.definitions";
-import { DocgenOptions, Prop, Doc, Paths } from "./docgen.types";
+import { DocgenOptions, Prop, Doc, Paths, GeneratedDoc } from "./docgen.types";
 
 /* eslint no-console: "off" */
 export class Docgen {
@@ -36,7 +36,19 @@ export class Docgen {
     this.options = { ...Docgen.defaultOptions, ...options };
   }
 
-  public generate(paths: Paths): void {
+  public generateBundle(docs: GeneratedDoc[], outputPath: string): void {
+    const docById = docs.reduce((acc, doc) => {
+      acc[doc.id] = doc;
+      return acc;
+    }, {} as Record<string, Doc>);
+
+    // Minify the docs
+    const minifiedDocs = JSON.parse(JSON.stringify(docById));
+
+    writeFileSync(outputPath, JSON.stringify(minifiedDocs, null, 2));
+  }
+
+  public generate(paths: Paths): GeneratedDoc[] {
     this.paths = { ...this.paths, ...paths };
 
     // Building compiler for sent paths
@@ -49,13 +61,13 @@ export class Docgen {
     this.generator = TJS.buildGenerator(this.program, this.options.settings);
 
     // Building documentation
-    this.paths.components.forEach((path) => {
-      this.createDoc(path);
-    });
+    const docs = this.paths.components.map((path) => this.createDoc(path));
     console.log("Done!");
+
+    return docs;
   }
 
-  private createDoc(path: string): void {
+  private createDoc(path: string): GeneratedDoc {
     console.log(`Creating documentation for ${path}...`);
 
     this.component.name = this.getComponentName(path);
@@ -81,7 +93,7 @@ export class Docgen {
     const docLink = this.generateDocLink();
     const subComponents = this.getSubComponents();
 
-    const doc = {
+    const doc: GeneratedDoc = {
       id: this.component.id,
       name: this.component.name,
       totalProps: props.length,
@@ -95,6 +107,8 @@ export class Docgen {
     const dist = `${this.component.path}/${this.component.id}.docs.json`;
     writeFileSync(dist, JSON.stringify(doc, null, 2));
     console.log(`created ${dist} ✅`);
+
+    return doc;
   }
 
   private formatProps(

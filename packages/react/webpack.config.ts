@@ -29,10 +29,16 @@ const config = configuration.getConfiguration(baseConfig, {
           import: "./dist/index.js",
           require: "./dist/index.js",
         },
+        // Component props export
+        "./components-props.json": {
+          import: "./dist/components-props.json",
+          require: "./dist/components-props.json",
+        },
         ...packageExports,
       };
       return packageJson;
     },
+    files: ["CHANGELOG.md", "README.md", "components-props.json"],
   },
 });
 

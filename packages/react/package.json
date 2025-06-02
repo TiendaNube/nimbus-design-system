@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/components",
-  "version": "5.11.0",
+  "version": "5.11.1-rc.2",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -36,6 +36,10 @@
     ".": {
       "import": "./dist/index.js",
       "require": "./dist/index.js"
+    },
+    "./components-props.json": {
+      "import": "./dist/components-props.json",
+      "require": "./dist/components-props.json"
     },
     "./Badge": {
       "import": "./dist/Badge/index.js",
