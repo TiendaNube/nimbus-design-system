@@ -56,6 +56,7 @@ export const Controlled: Story = {
             setActiveStep(activeStep + 1);
             setSelected(activeStep + 1);
           }}
+          disabled={activeStep === labels.length + 1}
         >
           Next
         </Button>

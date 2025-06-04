@@ -22,7 +22,8 @@ const StepperItem: React.FC<StepperItemProps> = ({
   label,
   ...rest
 }: StepperItemProps) => {
-  const { totalSteps, activeStep, selectedStep, onSelect } = useContext(StepperContext);
+  const { totalSteps, activeStep, selectedStep, onSelect } =
+    useContext(StepperContext);
 
   // Determine step state from context
   const isCurrentStep = step === activeStep;
@@ -54,13 +55,6 @@ const StepperItem: React.FC<StepperItemProps> = ({
   };
 
   const stepState = getStepState();
-
-  const getTextColor = () => {
-    if (isSelectedStep) return "neutral-textHigh";
-    if (isCompletedStep) return "neutral-textLow";
-    if (isCurrentStep) return "neutral-textLow";
-    return "neutral-textDisabled";
-  };
 
   return (
     <>
@@ -106,15 +100,14 @@ const StepperItem: React.FC<StepperItemProps> = ({
         </div>
 
         {label && (
-          <Text
-            as="span"
-            color={getTextColor()}
-            fontSize="caption"
-            fontWeight={isSelectedStep ? "medium" : "regular"}
-            lineHeight="caption"
+          <p
+          className={[
+            stepper.classnames.item__label,
+            stepper.classnames[`item__label_${stepState}`],
+            ].join(" ")}
           >
             {label}
-          </Text>
+          </p>
         )}
       </div>
       {!isLastStep && (
