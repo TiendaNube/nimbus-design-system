@@ -29,6 +29,9 @@ jobs:
 
       - name: Build icons
         run: yarn build:icons
+
+      - name: Build docs
+        run: yarn build:docs
       
       - name: Build components
         run: |

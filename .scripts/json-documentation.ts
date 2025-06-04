@@ -29,12 +29,14 @@ try {
   const docgen = new Docgen(options);
   const docs = docgen.generate(paths);
 
+  console.log("Package documentation generated successfully");
+
   docgen.generateBundle(
     docs,
     path.join("packages/react/components-props.json")
   );
 
-  console.log(docs);
+  console.log("Bundle documentation generated successfully");
 } catch (err) {
   console.error(`\x1b[33m ${err.message} \x1b[0m`);
   process.exit(1);

@@ -46,13 +46,14 @@ export class Docgen {
     const minifiedDocs = JSON.parse(JSON.stringify(docById));
 
     writeFileSync(outputPath, JSON.stringify(minifiedDocs, null, 2));
+
+    console.log(`Bundle documentation generated successfully in ${outputPath}`);
   }
 
   public generate(paths: Paths): GeneratedDoc[] {
     this.paths = { ...this.paths, ...paths };
 
-    // Building compiler for sent paths
-    console.log("Building compiler for sent paths...");
+    console.log(`Building documentation for ${paths.components.length} components...`);
     const allPaths = [...paths.components, ...(paths?.subComponents ?? [])];
     this.program = TJS.getProgramFromFiles(
       allPaths.map((path) => nodePath.resolve(path)),
@@ -62,8 +63,8 @@ export class Docgen {
 
     // Building documentation
     const docs = this.paths.components.map((path) => this.createDoc(path));
-    console.log("Done!");
 
+    console.log("Documentation generated successfully");
     return docs;
   }
 
