@@ -3,8 +3,10 @@ import { configuration, utils } from "@nimbus-ds/webpack";
 
 const baseDir = path.resolve(__dirname, "src");
 
-const { dtsCommands, packageExports, webpackEntries } =
-  utils.getComponentsPackageExports(baseDir, ["atomic", "composite"]);
+const { packageExports, webpackEntries } = utils.getComponentsPackageExports(
+  baseDir,
+  ["atomic", "composite"]
+);
 
 const baseConfig = {
   output: {
@@ -20,7 +22,7 @@ const config = configuration.getConfiguration(baseConfig, {
   dtsBundleConfig: {
     entries: [
       `node ../../node_modules/.bin/dts-bundle-generator -o ./dist/index.d.ts ./src/index.ts`,
-      ...dtsCommands,
+      // ...dtsCommands,
     ],
   },
   packageJsonConfig: {
@@ -32,7 +34,7 @@ const config = configuration.getConfiguration(baseConfig, {
           require: "./dist/index.js",
         },
         // Component props export
-        [componentPropsJson]: {
+        [`./${componentPropsJson}`]: {
           import: `./dist/${componentPropsJson}`,
           require: `./dist/${componentPropsJson}`,
         },
