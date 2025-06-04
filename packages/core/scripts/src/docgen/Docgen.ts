@@ -45,10 +45,8 @@ export class Docgen {
       return acc;
     }, {} as Record<string, Doc>);
 
-    // Minify the docs
-    const minifiedDocs = JSON.parse(JSON.stringify(docById));
-
-    writeFileSync(outputPath, JSON.stringify(minifiedDocs, null, 2));
+    // Write the bundled documentation as minified JSON
+    writeFileSync(outputPath, JSON.stringify(docById));
 
     console.log(`Bundle documentation generated successfully in ${outputPath}`);
   }
