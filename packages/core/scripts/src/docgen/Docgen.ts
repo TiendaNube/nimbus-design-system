@@ -36,6 +36,9 @@ export class Docgen {
     this.options = { ...Docgen.defaultOptions, ...options };
   }
 
+  /**
+   * Bundles generated documentation into a single JSON file.
+   */
   public generateBundle(docs: GeneratedDoc[], outputPath: string): void {
     const docById = docs.reduce((acc, doc) => {
       acc[doc.id] = doc;
@@ -53,7 +56,9 @@ export class Docgen {
   public generate(paths: Paths): GeneratedDoc[] {
     this.paths = { ...this.paths, ...paths };
 
-    console.log(`Building documentation for ${paths.components.length} components...`);
+    console.log(
+      `Building documentation for ${paths.components.length} components...`
+    );
     const allPaths = [...paths.components, ...(paths?.subComponents ?? [])];
     this.program = TJS.getProgramFromFiles(
       allPaths.map((path) => nodePath.resolve(path)),
