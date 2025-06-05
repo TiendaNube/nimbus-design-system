@@ -43,7 +43,7 @@ jobs:
 
       - name: Build icons
         run: yarn build:icons
-      
+        
       - name: Build components
         run: |
           export NODE_OPTIONS="--max_old_space_size=12288"
@@ -53,6 +53,9 @@ jobs:
         run: |
           export NODE_OPTIONS="--max_old_space_size=12288"
           yarn build:packages
+
+      - name: Build docs
+        run: yarn build:docs
 
       - name: Publish packages
         run: yarn publish:stable

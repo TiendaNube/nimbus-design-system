@@ -14,6 +14,8 @@ const baseConfig = {
   entry: webpackEntries,
 };
 
+const componentPropsJson = "components-props.json";
+
 const config = configuration.getConfiguration(baseConfig, {
   dtsBundleConfig: {
     entries: [
@@ -29,10 +31,16 @@ const config = configuration.getConfiguration(baseConfig, {
           import: "./dist/index.js",
           require: "./dist/index.js",
         },
+        // Component props export
+        [`./${componentPropsJson}`]: {
+          import: `./dist/${componentPropsJson}`,
+          require: `./dist/${componentPropsJson}`,
+        },
         ...packageExports,
       };
       return packageJson;
     },
+    files: ["CHANGELOG.md", "README.md"],
   },
 });
 

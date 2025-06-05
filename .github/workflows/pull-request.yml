@@ -40,6 +40,9 @@ jobs:
           export NODE_OPTIONS="--max_old_space_size=12288"
           yarn build:packages
 
+      - name: Build docs
+        run: yarn build:docs
+
       - name: Run lint
         run: yarn lint
 

@@ -1,0 +1,7 @@
+releases:
+  "@nimbus-ds/components": patch
+  "@nimbus-ds/scripts": minor
+
+declined:
+  - nimbus-design-system
+  - nimbus-helper
