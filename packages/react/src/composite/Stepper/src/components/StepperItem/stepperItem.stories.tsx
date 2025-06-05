@@ -26,23 +26,23 @@ const meta: Meta<
 export default meta;
 type Story = StoryObj<typeof Stepper.Item>;
 
-export const Default: Story = {
-  args: {
-    label: "Step label",
-  },
-  render: (args) => (
-    <Stepper activeStep={currentStep}>
-      <Stepper.Item {...args} />
-    </Stepper>
-  ),
-};
-
 export const Selected: Story = {
   args: {
     label: "Selected step",
   },
   render: (args) => (
-    <Stepper activeStep={currentStep} selectedStep={1}>
+    <Stepper activeStep={1} selectedStep={1}>
+      <Stepper.Item {...args} />
+    </Stepper>
+  ),
+};
+
+export const Completed: Story = {
+  args: {
+    label: "Completed step",
+  },
+  render: (args) => (
+    <Stepper activeStep={2} onSelectStep={() => {}} selectedStep={2}>
       <Stepper.Item {...args} />
     </Stepper>
   ),
@@ -53,7 +53,7 @@ export const Pending: Story = {
     label: "Pending step",
   },
   render: (args) => (
-    <Stepper activeStep={currentStep}>
+    <Stepper activeStep={0}>
       <Stepper.Item {...args} />
     </Stepper>
   ),

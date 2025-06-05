@@ -2733,7 +2733,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/button@workspace:^, @nimbus-ds/button@workspace:packages/react/src/atomic/Button":
+"@nimbus-ds/button@workspace:*, @nimbus-ds/button@workspace:^, @nimbus-ds/button@workspace:packages/react/src/atomic/Button":
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/button@workspace:packages/react/src/atomic/Button"
   dependencies:
@@ -3088,6 +3088,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/stepper@workspace:packages/react/src/composite/Stepper"
   dependencies:
+    "@nimbus-ds/button": "workspace:*"
     "@nimbus-ds/icon": "workspace:*"
     "@nimbus-ds/icons": "workspace:*"
     "@nimbus-ds/styles": "workspace:*"

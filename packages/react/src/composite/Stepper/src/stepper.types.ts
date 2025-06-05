@@ -1,8 +1,11 @@
 import { ReactNode } from "react";
 import { StepperItemProps } from "./components/StepperItem";
+import { StepperCardProps } from "./components/StepperCard";
+import { BoxProps } from "@nimbus-ds/box";
 
 export interface StepperComponents {
   Item: React.FC<Omit<StepperItemProps, "step">>;
+  Card: React.FC<StepperCardProps>;
 }
 
 export interface BaseStepperProperties {
@@ -29,16 +32,17 @@ export interface ControlledStepperProperties extends BaseStepperProperties {
    * Callback called when a step is selected.
    * Receives the step number (1-based index) as parameter.
    */
-  onSelect: (step: number) => void;
+  onSelectStep: (step: number) => void;
 }
 
 /**
  * Props for the Stepper component, supporting both controlled and uncontrolled modes
  */
-export type StepperProps = BaseStepperProperties | ControlledStepperProperties;
+export type StepperProps = (BaseStepperProperties | ControlledStepperProperties) & Omit<BoxProps, "display" | "flexWrap" | "gap">;
 
 // For docs purposes, we need to merge the two types
 export type StepperProperties = BaseStepperProperties & ControlledStepperProperties;
 
-// Re-export types from StepperItem for convenience
-export type { StepperItemProps, StepState } from "./components/StepperItem"; 
+// Re-export types from components for convenience
+export type { StepperItemProps, StepState } from "./components/StepperItem";
+export type { StepperCardProps } from "./components/StepperCard"; 

@@ -8,4 +8,4 @@ import { ControlledStepperProperties } from "./stepper.types";
 export const isControlled = (
   props: any
 ): props is ControlledStepperProperties =>
-  "selectedStep" in props && "onSelect" in props; 
+  "selectedStep" in props && "onSelectStep" in props; 

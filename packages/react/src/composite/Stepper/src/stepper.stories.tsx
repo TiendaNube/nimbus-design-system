@@ -45,7 +45,8 @@ export const Controlled: Story = {
         <Stepper
           activeStep={activeStep}
           selectedStep={selected}
-          onSelect={(step) => setSelected(step)}
+          onSelectStep={(step: number) => setSelected(step)}
+          justifyContent="flex-start"
         >
           {labels.map((label, index) => (
             <Stepper.Item key={index} label={label} />
@@ -65,9 +66,9 @@ export const Controlled: Story = {
   },
 };
 
-export const CardStepper: Story = {
-  render: (args) => (
-    <Stepper activeStep={5}>
+export const Uncontrolled: Story = {
+  render: () => (
+    <Stepper activeStep={2} justifyContent="flex-start">
       <Stepper.Item label="Select audience" />
       <Stepper.Item label="Create content" />
       <Stepper.Item label="Define budget" />
@@ -77,14 +78,15 @@ export const CardStepper: Story = {
   ),
 };
 
-export const Uncontrolled: Story = {
-  render: (args) => (
-    <Stepper activeStep={2}>
-      <Stepper.Item label="Select audience" />
-      <Stepper.Item label="Create content" />
-      <Stepper.Item label="Define budget" />
-      <Stepper.Item label="Review" />
-      <Stepper.Item label="Publish" />
-    </Stepper>
+export const WithCard: Story = {
+  render: () => (
+    <Stepper.Card>
+      <Stepper activeStep={3}>
+        <Stepper.Item label="Setup" />
+        <Stepper.Item label="Configuration" />
+        <Stepper.Item label="Review" />
+        <Stepper.Item label="Deploy" />
+      </Stepper>
+    </Stepper.Card>
   ),
 };

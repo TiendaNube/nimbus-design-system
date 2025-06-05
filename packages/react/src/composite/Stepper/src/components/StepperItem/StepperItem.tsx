@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useCallback, useMemo } from "react";
 import { Icon } from "@nimbus-ds/icon";
 import { Text } from "@nimbus-ds/text";
 import { CheckCircleIcon } from "@nimbus-ds/icons";
@@ -6,6 +6,14 @@ import { stepper } from "@nimbus-ds/styles";
 
 import { StepperItemProps } from "./stepperItem.types";
 import { StepperContext } from "../StepperContext";
+
+
+enum STEP_STATE {
+  CURRENT = "current",
+  COMPLETED = "completed",
+  SELECTED = "selected",
+  PENDING = "pending",
+};
 
 /**
  * StepperItem represents a single step in the stepper component.
@@ -34,7 +42,8 @@ const StepperItem: React.FC<StepperItemProps> = ({
   const isLastStep = step === totalSteps;
 
   const handleClick = () => {
-    if (onSelect && (isCurrentStep || isCompletedStep)) {
+    // We can't click pending steps or already selected steps
+    if (onSelect && !isPendingStep && !isSelectedStep) {
       onSelect(step);
     }
   };
@@ -47,12 +56,12 @@ const StepperItem: React.FC<StepperItemProps> = ({
   };
 
   // Determine the visual state based on context values
-  const getStepState = () => {
+  const getStepState = useCallback(() => {
     if (isSelectedStep) return "selected";
     if (isCurrentStep) return "current";
     if (isCompletedStep) return "completed";
     return "pending";
-  };
+  }, [isSelectedStep, isCurrentStep, isCompletedStep, isPendingStep]);
 
   const stepState = getStepState();
 
@@ -86,7 +95,10 @@ const StepperItem: React.FC<StepperItemProps> = ({
               {step}
             </Text>
           ) : isCompletedStep ? (
-            <Icon source={<CheckCircleIcon />} color="currentColor" />
+            <Icon
+              source={<CheckCircleIcon size="small" />}
+              color="success-textHigh"
+            />
           ) : (
             <Text
               as="span"
@@ -100,14 +112,14 @@ const StepperItem: React.FC<StepperItemProps> = ({
         </div>
 
         {label && (
-          <p
-          className={[
-            stepper.classnames.item__label,
-            stepper.classnames[`item__label_${stepState}`],
+          <span
+            className={[
+              stepper.classnames.item__label,
+              stepper.classnames[`item__label_${stepState}`],
             ].join(" ")}
           >
             {label}
-          </p>
+          </span>
         )}
       </div>
       {!isLastStep && (

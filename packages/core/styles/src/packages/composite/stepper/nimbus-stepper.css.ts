@@ -1,4 +1,4 @@
-import { style } from "@vanilla-extract/css";
+import { globalStyle, style } from "@vanilla-extract/css";
 import { defineProperties, createSprinkles } from "@vanilla-extract/sprinkles";
 import { varsThemeBase } from "../../../themes";
 
@@ -12,6 +12,7 @@ const container = style({
   width: "100%",
   gap: varsThemeBase.spacing[2],
   flexWrap: "wrap",
+  justifyContent: "center",
 });
 
 const item = style({
@@ -20,6 +21,9 @@ const item = style({
   gap: varsThemeBase.spacing[2],
   position: "relative",
   cursor: "pointer",
+  ":hover": {
+    cursor: "pointer",
+  },
 });
 
 const item_disabled = style({
@@ -35,7 +39,6 @@ const item__icon = style({
   borderRadius: varsThemeBase.shape.border.radius.full,
   fontSize: varsThemeBase.fontSize.body.caption,
   fontWeight: varsThemeBase.fontWeight.medium,
-  transition: `all ${varsThemeBase.motion.speed.fast} ease`,
   flexShrink: 0,
 });
 
@@ -54,7 +57,7 @@ const item__label_selected = style({
 });
 
 const item__label_completed = style({
-  color: varsThemeBase.colors.neutral.textLow,
+  color: varsThemeBase.colors.neutral.interactiveHover,
 });
 
 const item__label_pending = style({
@@ -80,18 +83,39 @@ const item__icon_selected = style({
 });
 
 const item__icon_completed = style({
-  backgroundColor: varsThemeBase.colors.success.interactive,
-  color: varsThemeBase.colors.neutral.background,
+  backgroundColor: varsThemeBase.colors.success.surfaceHighlight,
   cursor: "pointer",
-  ":hover": {
-    backgroundColor: varsThemeBase.colors.success.interactiveHover,
-    borderColor: varsThemeBase.colors.success.interactiveHover,
-  },
 });
 
 const item__icon_pending = style({
   backgroundColor: varsThemeBase.colors.neutral.surfaceDisabled,
   color: varsThemeBase.colors.neutral.textDisabled,
+});
+
+// Global styles
+globalStyle(`${item}:hover ${item__label_completed}`, {
+  color: varsThemeBase.colors.neutral.textHigh,
+});
+
+globalStyle(`${item}:active ${item__label_completed}`, {
+  color: varsThemeBase.colors.neutral.textHigh,
+});
+
+globalStyle(`${item}:focus ${item__label_completed}`, {
+  color: varsThemeBase.colors.neutral.textLow,
+});
+
+globalStyle(`${item}:hover ${item__icon_completed}`, {
+  backgroundColor: varsThemeBase.colors.success.interactive,
+});
+
+globalStyle(`${item}:active ${item__icon_completed}`, {
+  backgroundColor: varsThemeBase.colors.success.interactiveHover,
+});
+
+globalStyle(`${item}:focus-visible ${item__icon_completed}`, {
+  backgroundColor: varsThemeBase.colors.success.surfaceHighlight,
+  boxShadow: varsThemeBase.utils.focus,
 });
 
 export const styles = {

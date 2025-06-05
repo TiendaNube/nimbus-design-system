@@ -1,32 +1,19 @@
 import React, { useState } from "react";
-import { stepper } from "@nimbus-ds/styles";
 
-import { StepperProps, StepperComponents } from "./stepper.types";
-import { StepperItem, StepperContext } from "./components";
+import {
+  StepperProps,
+  StepperComponents,
+  ControlledStepperProperties,
+} from "./stepper.types";
+import { StepperItem, StepperCard, StepperContext } from "./components";
 import { isControlled } from "./stepper.definitions";
+import { Box, BoxProps } from "@nimbus-ds/box";
 
 /**
  * Stepper component guides users through a multi-step process,
  * showing their progress and allowing navigation between completed steps.
  * Total steps are automatically calculated based on the number of children.
  * Step numbers are automatically assigned based on child position.
- * 
- * Supports both controlled and uncontrolled modes:
- * - Uncontrolled: Pass only activeStep, component manages selectedStep internally
- * - Controlled: Pass both selectedStep and onSelect for full control
- * 
- * @example
- * // Uncontrolled
- * <Stepper activeStep={2}>
- *   <Stepper.Item label="Select audience" />
- *   <Stepper.Item label="Create content" />
- * </Stepper>
- * 
- * // Controlled
- * <Stepper activeStep={2} selectedStep={selectedStep} onSelect={setSelectedStep}>
- *   <Stepper.Item label="Select audience" />
- *   <Stepper.Item label="Create content" />
- * </Stepper>
  */
 const Stepper: React.FC<StepperProps> & StepperComponents = ({
   activeStep,
@@ -34,14 +21,19 @@ const Stepper: React.FC<StepperProps> & StepperComponents = ({
   ...rest
 }: StepperProps) => {
   // Internal state for uncontrolled mode
-  const [internalSelectedStep, setInternalSelectedStep] = useState<number>(activeStep);
+  const [internalSelectedStep, setInternalSelectedStep] =
+    useState<number>(activeStep);
 
   // Check for controlled mode
   const isControlledMode = isControlled(rest);
 
   // Use controlled or uncontrolled state
-  const selectedStep = isControlledMode ? rest.selectedStep : internalSelectedStep;
-  const handleSelect = isControlledMode ? rest.onSelect : setInternalSelectedStep;
+  const selectedStep = isControlledMode
+    ? rest.selectedStep
+    : internalSelectedStep;
+  const handleSelect = isControlledMode
+    ? rest.onSelectStep
+    : setInternalSelectedStep;
 
   const totalSteps = React.Children.count(children);
 
@@ -55,28 +47,45 @@ const Stepper: React.FC<StepperProps> & StepperComponents = ({
   });
 
   // Extract controlled properties from rest to avoid passing them to div
-  const { selectedStep: _, onSelect: __, ...containerProps } = rest as any;
+  const {
+    selectedStep: _,
+    onSelectStep: __,
+    ...containerProps
+  } = rest as BoxProps & Partial<ControlledStepperProperties>;
 
   return (
-    <StepperContext.Provider value={{ totalSteps, activeStep, selectedStep, onSelect: handleSelect }}>
-      <div
-        className={stepper.classnames.container}
+    <StepperContext.Provider
+      value={{
+        totalSteps,
+        activeStep,
+        selectedStep,
+        onSelect: handleSelect,
+      }}
+    >
+      <Box
+        flexWrap="wrap"
+        justifyContent="center"
+        alignItems="center"
+        {...containerProps}
+        display="flex"
+        gap="2"
         role="progressbar"
         aria-valuenow={activeStep}
         aria-valuemin={1}
         aria-valuemax={totalSteps}
         aria-label={`Step ${activeStep} of ${totalSteps}`}
-        {...containerProps}
       >
         {mappedChildren}
-      </div>
+      </Box>
     </StepperContext.Provider>
   );
 };
 
 // @ts-ignore
 Stepper.Item = StepperItem;
+Stepper.Card = StepperCard;
 Stepper.displayName = "Stepper";
 Stepper.Item.displayName = "Stepper.Item";
+Stepper.Card.displayName = "Stepper.Card";
 
-export { Stepper }; 
+export { Stepper };
