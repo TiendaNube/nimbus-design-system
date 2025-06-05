@@ -7,6 +7,7 @@ import {
   defaultCompilerOptionsDocgen,
 } from "@nimbus-ds/scripts/src";
 import tsconfig from "../tsconfig.json";
+import fs from "fs";
 
 try {
   const paths = {
@@ -31,10 +32,15 @@ try {
 
   console.log("Package documentation generated successfully");
 
-  docgen.generateBundle(
-    docs,
-    path.join("packages/react/components-props.json")
+  const bundlePropsOutPath = path.join(
+    "packages/react/dist/components-props.json"
   );
+
+  if (!fs.existsSync(path.dirname(bundlePropsOutPath))) {
+    fs.mkdirSync(path.dirname(bundlePropsOutPath));
+  }
+
+  docgen.generateBundle(docs, bundlePropsOutPath);
 
   console.log("Bundle documentation generated successfully");
 } catch (err) {

@@ -29,9 +29,6 @@ jobs:
 
       - name: Build icons
         run: yarn build:icons
-
-      - name: Build docs
-        run: yarn build:docs
       
       - name: Build components
         run: |
@@ -42,6 +39,9 @@ jobs:
         run: |
           export NODE_OPTIONS="--max_old_space_size=12288"
           yarn build:packages
+
+      - name: Build docs
+        run: yarn build:docs
 
       - name: Run lint
         run: yarn lint
