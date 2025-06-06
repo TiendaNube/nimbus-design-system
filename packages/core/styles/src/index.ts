@@ -41,6 +41,7 @@ export { collapsible } from "./packages/composite/collapsible";
 export { modal } from "./packages/composite/modal";
 export { pagination } from "./packages/composite/pagination";
 export { sidebar } from "./packages/composite/sidebar";
+export { stepper } from "./packages/composite/stepper";
 export { tabs } from "./packages/composite/tabs";
 export { table } from "./packages/composite/table";
 export { segmentedControl } from "./packages/composite/segmented-control";

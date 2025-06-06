@@ -40,6 +40,7 @@ export * from "@nimbus-ds/collapsible";
 export * from "@nimbus-ds/modal";
 export * from "@nimbus-ds/pagination";
 export * from "@nimbus-ds/sidebar";
+export * from "@nimbus-ds/stepper";
 export * from "@nimbus-ds/tabs";
 export * from "@nimbus-ds/table";
 export * from "@nimbus-ds/segmented-control";

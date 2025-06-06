@@ -89,7 +89,8 @@
       "@nimbus-ds/table": ["./packages/react/src/composite/Table/src"],
       "@nimbus-ds/segmented-control": [
         "./packages/react/src/composite/SegmentedControl/src"
-      ]
+      ],
+      "@nimbus-ds/stepper": ["./packages/react/src/composite/Stepper/src"]
     }
   }
 }

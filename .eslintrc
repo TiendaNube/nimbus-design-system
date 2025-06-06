@@ -109,6 +109,9 @@
       }
     ],
     "no-console": "warn",
-    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }]
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    // Prefer @typescript-eslint/no-shadow over no-shadow to avoid known issues
+    "no-shadow": "off",
+    "@typescript-eslint/no-shadow": "warn"
   }
 }

@@ -51,6 +51,7 @@ const config: Config.InitialOptions = {
       "<rootDir>/packages/react/src/composite/Collapsible/src",
     "@nimbus-ds/segmented-control":
       "<rootDir>/packages/react/src/composite/SegmentedControl/src",
+    "@nimbus-ds/stepper": "<rootDir>/packages/react/src/composite/Stepper/src",
     // commons
     "^.+\\.svg$": "jest-svg-transformer",
   },
