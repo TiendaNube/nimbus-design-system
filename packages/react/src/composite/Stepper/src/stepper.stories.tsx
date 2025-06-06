@@ -40,7 +40,7 @@ export const Controlled: Story = {
     ];
 
     return (
-      <Box display="flex" flexDirection="column" gap="2">
+      <Box display="flex" flexDirection="column" gap="3">
         <Text>Selected step: {selected}</Text>
         <Stepper
           activeStep={activeStep}
@@ -67,15 +67,27 @@ export const Controlled: Story = {
 };
 
 export const Uncontrolled: Story = {
-  render: () => (
-    <Stepper activeStep={2} justifyContent="flex-start">
-      <Stepper.Item label="Select audience" />
-      <Stepper.Item label="Create content" />
-      <Stepper.Item label="Define budget" />
-      <Stepper.Item label="Review" />
-      <Stepper.Item label="Publish" />
-    </Stepper>
-  ),
+  render: () => {
+    const [activeStep, setActiveStep] = useState(2);
+
+    return (
+      <Box display="flex" flexDirection="column" gap="3">
+        <Stepper activeStep={activeStep} justifyContent="flex-start">
+          <Stepper.Item label="Select audience" />
+          <Stepper.Item label="Create content" />
+          <Stepper.Item label="Define budget" />
+          <Stepper.Item label="Review" />
+          <Stepper.Item label="Publish" />
+        </Stepper>
+        <Button
+          onClick={() => setActiveStep(activeStep + 1)}
+          disabled={activeStep === 6}
+        >
+          Next
+        </Button>
+      </Box>
+    );
+  },
 };
 
 export const WithCard: Story = {
@@ -97,7 +109,8 @@ export const Mobile: Story = {
     const [selected, setSelected] = useState(1);
 
     return (
-      <Box display="flex" flexDirection="column" gap="2">
+      <Box display="flex" flexDirection="column" gap="3">
+        <Text>Step {selected}: Description</Text>
         <Stepper
           activeStep={activeStep}
           selectedStep={selected}

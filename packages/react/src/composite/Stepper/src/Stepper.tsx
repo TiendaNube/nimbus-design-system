@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import {
   StepperProps,
@@ -45,6 +45,13 @@ const Stepper: React.FC<StepperProps> & StepperComponents = ({
     }
     return child;
   });
+
+  useEffect(() => {
+    if (!isControlledMode) {
+      // For uncontrolled mode, keep the selected step in sync with the active step
+      setInternalSelectedStep(activeStep);
+    }
+  }, [activeStep]);
 
   // Extract controlled properties from rest to avoid passing them to div
   const {
