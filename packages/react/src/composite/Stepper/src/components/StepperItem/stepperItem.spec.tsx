@@ -34,11 +34,11 @@ describe("GIVEN <Stepper.Item />", () => {
       expect(screen.getByText("Test step")).toBeDefined();
     });
 
-    it("THEN should display step number for current state", () => {
+    it("THEN should display step number for started state", () => {
       makeSut(
         {
           step: 2,
-          label: "Current step",
+          label: "Started step",
         },
         3,
         2
@@ -408,11 +408,11 @@ describe("GIVEN <Stepper.Item />", () => {
       expect(icon).toBeDefined();
     });
 
-    it("THEN should correctly identify current state", () => {
+    it("THEN should correctly identify started state", () => {
       makeSut(
         {
           step: 1,
-          label: "Current step",
+          label: "Started step",
         },
         3,
         1,
@@ -420,7 +420,7 @@ describe("GIVEN <Stepper.Item />", () => {
       );
 
       const stepperItem = screen.getByTestId("stepper-item");
-      const icon = stepperItem.querySelector('[class*="item__icon_current"]');
+      const icon = stepperItem.querySelector('[class*="item__icon_started"]');
       expect(icon).toBeDefined();
     });
 
@@ -487,7 +487,7 @@ describe("GIVEN <Stepper.Item />", () => {
             data-testid="completed-item"
           />
           <StepperItem step={1} label="Selected" data-testid="selected-item" />
-          <StepperItem step={2} label="Current" data-testid="current-item" />
+          <StepperItem step={2} label="Started" data-testid="started-item" />
           <StepperItem step={3} label="Pending" data-testid="pending-item" />
         </StepperContext.Provider>
       );
@@ -504,8 +504,8 @@ describe("GIVEN <Stepper.Item />", () => {
       ).toBeDefined();
       expect(
         screen
-          .getByTestId("current-item")
-          .querySelector('[class*="item__label_current"]')
+          .getByTestId("started-item")
+          .querySelector('[class*="item__label_started"]')
       ).toBeDefined();
       expect(
         screen

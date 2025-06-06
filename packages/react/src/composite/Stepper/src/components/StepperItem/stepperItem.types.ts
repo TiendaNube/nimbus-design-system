@@ -3,7 +3,7 @@ import { HTMLAttributes } from "react";
 /**
  * Represents the visual state of a step
  */
-export type StepState = "completed" | "current" | "pending";
+export type StepState = "completed" | "started" | "pending";
 
 export interface StepperItemProperties {
   /**

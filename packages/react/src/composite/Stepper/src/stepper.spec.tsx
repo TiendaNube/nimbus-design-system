@@ -66,7 +66,7 @@ describe("GIVEN <Stepper />", () => {
       makeUncontrolledSut({
         activeStep: 0,
         children: [
-          <Stepper.Item key="1" label="Current step" />,
+          <Stepper.Item key="1" label="Started step" />,
           <Stepper.Item key="2" label="Pending step" />,
         ],
       });
@@ -82,7 +82,7 @@ describe("GIVEN <Stepper />", () => {
         children: [
           <Stepper.Item key="1" label="Completed" />,
           <Stepper.Item key="2" label="Completed" />,
-          <Stepper.Item key="3" label="Current" />,
+          <Stepper.Item key="3" label="Started" />,
         ],
       });
 
@@ -174,7 +174,7 @@ describe("GIVEN <Stepper />", () => {
         children: [
           <Stepper.Item key="1" label="Completed step" />,
           <Stepper.Item key="2" label="Another completed step" />,
-          <Stepper.Item key="3" label="Current step" />,
+          <Stepper.Item key="3" label="Started step" />,
         ],
       });
 
@@ -233,7 +233,7 @@ describe("GIVEN <Stepper />", () => {
         onSelectStep: mockOnSelectStep,
         children: [
           <Stepper.Item key="1" label="Completed" />,
-          <Stepper.Item key="2" label="Selected current" />,
+          <Stepper.Item key="2" label="Selected started" />,
         ],
       });
 
@@ -250,7 +250,7 @@ describe("GIVEN <Stepper />", () => {
         onSelectStep: mockOnSelectStep,
         children: [
           <Stepper.Item key="1" label="Completed" />,
-          <Stepper.Item key="2" label="Current" />,
+          <Stepper.Item key="2" label="Started" />,
           <Stepper.Item key="3" label="Selected pending" />,
         ],
       });
@@ -261,7 +261,7 @@ describe("GIVEN <Stepper />", () => {
   });
 
   describe("WHEN step states are rendered", () => {
-    it("THEN should show step numbers for current and pending steps", () => {
+    it("THEN should show step numbers for started and pending steps", () => {
       makeUncontrolledSut({
         activeStep: 1,
         children: [

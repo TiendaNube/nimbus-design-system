@@ -49,7 +49,7 @@ const item__label = style({
   transition: `color ${varsThemeBase.motion.speed.slow} ease`,
 });
 
-const item__label_current = style({
+const item__label_started = style({
   color: varsThemeBase.colors.neutral.textLow,
 });
 
@@ -73,7 +73,7 @@ const item__line = style({
 });
 
 // State variants for the icon
-const item__icon_current = style({
+const item__icon_started = style({
   backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
   color: varsThemeBase.colors.neutral.textLow,
   transition: `background-color ${varsThemeBase.motion.speed.slow} ease`,
@@ -125,28 +125,28 @@ globalStyle(`${item}:focus-visible ${item__icon_completed}`, {
   boxShadow: varsThemeBase.utils.focus,
 });
 
-// Item current state - label and icon
-globalStyle(`${item}:hover ${item__label_current}`, {
+// Item started state - label and icon
+globalStyle(`${item}:hover ${item__label_started}`, {
   color: varsThemeBase.colors.neutral.textHigh,
 });
 
-globalStyle(`${item}:active ${item__label_current}`, {
+globalStyle(`${item}:active ${item__label_started}`, {
   color: varsThemeBase.colors.neutral.textHigh,
 });
 
-globalStyle(`${item}:focus ${item__label_current}`, {
+globalStyle(`${item}:focus ${item__label_started}`, {
   color: varsThemeBase.colors.neutral.textLow,
 });
 
-globalStyle(`${item}:hover ${item__icon_current}`, {
+globalStyle(`${item}:hover ${item__icon_started}`, {
   backgroundColor: varsThemeBase.colors.neutral.interactive,
 });
 
-globalStyle(`${item}:active ${item__icon_current}`, {
+globalStyle(`${item}:active ${item__icon_started}`, {
   backgroundColor: varsThemeBase.colors.neutral.interactiveHover,
 });
 
-globalStyle(`${item}:focus-visible ${item__icon_current}`, {
+globalStyle(`${item}:focus-visible ${item__icon_started}`, {
   backgroundColor: varsThemeBase.colors.neutral.surfaceDisabled,
   boxShadow: varsThemeBase.utils.focus,
 });
@@ -157,12 +157,12 @@ export const styles = {
   item_disabled,
   item__icon,
   item__line,
-  item__icon_current,
+  item__icon_started,
   item__icon_completed,
   item__icon_pending,
   item__icon_selected,
   item__label,
-  item__label_current,
+  item__label_started,
   item__label_selected,
   item__label_completed,
   item__label_pending,

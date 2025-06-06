@@ -25,7 +25,7 @@ const StepperItem: React.FC<StepperItemProps> = ({
   // Determine step state based on context
   const stepState = useMemo(() => {
     if (selectedStep === step) return StepperItemState.SELECTED;
-    if (step === activeStep) return StepperItemState.CURRENT;
+    if (step === activeStep) return StepperItemState.STARTED;
     if (step < activeStep) return StepperItemState.COMPLETED;
     return StepperItemState.PENDING;
   }, [activeStep, selectedStep, step]);

@@ -1,4 +1,4 @@
-import { ControlledStepperProperties } from "./stepper.types";
+import type { ControlledStepperProperties } from "./stepper.types";
 
 /**
  * Checks if the stepper is in controlled mode.

@@ -115,18 +115,16 @@ export const Mobile: Story = {
           onSelectStep={setSelected}
           justifyContent="flex-start"
         >
-          <Stepper.Item />
-          <Stepper.Item />
-          <Stepper.Item />
-          <Stepper.Item />
-          <Stepper.Item />
+          {labels.map((label) => (
+            <Stepper.Item key={label}/>
+          ))}
         </Stepper>
         <Button
           onClick={() => {
             setActiveStep(activeStep + 1);
             setSelected(activeStep + 1);
           }}
-          disabled={activeStep === 4}
+          disabled={activeStep === labels.length - 1}
         >
           Next
         </Button>

@@ -4,7 +4,7 @@ export const joinClassNames = (
 ): string => classNames.filter(Boolean).join(" ");
 
 export enum StepperItemState {
-  CURRENT = "current",
+  STARTED = "started",
   COMPLETED = "completed",
   SELECTED = "selected",
   PENDING = "pending",

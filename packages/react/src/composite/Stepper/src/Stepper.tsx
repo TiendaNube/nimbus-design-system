@@ -8,6 +8,7 @@ import {
 } from "./stepper.types";
 import { StepperItem, StepperCard, StepperContext } from "./components";
 import { isControlled } from "./stepper.definitions";
+import { StepperItemProps } from "./components/StepperItem/stepperItem.types";
 
 /**
  * Stepper component guides users through a multi-step process,
@@ -24,13 +25,14 @@ const StepperComponent: React.FC<StepperProps> = ({
   const isControlledMode = useMemo(() => isControlled(rest), [rest]);
 
   // Internal state for uncontrolled mode
-  const [internalSelectedStep, setInternalSelectedStep] = useState<number>(activeStep);
+  const [internalSelectedStep, setInternalSelectedStep] =
+    useState<number>(activeStep);
 
   // Determine current selected step and handler based on control mode
   const selectedStep = isControlledMode
     ? (rest as ControlledStepperProperties).selectedStep
     : internalSelectedStep;
-  
+
   const handleSelect = isControlledMode
     ? (rest as ControlledStepperProperties).onSelectStep
     : setInternalSelectedStep;
@@ -40,8 +42,8 @@ const StepperComponent: React.FC<StepperProps> = ({
   // Map children to automatically assign step numbers
   const mappedChildren = React.Children.map(children, (child, index) => {
     if (React.isValidElement(child)) {
-      const stepIndex = index; 
-      return React.cloneElement(child, { step: stepIndex } as any);
+      const stepIndex = index;
+      return React.cloneElement(child, { step: stepIndex } as StepperItemProps);
     }
     return child;
   });
@@ -56,7 +58,11 @@ const StepperComponent: React.FC<StepperProps> = ({
   // Extract controlled properties from rest to avoid passing them to Box
   const containerProps = useMemo(() => {
     if (isControlledMode) {
-      const { selectedStep: _, onSelectStep: __, ...boxProps } = rest as ControlledStepperProperties & BoxProps;
+      const {
+        selectedStep: _,
+        onSelectStep: __,
+        ...boxProps
+      } = rest as ControlledStepperProperties & BoxProps;
       return boxProps;
     }
     return rest as BoxProps;
@@ -84,7 +90,9 @@ const StepperComponent: React.FC<StepperProps> = ({
         aria-valuenow={activeStep + 1}
         aria-valuemin={1}
         aria-valuemax={totalSteps}
-        aria-label={`Step ${activeStep + 1} of ${totalSteps}`}
+        aria-label={`Multi-step process: Step ${
+          activeStep + 1
+        } of ${totalSteps}`}
         {...containerProps}
       >
         {mappedChildren}
