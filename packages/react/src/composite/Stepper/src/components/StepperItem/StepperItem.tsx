@@ -59,7 +59,7 @@ const StepperItem: React.FC<StepperItemProps> = ({
     return (
       <Text
         as="span"
-        color="currentColor"
+        color="currentColor" // Defined in the parent component vía css
         fontSize="caption"
         fontWeight="medium"
       >

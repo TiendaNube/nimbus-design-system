@@ -75,7 +75,7 @@ const item__line = style({
 // State variants for the icon
 const item__icon_started = style({
   backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
-  color: varsThemeBase.colors.neutral.textLow,
+  color: varsThemeBase.colors.neutral.textHigh,
   transition: `background-color ${varsThemeBase.motion.speed.slow} ease`,
 });
 
@@ -88,6 +88,7 @@ const item__icon_completed = style({
   backgroundColor: varsThemeBase.colors.success.surfaceHighlight,
   cursor: "pointer",
   transition: `background-color ${varsThemeBase.motion.speed.slow} ease`,
+  color: varsThemeBase.colors.neutral.background,
 });
 
 const item__icon_pending = style({
