@@ -58,7 +58,7 @@ const item__label_selected = style({
 });
 
 const item__label_completed = style({
-  color: varsThemeBase.colors.neutral.interactiveHover,
+  color: varsThemeBase.colors.neutral.textLow,
 });
 
 const item__label_pending = style({
