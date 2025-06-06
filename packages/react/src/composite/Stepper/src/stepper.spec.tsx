@@ -48,7 +48,7 @@ describe("GIVEN <Stepper />", () => {
       expect(stepper.getAttribute("aria-valuenow")).toBe("2");
       expect(stepper.getAttribute("aria-valuemin")).toBe("1");
       expect(stepper.getAttribute("aria-valuemax")).toBe("3");
-      expect(stepper.getAttribute("aria-label")).toBe("Step 2 of 3");
+      expect(stepper.getAttribute("aria-label")).toBe("Multi-step process: Step 2 of 3");
     });
 
     it("THEN should render with single step", () => {
@@ -73,7 +73,7 @@ describe("GIVEN <Stepper />", () => {
 
       const stepper = screen.getByTestId("stepper-element");
       expect(stepper.getAttribute("aria-valuenow")).toBe("1");
-      expect(stepper.getAttribute("aria-label")).toBe("Step 1 of 2");
+      expect(stepper.getAttribute("aria-label")).toBe("Multi-step process: Step 1 of 2");
     });
 
     it("THEN should handle maximum activeStep", () => {
