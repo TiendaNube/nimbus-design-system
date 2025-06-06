@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React, { useState } from "react";
 
-import { Stepper } from "./Stepper";
 import { Button } from "@nimbus-ds/button";
 import { Box } from "@nimbus-ds/box";
 import { Text } from "@nimbus-ds/text";
+import { Stepper } from "./Stepper";
 
 const meta: Meta<typeof Stepper> = {
   title: "Composite/Stepper",
@@ -48,8 +48,8 @@ export const Controlled: Story = {
           onSelectStep={(step: number) => setSelected(step)}
           justifyContent="flex-start"
         >
-          {labels.map((label, index) => (
-            <Stepper.Item key={index} label={label} />
+          {labels.map((label) => (
+            <Stepper.Item key={label} label={label} />
           ))}
         </Stepper>
         <Button
@@ -73,8 +73,8 @@ export const Uncontrolled: Story = {
     return (
       <Box display="flex" flexDirection="column" gap="3">
         <Stepper activeStep={activeStep} justifyContent="flex-start">
-          {labels.map((label, index) => (
-            <Stepper.Item key={index} label={label} />
+          {labels.map((label) => (
+            <Stepper.Item key={label} label={label} />
           ))}
         </Stepper>
         <Button

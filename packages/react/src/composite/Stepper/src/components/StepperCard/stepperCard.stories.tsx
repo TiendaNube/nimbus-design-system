@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 
-import { StepperCard } from "./StepperCard";
 import { Text } from "@nimbus-ds/text";
 import { Box } from "@nimbus-ds/box";
+import { StepperCard } from "./StepperCard";
 
 const meta: Meta<typeof StepperCard> = {
   title: "Composite/Stepper/StepperCard",

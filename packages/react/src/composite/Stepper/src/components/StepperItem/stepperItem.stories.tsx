@@ -42,7 +42,7 @@ export const Completed: Story = {
     label: "Completed step",
   },
   render: (args) => (
-    <Stepper activeStep={2} onSelectStep={() => {}} selectedStep={2}>
+    <Stepper activeStep={2} onSelectStep={() => undefined} selectedStep={2}>
       <Stepper.Item {...args} />
     </Stepper>
   ),

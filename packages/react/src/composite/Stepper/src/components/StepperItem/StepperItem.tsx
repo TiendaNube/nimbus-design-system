@@ -6,7 +6,7 @@ import { stepper } from "@nimbus-ds/styles";
 
 import { StepperItemProps } from "./stepperItem.types";
 import { StepperContext } from "../StepperContext";
-import { joinClassNames, STEP_STATE } from "./StepperItem.definitions";
+import { joinClassNames, StepperItemState } from "./StepperItem.definitions";
 
 /**
  * StepperItem represents a single step in the stepper component.
@@ -24,15 +24,15 @@ const StepperItem: React.FC<StepperItemProps> = ({
 
   // Determine step state based on context
   const stepState = useMemo(() => {
-    if (selectedStep === step) return STEP_STATE.SELECTED;
-    if (step === activeStep) return STEP_STATE.CURRENT;
-    if (step < activeStep) return STEP_STATE.COMPLETED;
-    return STEP_STATE.PENDING;
+    if (selectedStep === step) return StepperItemState.SELECTED;
+    if (step === activeStep) return StepperItemState.CURRENT;
+    if (step < activeStep) return StepperItemState.COMPLETED;
+    return StepperItemState.PENDING;
   }, [activeStep, selectedStep, step]);
 
-  const isPendingStep = stepState === STEP_STATE.PENDING;
-  const isSelectedStep = stepState === STEP_STATE.SELECTED;
-  const isCompletedStep = stepState === STEP_STATE.COMPLETED;
+  const isPendingStep = stepState === StepperItemState.PENDING;
+  const isSelectedStep = stepState === StepperItemState.SELECTED;
+  const isCompletedStep = stepState === StepperItemState.COMPLETED;
   const isLastStep = step === totalSteps - 1;
 
   const handleInteraction = (event?: React.KeyboardEvent) => {
@@ -66,7 +66,7 @@ const StepperItem: React.FC<StepperItemProps> = ({
         {step + 1}
       </Text>
     );
-  }, [isCompletedStep]);
+  }, [isCompletedStep, step]);
 
   return (
     <>

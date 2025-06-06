@@ -1,7 +1,7 @@
-import { ReactNode } from "react";
+import React, { ReactNode } from "react";
+import { BoxProps } from "@nimbus-ds/box";
 import { StepperItemProps } from "./components/StepperItem";
 import { StepperCardProps } from "./components/StepperCard";
-import { BoxProps } from "@nimbus-ds/box";
 
 export interface StepperComponents {
   Item: React.FC<Omit<StepperItemProps, "step">>;

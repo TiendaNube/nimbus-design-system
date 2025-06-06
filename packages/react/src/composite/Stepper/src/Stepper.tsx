@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 
+import { Box, BoxProps } from "@nimbus-ds/box";
 import {
   StepperProps,
   StepperComponents,
@@ -7,7 +8,6 @@ import {
 } from "./stepper.types";
 import { StepperItem, StepperCard, StepperContext } from "./components";
 import { isControlled } from "./stepper.definitions";
-import { Box, BoxProps } from "@nimbus-ds/box";
 
 /**
  * Stepper component guides users through a multi-step process,
@@ -62,15 +62,18 @@ const StepperComponent: React.FC<StepperProps> = ({
     return rest as BoxProps;
   }, [rest, isControlledMode]);
 
+  const contextValue = useMemo(
+    () => ({
+      totalSteps,
+      activeStep,
+      selectedStep,
+      onSelect: handleSelect,
+    }),
+    [totalSteps, activeStep, selectedStep, handleSelect]
+  );
+
   return (
-    <StepperContext.Provider
-      value={{
-        totalSteps,
-        activeStep,
-        selectedStep,
-        onSelect: handleSelect,
-      }}
-    >
+    <StepperContext.Provider value={contextValue}>
       <Box
         display="flex"
         flexWrap="wrap"
