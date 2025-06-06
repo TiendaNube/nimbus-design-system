@@ -26,22 +26,22 @@ export default meta;
 
 type Story = StoryObj<typeof Stepper>;
 
+const labels = [
+  "Select audience",
+  "Create content",
+  "Define budget",
+  "Review",
+  "Publish",
+];
+
 export const Controlled: Story = {
   render: () => {
-    const [selected, setSelected] = useState(1);
-    const [activeStep, setActiveStep] = useState(1);
-
-    const labels = [
-      "Select audience",
-      "Create content",
-      "Define budget",
-      "Review",
-      "Publish",
-    ];
+    const [selected, setSelected] = useState(0);
+    const [activeStep, setActiveStep] = useState(0);
 
     return (
       <Box display="flex" flexDirection="column" gap="3">
-        <Text>Selected step: {selected}</Text>
+        <Text>Selected step: {selected + 1}</Text>
         <Stepper
           activeStep={activeStep}
           selectedStep={selected}
@@ -57,7 +57,7 @@ export const Controlled: Story = {
             setActiveStep(activeStep + 1);
             setSelected(activeStep + 1);
           }}
-          disabled={activeStep === labels.length + 1}
+          disabled={activeStep === labels.length - 1}
         >
           Next
         </Button>
@@ -68,20 +68,18 @@ export const Controlled: Story = {
 
 export const Uncontrolled: Story = {
   render: () => {
-    const [activeStep, setActiveStep] = useState(2);
+    const [activeStep, setActiveStep] = useState(0);
 
     return (
       <Box display="flex" flexDirection="column" gap="3">
         <Stepper activeStep={activeStep} justifyContent="flex-start">
-          <Stepper.Item label="Select audience" />
-          <Stepper.Item label="Create content" />
-          <Stepper.Item label="Define budget" />
-          <Stepper.Item label="Review" />
-          <Stepper.Item label="Publish" />
+          {labels.map((label, index) => (
+            <Stepper.Item key={index} label={label} />
+          ))}
         </Stepper>
         <Button
           onClick={() => setActiveStep(activeStep + 1)}
-          disabled={activeStep === 6}
+          disabled={activeStep === labels.length - 1}
         >
           Next
         </Button>
@@ -105,12 +103,12 @@ export const WithCard: Story = {
 
 export const Mobile: Story = {
   render: () => {
-    const [activeStep, setActiveStep] = useState(1);
-    const [selected, setSelected] = useState(1);
+    const [activeStep, setActiveStep] = useState(0);
+    const [selected, setSelected] = useState(0);
 
     return (
       <Box display="flex" flexDirection="column" gap="3">
-        <Text>Step {selected}: Description</Text>
+        <Text>Step {selected + 1}: Description</Text>
         <Stepper
           activeStep={activeStep}
           selectedStep={selected}
@@ -128,7 +126,7 @@ export const Mobile: Story = {
             setActiveStep(activeStep + 1);
             setSelected(activeStep + 1);
           }}
-          disabled={activeStep === 6}
+          disabled={activeStep === 4}
         >
           Next
         </Button>

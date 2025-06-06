@@ -2,3 +2,10 @@
 export const joinClassNames = (
   ...classNames: (string | false | undefined)[]
 ): string => classNames.filter(Boolean).join(" ");
+
+export enum STEP_STATE {
+  CURRENT = "current",
+  COMPLETED = "completed",
+  SELECTED = "selected",
+  PENDING = "pending",
+}

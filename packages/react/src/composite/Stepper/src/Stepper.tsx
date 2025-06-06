@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 
 import {
   StepperProps,
@@ -15,24 +15,24 @@ import { Box, BoxProps } from "@nimbus-ds/box";
  * Total steps are automatically calculated based on the number of children.
  * Step numbers are automatically assigned based on child position.
  */
-const Stepper: React.FC<StepperProps> & StepperComponents = ({
+const StepperComponent: React.FC<StepperProps> = ({
   activeStep,
   children,
   ...rest
 }: StepperProps) => {
+  // Memoize controlled mode check to avoid recalculation on every render
+  const isControlledMode = useMemo(() => isControlled(rest), [rest]);
+
   // Internal state for uncontrolled mode
-  const [internalSelectedStep, setInternalSelectedStep] =
-    useState<number>(activeStep);
+  const [internalSelectedStep, setInternalSelectedStep] = useState<number>(activeStep);
 
-  // Check for controlled mode
-  const isControlledMode = isControlled(rest);
-
-  // Use controlled or uncontrolled state
+  // Determine current selected step and handler based on control mode
   const selectedStep = isControlledMode
-    ? rest.selectedStep
+    ? (rest as ControlledStepperProperties).selectedStep
     : internalSelectedStep;
+  
   const handleSelect = isControlledMode
-    ? rest.onSelectStep
+    ? (rest as ControlledStepperProperties).onSelectStep
     : setInternalSelectedStep;
 
   const totalSteps = React.Children.count(children);
@@ -40,25 +40,27 @@ const Stepper: React.FC<StepperProps> & StepperComponents = ({
   // Map children to automatically assign step numbers
   const mappedChildren = React.Children.map(children, (child, index) => {
     if (React.isValidElement(child)) {
-      const stepIndex = index + 1; // 1-based indexing
+      const stepIndex = index; 
       return React.cloneElement(child, { step: stepIndex } as any);
     }
     return child;
   });
 
+  // Sync internal selected step with active step in uncontrolled mode
   useEffect(() => {
     if (!isControlledMode) {
-      // For uncontrolled mode, keep the selected step in sync with the active step
       setInternalSelectedStep(activeStep);
     }
-  }, [activeStep]);
+  }, [activeStep, isControlledMode]);
 
-  // Extract controlled properties from rest to avoid passing them to div
-  const {
-    selectedStep: _,
-    onSelectStep: __,
-    ...containerProps
-  } = rest as BoxProps & Partial<ControlledStepperProperties>;
+  // Extract controlled properties from rest to avoid passing them to Box
+  const containerProps = useMemo(() => {
+    if (isControlledMode) {
+      const { selectedStep: _, onSelectStep: __, ...boxProps } = rest as ControlledStepperProperties & BoxProps;
+      return boxProps;
+    }
+    return rest as BoxProps;
+  }, [rest, isControlledMode]);
 
   return (
     <StepperContext.Provider
@@ -70,17 +72,17 @@ const Stepper: React.FC<StepperProps> & StepperComponents = ({
       }}
     >
       <Box
+        display="flex"
         flexWrap="wrap"
+        gap="2"
         justifyContent="center"
         alignItems="center"
-        {...containerProps}
-        display="flex"
-        gap="2"
         role="progressbar"
-        aria-valuenow={activeStep}
+        aria-valuenow={activeStep + 1}
         aria-valuemin={1}
         aria-valuemax={totalSteps}
-        aria-label={`Step ${activeStep} of ${totalSteps}`}
+        aria-label={`Step ${activeStep + 1} of ${totalSteps}`}
+        {...containerProps}
       >
         {mappedChildren}
       </Box>
@@ -88,10 +90,13 @@ const Stepper: React.FC<StepperProps> & StepperComponents = ({
   );
 };
 
-// @ts-ignore
-Stepper.Item = StepperItem;
-Stepper.Card = StepperCard;
-Stepper.displayName = "Stepper";
+// Assign static properties using Object.assign to avoid complex typing issues
+const Stepper = Object.assign(StepperComponent, {
+  Item: StepperItem,
+  Card: StepperCard,
+  displayName: "Stepper",
+}) as React.FC<StepperProps> & StepperComponents;
+
 Stepper.Item.displayName = "Stepper.Item";
 Stepper.Card.displayName = "Stepper.Card";
 

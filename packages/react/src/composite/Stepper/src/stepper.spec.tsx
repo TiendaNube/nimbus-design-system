@@ -54,17 +54,17 @@ describe("GIVEN <Stepper />", () => {
   });
 
   describe("WHEN rendered in controlled mode", () => {
-    const mockOnSelect = jest.fn();
+    const mockOnSelectStep = jest.fn();
 
     beforeEach(() => {
-      mockOnSelect.mockClear();
+      mockOnSelectStep.mockClear();
     });
 
     it("THEN should correctly render with controlled state", () => {
       makeControlledSut({
         activeStep: 2,
         selectedStep: 1,
-        onSelect: mockOnSelect,
+        onSelectStep: mockOnSelectStep,
         children: (
           <>
             <Stepper.Item label="First step" />
@@ -80,11 +80,11 @@ describe("GIVEN <Stepper />", () => {
       expect(screen.getByText("Third step")).toBeDefined();
     });
 
-    it("THEN should call onSelect when a step is clicked", () => {
+    it("THEN should call onSelectStep when a step is clicked", () => {
       makeControlledSut({
         activeStep: 3,
         selectedStep: 1,
-        onSelect: mockOnSelect,
+        onSelectStep: mockOnSelectStep,
         children: (
           <>
             <Stepper.Item label="Completed step" />
@@ -98,7 +98,7 @@ describe("GIVEN <Stepper />", () => {
       const firstStep = screen.getByText("Completed step");
       fireEvent.click(firstStep);
 
-      expect(mockOnSelect).toHaveBeenCalledWith(1);
+      expect(mockOnSelectStep).toHaveBeenCalledWith(1);
     });
   });
 

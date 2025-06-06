@@ -31,7 +31,7 @@ export const Selected: Story = {
     label: "Selected step",
   },
   render: (args) => (
-    <Stepper activeStep={1} selectedStep={1}>
+    <Stepper activeStep={0}>
       <Stepper.Item {...args} />
     </Stepper>
   ),
@@ -53,8 +53,8 @@ export const Pending: Story = {
     label: "Pending step",
   },
   render: (args) => (
-    <Stepper activeStep={0}>
-      <Stepper.Item {...args} />
+    <Stepper activeStep={-1}>
+      <Stepper.Item {...args} />  
     </Stepper>
   ),
 };
