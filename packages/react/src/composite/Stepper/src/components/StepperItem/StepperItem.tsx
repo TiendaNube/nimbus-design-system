@@ -1,4 +1,4 @@
-import React, { useContext, useCallback, useMemo } from "react";
+import React, { useContext } from "react";
 import { Icon } from "@nimbus-ds/icon";
 import { Text } from "@nimbus-ds/text";
 import { CheckCircleIcon } from "@nimbus-ds/icons";
@@ -6,14 +6,14 @@ import { stepper } from "@nimbus-ds/styles";
 
 import { StepperItemProps } from "./stepperItem.types";
 import { StepperContext } from "../StepperContext";
-
+import { joinClassNames } from "./StepperItem.definitions";
 
 enum STEP_STATE {
   CURRENT = "current",
   COMPLETED = "completed",
   SELECTED = "selected",
   PENDING = "pending",
-};
+}
 
 /**
  * StepperItem represents a single step in the stepper component.
@@ -33,98 +33,89 @@ const StepperItem: React.FC<StepperItemProps> = ({
   const { totalSteps, activeStep, selectedStep, onSelect } =
     useContext(StepperContext);
 
-  // Determine step state from context
-  const isCurrentStep = step === activeStep;
-  const isCompletedStep = step < activeStep;
-  const isSelectedStep = selectedStep === step;
-  const isPendingStep = step > activeStep;
+  // Determine step state based on context
+  const getStepState = (): STEP_STATE => {
+    if (selectedStep === step) return STEP_STATE.SELECTED;
+    if (step === activeStep) return STEP_STATE.CURRENT;
+    if (step < activeStep) return STEP_STATE.COMPLETED;
+    return STEP_STATE.PENDING;
+  };
 
+  const stepState = getStepState();
+  const isPendingStep = stepState === STEP_STATE.PENDING;
+  const isSelectedStep = stepState === STEP_STATE.SELECTED;
+  const isCompletedStep = stepState === STEP_STATE.COMPLETED;
   const isLastStep = step === totalSteps;
 
-  const handleClick = () => {
-    // We can't click pending steps or already selected steps
+  // Consolidated click handler for both click and keyboard events
+  const handleInteraction = (event?: React.KeyboardEvent) => {
+    if (event && event.key !== "Enter" && event.key !== " ") return;
+
+    event?.preventDefault();
+
+    // Only allow interaction with non-pending and non-selected steps
     if (onSelect && !isPendingStep && !isSelectedStep) {
       onSelect(step);
     }
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (onSelect && (e.key === "Enter" || e.key === " ")) {
-      e.preventDefault();
-      handleClick();
+  // Render step icon based on current state
+  const renderStepIcon = () => {
+    if (isCompletedStep) {
+      return (
+        <Icon
+          source={<CheckCircleIcon size="small" />}
+          color="success-textHigh"
+        />
+      );
     }
+
+    return (
+      <Text
+        as="span"
+        color="currentColor"
+        fontSize="caption"
+        fontWeight="medium"
+      >
+        {step}
+      </Text>
+    );
   };
-
-  // Determine the visual state based on context values
-  const getStepState = useCallback(() => {
-    if (isSelectedStep) return "selected";
-    if (isCurrentStep) return "current";
-    if (isCompletedStep) return "completed";
-    return "pending";
-  }, [isSelectedStep, isCurrentStep, isCompletedStep, isPendingStep]);
-
-  const stepState = getStepState();
 
   return (
     <>
       <div
-        className={[
+        className={joinClassNames(
           stepper.classnames.item,
-          isPendingStep ? stepper.classnames.item_disabled : "",
-        ].join(" ")}
+          isPendingStep && stepper.classnames.item_disabled
+        )}
         role="button"
         tabIndex={onSelect ? 0 : -1}
-        onKeyDown={handleKeyDown}
-        onClick={handleClick}
+        onKeyDown={handleInteraction}
+        onClick={() => handleInteraction()}
         {...rest}
       >
         <div
-          className={[
+          className={joinClassNames(
             stepper.classnames.item__icon,
-            stepper.classnames[`item__icon_${stepState}`],
-            // isSelectedStep && stepper.classnames.item__icon_selected,
-          ].join(" ")}
-        >
-          {isSelectedStep ? (
-            <Text
-              as="span"
-              color="currentColor"
-              fontSize="caption"
-              fontWeight="medium"
-            >
-              {step}
-            </Text>
-          ) : isCompletedStep ? (
-            <Icon
-              source={<CheckCircleIcon size="small" />}
-              color="success-textHigh"
-            />
-          ) : (
-            <Text
-              as="span"
-              color="currentColor"
-              fontSize="caption"
-              fontWeight="medium"
-            >
-              {step}
-            </Text>
+            stepper.classnames[`item__icon_${stepState}`]
           )}
+        >
+          {renderStepIcon()}
         </div>
 
         {label && (
           <span
-            className={[
+            className={joinClassNames(
               stepper.classnames.item__label,
-              stepper.classnames[`item__label_${stepState}`],
-            ].join(" ")}
+              stepper.classnames[`item__label_${stepState}`]
+            )}
           >
             {label}
           </span>
         )}
       </div>
-      {!isLastStep && (
-        <div className={[stepper.classnames.item__line].join(" ")} />
-      )}
+      {!isLastStep && <div className={stepper.classnames.item__line} />}
     </>
   );
 };
