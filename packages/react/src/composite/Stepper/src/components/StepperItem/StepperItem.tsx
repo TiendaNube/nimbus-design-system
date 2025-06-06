@@ -82,7 +82,7 @@ const StepperItem: React.FC<StepperItemProps> = ({
           className={[
             stepper.classnames.item__icon,
             stepper.classnames[`item__icon_${stepState}`],
-            isSelectedStep && stepper.classnames.item__icon_selected,
+            // isSelectedStep && stepper.classnames.item__icon_selected,
           ].join(" ")}
         >
           {isSelectedStep ? (

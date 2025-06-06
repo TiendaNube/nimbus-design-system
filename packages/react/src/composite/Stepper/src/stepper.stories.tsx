@@ -90,3 +90,36 @@ export const WithCard: Story = {
     </Stepper.Card>
   ),
 };
+
+export const Mobile: Story = {
+  render: () => {
+    const [activeStep, setActiveStep] = useState(1);
+    const [selected, setSelected] = useState(1);
+
+    return (
+      <Box display="flex" flexDirection="column" gap="2">
+        <Stepper
+          activeStep={activeStep}
+          selectedStep={selected}
+          onSelectStep={setSelected}
+          justifyContent="flex-start"
+        >
+          <Stepper.Item />
+          <Stepper.Item />
+          <Stepper.Item />
+          <Stepper.Item />
+          <Stepper.Item />
+        </Stepper>
+        <Button
+          onClick={() => {
+            setActiveStep(activeStep + 1);
+            setSelected(activeStep + 1);
+          }}
+          disabled={activeStep === 6}
+        >
+          Next
+        </Button>
+      </Box>
+    );
+  },
+};

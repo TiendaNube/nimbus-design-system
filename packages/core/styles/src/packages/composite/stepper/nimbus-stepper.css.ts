@@ -46,6 +46,7 @@ const item__label = style({
   fontSize: varsThemeBase.fontSize.body.caption,
   fontFamily: varsThemeBase.fontFamily.sans,
   lineHeight: varsThemeBase.lineWeight.body.caption,
+  transition: `color ${varsThemeBase.motion.speed.slow} ease`,
 });
 
 const item__label_current = style({
@@ -75,6 +76,7 @@ const item__line = style({
 const item__icon_current = style({
   backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
   color: varsThemeBase.colors.neutral.textLow,
+  transition: `background-color ${varsThemeBase.motion.speed.slow} ease`,
 });
 
 const item__icon_selected = style({
@@ -85,6 +87,7 @@ const item__icon_selected = style({
 const item__icon_completed = style({
   backgroundColor: varsThemeBase.colors.success.surfaceHighlight,
   cursor: "pointer",
+  transition: `background-color ${varsThemeBase.motion.speed.slow} ease`,
 });
 
 const item__icon_pending = style({
@@ -92,7 +95,11 @@ const item__icon_pending = style({
   color: varsThemeBase.colors.neutral.textDisabled,
 });
 
-// Global styles
+/* -------------------------------------------------------------------------------------------------
+ * Global styles
+ * -----------------------------------------------------------------------------------------------*/
+
+// Item completed state - label and icon
 globalStyle(`${item}:hover ${item__label_completed}`, {
   color: varsThemeBase.colors.neutral.textHigh,
 });
@@ -115,6 +122,32 @@ globalStyle(`${item}:active ${item__icon_completed}`, {
 
 globalStyle(`${item}:focus-visible ${item__icon_completed}`, {
   backgroundColor: varsThemeBase.colors.success.surfaceHighlight,
+  boxShadow: varsThemeBase.utils.focus,
+});
+
+// Item current state - label and icon
+globalStyle(`${item}:hover ${item__label_current}`, {
+  color: varsThemeBase.colors.neutral.textHigh,
+});
+
+globalStyle(`${item}:active ${item__label_current}`, {
+  color: varsThemeBase.colors.neutral.textHigh,
+});
+
+globalStyle(`${item}:focus ${item__label_current}`, {
+  color: varsThemeBase.colors.neutral.textLow,
+});
+
+globalStyle(`${item}:hover ${item__icon_current}`, {
+  backgroundColor: varsThemeBase.colors.neutral.interactive,
+});
+
+globalStyle(`${item}:active ${item__icon_current}`, {
+  backgroundColor: varsThemeBase.colors.neutral.interactiveHover,
+});
+
+globalStyle(`${item}:focus-visible ${item__icon_current}`, {
+  backgroundColor: varsThemeBase.colors.neutral.surfaceDisabled,
   boxShadow: varsThemeBase.utils.focus,
 });
 
