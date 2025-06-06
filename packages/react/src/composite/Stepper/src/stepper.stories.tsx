@@ -101,6 +101,9 @@ export const WithCard: Story = {
   ),
 };
 
+/**
+ * For mobile, we don't display the labels, only the icons
+ */
 export const Mobile: Story = {
   render: () => {
     const [activeStep, setActiveStep] = useState(0);
