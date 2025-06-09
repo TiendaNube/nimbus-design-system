@@ -9,6 +9,14 @@ import { Stepper } from "./Stepper";
 const meta: Meta<typeof Stepper> = {
   title: "Composite/Stepper",
   component: Stepper,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "A stepper component for guiding users through multi-step processes.",
+      },
+    },
+  },
   argTypes: {
     activeStep: {
       control: { type: "number", min: 1, max: 5 },
@@ -119,7 +127,7 @@ export const Mobile: Story = {
           justifyContent="flex-start"
         >
           {labels.map((label) => (
-            <Stepper.Item key={label}/>
+            <Stepper.Item key={label} />
           ))}
         </Stepper>
         <Button

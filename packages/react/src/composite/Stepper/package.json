@@ -33,7 +33,8 @@
     "@nimbus-ds/icon": "workspace:*",
     "@nimbus-ds/icons": "workspace:*",
     "@nimbus-ds/styles": "workspace:*",
-    "@nimbus-ds/text": "workspace:*"
+    "@nimbus-ds/text": "workspace:*",
+    "@nimbus-ds/box": "workspace:*"
   },
   "peerDependencies": {
     "react": "^16.8 || ^17.0 || ^18.0",
@@ -41,6 +42,6 @@
   },
   "devDependencies": {
     "@nimbus-ds/button": "workspace:*",
-    "@nimbus-ds/webpack": "workspace:^"
+    "@nimbus-ds/webpack": "workspace:*"
   }
 }

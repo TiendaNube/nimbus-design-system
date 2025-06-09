@@ -468,7 +468,7 @@ describe("GIVEN <Stepper.Item />", () => {
       );
 
       const stepperItem = screen.getByTestId("stepper-item");
-      expect(stepperItem.className).toContain("item_disabled");
+      expect(stepperItem.className).toContain("item__disabled");
     });
 
     it("THEN should apply correct label classes for each state", () => {

@@ -59,7 +59,7 @@ const StepperItem: React.FC<StepperItemProps> = ({
     return (
       <Text
         as="span"
-        color="currentColor" // Defined in the parent component vía css
+        color="currentColor" // Inherits color from parent item state classes
         fontSize="caption"
         fontWeight="medium"
       >
@@ -73,7 +73,7 @@ const StepperItem: React.FC<StepperItemProps> = ({
       <div
         className={joinClassNames(
           stepper.classnames.item,
-          isPendingStep && stepper.classnames.item_disabled
+          isPendingStep && stepper.classnames.item__disabled
         )}
         role="button"
         tabIndex={onSelect ? 0 : -1}

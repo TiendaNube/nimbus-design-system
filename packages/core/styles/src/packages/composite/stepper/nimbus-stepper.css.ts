@@ -23,7 +23,7 @@ const item = style({
   cursor: "default",
 });
 
-const item_disabled = style({
+const item__disabled = style({
   cursor: "default",
 });
 
@@ -31,8 +31,8 @@ const item__icon = style({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  width: "1.5rem",
-  height: "1.5rem",
+  width: varsThemeBase.spacing[6],
+  height: varsThemeBase.spacing[6],
   borderRadius: varsThemeBase.shape.border.radius.full,
   fontSize: varsThemeBase.fontSize.body.caption,
   fontWeight: varsThemeBase.fontWeight.medium,
@@ -68,7 +68,7 @@ const item__line = style({
   height: varsThemeBase.shape.border.width[1],
   backgroundColor: varsThemeBase.colors.neutral.interactive,
   flex: 1,
-  maxWidth: "44px",
+  maxWidth: varsThemeBase.spacing[11],
 });
 
 // State variants for the icon
@@ -109,7 +109,7 @@ globalStyle(`${item}:active ${item__label_completed}`, {
   color: varsThemeBase.colors.neutral.textHigh,
 });
 
-globalStyle(`${item}:focus ${item__label_completed}`, {
+globalStyle(`${item}:focus-visible ${item__label_completed}`, {
   color: varsThemeBase.colors.neutral.textLow,
 });
 
@@ -135,7 +135,7 @@ globalStyle(`${item}:active ${item__label_started}`, {
   color: varsThemeBase.colors.neutral.textHigh,
 });
 
-globalStyle(`${item}:focus ${item__label_started}`, {
+globalStyle(`${item}:focus-visible ${item__label_started}`, {
   color: varsThemeBase.colors.neutral.textLow,
 });
 
@@ -155,7 +155,7 @@ globalStyle(`${item}:focus-visible ${item__icon_started}`, {
 export const styles = {
   container,
   item,
-  item_disabled,
+  item__disabled,
   item__icon,
   item__line,
   item__icon_started,
