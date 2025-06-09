@@ -4,7 +4,15 @@ Nimbus is an open-source Design System created by Tiendanube / Nuvesmhop’s tea
 
 ## 2025-06-09 `5.12.0`
 
+#### 🎉 New features
+
 - Created `Stepper` new composite component. ([#290](https://github.com/TiendaNube/nimbus-design-system/pull/290) by [@joacotornello](https://github.com/joacotornello))
+
+## 2025-06-04 `5.11.1`
+
+#### 🎉 New features
+
+- Mapped `component-props.json` bundle file to the build output in webpack configuration file. ([#296](https://github.com/TiendaNube/nimbus-design-system/pull/296) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-05-12 `5.11.0`
 
@@ -17,7 +25,6 @@ Nimbus is an open-source Design System created by Tiendanube / Nuvesmhop’s tea
 #### 🐛 Bug fixes
 
 - `Thumbnail.Skeleton`: `width` support is extended to include percentages and 100% is defined as default, just like `Thumbnail`. ([Issue](https://github.com/TiendaNube/nimbus-design-system/discussions/248)) ([#289](https://github.com/TiendaNube/nimbus-design-system/pull/289) by [@harrytiendanube](https://github.com/harrytiendanube))
-
 
 ## 2025-04-03 `5.10.0`
 

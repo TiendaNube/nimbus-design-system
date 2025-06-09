@@ -2,6 +2,14 @@
 
 This package is intended for internal use in generating custom script builds at design system build time.
 
+## 2025-06-04 `1.7.0`
+
+#### 🎉 New features
+
+- Added `generateBundle` function to `Docgen` class to generate a .json bundle file of all components and subcomponents documentation. ([#296](https://github.com/TiendaNube/nimbus-design-system/pull/296) by [@joacotornello](https://github.com/joacotornello))
+
+- Added `GeneratedDoc` type and improved logging. ([#296](https://github.com/TiendaNube/nimbus-design-system/pull/296) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-03-20 `1.6.1` and `1.6.2`
 
 #### 🐛 Bug fixes
