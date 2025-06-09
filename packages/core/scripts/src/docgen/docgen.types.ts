@@ -16,6 +16,14 @@ export interface Doc {
   props?: Prop[];
 }
 
+export interface GeneratedDoc extends Doc {
+  id: string;
+  packageName: string;
+  version: string;
+  docLink: string;
+  subComponents?: Doc[];
+}
+
 export interface Paths {
   components: string[];
   subComponents?: string[];
