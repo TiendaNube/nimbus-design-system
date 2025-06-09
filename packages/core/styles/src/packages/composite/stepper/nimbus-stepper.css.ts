@@ -20,6 +20,7 @@ const item = style({
   alignItems: "center",
   gap: varsThemeBase.spacing[2],
   position: "relative",
+  cursor: "default",
 });
 
 const item_disabled = style({
