@@ -20,10 +20,6 @@ const item = style({
   alignItems: "center",
   gap: varsThemeBase.spacing[2],
   position: "relative",
-  cursor: "pointer",
-  ":hover": {
-    cursor: "pointer",
-  },
 });
 
 const item_disabled = style({
@@ -51,6 +47,7 @@ const item__label = style({
 
 const item__label_started = style({
   color: varsThemeBase.colors.neutral.textLow,
+  cursor: "pointer",
 });
 
 const item__label_selected = style({
@@ -59,6 +56,7 @@ const item__label_selected = style({
 
 const item__label_completed = style({
   color: varsThemeBase.colors.neutral.textLow,
+  cursor: "pointer",
 });
 
 const item__label_pending = style({
@@ -77,6 +75,7 @@ const item__icon_started = style({
   backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
   color: varsThemeBase.colors.neutral.textHigh,
   transition: `background-color ${varsThemeBase.motion.speed.slow} ease`,
+  cursor: "pointer",
 });
 
 const item__icon_selected = style({
