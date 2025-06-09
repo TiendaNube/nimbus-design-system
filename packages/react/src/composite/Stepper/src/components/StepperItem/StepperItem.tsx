@@ -73,7 +73,7 @@ const StepperItem: React.FC<StepperItemProps> = ({
       <div
         className={joinClassNames(
           stepper.classnames.item,
-          isPendingStep && stepper.classnames.item__disabled
+          (isPendingStep || isSelectedStep) && stepper.classnames.item__disabled
         )}
         role="button"
         tabIndex={onSelect ? 0 : -1}

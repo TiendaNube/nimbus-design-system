@@ -20,13 +20,37 @@ const item = style({
   alignItems: "center",
   gap: varsThemeBase.spacing[2],
   position: "relative",
-  cursor: "default",
+  cursor: "pointer",
 });
 
 const item__disabled = style({
   cursor: "default",
 });
 
+const item__label = style({
+  fontSize: varsThemeBase.fontSize.body.caption,
+  fontFamily: varsThemeBase.fontFamily.sans,
+  lineHeight: varsThemeBase.lineWeight.body.caption,
+  transition: `color ${varsThemeBase.motion.speed.slow} ease`,
+});
+
+const item__label_started = style({
+  color: varsThemeBase.colors.neutral.textLow,
+});
+
+const item__label_selected = style({
+  color: varsThemeBase.colors.neutral.textHigh,
+});
+
+const item__label_completed = style({
+  color: varsThemeBase.colors.neutral.textLow,
+});
+
+const item__label_pending = style({
+  color: varsThemeBase.colors.neutral.interactiveHover,
+});
+
+// State variants for the icon
 const item__icon = style({
   display: "flex",
   alignItems: "center",
@@ -39,44 +63,10 @@ const item__icon = style({
   flexShrink: 0,
 });
 
-const item__label = style({
-  fontSize: varsThemeBase.fontSize.body.caption,
-  fontFamily: varsThemeBase.fontFamily.sans,
-  lineHeight: varsThemeBase.lineWeight.body.caption,
-  transition: `color ${varsThemeBase.motion.speed.slow} ease`,
-});
-
-const item__label_started = style({
-  color: varsThemeBase.colors.neutral.textLow,
-  cursor: "pointer",
-});
-
-const item__label_selected = style({
-  color: varsThemeBase.colors.neutral.textHigh,
-});
-
-const item__label_completed = style({
-  color: varsThemeBase.colors.neutral.textLow,
-  cursor: "pointer",
-});
-
-const item__label_pending = style({
-  color: varsThemeBase.colors.neutral.interactiveHover,
-});
-
-const item__line = style({
-  height: varsThemeBase.shape.border.width[1],
-  backgroundColor: varsThemeBase.colors.neutral.interactive,
-  flex: 1,
-  maxWidth: varsThemeBase.spacing[11],
-});
-
-// State variants for the icon
 const item__icon_started = style({
   backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
   color: varsThemeBase.colors.neutral.textHigh,
   transition: `background-color ${varsThemeBase.motion.speed.slow} ease`,
-  cursor: "pointer",
 });
 
 const item__icon_selected = style({
@@ -86,7 +76,6 @@ const item__icon_selected = style({
 
 const item__icon_completed = style({
   backgroundColor: varsThemeBase.colors.success.surfaceHighlight,
-  cursor: "pointer",
   transition: `background-color ${varsThemeBase.motion.speed.slow} ease`,
   color: varsThemeBase.colors.neutral.background,
 });
@@ -96,61 +85,115 @@ const item__icon_pending = style({
   color: varsThemeBase.colors.neutral.textDisabled,
 });
 
+const item__line = style({
+  height: varsThemeBase.shape.border.width[1],
+  backgroundColor: varsThemeBase.colors.neutral.interactive,
+  flex: 1,
+  maxWidth: varsThemeBase.spacing[11],
+});
+
 /* -------------------------------------------------------------------------------------------------
- * Global styles
+ * Interactive State Variants
  * -----------------------------------------------------------------------------------------------*/
 
-// Item completed state - label and icon
-globalStyle(`${item}:hover ${item__label_completed}`, {
-  color: varsThemeBase.colors.neutral.textHigh,
-});
+/**
+ * Defines interactive state styles for stepper items
+ * Organizes hover, active, and focus states for different item types
+ */
+const interactiveStateVariants = {
+  completed: {
+    label: {
+      hover: { color: varsThemeBase.colors.neutral.textHigh },
+      active: { color: varsThemeBase.colors.neutral.textHigh },
+      focus: { color: varsThemeBase.colors.neutral.textLow },
+    },
+    icon: {
+      hover: { backgroundColor: varsThemeBase.colors.success.interactive },
+      active: {
+        backgroundColor: varsThemeBase.colors.success.interactiveHover,
+      },
+      focus: {
+        backgroundColor: varsThemeBase.colors.success.surfaceHighlight,
+        boxShadow: varsThemeBase.utils.focus,
+      },
+    },
+  },
+  started: {
+    label: {
+      hover: { color: varsThemeBase.colors.neutral.textHigh },
+      active: { color: varsThemeBase.colors.neutral.textHigh },
+      focus: { color: varsThemeBase.colors.neutral.textLow },
+    },
+    icon: {
+      hover: { backgroundColor: varsThemeBase.colors.neutral.interactive },
+      active: {
+        backgroundColor: varsThemeBase.colors.neutral.interactiveHover,
+      },
+      focus: {
+        backgroundColor: varsThemeBase.colors.neutral.surfaceDisabled,
+        boxShadow: varsThemeBase.utils.focus,
+      },
+    },
+  },
+};
 
-globalStyle(`${item}:active ${item__label_completed}`, {
-  color: varsThemeBase.colors.neutral.textHigh,
-});
+/* -------------------------------------------------------------------------------------------------
+ * Global styles - Applied using the interactive state variants
+ * -----------------------------------------------------------------------------------------------*/
 
-globalStyle(`${item}:focus-visible ${item__label_completed}`, {
-  color: varsThemeBase.colors.neutral.textLow,
-});
+// Apply completed state interactive styles
+globalStyle(
+  `${item}:hover ${item__label_completed}`,
+  interactiveStateVariants.completed.label.hover
+);
+globalStyle(
+  `${item}:active ${item__label_completed}`,
+  interactiveStateVariants.completed.label.active
+);
+globalStyle(
+  `${item}:focus-visible ${item__label_completed}`,
+  interactiveStateVariants.completed.label.focus
+);
 
-globalStyle(`${item}:hover ${item__icon_completed}`, {
-  backgroundColor: varsThemeBase.colors.success.interactive,
-});
+globalStyle(
+  `${item}:hover ${item__icon_completed}`,
+  interactiveStateVariants.completed.icon.hover
+);
+globalStyle(
+  `${item}:active ${item__icon_completed}`,
+  interactiveStateVariants.completed.icon.active
+);
+globalStyle(
+  `${item}:focus-visible ${item__icon_completed}`,
+  interactiveStateVariants.completed.icon.focus
+);
 
-globalStyle(`${item}:active ${item__icon_completed}`, {
-  backgroundColor: varsThemeBase.colors.success.interactiveHover,
-});
+// Apply started state interactive styles
+globalStyle(
+  `${item}:hover ${item__label_started}`,
+  interactiveStateVariants.started.label.hover
+);
+globalStyle(
+  `${item}:active ${item__label_started}`,
+  interactiveStateVariants.started.label.active
+);
+globalStyle(
+  `${item}:focus-visible ${item__label_started}`,
+  interactiveStateVariants.started.label.focus
+);
 
-globalStyle(`${item}:focus-visible ${item__icon_completed}`, {
-  backgroundColor: varsThemeBase.colors.success.surfaceHighlight,
-  boxShadow: varsThemeBase.utils.focus,
-});
-
-// Item started state - label and icon
-globalStyle(`${item}:hover ${item__label_started}`, {
-  color: varsThemeBase.colors.neutral.textHigh,
-});
-
-globalStyle(`${item}:active ${item__label_started}`, {
-  color: varsThemeBase.colors.neutral.textHigh,
-});
-
-globalStyle(`${item}:focus-visible ${item__label_started}`, {
-  color: varsThemeBase.colors.neutral.textLow,
-});
-
-globalStyle(`${item}:hover ${item__icon_started}`, {
-  backgroundColor: varsThemeBase.colors.neutral.interactive,
-});
-
-globalStyle(`${item}:active ${item__icon_started}`, {
-  backgroundColor: varsThemeBase.colors.neutral.interactiveHover,
-});
-
-globalStyle(`${item}:focus-visible ${item__icon_started}`, {
-  backgroundColor: varsThemeBase.colors.neutral.surfaceDisabled,
-  boxShadow: varsThemeBase.utils.focus,
-});
+globalStyle(
+  `${item}:hover ${item__icon_started}`,
+  interactiveStateVariants.started.icon.hover
+);
+globalStyle(
+  `${item}:active ${item__icon_started}`,
+  interactiveStateVariants.started.icon.active
+);
+globalStyle(
+  `${item}:focus-visible ${item__icon_started}`,
+  interactiveStateVariants.started.icon.focus
+);
 
 export const styles = {
   container,
