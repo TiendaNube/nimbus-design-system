@@ -7,7 +7,7 @@ export type StepState = "completed" | "started" | "pending";
 
 export interface StepperItemProperties {
   /**
-   * The step number (1-based index) for this item.
+   * The step number (0-based index) for this item.
    * This is automatically assigned by the parent Stepper component.
    */
   step: number;
@@ -17,4 +17,5 @@ export interface StepperItemProperties {
   label?: string;
 }
 
-export type StepperItemProps = StepperItemProperties & HTMLAttributes<HTMLElement>; 
+export type StepperItemProps = StepperItemProperties &
+  HTMLAttributes<HTMLDivElement>; 

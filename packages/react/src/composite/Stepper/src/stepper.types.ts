@@ -10,7 +10,7 @@ export interface StepperComponents {
 
 export interface BaseStepperProperties {
   /**
-   * The currently active step (1-based index).
+   * The currently active step (0-based index).
    * Steps before this will be marked as completed.
    */
   activeStep: number;
@@ -24,13 +24,13 @@ export interface BaseStepperProperties {
 
 export interface ControlledStepperProperties extends BaseStepperProperties {
   /**
-   * The currently selected step (1-based index).
+   * The currently selected step (0-based index).
    * This step will be visually highlighted to show user selection.
    */
   selectedStep: number;
   /**
    * Callback called when a step is selected.
-   * Receives the step number (1-based index) as parameter.
+   * Receives the step number (0-based index) as parameter.
    */
   onSelectStep: (step: number) => void;
 }

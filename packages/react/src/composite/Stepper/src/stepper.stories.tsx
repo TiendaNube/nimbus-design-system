@@ -19,12 +19,12 @@ const meta: Meta<typeof Stepper> = {
   },
   argTypes: {
     activeStep: {
-      control: { type: "number", min: 1, max: 5 },
-      description: "The currently active step (1-based index)",
+      control: { type: "number", min: 0, max: 4 },
+      description: "The currently active step (0-based index)",
     },
     selectedStep: {
-      control: { type: "number", min: 1, max: 5 },
-      description: "The currently selected step (1-based index)",
+      control: { type: "number", min: 0, max: 4 },
+      description: "The currently selected step (0-based index)",
     },
   },
   tags: ["autodocs"],
@@ -99,7 +99,7 @@ export const Uncontrolled: Story = {
 export const WithCard: Story = {
   render: () => (
     <Stepper.Card>
-      <Stepper activeStep={3}>
+      <Stepper activeStep={2}>
         <Stepper.Item label="Setup" />
         <Stepper.Item label="Configuration" />
         <Stepper.Item label="Review" />

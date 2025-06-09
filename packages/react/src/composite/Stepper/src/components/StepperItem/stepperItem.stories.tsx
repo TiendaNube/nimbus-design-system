@@ -2,7 +2,7 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Stepper } from "../../Stepper";
 
-const currentStep = 1;
+const currentStep = 0;
 
 const meta: Meta<
   typeof Stepper.Item & { currentStep: number; totalSteps: number }
@@ -42,7 +42,7 @@ export const Completed: Story = {
     label: "Completed step",
   },
   render: (args) => (
-    <Stepper activeStep={2} onSelectStep={() => undefined} selectedStep={2}>
+    <Stepper activeStep={1} onSelectStep={() => undefined} selectedStep={1}>
       <Stepper.Item {...args} />
     </Stepper>
   ),

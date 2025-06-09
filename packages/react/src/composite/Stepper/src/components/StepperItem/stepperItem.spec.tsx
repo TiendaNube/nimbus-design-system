@@ -12,8 +12,8 @@ const makeSut = (
   onSelect?: (step: number) => void
 ) => {
   const defaultTotalSteps = totalSteps ?? 3;
-  const defaultActiveStep = activeStep ?? 1;
-  const defaultSelectedStep = selectedStep ?? 1;
+  const defaultActiveStep = activeStep ?? 0;
+  const defaultSelectedStep = selectedStep ?? 0;
   render(
     <StepperContext.Provider
       value={{ totalSteps: defaultTotalSteps, activeStep: defaultActiveStep, selectedStep: defaultSelectedStep, onSelect }}
@@ -97,25 +97,25 @@ describe("GIVEN <Stepper.Item />", () => {
     it("THEN should render without label", () => {
       makeSut(
         {
-          step: 1,
+          step: 0,
         },
         3,
-        1
+        0
       );
 
       const stepperItem = screen.getByTestId("stepper-item");
       expect(stepperItem).toBeDefined();
-      expect(screen.queryByText("1")).toBeNull();
+      expect(screen.getByText("1")).toBeDefined();
     });
 
     it("THEN should render with empty label", () => {
       makeSut(
         {
-          step: 1,
+          step: 0,
           label: "",
         },
         3,
-        1
+        0
       );
 
       expect(screen.getByTestId("stepper-item")).toBeDefined();
@@ -123,7 +123,7 @@ describe("GIVEN <Stepper.Item />", () => {
 
     it("THEN should apply custom props", () => {
       makeSut({
-        step: 1,
+        step: 0,
         label: "Test",
         "aria-label": "Custom aria label",
         className: "custom-class",
@@ -138,7 +138,7 @@ describe("GIVEN <Stepper.Item />", () => {
     it("THEN should render connecting line", () => {
       makeSut(
         {
-          step: 1,
+          step: 0,
           label: "First step",
         },
         3
@@ -154,7 +154,7 @@ describe("GIVEN <Stepper.Item />", () => {
     it("THEN should not render connecting line", () => {
       makeSut(
         {
-          step: 3,
+          step: 2,
           label: "Last step",
         },
         3

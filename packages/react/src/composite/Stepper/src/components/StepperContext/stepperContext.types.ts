@@ -7,11 +7,11 @@ export interface StepperContextValue {
    */
   totalSteps: number;
   /**
-   * The currently active step (1-based index)
+   * The currently active step (0-based index)
    */
   activeStep: number;
   /**
-   * The currently selected step (1-based index)
+   * The currently selected step (0-based index)
    */
   selectedStep?: number;
   /**
