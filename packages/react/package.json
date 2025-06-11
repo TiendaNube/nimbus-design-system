@@ -177,6 +177,10 @@
       "import": "./dist/Sidebar/index.js",
       "require": "./dist/Sidebar/index.js"
     },
+    "./Stepper": {
+      "import": "./dist/Stepper/index.js",
+      "require": "./dist/Stepper/index.js"
+    },
     "./Table": {
       "import": "./dist/Table/index.js",
       "require": "./dist/Table/index.js"

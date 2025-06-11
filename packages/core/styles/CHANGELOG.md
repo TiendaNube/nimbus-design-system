@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2025-06-09 `9.16.0`
+
+#### 🎉 New features
+
+- Added `stepper` new composite component styles. ([#297](https://github.com/TiendaNube/nimbus-design-system/pull/297) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-05-12 `9.15.0`
 
 #### 🎉 New features

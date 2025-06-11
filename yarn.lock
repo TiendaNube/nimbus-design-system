@@ -2733,7 +2733,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/button@workspace:^, @nimbus-ds/button@workspace:packages/react/src/atomic/Button":
+"@nimbus-ds/button@workspace:*, @nimbus-ds/button@workspace:^, @nimbus-ds/button@workspace:packages/react/src/atomic/Button":
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/button@workspace:packages/react/src/atomic/Button"
   dependencies:
@@ -2850,7 +2850,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/icon@workspace:^, @nimbus-ds/icon@workspace:packages/react/src/atomic/Icon":
+"@nimbus-ds/icon@workspace:*, @nimbus-ds/icon@workspace:^, @nimbus-ds/icon@workspace:packages/react/src/atomic/Icon":
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/icon@workspace:packages/react/src/atomic/Icon"
   dependencies:
@@ -2863,7 +2863,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/icons@workspace:^, @nimbus-ds/icons@workspace:packages/icons":
+"@nimbus-ds/icons@workspace:*, @nimbus-ds/icons@workspace:^, @nimbus-ds/icons@workspace:packages/icons":
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/icons@workspace:packages/icons"
   dependencies:
@@ -3084,7 +3084,23 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/styles@workspace:packages/core/styles":
+"@nimbus-ds/stepper@workspace:packages/react/src/composite/Stepper":
+  version: 0.0.0-use.local
+  resolution: "@nimbus-ds/stepper@workspace:packages/react/src/composite/Stepper"
+  dependencies:
+    "@nimbus-ds/button": "workspace:*"
+    "@nimbus-ds/icon": "workspace:*"
+    "@nimbus-ds/icons": "workspace:*"
+    "@nimbus-ds/styles": "workspace:*"
+    "@nimbus-ds/text": "workspace:*"
+    "@nimbus-ds/webpack": "workspace:^"
+  peerDependencies:
+    react: ^16.8 || ^17.0 || ^18.0
+    react-dom: ^16.8 || ^17.0 || ^18.0
+  languageName: unknown
+  linkType: soft
+
+"@nimbus-ds/styles@workspace:*, @nimbus-ds/styles@workspace:packages/core/styles":
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/styles@workspace:packages/core/styles"
   dependencies:
@@ -3139,7 +3155,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/text@workspace:^, @nimbus-ds/text@workspace:packages/react/src/atomic/Text":
+"@nimbus-ds/text@workspace:*, @nimbus-ds/text@workspace:^, @nimbus-ds/text@workspace:packages/react/src/atomic/Text":
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/text@workspace:packages/react/src/atomic/Text"
   dependencies:
