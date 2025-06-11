@@ -1,0 +1,5 @@
+releases:
+  "@nimbus-ds/stepper": major
+
+declined:
+  - nimbus-design-system
