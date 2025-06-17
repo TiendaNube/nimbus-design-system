@@ -3,7 +3,7 @@
   "name": "Stepper",
   "totalProps": 4,
   "packageName": "@nimbus-ds/stepper",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/stepper",
   "props": [
     {
