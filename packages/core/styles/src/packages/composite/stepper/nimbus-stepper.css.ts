@@ -88,8 +88,7 @@ const item__icon_pending = style({
 const item__line = style({
   height: varsThemeBase.shape.border.width[1],
   backgroundColor: varsThemeBase.colors.neutral.interactive,
-  flex: 1,
-  maxWidth: varsThemeBase.spacing[11],
+  width: varsThemeBase.spacing[11],
 });
 
 /* -------------------------------------------------------------------------------------------------
