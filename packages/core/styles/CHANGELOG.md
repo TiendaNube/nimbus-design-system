@@ -2,6 +2,13 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2025-17-06 `9.16.1`
+
+#### 🐛 Bug fixes
+
+- `Stepper`: Fixed width of the line. ([#300](https://github.com/TiendaNube/nimbus-design-system/pull/300) by [@joacotornello](https://github.com/joacotornello))
+
+
 ## 2025-06-09 `9.16.0`
 
 #### 🎉 New features
