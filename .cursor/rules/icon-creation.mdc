@@ -1,0 +1,65 @@
+---
+description: Use this rule whenever creating new SVG icons for the project.   It specifies step-by-step requirements that must be strictly followed.
+globs: 
+alwaysApply: false
+---
+---
+# SVG Icon Creation Steps
+Follow each step precisely and strictly in the given order.
+
+## Pre-conditions (MUST CHECK BEFORE CHANGES)
+1. **Duplicate Check:**
+   * Carefully search for icons in the repository with names that are strictly equal or visually similar to the new icon.
+   * If a match or a similar icon exists, notify the user and **do not proceed with the operation**.
+
+2. **SVG Quality & Optimization Check:**
+
+   * Before accepting the SVG, analyze it for common bad practices:
+     * Excessive/unnecessary HTML elements, comments, metadata, or definitions.
+     * Unclean, unoptimized, or bloated SVG structure.
+
+   * If the SVG is poorly optimized or contains these issues, **do not continue**. Instead, return feedback to the user with analysis, and recommend using [SVGOMG](mdc:https:/jakearchibald.github.io/svgomg) or similar optimization tools.
+
+## **Required Steps**
+### 1. **File Creation**
+
+* Create the new icon in the `packages/icons/src/assets` directory.
+
+* Filename must:
+
+  * Be lowercase
+  * Use dashes (`-`) as separators
+  * End with `.svg`
+
+**Example:** `shopping-cart.svg`
+
+* Final exported icon component name should use PascalCase with suffix "Icon":
+
+  * Example: `ShoppingCartIcon`
+
+### 2. **SVG Dimensions**
+* Set explicit width and height attributes to exactly `16px`:
+
+```html
+<svg width="16" height="16" ...>
+```
+
+### 4. **Build Icons Package**
+* Run the following command in the project root:
+
+```sh
+yarn build:icons
+```
+
+* Confirm this generates a new `.tsx` file in the `packages/icons/tmp` directory.
+
+### 5. **Create a PR**
+   - Commit using the format: `feat(icons): add [icon-name] icon`
+   - Always create a branch from the latest `main`.
+   - Push branch and open a PR titled: `feat: Add [icon-name] icon`.
+
+## **Never Do the Following**
+* Do not place icon files outside of `packages/icons/src/assets`.
+* Do not omit `width` and `height` attributes.
+* Do not use uppercase letters or underscores in filenames.
+* Do not directly commit changes to `main`. Always use a dedicated branch and open a PR.
