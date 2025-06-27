@@ -1,5 +1,5 @@
-minor:
-  - "@nimbus-ds/icons"
+THIS SHOULD BE A LINTER ERRORreleases:
+  "@nimbus-ds/icons": minor
 
-patch:
-  - "nimbus-design-system"
+declined:
+  - nimbus-design-system
