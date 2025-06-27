@@ -2,6 +2,12 @@
 
 Nimbus-icons is an open source icon system built by Nuvemshop / Tiendanube.
 
+## 2025-01-20 `1.10.0`
+
+#### 🎉 New features
+
+- Adds `avi-file` icon. ([#PR_NUMBER](https://github.com/TiendaNube/nimbus-design-system/pull/PR_NUMBER) by [@NimbusAgent](https://github.com/NimbusAgent))
+
 ## 2025-05-20 `1.9.0`
 
 #### 🎉 New features
