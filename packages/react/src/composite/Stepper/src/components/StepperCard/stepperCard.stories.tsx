@@ -31,9 +31,10 @@ export const WithMultipleElements: Story = {
           Card Container Example
         </Text>
         <Text fontSize="caption" color="neutral-textLow">
-          This demonstrates the StepperCard component wrapping multiple elements.
+          This demonstrates the StepperCard component wrapping multiple
+          elements.
         </Text>
       </Box>
     </StepperCard>
   ),
-}; 
+};

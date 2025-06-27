@@ -54,7 +54,7 @@ export const Pending: Story = {
   },
   render: (args) => (
     <Stepper activeStep={-1}>
-      <Stepper.Item {...args} />  
+      <Stepper.Item {...args} />
     </Stepper>
   ),
 };

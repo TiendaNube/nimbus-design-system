@@ -16,7 +16,12 @@ const makeSut = (
   const defaultSelectedStep = selectedStep ?? 0;
   render(
     <StepperContext.Provider
-      value={{ totalSteps: defaultTotalSteps, activeStep: defaultActiveStep, selectedStep: defaultSelectedStep, onSelect }}
+      value={{
+        totalSteps: defaultTotalSteps,
+        activeStep: defaultActiveStep,
+        selectedStep: defaultSelectedStep,
+        onSelect,
+      }}
     >
       <StepperItem {...props} data-testid="stepper-item" />
     </StepperContext.Provider>
@@ -254,8 +259,6 @@ describe("GIVEN <Stepper.Item />", () => {
       expect(stepperItem.getAttribute("role")).toBe("button");
       expect(stepperItem.getAttribute("tabIndex")).toBe("0");
     });
-
-
   });
 
   describe("WHEN step is not clickable", () => {
