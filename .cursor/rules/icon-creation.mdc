@@ -59,8 +59,8 @@ Follow each step precisely and strictly in the given order.
 ```
 
 ### 4. **Yarn versioning file**
-4.1. Run `yarn version --deferred decline` to create a new version file in `.yarn/versions` declining by default everything.
-4.2. Move the `@nimbus-ds/icons` package into the releases section with a minor version bump. Example:
+4.1. Run `yarn workspaces foreach --all version decline --deferred` to create a new version file in `.yarn/versions` declining by default everything.. THIS STEP IS CRITICAL.
+4.2. In the generated file inside `.yarn/versions` move the `@nimbus-ds/icons` package into the releases section with a minor version bump. Example:
 
 ```yml
 releases:
@@ -68,12 +68,11 @@ releases:
 
 declined: 
     nimbus-design-system
+    ...rest of the packages
 ```
 * ALWAYS decline the `nimbus-design-system` root package and all packages that are not `@nimbus-ds/icons`.
 
 4.3. Run `yarn bump:check` and read the errors.
-4.4. Run `yarn workspaces foreach --all version decline --deferred` to automatically decline the rest of the packages that depends on `@nimbus-ds/icons`. THIS STEP IS CRITICAL.
-4.5. Finally, verify everything is working with `yarn bump:check` again.
 
 ### 5. **Create a PR**
    - Commit using the format: `feat(icons): add [icon-name] icon`
