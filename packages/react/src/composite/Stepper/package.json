@@ -1,0 +1,48 @@
+{
+  "name": "@nimbus-ds/stepper",
+  "version": "1.0.0",
+  "description": "Stepper component for guiding users through multi-step processes",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "license": "MIT",
+  "keywords": [
+    "nimbus",
+    "design-system",
+    "react",
+    "stepper",
+    "progress",
+    "steps",
+    "wizard"
+  ],
+  "scripts": {
+    "build": "yarn g:webpack",
+    "clean": "rm -rf dist",
+    "version": "yarn version"
+  },
+  "homepage": "https://nimbus.nuvemshop.com.br",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TiendaNube/nimbus-design-system.git",
+    "directory": "packages/react/src/composite/Stepper"
+  },
+  "bugs": {
+    "url": "https://github.com/TiendaNube/nimbus-design-system/issues"
+  },
+  "dependencies": {
+    "@nimbus-ds/box": "workspace:^",
+    "@nimbus-ds/card": "workspace:^",
+    "@nimbus-ds/icon": "workspace:^",
+    "@nimbus-ds/icons": "workspace:^",
+    "@nimbus-ds/styles": "workspace:^",
+    "@nimbus-ds/text": "workspace:^"
+  },
+  "peerDependencies": {
+    "react": "^16.8 || ^17.0 || ^18.0",
+    "react-dom": "^16.8 || ^17.0 || ^18.0"
+  },
+  "devDependencies": {
+    "@nimbus-ds/button": "workspace:^",
+    "@nimbus-ds/webpack": "workspace:^"
+  }
+}

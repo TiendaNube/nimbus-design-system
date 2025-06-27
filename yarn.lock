@@ -3084,7 +3084,25 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/styles@workspace:packages/core/styles":
+"@nimbus-ds/stepper@workspace:packages/react/src/composite/Stepper":
+  version: 0.0.0-use.local
+  resolution: "@nimbus-ds/stepper@workspace:packages/react/src/composite/Stepper"
+  dependencies:
+    "@nimbus-ds/box": "workspace:^"
+    "@nimbus-ds/button": "workspace:^"
+    "@nimbus-ds/card": "workspace:^"
+    "@nimbus-ds/icon": "workspace:^"
+    "@nimbus-ds/icons": "workspace:^"
+    "@nimbus-ds/styles": "workspace:^"
+    "@nimbus-ds/text": "workspace:^"
+    "@nimbus-ds/webpack": "workspace:^"
+  peerDependencies:
+    react: ^16.8 || ^17.0 || ^18.0
+    react-dom: ^16.8 || ^17.0 || ^18.0
+  languageName: unknown
+  linkType: soft
+
+"@nimbus-ds/styles@workspace:^, @nimbus-ds/styles@workspace:packages/core/styles":
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/styles@workspace:packages/core/styles"
   dependencies:

@@ -1,0 +1,68 @@
+{
+  "id": "stepper",
+  "name": "Stepper",
+  "totalProps": 4,
+  "packageName": "@nimbus-ds/stepper",
+  "version": "1.0.0",
+  "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/stepper",
+  "props": [
+    {
+      "description": "The currently active step (0-based index).\nSteps before this will be marked as completed.",
+      "type": "number",
+      "title": "activeStep",
+      "required": true
+    },
+    {
+      "description": "The content of the stepper (StepperItem components).\nTotal steps will be calculated automatically based on the number of children.",
+      "type": "React.ReactNode",
+      "title": "children",
+      "required": true
+    },
+    {
+      "description": "The currently selected step (0-based index).\nThis step will be visually highlighted to show user selection.",
+      "type": "number",
+      "title": "selectedStep",
+      "required": true
+    },
+    {
+      "description": "Callback called when a step is selected.\nReceives the step number (0-based index) as parameter.",
+      "type": "object",
+      "additionalProperties": false,
+      "propertyOrder": [],
+      "title": "onSelectStep",
+      "required": true
+    }
+  ],
+  "subComponents": [
+    {
+      "name": "Stepper.Item",
+      "totalProps": 2,
+      "props": [
+        {
+          "description": "The step number (0-based index) for this item.\nThis is automatically assigned by the parent Stepper component.",
+          "type": "number",
+          "title": "step",
+          "required": true
+        },
+        {
+          "description": "The label text to display for this step",
+          "type": "string",
+          "title": "label",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Stepper.Card",
+      "totalProps": 1,
+      "props": [
+        {
+          "description": "The content to be rendered inside the card container",
+          "type": "React.ReactNode",
+          "title": "children",
+          "required": true
+        }
+      ]
+    }
+  ]
+}
