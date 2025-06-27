@@ -3,7 +3,7 @@ description: Use this rule whenever creating new SVG icons for the project.   It
 globs: 
 alwaysApply: false
 ---
----
+
 # SVG Icon Creation Steps
 Follow each step precisely and strictly in the given order.
 
@@ -16,9 +16,9 @@ Follow each step precisely and strictly in the given order.
 
    * Before accepting the SVG, analyze it for common bad practices:
      * Excessive/unnecessary HTML elements, comments, metadata, or definitions.
-     * Unclean, unoptimized, or bloated SVG structure.
 
-   * If the SVG is poorly optimized or contains these issues, **do not continue**. Instead, return feedback to the user with analysis, and recommend using [SVGOMG](mdc:https:/jakearchibald.github.io/svgomg) or similar optimization tools.
+   * If the SVG contains these issues, **do not continue**. Instead, return feedback to the user with analysis, and recommend using [SVGOMG](mdc:https:/jakearchibald.github.io/svgomg) or similar optimization tools.
+   * Ignore optimization or viewBox issues as they will be fixed by the build process. If the SVG is missing width and height attributes, add them.
 
 ## **Required Steps**
 ### 1. **File Creation**
