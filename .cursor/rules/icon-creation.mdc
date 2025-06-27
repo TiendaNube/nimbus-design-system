@@ -18,7 +18,7 @@ Follow each step precisely and strictly in the given order.
      * Excessive/unnecessary HTML elements, comments, metadata, or definitions.
 
    * If the SVG contains these issues, **do not continue**. Instead, return feedback to the user with analysis, and recommend using [SVGOMG](mdc:https:/jakearchibald.github.io/svgomg) or similar optimization tools.
-   * Ignore optimization or viewBox issues as they will be fixed by the build process. If the SVG is missing width and height attributes, add them.
+   * Ignore optimization or viewBox issues as they will be fixed by the build process. If the SVG is missing width and height attributes, add them. If the SVG is missing or have a different viewBox, update it to `0 0 16 16`.
 
 ## **Required Steps**
 ### 1. **File Creation**
@@ -38,20 +38,41 @@ Follow each step precisely and strictly in the given order.
   * Example: `ShoppingCartIcon`
 
 ### 2. **SVG Dimensions**
-* Set explicit width and height attributes to exactly `16px`:
+* Set explicit width and height attributes to exactly `16px` and viewBox to `0 0 16 16`:
 
 ```html
-<svg width="16" height="16" ...>
+<svg width="16" height="16" viewBox="0 0 16 16" ...>
 ```
 
-### 4. **Build Icons Package**
-* Run the following command in the project root:
+### 3. **Changelog updates**
 
-```sh
-yarn build:icons
+* Update the `packages/icons/CHANGELOG.md` file with the new icon.
+
+### General Structure
+
+```md
+## YYYY-MM-DD `VERSION` (minor version bump from the previous version)
+
+#### 🎉 New features
+
+- Adds `[icon-name]` icon. ([#PR_NUMBER](https://github.com/TiendaNube/nimbus-design-system/pull/PR_NUMBER) by [@NimbusAgent](https://github.com/NimbusAgent))
 ```
 
-* Confirm this generates a new `.tsx` file in the `packages/icons/tmp` directory.
+### 4. **Yarn versioning file**
+
+* Run `yarn version --deferred decline` to create a new version file in `.yarn/versions` declining by default everything.
+* Move the `@nimbus-ds/icons` package into the releases section with a minor version bump. Example:
+
+```yml
+releases:
+  @nimbus-ds/icons: minor
+
+declined: 
+    nimbus-design-system
+```
+
+* ALWAYS decline the `nimbus-design-system` root package.
+* Run `yarn bump:check` and check that there are no errors.
 
 ### 5. **Create a PR**
    - Commit using the format: `feat(icons): add [icon-name] icon`
@@ -62,4 +83,4 @@ yarn build:icons
 * Do not place icon files outside of `packages/icons/src/assets`.
 * Do not omit `width` and `height` attributes.
 * Do not use uppercase letters or underscores in filenames.
-* Do not directly commit changes to `main`. Always use a dedicated branch and open a PR.
+* Do not directly commit changes to `main`. Always use a dedicated branch FROM MAIN and open a PR.
