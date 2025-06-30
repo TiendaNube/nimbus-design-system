@@ -18,7 +18,7 @@ const meta: Meta<typeof Icon> = {
       control: "select",
     },
   },
-  render: ({ source }) => {
+  render: ({ source, color }) => {
     const iconByName = Object.entries(allIcons);
 
     const Icons =
@@ -31,21 +31,24 @@ const meta: Meta<typeof Icon> = {
 
     return (
       <Box display="flex" flexWrap="wrap">
-        {Icons.map(([name, IconComponent]) => (
-          <Box
-            key={name}
-            margin="3"
-            padding="1"
-            borderStyle="dashed"
-            borderColor="danger-surface"
-          >
-            <Tooltip content={name} position="top">
-              <Box display="flex" justifyContent="center" alignItems="center">
-                <IconComponent size="medium" aria-label={name} />
-              </Box>
-            </Tooltip>
-          </Box>
-        ))}
+        {Icons.map(
+          ([name, IconComponent]: [string, React.ComponentType<any>]) => (
+            <Box
+              key={name}
+              margin="3"
+              padding="1"
+              borderStyle="dashed"
+              borderColor="danger-surface"
+              role="gridcell"
+            >
+              <Tooltip content={name} position="top">
+                <Box display="flex" justifyContent="center" alignItems="center">
+                  <Icon source={<IconComponent size="medium" />} aria-label={name} color={color} />
+                </Box>
+              </Tooltip>
+            </Box>
+          )
+        )}
       </Box>
     );
   },

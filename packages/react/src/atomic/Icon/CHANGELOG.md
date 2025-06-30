@@ -6,7 +6,7 @@ Icons are used to visually communicate core parts of the product and available a
 
 ### 🎉 New features
 
-- Introduced a new Storybook story that displays a list of all available icons with consistent styling and layout for easy browsing. ([#295](https://github.com/TiendaNube/nimbus-design-system/pull/295) by [@lostip](https://github.com/lostip))
+- Introduced a new Storybook story that displays a list of all available icons with consistent styling and layout for easy browsing. ([#302](https://github.com/TiendaNube/nimbus-design-system/pull/302) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-03-18 `3.0.1`
 
