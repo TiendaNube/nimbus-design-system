@@ -30,7 +30,12 @@ const meta: Meta<typeof Icon> = {
         : iconByName;
 
     return (
-      <Box display="flex" flexWrap="wrap">
+      <Box
+        display="flex"
+        flexWrap="wrap"
+        role="list"
+        aria-label="Icon showcase"
+      >
         {Icons.map(
           ([name, IconComponent]: [string, React.ComponentType<any>]) => (
             <Box
@@ -39,11 +44,15 @@ const meta: Meta<typeof Icon> = {
               padding="1"
               borderStyle="dashed"
               borderColor="danger-surface"
-              role="gridcell"
+              role="listitem"
             >
               <Tooltip content={name} position="top">
                 <Box display="flex" justifyContent="center" alignItems="center">
-                  <Icon source={<IconComponent size="medium" />} aria-label={name} color={color} />
+                  <Icon
+                    source={<IconComponent size="medium" />}
+                    aria-label={name}
+                    color={color}
+                  />
                 </Box>
               </Tooltip>
             </Box>
