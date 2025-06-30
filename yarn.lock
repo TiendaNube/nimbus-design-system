@@ -2854,8 +2854,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/icon@workspace:packages/react/src/atomic/Icon"
   dependencies:
+    "@nimbus-ds/box": "workspace:^"
     "@nimbus-ds/icons": "workspace:^"
     "@nimbus-ds/skeleton": "workspace:^"
+    "@nimbus-ds/tooltip": "workspace:^"
     "@nimbus-ds/webpack": "workspace:^"
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
