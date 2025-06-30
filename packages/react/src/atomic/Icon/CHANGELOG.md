@@ -2,6 +2,12 @@
 
 Icons are used to visually communicate core parts of the product and available actions. They can act as wayfinding tools to help merchants more easily understand where they are in the product, and common interaction patterns that are available.
 
+## 2025-06-27 `3.1.0`
+
+### 🎉 New features
+
+- Introduced a new Storybook story that displays a list of all available icons with consistent styling and layout for easy browsing. ([#302](https://github.com/TiendaNube/nimbus-design-system/pull/302) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-03-18 `3.0.1`
 
 ### 💡 Others
