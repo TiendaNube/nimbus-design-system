@@ -17,8 +17,8 @@ Follow each step precisely and strictly in the given order.
    * Before accepting the SVG, analyze it for common bad practices:
      * Excessive/unnecessary HTML elements, comments, metadata, or definitions.
 
-   * If the SVG contains these issues, **do not continue**. Instead, return feedback to the user with analysis, and recommend using [SVGOMG](mdc:https:/jakearchibald.github.io/svgomg) or similar optimization tools.
-   * Ignore optimization or viewBox issues as they will be fixed by the build process. If the SVG is missing width and height attributes, add them. If the SVG is missing or have a different viewBox, update it to `0 0 16 16`.
+   * If the SVG contains these issues, **do not continue**. Instead, return feedback to the user with analysis, and recommend using [SVGOMG](https://jakearchibald.github.io/svgomg) or similar optimization tools.
+   * Ignore optimization issues as they will be fixed by the build process. If the SVG is missing width and height attributes, add them. If the SVG is missing or have a different viewBox, update it to `0 0 16 16`.
 
 ## **Required Steps**
 ### 1. **File Creation**
@@ -41,7 +41,7 @@ Follow each step precisely and strictly in the given order.
 * Set explicit width and height attributes to exactly `16px` and viewBox to `0 0 16 16`:
 
 ```html
-<svg width="16" height="16" viewBox="0 0 16 16" ...>
+<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor" ...>
 ```
 
 ### 3. **Changelog updates**
