@@ -44,4 +44,4 @@ describe("GIVEN <StepperCard />", () => {
       expect(container.firstChild).toBeInTheDocument();
     });
   });
-}); 
+});

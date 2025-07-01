@@ -38,11 +38,16 @@ export interface ControlledStepperProperties extends BaseStepperProperties {
 /**
  * Props for the Stepper component, supporting both controlled and uncontrolled modes
  */
-export type StepperProps = (BaseStepperProperties | ControlledStepperProperties) & Omit<BoxProps, "display" | "flexWrap" | "gap">;
+export type StepperProps = (
+  | BaseStepperProperties
+  | ControlledStepperProperties
+) &
+  Omit<BoxProps, "display" | "flexWrap" | "gap">;
 
 // For docs purposes, we need to merge the two types
-export type StepperProperties = BaseStepperProperties & ControlledStepperProperties;
+export type StepperProperties = BaseStepperProperties &
+  ControlledStepperProperties;
 
 // Re-export types from components for convenience
 export type { StepperItemProps, StepState } from "./components/StepperItem";
-export type { StepperCardProps } from "./components/StepperCard"; 
+export type { StepperCardProps } from "./components/StepperCard";

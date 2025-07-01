@@ -77,7 +77,7 @@ On mobile devices, labels can be hidden to save space, showing only the step ind
 </Stepper>
 
 // Controlled usage with navigation
-<Stepper 
+<Stepper
   activeStep={activeStep}
   selectedStep={selectedStep}
   onSelectStep={setSelectedStep}

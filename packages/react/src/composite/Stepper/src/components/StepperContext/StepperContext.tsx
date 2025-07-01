@@ -6,4 +6,4 @@ export const StepperContext = createContext<StepperContextValue>({
   activeStep: 0,
   selectedStep: undefined,
   onSelect: undefined,
-}); 
+});

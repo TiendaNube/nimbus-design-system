@@ -49,7 +49,6 @@ export { segmentedControl } from "./packages/composite/segmented-control";
 export { calendar } from "./packages/patterns/calendar";
 export { editor } from "./packages/patterns/editor";
 
-
 export type { BoxSprinkle } from "./packages/atomic/box";
 export type { IconButtonSprinkle } from "./packages/atomic/iconButton";
 export type { TextSprinkle } from "./packages/atomic/text";
