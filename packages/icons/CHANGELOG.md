@@ -6,7 +6,8 @@ Nimbus-icons is an open source icon system built by Nuvemshop / Tiendanube.
 
 #### 🎉 New features
 
-- Adds `meta` icon. ([#PR_NUMBER](https://github.com/TiendaNube/nimbus-design-system/pull/PR_NUMBER) by [@NimbusAgent](https://github.com/NimbusAgent))
+- Adds `meta` icon. ([#305](https://github.com/TiendaNube/nimbus-design-system/pull/305) by [@ayrlodeiros](https://github.com/ayrlodeiros))
+- Adds `google` icon. ([#305](https://github.com/TiendaNube/nimbus-design-system/pull/305) by [@ayrlodeiros](https://github.com/ayrlodeiros))
 
 ## 2025-05-20 `1.9.0`
 
