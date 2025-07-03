@@ -75,7 +75,7 @@ Follow each step strictly and in the given order, according to the requested ope
 - Adds `[icon-name]` icon. (#PR_NUMBER by @NimbusAgent)
 ```
 
-Note: The PR number should be the number of the current PR that creates the icon. It should be the latest PR number in this Github repository.
+Note: The PR number should be the number of the current PR that creates the icon. It should be the latest PR number in this Github repository plus one.
 
 ### 2. **Yarn versioning file**
 4.1. Run `yarn workspaces foreach --all version decline --deferred` to create a new version file in `.yarn/versions` declining by default everything.. THIS STEP IS CRITICAL.
