@@ -45,7 +45,7 @@ Follow each step strictly and in the given order, according to the requested ope
 ----
 
 ### **Edit (Update)**
-1. **Locate SVG file by input name** in `packages/icons/src/assets`.
+1. **Locate SVG file by input name** in `packages/icons/src/assets` and REMEMBER its name.
 2. **DELETE** the existing SVG file.
 3. **CREATE** a new SVG file with the same name, and EXACTLY the same SVG code as the one provided by the user, except for the `width`, `height`, and `viewBox` attributes. Follow the **Create** operation steps.
    - Maintain required attributes: `width="16" height="16" viewBox="0 0 16 16" fill="currentColor"`.
@@ -93,7 +93,7 @@ declined:
 - Adds/Creates/Deletes `[icon-name]` icon. (#PR_NUMBER by @NimbusAgent)
 ```
 
-Note: The PR_NUMBER text should be the number of the current PR that creates the icon (following step). It should be the latest PR number in this Github repository plus one.
+Note: The PR_NUMBER text should be the number of the current PR that creates the icon (following step). FETCH the latest PR number from this Github repository and add one to it.
 
 ### 3. **PR Creation:**
    - Commit using the format: `feat(icons): add [icon-name] icon` (or `feat(icons): update [icon-name] icon` or `feat(icons): delete [icon-name] icon`)
