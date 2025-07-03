@@ -93,7 +93,7 @@ declined:
 - Adds/Creates/Deletes `[icon-name]` icon. (#PR_NUMBER by @NimbusAgent)
 ```
 
-Note: The PR_NUMBER text should be the number of the current PR that creates the icon (following step). FETCH the latest PR number from this Github repository and add one to it.
+Note: The PR_NUMBER text should be the number of the current PR that creates the icon (following step). FETCH the latest PR number from this Github repository using the fetch_pull_request tool and add one to it.
 
 ### 3. **PR Creation:**
    - Commit using the format: `feat(icons): add [icon-name] icon` (or `feat(icons): update [icon-name] icon` or `feat(icons): delete [icon-name] icon`)
