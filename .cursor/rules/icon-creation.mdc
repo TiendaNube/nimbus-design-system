@@ -3,7 +3,6 @@ description: Use this rule whenever performing Create, Read, Edit (Update), or D
 globs: 
 alwaysApply: false
 ---
-
 # SVG Icon CRUD Steps
 
 Follow each step strictly and in the given order, according to the requested operation: **Create, Read, Edit (Update), or Delete**.
@@ -11,21 +10,20 @@ Follow each step strictly and in the given order, according to the requested ope
 ----
 
 ## Pre-conditions (ALWAYS CHECK BEFORE CHANGES)
-1. - For **Create**: Search for icons in the repository with strictly equal or visually similar names.
-        - If a match exists, notify the user.
-    - For **Edit/Delete**: Ensure the target icon exists. If not, report to user.
+1. **Duplicate Check (for Create/Edit):**
+   - For **Create**: Search for icons in the repository with strictly equal or visually similar names. If a match exists, notify the user and do not proceed.
+   - For **Edit/Delete**: Ensure the target icon exists. If not, report to user and do not proceed.
 
 2. **SVG Quality & Optimization Check (for Create/Edit):**
    - Analyze SVG for bad practices: excessive/unnecessary elements, comments, or metadata.
-   - If issues are found, return feedback and recommend using SVGOMG (https://jakearchibald.github.io/svgomg/)
-  re optimization issues. They will be fixed by the build process.
+   - If issues are found, recommend users to use SVGOMG (https://jakearchibald.github.io/svgomg/) and output the feedback.
    - If missing `width`/`height`/`viewBox`, add or fix them (`width="16" height="16" viewBox="0 0 16 16"`).
-    - Example: 
-        ```html
-            <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor" ...>
-        ```
-----
+    - General main svg element example: 
+        <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+          <!-- SVG paths/elements go here -->
+        </svg>
 
+----
 ## 🚦 Operations
 
 ### **Read (List Icons)**
@@ -47,7 +45,7 @@ Follow each step strictly and in the given order, according to the requested ope
 
 ### **Edit (Update)**
 1. **Locate SVG file by input name** in `packages/icons/src/assets`.
-2. **Modify** the SVG according to the request (replace with new codatecified).
+2. **Modify** the SVG according to the request (replace with new code as specified).
    - Maintain required attributes: `width="16" height="16" viewBox="0 0 16 16"`.
 3. **Continue with Changelog, Yarn versioning (as a PATCH bump), and PR steps below.**
 
@@ -61,25 +59,10 @@ Follow each step strictly and in the given order, according to the requested ope
 ----
 
 ## **Required Steps**
-### 1. **Changelog updates**
+### 1. **Yarn versioning file**
+1.1. Run `yarn workspaces foreach --all version decline --deferred` to create a new version file in `.yarn/versions` declining by default everything. *THIS STEP IS CRITICAL*.
 
-* Update the `packages/icons/CHANGELOG.md` file with the new icon.
-
-### General Structure
-
-```md
-## YYYY-MM-DD `VERSION` (with TODAY'S DATE) (patch/minor/major version bump from the previous version) 
-
-#### 🎉 New features
-
-- Adds/Creates/Deletes `[icon-name]` icon. (#PR_NUMBER by @NimbusAgent)
-```
-
-Note: The PR number should be the number of the current PR that creates the icon. It should be the latest PR number in this Github repository plus one.
-
-### 2. **Yarn versioning file**
-4.1. Run `yarn workspaces foreach --all version decline --deferred` to create a new version file in `.yarn/versions` declining by default everything.. THIS STEP IS CRITICAL.
-4.2. In the generated file inside `.yarn/versions` move the `@nimbus-ds/icons` package into the releases section with a version bump depending on the type of change. Example:
+1.2. In the generated file inside `.yarn/versions` move the `@nimbus-ds/icons` package into the releases section with a version bump *depending on the type of the change*. Example:
 
 ```yml
 releases:
@@ -89,14 +72,31 @@ declined:
     nimbus-design-system
     ...rest of the packages
 ```
+* PATCH for updates. MINOR for additions. MAJOR for deletions.
 * ALWAYS decline the `nimbus-design-system` root package and all packages that are not `@nimbus-ds/icons`.
 
-4.3. Run `yarn bump:check` and read the errors.
+1.3. Run `yarn bump:check` and read the errors.
 
-**When creating a PR:**
-   - Commit using the format: `feat(icons): add [icon-name] icon`
+### 2. **Changelog updates**
+
+* Update the `packages/icons/CHANGELOG.md` file with the new icon.
+
+#### General Structure
+
+```md
+## YYYY-MM-DD `VERSION` (with TODAY'S DATE) (patch/minor/major version bump from the previous version) 
+
+#### 🎉 New features
+
+- Adds/Creates/Deletes `[icon-name]` icon. (#PR_NUMBER by @NimbusAgent)
+```
+
+Note: The PR_NUMBER text should be the number of the current PR that creates the icon (following step). It should be the latest PR number in this Github repository plus one.
+
+### 3. **PR Creation:**
+   - Commit using the format: `feat(icons): add [icon-name] icon` (or `feat(icons): update [icon-name] icon` or `feat(icons): delete [icon-name] icon`)
    - Always create a branch from the latest `main`.
-   - Push branch and open a PR titled: `feat: Add [icon-name] icon`.
+   - Push branch and open a PR titled: `feat: Add [icon-name] icon` (or `feat: Update [icon-name] icon` or `feat: Delete [icon-name] icon`).
 
 ## **Never Do the Following**
 * Do not place icon files outside of `packages/icons/src/assets`.
