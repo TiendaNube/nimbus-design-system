@@ -86,7 +86,7 @@ declined:
 #### General Structure
 
 ```md
-## YYYY-MM-DD `VERSION` (with TODAY'S DATE) (patch/minor/major version bump from the previous version) 
+## YYYY-MM-DD `VERSION` (DATE from the user input) (patch/minor/major version bump from the previous version) 
 
 #### 🎉 New features
 
@@ -106,4 +106,5 @@ Note: The PR_NUMBER text should be the number of the current PR that creates the
 * Do not use uppercase letters or underscores in filenames.
 * Do not directly commit changes to `main`. Always use a dedicated branch FROM MAIN and open a PR.
 * NEVER run `yarn bump:check --interactive`. Modify the version file manually instead.
+* NEVER try to get the current date from the system. Use the date from the user input or leave it `YYYY-MM-DD` if not provided.
 * ALWAYS write EXACTLY the same SVG code as the one provided by the user, except for the `width`, `height`, and `viewBox` attributes.
