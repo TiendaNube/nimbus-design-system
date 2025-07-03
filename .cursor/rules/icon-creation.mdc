@@ -39,16 +39,17 @@ Follow each step strictly and in the given order, according to the requested ope
    - Create the new SVG file in `packages/icons/src/assets`, lowercase and dash-separated (e.g., `shopping-cart.svg`).
    - Exported icon component should be PascalCase + "Icon" (e.g., `ShoppingCartIcon`).
 2. **SVG Attributes**
-   - Ensure: `width="16" height="16" viewBox="0 0 16 16" fill="currentColor"`.
+   - Maintain required attributes: `width="16" height="16" viewBox="0 0 16 16" fill="currentColor"`.
 3. **Continue with Changelog, Yarn versioning (as a MINOR bump), and PR steps below.**
 
 ----
 
 ### **Edit (Update)**
 1. **Locate SVG file by input name** in `packages/icons/src/assets`.
-2. **Modify** the SVG according to the request (replace with EXACTLY the same SVG code as the one provided by the user, except for the `width`, `height`, and `viewBox` attributes).
+2. **DELETE** the existing SVG file.
+3. **CREATE** a new SVG file with the same name, and EXACTLY the same SVG code as the one provided by the user, except for the `width`, `height`, and `viewBox` attributes. Follow the **Create** operation steps.
    - Maintain required attributes: `width="16" height="16" viewBox="0 0 16 16" fill="currentColor"`.
-3. **Continue with Changelog, Yarn versioning (as a PATCH bump), and PR steps below.**
+4. **Continue with Changelog, Yarn versioning (as a PATCH bump), and PR steps below.**
 
 ----
 
