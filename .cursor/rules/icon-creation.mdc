@@ -41,7 +41,7 @@ Follow each step strictly and in the given order, according to the requested ope
    - Exported icon component should be PascalCase + "Icon" (e.g., `ShoppingCartIcon`).
 2. **SVG Attributes**
    - Ensure: `width="16" height="16" viewBox="0 0 16 16"`.
-3. **Continue with Changelog, Yarn versioning, and PR steps below.**
+3. **Continue with Changelog, Yarn versioning (as a MINOR bump), and PR steps below.**
 
 ----
 
@@ -49,14 +49,14 @@ Follow each step strictly and in the given order, according to the requested ope
 1. **Locate SVG file by input name** in `packages/icons/src/assets`.
 2. **Modify** the SVG according to the request (replace with new codatecified).
    - Maintain required attributes: `width="16" height="16" viewBox="0 0 16 16"`.
-3. **Continue with Changelog, Yarn versioning, and PR steps below.**
+3. **Continue with Changelog, Yarn versioning (as a PATCH bump), and PR steps below.**
 
 ----
 
 ### **Delete**
 1. **Locate SVG file by input name** in `packages/icons/src/assets`.
 2. **Delete** the SVG file.
-3. **Continue with Changelog, Yarn versioning, and PR steps below.**
+3. **Continue with Changelog, Yarn versioning (as a MAJOR bump), and PR steps below.**
 
 ----
 
@@ -79,11 +79,11 @@ Note: The PR number should be the number of the current PR that creates the icon
 
 ### 2. **Yarn versioning file**
 4.1. Run `yarn workspaces foreach --all version decline --deferred` to create a new version file in `.yarn/versions` declining by default everything.. THIS STEP IS CRITICAL.
-4.2. In the generated file inside `.yarn/versions` move the `@nimbus-ds/icons` package into the releases section with a minor version bump. Example:
+4.2. In the generated file inside `.yarn/versions` move the `@nimbus-ds/icons` package into the releases section with a version bump depending on the type of change. Example:
 
 ```yml
 releases:
-  @nimbus-ds/icons: minor
+  @nimbus-ds/icons: patch/minor/major
 
 declined: 
     nimbus-design-system
