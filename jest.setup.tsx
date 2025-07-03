@@ -11,7 +11,6 @@ jest.mock("@nimbus-ds/icons", () => ({
   ExclamationTriangleIcon: () => <svg />,
   CheckCircleIcon: () => <svg />,
   PlusCircleIcon: () => <svg />,
-  EyeIcon: () => <svg />,
   EyeOffIcon: () => <svg />,
   SearchIcon: () => <svg />,
   ChevronDownIcon: () => <svg />,

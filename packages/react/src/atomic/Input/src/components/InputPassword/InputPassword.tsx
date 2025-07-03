@@ -5,9 +5,7 @@ import React, {
   useState,
 } from "react";
 import { useRefObjectAsForwardedRef } from "@nimbus-ds/typings";
-import { EyeIcon, EyeOffIcon } from "@nimbus-ds/icons";
 import { input } from "@nimbus-ds/styles";
-import { Icon } from "@nimbus-ds/icon";
 
 import { InputIcon } from "../InputIcon";
 import { InputPasswordBaseProps } from "./inputPassword.types";
@@ -55,15 +53,9 @@ const InputPassword = forwardRef<HTMLInputElement, InputPasswordBaseProps>(
               handleShow();
             }}
           >
-            <Icon
-              color="neutral-textDisabled"
-              source={
-                <Icon
-                  color="primary-interactive"
-                  source={show ? <EyeOffIcon /> : <EyeIcon />}
-                />
-              }
-            />
+            <span style={{ fontSize: '0.75rem', userSelect: 'none' }}>
+              {show ? 'Hide' : 'Show'}
+            </span>
           </InputIcon>
         )}
       </div>
