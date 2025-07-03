@@ -17,12 +17,13 @@ Follow each step strictly and in the given order, according to the requested ope
 2. **SVG Quality & Optimization Check (for Create/Edit):**
    - Analyze SVG for bad practices: excessive/unnecessary elements, comments, or metadata.
    - If issues are found, recommend users to use SVGOMG (https://jakearchibald.github.io/svgomg/) and output the feedback.
-   - If missing `width`/`height`/`viewBox`, add or fix them (`width="16" height="16" viewBox="0 0 16 16"`).
+   - If missing `width`/`height`/`viewBox`/`fill` attributes, add them (`width="16" height="16" viewBox="0 0 16 16" fill="currentColor"`).
     - General main svg element example: 
+    ```xml
         <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
           <!-- SVG paths/elements go here -->
         </svg>
-
+    ```
 ----
 ## 🚦 Operations
 
@@ -35,18 +36,18 @@ Follow each step strictly and in the given order, according to the requested ope
 
 ### **Create**
 1. **File Creation**
-   - Create new SVG file in `packages/icons/src/assets`, lowercase and dash-separated (e.g., `shopping-cart.svg`).
+   - Create the new SVG file in `packages/icons/src/assets`, lowercase and dash-separated (e.g., `shopping-cart.svg`).
    - Exported icon component should be PascalCase + "Icon" (e.g., `ShoppingCartIcon`).
 2. **SVG Attributes**
-   - Ensure: `width="16" height="16" viewBox="0 0 16 16"`.
+   - Ensure: `width="16" height="16" viewBox="0 0 16 16" fill="currentColor"`.
 3. **Continue with Changelog, Yarn versioning (as a MINOR bump), and PR steps below.**
 
 ----
 
 ### **Edit (Update)**
 1. **Locate SVG file by input name** in `packages/icons/src/assets`.
-2. **Modify** the SVG according to the request (replace with new code as specified).
-   - Maintain required attributes: `width="16" height="16" viewBox="0 0 16 16"`.
+2. **Modify** the SVG according to the request (replace with EXACTLY the same SVG code as the one provided by the user, except for the `width`, `height`, and `viewBox` attributes).
+   - Maintain required attributes: `width="16" height="16" viewBox="0 0 16 16" fill="currentColor"`.
 3. **Continue with Changelog, Yarn versioning (as a PATCH bump), and PR steps below.**
 
 ----
@@ -104,3 +105,4 @@ Note: The PR_NUMBER text should be the number of the current PR that creates the
 * Do not use uppercase letters or underscores in filenames.
 * Do not directly commit changes to `main`. Always use a dedicated branch FROM MAIN and open a PR.
 * NEVER run `yarn bump:check --interactive`. Modify the version file manually instead.
+* ALWAYS write EXACTLY the same SVG code as the one provided by the user, except for the `width`, `height`, and `viewBox` attributes.
