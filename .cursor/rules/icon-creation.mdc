@@ -68,7 +68,7 @@ Follow each step strictly and in the given order, according to the requested ope
 ### General Structure
 
 ```md
-## YYYY-MM-DD `VERSION` (with TODAY'S DATE) (minor version bump from the previous version) 
+## YYYY-MM-DD `VERSION` (with TODAY'S DATE) (patch/minor/major version bump from the previous version) 
 
 #### 🎉 New features
 
