@@ -1,5 +1,5 @@
 ---
-description: Use this rule whenever creating new SVG icons for the project.   It specifies step-by-step requirements that must be strictly followed.
+description: Use this rule whenever performing Create, Read, Edit (Update), or Delete operations on SVG icons in the project. This rule defines strict, step-by-step requirements for each operation.
 globs: 
 alwaysApply: false
 ---
@@ -72,7 +72,7 @@ Follow each step strictly and in the given order, according to the requested ope
 
 #### 🎉 New features
 
-- Adds `[icon-name]` icon. (#PR_NUMBER by @NimbusAgent)
+- Adds/Creates/Deletes `[icon-name]` icon. (#PR_NUMBER by @NimbusAgent)
 ```
 
 Note: The PR number should be the number of the current PR that creates the icon. It should be the latest PR number in this Github repository plus one.
