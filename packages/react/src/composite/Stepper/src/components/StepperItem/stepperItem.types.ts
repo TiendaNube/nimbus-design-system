@@ -18,4 +18,4 @@ export interface StepperItemProperties {
 }
 
 export type StepperItemProps = StepperItemProperties &
-  HTMLAttributes<HTMLDivElement>; 
+  HTMLAttributes<HTMLDivElement>;

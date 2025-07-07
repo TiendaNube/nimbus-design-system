@@ -18,4 +18,4 @@ export interface StepperContextValue {
    * Callback to handle step selection
    */
   onSelect?: (step: number) => void;
-} 
+}
