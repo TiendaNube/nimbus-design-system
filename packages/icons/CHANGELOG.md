@@ -2,6 +2,12 @@
 
 Nimbus-icons is an open source icon system built by Nuvemshop / Tiendanube.
 
+## 2025-07-08 `1.11.0`
+
+#### 🎉 New features
+
+- Updates `online-store` icon. ([#TBD](https://github.com/TiendaNube/nimbus-design-system/pull/TBD) by [@NimbusAgent](https://github.com/NimbusAgent))
+
 ## 2025-07-03 `1.10.0`
 
 #### 🎉 New features
