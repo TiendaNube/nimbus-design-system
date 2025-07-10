@@ -7,7 +7,6 @@ Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team 
 #### 🎉 New features
 
 - `Popover`: Added `overlay` property to render an invisible overlay that prevents accidental clicks on elements behind the popover when enabled. This improves UX by providing click protection without visual interference. ([#XXX](https://github.com/TiendaNube/nimbus-design-system/pull/XXX) by [@usuario](https://github.com/usuario))
-- `Popover`: Added automatic event bubbling prevention on popover trigger clicks to avoid parent element click handlers being triggered. This improves UX when popovers are placed inside clickable containers like table rows or cards. ([#XXX](https://github.com/TiendaNube/nimbus-design-system/pull/XXX) by [@usuario](https://github.com/usuario))
 
 ## 2025-06-09 `5.12.0`
 
