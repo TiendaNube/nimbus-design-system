@@ -1,7 +1,7 @@
 {
   "id": "popover",
   "name": "Popover",
-  "totalProps": 19,
+  "totalProps": 20,
   "packageName": "@nimbus-ds/popover",
   "version": "4.2.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/popover",
@@ -87,6 +87,13 @@
       "required": false
     },
     {
+      "description": "When enabled, renders an invisible overlay that prevents accidental clicks on elements behind the popover.",
+      "default": false,
+      "type": "boolean",
+      "title": "overlay",
+      "required": false
+    },
+    {
       "description": "Offest displaces the floating element from its core placement along the specified axes.",
       "default": 10,
       "type": "number",
@@ -118,12 +125,7 @@
             }
           },
           "additionalProperties": false,
-          "propertyOrder": [
-            "xs",
-            "md",
-            "lg",
-            "xl"
-          ]
+          "propertyOrder": ["xs", "md", "lg", "xl"]
         },
         {
           "type": "string"
@@ -156,12 +158,7 @@
             }
           },
           "additionalProperties": false,
-          "propertyOrder": [
-            "xs",
-            "md",
-            "lg",
-            "xl"
-          ]
+          "propertyOrder": ["xs", "md", "lg", "xl"]
         },
         {
           "type": "string"
@@ -194,12 +191,7 @@
             }
           },
           "additionalProperties": false,
-          "propertyOrder": [
-            "xs",
-            "md",
-            "lg",
-            "xl"
-          ]
+          "propertyOrder": ["xs", "md", "lg", "xl"]
         },
         {
           "type": "string"
@@ -276,12 +268,7 @@
             }
           },
           "additionalProperties": false,
-          "propertyOrder": [
-            "xs",
-            "md",
-            "lg",
-            "xl"
-          ]
+          "propertyOrder": ["xs", "md", "lg", "xl"]
         },
         {
           "enum": [
@@ -363,12 +350,7 @@
             }
           },
           "additionalProperties": false,
-          "propertyOrder": [
-            "xs",
-            "md",
-            "lg",
-            "xl"
-          ]
+          "propertyOrder": ["xs", "md", "lg", "xl"]
         },
         {
           "enum": [
@@ -447,12 +429,7 @@
             }
           },
           "additionalProperties": false,
-          "propertyOrder": [
-            "xs",
-            "md",
-            "lg",
-            "xl"
-          ]
+          "propertyOrder": ["xs", "md", "lg", "xl"]
         },
         {
           "enum": [
@@ -478,56 +455,31 @@
           "type": "object",
           "properties": {
             "xs": {
-              "enum": [
-                "base",
-                "none",
-                "small"
-              ],
+              "enum": ["base", "none", "small"],
               "type": "string",
               "title": "xs"
             },
             "md": {
-              "enum": [
-                "base",
-                "none",
-                "small"
-              ],
+              "enum": ["base", "none", "small"],
               "type": "string",
               "title": "md"
             },
             "lg": {
-              "enum": [
-                "base",
-                "none",
-                "small"
-              ],
+              "enum": ["base", "none", "small"],
               "type": "string",
               "title": "lg"
             },
             "xl": {
-              "enum": [
-                "base",
-                "none",
-                "small"
-              ],
+              "enum": ["base", "none", "small"],
               "type": "string",
               "title": "xl"
             }
           },
           "additionalProperties": false,
-          "propertyOrder": [
-            "xs",
-            "md",
-            "lg",
-            "xl"
-          ]
+          "propertyOrder": ["xs", "md", "lg", "xl"]
         },
         {
-          "enum": [
-            "base",
-            "none",
-            "small"
-          ],
+          "enum": ["base", "none", "small"],
           "type": "string"
         }
       ],
@@ -541,61 +493,31 @@
           "type": "object",
           "properties": {
             "xs": {
-              "enum": [
-                "auto",
-                "hidden",
-                "scroll",
-                "visible"
-              ],
+              "enum": ["auto", "hidden", "scroll", "visible"],
               "type": "string",
               "title": "xs"
             },
             "md": {
-              "enum": [
-                "auto",
-                "hidden",
-                "scroll",
-                "visible"
-              ],
+              "enum": ["auto", "hidden", "scroll", "visible"],
               "type": "string",
               "title": "md"
             },
             "lg": {
-              "enum": [
-                "auto",
-                "hidden",
-                "scroll",
-                "visible"
-              ],
+              "enum": ["auto", "hidden", "scroll", "visible"],
               "type": "string",
               "title": "lg"
             },
             "xl": {
-              "enum": [
-                "auto",
-                "hidden",
-                "scroll",
-                "visible"
-              ],
+              "enum": ["auto", "hidden", "scroll", "visible"],
               "type": "string",
               "title": "xl"
             }
           },
           "additionalProperties": false,
-          "propertyOrder": [
-            "xs",
-            "md",
-            "lg",
-            "xl"
-          ]
+          "propertyOrder": ["xs", "md", "lg", "xl"]
         },
         {
-          "enum": [
-            "auto",
-            "hidden",
-            "scroll",
-            "visible"
-          ],
+          "enum": ["auto", "hidden", "scroll", "visible"],
           "type": "string"
         }
       ],

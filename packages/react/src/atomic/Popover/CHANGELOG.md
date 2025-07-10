@@ -2,6 +2,13 @@
 
 Use Popovers to bring attention to specific user interface elements and suggest an action or to guide users through a new experience
 
+## 2025-01-17 `4.3.0`
+
+#### 🎉 New features
+
+- Added `overlay` property to render an invisible overlay that prevents accidental clicks on elements behind the popover when enabled. This improves UX by providing click protection without visual interference. ([#XXX](https://github.com/TiendaNube/nimbus-design-system/pull/XXX) by [@usuario](https://github.com/usuario))
+- Added automatic event bubbling prevention on popover trigger clicks to avoid parent element click handlers being triggered. This improves UX when popovers are placed inside clickable containers like table rows or cards. ([#XXX](https://github.com/TiendaNube/nimbus-design-system/pull/XXX) by [@usuario](https://github.com/usuario))
+
 ## 2025-03-18 `4.2.0`
 
 #### 🎉 New features

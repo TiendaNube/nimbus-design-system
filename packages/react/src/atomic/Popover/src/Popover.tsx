@@ -34,6 +34,7 @@ const Popover: React.FC<PopoverProps> = ({
   enabledDismiss = true,
   enabledClick = true,
   matchReferenceWidth = false,
+  overlay = false,
   children,
   content,
   ...rest
@@ -102,8 +103,32 @@ const Popover: React.FC<PopoverProps> = ({
     }),
     useDismiss(context, {
       enabled: enabledDismiss,
+      outsidePressEvent: overlay ? "mousedown" : undefined,
     }),
   ]);
+
+  const popoverContent = (
+    <div
+      {...otherProps}
+      ref={context.refs.setFloating}
+      className={[popover.classnames.content, className].join(" ")}
+      style={{
+        ...style,
+        ...floatingStyles,
+      }}
+      {...getFloatingProps()}
+    >
+      {content}
+      {arrow && (
+        <FloatingArrow
+          data-testid="arrow-element"
+          ref={arrowRef}
+          context={context}
+          fill="currentColor"
+        />
+      )}
+    </div>
+  );
 
   return (
     <>
@@ -124,26 +149,15 @@ const Popover: React.FC<PopoverProps> = ({
         root={refThemeProvider?.current}
       >
         {open && (
-          <div
-            {...otherProps}
-            ref={context.refs.setFloating}
-            className={[popover.classnames.content, className].join(" ")}
-            style={{
-              ...style,
-              ...floatingStyles,
-            }}
-            {...getFloatingProps()}
-          >
-            {content}
-            {arrow && (
-              <FloatingArrow
-                data-testid="arrow-element"
-                ref={arrowRef}
-                context={context}
-                fill="currentColor"
+          <>
+            {overlay && (
+              <div
+                className={popover.classnames.overlay}
+                data-testid="popover-overlay"
               />
             )}
-          </div>
+            {popoverContent}
+          </>
         )}
       </FloatingPortal>
     </>

@@ -1,0 +1,7 @@
+releases:
+  "@nimbus-ds/popover": minor
+  "@nimbus-ds/styles": minor
+
+declined:
+  - nimbus-design-system
+  - "@nimbus-ds/stepper"

@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2025-01-17 `9.17.0`
+
+#### 🎉 New features
+
+- Added transparent overlay styles for `Popover` component to support invisible click protection functionality. The overlay provides full-screen coverage with transparent background and proper z-index stacking. ([#XXX](https://github.com/TiendaNube/nimbus-design-system/pull/XXX) by [@usuario](https://github.com/usuario))
+
 ## 2025-06-17 `9.16.1`
 
 #### 🐛 Bug fixes
