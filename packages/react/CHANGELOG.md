@@ -2,11 +2,11 @@
 
 Nimbus is an open-source Design System created by Tiendanube / Nuvesmhop’s team to empower and enhance more stories every day, with simplicity, accessibility, consistency and performance.
 
-## 2025-01-27 `5.12.1`
+## 2025-07-10 `5.12.1`
 
 #### 🐛 Bug fixes
 
-- `Button`: Adjusted button height from `2.125rem` to `2rem` to match design specifications. ([#TBD](https://github.com/TiendaNube/nimbus-design-system/pull/TBD) by [@TBD](https://github.com/TBD))
+- `Button`: Adjusted button height from `2.125rem` to `2rem` to match design specifications. ([#310](https://github.com/TiendaNube/nimbus-design-system/pull/310) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-06-09 `5.12.0`
 
