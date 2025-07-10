@@ -4,6 +4,7 @@ releases:
   "@nimbus-ds/styles": patch
 
 declined:
+  - nimbus-design-system
   - "@nimbus-ds/alert"
   - "@nimbus-ds/card"
   - "@nimbus-ds/modal"
