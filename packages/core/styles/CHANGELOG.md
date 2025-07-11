@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2025-07-10 `9.16.2`
+
+#### 🐛 Bug fixes
+
+- `Button`: Adjusted button height from `2.125rem` to `2rem` to match design specifications. ([#310](https://github.com/TiendaNube/nimbus-design-system/pull/310) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-06-17 `9.16.1`
 
 #### 🐛 Bug fixes

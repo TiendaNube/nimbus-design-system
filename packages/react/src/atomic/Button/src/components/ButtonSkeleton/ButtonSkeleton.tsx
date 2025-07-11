@@ -9,7 +9,7 @@ const ButtonSkeleton: React.FC<ButtonSkeletonProps> = ({
 }) => (
   <Skeleton
     width={width ?? "4.75rem"}
-    height="2.125rem"
+    height="2rem"
     borderRadius="0.5rem"
     data-testid={dataTestId}
   />

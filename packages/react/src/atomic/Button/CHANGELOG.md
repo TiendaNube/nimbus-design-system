@@ -2,6 +2,12 @@
 
 The Button component allows us to initiate actions, make state or page changes.
 
+## 2025-07-10 `2.6.1`
+
+#### 🐛 Bug fixes
+
+- Adjusted button height from `2.125rem` to `2rem` to match design specifications. ([#310](https://github.com/TiendaNube/nimbus-design-system/pull/310) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-03-18 `2.6.0`
 
 #### 🎉 New features
