@@ -6,7 +6,7 @@ Nimbus-icons is an open source icon system built by Nuvemshop / Tiendanube.
 
 #### 🐛 Bug fixes
 
-- Updates `online-store` icon. (#293 by @NimbusAgent)
+- Updates `store` icon. (#293 by @NimbusAgent)
 
 ## 2025-05-20 `1.9.0`
 
