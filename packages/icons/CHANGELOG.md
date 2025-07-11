@@ -2,6 +2,12 @@
 
 Nimbus-icons is an open source icon system built by Nuvemshop / Tiendanube.
 
+## YYYY-MM-DD `1.9.1`
+
+#### 💡 Others
+
+- Updates `cashier` icon. (#293 by @NimbusAgent)
+
 ## 2025-05-20 `1.9.0`
 
 #### 🎉 New features
