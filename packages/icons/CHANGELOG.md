@@ -6,10 +6,11 @@ Nimbus-icons is an open source icon system built by Nuvemshop / Tiendanube.
 
 #### 🎉 New features
 
-- Updated `discount-circle` icon with new design. ([#293](https://github.com/TiendaNube/nimbus-design-system/pull/293))
-- Updated `stores` icon. ([#310](https://github.com/TiendaNube/nimbus-design-system/pull/310) by [@NimbusAgent](https://github.com/NimbusAgent))
-- Updated `cashier` icon. ([#310](https://github.com/TiendaNube/nimbus-design-system/pull/310) by [@NimbusAgent](https://github.com/NimbusAgent))
-- Adds `pinterest` icon. ([#310](https://github.com/TiendaNube/nimbus-design-system/pull/310) by [@NimbusAgent](https://github.com/NimbusAgent))
+- Updated `discount-circle` icon with new design. ([#315](https://github.com/TiendaNube/nimbus-design-system/pull/315) by [@noecondoleo](https://github.com/noecondoleo))
+- Updated `stores` icon. ([#315](https://github.com/TiendaNube/nimbus-design-system/pull/315) by [@noecondoleo](https://github.com/noecondoleo))
+- Updated `cashier` icon. ([#315](https://github.com/TiendaNube/nimbus-design-system/pull/315) by [@noecondoleo](https://github.com/noecondoleo))
+- Adds `pinterest` icon. ([#315](https://github.com/TiendaNube/nimbus-design-system/pull/315) by [@noecondoleo](https://github.com/noecondoleo))
+- Updates `online-store` icon. ([#315](https://github.com/TiendaNube/nimbus-design-system/pull/315) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
 
 ## 2025-07-03 `1.10.0`
 
