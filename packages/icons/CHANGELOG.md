@@ -4,9 +4,10 @@ Nimbus-icons is an open source icon system built by Nuvemshop / Tiendanube.
 
 ## 2025-07-15 `1.11.0`
 
-#### 🔄 Updated
+#### 🎉 New features
 
 - Updated `discount-circle` icon with new design. ([#293](https://github.com/TiendaNube/nimbus-design-system/pull/293))
+- Updated `stores` icon. ([#310](https://github.com/TiendaNube/nimbus-design-system/pull/310) by [@NimbusAgent](https://github.com/NimbusAgent))
 - Adds `pinterest` icon. ([#310](https://github.com/TiendaNube/nimbus-design-system/pull/310) by [@NimbusAgent](https://github.com/NimbusAgent))
 
 ## 2025-07-03 `1.10.0`
