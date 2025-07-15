@@ -6,9 +6,9 @@ Nimbus-icons is an open source icon system built by Nuvemshop / Tiendanube.
 
 #### 🎉 New features
 
-- Updated `discount-circle` icon with new design. ([#315](https://github.com/TiendaNube/nimbus-design-system/pull/315) by [@noecondoleo](https://github.com/noecondoleo))
-- Updated `stores` icon. ([#315](https://github.com/TiendaNube/nimbus-design-system/pull/315) by [@noecondoleo](https://github.com/noecondoleo))
-- Updated `cashier` icon. ([#315](https://github.com/TiendaNube/nimbus-design-system/pull/315) by [@noecondoleo](https://github.com/noecondoleo))
+- Updates `discount-circle` icon with new design. ([#315](https://github.com/TiendaNube/nimbus-design-system/pull/315) by [@noecondoleo](https://github.com/noecondoleo))
+- Updates `stores` icon. ([#315](https://github.com/TiendaNube/nimbus-design-system/pull/315) by [@noecondoleo](https://github.com/noecondoleo))
+- Updates `cashier` icon. ([#315](https://github.com/TiendaNube/nimbus-design-system/pull/315) by [@noecondoleo](https://github.com/noecondoleo))
 - Adds `pinterest` icon. ([#315](https://github.com/TiendaNube/nimbus-design-system/pull/315) by [@noecondoleo](https://github.com/noecondoleo))
 - Updates `online-store` icon. ([#315](https://github.com/TiendaNube/nimbus-design-system/pull/315) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
 
