@@ -1,83 +1,109 @@
 ---
-description: Use this rule whenever creating new SVG icons for the project.   It specifies step-by-step requirements that must be strictly followed.
+description: Use this rule whenever performing Create, Read, Edit (Update), or Delete operations on SVG icons in the project. This rule defines strict, step-by-step requirements for each operation.
 globs: 
 alwaysApply: false
 ---
+# SVG Icon CRUD Steps
 
-# SVG Icon Creation Steps
-Follow each step precisely and strictly in the given order.
+Follow each step strictly and in the given order, according to the requested operation: **Create, Read, Edit (Update), or Delete**.
 
-## Pre-conditions (MUST CHECK BEFORE CHANGES)
-1. **Duplicate Check:**
-   * Carefully search for icons in the repository with names that are strictly equal or visually similar to the new icon.
-   * If a match or a similar icon exists, notify the user and **do not proceed with the operation**.
+----
 
-2. **SVG Quality & Optimization Check:**
+## Pre-conditions (ALWAYS CHECK BEFORE CHANGES)
+1. **Duplicate Check (for Create/Edit):**
+   - For **Create**: Search for icons in the repository with strictly equal or visually similar names. If a match exists, notify the user and do not proceed.
+   - For **Edit/Delete**: Ensure the target icon exists. If not, report to user and do not proceed.
 
-   * Before accepting the SVG, analyze it for common bad practices:
-     * Excessive/unnecessary HTML elements, comments, metadata, or definitions.
+2. **SVG Quality & Optimization Check (for Create/Edit):**
+   - Analyze SVG for bad practices: excessive/unnecessary elements, comments, or metadata.
+   - If issues are found, recommend users to use SVGOMG (https://jakearchibald.github.io/svgomg/) and output the feedback.
+   - If missing `width`/`height`/`viewBox`/`fill` attributes, add them (`width="16" height="16" viewBox="0 0 16 16" fill="currentColor"`).
+    - General main svg element example: 
+    ```xml
+        <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+          <!-- SVG paths/elements go here -->
+        </svg>
+    ```
+----
+## 🚦 Operations
 
-   * If the SVG contains these issues, **do not continue**. Instead, return feedback to the user with analysis, and recommend using [SVGOMG](https://jakearchibald.github.io/svgomg) or similar optimization tools.
-   * Ignore optimization issues as they will be fixed by the build process. If the SVG is missing width and height attributes, add them. If the SVG is missing or have a different viewBox, update it to `0 0 16 16`.
+### **Read (List Icons)**
+- List all icon files in `packages/icons/src/assets`.
+- List the icon names in **PascalCase format**, sorted alphabetically.
+- Output the list.
+
+----
+
+### **Create**
+1. **File Creation**
+   - Create the new SVG file in `packages/icons/src/assets`, lowercase and dash-separated (e.g., `shopping-cart.svg`).
+   - Exported icon component should be PascalCase + "Icon" (e.g., `ShoppingCartIcon`).
+2. **SVG Attributes**
+   - Maintain required attributes: `width="16" height="16" viewBox="0 0 16 16" fill="currentColor"`.
+3. **Continue with Changelog, Yarn versioning (as a MINOR bump), and PR steps below.**
+
+----
+
+### **Edit (Update)**
+1. **Locate SVG file by input name** in `packages/icons/src/assets` and REMEMBER its name.
+2. **DELETE** the existing SVG file.
+3. **CREATE** a new SVG file with the same name, and EXACTLY the same SVG code as the one provided by the user, except for the `width`, `height`, and `viewBox` attributes. Follow the **Create** operation steps.
+   - Maintain required attributes: `width="16" height="16" viewBox="0 0 16 16" fill="currentColor"`.
+4. **Continue with Changelog, Yarn versioning (as a PATCH bump), and PR steps below.**
+
+----
+
+### **Delete**
+1. **Locate SVG file by input name** in `packages/icons/src/assets`.
+2. **Delete** the SVG file.
+3. **Continue with Changelog, Yarn versioning (as a MAJOR bump), and PR steps below.**
+
+----
 
 ## **Required Steps**
-### 1. **File Creation**
+### 1. **Yarn versioning file**
+1.1. Run `yarn workspaces foreach --all version decline --deferred` to create a new version file in `.yarn/versions` declining by default everything. *THIS STEP IS CRITICAL*.
 
-* Create the new icon in the `packages/icons/src/assets` directory.
-
-* Filename must:
-
-  * Be lowercase
-  * Use dashes (`-`) as separators
-  * End with `.svg`
-
-**Example:** `shopping-cart.svg`
-
-* Final exported icon component name should use PascalCase with suffix "Icon":
-
-  * Example: `ShoppingCartIcon`
-
-### 2. **SVG Dimensions**
-* Set explicit width and height attributes to exactly `16px` and viewBox to `0 0 16 16`:
-
-```html
-<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor" ...>
-```
-
-### 3. **Changelog updates**
-
-* Update the `packages/icons/CHANGELOG.md` file with the new icon.
-
-### General Structure
-
-```md
-## YYYY-MM-DD `VERSION` (minor version bump from the previous version)
-
-#### 🎉 New features
-
-- Adds `[icon-name]` icon. ([#PR_NUMBER](https://github.com/TiendaNube/nimbus-design-system/pull/PR_NUMBER) by [@NimbusAgent](https://github.com/NimbusAgent))
-```
-
-### 4. **Yarn versioning file**
-4.1. Run `yarn workspaces foreach --all version decline --deferred` to create a new version file in `.yarn/versions` declining by default everything.. THIS STEP IS CRITICAL.
-4.2. In the generated file inside `.yarn/versions` move the `@nimbus-ds/icons` package into the releases section with a minor version bump. Example:
+1.2. In the generated file inside `.yarn/versions` move the `@nimbus-ds/icons` package into the releases section with a version bump *depending on the type of the change*. Example:
 
 ```yml
 releases:
-  @nimbus-ds/icons: minor
+  @nimbus-ds/icons: patch/minor/major
 
 declined: 
     nimbus-design-system
     ...rest of the packages
 ```
+* PATCH for updates. MINOR for additions. MAJOR for deletions.
+* **Delete any previous `.yarn/versions/*.yml` files for `@nimbus-ds/icons` before committing** – there must be exactly **one** active version file.
 * ALWAYS decline the `nimbus-design-system` root package and all packages that are not `@nimbus-ds/icons`.
 
-4.3. Run `yarn bump:check` and read the errors.
+1.3. Run `yarn bump:check` and read the errors.
 
-### 5. **Create a PR**
-   - Commit using the format: `feat(icons): add [icon-name] icon`
+### 2. **Changelog updates**
+
+* Update the `packages/icons/CHANGELOG.md` file with the new icon.
+
+#### General Structure
+
+```md
+## YYYY-MM-DD `VERSION` (DATE from the user input) (patch/minor/major version bump from the previous version) 
+
+#### 🎉 New features
+
+- Adds/Creates/Deletes `[icon-name]` icon. (#PR_NUMBER by @NimbusAgent)
+```
+
+Note: The PR_NUMBER text should be the number of the current PR that creates the icon (following step). FETCH the latest PR number from this Github repository using the fetch_pull_request tool and add one to it.
+
+### 3. **PR Creation:**
+   - Commit using the format: `feat(icons): add [icon-name] icon` (or `feat(icons): update [icon-name] icon` or `feat(icons): delete [icon-name] icon`)
    - Always create a branch from the latest `main`.
-   - Push branch and open a PR titled: `feat: Add [icon-name] icon`.
+   - Push branch and open a PR titled: `feat: Add [icon-name] icon` (or `feat: Update [icon-name] icon` or `feat: Delete [icon-name] icon`).
+
+
+## **ALWAYS Prioritize the Following**
+* ALWAYS write EXACTLY the same SVG code as the one provided by the user, except for the `width`, `height`, and `viewBox` attributes.
 
 ## **Never Do the Following**
 * Do not place icon files outside of `packages/icons/src/assets`.
@@ -85,3 +111,4 @@ declined:
 * Do not use uppercase letters or underscores in filenames.
 * Do not directly commit changes to `main`. Always use a dedicated branch FROM MAIN and open a PR.
 * NEVER run `yarn bump:check --interactive`. Modify the version file manually instead.
+* NEVER try to get the current date from the system. Use the date from the user input or leave it `YYYY-MM-DD` if not provided.
