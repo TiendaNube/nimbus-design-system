@@ -1,0 +1,37 @@
+{
+  "name": "@nimbus-ds/progress-bar",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "yarn g:webpack",
+    "clean": "rm -rf dist",
+    "version": "yarn version"
+  },
+  "dependencies": {
+    "@nimbus-ds/skeleton": "workspace:^"
+  },
+  "peerDependencies": {
+    "@nimbus-ds/styles": "workspace:^",
+    "react": "^16.8 || ^17.0 || ^18.0",
+    "react-dom": "^16.8 || ^17.0 || ^18.0"
+  },
+  "homepage": "https://nimbus.nuvemshop.com.br/documentation",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TiendaNube/nimbus-design-system.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TiendaNube/nimbus-design-system/issues"
+  },
+  "devDependencies": {
+    "@nimbus-ds/skeleton": "workspace:^",
+    "@nimbus-ds/webpack": "workspace:^",
+    "@nimbus-ds/box": "workspace:^"
+  }
+}

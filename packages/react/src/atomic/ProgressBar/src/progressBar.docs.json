@@ -1,0 +1,50 @@
+{
+  "id": "progress-bar",
+  "name": "ProgressBar",
+  "totalProps": 2,
+  "packageName": "@nimbus-ds/progress-bar",
+  "version": "1.0.0",
+  "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/progress-bar",
+  "props": [
+    {
+      "description": "The progression value between 0 and 100.",
+      "type": "number",
+      "title": "value",
+      "required": true
+    },
+    {
+      "description": "Change the visual style of the progress bar.",
+      "default": "neutral",
+      "enum": [
+        "danger",
+        "neutral",
+        "primary",
+        "success",
+        "warning"
+      ],
+      "type": "string",
+      "title": "appearance",
+      "required": false
+    }
+  ],
+  "subComponents": [
+    {
+      "name": "ProgressBar.Skeleton",
+      "totalProps": 2,
+      "props": [
+        {
+          "description": "Width of the skeleton. Useful when the skeleton is inside an inline element with no width of its own.",
+          "type": "string",
+          "title": "width",
+          "required": false
+        },
+        {
+          "description": "This is an attribute used to identify a DOM node for testing purposes.",
+          "type": "string",
+          "title": "data-testid",
+          "required": false
+        }
+      ]
+    }
+  ]
+} 
