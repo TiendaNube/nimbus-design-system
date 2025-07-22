@@ -22,17 +22,22 @@ We use the ProgressBar component to visually communicate the completion status o
 
 ### Variants
 
-The component has 5 appearance variants that can be used according to the context:
+The component has 6 appearance variants that can be used according to the context:
 
+**Solid Colors:**
 - **Neutral** - Used for general progress indication without specific semantic meaning
 - **Primary** - Used to highlight important progress or main tasks  
 - **Success** - Used to indicate positive progress or successful completion stages
 - **Warning** - Used to indicate caution or attention-required progress
 - **Danger** - Used to indicate critical or error-related progress
 
+**Gradient:**
+- **AI Gradient** - Special gradient variant for AI-related progress indicators with a blue to purple to pink transition
+
 ### Usage recommendations
 
-- Use to show completion percentage of tasks, uploads, downloads, or any measurable operation
+- Use solid colors for simple, clean interfaces where consistency is key
+- Use the AI gradient when displaying progress for AI-related operations or to create a modern, tech-forward visual appeal
 - Ensure the progress value is meaningful and accurately represents the actual completion state
 - Consider adding text labels to provide additional context when necessary
 - Use appropriate appearance variants to convey the semantic meaning of the progress
