@@ -1,13 +1,5 @@
 # Changelog
 
-Use Popovers to bring attention to specific user interface elements and suggest an action or to guide users through a new experience
-
-## TBD `5.0.0`
-
-#### 🛠 Breaking changes
-
-- Renamed `overlay` prop to `renderOverlay` for better clarity and semantic meaning. Update your components to use `renderOverlay` instead of `overlay`.
-
 ## 2025-01-17 `4.3.0`
 
 #### 🎉 New features
