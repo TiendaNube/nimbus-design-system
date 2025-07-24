@@ -2992,6 +2992,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/progress-bar@workspace:packages/react/src/atomic/ProgressBar"
   dependencies:
+    "@nimbus-ds/box": "workspace:^"
     "@nimbus-ds/skeleton": "workspace:^"
     "@nimbus-ds/webpack": "workspace:^"
   peerDependencies:
