@@ -2,7 +2,7 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
-## 2025-01-17 `9.17.0`
+## 2025-07-24 `9.17.0`
 
 #### 🎉 New features
 
