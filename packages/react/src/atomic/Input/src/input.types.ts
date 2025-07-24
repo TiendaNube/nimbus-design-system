@@ -13,7 +13,7 @@ export interface InputProperties {
    * Change the visual style of the input.
    * @default neutral
    */
-  appearance?: "neutral" | "success" | "warning" | "danger";
+  appearance?: "neutral" | "success" | "warning" | "danger" | "ai-gradient";
   /**
    * Disables the input, disallowing user interaction.
    */

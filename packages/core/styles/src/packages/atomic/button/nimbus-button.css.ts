@@ -1,5 +1,6 @@
 import { style, styleVariants } from "@vanilla-extract/css";
 import { varsThemeBase } from "../../../themes";
+import { gradients } from "../../../gradients";
 
 const base = style({
   display: "flex",
@@ -119,6 +120,28 @@ export const appearance = styleVariants({
         color: varsThemeBase.colors.neutral.textDisabled,
         background: "transparent",
         borderColor: "transparent",
+      },
+    },
+  ],
+  "ai-gradient": [
+    base,
+    {
+      background: gradients.aiGradient,
+      borderColor: varsThemeBase.colors.neutral.background,
+      color: varsThemeBase.colors.neutral.background,
+      ":hover": {
+        opacity: "0.9",
+      },
+      ":active": {
+        opacity: "0.8",
+      },
+      ":disabled": {
+        background: varsThemeBase.colors.neutral.surfaceDisabled,
+        borderColor: varsThemeBase.colors.neutral.surfaceHighlight,
+        color: varsThemeBase.colors.neutral.textDisabled,
+      },
+      ":focus": {
+        borderColor: varsThemeBase.colors.primary.interactiveHover,
       },
     },
   ],

@@ -113,3 +113,10 @@ export const transparent: Story = {
     appearance: "transparent",
   },
 };
+
+export const aiGradient: Story = {
+  args: {
+    children: "Button",
+    appearance: "ai-gradient",
+  },
+};

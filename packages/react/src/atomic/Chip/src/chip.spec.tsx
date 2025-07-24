@@ -27,4 +27,18 @@ describe("GIVEN <Chip />", () => {
     });
     expect(screen.getByTestId("close-chip")).toBeDefined();
   });
+
+  it("THEN it should correctly render the neutral appearance by default", () => {
+    makeSut({ text: "chip" });
+    expect(screen.getByTestId("chip-element").getAttribute("class")).toContain(
+      "appearance_neutral"
+    );
+  });
+
+  it("THEN it should correctly render the ai-gradient appearance", () => {
+    makeSut({ text: "chip", appearance: "ai-gradient" });
+    expect(screen.getByTestId("chip-element").getAttribute("class")).toContain(
+      "appearance_ai-gradient"
+    );
+  });
 });

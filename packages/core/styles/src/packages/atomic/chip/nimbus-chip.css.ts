@@ -1,8 +1,9 @@
-import { style as vanillaStyle } from "@vanilla-extract/css";
+import { style as vanillaStyle, styleVariants } from "@vanilla-extract/css";
 
 import { varsThemeBase } from "../../../themes";
+import { createBorderGradient, gradients } from "../../../gradients";
 
-export const base = vanillaStyle({
+const base = vanillaStyle({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
@@ -17,27 +18,63 @@ export const base = vanillaStyle({
   lineHeight: varsThemeBase.lineWeight.body.caption,
   fontSize: varsThemeBase.fontSize.body.caption,
   fontFamily: varsThemeBase.fontFamily.sans,
-  background: varsThemeBase.colors.neutral.surface,
-  color: varsThemeBase.colors.neutral.textHigh,
 
   borderStyle: "solid",
   borderRadius: varsThemeBase.shape.border.radius[1],
   borderWidth: varsThemeBase.shape.border.width[1],
-  borderColor: varsThemeBase.colors.neutral.interactive,
   transition: `all ${varsThemeBase.motion.speed.fast} ease`,
 
-  ":hover": {
-    background: varsThemeBase.colors.neutral.surfaceHighlight,
-    borderColor: varsThemeBase.colors.neutral.interactiveHover,
-  },
   ":focus": {
-    borderColor: varsThemeBase.colors.primary.interactive,
     boxShadow: varsThemeBase.utils.focus,
   },
-  ":active": {
-    background: varsThemeBase.colors.neutral.interactive,
-    borderColor: varsThemeBase.colors.neutral.interactivePressed,
-  },
+});
+
+export const appearance = styleVariants({
+  neutral: [
+    base,
+    {
+      background: varsThemeBase.colors.neutral.surface,
+      color: varsThemeBase.colors.neutral.textHigh,
+      borderColor: varsThemeBase.colors.neutral.interactive,
+      ":hover": {
+        background: varsThemeBase.colors.neutral.surfaceHighlight,
+        borderColor: varsThemeBase.colors.neutral.interactiveHover,
+      },
+      ":focus": {
+        borderColor: varsThemeBase.colors.primary.interactive,
+      },
+      ":active": {
+        background: varsThemeBase.colors.neutral.interactive,
+        borderColor: varsThemeBase.colors.neutral.interactivePressed,
+      },
+    },
+  ],
+  "ai-gradient": [
+    base,
+    {
+      background: createBorderGradient(gradients.aiGradient, varsThemeBase.colors.neutral.surface),
+      color: varsThemeBase.colors.neutral.textHigh,
+      border: `${varsThemeBase.shape.border.width[2]} solid transparent`,
+      borderRadius: varsThemeBase.shape.border.radius[1], // 4px as requested
+      ":hover": {
+        opacity: "0.9",
+        background: createBorderGradient(gradients.aiGradient, varsThemeBase.colors.neutral.surfaceHighlight),
+        border: `${varsThemeBase.shape.border.width[2]} solid transparent`,
+      },
+      ":focus": {
+        borderColor: "transparent",
+        outline: "none",
+        background: createBorderGradient(gradients.aiGradient, varsThemeBase.colors.neutral.interactive),
+        border: `${varsThemeBase.shape.border.width[2]} solid transparent`,
+        boxShadow: varsThemeBase.utils.focus,
+      },
+      ":active": {
+        opacity: "0.8",
+        background: createBorderGradient(gradients.aiGradient, varsThemeBase.colors.neutral.interactive),
+        border: `${varsThemeBase.shape.border.width[2]} solid transparent`,
+      },
+    },
+  ],
 });
 
 export const chip_close_icon_container = vanillaStyle({

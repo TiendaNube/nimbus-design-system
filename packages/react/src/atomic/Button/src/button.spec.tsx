@@ -59,5 +59,12 @@ describe("GIVEN <Button />", () => {
         screen.getByRole("button", { name: "button" }).getAttribute("class")
       ).toContain("appearance_transparent");
     });
+
+    it("AND should correctly render the appearance ai-gradient", () => {
+      makeSut({ appearance: "ai-gradient", children: "button" });
+      expect(
+        screen.getByRole("button", { name: "button" }).getAttribute("class")
+      ).toContain("appearance_ai-gradient");
+    });
   });
 });
