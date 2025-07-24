@@ -90,7 +90,7 @@
       "description": "When enabled, renders an invisible overlay that prevents accidental clicks on elements behind the popover.",
       "default": false,
       "type": "boolean",
-      "title": "overlay",
+      "title": "renderOverlay",
       "required": false
     },
     {

@@ -79,7 +79,7 @@ export interface PopoverProperties extends PopoverSprinkle {
    * When enabled, renders an invisible overlay that prevents accidental clicks on elements behind the popover.
    * @default false
    */
-  overlay?: boolean;
+  renderOverlay?: boolean;
 }
 
 export type PopoverProps = PopoverProperties &

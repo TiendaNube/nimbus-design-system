@@ -36,7 +36,7 @@ We can configure the padding according to the component chosen to be inside the 
 
 The overlay feature provides a completely transparent and invisible layer that prevents accidental clicks on elements behind the popover. This is particularly useful when the popover is positioned over clickable elements and you want to ensure that clicking outside the popover to close it doesn't unintentionally trigger actions on underlying elements.
 
-When `overlay` is enabled:
+When `renderOverlay` is enabled:
 
 - A transparent backdrop covers the entire viewport (completely invisible to users)
 - Clicking outside the popover will close it without triggering underlying elements
@@ -56,7 +56,7 @@ The overlay implementation uses a custom transparent backdrop instead of the sta
 - View list of products within an order
 - View lists of complementary actions
 - Display content related to new features
-- Use overlay when popover appears over interactive elements to prevent accidental clicks
+- Use renderOverlay when popover appears over interactive elements to prevent accidental clicks
 
 ### Related components
 

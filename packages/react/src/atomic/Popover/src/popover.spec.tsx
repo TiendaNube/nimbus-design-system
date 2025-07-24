@@ -141,12 +141,12 @@ describe("GIVEN <Popover />", () => {
       );
     });
 
-    it("THEN should render popover with transparent overlay when overlay prop is true", async () => {
+    it("THEN should render popover with transparent overlay when renderOverlay prop is true", async () => {
       await act(() => {
         makeSut({
           content: <p>string</p>,
           visible: true,
-          overlay: true,
+          renderOverlay: true,
         });
       });
       const popover = screen.getByTestId("popover-element");

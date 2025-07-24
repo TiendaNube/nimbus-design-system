@@ -104,7 +104,7 @@ export const withOverlay: Story = {
   },
   args: {
     content: <Text color="primary-textLow">Info popover 👻 </Text>,
-    overlay: true,
+    renderOverlay: true,
     enabledClick: true,
     enabledDismiss: true,
     width: "320px",

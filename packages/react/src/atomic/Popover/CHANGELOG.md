@@ -2,11 +2,17 @@
 
 Use Popovers to bring attention to specific user interface elements and suggest an action or to guide users through a new experience
 
+## TBD `5.0.0`
+
+#### 🛠 Breaking changes
+
+- Renamed `overlay` prop to `renderOverlay` for better clarity and semantic meaning. Update your components to use `renderOverlay` instead of `overlay`.
+
 ## 2025-01-17 `4.3.0`
 
 #### 🎉 New features
 
-- Added `overlay` property to render an invisible overlay that prevents accidental clicks on elements behind the popover when enabled. This improves UX by providing click protection without visual interference. ([#XXX](https://github.com/TiendaNube/nimbus-design-system/pull/XXX) by [@usuario](https://github.com/usuario))
+- Added `renderOverlay` property to render an invisible overlay that prevents accidental clicks on elements behind the popover when enabled. This improves UX by providing click protection without visual interference. ([#316](https://github.com/TiendaNube/nimbus-design-system/pull/316) by [@harrytiendanube](https://github.com/harrytiendanube))
 
 ## 2025-03-18 `4.2.0`
 

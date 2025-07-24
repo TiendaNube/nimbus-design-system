@@ -34,7 +34,7 @@ const Popover: React.FC<PopoverProps> = ({
   enabledDismiss = true,
   enabledClick = true,
   matchReferenceWidth = false,
-  overlay = false,
+  renderOverlay = false,
   children,
   content,
   ...rest
@@ -103,7 +103,7 @@ const Popover: React.FC<PopoverProps> = ({
     }),
     useDismiss(context, {
       enabled: enabledDismiss,
-      outsidePressEvent: overlay ? "mousedown" : undefined,
+      outsidePressEvent: renderOverlay ? "mousedown" : undefined,
     }),
   ]);
 
@@ -150,7 +150,7 @@ const Popover: React.FC<PopoverProps> = ({
       >
         {open && (
           <>
-            {overlay && (
+            {renderOverlay && (
               <div
                 className={popover.classnames.overlay}
                 data-testid="popover-overlay"
