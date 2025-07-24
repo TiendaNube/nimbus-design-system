@@ -1,4 +1,4 @@
-import React, { ComponentPropsWithRef, forwardRef } from "react";
+import React, { ComponentPropsWithRef, forwardRef, useMemo } from "react";
 import { progressBar } from "@nimbus-ds/styles";
 
 import { ProgressBarBaseProps, ProgressBarComponents } from "./progressBar.types";
@@ -16,7 +16,7 @@ const ProgressBar = forwardRef<HTMLDivElement, ProgressBarBaseProps>(
     ref
   ) => {
     // Ensure value is within 0-100 range
-    const clampedValue = Math.min(100, Math.max(0, value));
+    const clampedValue = useMemo(() => Math.min(100, Math.max(0, value)), [value]);
     const percentage = `${clampedValue}%`;
 
     return (
