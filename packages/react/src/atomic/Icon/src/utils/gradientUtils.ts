@@ -2,6 +2,7 @@ import React, { ReactElement, ReactNode } from "react";
 import {
   generateGradientId,
   createSvgGradientDef,
+  injectGradientDefs,
   type Gradients,
 } from "@nimbus-ds/styles";
 import { SVGElementProps } from "@nimbus-ds/typings";
@@ -107,43 +108,11 @@ export const applyGradientToSvg = (
     // Process the rendered SVG to apply gradient references
     const processedSvg = processElement(renderedSvg, gradientId);
 
-    // Add defs with gradient to the SVG
-    const defsElement = React.createElement(
-      "defs",
-      { key: "gradient-defs" },
-      gradientDef
-    );
-
-    // Clone the SVG and add the defs as the first child
-    const existingChildren = React.Children.toArray(
-      processedSvg.props.children || []
-    );
-    const newChildren = [defsElement, ...existingChildren];
-
-    return React.cloneElement(processedSvg, {
-      ...processedSvg.props,
-      children: newChildren,
-    });
+    return injectGradientDefs(processedSvg, gradientDef);
   } else {
     // This is already an SVG element - process it directly
     const processedSvg = processElement(svgSource, gradientId);
 
-    // Add defs with gradient to the SVG
-    const defsElement = React.createElement(
-      "defs",
-      { key: "gradient-defs" },
-      gradientDef
-    );
-
-    // Clone the SVG and add the defs as the first child
-    const existingChildren = React.Children.toArray(
-      processedSvg.props.children || []
-    );
-    const newChildren = [defsElement, ...existingChildren];
-
-    return React.cloneElement(processedSvg, {
-      ...processedSvg.props,
-      children: newChildren,
-    });
+    return injectGradientDefs(processedSvg, gradientDef);
   }
 };

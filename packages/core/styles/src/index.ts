@@ -13,6 +13,7 @@ export {
   generateGradientId,
   getGradientStops,
   createSvgGradientDef,
+  injectGradientDefs,
   type GradientStop,
   type Gradients
 } from "./gradients";

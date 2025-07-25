@@ -95,3 +95,27 @@ export const createSvgGradientDef = (
     )
   );
 };
+
+/**
+ * Injects gradient definitions into an SVG element as the first child
+ */
+export const injectGradientDefs = (
+  svg: ReactElement,
+  gradientDef: ReactElement
+): ReactElement => {
+  // Add defs with gradient to the SVG
+  const defsElement = React.createElement(
+    "defs",
+    { key: "gradient-defs" },
+    gradientDef
+  );
+
+  // Clone the SVG and add the defs as the first child
+  const existingChildren = React.Children.toArray(svg.props.children || []);
+  const newChildren = [defsElement, ...existingChildren];
+
+  return React.cloneElement(svg, {
+    ...svg.props,
+    children: newChildren,
+  });
+};

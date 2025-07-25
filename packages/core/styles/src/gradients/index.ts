@@ -4,6 +4,7 @@ import {
   generateGradientId,
   getGradientStops,
   createSvgGradientDef,
+  injectGradientDefs,
 } from "./svgGradients";
 import { GradientStop, Gradients } from "../types";
 
@@ -14,6 +15,7 @@ export {
   generateGradientId,
   getGradientStops,
   createSvgGradientDef,
+  injectGradientDefs,
   type GradientStop,
   type Gradients,
 };
