@@ -1,8 +1,0 @@
-releases:
-  "@nimbus-ds/components": minor
-  "@nimbus-ds/popover": minor
-  "@nimbus-ds/styles": minor
-
-declined:
-  - nimbus-design-system
-  - "@nimbus-ds/stepper"

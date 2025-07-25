@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/components",
-  "version": "5.13.0-rc.2",
+  "version": "5.13.0",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -189,6 +189,5 @@
       "import": "./dist/Tabs/index.js",
       "require": "./dist/Tabs/index.js"
     }
-  },
-  "stableVersion": "5.12.0"
+  }
 }
