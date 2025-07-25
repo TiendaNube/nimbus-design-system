@@ -1,6 +1,5 @@
 ---
-description: React component development standards and best practices
-globs: **/*.tsx,**/*.ts
+description: React component development standards and best practices. Used when developing new components or modifying existing ones.
 alwaysApply: false
 ---
 # React Component Development Rules
@@ -16,7 +15,7 @@ alwaysApply: false
    - Focus on reusability and composability
    - Follow single responsibility principle
    - Use proper prop interfaces
-   - Implement proper TypeScript types
+   - Implement proper TypeScript types. The types should be in a separate file with the same name as the component but with the suffix ".types.ts".
 
 ## Styling Guidelines
 
