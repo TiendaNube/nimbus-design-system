@@ -27,8 +27,20 @@ const content = style({
   zIndex: varsThemeBase.zIndex[800],
 });
 
+const overlay = style({
+  position: "fixed",
+  top: 0,
+  bottom: 0,
+  left: 0,
+  right: 0,
+  backgroundColor: "transparent",
+  zIndex: varsThemeBase.zIndex[600],
+  cursor: "default",
+});
+
 export const styles = {
   content,
+  overlay,
 };
 
 /* -------------------------------------------------------------------------------------------------

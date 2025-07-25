@@ -21,12 +21,141 @@ const makeSut = (rest: Omit<PopoverProps, "children">) => {
 describe("GIVEN <Popover />", () => {
   describe("WHEN rendered", () => {
     it("THEN should display popover if anchor receives hover event", async () => {
-      makeSut({ content: <p>string</p>, enabledHover: true });
+      makeSut({
+        content: <p>string</p>,
+        enabledHover: true,
+      });
+      await act(() => {
+        fireEvent.mouseEnter(screen.getByTestId("popover-container"));
+      });
+      expect(screen.getByTestId("popover-element")).toBeDefined();
+    });
+
+    it("THEN should display popover if anchor receives click event", async () => {
+      makeSut({
+        content: <p>string</p>,
+        enabledClick: true,
+      });
+      await act(() => {
+        fireEvent.click(screen.getByTestId("popover-container"));
+      });
+      expect(screen.getByTestId("popover-element")).toBeDefined();
+    });
+
+    it("THEN should not display popover if anchor does not receive hover event", async () => {
+      makeSut({
+        content: <p>string</p>,
+        enabledHover: false,
+      });
+      await act(() => {
+        fireEvent.mouseEnter(screen.getByTestId("popover-container"));
+      });
+      expect(screen.queryByTestId("popover-element")).toBeNull();
+    });
+
+    it("THEN should not display popover if anchor does not receive click event", async () => {
+      makeSut({
+        content: <p>string</p>,
+        enabledClick: false,
+      });
+      await act(() => {
+        fireEvent.click(screen.getByTestId("popover-container"));
+      });
+      expect(screen.queryByTestId("popover-element")).toBeNull();
+    });
+
+    it("THEN should display popover in correct position", async () => {
+      makeSut({
+        content: <p>string</p>,
+        position: "top",
+        enabledHover: true,
+      });
       await act(() => {
         fireEvent.mouseEnter(screen.getByTestId("popover-container"));
       });
       const popover = screen.getByTestId("popover-element");
+      const arrow = screen.getByTestId("arrow-element");
       expect(popover).toBeDefined();
+
+      expect(popover.style.top).toEqual("0px");
+      expect(popover.style.left).toEqual("0px");
+      expect(popover.style.transform).toEqual("translate(0px, -10px)");
+      expect(popover.style.position).toEqual("fixed");
+
+      expect(arrow.style.top).toEqual("100%");
+      expect(arrow.style.position).toEqual("absolute");
+    });
+
+    it('THEN should display popover in "right" position', async () => {
+      makeSut({
+        content: <p>string</p>,
+        position: "right",
+        enabledHover: true,
+      });
+      await act(() => {
+        fireEvent.mouseEnter(screen.getByTestId("popover-container"));
+      });
+      const popover = screen.getByTestId("popover-element");
+      const arrow = screen.getByTestId("arrow-element");
+      expect(popover).toBeDefined();
+
+      expect(popover.style.top).toEqual("0px");
+      expect(popover.style.left).toEqual("0px");
+      expect(popover.style.transform).toEqual("translate(10px, 0px)");
+      expect(popover.style.position).toEqual("fixed");
+
+      expect(arrow.style.right).toEqual("calc(100% - 0px)");
+      expect(arrow.style.transform).toBe("rotate(90deg)");
+      expect(arrow.style.position).toEqual("absolute");
+    });
+
+    it("THEN should render the popover open by default", async () => {
+      await act(() => {
+        makeSut({
+          content: <p>string</p>,
+          visible: true,
+        });
+      });
+      const popover = screen.getByTestId("popover-element");
+      expect(popover).toBeDefined();
+    });
+
+    it("THEN should control the operation by the onVisibility function sent and with popover open", async () => {
+      const mockedOnVisibility = jest.fn();
+      await act(() => {
+        makeSut({
+          content: <p>string</p>,
+          visible: true,
+          onVisibility: mockedOnVisibility,
+        });
+      });
+      const popover = screen.getByTestId("popover-element");
+      expect(popover).toBeDefined();
+      fireEvent.click(screen.getByTestId("popover-container"));
+      expect(mockedOnVisibility).toHaveBeenCalledWith(
+        false,
+        expect.objectContaining({
+          isTrusted: false,
+        }),
+        "click"
+      );
+    });
+
+    it("THEN should render popover with transparent overlay when renderOverlay prop is true", async () => {
+      await act(() => {
+        makeSut({
+          content: <p>string</p>,
+          visible: true,
+          renderOverlay: true,
+        });
+      });
+      const popover = screen.getByTestId("popover-element");
+      const overlay = screen.getByTestId("popover-overlay");
+      expect(popover).toBeDefined();
+      expect(overlay).toBeDefined();
+      // Verify that the overlay has the correct popover overlay styles
+      expect(overlay.className).toContain("overlay");
+      expect(overlay.className).not.toContain("modal");
     });
 
     it("THEN should not render popover arrow", async () => {
@@ -95,61 +224,6 @@ describe("GIVEN <Popover />", () => {
       expect(arrow.style.left).toEqual("calc(100% - 0px)");
       expect(arrow.style.transform).toBe("rotate(-90deg)");
       expect(arrow.style.position).toEqual("absolute");
-    });
-
-    it('THEN should display popover in "right" position', async () => {
-      makeSut({
-        content: <p>string</p>,
-        position: "right",
-        enabledHover: true,
-      });
-      await act(() => {
-        fireEvent.mouseEnter(screen.getByTestId("popover-container"));
-      });
-      const popover = screen.getByTestId("popover-element");
-      const arrow = screen.getByTestId("arrow-element");
-      expect(popover).toBeDefined();
-
-      expect(popover.style.top).toEqual("0px");
-      expect(popover.style.left).toEqual("0px");
-      expect(popover.style.transform).toEqual("translate(10px, 0px)");
-      expect(popover.style.position).toEqual("fixed");
-
-      expect(arrow.style.right).toEqual("calc(100% - 0px)");
-      expect(arrow.style.transform).toBe("rotate(90deg)");
-      expect(arrow.style.position).toEqual("absolute");
-    });
-
-    it("THEN should render the popover open by default", async () => {
-      await act(() => {
-        makeSut({
-          content: <p>string</p>,
-          visible: true,
-        });
-      });
-      const popover = screen.getByTestId("popover-element");
-      expect(popover).toBeDefined();
-    });
-
-    it("THEN should control the operation by the onVisibility function sent and with popover open", async () => {
-      const mockedOnVisibility = jest.fn();
-      await act(() => {
-        makeSut({
-          content: <p>string</p>,
-          visible: true,
-          onVisibility: mockedOnVisibility,
-        });
-      });
-      const popover = screen.getByTestId("popover-element");
-      expect(popover).toBeDefined();
-      fireEvent.click(screen.getByTestId("popover-container"));
-      expect(mockedOnVisibility).toHaveBeenCalledWith(
-        false,
-        expect.objectContaining({
-          isTrusted: false,
-        }),
-        "click"
-      );
     });
 
     it("THEN should control the operation by the onVisibility function sent and with popover close", async () => {
