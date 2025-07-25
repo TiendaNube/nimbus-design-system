@@ -82,4 +82,11 @@ export type GradientDirection =
   | "to bottom left"
   | "to bottom right";
 
+export type Gradients = "ai-gradient";
+
 export type GradientColorStop = string; // Flexible string to support "red", "red 50%", "rgba(255,0,0,0.5)", etc.
+
+export type GradientStop = {
+  offset: string;
+  color: string;
+}

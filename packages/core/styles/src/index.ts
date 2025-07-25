@@ -6,7 +6,16 @@
 
 export * from "./components";
 export { vars } from "./utils";
-export { gradients, createLinearGradient } from "./gradients";
+export {
+  gradients,
+  createLinearGradient,
+  createBorderGradient,
+  generateGradientId,
+  getGradientStops,
+  createSvgGradientDef,
+  type GradientStop,
+  type Gradients
+} from "./gradients";
 
 export { badge } from "./packages/atomic/badge";
 export { box } from "./packages/atomic/box";
@@ -60,4 +69,5 @@ export type { ModalSprinkle } from "./packages/composite/modal";
 export type { SidebarSprinkle } from "./packages/composite/sidebar";
 export type { TableSprinkle } from "./packages/composite/table";
 export type { TooltipSprinkle } from "./packages/atomic/tooltip";
+
 
