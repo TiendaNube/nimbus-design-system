@@ -52,6 +52,8 @@ const config: Config.InitialOptions = {
     "@nimbus-ds/segmented-control":
       "<rootDir>/packages/react/src/composite/SegmentedControl/src",
     "@nimbus-ds/stepper": "<rootDir>/packages/react/src/composite/Stepper/src",
+    "@nimbus-ds/scroll-pane":
+      "<rootDir>/packages/react/src/composite/ScrollPane/src",
     // commons
     "^.+\\.svg$": "jest-svg-transformer",
   },

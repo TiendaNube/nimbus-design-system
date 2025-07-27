@@ -93,7 +93,6 @@ const SegmentedControl: React.FC<SegmentedControlProps> &
 
   return (
     <Box
-      flexWrap="wrap"
       aria-label="Segmented control"
       role="group"
       data-testid="segmented-control-container"

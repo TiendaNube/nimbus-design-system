@@ -14,6 +14,8 @@ Keys that have specific rules:
 - name:
     - Should be the name of the package, prefixed with @nimbus-ds/
     - Example: @nimbus-ds/skeleton
+- version:
+    - Should be 0.0.0 for initial version.
 - files:
     - Should be the files that are going to be published to the npm registry. Must contain:
         - dist

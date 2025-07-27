@@ -1,0 +1,49 @@
+{
+  "name": "@nimbus-ds/scroll-pane",
+  "version": "0.0.0",
+  "description": "ScrollPane component handles responsive scrolls in lists that are overflowing inside a container.",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "nimbus",
+    "design-system",
+    "react",
+    "component",
+    "composite",
+    "scroll",
+    "pane",
+    "overflow",
+    "gradient",
+    "arrows"
+  ],
+  "homepage": "https://nimbus.nuvemshop.com.br",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TiendaNube/nimbus-design-system.git",
+    "directory": "packages/react/src/composite/ScrollPane"
+  },
+  "bugs": {
+    "url": "https://github.com/TiendaNube/nimbus-design-system/issues"
+  },
+  "peerDependencies": {
+    "react": "^16.8 || ^17.0 || ^18.0",
+    "react-dom": "^16.8 || ^17.0 || ^18.0"
+  },
+  "dependencies": {
+    "@nimbus-ds/box": "workspace:^",
+    "@nimbus-ds/card": "workspace:^",
+    "@nimbus-ds/icon": "workspace:^",
+    "@nimbus-ds/icons": "workspace:^",
+    "@nimbus-ds/styles": "workspace:^",
+    "@nimbus-ds/text": "workspace:^"
+  },
+  "devDependencies": {
+    "@nimbus-ds/button": "workspace:^",
+    "@nimbus-ds/webpack": "workspace:^"
+  }
+}
