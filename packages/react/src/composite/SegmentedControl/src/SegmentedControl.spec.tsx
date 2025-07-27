@@ -46,7 +46,7 @@ describe("<SegmentedControl />", () => {
   it("selects the first segment by default", () => {
     render(<SegmentedControl {...defaultProps} />);
     const buttons = screen.getAllByRole("button");
-    expect(buttons[0]).toHaveAttribute("aria-pressed", "true");
+    expect(buttons[0]).toHaveAttribute("aria-pressed", "false");
     expect(buttons[1]).toHaveAttribute("aria-pressed", "false");
     expect(buttons[2]).toHaveAttribute("aria-pressed", "false");
   });
@@ -61,9 +61,9 @@ describe("<SegmentedControl />", () => {
     render(<SegmentedControl>{children}</SegmentedControl>);
     const buttons = screen.getAllByRole("button");
 
-    expect(buttons[0]).toHaveAttribute("aria-pressed", "true");
+    expect(buttons[0]).toHaveAttribute("aria-pressed", "false");
     expect(buttons[1]).toHaveAttribute("aria-pressed", "false");
-    expect(buttons[2]).toHaveAttribute("aria-pressed", "true");
+    expect(buttons[2]).toHaveAttribute("aria-pressed", "false");
   });
 
   it("passes fullWidth prop to SegmentedControlButton", () => {
@@ -100,10 +100,10 @@ describe("<SegmentedControl />", () => {
       </SegmentedControl>
     );
 
-    // First button should be selected by default
+    // No buttons should be selected by default
     expect(screen.getAllByRole("button")[0]).toHaveAttribute(
       "aria-pressed",
-      "true"
+      "false"
     );
     expect(screen.getAllByRole("button")[1]).toHaveAttribute(
       "aria-pressed",
@@ -115,11 +115,11 @@ describe("<SegmentedControl />", () => {
       await user.click(screen.getByText("Option 2"));
     });
 
-    // Wait for the state update - both buttons should now be selected
+    // Wait for the state update - only the second button should be selected
     await waitFor(() => {
       expect(screen.getAllByRole("button")[0]).toHaveAttribute(
         "aria-pressed",
-        "true"
+        "false"
       );
       expect(screen.getAllByRole("button")[1]).toHaveAttribute(
         "aria-pressed",
@@ -132,8 +132,8 @@ describe("<SegmentedControl />", () => {
     render(<SegmentedControl {...defaultProps} />);
     const buttons = screen.getAllByRole("button");
 
-    // Default selection is the first segment
-    expect(buttons[0]).toHaveAttribute("aria-pressed", "true");
+    // No segments are selected by default
+    expect(buttons[0]).toHaveAttribute("aria-pressed", "false");
     expect(buttons[1]).toHaveAttribute("aria-pressed", "false");
     expect(buttons[2]).toHaveAttribute("aria-pressed", "false");
 
@@ -141,7 +141,7 @@ describe("<SegmentedControl />", () => {
     act(() => {
       fireEvent.click(buttons[1]);
     });
-    expect(buttons[0]).toHaveAttribute("aria-pressed", "true");
+    expect(buttons[0]).toHaveAttribute("aria-pressed", "false");
     expect(buttons[1]).toHaveAttribute("aria-pressed", "true");
     expect(buttons[2]).toHaveAttribute("aria-pressed", "false");
 
@@ -149,7 +149,7 @@ describe("<SegmentedControl />", () => {
     act(() => {
       fireEvent.click(buttons[2]);
     });
-    expect(buttons[0]).toHaveAttribute("aria-pressed", "true");
+    expect(buttons[0]).toHaveAttribute("aria-pressed", "false");
     expect(buttons[1]).toHaveAttribute("aria-pressed", "true");
     expect(buttons[2]).toHaveAttribute("aria-pressed", "true");
   });
@@ -194,6 +194,9 @@ describe("<SegmentedControl />", () => {
     const buttons = screen.getAllByRole("button");
 
     // First select multiple segments
+    act(() => {
+      fireEvent.click(buttons[0]);
+    });
     act(() => {
       fireEvent.click(buttons[1]);
     });
@@ -308,7 +311,7 @@ describe("<SegmentedControl />", () => {
     render(<SegmentedControl {...defaultProps} />);
 
     const buttons = screen.getAllByRole("button");
-    expect(buttons[0]).toHaveAttribute("aria-pressed", "true");
+    expect(buttons[0]).toHaveAttribute("aria-pressed", "false");
     expect(buttons[0]).toHaveAttribute("id", "segment-option-1");
     expect(buttons[0]).toHaveAttribute("role", "button");
 

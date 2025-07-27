@@ -66,7 +66,7 @@ export const Default: Story = {
   args: {
     showGradients: true,
     showArrows: false,
-    showScrollbar: true,
+    showScrollbar: false,
     direction: "horizontal",
     scrollToItemOnClick: true,
   },
@@ -75,13 +75,13 @@ export const Default: Story = {
 
     return (
       <Box width="400px">
-        <ScrollPane {...args}>
+        <ScrollPane {...args} height="100%" padding="2">
           <SegmentedControl
             selectedSegments={selected}
             onSegmentsSelect={setSelected}
           >
             {Array.from({ length: 8 }, (_, i) => (
-              <ScrollPane.Item key={i}>
+              <ScrollPane.Item key={i} padding="1">
                 <SegmentedControl.Button key={i} label={`Item ${i + 1}`}>
                   Item {i + 1}
                 </SegmentedControl.Button>

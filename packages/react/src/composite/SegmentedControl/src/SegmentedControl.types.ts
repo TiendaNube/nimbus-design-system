@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { ReactElement, ReactNode } from "react";
 import type { BoxProps } from "@nimbus-ds/box";
 import {
   SegmentedControlButton,
@@ -7,14 +7,34 @@ import {
   type SegmentedControlButtonProps,
 } from "./components";
 
+/**
+ * Simplified context interface for SegmentedControl toggle state management
+ */
+export interface SegmentedControlContextValue {
+  /**
+   * Get the next available ID for a button
+   */
+  getNextId: () => number;
+  /**
+   * Toggle a segment's state by ID
+   */
+  toggleSegment: (id: number) => void;
+  /**
+   * Check if a segment is currently selected
+   */
+  isSelected: (id: number) => boolean;
+  /**
+   * Whether buttons should span full width
+   */
+  fullWidth: boolean;
+}
+
 export interface SegmentedControlBaseProps {
   /**
    * The content of the segmented control.
-   * @TJS-type ReactElement<SegmentedControlButtonProps | SegmentedControlButtonSkeletonProps>[];
+   * Now supports any React children that contain SegmentedControlButton components.
    */
-  children: ReactElement<
-    SegmentedControlButtonProps | SegmentedControlButtonSkeletonProps
-  >[];
+  children: ReactNode;
   /**
    * Determines if segments span all available width.
    * @default false
