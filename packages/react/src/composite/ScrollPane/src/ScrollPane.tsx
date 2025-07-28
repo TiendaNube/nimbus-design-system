@@ -6,16 +6,18 @@ import React, {
   useMemo,
 } from "react";
 import { Box } from "@nimbus-ds/box";
-import {
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  ChevronUpIcon,
-  ChevronDownIcon,
-} from "@nimbus-ds/icons";
+
 import { scrollPane } from "@nimbus-ds/styles";
 
 import { ScrollPaneProps, ScrollPaneComponents } from "./scrollPane.types";
-import { ScrollPaneItem, ScrollPaneContext } from "./components";
+import {
+  ScrollPaneItem,
+  ScrollPaneContext,
+  ScrollPaneArrowHorizontalStart,
+  ScrollPaneArrowHorizontalEnd,
+  ScrollPaneArrowVerticalStart,
+  ScrollPaneArrowVerticalEnd,
+} from "./components";
 import { getPosition } from "./ScrollPane.definitions";
 
 /**
@@ -28,18 +30,17 @@ import { getPosition } from "./ScrollPane.definitions";
  *   <ScrollPane.Item>Item 2</ScrollPane.Item>
  * </ScrollPane>
  */
-const ScrollPaneComponent: React.FC<ScrollPaneProps> = ({
+const ScrollPane: React.FC<ScrollPaneProps> & ScrollPaneComponents = ({
   children,
   showGradients = true,
   showArrows = false,
   showScrollbar = true,
   direction = "horizontal",
   scrollToItemOnClick = true,
-  scrollEndDebounceDelay = 150,
-  className,
-  style,
+  scrollPaneArrowStart,
+  scrollPaneArrowEnd,
   ...rest
-}) => {
+}: ScrollPaneProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const scrollTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [canScrollStart, setCanScrollStart] = useState(false);
@@ -83,8 +84,8 @@ const ScrollPaneComponent: React.FC<ScrollPaneProps> = ({
     // Debounce scroll end detection
     scrollTimeoutRef.current = setTimeout(() => {
       setIsScrolling(false);
-    }, scrollEndDebounceDelay);
-  }, [checkScrollPosition, isScrolling, scrollEndDebounceDelay]);
+    }, 150);
+  }, [checkScrollPosition, isScrolling]);
 
   const scrollToDirection = useCallback(
     (scrollDirection: "start" | "end") => {
@@ -163,21 +164,14 @@ const ScrollPaneComponent: React.FC<ScrollPaneProps> = ({
       direction,
       scrollToItemOnClick,
       containerRef,
+      scrollToDirection,
     }),
-    [direction, scrollToItemOnClick]
+    [direction, scrollToItemOnClick, scrollToDirection]
   );
 
   return (
     <ScrollPaneContext.Provider value={contextValue}>
-      <Box
-        as="div"
-        className={[scrollPane.classnames.container, className]
-          .filter(Boolean)
-          .join(" ")}
-        style={style}
-        position="relative"
-        {...rest}
-      >
+      <Box as="div" position="relative">
         {/* Scroll area */}
         <div
           ref={containerRef}
@@ -189,7 +183,10 @@ const ScrollPaneComponent: React.FC<ScrollPaneProps> = ({
             .filter(Boolean)
             .join(" ")}
         >
-          {children}
+          {/* Children container with a little space to ensure we don't hide focus states because of the overflow: hidden */}
+          <Box display="flex" margin="1" {...rest}>
+            {children}
+          </Box>
 
           {/* Gradient overlays  */}
           {showGradients && (
@@ -222,48 +219,8 @@ const ScrollPaneComponent: React.FC<ScrollPaneProps> = ({
           {/* Navigation arrows */}
           {showArrows && (
             <>
-              {canScrollStart && (
-                <button
-                  type="button"
-                  className={[
-                    scrollPane.classnames.arrow,
-                    scrollPane.classnames.arrowVariants[
-                      getPosition("start", direction)
-                    ],
-                  ].join(" ")}
-                  onClick={() => scrollToDirection("start")}
-                  aria-label={`Scroll ${
-                    direction === "horizontal" ? "left" : "up"
-                  }`}
-                >
-                  {direction === "horizontal" ? (
-                    <ChevronLeftIcon size={16} />
-                  ) : (
-                    <ChevronUpIcon size={16} />
-                  )}
-                </button>
-              )}
-              {canScrollEnd && (
-                <button
-                  type="button"
-                  className={[
-                    scrollPane.classnames.arrow,
-                    scrollPane.classnames.arrowVariants[
-                      getPosition("end", direction)
-                    ],
-                  ].join(" ")}
-                  onClick={() => scrollToDirection("end")}
-                  aria-label={`Scroll ${
-                    direction === "horizontal" ? "right" : "down"
-                  }`}
-                >
-                  {direction === "horizontal" ? (
-                    <ChevronRightIcon size={16} />
-                  ) : (
-                    <ChevronDownIcon size={16} />
-                  )}
-                </button>
-              )}
+              {canScrollStart && scrollPaneArrowStart}
+              {canScrollEnd && scrollPaneArrowEnd}
             </>
           )}
         </div>
@@ -272,12 +229,19 @@ const ScrollPaneComponent: React.FC<ScrollPaneProps> = ({
   );
 };
 
-// Assign static properties using Object.assign to avoid complex typing issues
-const ScrollPane = Object.assign(ScrollPaneComponent, {
-  Item: ScrollPaneItem,
-  displayName: "ScrollPane",
-}) as React.FC<ScrollPaneProps> & ScrollPaneComponents;
+ScrollPane.displayName = "ScrollPane";
+
+ScrollPane.Item = ScrollPaneItem;
+
+ScrollPane.ArrowHorizontalStart = ScrollPaneArrowHorizontalStart;
+ScrollPane.ArrowHorizontalEnd = ScrollPaneArrowHorizontalEnd;
+ScrollPane.ArrowVerticalStart = ScrollPaneArrowVerticalStart;
+ScrollPane.ArrowVerticalEnd = ScrollPaneArrowVerticalEnd;
 
 ScrollPane.Item.displayName = "ScrollPane.Item";
+ScrollPane.ArrowHorizontalStart.displayName = "ScrollPane.ArrowHorizontalStart";
+ScrollPane.ArrowHorizontalEnd.displayName = "ScrollPane.ArrowHorizontalEnd";
+ScrollPane.ArrowVerticalStart.displayName = "ScrollPane.ArrowVerticalStart";
+ScrollPane.ArrowVerticalEnd.displayName = "ScrollPane.ArrowVerticalEnd";
 
 export { ScrollPane };

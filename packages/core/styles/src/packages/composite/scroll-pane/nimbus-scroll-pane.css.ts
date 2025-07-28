@@ -1,25 +1,13 @@
 import { style, styleVariants, keyframes } from "@vanilla-extract/css";
-import {
-  createRainbowSprinkles,
-  defineProperties as defineRainbowProperties,
-} from "rainbow-sprinkles";
-import { paddingProperties, zIndexProperties } from "../../../properties";
-import { mediaQueries, varsThemeBase } from "../../../themes";
+import { varsThemeBase } from "../../../themes";
 
 /* -------------------------------------------------------------------------------------------------
  * Style
  * -----------------------------------------------------------------------------------------------*/
 
-const container = style({
-  position: "relative",
-  display: "flex",
-  boxSizing: "border-box",
-  overflow: "hidden",
-});
-
 const scrollArea = style({
   display: "flex",
-  overflow: "auto",
+  overflow: "hidden",
   scrollBehavior: "smooth",
   boxSizing: "border-box",
   flex: 1,
@@ -89,26 +77,7 @@ const arrow = style({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  width: "32px",
-  height: "32px",
-  backgroundColor: varsThemeBase.colors.neutral.surface,
-  border: `1px solid ${varsThemeBase.colors.neutral.textDisabled}`,
-  borderRadius: varsThemeBase.shape.border.radius[2],
-  cursor: "pointer",
   zIndex: varsThemeBase.zIndex[200],
-  transition: `all ${varsThemeBase.motion.speed.base} ease`,
-  boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-  ":hover": {
-    backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
-    borderColor: varsThemeBase.colors.neutral.textLow,
-  },
-  ":active": {
-    backgroundColor: varsThemeBase.colors.neutral.interactivePressed,
-  },
-  ":focus": {
-    outline: "none",
-    boxShadow: varsThemeBase.utils.focus,
-  },
 });
 
 const arrowVariants = styleVariants({
@@ -162,42 +131,8 @@ const gradientHidden = style({
   animation: `${fadeOut} ${varsThemeBase.motion.speed.fast} ease`,
 });
 
-/* -------------------------------------------------------------------------------------------------
- * Sprinkle
- * -----------------------------------------------------------------------------------------------*/
-
-const defineProperties = defineRainbowProperties({
-  conditions: {
-    xs: {
-      "@media": mediaQueries.xs(),
-    },
-    md: {
-      "@media": mediaQueries.md(),
-    },
-    lg: {
-      "@media": mediaQueries.lg(),
-    },
-    xl: {
-      "@media": mediaQueries.xl(),
-    },
-    rest: {},
-    active: { selector: "&:active" },
-    hover: { selector: "&:hover" },
-    focus: { selector: "&:focus" },
-  },
-  defaultCondition: "rest",
-  staticProperties: {},
-  dynamicProperties: {
-    padding: paddingProperties,
-    zIndex: zIndexProperties,
-  },
-});
-
-const sprinkle = createRainbowSprinkles(defineProperties);
-
 export const scrollPaneStyles = {
   classnames: {
-    container,
     scrollArea,
     scrollAreaHidden,
     direction,
@@ -208,5 +143,4 @@ export const scrollPaneStyles = {
     arrow,
     arrowVariants,
   },
-  sprinkle,
-}; 
+};

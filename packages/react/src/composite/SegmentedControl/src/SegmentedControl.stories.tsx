@@ -4,6 +4,14 @@ import { Text } from "@nimbus-ds/text";
 import { SegmentedControl } from "./SegmentedControl";
 import { ControlledSegmentedControlProperties } from "./SegmentedControl.types";
 
+// Helper function to render segmented control buttons
+const renderSegmentButtons = (names: string[]) =>
+  names.map((name) => (
+    <SegmentedControl.Button key={name} label={name}>
+      {name}
+    </SegmentedControl.Button>
+  ));
+
 const meta: Meta<typeof SegmentedControl> = {
   title: "Composite/SegmentedControl",
   component: SegmentedControl,
@@ -45,11 +53,7 @@ type Story = StoryObj<typeof SegmentedControl>;
 export const Basic: Story = {
   render: (args) => (
     <SegmentedControl {...args}>
-      {["First", "Second", "Third"].map((name) => (
-        <SegmentedControl.Button key={name} label={name}>
-          {name}
-        </SegmentedControl.Button>
-      ))}
+      {renderSegmentButtons(["First", "Second", "Third"])}
     </SegmentedControl>
   ),
 };
@@ -124,12 +128,9 @@ export const SkeletonGroup = () => (
  * Example of a SegmentedControl with fullWidth buttons.
  */
 export const FullWidth: Story = {
-  args: {
-    fullWidth: true,
-  },
-  render: (args) => (
+  render: () => (
     <div style={{ width: "100%" }}>
-      <SegmentedControl {...args} flexWrap="nowrap">
+      <SegmentedControl fullWidth flexWrap="nowrap">
         {["First", "Second", "Third"].map((name) => (
           <SegmentedControl.Button key={name} label={name}>
             {name}
@@ -137,5 +138,16 @@ export const FullWidth: Story = {
         ))}
       </SegmentedControl>
     </div>
+  ),
+};
+
+/**
+ * Example of a SegmentedControl with responsive wrap. Useful for desktop or where we don't want overflow.
+ */
+export const ResponsiveWrap: Story = {
+  render: () => (
+    <SegmentedControl flexWrap="wrap">
+      {renderSegmentButtons(["First", "Second", "Third", "Fourth", "Fifth", "Sixth"])}
+    </SegmentedControl>
   ),
 };

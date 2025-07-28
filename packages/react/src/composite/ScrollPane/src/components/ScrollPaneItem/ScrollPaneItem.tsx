@@ -39,6 +39,4 @@ const ScrollPaneItem: React.FC<ScrollPaneItemProps> = ({
   );
 };
 
-ScrollPaneItem.displayName = "ScrollPane.Item";
-
 export { ScrollPaneItem };

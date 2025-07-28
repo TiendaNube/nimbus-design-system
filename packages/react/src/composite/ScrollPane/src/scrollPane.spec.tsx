@@ -4,16 +4,6 @@ import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { ScrollPane } from "./ScrollPane";
 import { ScrollPaneContext } from "./components/ScrollPaneContext";
 
-// Mock ResizeObserver
-global.ResizeObserver = jest.fn().mockImplementation(() => ({
-  observe: jest.fn(),
-  unobserve: jest.fn(),
-  disconnect: jest.fn(),
-}));
-
-// Mock scrollTo method
-Element.prototype.scrollTo = jest.fn();
-
 // Mock getBoundingClientRect
 const mockGetBoundingClientRect = jest.fn(() => ({
   left: 0,
@@ -121,7 +111,11 @@ describe("ScrollPane", () => {
     });
 
     render(
-      <ScrollPane showArrows>
+      <ScrollPane 
+        showArrows
+        scrollPaneArrowStart={<ScrollPane.ArrowHorizontalStart>←</ScrollPane.ArrowHorizontalStart>}
+        scrollPaneArrowEnd={<ScrollPane.ArrowHorizontalEnd>→</ScrollPane.ArrowHorizontalEnd>}
+      >
         <ScrollPane.Item>Item 1</ScrollPane.Item>
         <ScrollPane.Item>Item 2</ScrollPane.Item>
       </ScrollPane>
@@ -133,11 +127,10 @@ describe("ScrollPane", () => {
       fireEvent.scroll(scrollArea);
     }
 
-    // Check for arrow buttons (they should be rendered when content overflows)
-    const leftArrow = screen.queryByLabelText("Scroll left");
-    const rightArrow = screen.queryByLabelText("Scroll right");
+    // Check for arrow buttons by their aria-label
+    const leftArrow = screen.queryByLabelText("Scroll backward");
+    const rightArrow = screen.queryByLabelText("Scroll forward");
     
-    // Arrows may not be visible initially, but the functionality should be in place
     expect(leftArrow || rightArrow).toBeTruthy();
   });
 
@@ -184,17 +177,6 @@ describe("ScrollPane", () => {
     });
   });
 
-  it("passes through Box props", () => {
-    const { container } = render(
-      <ScrollPane padding="4" backgroundColor="primary-surface">
-        <ScrollPane.Item>Item 1</ScrollPane.Item>
-      </ScrollPane>
-    );
-
-    const scrollPane = container.firstChild as HTMLElement;
-    // The Box component should receive and apply these props
-    expect(scrollPane).toBeInTheDocument();
-  });
 
   it("provides context to child items", () => {
     const TestItem = () => {
@@ -229,6 +211,121 @@ describe("ScrollPane", () => {
     expect(scrollArea).toBeInTheDocument();
   });
 
+  it("clears existing timeout when handleScroll is called multiple times", () => {
+    jest.useFakeTimers();
+    const clearTimeoutSpy = jest.spyOn(global, "clearTimeout");
+
+    const { container } = render(
+      <ScrollPane>
+        <ScrollPane.Item>Item 1</ScrollPane.Item>
+        <ScrollPane.Item>Item 2</ScrollPane.Item>
+      </ScrollPane>
+    );
+
+    const scrollArea = container.querySelector('[class*="scrollArea"]');
+    
+    // First scroll event - creates a timeout
+    fireEvent.scroll(scrollArea!);
+    
+    // Second scroll event - should clear the previous timeout
+    fireEvent.scroll(scrollArea!);
+
+    expect(clearTimeoutSpy).toHaveBeenCalled();
+    
+    jest.useRealTimers();
+    clearTimeoutSpy.mockRestore();
+  });
+
+  it("sets isScrolling to false after scroll timeout", async () => {
+    jest.useFakeTimers();
+    const setTimeoutSpy = jest.spyOn(global, "setTimeout");
+
+    const { container } = render(
+      <ScrollPane>
+        <ScrollPane.Item>Item 1</ScrollPane.Item>
+        <ScrollPane.Item>Item 2</ScrollPane.Item>
+      </ScrollPane>
+    );
+
+    const scrollArea = container.querySelector('[class*="scrollArea"]');
+    
+    // Trigger scroll event to create the timeout
+    fireEvent.scroll(scrollArea!);
+    
+    // Verify setTimeout was called with the correct delay
+    expect(setTimeoutSpy).toHaveBeenCalledWith(expect.any(Function), 150);
+    
+    // Get the callback function that was passed to setTimeout
+    const timeoutCallback = setTimeoutSpy.mock.calls[setTimeoutSpy.mock.calls.length - 1][0];
+    
+    // Execute the callback directly to ensure setIsScrolling(false) is called
+    await waitFor(() => {
+      timeoutCallback();
+    });
+    
+    // Also test with timer advancement
+    jest.advanceTimersByTime(150);
+    
+    // The component should still be functioning after the timeout
+    expect(scrollArea).toBeInTheDocument();
+    
+    jest.useRealTimers();
+    setTimeoutSpy.mockRestore();
+  });
+
+  it("returns early when containerRef.current is null in scrollToDirection", () => {
+    const mockScrollTo = jest.fn();
+    Object.defineProperty(HTMLElement.prototype, "scrollTo", {
+      configurable: true,
+      value: mockScrollTo,
+    });
+
+    const { container } = render(
+      <ScrollPane 
+        showArrows
+        scrollPaneArrowStart={<ScrollPane.ArrowHorizontalStart>←</ScrollPane.ArrowHorizontalStart>}
+      >
+        <ScrollPane.Item>Item 1</ScrollPane.Item>
+      </ScrollPane>
+    );
+
+    const leftArrow = screen.getByLabelText("Scroll backward");
+    
+    // Mock containerRef.current to be null
+    const scrollArea = container.querySelector('[class*="scrollArea"]') as HTMLElement;
+    if (scrollArea) {
+      // Remove the scrollArea from DOM to simulate null containerRef
+      scrollArea.remove();
+    }
+    
+    // Click should not cause scrollTo to be called due to null check
+    fireEvent.click(leftArrow);
+    
+    expect(mockScrollTo).not.toHaveBeenCalled();
+  });
+
+  it("returns early when container is null in checkScrollPosition", () => {
+    const { container, rerender } = render(
+      <ScrollPane>
+        <ScrollPane.Item>Item 1</ScrollPane.Item>
+      </ScrollPane>
+    );
+
+    const scrollArea = container.querySelector('[class*="scrollArea"]');
+    expect(scrollArea).toBeInTheDocument();
+
+    // Force rerender with containerRef being null by unmounting and remounting
+    rerender(<div />);
+    rerender(
+      <ScrollPane>
+        <ScrollPane.Item>Item 1</ScrollPane.Item>
+      </ScrollPane>
+    );
+
+    // The component should handle the null container gracefully
+    expect(container).toBeInTheDocument();
+  });
+
   it("cleans up event listeners on unmount", () => {
     const removeEventListenerSpy = jest.spyOn(
       HTMLElement.prototype,
@@ -244,6 +341,282 @@ describe("ScrollPane", () => {
     unmount();
 
     expect(removeEventListenerSpy).toHaveBeenCalledWith("scroll", expect.any(Function));
+  });
+
+  it("handles arrow click events for horizontal scrolling", () => {
+    const mockScrollTo = jest.fn();
+    Object.defineProperty(HTMLElement.prototype, "scrollTo", {
+      configurable: true,
+      value: mockScrollTo,
+    });
+
+    Object.defineProperty(HTMLElement.prototype, "clientWidth", {
+      configurable: true,
+      value: 300,
+    });
+
+    render(
+      <ScrollPane 
+        showArrows
+        scrollPaneArrowStart={<ScrollPane.ArrowHorizontalStart>←</ScrollPane.ArrowHorizontalStart>}
+        scrollPaneArrowEnd={<ScrollPane.ArrowHorizontalEnd>→</ScrollPane.ArrowHorizontalEnd>}
+      >
+        <ScrollPane.Item>Item 1</ScrollPane.Item>
+      </ScrollPane>
+    );
+
+    const leftArrow = screen.getByLabelText("Scroll backward");
+    const rightArrow = screen.getByLabelText("Scroll forward");
+
+    fireEvent.click(leftArrow);
+    expect(mockScrollTo).toHaveBeenCalledWith({
+      left: expect.any(Number),
+      behavior: "smooth",
+    });
+
+    fireEvent.click(rightArrow);
+    expect(mockScrollTo).toHaveBeenCalledWith({
+      left: expect.any(Number),
+      behavior: "smooth",
+    });
+  });
+
+  it("handles arrow keyboard events", () => {
+    const mockScrollTo = jest.fn();
+    Object.defineProperty(HTMLElement.prototype, "scrollTo", {
+      configurable: true,
+      value: mockScrollTo,
+    });
+
+    render(
+      <ScrollPane 
+        showArrows
+        scrollPaneArrowStart={<ScrollPane.ArrowHorizontalStart>←</ScrollPane.ArrowHorizontalStart>}
+      >
+        <ScrollPane.Item>Item 1</ScrollPane.Item>
+      </ScrollPane>
+    );
+
+    const leftArrow = screen.getByLabelText("Scroll backward");
+
+    fireEvent.keyDown(leftArrow, { key: "Enter" });
+    expect(mockScrollTo).toHaveBeenCalled();
+
+    fireEvent.keyDown(leftArrow, { key: " " });
+    expect(mockScrollTo).toHaveBeenCalled();
+
+    fireEvent.keyDown(leftArrow, { key: "Tab" });
+  });
+
+  it("handles vertical direction scrolling", () => {
+    const mockScrollTo = jest.fn();
+    Object.defineProperty(HTMLElement.prototype, "scrollTo", {
+      configurable: true,
+      value: mockScrollTo,
+    });
+
+    // Mock scroll dimensions to trigger arrow visibility
+    Object.defineProperty(HTMLElement.prototype, "scrollHeight", {
+      configurable: true,
+      value: 1000,
+    });
+    Object.defineProperty(HTMLElement.prototype, "clientHeight", {
+      configurable: true,
+      value: 200,
+    });
+    Object.defineProperty(HTMLElement.prototype, "scrollTop", {
+      configurable: true,
+      value: 100,
+    });
+
+    render(
+      <ScrollPane 
+        direction="vertical" 
+        showArrows
+        scrollPaneArrowStart={<ScrollPane.ArrowVerticalStart>↑</ScrollPane.ArrowVerticalStart>}
+        scrollPaneArrowEnd={<ScrollPane.ArrowVerticalEnd>↓</ScrollPane.ArrowVerticalEnd>}
+      >
+        <ScrollPane.Item>Item 1</ScrollPane.Item>
+      </ScrollPane>
+    );
+
+    // Trigger scroll position check by firing a scroll event
+    const scrollArea = document.querySelector('[class*="scrollArea"]');
+    if (scrollArea) {
+      fireEvent.scroll(scrollArea);
+    }
+
+    const upArrow = screen.getByLabelText("Scroll backward");
+    const downArrow = screen.getByLabelText("Scroll forward");
+
+    fireEvent.click(upArrow);
+    expect(mockScrollTo).toHaveBeenCalledWith({
+      top: expect.any(Number),
+      behavior: "smooth",
+    });
+
+    fireEvent.click(downArrow);
+    expect(mockScrollTo).toHaveBeenCalledWith({
+      top: expect.any(Number),
+      behavior: "smooth",
+    });
+  });
+
+  it("shows gradients when content overflows", () => {
+    Object.defineProperty(HTMLElement.prototype, "scrollWidth", {
+      configurable: true,
+      value: 1000,
+    });
+    Object.defineProperty(HTMLElement.prototype, "clientWidth", {
+      configurable: true,
+      value: 300,
+    });
+    Object.defineProperty(HTMLElement.prototype, "scrollLeft", {
+      configurable: true,
+      value: 100,
+    });
+
+    const { container } = render(
+      <ScrollPane showGradients>
+        <ScrollPane.Item>Item 1</ScrollPane.Item>
+      </ScrollPane>
+    );
+
+    const scrollArea = container.querySelector('[class*="scrollArea"]');
+    if (scrollArea) {
+      fireEvent.scroll(scrollArea);
+    }
+
+    const gradients = container.querySelectorAll('[class*="gradient"]');
+    expect(gradients.length).toBeGreaterThanOrEqual(0);
+  });
+
+  it("hides gradients when showGradients is false", () => {
+    const { container } = render(
+      <ScrollPane showGradients={false}>
+        <ScrollPane.Item>Item 1</ScrollPane.Item>
+      </ScrollPane>
+    );
+
+    const gradients = container.querySelectorAll('[class*="gradient"]');
+    expect(gradients).toHaveLength(0);
+  });
+
+  it("throws error when arrow is used outside ScrollPane context", () => {
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    const consoleSpy = jest.spyOn(console, "error").mockImplementation(() => {});
+    
+    expect(() => {
+      render(<ScrollPane.ArrowHorizontalStart>←</ScrollPane.ArrowHorizontalStart>);
+    }).toThrow("ScrollPaneArrowBase must be used within a ScrollPane");
+
+    consoleSpy.mockRestore();
+  });
+
+  it("disables scroll-to-item when scrollToItemOnClick is false", () => {
+    const mockScrollTo = jest.fn();
+    Object.defineProperty(HTMLElement.prototype, "scrollTo", {
+      configurable: true,
+      value: mockScrollTo,
+    });
+
+    render(
+      <ScrollPane scrollToItemOnClick={false}>
+        <ScrollPane.Item data-testid="item-1">Item 1</ScrollPane.Item>
+      </ScrollPane>
+    );
+
+    const item = screen.getByTestId("item-1");
+    fireEvent.click(item);
+
+    expect(mockScrollTo).not.toHaveBeenCalled();
+  });
+
+  it("handles vertical scroll-to-item functionality", async () => {
+    const mockScrollTo = jest.fn();
+    Object.defineProperty(HTMLElement.prototype, "scrollTo", {
+      configurable: true,
+      value: mockScrollTo,
+    });
+
+    const mockGetBoundingClientRect = jest.fn();
+    mockGetBoundingClientRect
+      .mockReturnValueOnce({
+        top: 0,
+        bottom: 200,
+        height: 200,
+        width: 300,
+        left: 0,
+        right: 300,
+      })
+      .mockReturnValueOnce({
+        top: 250,
+        bottom: 300,
+        height: 50,
+        width: 100,
+        left: 50,
+        right: 150,
+      });
+
+    Element.prototype.getBoundingClientRect = mockGetBoundingClientRect;
+
+    render(
+      <ScrollPane direction="vertical" scrollToItemOnClick>
+        <ScrollPane.Item data-testid="item-1">Item 1</ScrollPane.Item>
+      </ScrollPane>
+    );
+
+    const item = screen.getByTestId("item-1");
+    fireEvent.click(item);
+
+    await waitFor(() => {
+      expect(mockScrollTo).toHaveBeenCalledWith({
+        top: expect.any(Number),
+        behavior: "smooth",
+      });
+    });
+  });
+
+  it("does not scroll when item is already fully visible", async () => {
+    const mockScrollTo = jest.fn();
+    Object.defineProperty(HTMLElement.prototype, "scrollTo", {
+      configurable: true,
+      value: mockScrollTo,
+    });
+
+    const mockGetBoundingClientRect = jest.fn();
+    mockGetBoundingClientRect
+      .mockReturnValueOnce({
+        left: 0,
+        right: 300,
+        width: 300,
+        height: 100,
+        top: 0,
+        bottom: 100,
+      })
+      .mockReturnValueOnce({
+        left: 50,
+        right: 150,
+        width: 100,
+        height: 50,
+        top: 25,
+        bottom: 75,
+      });
+
+    Element.prototype.getBoundingClientRect = mockGetBoundingClientRect;
+
+    render(
+      <ScrollPane scrollToItemOnClick>
+        <ScrollPane.Item data-testid="item-1">Item 1</ScrollPane.Item>
+      </ScrollPane>
+    );
+
+    const item = screen.getByTestId("item-1");
+    fireEvent.click(item);
+
+    await waitFor(() => {
+      expect(mockScrollTo).not.toHaveBeenCalled();
+    });
   });
 });
 

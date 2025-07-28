@@ -1,9 +1,14 @@
 import React, { ReactNode } from "react";
 import type { BoxProps } from "@nimbus-ds/box";
 import type { ScrollPaneItemProps } from "./components/ScrollPaneItem";
+import type { ScrollPaneArrowProps } from "./components/ScrollPaneArrow";
 
 export interface ScrollPaneComponents {
   Item: React.FC<ScrollPaneItemProps>;
+  ArrowHorizontalStart: React.FC<ScrollPaneArrowProps>;
+  ArrowHorizontalEnd: React.FC<ScrollPaneArrowProps>;
+  ArrowVerticalStart: React.FC<ScrollPaneArrowProps>;
+  ArrowVerticalEnd: React.FC<ScrollPaneArrowProps>;
 }
 
 export interface ScrollPaneProperties {
@@ -43,10 +48,14 @@ export interface ScrollPaneProperties {
   scrollToItemOnClick?: boolean;
 
   /**
-   * Debounce delay in milliseconds for scroll end detection
-   * @default 150
+   * Custom arrow component to render at the start of the scroll area
    */
-  scrollEndDebounceDelay?: number;
+  scrollPaneArrowStart?: React.ReactNode;
+
+  /**
+   * Custom arrow component to render at the end of the scroll area
+   */
+  scrollPaneArrowEnd?: React.ReactNode;
 }
 
 export type ScrollPaneProps = ScrollPaneProperties & Omit<BoxProps, "children">;

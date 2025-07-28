@@ -2,7 +2,7 @@
 
 The ScrollPane component handles responsive scrolls in lists that are overflowing inside a container.
 
-## 2024-01-10 `1.0.0`
+## 2025-07-28 `1.0.0`
 
 #### 🎉 New features
 
@@ -15,4 +15,4 @@ The ScrollPane component handles responsive scrolls in lists that are overflowin
   - ScrollPane.Item sub-component for wrapping content
   - Full accessibility support with ARIA labels
   - Responsive design for mobile and desktop 
-  ([#XXX](https://github.com/TiendaNube/nimbus-design-system/pull/XXX) by [@contributor](https://github.com/contributor)) 
+  ([#XXX](https://github.com/TiendaNube/nimbus-design-system/pull/XXX) by [@joacotornello](https://github.com/joacotornello)) 
