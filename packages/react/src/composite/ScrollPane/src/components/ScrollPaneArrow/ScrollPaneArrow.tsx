@@ -3,7 +3,7 @@ import { scrollPane } from "@nimbus-ds/styles";
 import { ScrollPaneContext } from "../ScrollPaneContext";
 import {
   ScrollPaneArrowBaseProps,
-  ScrollPaneArrowProps,
+  ScrollPaneArrowProperties,
 } from "./ScrollPaneArrow.types";
 
 /**
@@ -27,12 +27,12 @@ const ScrollPaneArrowBase: React.FC<ScrollPaneArrowBaseProps> = ({
 
   const handleActivation = () => context.scrollToDirection(direction);
 
-  const handleKeyDown = (event: React.KeyboardEvent) => {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      handleActivation();
-    }
-  };
+const handleKeyDown = (event: React.KeyboardEvent) => {
+  if (event.key === "Enter" || event.code === "Space") {
+    event.preventDefault();
+    handleActivation();
+  }
+};
 
   return (
     <div
@@ -54,7 +54,7 @@ const ScrollPaneArrowBase: React.FC<ScrollPaneArrowBaseProps> = ({
 /**
  * Scrolls the pane towards the beginning (left in LTR layouts).
  */
-const ScrollPaneArrowHorizontalStart: React.FC<ScrollPaneArrowProps> = ({
+const ScrollPaneArrowHorizontalStart: React.FC<ScrollPaneArrowProperties> = ({
   children,
 }) => (
   <ScrollPaneArrowBase variant="horizontal-left" direction="start">
@@ -65,7 +65,7 @@ const ScrollPaneArrowHorizontalStart: React.FC<ScrollPaneArrowProps> = ({
 /**
  * Scrolls the pane towards the end (right in LTR layouts).
  */
-const ScrollPaneArrowHorizontalEnd: React.FC<ScrollPaneArrowProps> = ({
+const ScrollPaneArrowHorizontalEnd: React.FC<ScrollPaneArrowProperties> = ({
   children,
 }) => (
   <ScrollPaneArrowBase variant="horizontal-right" direction="end">
@@ -76,7 +76,7 @@ const ScrollPaneArrowHorizontalEnd: React.FC<ScrollPaneArrowProps> = ({
 /**
  * Scrolls the pane towards the beginning (top).
  */
-const ScrollPaneArrowVerticalStart: React.FC<ScrollPaneArrowProps> = ({
+const ScrollPaneArrowVerticalStart: React.FC<ScrollPaneArrowProperties> = ({
   children,
 }) => (
   <ScrollPaneArrowBase variant="vertical-top" direction="start">
@@ -87,7 +87,7 @@ const ScrollPaneArrowVerticalStart: React.FC<ScrollPaneArrowProps> = ({
 /**
  * Scrolls the pane towards the end (bottom).
  */
-const ScrollPaneArrowVerticalEnd: React.FC<ScrollPaneArrowProps> = ({
+const ScrollPaneArrowVerticalEnd: React.FC<ScrollPaneArrowProperties> = ({
   children,
 }) => (
   <ScrollPaneArrowBase variant="vertical-bottom" direction="end">
@@ -102,4 +102,4 @@ export {
   ScrollPaneArrowVerticalEnd,
 };
 
-export type { ScrollPaneArrowProps };
+export type { ScrollPaneArrowProperties };

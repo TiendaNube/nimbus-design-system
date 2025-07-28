@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-export type ScrollPaneArrowProps = {
+export type ScrollPaneArrowProperties = {
   children: ReactNode;
 };
 
@@ -11,7 +11,13 @@ export type ArrowVariant =
   | "vertical-bottom";
 export type ScrollDirection = "start" | "end";
 
-export interface ScrollPaneArrowBaseProps extends ScrollPaneArrowProps {
+export interface ScrollPaneArrowBaseProps extends ScrollPaneArrowProperties {
   variant: ArrowVariant;
   direction: ScrollDirection;
 }
+
+// For documentation purposes
+export type ScrollPaneArrowVerticalEndProperties = ScrollPaneArrowProperties;
+export type ScrollPaneArrowVerticalStartProperties = ScrollPaneArrowProperties;
+export type ScrollPaneArrowHorizontalEndProperties = ScrollPaneArrowProperties;
+export type ScrollPaneArrowHorizontalStartProperties = ScrollPaneArrowProperties;

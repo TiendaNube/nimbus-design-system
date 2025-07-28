@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2025-07-28 `9.18.0`
+
+#### 🎉 New features
+
+- Added `scroll-pane` new composite component styles with gradient overlays, navigation arrows, scroll area management, and responsive animations for both horizontal and vertical scrolling directions. ([#XXX](https://github.com/TiendaNube/nimbus-design-system/pull/XXX) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-07-24 `9.17.0`
 
 #### 🎉 New features

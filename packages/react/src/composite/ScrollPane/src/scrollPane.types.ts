@@ -1,14 +1,19 @@
 import React, { ReactNode } from "react";
 import type { BoxProps } from "@nimbus-ds/box";
 import type { ScrollPaneItemProps } from "./components/ScrollPaneItem";
-import type { ScrollPaneArrowProps } from "./components/ScrollPaneArrow";
+import type {
+  ScrollPaneArrowHorizontalStartProperties,
+  ScrollPaneArrowHorizontalEndProperties,
+  ScrollPaneArrowVerticalStartProperties,
+  ScrollPaneArrowVerticalEndProperties,
+} from "./components/ScrollPaneArrow";
 
 export interface ScrollPaneComponents {
   Item: React.FC<ScrollPaneItemProps>;
-  ArrowHorizontalStart: React.FC<ScrollPaneArrowProps>;
-  ArrowHorizontalEnd: React.FC<ScrollPaneArrowProps>;
-  ArrowVerticalStart: React.FC<ScrollPaneArrowProps>;
-  ArrowVerticalEnd: React.FC<ScrollPaneArrowProps>;
+  ArrowHorizontalStart: React.FC<ScrollPaneArrowHorizontalStartProperties>;
+  ArrowHorizontalEnd: React.FC<ScrollPaneArrowHorizontalEndProperties>;
+  ArrowVerticalStart: React.FC<ScrollPaneArrowVerticalStartProperties>;
+  ArrowVerticalEnd: React.FC<ScrollPaneArrowVerticalEndProperties>;
 }
 
 export interface ScrollPaneProperties {

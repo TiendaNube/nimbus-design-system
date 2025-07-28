@@ -69,18 +69,6 @@ const meta: Meta<typeof ScrollPane> = {
 export default meta;
 type Story = StoryObj<typeof ScrollPane>;
 
-const HorizontalArrowStart = () => (
-  <ScrollPane.ArrowHorizontalStart>
-    <IconButton source={<ArrowLeftIcon />} />
-  </ScrollPane.ArrowHorizontalStart>
-);
-
-const HorizontalArrowEnd = () => (
-  <ScrollPane.ArrowHorizontalEnd>
-    <IconButton source={<ArrowRightIcon />} />
-  </ScrollPane.ArrowHorizontalEnd>
-);
-
 export const HorizontalCards: Story = {
   args: {
     showGradients: true,
@@ -88,8 +76,16 @@ export const HorizontalCards: Story = {
     showScrollbar: true,
     direction: "horizontal",
     scrollToItemOnClick: true,
-    scrollPaneArrowStart: <HorizontalArrowStart />,
-    scrollPaneArrowEnd: <HorizontalArrowEnd />,
+    scrollPaneArrowStart: (
+      <ScrollPane.ArrowHorizontalStart>
+        <IconButton source={<ArrowLeftIcon />} />
+      </ScrollPane.ArrowHorizontalStart>
+    ),
+    scrollPaneArrowEnd: (
+      <ScrollPane.ArrowHorizontalEnd>
+        <IconButton source={<ArrowRightIcon />} />
+      </ScrollPane.ArrowHorizontalEnd>
+    ),
   },
   argTypes: {
     scrollPaneArrowStart: {
@@ -122,26 +118,22 @@ export const HorizontalCards: Story = {
   ),
 };
 
-const VerticalArrowStart = () => (
-  <ScrollPane.ArrowVerticalStart>
-    <IconButton source={<ChevronUpIcon />} />
-  </ScrollPane.ArrowVerticalStart>
-);
-
-const VerticalArrowEnd = () => (
-  <ScrollPane.ArrowVerticalEnd>
-    <IconButton source={<ChevronDownIcon />} />
-  </ScrollPane.ArrowVerticalEnd>
-);
-
 export const ScrollableSegmentedControls: Story = {
   args: {
     showGradients: true,
     showArrows: false,
     showScrollbar: false,
     direction: "horizontal",
-    scrollPaneArrowStart: <HorizontalArrowStart />,
-    scrollPaneArrowEnd: <HorizontalArrowEnd />,
+    scrollPaneArrowStart: (
+      <ScrollPane.ArrowHorizontalStart>
+        <IconButton source={<ArrowLeftIcon />} />
+      </ScrollPane.ArrowHorizontalStart>
+    ),
+    scrollPaneArrowEnd: (
+      <ScrollPane.ArrowHorizontalEnd>
+        <IconButton source={<ArrowRightIcon />} />
+      </ScrollPane.ArrowHorizontalEnd>
+    ),
   },
   render: (args) => (
     <ScrollPane {...args}>
@@ -164,8 +156,16 @@ export const VerticalScroll: Story = {
     showArrows: true,
     showScrollbar: true,
     direction: "vertical",
-    scrollPaneArrowStart: <VerticalArrowStart />,
-    scrollPaneArrowEnd: <VerticalArrowEnd />,
+    scrollPaneArrowStart: (
+      <ScrollPane.ArrowVerticalStart>
+        <IconButton source={<ChevronUpIcon />} />
+      </ScrollPane.ArrowVerticalStart>
+    ),
+    scrollPaneArrowEnd: (
+      <ScrollPane.ArrowVerticalEnd>
+        <IconButton source={<ChevronDownIcon />} />
+      </ScrollPane.ArrowVerticalEnd>
+    ),
   },
   argTypes: {
     scrollPaneArrowStart: {

@@ -172,7 +172,6 @@ const ScrollPane: React.FC<ScrollPaneProps> & ScrollPaneComponents = ({
   return (
     <ScrollPaneContext.Provider value={contextValue}>
       <Box as="div" position="relative">
-        {/* Scroll area */}
         <div
           ref={containerRef}
           className={[
@@ -188,7 +187,6 @@ const ScrollPane: React.FC<ScrollPaneProps> & ScrollPaneComponents = ({
             {children}
           </Box>
 
-          {/* Gradient overlays  */}
           {showGradients && (
             <>
               {canScrollStart && (
@@ -216,7 +214,6 @@ const ScrollPane: React.FC<ScrollPaneProps> & ScrollPaneComponents = ({
             </>
           )}
 
-          {/* Navigation arrows */}
           {showArrows && (
             <>
               {canScrollStart && scrollPaneArrowStart}
