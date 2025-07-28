@@ -3020,10 +3020,10 @@ __metadata:
     "@nimbus-ds/card": "workspace:^"
     "@nimbus-ds/icon": "workspace:^"
     "@nimbus-ds/icons": "workspace:^"
-    "@nimbus-ds/styles": "workspace:^"
     "@nimbus-ds/text": "workspace:^"
     "@nimbus-ds/webpack": "workspace:^"
   peerDependencies:
+    "@nimbus-ds/styles": "workspace:^"
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
   languageName: unknown

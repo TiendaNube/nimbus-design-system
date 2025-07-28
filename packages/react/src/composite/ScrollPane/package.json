@@ -31,20 +31,19 @@
     "url": "https://github.com/TiendaNube/nimbus-design-system/issues"
   },
   "peerDependencies": {
+    "@nimbus-ds/styles": "workspace:^",
     "react": "^16.8 || ^17.0 || ^18.0",
-    "react-dom": "^16.8 || ^17.0 || ^18.0",
-    "@nimbus-ds/styles": "workspace:^"
-
+    "react-dom": "^16.8 || ^17.0 || ^18.0"
   },
   "dependencies": {
     "@nimbus-ds/box": "workspace:^"
   },
   "devDependencies": {
     "@nimbus-ds/button": "workspace:^",
-    "@nimbus-ds/webpack": "workspace:^",
-    "@nimbus-ds/text": "workspace:^",
     "@nimbus-ds/card": "workspace:^",
     "@nimbus-ds/icon": "workspace:^",
-    "@nimbus-ds/icons": "workspace:^"
+    "@nimbus-ds/icons": "workspace:^",
+    "@nimbus-ds/text": "workspace:^",
+    "@nimbus-ds/webpack": "workspace:^"
   }
 }
