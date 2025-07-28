@@ -1,2 +1,2 @@
-export { ScrollPaneItem } from "./ScrollPaneItem";
-export type { ScrollPaneItemProps } from "./scrollPaneItem.types"; 
+export * from "./ScrollPaneItem";
+export * from "./scrollPaneItem.types"; 

@@ -27,13 +27,10 @@ const SegmentedControl: React.FC<SegmentedControlProps> &
     number[]
   >([]);
 
-  // ID counter for buttons
-  const nextIdRef = useRef(0);
+  const nextIndexRef = useRef(0);
 
-  // Check for controlled mode
   const isControlledMode = isControlled(rest);
 
-  // Get the currently selected segments
   const selectedSegments = useMemo(() => {
     if (isControlledMode) {
       return rest.selectedSegments;
@@ -41,20 +38,18 @@ const SegmentedControl: React.FC<SegmentedControlProps> &
     return internalSelectedSegments;
   }, [isControlledMode, internalSelectedSegments, rest]);
 
-  // Handle toggling a segment
   const handleToggleSegment = useCallback(
-    (id: number) => {
+    (index: number) => {
       const handleChange = (current: number[]) => {
         const newSelected = [...current];
-        const existingIndex = newSelected.indexOf(id);
+        const existingIndex = newSelected.indexOf(index);
 
         if (existingIndex !== -1) {
           newSelected.splice(existingIndex, 1);
           return newSelected;
         }
 
-        // Add the segment
-        newSelected.push(id);
+        newSelected.push(index);
         return newSelected;
       };
 
@@ -70,15 +65,20 @@ const SegmentedControl: React.FC<SegmentedControlProps> &
     [isControlledMode, selectedSegments, rest]
   );
 
-  // Simplified context value
-  const contextValue: SegmentedControlContextValue = useMemo(() => ({
-    getNextId: () => nextIdRef.current++,
-    toggleSegment: handleToggleSegment,
-    isSelected: (id: number) => selectedSegments.includes(id),
-    fullWidth,
-  }), [handleToggleSegment, selectedSegments, fullWidth]);
+  const contextValue: SegmentedControlContextValue = useMemo(
+    () => ({
+      getNextIndex: () => {
+        const currentIndex = nextIndexRef.current;
+        nextIndexRef.current += 1;
+        return currentIndex;
+      },
+      toggleSegment: handleToggleSegment,
+      isSelected: (index) => selectedSegments.includes(index),
+      fullWidth,
+    }),
+    [handleToggleSegment, selectedSegments, fullWidth]
+  );
 
-  // Extract props from rest
   const {
     onSegmentsSelect,
     selectedSegments: _,

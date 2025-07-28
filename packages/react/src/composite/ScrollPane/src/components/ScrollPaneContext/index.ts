@@ -1,2 +1,1 @@
-export { ScrollPaneContext } from "./ScrollPaneContext";
-export type { ScrollPaneContextValue } from "./ScrollPaneContext"; 
+export * from "./ScrollPaneContext"; 

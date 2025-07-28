@@ -5,8 +5,8 @@ import { Card } from "@nimbus-ds/card";
 import { Text } from "@nimbus-ds/text";
 import { Button } from "@nimbus-ds/button";
 
-import { ScrollPane } from "./ScrollPane";
 import { SegmentedControl } from "@nimbus-ds/segmented-control";
+import { ScrollPane } from "./ScrollPane";
 
 const meta: Meta<typeof ScrollPane> = {
   title: "Composite/ScrollPane",
@@ -263,39 +263,5 @@ export const LargeContent: Story = {
         </Card>
       </ScrollPane.Item>
     </ScrollPane>
-  ),
-};
-
-// Recipe: Navigation menu
-export const NavigationMenu: Story = {
-  name: "Recipe: Navigation Menu",
-  args: {
-    showGradients: true,
-    showArrows: true,
-    showScrollbar: false,
-    direction: "horizontal",
-  },
-  render: (args) => (
-    <Box width="100%" maxWidth="600px">
-      <ScrollPane {...args}>
-        {[
-          "Dashboard",
-          "Products",
-          "Orders",
-          "Customers",
-          "Analytics",
-          "Marketing",
-          "Discounts",
-          "Shipping",
-          "Settings",
-          "Apps",
-          "Help",
-        ].map((item, i) => (
-          <ScrollPane.Item key={i} padding="1">
-            <Button>{item}</Button>
-          </ScrollPane.Item>
-        ))}
-      </ScrollPane>
-    </Box>
   ),
 };

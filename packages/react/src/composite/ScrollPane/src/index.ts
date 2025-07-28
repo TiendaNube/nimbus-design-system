@@ -1,2 +1,2 @@
 export { ScrollPane } from "./ScrollPane";
-export type { ScrollPaneProps } from "./scrollPane.types"; 
+export type { ScrollPaneProperties } from "./scrollPane.types"; 

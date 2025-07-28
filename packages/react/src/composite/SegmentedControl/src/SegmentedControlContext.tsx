@@ -10,9 +10,7 @@ export const SegmentedControlContext = createContext<SegmentedControlContextValu
  * Hook to use SegmentedControl context
  * @returns Context value or null if not within a SegmentedControl
  */
-export const useSegmentedControlContext = (): SegmentedControlContextValue | null => {
-  return useContext(SegmentedControlContext);
-};
+export const useSegmentedControlContext = (): SegmentedControlContextValue | null => useContext(SegmentedControlContext);
 
 /**
  * Hook to use SegmentedControl context with error if not found

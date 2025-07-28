@@ -4,7 +4,7 @@ The ScrollPane component handles responsive scrolls in lists that are overflowin
 
 ## 2024-01-10 `1.0.0`
 
-### 🎉 New features
+#### 🎉 New features
 
 - Created ScrollPane composite component with the following features:
   - Gradient overlays to indicate overflow content
@@ -15,3 +15,4 @@ The ScrollPane component handles responsive scrolls in lists that are overflowin
   - ScrollPane.Item sub-component for wrapping content
   - Full accessibility support with ARIA labels
   - Responsive design for mobile and desktop 
+  ([#XXX](https://github.com/TiendaNube/nimbus-design-system/pull/XXX) by [@contributor](https://github.com/contributor)) 

@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import { BoxProps } from "@nimbus-ds/box";
 
-export interface ScrollPaneItemProps extends Omit<BoxProps, "children"> {
+export interface ScrollPaneItemProperties {
   /**
    * The content to be rendered inside the scroll pane item
    */
@@ -22,3 +22,6 @@ export interface ScrollPaneItemProps extends Omit<BoxProps, "children"> {
    */
   onClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
 }
+
+export type ScrollPaneItemProps = ScrollPaneItemProperties &
+  Omit<BoxProps, "children">;

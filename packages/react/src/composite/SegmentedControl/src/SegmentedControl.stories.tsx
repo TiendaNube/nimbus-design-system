@@ -55,22 +55,6 @@ export const Basic: Story = {
 };
 
 /**
- * Example of an uncontrolled SegmentedControl with all segments initially selected.
- * This demonstrates how to create pre-selected segments without using controlled state.
- */
-export const UncontrolledAllSelected: Story = {
-  render: (args) => (
-    <SegmentedControl {...args}>
-      {["First", "Second", "Third"].map((name) => (
-        <SegmentedControl.Button key={name} label={name} selected>
-          {name}
-        </SegmentedControl.Button>
-      ))}
-    </SegmentedControl>
-  ),
-};
-
-/**
  * Example of a controlled SegmentedControl with state management.
  */
 export const Controlled: Story = {

@@ -39,10 +39,9 @@ const SegmentedControlButton = forwardRef(
     const innerRef = useRef<HTMLButtonElement>(null);
     useRefObjectAsForwardedRef(ref, innerRef);
 
-    // Context integration - get ID once on mount
     const context = useSegmentedControlContext();
-    const [buttonId] = useState<number | null>(() => 
-      context ? context.getNextId() : null
+    const [buttonIndex] = useState<number | null>(() =>
+      context ? context.getNextIndex() : null
     );
 
     useImperativeHandle<
@@ -64,25 +63,21 @@ const SegmentedControlButton = forwardRef(
       }
     }, [innerRef]);
 
-    // Generate a unique ID for the button and aria attributes
     const ariaID = generateID(label);
 
-    // Determine selection state and behavior based on context availability
-    const isSelected = context && buttonId !== null 
-      ? context.isSelected(buttonId) 
-      : selected;
-    
-    const shouldUseFullWidth = context 
-      ? context.fullWidth 
-      : fullWidth;
+    // Use the context value to determine if the button is selected, or default to the selected prop
+    const isSelected =
+      context && buttonIndex !== null
+        ? context.isSelected(buttonIndex)
+        : selected;
+
+    const shouldUseFullWidth = context ? context.fullWidth : fullWidth;
 
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-      if (context && buttonId !== null) {
-        // Use context toggle when within SegmentedControl
-        context.toggleSegment(buttonId);
+      if (context && buttonIndex !== null) {
+        context.toggleSegment(buttonIndex);
       }
-      
-      // Always call the original onClick handler
+
       onClick?.(event);
     };
 
@@ -90,8 +85,7 @@ const SegmentedControlButton = forwardRef(
     const buttonClassName = [
       classnames.appearance[isSelected ? "selected" : "default"],
     ]
-      .concat(shouldUseFullWidth && classnames.fullWidth ? classnames.fullWidth : "")
-      .filter(Boolean)
+      .concat(shouldUseFullWidth ? classnames.fullWidth : "")
       .join(" ");
 
     return (

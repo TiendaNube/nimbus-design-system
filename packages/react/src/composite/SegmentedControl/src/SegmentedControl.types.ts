@@ -1,28 +1,27 @@
-import { ReactElement, ReactNode } from "react";
+import { ReactNode } from "react";
 import type { BoxProps } from "@nimbus-ds/box";
 import {
   SegmentedControlButton,
   SegmentedControlButtonSkeleton,
-  type SegmentedControlButtonSkeletonProps,
-  type SegmentedControlButtonProps,
 } from "./components";
 
 /**
- * Simplified context interface for SegmentedControl toggle state management
+ * Context interface for SegmentedControl toggle state management
+ * Uses number indexes for simplicity
  */
 export interface SegmentedControlContextValue {
   /**
-   * Get the next available ID for a button
+   * Get the next available index for a button
    */
-  getNextId: () => number;
+  getNextIndex: () => number;
   /**
-   * Toggle a segment's state by ID
+   * Toggle a segment's state by index
    */
-  toggleSegment: (id: number) => void;
+  toggleSegment: (index: number) => void;
   /**
    * Check if a segment is currently selected
    */
-  isSelected: (id: number) => boolean;
+  isSelected: (index: number) => boolean;
   /**
    * Whether buttons should span full width
    */

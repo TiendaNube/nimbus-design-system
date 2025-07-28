@@ -121,7 +121,7 @@ describe("ScrollPane", () => {
     });
 
     render(
-      <ScrollPane showArrows={true}>
+      <ScrollPane showArrows>
         <ScrollPane.Item>Item 1</ScrollPane.Item>
         <ScrollPane.Item>Item 2</ScrollPane.Item>
       </ScrollPane>
@@ -171,7 +171,7 @@ describe("ScrollPane", () => {
     Element.prototype.getBoundingClientRect = mockGetBoundingClientRect;
 
     render(
-      <ScrollPane scrollToItemOnClick={true}>
+      <ScrollPane scrollToItemOnClick>
         <ScrollPane.Item data-testid="item-1">Item 1</ScrollPane.Item>
       </ScrollPane>
     );
