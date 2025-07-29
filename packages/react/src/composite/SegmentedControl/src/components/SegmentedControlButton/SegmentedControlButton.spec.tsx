@@ -21,10 +21,7 @@ const createMockContextValue = (
 });
 
 // Test wrapper component
-const SegmentedControlTestWrapper: React.FC<{
-  children: React.ReactNode;
-  contextValue?: Partial<SegmentedControlContextValue>;
-}> = ({
+const SegmentedControlTestWrapper = ({
   children,
   contextValue = {},
 }: {
@@ -37,6 +34,10 @@ const SegmentedControlTestWrapper: React.FC<{
       {children}
     </SegmentedControlContext.Provider>
   );
+};
+
+SegmentedControlTestWrapper.defaultProps = {
+  contextValue: {},
 };
 
 describe("SegmentedControlButton", () => {
