@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { icon } from "@nimbus-ds/styles";
 
 import { IconProps, IconComponents } from "./icon.types";
@@ -13,10 +13,11 @@ const Icon: React.FC<IconProps> & IconComponents = ({
   source,
   ...rest
 }: IconProps) => {
-  const isGradient = color === "ai-gradient";
-  const processedSource = isGradient
-    ? applyGradientToSvg(source, "linear")
-    : source;
+  const isGradient = useMemo(() => color === "ai-interactive", [color]);
+  const processedSource = useMemo(
+    () => (isGradient ? applyGradientToSvg(source, "linear") : source),
+    [isGradient, source]
+  );
 
   return (
     <div

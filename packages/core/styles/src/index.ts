@@ -10,12 +10,6 @@ export {
   gradients,
   createLinearGradient,
   createBorderGradient,
-  generateGradientId,
-  getGradientStops,
-  createSvgGradientDef,
-  injectGradientDefs,
-  type GradientStop,
-  type GradientTypes,
 } from "./gradients";
 
 export { badge } from "./packages/atomic/badge";

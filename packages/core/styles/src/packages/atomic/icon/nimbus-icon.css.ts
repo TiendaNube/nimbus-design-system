@@ -48,7 +48,7 @@ const iconColorProperties = {
   "neutral-textDisabled": colorProperties["neutral-textDisabled"],
   "neutral-textHigh": colorProperties["neutral-textHigh"],
 
-  "ai-gradient": "ai-gradient",
+  "ai-interactive": "ai-interactive",
 };
 
 const properties = {
