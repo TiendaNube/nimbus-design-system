@@ -1,9 +1,9 @@
 {
   "id": "popover",
   "name": "Popover",
-  "totalProps": 19,
+  "totalProps": 20,
   "packageName": "@nimbus-ds/popover",
-  "version": "4.2.0",
+  "version": "4.3.0-rc.11",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/popover",
   "props": [
     {
@@ -91,6 +91,13 @@
       "default": 10,
       "type": "number",
       "title": "offset",
+      "required": false
+    },
+    {
+      "description": "When enabled, renders an invisible overlay that prevents accidental clicks on elements behind the popover.",
+      "default": false,
+      "type": "boolean",
+      "title": "renderOverlay",
       "required": false
     },
     {
