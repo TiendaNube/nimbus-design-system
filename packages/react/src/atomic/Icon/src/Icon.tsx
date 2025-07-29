@@ -14,17 +14,19 @@ const Icon: React.FC<IconProps> & IconComponents = ({
   ...rest
 }: IconProps) => {
   const isGradient = color === "ai-gradient";
-  const processedSource = isGradient ? applyGradientToSvg(source, "ai-gradient") : source;
+  const processedSource = isGradient
+    ? applyGradientToSvg(source, "linear")
+    : source;
 
   return (
     <div
       {...rest}
       className={[
-        icon.sprinkle({ 
-          ...(!isGradient && { color }), 
-          cursor 
-        }), 
-        icon.classnames.base
+        icon.sprinkle({
+          ...(!isGradient && { color }),
+          cursor,
+        }),
+        icon.classnames.base,
       ].join(" ")}
     >
       {processedSource}

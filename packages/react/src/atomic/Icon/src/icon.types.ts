@@ -18,12 +18,12 @@ export interface IconProperties {
    * Use "ai-gradient" to apply the Nimbus AI gradient.
    * @default neutral-textLow
    */
-  color?: keyof typeof icon.properties.color | "ai-gradient";
+  color?: keyof typeof icon.properties.color;
   /**
    * The cursor property specifies the mouse cursor to be displayed when pointing over an element.
    * @default inherit
    */
-  cursor?: typeof icon.properties.cursor[number];
+  cursor?: (typeof icon.properties.cursor)[number];
 }
 
 export type IconProps = IconProperties & HTMLAttributes<HTMLDivElement>;

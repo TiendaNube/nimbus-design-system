@@ -1,13 +1,12 @@
 import React, { ReactElement } from "react";
 import * as gradients from "./gradients";
-import { GradientStop, Gradients } from "../types";
+import { GradientStop, GradientTypes } from "../types";
 
 /**
  * Generates a unique ID for SVG gradient to avoid conflicts when multiple icons use gradients
  */
-export const generateGradientId = (): string => {
-  return `nimbus-gradient-${Math.random().toString(36).slice(2, 11)}`;
-};
+export const generateGradientId = (): string =>
+  `nimbus-gradient-${Math.random().toString(36).slice(2, 11)}`;
 
 /**
  * Extracts gradient color stops from CSS gradient strings
@@ -54,10 +53,10 @@ const parseLinearGradient = (cssGradient: string): GradientStop[] => {
 /**
  * Gets gradient color stops for supported gradient types by reusing existing gradient definitions
  */
-export const getGradientStops = (gradient: Gradients): GradientStop[] => {
-  switch (gradient) {
-    case "ai-gradient":
-      return parseLinearGradient(gradients.aiGradient);
+export const getGradientStops = (type: GradientTypes): GradientStop[] => {
+  switch (type) {
+    case "linear":
+      return parseLinearGradient(gradients.aiGradientInteractive);
     default:
       return [];
   }
@@ -68,7 +67,7 @@ export const getGradientStops = (gradient: Gradients): GradientStop[] => {
  */
 export const createSvgGradientDef = (
   gradientId: string,
-  gradient: Gradients,
+  gradient: GradientTypes,
   direction: "horizontal" | "vertical" = "horizontal"
 ): ReactElement => {
   const gradientStops = getGradientStops(gradient);
@@ -86,9 +85,9 @@ export const createSvgGradientDef = (
       gradientUnits: "objectBoundingBox",
       ...gradientProps,
     },
-    ...gradientStops.map((stop, index) =>
+    ...gradientStops.map((stop) =>
       React.createElement("stop", {
-        key: index,
+        key: generateGradientId(),
         offset: stop.offset,
         stopColor: stop.color,
       })

@@ -1,7 +1,6 @@
 import { style as vanillaStyle, styleVariants } from "@vanilla-extract/css";
 
 import { varsThemeBase } from "../../../themes";
-import { createBorderGradient, gradients } from "../../../gradients";
 
 const base = vanillaStyle({
   display: "flex",
@@ -46,32 +45,6 @@ export const appearance = styleVariants({
       ":active": {
         background: varsThemeBase.colors.neutral.interactive,
         borderColor: varsThemeBase.colors.neutral.interactivePressed,
-      },
-    },
-  ],
-  "ai-gradient": [
-    base,
-    {
-      background: createBorderGradient(gradients.aiGradient, varsThemeBase.colors.neutral.surface),
-      color: varsThemeBase.colors.neutral.textHigh,
-      border: `${varsThemeBase.shape.border.width[2]} solid transparent`,
-      borderRadius: varsThemeBase.shape.border.radius[1], // 4px as requested
-      ":hover": {
-        opacity: "0.9",
-        background: createBorderGradient(gradients.aiGradient, varsThemeBase.colors.neutral.surfaceHighlight),
-        border: `${varsThemeBase.shape.border.width[2]} solid transparent`,
-      },
-      ":focus": {
-        borderColor: "transparent",
-        outline: "none",
-        background: createBorderGradient(gradients.aiGradient, varsThemeBase.colors.neutral.interactive),
-        border: `${varsThemeBase.shape.border.width[2]} solid transparent`,
-        boxShadow: varsThemeBase.utils.focus,
-      },
-      ":active": {
-        opacity: "0.8",
-        background: createBorderGradient(gradients.aiGradient, varsThemeBase.colors.neutral.interactive),
-        border: `${varsThemeBase.shape.border.width[2]} solid transparent`,
       },
     },
   ],

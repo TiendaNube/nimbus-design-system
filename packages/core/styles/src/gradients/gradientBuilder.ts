@@ -16,7 +16,9 @@ export const createLinearGradient = (
   ...colorStops: GradientColorStop[]
 ): string => {
   if (colorStops.length === 0) {
-    throw new Error("createLinearGradient requires at least one color stop (e.g., 'red', 'blue 50%', 'rgba(0,255,0,0.8)')");
+    throw new Error(
+      "createLinearGradient requires at least one color stop (e.g., 'red', 'blue 50%', 'rgba(0,255,0,0.8)')"
+    );
   }
 
   return `linear-gradient(${direction}, ${colorStops.join(", ")})`;
@@ -38,9 +40,7 @@ export const createLinearGradient = (
 export const createBorderGradient = (
   gradient: string,
   backgroundColor: string
-): [string, string] => {
-  return [
-    backgroundColor,
-    `linear-gradient(${backgroundColor}, ${backgroundColor}) padding-box, ${gradient} border-box`,
-  ];
-};
+): [string, string] => [
+  backgroundColor,
+  `linear-gradient(${backgroundColor}, ${backgroundColor}) padding-box, ${gradient} border-box`,
+];

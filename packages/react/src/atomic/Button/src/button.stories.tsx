@@ -82,7 +82,7 @@ export const asLink = {
     as: "a",
     children: "Button as anchor",
     href: "https://nimbus.tiendanube.com/",
-    target: "_blank"
+    target: "_blank",
   },
 };
 
@@ -111,12 +111,5 @@ export const transparent: Story = {
   args: {
     children: "Button",
     appearance: "transparent",
-  },
-};
-
-export const aiGradient: Story = {
-  args: {
-    children: "Button",
-    appearance: "ai-gradient",
   },
 };

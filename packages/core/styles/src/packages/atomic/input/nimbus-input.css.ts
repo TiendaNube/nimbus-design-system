@@ -114,7 +114,10 @@ export const appearance = styleVariants({
   "ai-gradient": [
     container,
     {
-      background: createBorderGradient(gradients.aiGradient, varsThemeBase.colors.neutral.background),
+      background: createBorderGradient(
+        gradients.aiGradientInteractive,
+        varsThemeBase.colors.neutral.background
+      ),
       border: `${varsThemeBase.shape.border.width[1]} solid transparent`,
       ":focus-within": {
         outline: "none",

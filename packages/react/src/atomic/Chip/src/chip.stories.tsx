@@ -48,20 +48,3 @@ export const stressed: Story = {
     removable: true,
   },
 };
-
-export const aiGradient: Story = {
-  args: {
-    text: "AI Chip",
-    icon: <BoxPackedIcon size={12} />,
-    appearance: "ai-gradient",
-  },
-};
-
-export const aiGradientRemovable: Story = {
-  args: {
-    text: "AI Chip",
-    icon: <BoxPackedIcon size={12} />,
-    appearance: "ai-gradient",
-    removable: true,
-  },
-};

@@ -15,7 +15,7 @@ export {
   createSvgGradientDef,
   injectGradientDefs,
   type GradientStop,
-  type Gradients
+  type GradientTypes,
 } from "./gradients";
 
 export { badge } from "./packages/atomic/badge";
@@ -70,5 +70,3 @@ export type { ModalSprinkle } from "./packages/composite/modal";
 export type { SidebarSprinkle } from "./packages/composite/sidebar";
 export type { TableSprinkle } from "./packages/composite/table";
 export type { TooltipSprinkle } from "./packages/atomic/tooltip";
-
-

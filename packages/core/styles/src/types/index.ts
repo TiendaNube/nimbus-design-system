@@ -71,10 +71,10 @@ export type TransitionTiming =
 export type WordBreak = "normal" | "break-all" | "keep-all" | "break-word";
 
 // Gradient types for flexible gradient creation
-export type GradientDirection = 
+export type GradientDirection =
   | string // Flexible string for custom angles like "180deg", "45deg", etc.
   | "to top"
-  | "to bottom" 
+  | "to bottom"
   | "to left"
   | "to right"
   | "to top left"
@@ -86,10 +86,9 @@ export type GradientDirection =
  * Available gradient variants for components.
  * Currently supports the Nimbus AI gradient styling.
  */
-export type Gradients = "ai-gradient";
+export type GradientTypes = "linear";
 
 export type GradientColorStop = string; // Flexible string to support "red", "red 50%", "rgba(255,0,0,0.5)", etc.
-
 
 /**
  * Represents a color stop in a gradient with offset position and color value.
@@ -98,4 +97,4 @@ export type GradientColorStop = string; // Flexible string to support "red", "re
 export type GradientStop = {
   offset: string;
   color: string;
-}
+};

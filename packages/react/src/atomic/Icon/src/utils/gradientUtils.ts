@@ -3,7 +3,7 @@ import {
   generateGradientId,
   createSvgGradientDef,
   injectGradientDefs,
-  type Gradients,
+  type GradientTypes,
 } from "@nimbus-ds/styles";
 import { SVGElementProps } from "@nimbus-ds/typings";
 
@@ -86,7 +86,7 @@ const processElement = (
  */
 export const applyGradientToSvg = (
   svgSource: ReactNode,
-  gradient: Gradients
+  gradient: GradientTypes
 ): ReactNode => {
   if (!React.isValidElement(svgSource)) {
     return svgSource;
@@ -109,10 +109,9 @@ export const applyGradientToSvg = (
     const processedSvg = processElement(renderedSvg, gradientId);
 
     return injectGradientDefs(processedSvg, gradientDef);
-  } else {
-    // This is already an SVG element - process it directly
-    const processedSvg = processElement(svgSource, gradientId);
-
-    return injectGradientDefs(processedSvg, gradientDef);
   }
+  // This is already an SVG element - process it directly
+  const processedSvg = processElement(svgSource, gradientId);
+
+  return injectGradientDefs(processedSvg, gradientDef);
 };

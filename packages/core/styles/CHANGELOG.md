@@ -2,6 +2,15 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2025-07-29 `9.18.0`
+
+#### 🎉 New features
+
+- Added generic gradient builder to support gradient styles in components. ([#320](https://github.com/TiendaNube/nimbus-design-system/pull/320) by [@joacotornello](https://github.com/joacotornello))
+- Added `ai-gradient` appearance to `Input` component. ([#320](https://github.com/TiendaNube/nimbus-design-system/pull/320) by [@joacotornello](https://github.com/joacotornello))
+- Added `ai-gradient` appearance to `Chip` component. ([#320](https://github.com/TiendaNube/nimbus-design-system/pull/320) by [@joacotornello](https://github.com/joacotornello))
+- Added `ai-gradient` appearance to `Icon` component. ([#320](https://github.com/TiendaNube/nimbus-design-system/pull/320) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-07-24 `9.17.0`
 
 #### 🎉 New features

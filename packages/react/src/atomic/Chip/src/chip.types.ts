@@ -23,7 +23,7 @@ export interface ChipProperties {
    * Change the visual style of the chip.
    * @default neutral
    */
-  appearance?: "neutral" | "ai-gradient";
+  appearance?: "neutral";
 }
 
 export type ChipProps = ChipProperties &

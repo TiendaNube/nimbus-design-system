@@ -2,6 +2,12 @@
 
 The Input component allows the user to enter or edit information in text format.
 
+## 2025-07-29 `2.6.0`
+
+#### 🎉 New features
+
+- Added `ai-gradient` appearance to `Input` component. ([#320](https://github.com/TiendaNube/nimbus-design-system/pull/320) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-03-18 `2.5.0`
 
 #### 🎉 New features

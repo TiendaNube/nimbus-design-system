@@ -15,7 +15,7 @@ export interface ButtonProperties {
    * Change the visual style of the button.
    * @default neutral
    */
-  appearance?: "primary" | "danger" | "neutral" | "transparent" | "ai-gradient";
+  appearance?: "primary" | "danger" | "neutral" | "transparent";
   /**
    * Disables the button, disallowing user interaction.
    * @default false
