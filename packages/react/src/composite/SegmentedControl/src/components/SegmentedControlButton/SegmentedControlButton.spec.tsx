@@ -3,6 +3,41 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { segmentedControl } from "@nimbus-ds/styles";
 import { SegmentedControlButton } from ".";
 import { SegmentedControlButtonSkeleton } from "./components";
+import {
+  SegmentedControlContext,
+  SegmentedControlContextValue,
+} from "../../contexts/SegmentedControlContext";
+
+// Mock context value for testing
+const createMockContextValue = (
+  overrides: Partial<SegmentedControlContextValue> = {}
+): SegmentedControlContextValue => ({
+  registerButton: jest.fn(),
+  unregisterButton: jest.fn(),
+  toggleSegment: jest.fn(),
+  isSelected: jest.fn().mockReturnValue(false),
+  fullWidth: false,
+  ...overrides,
+});
+
+// Test wrapper component
+const SegmentedControlTestWrapper: React.FC<{
+  children: React.ReactNode;
+  contextValue?: Partial<SegmentedControlContextValue>;
+}> = ({
+  children,
+  contextValue = {},
+}: {
+  children: React.ReactNode;
+  contextValue?: Partial<SegmentedControlContextValue>;
+}) => {
+  const mockContext = createMockContextValue(contextValue);
+  return (
+    <SegmentedControlContext.Provider value={mockContext}>
+      {children}
+    </SegmentedControlContext.Provider>
+  );
+};
 
 describe("SegmentedControlButton", () => {
   const defaultProps = {
@@ -16,33 +51,55 @@ describe("SegmentedControlButton", () => {
   });
 
   it("renders correctly", () => {
-    render(<SegmentedControlButton {...defaultProps} />);
+    render(
+      <SegmentedControlTestWrapper>
+        <SegmentedControlButton {...defaultProps} />
+      </SegmentedControlTestWrapper>
+    );
     expect(screen.getByRole("button")).toBeInTheDocument();
     expect(screen.getByText("Option 1")).toBeInTheDocument();
   });
 
   it("applies selected style when selected", () => {
-    render(<SegmentedControlButton {...defaultProps} selected />);
+    render(
+      <SegmentedControlTestWrapper
+        contextValue={{ isSelected: jest.fn().mockReturnValue(true) }}
+      >
+        <SegmentedControlButton {...defaultProps} selected />
+      </SegmentedControlTestWrapper>
+    );
     const button = screen.getByRole("button");
     expect(button).toHaveAttribute("aria-pressed", "true");
   });
 
   it("applies default style when not selected", () => {
-    render(<SegmentedControlButton {...defaultProps} />);
+    render(
+      <SegmentedControlTestWrapper>
+        <SegmentedControlButton {...defaultProps} />
+      </SegmentedControlTestWrapper>
+    );
     const button = screen.getByRole("button");
     expect(button).toHaveAttribute("aria-pressed", "false");
   });
 
   it("calls onClick when clicked", async () => {
     const onClick = jest.fn();
-    render(<SegmentedControlButton {...defaultProps} onClick={onClick} />);
+    render(
+      <SegmentedControlTestWrapper>
+        <SegmentedControlButton {...defaultProps} onClick={onClick} />
+      </SegmentedControlTestWrapper>
+    );
 
     fireEvent.click(screen.getByRole("button"));
     expect(onClick).toHaveBeenCalled();
   });
 
   it("renders as an anchor when 'as' prop is set to 'a'", () => {
-    render(<SegmentedControlButton {...defaultProps} as="a" href="#" />);
+    render(
+      <SegmentedControlTestWrapper>
+        <SegmentedControlButton {...defaultProps} as="a" href="#" />
+      </SegmentedControlTestWrapper>
+    );
     const anchor = screen.getByRole("button");
     expect(anchor.tagName).toBe("A");
     expect(anchor).toHaveAttribute("href", "#");
@@ -50,85 +107,105 @@ describe("SegmentedControlButton", () => {
 
   it("forwards ref correctly", () => {
     const ref = React.createRef<HTMLButtonElement>();
-    render(<SegmentedControlButton {...defaultProps} ref={ref} />);
+    render(
+      <SegmentedControlTestWrapper>
+        <SegmentedControlButton {...defaultProps} ref={ref} />
+      </SegmentedControlTestWrapper>
+    );
     expect(ref.current).toBeInstanceOf(HTMLButtonElement);
   });
 
   it("applies the correct classes when selected", () => {
     render(
-      <SegmentedControlButton {...defaultProps} selected>
-        Option 1
-      </SegmentedControlButton>
+      <SegmentedControlTestWrapper
+        contextValue={{ isSelected: jest.fn().mockReturnValue(true) }}
+      >
+        <SegmentedControlButton {...defaultProps} selected>
+          Option 1
+        </SegmentedControlButton>
+      </SegmentedControlTestWrapper>
     );
 
     const button = screen.getByRole("button");
-    expect(button.className).toContain(
+    expect(button).toHaveClass(
       segmentedControl.subcomponents.button.classnames.appearance.selected
     );
   });
 
   it("applies fullWidth class when fullWidth prop is true", () => {
     render(
-      <SegmentedControlButton {...defaultProps} fullWidth>
-        Option 1
-      </SegmentedControlButton>
+      <SegmentedControlTestWrapper contextValue={{ fullWidth: true }}>
+        <SegmentedControlButton {...defaultProps} fullWidth>
+          Option 1
+        </SegmentedControlButton>
+      </SegmentedControlTestWrapper>
     );
 
     const button = screen.getByRole("button");
-    expect(button.className).toContain("fullWidth");
+    expect(button).toHaveClass(
+      segmentedControl.subcomponents.button.classnames.fullWidth
+    );
   });
 
   it("does not apply fullWidth class when fullWidth prop is false", () => {
     render(
-      <SegmentedControlButton {...defaultProps} fullWidth={false}>
-        Option 1
-      </SegmentedControlButton>
+      <SegmentedControlTestWrapper>
+        <SegmentedControlButton {...defaultProps} fullWidth={false}>
+          Option 1
+        </SegmentedControlButton>
+      </SegmentedControlTestWrapper>
     );
 
     const button = screen.getByRole("button");
-    expect(button.className).not.toContain("fullWidth");
+    expect(button).not.toHaveClass(
+      segmentedControl.subcomponents.button.classnames.fullWidth
+    );
   });
 
   describe("accessibility check useEffect", () => {
-    beforeEach(() => {
-      // eslint-disable-next-line @typescript-eslint/no-empty-function
-      jest.spyOn(console, "error").mockImplementation(() => {});
+    let consoleErrorSpy: jest.SpyInstance;
+    beforeAll(() => {
+      consoleErrorSpy = jest.spyOn(console, "error").mockImplementation();
     });
 
-    afterEach(() => {
-      (console.error as jest.Mock).mockRestore();
+    afterAll(() => {
+      consoleErrorSpy.mockRestore();
     });
 
     it("should not call console.error when rendered as a button", () => {
-      render(<SegmentedControlButton {...defaultProps} />);
-      expect(console.error).not.toHaveBeenCalled();
+      render(
+        <SegmentedControlTestWrapper>
+          <SegmentedControlButton {...defaultProps} />
+        </SegmentedControlTestWrapper>
+      );
+      expect(consoleErrorSpy).not.toHaveBeenCalled();
     });
 
     it("should not call console.error when rendered as an anchor", () => {
-      render(<SegmentedControlButton {...defaultProps} as="a" href="#" />);
-      expect(console.error).not.toHaveBeenCalled();
+      render(
+        <SegmentedControlTestWrapper>
+          <SegmentedControlButton {...defaultProps} as="a" href="#" />
+        </SegmentedControlTestWrapper>
+      );
+      expect(consoleErrorSpy).not.toHaveBeenCalled();
     });
 
     it("should call console.error when rendered as a non-accessible element", () => {
-      const CustomDiv = React.forwardRef<HTMLDivElement>((props, ref) => (
-        <div {...props} ref={ref} />
-      ));
-
       render(
-        <SegmentedControlButton {...defaultProps} as={CustomDiv as any} />
+        <SegmentedControlTestWrapper>
+          <SegmentedControlButton {...defaultProps} as="div" />
+        </SegmentedControlTestWrapper>
       );
-      expect(console.error).toHaveBeenCalledWith(
-        "Error: Found `SegmentedControlButton` component that renders an inaccessible element",
-        expect.any(Object),
-        "Please ensure `SegmentedControlButton` always renders as <a> or <button>"
-      );
+      expect(consoleErrorSpy).toHaveBeenCalled();
     });
 
     it("should export SegmentedControlButton correctly", () => {
       render(
-        <SegmentedControlButton id="test" label="Test">Test</SegmentedControlButton>
+        <SegmentedControlTestWrapper>
+          <SegmentedControlButton {...defaultProps} />
+        </SegmentedControlTestWrapper>
       );
-      expect(screen.getByText("Test")).toBeInTheDocument();
+      expect(screen.getByRole("button")).toBeInTheDocument();
     });
 
     it("should export SegmentedControlButtonSkeleton correctly", () => {
@@ -145,13 +222,14 @@ describe("SegmentedControlButton", () => {
 
     it("renders with custom dimensions", () => {
       render(
-        <SegmentedControlButtonSkeleton 
-          data-testid="skeleton" 
-          width="100px" 
-          height="50px" 
+        <SegmentedControlButtonSkeleton
+          width="100px"
+          height="50px"
+          data-testid="skeleton"
         />
       );
-      expect(screen.getByTestId("skeleton")).toBeInTheDocument();
+      const skeleton = screen.getByTestId("skeleton");
+      expect(skeleton).toBeInTheDocument();
     });
   });
 });

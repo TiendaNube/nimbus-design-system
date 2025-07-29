@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Box } from "@nimbus-ds/box";
 
 import { ScrollPaneItemProps } from "./scrollPaneItem.types";
-import { ScrollPaneContext } from "../ScrollPaneContext";
+import { useScrollPaneContext } from "../../contexts/ScrollPaneContext";
 import { scrollItemIntoView } from "./ScrollPaneItem.definitions";
 
 /**
@@ -14,7 +14,7 @@ const ScrollPaneItem: React.FC<ScrollPaneItemProps> = ({
   onClick,
   ...rest
 }) => {
-  const context = useContext(ScrollPaneContext);
+  const context = useScrollPaneContext();
 
   const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
     if (onClick) {
@@ -22,7 +22,7 @@ const ScrollPaneItem: React.FC<ScrollPaneItemProps> = ({
     }
 
     // Scroll item into view if enabled
-    if (context?.scrollToItemOnClick && event.currentTarget) {
+    if (context.scrollToItemOnClick && event.currentTarget) {
       const container = context.containerRef?.current;
       const item = event.currentTarget;
 

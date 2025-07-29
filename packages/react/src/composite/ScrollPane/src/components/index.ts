@@ -1,7 +1,7 @@
 export { ScrollPaneItem } from "./ScrollPaneItem";
-export { ScrollPaneContext } from "./ScrollPaneContext";
+export { ScrollPaneContext } from "../contexts/ScrollPaneContext";
 export type { ScrollPaneItemProps } from "./ScrollPaneItem";
-export type { ScrollPaneContextValue } from "./ScrollPaneContext";
+export type { ScrollPaneContextValue } from "../contexts/ScrollPaneContext";
 
 export {
   ScrollPaneArrowHorizontalStart,

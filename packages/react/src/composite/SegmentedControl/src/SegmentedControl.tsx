@@ -6,12 +6,14 @@ import {
   SegmentedControlProps,
   SegmentedControlComponents,
   ControlledSegmentedControlProperties,
-  SegmentedControlContextValue,
 } from "./SegmentedControl.types";
 import { SegmentedControlButton } from "./components";
 import { isControlled } from "./segmentedControl.definitions";
 import { SegmentedControlButtonSkeleton } from "./components/SegmentedControlButton/components/SegmentedControlButtonSkeleton/SegmentedControlButtonSkeleton";
-import { SegmentedControlContext } from "./SegmentedControlContext";
+import {
+  SegmentedControlContext,
+  SegmentedControlContextValue,
+} from "./contexts/SegmentedControlContext";
 
 /**
  * SegmentedControl component for grouped selection controls

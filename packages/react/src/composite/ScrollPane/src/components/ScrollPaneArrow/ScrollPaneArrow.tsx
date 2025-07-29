@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import { scrollPane } from "@nimbus-ds/styles";
-import { ScrollPaneContext } from "../ScrollPaneContext";
+import { useScrollPaneContext } from "../../contexts/ScrollPaneContext";
 import {
   ScrollPaneArrowBaseProps,
   ScrollPaneArrowProperties,
@@ -19,11 +19,7 @@ const ScrollPaneArrowBase: React.FC<ScrollPaneArrowBaseProps> = ({
   variant,
   direction,
 }) => {
-  const context = useContext(ScrollPaneContext);
-
-  if (!context) {
-    throw new Error("ScrollPaneArrowBase must be used within a ScrollPane");
-  }
+  const context = useScrollPaneContext();
 
   const handleActivation = () => context.scrollToDirection(direction);
 

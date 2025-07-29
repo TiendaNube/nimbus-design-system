@@ -16,7 +16,7 @@ import {
   SegmentedControlButtonProps,
 } from "./SegmentedControlButton.types";
 import { SegmentedControlButtonSkeleton } from "./components/SegmentedControlButtonSkeleton/SegmentedControlButtonSkeleton";
-import { useSegmentedControlContext } from "../../SegmentedControlContext";
+import { useSegmentedControlContext } from "../../contexts/SegmentedControlContext";
 
 const SegmentedControlButton = forwardRef(
   (
@@ -42,7 +42,7 @@ const SegmentedControlButton = forwardRef(
 
     // Register and unregister with the provided ID
     useEffect(() => {
-      if (!context || !id) return undefined;
+      if (!id) return undefined;
 
       context.registerButton(id);
 

@@ -1,4 +1,4 @@
-import { createContext, RefObject } from "react";
+import { RefObject } from "react";
 
 export interface ScrollPaneContextValue {
   direction: "horizontal" | "vertical";
@@ -6,5 +6,3 @@ export interface ScrollPaneContextValue {
   containerRef?: RefObject<HTMLDivElement>;
   scrollToDirection: (direction: "start" | "end") => void;
 }
-
-export const ScrollPaneContext = createContext<ScrollPaneContextValue | null>(null); 

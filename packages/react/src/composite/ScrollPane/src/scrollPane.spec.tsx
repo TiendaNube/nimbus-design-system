@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 
 import { ScrollPane } from "./ScrollPane";
-import { ScrollPaneContext } from "./components/ScrollPaneContext";
+import { ScrollPaneContext } from "./contexts/ScrollPaneContext";
 
 // Mock getBoundingClientRect
 const mockGetBoundingClientRect = jest.fn(() => ({
@@ -508,7 +508,7 @@ describe("ScrollPane", () => {
     
     expect(() => {
       render(<ScrollPane.ArrowHorizontalStart>←</ScrollPane.ArrowHorizontalStart>);
-    }).toThrow("ScrollPaneArrowBase must be used within a ScrollPane");
+    }).toThrow("useScrollPaneContext must be used within a ScrollPane");
 
     consoleSpy.mockRestore();
   });
