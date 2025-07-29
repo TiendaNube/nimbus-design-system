@@ -67,5 +67,6 @@ const config: Config.InitialOptions = {
     "packages/helper",
     "packages/core/typings",
   ],
+  clearMocks: true,
 };
 export default config;

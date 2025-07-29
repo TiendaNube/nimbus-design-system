@@ -82,22 +82,22 @@ const arrow = style({
 
 const arrowVariants = styleVariants({
   "horizontal-left": {
-    left: "8px",
+    left: varsThemeBase.spacing[2],
     top: "50%",
     transform: "translateY(-50%)",
   },
   "horizontal-right": {
-    right: "8px",
+    right: varsThemeBase.spacing[2],
     top: "50%",
     transform: "translateY(-50%)",
   },
   "vertical-top": {
-    top: "8px",
+    top: varsThemeBase.spacing[2],
     left: "50%",
     transform: "translateX(-50%)",
   },
   "vertical-bottom": {
-    bottom: "8px",
+    bottom: varsThemeBase.spacing[2],
     left: "50%",
     transform: "translateX(-50%)",
   },
