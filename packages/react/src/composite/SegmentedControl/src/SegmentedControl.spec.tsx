@@ -302,15 +302,15 @@ describe("<SegmentedControl />", () => {
 
     const buttons = screen.getAllByRole("button");
     expect(buttons[0]).toHaveAttribute("aria-pressed", "false");
-    expect(buttons[0]).toHaveAttribute("id", "segment-option-1");
+    expect(buttons[0]).toHaveAttribute("id", "option1");
     expect(buttons[0]).toHaveAttribute("role", "button");
 
     expect(buttons[1]).toHaveAttribute("aria-pressed", "false");
-    expect(buttons[1]).toHaveAttribute("id", "segment-option-2");
+    expect(buttons[1]).toHaveAttribute("id", "option2");
     expect(buttons[1]).toHaveAttribute("role", "button");
 
     expect(buttons[2]).toHaveAttribute("aria-pressed", "false");
-    expect(buttons[2]).toHaveAttribute("id", "segment-option-3");
+    expect(buttons[2]).toHaveAttribute("id", "option3");
     expect(buttons[2]).toHaveAttribute("role", "button");
   });
 
@@ -318,9 +318,9 @@ describe("<SegmentedControl />", () => {
     render(<SegmentedControl {...defaultProps} />);
 
     const buttons = screen.getAllByRole("button");
-    expect(buttons[0]).toHaveAttribute("id", "segment-option-1");
-    expect(buttons[1]).toHaveAttribute("id", "segment-option-2");
-    expect(buttons[2]).toHaveAttribute("id", "segment-option-3");
+    expect(buttons[0]).toHaveAttribute("id", "option1");
+    expect(buttons[1]).toHaveAttribute("id", "option2");
+    expect(buttons[2]).toHaveAttribute("id", "option3");
   });
 
   it("renders the skeleton component correctly", () => {

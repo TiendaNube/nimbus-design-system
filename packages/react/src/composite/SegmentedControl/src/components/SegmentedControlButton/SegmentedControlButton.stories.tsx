@@ -65,7 +65,7 @@ export const disabled: Story = {
 
 export const AsLink: Story = {
   render: () => (
-    <SegmentedControlButton<"a"> as="a" href="#" label="Option 1">
+    <SegmentedControlButton<"a"> as="a" href="#" label="Option 1" id="option-1">
       Option 1
     </SegmentedControlButton>
   ),
@@ -73,7 +73,7 @@ export const AsLink: Story = {
 
 export const IconButton: Story = {
   render: () => (
-    <SegmentedControlButton label="With icon">
+    <SegmentedControlButton label="With icon" id="with-icon">
       <Icon source={<ExternalLinkIcon />} />
     </SegmentedControlButton>
   ),
@@ -81,7 +81,7 @@ export const IconButton: Story = {
 
 export const WithCustomContent: Story = {
   render: () => (
-    <SegmentedControlButton label="With icon">
+    <SegmentedControlButton label="With icon" id="with-icon">
       With icon
       <Icon source={<ExternalLinkIcon />} />
     </SegmentedControlButton>
@@ -91,7 +91,7 @@ export const WithCustomContent: Story = {
 export const WithTooltip: Story = {
   render: () => (
     <Tooltip content="Tooltip content">
-      <SegmentedControlButton label="With tooltip">
+      <SegmentedControlButton label="With tooltip" id="with-tooltip">
         With tooltip
       </SegmentedControlButton>
     </Tooltip>
@@ -101,7 +101,11 @@ export const WithTooltip: Story = {
 export const fullWidth: Story = {
   render: () => (
     <div style={{ width: "400px" }}>
-      <SegmentedControlButton label="Full Width Button" fullWidth>
+      <SegmentedControlButton
+        label="Full Width Button"
+        fullWidth
+        id="full-width-button"
+      >
         Full Width Button
       </SegmentedControlButton>
     </div>
@@ -116,9 +120,15 @@ export const SkeletonState: Story = {
 export const GroupExample: Story = {
   render: () => (
     <Box display="flex" gap="1" padding="1">
-      <SegmentedControlButton label="Option 1">Option 1</SegmentedControlButton>
-      <SegmentedControlButton label="Option 2">Option 2</SegmentedControlButton>
-      <SegmentedControlButton label="Option 3">Option 3</SegmentedControlButton>
+      <SegmentedControlButton label="Option 1" id="option-1">
+        Option 1
+      </SegmentedControlButton>
+      <SegmentedControlButton label="Option 2" id="option-2">
+        Option 2
+      </SegmentedControlButton>
+      <SegmentedControlButton label="Option 3" id="option-3">
+        Option 3
+      </SegmentedControlButton>
     </Box>
   ),
 };
@@ -127,13 +137,13 @@ export const GroupExample: Story = {
 export const FullWidthGroupExample: Story = {
   render: () => (
     <Box display="flex" gap="1" padding="1" width="100%">
-      <SegmentedControlButton label="Option 1" fullWidth>
+      <SegmentedControlButton label="Option 1" fullWidth id="option-1">
         Option 1
       </SegmentedControlButton>
-      <SegmentedControlButton label="Option 2" fullWidth>
+      <SegmentedControlButton label="Option 2" fullWidth id="option-2">
         Option 2
       </SegmentedControlButton>
-      <SegmentedControlButton label="Option 3" fullWidth>
+      <SegmentedControlButton label="Option 3" fullWidth id="option-3">
         Option 3
       </SegmentedControlButton>
     </Box>

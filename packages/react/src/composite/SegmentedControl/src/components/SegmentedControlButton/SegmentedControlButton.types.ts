@@ -8,9 +8,9 @@ export type SegmentedControlButtonProperties = PropsWithChildren<{
    */
   id: string;
   /**
-   * Label of the segment.
+   * Label of the segment used for accessibility.
    */
-  label: string;
+  label?: string;
   /**
    * Determines if segment is active.
    * @default false

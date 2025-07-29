@@ -11,7 +11,6 @@ import {
 } from "@nimbus-ds/typings";
 import { segmentedControl } from "@nimbus-ds/styles";
 
-import { generateID } from "../../segmentedControl.definitions";
 import {
   SegmentedControlButtonComponents,
   SegmentedControlButtonProps,
@@ -44,7 +43,7 @@ const SegmentedControlButton = forwardRef(
     // Register and unregister with the provided ID
     useEffect(() => {
       if (!context || !id) return undefined;
-      
+
       context.registerButton(id);
 
       return () => {
@@ -71,8 +70,6 @@ const SegmentedControlButton = forwardRef(
       }
     }, [innerRef]);
 
-    const ariaID = generateID(label);
-
     // Use the context value to determine if the button is selected, or default to the selected prop
     const isSelected = context && id ? context.isSelected(id) : selected;
 
@@ -95,11 +92,12 @@ const SegmentedControlButton = forwardRef(
 
     return (
       <As
-        id={`segment-${ariaID}`}
+        id={id}
         role="button"
         {...(rest as HTMLAttributes<HTMLButtonElement>)}
         className={buttonClassName}
         aria-pressed={isSelected}
+        aria-label={label}
         disabled={disabled}
         onClick={handleClick}
         ref={innerRef}
