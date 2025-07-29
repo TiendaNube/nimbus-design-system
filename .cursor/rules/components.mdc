@@ -6,6 +6,48 @@ alwaysApply: false
 
 ## Component Structure
 
+Common directory and file organization:
+
+```
+src/
+├── atomic|composite/
+│   ├── <component-name>/
+│   │   ├── src/
+│   │   │   ├── components/
+│   │   │   │   ├── <component-name>/
+│   │   │   │   │   ├── <component-name>.tsx
+│   │   │   │   │   ├── <component-name>.types.ts
+│   │   │   │   │   ├── <component-name>.spec.tsx
+│   │   │   │   │   ├── <component-name>.stories.tsx
+│   │   │   │   │   ├── index.ts
+│   │   │   │   └── index.ts
+│   │   │   ├── contexts/
+│   │   │   │   │   ├── <context-name>/
+│   │   │   │   │   │   ├── <context-name>.types.ts
+│   │   │   │   │   │   ├── <context-name>.tsx
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   ├── index.ts
+│   │   │   ├── hooks/
+│   │   │   │   │   ├── <hook-name>/
+│   │   │   │   │   │   ├── <hook-name>.types.ts
+│   │   │   │   │   │   ├── <hook-name>.spec.tsx
+│   │   │   │   │   │   ├── <hook-name>.tsx
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   └── index.ts
+│   │   │   ├── <component-name>.tsx
+│   │   │   ├── <component-name>.types.ts
+│   │   │   ├── <component-name>.spec.tsx
+│   │   │   ├── <component-name>.stories.tsx
+│   │   │   └── index.ts
+│   │   └── index.ts
+│   │   ├── tsconfig.json
+│   │   └── webpack.config.ts
+│   │   └── CHANGELOG.md
+│   │   └── README.md
+│   │   └── package.json
+│   └── ...
+```
+
 1. **File Organization**:
    - One component per file
    - Component file should match component name
