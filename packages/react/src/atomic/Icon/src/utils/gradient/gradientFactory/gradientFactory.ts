@@ -41,10 +41,12 @@ export const createSvgGradientDef = (
     },
     ...gradientStops.map((stop, index) =>
       React.createElement("stop", {
+        // We'll never sort the stops and we're combining them with the gradientId
+        // eslint-disable-next-line react/no-array-index-key
         key: `${gradientId}-stop-${index}`,
         offset: stop.offset,
         stopColor: stop.color,
       })
     )
   );
-}; 
+};
