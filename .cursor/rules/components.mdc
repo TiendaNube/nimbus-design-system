@@ -19,20 +19,20 @@ src/
 │   │   │   │   │   ├── <component-name>.types.ts
 │   │   │   │   │   ├── <component-name>.spec.tsx
 │   │   │   │   │   ├── <component-name>.stories.tsx
-│   │   │   │   │   ├── index.ts
+│   │   │   │   │   └── index.ts
 │   │   │   │   └── index.ts
 │   │   │   ├── contexts/
-│   │   │   │   │   ├── <context-name>/
-│   │   │   │   │   │   ├── <context-name>.types.ts
-│   │   │   │   │   │   ├── <context-name>.tsx
-│   │   │   │   │   │   └── index.ts
-│   │   │   │   ├── index.ts
+│   │   │   │   ├── <context-name>/
+│   │   │   │   │   ├── <context-name>.types.ts
+│   │   │   │   │   ├── <context-name>.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   └── index.ts
 │   │   │   ├── hooks/
-│   │   │   │   │   ├── <hook-name>/
-│   │   │   │   │   │   ├── <hook-name>.types.ts
-│   │   │   │   │   │   ├── <hook-name>.spec.tsx
-│   │   │   │   │   │   ├── <hook-name>.tsx
-│   │   │   │   │   │   └── index.ts
+│   │   │   │   ├── <hook-name>/
+│   │   │   │   │   ├── <hook-name>.types.ts
+│   │   │   │   │   ├── <hook-name>.spec.tsx
+│   │   │   │   │   ├── <hook-name>.tsx
+│   │   │   │   │   └── index.ts
 │   │   │   │   └── index.ts
 │   │   │   ├── <component-name>.tsx
 │   │   │   ├── <component-name>.types.ts
