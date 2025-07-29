@@ -140,7 +140,11 @@ export const ScrollableSegmentedControls: Story = {
       <SegmentedControl>
         {Array.from({ length: 10 }, (_, i) => (
           <ScrollPane.Item key={i}>
-            <SegmentedControl.Button value={i} label={`Button ${i + 1}`}>
+            <SegmentedControl.Button
+              value={i}
+              label={`Button ${i + 1}`}
+              id={`Button ${i + 1}`}
+            >
               Button {i + 1}
             </SegmentedControl.Button>
           </ScrollPane.Item>

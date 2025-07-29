@@ -4,7 +4,6 @@ import React, {
   useEffect,
   useImperativeHandle,
   HTMLAttributes,
-  useState,
 } from "react";
 import {
   PolymorphicForwardRefComponent,
@@ -26,6 +25,7 @@ const SegmentedControlButton = forwardRef(
       className: _className,
       style: _style,
       as: As = "button",
+      id,
       label,
       selected = false,
       disabled = false,
@@ -40,9 +40,17 @@ const SegmentedControlButton = forwardRef(
     useRefObjectAsForwardedRef(ref, innerRef);
 
     const context = useSegmentedControlContext();
-    const [buttonIndex] = useState<number | null>(() =>
-      context ? context.getNextIndex() : null
-    );
+
+    // Register and unregister with the provided ID
+    useEffect(() => {
+      if (!context || !id) return undefined;
+      
+      context.registerButton(id);
+
+      return () => {
+        context.unregisterButton(id);
+      };
+    }, [context, id]);
 
     useImperativeHandle<
       HTMLButtonElement | HTMLAnchorElement | null,
@@ -66,16 +74,13 @@ const SegmentedControlButton = forwardRef(
     const ariaID = generateID(label);
 
     // Use the context value to determine if the button is selected, or default to the selected prop
-    const isSelected =
-      context && buttonIndex !== null
-        ? context.isSelected(buttonIndex)
-        : selected;
+    const isSelected = context && id ? context.isSelected(id) : selected;
 
     const shouldUseFullWidth = context ? context.fullWidth : fullWidth;
 
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-      if (context && buttonIndex !== null) {
-        context.toggleSegment(buttonIndex);
+      if (context && id) {
+        context.toggleSegment(id);
       }
 
       onClick?.(event);

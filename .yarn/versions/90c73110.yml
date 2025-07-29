@@ -1,7 +1,7 @@
 releases:
   "@nimbus-ds/components": minor
   "@nimbus-ds/scroll-pane": major
-  "@nimbus-ds/segmented-control": minor
+  "@nimbus-ds/segmented-control": major
   "@nimbus-ds/styles": minor
 
 declined:

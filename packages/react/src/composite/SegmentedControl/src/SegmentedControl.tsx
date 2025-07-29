@@ -24,10 +24,11 @@ const SegmentedControl: React.FC<SegmentedControlProps> &
 }: SegmentedControlProps) => {
   // Internal state for uncontrolled mode
   const [internalSelectedSegments, setInternalSelectedSegments] = useState<
-    number[]
+    string[]
   >([]);
 
-  const nextIndexRef = useRef(0);
+  // Track registered button IDs
+  const registeredButtonsRef = useRef(new Set<string>());
 
   const isControlledMode = isControlled(rest);
 
@@ -39,17 +40,17 @@ const SegmentedControl: React.FC<SegmentedControlProps> &
   }, [isControlledMode, internalSelectedSegments, rest]);
 
   const handleToggleSegment = useCallback(
-    (index: number) => {
-      const handleChange = (current: number[]) => {
+    (id: string) => {
+      const handleChange = (current: string[]) => {
         const newSelected = [...current];
-        const existingIndex = newSelected.indexOf(index);
+        const existingIndex = newSelected.indexOf(id);
 
         if (existingIndex !== -1) {
           newSelected.splice(existingIndex, 1);
           return newSelected;
         }
 
-        newSelected.push(index);
+        newSelected.push(id);
         return newSelected;
       };
 
@@ -65,18 +66,34 @@ const SegmentedControl: React.FC<SegmentedControlProps> &
     [isControlledMode, selectedSegments, rest]
   );
 
+  const registerButton = useCallback((id: string) => {
+    registeredButtonsRef.current.add(id);
+  }, []);
+
+  const unregisterButton = useCallback((id: string) => {
+    registeredButtonsRef.current.delete(id);
+  }, []);
+
+  const isSelected = useCallback(
+    (id: string) => selectedSegments.includes(id),
+    [selectedSegments]
+  );
+
   const contextValue: SegmentedControlContextValue = useMemo(
     () => ({
-      getNextIndex: () => {
-        const currentIndex = nextIndexRef.current;
-        nextIndexRef.current += 1;
-        return currentIndex;
-      },
+      registerButton,
+      unregisterButton,
       toggleSegment: handleToggleSegment,
-      isSelected: (index) => selectedSegments.includes(index),
+      isSelected,
       fullWidth,
     }),
-    [handleToggleSegment, selectedSegments, fullWidth]
+    [
+      registerButton,
+      unregisterButton,
+      handleToggleSegment,
+      isSelected,
+      fullWidth,
+    ]
   );
 
   const {

@@ -27,12 +27,12 @@ const ScrollPaneArrowBase: React.FC<ScrollPaneArrowBaseProps> = ({
 
   const handleActivation = () => context.scrollToDirection(direction);
 
-const handleKeyDown = (event: React.KeyboardEvent) => {
-  if (event.key === "Enter" || event.code === "Space") {
-    event.preventDefault();
-    handleActivation();
-  }
-};
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === "Enter" || event.code === "Space") {
+      event.preventDefault();
+      handleActivation();
+    }
+  };
 
   return (
     <div

@@ -7,7 +7,7 @@ import { ControlledSegmentedControlProperties } from "./SegmentedControl.types";
 // Helper function to render segmented control buttons
 const renderSegmentButtons = (names: string[]) =>
   names.map((name) => (
-    <SegmentedControl.Button key={name} label={name}>
+    <SegmentedControl.Button key={name} label={name} id={name}>
       {name}
     </SegmentedControl.Button>
   ));
@@ -63,8 +63,10 @@ export const Basic: Story = {
  */
 export const Controlled: Story = {
   render: (args) => {
-    const [selectedSegment, setSelectedSegment] = useState<number[]>(
-      (args as ControlledSegmentedControlProperties).selectedSegments || [0]
+    const [selectedSegment, setSelectedSegment] = useState<string[]>(
+      (args as ControlledSegmentedControlProperties).selectedSegments || [
+        "First",
+      ]
     );
 
     return (
@@ -80,7 +82,7 @@ export const Controlled: Story = {
           onSegmentsSelect={setSelectedSegment}
         >
           {["First", "Second", "Third"].map((name) => (
-            <SegmentedControl.Button key={name} label={name}>
+            <SegmentedControl.Button key={name} label={name} id={name}>
               {name}
             </SegmentedControl.Button>
           ))}
@@ -101,16 +103,21 @@ export const Controlled: Story = {
  */
 export const Group = () => (
   <SegmentedControl>
-    <SegmentedControl.Button key="Option 1" label="Option 1">
+    <SegmentedControl.Button key="Option 1" label="Option 1" id="Option 1">
       Option 1
     </SegmentedControl.Button>
-    <SegmentedControl.Button key="Option 2" label="Option 2">
+    <SegmentedControl.Button key="Option 2" label="Option 2" id="Option 2">
       Option 2
     </SegmentedControl.Button>
-    <SegmentedControl.Button key="Option 3" label="Option 3">
+    <SegmentedControl.Button key="Option 3" label="Option 3" id="Option 3">
       Option 3
     </SegmentedControl.Button>
-    <SegmentedControl.Button key="Option 4" label="Option 4" disabled>
+    <SegmentedControl.Button
+      key="Option 4"
+      label="Option 4"
+      id="Option 4"
+      disabled
+    >
       Option 4
     </SegmentedControl.Button>
   </SegmentedControl>
@@ -132,7 +139,7 @@ export const FullWidth: Story = {
     <div style={{ width: "100%" }}>
       <SegmentedControl fullWidth flexWrap="nowrap">
         {["First", "Second", "Third"].map((name) => (
-          <SegmentedControl.Button key={name} label={name}>
+          <SegmentedControl.Button key={name} label={name} id={name}>
             {name}
           </SegmentedControl.Button>
         ))}
@@ -147,7 +154,14 @@ export const FullWidth: Story = {
 export const ResponsiveWrap: Story = {
   render: () => (
     <SegmentedControl flexWrap="wrap">
-      {renderSegmentButtons(["First", "Second", "Third", "Fourth", "Fifth", "Sixth"])}
+      {renderSegmentButtons([
+        "First",
+        "Second",
+        "Third",
+        "Fourth",
+        "Fifth",
+        "Sixth",
+      ])}
     </SegmentedControl>
   ),
 };

@@ -12,13 +12,13 @@ import { SegmentedControl } from "./SegmentedControl";
 describe("<SegmentedControl />", () => {
   const defaultProps = {
     children: [
-      <SegmentedControl.Button key="option1" label="Option 1" selected>
+      <SegmentedControl.Button key="option1" id="option1" label="Option 1" selected>
         Option 1
       </SegmentedControl.Button>,
-      <SegmentedControl.Button key="option2" label="Option 2">
+      <SegmentedControl.Button key="option2" id="option2" label="Option 2">
         Option 2
       </SegmentedControl.Button>,
-      <SegmentedControl.Button key="option3" label="Option 3">
+      <SegmentedControl.Button key="option3" id="option3" label="Option 3">
         Option 3
       </SegmentedControl.Button>,
     ],
@@ -53,9 +53,9 @@ describe("<SegmentedControl />", () => {
 
   it("initializes with selected segments from children props", () => {
     const children = [
-      <SegmentedControl.Button key="option1" label="Option 1" selected />,
-      <SegmentedControl.Button key="option2" label="Option 2" />,
-      <SegmentedControl.Button key="option3" label="Option 3" selected />,
+      <SegmentedControl.Button key="option1" id="option1" label="Option 1" selected />,
+      <SegmentedControl.Button key="option2" id="option2" label="Option 2" />,
+      <SegmentedControl.Button key="option3" id="option3" label="Option 3" selected />,
     ];
 
     render(<SegmentedControl>{children}</SegmentedControl>);
@@ -69,10 +69,10 @@ describe("<SegmentedControl />", () => {
   it("passes fullWidth prop to SegmentedControlButton", () => {
     render(
       <SegmentedControl fullWidth data-testid="segmented-control">
-        <SegmentedControl.Button label="Option 1">
+        <SegmentedControl.Button id="option1" label="Option 1">
           Option 1
         </SegmentedControl.Button>
-        <SegmentedControl.Button label="Option 2">
+        <SegmentedControl.Button id="option2" label="Option 2">
           Option 2
         </SegmentedControl.Button>
       </SegmentedControl>
@@ -80,7 +80,6 @@ describe("<SegmentedControl />", () => {
 
     const buttons = screen.getAllByRole("button");
 
-    // Check that all buttons have the fullWidth class
     buttons.forEach((button) => {
       expect(button.className).toContain("fullWidth");
     });
@@ -91,16 +90,15 @@ describe("<SegmentedControl />", () => {
 
     render(
       <SegmentedControl>
-        <SegmentedControl.Button label="Option 1" selected>
+        <SegmentedControl.Button id="option1" label="Option 1" selected>
           Option 1
         </SegmentedControl.Button>
-        <SegmentedControl.Button label="Option 2">
+        <SegmentedControl.Button id="option2" label="Option 2">
           Option 2
         </SegmentedControl.Button>
       </SegmentedControl>
     );
 
-    // No buttons should be selected by default
     expect(screen.getAllByRole("button")[0]).toHaveAttribute(
       "aria-pressed",
       "false"
@@ -110,12 +108,10 @@ describe("<SegmentedControl />", () => {
       "false"
     );
 
-    // Click the second button
     await act(async () => {
       await user.click(screen.getByText("Option 2"));
     });
 
-    // Wait for the state update - only the second button should be selected
     await waitFor(() => {
       expect(screen.getAllByRole("button")[0]).toHaveAttribute(
         "aria-pressed",
@@ -132,12 +128,10 @@ describe("<SegmentedControl />", () => {
     render(<SegmentedControl {...defaultProps} />);
     const buttons = screen.getAllByRole("button");
 
-    // No segments are selected by default
     expect(buttons[0]).toHaveAttribute("aria-pressed", "false");
     expect(buttons[1]).toHaveAttribute("aria-pressed", "false");
     expect(buttons[2]).toHaveAttribute("aria-pressed", "false");
 
-    // Click second segment to add it
     act(() => {
       fireEvent.click(buttons[1]);
     });
@@ -145,7 +139,6 @@ describe("<SegmentedControl />", () => {
     expect(buttons[1]).toHaveAttribute("aria-pressed", "true");
     expect(buttons[2]).toHaveAttribute("aria-pressed", "false");
 
-    // Click third segment to add it
     act(() => {
       fireEvent.click(buttons[2]);
     });
@@ -157,10 +150,10 @@ describe("<SegmentedControl />", () => {
   it("passes fullWidth when true", () => {
     const { rerender } = render(
       <SegmentedControl fullWidth>
-        <SegmentedControl.Button label="Option 1">
+        <SegmentedControl.Button id="option1" label="Option 1">
           Option 1
         </SegmentedControl.Button>
-        <SegmentedControl.Button label="Option 2">
+        <SegmentedControl.Button id="option2" label="Option 2">
           Option 2
         </SegmentedControl.Button>
       </SegmentedControl>
@@ -169,13 +162,12 @@ describe("<SegmentedControl />", () => {
     expect(screen.getAllByRole("button")[0].className).toContain("fullWidth");
     expect(screen.getAllByRole("button")[1].className).toContain("fullWidth");
 
-    // Rerender without fullWidth
     rerender(
       <SegmentedControl>
-        <SegmentedControl.Button label="Option 1">
+        <SegmentedControl.Button id="option1" label="Option 1">
           Option 1
         </SegmentedControl.Button>
-        <SegmentedControl.Button label="Option 2">
+        <SegmentedControl.Button id="option2" label="Option 2">
           Option 2
         </SegmentedControl.Button>
       </SegmentedControl>
@@ -193,7 +185,6 @@ describe("<SegmentedControl />", () => {
     render(<SegmentedControl {...defaultProps} />);
     const buttons = screen.getAllByRole("button");
 
-    // First select multiple segments
     act(() => {
       fireEvent.click(buttons[0]);
     });
@@ -203,7 +194,6 @@ describe("<SegmentedControl />", () => {
     expect(buttons[0]).toHaveAttribute("aria-pressed", "true");
     expect(buttons[1]).toHaveAttribute("aria-pressed", "true");
 
-    // Deselect first segment
     act(() => {
       fireEvent.click(buttons[0]);
     });
@@ -215,7 +205,7 @@ describe("<SegmentedControl />", () => {
     render(
       <SegmentedControl
         {...defaultProps}
-        selectedSegments={[1, 2]}
+        selectedSegments={["option2", "option3"]}
         onSegmentsSelect={mockOnSegmentsSelect}
       />
     );
@@ -230,7 +220,7 @@ describe("<SegmentedControl />", () => {
     render(
       <SegmentedControl
         {...defaultProps}
-        selectedSegments={[0]}
+        selectedSegments={["option1"]}
         onSegmentsSelect={mockOnSegmentsSelect}
       />
     );
@@ -240,14 +230,14 @@ describe("<SegmentedControl />", () => {
       fireEvent.click(buttons[1]);
     });
 
-    expect(mockOnSegmentsSelect).toHaveBeenCalledWith([0, 1]);
+    expect(mockOnSegmentsSelect).toHaveBeenCalledWith(["option1", "option2"]);
   });
 
   it("calls onSegmentsSelect when deselecting a segment", () => {
     render(
       <SegmentedControl
         {...defaultProps}
-        selectedSegments={[0, 1]}
+        selectedSegments={["option1", "option2"]}
         onSegmentsSelect={mockOnSegmentsSelect}
       />
     );
@@ -257,18 +247,18 @@ describe("<SegmentedControl />", () => {
       fireEvent.click(buttons[0]);
     });
 
-    expect(mockOnSegmentsSelect).toHaveBeenCalledWith([1]);
+    expect(mockOnSegmentsSelect).toHaveBeenCalledWith(["option2"]);
   });
 
   it("ignores child selected props in controlled mode", () => {
     const children = [
-      <SegmentedControl.Button key="option1" label="Option 1" selected />,
-      <SegmentedControl.Button key="option2" label="Option 2" selected />,
+      <SegmentedControl.Button key="option1" id="option1" label="Option 1" selected />,
+      <SegmentedControl.Button key="option2" id="option2" label="Option 2" selected />,
     ];
 
     render(
       <SegmentedControl
-        selectedSegments={[1]}
+        selectedSegments={["option2"]}
         onSegmentsSelect={mockOnSegmentsSelect}
       >
         {children}
@@ -284,7 +274,7 @@ describe("<SegmentedControl />", () => {
     const { rerender } = render(
       <SegmentedControl
         {...defaultProps}
-        selectedSegments={[0]}
+        selectedSegments={["option1"]}
         onSegmentsSelect={mockOnSegmentsSelect}
       />
     );
@@ -296,7 +286,7 @@ describe("<SegmentedControl />", () => {
     rerender(
       <SegmentedControl
         {...defaultProps}
-        selectedSegments={[1, 2]}
+        selectedSegments={["option2", "option3"]}
         onSegmentsSelect={mockOnSegmentsSelect}
       />
     );
@@ -336,21 +326,19 @@ describe("<SegmentedControl />", () => {
   it("renders the skeleton component correctly", () => {
     render(
       <SegmentedControl>
-        <SegmentedControl.Button label="Option 1">
+        <SegmentedControl.Button id="option1" label="Option 1">
           Option 1
         </SegmentedControl.Button>
         <SegmentedControl.ButtonSkeleton data-testid="skeleton" />
-        <SegmentedControl.Button label="Option 2">
+        <SegmentedControl.Button id="option2" label="Option 2">
           Option 2
         </SegmentedControl.Button>
       </SegmentedControl>
     );
 
-    // Verify the buttons are rendered
     expect(screen.getByText("Option 1")).toBeInTheDocument();
     expect(screen.getByText("Option 2")).toBeInTheDocument();
     
-    // Check that the skeleton is rendered
     expect(screen.getByTestId("skeleton")).toBeInTheDocument();
   });
 
@@ -359,17 +347,15 @@ describe("<SegmentedControl />", () => {
     
     render(
       <SegmentedControl>
-        <SegmentedControl.Button label="Option 1">
+        <SegmentedControl.Button id="option1" label="Option 1">
           Option 1
         </SegmentedControl.Button>
         <TestComponent />
       </SegmentedControl>
     );
 
-    // Verify the button is rendered
     expect(screen.getByText("Option 1")).toBeInTheDocument();
     
-    // Check that the custom component is rendered
     expect(screen.getByTestId("test-component")).toBeInTheDocument();
     expect(screen.getByText("Test")).toBeInTheDocument();
   });

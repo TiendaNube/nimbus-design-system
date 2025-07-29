@@ -15,4 +15,4 @@ The ScrollPane component handles responsive scrolls in lists that are overflowin
   - ScrollPane.Item sub-component for wrapping content
   - Full accessibility support with ARIA labels
   - Responsive design for mobile and desktop 
-  ([#XXX](https://github.com/TiendaNube/nimbus-design-system/pull/XXX) by [@joacotornello](https://github.com/joacotornello)) 
+  ([#319](https://github.com/TiendaNube/nimbus-design-system/pull/319) by [@joacotornello](https://github.com/joacotornello)) 

@@ -6,22 +6,30 @@ import {
 } from "./components";
 
 /**
- * Context interface for SegmentedControl toggle state management
- * Uses number indexes for simplicity
+ * Context interface for SegmentedControl state management
+ * Uses unique string IDs for stable identification
  */
 export interface SegmentedControlContextValue {
   /**
-   * Get the next available index for a button
+   * Register a button with its unique identifier
+   * @param id The unique identifier for the button
    */
-  getNextIndex: () => number;
+  registerButton: (id: string) => void;
   /**
-   * Toggle a segment's state by index
+   * Unregister a button by its identifier
+   * @param id The identifier of the button to unregister
    */
-  toggleSegment: (index: number) => void;
+  unregisterButton: (id: string) => void;
   /**
-   * Check if a segment is currently selected
+   * Toggle a segment's state by ID
+   * @param id The unique identifier of the segment to toggle
    */
-  isSelected: (index: number) => boolean;
+  toggleSegment: (id: string) => void;
+  /**
+   * Check if a segment is currently selected by ID
+   * @param id The unique identifier of the segment to check
+   */
+  isSelected: (id: string) => boolean;
   /**
    * Whether buttons should span full width
    */
@@ -31,7 +39,7 @@ export interface SegmentedControlContextValue {
 export interface SegmentedControlBaseProps {
   /**
    * The content of the segmented control.
-   * Now supports any React children that contain SegmentedControlButton components.
+   * Should contain SegmentedControlButton components with unique id props.
    */
   children: ReactNode;
   /**
@@ -52,15 +60,15 @@ export interface SegmentedControlComponents {
 export interface ControlledSegmentedControlProperties
   extends SegmentedControlBaseProps {
   /**
-   * The currently selected segment indices.
+   * The currently selected segment IDs.
    * Allows for single or multiple selection.
    */
-  selectedSegments: number[];
+  selectedSegments: string[];
   /**
    * Callback fired when the selected segments change.
-   * This will only be called if the change results in at least one selected segment.
+   * @param selectedIds Array of selected segment IDs
    */
-  onSegmentsSelect: (indices: number[]) => void;
+  onSegmentsSelect: (selectedIds: string[]) => void;
 }
 
 /**
