@@ -196,7 +196,6 @@ const ScrollPane: React.FC<ScrollPaneProps> & ScrollPaneComponents = ({
                     scrollPane.classnames.gradientVariants[
                       getPosition("start", direction)
                     ],
-                    scrollPane.classnames.gradientVisible,
                   ].join(" ")}
                 />
               )}
@@ -207,7 +206,6 @@ const ScrollPane: React.FC<ScrollPaneProps> & ScrollPaneComponents = ({
                     scrollPane.classnames.gradientVariants[
                       getPosition("end", direction)
                     ],
-                    scrollPane.classnames.gradientVisible,
                   ].join(" ")}
                 />
               )}

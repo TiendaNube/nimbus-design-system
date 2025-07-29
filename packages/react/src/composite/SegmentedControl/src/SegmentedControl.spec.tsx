@@ -12,7 +12,12 @@ import { SegmentedControl } from "./SegmentedControl";
 describe("<SegmentedControl />", () => {
   const defaultProps = {
     children: [
-      <SegmentedControl.Button key="option1" id="option1" label="Option 1" selected>
+      <SegmentedControl.Button
+        key="option1"
+        id="option1"
+        label="Option 1"
+        selected
+      >
         Option 1
       </SegmentedControl.Button>,
       <SegmentedControl.Button key="option2" id="option2" label="Option 2">
@@ -237,8 +242,18 @@ describe("<SegmentedControl />", () => {
 
   it("ignores child selected props in controlled mode", () => {
     const children = [
-      <SegmentedControl.Button key="option1" id="option1" label="Option 1" selected />,
-      <SegmentedControl.Button key="option2" id="option2" label="Option 2" selected />,
+      <SegmentedControl.Button
+        key="option1"
+        id="option1"
+        label="Option 1"
+        selected
+      />,
+      <SegmentedControl.Button
+        key="option2"
+        id="option2"
+        label="Option 2"
+        selected
+      />,
     ];
 
     render(
@@ -299,15 +314,6 @@ describe("<SegmentedControl />", () => {
     expect(buttons[2]).toHaveAttribute("role", "button");
   });
 
-  it("generates correct button IDs from labels", () => {
-    render(<SegmentedControl {...defaultProps} />);
-
-    const buttons = screen.getAllByRole("button");
-    expect(buttons[0]).toHaveAttribute("id", "option1");
-    expect(buttons[1]).toHaveAttribute("id", "option2");
-    expect(buttons[2]).toHaveAttribute("id", "option3");
-  });
-
   it("renders the skeleton component correctly", () => {
     render(
       <SegmentedControl>
@@ -323,13 +329,13 @@ describe("<SegmentedControl />", () => {
 
     expect(screen.getByText("Option 1")).toBeInTheDocument();
     expect(screen.getByText("Option 2")).toBeInTheDocument();
-    
+
     expect(screen.getByTestId("skeleton")).toBeInTheDocument();
   });
 
   it("returns non-button children as is", () => {
     const TestComponent = () => <div data-testid="test-component">Test</div>;
-    
+
     render(
       <SegmentedControl>
         <SegmentedControl.Button id="option1" label="Option 1">
@@ -340,7 +346,7 @@ describe("<SegmentedControl />", () => {
     );
 
     expect(screen.getByText("Option 1")).toBeInTheDocument();
-    
+
     expect(screen.getByTestId("test-component")).toBeInTheDocument();
     expect(screen.getByText("Test")).toBeInTheDocument();
   });

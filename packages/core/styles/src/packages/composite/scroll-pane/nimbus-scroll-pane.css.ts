@@ -1,4 +1,4 @@
-import { style, styleVariants, keyframes } from "@vanilla-extract/css";
+import { style, styleVariants } from "@vanilla-extract/css";
 import { varsThemeBase } from "../../../themes";
 
 /* -------------------------------------------------------------------------------------------------
@@ -16,8 +16,10 @@ const scrollArea = style({
 const scrollAreaHidden = style({
   scrollbarWidth: "none",
   msOverflowStyle: "none",
-  "::-webkit-scrollbar": {
-    display: "none",
+  selectors: {
+    "&::-webkit-scrollbar": {
+      display: "none",
+    },
   },
 });
 
@@ -38,7 +40,6 @@ const gradient = style({
   position: "absolute",
   pointerEvents: "none",
   zIndex: varsThemeBase.zIndex[100],
-  transition: `opacity ${varsThemeBase.motion.speed.base} ease`,
 });
 
 const gradientVariants = styleVariants({
@@ -103,34 +104,6 @@ const arrowVariants = styleVariants({
   },
 });
 
-const fadeIn = keyframes({
-  "0%": {
-    opacity: 0,
-  },
-  "100%": {
-    opacity: 1,
-  },
-});
-
-const fadeOut = keyframes({
-  "0%": {
-    opacity: 1,
-  },
-  "100%": {
-    opacity: 0,
-  },
-});
-
-const gradientVisible = style({
-  opacity: 1,
-  animation: `${fadeIn} ${varsThemeBase.motion.speed.fast} ease`,
-});
-
-const gradientHidden = style({
-  opacity: 0,
-  animation: `${fadeOut} ${varsThemeBase.motion.speed.fast} ease`,
-});
-
 export const scrollPaneStyles = {
   classnames: {
     scrollArea,
@@ -138,8 +111,6 @@ export const scrollPaneStyles = {
     direction,
     gradient,
     gradientVariants,
-    gradientVisible,
-    gradientHidden,
     arrow,
     arrowVariants,
   },
