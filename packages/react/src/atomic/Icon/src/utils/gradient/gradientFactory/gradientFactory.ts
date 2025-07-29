@@ -2,7 +2,6 @@ import React, { ReactElement } from "react";
 import { gradients } from "@nimbus-ds/styles";
 import { GradientStop, GradientTypes } from "../types";
 import { parseLinearGradient } from "../cssParser";
-import { generateGradientId } from "../svgManipulation";
 
 /**
  * Gets gradient color stops for supported gradient types by reusing existing gradient definitions
@@ -12,6 +11,7 @@ export const getGradientStops = (type: GradientTypes): GradientStop[] => {
     case "linear":
       return parseLinearGradient(gradients.aiGradientInteractive);
     default:
+      console.warn(`Unsupported gradient type: ${type}`);
       return [];
   }
 };
@@ -39,9 +39,9 @@ export const createSvgGradientDef = (
       gradientUnits: "objectBoundingBox",
       ...gradientProps,
     },
-    ...gradientStops.map((stop) =>
+    ...gradientStops.map((stop, index) =>
       React.createElement("stop", {
-        key: generateGradientId(),
+        key: `${gradientId}-stop-${index}`,
         offset: stop.offset,
         stopColor: stop.color,
       })

@@ -1,15 +1,25 @@
 import React, { ReactElement } from "react";
 import { SVGElementProps } from "@nimbus-ds/typings";
-import { canUseGradient, isValidColorValue } from "../colorValidation";
+import { canUseGradient } from "../colorValidation";
+import {
+  GRADIENT_ID_LENGTH,
+  GRADIENT_PROPERTIES,
+} from "./svgManipulation.definitions";
 
 /**
  * Generates a unique ID for SVG gradient to avoid conflicts when multiple icons use gradients
+ * @returns A unique gradient ID string
  */
 export const generateGradientId = (): string =>
-  `nimbus-gradient-${Math.random().toString(36).slice(2, 11)}`;
+  `nimbus-gradient-${Math.random()
+    .toString(36)
+    .slice(2, 2 + GRADIENT_ID_LENGTH)}`;
 
 /**
  * Injects gradient definitions into an SVG element as the first child
+ * @param svg - The SVG element to inject the gradient into
+ * @param gradientDef - The gradient definition element to inject
+ * @returns A new SVG element with the gradient definitions injected
  */
 export const injectGradientDefs = (
   svg: ReactElement,
@@ -34,6 +44,9 @@ export const injectGradientDefs = (
 
 /**
  * Recursively processes React elements to replace fill and stroke attributes with gradient references
+ * @param element - The React element to process
+ * @param gradientId - The gradient ID to reference in URL attributes
+ * @returns A new React element with gradient references applied
  */
 export const processElement = (
   element: ReactElement,
@@ -56,26 +69,18 @@ export const processElement = (
   // Create new props with gradient references
   const newProps: SVGElementProps = { ...props };
 
-  if (canUseGradient(props.fill) || canUseGradient(props.stroke)) {
-    if (isValidColorValue(props.fill)) {
-      newProps.fill = `url(#${gradientId})`;
+  // Apply gradients to valid properties in a single pass
+  GRADIENT_PROPERTIES.forEach((property) => {
+    const value = props[property];
+    if (!value) return;
+    
+    // Apply gradient if the value can use gradient OR is currentColor
+    if (canUseGradient(value) || value === "currentColor") {
+      newProps[property] = `url(#${gradientId})`;
     }
-    if (isValidColorValue(props.stroke)) {
-      newProps.stroke = `url(#${gradientId})`;
-    }
-  }
-
-  // Handle currentColor and other dynamic colors
-  if (props.fill === "currentColor" || props.stroke === "currentColor") {
-    if (props.fill === "currentColor") {
-      newProps.fill = `url(#${gradientId})`;
-    }
-    if (props.stroke === "currentColor") {
-      newProps.stroke = `url(#${gradientId})`;
-    }
-  }
+  });
 
   newProps.children = processedChildren;
 
   return React.cloneElement(element, newProps);
-}; 
+};

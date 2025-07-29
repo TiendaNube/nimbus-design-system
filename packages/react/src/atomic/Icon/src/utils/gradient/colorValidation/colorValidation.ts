@@ -1,3 +1,5 @@
+import { GRADIENT_COLORS } from "./colorValidation.definitions";
+
 /**
  * Checks if a color value is valid (exists and is not "none" or "transparent")
  * @param color - The color value to check
@@ -11,10 +13,13 @@ export const isValidColorValue = (color: string | undefined): boolean =>
  * @param color - The color value to check
  * @returns True if color can use gradient, false otherwise
  */
-export const canUseGradient = (color: string | undefined): boolean =>
-  isValidColorValue(color) && !color!.startsWith("url("); 
+export const canUseGradient = (color: string): boolean =>
+  isValidColorValue(color) && !color.startsWith("url(");
 
 /**
  * Checks if a color value is a gradient
+ * @param color - The color value to check
+ * @returns True if color is a known gradient value, false otherwise
  */
-export const isGradient = (color: string): boolean => color === "ai-interactive";
+export const isGradient = (color: string): boolean =>
+  GRADIENT_COLORS.has(color);

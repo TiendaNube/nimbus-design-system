@@ -124,11 +124,5 @@ describe("gradientFactory utilities", () => {
       expect(React.isValidElement(result)).toBe(true);
       expect(React.Children.count(result.props.children)).toBe(0);
     });
-
-    it("should call generateGradientId for each stop", () => {
-      createSvgGradientDef("test-gradient-id", "linear");
-
-      expect(mockGenerateGradientId).toHaveBeenCalledTimes(3);
-    });
   });
 }); 

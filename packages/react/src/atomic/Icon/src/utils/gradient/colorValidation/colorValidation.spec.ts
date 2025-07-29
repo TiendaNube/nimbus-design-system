@@ -1,4 +1,8 @@
-import { isValidColorValue, canUseGradient, isGradient } from "./colorValidation";
+import {
+  isValidColorValue,
+  canUseGradient,
+  isGradient,
+} from "./colorValidation";
 
 describe("colorValidation utilities", () => {
   describe("isValidColorValue", () => {
@@ -32,7 +36,6 @@ describe("colorValidation utilities", () => {
     });
 
     it("should return false for colors that cannot use gradient", () => {
-      expect(canUseGradient(undefined)).toBe(false);
       expect(canUseGradient("")).toBe(false);
       expect(canUseGradient("none")).toBe(false);
       expect(canUseGradient("transparent")).toBe(false);
@@ -57,4 +60,4 @@ describe("colorValidation utilities", () => {
       expect(isGradient("transparent")).toBe(false);
     });
   });
-}); 
+});
