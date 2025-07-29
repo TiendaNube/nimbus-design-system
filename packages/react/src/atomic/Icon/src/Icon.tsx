@@ -3,7 +3,7 @@ import { icon } from "@nimbus-ds/styles";
 
 import { IconProps, IconComponents } from "./icon.types";
 import { IconSkeleton } from "./components";
-import { applyGradientToSvg } from "./utils/gradientUtils";
+import { applyGradientToSvg, isGradient } from "./utils/gradient";
 
 const Icon: React.FC<IconProps> & IconComponents = ({
   className: _className,
@@ -13,10 +13,10 @@ const Icon: React.FC<IconProps> & IconComponents = ({
   source,
   ...rest
 }: IconProps) => {
-  const isGradient = useMemo(() => color === "ai-interactive", [color]);
+  const renderGradient = useMemo(() => isGradient(color), [color]);
   const processedSource = useMemo(
-    () => (isGradient ? applyGradientToSvg(source, "linear") : source),
-    [isGradient, source]
+    () => (renderGradient ? applyGradientToSvg(source) : source),
+    [renderGradient, source]
   );
 
   return (
@@ -24,7 +24,7 @@ const Icon: React.FC<IconProps> & IconComponents = ({
       {...rest}
       className={[
         icon.sprinkle({
-          ...(!isGradient && { color }),
+          ...(!renderGradient && { color }),
           cursor,
         }),
         icon.classnames.base,

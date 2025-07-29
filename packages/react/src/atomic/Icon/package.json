@@ -18,7 +18,9 @@
   },
   "peerDependencies": {
     "react": "^16.8 || ^17.0 || ^18.0",
-    "react-dom": "^16.8 || ^17.0 || ^18.0"
+    "react-dom": "^16.8 || ^17.0 || ^18.0",
+    "@nimbus-ds/styles": "workspace:^",
+    "@nimbus-ds/typings": "workspace:^"
   },
   "devDependencies": {
     "@nimbus-ds/box": "workspace:^",
