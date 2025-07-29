@@ -39,11 +39,11 @@ src/
 │   │   │   ├── <component-name>.spec.tsx
 │   │   │   ├── <component-name>.stories.tsx
 │   │   │   └── index.ts
-│   │   └── index.ts
+│   │   ├── index.ts
 │   │   ├── tsconfig.json
-│   │   └── webpack.config.ts
-│   │   └── CHANGELOG.md
-│   │   └── README.md
+│   │   ├── webpack.config.ts
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
 │   │   └── package.json
 │   └── ...
 ```
