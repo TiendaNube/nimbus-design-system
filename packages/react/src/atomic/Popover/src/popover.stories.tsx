@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Text } from "@nimbus-ds/text";
 import { Box } from "@nimbus-ds/box";
+import { Button } from "@nimbus-ds/button";
 
 import { Popover } from "./Popover";
 
@@ -23,6 +24,7 @@ const meta: Meta<typeof Popover> = {
 };
 
 export default meta;
+
 type Story = StoryObj<typeof Popover>;
 
 export const basic: Story = {
@@ -64,5 +66,48 @@ export const left: Story = {
     position: "left",
     enabledHover: true,
     enabledDismiss: false,
+  },
+};
+
+export const withOverlay: Story = {
+  name: "With overlay",
+  render: (args) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen2, setIsOpen2] = useState(false);
+    return (
+      <Box display="flex" flexDirection="column" alignItems="center" gap="4">
+        <Text fontSize="caption" color="neutral-textLow" textAlign="center">
+          Clicking them will NOT trigger the row click event.
+        </Text>
+        <Popover {...args} visible={isOpen} onVisibility={setIsOpen}>
+          <Button appearance="primary">Open Popover 1</Button>
+        </Popover>
+        <Text
+          fontSize="caption"
+          color="neutral-textLow"
+          onClick={() => alert("Text clicked")}
+        >
+          This text is clickable when overlay is disabled (popover closed)
+        </Text>
+        <Popover {...args} visible={isOpen2} onVisibility={setIsOpen2}>
+          <Button appearance="primary">Open Popover 2</Button>
+        </Popover>
+        <Text
+          fontSize="caption"
+          color="neutral-textLow"
+          onClick={() => alert("Text clicked")}
+        >
+          This text is also clickable when overlay is disabled
+        </Text>
+      </Box>
+    );
+  },
+  args: {
+    content: <Text color="primary-textLow">Info popover 👻 </Text>,
+    renderOverlay: true,
+    enabledClick: true,
+    enabledDismiss: true,
+    width: "320px",
+    position: "bottom-end",
   },
 };

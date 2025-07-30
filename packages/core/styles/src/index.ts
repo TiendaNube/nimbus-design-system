@@ -45,6 +45,7 @@ export { stepper } from "./packages/composite/stepper";
 export { tabs } from "./packages/composite/tabs";
 export { table } from "./packages/composite/table";
 export { segmentedControl } from "./packages/composite/segmented-control";
+export { scrollPane } from "./packages/composite/scroll-pane";
 
 export { calendar } from "./packages/patterns/calendar";
 export { editor } from "./packages/patterns/editor";

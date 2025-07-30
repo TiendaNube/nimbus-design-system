@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useMemo } from "react";
+import React, { useState, useCallback, useMemo, useRef } from "react";
 
 import { Box, BoxProps } from "@nimbus-ds/box";
 
@@ -8,8 +8,12 @@ import {
   ControlledSegmentedControlProperties,
 } from "./SegmentedControl.types";
 import { SegmentedControlButton } from "./components";
-import { isButton, isControlled } from "./segmentedControl.definitions";
+import { isControlled } from "./segmentedControl.definitions";
 import { SegmentedControlButtonSkeleton } from "./components/SegmentedControlButton/components/SegmentedControlButtonSkeleton/SegmentedControlButtonSkeleton";
+import {
+  SegmentedControlContext,
+  SegmentedControlContextValue,
+} from "./contexts/SegmentedControlContext";
 
 /**
  * SegmentedControl component for grouped selection controls
@@ -22,32 +26,14 @@ const SegmentedControl: React.FC<SegmentedControlProps> &
 }: SegmentedControlProps) => {
   // Internal state for uncontrolled mode
   const [internalSelectedSegments, setInternalSelectedSegments] = useState<
-    number[]
+    string[]
   >([]);
 
-  // Check for controlled mode
+  // Track registered button IDs
+  const registeredButtonsRef = useRef(new Set<string>());
+
   const isControlledMode = isControlled(rest);
 
-  // Initialize from selected props (for uncontrolled mode only)
-  useEffect(() => {
-    if (!isControlledMode && React.Children.count(children) > 0) {
-      const initialSelectedIndices: number[] = [];
-
-      // Check if any children have selected prop
-      React.Children.forEach(children, (child, index) => {
-        if (isButton(child.props) && child.props.selected) {
-          initialSelectedIndices.push(index);
-        }
-      });
-
-      // Use selected indices
-      if (initialSelectedIndices.length > 0) {
-        setInternalSelectedSegments(initialSelectedIndices);
-      }
-    }
-  }, [children, isControlledMode]);
-
-  // Get the currently selected segments
   const selectedSegments = useMemo(() => {
     if (isControlledMode) {
       return rest.selectedSegments;
@@ -55,20 +41,18 @@ const SegmentedControl: React.FC<SegmentedControlProps> &
     return internalSelectedSegments;
   }, [isControlledMode, internalSelectedSegments, rest]);
 
-  // Handle toggling a segment
   const handleToggleSegment = useCallback(
-    (index: number) => {
-      const handleChange = (current: number[]) => {
+    (id: string) => {
+      const handleChange = (current: string[]) => {
         const newSelected = [...current];
-        const existingIndex = newSelected.indexOf(index);
+        const existingIndex = newSelected.indexOf(id);
 
         if (existingIndex !== -1) {
           newSelected.splice(existingIndex, 1);
           return newSelected;
         }
 
-        // Add the segment
-        newSelected.push(index);
+        newSelected.push(id);
         return newSelected;
       };
 
@@ -84,7 +68,36 @@ const SegmentedControl: React.FC<SegmentedControlProps> &
     [isControlledMode, selectedSegments, rest]
   );
 
-  // Extract props from rest
+  const registerButton = useCallback((id: string) => {
+    registeredButtonsRef.current.add(id);
+  }, []);
+
+  const unregisterButton = useCallback((id: string) => {
+    registeredButtonsRef.current.delete(id);
+  }, []);
+
+  const isSelected = useCallback(
+    (id: string) => selectedSegments.includes(id),
+    [selectedSegments]
+  );
+
+  const contextValue: SegmentedControlContextValue = useMemo(
+    () => ({
+      registerButton,
+      unregisterButton,
+      toggleSegment: handleToggleSegment,
+      isSelected,
+      fullWidth,
+    }),
+    [
+      registerButton,
+      unregisterButton,
+      handleToggleSegment,
+      isSelected,
+      fullWidth,
+    ]
+  );
+
   const {
     onSegmentsSelect,
     selectedSegments: _,
@@ -92,47 +105,25 @@ const SegmentedControl: React.FC<SegmentedControlProps> &
   } = rest as BoxProps & Partial<ControlledSegmentedControlProperties>;
 
   return (
-    <Box
-      flexWrap="wrap"
-      aria-label="Segmented control"
-      role="group"
-      data-testid="segmented-control-container"
-      maxWidth={fullWidth ? "100%" : "fit-content"}
-      alignItems="center"
-      justifyContent="center"
-      {...boxProps}
-      // Properties that can't be changed by the consumer
-      display="flex"
-      gap="1"
-      backgroundColor="neutral-surface"
-      borderRadius="2"
-    >
-      {React.Children.map(children, (item, index) => {
-        if (isButton(item.props)) {
-          const {
-            props: { children: buttonChildren, ...childrenRest },
-          } = item;
-          const isSelected = selectedSegments.includes(index);
-
-          return (
-            <SegmentedControlButton
-              {...childrenRest}
-              key={`segment-${childrenRest.label}`}
-              selected={isSelected}
-              fullWidth={fullWidth}
-              onClick={(event) => {
-                handleToggleSegment(index);
-                childrenRest.onClick?.(event);
-              }}
-            >
-              {buttonChildren}
-            </SegmentedControlButton>
-          );
-        }
-        // Return the item as is if it's not a button (skeleton case)
-        return item;
-      })}
-    </Box>
+    <SegmentedControlContext.Provider value={contextValue}>
+      <Box
+        aria-label="Segmented control"
+        role="group"
+        data-testid="segmented-control-container"
+        maxWidth={fullWidth ? "100%" : "fit-content"}
+        alignItems="center"
+        justifyContent="center"
+        flexWrap="nowrap"
+        {...boxProps}
+        // Properties that can't be changed by the consumer
+        display="flex"
+        gap="1"
+        backgroundColor="neutral-surface"
+        borderRadius="2"
+      >
+        {children}
+      </Box>
+    </SegmentedControlContext.Provider>
   );
 };
 

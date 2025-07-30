@@ -17,7 +17,7 @@ describe("GIVEN <Button.Skeleton />", () => {
         /--width__\w{0,9}: 4.75rem;/
       );
       expect(skeleton.getAttribute("style")).toMatch(
-        /--height__\w{0,9}: 2.125rem;/
+        /--height__\w{0,9}: 2rem;/
       );
       expect(skeleton.getAttribute("style")).toMatch(
         /--borderRadius__\w{0,9}: 0.5rem;/

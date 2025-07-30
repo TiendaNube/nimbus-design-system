@@ -6,6 +6,7 @@ import { varsThemeBase } from "../../../themes";
  * -----------------------------------------------------------------------------------------------*/
 
 const buttonBase = style({
+  whiteSpace: "nowrap",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",

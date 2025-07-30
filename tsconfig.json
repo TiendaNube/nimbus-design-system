@@ -90,7 +90,10 @@
       "@nimbus-ds/segmented-control": [
         "./packages/react/src/composite/SegmentedControl/src"
       ],
-      "@nimbus-ds/stepper": ["./packages/react/src/composite/Stepper/src"]
+      "@nimbus-ds/stepper": ["./packages/react/src/composite/Stepper/src"],
+      "@nimbus-ds/scroll-pane": [
+        "./packages/react/src/composite/ScrollPane/src"
+      ]
     }
   }
 }
