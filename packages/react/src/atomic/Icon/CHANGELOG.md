@@ -2,11 +2,11 @@
 
 Icons are used to visually communicate core parts of the product and available actions. They can act as wayfinding tools to help merchants more easily understand where they are in the product, and common interaction patterns that are available.
 
-## 2025-07-29 `3.2.0`
+## 2025-07-30 `3.2.0`
 
 ### 🎉 New features
 
-- Added `ai-gradient` appearance to `Icon` component. ([#320](https://github.com/TiendaNube/nimbus-design-system/pull/320) by [@joacotornello](https://github.com/joacotornello))
+- Added `ai-gradient` appearance to `Icon` component. ([#321](https://github.com/TiendaNube/nimbus-design-system/pull/321) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-06-27 `3.1.0`
 
