@@ -7,7 +7,8 @@ import { GradientStop } from "../types";
 export const parseLinearGradient = (cssGradient: string): GradientStop[] => {
   // Extract color stops from linear-gradient string
   // Example: "linear-gradient(90deg, #0050C3 5%, #4736B4 40%, #D8446E 95%)"
-  const match = cssGradient.match(/linear-gradient\([^,]+,\s*(.+)\)/);
+  const linearGradientRegex = /linear-gradient\([^,]+,\s*(.+)\)/;
+  const match = linearGradientRegex.exec(cssGradient);
   if (!match) return [];
 
   const colorStopsString = match[1];
@@ -19,7 +20,8 @@ export const parseLinearGradient = (cssGradient: string): GradientStop[] => {
   colorStops.forEach((stop) => {
     const trimmedStop = stop.trim();
     // Match color and optional percentage: "#0050C3 5%" or "rgba(0,80,195,1) 5%"
-    const stopMatch = trimmedStop.match(/^(.+?)\s+(\d+%)$/);
+    const colorStopRegex = /^(.+?)\s+(\d+%)$/;
+    const stopMatch = colorStopRegex.exec(trimmedStop);
     if (stopMatch) {
       stops.push({
         color: stopMatch[1].trim(),
@@ -40,4 +42,4 @@ export const parseLinearGradient = (cssGradient: string): GradientStop[] => {
   });
 
   return stops;
-}; 
+};

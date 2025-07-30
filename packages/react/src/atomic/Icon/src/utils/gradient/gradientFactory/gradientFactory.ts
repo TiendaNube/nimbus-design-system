@@ -7,13 +7,12 @@ import { parseLinearGradient } from "../cssParser";
  * Gets gradient color stops for supported gradient types by reusing existing gradient definitions
  */
 export const getGradientStops = (type: GradientTypes): GradientStop[] => {
-  switch (type) {
-    case "linear":
-      return parseLinearGradient(gradients.aiGradientInteractive);
-    default:
-      console.warn(`Unsupported gradient type: ${type}`);
-      return [];
+  if (type === "linear") {
+    return parseLinearGradient(gradients.aiGradientInteractive);
   }
+
+  console.warn(`Unsupported gradient type: ${type}`);
+  return [];
 };
 
 /**

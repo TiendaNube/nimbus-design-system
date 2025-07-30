@@ -1,5 +1,3 @@
-import type { GradientDirection, GradientColorStop } from "../types";
-
 /**
  * Creates a linear gradient with flexible direction and multiple color stops
  * @param direction - The direction of the gradient (e.g., "180deg", "to right", "45deg")
@@ -12,8 +10,8 @@ import type { GradientDirection, GradientColorStop } from "../types";
  * createLinearGradient("45deg", "rgba(255,0,0,0.5)", "transparent")
  */
 export const createLinearGradient = (
-  direction: GradientDirection,
-  ...colorStops: GradientColorStop[]
+  direction: string,
+  ...colorStops: string[]
 ): string => {
   if (colorStops.length === 0) {
     throw new Error(
