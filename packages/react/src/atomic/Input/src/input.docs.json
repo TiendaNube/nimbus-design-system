@@ -10,7 +10,6 @@
       "description": "Change the visual style of the input.",
       "default": "neutral",
       "enum": [
-        "ai-gradient",
         "danger",
         "neutral",
         "success",
@@ -59,7 +58,6 @@
           "description": "Change the visual style of the input.",
           "default": "neutral",
           "enum": [
-            "ai-gradient",
             "danger",
             "neutral",
             "success",
@@ -85,7 +83,6 @@
           "description": "Change the visual style of the input.",
           "default": "neutral",
           "enum": [
-            "ai-gradient",
             "danger",
             "neutral",
             "success",

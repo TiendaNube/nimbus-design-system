@@ -28,7 +28,6 @@
       "description": "Change the visual style of the chip.",
       "default": "neutral",
       "enum": [
-        "ai-gradient",
         "neutral"
       ],
       "type": "string",
