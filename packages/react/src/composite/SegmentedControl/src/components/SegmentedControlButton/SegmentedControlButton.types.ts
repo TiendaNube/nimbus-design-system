@@ -12,11 +12,6 @@ export type SegmentedControlButtonProperties = PropsWithChildren<{
    */
   label?: string;
   /**
-   * Determines if segment is active.
-   * @default false
-   */
-  selected?: boolean;
-  /**
    * Determines if segment spans all available width.
    * @default false
    */

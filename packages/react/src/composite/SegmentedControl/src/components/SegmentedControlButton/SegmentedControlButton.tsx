@@ -26,7 +26,6 @@ const SegmentedControlButton = forwardRef(
       as: As = "button",
       id,
       label,
-      selected = false,
       disabled = false,
       fullWidth = false,
       children,
@@ -71,7 +70,7 @@ const SegmentedControlButton = forwardRef(
     }, [innerRef]);
 
     // Use the context value to determine if the button is selected, or default to the selected prop
-    const isSelected = context && id ? context.isSelected(id) : selected;
+    const isSelected = context.isSelected(id);
 
     const shouldUseFullWidth = context ? context.fullWidth : fullWidth;
 

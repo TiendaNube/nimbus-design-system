@@ -66,7 +66,7 @@ describe("SegmentedControlButton", () => {
       <SegmentedControlTestWrapper
         contextValue={{ isSelected: jest.fn().mockReturnValue(true) }}
       >
-        <SegmentedControlButton {...defaultProps} selected />
+        <SegmentedControlButton {...defaultProps} />
       </SegmentedControlTestWrapper>
     );
     const button = screen.getByRole("button");
@@ -121,7 +121,7 @@ describe("SegmentedControlButton", () => {
       <SegmentedControlTestWrapper
         contextValue={{ isSelected: jest.fn().mockReturnValue(true) }}
       >
-        <SegmentedControlButton {...defaultProps} selected>
+        <SegmentedControlButton {...defaultProps}>
           Option 1
         </SegmentedControlButton>
       </SegmentedControlTestWrapper>
