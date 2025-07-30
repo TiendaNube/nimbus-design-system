@@ -1,0 +1,41 @@
+---
+alwaysApply: true
+---
+
+# Code rules and conventions
+
+## Code rules
+
+We use SonarCloud and ESLint to analyze the code and provide suggestions for improvements. These are rules that are enforced by the CI pipeline, and should be followed by all developers. Never break these rules, as the PR won't be merged.
+
+### Typescript rules
+1. Enforce type safety—never use any or unsafe casts, and always declare explicit types. Never use any for props or state.
+2. Replace magic numbers with named constants.
+3. Always use strict equality operators (===, !==) instead of loose ones.
+4. Ensure functions have consistent return types.
+5. Avoid using deprecated APIs.
+6. Ban the use of eval() entirely.
+7. Handle exceptions properly; never swallow errors silently.
+8. Omit unnecessary else branches after a return.
+9. Refactor functions that exceed the acceptable cyclomatic complexity threshold.
+
+### React rules
+1. Use functional components instead of class components.
+2. Make all props required by default: Use optional props only when necessary. Clearly document them.
+3. Never mutate props: Treat all props as immutable. Clone data before modification if necessary.
+4. Prevent prop drilling: Use context or composition patterns to avoid passing props through many layers.
+5. Memoize components where appropriate: Use React.memo or useMemo to optimize performance of pure/presentational components.
+6. Use useCallback for event handlers: Wrap callbacks in useCallback to avoid function recreation unless dependencies change.
+7. Avoid side effects in render: Only use effects inside useEffect or equivalent hooks.
+8. Avoid index-based keys in lists: Always use unique, stable identifiers as React keys.
+9. Enforce accessibility (a11y): Validate ARIA roles, labels, and keyboard navigation for every component.
+10. Export only intended symbols; keep internals private.
+
+## Code conventions
+1. Prefer RegExp.exec() over String.match().
+2. Always provide default cases in switch statements.
+3. Prefer for…of/for…in over classic for-loops where appropriate.
+4. Avoid deeply nested code by extracting logic into functions.
+5. Name event handlers with handle or on: e.g., handleClick, onChangeInput.
+6. Export only one component per file: Keep files atomic for maintainability and reusability.
+7. Enforce component display names for better debugging.
