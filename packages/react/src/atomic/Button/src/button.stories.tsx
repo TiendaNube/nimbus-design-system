@@ -77,10 +77,10 @@ export const disabled: Story = {
   },
 };
 
-export const asLink: Story = {
+export const asLink = {
   args: {
     as: "a",
-    children: "Button",
+    children: "Button as anchor",
     href: "https://nimbus.tiendanube.com/",
     target: "_blank",
   },
