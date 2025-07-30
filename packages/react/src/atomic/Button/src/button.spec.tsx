@@ -69,14 +69,14 @@ describe("GIVEN <Button />", () => {
       ).not.toContain("fullWidth");
     });
 
-    it("THEN should not apply fullWidth class when maxWidth is not provided", () => {
+    it("THEN should not apply fullWidth class when fullWidth is not provided", () => {
       makeSut({ children: "button" });
       expect(
         screen.getByRole("button").getAttribute("class")
       ).not.toContain("fullWidth");
     });
 
-    it("THEN should apply fullWidth class when maxWidth is true", () => {
+    it("THEN should apply fullWidth class when fullWidth is true", () => {
       makeSut({ children: "button", fullWidth: true });
       expect(screen.getByRole("button").getAttribute("class")).toContain(
         "fullWidth"
