@@ -1,7 +1,6 @@
 releases:
   "@nimbus-ds/components": minor
   "@nimbus-ds/icon": minor
-  "@nimbus-ds/input": minor
   "@nimbus-ds/styles": minor
   "@nimbus-ds/tokens": minor
   "@nimbus-ds/typings": minor
@@ -23,3 +22,4 @@ declined:
   - "@nimbus-ds/modal"
   - "@nimbus-ds/segmented-control"
   - "@nimbus-ds/stepper"
+  - "@nimbus-ds/input"
