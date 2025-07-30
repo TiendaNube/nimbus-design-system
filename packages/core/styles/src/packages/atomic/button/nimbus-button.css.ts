@@ -31,7 +31,7 @@ const base = style({
   },
 });
 
-const fullWidth = style({
+export const fullWidth = style({
   width: "100%",
 });
 
@@ -127,5 +127,3 @@ export const appearance = styleVariants({
     },
   ],
 });
-
-export const maxWidth = fullWidth;

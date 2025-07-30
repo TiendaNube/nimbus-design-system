@@ -61,33 +61,33 @@ describe("GIVEN <Button />", () => {
     });
   });
 
-  describe("WHEN maxWidth prop is used", () => {
-    it("THEN should not apply maxWidth class when maxWidth is false", () => {
-      makeSut({ children: "button", maxWidth: false });
+  describe("WHEN fullWidth prop is used", () => {
+    it("THEN should not apply fullWidth class when fullWidth is false", () => {
+      makeSut({ children: "button", fullWidth: false });
       expect(
         screen.getByRole("button").getAttribute("class")
-      ).not.toContain("maxWidth");
+      ).not.toContain("fullWidth");
     });
 
-    it("THEN should not apply maxWidth class when maxWidth is not provided", () => {
+    it("THEN should not apply fullWidth class when maxWidth is not provided", () => {
       makeSut({ children: "button" });
       expect(
         screen.getByRole("button").getAttribute("class")
-      ).not.toContain("maxWidth");
+      ).not.toContain("fullWidth");
     });
 
-    it("THEN should apply maxWidth class when maxWidth is true", () => {
-      makeSut({ children: "button", maxWidth: true });
+    it("THEN should apply fullWidth class when maxWidth is true", () => {
+      makeSut({ children: "button", fullWidth: true });
       expect(screen.getByRole("button").getAttribute("class")).toContain(
-        "maxWidth"
+        "fullWidth"
       );
     });
 
-    it("THEN should apply both appearance and maxWidth classes when both are provided", () => {
-      makeSut({ children: "button", appearance: "primary", maxWidth: true });
+    it("THEN should apply both appearance and fullWidth classes when both are provided", () => {
+      makeSut({ children: "button", appearance: "primary", fullWidth: true });
       const buttonClass = screen.getByRole("button").getAttribute("class");
       expect(buttonClass).toContain("appearance_primary");
-      expect(buttonClass).toContain("maxWidth");
+      expect(buttonClass).toContain("fullWidth");
     });
   });
 });

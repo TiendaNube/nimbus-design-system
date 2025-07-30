@@ -25,7 +25,7 @@ const Button = forwardRef(
     }: ButtonBaseProps & { as: any },
     ref
   ) => {
-    const { appearance = "neutral", maxWidth = false, ...rest } = props;
+    const { appearance = "neutral", fullWidth = false, ...rest } = props;
     const innerRef = useRef<HTMLButtonElement>(null);
     useRefObjectAsForwardedRef(ref, innerRef);
 
@@ -50,7 +50,7 @@ const Button = forwardRef(
 
     const buttonClasses = [
       button.classnames.appearance[appearance],
-      maxWidth && button.classnames.maxWidth,
+      fullWidth && button.classnames.fullWidth,
     ]
       .filter(Boolean)
       .join(" ");
