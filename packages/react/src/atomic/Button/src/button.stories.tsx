@@ -77,12 +77,12 @@ export const disabled: Story = {
   },
 };
 
-export const asLink = {
+export const asLink: Story = {
   args: {
     as: "a",
-    children: "Button as anchor",
+    children: "Button",
     href: "https://nimbus.tiendanube.com/",
-    target: "_blank"
+    target: "_blank",
   },
 };
 
@@ -112,4 +112,17 @@ export const transparent: Story = {
     children: "Button",
     appearance: "transparent",
   },
+};
+
+export const maxWidth: Story = {
+  args: {
+    children: "Full Width Button",
+    maxWidth: true,
+    appearance: "primary",
+  },
+  render: (args) => (
+    <div style={{ width: "400px", border: "1px dashed #ccc", padding: "16px" }}>
+      <Basic {...args} />
+    </div>
+  ),
 };

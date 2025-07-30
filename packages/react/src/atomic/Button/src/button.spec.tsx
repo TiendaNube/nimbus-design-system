@@ -60,4 +60,34 @@ describe("GIVEN <Button />", () => {
       ).toContain("appearance_transparent");
     });
   });
+
+  describe("WHEN maxWidth prop is used", () => {
+    it("THEN should not apply maxWidth class when maxWidth is false", () => {
+      makeSut({ children: "button", maxWidth: false });
+      expect(
+        screen.getByRole("button").getAttribute("class")
+      ).not.toContain("maxWidth");
+    });
+
+    it("THEN should not apply maxWidth class when maxWidth is not provided", () => {
+      makeSut({ children: "button" });
+      expect(
+        screen.getByRole("button").getAttribute("class")
+      ).not.toContain("maxWidth");
+    });
+
+    it("THEN should apply maxWidth class when maxWidth is true", () => {
+      makeSut({ children: "button", maxWidth: true });
+      expect(screen.getByRole("button").getAttribute("class")).toContain(
+        "maxWidth"
+      );
+    });
+
+    it("THEN should apply both appearance and maxWidth classes when both are provided", () => {
+      makeSut({ children: "button", appearance: "primary", maxWidth: true });
+      const buttonClass = screen.getByRole("button").getAttribute("class");
+      expect(buttonClass).toContain("appearance_primary");
+      expect(buttonClass).toContain("maxWidth");
+    });
+  });
 });

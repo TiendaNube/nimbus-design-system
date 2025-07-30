@@ -1,9 +1,9 @@
 {
   "id": "button",
   "name": "Button",
-  "totalProps": 4,
+  "totalProps": 5,
   "packageName": "@nimbus-ds/button",
-  "version": "2.6.0",
+  "version": "2.7.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/button",
   "props": [
     {
@@ -48,6 +48,13 @@
       "default": false,
       "type": "boolean",
       "title": "disabled",
+      "required": false
+    },
+    {
+      "description": "Determines if the button should grow to fill the full width of its container.",
+      "default": false,
+      "type": "boolean",
+      "title": "maxWidth",
       "required": false
     }
   ],

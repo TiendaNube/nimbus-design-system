@@ -21,6 +21,11 @@ export interface ButtonProperties {
    * @default false
    */
   disabled?: boolean;
+  /**
+   * Determines if the button should grow to fill the full width of its container.
+   * @default false
+   */
+  maxWidth?: boolean;
 }
 
 export type ButtonBaseProps = ButtonProperties &
