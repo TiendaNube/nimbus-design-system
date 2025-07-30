@@ -6,6 +6,16 @@
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "license": "MIT",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "yarn g:webpack",
+    "clean": "rm -rf dist",
+    "version": "yarn version"
+  },
   "publishConfig": {
     "access": "public"
   },
