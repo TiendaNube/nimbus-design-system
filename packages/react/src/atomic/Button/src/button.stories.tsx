@@ -5,6 +5,7 @@ import { Icon } from "@nimbus-ds/icon";
 import { Badge } from "@nimbus-ds/badge";
 import { Spinner } from "@nimbus-ds/spinner";
 
+import { Box } from "@nimbus-ds/box";
 import { Button as ButtonComponent, ButtonProps } from "./Button";
 
 export const Basic: React.FC<ButtonProps> = forwardRef(
@@ -121,8 +122,8 @@ export const maxWidth: Story = {
     appearance: "primary",
   },
   render: (args) => (
-    <div style={{ width: "400px", border: "1px dashed #ccc", padding: "16px" }}>
+    <Box width="400px">
       <Basic {...args} />
-    </div>
+    </Box>
   ),
 };

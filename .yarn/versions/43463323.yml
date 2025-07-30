@@ -1,5 +1,6 @@
 releases:
   "@nimbus-ds/button": minor
+  "@nimbus-ds/components": minor
   "@nimbus-ds/styles": minor
 
 declined:
@@ -11,3 +12,6 @@ declined:
   - "@nimbus-ds/segmented-control"
   - "@nimbus-ds/sidebar"
   - "@nimbus-ds/stepper"
+
+undecided:
+  - nimbus-design-system
