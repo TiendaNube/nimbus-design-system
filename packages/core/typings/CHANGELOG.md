@@ -6,7 +6,7 @@ This package is intended for internal use in creating components with polymorphi
 
 #### 🎉 New features
 
-- Added `SVGElementProps` type to support SVG element props in gradient applications and icon components. ([#320](https://github.com/TiendaNube/nimbus-design-system/pull/320) by [@joacotornello](https://github.com/joacotornello))
+- Added `SVGElementProps` type to support SVG element props in gradient applications and icon components. ([#321](https://github.com/TiendaNube/nimbus-design-system/pull/321) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-03-20 `1.2.1`
 

@@ -6,7 +6,7 @@ Our design tokens are the foundations of Nimbus Design System.
 
 #### 🎉 New features
 
-- Added new `aiGenerative` system color tokens. ([#320](https://github.com/TiendaNube/nimbus-design-system/pull/320) by [@joacotornello](https://github.com/joacotornello))
+- Added new `aiGenerative` system color tokens. ([#321](https://github.com/TiendaNube/nimbus-design-system/pull/321) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-03-18 `9.1.1`
 
