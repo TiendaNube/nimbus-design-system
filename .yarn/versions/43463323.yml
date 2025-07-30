@@ -4,6 +4,7 @@ releases:
   "@nimbus-ds/styles": minor
 
 declined:
+  - nimbus-design-system
   - "@nimbus-ds/alert"
   - "@nimbus-ds/card"
   - "@nimbus-ds/modal"
@@ -12,6 +13,3 @@ declined:
   - "@nimbus-ds/segmented-control"
   - "@nimbus-ds/sidebar"
   - "@nimbus-ds/stepper"
-
-undecided:
-  - nimbus-design-system
