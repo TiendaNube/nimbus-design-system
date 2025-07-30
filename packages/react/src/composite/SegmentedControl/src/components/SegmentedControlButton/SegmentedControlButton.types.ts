@@ -3,14 +3,14 @@ import type { SegmentedControlButtonSkeletonProps } from "./components/Segmented
 
 export type SegmentedControlButtonProperties = PropsWithChildren<{
   /**
-   * Label of the segment.
+   * Unique identifier for the segment button.
+   * Required for proper state management and accessibility.
    */
-  label: string;
+  id: string;
   /**
-   * Determines if segment is active.
-   * @default false
+   * Label of the segment used for accessibility.
    */
-  selected?: boolean;
+  label?: string;
   /**
    * Determines if segment spans all available width.
    * @default false

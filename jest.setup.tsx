@@ -20,3 +20,13 @@ jest.mock("@nimbus-ds/icons", () => ({
   ChevronLeftIcon: () => <svg />,
   ChevronRightIcon: () => <svg />,
 }));
+
+// Mock ResizeObserver
+global.ResizeObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
+}));
+
+// Mock scrollTo method
+Element.prototype.scrollTo = jest.fn();
