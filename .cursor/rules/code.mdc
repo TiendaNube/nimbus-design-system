@@ -9,7 +9,7 @@ alwaysApply: true
 We use SonarCloud and ESLint to analyze the code and provide suggestions for improvements. These are rules that are enforced by the CI pipeline, and should be followed by all developers. Never break these rules, as the PR won't be merged.
 
 ### Typescript rules
-1. Enforce type safety—never use any or unsafe casts, and always declare explicit types. hen a dynamic type is truly unavoidable, use **unknown** and narrow it explicitly. Never use any for props or state.
+1. Enforce type safety—never use any or unsafe casts, and always declare explicit types. When a dynamic type is truly unavoidable, use **unknown** and narrow it explicitly. Never use any for props or state.
 2. Replace magic numbers with named constants.
 3. Always use strict equality operators (===, !==) instead of loose ones.
 4. Ensure functions have consistent return types.
@@ -21,7 +21,7 @@ We use SonarCloud and ESLint to analyze the code and provide suggestions for imp
 
 ### React rules
 1. Use functional components instead of class components.
-2. Props are **required by default**; mark a prop optional (`?:`) only when the component can render a sensible fallback. Document all optional props. Clearly document all props.
+2. Props are **required by default**; mark a prop optional (`?:`) only when the component can render a sensible fallback. Clearly document all optional props.
 3. Props are **immutable**—never mutate them.  Clone or derive new objects instead of in-place modification.
 4. Prevent prop drilling: Use context or composition patterns to avoid passing props through many layers.
 5. Memoize components where appropriate: Use React.memo or useMemo to optimize performance of pure/presentational components.
