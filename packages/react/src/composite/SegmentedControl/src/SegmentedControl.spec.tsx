@@ -12,12 +12,7 @@ import { SegmentedControl } from "./SegmentedControl";
 describe("<SegmentedControl />", () => {
   const defaultProps = {
     children: [
-      <SegmentedControl.Button
-        key="option1"
-        id="option1"
-        label="Option 1"
-        selected
-      >
+      <SegmentedControl.Button key="option1" id="option1" label="Option 1">
         Option 1
       </SegmentedControl.Button>,
       <SegmentedControl.Button key="option2" id="option2" label="Option 2">
@@ -80,7 +75,7 @@ describe("<SegmentedControl />", () => {
 
     render(
       <SegmentedControl>
-        <SegmentedControl.Button id="option1" label="Option 1" selected>
+        <SegmentedControl.Button id="option1" label="Option 1">
           Option 1
         </SegmentedControl.Button>
         <SegmentedControl.Button id="option2" label="Option 2">
@@ -238,36 +233,6 @@ describe("<SegmentedControl />", () => {
     });
 
     expect(mockOnSegmentsSelect).toHaveBeenCalledWith(["option2"]);
-  });
-
-  it("ignores child selected props in controlled mode", () => {
-    const children = [
-      <SegmentedControl.Button
-        key="option1"
-        id="option1"
-        label="Option 1"
-        selected
-      />,
-      <SegmentedControl.Button
-        key="option2"
-        id="option2"
-        label="Option 2"
-        selected
-      />,
-    ];
-
-    render(
-      <SegmentedControl
-        selectedSegments={["option2"]}
-        onSegmentsSelect={mockOnSegmentsSelect}
-      >
-        {children}
-      </SegmentedControl>
-    );
-
-    const buttons = screen.getAllByRole("button");
-    expect(buttons[0]).toHaveAttribute("aria-pressed", "false");
-    expect(buttons[1]).toHaveAttribute("aria-pressed", "true");
   });
 
   it("updates selection when selectedSegments prop changes", () => {
