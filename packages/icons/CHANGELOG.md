@@ -2,6 +2,24 @@
 
 Nimbus-icons is an open source icon system built by Nuvemshop / Tiendanube.
 
+## 2025-07-15 `1.11.0`
+
+#### 🎉 New features
+
+- Updates `discount-circle` icon with new design. ([#315](https://github.com/TiendaNube/nimbus-design-system/pull/315) by [@noecondoleo](https://github.com/noecondoleo))
+- Updates `stores` icon. ([#315](https://github.com/TiendaNube/nimbus-design-system/pull/315) by [@noecondoleo](https://github.com/noecondoleo))
+- Updates `cashier` icon. ([#315](https://github.com/TiendaNube/nimbus-design-system/pull/315) by [@noecondoleo](https://github.com/noecondoleo))
+- Adds `pinterest` icon. ([#315](https://github.com/TiendaNube/nimbus-design-system/pull/315) by [@noecondoleo](https://github.com/noecondoleo))
+- Updates `online-store` icon. ([#315](https://github.com/TiendaNube/nimbus-design-system/pull/315) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
+
+## 2025-07-03 `1.10.0`
+
+#### 🎉 New features
+
+- Adds `meta` icon. ([#305](https://github.com/TiendaNube/nimbus-design-system/pull/305) by [@ayrlodeiros](https://github.com/ayrlodeiros))
+- Adds `google` icon. ([#305](https://github.com/TiendaNube/nimbus-design-system/pull/305) by [@ayrlodeiros](https://github.com/ayrlodeiros))
+- Adds `tiktok` icon. ([#305](https://github.com/TiendaNube/nimbus-design-system/pull/305) by [@ayrlodeiros](https://github.com/ayrlodeiros))
+
 ## 2025-05-20 `1.9.0`
 
 #### 🎉 New features

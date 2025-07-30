@@ -1,20 +1,16 @@
-import { ReactElement } from "react";
+import { ReactNode } from "react";
 import type { BoxProps } from "@nimbus-ds/box";
 import {
   SegmentedControlButton,
   SegmentedControlButtonSkeleton,
-  type SegmentedControlButtonSkeletonProps,
-  type SegmentedControlButtonProps,
 } from "./components";
 
 export interface SegmentedControlBaseProps {
   /**
    * The content of the segmented control.
-   * @TJS-type ReactElement<SegmentedControlButtonProps | SegmentedControlButtonSkeletonProps>[];
+   * Should contain SegmentedControlButton components with unique id props.
    */
-  children: ReactElement<
-    SegmentedControlButtonProps | SegmentedControlButtonSkeletonProps
-  >[];
+  children: ReactNode;
   /**
    * Determines if segments span all available width.
    * @default false
@@ -33,15 +29,15 @@ export interface SegmentedControlComponents {
 export interface ControlledSegmentedControlProperties
   extends SegmentedControlBaseProps {
   /**
-   * The currently selected segment indices.
+   * The currently selected segment IDs.
    * Allows for single or multiple selection.
    */
-  selectedSegments: number[];
+  selectedSegments: string[];
   /**
    * Callback fired when the selected segments change.
-   * This will only be called if the change results in at least one selected segment.
+   * @param selectedIds Array of selected segment IDs
    */
-  onSegmentsSelect: (indices: number[]) => void;
+  onSegmentsSelect: (selectedIds: string[]) => void;
 }
 
 /**
@@ -51,7 +47,10 @@ export type SegmentedControlProps = (
   | SegmentedControlBaseProps
   | ControlledSegmentedControlProperties
 ) &
-  Omit<BoxProps, "display" | "backgroundColor" | "gap" | "borderRadius" | "children">;
+  Omit<
+    BoxProps,
+    "display" | "backgroundColor" | "gap" | "borderRadius" | "children"
+  >;
 
 // For docs purposes, we need to merge the two types
 export type SegmentedControlProperties = SegmentedControlBaseProps &

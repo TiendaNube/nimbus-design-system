@@ -75,6 +75,7 @@ declined:
     ...rest of the packages
 ```
 * PATCH for updates. MINOR for additions. MAJOR for deletions.
+* **Delete any previous `.yarn/versions/*.yml` files for `@nimbus-ds/icons` before committing** – there must be exactly **one** active version file.
 * ALWAYS decline the `nimbus-design-system` root package and all packages that are not `@nimbus-ds/icons`.
 
 1.3. Run `yarn bump:check` and read the errors.

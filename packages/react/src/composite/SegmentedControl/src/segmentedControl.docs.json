@@ -7,10 +7,10 @@
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/segmented-control",
   "props": [
     {
-      "description": "The content of the segmented control.",
-      "type": "ReactElement<SegmentedControlButtonProps | SegmentedControlButtonSkeletonProps>[];",
+      "$ref": "#/definitions/React.ReactNode",
+      "description": "The content of the segmented control.\nShould contain SegmentedControlButton components with unique id props.",
       "title": "children",
-      "required": true
+      "required": false
     },
     {
       "description": "Determines if segments span all available width.",
@@ -20,16 +20,16 @@
       "required": false
     },
     {
-      "description": "The currently selected segment indices.\nAllows for single or multiple selection.",
+      "description": "The currently selected segment IDs.\nAllows for single or multiple selection.",
       "type": "array",
       "items": {
-        "type": "number"
+        "type": "string"
       },
       "title": "selectedSegments",
       "required": true
     },
     {
-      "description": "Callback fired when the selected segments change.\nThis will only be called if the change results in at least one selected segment.",
+      "description": "Callback fired when the selected segments change.",
       "type": "object",
       "additionalProperties": false,
       "propertyOrder": [],
@@ -43,16 +43,15 @@
       "totalProps": 4,
       "props": [
         {
-          "description": "Label of the segment.",
+          "description": "Unique identifier for the segment button.\nRequired for proper state management and accessibility.",
           "type": "string",
-          "title": "label",
+          "title": "id",
           "required": true
         },
         {
-          "description": "Determines if segment is active.",
-          "default": false,
-          "type": "boolean",
-          "title": "selected",
+          "description": "Label of the segment used for accessibility.",
+          "type": "string",
+          "title": "label",
           "required": false
         },
         {

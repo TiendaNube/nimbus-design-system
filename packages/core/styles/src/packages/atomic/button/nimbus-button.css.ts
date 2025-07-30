@@ -5,7 +5,7 @@ const base = style({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  height: "2.125rem",
+  height: "2rem",
   width: "fit-content",
   textDecoration: "none",
   cursor: "pointer",
