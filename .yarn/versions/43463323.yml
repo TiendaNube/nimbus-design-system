@@ -1,0 +1,13 @@
+releases:
+  "@nimbus-ds/button": minor
+  "@nimbus-ds/styles": minor
+
+declined:
+  - "@nimbus-ds/alert"
+  - "@nimbus-ds/card"
+  - "@nimbus-ds/modal"
+  - "@nimbus-ds/pagination"
+  - "@nimbus-ds/scroll-pane"
+  - "@nimbus-ds/segmented-control"
+  - "@nimbus-ds/sidebar"
+  - "@nimbus-ds/stepper"
