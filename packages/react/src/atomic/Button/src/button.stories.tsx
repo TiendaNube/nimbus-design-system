@@ -115,7 +115,7 @@ export const transparent: Story = {
   },
 };
 
-export const maxWidth: Story = {
+export const fullWidth: Story = {
   args: {
     children: "Full Width Button",
     fullWidth: true,
