@@ -6,7 +6,6 @@
 
 export * from "./components";
 export { vars } from "./utils";
-export { gradients, createLinearGradient } from "./gradients";
 
 export { badge } from "./packages/atomic/badge";
 export { box } from "./packages/atomic/box";

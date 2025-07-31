@@ -14,13 +14,7 @@ export interface ProgressBarProperties {
    * Change the visual style of the progress bar.
    * @default neutral
    */
-  appearance?: 
-    | "primary" 
-    | "success" 
-    | "warning" 
-    | "danger" 
-    | "neutral"
-    | "ai-gradient";
+  appearance?: "primary" | "success" | "warning" | "danger" | "neutral";
 }
 
 export type ProgressBarBaseProps = ProgressBarProperties &

@@ -66,12 +66,5 @@ describe("GIVEN <ProgressBar />", () => {
         expect.stringContaining("appearance_danger")
       );
     });
-
-    it("AND should correctly render the appearance ai-gradient", () => {
-      makeSut({ value: 50, appearance: "ai-gradient" });
-      expect(screen.getByTestId("progress-bar-element").querySelector("div")).toHaveClass(
-        expect.stringContaining("appearance_ai-gradient")
-      );
-    });
   });
 }); 

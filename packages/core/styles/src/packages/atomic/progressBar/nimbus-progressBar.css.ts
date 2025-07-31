@@ -1,12 +1,11 @@
 import { style, styleVariants } from "@vanilla-extract/css";
 import { varsThemeBase } from "../../../themes";
-import { gradients } from "../../../gradients";
 
 const base = style({
   display: "flex",
   alignItems: "center",
   width: "100%",
-  height: "0.5rem", 
+  height: "0.5rem", // 8px
   borderRadius: varsThemeBase.shape.border.radius.full,
   backgroundColor: varsThemeBase.colors.neutral.surfaceDisabled,
   overflow: "hidden",
@@ -51,12 +50,6 @@ export const appearance = styleVariants({
     fill,
     {
       backgroundColor: varsThemeBase.colors.neutral.interactive,
-    },
-  ],
-  "ai-gradient": [
-    fill,
-    {
-      backgroundImage: gradients.aiGradient,
     },
   ],
 }); 
