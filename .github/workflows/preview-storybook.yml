@@ -76,6 +76,35 @@ jobs:
               https://api.github.com/repos/$REPO/issues/comments/$comment_id
           fi
 
+          modified_files=$(curl -s -H "Authorization: token $GH_TOKEN" \
+            https://api.github.com/repos/$REPO/pulls/$PR_NUMBER/files | \
+            jq -r '.[] | .filename')
+          
+          story_file=""
+          story_file=$(echo "$modified_files" | grep '\.stories\.tsx$' | head -1)
+          
+          if [ -z "$story_file" ]; then
+            for file in $(echo "$modified_files" | grep -E '\.(tsx?)$' | grep -v '\.stories\.'); do
+              dir_path=$(dirname "$file")
+              base_name=$(basename "$file" | sed 's/\.[^.]*$//')
+              
+              for pattern in "${base_name}.stories.tsx" "$(echo $base_name | tr '[:upper:]' '[:lower:]').stories.tsx"; do
+                potential_story="$dir_path/$pattern"
+                if [ -f "$potential_story" ]; then
+                  story_file="$potential_story"
+                  break 2
+                fi
+              done
+            done
+          fi
+          
+          if [ -f "$story_file" ]; then
+            story_url=$(grep -o 'title:\s*["'"'"'][^"'"'"']*["'"'"']' "$story_file" | head -1 | \
+              sed -E 's/title:\s*["'"'"']([^"'"'"']*)["'"'"']/\1/' | tr '[:upper:]' '[:lower:]' | \
+              sed 's/\//-/g; s/ /-/g')
+            [ ! -z "$story_url" ] && STORYBOOK_URL="$STORYBOOK_URL?path=/docs/$story_url--docs"
+          fi
+
           curl -s -H "Authorization: token $GH_TOKEN" \
             -H "Content-Type: application/json" \
             -X POST -d "{
