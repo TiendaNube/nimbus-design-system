@@ -48,6 +48,13 @@
         "text-disabled": { "value": "{color.light.neutral.50}" },
         "text-low": { "value": "{color.light.neutral.40}" },
         "text-high": { "value": "{color.light.neutral.0}" }
+      },
+      "aiGenerative": {
+        "interactive": {
+          "start": { "value": "#0050C3" },
+          "middle": { "value": "#4629BA" },
+          "end": { "value": "#D8446E" }
+        }
       }
     },
     "dark": {
@@ -98,6 +105,13 @@
         "text-disabled": { "value": "{color.light.neutral.60}" },
         "text-low": { "value": "{color.light.neutral.70}" },
         "text-high": { "value": "{color.light.neutral.100}" }
+      },
+      "aiGenerative": {
+        "interactive": {
+          "start": { "value": "#0050C3" },
+          "middle": { "value": "#4629BA" },
+          "end": { "value": "#D8446E" }
+        }
       }
     },
     "next": {

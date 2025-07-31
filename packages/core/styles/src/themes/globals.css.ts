@@ -60,6 +60,13 @@ export const globalTheme = {
       textLow: colors.neutral["text-low"].value as string,
       textHigh: colors.neutral["text-high"].value as string,
     },
+    aiGenerative: {
+      interactive: {
+        start: colors.aiGenerative.interactive.start.value as string,
+        middle: colors.aiGenerative.interactive.middle.value as string,
+        end: colors.aiGenerative.interactive.end.value as string,
+      },
+    },
   },
   fontFamily: {
     sans: fontFamily.sans.value as string,
