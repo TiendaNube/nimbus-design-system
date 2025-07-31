@@ -1,7 +1,7 @@
 {
   "id": "chip",
   "name": "Chip",
-  "totalProps": 4,
+  "totalProps": 3,
   "packageName": "@nimbus-ds/chip",
   "version": "2.3.4",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/chip",
@@ -22,16 +22,6 @@
       "description": "Informs whether the close icon should be displayed.",
       "type": "boolean",
       "title": "removable",
-      "required": false
-    },
-    {
-      "description": "Change the visual style of the chip.",
-      "default": "neutral",
-      "enum": [
-        "neutral"
-      ],
-      "type": "string",
-      "title": "appearance",
       "required": false
     }
   ],

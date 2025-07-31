@@ -13,10 +13,9 @@ const Chip: React.FC<ChipProps> & ChipComponents = ({
   icon,
   removable,
   onClick,
-  appearance = "neutral",
   ...rest
 }: ChipProps) => (
-  <div {...rest} className={chip.classnames.appearance[appearance]}>
+  <div {...rest} className={chip.classnames.base}>
     {icon && <Icon source={icon} color="neutral-textHigh" />}
     <Text
       color="neutral-textHigh"

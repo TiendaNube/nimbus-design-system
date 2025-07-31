@@ -25,7 +25,7 @@ const Icon: React.FC<IconProps> & IconComponents = ({
       className={[
         icon.sprinkle({
           ...(!renderGradient && {
-            color: color as keyof typeof icon.properties.color,
+            color,
           }),
           cursor,
         }),

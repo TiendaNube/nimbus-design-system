@@ -15,7 +15,7 @@ export interface IconProperties {
   source: ReactNode;
   /**
    * Set the color for the SVG fill.
-   * Use "ai-gradient" to apply the Nimbus AI gradient.
+   * Use "ai-interactive" to apply the Nimbus AI interactive gradient.
    * @default neutral-textLow
    */
   color?: keyof typeof icon.properties.color | "ai-interactive";

@@ -1,2 +1,2 @@
 export { applyGradientToSvg } from "./gradientProcessor";
-export { isGradient } from "./colorValidation";
+export { isGradient, canUseGradient, isValidColorValue, GRADIENT_COLORS } from "./colorValidation";

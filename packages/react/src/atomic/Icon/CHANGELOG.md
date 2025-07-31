@@ -6,7 +6,7 @@ Icons are used to visually communicate core parts of the product and available a
 
 ### 🎉 New features
 
-- Added `ai-gradient` appearance to `Icon` component. ([#321](https://github.com/TiendaNube/nimbus-design-system/pull/321) by [@joacotornello](https://github.com/joacotornello))
+- Added `ai-interactive` appearance to `Icon` component. ([#321](https://github.com/TiendaNube/nimbus-design-system/pull/321) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-06-27 `3.1.0`
 

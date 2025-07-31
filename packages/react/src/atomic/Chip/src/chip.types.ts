@@ -19,11 +19,6 @@ export interface ChipProperties {
    * Informs whether the close icon should be displayed.
    */
   removable?: boolean;
-  /**
-   * Change the visual style of the chip.
-   * @default neutral
-   */
-  appearance?: "neutral";
 }
 
 export type ChipProps = ChipProperties &

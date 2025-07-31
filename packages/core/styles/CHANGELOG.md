@@ -7,7 +7,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 #### 🎉 New features
 
 - Added generic gradient builder to support gradient styles in components and SVG Icons. ([#321](https://github.com/TiendaNube/nimbus-design-system/pull/321) by [@joacotornello](https://github.com/joacotornello))
-- Added `ai-gradient` appearance to `Icon` component. ([#321](https://github.com/TiendaNube/nimbus-design-system/pull/321) by [@joacotornello](https://github.com/joacotornello))
+- Added `ai-interactive` appearance to `Icon` component. ([#321](https://github.com/TiendaNube/nimbus-design-system/pull/321) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-07-28 `9.18.0`
 
