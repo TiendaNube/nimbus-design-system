@@ -8,7 +8,7 @@ reviews:
   high_level_summary_placeholder: "@autosummary"
   auto_title_placeholder: "@autotitle"
   auto_title_instructions: "Generate a concise PR title following the format 'chore/fix/feat(PackageName): Title' where the type is determined by the nature of changes (chore for maintenance, fix for bug fixes, feat for new features), PackageName is the affected package, if any, and Title is a brief description of the changes."
-  auto_apply_labels: true # If the suggestions are correct, we can apply them automatically.
+  auto_apply_labels: true 
   poem: false
   collapse_walkthrough: true
   labeling_instructions:
@@ -17,13 +17,11 @@ reviews:
     - label: dependencies
       instructions: This PR updates dependencies, such as adding a new dependency or removing an unused one.
     - label: documentation
-      instructions: This PR ONLY adds or updates documentation, such as a README, changelog, or inline comments. It does not include any code changes.
+      instructions: This PR ONLY adds or updates documentation, such as a README, changelog, or inline comments. It does NOT include any production code changes.
     - label: duplicate
       instructions: This PR is a duplicate of another PR. The title and description are identical or very similar to other PRs.
     - label: enhancement
       instructions: This PR implements a new feature or improvement to the project.
-    - label: good first issue
-      instructions: This PR is a good first issue. It is a small, self-contained change that is easy to understand and review for newcomers.
   path_filters:
     # Documentation and generated files
     - "!**/*.docs.json"
@@ -132,11 +130,8 @@ reviews:
 chat:
   auto_reply: true
 knowledge_base:
-  # Opt out of all knowledge base features that require data retention.
-  opt_out: true
   web_search:
     enabled: true
-  # Check if we can access nimbus-patterns from this
   learnings:
     scope: auto
   pull_requests:
