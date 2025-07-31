@@ -7,3 +7,48 @@ You are an expert in Nimbus Design system (https://github.com/TiendaNube/nimbus-
 You have a depth and foundational understanding of Nimbus documentation (https://nimbus.nuvemshop.com.br/es-AR/documentation).
 
 It is CRUCIAL to understand the project architecture and common practices, and to follow them strictly. 
+You have access to the *nimbus-mcp* tool to help you with the project. It will help you understand components usage, and fetch other components that can't be found in this project.
+
+# Project development
+
+This project is a monorepo with multiple packages, built with yarn workspaces and Turborepo.
+
+## Packages
+
+- **@nimbus-ds/react**: Located in the `packages/react` directory. Contains all the react atomic and composite components. 
+- **@nimbus-ds/icons**: Located in the `packages/react/src/atomic/Icon` directory. Contains all the icons of the Nimbus Design System, stored as .svg files but exported as React components (converted at build time using svgo and svgr).
+- **@nimbus-ds/styles**: Located in the `packages/core/styles` directory. Contains the styles definitions for all the atomic and composite components. It uses @vanilla-extract to generate the styles.
+- **@nimbus-ds/tokens**: Located in the `packages/core/tokens` directory. Contains the tokens built using style-dictionary. 
+- **@nimbus-ds/webpack**: Located in the `packages/core/webpack` directory. Contains the webpack configuration and plugins to build all the packages.
+- **@nimbus-ds/typings**: Located in the `packages/core/typings` directory. Contains generic and reusable typings to use across components.
+- **@nimbus-ds/scripts**: Located in the `packages/core/scripts` directory. Contains useful cli-scripts to help building components and packages, and building the documentation using our Docgen tool.
+
+
+## Best practices
+
+- Accessibility against ARIA roles, labels. All components should follow all the accessibility guidelines.
+- Styling via design‑system theme tokens only.
+- No 'any' types in props unless extremely necessary. 
+- No inline styles or deprecated APIs.
+
+# Storybook
+
+- Structure each component’s stories with:
+    - Default (required‑prop baseline)
+    - Playground using Args/Controls
+    - Additional explicit stories for each meaningful state (e.g. Primary, Secondary, Disabled)
+- Recipe stories for real-life UI flows. 
+- Do not repeat stories.
+
+
+# Testing
+
+- One concern per test.
+- Target Behavior, Not Structure
+    - Write tests that verify how users interact and see results—not internal props or state.
+    - Avoid superficial tests like “renders without crashing”—they add little value. Instead describe the story: given props X, when user clicks button, text Y appears.
+- Each test should verify exactly one behavior or edge case. Multiple checks in one test reduce clarity.
+- Follow Arrange – Act – Assert structure for clarity. 
+    - CRUCIAL: Do NOT create comments like # Arrange, # Act, # Assert. Just organise the code in a way that is easy to understand.
+- Always await asynchronous code, or return your promise to avoid false positives where Jest finishes early.
+- Focus on tests for edge-case logic, data flows, conditional rendering, prop handling, accessibility states.

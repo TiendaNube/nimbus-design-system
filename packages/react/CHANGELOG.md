@@ -8,6 +8,8 @@ Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team 
 
 - Added `ai-gradient` appearance to `Icon` component. ([#320](https://github.com/TiendaNube/nimbus-design-system/pull/320) by [@joacotornello](https://github.com/joacotornello))
 - Added `ai-gradient` appearance to `Input` component. ([#320](https://github.com/TiendaNube/nimbus-design-system/pull/320) by [@joacotornello](https://github.com/joacotornello))
+- Created `ScrollPane` new composite component with gradient overlays, optional navigation arrows, scroll-to-item functionality, support for both horizontal and vertical scrolling, scrollbar control, full accessibility support, and responsive design. ([#319](https://github.com/TiendaNube/nimbus-design-system/pull/319) by [@joacotornello](https://github.com/joacotornello))
+- `SegmentedControl`: Improved scalability by adding a new context system without breaking the existing API. Enhanced internal architecture for better performance and maintainability. ([#319](https://github.com/TiendaNube/nimbus-design-system/pull/319) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-07-24 `5.13.0`
 

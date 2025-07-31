@@ -11,12 +11,12 @@ import {
 } from "@nimbus-ds/typings";
 import { segmentedControl } from "@nimbus-ds/styles";
 
-import { generateID } from "../../segmentedControl.definitions";
 import {
   SegmentedControlButtonComponents,
   SegmentedControlButtonProps,
 } from "./SegmentedControlButton.types";
 import { SegmentedControlButtonSkeleton } from "./components/SegmentedControlButtonSkeleton/SegmentedControlButtonSkeleton";
+import { useSegmentedControlContext } from "../../contexts/SegmentedControlContext";
 
 const SegmentedControlButton = forwardRef(
   (
@@ -24,17 +24,31 @@ const SegmentedControlButton = forwardRef(
       className: _className,
       style: _style,
       as: As = "button",
+      id,
       label,
-      selected = false,
       disabled = false,
       fullWidth = false,
       children,
+      onClick,
       ...rest
     }: SegmentedControlButtonProps & { as: any },
     ref
   ) => {
     const innerRef = useRef<HTMLButtonElement>(null);
     useRefObjectAsForwardedRef(ref, innerRef);
+
+    const context = useSegmentedControlContext();
+
+    // Register and unregister with the provided ID
+    useEffect(() => {
+      if (!id) return undefined;
+
+      context.registerButton(id);
+
+      return () => {
+        context.unregisterButton(id);
+      };
+    }, [context, id]);
 
     useImperativeHandle<
       HTMLButtonElement | HTMLAnchorElement | null,
@@ -55,25 +69,36 @@ const SegmentedControlButton = forwardRef(
       }
     }, [innerRef]);
 
-    // Generate a unique ID for the button and aria attributes
-    const ariaID = generateID(label);
+    // Use the context value to determine if the button is selected, or default to the selected prop
+    const isSelected = context.isSelected(id);
+
+    const shouldUseFullWidth = context ? context.fullWidth : fullWidth;
+
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+      if (context && id) {
+        context.toggleSegment(id);
+      }
+
+      onClick?.(event);
+    };
 
     const { classnames } = segmentedControl.subcomponents.button;
     const buttonClassName = [
-      classnames.appearance[selected ? "selected" : "default"],
+      classnames.appearance[isSelected ? "selected" : "default"],
     ]
-      .concat(fullWidth && classnames.fullWidth ? classnames.fullWidth : "")
-      .filter(Boolean)
+      .concat(shouldUseFullWidth ? classnames.fullWidth : "")
       .join(" ");
 
     return (
       <As
-        id={`segment-${ariaID}`}
+        id={id}
         role="button"
         {...(rest as HTMLAttributes<HTMLButtonElement>)}
         className={buttonClassName}
-        aria-pressed={selected}
+        aria-pressed={isSelected}
+        aria-label={label}
         disabled={disabled}
+        onClick={handleClick}
         ref={innerRef}
       >
         {children}

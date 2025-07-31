@@ -10,6 +10,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 - Added `ai-gradient` appearance to `Input` component. ([#320](https://github.com/TiendaNube/nimbus-design-system/pull/320) by [@joacotornello](https://github.com/joacotornello))
 - Added `ai-gradient` appearance to `Chip` component. ([#320](https://github.com/TiendaNube/nimbus-design-system/pull/320) by [@joacotornello](https://github.com/joacotornello))
 - Added `ai-gradient` appearance to `Icon` component. ([#320](https://github.com/TiendaNube/nimbus-design-system/pull/320) by [@joacotornello](https://github.com/joacotornello))
+- Added `scroll-pane` new composite component styles with gradient overlays, navigation arrows, scroll area management, and responsive animations for both horizontal and vertical scrolling directions. ([#319](https://github.com/TiendaNube/nimbus-design-system/pull/319) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-07-24 `9.17.0`
 
