@@ -69,3 +69,17 @@ export type TransitionTiming =
   | "step-start"
   | "step-end";
 export type WordBreak = "normal" | "break-all" | "keep-all" | "break-word";
+
+// Gradient types for flexible gradient creation
+export type GradientDirection =
+  | string // Flexible string for custom angles like "180deg", "45deg", etc.
+  | "to top"
+  | "to bottom"
+  | "to left"
+  | "to right"
+  | "to top left"
+  | "to top right"
+  | "to bottom left"
+  | "to bottom right";
+
+export type GradientColorStop = string; // Flexible string to support "red", "red 50%", "rgba(255,0,0,0.5)", etc.

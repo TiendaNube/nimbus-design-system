@@ -62,6 +62,13 @@ export const danger: Story = {
   },
 };
 
+export const aiGradient: Story = {
+  args: {
+    placeholder: "Placeholder",
+    appearance: "ai-gradient",
+  },
+};
+
 export const disabled: Story = {
   args: {
     placeholder: "Placeholder",

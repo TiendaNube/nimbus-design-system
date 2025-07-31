@@ -6,6 +6,11 @@
 
 export * from "./components";
 export { vars } from "./utils";
+export {
+  gradients,
+  createLinearGradient,
+  createBorderGradient,
+} from "./gradients";
 
 export { badge } from "./packages/atomic/badge";
 export { box } from "./packages/atomic/box";
@@ -50,7 +55,7 @@ export { scrollPane } from "./packages/composite/scroll-pane";
 export { calendar } from "./packages/patterns/calendar";
 export { editor } from "./packages/patterns/editor";
 
-
+/* Types */
 export type { BoxSprinkle } from "./packages/atomic/box";
 export type { IconButtonSprinkle } from "./packages/atomic/iconButton";
 export type { TextSprinkle } from "./packages/atomic/text";

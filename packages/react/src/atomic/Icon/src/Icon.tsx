@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { icon } from "@nimbus-ds/styles";
 
 import { IconProps, IconComponents } from "./icon.types";
 import { IconSkeleton } from "./components";
+import { applyGradientToSvg, isGradient } from "./utils/gradient";
 
 const Icon: React.FC<IconProps> & IconComponents = ({
   className: _className,
@@ -11,16 +12,30 @@ const Icon: React.FC<IconProps> & IconComponents = ({
   cursor = "inherit",
   source,
   ...rest
-}: IconProps) => (
-  <div
-    {...rest}
-    className={[icon.sprinkle({ color, cursor }), icon.classnames.base].join(
-      " "
-    )}
-  >
-    {source}
-  </div>
-);
+}: IconProps) => {
+  const renderGradient = useMemo(() => isGradient(color), [color]);
+  const processedSource = useMemo(
+    () => (renderGradient ? applyGradientToSvg(source) : source),
+    [renderGradient, source]
+  );
+
+  return (
+    <div
+      {...rest}
+      className={[
+        icon.sprinkle({
+          ...(!renderGradient && {
+            color: color as keyof typeof icon.properties.color,
+          }),
+          cursor,
+        }),
+        icon.classnames.base,
+      ].join(" ")}
+    >
+      {processedSource}
+    </div>
+  );
+};
 
 Icon.Skeleton = IconSkeleton;
 Icon.displayName = "Icon";

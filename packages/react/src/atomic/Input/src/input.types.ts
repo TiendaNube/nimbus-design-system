@@ -12,8 +12,9 @@ export interface InputProperties {
   /**
    * Change the visual style of the input.
    * @default neutral
+   * - "ai-gradient": Applies an AI-themed gradient border style
    */
-  appearance?: "neutral" | "success" | "warning" | "danger";
+  appearance?: "neutral" | "success" | "warning" | "danger" | "ai-gradient";
   /**
    * Disables the input, disallowing user interaction.
    */

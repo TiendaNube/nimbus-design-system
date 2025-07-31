@@ -27,4 +27,11 @@ describe("GIVEN <Chip />", () => {
     });
     expect(screen.getByTestId("close-chip")).toBeDefined();
   });
+
+  it("THEN it should correctly render the neutral appearance by default", () => {
+    makeSut({ text: "chip" });
+    expect(screen.getByTestId("chip-element").getAttribute("class")).toContain(
+      "appearance_neutral"
+    );
+  });
 });
