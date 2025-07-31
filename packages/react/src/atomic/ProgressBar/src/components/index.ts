@@ -1,1 +1,1 @@
-export * from "./ProgressBarSkeleton"; 
+export { ProgressBarSkeleton } from "./ProgressBarSkeleton";

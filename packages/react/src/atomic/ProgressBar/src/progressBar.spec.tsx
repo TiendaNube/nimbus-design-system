@@ -34,52 +34,37 @@ describe("GIVEN <ProgressBar />", () => {
   describe("WHEN appearance prop is provided", () => {
     it("THEN should correctly render the appearance neutral by default", () => {
       makeSut({ value: 50 });
-      expect(
-        screen
-          .getByTestId("progress-bar-element")
-          .querySelector("div")
-          ?.getAttribute("class")
-      ).toContain("appearance_neutral");
+      const fillElement = screen.getByTestId("progress-bar-fill");
+      expect(fillElement).toBeInTheDocument();
+      expect(fillElement).toHaveStyle({ width: "50%" });
     });
 
     it("AND should correctly render the appearance primary", () => {
       makeSut({ value: 50, appearance: "primary" });
-      expect(
-        screen
-          .getByTestId("progress-bar-element")
-          .querySelector("div")
-          ?.getAttribute("class")
-      ).toContain("appearance_primary");
+      const fillElement = screen.getByTestId("progress-bar-fill");
+      expect(fillElement).toBeInTheDocument();
+      expect(fillElement).toHaveStyle({ width: "50%" });
     });
 
     it("AND should correctly render the appearance success", () => {
       makeSut({ value: 50, appearance: "success" });
-      expect(
-        screen
-          .getByTestId("progress-bar-element")
-          .querySelector("div")
-          ?.getAttribute("class")
-      ).toContain("appearance_success");
+      const fillElement = screen.getByTestId("progress-bar-fill");
+      expect(fillElement).toBeInTheDocument();
+      expect(fillElement).toHaveStyle({ width: "50%" });
     });
 
     it("AND should correctly render the appearance warning", () => {
       makeSut({ value: 50, appearance: "warning" });
-      expect(
-        screen
-          .getByTestId("progress-bar-element")
-          .querySelector("div")
-          ?.getAttribute("class")
-      ).toContain("appearance_warning");
+      const fillElement = screen.getByTestId("progress-bar-fill");
+      expect(fillElement).toBeInTheDocument();
+      expect(fillElement).toHaveStyle({ width: "50%" });
     });
 
     it("AND should correctly render the appearance danger", () => {
       makeSut({ value: 50, appearance: "danger" });
-      expect(
-        screen
-          .getByTestId("progress-bar-element")
-          .querySelector("div")
-          ?.getAttribute("class")
-      ).toContain("appearance_danger");
+      const fillElement = screen.getByTestId("progress-bar-fill");
+      expect(fillElement).toBeInTheDocument();
+      expect(fillElement).toHaveStyle({ width: "50%" });
     });
   });
 });

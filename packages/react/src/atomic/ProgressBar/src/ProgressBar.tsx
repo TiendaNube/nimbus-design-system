@@ -45,6 +45,7 @@ const ProgressBar = forwardRef<HTMLDivElement, ProgressBarBaseProps>(
         <div
           className={progressBar.classnames.appearance[appearance]}
           style={{ width: percentage }}
+          data-testid="progress-bar-fill"
         />
       </div>
     );
