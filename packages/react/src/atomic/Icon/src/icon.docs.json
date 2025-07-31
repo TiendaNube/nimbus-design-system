@@ -13,7 +13,7 @@
       "required": true
     },
     {
-      "description": "Set the color for the SVG fill.\nUse \"ai-gradient\" to apply the Nimbus AI gradient.",
+      "description": "Set the color for the SVG fill.\nUse \"ai-interactive\" to apply the Nimbus AI interactive gradient.",
       "default": "neutral-textLow",
       "enum": [
         "ai-interactive",
