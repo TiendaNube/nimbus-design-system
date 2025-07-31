@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 
-import { ProgressBar , ProgressBarProps } from "./ProgressBar";
+import { ProgressBar, ProgressBarProps } from "./ProgressBar";
 
 const makeSut = (rest: ProgressBarProps) => {
   render(<ProgressBar {...rest} data-testid="progress-bar-element" />);
@@ -31,40 +31,55 @@ describe("GIVEN <ProgressBar />", () => {
     });
   });
 
-  describe("THEN should correctly render the submitted appearance", () => {
+  describe("WHEN appearance prop is provided", () => {
     it("THEN should correctly render the appearance neutral by default", () => {
       makeSut({ value: 50 });
-      expect(screen.getByTestId("progress-bar-element").querySelector("div")).toHaveClass(
-        expect.stringContaining("appearance_neutral")
-      );
+      expect(
+        screen
+          .getByTestId("progress-bar-element")
+          .querySelector("div")
+          ?.getAttribute("class")
+      ).toContain("appearance_neutral");
     });
 
     it("AND should correctly render the appearance primary", () => {
       makeSut({ value: 50, appearance: "primary" });
-      expect(screen.getByTestId("progress-bar-element").querySelector("div")).toHaveClass(
-        expect.stringContaining("appearance_primary")
-      );
+      expect(
+        screen
+          .getByTestId("progress-bar-element")
+          .querySelector("div")
+          ?.getAttribute("class")
+      ).toContain("appearance_primary");
     });
 
     it("AND should correctly render the appearance success", () => {
       makeSut({ value: 50, appearance: "success" });
-      expect(screen.getByTestId("progress-bar-element").querySelector("div")).toHaveClass(
-        expect.stringContaining("appearance_success")
-      );
+      expect(
+        screen
+          .getByTestId("progress-bar-element")
+          .querySelector("div")
+          ?.getAttribute("class")
+      ).toContain("appearance_success");
     });
 
     it("AND should correctly render the appearance warning", () => {
       makeSut({ value: 50, appearance: "warning" });
-      expect(screen.getByTestId("progress-bar-element").querySelector("div")).toHaveClass(
-        expect.stringContaining("appearance_warning")
-      );
+      expect(
+        screen
+          .getByTestId("progress-bar-element")
+          .querySelector("div")
+          ?.getAttribute("class")
+      ).toContain("appearance_warning");
     });
 
     it("AND should correctly render the appearance danger", () => {
       makeSut({ value: 50, appearance: "danger" });
-      expect(screen.getByTestId("progress-bar-element").querySelector("div")).toHaveClass(
-        expect.stringContaining("appearance_danger")
-      );
+      expect(
+        screen
+          .getByTestId("progress-bar-element")
+          .querySelector("div")
+          ?.getAttribute("class")
+      ).toContain("appearance_danger");
     });
   });
-}); 
+});

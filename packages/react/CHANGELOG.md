@@ -2,6 +2,12 @@
 
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories every day, with simplicity, accessibility, consistency and performance.
 
+## 2025-07-31 `5.15.0`
+
+#### 🎉 New features
+
+- Created new component ProgressBar. ([#323](https://github.com/TiendaNube/nimbus-design-system/pull/323) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-07-28 `5.14.0`
 
 #### 🎉 New features

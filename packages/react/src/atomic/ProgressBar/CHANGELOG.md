@@ -2,7 +2,7 @@
 
 The ProgressBar component allows us to display the progress of an operation or task in a visual format.
 
-## 2024-01-15 `1.0.0`
+## 2025-07-31 `1.0.0`
 
 ### 🎉 New features
 

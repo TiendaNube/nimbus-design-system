@@ -1,0 +1,10 @@
+releases:
+  "@nimbus-ds/components": minor
+  "@nimbus-ds/progress-bar": major
+  "@nimbus-ds/styles": minor
+
+declined:
+  - nimbus-design-system
+  - "@nimbus-ds/scroll-pane"
+  - "@nimbus-ds/segmented-control"
+  - "@nimbus-ds/stepper"

@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2025-07-31 `9.19.0`
+
+#### 🎉 New features
+
+- Added `progress-bar` new atomic component styles. ([#323](https://github.com/TiendaNube/nimbus-design-system/pull/323) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-07-28 `9.18.0`
 
 #### 🎉 New features
