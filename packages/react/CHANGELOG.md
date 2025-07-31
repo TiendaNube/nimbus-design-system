@@ -1,6 +1,19 @@
 # Changelog
 
-Nimbus is an open-source Design System created by Tiendanube / Nuvesmhop’s team to empower and enhance more stories every day, with simplicity, accessibility, consistency and performance.
+Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories every day, with simplicity, accessibility, consistency and performance.
+
+## 2025-07-28 `5.14.0`
+
+#### 🎉 New features
+
+- Created `ScrollPane` new composite component with gradient overlays, optional navigation arrows, scroll-to-item functionality, support for both horizontal and vertical scrolling, scrollbar control, full accessibility support, and responsive design. ([#319](https://github.com/TiendaNube/nimbus-design-system/pull/319) by [@joacotornello](https://github.com/joacotornello))
+- `SegmentedControl`: Improved scalability by adding a new context system without breaking the existing API. Enhanced internal architecture for better performance and maintainability. ([#319](https://github.com/TiendaNube/nimbus-design-system/pull/319) by [@joacotornello](https://github.com/joacotornello))
+
+## 2025-07-24 `5.13.0`
+
+#### 🎉 New features
+
+- `Popover`: Added `renderOverlay` property to render an invisible overlay that prevents accidental clicks on elements behind the popover when enabled. This improves UX by providing click protection without visual interference. ([#316](https://github.com/TiendaNube/nimbus-design-system/pull/316) by [@harrytiendanube](https://github.com/harrytiendanube))
 
 ## 2025-07-10 `5.12.1`
 

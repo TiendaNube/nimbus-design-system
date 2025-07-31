@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/components",
-  "version": "5.12.1",
+  "version": "5.14.0",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -168,6 +168,10 @@
     "./Pagination": {
       "import": "./dist/Pagination/index.js",
       "require": "./dist/Pagination/index.js"
+    },
+    "./ScrollPane": {
+      "import": "./dist/ScrollPane/index.js",
+      "require": "./dist/ScrollPane/index.js"
     },
     "./SegmentedControl": {
       "import": "./dist/SegmentedControl/index.js",

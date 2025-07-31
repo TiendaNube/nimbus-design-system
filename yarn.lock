@@ -3025,6 +3025,24 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@nimbus-ds/scroll-pane@workspace:packages/react/src/composite/ScrollPane":
+  version: 0.0.0-use.local
+  resolution: "@nimbus-ds/scroll-pane@workspace:packages/react/src/composite/ScrollPane"
+  dependencies:
+    "@nimbus-ds/box": "workspace:^"
+    "@nimbus-ds/button": "workspace:^"
+    "@nimbus-ds/card": "workspace:^"
+    "@nimbus-ds/icon": "workspace:^"
+    "@nimbus-ds/icons": "workspace:^"
+    "@nimbus-ds/text": "workspace:^"
+    "@nimbus-ds/webpack": "workspace:^"
+  peerDependencies:
+    "@nimbus-ds/styles": "workspace:^"
+    react: ^16.8 || ^17.0 || ^18.0
+    react-dom: ^16.8 || ^17.0 || ^18.0
+  languageName: unknown
+  linkType: soft
+
 "@nimbus-ds/segmented-control@workspace:packages/react/src/composite/SegmentedControl":
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/segmented-control@workspace:packages/react/src/composite/SegmentedControl"

@@ -1,11 +1,52 @@
 ---
-description: React component development standards and best practices
-globs: **/*.tsx,**/*.ts
+description: React component development standards and best practices. Used when developing new components or modifying existing ones.
 alwaysApply: false
 ---
 # React Component Development Rules
 
 ## Component Structure
+
+Common directory and file organization:
+
+```
+src/
+├── atomic|composite/
+│   ├── <component-name>/
+│   │   ├── src/
+│   │   │   ├── components/
+│   │   │   │   ├── <component-name>/
+│   │   │   │   │   ├── <component-name>.tsx
+│   │   │   │   │   ├── <component-name>.types.ts
+│   │   │   │   │   ├── <component-name>.spec.tsx
+│   │   │   │   │   ├── <component-name>.stories.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   └── index.ts
+│   │   │   ├── contexts/
+│   │   │   │   ├── <context-name>/
+│   │   │   │   │   ├── <context-name>.types.ts
+│   │   │   │   │   ├── <context-name>.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   └── index.ts
+│   │   │   ├── hooks/
+│   │   │   │   ├── <hook-name>/
+│   │   │   │   │   ├── <hook-name>.types.ts
+│   │   │   │   │   ├── <hook-name>.spec.tsx
+│   │   │   │   │   ├── <hook-name>.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   └── index.ts
+│   │   │   ├── <component-name>.tsx
+│   │   │   ├── <component-name>.types.ts
+│   │   │   ├── <component-name>.spec.tsx
+│   │   │   ├── <component-name>.stories.tsx
+│   │   │   └── index.ts
+│   │   ├── index.ts
+│   │   ├── tsconfig.json
+│   │   ├── webpack.config.ts
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   └── package.json
+│   └── ...
+```
 
 1. **File Organization**:
    - One component per file
@@ -16,7 +57,7 @@ alwaysApply: false
    - Focus on reusability and composability
    - Follow single responsibility principle
    - Use proper prop interfaces
-   - Implement proper TypeScript types
+   - Implement proper TypeScript types. The types should be in a separate file with the same name as the component but with the suffix ".types.ts".
 
 ## Styling Guidelines
 

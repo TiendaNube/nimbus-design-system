@@ -5,16 +5,13 @@ import { ExternalLinkIcon } from "@nimbus-ds/icons";
 import { Tooltip } from "@nimbus-ds/tooltip";
 import { Box } from "@nimbus-ds/box";
 import { SegmentedControlButton } from "./SegmentedControlButton";
+import { SegmentedControl } from "../../SegmentedControl";
 
 const meta: Meta<typeof SegmentedControlButton> = {
   title: "Composite/SegmentedControl/SegmentedControlButton",
   component: SegmentedControlButton,
   tags: ["autodocs"],
   argTypes: {
-    selected: {
-      control: "boolean",
-      description: "Controls the selected state of the button",
-    },
     children: {
       control: { disable: true },
     },
@@ -35,6 +32,7 @@ const meta: Meta<typeof SegmentedControlButton> = {
       description: "Controls whether the button spans the full width",
     },
   },
+  render: (args) => <SegmentedControl>{args.children}</SegmentedControl>,
 };
 
 export default meta;
@@ -42,100 +40,128 @@ type Story = StoryObj<typeof SegmentedControlButton>;
 
 export const Default: Story = {
   args: {
-    label: "Option 1",
-    children: "Option 1",
+    children: (
+      <SegmentedControlButton label="Option 1" id="option-1">
+        Option 1
+      </SegmentedControlButton>
+    ),
   },
 };
 
-export const Selected: Story = {
+export const Disabled: Story = {
   args: {
-    selected: true,
-    label: "Option 1",
-    children: "Option 1",
-  },
-};
-
-export const disabled: Story = {
-  args: {
-    children: "Option 1",
-    disabled: true,
-    label: "Option 1",
+    children: (
+      <SegmentedControlButton label="Option 1" id="option-1" disabled>
+        Option 1
+      </SegmentedControlButton>
+    ),
   },
 };
 
 export const AsLink: Story = {
-  render: () => (
-    <SegmentedControlButton<"a"> as="a" href="#" label="Option 1">
-      Option 1
-    </SegmentedControlButton>
-  ),
+  args: {
+    children: (
+      <SegmentedControlButton<"a">
+        as="a"
+        href="#"
+        label="Option 1"
+        id="option-1"
+      >
+        Option 1
+      </SegmentedControlButton>
+    ),
+  },
 };
 
 export const IconButton: Story = {
-  render: () => (
-    <SegmentedControlButton label="With icon">
-      <Icon source={<ExternalLinkIcon />} />
-    </SegmentedControlButton>
-  ),
+  args: {
+    children: (
+      <SegmentedControlButton label="With icon" id="with-icon">
+        <Icon source={<ExternalLinkIcon />} />
+      </SegmentedControlButton>
+    ),
+  },
 };
 
 export const WithCustomContent: Story = {
-  render: () => (
-    <SegmentedControlButton label="With icon">
-      With icon
-      <Icon source={<ExternalLinkIcon />} />
-    </SegmentedControlButton>
-  ),
+  args: {
+    children: (
+      <SegmentedControlButton label="With icon" id="with-icon">
+        With icon
+        <Icon source={<ExternalLinkIcon />} />
+      </SegmentedControlButton>
+    ),
+  },
 };
 
 export const WithTooltip: Story = {
-  render: () => (
-    <Tooltip content="Tooltip content">
-      <SegmentedControlButton label="With tooltip">
-        With tooltip
-      </SegmentedControlButton>
-    </Tooltip>
-  ),
+  args: {
+    children: (
+      <Tooltip content="Tooltip content">
+        <SegmentedControlButton label="With tooltip" id="with-tooltip">
+          With tooltip
+        </SegmentedControlButton>
+      </Tooltip>
+    ),
+  },
 };
 
-export const fullWidth: Story = {
-  render: () => (
-    <div style={{ width: "400px" }}>
-      <SegmentedControlButton label="Full Width Button" fullWidth>
-        Full Width Button
-      </SegmentedControlButton>
-    </div>
-  ),
+export const FullWidth: Story = {
+  args: {
+    children: (
+      <div style={{ width: "400px" }}>
+        <SegmentedControlButton
+          label="Full Width Button"
+          fullWidth
+          id="full-width-button"
+        >
+          Full Width Button
+        </SegmentedControlButton>
+      </div>
+    ),
+  },
 };
 
 export const SkeletonState: Story = {
-  render: () => <SegmentedControlButton.Skeleton />,
+  args: {
+    children: <SegmentedControlButton.Skeleton />,
+  },
 };
 
 // Example of multiple buttons in a group
 export const GroupExample: Story = {
-  render: () => (
-    <Box display="flex" gap="1" padding="1">
-      <SegmentedControlButton label="Option 1">Option 1</SegmentedControlButton>
-      <SegmentedControlButton label="Option 2">Option 2</SegmentedControlButton>
-      <SegmentedControlButton label="Option 3">Option 3</SegmentedControlButton>
-    </Box>
-  ),
+  args: {
+    children: (
+      <Box display="flex" gap="1" padding="1">
+        <SegmentedControlButton label="Option 1" id="option-1">
+          Option 1
+        </SegmentedControlButton>
+        <SegmentedControlButton label="Option 2" id="option-2">
+          Option 2
+        </SegmentedControlButton>
+        <SegmentedControlButton label="Option 3" id="option-3">
+          Option 3
+        </SegmentedControlButton>
+      </Box>
+    ),
+  },
 };
 
 // Example of multiple buttons with fullWidth
 export const FullWidthGroupExample: Story = {
-  render: () => (
-    <Box display="flex" gap="1" padding="1" width="100%">
-      <SegmentedControlButton label="Option 1" fullWidth>
-        Option 1
-      </SegmentedControlButton>
-      <SegmentedControlButton label="Option 2" fullWidth>
-        Option 2
-      </SegmentedControlButton>
-      <SegmentedControlButton label="Option 3" fullWidth>
-        Option 3
-      </SegmentedControlButton>
-    </Box>
-  ),
+  args: {
+    children: (
+      <Box display="flex" gap="1" padding="1" width="100%">
+        <SegmentedControlButton label="Option 1" fullWidth id="option-1">
+          Option 1
+        </SegmentedControlButton>
+        <SegmentedControlButton label="Option 2" fullWidth id="option-2">
+          Option 2
+        </SegmentedControlButton>
+        <SegmentedControlButton label="Option 3" fullWidth id="option-3">
+          Option 3
+        </SegmentedControlButton>
+      </Box>
+    ),
+  },
 };

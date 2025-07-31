@@ -17,7 +17,7 @@ import { SegmentedControl } from "@nimbus-ds/segmented-control";
 const BasicExample = () => (
   <SegmentedControl>
     {["First", "Second", "Third"].map((name) => (
-      <SegmentedControl.Button key={name} label={name}>
+      <SegmentedControl.Button key={name} label={name} id={name}>
         {name}
       </SegmentedControl.Button>
     ))}
@@ -37,6 +37,7 @@ const ControlledExample = () => {
         <SegmentedControl.Button 
           key={name} 
           label={name}
+          id={name}
         >
           {name}
         </SegmentedControl.Button>
@@ -49,7 +50,7 @@ const ControlledExample = () => {
 const FullWidthExample = () => (
   <SegmentedControl fullWidth>
     {["First", "Second", "Third"].map((name) => (
-      <SegmentedControl.Button key={name} label={name}>
+      <SegmentedControl.Button key={name} label={name} id={name}>
         {name}
       </SegmentedControl.Button>
     ))}
