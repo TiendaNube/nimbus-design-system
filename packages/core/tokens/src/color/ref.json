@@ -91,6 +91,13 @@
         "20": { "value": "#343746" },
         "10": { "value": "#22242F" },
         "5": { "value": "#000519" }
+      },
+      "aiGenerative": {
+        "interactive": {
+          "start": { "value": "#0050C3" },
+          "middle": { "value": "#4629BA" },
+          "end": { "value": "#D8446E" }
+        }
       }
     }
   }

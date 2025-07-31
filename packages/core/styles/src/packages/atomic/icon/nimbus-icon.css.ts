@@ -47,6 +47,9 @@ const iconColorProperties = {
   "neutral-textLow": colorProperties["neutral-textLow"],
   "neutral-textDisabled": colorProperties["neutral-textDisabled"],
   "neutral-textHigh": colorProperties["neutral-textHigh"],
+
+  // This color will be overwritten by the Icon SVG gradient processor
+  "ai-interactive": "currentColor"
 };
 
 const properties = {
