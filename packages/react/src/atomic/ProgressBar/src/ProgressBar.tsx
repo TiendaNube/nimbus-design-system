@@ -35,7 +35,8 @@ const ProgressBar = forwardRef<HTMLDivElement, ProgressBarBaseProps>(
       <div
         {...rest}
         ref={ref}
-        className={progressBar.classnames.container}
+        className={[progressBar.classnames.container, _className].join(" ")}
+        style={_style}
         role="progressbar"
         aria-valuenow={clampedValue}
         aria-valuemin={0}
