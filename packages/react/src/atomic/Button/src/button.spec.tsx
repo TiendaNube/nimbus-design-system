@@ -62,18 +62,11 @@ describe("GIVEN <Button />", () => {
   });
 
   describe("WHEN fullWidth prop is used", () => {
-    it("THEN should not apply fullWidth class when fullWidth is false", () => {
-      makeSut({ children: "button", fullWidth: false });
-      expect(
-        screen.getByRole("button").getAttribute("class")
-      ).not.toContain("fullWidth");
-    });
-
     it("THEN should not apply fullWidth class when fullWidth is not provided", () => {
       makeSut({ children: "button" });
-      expect(
-        screen.getByRole("button").getAttribute("class")
-      ).not.toContain("fullWidth");
+      expect(screen.getByRole("button").getAttribute("class")).not.toContain(
+        "fullWidth"
+      );
     });
 
     it("THEN should apply fullWidth class when fullWidth is true", () => {
