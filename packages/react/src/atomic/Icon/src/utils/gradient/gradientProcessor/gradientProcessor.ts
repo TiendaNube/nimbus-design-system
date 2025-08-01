@@ -1,6 +1,10 @@
 import React, { ReactNode } from "react";
 import { GradientTypes } from "../types";
-import { generateGradientId, injectGradientDefs, processElement } from "../svgManipulation";
+import {
+  generateGradientId,
+  injectGradientDefs,
+  processElement,
+} from "../svgManipulation";
 import { createSvgGradientDef } from "../gradientFactory";
 
 /**
@@ -46,4 +50,4 @@ export const applyGradientToSvg = (
   const processedSvg = processElement(svgSource, gradientId);
 
   return injectGradientDefs(processedSvg, gradientDef);
-}; 
+};

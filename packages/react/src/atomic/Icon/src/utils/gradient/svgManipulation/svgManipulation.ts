@@ -73,7 +73,7 @@ export const processElement = (
   GRADIENT_PROPERTIES.forEach((property) => {
     const value = props[property];
     if (!value) return;
-    
+
     // Apply gradient if the value can use gradient OR is currentColor
     if (canUseGradient(value) || value === "currentColor") {
       newProps[property] = `url(#${gradientId})`;

@@ -11,4 +11,4 @@ export type GradientStop = {
  * Available gradient variants for components.
  * Currently supports the Nimbus AI gradient styling.
  */
-export type GradientTypes = "linear"; 
+export type GradientTypes = "linear";
