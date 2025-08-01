@@ -23,4 +23,5 @@ export type {
   OwnProps,
   IntrinsicElement,
   Merge,
+  SVGElementProps,
 } from "./index.types";

@@ -5,6 +5,7 @@ import { vars } from "./contract.css";
 import { globalTheme } from "./globals.css";
 
 const colors = tokens.color.dark;
+const lightColors = tokens.color.light;
 const { shadow } = tokens;
 
 const darkTheme = {
@@ -57,6 +58,13 @@ const darkTheme = {
       textDisabled: colors.neutral["text-disabled"].value as string,
       textLow: colors.neutral["text-low"].value as string,
       textHigh: colors.neutral["text-high"].value as string,
+    },
+    aiGenerative: {
+      interactive: {
+        start: lightColors.aiGenerative.interactive.start.value as string,
+        middle: lightColors.aiGenerative.interactive.middle.value as string,
+        end: lightColors.aiGenerative.interactive.end.value as string,
+      },
     },
   },
   shadow: {

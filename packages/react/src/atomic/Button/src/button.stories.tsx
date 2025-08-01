@@ -82,7 +82,7 @@ export const asLink = {
     as: "a",
     children: "Button as anchor",
     href: "https://nimbus.tiendanube.com/",
-    target: "_blank"
+    target: "_blank",
   },
 };
 
