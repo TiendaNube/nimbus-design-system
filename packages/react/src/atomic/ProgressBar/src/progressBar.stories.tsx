@@ -37,3 +37,38 @@ export const Default: Story = {
     appearance: "neutral",
   },
 };
+
+export const Primary: Story = {
+  args: {
+    value: 75,
+    appearance: "primary",
+  },
+};
+
+export const Success: Story = {
+  args: {
+    value: 100,
+    appearance: "success",
+  },
+};
+
+export const Warning: Story = {
+  args: {
+    value: 30,
+    appearance: "warning",
+  },
+};
+
+export const Danger: Story = {
+  args: {
+    value: 15,
+    appearance: "danger",
+  },
+};
+
+export const AIInteractive: Story = {
+  args: {
+    value: 60,
+    appearance: "ai-interactive",
+  },
+};
