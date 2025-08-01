@@ -37,6 +37,7 @@ describe("GIVEN <ProgressBar />", () => {
       const fillElement = screen.getByTestId("progress-bar-fill");
       expect(fillElement).toBeInTheDocument();
       expect(fillElement).toHaveStyle({ width: "50%" });
+      expect(fillElement.className).toContain("neutral");
     });
 
     it("AND should correctly render the appearance primary", () => {
@@ -44,6 +45,7 @@ describe("GIVEN <ProgressBar />", () => {
       const fillElement = screen.getByTestId("progress-bar-fill");
       expect(fillElement).toBeInTheDocument();
       expect(fillElement).toHaveStyle({ width: "50%" });
+      expect(fillElement.className).toContain("primary");
     });
 
     it("AND should correctly render the appearance success", () => {
@@ -51,6 +53,7 @@ describe("GIVEN <ProgressBar />", () => {
       const fillElement = screen.getByTestId("progress-bar-fill");
       expect(fillElement).toBeInTheDocument();
       expect(fillElement).toHaveStyle({ width: "50%" });
+      expect(fillElement.className).toContain("success");
     });
 
     it("AND should correctly render the appearance warning", () => {
@@ -58,6 +61,7 @@ describe("GIVEN <ProgressBar />", () => {
       const fillElement = screen.getByTestId("progress-bar-fill");
       expect(fillElement).toBeInTheDocument();
       expect(fillElement).toHaveStyle({ width: "50%" });
+      expect(fillElement.className).toContain("warning");
     });
 
     it("AND should correctly render the appearance danger", () => {
@@ -65,6 +69,15 @@ describe("GIVEN <ProgressBar />", () => {
       const fillElement = screen.getByTestId("progress-bar-fill");
       expect(fillElement).toBeInTheDocument();
       expect(fillElement).toHaveStyle({ width: "50%" });
+      expect(fillElement.className).toContain("danger");
+    });
+
+    it("AND should correctly render the appearance ai-interactive", () => {
+      makeSut({ value: 50, appearance: "ai-interactive" });
+      const fillElement = screen.getByTestId("progress-bar-fill");
+      expect(fillElement).toBeInTheDocument();
+      expect(fillElement).toHaveStyle({ width: "50%" });
+      expect(fillElement.className).toContain("ai-interactive");
     });
   });
 });

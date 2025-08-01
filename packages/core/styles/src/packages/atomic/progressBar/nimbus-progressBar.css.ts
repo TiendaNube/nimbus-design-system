@@ -1,5 +1,6 @@
 import { style, styleVariants } from "@vanilla-extract/css";
 import { varsThemeBase } from "../../../themes";
+import { gradients } from "../../../gradients";
 
 const base = style({
   display: "flex",
@@ -50,6 +51,12 @@ export const appearance = styleVariants({
     fill,
     {
       backgroundColor: varsThemeBase.colors.neutral.interactive,
+    },
+  ],
+  "ai-interactive": [
+    fill,
+    {
+      backgroundImage: gradients.aiGradientInteractive,
     },
   ],
 }); 

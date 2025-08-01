@@ -21,7 +21,7 @@ const meta: Meta<typeof ProgressBar> = {
     },
     appearance: {
       control: { type: "select" },
-      options: ["neutral", "primary", "success", "warning", "danger"],
+      options: ["neutral", "primary", "success", "warning", "danger", "ai-interactive"],
       description: "Change the visual style of the progress bar.",
     },
   },

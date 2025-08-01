@@ -31,7 +31,6 @@
   },
   "devDependencies": {
     "@nimbus-ds/box": "workspace:^",
-    "@nimbus-ds/skeleton": "workspace:^",
     "@nimbus-ds/webpack": "workspace:^"
   }
 }

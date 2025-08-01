@@ -2,11 +2,11 @@
 
 This package is intended for internal use in generating builds of each design system package. It contains all the necessary settings and dependencies to optimize the creation of our builds.
 
-## 2025-07-31 `1.6.0`
+## 2025-08-01 `1.6.0`
 
 #### 🎉 New features
 
-- Added `ProgressBar` component as an external package. ([#323](https://github.com/TiendaNube/nimbus-design-system/pull/323) by [@joacotornello](https://github.com/joacotornello))
+- Added `ProgressBar` component as an external package. ([#325](https://github.com/TiendaNube/nimbus-design-system/pull/325) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-03-18 `1.5.0`
 
