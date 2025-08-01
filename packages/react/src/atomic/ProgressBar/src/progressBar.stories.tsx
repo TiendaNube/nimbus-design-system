@@ -10,7 +10,7 @@ const meta: Meta<typeof ProgressBar> = {
     docs: {
       description: {
         component:
-          "The ProgressBar component is used to display the progress of an operation or task in a visual format.",
+          "The ProgressBar component provides a visual indicator for progress of operations or tasks. It supports multiple appearance variants for different contexts and includes built-in accessibility features with proper ARIA attributes. Use 'primary' for main actions, 'success' for completed states, 'warning' and 'danger' for status indicators, and 'ai-interactive' for AI-related processes.",
       },
     },
   },
