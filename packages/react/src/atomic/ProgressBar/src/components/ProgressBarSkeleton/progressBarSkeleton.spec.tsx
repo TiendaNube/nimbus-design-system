@@ -2,9 +2,9 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import { ProgressBarSkeleton } from "./ProgressBarSkeleton";
-import { ProgressBarSkeletonProps } from "./ProgressBarSkeleton.types";
+import { ProgressBarSkeletonProperties } from "./ProgressBarSkeleton.types";
 
-const makeSut = (props?: ProgressBarSkeletonProps) => {
+const makeSut = (props?: ProgressBarSkeletonProperties) => {
   render(<ProgressBarSkeleton data-testid="skeleton-element" {...props} />);
 };
 
