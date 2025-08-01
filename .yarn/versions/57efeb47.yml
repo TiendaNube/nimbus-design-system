@@ -15,6 +15,7 @@ declined:
   - "@nimbus-ds/link"
   - "@nimbus-ds/multi-select"
   - "@nimbus-ds/select"
+  - "@nimbus-ds/thumbnail"
   - "@nimbus-ds/toast"
   - "@nimbus-ds/accordion"
   - "@nimbus-ds/alert"
