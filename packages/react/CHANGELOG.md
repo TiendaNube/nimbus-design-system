@@ -2,6 +2,12 @@
 
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories every day, with simplicity, accessibility, consistency and performance.
 
+## 2025-08-01 `5.16.0`
+
+#### 🎉 New features
+
+- Rename `ai-interactive` to `ai-generative` in `Icon` component. ([#327](https://github.com/TiendaNube/nimbus-design-system/pull/327) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-07-30 `5.15.0`
 
 #### 🎉 New features
