@@ -13,7 +13,9 @@ jest.mock("./utils/gradient", () => ({
 }));
 
 const mockIsGradient = isGradient as jest.MockedFunction<typeof isGradient>;
-const mockApplyGradientToSvg = applyGradientToSvg as jest.MockedFunction<typeof applyGradientToSvg>;
+const mockApplyGradientToSvg = applyGradientToSvg as jest.MockedFunction<
+  typeof applyGradientToSvg
+>;
 
 const makeSut = (rest: IconProps) => {
   render(<Icon {...rest} data-testid="icon-element" />);
@@ -100,20 +102,29 @@ describe("GIVEN <Icon />", () => {
   });
 
   describe("WHEN gradient rendering is enabled", () => {
-    const mockSvgSource = <svg data-testid="original-svg"><path /></svg>;
-    const mockProcessedSvg = <svg data-testid="processed-svg"><defs /><path /></svg>;
+    const mockSvgSource = (
+      <svg data-testid="original-svg">
+        <path />
+      </svg>
+    );
+    const mockProcessedSvg = (
+      <svg data-testid="processed-svg">
+        <defs />
+        <path />
+      </svg>
+    );
 
     beforeEach(() => {
       jest.clearAllMocks();
     });
 
-    it("THEN should detect gradient when color is ai-interactive", () => {
+    it("THEN should detect gradient when color is ai-generative", () => {
       mockIsGradient.mockReturnValue(true);
       mockApplyGradientToSvg.mockReturnValue(mockProcessedSvg);
 
-      makeSut({ source: mockSvgSource, color: "ai-interactive" });
+      makeSut({ source: mockSvgSource, color: "ai-generative" });
 
-      expect(mockIsGradient).toHaveBeenCalledWith("ai-interactive");
+      expect(mockIsGradient).toHaveBeenCalledWith("ai-generative");
       expect(mockIsGradient).toHaveBeenCalledTimes(1);
     });
 
@@ -121,7 +132,7 @@ describe("GIVEN <Icon />", () => {
       mockIsGradient.mockReturnValue(true);
       mockApplyGradientToSvg.mockReturnValue(mockProcessedSvg);
 
-      makeSut({ source: mockSvgSource, color: "ai-interactive" });
+      makeSut({ source: mockSvgSource, color: "ai-generative" });
 
       expect(mockApplyGradientToSvg).toHaveBeenCalledWith(mockSvgSource);
       expect(mockApplyGradientToSvg).toHaveBeenCalledTimes(1);
@@ -131,7 +142,7 @@ describe("GIVEN <Icon />", () => {
       mockIsGradient.mockReturnValue(true);
       mockApplyGradientToSvg.mockReturnValue(mockProcessedSvg);
 
-      makeSut({ source: mockSvgSource, color: "ai-interactive" });
+      makeSut({ source: mockSvgSource, color: "ai-generative" });
 
       expect(screen.getByTestId("processed-svg")).toBeInTheDocument();
       expect(screen.queryByTestId("original-svg")).not.toBeInTheDocument();
@@ -141,10 +152,12 @@ describe("GIVEN <Icon />", () => {
       mockIsGradient.mockReturnValue(true);
       mockApplyGradientToSvg.mockReturnValue(mockProcessedSvg);
 
-      makeSut({ source: mockSvgSource, color: "ai-interactive" });
+      makeSut({ source: mockSvgSource, color: "ai-generative" });
 
       const iconElement = screen.getByTestId("icon-element");
-      expect(iconElement.getAttribute("class")).not.toContain("color_ai-interactive");
+      expect(iconElement.getAttribute("class")).not.toContain(
+        "color_ai-generative"
+      );
     });
 
     it("THEN should NOT apply gradient when color is not a gradient", () => {
@@ -171,7 +184,9 @@ describe("GIVEN <Icon />", () => {
       makeSut({ source: mockSvgSource, color: "primary-textHigh" });
 
       const iconElement = screen.getByTestId("icon-element");
-      expect(iconElement.getAttribute("class")).toContain("color_primary-textHigh");
+      expect(iconElement.getAttribute("class")).toContain(
+        "color_primary-textHigh"
+      );
     });
 
     it("THEN should handle gradient detection with default color", () => {
@@ -188,7 +203,11 @@ describe("GIVEN <Icon />", () => {
       mockApplyGradientToSvg.mockReturnValue(mockProcessedSvg);
 
       const { rerender } = render(
-        <Icon source={mockSvgSource} color="ai-interactive" data-testid="icon-element" />
+        <Icon
+          source={mockSvgSource}
+          color="ai-generative"
+          data-testid="icon-element"
+        />
       );
 
       // First render
@@ -197,7 +216,11 @@ describe("GIVEN <Icon />", () => {
 
       // Rerender with same props
       rerender(
-        <Icon source={mockSvgSource} color="ai-interactive" data-testid="icon-element" />
+        <Icon
+          source={mockSvgSource}
+          color="ai-generative"
+          data-testid="icon-element"
+        />
       );
 
       // Should not call again due to memoization
@@ -209,7 +232,11 @@ describe("GIVEN <Icon />", () => {
       mockIsGradient.mockReturnValue(false);
 
       const { rerender } = render(
-        <Icon source={mockSvgSource} color="primary-textHigh" data-testid="icon-element" />
+        <Icon
+          source={mockSvgSource}
+          color="primary-textHigh"
+          data-testid="icon-element"
+        />
       );
 
       expect(mockIsGradient).toHaveBeenCalledWith("primary-textHigh");
@@ -219,27 +246,43 @@ describe("GIVEN <Icon />", () => {
 
       // Rerender with gradient color
       rerender(
-        <Icon source={mockSvgSource} color="ai-interactive" data-testid="icon-element" />
+        <Icon
+          source={mockSvgSource}
+          color="ai-generative"
+          data-testid="icon-element"
+        />
       );
 
-      expect(mockIsGradient).toHaveBeenCalledWith("ai-interactive");
+      expect(mockIsGradient).toHaveBeenCalledWith("ai-generative");
       expect(mockApplyGradientToSvg).toHaveBeenCalledWith(mockSvgSource);
     });
 
     it("THEN should recalculate when source changes", () => {
-      const newMockSvgSource = <svg data-testid="new-svg"><circle /></svg>;
+      const newMockSvgSource = (
+        <svg data-testid="new-svg">
+          <circle />
+        </svg>
+      );
       mockIsGradient.mockReturnValue(true);
       mockApplyGradientToSvg.mockReturnValue(mockProcessedSvg);
 
       const { rerender } = render(
-        <Icon source={mockSvgSource} color="ai-interactive" data-testid="icon-element" />
+        <Icon
+          source={mockSvgSource}
+          color="ai-generative"
+          data-testid="icon-element"
+        />
       );
 
       expect(mockApplyGradientToSvg).toHaveBeenCalledWith(mockSvgSource);
 
       // Rerender with new source
       rerender(
-        <Icon source={newMockSvgSource} color="ai-interactive" data-testid="icon-element" />
+        <Icon
+          source={newMockSvgSource}
+          color="ai-generative"
+          data-testid="icon-element"
+        />
       );
 
       expect(mockApplyGradientToSvg).toHaveBeenCalledWith(newMockSvgSource);
