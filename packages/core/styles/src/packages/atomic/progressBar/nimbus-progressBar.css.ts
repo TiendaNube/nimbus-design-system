@@ -17,7 +17,7 @@ const fill = style({
   height: "100%",
   borderRadius: varsThemeBase.shape.border.radius.full,
   transition: `width ${varsThemeBase.motion.speed.slow} ease`,
-  minWidth: "0.5rem", 
+  minWidth: "0.5rem",
 });
 
 export const container = base;
@@ -53,10 +53,10 @@ export const appearance = styleVariants({
       backgroundColor: varsThemeBase.colors.neutral.interactive,
     },
   ],
-  "ai-interactive": [
+  "ai-generative": [
     fill,
     {
       backgroundImage: gradients.aiGradientInteractive,
     },
   ],
-}); 
+});

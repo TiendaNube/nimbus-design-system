@@ -10,7 +10,7 @@ const meta: Meta<typeof ProgressBar> = {
     docs: {
       description: {
         component:
-          "The ProgressBar component provides a visual indicator for progress of operations or tasks. It supports multiple appearance variants for different contexts and includes built-in accessibility features with proper ARIA attributes. Use 'primary' for main actions, 'success' for completed states, 'warning' and 'danger' for status indicators, and 'ai-interactive' for AI-related processes.",
+          "The ProgressBar component provides a visual indicator for progress of operations or tasks. It supports multiple appearance variants for different contexts and includes built-in accessibility features with proper ARIA attributes. Use 'primary' for main actions, 'success' for completed states, 'warning' and 'danger' for status indicators, and 'ai-generative' for AI-related processes.",
       },
     },
   },
@@ -21,11 +21,22 @@ const meta: Meta<typeof ProgressBar> = {
     },
     appearance: {
       control: { type: "select" },
-      options: ["neutral", "primary", "success", "warning", "danger", "ai-interactive"],
+      options: [
+        "neutral",
+        "primary",
+        "success",
+        "warning",
+        "danger",
+        "ai-generative",
+      ],
       description: "Change the visual style of the progress bar.",
     },
   },
-  render: (args) => <Box maxWidth="250px"><ProgressBar {...args} /></Box>,  
+  render: (args) => (
+    <Box maxWidth="250px">
+      <ProgressBar {...args} />
+    </Box>
+  ),
 };
 
 export default meta;
@@ -69,6 +80,6 @@ export const Danger: Story = {
 export const AIInteractive: Story = {
   args: {
     value: 60,
-    appearance: "ai-interactive",
+    appearance: "ai-generative",
   },
 };

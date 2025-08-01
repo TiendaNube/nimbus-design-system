@@ -21,7 +21,7 @@ export interface ProgressBarProperties {
     | "warning"
     | "danger"
     | "neutral"
-    | "ai-interactive";
+    | "ai-generative";
 }
 
 export type ProgressBarBaseProps = ProgressBarProperties &

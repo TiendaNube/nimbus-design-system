@@ -72,12 +72,12 @@ describe("GIVEN <ProgressBar />", () => {
       expect(fillElement.className).toContain("danger");
     });
 
-    it("AND should correctly render the appearance ai-interactive", () => {
-      makeSut({ value: 50, appearance: "ai-interactive" });
+    it("AND should correctly render the appearance ai-generative", () => {
+      makeSut({ value: 50, appearance: "ai-generative" });
       const fillElement = screen.getByTestId("progress-bar-fill");
       expect(fillElement).toBeInTheDocument();
       expect(fillElement).toHaveStyle({ width: "50%" });
-      expect(fillElement.className).toContain("ai-interactive");
+      expect(fillElement.className).toContain("ai-generative");
     });
   });
 });
