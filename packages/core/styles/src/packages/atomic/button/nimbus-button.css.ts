@@ -31,6 +31,10 @@ const base = style({
   },
 });
 
+export const fullWidth = style({
+  width: "100%",
+});
+
 export const appearance = styleVariants({
   primary: [
     base,

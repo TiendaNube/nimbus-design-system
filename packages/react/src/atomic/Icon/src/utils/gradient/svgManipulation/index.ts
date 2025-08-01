@@ -1,1 +1,5 @@
-export { generateGradientId, injectGradientDefs, processElement } from "./svgManipulation"; 
+export {
+  generateGradientId,
+  injectGradientDefs,
+  processElement,
+} from "./svgManipulation";

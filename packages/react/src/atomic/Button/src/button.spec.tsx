@@ -60,4 +60,27 @@ describe("GIVEN <Button />", () => {
       ).toContain("appearance_transparent");
     });
   });
+
+  describe("WHEN fullWidth prop is used", () => {
+    it("THEN should not apply fullWidth class when fullWidth is not provided", () => {
+      makeSut({ children: "button" });
+      expect(screen.getByRole("button").getAttribute("class")).not.toContain(
+        "fullWidth"
+      );
+    });
+
+    it("THEN should apply fullWidth class when fullWidth is true", () => {
+      makeSut({ children: "button", fullWidth: true });
+      expect(screen.getByRole("button").getAttribute("class")).toContain(
+        "fullWidth"
+      );
+    });
+
+    it("THEN should apply both appearance and fullWidth classes when both are provided", () => {
+      makeSut({ children: "button", appearance: "primary", fullWidth: true });
+      const buttonClass = screen.getByRole("button").getAttribute("class");
+      expect(buttonClass).toContain("appearance_primary");
+      expect(buttonClass).toContain("fullWidth");
+    });
+  });
 });

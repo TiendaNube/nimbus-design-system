@@ -1,1 +1,1 @@
-export { applyGradientToSvg } from "./gradientProcessor"; 
+export { applyGradientToSvg } from "./gradientProcessor";

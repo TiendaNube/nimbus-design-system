@@ -9,12 +9,19 @@ jest.mock("../cssParser");
 jest.mock("../svgManipulation");
 jest.mock("@nimbus-ds/styles", () => ({
   gradients: {
-    aiGradientInteractive: "linear-gradient(90deg, #0050C3 5%, #4736B4 40%, #D8446E 95%)"
-  }
+    aiGradientInteractive:
+      "linear-gradient(90deg, #0050C3 5%, #4736B4 40%, #D8446E 95%)",
+  },
 }));
 
-const mockParseLinearGradient = cssParser.parseLinearGradient as jest.MockedFunction<typeof cssParser.parseLinearGradient>;
-const mockGenerateGradientId = svgManipulation.generateGradientId as jest.MockedFunction<typeof svgManipulation.generateGradientId>;
+const mockParseLinearGradient =
+  cssParser.parseLinearGradient as jest.MockedFunction<
+    typeof cssParser.parseLinearGradient
+  >;
+const mockGenerateGradientId =
+  svgManipulation.generateGradientId as jest.MockedFunction<
+    typeof svgManipulation.generateGradientId
+  >;
 
 describe("gradientFactory utilities", () => {
   beforeEach(() => {
@@ -26,14 +33,16 @@ describe("gradientFactory utilities", () => {
       const mockStops = [
         { color: "#0050C3", offset: "5%" },
         { color: "#4736B4", offset: "40%" },
-        { color: "#D8446E", offset: "95%" }
+        { color: "#D8446E", offset: "95%" },
       ];
-      
+
       mockParseLinearGradient.mockReturnValue(mockStops);
 
       const result = getGradientStops("linear");
 
-      expect(mockParseLinearGradient).toHaveBeenCalledWith("linear-gradient(90deg, #0050C3 5%, #4736B4 40%, #D8446E 95%)");
+      expect(mockParseLinearGradient).toHaveBeenCalledWith(
+        "linear-gradient(90deg, #0050C3 5%, #4736B4 40%, #D8446E 95%)"
+      );
       expect(result).toEqual(mockStops);
     });
 
@@ -51,7 +60,7 @@ describe("gradientFactory utilities", () => {
       mockParseLinearGradient.mockReturnValue([
         { color: "#0050C3", offset: "5%" },
         { color: "#4736B4", offset: "40%" },
-        { color: "#D8446E", offset: "95%" }
+        { color: "#D8446E", offset: "95%" },
       ]);
     });
 
@@ -69,7 +78,11 @@ describe("gradientFactory utilities", () => {
     });
 
     it("should create horizontal linear gradient definition when direction is horizontal", () => {
-      const result = createSvgGradientDef("test-gradient-id", "linear", "horizontal");
+      const result = createSvgGradientDef(
+        "test-gradient-id",
+        "linear",
+        "horizontal"
+      );
 
       expect(React.isValidElement(result)).toBe(true);
       expect(result.type).toBe("linearGradient");
@@ -80,7 +93,11 @@ describe("gradientFactory utilities", () => {
     });
 
     it("should create vertical linear gradient definition when direction is vertical", () => {
-      const result = createSvgGradientDef("test-gradient-id", "linear", "vertical");
+      const result = createSvgGradientDef(
+        "test-gradient-id",
+        "linear",
+        "vertical"
+      );
 
       expect(React.isValidElement(result)).toBe(true);
       expect(result.type).toBe("linearGradient");
@@ -94,9 +111,9 @@ describe("gradientFactory utilities", () => {
       const result = createSvgGradientDef("test-gradient-id", "linear");
 
       expect(React.Children.count(result.props.children)).toBe(3);
-      
+
       const children = React.Children.toArray(result.props.children);
-      
+
       // Check first stop
       const firstChild = children[0] as React.ReactElement;
       expect(firstChild.type).toBe("stop");
@@ -125,4 +142,4 @@ describe("gradientFactory utilities", () => {
       expect(React.Children.count(result.props.children)).toBe(0);
     });
   });
-}); 
+});

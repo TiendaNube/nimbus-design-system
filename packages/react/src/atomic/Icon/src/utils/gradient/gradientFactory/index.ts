@@ -1,1 +1,1 @@
-export { getGradientStops, createSvgGradientDef } from "./gradientFactory"; 
+export { getGradientStops, createSvgGradientDef } from "./gradientFactory";
