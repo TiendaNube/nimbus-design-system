@@ -36,6 +36,8 @@ const config: Config.InitialOptions = {
     "@nimbus-ds/toast": "<rootDir>/packages/react/src/atomic/Toast/src",
     "@nimbus-ds/toggle": "<rootDir>/packages/react/src/atomic/Toggle/src",
     "@nimbus-ds/tooltip": "<rootDir>/packages/react/src/atomic/Tooltip/src",
+    "@nimbus-ds/progress-bar":
+      "<rootDir>/packages/react/src/atomic/ProgressBar/src",
     // composites
     "@nimbus-ds/accordion":
       "<rootDir>/packages/react/src/composite/Accordion/src",
