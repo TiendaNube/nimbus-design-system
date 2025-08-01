@@ -7,6 +7,7 @@ Nimbus-icons is an open source icon system built by Nuvemshop / Tiendanube.
 #### 🎉 New features
 
 - Icons now render their `displayName` correctly in debugging tools for a better developer experience. ([#326](https://github.com/TiendaNube/nimbus-design-system/pull/326) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-07-15 `1.11.0`
 
 #### 🎉 New features
