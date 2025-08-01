@@ -51,6 +51,13 @@ export const vars = createGlobalThemeContract(
         textLow: "",
         textHigh: "",
       },
+      aiGenerative: {
+        interactive: {
+          start: "",
+          middle: "",
+          end: "",
+        },
+      },
     },
     fontFamily: {
       sans: "",
