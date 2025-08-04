@@ -1,13 +1,10 @@
 releases:
-  "@nimbus-ds/components": minor
-  "@nimbus-ds/icon": minor
-  "@nimbus-ds/styles": minor
+  "@nimbus-ds/components": patch
+  "@nimbus-ds/icon": patch
+  "@nimbus-ds/styles": patch
 
 declined:
   - nimbus-design-system
-  - "@nimbus-ds/typings"
-  - "@nimbus-ds/webpack"
-  - "@nimbus-ds/icons"
   - "@nimbus-ds/button"
   - "@nimbus-ds/checkbox"
   - "@nimbus-ds/chip"
@@ -18,7 +15,6 @@ declined:
   - "@nimbus-ds/multi-select"
   - "@nimbus-ds/progress-bar"
   - "@nimbus-ds/select"
-  - "@nimbus-ds/tag"
   - "@nimbus-ds/thumbnail"
   - "@nimbus-ds/toast"
   - "@nimbus-ds/accordion"
