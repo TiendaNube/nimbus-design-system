@@ -38,6 +38,7 @@ export { link } from "./packages/atomic/link";
 export { tooltip } from "./packages/atomic/tooltip";
 export { thumbnail } from "./packages/atomic/thumbnail";
 export { textarea } from "./packages/atomic/textarea";
+export { progressBar } from "./packages/atomic/progressBar";
 
 export { accordion } from "./packages/composite/accordion";
 export { alert } from "./packages/composite/alert";

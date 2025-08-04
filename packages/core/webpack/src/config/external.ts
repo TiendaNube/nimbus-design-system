@@ -33,6 +33,7 @@ export const externalPackages = {
   "@nimbus-ds/tokens": "@nimbus-ds/tokens",
   "@nimbus-ds/box": "@nimbus-ds/box",
   "@nimbus-ds/chip": "@nimbus-ds/chip",
+  "@nimbus-ds/progress-bar": "@nimbus-ds/progress-bar",
 };
 
 export const externalItems = { ...externalLibs, ...externalPackages };
