@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import { ForwardedRef, RefObject, useImperativeHandle } from "react";
 
 /**
@@ -23,4 +23,5 @@ export type {
   OwnProps,
   IntrinsicElement,
   Merge,
+  SVGElementProps,
 } from "./index.types";

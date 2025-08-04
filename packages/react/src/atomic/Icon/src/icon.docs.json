@@ -3,7 +3,7 @@
   "name": "Icon",
   "totalProps": 3,
   "packageName": "@nimbus-ds/icon",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/icon",
   "props": [
     {
@@ -13,9 +13,10 @@
       "required": true
     },
     {
-      "description": "Set the color for the SVG fill.",
+      "description": "Set the color for the SVG fill.\nUse \"ai-generative\" to apply the Nimbus AI generative gradient.",
       "default": "neutral-textLow",
       "enum": [
+        "ai-generative",
         "currentColor",
         "danger-interactive",
         "danger-surface",

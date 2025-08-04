@@ -42,3 +42,10 @@ export const small: Story = {
     color: "primary-textLow",
   },
 };
+
+export const gradientColored: Story = {
+  args: {
+    source: <TiendanubeIcon size="large" />,
+    color: "ai-generative",
+  },
+};

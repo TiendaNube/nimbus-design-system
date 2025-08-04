@@ -2738,6 +2738,7 @@ __metadata:
   resolution: "@nimbus-ds/button@workspace:packages/react/src/atomic/Button"
   dependencies:
     "@nimbus-ds/badge": "workspace:^"
+    "@nimbus-ds/box": "workspace:^"
     "@nimbus-ds/icon": "workspace:^"
     "@nimbus-ds/icons": "workspace:^"
     "@nimbus-ds/skeleton": "workspace:^"
@@ -2860,6 +2861,8 @@ __metadata:
     "@nimbus-ds/tooltip": "workspace:^"
     "@nimbus-ds/webpack": "workspace:^"
   peerDependencies:
+    "@nimbus-ds/styles": "workspace:^"
+    "@nimbus-ds/typings": "workspace:^"
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
   languageName: unknown
@@ -2983,6 +2986,20 @@ __metadata:
     "@nimbus-ds/webpack": "workspace:^"
     "@vanilla-extract/dynamic": ^2.0.3
   peerDependencies:
+    react: ^16.8 || ^17.0 || ^18.0
+    react-dom: ^16.8 || ^17.0 || ^18.0
+  languageName: unknown
+  linkType: soft
+
+"@nimbus-ds/progress-bar@workspace:packages/react/src/atomic/ProgressBar":
+  version: 0.0.0-use.local
+  resolution: "@nimbus-ds/progress-bar@workspace:packages/react/src/atomic/ProgressBar"
+  dependencies:
+    "@nimbus-ds/box": "workspace:^"
+    "@nimbus-ds/skeleton": "workspace:^"
+    "@nimbus-ds/webpack": "workspace:^"
+  peerDependencies:
+    "@nimbus-ds/styles": "workspace:^"
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
   languageName: unknown

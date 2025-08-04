@@ -2,6 +2,31 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2025-08-04 `9.21.1`
+
+#### 🐛 Bug fixes
+
+- Rename `ai-interactive` to `ai-generative` in `Icon` classnames. ([#327](https://github.com/TiendaNube/nimbus-design-system/pull/327) by [@joacotornello](https://github.com/joacotornello))
+
+## 2025-08-04 `9.21.0`
+
+#### 🎉 New features
+
+- Added `fullWidth` property to the `Button` component. ([#322](https://github.com/TiendaNube/nimbus-design-system/pull/322) by [@joacotornello](https://github.com/joacotornello))
+
+## 2025-08-01 `9.20.0`
+
+#### 🎉 New features
+
+- Added `progress-bar` new atomic component styles. ([#325](https://github.com/TiendaNube/nimbus-design-system/pull/325) by [@joacotornello](https://github.com/joacotornello))
+
+## 2025-07-30 `9.19.0`
+
+#### 🎉 New features
+
+- Added generic gradient builder to support gradient styles in components and SVG Icons. ([#321](https://github.com/TiendaNube/nimbus-design-system/pull/321) by [@joacotornello](https://github.com/joacotornello))
+- Added `ai-interactive` appearance to `Icon` component. ([#321](https://github.com/TiendaNube/nimbus-design-system/pull/321) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-07-28 `9.18.0`
 
 #### 🎉 New features

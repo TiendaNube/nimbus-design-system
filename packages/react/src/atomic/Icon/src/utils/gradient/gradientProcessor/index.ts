@@ -1,0 +1,1 @@
+export { applyGradientToSvg } from "./gradientProcessor";

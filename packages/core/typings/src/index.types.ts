@@ -5,12 +5,23 @@
  * @see https://github.com/radix-ui/primitives/blob/17ffcb7aaa42cbd36b3c210ba86d7d73d218e5be/packages/react/polymorphic/src/polymorphic.ts
  */
 
-import React from "react";
+import React, { ReactNode } from "react";
 
 /* -------------------------------------------------------------------------------------------------
  * Utility types
  * -----------------------------------------------------------------------------------------------*/
 type Merge<P1 = {}, P2 = {}> = Omit<P1, keyof P2> & P2;
+
+/**
+ * Properties for SVG elements including common attributes and flexible extension.
+ * Used for typing SVG element props in gradient applications and icon components.
+ */
+type SVGElementProps = {
+  fill?: string;
+  stroke?: string;
+  children?: ReactNode;
+  [key: string]: unknown;
+};
 
 /**
  * Infers the OwnProps if E is a ForwardRefExoticComponentWithAs
@@ -72,4 +83,5 @@ export type {
   OwnProps,
   IntrinsicElement,
   Merge,
+  SVGElementProps,
 };

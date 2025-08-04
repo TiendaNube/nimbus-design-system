@@ -15,14 +15,15 @@ export interface IconProperties {
   source: ReactNode;
   /**
    * Set the color for the SVG fill.
+   * Use "ai-generative" to apply the Nimbus AI generative gradient.
    * @default neutral-textLow
    */
-  color?: keyof typeof icon.properties.color;
+  color?: keyof typeof icon.properties.color | "ai-generative";
   /**
    * The cursor property specifies the mouse cursor to be displayed when pointing over an element.
    * @default inherit
    */
-  cursor?: typeof icon.properties.cursor[number];
+  cursor?: (typeof icon.properties.cursor)[number];
 }
 
 export type IconProps = IconProperties & HTMLAttributes<HTMLDivElement>;

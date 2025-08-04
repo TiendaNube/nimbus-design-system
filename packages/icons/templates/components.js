@@ -20,5 +20,7 @@ module.exports = (variables, { tpl }) => {
           ${variables.jsx}
         );
         
+        ${name}.displayName = "${name}";
+        
   `;
 };
