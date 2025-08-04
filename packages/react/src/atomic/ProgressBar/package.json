@@ -1,6 +1,6 @@
 {
-  "name": "@nimbus-ds/icons",
-  "version": "1.12.0",
+  "name": "@nimbus-ds/progress-bar",
+  "version": "1.0.0",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -9,12 +9,17 @@
   ],
   "sideEffects": false,
   "scripts": {
-    "build": "yarn optimize && yarn build:components && yarn g:webpack",
-    "build:components": "svgr src/assets -d tmp",
-    "optimize": "svgo src/assets",
-    "clean": "yarn clean:tmp && rm -rf dist",
-    "clean:tmp": "rm -rf tmp",
+    "build": "yarn g:webpack",
+    "clean": "rm -rf dist",
     "version": "yarn version"
+  },
+  "dependencies": {
+    "@nimbus-ds/skeleton": "workspace:^"
+  },
+  "peerDependencies": {
+    "@nimbus-ds/styles": "workspace:^",
+    "react": "^16.8 || ^17.0 || ^18.0",
+    "react-dom": "^16.8 || ^17.0 || ^18.0"
   },
   "homepage": "https://nimbus.nuvemshop.com.br/documentation",
   "repository": {
@@ -25,8 +30,7 @@
     "url": "https://github.com/TiendaNube/nimbus-design-system/issues"
   },
   "devDependencies": {
-    "@nimbus-ds/webpack": "workspace:^",
-    "@svgr/cli": "^6.5.1",
-    "svgo": "^3.0.2"
+    "@nimbus-ds/box": "workspace:^",
+    "@nimbus-ds/webpack": "workspace:^"
   }
 }

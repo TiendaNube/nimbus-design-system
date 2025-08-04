@@ -2990,6 +2990,20 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@nimbus-ds/progress-bar@workspace:packages/react/src/atomic/ProgressBar":
+  version: 0.0.0-use.local
+  resolution: "@nimbus-ds/progress-bar@workspace:packages/react/src/atomic/ProgressBar"
+  dependencies:
+    "@nimbus-ds/box": "workspace:^"
+    "@nimbus-ds/skeleton": "workspace:^"
+    "@nimbus-ds/webpack": "workspace:^"
+  peerDependencies:
+    "@nimbus-ds/styles": "workspace:^"
+    react: ^16.8 || ^17.0 || ^18.0
+    react-dom: ^16.8 || ^17.0 || ^18.0
+  languageName: unknown
+  linkType: soft
+
 "@nimbus-ds/radio@workspace:^, @nimbus-ds/radio@workspace:packages/react/src/atomic/Radio":
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/radio@workspace:packages/react/src/atomic/Radio"
