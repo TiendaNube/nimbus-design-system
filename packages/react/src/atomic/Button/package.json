@@ -31,10 +31,10 @@
   },
   "devDependencies": {
     "@nimbus-ds/badge": "workspace:^",
+    "@nimbus-ds/box": "workspace:^",
     "@nimbus-ds/icon": "workspace:^",
     "@nimbus-ds/icons": "workspace:^",
     "@nimbus-ds/skeleton": "workspace:^",
-    "@nimbus-ds/webpack": "workspace:^",
-    "@nimbus-ds/box": "workspace:^"
+    "@nimbus-ds/webpack": "workspace:^"
   }
 }

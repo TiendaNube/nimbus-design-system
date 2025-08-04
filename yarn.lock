@@ -2738,6 +2738,7 @@ __metadata:
   resolution: "@nimbus-ds/button@workspace:packages/react/src/atomic/Button"
   dependencies:
     "@nimbus-ds/badge": "workspace:^"
+    "@nimbus-ds/box": "workspace:^"
     "@nimbus-ds/icon": "workspace:^"
     "@nimbus-ds/icons": "workspace:^"
     "@nimbus-ds/skeleton": "workspace:^"
