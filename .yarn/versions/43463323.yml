@@ -7,6 +7,8 @@ declined:
   - nimbus-design-system
   - "@nimbus-ds/typings"
   - "@nimbus-ds/icon"
+  - "@nimbus-ds/progress-bar"
+  - "@nimbus-ds/tag"
   - "@nimbus-ds/alert"
   - "@nimbus-ds/card"
   - "@nimbus-ds/modal"
