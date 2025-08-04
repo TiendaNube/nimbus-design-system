@@ -5,6 +5,9 @@ releases:
 
 declined:
   - nimbus-design-system
+  - "@nimbus-ds/typings"
+  - "@nimbus-ds/webpack"
+  - "@nimbus-ds/icons"
   - "@nimbus-ds/button"
   - "@nimbus-ds/checkbox"
   - "@nimbus-ds/chip"
@@ -13,7 +16,9 @@ declined:
   - "@nimbus-ds/input"
   - "@nimbus-ds/label"
   - "@nimbus-ds/multi-select"
+  - "@nimbus-ds/progress-bar"
   - "@nimbus-ds/select"
+  - "@nimbus-ds/tag"
   - "@nimbus-ds/thumbnail"
   - "@nimbus-ds/toast"
   - "@nimbus-ds/accordion"

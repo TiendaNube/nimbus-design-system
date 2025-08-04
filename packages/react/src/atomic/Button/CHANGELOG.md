@@ -2,6 +2,12 @@
 
 The Button component allows us to initiate actions, make state or page changes.
 
+## 2025-08-04 `2.7.0`
+
+#### 🎉 New features
+
+- Added `fullWidth` property to the component. ([#322](https://github.com/TiendaNube/nimbus-design-system/pull/322) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-07-10 `2.6.1`
 
 #### 🐛 Bug fixes

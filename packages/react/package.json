@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/components",
-  "version": "5.15.0",
+  "version": "5.17.0",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -96,6 +96,10 @@
     "./Popover": {
       "import": "./dist/Popover/index.js",
       "require": "./dist/Popover/index.js"
+    },
+    "./ProgressBar": {
+      "import": "./dist/ProgressBar/index.js",
+      "require": "./dist/ProgressBar/index.js"
     },
     "./Radio": {
       "import": "./dist/Radio/index.js",

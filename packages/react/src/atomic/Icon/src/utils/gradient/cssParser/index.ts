@@ -1,1 +1,1 @@
-export { parseLinearGradient } from "./cssParser"; 
+export { parseLinearGradient } from "./cssParser";

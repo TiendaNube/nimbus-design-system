@@ -5,6 +5,7 @@ import { Icon } from "@nimbus-ds/icon";
 import { Badge } from "@nimbus-ds/badge";
 import { Spinner } from "@nimbus-ds/spinner";
 
+import { Box } from "@nimbus-ds/box";
 import { Button as ButtonComponent, ButtonProps } from "./Button";
 
 export const Basic: React.FC<ButtonProps> = forwardRef(
@@ -112,4 +113,17 @@ export const transparent: Story = {
     children: "Button",
     appearance: "transparent",
   },
+};
+
+export const fullWidth: Story = {
+  args: {
+    children: "Full Width Button",
+    fullWidth: true,
+    appearance: "primary",
+  },
+  render: (args) => (
+    <Box width="400px">
+      <Basic {...args} />
+    </Box>
+  ),
 };

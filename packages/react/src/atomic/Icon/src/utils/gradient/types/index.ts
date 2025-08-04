@@ -1,1 +1,1 @@
-export type { GradientStop, GradientTypes } from "./types"; 
+export type { GradientStop, GradientTypes } from "./types";

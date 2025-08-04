@@ -12,7 +12,6 @@ import React, { ReactNode } from "react";
  * -----------------------------------------------------------------------------------------------*/
 type Merge<P1 = {}, P2 = {}> = Omit<P1, keyof P2> & P2;
 
-
 /**
  * Properties for SVG elements including common attributes and flexible extension.
  * Used for typing SVG element props in gradient applications and icon components.

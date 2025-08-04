@@ -25,7 +25,7 @@ const Button = forwardRef(
     }: ButtonBaseProps & { as: any },
     ref
   ) => {
-    const { appearance = "neutral", ...rest } = props;
+    const { appearance = "neutral", fullWidth = false, ...rest } = props;
     const innerRef = useRef<HTMLButtonElement>(null);
     useRefObjectAsForwardedRef(ref, innerRef);
 
@@ -48,12 +48,15 @@ const Button = forwardRef(
       }
     }, [innerRef]);
 
+    const buttonClasses = [
+      button.classnames.appearance[appearance],
+      fullWidth && button.classnames.fullWidth,
+    ]
+      .filter(Boolean)
+      .join(" ");
+
     return (
-      <As
-        {...(rest as any)}
-        className={button.classnames.appearance[appearance]}
-        ref={innerRef}
-      >
+      <As {...(rest as any)} className={buttonClasses} ref={innerRef}>
         {children}
       </As>
     );
