@@ -17,6 +17,7 @@ import fs from "fs";
 import path from "path";
 import readline from "readline";
 import { getNextRCVersion, publishToNpm } from "./npm-utils";
+import { getBumpTypeFromYarnVersions } from "./yarn-utils";
 
 interface PackageInfo {
   name: string;
@@ -56,51 +57,51 @@ Options:
 For more details, see scripts/README.md`);
   }
 
+  validateArgs(): void {
+    // Check for help flag
+    if (process.argv.includes("--help") || process.argv.includes("-h")) {
+      return this.showHelp();
+    }
+
+    // Validate OTP parameter
+    const otpArg = process.argv.find((arg) => arg.startsWith("--otp="));
+    if (otpArg) {
+      this.otp = otpArg.split("=")[1];
+      if (!this.otp || this.otp.length !== 6 || !/^\d{6}$/.test(this.otp)) {
+        throw new Error(
+          "\n❌ Invalid OTP format. Please provide exactly 6 digits (e.g., --otp=123456)"
+        );
+      }
+    }
+
+    // Validate required package name
+    const args = process.argv.slice(2).filter((arg) => !arg.startsWith("-"));
+    const packageName = args[0];
+    if (!packageName || packageName.trim() === "") {
+      throw new Error(
+        "\n❌ Error: Package name is required. \n\nUsage: yarn publish:rc <packageName> [version] [options] \nExample: yarn publish:rc @nimbus-ds/button"
+      );
+    }
+  }
+
   async run(): Promise<void> {
     try {
-      // Check for help flag
-      if (process.argv.includes("--help") || process.argv.includes("-h")) {
-        this.showHelp();
-        return;
-      }
-
-      // Check for skip-build flag
-      this.skipBuild = process.argv.includes("--skip-build");
-
-      // Check for OTP parameter
-      const otpArg = process.argv.find((arg) => arg.startsWith("--otp="));
-      if (otpArg) {
-        this.otp = otpArg.split("=")[1];
-        if (!this.otp || this.otp.length !== 6 || !/^\d{6}$/.test(this.otp)) {
-          console.error(
-            "❌ Invalid OTP format. Please provide exactly 6 digits (e.g., --otp=123456)"
-          );
-          return;
-        }
-      }
-
       console.log("🚀 Nimbus RC Publisher");
       console.log("======================");
       console.log();
+
+      this.validateArgs();
 
       // Parse arguments (filter out flags)
       const args = process.argv.slice(2).filter((arg) => !arg.startsWith("-"));
       const packageName = args[0];
       const versionArg = args[1] || "";
 
-      // Validate required package name
-      if (!packageName || packageName.trim() === "") {
-        console.error("❌ Error: Package name is required.");
-        console.log(
-          "\nUsage: yarn publish:rc <packageName> [version] [options]"
-        );
-        console.log("Example: yarn publish:rc @nimbus-ds/button");
-        console.log("\nUse --help for more information.");
-        return;
-      }
+      // Check for skip-build flag
+      this.skipBuild = process.argv.includes("--skip-build");
 
       // Find package to publish
-      this.packageInfo = await this.findPackage(packageName);
+      this.packageInfo = this.findPackageByName(packageName);
       console.log(`📦 Package: ${this.packageInfo.name}`);
       console.log(`📁 Path: ${this.packageInfo.path}`);
       console.log(`📋 Current version: ${this.packageInfo.version}\n`);
@@ -132,15 +133,7 @@ For more details, see scripts/README.md`);
     }
   }
 
-  async findPackage(packageName: string): Promise<PackageInfo> {
-    const found = this.findPackageByName(packageName);
-    if (!found) {
-      throw new Error(`Package "${packageName}" not found in workspace`);
-    }
-    return found;
-  }
-
-  findPackageByName(packageName: string): PackageInfo | null {
+  findPackageByName(packageName: string): PackageInfo {
     try {
       // Get all workspaces using yarn
       const workspacesOutput = execSync("yarn workspaces list --json", {
@@ -153,7 +146,8 @@ For more details, see scripts/README.md`);
         .map((line) => JSON.parse(line));
 
       const workspace = workspaces.find((ws) => ws.name === packageName);
-      if (!workspace) return null;
+      if (!workspace)
+        throw new Error(`Package "${packageName}" not found in workspace`);
 
       // Read package.json for version
       const packageJsonPath = path.join(workspace.location, "package.json");
@@ -165,7 +159,7 @@ For more details, see scripts/README.md`);
         path: workspace.location,
       };
     } catch (error) {
-      return null;
+      throw new Error(`Package "${packageName}" not found in workspace`);
     }
   }
 
@@ -183,7 +177,7 @@ For more details, see scripts/README.md`);
       }
     } else {
       // No version specified - determine from yarn version files
-      const bumpType = this.getBumpTypeFromYarnVersions();
+      const bumpType = getBumpTypeFromYarnVersions(this.packageInfo.name);
       if (bumpType === null) {
         // No version files found or package not in version files - use current version
         return getNextRCVersion(
@@ -199,125 +193,6 @@ For more details, see scripts/README.md`);
         return getNextRCVersion(this.packageInfo.name, baseVersion);
       }
     }
-  }
-
-  getBumpTypeFromYarnVersions(): string | null {
-    // Look for yarn version files that might indicate bump type
-    const versionFilesDir = ".yarn/versions";
-
-    console.log(
-      `🔍 Checking for yarn version files in: ${path.resolve(versionFilesDir)}`
-    );
-
-    if (!fs.existsSync(versionFilesDir)) {
-      console.log(
-        "⚠️  No yarn version files found, using current version for RC"
-      );
-      return null;
-    }
-
-    try {
-      const versionFiles = fs.readdirSync(versionFilesDir);
-      console.log(
-        `📁 Found ${versionFiles.length} version files: ${versionFiles.join(
-          ", "
-        )}`
-      );
-
-      for (const file of versionFiles) {
-        if (file.endsWith(".yml") || file.endsWith(".yaml")) {
-          const filePath = path.join(versionFilesDir, file);
-          const content = fs.readFileSync(filePath, "utf8");
-
-          console.log(
-            `🔍 Checking ${file} for package ${this.packageInfo.name}...`
-          );
-
-          // Parse YAML structure properly
-          const bumpType = this.parseYarnVersionFile(content);
-          if (bumpType) {
-            console.log(`✅ Found package reference in ${file}`);
-            console.log(`🎯 Detected bump type: ${bumpType}`);
-            return bumpType;
-          }
-        }
-      }
-
-      console.log(
-        "⚠️  Package not found in version files, using current version for RC"
-      );
-    } catch (error) {
-      console.log(
-        "⚠️  Could not read yarn version files, using current version for RC"
-      );
-      console.log(`   Error: ${error.message}`);
-    }
-
-    return null;
-  }
-
-  parseYarnVersionFile(content: string): string | null {
-    try {
-      const lines = content.split("\n");
-      let inReleasesSection = false;
-      let inDeclinedSection = false;
-
-      for (const line of lines) {
-        const trimmedLine = line.trim();
-
-        // Check section headers
-        if (trimmedLine === "releases:") {
-          inReleasesSection = true;
-          inDeclinedSection = false;
-          continue;
-        }
-
-        if (trimmedLine === "declined:") {
-          inReleasesSection = false;
-          inDeclinedSection = true;
-          continue;
-        }
-
-        // If we're in releases section, look for package mapping
-        if (inReleasesSection && trimmedLine.includes(":")) {
-          const match = trimmedLine.match(/^["']?([^"':]+)["']?\s*:\s*(\w+)/);
-          if (match) {
-            const [, packageName, bumpType] = match;
-            if (packageName === this.packageInfo.name) {
-              if (["major", "minor", "patch"].includes(bumpType)) {
-                return bumpType;
-              }
-            }
-          }
-        }
-
-        // If we're in declined section, check if package is declined
-        if (inDeclinedSection && trimmedLine.startsWith("- ")) {
-          const packageName = trimmedLine.substring(2).trim();
-          if (packageName === this.packageInfo.name) {
-            console.log(
-              `⚠️  Package ${this.packageInfo.name} is in declined section`
-            );
-            return null;
-          }
-        }
-
-        // If we hit a line that doesn't start with spaces or dash, we're out of current section
-        if (
-          trimmedLine &&
-          !trimmedLine.startsWith("-") &&
-          !line.startsWith(" ") &&
-          !line.startsWith("\t")
-        ) {
-          inReleasesSection = false;
-          inDeclinedSection = false;
-        }
-      }
-    } catch (error) {
-      console.log(`⚠️  Error parsing YAML content: ${error.message}`);
-    }
-
-    return null;
   }
 
   calculateNextVersion(currentVersion: string, bumpType: string): string {
@@ -366,7 +241,10 @@ For more details, see scripts/README.md`);
     if (this.skipBuild) {
       console.log("\n⚡ Skipping build process (--skip-build flag detected)");
     } else {
-      await this.buildPackage();
+      console.log("🔨 Building package...");
+      execSync(`yarn workspace ${this.packageInfo.name} build`, {
+        stdio: "inherit",
+      });
     }
 
     console.log("📝 Updating package.json version...");
@@ -381,13 +259,6 @@ For more details, see scripts/README.md`);
 
     console.log("🔄 Restoring original package.json...");
     await this.cleanup();
-  }
-
-  async buildPackage(): Promise<void> {
-    console.log("🔨 Building package...");
-    execSync(`yarn workspace ${this.packageInfo.name} build`, {
-      stdio: "inherit",
-    });
   }
 
   async updatePackageVersion(rcVersion: string): Promise<void> {
