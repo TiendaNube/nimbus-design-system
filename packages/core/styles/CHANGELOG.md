@@ -4,6 +4,8 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 ## 2025-08-04 `9.21.1`
 
+#### 🐛 Bug fixes
+
 - Rename `ai-interactive` to `ai-generative` in `Icon` classnames. ([#327](https://github.com/TiendaNube/nimbus-design-system/pull/327) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-08-04 `9.21.0`
