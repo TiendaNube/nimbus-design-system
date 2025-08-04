@@ -118,13 +118,13 @@ describe("GIVEN <Icon />", () => {
       jest.clearAllMocks();
     });
 
-    it("THEN should detect gradient when color is ai-interactive", () => {
+    it("THEN should detect gradient when color is ai-generative", () => {
       mockIsGradient.mockReturnValue(true);
       mockApplyGradientToSvg.mockReturnValue(mockProcessedSvg);
 
-      makeSut({ source: mockSvgSource, color: "ai-interactive" });
+      makeSut({ source: mockSvgSource, color: "ai-generative" });
 
-      expect(mockIsGradient).toHaveBeenCalledWith("ai-interactive");
+      expect(mockIsGradient).toHaveBeenCalledWith("ai-generative");
       expect(mockIsGradient).toHaveBeenCalledTimes(1);
     });
 
@@ -132,7 +132,7 @@ describe("GIVEN <Icon />", () => {
       mockIsGradient.mockReturnValue(true);
       mockApplyGradientToSvg.mockReturnValue(mockProcessedSvg);
 
-      makeSut({ source: mockSvgSource, color: "ai-interactive" });
+      makeSut({ source: mockSvgSource, color: "ai-generative" });
 
       expect(mockApplyGradientToSvg).toHaveBeenCalledWith(mockSvgSource);
       expect(mockApplyGradientToSvg).toHaveBeenCalledTimes(1);
@@ -142,7 +142,7 @@ describe("GIVEN <Icon />", () => {
       mockIsGradient.mockReturnValue(true);
       mockApplyGradientToSvg.mockReturnValue(mockProcessedSvg);
 
-      makeSut({ source: mockSvgSource, color: "ai-interactive" });
+      makeSut({ source: mockSvgSource, color: "ai-generative" });
 
       expect(screen.getByTestId("processed-svg")).toBeInTheDocument();
       expect(screen.queryByTestId("original-svg")).not.toBeInTheDocument();
@@ -152,11 +152,11 @@ describe("GIVEN <Icon />", () => {
       mockIsGradient.mockReturnValue(true);
       mockApplyGradientToSvg.mockReturnValue(mockProcessedSvg);
 
-      makeSut({ source: mockSvgSource, color: "ai-interactive" });
+      makeSut({ source: mockSvgSource, color: "ai-generative" });
 
       const iconElement = screen.getByTestId("icon-element");
       expect(iconElement.getAttribute("class")).not.toContain(
-        "color_ai-interactive"
+        "color_ai-generative"
       );
     });
 
@@ -205,7 +205,7 @@ describe("GIVEN <Icon />", () => {
       const { rerender } = render(
         <Icon
           source={mockSvgSource}
-          color="ai-interactive"
+          color="ai-generative"
           data-testid="icon-element"
         />
       );
@@ -218,7 +218,7 @@ describe("GIVEN <Icon />", () => {
       rerender(
         <Icon
           source={mockSvgSource}
-          color="ai-interactive"
+          color="ai-generative"
           data-testid="icon-element"
         />
       );
@@ -248,12 +248,12 @@ describe("GIVEN <Icon />", () => {
       rerender(
         <Icon
           source={mockSvgSource}
-          color="ai-interactive"
+          color="ai-generative"
           data-testid="icon-element"
         />
       );
 
-      expect(mockIsGradient).toHaveBeenCalledWith("ai-interactive");
+      expect(mockIsGradient).toHaveBeenCalledWith("ai-generative");
       expect(mockApplyGradientToSvg).toHaveBeenCalledWith(mockSvgSource);
     });
 
@@ -269,7 +269,7 @@ describe("GIVEN <Icon />", () => {
       const { rerender } = render(
         <Icon
           source={mockSvgSource}
-          color="ai-interactive"
+          color="ai-generative"
           data-testid="icon-element"
         />
       );
@@ -280,7 +280,7 @@ describe("GIVEN <Icon />", () => {
       rerender(
         <Icon
           source={newMockSvgSource}
-          color="ai-interactive"
+          color="ai-generative"
           data-testid="icon-element"
         />
       );

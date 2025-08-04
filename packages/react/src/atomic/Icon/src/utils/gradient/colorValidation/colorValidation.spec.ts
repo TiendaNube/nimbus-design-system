@@ -12,7 +12,7 @@ describe("colorValidation utilities", () => {
       expect(isValidColorValue("rgb(255, 0, 0)")).toBe(true);
       expect(isValidColorValue("rgba(255, 0, 0, 0.5)")).toBe(true);
       expect(isValidColorValue("currentColor")).toBe(true);
-      expect(isValidColorValue("ai-interactive")).toBe(true);
+      expect(isValidColorValue("ai-generative")).toBe(true);
       expect(isValidColorValue("primary-textHigh")).toBe(true);
     });
 
@@ -31,7 +31,7 @@ describe("colorValidation utilities", () => {
       expect(canUseGradient("rgb(255, 0, 0)")).toBe(true);
       expect(canUseGradient("rgba(255, 0, 0, 0.5)")).toBe(true);
       expect(canUseGradient("currentColor")).toBe(true);
-      expect(canUseGradient("ai-interactive")).toBe(true);
+      expect(canUseGradient("ai-generative")).toBe(true);
       expect(canUseGradient("primary-textHigh")).toBe(true);
     });
 
@@ -45,8 +45,8 @@ describe("colorValidation utilities", () => {
   });
 
   describe("isGradient", () => {
-    it("should return true for ai-interactive color", () => {
-      expect(isGradient("ai-interactive")).toBe(true);
+    it("should return true for ai-generative color", () => {
+      expect(isGradient("ai-generative")).toBe(true);
     });
 
     it("should return false for non-gradient colors", () => {

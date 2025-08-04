@@ -56,11 +56,7 @@ const Button = forwardRef(
       .join(" ");
 
     return (
-      <As
-        {...(rest as any)}
-        className={buttonClasses}
-        ref={innerRef}
-      >
+      <As {...(rest as any)} className={buttonClasses} ref={innerRef}>
         {children}
       </As>
     );

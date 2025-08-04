@@ -1,19 +1,25 @@
 releases:
-  "@nimbus-ds/button": minor
-  "@nimbus-ds/components": minor
-  "@nimbus-ds/styles": minor
+  "@nimbus-ds/components": patch
+  "@nimbus-ds/icon": patch
+  "@nimbus-ds/styles": patch
 
 declined:
   - nimbus-design-system
-  - "@nimbus-ds/typings"
-  - "@nimbus-ds/icon"
+  - "@nimbus-ds/button"
+  - "@nimbus-ds/checkbox"
+  - "@nimbus-ds/chip"
+  - "@nimbus-ds/file-uploader"
+  - "@nimbus-ds/icon-button"
+  - "@nimbus-ds/input"
+  - "@nimbus-ds/label"
+  - "@nimbus-ds/multi-select"
   - "@nimbus-ds/progress-bar"
-  - "@nimbus-ds/tag"
+  - "@nimbus-ds/select"
+  - "@nimbus-ds/thumbnail"
+  - "@nimbus-ds/toast"
+  - "@nimbus-ds/accordion"
   - "@nimbus-ds/alert"
-  - "@nimbus-ds/card"
   - "@nimbus-ds/modal"
-  - "@nimbus-ds/pagination"
   - "@nimbus-ds/scroll-pane"
   - "@nimbus-ds/segmented-control"
-  - "@nimbus-ds/sidebar"
   - "@nimbus-ds/stepper"
