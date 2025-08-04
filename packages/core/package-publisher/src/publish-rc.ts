@@ -13,8 +13,6 @@
  */
 
 import { execSync } from "child_process";
-import fs from "fs";
-import path from "path";
 import readline from "readline";
 import { getNextRCVersion, publishToNpm } from "./npm-utils";
 import { getBumpTypeFromYarnVersions } from "./yarn-utils";
@@ -22,14 +20,18 @@ import { getBumpTypeFromYarnVersions } from "./yarn-utils";
 interface PackageInfo {
   name: string;
   version: string;
-  path: string;
+  location: string;
 }
 
 class LocalRCPublisher {
   private packageInfo: PackageInfo;
-  private originalPackageJson: string;
+  private originalVersion: string = "";
   private skipBuild: boolean = false;
   private otp?: string;
+
+  constructor() {
+    this.packageInfo = {} as PackageInfo;
+  }
 
   showHelp(): void {
     console.log(`🚀 Nimbus RC Publisher
@@ -84,6 +86,8 @@ For more details, see scripts/README.md`);
     }
   }
 
+// Removed findProjectRoot() - yarn workspace commands work from any directory
+
   async run(): Promise<void> {
     try {
       console.log("🚀 Nimbus RC Publisher");
@@ -103,7 +107,7 @@ For more details, see scripts/README.md`);
       // Find package to publish
       this.packageInfo = this.findPackageByName(packageName);
       console.log(`📦 Package: ${this.packageInfo.name}`);
-      console.log(`📁 Path: ${this.packageInfo.path}`);
+      console.log(`📁 Location: ${this.packageInfo.location}`);
       console.log(`📋 Current version: ${this.packageInfo.version}\n`);
 
       // Determine RC version to publish
@@ -126,7 +130,7 @@ For more details, see scripts/README.md`);
       console.log(
         `\n📥 Install with: npm install ${this.packageInfo.name}@${rcVersion}`
       );
-    } catch (error) {
+    } catch (error: any) {
       console.error("\n💥 Publishing failed:", error.message);
       await this.cleanup();
       process.exit(1);
@@ -149,17 +153,25 @@ For more details, see scripts/README.md`);
       if (!workspace)
         throw new Error(`Package "${packageName}" not found in workspace`);
 
-      // Read package.json for version
-      const packageJsonPath = path.join(workspace.location, "package.json");
-      const pkg = JSON.parse(fs.readFileSync(packageJsonPath, "utf8"));
+      // Get version using npm pkg command (no need to read package.json file)
+      const versionOutput = execSync(
+        `npm pkg get version --workspace=${packageName}`,
+        { encoding: "utf8" }
+      );
+      
+      // Parse version from first line of output (removes quotes)
+      const firstLine = versionOutput.split('\n')[0].trim();
+      const version = JSON.parse(firstLine);
 
       return {
-        name: pkg.name,
-        version: pkg.version,
-        path: workspace.location,
+        name: workspace.name,
+        version,
+        location: workspace.location,
       };
     } catch (error) {
-      throw new Error(`Package "${packageName}" not found in workspace`);
+      throw new Error(
+        `Couldn't find package ${packageName} in workspace. Error: ${error}`
+      );
     }
   }
 
@@ -248,42 +260,46 @@ For more details, see scripts/README.md`);
     }
 
     console.log("📝 Updating package.json version...");
-    await this.updatePackageVersion(rcVersion);
+    this.updatePackageVersion(rcVersion);
 
     console.log("📤 Publishing to npm...");
-    publishToNpm(this.packageInfo.path, {
+    publishToNpm(this.packageInfo.name, {
       access: "public",
       tag: "rc",
       otp,
     });
 
-    console.log("🔄 Restoring original package.json...");
+    console.log("🔄 Restoring original package.json version...");
     await this.cleanup();
   }
 
-  async updatePackageVersion(rcVersion: string): Promise<void> {
-    const packageJsonPath = path.join(this.packageInfo.path, "package.json");
-
-    // Backup original
-    this.originalPackageJson = fs.readFileSync(packageJsonPath, "utf8");
-
-    // Update version
-    const packageJson = JSON.parse(this.originalPackageJson);
-    packageJson.version = rcVersion;
-
-    fs.writeFileSync(
-      packageJsonPath,
-      JSON.stringify(packageJson, null, 2) + "\n"
-    );
-  }
-
-  async cleanup() {
-    if (this.originalPackageJson && this.packageInfo) {
-      const packageJsonPath = path.join(this.packageInfo.path, "package.json");
-      fs.writeFileSync(packageJsonPath, this.originalPackageJson);
-      console.log("✅ Package.json restored to original version");
+  updatePackageVersion(rcVersion: string): void {
+    // Store original version for cleanup
+    this.originalVersion = this.packageInfo.version;
+    
+    try {
+      execSync(`npm version ${rcVersion} --workspace=${this.packageInfo.name} --no-git-tag-version`, {
+        stdio: "inherit",
+      });
+    } catch (error) {
+      throw new Error(`Failed to update package version: ${error}`);
     }
   }
+
+  async cleanup(): Promise<void> {
+    if (this.originalVersion && this.packageInfo.name) {
+      try {
+        execSync(`npm version ${this.originalVersion} --workspace=${this.packageInfo.name} --no-git-tag-version`, {
+          stdio: "inherit",
+        });
+        console.log(`✅ Package.json version restored to ${this.originalVersion}`);
+      } catch (error) {
+        console.warn(`⚠️  Failed to restore original version: ${error}`);
+      }
+    }
+  }
+
+
 }
 
 // Main execution

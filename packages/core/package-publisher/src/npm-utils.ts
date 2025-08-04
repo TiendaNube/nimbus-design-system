@@ -76,10 +76,10 @@ export function getNextRCVersion(packageName: string, baseVersion: string): stri
 
 /**
  * Publishes a package to NPM with specified options
- * @param packagePath - The path to the package directory
+ * @param packageName - The name of the package workspace
  * @param options - Publishing options (access, tag, OTP)
  */
-export function publishToNpm(packagePath: string, options: NpmPublishOptions = {}): void {
+export function publishToNpm(packageName: string, options: NpmPublishOptions = {}): void {
   const {
     access = "public",
     tag = "rc",
@@ -91,15 +91,14 @@ export function publishToNpm(packagePath: string, options: NpmPublishOptions = {
     const tagFlag = `--tag ${tag}`;
     const otpFlag = otp ? ` --otp=${otp}` : "";
     
-    const command = `npm publish ${accessFlag} ${tagFlag}${otpFlag}`;
+    const command = `yarn workspace ${packageName} npm publish ${accessFlag} ${tagFlag}${otpFlag}`;
     
     console.log(`📤 Publishing with command: ${command}`);
     
     execSync(command, {
-      cwd: packagePath,
       stdio: "inherit",
     });
-  } catch (error) {
+  } catch (error: any) {
     throw new Error(`npm publish failed: ${error.message}`);
   }
 }

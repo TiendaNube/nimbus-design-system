@@ -33,7 +33,7 @@
     "publish:stable": "yarn bump:stable && yarn publish:npm:stable",
     "publish:npm:next": "yarn workspaces foreach -pv -pt --exclude nimbus-design-system --exclude nimbus-helper npm publish --tolerate-republish --access public --tag next",
     "publish:npm:stable": "yarn workspaces foreach -pv -pt --exclude nimbus-design-system --exclude nimbus-helper npm publish --tolerate-republish --access public",
-    "publish:rc": "babel-node -x .ts ./.scripts/rc-publisher/publish-rc.ts",
+    "publish:rc": "yarn workspace @nimbus-ds/package-publisher run publish:rc",
     "reset": "yarn clean && rm -rf node_modules .yarn/cache .turbo && git clean -fdX",
     "storybook": "storybook dev -p 6006",
     "start:dev": "yarn storybook",
