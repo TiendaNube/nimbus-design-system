@@ -3,7 +3,7 @@
 /**
  * Local Release Candidate Publisher
  *
- * Usage: yarn publish:rc [packageName] [version] [--skip-build]
+ * Usage: yarn publish:rc [packageName] [version] [--skip-build] [--otp=123456]
  *
  * Examples:
  *   yarn publish:rc                           # Publish RC for current directory package
@@ -12,12 +12,15 @@
  *   yarn publish:rc "" 1.3.0                  # Publish current directory package with specific version
  *   yarn publish:rc --skip-build              # Skip build and publish current package as-is
  *   yarn publish:rc @nimbus-ds/button --skip-build  # Skip build for specific package
+ *   yarn publish:rc --otp=123456              # Publish with 2FA OTP code
+ *   yarn publish:rc @nimbus-ds/button --otp=123456 --skip-build  # Combine flags
  */
 
 import { execSync } from "child_process";
 import fs from "fs";
 import path from "path";
 import readline from "readline";
+import { getNextRCVersion, publishToNpm } from "./npm-utils";
 
 interface PackageInfo {
   name: string;
@@ -29,11 +32,12 @@ class LocalRCPublisher {
   private packageInfo: PackageInfo;
   private originalPackageJson: string;
   private skipBuild: boolean = false;
+  private otp?: string;
 
   showHelp(): void {
     console.log(`🚀 Nimbus RC Publisher
 
-Usage: yarn publish:rc [packageName] [version] [--skip-build]
+Usage: yarn publish:rc [packageName] [version] [--skip-build] [--otp=123456]
 
 Parameters:
   packageName  (optional) Name of package to publish (e.g., @nimbus-ds/button)
@@ -49,10 +53,12 @@ Examples:
   yarn publish:rc @nimbus-ds/button         # Specific package, use version files or current
   yarn publish:rc @nimbus-ds/button 1.3.0  # Specific package and version
   yarn publish:rc "" 1.3.0                  # Current dir package, specific version
+  yarn publish:rc --otp=123456              # Publish with 2FA OTP code
 
 Options:
   -h, --help      Show this help message
   --skip-build    Skip the build process and publish package as-is
+  --otp=123456    Provide 2FA one-time password for npm publish (6 digits from authenticator app)
 
 For more details, see scripts/README.md`);
   }
@@ -67,6 +73,18 @@ For more details, see scripts/README.md`);
 
       // Check for skip-build flag
       this.skipBuild = process.argv.includes("--skip-build");
+
+      // Check for OTP parameter
+      const otpArg = process.argv.find((arg) => arg.startsWith("--otp="));
+      if (otpArg) {
+        this.otp = otpArg.split("=")[1];
+        if (!this.otp || this.otp.length !== 6 || !/^\d{6}$/.test(this.otp)) {
+          console.error(
+            "❌ Invalid OTP format. Please provide exactly 6 digits (e.g., --otp=123456)"
+          );
+          return;
+        }
+      }
 
       console.log("🚀 Nimbus RC Publisher");
       console.log("======================");
@@ -95,7 +113,7 @@ For more details, see scripts/README.md`);
       }
 
       // Execute publishing process
-      await this.publishRC(rcVersion);
+      await this.publishRC(rcVersion, this.otp);
 
       console.log(
         `\n✅ Successfully published ${this.packageInfo.name}@${rcVersion}`
@@ -126,10 +144,11 @@ For more details, see scripts/README.md`);
 
   findPackageByName(packageName: string): PackageInfo | null {
     const searchPaths = [
+      "packages/core",
+      "packages/icons",
+      "packages/helper",
       "packages/react/src/atomic",
       "packages/react/src/composite",
-      "packages/icons",
-      "packages/core",
     ];
 
     // Search in component directories
@@ -238,21 +257,24 @@ For more details, see scripts/README.md`);
         return version;
       } else {
         // Base version provided - find next RC slot
-        return await this.getNextRCForBaseVersion(version);
+        return getNextRCVersion(this.packageInfo.name, version);
       }
     } else {
       // No version specified - determine from yarn version files
       const bumpType = this.getBumpTypeFromYarnVersions();
       if (bumpType === null) {
         // No version files found or package not in version files - use current version
-        return await this.getNextRCForBaseVersion(this.packageInfo.version);
+        return getNextRCVersion(
+          this.packageInfo.name,
+          this.packageInfo.version
+        );
       } else {
         // Version files found with bump type - calculate next version
         const baseVersion = this.calculateNextVersion(
           this.packageInfo.version,
           bumpType
         );
-        return await this.getNextRCForBaseVersion(baseVersion);
+        return getNextRCVersion(this.packageInfo.name, baseVersion);
       }
     }
   }
@@ -328,7 +350,7 @@ For more details, see scripts/README.md`);
     console.log(`   Current: ${currentVersion} (${major}.${minor}.${patch})`);
     console.log(`   Bump: ${bumpType}`);
 
-    let nextVersion;
+    let nextVersion: string;
     switch (bumpType) {
       case "major":
         nextVersion = `${major + 1}.0.0`;
@@ -344,50 +366,6 @@ For more details, see scripts/README.md`);
 
     console.log(`   Next: ${nextVersion}`);
     return nextVersion;
-  }
-
-  async getNextRCForBaseVersion(baseVersion: string): Promise<string> {
-    try {
-      console.log(`🔍 Checking existing RC versions for ${baseVersion}...`);
-
-      // Get all published versions
-      const npmInfo = execSync(
-        `npm view ${this.packageInfo.name} versions --json`,
-        {
-          encoding: "utf8",
-          stdio: ["pipe", "pipe", "pipe"], // Suppress stderr
-        }
-      );
-
-      const versions = JSON.parse(npmInfo);
-      const rcVersions = versions.filter((v) =>
-        v.startsWith(`${baseVersion}-rc.`)
-      );
-
-      if (rcVersions.length === 0) {
-        return `${baseVersion}-rc.1`;
-      }
-
-      // Find highest RC number
-      const rcNumbers = rcVersions.map((v) => {
-        const match = v.match(/-rc\.(\d+)$/);
-        return match ? parseInt(match[1], 10) : 0;
-      });
-
-      const highestRC = Math.max(...rcNumbers);
-      const nextRC = `${baseVersion}-rc.${highestRC + 1}`;
-
-      console.log(
-        `📋 Found ${rcVersions.length} existing RC versions, next available: ${nextRC}`
-      );
-      return nextRC;
-    } catch (error) {
-      // Package might not exist on npm yet or other error
-      console.log(
-        `📋 No existing versions found, starting with: ${baseVersion}-rc.1`
-      );
-      return `${baseVersion}-rc.1`;
-    }
   }
 
   async confirmPublish(rcVersion: string): Promise<boolean> {
@@ -407,7 +385,7 @@ For more details, see scripts/README.md`);
     });
   }
 
-  async publishRC(rcVersion: string): Promise<void> {
+  async publishRC(rcVersion: string, otp?: string): Promise<void> {
     if (this.skipBuild) {
       console.log("\n⚡ Skipping build process (--skip-build flag detected)");
     } else {
@@ -419,7 +397,11 @@ For more details, see scripts/README.md`);
     await this.updatePackageVersion(rcVersion);
 
     console.log("📤 Publishing to npm...");
-    await this.publishToNpm();
+    publishToNpm(this.packageInfo.path, {
+      access: "public",
+      tag: "rc",
+      otp,
+    });
 
     console.log("🔄 Restoring original package.json...");
     await this.cleanup();
@@ -437,10 +419,7 @@ For more details, see scripts/README.md`);
     } catch (error) {
       // Fallback to workspace build
       console.log("📦 Running workspace build...");
-      execSync("yarn build:tokens", { stdio: "inherit" });
-      execSync("yarn build:icons", { stdio: "inherit" });
-      execSync("yarn build:components", { stdio: "inherit" });
-      execSync("yarn build:packages", { stdio: "inherit" });
+      execSync(`yarn workspace ${this.packageInfo.name} build`, { stdio: "inherit" });
     }
   }
 
@@ -458,19 +437,6 @@ For more details, see scripts/README.md`);
       packageJsonPath,
       JSON.stringify(packageJson, null, 2) + "\n"
     );
-  }
-
-  async publishToNpm() {
-    const packagePath = this.packageInfo.path;
-
-    try {
-      execSync("npm publish --access public --tag rc", {
-        cwd: packagePath,
-        stdio: "inherit",
-      });
-    } catch (error) {
-      throw new Error(`npm publish failed: ${error.message}`);
-    }
   }
 
   async cleanup() {
