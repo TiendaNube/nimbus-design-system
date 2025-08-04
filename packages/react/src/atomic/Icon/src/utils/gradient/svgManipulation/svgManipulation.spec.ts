@@ -1,12 +1,22 @@
 import React from "react";
-import { generateGradientId, injectGradientDefs, processElement } from "./svgManipulation";
+import {
+  generateGradientId,
+  injectGradientDefs,
+  processElement,
+} from "./svgManipulation";
 import * as colorValidation from "../colorValidation";
 
 // Mock the colorValidation utilities
 jest.mock("../colorValidation");
 
-const mockCanUseGradient = colorValidation.canUseGradient as jest.MockedFunction<typeof colorValidation.canUseGradient>;
-const mockIsValidColorValue = colorValidation.isValidColorValue as jest.MockedFunction<typeof colorValidation.isValidColorValue>;
+const mockCanUseGradient =
+  colorValidation.canUseGradient as jest.MockedFunction<
+    typeof colorValidation.canUseGradient
+  >;
+const mockIsValidColorValue =
+  colorValidation.isValidColorValue as jest.MockedFunction<
+    typeof colorValidation.isValidColorValue
+  >;
 
 describe("svgManipulation utilities", () => {
   beforeEach(() => {
@@ -31,31 +41,35 @@ describe("svgManipulation utilities", () => {
 
   describe("injectGradientDefs", () => {
     it("should inject gradient definitions as first child", () => {
-      const originalSvg = React.createElement("svg", {}, 
+      const originalSvg = React.createElement(
+        "svg",
+        {},
         React.createElement("path", { d: "M10 10" }),
         React.createElement("circle", { r: "5" })
       );
-      
-      const gradientDef = React.createElement("linearGradient", { id: "test-gradient" });
+
+      const gradientDef = React.createElement("linearGradient", {
+        id: "test-gradient",
+      });
 
       const result = injectGradientDefs(originalSvg, gradientDef);
 
       expect(React.isValidElement(result)).toBe(true);
       expect(result.type).toBe("svg");
-      
+
       const children = React.Children.toArray(result.props.children);
       expect(children).toHaveLength(3);
-      
+
       // Check that defs is first child
       const defsChild = children[0] as React.ReactElement;
       expect(defsChild.type).toBe("defs");
       expect(defsChild.props.children).toBe(gradientDef);
-      
+
       // Check that original children are preserved
       const pathChild = children[1] as React.ReactElement;
       expect(pathChild.type).toBe("path");
       expect(pathChild.props.d).toBe("M10 10");
-      
+
       const circleChild = children[2] as React.ReactElement;
       expect(circleChild.type).toBe("circle");
       expect(circleChild.props.r).toBe("5");
@@ -63,7 +77,9 @@ describe("svgManipulation utilities", () => {
 
     it("should handle SVG with no existing children", () => {
       const originalSvg = React.createElement("svg", {});
-      const gradientDef = React.createElement("linearGradient", { id: "test-gradient" });
+      const gradientDef = React.createElement("linearGradient", {
+        id: "test-gradient",
+      });
 
       const result = injectGradientDefs(originalSvg, gradientDef);
 
@@ -75,12 +91,14 @@ describe("svgManipulation utilities", () => {
     });
 
     it("should preserve original SVG props", () => {
-      const originalSvg = React.createElement("svg", { 
-        width: "100", 
-        height: "100", 
-        viewBox: "0 0 100 100" 
+      const originalSvg = React.createElement("svg", {
+        width: "100",
+        height: "100",
+        viewBox: "0 0 100 100",
       });
-      const gradientDef = React.createElement("linearGradient", { id: "test-gradient" });
+      const gradientDef = React.createElement("linearGradient", {
+        id: "test-gradient",
+      });
 
       const result = injectGradientDefs(originalSvg, gradientDef);
 
@@ -108,7 +126,10 @@ describe("svgManipulation utilities", () => {
       mockCanUseGradient.mockReturnValue(true);
       mockIsValidColorValue.mockReturnValue(true);
 
-      const element = React.createElement("path", { fill: "#FF0000", d: "M10 10" });
+      const element = React.createElement("path", {
+        fill: "#FF0000",
+        d: "M10 10",
+      });
       const result = processElement(element, testGradientId);
 
       expect(result.props.fill).toBe(`url(#${testGradientId})`);
@@ -119,7 +140,10 @@ describe("svgManipulation utilities", () => {
       mockCanUseGradient.mockReturnValue(true);
       mockIsValidColorValue.mockReturnValue(true);
 
-      const element = React.createElement("path", { stroke: "#FF0000", d: "M10 10" });
+      const element = React.createElement("path", {
+        stroke: "#FF0000",
+        d: "M10 10",
+      });
       const result = processElement(element, testGradientId);
 
       expect(result.props.stroke).toBe(`url(#${testGradientId})`);
@@ -130,10 +154,10 @@ describe("svgManipulation utilities", () => {
       mockCanUseGradient.mockReturnValue(true);
       mockIsValidColorValue.mockReturnValue(true);
 
-      const element = React.createElement("path", { 
-        fill: "#FF0000", 
-        stroke: "#00FF00", 
-        d: "M10 10" 
+      const element = React.createElement("path", {
+        fill: "#FF0000",
+        stroke: "#00FF00",
+        d: "M10 10",
       });
       const result = processElement(element, testGradientId);
 
@@ -144,7 +168,10 @@ describe("svgManipulation utilities", () => {
     it("should not replace fill/stroke when canUseGradient returns false", () => {
       mockCanUseGradient.mockReturnValue(false);
 
-      const element = React.createElement("path", { fill: "none", stroke: "transparent" });
+      const element = React.createElement("path", {
+        fill: "none",
+        stroke: "transparent",
+      });
       const result = processElement(element, testGradientId);
 
       expect(result.props.fill).toBe("none");
@@ -152,24 +179,30 @@ describe("svgManipulation utilities", () => {
     });
 
     it("should replace currentColor fill with gradient URL", () => {
-      const element = React.createElement("path", { fill: "currentColor", d: "M10 10" });
+      const element = React.createElement("path", {
+        fill: "currentColor",
+        d: "M10 10",
+      });
       const result = processElement(element, testGradientId);
 
       expect(result.props.fill).toBe(`url(#${testGradientId})`);
     });
 
     it("should replace currentColor stroke with gradient URL", () => {
-      const element = React.createElement("path", { stroke: "currentColor", d: "M10 10" });
+      const element = React.createElement("path", {
+        stroke: "currentColor",
+        d: "M10 10",
+      });
       const result = processElement(element, testGradientId);
 
       expect(result.props.stroke).toBe(`url(#${testGradientId})`);
     });
 
     it("should replace both currentColor fill and stroke", () => {
-      const element = React.createElement("path", { 
-        fill: "currentColor", 
-        stroke: "currentColor", 
-        d: "M10 10" 
+      const element = React.createElement("path", {
+        fill: "currentColor",
+        stroke: "currentColor",
+        d: "M10 10",
       });
       const result = processElement(element, testGradientId);
 
@@ -181,7 +214,9 @@ describe("svgManipulation utilities", () => {
       mockCanUseGradient.mockReturnValue(true);
       mockIsValidColorValue.mockReturnValue(true);
 
-      const element = React.createElement("g", {},
+      const element = React.createElement(
+        "g",
+        {},
         React.createElement("path", { fill: "#FF0000", d: "M10 10" }),
         React.createElement("circle", { stroke: "#00FF00", r: "5" })
       );
@@ -189,12 +224,18 @@ describe("svgManipulation utilities", () => {
       const result = processElement(element, testGradientId);
 
       const children = React.Children.toArray(result.props.children);
-      expect((children[0] as React.ReactElement).props.fill).toBe(`url(#${testGradientId})`);
-      expect((children[1] as React.ReactElement).props.stroke).toBe(`url(#${testGradientId})`);
+      expect((children[0] as React.ReactElement).props.fill).toBe(
+        `url(#${testGradientId})`
+      );
+      expect((children[1] as React.ReactElement).props.stroke).toBe(
+        `url(#${testGradientId})`
+      );
     });
 
     it("should handle non-React element children", () => {
-      const element = React.createElement("g", {},
+      const element = React.createElement(
+        "g",
+        {},
         React.createElement("path", { fill: "#FF0000" }),
         "text content",
         null,
@@ -206,7 +247,9 @@ describe("svgManipulation utilities", () => {
       // React.Children.toArray filters out null/undefined, so we only get the path and text
       const children = React.Children.toArray(result.props.children);
       expect(children).toHaveLength(2);
-      expect((children[0] as React.ReactElement).props.fill).toBe(`url(#${testGradientId})`);
+      expect((children[0] as React.ReactElement).props.fill).toBe(
+        `url(#${testGradientId})`
+      );
       expect(children[1]).toBe("text content");
     });
 
@@ -214,7 +257,10 @@ describe("svgManipulation utilities", () => {
       mockCanUseGradient.mockReturnValue(true);
       mockIsValidColorValue.mockReturnValue(true);
 
-      const element = React.createElement("path", { fill: "#FF0000", d: "M10 10" });
+      const element = React.createElement("path", {
+        fill: "#FF0000",
+        d: "M10 10",
+      });
       const result = processElement(element, testGradientId);
 
       expect(result.props.fill).toBe(`url(#${testGradientId})`);
@@ -222,14 +268,14 @@ describe("svgManipulation utilities", () => {
     });
 
     it("should preserve other props unchanged", () => {
-      const element = React.createElement("path", { 
+      const element = React.createElement("path", {
         fill: "#FF0000",
         d: "M10 10",
         strokeWidth: "2",
         opacity: "0.5",
-        className: "test-class"
+        className: "test-class",
       });
-      
+
       const result = processElement(element, testGradientId);
 
       expect(result.props.d).toBe("M10 10");
@@ -242,10 +288,16 @@ describe("svgManipulation utilities", () => {
       mockCanUseGradient.mockReturnValue(true);
       mockIsValidColorValue.mockReturnValue(true);
 
-      const element = React.createElement("svg", {},
-        React.createElement("g", {},
+      const element = React.createElement(
+        "svg",
+        {},
+        React.createElement(
+          "g",
+          {},
           React.createElement("path", { fill: "#FF0000" }),
-          React.createElement("g", {},
+          React.createElement(
+            "g",
+            {},
             React.createElement("circle", { stroke: "#00FF00" })
           )
         )
@@ -266,4 +318,4 @@ describe("svgManipulation utilities", () => {
       expect(circle.props.stroke).toBe(`url(#${testGradientId})`);
     });
   });
-}); 
+});

@@ -13,9 +13,7 @@ describe("GIVEN <ProgressBar.Skeleton />", () => {
     it("THEN should render skeleton with default dimensions", () => {
       makeSut();
       const skeleton = screen.getByTestId("skeleton-element");
-      expect(skeleton.getAttribute("style")).toMatch(
-        /--width__\w{0,9}: 100%;/
-      );
+      expect(skeleton.getAttribute("style")).toMatch(/--width__\w{0,9}: 100%;/);
       expect(skeleton.getAttribute("style")).toMatch(
         /--height__\w{0,9}: 0.5rem;/
       );
@@ -41,9 +39,7 @@ describe("GIVEN <ProgressBar.Skeleton />", () => {
     it("THEN should render skeleton with custom height", () => {
       makeSut({ height: "1rem" });
       const skeleton = screen.getByTestId("skeleton-element");
-      expect(skeleton.getAttribute("style")).toMatch(
-        /--width__\w{0,9}: 100%;/
-      );
+      expect(skeleton.getAttribute("style")).toMatch(/--width__\w{0,9}: 100%;/);
       expect(skeleton.getAttribute("style")).toMatch(
         /--height__\w{0,9}: 1rem;/
       );

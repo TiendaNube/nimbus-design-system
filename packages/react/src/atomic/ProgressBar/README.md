@@ -25,7 +25,7 @@ We use the ProgressBar component to visually communicate the completion status o
 The component has 5 appearance variants that can be used according to the context:
 
 - **Neutral** - Used for general progress indication without specific semantic meaning
-- **Primary** - Used to highlight important progress or main tasks  
+- **Primary** - Used to highlight important progress or main tasks
 - **Success** - Used to indicate positive progress or successful completion stages
 - **Warning** - Used to indicate caution or attention-required progress
 - **Danger** - Used to indicate critical or error-related progress
@@ -40,6 +40,7 @@ The component has 5 appearance variants that can be used according to the contex
 ### Accessibility
 
 The component includes proper ARIA attributes:
+
 - `role="progressbar"` to identify the element as a progress indicator
 - `aria-valuenow` to indicate the current progress value
 - `aria-valuemin` and `aria-valuemax` to define the range (0-100)
@@ -48,4 +49,4 @@ The component includes proper ARIA attributes:
 
 View docs [here](https://nimbus.nuvemshop.com.br/documentation/atomic-components/progress-bar).
 
-<img alt="Nimbus" style="margin-bottom: 30px;" src="https://tiendanube.github.io/design-system-nimbus/static/media/nimbus-logo.ab60bd79.png" height="30" /> 
+<img alt="Nimbus" style="margin-bottom: 30px;" src="https://tiendanube.github.io/design-system-nimbus/static/media/nimbus-logo.ab60bd79.png" height="30" />
