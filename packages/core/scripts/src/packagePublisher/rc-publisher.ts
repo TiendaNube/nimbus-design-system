@@ -21,12 +21,23 @@ import type { PackageInfo } from "./rc-publisher.types";
  * Handles version calculation, building, and publishing to npm with rc tag
  */
 class RCPublisher {
-  private packageInfo: PackageInfo;
+  private _packageInfo: PackageInfo | null = null;
   private skipBuild: boolean = false;
   private otp?: string;
 
   constructor() {
-    this.packageInfo = {} as PackageInfo;
+    // packageInfo will be set when findPackageByName is called
+  }
+
+  private get packageInfo(): PackageInfo {
+    if (!this._packageInfo) {
+      throw new Error("Package info not initialized. Call findPackageByName first.");
+    }
+    return this._packageInfo;
+  }
+
+  private set packageInfo(value: PackageInfo) {
+    this._packageInfo = value;
   }
 
   showHelp(): void {
@@ -298,11 +309,11 @@ For more details, see scripts/README.md`);
   }
 
   async cleanup(): Promise<void> {
-    if (this.packageInfo.name && this.packageInfo.version) {
+    if (this._packageInfo?.name && this._packageInfo?.version) {
       console.log("🔄 Restoring original package.json version...");
       setLocalNpmPackageVersion(
-        this.packageInfo.name,
-        this.packageInfo.version
+        this._packageInfo.name,
+        this._packageInfo.version
       );
     }
   }
