@@ -1,32 +1,24 @@
-#!/usr/bin/env node
-
-/**
- * Local Release Candidate Publisher
- *
- * Usage: yarn publish:rc <packageName> [version] [--skip-build] [--otp=123456]
- *
- * Examples:
- *   yarn publish:rc @nimbus-ds/button         # Publish RC for specific package
- *   yarn publish:rc @nimbus-ds/button 1.3.0  # Publish specific version as RC
- *   yarn publish:rc @nimbus-ds/button --skip-build  # Skip build for specific package
- *   yarn publish:rc @nimbus-ds/button --otp=123456 --skip-build  # Combine flags
- */
-
-import { execSync } from "child_process";
 import readline from "readline";
-import { getNextRCVersion, publishToNpm } from "./npm-utils";
+import {
+  getNextRCVersion,
+  publishToNpm,
+  getBaseVersionFromRC,
+  getLocalNpmPackageVersions,
+  setLocalNpmPackageVersion,
+} from "./core/npm-utils/npm-utils";
 import {
   isBumpType,
   isValidSemanticVersion,
   isValidRCVersion,
-} from "./validations";
+} from "./publish-rc.definitions";
+import { buildPackage, getYarnWorkspaces } from "./core/workspaces/workspaces";
+import type { PackageInfo } from "./publish-rc.types";
 
-interface PackageInfo {
-  name: string;
-  version: string;
-}
-
-class LocalRCPublisher {
+/**
+ * Tool for publishing Release Candidate versions of Nimbus packages
+ * Handles version calculation, building, and publishing to npm with rc tag
+ */
+class RCPublisher {
   private packageInfo: PackageInfo;
   private originalVersion: string = "";
   private skipBuild: boolean = false;
@@ -47,8 +39,8 @@ Parameters:
   version      (optional) Version to publish
                - Base version: 1.3.0 (must be major.minor.patch format, finds next RC slot: 1.3.0-rc.1)
                - Full RC: 1.3.0-rc.2 (must be major.minor.patch-rc.number format, publishes exact version)
-               - Bump type: major, minor, or patch (calculates next version)
-               - If not provided, uses yarn version files or current version
+               - Bump type: major, minor, or patch (calculates next version from base version)
+               - If not provided, uses current version (if current is RC, extracts base version)
 
 Examples:
   yarn publish:rc @nimbus-ds/button         # Specific package, use version files or current
@@ -63,50 +55,55 @@ Options:
 For more details, see scripts/README.md`);
   }
 
-  validateArgs(): void {
-    // Check for help flag
-    if (process.argv.includes("--help") || process.argv.includes("-h")) {
-      return this.showHelp();
-    }
+  validateArgs(argv: string[]): {
+    packageName: string;
+    version: string;
+    otp?: string;
+    skipBuild: boolean;
+    showHelp: boolean;
+  } {
+    // Parse arguments (filter out flags)
+    const args = argv.slice(2).filter((arg) => !arg.startsWith("-"));
+    const packageName = args[0];
+    const version = args[1] || "";
+
+    const otpArg = process.argv.find((arg) => arg.startsWith("--otp="));
+    const otp = otpArg ? otpArg.split("=")[1] : undefined;
+    const skipBuild = argv.includes("--skip-build");
+    const showHelp = argv.includes("--help") || argv.includes("-h");
 
     // Validate OTP parameter
-    const otpArg = process.argv.find((arg) => arg.startsWith("--otp="));
-    if (otpArg) {
-      this.otp = otpArg.split("=")[1];
-      if (!this.otp || this.otp.length !== 6 || !/^\d{6}$/.test(this.otp)) {
-        throw new Error(
-          "\n❌ Invalid OTP format. Please provide exactly 6 digits (e.g., --otp=123456)"
-        );
-      }
+    if (otp && (otp.length !== 6 || !/^\d{6}$/.test(otp))) {
+      throw new Error(
+        "\n❌ Invalid OTP format. Please provide exactly 6 digits (e.g., --otp=123456)"
+      );
     }
 
     // Validate required package name
-    const args = process.argv.slice(2).filter((arg) => !arg.startsWith("-"));
-    const packageName = args[0];
     if (!packageName || packageName.trim() === "") {
       throw new Error(
+        // eslint-disable-next-line  max-len
         "\n❌ Error: Package name is required. \n\nUsage: yarn publish:rc <packageName> [version] [options] \nExample: yarn publish:rc @nimbus-ds/button"
       );
     }
+
+    return { packageName, version, otp, skipBuild, showHelp };
   }
 
-  // Removed findProjectRoot() - yarn workspace commands work from any directory
-
-  async run(): Promise<void> {
+  async run(
+    packageName: string,
+    version = "",
+    skipBuild = false,
+    otp?: string
+  ): Promise<void> {
     try {
       console.log("🚀 Nimbus RC Publisher");
       console.log("======================");
       console.log();
 
-      this.validateArgs();
-
-      // Parse arguments (filter out flags)
-      const args = process.argv.slice(2).filter((arg) => !arg.startsWith("-"));
-      const packageName = args[0];
-      const versionArg = args[1] || "";
-
       // Check for skip-build flag
-      this.skipBuild = process.argv.includes("--skip-build");
+      this.skipBuild = skipBuild;
+      this.otp = otp;
 
       // Find package to publish
       this.packageInfo = this.findPackageByName(packageName);
@@ -114,7 +111,7 @@ For more details, see scripts/README.md`);
       console.log(`📋 Current version: ${this.packageInfo.version}\n`);
 
       // Determine RC version to publish
-      const rcVersion = await this.determineRCVersion(versionArg);
+      const rcVersion = await this.determineRCVersion(version);
       console.log(`🎯 Publishing version: ${rcVersion}\n`);
 
       // Confirm with user
@@ -131,10 +128,13 @@ For more details, see scripts/README.md`);
         `\n✅ Successfully published ${this.packageInfo.name}@${rcVersion}`
       );
       console.log(
-        `\n📥 Install with: npm install ${this.packageInfo.name}@${rcVersion}`
+        `\n📥 Install with: yarn add ${this.packageInfo.name}@${rcVersion}`
       );
-    } catch (error: any) {
-      console.error("\n💥 Publishing failed:", error.message);
+    } catch (error) {
+      console.error(
+        "\n💥 Publishing failed:",
+        error instanceof Error ? error.message : String(error)
+      );
       await this.cleanup();
       process.exit(1);
     }
@@ -142,36 +142,28 @@ For more details, see scripts/README.md`);
 
   findPackageByName(packageName: string): PackageInfo {
     // Get all workspaces using yarn
-    const workspacesOutput = execSync("yarn workspaces list --json", {
-      encoding: "utf8",
-    });
-
-    const workspaces = workspacesOutput
-      .split("\n")
-      .filter((line) => line.trim())
-      .map((line) => JSON.parse(line));
+    const workspaces = getYarnWorkspaces();
 
     const workspace = workspaces.find((ws) => ws.name === packageName);
     if (!workspace)
       throw new Error(`Package "${packageName}" not found in workspace`);
 
-    // Get version using npm pkg command (no need to read package.json file)
     try {
-      const versionOutput = execSync(
-        `npm pkg get version --workspace=${packageName}`,
-        { encoding: "utf8" }
-      );
-      // Parse version from first line of output (removes quotes)
-      const firstLine = versionOutput.split("\n")[0].trim();
-      const version = JSON.parse(firstLine);
+      const version = getLocalNpmPackageVersions(packageName);
+
+      if (!version) {
+        throw new Error(`Version not found for package "${packageName}". `);
+      }
 
       return {
         name: workspace.name,
         version,
       };
-    } catch (error: any) {
+    } catch (error) {
       throw new Error(
-        `Error getting version for package "${packageName}": ${error.message}`
+        `Error getting version for package "${packageName}": ${
+          error instanceof Error ? error.message : String(error)
+        }`
       );
     }
   }
@@ -210,16 +202,48 @@ For more details, see scripts/README.md`);
         return getNextRCVersion(this.packageInfo.name, version);
       }
     } else {
-      // No version provided - use current version
-      return getNextRCVersion(this.packageInfo.name, this.packageInfo.version);
+      // No version provided - use current version, but extract base version if it's already an RC
+      let baseVersion = this.packageInfo.version;
+
+      // If current version is already an RC, extract the base version
+      if (baseVersion.includes("-rc.")) {
+        if (!isValidRCVersion(baseVersion)) {
+          throw new Error(
+            `\n❌ Invalid current RC version format: "${baseVersion}". RC version must follow semantic versioning format (major.minor.patch-rc.number)`
+          );
+        }
+        baseVersion = getBaseVersionFromRC(baseVersion);
+        console.log(
+          `🔄 Current version is RC, using base version: ${baseVersion}`
+        );
+      }
+
+      return getNextRCVersion(this.packageInfo.name, baseVersion);
     }
   }
 
   calculateNextVersion(currentVersion: string, bumpType: string): string {
-    const [major, minor, patch] = currentVersion.split(".").map(Number);
+    // If current version is an RC, extract the base version for calculation
+    let baseVersion = currentVersion;
+    if (currentVersion.includes("-rc.")) {
+      if (!isValidRCVersion(currentVersion)) {
+        throw new Error(
+          `\n❌ Invalid current RC version format: "${currentVersion}". RC version must follow semantic versioning format (major.minor.patch-rc.number)\n` +
+            `   Examples: 6.1.1-rc.1, 6.0.0-rc.2, 1.2.3-rc.5\n` +
+            `   Invalid: "6-rc.1", "6.5-rc.1", "1.2-rc.1"`
+        );
+      }
+      baseVersion = getBaseVersionFromRC(currentVersion);
+      console.log(
+        `🔄 Current version is RC, using base version for calculation: ${baseVersion}`
+      );
+    }
+
+    const [major, minor, patch] = baseVersion.split(".").map(Number);
 
     console.log(`🧮 Version calculation:`);
-    console.log(`   Current: ${currentVersion}`);
+    console.log(`   Latest npm published version: ${currentVersion}`);
+    console.log(`   Local version: ${baseVersion}`);
     console.log(`   Bump type: ${bumpType}`);
 
     let nextVersion: string;
@@ -262,9 +286,7 @@ For more details, see scripts/README.md`);
       console.log("\n⚡ Skipping build process (--skip-build flag detected)");
     } else {
       console.log("🔨 Building package...");
-      execSync(`yarn workspace ${this.packageInfo.name} build`, {
-        stdio: "inherit",
-      });
+      buildPackage(this.packageInfo.name);
     }
 
     console.log("📝 Updating package.json version...");
@@ -277,7 +299,6 @@ For more details, see scripts/README.md`);
       otp,
     });
 
-    console.log("🔄 Restoring original package.json version...");
     await this.cleanup();
   }
 
@@ -285,51 +306,15 @@ For more details, see scripts/README.md`);
     // Store original version for cleanup
     this.originalVersion = this.packageInfo.version;
 
-    try {
-      execSync(
-        `npm version ${rcVersion} --workspace=${this.packageInfo.name} --no-git-tag-version`,
-        {
-          // This is useful to skip calling the 'yarn' command inside each package, as that will throw an error.
-          stdio: "ignore",
-        }
-      );
-    } catch (error: any) {
-      //  This is a known error, continue. The command was successful.
-    }
+    setLocalNpmPackageVersion(this.packageInfo.name, rcVersion);
   }
 
   async cleanup(): Promise<void> {
     if (this.originalVersion && this.packageInfo.name) {
+      console.log("🔄 Restoring original package.json version...");
       this.updatePackageVersion(this.originalVersion);
     }
   }
 }
 
-// Main execution
-async function main() {
-  const publisher = new LocalRCPublisher();
-
-  // Handle graceful shutdown
-  process.on("SIGINT", async () => {
-    console.log("\n\n⚠️  Publishing interrupted by user");
-    await publisher.cleanup();
-    process.exit(130);
-  });
-
-  process.on("SIGTERM", async () => {
-    console.log("\n\n⚠️  Publishing terminated");
-    await publisher.cleanup();
-    process.exit(143);
-  });
-
-  await publisher.run();
-}
-
-if (require.main === module) {
-  main().catch((error) => {
-    console.error("💥 Unexpected error:", error);
-    process.exit(1);
-  });
-}
-
-module.exports = { LocalRCPublisher };
+export { RCPublisher };
