@@ -15,11 +15,6 @@ function getYarnWorkspaces(): YarnWorkspace[] {
 }
 
 function buildPackage(packageName: string): void {
-  // Validate package name to prevent command injection
-  if (!/^[@\w\-\/]+$/.test(packageName)) {
-    throw new Error(`Invalid package name: ${packageName}`);
-  }
-
   try {
     execSync(`yarn workspace ${packageName} build`, {
       stdio: "inherit",

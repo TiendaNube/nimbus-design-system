@@ -14,4 +14,15 @@ function isValidRCVersion(version: string): boolean {
   return rcVersionRegex.test(version);
 }
 
-export { isBumpType, isValidSemanticVersion, isValidRCVersion };
+function isValidPackageName(packageName: string): boolean {
+  // Package name format: @scope/package-name (e.g., @nimbus-ds/button)
+  const packageNameRegex = /^[@\w\-\/]+$/;
+  return packageNameRegex.test(packageName);
+}
+
+export {
+  isBumpType,
+  isValidSemanticVersion,
+  isValidRCVersion,
+  isValidPackageName,
+};

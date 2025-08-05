@@ -10,6 +10,7 @@ import {
   isBumpType,
   isValidSemanticVersion,
   isValidRCVersion,
+  isValidPackageName,
 } from "./publish-rc.definitions";
 import { buildPackage, getYarnWorkspaces } from "./core/workspaces/workspaces";
 import type { PackageInfo } from "./publish-rc.types";
@@ -83,6 +84,10 @@ For more details, see scripts/README.md`);
       throw new Error(
         // eslint-disable-next-line  max-len
         "\n❌ Error: Package name is required. \n\nUsage: yarn publish:rc <packageName> [version] [options] \nExample: yarn publish:rc @nimbus-ds/button"
+      );
+    } else if (!isValidPackageName(packageName)) {
+      throw new Error(
+        `\n❌ Invalid package name: "${packageName}". Package name must follow the format @scope/package-name (e.g., @nimbus-ds/button)`
       );
     }
 
