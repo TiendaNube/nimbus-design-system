@@ -6,7 +6,7 @@ import type { NpmPublishOptions } from "./npm-utils.types";
  * @param packageName - The name of the package to check
  * @returns Array of published versions, or empty array if package doesn't exist
  */
-export function getRemoteNpmPackageVersions(packageName: string): string[] {
+function getRemoteNpmPackageVersions(packageName: string): string[] {
   try {
     console.log(`🔍 Fetching published versions for ${packageName}...`);
 
@@ -23,7 +23,7 @@ export function getRemoteNpmPackageVersions(packageName: string): string[] {
   }
 }
 
-export function getLocalNpmPackageVersions(packageName: string): string {
+function getLocalNpmPackageVersions(packageName: string): string {
   const versionOutput = execSync(
     `npm pkg get version --workspace=${packageName}`,
     { encoding: "utf8" }
@@ -81,10 +81,7 @@ export function getLocalNpmPackageVersions(packageName: string): string {
  * @param baseVersion - The base version (e.g., "1.0.0")
  * @returns The next RC version (e.g., "1.0.0-rc.1" or "1.0.0-rc.3")
  */
-export function getNextRCVersion(
-  packageName: string,
-  baseVersion: string
-): string {
+function getNextRCVersion(packageName: string, baseVersion: string): string {
   const versions = getRemoteNpmPackageVersions(packageName);
   const rcVersions = versions.filter((v) => v.startsWith(`${baseVersion}-rc.`));
 
@@ -113,7 +110,7 @@ export function getNextRCVersion(
  * @param packageName - The name of the package workspace
  * @param options - Publishing options (access, tag, OTP)
  */
-export function publishToNpm(
+function publishToNpm(
   packageName: string,
   options: NpmPublishOptions = {}
 ): void {
@@ -142,10 +139,7 @@ export function publishToNpm(
  * @param version - The version to check
  * @returns True if the version exists, false otherwise
  */
-export function versionExistsOnNpm(
-  packageName: string,
-  version: string
-): boolean {
+function versionExistsOnNpm(packageName: string, version: string): boolean {
   const versions = getRemoteNpmPackageVersions(packageName);
   return versions.includes(version);
 }
@@ -156,7 +150,7 @@ export function versionExistsOnNpm(
  * @param baseVersion - The base version to check RCs for
  * @returns Array of RC versions for the base version
  */
-export function getRCVersionsForBase(
+function getRCVersionsForBase(
   packageName: string,
   baseVersion: string
 ): string[] {
@@ -169,7 +163,7 @@ export function getRCVersionsForBase(
  * @param version - The version string to validate
  * @returns True if valid RC format, false otherwise
  */
-export function isValidRCVersion(version: string): boolean {
+function isValidRCVersion(version: string): boolean {
   const rcPattern = /^\d+\.\d+\.\d+-rc\.\d+$/;
   return rcPattern.test(version);
 }
@@ -179,7 +173,7 @@ export function isValidRCVersion(version: string): boolean {
  * @param rcVersion - The RC version (e.g., "1.0.0-rc.1")
  * @returns The base version (e.g., "1.0.0")
  */
-export function getBaseVersionFromRC(rcVersion: string): string {
+function getBaseVersionFromRC(rcVersion: string): string {
   const match = rcVersion.match(/^(\d+\.\d+\.\d+)-rc\.\d+$/);
   if (!match) {
     throw new Error(`Invalid RC version format: ${rcVersion}`);
@@ -192,7 +186,7 @@ export function getBaseVersionFromRC(rcVersion: string): string {
  * @param rcVersion - The RC version (e.g., "1.0.0-rc.1")
  * @returns The RC number (e.g., 1)
  */
-export function getRCNumber(rcVersion: string): number {
+function getRCNumber(rcVersion: string): number {
   const match = rcVersion.match(/-rc\.(\d+)$/);
   if (!match) {
     throw new Error(`Invalid RC version format: ${rcVersion}`);
@@ -200,10 +194,7 @@ export function getRCNumber(rcVersion: string): number {
   return parseInt(match[1], 10);
 }
 
-export function setLocalNpmPackageVersion(
-  packageName: string,
-  version: string
-): void {
+function setLocalNpmPackageVersion(packageName: string, version: string): void {
   try {
     execSync(
       `npm version ${version} --workspace=${packageName} --no-git-tag-version`,
@@ -216,3 +207,34 @@ export function setLocalNpmPackageVersion(
     // This is a known error, continue. The command was successful.
   }
 }
+
+function bumpVersion(
+  major: number,
+  minor: number,
+  patch: number,
+  bumpType: string
+): string {
+  switch (bumpType) {
+    case "major":
+      return `${major + 1}.0.0`;
+    case "minor":
+      return `${major}.${minor + 1}.0`;
+    case "patch":
+    default:
+      return `${major}.${minor}.${patch + 1}`;
+  }
+}
+
+export {
+  bumpVersion,
+  getBaseVersionFromRC,
+  getRCNumber,
+  getRCVersionsForBase,
+  getNextRCVersion,
+  getRemoteNpmPackageVersions,
+  getLocalNpmPackageVersions,
+  isValidRCVersion,
+  publishToNpm,
+  versionExistsOnNpm,
+  setLocalNpmPackageVersion,
+};

@@ -32,6 +32,7 @@ async function main() {
 if (require.main === module) {
   main().catch((error) => {
     console.error("💥 Unexpected error:", error);
-    process.exit(1);
+    const exitCode = error.code || 1;
+    process.exit(exitCode);
   });
 }

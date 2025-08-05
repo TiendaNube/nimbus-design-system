@@ -7,7 +7,7 @@ Package-specific changes not released in any package will be added here just bef
 
 #### 🎉 New features
 
-- Added `publish-rc` script to publish Release Candidate versions of Nimbus packages. ([#300](https://github.com/TiendaNube/nimbus-design-system/pull/300) by [@joacotornello](https://github.com/joacotornello))
+- Added `publish-rc` script to publish Release Candidate versions of Nimbus packages. ([#328](https://github.com/TiendaNube/nimbus-design-system/pull/328) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-07-29
 

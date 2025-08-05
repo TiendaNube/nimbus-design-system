@@ -5,15 +5,16 @@ import {
   getBaseVersionFromRC,
   getLocalNpmPackageVersions,
   setLocalNpmPackageVersion,
+  bumpVersion,
 } from "./core/npm-utils/npm-utils";
 import {
   isBumpType,
   isValidSemanticVersion,
   isValidRCVersion,
   isValidPackageName,
-} from "./publish-rc.definitions";
+} from "./rc-publisher.definitions";
 import { buildPackage, getYarnWorkspaces } from "./core/workspaces/workspaces";
-import type { PackageInfo } from "./publish-rc.types";
+import type { PackageInfo } from "./rc-publisher.types";
 
 /**
  * Tool for publishing Release Candidate versions of Nimbus packages
@@ -82,8 +83,9 @@ For more details, see scripts/README.md`);
     // Validate required package name
     if (!packageName || packageName.trim() === "") {
       throw new Error(
-        // eslint-disable-next-line  max-len
-        "\n❌ Error: Package name is required. \n\nUsage: yarn publish:rc <packageName> [version] [options] \nExample: yarn publish:rc @nimbus-ds/button"
+        "\n❌ Error: Package name is required. \n\n" +
+          "Usage: yarn publish:rc <packageName> [version] [options] \n" +
+          "Example: yarn publish:rc @nimbus-ds/button"
       );
     } else if (!isValidPackageName(packageName)) {
       throw new Error(
@@ -155,7 +157,7 @@ For more details, see scripts/README.md`);
       const version = getLocalNpmPackageVersions(packageName);
 
       if (!version) {
-        throw new Error(`Version not found for package "${packageName}". `);
+        throw new Error(`Version not found for package "${packageName}"`);
       }
 
       return {
@@ -251,19 +253,7 @@ For more details, see scripts/README.md`);
     console.log(`   Local version: ${baseVersion}`);
     console.log(`   Bump type: ${bumpType}`);
 
-    let nextVersion: string;
-    switch (bumpType) {
-      case "major":
-        nextVersion = `${major + 1}.0.0`;
-        break;
-      case "minor":
-        nextVersion = `${major}.${minor + 1}.0`;
-        break;
-      case "patch":
-      default:
-        nextVersion = `${major}.${minor}.${patch + 1}`;
-        break;
-    }
+    const nextVersion = bumpVersion(major, minor, patch, bumpType);
 
     console.log(`   Calculated: ${nextVersion}`);
     return nextVersion;
