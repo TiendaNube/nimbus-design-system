@@ -15,12 +15,15 @@
 import { execSync } from "child_process";
 import readline from "readline";
 import { getNextRCVersion, publishToNpm } from "./npm-utils";
-import { getBumpTypeFromYarnVersions } from "./yarn-utils";
+import {
+  isBumpType,
+  isValidSemanticVersion,
+  isValidRCVersion,
+} from "./validations";
 
 interface PackageInfo {
   name: string;
   version: string;
-  location: string;
 }
 
 class LocalRCPublisher {
@@ -42,8 +45,9 @@ Parameters:
   packageName  (required) Name of package to publish (e.g., @nimbus-ds/button)
   
   version      (optional) Version to publish
-               - Base version: 1.3.0 (finds next RC slot: 1.3.0-rc.1)
-               - Full RC: 1.3.0-rc.2 (publishes exact version)
+               - Base version: 1.3.0 (must be major.minor.patch format, finds next RC slot: 1.3.0-rc.1)
+               - Full RC: 1.3.0-rc.2 (must be major.minor.patch-rc.number format, publishes exact version)
+               - Bump type: major, minor, or patch (calculates next version)
                - If not provided, uses yarn version files or current version
 
 Examples:
@@ -86,7 +90,7 @@ For more details, see scripts/README.md`);
     }
   }
 
-// Removed findProjectRoot() - yarn workspace commands work from any directory
+  // Removed findProjectRoot() - yarn workspace commands work from any directory
 
   async run(): Promise<void> {
     try {
@@ -107,7 +111,6 @@ For more details, see scripts/README.md`);
       // Find package to publish
       this.packageInfo = this.findPackageByName(packageName);
       console.log(`📦 Package: ${this.packageInfo.name}`);
-      console.log(`📁 Location: ${this.packageInfo.location}`);
       console.log(`📋 Current version: ${this.packageInfo.version}\n`);
 
       // Determine RC version to publish
@@ -138,39 +141,37 @@ For more details, see scripts/README.md`);
   }
 
   findPackageByName(packageName: string): PackageInfo {
+    // Get all workspaces using yarn
+    const workspacesOutput = execSync("yarn workspaces list --json", {
+      encoding: "utf8",
+    });
+
+    const workspaces = workspacesOutput
+      .split("\n")
+      .filter((line) => line.trim())
+      .map((line) => JSON.parse(line));
+
+    const workspace = workspaces.find((ws) => ws.name === packageName);
+    if (!workspace)
+      throw new Error(`Package "${packageName}" not found in workspace`);
+
+    // Get version using npm pkg command (no need to read package.json file)
     try {
-      // Get all workspaces using yarn
-      const workspacesOutput = execSync("yarn workspaces list --json", {
-        encoding: "utf8",
-      });
-
-      const workspaces = workspacesOutput
-        .split("\n")
-        .filter((line) => line.trim())
-        .map((line) => JSON.parse(line));
-
-      const workspace = workspaces.find((ws) => ws.name === packageName);
-      if (!workspace)
-        throw new Error(`Package "${packageName}" not found in workspace`);
-
-      // Get version using npm pkg command (no need to read package.json file)
       const versionOutput = execSync(
         `npm pkg get version --workspace=${packageName}`,
         { encoding: "utf8" }
       );
-      
       // Parse version from first line of output (removes quotes)
-      const firstLine = versionOutput.split('\n')[0].trim();
+      const firstLine = versionOutput.split("\n")[0].trim();
       const version = JSON.parse(firstLine);
 
       return {
         name: workspace.name,
         version,
-        location: workspace.location,
       };
-    } catch (error) {
+    } catch (error: any) {
       throw new Error(
-        `Couldn't find package ${packageName} in workspace. Error: ${error}`
+        `Error getting version for package "${packageName}": ${error.message}`
       );
     }
   }
@@ -181,29 +182,36 @@ For more details, see scripts/README.md`);
       const version = versionArg.trim();
 
       if (version.includes("-rc.")) {
-        // Complete RC version provided - use as-is
+        // Complete RC version provided - validate format and use as-is
+        if (!isValidRCVersion(version)) {
+          throw new Error(
+            `\n❌ Invalid RC version format: "${version}". RC version must follow semantic versioning format (major.minor.patch-rc.number)\n` +
+              `   Examples: 6.1.1-rc.1, 6.0.0-rc.2, 1.2.3-rc.5\n` +
+              `   Invalid: "6-rc.1", "6.5-rc.1", "1.2-rc.1"`
+          );
+        }
         return version;
+      } else if (isBumpType(version)) {
+        // Bump type provided (major/minor/patch) - calculate next version
+        const nextVersion = this.calculateNextVersion(
+          this.packageInfo.version,
+          version.toLowerCase()
+        );
+        return getNextRCVersion(this.packageInfo.name, nextVersion);
       } else {
-        // Base version provided - find next RC slot
+        // Base version provided - validate format and find next RC slot
+        if (!isValidSemanticVersion(version)) {
+          throw new Error(
+            `\n❌ Invalid version format: "${version}". Version must follow semantic versioning format (major.minor.patch)\n` +
+              `   Examples: 6.1.1, 6.0.0, 1.2.3\n` +
+              `   Invalid: "6", "6.5", "1.2"`
+          );
+        }
         return getNextRCVersion(this.packageInfo.name, version);
       }
     } else {
-      // No version specified - determine from yarn version files
-      const bumpType = getBumpTypeFromYarnVersions(this.packageInfo.name);
-      if (bumpType === null) {
-        // No version files found or package not in version files - use current version
-        return getNextRCVersion(
-          this.packageInfo.name,
-          this.packageInfo.version
-        );
-      } else {
-        // Version files found with bump type - calculate next version
-        const baseVersion = this.calculateNextVersion(
-          this.packageInfo.version,
-          bumpType
-        );
-        return getNextRCVersion(this.packageInfo.name, baseVersion);
-      }
+      // No version provided - use current version
+      return getNextRCVersion(this.packageInfo.name, this.packageInfo.version);
     }
   }
 
@@ -211,8 +219,8 @@ For more details, see scripts/README.md`);
     const [major, minor, patch] = currentVersion.split(".").map(Number);
 
     console.log(`🧮 Version calculation:`);
-    console.log(`   Current: ${currentVersion} (${major}.${minor}.${patch})`);
-    console.log(`   Bump: ${bumpType}`);
+    console.log(`   Current: ${currentVersion}`);
+    console.log(`   Bump type: ${bumpType}`);
 
     let nextVersion: string;
     switch (bumpType) {
@@ -228,7 +236,7 @@ For more details, see scripts/README.md`);
         break;
     }
 
-    console.log(`   Next: ${nextVersion}`);
+    console.log(`   Calculated: ${nextVersion}`);
     return nextVersion;
   }
 
@@ -276,30 +284,25 @@ For more details, see scripts/README.md`);
   updatePackageVersion(rcVersion: string): void {
     // Store original version for cleanup
     this.originalVersion = this.packageInfo.version;
-    
+
     try {
-      execSync(`npm version ${rcVersion} --workspace=${this.packageInfo.name} --no-git-tag-version`, {
-        stdio: "inherit",
-      });
-    } catch (error) {
-      throw new Error(`Failed to update package version: ${error}`);
+      execSync(
+        `npm version ${rcVersion} --workspace=${this.packageInfo.name} --no-git-tag-version`,
+        {
+          // This is useful to skip calling the 'yarn' command inside each package, as that will throw an error.
+          stdio: "ignore",
+        }
+      );
+    } catch (error: any) {
+      //  This is a known error, continue. The command was successful.
     }
   }
 
   async cleanup(): Promise<void> {
     if (this.originalVersion && this.packageInfo.name) {
-      try {
-        execSync(`npm version ${this.originalVersion} --workspace=${this.packageInfo.name} --no-git-tag-version`, {
-          stdio: "inherit",
-        });
-        console.log(`✅ Package.json version restored to ${this.originalVersion}`);
-      } catch (error) {
-        console.warn(`⚠️  Failed to restore original version: ${error}`);
-      }
+      this.updatePackageVersion(this.originalVersion);
     }
   }
-
-
 }
 
 // Main execution

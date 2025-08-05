@@ -15,16 +15,13 @@ yarn publish:rc <packageName> [version] [options]
 - **`packageName`** (required, 1st argument): Name of the package to publish
   - Must be a valid `@nimbus-ds/*` package name
 - **`version`** (optional, 2nd argument): Version to publish
-  - If not provided, the script will use yarn version files to determine bump type
+  - If not provided, the script will use the current version plus the next available RC slot
   - Can be a base version (e.g., `1.3.0`) - script will find next available RC slot
   - Can be a complete RC version (e.g., `1.3.0-rc.2`) - script will publish exactly that version
 
 ### Examples
 
 ```bash
-# Publish RC for specific package (auto-detect version from yarn version files)
-yarn publish:rc @nimbus-ds/button
-
 # Publish specific version as RC (finds next available RC slot)
 yarn publish:rc @nimbus-ds/button 1.3.0
 # Results in: 1.3.0-rc.1 (or higher if RC.1 exists)
@@ -50,7 +47,7 @@ yarn publish:rc @nimbus-ds/button --otp=123456
 
    - If complete RC version provided (e.g., `1.3.0-rc.2`): uses exactly that version
    - If base version provided (e.g., `1.3.0`): checks npm registry for existing RCs and finds next available slot
-   - If no version provided: reads yarn version files to determine bump type (patch/minor/major), calculates next version, then finds next RC slot
+   - If no version provided: uses the current version plus the next available RC slot
 
 3. **Safe Publishing**:
    - Builds the package first
@@ -58,14 +55,6 @@ yarn publish:rc @nimbus-ds/button --otp=123456
    - Publishes to npm with `--tag rc`
    - Restores original `package.json` version
    - Handles interruptions gracefully (Ctrl+C)
-
-### Version Bump Detection
-
-The script automatically detects version bumps from `.yarn/versions/` files:
-
-- Looks for files containing the package name
-- Searches for keywords: `major`, `minor`, `patch`
-- Defaults to the current version, plus the next available RC slot if no version files found
 
 ### Requirements
 
