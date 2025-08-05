@@ -15,9 +15,22 @@ function getYarnWorkspaces(): YarnWorkspace[] {
 }
 
 function buildPackage(packageName: string): void {
-  execSync(`yarn workspace ${packageName} build`, {
-    stdio: "inherit",
-  });
+  // Validate package name to prevent command injection
+  if (!/^[@\w\-\/]+$/.test(packageName)) {
+    throw new Error(`Invalid package name: ${packageName}`);
+  }
+
+  try {
+    execSync(`yarn workspace ${packageName} build`, {
+      stdio: "inherit",
+    });
+  } catch (error) {
+    throw new Error(
+      `Failed to build package ${packageName}: ${
+        error instanceof Error ? error.message : String(error)
+      }`
+    );
+  }
 }
 
 export { getYarnWorkspaces, buildPackage };

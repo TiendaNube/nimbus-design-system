@@ -5,17 +5,19 @@ async function main() {
   const publisher = new RCPublisher();
 
   // Handle graceful shutdown
-  process.on("SIGINT", async () => {
-    console.log("\n\n⚠️  Publishing interrupted by user");
+  // extract common shutdown logic for both SIGINT and SIGTERM
+  const handleShutdown = async (signal: string) => {
+    console.log(
+      `\n\n⚠️  Publishing ${
+        signal === "SIGINT" ? "interrupted by user" : "terminated"
+      }`
+    );
     await publisher.cleanup();
-    process.exit(EXIT_CODES.SIGINT);
-  });
+    process.exit(signal === "SIGINT" ? EXIT_CODES.SIGINT : EXIT_CODES.SIGTERM);
+  };
 
-  process.on("SIGTERM", async () => {
-    console.log("\n\n⚠️  Publishing terminated");
-    await publisher.cleanup();
-    process.exit(EXIT_CODES.SIGTERM);
-  });
+  process.on("SIGINT", () => handleShutdown("SIGINT"));
+  process.on("SIGTERM", () => handleShutdown("SIGTERM"));
 
   const { packageName, version, otp, skipBuild, showHelp } =
     publisher.validateArgs(process.argv);

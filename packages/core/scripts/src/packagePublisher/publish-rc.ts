@@ -20,7 +20,6 @@ import type { PackageInfo } from "./publish-rc.types";
  */
 class RCPublisher {
   private packageInfo: PackageInfo;
-  private originalVersion: string = "";
   private skipBuild: boolean = false;
   private otp?: string;
 
@@ -136,7 +135,6 @@ For more details, see scripts/README.md`);
         error instanceof Error ? error.message : String(error)
       );
       await this.cleanup();
-      process.exit(1);
     }
   }
 
@@ -241,7 +239,9 @@ For more details, see scripts/README.md`);
 
     const [major, minor, patch] = baseVersion.split(".").map(Number);
 
-    console.log(`🧮 Version calculation:`);
+    if (isNaN(major) || isNaN(minor) || isNaN(patch)) {
+      throw new Error(`Invalid version format: ${baseVersion}`);
+    }
     console.log(`   Latest npm published version: ${currentVersion}`);
     console.log(`   Local version: ${baseVersion}`);
     console.log(`   Bump type: ${bumpType}`);
@@ -290,7 +290,7 @@ For more details, see scripts/README.md`);
     }
 
     console.log("📝 Updating package.json version...");
-    this.updatePackageVersion(rcVersion);
+    setLocalNpmPackageVersion(this.packageInfo.name, rcVersion);
 
     console.log("📤 Publishing to npm...");
     publishToNpm(this.packageInfo.name, {
@@ -302,17 +302,13 @@ For more details, see scripts/README.md`);
     await this.cleanup();
   }
 
-  updatePackageVersion(rcVersion: string): void {
-    // Store original version for cleanup
-    this.originalVersion = this.packageInfo.version;
-
-    setLocalNpmPackageVersion(this.packageInfo.name, rcVersion);
-  }
-
   async cleanup(): Promise<void> {
-    if (this.originalVersion && this.packageInfo.name) {
+    if (this.packageInfo.name && this.packageInfo.version) {
       console.log("🔄 Restoring original package.json version...");
-      this.updatePackageVersion(this.originalVersion);
+      setLocalNpmPackageVersion(
+        this.packageInfo.name,
+        this.packageInfo.version
+      );
     }
   }
 }
