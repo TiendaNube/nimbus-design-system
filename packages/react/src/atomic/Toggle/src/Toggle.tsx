@@ -12,6 +12,7 @@ const Toggle: React.FC<ToggleProps> & ToggleComponents = ({
   id,
   name,
   active,
+  disabled,
   ...rest
 }: ToggleProps) => (
   <label htmlFor={id || name} className={toggle.classnames.container}>
@@ -22,13 +23,17 @@ const Toggle: React.FC<ToggleProps> & ToggleComponents = ({
       type="checkbox"
       className={toggle.classnames.container__input}
       defaultChecked={active}
+      disabled={disabled}
     />
     <span
       data-testid="slider"
       className={toggle.classnames.container__slider}
     />
     {label && (
-      <Text data-testid="text" color="neutral-textHigh">
+      <Text
+        data-testid="text"
+        color={disabled ? "neutral-textDisabled" : "neutral-textHigh"}
+      >
         {label}
       </Text>
     )}

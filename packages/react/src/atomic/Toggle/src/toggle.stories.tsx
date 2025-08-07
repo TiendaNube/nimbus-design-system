@@ -28,3 +28,18 @@ export const label: Story = {
     label: "Label",
   },
 };
+
+export const disabled: Story = {
+  args: {
+    label: "Disabled",
+    disabled: true,
+  },
+};
+
+export const disabledActive: Story = {
+  args: {
+    label: "Disabled active",
+    disabled: true,
+    active: true,
+  },
+};
