@@ -15,7 +15,10 @@ const meta: Meta<typeof Icon> = {
       description: "Search for a specific icon",
     },
     color: {
-      control: "select",
+      control: {
+        type: "select",
+        options: ["primary-textLow", "secondary-textLow", "tertiary-textLow"],
+      },
     },
   },
   render: ({ source, color }) => {
