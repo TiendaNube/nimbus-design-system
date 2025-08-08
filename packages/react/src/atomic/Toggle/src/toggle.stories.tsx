@@ -35,11 +35,3 @@ export const disabled: Story = {
     disabled: true,
   },
 };
-
-export const disabledActive: Story = {
-  args: {
-    label: "Disabled active",
-    disabled: true,
-    active: true,
-  },
-};

@@ -91,7 +91,7 @@ globalStyle(`${container}:has(${container__input}:disabled)`, {
 });
 
 globalStyle(`${container} input:disabled ~ ${container__slider}`, {
-  borderColor: varsThemeBase.colors.neutral.interactive,
+  borderColor: varsThemeBase.colors.neutral.surfaceHighlight,
   backgroundColor: varsThemeBase.colors.neutral.surfaceDisabled,
 });
 
@@ -123,5 +123,5 @@ globalStyle(
 
 // Active + disabled: remove border
 globalStyle(`${container} input:checked:disabled ~ ${container__slider}`, {
-  borderColor: "transparent",
+  borderColor: varsThemeBase.colors.neutral.surfaceDisabled,
 });
