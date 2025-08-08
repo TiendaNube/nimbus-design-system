@@ -28,3 +28,10 @@ export const label: Story = {
     label: "Label",
   },
 };
+
+export const disabled: Story = {
+  args: {
+    label: "Disabled",
+    disabled: true,
+  },
+};

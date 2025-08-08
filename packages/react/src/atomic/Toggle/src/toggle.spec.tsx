@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 
 import { Toggle } from "./Toggle";
 import { ToggleProps } from "./toggle.types";
@@ -31,6 +31,15 @@ describe("GIVEN <Toggle />", () => {
       expect(
         screen.getByTestId<HTMLInputElement>("toggle-input").checked
       ).toBeTruthy();
+    });
+
+    it("THEN should not toggle when disabled", () => {
+      makeSut({ name: "toggle", label: "My Toggle", disabled: true });
+      const input = screen.getByTestId<HTMLInputElement>("toggle-input");
+      expect(input.disabled).toBeTruthy();
+      const label = screen.getByText("My Toggle");
+      fireEvent.click(label);
+      expect(input.checked).toBeFalsy();
     });
   });
 });
