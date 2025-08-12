@@ -3,6 +3,12 @@
 This is the log of notable changes to the Design System Nimbus that are developer-facing.
 Package-specific changes not released in any package will be added here just before the release. Until then, you can find them in changelogs of the individual packages (see [packages](./packages) directory).
 
+## 2025-08-05 `1.8.0`
+
+#### 🎉 New features
+
+- Added `publish-rc` script to publish Release Candidate versions of Nimbus packages. ([#328](https://github.com/TiendaNube/nimbus-design-system/pull/328) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-07-29
 
 ### 🎉 New features

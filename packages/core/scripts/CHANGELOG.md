@@ -2,6 +2,12 @@
 
 This package is intended for internal use in generating custom script builds at design system build time.
 
+## 2025-08-05 `1.8.0`
+
+#### 🎉 New features
+
+- Added `publish-rc` script to publish Release Candidate versions of Nimbus packages. ([#328](https://github.com/TiendaNube/nimbus-design-system/pull/328) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-06-04 `1.7.0`
 
 #### 🎉 New features

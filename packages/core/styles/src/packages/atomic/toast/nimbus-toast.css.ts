@@ -48,7 +48,7 @@ export const appearance = styleVariants({
   progress: [
     base,
     {
-      background: varsThemeBase.colors.neutral.textLow,
+      background: varsThemeBase.colors.neutral.textHigh,
     },
   ],
 });

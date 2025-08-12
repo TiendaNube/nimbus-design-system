@@ -16,12 +16,48 @@ The easiest way to track changes before raising a PR is to run `yarn bump:check 
 
 Currently also with a gihub action that also validates on each pull request if the versions have changed according to the changes made to the code.
 
-### Release candidates
+## 🚀 Publishing Release Candidates (RC)
 
-1. Run `yarn bump:check`
-1. Run `yarn npm login` and supply your credentials (ensure you have access to the org scope for publishing)
-1. Run `yarn publish:next`
-1. Commit the resulting changes directly to `current branch`
+To publish Release Candidate versions for testing before stable releases:
+
+**Usage:**
+
+```bash
+yarn publish:rc <packageName> [version] [--skip-build] [--otp=123456]
+```
+
+**Parameters:**
+
+- `packageName` (required): Name of package to publish (e.g., `@nimbus-ds/button`)
+- `version` (optional): Version to publish
+  - Base version: `1.3.0` (finds next RC slot: `1.3.0-rc.1`)
+  - Full RC: `1.3.0-rc.2` (publishes exact version)
+  - Bump type: `major`, `minor`, or `patch` (calculates next version)
+  - If not provided, uses current version
+
+**Examples:**
+
+```bash
+# Use current version
+yarn publish:rc @nimbus-ds/button
+
+# Specify base version
+yarn publish:rc @nimbus-ds/button 1.3.0
+
+# Specify exact RC version
+yarn publish:rc @nimbus-ds/button 1.3.0-rc.2
+
+# Use bump type
+yarn publish:rc @nimbus-ds/button patch
+
+# Skip build and provide OTP
+yarn publish:rc @nimbus-ds/button --skip-build --otp=123456
+```
+
+**Options:**
+
+- `--skip-build`: Skip the build process and publish as-is
+- `--otp=123456`: Provide 2FA one-time password for npm publish
 
 ### Publishing a stable release
 
