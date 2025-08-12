@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/toggle",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
