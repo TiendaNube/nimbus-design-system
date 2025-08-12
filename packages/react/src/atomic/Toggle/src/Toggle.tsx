@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Text } from "@nimbus-ds/text";
 import { toggle } from "@nimbus-ds/styles";
 
@@ -12,28 +12,38 @@ const Toggle: React.FC<ToggleProps> & ToggleComponents = ({
   id,
   name,
   active,
+  disabled,
   ...rest
-}: ToggleProps) => (
-  <label htmlFor={id || name} className={toggle.classnames.container}>
-    <input
-      {...rest}
-      id={id || name}
-      name={name}
-      type="checkbox"
-      className={toggle.classnames.container__input}
-      defaultChecked={active}
-    />
-    <span
-      data-testid="slider"
-      className={toggle.classnames.container__slider}
-    />
-    {label && (
-      <Text data-testid="text" color="neutral-textHigh">
-        {label}
-      </Text>
-    )}
-  </label>
-);
+}: ToggleProps) => {
+  const labelColor = useMemo(
+    () => (disabled ? "neutral-textDisabled" : "neutral-textHigh"),
+    [disabled],
+  );
+
+  return (
+    <label htmlFor={id || name} className={toggle.classnames.container}>
+      <input
+        {...rest}
+        id={id || name}
+        name={name}
+        type="checkbox"
+        className={toggle.classnames.container__input}
+        defaultChecked={active}
+        disabled={disabled}
+        aria-disabled={disabled}
+      />
+      <span
+        data-testid="slider"
+        className={toggle.classnames.container__slider}
+      />
+      {label && (
+        <Text data-testid="text" color={labelColor}>
+          {label}
+        </Text>
+      )}
+    </label>
+  );
+};
 
 Toggle.displayName = "Toggle";
 Toggle.Skeleton = ToggleSkeleton;

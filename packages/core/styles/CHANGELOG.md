@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2025-08-12 `9.21.3`
+
+#### 🎉 New features
+
+- Added `disabled` state to `Toggle` component. ([#330](https://github.com/TiendaNube/nimbus-design-system/pull/330) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-08-07 `9.21.2`
 
 #### 🐛 Bug fixes

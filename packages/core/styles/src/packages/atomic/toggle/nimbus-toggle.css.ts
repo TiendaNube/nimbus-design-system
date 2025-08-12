@@ -84,3 +84,27 @@ globalStyle(`${container} input:checked ~ ${container__slider}:hover:before`, {
 globalStyle(`${container} input:checked ~ ${container__slider}:active:before`, {
   backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
 });
+
+// Disabled state
+globalStyle(`${container}:has(${container__input}:disabled)`, {
+  cursor: "default",
+});
+
+globalStyle(`${container} input:disabled ~ ${container__slider}`, {
+  borderColor: varsThemeBase.colors.neutral.surfaceHighlight,
+  backgroundColor: varsThemeBase.colors.neutral.surfaceDisabled,
+});
+
+globalStyle(`${container} input:disabled ~ ${container__slider}:before`, {
+  backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
+});
+
+globalStyle(`${container} input:disabled ~ ${container__slider}:hover:before`, {
+  // Reset background color
+  backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
+});
+
+// Checked + disabled: keep non-interactive border color
+globalStyle(`${container} input:checked:disabled ~ ${container__slider}`, {
+  borderColor: varsThemeBase.colors.neutral.surfaceDisabled,
+});
