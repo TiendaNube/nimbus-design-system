@@ -87,7 +87,7 @@ globalStyle(`${container} input:checked ~ ${container__slider}:active:before`, {
 
 // Disabled state
 globalStyle(`${container}:has(${container__input}:disabled)`, {
-  cursor: "not-allowed",
+  cursor: "default",
 });
 
 globalStyle(`${container} input:disabled ~ ${container__slider}`, {
