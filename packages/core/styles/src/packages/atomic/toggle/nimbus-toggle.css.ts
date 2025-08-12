@@ -104,7 +104,7 @@ globalStyle(`${container} input:disabled ~ ${container__slider}:hover:before`, {
   backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
 });
 
-// Active + disabled: remove border
+// Checked + disabled: keep non-interactive border color
 globalStyle(`${container} input:checked:disabled ~ ${container__slider}`, {
   borderColor: varsThemeBase.colors.neutral.surfaceDisabled,
 });
