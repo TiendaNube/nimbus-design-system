@@ -98,28 +98,8 @@ globalStyle(`${container} input:disabled ~ ${container__slider}`, {
 globalStyle(`${container} input:disabled ~ ${container__slider}:before`, {
   backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
 });
-
-globalStyle(`${container} input:disabled ~ ${container__slider}:hover`, {
-  borderColor: varsThemeBase.colors.neutral.interactive,
-});
-
-globalStyle(`${container} input:disabled ~ ${container__slider}:active`, {
-  borderColor: varsThemeBase.colors.neutral.interactive,
-});
-
-globalStyle(
-  `${container} input:disabled ~ ${container__slider}:hover:before`,
-  {
-    backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
-  }
-);
-
-globalStyle(
-  `${container} input:disabled ~ ${container__slider}:active:before`,
-  {
-    backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
-  }
-);
+ 
+ 
 
 // Active + disabled: remove border
 globalStyle(`${container} input:checked:disabled ~ ${container__slider}`, {
