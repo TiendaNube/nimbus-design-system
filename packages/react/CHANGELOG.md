@@ -2,6 +2,12 @@
 
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories every day, with simplicity, accessibility, consistency and performance.
 
+## 2025-08-12 `5.17.2`
+
+#### 🐛 Bug fixes
+
+- Added `disabled` state to `Toggle` component. ([#330](https://github.com/TiendaNube/nimbus-design-system/pull/330) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-08-04 `5.17.1`
 
 #### 🐛 Bug fixes
