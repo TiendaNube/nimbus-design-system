@@ -1,0 +1,6 @@
+releases:
+  "@nimbus-ds/components": patch
+  "@nimbus-ds/popover": patch
+
+declined:
+  - nimbus-design-system
