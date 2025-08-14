@@ -2,11 +2,17 @@
 
 Use Popovers to bring attention to specific user interface elements and suggest an action or to guide users through a new experience
 
+## 2025-08-14 `4.3.1`
+
+### 💡 Others
+
+- Added stories demonstrating controlled usage with `visible` and `onVisibility`, including a table pattern to ensure only one Popover is open at a time. This documents the recommended approach to replace custom global listeners and address [Issue #251](https://github.com/TiendaNube/nimbus-design-system/issues/251). ([#331](https://github.com/TiendaNube/nimbus-design-system/pull/331) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-07-24 `4.3.0`
 
 #### 🎉 New features
 
-- Added `renderOverlay` property to render an invisible overlay that prevents accidental clicks on elements behind the popover when enabled. This improves UX by providing click protection without visual interference. ([#316](https://github.com/TiendaNube/nimbus-design-system/pull/316) by [@harrytiendanube](https://github.com/harrytiendanube)) ([#331](https://github.com/TiendaNube/nimbus-design-system/pull/331) by [@joacotornello](https://github.com/joacotornello))
+- Added `renderOverlay` property to render an invisible overlay that prevents accidental clicks on elements behind the popover when enabled. This improves UX by providing click protection without visual interference. ([#316](https://github.com/TiendaNube/nimbus-design-system/pull/316) by [@harrytiendanube](https://github.com/harrytiendanube)) 
 
 ## 2025-03-18 `4.2.0`
 
