@@ -111,3 +111,64 @@ export const withOverlay: Story = {
     position: "bottom-end",
   },
 };
+
+export const controlled: Story = {
+  name: "Controlled",
+  render: (args) => {
+    const [open, setOpen] = useState(false);
+    return (
+      <Box display="flex" justifyContent="center" gap="4">
+        <Popover {...args} visible={open} onVisibility={setOpen}>
+          <Button appearance="primary" onClick={() => setOpen((v) => !v)}>
+            Toggle
+          </Button>
+        </Popover>
+      </Box>
+    );
+  },
+  args: {
+    content: <Text color="primary-textLow">Controlled content</Text>,
+    enabledClick: true,
+    enabledDismiss: true,
+  },
+};
+
+export const onlyOneOpenAtATime: Story = {
+  name: "Only one open at a time (table pattern)",
+  render: (args) => {
+    const rows = Array.from({ length: 5 }).map((_, i) => ({
+      id: `${i + 1}`,
+      label: `Venta ${i + 1}`,
+    }));
+
+    const [openRowId, setOpenRowId] = useState<string | null>(null);
+
+    return (
+      <Box display="flex" flexDirection="column" gap="2">
+        {rows.map((row) => {
+          const isOpen = openRowId === row.id;
+          return (
+            <Box key={row.id} display="flex" alignItems="center" gap="2">
+              <Text>{row.label}</Text>
+              <Popover
+                {...args}
+                visible={isOpen}
+                onVisibility={(next) => setOpenRowId(next ? row.id : null)}
+                content={
+                  <Box display="flex" flexDirection="column" gap="1">
+                    <Button appearance="transparent">Facturar</Button>
+                    <Button appearance="transparent">Ver recibo</Button>
+                  </Box>
+                }
+              >
+                <Button onClick={() => setOpenRowId(isOpen ? null : row.id)}>
+                  Opciones
+                </Button>
+              </Popover>
+            </Box>
+          );
+        })}
+      </Box>
+    );
+  },
+};
