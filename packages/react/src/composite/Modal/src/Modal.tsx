@@ -1,4 +1,5 @@
 import React from "react";
+import { createPortal } from "react-dom";
 import {
   useFloating,
   useDismiss,
@@ -26,6 +27,7 @@ const Modal: React.FC<ModalProps> & ModalComponents = ({
   open,
   portalId,
   onDismiss,
+  container,
   ...rest
 }: ModalProps) => {
   const { className, style, otherProps } = modal.sprinkle({
@@ -54,38 +56,46 @@ const Modal: React.FC<ModalProps> & ModalComponents = ({
 
   if (!open) return null;
 
-  return (
-    <FloatingPortal
-      id={portalId ?? "nimbus-modal-floating"}
-      root={refThemeProvider?.current}
-    >
-      <FloatingOverlay className={modal.classnames.overlay} lockScroll>
-        <FloatingFocusManager context={context}>
-          <div
-            {...otherProps}
-            ref={context.refs.setFloating}
-            style={style}
-            className={[modal.classnames.container, className].join(" ")}
-            aria-labelledby={headingId}
-            aria-describedby={descriptionId}
-            {...getFloatingProps()}
-            {...rest}
+  const content = (
+    <FloatingFocusManager context={context}>
+      <div
+        {...otherProps}
+        ref={context.refs.setFloating}
+        style={style}
+        className={[modal.classnames.container, className].join(" ")}
+        aria-labelledby={headingId}
+        aria-describedby={descriptionId}
+        {...getFloatingProps()}
+        {...rest}
+      >
+        {children}
+        {onDismiss && (
+          <button
+            aria-label="Dismiss modal"
+            className={modal.classnames.container__close}
+            data-testid="dismiss-modal-button"
+            type="button"
+            onClick={() => onDismiss(!open)}
+            tabIndex={0}
           >
-            {children}
-            {onDismiss && (
-              <button
-                aria-label="Dismiss modal"
-                className={modal.classnames.container__close}
-                data-testid="dismiss-modal-button"
-                type="button"
-                onClick={() => onDismiss(!open)}
-                tabIndex={0}
-              >
-                <Icon color="neutral-textLow" source={<CloseIcon />} />
-              </button>
-            )}
-          </div>
-        </FloatingFocusManager>
+            <Icon color="neutral-textLow" source={<CloseIcon />} />
+          </button>
+        )}
+      </div>
+    </FloatingFocusManager>
+  );
+
+  if (container) {
+    return createPortal(
+      <div className={modal.classnames.overlayScoped}>{content}</div>,
+      container
+    );
+  }
+
+  return (
+    <FloatingPortal id={portalId ?? "nimbus-modal-floating"} root={refThemeProvider?.current}>
+      <FloatingOverlay className={modal.classnames.overlay} lockScroll>
+        {content}
       </FloatingOverlay>
     </FloatingPortal>
   );

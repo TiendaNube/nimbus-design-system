@@ -1,4 +1,5 @@
 import React from "react";
+import { createPortal } from "react-dom";
 import { RemoveScroll } from "react-remove-scroll";
 import {
   FloatingFocusManager,
@@ -22,6 +23,7 @@ const Sidebar: React.FC<SidebarProps> & SidebarComponents = ({
   needRemoveScroll = false,
   children,
   onRemove,
+  container,
   ...rest
 }: SidebarProps) => {
   const { className, style, otherProps } = sidebar.sprinkle({
@@ -42,6 +44,35 @@ const Sidebar: React.FC<SidebarProps> & SidebarComponents = ({
 
   if (!open) return null;
 
+  const content = (
+    <FloatingFocusManager context={context}>
+      <div
+        {...otherProps}
+        ref={context.refs.setFloating}
+        role={rest.role || "presentation"}
+        style={style}
+        {...getFloatingProps()}
+        className={[
+          container ? sidebar.classnames.containerScoped : sidebar.classnames.container,
+          sidebar.classnames.position[position],
+          className,
+          open && sidebar.classnames.isVisible,
+        ].join(" ")}
+      >
+        {needRemoveScroll ? <RemoveScroll>{children}</RemoveScroll> : children}
+      </div>
+    </FloatingFocusManager>
+  );
+
+  if (container) {
+    return createPortal(
+      <div className={sidebar.classnames.overlayScoped} data-testid="portal-overlay-sidebar-button">
+        {content}
+      </div>,
+      container
+    );
+  }
+
   return (
     <FloatingPortal id="nimbus-sidebar" root={refThemeProvider?.current}>
       <FloatingOverlay
@@ -49,27 +80,7 @@ const Sidebar: React.FC<SidebarProps> & SidebarComponents = ({
         data-testid="overlay-sidebar-button"
         lockScroll={!needRemoveScroll}
       >
-        <FloatingFocusManager context={context}>
-          <div
-            {...otherProps}
-            ref={context.refs.setFloating}
-            role={rest.role || "presentation"}
-            style={style}
-            {...getFloatingProps()}
-            className={[
-              sidebar.classnames.container,
-              sidebar.classnames.position[position],
-              className,
-              open && sidebar.classnames.isVisible,
-            ].join(" ")}
-          >
-            {needRemoveScroll ? (
-              <RemoveScroll>{children}</RemoveScroll>
-            ) : (
-              children
-            )}
-          </div>
-        </FloatingFocusManager>
+        {content}
       </FloatingOverlay>
     </FloatingPortal>
   );

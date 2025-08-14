@@ -1,7 +1,7 @@
 {
   "id": "modal",
   "name": "Modal",
-  "totalProps": 6,
+  "totalProps": 7,
   "packageName": "@nimbus-ds/modal",
   "version": "1.6.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/modal",
@@ -11,6 +11,12 @@
       "type": "React.ReactNode",
       "title": "children",
       "required": true
+    },
+    {
+      "description": "Root element where the portal should be mounted. When provided and not null, the portal renders inside this element; when null/undefined, the default root is used.",
+      "type": "HTMLElement | null",
+      "title": "container",
+      "required": false
     },
     {
       "description": "Whether the modal is open or not.",

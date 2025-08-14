@@ -30,4 +30,31 @@ describe("GIVEN <Sidebar />", () => {
       expect(screen.queryByTestId("overlay-sidebar-button")).toBeNull();
     });
   });
+
+  describe("WHEN container is provided", () => {
+    it("THEN renders overlay and content inside that container", () => {
+      const container = document.createElement("div");
+      container.setAttribute("data-testid", "scoped-root");
+      container.style.position = "relative";
+      document.body.appendChild(container);
+
+      render(
+        <Sidebar container={container} open>
+          <div>Scoped content</div>
+        </Sidebar>
+      );
+
+      const scopedRoot = screen.getByTestId("scoped-root");
+      expect(scopedRoot).toContainElement(screen.getByText("Scoped content"));
+    });
+
+    it("THEN keeps default behavior when container is null", () => {
+      render(
+        <Sidebar container={null} open>
+          <div>Fallback content</div>
+        </Sidebar>
+      );
+      expect(screen.getByText("Fallback content")).toBeDefined();
+    });
+  });
 });

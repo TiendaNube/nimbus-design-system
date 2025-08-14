@@ -37,6 +37,35 @@ describe("GIVEN <Modal />", () => {
     });
   });
 
+  describe("WHEN container is provided", () => {
+    it("THEN renders overlay and content inside that container", () => {
+      const container = document.createElement("div");
+      container.setAttribute("data-testid", "scoped-root");
+      // Ensure container has layout context
+      container.style.position = "relative";
+      document.body.appendChild(container);
+
+      render(
+        <Modal container={container} open onDismiss={mockedOnDismiss}>
+          <div>Scoped content</div>
+        </Modal>
+      );
+
+      const scopedRoot = screen.getByTestId("scoped-root");
+      expect(scopedRoot).toContainElement(screen.getByText("Scoped content"));
+    });
+
+    it("THEN keeps default behavior when container is null", () => {
+      render(
+        <Modal container={null} open onDismiss={mockedOnDismiss}>
+          <div>Fallback content</div>
+        </Modal>
+      );
+
+      expect(screen.getByText("Fallback content")).toBeDefined();
+    });
+  });
+
   describe("THEN should correctly render the submitted padding", () => {
     it("THEN should correctly render the padding default", () => {
       makeSut({ children: "My content" });

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { useArgs } from "@storybook/preview-api";
 import { Text } from "@nimbus-ds/text";
@@ -44,6 +44,35 @@ export const basic: Story = {
         </Modal.Body>
         <Modal.Footer>
           <Button appearance="neutral">Button</Button>
+          <Button appearance="primary">Button</Button>
+        </Modal.Footer>
+      </>
+    ),
+  },
+};
+
+export const withContainer: Story = {
+  render: (args) => {
+    const [{ open }, updateArgs] = useArgs();
+    const handleClose = () => updateArgs({ open: !open });
+    const containerRef = useRef<HTMLDivElement | null>(null);
+    return (
+      <Box ref={containerRef} height="60vh" position="relative" width="50vw">
+        <Box borderStyle="dashed" borderWidth="1" padding="2" height="100%">
+          <Button onClick={handleClose}>Open</Button>
+          <Modal {...args} container={containerRef.current} open={open} onDismiss={handleClose} />
+        </Box>
+      </Box>
+    );
+  },
+  args: {
+    children: (
+      <>
+        <Modal.Header title="Scoped modal" />
+        <Modal.Body padding="none">
+          <Text textAlign="left">This modal renders inside the provided container.</Text>
+        </Modal.Body>
+        <Modal.Footer>
           <Button appearance="primary">Button</Button>
         </Modal.Footer>
       </>

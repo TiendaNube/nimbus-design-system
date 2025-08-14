@@ -73,13 +73,10 @@ const overlayAnimation = keyframes({
   },
 });
 
-const overlay = style({
+const baseOverlay = style({
   display: "flex",
-  height: "100vh",
-  width: "100vw",
   justifyContent: "center",
   alignItems: "center",
-  position: "fixed",
   top: 0,
   bottom: 0,
   left: 0,
@@ -89,8 +86,13 @@ const overlay = style({
   animation: `${overlayAnimation} 0.5s ease`,
 });
 
+const overlay = style([baseOverlay, { position: "fixed", height: "100vh", width: "100vw" }]);
+
+const overlayScoped = style([baseOverlay, { position: "absolute", height: "100%", width: "100%" }]);
+
 export const styles = {
   overlay,
+  overlayScoped,
   container,
   container__close,
   container__footer,

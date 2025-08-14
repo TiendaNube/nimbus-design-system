@@ -39,6 +39,11 @@ export interface SidebarProperties extends SidebarSprinkle {
    * @default true
    */
   needRemoveScroll?: boolean;
+  /**
+   * Root element where the portal should be mounted. When provided and not null,
+   * the portal renders inside this element; when null/undefined, the default root is used.
+   */
+  container?: HTMLElement | null;
 }
 
 export type SidebarProps = SidebarProperties & HTMLAttributes<HTMLDivElement>;

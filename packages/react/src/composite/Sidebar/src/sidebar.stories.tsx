@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { useArgs } from "@storybook/preview-api";
 import { Box } from "@nimbus-ds/box";
@@ -147,6 +147,40 @@ export const withHeaderAndTitle: Story = {
           <Text textAlign="center">Replace me with your content</Text>
         </Box>
       </>
+    ),
+  },
+};
+
+export const withContainer: Story = {
+  render: (args) => {
+    const [{ open }, updateArgs] = useArgs();
+    const handleClose = () => updateArgs({ open: !open });
+    const containerRef = useRef<HTMLDivElement | null>(null);
+    return (
+      <Box ref={containerRef} height="60vh" position="relative" width="50vw">
+        <Box borderStyle="dashed" borderWidth="1" padding="2" height="100%">
+          <Button onClick={handleClose}>Open</Button>
+          <Sidebar {...args} container={containerRef.current} onRemove={handleClose} open={open} />
+        </Box>
+      </Box>
+    );
+  },
+  args: {
+    padding: "base",  
+    children: (
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        height="100%"
+        borderStyle="dashed"
+        padding="2"
+        borderWidth="1"
+        borderColor="neutral-interactive"
+        boxSizing="border-box"
+      >
+        <Text textAlign="center">This sidebar renders inside the provided container</Text>
+      </Box>
     ),
   },
 };
