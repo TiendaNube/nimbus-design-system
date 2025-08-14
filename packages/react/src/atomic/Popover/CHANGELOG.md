@@ -157,9 +157,3 @@ Use Popovers to bring attention to specific user interface elements and suggest 
 
 - Added `children`, `content`, `arrow`, `appearance`, `padding` and `position` properties to the Component. ([#37](https://github.com/TiendaNube/nimbus-design-system/pull/37) by [@juniorconquista](https://github.com/juniorconquista))
 - Added stories on Component. ([#37](https://github.com/TiendaNube/nimbus-design-system/pull/37) by [@juniorconquista](https://github.com/juniorconquista))
-
-## 2025-08-14 `4.3.1`
-
-### 💡 Others
-
-- Added stories demonstrating controlled usage with `visible` and `onVisibility`, including a table pattern to ensure only one Popover is open at a time. This documents the recommended approach to replace custom global listeners and address [Issue #251](https://github.com/TiendaNube/nimbus-design-system/issues/251).
