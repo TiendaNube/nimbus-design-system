@@ -119,9 +119,7 @@ export const controlled: Story = {
     return (
       <Box display="flex" justifyContent="center" gap="4">
         <Popover {...args} visible={open} onVisibility={setOpen}>
-          <Button appearance="primary" onClick={() => setOpen((v) => !v)}>
-            Toggle
-          </Button>
+          <Button appearance="primary">Toggle</Button>
         </Popover>
       </Box>
     );
@@ -161,9 +159,7 @@ export const onlyOneOpenAtATime: Story = {
                   </Box>
                 }
               >
-                <Button onClick={() => setOpenRowId(isOpen ? null : row.id)}>
-                  Opciones
-                </Button>
+                <Button>Opciones</Button>
               </Popover>
             </Box>
           );
