@@ -6,7 +6,7 @@ Use Popovers to bring attention to specific user interface elements and suggest 
 
 #### 🎉 New features
 
-- Added `renderOverlay` property to render an invisible overlay that prevents accidental clicks on elements behind the popover when enabled. This improves UX by providing click protection without visual interference. ([#316](https://github.com/TiendaNube/nimbus-design-system/pull/316) by [@harrytiendanube](https://github.com/harrytiendanube))
+- Added `renderOverlay` property to render an invisible overlay that prevents accidental clicks on elements behind the popover when enabled. This improves UX by providing click protection without visual interference. ([#316](https://github.com/TiendaNube/nimbus-design-system/pull/316) by [@harrytiendanube](https://github.com/harrytiendanube)) ([#331](https://github.com/TiendaNube/nimbus-design-system/pull/331) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-03-18 `4.2.0`
 
