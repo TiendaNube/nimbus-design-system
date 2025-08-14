@@ -111,6 +111,7 @@ When creating a new component, follow these guidelines:
    - Only include necessary dependencies in package.json
    - Avoid duplicating dependencies from root package.json
    - Follow semantic versioning
+   - **IMPORTANT** Constants declared within the package must be exported in order to be included in the final published build.
 
 6. **External Dependencies Configuration**
    - For both internal and third-party dependencies that are used across multiple packages, they should be added to the webpack external configuration

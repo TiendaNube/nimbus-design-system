@@ -83,7 +83,7 @@ reviews:
         - If widely used as a dependency, recommend adding the package name to the 'externals' attribute in webpack.config
         - This prevents the component from being bundled multiple times across different packages
         - Ensure proper package naming and versioning for external configuration
-        - Verify that the component is properly exported and consumed by dependent packages
+        - Verify that the component is properly exported and consumed by dependent packages. **IMPORTANT** Constants declared within the package must be exported in order to be included in the final published build.
         - Check for circular dependencies and proper dependency tree structure
         Flag components that should be added to webpack 'externals' to optimize bundle size and prevent duplicate code in the monorepo build.
     - path: "**/*.types.ts"
