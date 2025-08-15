@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { HTMLAttributes, useState } from "react";
 import { tabs } from "@nimbus-ds/styles";
 
-import { TabsProps, TabsComponents } from "./tabs.types";
+import {
+  TabsProps,
+  TabsComponents,
+  ControlledTabsProperties,
+} from "./tabs.types";
 import { TabsButton, TabsItem } from "./components";
 import { isControlled } from "./tabs.definitions";
 
@@ -18,6 +22,13 @@ const Tabs: React.FC<TabsProps> & TabsComponents = ({
     preSelectedTab || 0
   );
 
+  const {
+    onTabSelect,
+    selected: _,
+    ...containerProps
+  } = rest as HTMLAttributes<HTMLDivElement> &
+    Partial<ControlledTabsProperties>;
+
   // Use controlled or uncontrolled state
   const selectedTab = isControlled(rest) ? rest.selected : internalSelectedTab;
   const setSelectedTab = isControlled(rest)
@@ -25,7 +36,7 @@ const Tabs: React.FC<TabsProps> & TabsComponents = ({
     : setInternalSelectedTab;
 
   return (
-    <div {...rest}>
+    <div {...containerProps}>
       <ul role="tablist" className={tabs.classnames.container}>
         {React.Children.map(children, (item, index) => {
           const {

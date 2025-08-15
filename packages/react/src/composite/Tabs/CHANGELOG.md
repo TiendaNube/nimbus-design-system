@@ -2,6 +2,12 @@
 
 The Tabs component allows us to separate content from the same hierarchy into different tabs.
 
+## 2025-08-15 `2.5.1`
+
+#### 💡 Others
+
+- Internal: resolved minor a11y/typing warnings and refined uncontrolled/controlled handling without changing public API. ([#TBD](https://github.com/TiendaNube/nimbus-design-system/pull/TBD) by [@TBD](https://github.com/TBD))
+
 ## 2025-04-03 `2.5.0`
 
 #### 🐛 New features
