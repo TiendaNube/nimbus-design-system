@@ -70,5 +70,6 @@ const config: Config.InitialOptions = {
     "packages/core/typings",
   ],
   clearMocks: true,
+  testPathIgnorePatterns: ["/node_modules/", "/dist/"],
 };
 export default config;

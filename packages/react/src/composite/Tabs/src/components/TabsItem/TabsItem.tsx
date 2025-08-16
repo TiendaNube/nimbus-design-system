@@ -9,6 +9,7 @@ const TabsItem: React.FC<TabsItemProps> = ({
   style: _style,
   label,
   children,
+  labelContent: _,
   ...rest
 }) => {
   const ariaID = generateID(label);

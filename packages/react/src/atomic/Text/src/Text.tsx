@@ -16,6 +16,7 @@ const Text: React.FC<TextProps> & TextComponents = ({
   textDecoration = "none",
   children,
   lineClamp,
+  wordBreak,
   ...rest
 }: TextProps) => {
   const { className, style, otherProps } = text.sprinkle({
@@ -27,6 +28,7 @@ const Text: React.FC<TextProps> & TextComponents = ({
     fontSize: fontSize as any,
     textDecoration: textDecoration as any,
     WebkitLineClamp: lineClamp as any,
+    wordBreak: wordBreak as any,
   });
 
   return (

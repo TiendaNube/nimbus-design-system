@@ -47,10 +47,16 @@ describe("gradientFactory utilities", () => {
     });
 
     it("should return empty array for unknown gradient type", () => {
-      const result = getGradientStops("unknown" as GradientTypes);
+      // eslint-disable-next-line @typescript-eslint/no-empty-function
+      const warnSpy = jest.spyOn(console, "warn").mockImplementation(() => {});
+      try {
+        const result = getGradientStops("unknown" as GradientTypes);
 
-      expect(result).toEqual([]);
-      expect(mockParseLinearGradient).not.toHaveBeenCalled();
+        expect(result).toEqual([]);
+        expect(mockParseLinearGradient).not.toHaveBeenCalled();
+      } finally {
+        warnSpy.mockRestore();
+      }
     });
   });
 
