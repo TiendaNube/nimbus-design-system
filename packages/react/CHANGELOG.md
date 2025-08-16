@@ -6,7 +6,7 @@ Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team 
 
 #### 💡 Others
 
-- Internal cleanups and tests: addressed warnings across `Text`, `Tooltip`, `Icon` (gradient utilities) and `Tabs`. No public API or behavior changes. ([#TBD](https://github.com/TiendaNube/nimbus-design-system/pull/TBD) by [@TBD](https://github.com/TBD))
+- Internal cleanups and tests: addressed warnings across `Text`, `Tooltip`, `Icon` (gradient utilities) and `Tabs`. No public API or behavior changes. ([#332](https://github.com/TiendaNube/nimbus-design-system/pull/joacotornello) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-08-14 `5.17.3`
 

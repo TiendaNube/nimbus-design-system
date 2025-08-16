@@ -6,7 +6,7 @@ The Tooltip component allows us to display additional information in a non-intru
 
 #### 💡 Others
 
-- Tests: improved sprinkle integration test and addressed minor warnings in test environment. No API or behavior changes. ([#TBD](https://github.com/TiendaNube/nimbus-design-system/pull/TBD) by [@TBD](https://github.com/TBD))
+- Tests: improved sprinkle integration test and addressed minor warnings in test environment. No API or behavior changes. ([#332](https://github.com/TiendaNube/nimbus-design-system/pull/332) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-03-18 `2.6.0`
 

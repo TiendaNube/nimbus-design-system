@@ -23,7 +23,7 @@ const Tabs: React.FC<TabsProps> & TabsComponents = ({
   );
 
   const {
-    onTabSelect,
+    onTabSelect: _onTabSelect,
     selected: _,
     ...containerProps
   } = rest as HTMLAttributes<HTMLDivElement> &
