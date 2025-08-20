@@ -65,6 +65,8 @@ const darkTheme = {
         middle: lightColors.aiGenerative.interactive.middle.value as string,
         end: lightColors.aiGenerative.interactive.end.value as string,
       },
+      surfaceHighlight: (lightColors.aiGenerative as any)["surface-highlight"]
+        .value as string,
     },
   },
   shadow: {

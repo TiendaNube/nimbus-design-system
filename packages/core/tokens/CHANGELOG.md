@@ -2,6 +2,12 @@
 
 Our design tokens are the foundations of Nimbus Design System.
 
+## 2025-08-20 `9.3.0`
+
+#### 🎉 New features
+
+- Added new `aiGenerative.surface-highlight` token. ([#TBD](https://github.com/TiendaNube/nimbus-design-system/pull/TBD) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-07-29 `9.2.0`
 
 #### 🎉 New features

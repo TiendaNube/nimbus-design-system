@@ -7,6 +7,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 #### 🎉 New features
 
 - `Input`: Added `ai-generative` appearance using Nimbus AI interactive gradient with border gradient treatment. ([#TBD](https://github.com/TiendaNube/nimbus-design-system/pull/TBD) by [@joacotornello](https://github.com/joacotornello))
+- Theme: Added `aiGenerative.surface-highlight` token and applied to Input AI focus ring. ([#TBD](https://github.com/TiendaNube/nimbus-design-system/pull/TBD) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-08-12 `9.21.3`
 

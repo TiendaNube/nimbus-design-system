@@ -122,3 +122,8 @@ export const appearance = styleVariants({
     },
   ],
 });
+
+export const aiGenerated = vanillaStyle([
+  appearance["ai-generative"],
+  { boxShadow: varsThemeBase.utils.aiFocus },
+]);
