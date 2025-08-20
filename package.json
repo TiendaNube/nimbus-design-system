@@ -24,7 +24,7 @@
     "bump:next": "yarn version apply --all --prerelease",
     "bump:stable": "yarn version apply --all",
     "clean": "yarn workspaces foreach -pv -pt --exclude nimbus-design-system run clean",
-    "lint": "eslint packages --ext .jsx,.js,.ts,.tsx --quiet --cache",
+    "lint": "eslint packages --ext .jsx,.js,.ts,.tsx --quiet --cache --cache-location .cache/eslint/.eslintcache",
     "lint:fix": "yarn lint --fix",
     "pre-commit": "lint-staged",
     "pre-push": "yarn lint && yarn types:check && yarn bump:check",
