@@ -83,5 +83,12 @@ describe("GIVEN <Input />", () => {
         screen.getByTestId("input-element-container").getAttribute("class")
       ).toContain("appearance_danger");
     });
+
+    it("THEN should correctly render the appearance ai-generative", () => {
+      makeSut({ appearance: "ai-generative" });
+      expect(
+        screen.getByTestId("input-element-container").getAttribute("class")
+      ).toContain("appearance_ai-generative");
+    });
   });
 });

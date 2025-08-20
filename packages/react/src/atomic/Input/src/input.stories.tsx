@@ -62,6 +62,13 @@ export const danger: Story = {
   },
 };
 
+export const aiGenerative: Story = {
+  args: {
+    placeholder: "Placeholder",
+    appearance: "ai-generative",
+  },
+};
+
 export const disabled: Story = {
   args: {
     placeholder: "Placeholder",

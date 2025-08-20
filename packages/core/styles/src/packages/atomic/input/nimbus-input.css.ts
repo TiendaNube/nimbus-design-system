@@ -1,5 +1,6 @@
 import { style as vanillaStyle, styleVariants } from "@vanilla-extract/css";
 import { varsThemeBase } from "../../../themes";
+import { gradients, createBorderGradient } from "../../../gradients";
 
 export const input = vanillaStyle({
   padding: varsThemeBase.spacing[2],
@@ -108,6 +109,16 @@ export const appearance = styleVariants({
       ":focus-within": {
         borderColor: varsThemeBase.colors.danger.interactiveHover,
       },
+    },
+  ],
+  "ai-generative": [
+    container,
+    {
+      background: createBorderGradient(
+        gradients.aiGradientInteractive,
+        varsThemeBase.colors.neutral.background
+      ),
+      borderColor: "transparent",
     },
   ],
 });
