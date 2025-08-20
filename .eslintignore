@@ -5,3 +5,8 @@ alias.ts
 index.d.ts
 packages/core/typings
 packages/icons/templates
+packages/**/dist
+.turbo
+.build-storybook
+node_modules
+**/*.d.ts
