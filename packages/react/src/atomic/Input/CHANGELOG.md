@@ -6,8 +6,8 @@ The Input component allows the user to enter or edit information in text format.
 
 #### 🎉 New features
 
-- Added new `ai-generative` appearance to `Input`, `Input.Search` and `Input.Password` to match Nimbus AI gradient style. ([#TBD](https://github.com/TiendaNube/nimbus-design-system/pull/TBD) by [@joacotornello](https://github.com/joacotornello))
-- Added boolean prop `aiGenerated` to `Input`, `Input.Search` and `Input.Password` to highlight AI-filled values without changing APIs. It applies the AI generative border, white background and a pink focus ring. ([#TBD](https://github.com/TiendaNube/nimbus-design-system/pull/TBD) by [@joacotornello](https://github.com/joacotornello))
+- Added new `ai-generative` appearance to `Input`, `Input.Search` and `Input.Password` to match Nimbus AI gradient style. ([#333](https://github.com/TiendaNube/nimbus-design-system/pull/TBD) by [@joacotornello](https://github.com/joacotornello))
+- Added boolean prop `aiGenerated` to `Input`, `Input.Search` and `Input.Password` to highlight AI-filled values without changing APIs. It applies the AI generative border, white background and a pink focus ring. ([#333](https://github.com/TiendaNube/nimbus-design-system/pull/TBD) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-03-18 `2.5.0`
 
