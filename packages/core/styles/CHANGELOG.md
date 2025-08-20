@@ -6,8 +6,8 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 #### 🎉 New features
 
-- `Input`: Added `ai-generative` appearance using Nimbus AI interactive gradient with border gradient treatment. ([#333](https://github.com/TiendaNube/nimbus-design-system/pull/TBD) by [@joacotornello](https://github.com/joacotornello))
-- Theme: Added `aiGenerative.surface-highlight` token and applied to Input AI focus ring. ([#333](https://github.com/TiendaNube/nimbus-design-system/pull/TBD) by [@joacotornello](https://github.com/joacotornello))
+- `Input`: Added `ai-generative` appearance using Nimbus AI interactive gradient with border gradient treatment. ([#333](https://github.com/TiendaNube/nimbus-design-system/pull/333) by [@joacotornello](https://github.com/joacotornello))
+- Theme: Added `aiGenerative.surface-highlight` token and applied to Input AI focus ring. ([#333](https://github.com/TiendaNube/nimbus-design-system/pull/333) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-08-12 `9.21.3`
 
@@ -19,7 +19,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 #### 🐛 Bug fixes
 
-- `Toast`: Align progress variant background with Figma by using `neutral.textHigh`. ([#333](https://github.com/TiendaNube/nimbus-design-system/pull/TBD) by [@contributor](https://github.com/contributor))
+- `Toast`: Align progress variant background with Figma by using `neutral.textHigh`. ([#333](https://github.com/TiendaNube/nimbus-design-system/pull/333) by [@contributor](https://github.com/contributor))
 
 ## 2025-08-04 `9.21.1`
 
