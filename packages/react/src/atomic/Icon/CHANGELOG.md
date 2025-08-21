@@ -6,7 +6,7 @@ Icons are used to visually communicate core parts of the product and available a
 
 #### 💡 Others
 
-- Tests: added coverage for gradient utilities and silenced noisy warnings. No API or behavior changes. ([#332](https://github.com/TiendaNube/nimbus-design-system/pull/joacotornello) by [@joacotornello](https://github.com/joacotornello))
+- Tests: added coverage for gradient utilities and silenced noisy warnings. No API or behavior changes. ([#332](https://github.com/TiendaNube/nimbus-design-system/pull/332) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-08-01 `3.2.1`
 
