@@ -2,6 +2,12 @@
 
 The Toast component allows us to notify users in an informational tone, describing that something has happened or is happening, without interrupting navigation.
 
+## 2025-01-02 `2.5.0`
+
+#### 🎉 New features
+
+- Added support for indefinite duration toasts using `duration: null` for async operations with unknown completion times. ([#335](https://github.com/TiendaNube/nimbus-design-system/pull/335) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-03-18 `2.4.0`
 
 #### 🎉 New features

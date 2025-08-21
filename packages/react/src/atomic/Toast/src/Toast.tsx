@@ -44,6 +44,9 @@ const Toast: React.FC<ToastProps> & ToastComponents = ({
   text,
   ...rest
 }: ToastProps) => {
+  // When duration is null, automatically set autoClose to false
+  const shouldAutoClose = duration === null ? false : autoClose;
+  const effectiveDuration = duration === null ? 4000 : duration;
   const closeIntervalRef = useRef<any>();
   const animationIntervalRef = useRef<any>();
 
@@ -60,18 +63,18 @@ const Toast: React.FC<ToastProps> & ToastComponents = ({
         // remove toast in list
         closeToast(id);
       }, 200); // this timeout is to allow render the out transition
-    }, duration);
+          }, effectiveDuration);
   }, [
     setShow,
     closeToast,
     id,
-    duration,
+    effectiveDuration,
     closeIntervalRef,
     animationIntervalRef,
   ]);
 
   useEffect(() => {
-    if (autoClose) {
+    if (shouldAutoClose) {
       close();
     }
     return () => {
@@ -79,10 +82,10 @@ const Toast: React.FC<ToastProps> & ToastComponents = ({
       clearInterval(closeIntervalRef?.current);
       clearInterval(animationIntervalRef?.current);
     };
-  }, [close, autoClose]);
+  }, [close, shouldAutoClose]);
 
   const isProgress = useMemo(() => type === "progress", [type]);
-  const isVisible = useMemo(() => show || !autoClose, [autoClose, show]);
+  const isVisible = useMemo(() => show || !shouldAutoClose, [shouldAutoClose, show]);
   const types = useMemo(
     () => type.replace("progress", "neutral"),
     [type]

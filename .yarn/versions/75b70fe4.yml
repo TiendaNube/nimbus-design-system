@@ -1,0 +1,6 @@
+releases:
+  "@nimbus-ds/components": minor
+  "@nimbus-ds/toast": minor
+
+declined:
+  - nimbus-design-system
