@@ -69,6 +69,11 @@ const darkTheme = {
         .value as string,
     },
   },
+  utils: {
+    // Keep focus rings consistent with base theme definitions
+    focus: `0 0 0 3px ${globalTheme.colors.primary.surfaceHighlight}`,
+    aiFocus: `0 0 0 3px ${globalTheme.colors.aiGenerative.surfaceHighlight}`,
+  },
   shadow: {
     level: {
       0: shadow.dark.level[0].value,

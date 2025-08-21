@@ -11,14 +11,14 @@
  * });
  * ```
  */
-import tokens from "@nimbus-ds/tokens/dist/js/tokens";
+import { varsThemeBase } from "../themes";
 import { createLinearGradient } from "./gradientBuilder";
 
-const { interactive } = tokens.color.light.aiGenerative;
+const interactiveVars = varsThemeBase.colors.aiGenerative.interactive;
 
 export const aiGradientInteractive = createLinearGradient(
   "90deg",
-  `${interactive.start.value} 5%`,
-  `${interactive.middle.value} 40%`,
-  `${interactive.end.value} 95%`
+  `${interactiveVars.start} 5%`,
+  `${interactiveVars.middle} 40%`,
+  `${interactiveVars.end} 95%`
 );

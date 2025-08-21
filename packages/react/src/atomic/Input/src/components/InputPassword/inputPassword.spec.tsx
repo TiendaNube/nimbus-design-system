@@ -34,5 +34,14 @@ describe("GIVEN <Input.Password />", () => {
       const button = screen.getByTestId("button-password-show");
       expect(button.getAttribute("class")).toContain("append_end");
     });
+
+    it("aiGenerated should take precedence over appearance when both are provided", () => {
+      makeSut({ appearance: "success", aiGenerated: true });
+      const container = screen.getByTestId("my-input")
+        .parentElement as HTMLElement;
+      expect(container.getAttribute("class")).toContain(
+        "appearance_ai-generative"
+      );
+    });
   });
 });

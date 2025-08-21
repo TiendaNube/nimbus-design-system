@@ -97,5 +97,13 @@ describe("GIVEN <Input />", () => {
         screen.getByTestId("input-element-container").getAttribute("class")
       ).toContain("appearance_ai-generative");
     });
+
+    it("THEN aiGenerated should take precedence when appearance is also provided", () => {
+      makeSut({ appearance: "danger", aiGenerated: true });
+      const className = screen
+        .getByTestId("input-element-container")
+        .getAttribute("class");
+      expect(className).toContain("appearance_ai-generative");
+    });
   });
 });
