@@ -201,3 +201,67 @@ export const noDismiss: Story = {
     ),
   },
 };
+
+export const withIgnoreAttribute: Story = {
+  render: (args) => {
+    const [{ open }, updateArgs] = useArgs();
+    const handleClose = () => updateArgs({ open: !open });
+    const containerRef = useRef<HTMLDivElement | null>(null);
+    const [ignoreAttribute, setIgnoreAttribute] = useState(true);
+
+    const toggleIgnoreAttribute = () => {
+      setIgnoreAttribute((prev) => !prev);
+    };
+
+    return (
+      <Box display="flex" gap="2" height="60vh">
+        <Box ref={containerRef} position="relative" flex="1">
+          <Box borderStyle="dashed" borderWidth="1" padding="2" height="100%">
+            <Button onClick={handleClose}>Open</Button>
+            <Modal
+              {...args}
+              container={containerRef.current}
+              open={open}
+              onDismiss={handleClose}
+            />
+          </Box>
+        </Box>
+        <Box
+          width="320px"
+          borderStyle="solid"
+          borderWidth="1"
+          padding="2"
+          {...(ignoreAttribute && { "data-nimbus-outside-press-ignore": true })}
+        >
+          <Text fontWeight="bold">Chat panel (outside)</Text>
+          <Box marginTop="2">
+            <Text>
+              Clicks here <strong>{ignoreAttribute ? "won't" : "will"}</strong> close the Modal.
+            </Text>
+          </Box>
+          <Box marginTop="2">
+            <Button onClick={() => alert("Interact")}>Interact</Button>
+          </Box>
+          <Box marginTop="2">
+            <Button onClick={toggleIgnoreAttribute}>Toggle ignore attribute</Button>
+          </Box>
+        </Box>
+      </Box>
+    );
+  },
+  args: {
+    padding: "base",
+    closeOnOutsidePress: true,
+    ignoreAttributeName: "data-nimbus-outside-press-ignore",
+    children: (
+      <>
+        <Modal.Header title="Try clicking the chat panel on the right" />
+        <Modal.Body padding="none">
+          <Text textAlign="left">
+            This Modal should remain open when clicking the chat panel marked with the ignore attribute.
+          </Text>
+        </Modal.Body>
+      </>
+    ),
+  },
+};

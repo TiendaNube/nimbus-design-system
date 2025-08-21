@@ -44,6 +44,20 @@ export interface SidebarProperties extends SidebarSprinkle {
    * the portal renders inside this element; when null/undefined, the default root is used.
    */
   container?: HTMLElement | null;
+  /**
+   * Controls whether clicking/pressing outside should close the sidebar.
+   * - boolean: enable/disable dismissal on outside press
+   * - function: receive the DOM event and return true to allow closing, false to ignore
+   *
+   * Defaults to true for backward compatibility.
+   */
+  closeOnOutsidePress?: boolean | ((event: PointerEvent | MouseEvent) => boolean);
+
+  /**
+   * The attribute name to ignore when checking for outside clicks.
+   * @default "data-ignore-outside-click"
+   */
+  ignoreAttributeName?: string;
 }
 
 export type SidebarProps = SidebarProperties & HTMLAttributes<HTMLDivElement>;

@@ -21,5 +21,6 @@ export const aliasItems = {
   "@nimbus-ds/typings": join(rootDir, "./packages/core/typings/src"),
   "@nimbus-ds/styles": join(rootDir, "./packages/core/styles/src"),
   "@nimbus-ds/webpack": join(rootDir, "./packages/core/webpack/src"),
+  "@common": join(rootDir, "./packages/react/src/common"),
   ...packages,
 };

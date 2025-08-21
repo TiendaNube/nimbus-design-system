@@ -16,6 +16,7 @@ import { Icon } from "@nimbus-ds/icon";
 import { modal, useTheme } from "@nimbus-ds/styles";
 
 import { ModalProps, ModalComponents } from "./modal.types";
+import { eventHasNodeWithAttribute } from "@common/event-handling";
 import { ModalBody, ModalFooter, ModalHeader } from "./components";
 
 const Modal: React.FC<ModalProps> & ModalComponents = ({
@@ -28,6 +29,8 @@ const Modal: React.FC<ModalProps> & ModalComponents = ({
   portalId,
   onDismiss,
   container,
+  closeOnOutsidePress = true,
+  ignoreAttributeName = "data-nimbus-outside-press-ignore",
   ...rest
 }: ModalProps) => {
   const { className, style, otherProps } = modal.sprinkle({
@@ -45,8 +48,29 @@ const Modal: React.FC<ModalProps> & ModalComponents = ({
 
   const click = useClick(context);
   const role = useRole(context);
+
+  const outsidePressFn = React.useMemo<
+    ((event: PointerEvent | MouseEvent) => boolean) | boolean
+  >(() => {
+    if (!onDismiss) return false;
+    if (typeof closeOnOutsidePress === "function") {
+      return (event: PointerEvent | MouseEvent) => {
+        const allowClose = closeOnOutsidePress(event);
+        if (!allowClose) return false;
+        if (eventHasNodeWithAttribute(event, ignoreAttributeName)) return false;
+        return true;
+      };
+    }
+    if (closeOnOutsidePress) {
+      return (event: PointerEvent | MouseEvent) =>
+        !eventHasNodeWithAttribute(event, ignoreAttributeName);
+    }
+    return false;
+  }, [closeOnOutsidePress, ignoreAttributeName, onDismiss]);
+
   const dismiss = useDismiss(context, {
     outsidePressEvent: onDismiss ? "mousedown" : undefined,
+    outsidePress: outsidePressFn,
   });
 
   const { getFloatingProps } = useInteractions([click, role, dismiss]);
@@ -59,44 +83,51 @@ const Modal: React.FC<ModalProps> & ModalComponents = ({
   const content = (
     <FloatingFocusManager context={context}>
       <div
-        {...otherProps}
-        ref={context.refs.setFloating}
-        style={style}
-        className={[modal.classnames.container, className].join(" ")}
-        aria-labelledby={headingId}
-        aria-describedby={descriptionId}
-        {...getFloatingProps()}
-        {...rest}
+        className={container ? modal.classnames.frameScoped : modal.classnames.frame}
+        aria-hidden
       >
-        {children}
-        {onDismiss && (
-          <button
-            aria-label="Dismiss modal"
-            className={modal.classnames.container__close}
-            data-testid="dismiss-modal-button"
-            type="button"
-            onClick={() => onDismiss(!open)}
-            tabIndex={0}
-          >
-            <Icon color="neutral-textLow" source={<CloseIcon />} />
-          </button>
-        )}
+        <div
+          {...otherProps}
+          ref={context.refs.setFloating}
+          style={style}
+          className={[modal.classnames.container, className].join(" ")}
+          aria-labelledby={headingId}
+          aria-describedby={descriptionId}
+          {...getFloatingProps()}
+          {...rest}
+        >
+          {children}
+          {onDismiss && (
+            <button
+              aria-label="Dismiss modal"
+              className={modal.classnames.container__close}
+              data-testid="dismiss-modal-button"
+              type="button"
+              onClick={() => onDismiss(!open)}
+              tabIndex={0}
+            >
+              <Icon color="neutral-textLow" source={<CloseIcon />} />
+            </button>
+          )}
+        </div>
       </div>
     </FloatingFocusManager>
   );
 
   if (container) {
     return createPortal(
-      <div className={modal.classnames.overlayScoped}>{content}</div>,
+      <>
+        <div className={modal.classnames.overlayScoped} />
+        {content}
+      </>,
       container
     );
   }
 
   return (
     <FloatingPortal id={portalId ?? "nimbus-modal-floating"} root={refThemeProvider?.current}>
-      <FloatingOverlay className={modal.classnames.overlay} lockScroll>
-        {content}
-      </FloatingOverlay>
+      <FloatingOverlay className={modal.classnames.overlay} lockScroll />
+      {content}
     </FloatingPortal>
   );
 };

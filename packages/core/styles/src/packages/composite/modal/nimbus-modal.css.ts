@@ -90,9 +90,39 @@ const overlay = style([baseOverlay, { position: "fixed", height: "100vh", width:
 
 const overlayScoped = style([baseOverlay, { position: "absolute", height: "100%", width: "100%" }]);
 
+// Frame wrappers replicate the overlay layout (full-bleed and centered)
+// but without backdrop/background, so the overlay can be a sibling.
+const frame = style({
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  position: "fixed",
+  top: 0,
+  bottom: 0,
+  left: 0,
+  right: 0,
+  zIndex: varsThemeBase.zIndex[600],
+});
+
+const frameScoped = style({
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  position: "absolute",
+  top: 0,
+  bottom: 0,
+  left: 0,
+  right: 0,
+  height: "100%",
+  width: "100%",
+  zIndex: varsThemeBase.zIndex[600],
+});
+
 export const styles = {
   overlay,
   overlayScoped,
+  frame,
+  frameScoped,
   container,
   container__close,
   container__footer,

@@ -33,6 +33,20 @@ export interface ModalProperties extends ModalSprinkle {
    */
   container?: HTMLElement | null;
   /**
+   * Controls whether clicking/pressing outside should close the modal.
+   * - boolean: enable/disable dismissal on outside press
+   * - function: receive the DOM event and return true to allow closing, false to ignore
+   *
+   * Defaults to true.
+   */
+  closeOnOutsidePress?: boolean | ((event: PointerEvent | MouseEvent) => boolean);
+  /**
+   * The attribute name to ignore when checking for outside clicks. Useful to
+   * mark regions (e.g., a chat) that should not close the modal when clicked.
+   * @default "data-nimbus-outside-press-ignore"
+   */
+  ignoreAttributeName?: string;
+  /**
    * The padding properties are used to generate space around an modal's content area.
    * @default base
    */
