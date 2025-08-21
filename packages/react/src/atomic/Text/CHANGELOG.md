@@ -6,7 +6,7 @@ Text is a basic component that allows us to write blocks of text and give it for
 
 #### 💡 Others
 
-- Internal: resolved TypeScript typing warnings in sprinkle usage. No API or behavior changes. ([#332](https://github.com/TiendaNube/nimbus-design-system/pull/joacotornello) by [@joacotornello](https://github.com/joacotornello))
+- Internal: resolved TypeScript typing warnings in sprinkle usage. No API or behavior changes. ([#332](https://github.com/TiendaNube/nimbus-design-system/pull/332) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-03-25 `6.4.0`
 
