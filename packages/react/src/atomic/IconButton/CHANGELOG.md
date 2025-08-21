@@ -6,7 +6,7 @@ Icons are used to visually communicate core parts of the product and available a
 
 #### 🎉 New features
 
-- Added optional `color` prop to `IconButton` (defaults to `neutral-textHigh`) to allow customizing the inner `Icon` color. ([#000](https://github.com/TiendaNube/nimbus-design-system/pull/000) by [@your-username](https://github.com/your-username))
+- Added optional `color` prop to `IconButton` (defaults to `neutral-textHigh`) to allow customizing the inner `Icon` color. ([#334](https://github.com/TiendaNube/nimbus-design-system/pull/334) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-03-18 `4.1.2`
 
