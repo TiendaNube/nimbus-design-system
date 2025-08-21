@@ -6,20 +6,7 @@ The Toast component allows us to notify users in an informational tone, describi
 
 #### 🎉 New features
 
-- Added support for indefinite duration toasts using `duration: null` for async operations with unknown completion times. ([#254](https://github.com/TiendaNube/nimbus-design-system/issues/254))
-- Enhanced TypeScript types to allow `null` as a duration value, providing a more intuitive API for manual toast control.
-
-#### 📚 Documentation
-
-- Added comprehensive Storybook examples demonstrating indefinite duration usage for async operations.
-- Updated README with detailed examples showing how to use indefinite duration toasts for file uploads and API calls.
-- Enhanced component documentation to explain the interaction between `duration: null` and `autoClose` properties.
-
-#### 🛠️ API Changes
-
-- **Non-breaking**: `duration` prop now accepts `null` value for indefinite duration toasts.
-- **Backward compatible**: Existing `autoClose: false` API continues to work alongside the new `duration: null` approach.
-- When `duration: null` is used, `autoClose` is automatically set to `false`.
+- Added support for indefinite duration toasts using `duration: null` for async operations with unknown completion times. ([#335](https://github.com/TiendaNube/nimbus-design-system/pull/335) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-03-18 `2.4.0`
 
