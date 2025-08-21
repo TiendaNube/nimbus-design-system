@@ -26,3 +26,19 @@ export const basic: Story = {
     source: <TiendanubeIcon size="small" />,
   },
 };
+
+export const primaryColor: Story = {
+  args: {
+    size: "2.75rem",
+    color: "primary-textHigh",
+    source: <TiendanubeIcon size="small" />,
+  },
+};
+
+export const aiGenerative: Story = {
+  args: {
+    size: "2.75rem",
+    color: "ai-generative",
+    source: <TiendanubeIcon size="small" />,
+  },
+};
