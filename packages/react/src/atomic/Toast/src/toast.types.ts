@@ -31,11 +31,13 @@ export interface ToastProperties {
   type?: Types;
   /**
    * The time in milliseconds that the toast message should persist.
+   * Set to null for indefinite duration (manual close required).
    * @default 4000
    */
-  duration?: 4000 | 8000 | 16000;
+  duration?: 4000 | 8000 | 16000 | null;
   /**
    * Tells you whether or not Toast should close automatically.
+   * When duration is null, this is automatically set to false.
    * @default true
    */
   autoClose?: boolean;

@@ -42,7 +42,50 @@ The presentation time can be customized according to the context in which the to
 - 4 seconds - For messages with up to 10 characters;
 - 8 seconds - For message with more than 10 characters;
 - 16 seconds - For messages with more than 20 characters;
-- Custom - Use restricted to toast progress.
+
+### Indefinite duration (async operations)
+
+For async operations with unknown completion times (file uploads, API calls, etc.), use indefinite duration toasts:
+
+```tsx
+import { useToast } from "@nimbus-ds/toast";
+
+const MyComponent = () => {
+  const { addToast, closeToast } = useToast();
+
+  const handleUpload = async () => {
+    // Show indefinite progress toast
+    const toastId = addToast({
+      type: "progress",
+      text: "Uploading files...",
+      duration: null, // Indefinite duration
+    });
+
+    try {
+      await uploadFiles();
+      
+      // Close progress toast and show success
+      closeToast(toastId);
+      addToast({
+        type: "success", 
+        text: "Upload completed!",
+        duration: 4000,
+      });
+    } catch (error) {
+      closeToast(toastId);
+      addToast({
+        type: "danger",
+        text: "Upload failed!",
+        duration: 8000,
+      });
+    }
+  };
+
+  return <button onClick={handleUpload}>Upload Files</button>;
+};
+```
+
+**Alternative API (legacy)**: You can also use `autoClose: false` instead of `duration: null` - both achieve the same result.
 
 ### Recommendation for use
 
