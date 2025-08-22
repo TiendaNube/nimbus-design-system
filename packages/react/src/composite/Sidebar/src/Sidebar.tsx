@@ -10,7 +10,10 @@ import {
   useInteractions,
 } from "@floating-ui/react";
 import { sidebar, useTheme } from "@nimbus-ds/styles";
-import { eventHasNodeWithAttribute } from "@common/event-handling";
+import {
+  eventHasNodeWithAttribute,
+  DEFAULT_OUTSIDE_PRESS_IGNORE_ATTRIBUTE,
+} from "@common/event-handling";
 
 import { SidebarBody, SidebarFooter, SidebarHeader } from "./components";
 import { SidebarComponents, SidebarProps } from "./sidebar.types";
@@ -26,7 +29,7 @@ const Sidebar: React.FC<SidebarProps> & SidebarComponents = ({
   children,
   onRemove,
   root,
-  ignoreAttributeName = "data-nimbus-outside-press-ignore",
+  ignoreAttributeName = DEFAULT_OUTSIDE_PRESS_IGNORE_ATTRIBUTE,
   ...rest
 }: SidebarProps) => {
   const { className, style, otherProps } = sidebar.sprinkle({

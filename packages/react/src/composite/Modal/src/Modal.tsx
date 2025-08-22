@@ -15,7 +15,10 @@ import { CloseIcon } from "@nimbus-ds/icons";
 import { Icon } from "@nimbus-ds/icon";
 import { modal, useTheme } from "@nimbus-ds/styles";
 
-import { eventHasNodeWithAttribute } from "@common/event-handling";
+import {
+  eventHasNodeWithAttribute,
+  DEFAULT_OUTSIDE_PRESS_IGNORE_ATTRIBUTE,
+} from "@common/event-handling";
 import { ModalProps, ModalComponents } from "./modal.types";
 import { ModalBody, ModalFooter, ModalHeader } from "./components";
 
@@ -30,7 +33,7 @@ const Modal: React.FC<ModalProps> & ModalComponents = ({
   onDismiss,
   root,
   closeOnOutsidePress = true,
-  ignoreAttributeName = "data-nimbus-outside-press-ignore",
+  ignoreAttributeName = DEFAULT_OUTSIDE_PRESS_IGNORE_ATTRIBUTE,
   ...rest
 }: ModalProps) => {
   const { className, style, otherProps } = modal.sprinkle({
