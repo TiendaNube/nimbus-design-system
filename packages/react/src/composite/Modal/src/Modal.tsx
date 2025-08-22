@@ -111,13 +111,7 @@ const Modal: React.FC<ModalProps> & ModalComponents = ({
 
   if (container) {
     return createPortal(
-      <div
-        className={modal.classnames.overlayScoped}
-        role="presentation"
-        aria-hidden="true"
-      >
-        {content}
-      </div>,
+      <div className={modal.classnames.overlayScoped}>{content}</div>,
       container
     );
   }
