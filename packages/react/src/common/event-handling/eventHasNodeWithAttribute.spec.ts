@@ -6,7 +6,7 @@ describe("eventHasNodeWithAttribute", () => {
   const createEvent = (
     options: {
       composedPath?: Array<unknown>;
-      target?: Element | null;
+      target?: EventTarget | null;
     } = {}
   ): MouseEvent => {
     const { composedPath, target } = options;
@@ -31,9 +31,9 @@ describe("eventHasNodeWithAttribute", () => {
       target,
     });
 
-    expect(eventHasNodeWithAttribute(event as unknown as PointerEvent, ATTRIBUTE)).toBe(
-      true
-    );
+    expect(
+      eventHasNodeWithAttribute(event as unknown as PointerEvent, ATTRIBUTE)
+    ).toBe(true);
   });
 
   it("falls back to closest() when composedPath has no matching Element", () => {
@@ -49,9 +49,9 @@ describe("eventHasNodeWithAttribute", () => {
       target,
     });
 
-    expect(eventHasNodeWithAttribute(event as unknown as PointerEvent, ATTRIBUTE)).toBe(
-      true
-    );
+    expect(
+      eventHasNodeWithAttribute(event as unknown as PointerEvent, ATTRIBUTE)
+    ).toBe(true);
   });
 
   it("returns true when target itself has the attribute and no composedPath is provided", () => {
@@ -60,17 +60,17 @@ describe("eventHasNodeWithAttribute", () => {
 
     const event = createEvent({ target });
 
-    expect(eventHasNodeWithAttribute(event as unknown as PointerEvent, ATTRIBUTE)).toBe(
-      true
-    );
+    expect(
+      eventHasNodeWithAttribute(event as unknown as PointerEvent, ATTRIBUTE)
+    ).toBe(true);
   });
 
   it("returns false when no composedPath and target is null", () => {
     const event = createEvent({ target: null });
 
-    expect(eventHasNodeWithAttribute(event as unknown as PointerEvent, ATTRIBUTE)).toBe(
-      false
-    );
+    expect(
+      eventHasNodeWithAttribute(event as unknown as PointerEvent, ATTRIBUTE)
+    ).toBe(false);
   });
 
   it("returns false when neither composedPath nor closest() find a match", () => {
@@ -85,10 +85,16 @@ describe("eventHasNodeWithAttribute", () => {
       target,
     });
 
-    expect(eventHasNodeWithAttribute(event as unknown as PointerEvent, ATTRIBUTE)).toBe(
-      false
-    );
+    expect(
+      eventHasNodeWithAttribute(event as unknown as PointerEvent, ATTRIBUTE)
+    ).toBe(false);
+  });
+
+  it("returns false when composedPath is an empty array", () => {
+    const target = document.createElement("button");
+    const event = createEvent({ composedPath: [], target });
+    expect(
+      eventHasNodeWithAttribute(event as unknown as PointerEvent, "data-ignore")
+    ).toBe(false);
   });
 });
-
-
