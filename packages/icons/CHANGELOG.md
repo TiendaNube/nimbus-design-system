@@ -4,8 +4,11 @@ Nimbus-icons is an open source icon system built by Nuvemshop / Tiendanube.
 
 ## YYYY-MM-DD `1.13.0`
 
+#### 🎉 New features
+
 - Adds `voice` icon. ([#332](https://github.com/TiendaNube/nimbus-design-system/pull/332) by [@NimbusAgent](https://github.com/NimbusAgent))
 - Updates `stop` icon. ([#332](https://github.com/TiendaNube/nimbus-design-system/pull/332) by [@NimbusAgent](https://github.com/NimbusAgent))
+- Adds `microphone` icon. ([#329](https://github.com/TiendaNube/nimbus-design-system/pull/329) by [@NimbusAgent](https://github.com/NimbusAgent))
 
 ## 2025-08-01 `1.12.0`
 
