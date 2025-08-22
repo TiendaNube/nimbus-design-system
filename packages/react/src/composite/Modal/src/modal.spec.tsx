@@ -7,9 +7,9 @@ import { ModalProps } from "./modal.types";
 const mockedOnDismiss = jest.fn();
 
 const makeSut = (
-  rest: Pick<ModalProps, "children" | "padding" | "onDismiss">
+  rest: Pick<ModalProps, "children" | "padding" | "onDismiss" | "container">
 ) => {
-  render(<Modal {...rest} open data-testid="modal-element" />);
+  return render(<Modal {...rest} open data-testid="modal-element" />);
 };
 
 describe("GIVEN <Modal />", () => {
@@ -26,8 +26,8 @@ describe("GIVEN <Modal />", () => {
     });
 
     it("THEN should not close the modal if the close function is not provided", () => {
-      makeSut({ children: <div>My content</div> });
-      fireEvent.keyDown(document, {
+      const { container } = makeSut({ children: <div>My content</div> });
+      fireEvent.keyDown(container, {
         key: "Escape",
         code: "Escape",
         keyCode: 27,
@@ -39,28 +39,35 @@ describe("GIVEN <Modal />", () => {
 
   describe("WHEN container is provided", () => {
     it("THEN renders overlay and content inside that container", () => {
-      const container = document.createElement("div");
-      container.setAttribute("data-testid", "scoped-root");
-      // Ensure container has layout context
-      container.style.position = "relative";
-      document.body.appendChild(container);
+      const TestWrapper = () => {
+        const [container, setContainer] = React.useState<HTMLDivElement | null>(null);
+        
+        return (
+          <div>
+            <div 
+              ref={setContainer}
+              data-testid="scoped-root"
+              style={{ position: "relative" }}
+            />
+            <Modal container={container} open onDismiss={mockedOnDismiss}>
+              <div>Scoped content</div>
+            </Modal>
+          </div>
+        );
+      };
 
-      render(
-        <Modal container={container} open onDismiss={mockedOnDismiss}>
-          <div>Scoped content</div>
-        </Modal>
-      );
+      render(<TestWrapper />);
 
       const scopedRoot = screen.getByTestId("scoped-root");
       expect(scopedRoot).toContainElement(screen.getByText("Scoped content"));
     });
 
     it("THEN keeps default behavior when container is null", () => {
-      render(
-        <Modal container={null} open onDismiss={mockedOnDismiss}>
-          <div>Fallback content</div>
-        </Modal>
-      );
+      makeSut({
+        container: null,
+        children: <div>Fallback content</div>,
+        onDismiss: mockedOnDismiss,
+      });
 
       expect(screen.getByText("Fallback content")).toBeDefined();
     });

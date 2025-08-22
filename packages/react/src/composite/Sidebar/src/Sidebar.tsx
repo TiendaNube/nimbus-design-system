@@ -101,6 +101,8 @@ const Sidebar: React.FC<SidebarProps> & SidebarComponents = ({
         <div
           className={sidebar.classnames.overlayScoped}
           data-testid="portal-overlay-sidebar-button"
+          role="presentation"
+          aria-hidden="true"
         />
         {content}
       </>,

@@ -6,8 +6,10 @@ export const eventHasNodeWithAttribute = (
   event: PointerEvent | MouseEvent,
   attributeName: string
 ): boolean => {
-  const pathGetter = (event as unknown as { composedPath?: () => EventTarget[] })
-    .composedPath;
+  const pathGetter =
+    "composedPath" in event && typeof event.composedPath === "function"
+      ? event.composedPath
+      : undefined;
   const path = pathGetter?.call(event);
 
   if (Array.isArray(path)) {
@@ -27,5 +29,3 @@ export const eventHasNodeWithAttribute = (
 
   return false;
 };
-
-

@@ -53,14 +53,19 @@ export const basic: Story = {
 
 export const withContainer: Story = {
   render: (args) => {
-    const [{ open }, updateArgs] = useArgs();
-    const handleClose = () => updateArgs({ open: !open });
+    const [open, setOpen] = useState(false);
+    const handleClose = () => setOpen((prev) => !prev);
     const containerRef = useRef<HTMLDivElement | null>(null);
     return (
       <Box ref={containerRef} height="60vh" position="relative" width="50vw">
         <Box borderStyle="dashed" borderWidth="1" padding="2" height="100%">
           <Button onClick={handleClose}>Open</Button>
-          <Modal {...args} container={containerRef.current} open={open} onDismiss={handleClose} />
+          <Modal
+            {...args}
+            container={containerRef.current}
+            open={open}
+            onDismiss={handleClose}
+          />
         </Box>
       </Box>
     );
@@ -70,7 +75,9 @@ export const withContainer: Story = {
       <>
         <Modal.Header title="Scoped modal" />
         <Modal.Body padding="none">
-          <Text textAlign="left">This modal renders inside the provided container.</Text>
+          <Text textAlign="left">
+            This modal renders inside the provided container.
+          </Text>
         </Modal.Body>
         <Modal.Footer>
           <Button appearance="primary">Button</Button>
@@ -204,8 +211,10 @@ export const noDismiss: Story = {
 
 export const withIgnoreAttribute: Story = {
   render: (args) => {
-    const [{ open }, updateArgs] = useArgs();
-    const handleClose = () => updateArgs({ open: !open });
+    // ⚡ Use a simple local state instead of useArgs for open/close
+    const [open, setOpen] = useState(false);
+    const handleClose = () => setOpen((prev) => !prev);
+
     const containerRef = useRef<HTMLDivElement | null>(null);
     const [ignoreAttribute, setIgnoreAttribute] = useState(true);
 
@@ -226,6 +235,7 @@ export const withIgnoreAttribute: Story = {
             />
           </Box>
         </Box>
+
         <Box
           width="320px"
           borderStyle="solid"
@@ -234,16 +244,29 @@ export const withIgnoreAttribute: Story = {
           {...(ignoreAttribute && { "data-nimbus-outside-press-ignore": true })}
         >
           <Text fontWeight="bold">Chat panel (outside)</Text>
+
           <Box marginTop="2">
             <Text>
-              Clicks here <strong>{ignoreAttribute ? "won't" : "will"}</strong> close the Modal.
+              Clicks here{" "}
+              {/* Announce changes to assistive tech */}
+              <strong aria-live="polite">
+                {ignoreAttribute ? "won't" : "will"}
+              </strong>{" "}
+              close the Modal.
             </Text>
           </Box>
+
           <Box marginTop="2">
-            <Button onClick={() => alert("Interact")}>Interact</Button>
+            {/* Avoid alert() for UX; log to console instead */}
+            <Button onClick={() => console.log("Interact button clicked")}>
+              Interact
+            </Button>
           </Box>
+
           <Box marginTop="2">
-            <Button onClick={toggleIgnoreAttribute}>Toggle ignore attribute</Button>
+            <Button onClick={toggleIgnoreAttribute}>
+              Toggle ignore attribute
+            </Button>
           </Box>
         </Box>
       </Box>
@@ -258,7 +281,8 @@ export const withIgnoreAttribute: Story = {
         <Modal.Header title="Try clicking the chat panel on the right" />
         <Modal.Body padding="none">
           <Text textAlign="left">
-            This Modal should remain open when clicking the chat panel marked with the ignore attribute.
+            This Modal should remain open when clicking the chat panel marked
+            with the ignore attribute.
           </Text>
         </Modal.Body>
       </>

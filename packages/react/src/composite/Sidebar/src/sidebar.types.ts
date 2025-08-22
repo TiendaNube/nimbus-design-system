@@ -55,7 +55,7 @@ export interface SidebarProperties extends SidebarSprinkle {
 
   /**
    * The attribute name to ignore when checking for outside clicks.
-   * @default "data-ignore-outside-click"
+   * @default "data-nimbus-outside-press-ignore"
    */
   ignoreAttributeName?: string;
 }
