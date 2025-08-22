@@ -2,6 +2,12 @@
 
 Nimbus-icons is an open source icon system built by Nuvemshop / Tiendanube.
 
+## YYYY-MM-DD `1.12.1`
+
+#### 🎉 New features
+
+- Updates `stop` icon. (#332 by @NimbusAgent)
+
 ## 2025-08-01 `1.12.0`
 
 #### 🎉 New features
