@@ -6,11 +6,11 @@ Nimbus-icons is an open source icon system built by Nuvemshop / Tiendanube.
 
 #### 🎉 New features
 
-- Adds `voice` icon. ([#332](https://github.com/TiendaNube/nimbus-design-system/pull/332) by [@NimbusAgent](https://github.com/NimbusAgent))
-- Updates `stop` icon. ([#332](https://github.com/TiendaNube/nimbus-design-system/pull/332) by [@NimbusAgent](https://github.com/NimbusAgent))
-- Adds `microphone` icon. ([#329](https://github.com/TiendaNube/nimbus-design-system/pull/329) by [@NimbusAgent](https://github.com/NimbusAgent))
-- Adds `plus` icon. ([#332](https://github.com/TiendaNube/nimbus-design-system/pull/332) by [@NimbusAgent](https://github.com/NimbusAgent))
-- Adds `arrowup` icon. ([#332](https://github.com/TiendaNube/nimbus-design-system/pull/332) by [@NimbusAgent](https://github.com/NimbusAgent))
+- Adds `voice` icon. ([#337](https://github.com/TiendaNube/nimbus-design-system/pull/337) by [@NoeCondoleo](https://github.com/NoeCondoleo))
+- Updates `stop` icon. ([#337](https://github.com/TiendaNube/nimbus-design-system/pull/337) by [@NoeCondoleo](https://github.com/NoeCondoleo))
+- Adds `microphone` icon. ([#337](https://github.com/TiendaNube/nimbus-design-system/pull/337) by [@NoeCondoleo](https://github.com/NoeCondoleo))
+- Adds `plus` icon. ([#337](https://github.com/TiendaNube/nimbus-design-system/pull/337) by [@NoeCondoleo](https://github.com/NoeCondoleo))
+- Adds `arrowup` icon. ([#337](https://github.com/TiendaNube/nimbus-design-system/pull/337) by [@NoeCondoleo](https://github.com/NoeCondoleo))
 
 ## 2025-08-01 `1.12.0`
 
