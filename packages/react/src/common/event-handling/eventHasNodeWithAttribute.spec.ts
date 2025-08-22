@@ -1,8 +1,13 @@
 import { eventHasNodeWithAttribute } from "./eventHasNodeWithAttribute";
+import { DEFAULT_OUTSIDE_PRESS_IGNORE_ATTRIBUTE } from "./events.constants";
+
+const hasAttr = (e: MouseEvent) =>
+  eventHasNodeWithAttribute(
+    e as unknown as PointerEvent,
+    DEFAULT_OUTSIDE_PRESS_IGNORE_ATTRIBUTE
+  );
 
 describe("eventHasNodeWithAttribute", () => {
-  const ATTRIBUTE = "data-ignore";
-
   const createEvent = (
     options: {
       composedPath?: Array<unknown>;
@@ -24,21 +29,22 @@ describe("eventHasNodeWithAttribute", () => {
   it("returns true when composedPath contains an Element with the attribute", () => {
     const target = document.createElement("button");
     const ancestorWithAttr = document.createElement("div");
-    ancestorWithAttr.setAttribute(ATTRIBUTE, "");
+    ancestorWithAttr.setAttribute(DEFAULT_OUTSIDE_PRESS_IGNORE_ATTRIBUTE, "");
 
     const event = createEvent({
       composedPath: [target, ancestorWithAttr, document.body],
       target,
     });
 
-    expect(
-      eventHasNodeWithAttribute(event as unknown as PointerEvent, ATTRIBUTE)
-    ).toBe(true);
+    expect(hasAttr(event)).toBe(true);
   });
 
   it("falls back to closest() when composedPath has no matching Element", () => {
     const ancestorWithAttr = document.createElement("div");
-    ancestorWithAttr.setAttribute(ATTRIBUTE, "true");
+    ancestorWithAttr.setAttribute(
+      DEFAULT_OUTSIDE_PRESS_IGNORE_ATTRIBUTE,
+      "true"
+    );
     const mid = document.createElement("section");
     const target = document.createElement("span");
     ancestorWithAttr.appendChild(mid);
@@ -49,28 +55,22 @@ describe("eventHasNodeWithAttribute", () => {
       target,
     });
 
-    expect(
-      eventHasNodeWithAttribute(event as unknown as PointerEvent, ATTRIBUTE)
-    ).toBe(true);
+    expect(hasAttr(event)).toBe(true);
   });
 
   it("returns true when target itself has the attribute and no composedPath is provided", () => {
     const target = document.createElement("div");
-    target.setAttribute(ATTRIBUTE, "yes");
+    target.setAttribute(DEFAULT_OUTSIDE_PRESS_IGNORE_ATTRIBUTE, "yes");
 
     const event = createEvent({ target });
 
-    expect(
-      eventHasNodeWithAttribute(event as unknown as PointerEvent, ATTRIBUTE)
-    ).toBe(true);
+    expect(hasAttr(event)).toBe(true);
   });
 
   it("returns false when no composedPath and target is null", () => {
     const event = createEvent({ target: null });
 
-    expect(
-      eventHasNodeWithAttribute(event as unknown as PointerEvent, ATTRIBUTE)
-    ).toBe(false);
+    expect(hasAttr(event)).toBe(false);
   });
 
   it("returns false when neither composedPath nor closest() find a match", () => {
@@ -85,16 +85,12 @@ describe("eventHasNodeWithAttribute", () => {
       target,
     });
 
-    expect(
-      eventHasNodeWithAttribute(event as unknown as PointerEvent, ATTRIBUTE)
-    ).toBe(false);
+    expect(hasAttr(event)).toBe(false);
   });
 
   it("returns false when composedPath is an empty array", () => {
     const target = document.createElement("button");
     const event = createEvent({ composedPath: [], target });
-    expect(
-      eventHasNodeWithAttribute(event as unknown as PointerEvent, "data-ignore")
-    ).toBe(false);
+    expect(hasAttr(event)).toBe(false);
   });
 });

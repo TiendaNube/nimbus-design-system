@@ -100,4 +100,73 @@ describe("GIVEN <Modal />", () => {
       );
     });
   });
+
+  describe("WHEN closeOnOutsidePress is a function", () => {
+    it("THEN does not dismiss when function returns false", () => {
+      const onDismiss = jest.fn();
+      const root = document.createElement("div");
+      document.body.appendChild(root);
+
+      render(
+        <div>
+          <div data-ignore-region>Outside</div>
+          <Modal
+            root={root}
+            open
+            onDismiss={onDismiss}
+            closeOnOutsidePress={() => false}
+          >
+            <div>Content</div>
+          </Modal>
+        </div>
+      );
+
+      fireEvent.mouseDown(document.body);
+      expect(onDismiss).not.toHaveBeenCalled();
+    });
+
+    it("THEN does not dismiss when event hits ignored attribute region", () => {
+      const onDismiss = jest.fn();
+      const root = document.createElement("div");
+      document.body.appendChild(root);
+
+      const ignore = document.createElement("div");
+      ignore.setAttribute("data-nimbus-outside-press-ignore", "true");
+      document.body.appendChild(ignore);
+
+      render(
+        <Modal
+          root={root}
+          open
+          onDismiss={onDismiss}
+          closeOnOutsidePress={() => true}
+        >
+          <div>Content</div>
+        </Modal>
+      );
+
+      fireEvent.mouseDown(ignore);
+      expect(onDismiss).not.toHaveBeenCalled();
+    });
+
+    it("THEN dismisses when function allows and event is not ignored", () => {
+      const onDismiss = jest.fn();
+      const root = document.createElement("div");
+      document.body.appendChild(root);
+
+      render(
+        <Modal
+          root={root}
+          open
+          onDismiss={onDismiss}
+          closeOnOutsidePress={() => true}
+        >
+          <div>Content</div>
+        </Modal>
+      );
+
+      fireEvent.mouseDown(document.body);
+      expect(onDismiss).toHaveBeenCalledWith(false);
+    });
+  });
 });
