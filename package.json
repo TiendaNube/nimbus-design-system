@@ -9,8 +9,7 @@
       "packages/*/*",
       "packages/*/*/atomic/*",
       "packages/*/*/composite/*",
-      "!packages/*/dist",
-      "!packages/*/*/dist"
+      "!packages/**/dist"
     ]
   },
   "scripts": {

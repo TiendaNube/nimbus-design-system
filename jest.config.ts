@@ -58,8 +58,8 @@ const config: Config.InitialOptions = {
       "<rootDir>/packages/react/src/composite/ScrollPane/src",
     // commons
     "^.+\\.svg$": "jest-svg-transformer",
-    "@common/(.*)": "<rootDir>/packages/react/src/common/$1",
-
+    "^@common$": "<rootDir>/packages/react/src/common",
+    "^@common/(.*)$": "<rootDir>/packages/react/src/common/$1",
   },
   transform: {
     "^.+\\.css\\.ts$": "babel-jest",

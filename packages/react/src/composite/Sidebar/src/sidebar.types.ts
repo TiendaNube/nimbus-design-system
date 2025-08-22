@@ -1,5 +1,6 @@
 import { HTMLAttributes, ReactNode } from "react";
 import { sidebar, SidebarSprinkle } from "@nimbus-ds/styles";
+import { CloseOnOutsidePress } from "@common/event-handling";
 import { SidebarBody, SidebarFooter, SidebarHeader } from "./components";
 
 export interface SidebarComponents {
@@ -47,9 +48,7 @@ export interface SidebarProperties extends SidebarSprinkle {
    *
    * Defaults to true for backward compatibility.
    */
-  closeOnOutsidePress?:
-    | boolean
-    | ((event: PointerEvent | MouseEvent) => boolean);
+  closeOnOutsidePress?: boolean | CloseOnOutsidePress;
 
   /**
    * The attribute name to ignore when checking for outside clicks.

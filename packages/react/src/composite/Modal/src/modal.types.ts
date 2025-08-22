@@ -1,5 +1,6 @@
 import { HTMLAttributes, ReactNode } from "react";
 import { modal, ModalSprinkle } from "@nimbus-ds/styles";
+import { CloseOnOutsidePress } from "@common/event-handling";
 import { ModalBody, ModalFooter, ModalHeader } from "./components";
 
 export interface ModalComponents {
@@ -34,9 +35,7 @@ export interface ModalProperties extends ModalSprinkle {
    *
    * Defaults to true.
    */
-  closeOnOutsidePress?:
-    | boolean
-    | ((event: PointerEvent | MouseEvent) => boolean);
+  closeOnOutsidePress?: boolean | CloseOnOutsidePress;
   /**
    * The attribute name to ignore when checking for outside clicks. Useful to
    * mark regions (e.g., a chat) that should not close the modal when clicked.

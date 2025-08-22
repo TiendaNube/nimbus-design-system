@@ -8,9 +8,7 @@ const mockedOnDismiss = jest.fn();
 
 const makeSut = (
   rest: Pick<ModalProps, "children" | "padding" | "onDismiss" | "root">
-) => {
-  return render(<Modal {...rest} open data-testid="modal-element" />);
-};
+) => render(<Modal {...rest} open data-testid="modal-element" />);
 
 describe("GIVEN <Modal />", () => {
   describe("WHEN rendered", () => {
@@ -41,10 +39,10 @@ describe("GIVEN <Modal />", () => {
     it("THEN renders overlay and content inside that container", () => {
       const TestWrapper = () => {
         const [root, setRoot] = React.useState<HTMLDivElement | null>(null);
-        
+
         return (
           <div>
-            <div 
+            <div
               ref={setRoot}
               data-testid="scoped-root"
               style={{ position: "relative" }}
