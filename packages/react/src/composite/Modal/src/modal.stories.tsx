@@ -51,18 +51,18 @@ export const basic: Story = {
   },
 };
 
-export const withContainer: Story = {
+export const withRoot: Story = {
   render: (args) => {
     const [open, setOpen] = useState(false);
     const handleClose = () => setOpen((prev) => !prev);
-    const containerRef = useRef<HTMLDivElement | null>(null);
+    const rootRef = useRef<HTMLDivElement | null>(null);
     return (
-      <Box ref={containerRef} height="60vh" position="relative" width="50vw">
+      <Box ref={rootRef} height="60vh" position="relative" width="50vw">
         <Box borderStyle="dashed" borderWidth="1" padding="2" height="100%">
           <Button onClick={handleClose}>Open</Button>
           <Modal
             {...args}
-            container={containerRef.current}
+            root={rootRef.current}
             open={open}
             onDismiss={handleClose}
           />
@@ -76,7 +76,7 @@ export const withContainer: Story = {
         <Modal.Header title="Scoped modal" />
         <Modal.Body padding="none">
           <Text textAlign="left">
-            This modal renders inside the provided container.
+            This modal renders inside the provided root.
           </Text>
         </Modal.Body>
         <Modal.Footer>
@@ -215,7 +215,7 @@ export const withIgnoreAttribute: Story = {
     const [open, setOpen] = useState(false);
     const handleClose = () => setOpen((prev) => !prev);
 
-    const containerRef = useRef<HTMLDivElement | null>(null);
+    const rootRef = useRef<HTMLDivElement | null>(null);
     const [ignoreAttribute, setIgnoreAttribute] = useState(true);
 
     const toggleIgnoreAttribute = () => {
@@ -224,12 +224,12 @@ export const withIgnoreAttribute: Story = {
 
     return (
       <Box display="flex" gap="2" height="60vh">
-        <Box ref={containerRef} position="relative" flex="1">
+        <Box ref={rootRef} position="relative" flex="1">
           <Box borderStyle="dashed" borderWidth="1" padding="2" height="100%">
             <Button onClick={handleClose}>Open</Button>
             <Modal
               {...args}
-              container={containerRef.current}
+              root={rootRef.current}
               open={open}
               onDismiss={handleClose}
             />

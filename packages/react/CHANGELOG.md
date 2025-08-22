@@ -2,6 +2,13 @@
 
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories every day, with simplicity, accessibility, consistency and performance.
 
+## 2025-08-13 `5.17.4`
+
+#### 🎉 New features
+
+- `Modal` and `Sidebar`: Add optional `root` prop to scope portal and backdrop rendering to a provided element. ([#336](https://github.com/TiendaNube/nimbus-design-system/pull/336) by [@joacotornello](https://github.com/joacotornello))
+- `Modal` and `Sidebar`: Add `ignoreAttributeName` prop to allow customizing the attribute name used to ignore outside clicks. Also added `closeOnOutsidePress`, a function that receives the event and returns a boolean to determine if the event should be ignored. ([#336](https://github.com/TiendaNube/nimbus-design-system/pull/336) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-08-14 `5.17.3`
 
 #### 💡 Others

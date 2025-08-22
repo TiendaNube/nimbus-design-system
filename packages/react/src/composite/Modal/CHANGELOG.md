@@ -3,7 +3,7 @@
 
 #### 🎉 New features
 
-- Add optional `container` prop to scope portal and backdrop rendering to a provided element. Defaults preserve current behavior. ([#XXX](https://github.com/TiendaNube/nimbus-design-system/pull/XXX) by [@your-username](https://github.com/your-username))
+- Add optional `root` prop to scope portal and backdrop rendering to a provided element. Defaults preserve current behavior. ([#XXX](https://github.com/TiendaNube/nimbus-design-system/pull/XXX) by [@joacotornello](https://github.com/joacotornello))
 
 
 The Modal component allows us to call the user's attention to a floating box that can have text, actions or forms to perform tasks by changing the focus from the background. It is an intrusive component as it interrupts the user's operation to present a message or content.

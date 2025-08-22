@@ -7,7 +7,7 @@ import { ModalProps } from "./modal.types";
 const mockedOnDismiss = jest.fn();
 
 const makeSut = (
-  rest: Pick<ModalProps, "children" | "padding" | "onDismiss" | "container">
+  rest: Pick<ModalProps, "children" | "padding" | "onDismiss" | "root">
 ) => {
   return render(<Modal {...rest} open data-testid="modal-element" />);
 };
@@ -37,19 +37,19 @@ describe("GIVEN <Modal />", () => {
     });
   });
 
-  describe("WHEN container is provided", () => {
+  describe("WHEN root is provided", () => {
     it("THEN renders overlay and content inside that container", () => {
       const TestWrapper = () => {
-        const [container, setContainer] = React.useState<HTMLDivElement | null>(null);
+        const [root, setRoot] = React.useState<HTMLDivElement | null>(null);
         
         return (
           <div>
             <div 
-              ref={setContainer}
+              ref={setRoot}
               data-testid="scoped-root"
               style={{ position: "relative" }}
             />
-            <Modal container={container} open onDismiss={mockedOnDismiss}>
+            <Modal root={root} open onDismiss={mockedOnDismiss}>
               <div>Scoped content</div>
             </Modal>
           </div>
@@ -62,9 +62,9 @@ describe("GIVEN <Modal />", () => {
       expect(scopedRoot).toContainElement(screen.getByText("Scoped content"));
     });
 
-    it("THEN keeps default behavior when container is null", () => {
+    it("THEN keeps default behavior when root is null", () => {
       makeSut({
-        container: null,
+        root: null,
         children: <div>Fallback content</div>,
         onDismiss: mockedOnDismiss,
       });

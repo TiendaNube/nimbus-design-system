@@ -1,7 +1,7 @@
 {
   "id": "sidebar",
   "name": "Sidebar",
-  "totalProps": 9,
+  "totalProps": 10,
   "packageName": "@nimbus-ds/sidebar",
   "version": "3.4.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/sidebar",
@@ -15,12 +15,6 @@
       ],
       "type": "string",
       "title": "position",
-      "required": false
-    },
-    {
-      "description": "Root element where the portal should be mounted. When provided and not null, the portal renders inside this element; when null/undefined, the default root is used.",
-      "type": "HTMLElement | null",
-      "title": "container",
       "required": false
     },
     {
@@ -61,6 +55,28 @@
       "default": true,
       "type": "boolean",
       "title": "needRemoveScroll",
+      "required": false
+    },
+    {
+      "description": "Controls whether clicking/pressing outside should close the sidebar.\n- boolean: enable/disable dismissal on outside press\n- function: receive the DOM event and return true to allow closing, false to ignore\n\nDefaults to true for backward compatibility.",
+      "anyOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "propertyOrder": []
+        },
+        {
+          "type": "boolean"
+        }
+      ],
+      "title": "closeOnOutsidePress",
+      "required": false
+    },
+    {
+      "description": "The attribute name to ignore when checking for outside clicks.",
+      "default": "data-nimbus-outside-press-ignore",
+      "type": "string",
+      "title": "ignoreAttributeName",
       "required": false
     },
     {

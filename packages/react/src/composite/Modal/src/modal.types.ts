@@ -28,18 +28,15 @@ export interface ModalProperties extends ModalSprinkle {
    */
   portalId?: string;
   /**
-   * Root element where the portal should be mounted. When provided and not null,
-   * the portal renders inside this element; when null/undefined, the default root is used.
-   */
-  container?: HTMLElement | null;
-  /**
    * Controls whether clicking/pressing outside should close the modal.
    * - boolean: enable/disable dismissal on outside press
    * - function: receive the DOM event and return true to allow closing, false to ignore
    *
    * Defaults to true.
    */
-  closeOnOutsidePress?: boolean | ((event: PointerEvent | MouseEvent) => boolean);
+  closeOnOutsidePress?:
+    | boolean
+    | ((event: PointerEvent | MouseEvent) => boolean);
   /**
    * The attribute name to ignore when checking for outside clicks. Useful to
    * mark regions (e.g., a chat) that should not close the modal when clicked.
@@ -53,4 +50,10 @@ export interface ModalProperties extends ModalSprinkle {
   padding?: keyof typeof modal.properties.padding;
 }
 
-export type ModalProps = ModalProperties & HTMLAttributes<HTMLDivElement>;
+export type ModalProps = ModalProperties & {
+  /**
+   * Root element where the portal should be mounted. When provided and not null,
+   * the portal renders inside this element; when null/undefined, the default root is used.
+   */
+  root?: HTMLElement | null; // We create props for HTMLElement types
+} & HTMLAttributes<HTMLDivElement>;

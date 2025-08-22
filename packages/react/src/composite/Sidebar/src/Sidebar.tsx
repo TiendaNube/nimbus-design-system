@@ -25,7 +25,7 @@ const Sidebar: React.FC<SidebarProps> & SidebarComponents = ({
   closeOnOutsidePress = true,
   children,
   onRemove,
-  container,
+  root,
   ignoreAttributeName = "data-nimbus-outside-press-ignore",
   ...rest
 }: SidebarProps) => {
@@ -82,7 +82,7 @@ const Sidebar: React.FC<SidebarProps> & SidebarComponents = ({
         style={style}
         {...getFloatingProps()}
         className={[
-          container
+          root
             ? sidebar.classnames.containerScoped
             : sidebar.classnames.container,
           sidebar.classnames.position[position],
@@ -95,7 +95,7 @@ const Sidebar: React.FC<SidebarProps> & SidebarComponents = ({
     </FloatingFocusManager>
   );
 
-  if (container) {
+  if (root) {
     return createPortal(
       <>
         <div
@@ -106,7 +106,7 @@ const Sidebar: React.FC<SidebarProps> & SidebarComponents = ({
         />
         {content}
       </>,
-      container
+      root
     );
   }
 

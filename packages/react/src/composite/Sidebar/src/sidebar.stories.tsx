@@ -151,18 +151,18 @@ export const withHeaderAndTitle: Story = {
   },
 };
 
-export const withContainer: Story = {
+export const withRoot: Story = {
   render: (args) => {
     const [{ open }, updateArgs] = useArgs();
     const handleClose = () => updateArgs({ open: !open });
-    const containerRef = useRef<HTMLDivElement | null>(null);
+    const rootRef = useRef<HTMLDivElement | null>(null);
     return (
-      <Box ref={containerRef} height="60vh" position="relative" width="50vw">
+      <Box ref={rootRef} height="60vh" position="relative" width="50vw">
         <Box borderStyle="dashed" borderWidth="1" padding="2" height="100%">
           <Button onClick={handleClose}>Open</Button>
           <Sidebar
             {...args}
-            container={containerRef.current}
+            root={rootRef.current}
             onRemove={handleClose}
             open={open}
           >
@@ -177,9 +177,7 @@ export const withContainer: Story = {
               borderColor="neutral-interactive"
               boxSizing="border-box"
             >
-              <Text textAlign="center">
-                This sidebar renders inside the provided container
-              </Text>
+              <Text textAlign="center">This sidebar renders inside the provided root</Text>
             </Box>
           </Sidebar>
         </Box>
@@ -249,7 +247,7 @@ export const withIgnoreAttribute: Story = {
   render: (args) => {
     const [{ open }, updateArgs] = useArgs();
     const handleClose = () => updateArgs({ open: !open });
-    const containerRef = useRef<HTMLDivElement | null>(null);
+    const rootRef = useRef<HTMLDivElement | null>(null);
     const [ignoreAttribute, setIgnoreAttribute] = useState(true);
 
     const toggleIgnoreAttribute = () => {
@@ -258,12 +256,12 @@ export const withIgnoreAttribute: Story = {
 
     return (
       <Box display="flex" gap="2" height="60vh">
-        <Box ref={containerRef} position="relative" flex="1">
+        <Box ref={rootRef} position="relative" flex="1">
           <Box borderStyle="dashed" borderWidth="1" padding="2" height="100%">
             <Button onClick={handleClose}>Open</Button>
             <Sidebar
               {...args}
-              container={containerRef.current}
+              root={rootRef.current}
               onRemove={handleClose}
               open={open}
             />

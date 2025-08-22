@@ -31,15 +31,15 @@ describe("GIVEN <Sidebar />", () => {
     });
   });
 
-  describe("WHEN container is provided", () => {
+  describe("WHEN root is provided", () => {
     it("THEN renders overlay and content inside that container", () => {
-      const container = document.createElement("div");
-      container.setAttribute("data-testid", "scoped-root");
-      container.style.position = "relative";
-      document.body.appendChild(container);
+      const root = document.createElement("div");
+      root.setAttribute("data-testid", "scoped-root");
+      root.style.position = "relative";
+      document.body.appendChild(root);
 
       render(
-        <Sidebar container={container} open>
+        <Sidebar root={root} open>
           <div>Scoped content</div>
         </Sidebar>
       );
@@ -48,9 +48,9 @@ describe("GIVEN <Sidebar />", () => {
       expect(scopedRoot).toContainElement(screen.getByText("Scoped content"));
     });
 
-    it("THEN keeps default behavior when container is null", () => {
+    it("THEN keeps default behavior when root is null", () => {
       render(
-        <Sidebar container={null} open>
+        <Sidebar root={null} open>
           <div>Fallback content</div>
         </Sidebar>
       );

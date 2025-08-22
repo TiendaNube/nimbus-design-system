@@ -28,7 +28,7 @@ const Modal: React.FC<ModalProps> & ModalComponents = ({
   open,
   portalId,
   onDismiss,
-  container,
+  root,
   closeOnOutsidePress = true,
   ignoreAttributeName = "data-nimbus-outside-press-ignore",
   ...rest
@@ -109,10 +109,10 @@ const Modal: React.FC<ModalProps> & ModalComponents = ({
     </FloatingFocusManager>
   );
 
-  if (container) {
+  if (root) {
     return createPortal(
       <div className={modal.classnames.overlayScoped}>{content}</div>,
-      container
+      root
     );
   }
 

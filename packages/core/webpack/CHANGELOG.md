@@ -2,6 +2,12 @@
 
 This package is intended for internal use in generating builds of each design system package. It contains all the necessary settings and dependencies to optimize the creation of our builds.
 
+## 2025-08-13 `1.7.0`
+
+#### 🎉 New features
+
+- Added resolution for the new `@common` folder in `react` package. ([#336](https://github.com/TiendaNube/nimbus-design-system/pull/336) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-08-01 `1.6.0`
 
 #### 🎉 New features
