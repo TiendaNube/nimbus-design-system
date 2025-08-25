@@ -22,6 +22,7 @@ const nextTheme = {
   },
   utils: {
     focus: `0 0 0 3px ${colors.primary["surface-highlight"].value as string}`,
+    aiFocus: `0 0 0 3px ${globalTheme.colors.aiGenerative.surfaceHighlight}`,
   },
 };
 

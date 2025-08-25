@@ -2,7 +2,7 @@
 
 This package is intended for internal use in generating builds of each design system package. It contains all the necessary settings and dependencies to optimize the creation of our builds.
 
-## 2025-08-13 `1.7.0`
+## 2025-08-25 `1.7.0`
 
 #### 🎉 New features
 

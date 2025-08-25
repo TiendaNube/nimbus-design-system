@@ -2,11 +2,18 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
-## 2025-08-13 `9.22.0`
+## 2025-08-25 `9.23.0`
 
 #### 🎉 New features
 
 - `Modal` and `Sidebar`: Add optional `root` prop to scope portal and backdrop rendering to a provided element. ([#336](https://github.com/TiendaNube/nimbus-design-system/pull/336) by [@joacotornello](https://github.com/joacotornello))
+
+## 2025-08-20 `9.22.0`
+
+#### 🎉 New features
+
+- `Input`: Added `ai-generative` appearance using Nimbus AI interactive gradient with border gradient treatment. ([#333](https://github.com/TiendaNube/nimbus-design-system/pull/333) by [@joacotornello](https://github.com/joacotornello))
+- Theme: Added `aiGenerative.surface-highlight` token and applied to Input AI focus ring. ([#333](https://github.com/TiendaNube/nimbus-design-system/pull/333) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-08-12 `9.21.3`
 
@@ -18,7 +25,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 #### 🐛 Bug fixes
 
-- `Toast`: Align progress variant background with Figma by using `neutral.textHigh`. ([#TBD](https://github.com/TiendaNube/nimbus-design-system/pull/TBD) by [@contributor](https://github.com/contributor))
+- `Toast`: Align progress variant background with Figma by using `neutral.textHigh`. ([#333](https://github.com/TiendaNube/nimbus-design-system/pull/333) by [@contributor](https://github.com/contributor))
 
 ## 2025-08-04 `9.21.1`
 

@@ -54,7 +54,8 @@
           "start": { "value": "#0050C3" },
           "middle": { "value": "#4629BA" },
           "end": { "value": "#D8446E" }
-        }
+        },
+        "surface-highlight": { "value": "#D4CAF7" }
       }
     },
     "dark": {
@@ -111,7 +112,8 @@
           "start": { "value": "#0050C3" },
           "middle": { "value": "#4629BA" },
           "end": { "value": "#D8446E" }
-        }
+        },
+        "surface-highlight": { "value": "#D4CAF7" }
       }
     },
     "next": {

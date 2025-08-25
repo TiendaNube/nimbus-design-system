@@ -65,7 +65,14 @@ const darkTheme = {
         middle: lightColors.aiGenerative.interactive.middle.value as string,
         end: lightColors.aiGenerative.interactive.end.value as string,
       },
+      surfaceHighlight: (lightColors.aiGenerative as any)["surface-highlight"]
+        .value as string,
     },
+  },
+  utils: {
+    // Keep focus rings consistent with base theme definitions
+    focus: `0 0 0 3px ${globalTheme.colors.primary.surfaceHighlight}`,
+    aiFocus: `0 0 0 3px ${globalTheme.colors.aiGenerative.surfaceHighlight}`,
   },
   shadow: {
     level: {
