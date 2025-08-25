@@ -166,7 +166,7 @@ describe("GIVEN <Modal />", () => {
       );
 
       fireEvent.mouseDown(document.body);
-      expect(onDismiss).toHaveBeenCalledWith(false);
+      expect(onDismiss).toHaveBeenCalledWith(false, expect.any(Object), "outside-press");
     });
   });
 });
