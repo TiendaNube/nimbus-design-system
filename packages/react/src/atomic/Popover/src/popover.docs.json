@@ -3,7 +3,7 @@
   "name": "Popover",
   "totalProps": 20,
   "packageName": "@nimbus-ds/popover",
-  "version": "4.3.0",
+  "version": "4.3.1",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/popover",
   "props": [
     {
