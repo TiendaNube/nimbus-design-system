@@ -1,6 +1,7 @@
 releases:
   "@nimbus-ds/components": patch
   "@nimbus-ds/icon": patch
+  "@nimbus-ds/styles": patch
   "@nimbus-ds/tabs": patch
   "@nimbus-ds/text": patch
   "@nimbus-ds/tooltip": patch
