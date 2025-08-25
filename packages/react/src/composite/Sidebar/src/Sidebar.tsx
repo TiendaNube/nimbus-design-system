@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useMemo } from "react";
+import { createPortal } from "react-dom";
 import { RemoveScroll } from "react-remove-scroll";
 import {
   FloatingFocusManager,
@@ -9,6 +10,10 @@ import {
   useInteractions,
 } from "@floating-ui/react";
 import { sidebar, useTheme } from "@nimbus-ds/styles";
+import {
+  eventHasNodeWithAttribute,
+  DEFAULT_OUTSIDE_PRESS_IGNORE_ATTRIBUTE,
+} from "@common/event-handling";
 
 import { SidebarBody, SidebarFooter, SidebarHeader } from "./components";
 import { SidebarComponents, SidebarProps } from "./sidebar.types";
@@ -20,8 +25,11 @@ const Sidebar: React.FC<SidebarProps> & SidebarComponents = ({
   maxWidth = "375px",
   open = false,
   needRemoveScroll = false,
+  closeOnOutsidePress = true,
   children,
   onRemove,
+  root,
+  ignoreAttributeName = DEFAULT_OUTSIDE_PRESS_IGNORE_ATTRIBUTE,
   ...rest
 }: SidebarProps) => {
   const { className, style, otherProps } = sidebar.sprinkle({
@@ -36,11 +44,74 @@ const Sidebar: React.FC<SidebarProps> & SidebarComponents = ({
     onOpenChange: onRemove,
   });
 
-  const dismiss = useDismiss(context, { outsidePressEvent: "mousedown" });
+  const isIgnored = React.useCallback(
+    (event: PointerEvent | MouseEvent): boolean =>
+      eventHasNodeWithAttribute(event, ignoreAttributeName),
+    [ignoreAttributeName]
+  );
+
+  const outsidePressFn = useMemo<
+    ((event: PointerEvent | MouseEvent) => boolean) | boolean
+  >(() => {
+    if (typeof closeOnOutsidePress === "function") {
+      return (event: PointerEvent | MouseEvent) => {
+        const allowClose = closeOnOutsidePress(event);
+        if (!allowClose) return false;
+        if (isIgnored(event)) return false;
+        return true;
+      };
+    }
+    if (closeOnOutsidePress) {
+      return (event: PointerEvent | MouseEvent) => !isIgnored(event);
+    }
+    return false;
+  }, [closeOnOutsidePress, isIgnored]);
+
+  const dismiss = useDismiss(context, {
+    outsidePressEvent: "mousedown",
+    outsidePress: outsidePressFn,
+  });
 
   const { getFloatingProps } = useInteractions([dismiss]);
 
   if (!open) return null;
+
+  const content = (
+    <FloatingFocusManager context={context}>
+      <div
+        {...otherProps}
+        ref={context.refs.setFloating}
+        role={rest.role || "presentation"}
+        style={style}
+        {...getFloatingProps()}
+        className={[
+          root
+            ? sidebar.classnames.containerScoped
+            : sidebar.classnames.container,
+          sidebar.classnames.position[position],
+          className,
+          open && sidebar.classnames.isVisible,
+        ].join(" ")}
+      >
+        {needRemoveScroll ? <RemoveScroll>{children}</RemoveScroll> : children}
+      </div>
+    </FloatingFocusManager>
+  );
+
+  if (root) {
+    return createPortal(
+      <>
+        <div
+          className={sidebar.classnames.overlayScoped}
+          data-testid="portal-overlay-sidebar-button"
+          role="presentation"
+          aria-hidden="true"
+        />
+        {content}
+      </>,
+      root
+    );
+  }
 
   return (
     <FloatingPortal id="nimbus-sidebar" root={refThemeProvider?.current}>
@@ -48,29 +119,8 @@ const Sidebar: React.FC<SidebarProps> & SidebarComponents = ({
         className={sidebar.classnames.overlay}
         data-testid="overlay-sidebar-button"
         lockScroll={!needRemoveScroll}
-      >
-        <FloatingFocusManager context={context}>
-          <div
-            {...otherProps}
-            ref={context.refs.setFloating}
-            role={rest.role || "presentation"}
-            style={style}
-            {...getFloatingProps()}
-            className={[
-              sidebar.classnames.container,
-              sidebar.classnames.position[position],
-              className,
-              open && sidebar.classnames.isVisible,
-            ].join(" ")}
-          >
-            {needRemoveScroll ? (
-              <RemoveScroll>{children}</RemoveScroll>
-            ) : (
-              children
-            )}
-          </div>
-        </FloatingFocusManager>
-      </FloatingOverlay>
+      />
+      {content}
     </FloatingPortal>
   );
 };

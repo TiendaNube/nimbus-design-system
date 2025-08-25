@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2025-08-25 `9.23.0`
+
+#### 🎉 New features
+
+- `Modal` and `Sidebar`: Add optional `root` prop to scope portal and backdrop rendering to a provided element. ([#336](https://github.com/TiendaNube/nimbus-design-system/pull/336) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-08-20 `9.22.0`
 
 #### 🎉 New features
