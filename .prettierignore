@@ -1,2 +1,11 @@
 node_modules
 .yarn
+.turbo
+dist
+packages/**/dist
+.build-storybook
+coverage
+**/*.d.ts
+**/*.map
+node_modules
+.yarn

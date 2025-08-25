@@ -1,7 +1,12 @@
 dist
 tmp
-webpack.config.ts
-alias.ts
+**/tmp
 index.d.ts
 packages/core/typings
 packages/icons/templates
+**/alias.ts
+webpack.config.ts
+packages/**/dist
+.turbo
+.build-storybook
+node_modules

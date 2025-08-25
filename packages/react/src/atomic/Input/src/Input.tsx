@@ -21,6 +21,7 @@ const Input = forwardRef<HTMLInputElement, InputBaseProps>(
       className: _className,
       style: _style,
       appearance = "neutral",
+      aiGenerated = false,
       appendPosition = "start",
       append,
       ...rest
@@ -36,7 +37,12 @@ const Input = forwardRef<HTMLInputElement, InputBaseProps>(
     return (
       <div
         data-testid={dataTestid ? `${dataTestid}-container` : ""}
-        className={input.classnames.appearance[appearance]}
+        className={[
+          aiGenerated && input.classnames.aiGenerated,
+          input.classnames.appearance[appearance],
+        ]
+          .filter(Boolean)
+          .join(" ")}
       >
         {append && appendPosition === "start" && (
           <InputIcon

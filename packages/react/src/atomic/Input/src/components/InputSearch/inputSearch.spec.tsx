@@ -23,5 +23,14 @@ describe("GIVEN <Input.Search />", () => {
       const icon = screen.getByTestId("icon-search");
       expect(icon.getAttribute("class")).toContain("append_start");
     });
+
+    it("aiGenerated should take precedence over appearance when both are provided", () => {
+      makeSut({ appearance: "warning", aiGenerated: true });
+      const container = screen.getByTestId("my-input")
+        .parentElement as HTMLElement;
+      expect(container.getAttribute("class")).toContain(
+        "appearance_ai-generative"
+      );
+    });
   });
 });

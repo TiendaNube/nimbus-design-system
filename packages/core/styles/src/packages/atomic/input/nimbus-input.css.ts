@@ -1,5 +1,6 @@
 import { style as vanillaStyle, styleVariants } from "@vanilla-extract/css";
 import { varsThemeBase } from "../../../themes";
+import { gradients, createBorderGradient } from "../../../gradients";
 
 export const input = vanillaStyle({
   padding: varsThemeBase.spacing[2],
@@ -110,4 +111,19 @@ export const appearance = styleVariants({
       },
     },
   ],
+  "ai-generative": [
+    container,
+    {
+      background: createBorderGradient(
+        gradients.aiGradientInteractive,
+        varsThemeBase.colors.neutral.background
+      ),
+      borderColor: "transparent",
+    },
+  ],
 });
+
+export const aiGenerated = vanillaStyle([
+  appearance["ai-generative"],
+  { boxShadow: varsThemeBase.utils.aiFocus },
+]);

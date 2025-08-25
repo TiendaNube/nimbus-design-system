@@ -1,0 +1,9 @@
+releases:
+  "@nimbus-ds/components": minor
+  "@nimbus-ds/input": minor
+  "@nimbus-ds/styles": minor
+  "@nimbus-ds/tokens": minor
+
+declined:
+  - nimbus-design-system
+  - "@nimbus-ds/stepper"

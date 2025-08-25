@@ -3,7 +3,7 @@ import { InputBaseProps } from "../../input.types";
 
 export type InputPasswordProperties = Pick<
   InputBaseProps,
-  "appearance" | "disabled"
+  "appearance" | "disabled" | "aiGenerated"
 >;
 
 export type InputPasswordBaseProps = InputPasswordProperties &
