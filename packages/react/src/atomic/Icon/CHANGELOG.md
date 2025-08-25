@@ -2,6 +2,12 @@
 
 Icons are used to visually communicate core parts of the product and available actions. They can act as wayfinding tools to help merchants more easily understand where they are in the product, and common interaction patterns that are available.
 
+## 2025-08-15 `3.2.2`
+
+#### 💡 Others
+
+- Tests: added coverage for gradient utilities and silenced noisy warnings. No API or behavior changes. ([#332](https://github.com/TiendaNube/nimbus-design-system/pull/332) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-08-01 `3.2.1`
 
 ### 🐛 Bug fixes

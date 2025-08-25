@@ -114,7 +114,6 @@ describe("GIVEN <Tooltip />", () => {
     it("should set correctly the className and width using the sprinkle", () => {
       const maxWidth = "400px";
       const className = "custom-class";
-      const rest = { customProp: "value" };
 
       // Set up a spy on tooltip.sprinkle.
       const sprinkleSpy = jest
@@ -126,11 +125,10 @@ describe("GIVEN <Tooltip />", () => {
         });
 
       // Render the component with both maxWidth and the rest props.
-      makeSut({ content: "string", maxWidth, ...rest });
+      makeSut({ content: "string", maxWidth });
 
       //  Verify that tooltip.sprinkle was called with the expected merged object.
       expect(sprinkleSpy).toHaveBeenCalledWith({
-        ...rest,
         maxWidth,
         "data-testid": "tooltip-element",
       });

@@ -2,6 +2,12 @@
 
 Text is a basic component that allows us to write blocks of text and give it formatting to use within other components, sections and pages of our application or website.
 
+## 2025-08-15 `6.4.1`
+
+#### 💡 Others
+
+- Internal: resolved TypeScript typing warnings in sprinkle usage. No API or behavior changes. ([#332](https://github.com/TiendaNube/nimbus-design-system/pull/332) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-03-25 `6.4.0`
 
 ### 🎉 New features
