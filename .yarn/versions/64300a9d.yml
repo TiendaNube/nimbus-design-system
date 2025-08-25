@@ -1,0 +1,6 @@
+releases:
+  "@nimbus-ds/components": minor
+  "@nimbus-ds/icon-button": minor
+
+declined:
+  - nimbus-design-system

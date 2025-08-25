@@ -26,5 +26,12 @@ describe("GIVEN <IconButton />", () => {
         screen.getByTestId("icon-element").getAttribute("class")
       ).toContain("color_neutral-textHigh");
     });
+
+    it("THEN should render provided icon color", () => {
+      makeSut({ as: "div", source: <div />, color: "primary-textHigh" });
+      expect(
+        screen.getByTestId("icon-element").getAttribute("class")
+      ).toContain("color_primary-textHigh");
+    });
   });
 });

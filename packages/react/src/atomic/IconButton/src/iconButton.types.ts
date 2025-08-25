@@ -1,5 +1,6 @@
 import { ReactNode, ButtonHTMLAttributes } from "react";
 import { IconButtonSprinkle } from "@nimbus-ds/styles";
+import type { IconProps } from "@nimbus-ds/icon";
 
 import { IconButtonSkeleton } from "./components";
 
@@ -18,6 +19,11 @@ export interface IconButtonProperties extends IconButtonSprinkle {
    * @TJS-type React.ReactNode
    */
   source: ReactNode;
+  /**
+   * Set the color for the inner Icon fill.
+   * @default neutral-textHigh
+   */
+  color?: IconProps["color"];
 }
 
 export type IconButtonProps = IconButtonProperties &

@@ -21,6 +21,7 @@ const IconButton: React.FC<IconButtonProps> & IconButtonComponents = ({
     hover: "neutral-interactiveHover",
     focus: "primary-interactive",
   },
+  color = "neutral-textHigh",
   source,
   ...rest
 }: IconButtonProps) => {
@@ -39,7 +40,7 @@ const IconButton: React.FC<IconButtonProps> & IconButtonComponents = ({
     >
       <Icon
         data-testid="icon-element"
-        color="neutral-textHigh"
+        color={color}
         cursor="pointer"
         source={source}
       />
