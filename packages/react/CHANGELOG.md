@@ -6,7 +6,7 @@ Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team 
 
 #### 🎉 New features
 
-- `IconButton`: Added optional `color` prop (defaults to `neutral-textHigh`) to customize inner `Icon` color. ([#000](https://github.com/TiendaNube/nimbus-design-system/pull/000) by [@your-username](https://github.com/your-username))
+- `IconButton`: Added optional `color` prop (defaults to `neutral-textHigh`) to customize inner `Icon` color. ([#334](https://github.com/TiendaNube/nimbus-design-system/pull/334) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-08-14 `5.17.3`
 
