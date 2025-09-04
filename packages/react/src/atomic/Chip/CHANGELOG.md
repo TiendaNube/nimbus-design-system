@@ -2,6 +2,12 @@
 
 The Chip component is used to flag criteria or attributes related to searches or filters of a list of information.
 
+## 2025-09-04 `2.4.0`
+
+### 🎉 New features
+
+- Added `aiGenerated` prop to apply Nimbus AI gradient border and AI focus ring to highlight AI-generated chips. ([#XXX](https://github.com/TiendaNube/nimbus-design-system/pull/XXX) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-03-18 `2.3.4`
 
 ### 💡 Others

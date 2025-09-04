@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2025-09-04 `9.24.0`
+
+#### 🎉 New features
+
+- `Chip`: Added `ai-generative` appearance to highlight AI-generated chips. ([#XXX](https://github.com/TiendaNube/nimbus-design-system/pull/XXX) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-08-25 `9.23.0`
 
 #### 🎉 New features

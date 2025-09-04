@@ -12,10 +12,20 @@ const Chip: React.FC<ChipProps> & ChipComponents = ({
   text,
   icon,
   removable,
+  aiGenerated,
   onClick,
   ...rest
 }: ChipProps) => (
-  <div {...rest} className={chip.classnames.base}>
+  <div
+    {...rest}
+    className={[
+      chip.classnames.base,
+      aiGenerated && chip.classnames.appearance["ai-generative"],
+      aiGenerated && chip.classnames.aiGenerated,
+    ]
+      .filter(Boolean)
+      .join(" ")}
+  >
     {icon && <Icon source={icon} color="neutral-textHigh" />}
     <Text
       color="neutral-textHigh"

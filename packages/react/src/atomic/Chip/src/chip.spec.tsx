@@ -27,4 +27,12 @@ describe("GIVEN <Chip />", () => {
     });
     expect(screen.getByTestId("close-chip")).toBeDefined();
   });
+
+  it("THEN it should apply AI generative appearance when aiGenerated is true", () => {
+    makeSut({ text: "ai_chip", aiGenerated: true });
+    const className = screen
+      .getByTestId("chip-element")
+      .getAttribute("class") as string;
+    expect(className).toContain("appearance_ai-generative");
+  });
 });
