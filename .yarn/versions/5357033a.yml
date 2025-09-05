@@ -1,0 +1,9 @@
+releases:
+  "@nimbus-ds/chip": minor
+  "@nimbus-ds/components": minor
+  "@nimbus-ds/styles": minor
+
+declined:
+  - nimbus-design-system
+  - "@nimbus-ds/modal"
+  - "@nimbus-ds/stepper"

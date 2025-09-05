@@ -1,6 +1,7 @@
-import { style as vanillaStyle } from "@vanilla-extract/css";
+import { style as vanillaStyle, styleVariants } from "@vanilla-extract/css";
 
 import { varsThemeBase } from "../../../themes";
+import { gradients, createBorderGradient } from "../../../gradients";
 
 export const base = vanillaStyle({
   display: "flex",
@@ -47,3 +48,21 @@ export const chip_close_icon_container = vanillaStyle({
   fontSize: 0,
   cursor: "pointer",
 });
+
+const appearance = styleVariants({
+  "ai-generative": [
+    base,
+    {
+      background: createBorderGradient(
+        gradients.aiGradientInteractive,
+        varsThemeBase.colors.neutral.surface
+      ),
+      borderColor: "transparent",
+    },
+  ],
+});
+
+export const aiGenerated = vanillaStyle([
+  appearance["ai-generative"],
+  { boxShadow: varsThemeBase.utils.aiFocus },
+]);
