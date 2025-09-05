@@ -6,7 +6,7 @@ Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team 
 
 #### 🎉 New features
 
-- `Chip`: Added `aiGenerated` boolean prop to highlight AI-generated content using Nimbus AI gradient border and AI focus ring, aligned with `Input` behavior. ([#XXX](https://github.com/TiendaNube/nimbus-design-system/pull/XXX) by [@joacotornello](https://github.com/joacotornello))
+- `Chip`: Added `aiGenerated` boolean prop to highlight AI-generated content using Nimbus AI gradient border and AI focus ring, aligned with `Input` behavior. ([#339](https://github.com/TiendaNube/nimbus-design-system/pull/339) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-08-25 `5.19.0`
 

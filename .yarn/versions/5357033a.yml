@@ -5,4 +5,5 @@ releases:
 
 declined:
   - nimbus-design-system
+  - "@nimbus-ds/modal"
   - "@nimbus-ds/stepper"
