@@ -1,5 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import { Chip } from "./Chip";
 import { ChipProps } from "./chip.types";
@@ -19,15 +20,17 @@ describe("GIVEN <Chip />", () => {
     expect(screen.getByText("text_chip")).toBeDefined();
   });
 
-  it("should correctly call the onClick function when the close icon is clicked", () => {
+  it("should correctly call the onClick function when the close icon is clicked", async () => {
     const onClick = jest.fn();
+
     makeSut({
       text: "text_chip",
       icon: <svg data-testid="icon" />,
       removable: true,
       onClick,
     });
-    screen.getByTestId("dismiss-chip-button").click();
+
+    await userEvent.click(screen.getByTestId("dismiss-chip-button"));
     expect(onClick).toHaveBeenCalled();
   });
 
