@@ -19,6 +19,18 @@ describe("GIVEN <Chip />", () => {
     expect(screen.getByText("text_chip")).toBeDefined();
   });
 
+  it("should correctly call the onClick function when the close icon is clicked", () => {
+    const onClick = jest.fn();
+    makeSut({
+      text: "text_chip",
+      icon: <svg data-testid="icon" />,
+      removable: true,
+      onClick,
+    });
+    screen.getByTestId("dismiss-chip-button").click();
+    expect(onClick).toHaveBeenCalled();
+  });
+
   it("THEN it should correctly display the close icon", () => {
     makeSut({
       text: "text_chip",

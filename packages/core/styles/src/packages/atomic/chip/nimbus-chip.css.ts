@@ -49,7 +49,7 @@ export const chip_close_icon_container = vanillaStyle({
   cursor: "pointer",
 });
 
-export const appearance = styleVariants({
+const appearance = styleVariants({
   "ai-generative": [
     base,
     {

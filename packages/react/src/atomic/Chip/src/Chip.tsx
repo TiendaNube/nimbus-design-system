@@ -20,7 +20,6 @@ const Chip: React.FC<ChipProps> & ChipComponents = ({
     {...rest}
     className={[
       chip.classnames.base,
-      aiGenerated && chip.classnames.appearance["ai-generative"],
       aiGenerated && chip.classnames.aiGenerated,
     ]
       .filter(Boolean)
