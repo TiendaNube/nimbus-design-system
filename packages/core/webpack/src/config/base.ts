@@ -45,8 +45,6 @@ const webpack = ({
       type: "umd",
     },
     libraryTarget: "umd",
-    // Disable path info for faster buildsis
-    pathinfo: false,
   },
   module: {
     rules: arrayFilterEmpty([typescriptRule, svgRule]),
@@ -55,7 +53,7 @@ const webpack = ({
     dtsBundleGeneratorPlugin(dtsBundleConfig),
     new MoveFilesIntoDistFolderPlugin(packageJsonConfig),
     new UseClientInjectionPlugin(useClientInjectionOptions),
-  ].filter(Boolean),
+  ],
   resolve: {
     alias: aliasItems,
     extensions: [".tsx", ".ts", ".js"],
@@ -71,36 +69,6 @@ const webpack = ({
    * in the runtime environment.
    */
   externals: externalItems,
-  // Performance optimizations (conservative for monorepo compatibility)
-  optimization: {
-    // Only optimize what's safe in a monorepo context
-    minimize: isProduction,
-    // Keep these disabled to avoid issues with workspace dependencies
-    removeAvailableModules: false,
-    removeEmptyChunks: false,
-    splitChunks: false,
-    // Disable in development for faster builds
-    providedExports: isProduction,
-    usedExports: isProduction,
-    sideEffects: false,
-  },
-  // Enable build cache for faster subsequent builds
-  cache: isProduction
-    ? false // Disable cache in production for consistent builds
-    : {
-        type: "filesystem",
-        buildDependencies: {
-          config: [__filename],
-        },
-        cacheDirectory: ".cache/webpack",
-        name: `webpack-cache-${process.env.NODE_ENV || "development"}`,
-      },
-  // Improve build performance
-  experiments: {
-    cacheUnaffected: true,
-  },
-  // Reduce stat output for faster compilation
-  stats: isProduction ? "errors-warnings" : "minimal",
 });
 
 /**

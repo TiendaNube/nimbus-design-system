@@ -63,14 +63,16 @@ export class MoveFilesIntoDistFolderPlugin {
           ];
 
           console.log(`Moving ${filesToMove.join(" & ")} to ${outputPath}`);
-          await Promise.all(
+          await Promise.allSettled(
             filesToMove.map(async (fileName) => {
               const sourcePath = path.resolve(compiler.context, fileName);
               const destFilePath = path.join(outputPath, fileName);
               try {
                 await fs.copyFile(sourcePath, destFilePath);
               } catch (err: any) {
-                if (err.code !== "ENOENT") throw err; // Ignore missing files
+                if (err.code !== "ENOENT") {
+                  console.warn(`Failed to copy ${fileName}:`, err.message);
+                }
               }
             })
           );
