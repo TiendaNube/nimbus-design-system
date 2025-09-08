@@ -1,7 +1,7 @@
 {
   "id": "iconButton",
   "name": "IconButton",
-  "totalProps": 5,
+  "totalProps": 6,
   "packageName": "@nimbus-ds/icon-button",
   "version": "4.1.2",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/icon-button",
@@ -22,6 +22,39 @@
       "type": "React.ReactNode",
       "title": "source",
       "required": true
+    },
+    {
+      "description": "Set the color for the inner Icon fill.",
+      "default": "neutral-textHigh",
+      "enum": [
+        "ai-generative",
+        "currentColor",
+        "danger-interactive",
+        "danger-surface",
+        "danger-textHigh",
+        "danger-textLow",
+        "neutral-background",
+        "neutral-interactive",
+        "neutral-surface",
+        "neutral-textDisabled",
+        "neutral-textHigh",
+        "neutral-textLow",
+        "primary-interactive",
+        "primary-surface",
+        "primary-textHigh",
+        "primary-textLow",
+        "success-interactive",
+        "success-surface",
+        "success-textHigh",
+        "success-textLow",
+        "warning-interactive",
+        "warning-surface",
+        "warning-textHigh",
+        "warning-textLow"
+      ],
+      "type": "string",
+      "title": "color",
+      "required": false
     },
     {
       "description": "The size of the component.",
