@@ -66,6 +66,8 @@ export const globalTheme = {
         middle: colors.aiGenerative.interactive.middle.value as string,
         end: colors.aiGenerative.interactive.end.value as string,
       },
+      surfaceHighlight: (colors.aiGenerative as any)["surface-highlight"]
+        .value as string,
     },
   },
   fontFamily: {
@@ -190,6 +192,9 @@ export const globalTheme = {
   },
   utils: {
     focus: `0 0 0 3px ${colors.primary["surface-highlight"].value as string}`,
+    aiFocus: `0 0 0 3px ${
+      (colors.aiGenerative as any)["surface-highlight"].value as string
+    }`,
   },
 };
 

@@ -1,9 +1,9 @@
 {
   "id": "modal",
   "name": "Modal",
-  "totalProps": 6,
+  "totalProps": 8,
   "packageName": "@nimbus-ds/modal",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/modal",
   "props": [
     {
@@ -31,13 +31,31 @@
       "required": false
     },
     {
+      "description": "Controls whether clicking/pressing outside should close the modal.\n- boolean: enable/disable dismissal on outside press\n- function: receive the DOM event and return true to allow closing, false to ignore\n\nDefaults to true.",
+      "anyOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "propertyOrder": []
+        },
+        {
+          "type": "boolean"
+        }
+      ],
+      "title": "closeOnOutsidePress",
+      "required": false
+    },
+    {
+      "description": "The attribute name to ignore when checking for outside clicks. Useful to\nmark regions (e.g., a chat) that should not close the modal when clicked.",
+      "default": "data-nimbus-outside-press-ignore",
+      "type": "string",
+      "title": "ignoreAttributeName",
+      "required": false
+    },
+    {
       "description": "The padding properties are used to generate space around an modal's content area.",
       "default": "base",
-      "enum": [
-        "base",
-        "none",
-        "small"
-      ],
+      "enum": ["base", "none", "small"],
       "type": "string",
       "title": "padding",
       "required": false
@@ -67,12 +85,7 @@
             }
           },
           "additionalProperties": false,
-          "propertyOrder": [
-            "xs",
-            "md",
-            "lg",
-            "xl"
-          ]
+          "propertyOrder": ["xs", "md", "lg", "xl"]
         },
         {
           "type": "string"
@@ -96,11 +109,7 @@
         {
           "description": "The padding properties are used to generate space around an modal's body content area.",
           "default": "none",
-          "enum": [
-            "base",
-            "none",
-            "small"
-          ],
+          "enum": ["base", "none", "small"],
           "type": "string",
           "title": "padding",
           "required": false
@@ -120,11 +129,7 @@
         {
           "description": "The padding properties are used to generate space around an modal's footer content area.",
           "default": "none",
-          "enum": [
-            "base",
-            "none",
-            "small"
-          ],
+          "enum": ["base", "none", "small"],
           "type": "string",
           "title": "padding",
           "required": false
@@ -150,11 +155,7 @@
         {
           "description": "The padding properties are used to generate space around an modal's header content area.",
           "default": "none",
-          "enum": [
-            "base",
-            "none",
-            "small"
-          ],
+          "enum": ["base", "none", "small"],
           "type": "string",
           "title": "padding",
           "required": false

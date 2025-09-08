@@ -9,7 +9,13 @@ import { InputSearchBaseProps } from "./inputSearch.types";
 
 const InputSearch = forwardRef<HTMLInputElement, InputSearchBaseProps>(
   (
-    { className: _className, style: _style, appearance = "neutral", ...rest },
+    {
+      className: _className,
+      style: _style,
+      appearance = "neutral",
+      aiGenerated = false,
+      ...rest
+    },
     ref
   ) => {
     const inputRef = useRef<HTMLInputElement>(null);
@@ -18,7 +24,14 @@ const InputSearch = forwardRef<HTMLInputElement, InputSearchBaseProps>(
     const focusInput = () => inputRef.current?.focus();
 
     return (
-      <div className={input.classnames.appearance[appearance]}>
+      <div
+        className={[
+          input.classnames.appearance[appearance],
+          aiGenerated && input.classnames.aiGenerated,
+        ]
+          .filter(Boolean)
+          .join(" ")}
+      >
         <InputIcon
           data-testid="icon-search"
           appendPosition="start"

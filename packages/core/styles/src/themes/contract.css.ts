@@ -57,6 +57,7 @@ export const vars = createGlobalThemeContract(
           middle: "",
           end: "",
         },
+        surfaceHighlight: "",
       },
     },
     fontFamily: {
@@ -181,6 +182,7 @@ export const vars = createGlobalThemeContract(
     },
     utils: {
       focus: "",
+      aiFocus: "",
     },
   },
   (_value, path) => `nimbus-${path.join("-")}`

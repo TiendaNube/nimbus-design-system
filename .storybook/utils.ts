@@ -51,5 +51,6 @@ export const convertTsConfigPathsToWebpackAliases = () => {
     "packages/core/typings/src/index.ts"
   );
   paths[".storybook"] = path.join(rootDir, ".storybook");
+  paths["@common"] = path.join(rootDir, "packages/react/src/common");
   return paths;
 };

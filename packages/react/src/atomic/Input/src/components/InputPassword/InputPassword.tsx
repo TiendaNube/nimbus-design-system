@@ -18,6 +18,7 @@ const InputPassword = forwardRef<HTMLInputElement, InputPasswordBaseProps>(
       className: _className,
       style: _style,
       appearance = "neutral",
+      aiGenerated = false,
       onChange,
       ...rest
     },
@@ -32,7 +33,14 @@ const InputPassword = forwardRef<HTMLInputElement, InputPasswordBaseProps>(
     const focusInput = () => inputRef.current?.focus();
 
     return (
-      <div className={input.classnames.appearance[appearance]}>
+      <div
+        className={[
+          input.classnames.appearance[appearance],
+          aiGenerated && input.classnames.aiGenerated,
+        ]
+          .filter(Boolean)
+          .join(" ")}
+      >
         <input
           {...rest}
           ref={inputRef}

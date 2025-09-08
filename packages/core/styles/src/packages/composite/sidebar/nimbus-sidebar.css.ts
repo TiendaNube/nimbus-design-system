@@ -10,8 +10,7 @@ import { mediaQueries, varsThemeBase } from "../../../themes";
  * Style
  * -----------------------------------------------------------------------------------------------*/
 
-const container = style({
-  position: "fixed",
+const baseContainer = style({
   display: "flex",
   flexDirection: "column",
   alignItems: "stretch",
@@ -27,6 +26,10 @@ const container = style({
   boxSizing: "border-box",
   gap: varsThemeBase.spacing[4],
 });
+
+const container = style([baseContainer, { position: "fixed" }]);
+
+const containerScoped = style([baseContainer, { position: "absolute" }]);
 
 const position = styleVariants({
   left: {
@@ -48,8 +51,7 @@ const overlayAnimation = keyframes({
   },
 });
 
-const overlay = style({
-  position: "fixed",
+const baseOverlay = style({
   backgroundColor: "rgba(0, 0, 0, 0.5)",
   top: 0,
   bottom: 0,
@@ -59,6 +61,10 @@ const overlay = style({
   border: "none",
   animation: `${overlayAnimation} 0.5s ease`,
 });
+
+const overlay = style([baseOverlay, { position: "fixed" }]);
+
+const overlayScoped = style([baseOverlay, { position: "absolute" }]);
 
 const isVisible = style({
   opacity: 1,
@@ -84,7 +90,9 @@ const container__footer = style({
 
 export const styles = {
   overlay,
+  overlayScoped,
   container,
+  containerScoped,
   container__header,
   container__body,
   container__footer,
