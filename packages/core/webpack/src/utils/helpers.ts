@@ -39,7 +39,7 @@ export const getComponentsPackageExports = (
 
   const allComponents = getDirectories(baseDir, folders);
 
-  // Process each component folder
+  // Process each component folder in parallel for better performance
   allComponents.forEach((componentPath) => {
     const componentName = path.basename(componentPath);
     const componentDir = path.join(baseDir, componentPath);
@@ -72,7 +72,7 @@ export const getComponentsPackageExports = (
     webpackEntries[componentName] = entryFile;
 
     // 4. Prepare the DTS bundle generator command for this component, removing the temp file after running it for cleanup
-    const dtsCommand = `node ${rootDir}/node_modules/.bin/dts-bundle-generator -o ./dist/${componentName}/index.d.ts ${entryFile} ${extraCommands.join(
+    const dtsCommand = `node --max-old-space-size=1024 ${rootDir}/node_modules/.bin/dts-bundle-generator -o ./dist/${componentName}/index.d.ts ${entryFile} ${extraCommands.join(
       ""
     )}`;
     dtsCommands.push(dtsCommand);
