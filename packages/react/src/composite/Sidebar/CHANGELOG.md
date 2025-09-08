@@ -1,10 +1,10 @@
 # Changelog
+
 ## 2025-08-25 `3.5.0`
 
 #### 🎉 New features
 
 - Add optional `root` prop to scope portal and backdrop rendering to a provided elements. ([#336](https://github.com/TiendaNube/nimbus-design-system/pull/336) by [@joacotornello](https://github.com/joacotornello))
-
 
 The Sidebar component is a large floating container that goes into the page from the corners. It allows us to present actions, forms or sections with a lot of information about the context of the page.
 

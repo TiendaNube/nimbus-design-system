@@ -177,7 +177,9 @@ export const withRoot: Story = {
               borderColor="neutral-interactive"
               boxSizing="border-box"
             >
-              <Text textAlign="center">This sidebar renders inside the provided root</Text>
+              <Text textAlign="center">
+                This sidebar renders inside the provided root
+              </Text>
             </Box>
           </Sidebar>
         </Box>

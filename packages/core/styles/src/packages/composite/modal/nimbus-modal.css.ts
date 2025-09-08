@@ -86,9 +86,15 @@ const baseOverlay = style({
   animation: `${overlayAnimation} 0.5s ease`,
 });
 
-const overlay = style([baseOverlay, { position: "fixed", height: "100vh", width: "100vw" }]);
+const overlay = style([
+  baseOverlay,
+  { position: "fixed", height: "100vh", width: "100vw" },
+]);
 
-const overlayScoped = style([baseOverlay, { position: "absolute", height: "100%", width: "100%" }]);
+const overlayScoped = style([
+  baseOverlay,
+  { position: "absolute", height: "100%", width: "100%" },
+]);
 
 export const styles = {
   overlay,

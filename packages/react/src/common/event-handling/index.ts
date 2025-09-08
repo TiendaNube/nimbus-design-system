@@ -4,7 +4,7 @@
 export { eventHasNodeWithAttribute } from "./eventHasNodeWithAttribute";
 
 /**
- * Event handling types 
+ * Event handling types
  */
 export type { CloseOnOutsidePress } from "./events.types";
 

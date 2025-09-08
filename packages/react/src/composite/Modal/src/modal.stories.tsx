@@ -247,8 +247,7 @@ export const withIgnoreAttribute: Story = {
 
           <Box marginTop="2">
             <Text>
-              Clicks here{" "}
-              {/* Announce changes to assistive tech */}
+              Clicks here {/* Announce changes to assistive tech */}
               <strong aria-live="polite">
                 {ignoreAttribute ? "won't" : "will"}
               </strong>{" "}
