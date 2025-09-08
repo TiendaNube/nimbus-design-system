@@ -62,16 +62,3 @@ yarn start:dev
 ```
 
 The smart setup will handle the rest!
-
-## Build Performance
-
-The development setup includes several performance optimizations:
-
-- **Intelligent caching** via Turbo for faster subsequent builds
-- **Filesystem caching** for webpack in development mode
-- **Minimal stats output** for cleaner build logs
-- **Auto-detection** prevents unnecessary rebuilds
-
----
-
-_This setup ensures a smooth development experience for both new and existing contributors!_ 🎉
