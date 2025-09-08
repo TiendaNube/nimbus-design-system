@@ -4,3 +4,11 @@ releases:
 
 declined:
   - nimbus-design-system
+  - "@nimbus-ds/chip"
+  - "@nimbus-ds/input"
+  - "@nimbus-ds/popover"
+  - "@nimbus-ds/modal"
+  - "@nimbus-ds/sidebar"
+
+undecided:
+  - "@nimbus-ds/styles"
