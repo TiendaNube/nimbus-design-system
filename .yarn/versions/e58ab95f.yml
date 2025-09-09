@@ -1,2 +1,5 @@
+releases:
+  "@nimbus-ds/components": minor
+
 declined:
   - nimbus-design-system
