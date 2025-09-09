@@ -1,0 +1,20 @@
+{
+  "name": "Input",
+  "type": "component",
+  "registry": "nimbus",
+  "files": [
+    {
+      "path": "templates/Input.tsx",
+      "contentType": "text",
+      "target": "components/ui/input.tsx"
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "@nimbus-ds/components",
+      "version": "*"
+    }
+  ]
+}
+
+
