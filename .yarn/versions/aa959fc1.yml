@@ -1,5 +1,7 @@
 releases:
   "@nimbus-ds/scroll-pane": patch
-  "@nimbus-ds/stepper": patch
   "@nimbus-ds/styles": patch
-  nimbus-design-system: patch
+
+declined:
+  - nimbus-design-system
+  - "@nimbus-ds/stepper"
