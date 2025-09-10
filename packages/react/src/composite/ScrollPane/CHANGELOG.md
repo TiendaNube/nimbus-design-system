@@ -4,7 +4,7 @@ The ScrollPane component handles responsive scrolls in lists that are overflowin
 
 ## 2025-09-10 `1.0.1`
 
-#### 🎉 Others
+#### 💡 Others
 
 - Removed Scroll Pane margins to align with design specifications. ([#347](https://github.com/TiendaNube/nimbus-design-system/pull/347) by [@mrolando-tn](https://github.com/mrolando-tn))
 

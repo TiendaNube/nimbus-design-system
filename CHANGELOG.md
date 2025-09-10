@@ -5,9 +5,9 @@ Package-specific changes not released in any package will be added here just bef
 
 ## 2025-09-10
 
-#### 🎉 Others
+#### 💡 Others
 
-- Fixed padding and margin in Segmented Control and Scroll Pane components to align with design specifications. ([#347](https://github.com/TiendaNube/nimbus-design-system/pull/347) by [@mrolando-tn](https://github.com/mrolando-tn))
+- Alters padding and margin in Segmented Control and Scroll Pane components to align with design specifications. ([#347](https://github.com/TiendaNube/nimbus-design-system/pull/347) by [@mrolando-tn](https://github.com/mrolando-tn))
 
 ## 2025-08-13
 
