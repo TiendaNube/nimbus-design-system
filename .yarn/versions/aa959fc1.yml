@@ -1,0 +1,4 @@
+releases:
+  "@nimbus-ds/scroll-pane": patch
+  "@nimbus-ds/stepper": patch
+  "@nimbus-ds/styles": patch
