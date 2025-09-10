@@ -3,6 +3,12 @@
 This is the log of notable changes to the Design System Nimbus that are developer-facing.
 Package-specific changes not released in any package will be added here just before the release. Until then, you can find them in changelogs of the individual packages (see [packages](./packages) directory).
 
+## 2025-09-10
+
+#### 🎉 Others
+
+- Fixed padding and margin in Segmented Control and Scroll Pane components to align with design specifications. ([#347](https://github.com/TiendaNube/nimbus-design-system/pull/347) by [@mrolando-tn](https://github.com/mrolando-tn))
+
 ## 2025-08-13
 
 #### 🎉 New features
