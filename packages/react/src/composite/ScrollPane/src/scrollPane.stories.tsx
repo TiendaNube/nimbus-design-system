@@ -136,20 +136,41 @@ export const ScrollableSegmentedControls: Story = {
     ),
   },
   render: (args) => (
-    <ScrollPane {...args}>
-      <SegmentedControl>
-        {Array.from({ length: 10 }, (_, i) => (
-          <ScrollPane.Item key={i}>
-            <SegmentedControl.Button
-              label={`Button ${i + 1}`}
-              id={`Button ${i + 1}`}
-            >
-              Button {i + 1}
-            </SegmentedControl.Button>
-          </ScrollPane.Item>
-        ))}
-      </SegmentedControl>
-    </ScrollPane>
+    <Box
+      maxWidth="400px"
+      backgroundColor="neutral-surfaceDisabled"
+      display="flex"
+      px="2"
+    >
+      <Box display="flex" flexDirection="column" gap="3">
+        <Box mb="3" backgroundColor="neutral-surfaceHighlight">
+          <Text fontSize="base">Currently selected:</Text>
+        </Box>
+        <ScrollPane
+          {...args}
+          display="grid"
+          contentContainerProps={{ flexShrink: "0" }}
+        >
+          <SegmentedControl>
+            {Array.from({ length: 10 }, (_, i) => (
+              <ScrollPane.Item key={i}>
+                <SegmentedControl.Button
+                  label={`Button ${i + 1}`}
+                  id={`Button ${i + 1}`}
+                >
+                  Button {i + 1}
+                </SegmentedControl.Button>
+              </ScrollPane.Item>
+            ))}
+          </SegmentedControl>
+        </ScrollPane>
+        <Box mt="3" backgroundColor="neutral-surfaceHighlight">
+          <Text fontSize="base">
+            Try selecting a different segment to see the state update!
+          </Text>
+        </Box>
+      </Box>
+    </Box>
   ),
 };
 

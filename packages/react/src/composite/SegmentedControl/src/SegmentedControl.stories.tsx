@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { Text } from "@nimbus-ds/text";
+import { Box } from "@nimbus-ds/box";
+import { ScrollPane } from "@nimbus-ds/scroll-pane";
 import { SegmentedControl } from "./SegmentedControl";
 import { ControlledSegmentedControlProperties } from "./SegmentedControl.types";
 
@@ -70,30 +72,55 @@ export const Controlled: Story = {
     );
 
     return (
-      <div>
-        <div style={{ marginBottom: "16px" }}>
-          <Text fontSize="base">
-            Currently selected: {selectedSegment.join(", ")}
-          </Text>
-        </div>
+      <Box
+        maxWidth="400px"
+        backgroundColor="neutral-surfaceDisabled"
+        display="flex"
+      >
+        <Box display="flex" flexDirection="column" gap="3" mx="2">
+          <Box mb="3" backgroundColor="neutral-surfaceHighlight">
+            <Text fontSize="base">
+              Currently selected: {selectedSegment.join(", ")}
+            </Text>
+          </Box>
 
-        <SegmentedControl
-          selectedSegments={selectedSegment}
-          onSegmentsSelect={setSelectedSegment}
-        >
-          {["First", "Second", "Third"].map((name) => (
-            <SegmentedControl.Button key={name} label={name} id={name}>
-              {name}
-            </SegmentedControl.Button>
-          ))}
-        </SegmentedControl>
+          <ScrollPane
+            display="grid"
+            contentContainerProps={{ flexShrink: "0" }}
+          >
+            <SegmentedControl
+              selectedSegments={selectedSegment}
+              onSegmentsSelect={setSelectedSegment}
+              flexWrap="wrap"
+            >
+              {[
+                "First",
+                "Second",
+                "Third",
+                "Fourth",
+                "Fifth",
+                "Sixth",
+                "Seventh",
+                "Eighth",
+                "Ninth",
+                "Tenth",
+              ].map((name) => (
+                <ScrollPane.Item key={name}>
+                  <SegmentedControl.Button key={name} label={name} id={name}>
+                    {name}
+                  </SegmentedControl.Button>
+                </ScrollPane.Item>
+              ))}
+            </SegmentedControl>
+          </ScrollPane>
 
-        <div style={{ marginTop: "16px" }}>
-          <Text fontSize="base">
-            Try selecting a different segment to see the state update!
-          </Text>
-        </div>
-      </div>
+          <Box mt="3" backgroundColor="neutral-surfaceHighlight">
+            <Text fontSize="base">
+              Try selecting a different segment to see the state update!
+            </Text>
+          </Box>
+        </Box>
+      </Box>
     );
   },
 };
