@@ -9,10 +9,6 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 - `ScrollPane`: Adjusted padding / margin values (arrow & container alignment) to better match design spacing guidelines. ([#347](https://github.com/TiendaNube/nimbus-design-system/pull/347) by [@mrolando-tn](https://github.com/mrolando-tn))
 - `SegmentedControl`: Tweaked internal padding and gap values to improve visual balance. ([#347](https://github.com/TiendaNube/nimbus-design-system/pull/347) by [@mrolando-tn](https://github.com/mrolando-tn))
 
-## 2025-09-04 `9.24.0`
-
-#### 🎉 New features
-
 #### 🎉 New features
 
 - `Modal` and `Sidebar`: Add optional `root` prop to scope portal and backdrop rendering to a provided element. ([#336](https://github.com/TiendaNube/nimbus-design-system/pull/336) by [@joacotornello](https://github.com/joacotornello))
