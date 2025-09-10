@@ -182,8 +182,7 @@ const ScrollPane: React.FC<ScrollPaneProps> & ScrollPaneComponents = ({
             .filter(Boolean)
             .join(" ")}
         >
-          {/* Children container with a little space to ensure we don't hide focus states because of the overflow: hidden */}
-          <Box display="flex" margin="1" {...rest}>
+          <Box display="flex" {...rest}>
             {children}
           </Box>
 

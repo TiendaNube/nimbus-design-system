@@ -15,7 +15,7 @@ const buttonBase = style({
   textDecoration: "none",
   cursor: "pointer",
   boxSizing: "border-box",
-  padding: `${varsThemeBase.spacing[2]} ${varsThemeBase.spacing[4]}`,
+  padding: `${varsThemeBase.spacing[2]} ${varsThemeBase.spacing[2]}`,
   gap: varsThemeBase.spacing[1],
   fontWeight: varsThemeBase.fontWeight.medium,
   lineHeight: varsThemeBase.lineWeight.body.base,
