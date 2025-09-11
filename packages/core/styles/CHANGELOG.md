@@ -2,6 +2,13 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2025-09-10 `9.24.1`
+
+#### 💡 Others
+
+- `ScrollPane`: Adjusted padding / margin values (arrow & container alignment) to better match design spacing guidelines. ([#347](https://github.com/TiendaNube/nimbus-design-system/pull/347) by [@mrolando-tn](https://github.com/mrolando-tn))
+- `SegmentedControl`: Tweaked internal padding and gap values to improve visual balance. ([#347](https://github.com/TiendaNube/nimbus-design-system/pull/347) by [@mrolando-tn](https://github.com/mrolando-tn))
+
 ## 2025-09-04 `9.24.0`
 
 #### 🎉 New features

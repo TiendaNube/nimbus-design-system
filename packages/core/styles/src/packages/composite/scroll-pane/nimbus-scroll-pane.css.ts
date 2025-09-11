@@ -83,12 +83,12 @@ const arrow = style({
 
 const arrowVariants = styleVariants({
   "horizontal-left": {
-    left: varsThemeBase.spacing[2],
+    left: 0,
     top: "50%",
     transform: "translateY(-50%)",
   },
   "horizontal-right": {
-    right: varsThemeBase.spacing[2],
+    right: 0,
     top: "50%",
     transform: "translateY(-50%)",
   },

@@ -39,6 +39,7 @@ const ScrollPane: React.FC<ScrollPaneProps> & ScrollPaneComponents = ({
   scrollToItemOnClick = true,
   scrollPaneArrowStart,
   scrollPaneArrowEnd,
+  contentContainerProps,
   ...rest
 }: ScrollPaneProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -171,7 +172,7 @@ const ScrollPane: React.FC<ScrollPaneProps> & ScrollPaneComponents = ({
 
   return (
     <ScrollPaneContext.Provider value={contextValue}>
-      <Box as="div" position="relative">
+      <Box as="div" position="relative" {...rest}>
         <div
           ref={containerRef}
           className={[
@@ -182,8 +183,7 @@ const ScrollPane: React.FC<ScrollPaneProps> & ScrollPaneComponents = ({
             .filter(Boolean)
             .join(" ")}
         >
-          {/* Children container with a little space to ensure we don't hide focus states because of the overflow: hidden */}
-          <Box display="flex" margin="1" {...rest}>
+          <Box display="flex" margin="1" {...contentContainerProps}>
             {children}
           </Box>
 

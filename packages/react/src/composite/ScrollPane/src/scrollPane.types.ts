@@ -61,9 +61,17 @@ export interface ScrollPaneProperties {
    * Custom arrow component to render at the end of the scroll area
    */
   scrollPaneArrowEnd?: React.ReactNode;
+
+  /**
+   * Props to be passed to the content container
+   */
+  contentContainerProps?: object;
 }
 
-export type ScrollPaneProps = ScrollPaneProperties & Omit<BoxProps, "children">;
+export type ScrollPaneProps = ScrollPaneProperties &
+  Omit<BoxProps, "children"> & {
+    contentContainerProps?: BoxProps;
+  };
 
 export type ScrollPanePosition =
   | "horizontal-left"

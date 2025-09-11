@@ -136,20 +136,26 @@ export const ScrollableSegmentedControls: Story = {
     ),
   },
   render: (args) => (
-    <ScrollPane {...args}>
-      <SegmentedControl>
-        {Array.from({ length: 10 }, (_, i) => (
-          <ScrollPane.Item key={i}>
-            <SegmentedControl.Button
-              label={`Button ${i + 1}`}
-              id={`Button ${i + 1}`}
-            >
-              Button {i + 1}
-            </SegmentedControl.Button>
-          </ScrollPane.Item>
-        ))}
-      </SegmentedControl>
-    </ScrollPane>
+    <Box display="flex" flexDirection="column" gap="3">
+      <ScrollPane
+        {...args}
+        display="grid"
+        contentContainerProps={{ flexShrink: "0" }}
+      >
+        <SegmentedControl>
+          {Array.from({ length: 10 }, (_, i) => (
+            <ScrollPane.Item key={i}>
+              <SegmentedControl.Button
+                label={`Button ${i + 1}`}
+                id={`Button ${i + 1}`}
+              >
+                Button {i + 1}
+              </SegmentedControl.Button>
+            </ScrollPane.Item>
+          ))}
+        </SegmentedControl>
+      </ScrollPane>
+    </Box>
   ),
 };
 
