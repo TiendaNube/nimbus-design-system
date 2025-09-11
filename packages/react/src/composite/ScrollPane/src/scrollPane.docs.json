@@ -1,7 +1,7 @@
 {
   "id": "scrollPane",
   "name": "ScrollPane",
-  "totalProps": 8,
+  "totalProps": 9,
   "packageName": "@nimbus-ds/scroll-pane",
   "version": "1.0.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/scroll-pane",
@@ -61,6 +61,14 @@
       "$ref": "#/definitions/React.ReactNode",
       "description": "Custom arrow component to render at the end of the scroll area",
       "title": "scrollPaneArrowEnd",
+      "required": false
+    },
+    {
+      "description": "Props to be passed to the content container",
+      "type": "object",
+      "properties": {},
+      "additionalProperties": true,
+      "title": "contentContainerProps",
       "required": false
     }
   ],

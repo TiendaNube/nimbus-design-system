@@ -34,7 +34,7 @@
       "additionalProperties": false,
       "propertyOrder": [],
       "title": "onSegmentsSelect",
-      "required": true
+      "required": false
     }
   ],
   "subComponents": [
