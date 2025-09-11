@@ -182,7 +182,7 @@ const ScrollPane: React.FC<ScrollPaneProps> & ScrollPaneComponents = ({
             .filter(Boolean)
             .join(" ")}
         >
-          <Box display="flex" {...rest}>
+          <Box display="flex" margin="1" {...rest}>
             {children}
           </Box>
 
