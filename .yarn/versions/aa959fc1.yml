@@ -1,5 +1,6 @@
 releases:
   "@nimbus-ds/scroll-pane": patch
+  "@nimbus-ds/segmented-control": patch
   "@nimbus-ds/styles": patch
 
 declined:
