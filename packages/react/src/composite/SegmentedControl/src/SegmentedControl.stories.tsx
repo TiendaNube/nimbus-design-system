@@ -72,53 +72,44 @@ export const Controlled: Story = {
     );
 
     return (
-      <Box
-        maxWidth="400px"
-        backgroundColor="neutral-surfaceDisabled"
-        display="flex"
-      >
-        <Box display="flex" flexDirection="column" gap="3" mx="2">
-          <Box mb="3" backgroundColor="neutral-surfaceHighlight">
-            <Text fontSize="base">
-              Currently selected: {selectedSegment.join(", ")}
-            </Text>
-          </Box>
+      <Box display="flex" flexDirection="column" gap="3">
+        <Box mb="3">
+          <Text fontSize="base">
+            Currently selected: {selectedSegment.join(", ")}
+          </Text>
+        </Box>
 
-          <ScrollPane
-            display="grid"
-            contentContainerProps={{ flexShrink: "0" }}
+        <ScrollPane display="grid" contentContainerProps={{ flexShrink: "0" }}>
+          <SegmentedControl
+            selectedSegments={selectedSegment}
+            onSegmentsSelect={setSelectedSegment}
+            flexWrap="wrap"
           >
-            <SegmentedControl
-              selectedSegments={selectedSegment}
-              onSegmentsSelect={setSelectedSegment}
-              flexWrap="wrap"
-            >
-              {[
-                "First",
-                "Second",
-                "Third",
-                "Fourth",
-                "Fifth",
-                "Sixth",
-                "Seventh",
-                "Eighth",
-                "Ninth",
-                "Tenth",
-              ].map((name) => (
-                <ScrollPane.Item key={name}>
-                  <SegmentedControl.Button key={name} label={name} id={name}>
-                    {name}
-                  </SegmentedControl.Button>
-                </ScrollPane.Item>
-              ))}
-            </SegmentedControl>
-          </ScrollPane>
+            {[
+              "First",
+              "Second",
+              "Third",
+              "Fourth",
+              "Fifth",
+              "Sixth",
+              "Seventh",
+              "Eighth",
+              "Ninth",
+              "Tenth",
+            ].map((name) => (
+              <ScrollPane.Item key={name}>
+                <SegmentedControl.Button key={name} label={name} id={name}>
+                  {name}
+                </SegmentedControl.Button>
+              </ScrollPane.Item>
+            ))}
+          </SegmentedControl>
+        </ScrollPane>
 
-          <Box mt="3" backgroundColor="neutral-surfaceHighlight">
-            <Text fontSize="base">
-              Try selecting a different segment to see the state update!
-            </Text>
-          </Box>
+        <Box mt="3">
+          <Text fontSize="base">
+            Try selecting a different segment to see the state update!
+          </Text>
         </Box>
       </Box>
     );
