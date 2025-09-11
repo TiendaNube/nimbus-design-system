@@ -6,7 +6,7 @@ Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team 
 
 #### 💡 Others
 
-- `ScrollPane`: Added support for flex container props and grid display. ([#334](https://github.com/TiendaNube/nimbus-design-system/pull/347) by [@mrolando-tn](https://github.com/mrolando-tn))
+- `ScrollPane`: Added support for flex container props and grid display. ([#347](https://github.com/TiendaNube/nimbus-design-system/pull/347) by [@mrolando-tn](https://github.com/mrolando-tn))
 
 ## 2025-08-21 `5.21.0`
 
