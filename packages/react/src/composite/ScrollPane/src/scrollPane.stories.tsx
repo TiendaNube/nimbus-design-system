@@ -137,9 +137,6 @@ export const ScrollableSegmentedControls: Story = {
   },
   render: (args) => (
     <Box display="flex" flexDirection="column" gap="3">
-      <Box mb="3">
-        <Text fontSize="base">Currently selected:</Text>
-      </Box>
       <ScrollPane
         {...args}
         display="grid"
@@ -158,11 +155,6 @@ export const ScrollableSegmentedControls: Story = {
           ))}
         </SegmentedControl>
       </ScrollPane>
-      <Box mt="3">
-        <Text fontSize="base">
-          Try selecting a different segment to see the state update!
-        </Text>
-      </Box>
     </Box>
   ),
 };
