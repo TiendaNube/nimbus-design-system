@@ -2,6 +2,12 @@
 
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories every day, with simplicity, accessibility, consistency and performance.
 
+## 2025-09-12 `5.21.2`
+
+#### 💡 Others
+
+- `SegmentedControl`: Removed gap from segmented control options. ([#348](https://github.com/TiendaNube/nimbus-design-system/pull/348) by [@mrolando-tn](https://github.com/mrolando-tn))
+
 ## 2025-09-10 `5.21.1`
 
 #### 💡 Others
