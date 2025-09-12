@@ -2,6 +2,21 @@
 
 Nimbus-icons is an open source icon system built by Nuvemshop / Tiendanube.
 
+## 2025-08-22 `1.13.0`
+
+#### 🎉 New features
+
+- Adds `voice` icon. ([#337](https://github.com/TiendaNube/nimbus-design-system/pull/337) by [@NoeCondoleo](https://github.com/NoeCondoleo))
+- Updates `stop` icon. ([#337](https://github.com/TiendaNube/nimbus-design-system/pull/337) by [@NoeCondoleo](https://github.com/NoeCondoleo))
+- Adds `microphone` icon. ([#337](https://github.com/TiendaNube/nimbus-design-system/pull/337) by [@NoeCondoleo](https://github.com/NoeCondoleo))
+- Adds `plus` icon. ([#337](https://github.com/TiendaNube/nimbus-design-system/pull/337) by [@NoeCondoleo](https://github.com/NoeCondoleo))
+- Adds `arrowup` icon. ([#337](https://github.com/TiendaNube/nimbus-design-system/pull/337) by [@NoeCondoleo](https://github.com/NoeCondoleo))
+- Adds `thumbs-down` icon. ([#337](https://github.com/TiendaNube/nimbus-design-system/pull/337) by [@NoeCondoleo](https://github.com/NoeCondoleo))
+- Adds `thumbs-up` icon. ([#337](https://github.com/TiendaNube/nimbus-design-system/pull/337) by [@NoeCondoleo](https://github.com/NoeCondoleo))
+- Adds `stop-filled` icon. ([#337](https://github.com/TiendaNube/nimbus-design-system/pull/337) by [@NoeCondoleo](https://github.com/NoeCondoleo))
+- Adds `stop` icon. ([#337](https://github.com/TiendaNube/nimbus-design-system/pull/337) by [@NoeCondoleo](https://github.com/NoeCondoleo))
+- Adds `sidebar` icon. ([#337](https://github.com/TiendaNube/nimbus-design-system/pull/337) by [@NoeCondoleo](https://github.com/NoeCondoleo))
+
 ## 2025-08-01 `1.12.0`
 
 #### 🎉 New features
