@@ -1,2 +1,5 @@
 releases:
   "@nimbus-ds/segmented-control": patch
+
+declined:
+  - nimbus-design-system
