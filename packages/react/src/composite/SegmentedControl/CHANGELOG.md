@@ -2,6 +2,12 @@
 
 The SegmentedControl component is a composite component that allows us to select one or more options from a list.
 
+## 2025-09-12 `2.0.2`
+
+#### 💡 Others
+
+- Removed gap between option elements.([#348](https://github.com/TiendaNube/nimbus-design-system/pull/348) by [@mrolando-tn](https://github.com/mrolando-tn))
+
 ## 2025-09-11 `2.0.1`
 
 #### 🐛 Bug fixes
