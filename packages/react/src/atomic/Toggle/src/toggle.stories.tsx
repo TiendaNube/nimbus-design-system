@@ -1,3 +1,4 @@
+import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Toggle } from "./Toggle";
 
@@ -6,8 +7,10 @@ const meta: Meta<typeof Toggle> = {
   component: Toggle,
   argTypes: {
     children: { control: { type: "text" } },
+    disabled: { control: { type: "boolean" } },
   },
   tags: ["autodocs"],
+  render: (args) => <Toggle {...args} />,
 };
 
 export default meta;
