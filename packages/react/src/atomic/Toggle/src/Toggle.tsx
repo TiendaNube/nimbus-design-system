@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
 import { Text } from "@nimbus-ds/text";
 import { toggle } from "@nimbus-ds/styles";
+import { Box } from "@nimbus-ds/box";
 
 import { ToggleProps, ToggleComponents } from "./toggle.types";
 import { ToggleSkeleton } from "./components";
@@ -16,12 +17,16 @@ const Toggle: React.FC<ToggleProps> & ToggleComponents = ({
   ...rest
 }: ToggleProps) => {
   const labelColor = useMemo(
-    () => (disabled ? "neutral-textDisabled" : "neutral-textHigh"),
-    [disabled],
+    () => (disabled ? "neutral-textLow" : "neutral-textHigh"),
+    [disabled]
   );
 
   return (
-    <label htmlFor={id || name} className={toggle.classnames.container}>
+    <label
+      htmlFor={id || name}
+      className={toggle.classnames.container}
+      tabIndex={disabled ? -1 : 0}
+    >
       <input
         {...rest}
         id={id || name}
@@ -37,9 +42,11 @@ const Toggle: React.FC<ToggleProps> & ToggleComponents = ({
         className={toggle.classnames.container__slider}
       />
       {label && (
-        <Text data-testid="text" color={labelColor}>
-          {label}
-        </Text>
+        <Box paddingRight="0-5">
+          <Text data-testid="text" color={labelColor} lineHeight="caption">
+            {label}
+          </Text>
+        </Box>
       )}
     </label>
   );

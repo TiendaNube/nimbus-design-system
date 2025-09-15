@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2025-09-15 `9.24.2`
+
+#### 🐛 Bug fixes
+
+- Improved `Toggle` styles to match design requirements. ([#330](https://github.com/TiendaNube/nimbus-design-system/pull/330) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-09-10 `9.24.1`
 
 #### 💡 Others
