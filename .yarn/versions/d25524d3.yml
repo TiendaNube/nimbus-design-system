@@ -1,0 +1,8 @@
+releases:
+  "@nimbus-ds/components": patch
+  "@nimbus-ds/styles": patch
+  "@nimbus-ds/toggle": patch
+
+declined:
+  - nimbus-design-system
+  - "@nimbus-ds/stepper"
