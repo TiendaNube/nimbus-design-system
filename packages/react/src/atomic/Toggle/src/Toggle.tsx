@@ -22,11 +22,7 @@ const Toggle: React.FC<ToggleProps> & ToggleComponents = ({
   );
 
   return (
-    <label
-      htmlFor={id || name}
-      className={toggle.classnames.container}
-      tabIndex={disabled ? -1 : 0}
-    >
+    <label htmlFor={id || name} className={toggle.classnames.container}>
       <input
         {...rest}
         id={id || name}

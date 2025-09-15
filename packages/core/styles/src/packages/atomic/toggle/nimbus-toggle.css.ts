@@ -10,10 +10,6 @@ export const container = vanillaStyle({
   position: "relative",
   cursor: "pointer",
   borderRadius: varsThemeBase.shape.border.radius.full,
-  ":focus-visible": {
-    boxShadow: varsThemeBase.utils.focus,
-    outline: "none",
-  },
 });
 
 export const container__input = vanillaStyle({
@@ -59,6 +55,11 @@ export const container__slider = vanillaStyle({
   ":active": {
     borderColor: varsThemeBase.colors.neutral.interactivePressed,
   },
+});
+
+globalStyle(`${container}:has(${container__input}:focus-visible)`, {
+  boxShadow: varsThemeBase.utils.focus,
+  outline: "none",
 });
 
 globalStyle(`${container} input:checked ~ ${container__slider}`, {
