@@ -119,8 +119,9 @@ const Sidebar: React.FC<SidebarProps> & SidebarComponents = ({
         className={sidebar.classnames.overlay}
         data-testid="overlay-sidebar-button"
         lockScroll={!needRemoveScroll}
-      />
-      {content}
+      >
+        {content}
+      </FloatingOverlay>
     </FloatingPortal>
   );
 };

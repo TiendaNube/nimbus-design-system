@@ -1,5 +1,10 @@
 # Changelog
 
+## 2025-09-15 `3.5.1`
+
+#### 🐛 Bug fixes
+
+- Restored `FloatingOverlay` to be a sibling of the content, to avoid breaking consumers that were modifying the component via custom styling. This will be reverted in the next major version, or when consumers fix their custom styling. ([#349](https://github.com/TiendaNube/nimbus-design-system/pull/349) by [@joacotornello](https://github.com/joacotornello))
 ## 2025-08-25 `3.5.0`
 
 #### 🎉 New features
