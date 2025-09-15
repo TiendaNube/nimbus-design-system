@@ -2,11 +2,11 @@
 
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories every day, with simplicity, accessibility, consistency and performance.
 
-## 2025-09-10 `3.21.2`
+## 2025-09-15 `5.21.2`
 
 #### 🐛 Bug fixes
 
-- Restored `FloatingOverlay` to be a sibling of the content, to avoid breaking consumers that were modifying via custom styling the component. This will be reverted in the next major version, or when consumers fixes their custom styling. ([#336](https://github.com/TiendaNube/nimbus-design-system/pull/336) by [@joacotornello](https://github.com/joacotornello))
+- Restored `FloatingOverlay` to be a sibling of the content, to avoid breaking consumers that were modifying via custom styling the component. This will be reverted in the next major version, or when consumers fixes their custom styling. ([#349](https://github.com/TiendaNube/nimbus-design-system/pull/349) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-09-10 `5.21.1`
 
