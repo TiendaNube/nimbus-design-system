@@ -42,6 +42,7 @@ export const boxShadowProperties = {
   "4": varsThemeBase.shadow.level[4],
   "5": varsThemeBase.shadow.level[5],
   focusRing: varsThemeBase.utils.focus,
+  aiFocus: varsThemeBase.utils.aiFocus,
 };
 
 export const boxSizingProperties: BoxSizing[] = ["border-box", "content-box"];

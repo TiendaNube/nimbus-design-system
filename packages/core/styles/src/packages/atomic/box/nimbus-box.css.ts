@@ -30,7 +30,19 @@ import {
   fontWeightProperties,
   textAlignProperties,
 } from "../../../properties";
-import { mediaQueries } from "../../../themes";
+import { mediaQueries, varsThemeBase } from "../../../themes";
+import { createBorderGradient, gradients } from "../../../gradients";
+
+const [, aiInteractiveBorderBg] = createBorderGradient(
+  gradients.aiGradientInteractive,
+  varsThemeBase.colors.neutral.background
+);
+
+const boxBackgroundProperties = {
+  "ai-generative-interactive-border": aiInteractiveBorderBg,
+  "ai-generative-interactive": gradients.aiGradientInteractive,
+  transparent: "transparent",
+};
 
 const boxBackgroundColorProperties = {
   "primary-interactive": backgroundColorProperties["primary-interactive"],
@@ -177,6 +189,7 @@ const defineProperties = defineRainbowProperties({
     backgroundSize: true,
 
     transitionDuration: transitionSpeedProperties,
+    background: boxBackgroundProperties,
     backgroundColor: boxBackgroundColorProperties,
     borderColor: boxBorderColorProperties,
     borderRadius: boxBorderRadiusProperties,
@@ -266,6 +279,7 @@ const properties = {
   alignSelf: alignSelfProperties,
   pointerEvents: pointerEventsProperties,
   backgroundColor: boxBackgroundColorProperties,
+  background: boxBackgroundProperties,
   color: boxColorProperties,
   borderColor: boxBorderColorProperties,
   borderRadius: boxBorderRadiusProperties,

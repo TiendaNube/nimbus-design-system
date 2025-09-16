@@ -75,3 +75,19 @@ export const responsive: Story = {
     },
   },
 };
+
+export const aiGenerated: Story = {
+  render: (args) => (
+    <BoxComponent
+      {...args}
+      borderColor="transparent"
+      background="ai-generative-interactive-border"
+      borderWidth="1"
+      borderStyle="solid"
+      borderRadius="2"
+      boxShadow="aiFocus"
+      height="5rem"
+      width="12rem"
+    />
+  ),
+};

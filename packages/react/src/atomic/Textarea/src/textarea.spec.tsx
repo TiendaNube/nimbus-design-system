@@ -46,6 +46,13 @@ describe("GIVEN <Textarea />", () => {
       ).toContain("appearance_danger");
     });
 
+    it("THEN should correctly render the appearance ai-generative", () => {
+      makeSut({ appearance: "ai-generative" });
+      expect(
+        screen.getByRole<HTMLTextAreaElement>("textbox").getAttribute("class")
+      ).toContain("appearance_ai-generative");
+    });
+
     it("THEN should render the id", () => {
       makeSut();
       expect(screen.getByRole<HTMLTextAreaElement>("textbox").id).toContain(
