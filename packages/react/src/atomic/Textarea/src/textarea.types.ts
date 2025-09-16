@@ -10,7 +10,7 @@ export interface TextareaProperties {
    * Change the visual style of the textarea.
    * @default neutral
    */
-  appearance?: "neutral" | "success" | "warning" | "danger";
+  appearance?: "neutral" | "success" | "warning" | "danger" | "ai-generative";
   /**
    * Number of lines to be rendered for the user to input text
    * @default 2
