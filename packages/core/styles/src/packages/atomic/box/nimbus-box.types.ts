@@ -36,6 +36,7 @@ type BoxTransitionDurationProperties =
 type BoxFontSizeProperties = keyof typeof propertiesBox.fontSize;
 type BoxFontWeightProperties = keyof typeof propertiesBox.fontWeight;
 type BoxLineHeightProperties = keyof typeof propertiesBox.lineHeight;
+type BoxBackgroundProperties = keyof typeof propertiesBox.background;
 
 interface BoxConditions<T> extends Conditions<T> {
   focus?: T;
@@ -320,6 +321,10 @@ export interface BoxSprinkle {
    * The zIndex property specifies the stack order of the box.
    */
   zIndex?: BoxZIndexProperties | BoxConditions<BoxZIndexProperties>;
+  /**
+   * The background property sets the background of the box.
+   */
+  background?: BoxBackgroundProperties | BoxConditions<BoxBackgroundProperties>;
   /**
    * The backgroundImage property sets one or more background images on an element.
    */
