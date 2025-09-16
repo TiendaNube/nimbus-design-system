@@ -1,6 +1,7 @@
 import { style, styleVariants } from "@vanilla-extract/css";
 
 import { varsThemeBase } from "../../../themes";
+import { gradients, createBorderGradient } from "../../../gradients";
 
 const base = style({
   width: "100%",
@@ -72,6 +73,18 @@ export const appearance = styleVariants({
       ":focus": {
         borderColor: varsThemeBase.colors.danger.interactivePressed,
       },
+    },
+  ],
+  "ai-generative": [
+    base,
+    {
+      background: createBorderGradient(
+        gradients.aiGradientInteractive,
+        varsThemeBase.colors.neutral.background
+      ),
+      borderWidth: varsThemeBase.shape.border.width[1],
+      borderStyle: "solid",
+      borderColor: "transparent",
     },
   ],
 });
