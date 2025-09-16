@@ -66,7 +66,14 @@ export const globalTheme = {
         middle: colors.aiGenerative.interactive.middle.value as string,
         end: colors.aiGenerative.interactive.end.value as string,
       },
-      surfaceHighlight: (colors.aiGenerative as any)["surface-highlight"]
+      disabled: {
+        start: colors.aiGenerative.disabled.start.value as string,
+        middle: colors.aiGenerative.disabled.middle.value as string,
+        end: colors.aiGenerative.disabled.end.value as string,
+      },
+      textLow: colors.aiGenerative.interactive.middle.value as string,
+      interactivePressed: colors.generative[60].value as string,
+      surfaceHighlight: (colors.aiGenerative as any).disabled.middle
         .value as string,
     },
   },
@@ -193,7 +200,7 @@ export const globalTheme = {
   utils: {
     focus: `0 0 0 3px ${colors.primary["surface-highlight"].value as string}`,
     aiFocus: `0 0 0 3px ${
-      (colors.aiGenerative as any)["surface-highlight"].value as string
+      (colors.aiGenerative as any).disabled.middle.value as string
     }`,
   },
 };

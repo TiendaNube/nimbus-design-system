@@ -19,8 +19,8 @@ export const parseLinearGradient = (cssGradient: string): GradientStop[] => {
 
   colorStops.forEach((stop) => {
     const trimmedStop = stop.trim();
-    // Match color and optional percentage: "#0050C3 5%" or "rgba(0,80,195,1) 5%"
-    const colorStopRegex = /^(.+?)\s+(\d+%)$/;
+    // Match color and optional percentage: "#0050C3 5%" or "rgba(0,80,195,1) 5%" or "var(--color) 5%"
+    const colorStopRegex = /^(.+)\s+(\d+(?:\.\d+)?%)$/;
     const stopMatch = colorStopRegex.exec(trimmedStop);
     if (stopMatch) {
       stops.push({

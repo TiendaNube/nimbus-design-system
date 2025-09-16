@@ -24,6 +24,8 @@ export interface IconButtonProperties extends IconButtonSprinkle {
    * @default neutral-textHigh
    */
   color?: IconProps["color"];
+
+  appearance?: "ai-generative";
 }
 
 export type IconButtonProps = IconButtonProperties &

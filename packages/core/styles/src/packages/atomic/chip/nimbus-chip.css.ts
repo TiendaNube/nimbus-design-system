@@ -54,7 +54,7 @@ const appearance = styleVariants({
     base,
     {
       background: createBorderGradient(
-        gradients.aiGradientInteractive,
+        gradients.aiGenerativeInteractive,
         varsThemeBase.colors.neutral.surface
       ),
       borderColor: "transparent",

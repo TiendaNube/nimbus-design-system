@@ -1,6 +1,6 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import { TiendanubeIcon } from "@nimbus-ds/icons";
+import { GenerativeStarsIcon, TiendanubeIcon } from "@nimbus-ds/icons";
 import { iconButton } from "@nimbus-ds/styles";
 import { argTypesConvert } from ".storybook/utils";
 import { IconButton } from "./IconButton";
@@ -38,7 +38,9 @@ export const primaryColor: Story = {
 export const aiGenerative: Story = {
   args: {
     size: "2.75rem",
-    color: "ai-generative",
-    source: <TiendanubeIcon size="small" />,
+    color: "neutral-surface",
+    appearance: "ai-generative",
+    source: <GenerativeStarsIcon size="small" />,
+    disabled: true,
   },
 };

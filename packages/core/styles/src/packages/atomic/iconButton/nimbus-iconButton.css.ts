@@ -1,4 +1,4 @@
-import { style } from "@vanilla-extract/css";
+import { style, styleVariants } from "@vanilla-extract/css";
 import {
   createRainbowSprinkles,
   defineProperties as defineRainbowProperties,
@@ -8,6 +8,8 @@ import {
   borderColorProperties,
 } from "../../../properties";
 import { varsThemeBase, mediaQueries } from "../../../themes";
+import { gradients } from "../../../gradients";
+import { createBorderGradient } from "../../../gradients/gradientBuilder";
 
 /* -------------------------------------------------------------------------------------------------
  * Style
@@ -21,12 +23,15 @@ const base = style({
   borderStyle: "solid",
   borderRadius: varsThemeBase.shape.border.radius.full,
   borderWidth: varsThemeBase.shape.border.width[1],
-  transition: `all ${varsThemeBase.motion.speed.fast} ease`,
+  transition: `boxShadow ${varsThemeBase.motion.speed.fast} ease`,
   ":active": {
     backgroundColor: varsThemeBase.colors.neutral.interactive,
     borderColor: varsThemeBase.colors.neutral.interactivePressed,
   },
   ":focus": {
+    boxShadow: varsThemeBase.utils.focus,
+  },
+  ":focus-visible": {
     boxShadow: varsThemeBase.utils.focus,
   },
   ":disabled": {
@@ -38,6 +43,29 @@ const base = style({
 
 export const styles = {
   base,
+  appearance: styleVariants({
+    "ai-generative": [
+      base,
+      {
+        background: gradients.aiGenerativeInteractive,
+        border: "none",
+        outline: "none",
+        ":hover": {
+          background: varsThemeBase.colors.aiGenerative.interactivePressed,
+        },
+        ":active": {
+          background: varsThemeBase.colors.aiGenerative.textLow,
+        },
+        ":disabled": {
+          background: createBorderGradient(
+            gradients.aiGenerativeDisabled,
+            varsThemeBase.colors.neutral.surfaceDisabled
+          ),
+          border: `${varsThemeBase.shape.border.width[1]} solid transparent`,
+        },
+      },
+    ],
+  }),
 };
 
 /* -------------------------------------------------------------------------------------------------

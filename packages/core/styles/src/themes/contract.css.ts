@@ -57,6 +57,13 @@ export const vars = createGlobalThemeContract(
           middle: "",
           end: "",
         },
+        disabled: {
+          start: "",
+          middle: "",
+          end: "",
+        },
+        textLow: "",
+        interactivePressed: "",
         surfaceHighlight: "",
       },
     },

@@ -65,7 +65,14 @@ const darkTheme = {
         middle: lightColors.aiGenerative.interactive.middle.value as string,
         end: lightColors.aiGenerative.interactive.end.value as string,
       },
-      surfaceHighlight: (lightColors.aiGenerative as any)["surface-highlight"]
+      disabled: {
+        start: lightColors.aiGenerative.disabled.start.value as string,
+        middle: lightColors.aiGenerative.disabled.middle.value as string,
+        end: lightColors.aiGenerative.disabled.end.value as string,
+      },
+      textLow: lightColors.aiGenerative.interactive.middle.value as string,
+      interactivePressed: lightColors.generative[60].value as string,
+      surfaceHighlight: lightColors.aiGenerative.disabled.middle
         .value as string,
     },
   },

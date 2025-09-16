@@ -115,7 +115,7 @@ export const appearance = styleVariants({
     container,
     {
       background: createBorderGradient(
-        gradients.aiGradientInteractive,
+        gradients.aiGenerativeInteractive,
         varsThemeBase.colors.neutral.background
       ),
       borderColor: "transparent",
