@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2025-09-16 `9.26.0`
+
+#### 🎉 New features
+
+- Added `ai-generative-interactive` and `ai-generative-interactive-border` options to `background` property, and `aiFocus` option to `boxShadow` property. ([#352](https://github.com/TiendaNube/nimbus-design-system/pull/352) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-09-15 `9.25.0`
 
 #### 🎉 New features

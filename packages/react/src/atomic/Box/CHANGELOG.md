@@ -2,6 +2,12 @@
 
 A low-level utility component that accepts styled system props to enable custom theme-aware styling
 
+## 2025-09-16 `4.3.0`
+
+#### 🎉 New features
+
+- Added `ai-generative-interactive` and `ai-generative-interactive-border` options to `background` property, and `aiFocus` option to `boxShadow` property. ([#352](https://github.com/TiendaNube/nimbus-design-system/pull/352) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-03-25 `4.2.0`
 
 ### 🎉 New features
