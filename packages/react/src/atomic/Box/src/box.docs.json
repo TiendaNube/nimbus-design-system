@@ -1,7 +1,7 @@
 {
   "id": "box",
   "name": "Box",
-  "totalProps": 90,
+  "totalProps": 91,
   "packageName": "@nimbus-ds/box",
   "version": "4.2.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/box",
@@ -5714,6 +5714,7 @@
                 "3",
                 "4",
                 "5",
+                "aiFocus",
                 "focusRing"
               ],
               "type": "string",
@@ -5727,6 +5728,7 @@
                 "3",
                 "4",
                 "5",
+                "aiFocus",
                 "focusRing"
               ],
               "type": "string",
@@ -5740,6 +5742,7 @@
                 "3",
                 "4",
                 "5",
+                "aiFocus",
                 "focusRing"
               ],
               "type": "string",
@@ -5753,6 +5756,7 @@
                 "3",
                 "4",
                 "5",
+                "aiFocus",
                 "focusRing"
               ],
               "type": "string",
@@ -5766,6 +5770,7 @@
                 "3",
                 "4",
                 "5",
+                "aiFocus",
                 "focusRing"
               ],
               "type": "string",
@@ -5779,6 +5784,7 @@
                 "3",
                 "4",
                 "5",
+                "aiFocus",
                 "focusRing"
               ],
               "type": "string",
@@ -5792,6 +5798,7 @@
                 "3",
                 "4",
                 "5",
+                "aiFocus",
                 "focusRing"
               ],
               "type": "string",
@@ -5805,6 +5812,7 @@
                 "3",
                 "4",
                 "5",
+                "aiFocus",
                 "focusRing"
               ],
               "type": "string",
@@ -5818,6 +5826,7 @@
                 "3",
                 "4",
                 "5",
+                "aiFocus",
                 "focusRing"
               ],
               "type": "string",
@@ -5845,6 +5854,7 @@
             "3",
             "4",
             "5",
+            "aiFocus",
             "focusRing"
           ],
           "type": "string"
@@ -9506,6 +9516,119 @@
         }
       ],
       "title": "zIndex",
+      "required": false
+    },
+    {
+      "description": "The background property sets the background of the box.",
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "focus": {
+              "enum": [
+                "ai-generative-interactive",
+                "ai-generative-interactive-border",
+                "transparent"
+              ],
+              "type": "string",
+              "title": "focus"
+            },
+            "focusWithin": {
+              "enum": [
+                "ai-generative-interactive",
+                "ai-generative-interactive-border",
+                "transparent"
+              ],
+              "type": "string",
+              "title": "focusWithin"
+            },
+            "active": {
+              "enum": [
+                "ai-generative-interactive",
+                "ai-generative-interactive-border",
+                "transparent"
+              ],
+              "type": "string",
+              "title": "active"
+            },
+            "hover": {
+              "enum": [
+                "ai-generative-interactive",
+                "ai-generative-interactive-border",
+                "transparent"
+              ],
+              "type": "string",
+              "title": "hover"
+            },
+            "disabled": {
+              "enum": [
+                "ai-generative-interactive",
+                "ai-generative-interactive-border",
+                "transparent"
+              ],
+              "type": "string",
+              "title": "disabled"
+            },
+            "xs": {
+              "enum": [
+                "ai-generative-interactive",
+                "ai-generative-interactive-border",
+                "transparent"
+              ],
+              "type": "string",
+              "title": "xs"
+            },
+            "md": {
+              "enum": [
+                "ai-generative-interactive",
+                "ai-generative-interactive-border",
+                "transparent"
+              ],
+              "type": "string",
+              "title": "md"
+            },
+            "lg": {
+              "enum": [
+                "ai-generative-interactive",
+                "ai-generative-interactive-border",
+                "transparent"
+              ],
+              "type": "string",
+              "title": "lg"
+            },
+            "xl": {
+              "enum": [
+                "ai-generative-interactive",
+                "ai-generative-interactive-border",
+                "transparent"
+              ],
+              "type": "string",
+              "title": "xl"
+            }
+          },
+          "additionalProperties": false,
+          "propertyOrder": [
+            "focus",
+            "focusWithin",
+            "active",
+            "hover",
+            "disabled",
+            "xs",
+            "md",
+            "lg",
+            "xl"
+          ]
+        },
+        {
+          "enum": [
+            "ai-generative-interactive",
+            "ai-generative-interactive-border",
+            "transparent"
+          ],
+          "type": "string"
+        }
+      ],
+      "title": "background",
       "required": false
     },
     {
