@@ -6,7 +6,7 @@ The Textarea component allows the user to enter or edit information in long text
 
 #### 🎉 New features
 
-- Added `ai-generative` appearance to `Textarea` component. ([#330](https://github.com/TiendaNube/nimbus-design-system/pull/330) by [@joacotornello](https://github.com/joacotornello))
+- Added `ai-generative` appearance to `Textarea` component. ([#351](https://github.com/TiendaNube/nimbus-design-system/pull/351) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-03-18 `2.3.0`
 
