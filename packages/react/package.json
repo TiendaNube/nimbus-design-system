@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/components",
-  "version": "5.21.3",
+  "version": "5.22.0",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [

@@ -9,7 +9,13 @@
     {
       "description": "Change the visual style of the textarea.",
       "default": "neutral",
-      "enum": ["ai-generative", "danger", "neutral", "success", "warning"],
+      "enum": [
+        "ai-generative",
+        "danger",
+        "neutral",
+        "success",
+        "warning"
+      ],
       "type": "string",
       "title": "appearance",
       "required": false
