@@ -43,5 +43,4 @@ export const baseColors = {
   "neutral-textDisabled": varsThemeBase.colors.neutral.textDisabled,
   "neutral-textLow": varsThemeBase.colors.neutral.textLow,
   "neutral-textHigh": varsThemeBase.colors.neutral.textHigh,
-  "ai-generativeInteractive": varsThemeBase.colors.aiGenerative.interactive
 };
