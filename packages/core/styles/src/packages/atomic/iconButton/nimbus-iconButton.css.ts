@@ -55,6 +55,14 @@ export const styles = {
         },
         ":active": {
           background: varsThemeBase.colors.aiGenerative.textLow,
+          boxShadow: "none",
+        },
+        ":focus": {
+          boxShadow: "none",
+        },
+        ":focus-visible": {
+          boxShadow: varsThemeBase.utils.focus,
+          outline: "none",
         },
         ":disabled": {
           background: createBorderGradient(
