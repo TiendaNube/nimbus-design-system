@@ -54,3 +54,13 @@ export const aiGenerativeDisabled: Story = {
     disabled: true,
   },
 };
+
+export const aiGenerativeSurface: Story = {
+  args: {
+    size: "2.75rem",
+    borderColor: "transparent",
+    color: "ai-generative",
+    backgroundColor: "ai-generativeSurface",
+    source: <GenerativeStarsIcon size="small" />,
+  },
+};
