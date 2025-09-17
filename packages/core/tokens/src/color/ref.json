@@ -106,14 +106,6 @@
         "20": { "value": "#1F1254" },
         "10": { "value": "#180E3F" },
         "5": { "value": "#000B19" }
-      },
-      "aiGradient": {
-        "blue-high": "#0050C3",
-        "blue-light": "#96C1FC",
-        "purple-high": "#4629BA",
-        "purple-light": "#BCB0E8",
-        "pink-high": "#D8446E",
-        "pink-light": "#E5809D"
       }
     }
   }

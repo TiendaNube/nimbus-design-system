@@ -53,11 +53,26 @@ const appearance = styleVariants({
   "ai-generative": [
     base,
     {
+      transition: `box-shadow ${varsThemeBase.motion.speed.fast} ease`,
       background: createBorderGradient(
         gradients.aiGenerativeInteractive,
         varsThemeBase.colors.neutral.surface
       ),
       borderColor: "transparent",
+      ":hover": {
+        background: createBorderGradient(
+          gradients.aiGenerativeHover,
+          varsThemeBase.colors.neutral.surface
+        ),
+        borderColor: "transparent",
+      },
+      ":active": {
+        background: createBorderGradient(
+          gradients.aiGenerativeHover,
+          varsThemeBase.colors.aiGenerative.surfaceHighlight
+        ),
+        borderColor: "transparent",
+      },
     },
   ],
 });

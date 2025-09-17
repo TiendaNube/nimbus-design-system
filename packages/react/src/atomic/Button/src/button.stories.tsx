@@ -127,3 +127,17 @@ export const fullWidth: Story = {
     </Box>
   ),
 };
+
+export const aiPrimary: Story = {
+  args: {
+    children: "Button",
+    appearance: "ai-primary",
+  },
+};
+
+export const aiSecondary: Story = {
+  args: {
+    children: "Button",
+    appearance: "ai-secondary",
+  },
+};

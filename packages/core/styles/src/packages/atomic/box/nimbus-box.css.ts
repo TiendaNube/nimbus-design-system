@@ -34,13 +34,13 @@ import { mediaQueries, varsThemeBase } from "../../../themes";
 import { createBorderGradient, gradients } from "../../../gradients";
 
 const [, aiInteractiveBorderBg] = createBorderGradient(
-  gradients.aiGradientInteractive,
+  gradients.aiGenerativeInteractive,
   varsThemeBase.colors.neutral.background
 );
 
 const boxBackgroundProperties = {
   "ai-generative-interactive-border": aiInteractiveBorderBg,
-  "ai-generative-interactive": gradients.aiGradientInteractive,
+  "ai-generative-interactive": gradients.aiGenerativeInteractive,
   transparent: "transparent",
 };
 

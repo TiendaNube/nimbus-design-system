@@ -52,19 +52,20 @@ export const vars = createGlobalThemeContract(
         textHigh: "",
       },
       aiGenerative: {
-        interactive: {
-          start: "",
-          middle: "",
-          end: "",
-        },
-        disabled: {
-          start: "",
-          middle: "",
-          end: "",
-        },
         textLow: "",
         interactivePressed: "",
         surfaceHighlight: "",
+        surface: "",
+        background: "",
+        textHigh: "",
+      },
+      aiGradient: {
+        blueHigh: "",
+        blueLight: "",
+        purpleHigh: "",
+        purpleLight: "",
+        pinkHigh: "",
+        pinkLight: "",
       },
     },
     fontFamily: {
