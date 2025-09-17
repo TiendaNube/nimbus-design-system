@@ -172,6 +172,13 @@ export const appearance = styleVariants({
           varsThemeBase.colors.aiGenerative.surfaceHighlight
         ),
       },
+      ":disabled": {
+        background: createBorderGradient(
+          gradients.aiGenerativeDisabled,
+          varsThemeBase.colors.neutral.surfaceDisabled
+        ),
+        color: varsThemeBase.colors.neutral.textDisabled,
+      },
     },
   ],
 });

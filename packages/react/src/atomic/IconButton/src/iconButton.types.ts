@@ -25,6 +25,10 @@ export interface IconButtonProperties extends IconButtonSprinkle {
    */
   color?: IconProps["color"];
 
+  /**
+   * AI gradient background appearance for the button container.
+   * When provided, container color/border sprinkles are ignored in favor of gradient styles.
+   */
   appearance?: "ai-generative";
 }
 

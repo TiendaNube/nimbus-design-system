@@ -8,8 +8,7 @@ import {
   borderColorProperties,
 } from "../../../properties";
 import { varsThemeBase, mediaQueries } from "../../../themes";
-import { gradients } from "../../../gradients";
-import { createBorderGradient } from "../../../gradients/gradientBuilder";
+import { gradients, createBorderGradient } from "../../../gradients";
 
 /* -------------------------------------------------------------------------------------------------
  * Style
@@ -23,7 +22,7 @@ const base = style({
   borderStyle: "solid",
   borderRadius: varsThemeBase.shape.border.radius.full,
   borderWidth: varsThemeBase.shape.border.width[1],
-  transition: `boxShadow ${varsThemeBase.motion.speed.fast} ease`,
+  transition: `all ${varsThemeBase.motion.speed.fast} ease`,
   ":active": {
     backgroundColor: varsThemeBase.colors.neutral.interactive,
     borderColor: varsThemeBase.colors.neutral.interactivePressed,
@@ -50,6 +49,7 @@ export const styles = {
         background: gradients.aiGenerativeInteractive,
         border: "none",
         outline: "none",
+        transition: `box-shadow ${varsThemeBase.motion.speed.fast} ease`,
         ":hover": {
           background: varsThemeBase.colors.aiGenerative.interactivePressed,
         },
