@@ -13,6 +13,7 @@ const meta: Meta<typeof IconButton> = {
   argTypes: {
     source: { control: { disable: true } },
     ...argTypesConvert(iconButton.properties),
+    disabled: { control: "boolean" },
   },
   tags: ["autodocs"],
 };
@@ -39,6 +40,15 @@ export const aiGenerative: Story = {
   args: {
     size: "2.75rem",
     color: "neutral-surface",
+    appearance: "ai-generative",
+    source: <GenerativeStarsIcon size="small" />,
+  },
+};
+
+export const aiGenerativeDisabled: Story = {
+  args: {
+    size: "2.75rem",
+    color: "neutral-textDisabled",
     appearance: "ai-generative",
     source: <GenerativeStarsIcon size="small" />,
     disabled: true,
