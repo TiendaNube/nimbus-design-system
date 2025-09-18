@@ -3,7 +3,7 @@
   "name": "IconButton",
   "totalProps": 7,
   "packageName": "@nimbus-ds/icon-button",
-  "version": "4.2.0",
+  "version": "4.3.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/icon-button",
   "props": [
     {

@@ -3,7 +3,7 @@
   "name": "Icon",
   "totalProps": 3,
   "packageName": "@nimbus-ds/icon",
-  "version": "3.2.1",
+  "version": "3.2.2",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/icon",
   "props": [
     {
