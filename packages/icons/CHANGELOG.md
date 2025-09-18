@@ -2,6 +2,12 @@
 
 Nimbus-icons is an open source icon system built by Nuvemshop / Tiendanube.
 
+## 2025-09-17 `1.13.1`
+
+#### 🎉 New features
+
+- Updates `generative-stars` icon. ([#353](https://github.com/TiendaNube/nimbus-design-system/pull/353) by [@NimbusAgent](https://github.com/NimbusAgent))
+
 ## 2025-08-22 `1.13.0`
 
 #### 🎉 New features
