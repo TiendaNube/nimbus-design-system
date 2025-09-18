@@ -34,6 +34,8 @@
       "description": "Change the visual style of the button.",
       "default": "neutral",
       "enum": [
+        "ai-primary",
+        "ai-secondary",
         "danger",
         "neutral",
         "primary",

@@ -3,7 +3,7 @@
   "name": "Box",
   "totalProps": 91,
   "packageName": "@nimbus-ds/box",
-  "version": "4.2.0",
+  "version": "4.3.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/box",
   "props": [
     {
@@ -3388,6 +3388,8 @@
           "properties": {
             "focus": {
               "enum": [
+                "ai-generative-surface",
+                "ai-generative-surfaceHighlight",
                 "danger-interactive",
                 "danger-surface",
                 "danger-surfaceHighlight",
@@ -3417,6 +3419,8 @@
             },
             "focusWithin": {
               "enum": [
+                "ai-generative-surface",
+                "ai-generative-surfaceHighlight",
                 "danger-interactive",
                 "danger-surface",
                 "danger-surfaceHighlight",
@@ -3446,6 +3450,8 @@
             },
             "active": {
               "enum": [
+                "ai-generative-surface",
+                "ai-generative-surfaceHighlight",
                 "danger-interactive",
                 "danger-surface",
                 "danger-surfaceHighlight",
@@ -3475,6 +3481,8 @@
             },
             "hover": {
               "enum": [
+                "ai-generative-surface",
+                "ai-generative-surfaceHighlight",
                 "danger-interactive",
                 "danger-surface",
                 "danger-surfaceHighlight",
@@ -3504,6 +3512,8 @@
             },
             "disabled": {
               "enum": [
+                "ai-generative-surface",
+                "ai-generative-surfaceHighlight",
                 "danger-interactive",
                 "danger-surface",
                 "danger-surfaceHighlight",
@@ -3533,6 +3543,8 @@
             },
             "xs": {
               "enum": [
+                "ai-generative-surface",
+                "ai-generative-surfaceHighlight",
                 "danger-interactive",
                 "danger-surface",
                 "danger-surfaceHighlight",
@@ -3562,6 +3574,8 @@
             },
             "md": {
               "enum": [
+                "ai-generative-surface",
+                "ai-generative-surfaceHighlight",
                 "danger-interactive",
                 "danger-surface",
                 "danger-surfaceHighlight",
@@ -3591,6 +3605,8 @@
             },
             "lg": {
               "enum": [
+                "ai-generative-surface",
+                "ai-generative-surfaceHighlight",
                 "danger-interactive",
                 "danger-surface",
                 "danger-surfaceHighlight",
@@ -3620,6 +3636,8 @@
             },
             "xl": {
               "enum": [
+                "ai-generative-surface",
+                "ai-generative-surfaceHighlight",
                 "danger-interactive",
                 "danger-surface",
                 "danger-surfaceHighlight",
@@ -3663,6 +3681,8 @@
         },
         {
           "enum": [
+            "ai-generative-surface",
+            "ai-generative-surfaceHighlight",
             "danger-interactive",
             "danger-surface",
             "danger-surfaceHighlight",
@@ -3701,6 +3721,8 @@
           "properties": {
             "focus": {
               "enum": [
+                "ai-generative-surface",
+                "ai-generative-surfaceHighlight",
                 "currentColor",
                 "danger-interactive",
                 "danger-surface",
@@ -3731,6 +3753,8 @@
             },
             "focusWithin": {
               "enum": [
+                "ai-generative-surface",
+                "ai-generative-surfaceHighlight",
                 "currentColor",
                 "danger-interactive",
                 "danger-surface",
@@ -3761,6 +3785,8 @@
             },
             "active": {
               "enum": [
+                "ai-generative-surface",
+                "ai-generative-surfaceHighlight",
                 "currentColor",
                 "danger-interactive",
                 "danger-surface",
@@ -3791,6 +3817,8 @@
             },
             "hover": {
               "enum": [
+                "ai-generative-surface",
+                "ai-generative-surfaceHighlight",
                 "currentColor",
                 "danger-interactive",
                 "danger-surface",
@@ -3821,6 +3849,8 @@
             },
             "disabled": {
               "enum": [
+                "ai-generative-surface",
+                "ai-generative-surfaceHighlight",
                 "currentColor",
                 "danger-interactive",
                 "danger-surface",
@@ -3851,6 +3881,8 @@
             },
             "xs": {
               "enum": [
+                "ai-generative-surface",
+                "ai-generative-surfaceHighlight",
                 "currentColor",
                 "danger-interactive",
                 "danger-surface",
@@ -3881,6 +3913,8 @@
             },
             "md": {
               "enum": [
+                "ai-generative-surface",
+                "ai-generative-surfaceHighlight",
                 "currentColor",
                 "danger-interactive",
                 "danger-surface",
@@ -3911,6 +3945,8 @@
             },
             "lg": {
               "enum": [
+                "ai-generative-surface",
+                "ai-generative-surfaceHighlight",
                 "currentColor",
                 "danger-interactive",
                 "danger-surface",
@@ -3941,6 +3977,8 @@
             },
             "xl": {
               "enum": [
+                "ai-generative-surface",
+                "ai-generative-surfaceHighlight",
                 "currentColor",
                 "danger-interactive",
                 "danger-surface",
@@ -3985,6 +4023,8 @@
         },
         {
           "enum": [
+            "ai-generative-surface",
+            "ai-generative-surfaceHighlight",
             "currentColor",
             "danger-interactive",
             "danger-surface",

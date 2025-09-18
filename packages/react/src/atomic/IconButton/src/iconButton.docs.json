@@ -1,7 +1,7 @@
 {
   "id": "iconButton",
   "name": "IconButton",
-  "totalProps": 6,
+  "totalProps": 7,
   "packageName": "@nimbus-ds/icon-button",
   "version": "4.2.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/icon-button",
@@ -54,6 +54,15 @@
       ],
       "type": "string",
       "title": "color",
+      "required": false
+    },
+    {
+      "description": "AI gradient background appearance for the button container.\nWhen provided, container color/border sprinkles are ignored in favor of gradient styles.",
+      "enum": [
+        "ai-generative"
+      ],
+      "type": "string",
+      "title": "appearance",
       "required": false
     },
     {
@@ -119,6 +128,7 @@
           "properties": {
             "focus": {
               "enum": [
+                "ai-generativeSurface",
                 "neutral-interactive",
                 "neutral-interactiveHover",
                 "neutral-interactivePressed",
@@ -132,6 +142,7 @@
             },
             "active": {
               "enum": [
+                "ai-generativeSurface",
                 "neutral-interactive",
                 "neutral-interactiveHover",
                 "neutral-interactivePressed",
@@ -145,6 +156,7 @@
             },
             "hover": {
               "enum": [
+                "ai-generativeSurface",
                 "neutral-interactive",
                 "neutral-interactiveHover",
                 "neutral-interactivePressed",
@@ -158,6 +170,7 @@
             },
             "xs": {
               "enum": [
+                "ai-generativeSurface",
                 "neutral-interactive",
                 "neutral-interactiveHover",
                 "neutral-interactivePressed",
@@ -171,6 +184,7 @@
             },
             "md": {
               "enum": [
+                "ai-generativeSurface",
                 "neutral-interactive",
                 "neutral-interactiveHover",
                 "neutral-interactivePressed",
@@ -184,6 +198,7 @@
             },
             "lg": {
               "enum": [
+                "ai-generativeSurface",
                 "neutral-interactive",
                 "neutral-interactiveHover",
                 "neutral-interactivePressed",
@@ -197,6 +212,7 @@
             },
             "xl": {
               "enum": [
+                "ai-generativeSurface",
                 "neutral-interactive",
                 "neutral-interactiveHover",
                 "neutral-interactivePressed",
@@ -222,6 +238,7 @@
         },
         {
           "enum": [
+            "ai-generativeSurface",
             "neutral-interactive",
             "neutral-interactiveHover",
             "neutral-interactivePressed",
@@ -245,6 +262,7 @@
           "properties": {
             "focus": {
               "enum": [
+                "ai-generativeSurface",
                 "neutral-interactive",
                 "neutral-surface",
                 "neutral-surfaceHighlight",
@@ -255,6 +273,7 @@
             },
             "active": {
               "enum": [
+                "ai-generativeSurface",
                 "neutral-interactive",
                 "neutral-surface",
                 "neutral-surfaceHighlight",
@@ -265,6 +284,7 @@
             },
             "hover": {
               "enum": [
+                "ai-generativeSurface",
                 "neutral-interactive",
                 "neutral-surface",
                 "neutral-surfaceHighlight",
@@ -275,6 +295,7 @@
             },
             "xs": {
               "enum": [
+                "ai-generativeSurface",
                 "neutral-interactive",
                 "neutral-surface",
                 "neutral-surfaceHighlight",
@@ -285,6 +306,7 @@
             },
             "md": {
               "enum": [
+                "ai-generativeSurface",
                 "neutral-interactive",
                 "neutral-surface",
                 "neutral-surfaceHighlight",
@@ -295,6 +317,7 @@
             },
             "lg": {
               "enum": [
+                "ai-generativeSurface",
                 "neutral-interactive",
                 "neutral-surface",
                 "neutral-surfaceHighlight",
@@ -305,6 +328,7 @@
             },
             "xl": {
               "enum": [
+                "ai-generativeSurface",
                 "neutral-interactive",
                 "neutral-surface",
                 "neutral-surfaceHighlight",
@@ -327,6 +351,7 @@
         },
         {
           "enum": [
+            "ai-generativeSurface",
             "neutral-interactive",
             "neutral-surface",
             "neutral-surfaceHighlight",
