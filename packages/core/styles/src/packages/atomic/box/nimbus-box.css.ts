@@ -41,6 +41,7 @@ const [, aiInteractiveBorderBg] = createBorderGradient(
 const boxBackgroundProperties = {
   "ai-generative-interactive-border": aiInteractiveBorderBg,
   "ai-generative-interactive": gradients.aiGenerativeInteractive,
+
   transparent: "transparent",
 };
 
@@ -77,6 +78,9 @@ const boxBackgroundColorProperties = {
   "neutral-surfaceDisabled":
     backgroundColorProperties["neutral-surfaceDisabled"],
   "neutral-textLow": backgroundColorProperties["neutral-textLow"],
+  "ai-generative-surface": backgroundColorProperties["ai-generativeSurface"],
+  "ai-generative-surfaceHighlight":
+    backgroundColorProperties["ai-generativeSurfaceHighlight"],
   transparent: "transparent",
 };
 
