@@ -51,7 +51,7 @@ export const styles = {
         outline: "none",
         transition: `box-shadow ${varsThemeBase.motion.speed.fast} ease`,
         ":hover": {
-          background: varsThemeBase.colors.aiGenerative.interactivePressed,
+          background: gradients.aiGenerativeHover,
         },
         ":active": {
           background: varsThemeBase.colors.aiGenerative.textLow,
