@@ -13,7 +13,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 #### 🐛 Bug fixes
 
-- Fix `Link` style when `active` and `disabled`. ([#354](https://github.com/TiendaNube/nimbus-design-system/pull/353) by [@joacotornello](https://github.com/joacotornello))
+- Fix `Link` style when `active` and `disabled`. ([#353](https://github.com/TiendaNube/nimbus-design-system/pull/353) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-09-16 `9.26.0`
 
