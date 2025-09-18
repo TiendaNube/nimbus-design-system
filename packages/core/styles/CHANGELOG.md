@@ -11,6 +11,10 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 - Added `ai-primary` and `ai-secondary` appearances to `Button` component to match Nimbus AI gradient style. ([#353](https://github.com/TiendaNube/nimbus-design-system/pull/353) by [@joacotornello](https://github.com/joacotornello))
 - Added `:hover` and `:active` properties to `Chip` component AI State to improve hover and active states. ([#353](https://github.com/TiendaNube/nimbus-design-system/pull/353) by [@joacotornello](https://github.com/joacotornello))
 
+#### 🐛 Bug fixes
+
+- Fix `Link` style when `active` and `disabled`. ([#354](https://github.com/TiendaNube/nimbus-design-system/pull/353) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-09-16 `9.26.0`
 
 #### 🎉 New features
