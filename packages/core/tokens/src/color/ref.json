@@ -92,12 +92,20 @@
         "10": { "value": "#22242F" },
         "5": { "value": "#000519" }
       },
-      "aiGenerative": {
-        "interactive": {
-          "start": { "value": "#0050C3" },
-          "middle": { "value": "#4629BA" },
-          "end": { "value": "#D8446E" }
-        }
+      "generative": {
+        "100": { "value": "#F8F7FD" },
+        "99": { "value": "#F8F7FD" },
+        "95": { "value": "#F1EDFC" },
+        "90": { "value": "#E2DCFA" },
+        "80": { "value": "#CDC1F6" },
+        "70": { "value": "#A28CEE" },
+        "60": { "value": "#4629BA" },
+        "50": { "value": "#452F9D" },
+        "40": { "value": "#3C2989" },
+        "30": { "value": "#342376" },
+        "20": { "value": "#1F1254" },
+        "10": { "value": "#180E3F" },
+        "5": { "value": "#000B19" }
       }
     }
   }

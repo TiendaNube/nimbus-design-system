@@ -8,7 +8,7 @@ import { parseLinearGradient } from "../cssParser";
  */
 export const getGradientStops = (type: GradientTypes): GradientStop[] => {
   if (type === "linear") {
-    return parseLinearGradient(gradients.aiGradientInteractive);
+    return parseLinearGradient(gradients.aiGenerativeInteractive);
   }
 
   console.warn(`Unsupported gradient type: ${type}`);

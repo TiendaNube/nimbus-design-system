@@ -61,13 +61,22 @@ export const globalTheme = {
       textHigh: colors.neutral["text-high"].value as string,
     },
     aiGenerative: {
-      interactive: {
-        start: colors.aiGenerative.interactive.start.value as string,
-        middle: colors.aiGenerative.interactive.middle.value as string,
-        end: colors.aiGenerative.interactive.end.value as string,
-      },
-      surfaceHighlight: (colors.aiGenerative as any)["surface-highlight"]
+      textLow: colors.aiGenerative["text-low"].value as string,
+      interactivePressed: colors.aiGenerative["interactive-pressed"]
         .value as string,
+      surface: colors.aiGenerative.surface.value as string,
+      background: colors.aiGenerative.background.value as string,
+      textHigh: colors.aiGenerative["text-high"].value as string,
+      surfaceHighlight: colors.aiGenerative["surface-highlight"]
+        .value as string,
+    },
+    aiGradient: {
+      blueHigh: colors.aiGradient["blue-high"].value as string,
+      blueLight: colors.aiGradient["blue-light"].value as string,
+      purpleHigh: colors.aiGradient["purple-high"].value as string,
+      purpleLight: colors.aiGradient["purple-light"].value as string,
+      pinkHigh: colors.aiGradient["pink-high"].value as string,
+      pinkLight: colors.aiGradient["pink-light"].value as string,
     },
   },
   fontFamily: {
@@ -193,7 +202,7 @@ export const globalTheme = {
   utils: {
     focus: `0 0 0 3px ${colors.primary["surface-highlight"].value as string}`,
     aiFocus: `0 0 0 3px ${
-      (colors.aiGenerative as any)["surface-highlight"].value as string
+      colors.aiGenerative["surface-highlight"].value as string
     }`,
   },
 };

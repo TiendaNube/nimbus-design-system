@@ -12,11 +12,18 @@ export const Basic: React.FC<LinkProps & { disabled?: boolean }> = forwardRef(
     children = "Link",
     disabled = false,
     ...props
-  }: LinkProps & { disabled?: boolean }) => (
-    <LinkComponent {...props} as={disabled ? "button" : "a"}>
-      {children}
-    </LinkComponent>
-  )
+  }: LinkProps & { disabled?: boolean }) => {
+    const buttonProps = props.as === "button" ? { disabled } : {};
+    return (
+      <LinkComponent
+        {...props}
+        {...buttonProps}
+        as={disabled ? "button" : props.as}
+      >
+        {children}
+      </LinkComponent>
+    );
+  }
 ) as React.FC<LinkProps & { disabled?: boolean }>;
 
 Basic.displayName = "Link";
@@ -121,5 +128,6 @@ export const disabled: Story & { args: LinkProps & { disabled: boolean } } = {
     as: "button",
     disabled: true,
     children: "Link",
+    textDecoration: "none",
   },
 };

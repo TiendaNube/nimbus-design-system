@@ -56,7 +56,7 @@ export const appearance = styleVariants({
   "ai-generative": [
     fill,
     {
-      backgroundImage: gradients.aiGradientInteractive,
+      backgroundImage: gradients.aiGenerativeInteractive,
     },
   ],
 });

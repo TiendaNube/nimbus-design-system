@@ -1,5 +1,6 @@
 import { style, styleVariants } from "@vanilla-extract/css";
 import { varsThemeBase } from "../../../themes";
+import { createBorderGradient, gradients } from "../../../gradients";
 
 const base = style({
   display: "flex",
@@ -26,8 +27,9 @@ const base = style({
     color: varsThemeBase.colors.neutral.textDisabled,
     cursor: "not-allowed",
   },
-  ":focus": {
+  ":focus-visible": {
     boxShadow: varsThemeBase.utils.focus,
+    outline: "none",
   },
 });
 
@@ -123,6 +125,59 @@ export const appearance = styleVariants({
         color: varsThemeBase.colors.neutral.textDisabled,
         background: "transparent",
         borderColor: "transparent",
+      },
+    },
+  ],
+  "ai-primary": [
+    base,
+    {
+      background: gradients.aiGenerativeInteractive,
+      border: "none",
+      color: varsThemeBase.colors.neutral.background,
+      transition: `box-shadow ${varsThemeBase.motion.speed.fast} ease`,
+      ":hover": {
+        background: gradients.aiGenerativeHover,
+      },
+      ":active": {
+        background: varsThemeBase.colors.aiGenerative.textLow,
+      },
+      ":disabled": {
+        background: createBorderGradient(
+          gradients.aiGenerativeDisabled,
+          varsThemeBase.colors.neutral.surfaceDisabled
+        ),
+        color: varsThemeBase.colors.neutral.textDisabled,
+      },
+    },
+  ],
+  "ai-secondary": [
+    base,
+    {
+      background: createBorderGradient(
+        gradients.aiGenerativeInteractive,
+        varsThemeBase.colors.neutral.background
+      ),
+      borderColor: "transparent",
+      color: varsThemeBase.colors.neutral.textHigh,
+      transition: `box-shadow ${varsThemeBase.motion.speed.fast} ease`,
+      ":hover": {
+        background: createBorderGradient(
+          gradients.aiGenerativeHover,
+          varsThemeBase.colors.neutral.surface
+        ),
+      },
+      ":active": {
+        background: createBorderGradient(
+          gradients.aiGenerativeHover,
+          varsThemeBase.colors.aiGenerative.surfaceHighlight
+        ),
+      },
+      ":disabled": {
+        background: createBorderGradient(
+          gradients.aiGenerativeDisabled,
+          varsThemeBase.colors.neutral.surfaceDisabled
+        ),
+        color: varsThemeBase.colors.neutral.textDisabled,
       },
     },
   ],

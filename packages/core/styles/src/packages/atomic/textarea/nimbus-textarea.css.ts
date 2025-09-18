@@ -79,7 +79,7 @@ export const appearance = styleVariants({
     base,
     {
       background: createBorderGradient(
-        gradients.aiGradientInteractive,
+        gradients.aiGenerativeInteractive,
         varsThemeBase.colors.neutral.background
       ),
       borderWidth: varsThemeBase.shape.border.width[1],
