@@ -57,5 +57,12 @@ describe("GIVEN <Tag />", () => {
         "appearance_neutral"
       );
     });
+
+    it("THEN should correctly render the appearance ai-generative", () => {
+      makeSut({ appearance: "ai-generative" });
+      expect(screen.getByTestId("tag-element").getAttribute("class")).toContain(
+        "appearance_ai-generative"
+      );
+    });
   });
 });
