@@ -1,5 +1,6 @@
 import { style, styleVariants } from "@vanilla-extract/css";
 import { varsThemeBase } from "../../../themes";
+import { gradients, createBorderGradient } from "../../../gradients";
 
 const base = style({
   margin: 0,
@@ -58,6 +59,17 @@ export const appearance = styleVariants({
       color: varsThemeBase.colors.neutral.textHigh,
       backgroundColor: varsThemeBase.colors.neutral.surface,
       borderColor: varsThemeBase.colors.neutral.surfaceHighlight,
+    },
+  ],
+  "ai-generative": [
+    base,
+    {
+      color: varsThemeBase.colors.neutral.textHigh,
+      background: createBorderGradient(
+        gradients.aiGenerativeInteractive,
+        varsThemeBase.colors.neutral.surface
+      ),
+      borderColor: "transparent",
     },
   ],
 });

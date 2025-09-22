@@ -31,6 +31,7 @@
   "devDependencies": {
     "@nimbus-ds/icons": "workspace:^",
     "@nimbus-ds/text": "workspace:^",
-    "@nimbus-ds/webpack": "workspace:^"
+    "@nimbus-ds/webpack": "workspace:^",
+    "@nimbus-ds/icon": "workspace:^"
   }
 }

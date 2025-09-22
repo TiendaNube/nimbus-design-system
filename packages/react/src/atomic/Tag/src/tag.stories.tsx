@@ -2,6 +2,7 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { BoxPackedIcon } from "@nimbus-ds/icons";
 import { Text } from "@nimbus-ds/text";
+import { Icon } from "@nimbus-ds/icon";
 import { Tag } from "./Tag";
 
 const meta: Meta<typeof Tag> = {
@@ -93,6 +94,20 @@ export const danger: Story = {
         <BoxPackedIcon size={12} />
         <Text fontSize="caption" lineHeight="caption" color="danger-textLow">
           Text
+        </Text>
+      </>
+    ),
+  },
+};
+
+export const aiGenerativeWithIcon: Story = {
+  args: {
+    appearance: "ai-generative",
+    children: (
+      <>
+        <Icon source={<BoxPackedIcon size={12} />} color="ai-generative" />
+        <Text fontSize="caption" lineHeight="caption">
+          AI generated
         </Text>
       </>
     ),
