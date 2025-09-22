@@ -76,12 +76,6 @@ export const appearance = styleVariants({
           varsThemeBase.colors.neutral.surface
         ),
       },
-      ":active": {
-        background: createBorderGradient(
-          gradients.aiGenerativeHover,
-          varsThemeBase.colors.aiGenerative.surfaceHighlight
-        ),
-      },
     },
   ],
 });
