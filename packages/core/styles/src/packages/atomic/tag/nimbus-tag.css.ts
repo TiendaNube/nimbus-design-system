@@ -18,10 +18,6 @@ const base = style({
   lineHeight: varsThemeBase.lineWeight.body.caption,
   fontSize: varsThemeBase.fontSize.body.caption,
   fontFamily: varsThemeBase.fontFamily.sans,
-  transition: `boxShadow ${varsThemeBase.motion.speed.fast} ease`,
-  ":focus": {
-    boxShadow: varsThemeBase.utils.focus,
-  },
 });
 
 export const appearance = styleVariants({
