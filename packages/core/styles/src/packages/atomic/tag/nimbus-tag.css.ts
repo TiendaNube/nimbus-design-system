@@ -70,12 +70,6 @@ export const appearance = styleVariants({
         varsThemeBase.colors.neutral.surface
       ),
       borderColor: "transparent",
-      ":hover": {
-        background: createBorderGradient(
-          gradients.aiGenerativeHover,
-          varsThemeBase.colors.neutral.surface
-        ),
-      },
     },
   ],
 });
