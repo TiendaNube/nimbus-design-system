@@ -20,4 +20,4 @@ export interface DividerProperties {
   thickness?: 1 | 2 | 3;
 }
 
-export type DividerProps = DividerProperties & HTMLAttributes<HTMLDivElement>;
+export type DividerProps = DividerProperties & HTMLAttributes<HTMLHRElement>;

@@ -23,9 +23,8 @@ const Divider: React.FC<DividerProps> = ({
     .join(" ");
 
   return (
-    <div
+    <hr
       {...rest}
-      role="separator"
       aria-orientation={orientation === "vertical" ? "vertical" : "horizontal"}
       className={internalClasses}
       style={style}

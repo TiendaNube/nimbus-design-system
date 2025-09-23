@@ -5,7 +5,9 @@ const base = style({
   width: "100%",
   height: varsThemeBase.shape.border.width[1],
   backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
-  borderRadius: varsThemeBase.shape.border.radius.full,
+  margin: 0,
+  outline: "none",
+  border: "none",
 });
 
 export const orientation = styleVariants({
