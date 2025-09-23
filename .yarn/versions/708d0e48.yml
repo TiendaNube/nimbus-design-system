@@ -1,0 +1,9 @@
+releases:
+  "@nimbus-ds/components": minor
+  "@nimbus-ds/divider": major
+  "@nimbus-ds/styles": minor
+
+declined:
+  - nimbus-design-system
+  - "@nimbus-ds/tag"
+  - "@nimbus-ds/stepper"
