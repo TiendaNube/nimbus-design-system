@@ -1,11 +1,12 @@
 {
-  "name": "@nimbus-ds/tag",
-  "version": "2.3.2",
+  "name": "@nimbus-ds/divider",
+  "version": "0.0.0",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
     "dist",
-    "README.md"
+    "README.md",
+    "CHANGELOG.md"
   ],
   "sideEffects": false,
   "scripts": {
@@ -13,10 +14,8 @@
     "clean": "rm -rf dist",
     "version": "yarn version"
   },
-  "dependencies": {
-    "@nimbus-ds/skeleton": "workspace:^"
-  },
   "peerDependencies": {
+    "@nimbus-ds/styles": "workspace:^",
     "react": "^16.8 || ^17.0 || ^18.0",
     "react-dom": "^16.8 || ^17.0 || ^18.0"
   },
@@ -29,9 +28,7 @@
     "url": "https://github.com/TiendaNube/nimbus-design-system/issues"
   },
   "devDependencies": {
-    "@nimbus-ds/icon": "workspace:^",
-    "@nimbus-ds/icons": "workspace:^",
-    "@nimbus-ds/text": "workspace:^",
-    "@nimbus-ds/webpack": "workspace:^"
+    "@nimbus-ds/webpack": "workspace:^",
+    "@nimbus-ds/box": "workspace:^"
   }
 }

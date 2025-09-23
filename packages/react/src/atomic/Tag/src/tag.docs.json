@@ -20,7 +20,8 @@
         "neutral",
         "primary",
         "success",
-        "warning"
+        "warning",
+        "ai-generative"
       ],
       "type": "string",
       "title": "appearance",
