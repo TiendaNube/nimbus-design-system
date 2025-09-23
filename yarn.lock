@@ -2821,6 +2821,19 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@nimbus-ds/divider@workspace:packages/react/src/atomic/Divider":
+  version: 0.0.0-use.local
+  resolution: "@nimbus-ds/divider@workspace:packages/react/src/atomic/Divider"
+  dependencies:
+    "@nimbus-ds/box": "workspace:^"
+    "@nimbus-ds/webpack": "workspace:^"
+  peerDependencies:
+    "@nimbus-ds/styles": "workspace:^"
+    react: ^16.8 || ^17.0 || ^18.0
+    react-dom: ^16.8 || ^17.0 || ^18.0
+  languageName: unknown
+  linkType: soft
+
 "@nimbus-ds/file-uploader@workspace:packages/react/src/atomic/FileUploader":
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/file-uploader@workspace:packages/react/src/atomic/FileUploader"

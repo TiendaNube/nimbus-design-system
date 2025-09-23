@@ -38,6 +38,7 @@ const config: Config.InitialOptions = {
     "@nimbus-ds/tooltip": "<rootDir>/packages/react/src/atomic/Tooltip/src",
     "@nimbus-ds/progress-bar":
       "<rootDir>/packages/react/src/atomic/ProgressBar/src",
+    "@nimbus-ds/divider": "<rootDir>/packages/react/src/atomic/Divider/src",
     // composites
     "@nimbus-ds/accordion":
       "<rootDir>/packages/react/src/composite/Accordion/src",

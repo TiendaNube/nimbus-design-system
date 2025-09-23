@@ -2,6 +2,12 @@
 
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories every day, with simplicity, accessibility, consistency and performance.
 
+## 2025-09-23 `5.26.0`
+
+#### 🎉 New features
+
+- Created `divider` new atomic component. ([#356](https://github.com/TiendaNube/nimbus-design-system/pull/356) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-09-22 `5.25.0`
 
 #### 🎉 New features

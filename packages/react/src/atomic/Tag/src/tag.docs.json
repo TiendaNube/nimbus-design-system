@@ -3,7 +3,7 @@
   "name": "Tag",
   "totalProps": 2,
   "packageName": "@nimbus-ds/tag",
-  "version": "2.3.2",
+  "version": "2.4.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/tag",
   "props": [
     {
