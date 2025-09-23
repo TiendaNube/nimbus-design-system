@@ -116,4 +116,4 @@ export const appearance = styleVariants({
 
 export const fieldSizing = style({
   fieldSizing: "content",
-});
+} as any);
