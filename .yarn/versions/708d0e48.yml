@@ -2,6 +2,7 @@ releases:
   "@nimbus-ds/components": minor
   "@nimbus-ds/divider": major
   "@nimbus-ds/styles": minor
+  "@nimbus-ds/textarea": minor
 
 declined:
   - nimbus-design-system
