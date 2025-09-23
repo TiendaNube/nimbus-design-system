@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/components",
-  "version": "5.25.0",
+  "version": "5.26.0",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -60,6 +60,10 @@
     "./Chip": {
       "import": "./dist/Chip/index.js",
       "require": "./dist/Chip/index.js"
+    },
+    "./Divider": {
+      "import": "./dist/Divider/index.js",
+      "require": "./dist/Divider/index.js"
     },
     "./FileUploader": {
       "import": "./dist/FileUploader/index.js",
