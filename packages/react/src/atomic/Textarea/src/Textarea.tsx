@@ -2,6 +2,7 @@ import React, {
   forwardRef,
   ForwardRefExoticComponent,
   ComponentPropsWithRef,
+  useMemo,
 } from "react";
 import { textarea } from "@nimbus-ds/styles";
 
@@ -23,16 +24,18 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaBaseProps>(
     },
     ref
   ) => {
-    const computedStyle: React.CSSProperties = {};
-
-    if (typeof maxLines === "number") {
-      computedStyle.maxHeight = `calc(${maxLines}lh + var(--textarea-vertical-padding) + var(--textarea-vertical-borders))`;
-      computedStyle.overflowY = "auto";
-    }
-
-    if (typeof minLines === "number") {
-      computedStyle.minHeight = `calc(${minLines}lh + var(--textarea-vertical-padding) + var(--textarea-vertical-borders))`;
-    }
+    const computedStyle: React.CSSProperties = useMemo(
+      () => ({
+        ...(maxLines && {
+          maxHeight: `calc(${maxLines}lh + var(--textarea-vertical-padding) + var(--textarea-vertical-borders))`,
+          overflowY: "auto",
+        }),
+        ...(minLines && {
+          minHeight: `calc(${minLines}lh + var(--textarea-vertical-padding) + var(--textarea-vertical-borders))`,
+        }),
+      }),
+      [maxLines, minLines]
+    );
 
     const className = [
       textarea.classnames.appearance[appearance],
