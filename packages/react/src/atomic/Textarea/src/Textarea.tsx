@@ -15,19 +15,43 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaBaseProps>(
       style: _style,
       appearance = "neutral",
       lines = 2,
+      autoGrow = false,
+      maxLines,
+      minLines,
       id,
       ...rest
     },
     ref
-  ) => (
-    <textarea
-      {...rest}
-      ref={ref}
-      className={textarea.classnames.appearance[appearance]}
-      rows={lines}
-      id={id}
-    />
-  )
+  ) => {
+    const computedStyle: React.CSSProperties = {};
+
+    if (typeof maxLines === "number") {
+      computedStyle.maxHeight = `calc(${maxLines}lh + var(--textarea-vertical-padding) + var(--textarea-vertical-borders))`;
+      computedStyle.overflowY = "auto";
+    }
+
+    if (typeof minLines === "number") {
+      computedStyle.minHeight = `calc(${minLines}lh + var(--textarea-vertical-padding) + var(--textarea-vertical-borders))`;
+    }
+
+    const className = [
+      textarea.classnames.appearance[appearance],
+      autoGrow && textarea.classnames.fieldSizing,
+    ]
+      .filter(Boolean)
+      .join(" ");
+
+    return (
+      <textarea
+        {...rest}
+        ref={ref}
+        className={className}
+        rows={lines}
+        id={id}
+        style={computedStyle}
+      />
+    );
+  }
 ) as ForwardRefExoticComponent<
   TextareaBaseProps &
     React.InputHTMLAttributes<HTMLTextAreaElement> &

@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2025-09-23 `9.30.0`
+
+#### 🎉 New features
+
+- Created `divider` new atomic component styles. ([#356](https://github.com/TiendaNube/nimbus-design-system/pull/356) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-09-23 `9.29.0`
 
 #### 🎉 New features

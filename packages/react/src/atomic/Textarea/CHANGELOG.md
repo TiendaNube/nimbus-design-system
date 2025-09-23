@@ -2,6 +2,12 @@
 
 The Textarea component allows the user to enter or edit information in long text format.
 
+## 2025-09-23 `2.5.0`
+
+#### 🎉 New features
+
+- Added `autoGrow` property to `Textarea` component, which allows the textarea to grow with content up to the new `maxLines` limit (if provided) and then scroll. Also added `minLines` property to set the minimum height of the textarea to the given number of lines. ([#356](https://github.com/TiendaNube/nimbus-design-system/pull/356) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-09-17 `2.4.1`
 
 #### 🐛 Bug fixes
