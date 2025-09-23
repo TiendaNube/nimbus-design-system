@@ -4,6 +4,8 @@
  Styles needs an 'use client' as we're using a React Context for theming purposes.
 */
 
+import "./types/css-augment.d.ts";
+
 export * from "./components";
 export { vars } from "./utils";
 export {
