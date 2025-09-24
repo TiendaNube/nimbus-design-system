@@ -10,11 +10,11 @@ const adjustTextareaHeightFallback = (
 ) => {
   const computedStyles = window.getComputedStyle(textarea);
   const lineHeight =
-    parseFloat(computedStyles.lineHeight) || DEFAULT_LINE_HEIGHT;
-  const paddingTop = parseFloat(computedStyles.paddingTop) || 0;
-  const paddingBottom = parseFloat(computedStyles.paddingBottom) || 0;
-  const borderTop = parseFloat(computedStyles.borderTopWidth) || 0;
-  const borderBottom = parseFloat(computedStyles.borderBottomWidth) || 0;
+    Number.parseFloat(computedStyles.lineHeight) || DEFAULT_LINE_HEIGHT;
+  const paddingTop = Number.parseFloat(computedStyles.paddingTop) || 0;
+  const paddingBottom = Number.parseFloat(computedStyles.paddingBottom) || 0;
+  const borderTop = Number.parseFloat(computedStyles.borderTopWidth) || 0;
+  const borderBottom = Number.parseFloat(computedStyles.borderBottomWidth) || 0;
   const verticalPadding = paddingTop + paddingBottom;
   const verticalBorders = borderTop + borderBottom;
   const extraHeight = verticalPadding + verticalBorders;

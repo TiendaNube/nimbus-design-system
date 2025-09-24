@@ -85,6 +85,21 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaBaseProps>(
       [maxLines, minLines]
     );
 
+    const handleInput = useCallback(
+      (e: React.FormEvent<HTMLTextAreaElement>) => {
+        rest.onInput?.(e);
+        adjustTextareaHeight();
+      },
+      [rest, adjustTextareaHeight]
+    );
+    const handleChange = useCallback(
+      (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        rest.onChange?.(e);
+        adjustTextareaHeight();
+      },
+      [rest, adjustTextareaHeight]
+    );
+
     const className = [
       textarea.classnames.appearance[appearance],
       autoGrow && textarea.classnames.fieldSizing,
@@ -96,14 +111,8 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaBaseProps>(
     return (
       <textarea
         {...rest}
-        onInput={(e) => {
-          rest.onInput?.(e);
-          adjustTextareaHeight();
-        }}
-        onChange={(e) => {
-          rest.onChange?.(e);
-          adjustTextareaHeight();
-        }}
+        onInput={handleInput}
+        onChange={handleChange}
         ref={handleRef}
         className={className}
         rows={lines}
