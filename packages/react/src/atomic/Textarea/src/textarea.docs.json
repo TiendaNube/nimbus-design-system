@@ -1,7 +1,7 @@
 {
   "id": "textarea",
   "name": "Textarea",
-  "totalProps": 3,
+  "totalProps": 7,
   "packageName": "@nimbus-ds/textarea",
   "version": "2.4.1",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/textarea",
@@ -14,6 +14,7 @@
         "danger",
         "neutral",
         "success",
+        "transparent",
         "warning"
       ],
       "type": "string",
@@ -28,10 +29,36 @@
       "required": false
     },
     {
+      "description": "Controls intrinsic sizing behavior of the field. When true, the textarea will grow with content up to the maxLines limit (if provided) and then scroll.",
+      "default": false,
+      "type": "boolean",
+      "title": "autoGrow",
+      "required": false
+    },
+    {
+      "description": "Caps the textarea visual height to the given number of lines.\nWhen used together with autoGrow=true, the textarea will grow\nwith content up to this limit and then scroll.",
+      "type": "number",
+      "title": "maxLines",
+      "required": false
+    },
+    {
+      "description": "Sets the minimum height of the textarea to the given number of lines.\nThe textarea will never shrink below this height, even when empty.",
+      "type": "number",
+      "title": "minLines",
+      "required": false
+    },
+    {
       "description": "ID of the textarea",
       "type": "string",
       "title": "id",
       "required": true
+    },
+    {
+      "description": "Enable/disable textarea resize functionality",
+      "default": true,
+      "type": "boolean",
+      "title": "resize",
+      "required": false
     }
   ],
   "subComponents": [
