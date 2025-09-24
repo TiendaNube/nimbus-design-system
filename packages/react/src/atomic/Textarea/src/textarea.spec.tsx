@@ -80,6 +80,16 @@ describe("GIVEN <Textarea />", () => {
         screen.getByRole<HTMLTextAreaElement>("textbox").getAttribute("rows")
       ).toBe("5");
     });
+
+    it("THEN should properly assign ref object", () => {
+      const ref = React.createRef<HTMLTextAreaElement>();
+      render(
+        <Textarea id={textareaId} ref={ref} data-testid="textarea-element" />
+      );
+
+      expect(ref.current).toBeInstanceOf(HTMLTextAreaElement);
+      expect(ref.current?.id).toBe(textareaId);
+    });
   });
 
   describe("WHEN autoGrow is enabled", () => {
