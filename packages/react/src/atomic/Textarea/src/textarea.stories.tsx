@@ -50,6 +50,20 @@ export const ResizableTextarea: Story = {
   ),
 };
 
+export const AutoGrowTextarea: Story = {
+  args: {
+    appearance: "neutral",
+    lines: 2,
+    id: "auto-grow",
+    placeholder:
+      "This textarea will auto grow up to 5 lines and then display a scrollbar",
+    autoGrow: true,
+    resize: false,
+    maxLines: 5,
+    minLines: 2,
+  },
+};
+
 export const TransparentTextarea: Story = {
   args: {
     appearance: "transparent",
