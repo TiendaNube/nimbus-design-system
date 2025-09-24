@@ -3,7 +3,7 @@ import { style, styleVariants } from "@vanilla-extract/css";
 import { varsThemeBase } from "../../../themes";
 import { gradients, createBorderGradient } from "../../../gradients";
 
-// CSS custom properties for consistent padding and border calculations
+// CSS custom properties for consistent height calculations
 const textareaHeightVars = style({
   vars: {
     "--textarea-padding": varsThemeBase.spacing[2],
@@ -100,10 +100,10 @@ export const appearance = styleVariants({
   transparent: [
     base,
     {
-      border: "transparent",
+      border: "none",
       backgroundColor: varsThemeBase.colors.neutral.background,
       ":focus": {
-        borderColor: "none",
+        borderColor: "transparent",
         boxShadow: "none",
       },
       "::placeholder": {

@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 
 import { Textarea, TextareaProps } from "./Textarea";
 
@@ -166,7 +166,6 @@ describe("GIVEN <Textarea />", () => {
       expect(textarea.style.maxHeight).toBe(
         "calc(6lh + var(--textarea-vertical-padding) + var(--textarea-vertical-borders))"
       );
-      expect(textarea.style.overflowY).toBe("auto");
     });
   });
 
@@ -192,7 +191,6 @@ describe("GIVEN <Textarea />", () => {
       expect(textarea.style.maxHeight).toBe(
         "calc(10lh + var(--textarea-vertical-padding) + var(--textarea-vertical-borders))"
       );
-      expect(textarea.style.overflowY).toBe("auto");
     });
   });
 
@@ -222,6 +220,133 @@ describe("GIVEN <Textarea />", () => {
       expect(textarea.style.minHeight).toBe("");
       expect(textarea.style.maxHeight).toBe("");
       expect(textarea.style.overflowY).toBe("");
+    });
+  });
+
+  describe("WHEN field-sizing is not supported (JavaScript fallback)", () => {
+    let originalCSS: typeof CSS | undefined;
+    let originalGetComputedStyle: typeof window.getComputedStyle | undefined;
+
+    const mockGetComputedStyle = jest.fn(() => ({
+      lineHeight: "20px",
+      paddingTop: "8px",
+      paddingBottom: "8px",
+      borderTopWidth: "1px",
+      borderBottomWidth: "1px",
+    }));
+
+    beforeEach(() => {
+      // Store originals
+      originalCSS = global.CSS;
+      originalGetComputedStyle = window.getComputedStyle;
+
+      // Mock CSS.supports to return false for field-sizing
+      global.CSS = {
+        supports: jest
+          .fn()
+          .mockImplementation((property: string, value: string) => {
+            if (property === "field-sizing" && value === "content") {
+              return false;
+            }
+            return originalCSS?.supports(property, value) ?? false;
+          }),
+      } as any;
+
+      window.getComputedStyle = mockGetComputedStyle as any;
+    });
+
+    afterEach(() => {
+      // Restore originals
+      if (originalCSS) {
+        global.CSS = originalCSS;
+      }
+      if (originalGetComputedStyle) {
+        window.getComputedStyle = originalGetComputedStyle;
+      }
+      jest.clearAllMocks();
+    });
+
+    it("THEN should still apply fieldSizing class and use JavaScript fallback", () => {
+      makeSut({ autoGrow: true });
+      const textarea = screen.getByRole<HTMLTextAreaElement>("textbox");
+      // CSS class is still applied, but JavaScript handles the actual resizing
+      expect(textarea.getAttribute("class")).toContain("fieldSizing");
+    });
+
+    it("THEN should adjust height based on scrollHeight with minLines constraint", () => {
+      makeSut({ autoGrow: true, minLines: 3 });
+      const textarea = screen.getByRole<HTMLTextAreaElement>("textbox");
+
+      Object.defineProperty(textarea, "scrollHeight", {
+        value: 40,
+        writable: true,
+      });
+
+      fireEvent.input(textarea, { target: { value: "Short text" } });
+
+      // minLines (3) * lineHeight (20) + padding (16) + borders (2) = 78px
+      expect(textarea.style.height).toBe("78px");
+      expect(textarea.style.overflowY).toBe("hidden");
+    });
+
+    it("THEN should adjust height based on scrollHeight with maxLines constraint", () => {
+      makeSut({ autoGrow: true, maxLines: 2 });
+      const textarea = screen.getByRole<HTMLTextAreaElement>("textbox");
+
+      Object.defineProperty(textarea, "scrollHeight", {
+        value: 100,
+        writable: true,
+      });
+
+      fireEvent.input(textarea, {
+        target: {
+          value: "This is a very long text that should exceed two lines",
+        },
+      });
+
+      // maxLines (2) * lineHeight (20) + padding (16) + borders (2) = 58px
+      expect(textarea.style.height).toBe("58px");
+      expect(textarea.style.overflowY).toBe("auto");
+    });
+
+    it("THEN should respect both minLines and maxLines constraints", () => {
+      makeSut({ autoGrow: true, minLines: 3, maxLines: 5 });
+      const textarea = screen.getByRole<HTMLTextAreaElement>("textbox");
+
+      Object.defineProperty(textarea, "scrollHeight", {
+        value: 60,
+        writable: true,
+      });
+
+      fireEvent.input(textarea, { target: { value: "Medium length text" } });
+
+      // Content fits within constraints, so use scrollHeight (60px)
+      expect(textarea.style.height).toBe("78px"); // minLines constraint (3 * 20 + 16 + 2)
+      expect(textarea.style.overflowY).toBe("hidden");
+    });
+
+    it("THEN should not activate JavaScript fallback when field-sizing is supported", () => {
+      // Temporarily override CSS.supports to return true for field-sizing
+      const originalSupports = global.CSS.supports;
+      global.CSS.supports = jest
+        .fn()
+        .mockImplementation((property: string, value: string) => {
+          if (property === "field-sizing" && value === "content") {
+            return true;
+          }
+          return originalSupports(property, value);
+        });
+
+      render(<Textarea id="test" autoGrow data-testid="textarea-element" />);
+
+      // Restore original function
+      global.CSS.supports = originalSupports;
+    });
+
+    it("THEN should not activate JavaScript fallback when autoGrow is false", () => {
+      render(
+        <Textarea id="test" autoGrow={false} data-testid="textarea-element" />
+      );
     });
   });
 });

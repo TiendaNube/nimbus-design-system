@@ -3,11 +3,15 @@ import React, {
   ForwardRefExoticComponent,
   ComponentPropsWithRef,
   useMemo,
+  useEffect,
+  useRef,
+  useCallback,
 } from "react";
 import { textarea } from "@nimbus-ds/styles";
 
 import { TextareaComponents, TextareaBaseProps } from "./textarea.types";
 import { TextareaSkeleton } from "./components";
+import { adjustTextareaHeightFallback } from "./Textarea.definitions";
 
 const Textarea = forwardRef<HTMLTextAreaElement, TextareaBaseProps>(
   (
@@ -25,6 +29,49 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaBaseProps>(
     },
     ref
   ) => {
+    const textAreaRef = useRef<HTMLTextAreaElement | null>(null);
+    const supportsFieldSizing = useMemo(
+      () =>
+        typeof CSS !== "undefined" &&
+        CSS.supports &&
+        CSS.supports("field-sizing", "content"),
+      []
+    );
+    const lastScrollHeightRef = useRef<number>(0);
+
+    // Adjust the height of the textarea based on the minLines and maxLines properties. Fallback for browsers that don't support field-sizing.
+    const adjustTextareaHeight = useCallback(() => {
+      const textarea = textAreaRef.current;
+      if (!textarea || !autoGrow || supportsFieldSizing) return;
+
+      const currentScrollHeight = textarea.scrollHeight;
+
+      // Only call the fallback function if scrollHeight has changed
+      if (currentScrollHeight !== lastScrollHeightRef.current) {
+        adjustTextareaHeightFallback(textarea, minLines, maxLines);
+        lastScrollHeightRef.current = currentScrollHeight;
+      }
+    }, [autoGrow, minLines, maxLines, supportsFieldSizing]);
+
+    // AutoGrow fallback for browsers that don't support field-sizing
+    useEffect(() => {
+      // Initial height adjustment
+      adjustTextareaHeight();
+    }, [adjustTextareaHeight, autoGrow, supportsFieldSizing]);
+
+    const handleRef = useCallback(
+      (element: HTMLTextAreaElement | null) => {
+        textAreaRef.current = element;
+        if (typeof ref === "function") {
+          ref(element);
+        } else if (ref) {
+          // eslint-disable-next-line no-param-reassign
+          ref.current = element;
+        }
+      },
+      [ref]
+    );
+
     const computedStyle: React.CSSProperties = useMemo(
       () => ({
         ...(maxLines && {
@@ -49,7 +96,15 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaBaseProps>(
     return (
       <textarea
         {...rest}
-        ref={ref}
+        onInput={(e) => {
+          rest.onInput?.(e);
+          adjustTextareaHeight();
+        }}
+        onChange={(e) => {
+          rest.onChange?.(e);
+          adjustTextareaHeight();
+        }}
+        ref={handleRef}
         className={className}
         rows={lines}
         id={id}
