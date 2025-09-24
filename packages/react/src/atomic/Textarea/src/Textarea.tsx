@@ -25,6 +25,8 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaBaseProps>(
       minLines,
       id,
       resize = true,
+      value,
+      defaultValue,
       ...rest
     },
     ref
@@ -57,7 +59,13 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaBaseProps>(
     useEffect(() => {
       // Initial height adjustment
       adjustTextareaHeight();
-    }, [adjustTextareaHeight, autoGrow, supportsFieldSizing]);
+    }, [
+      adjustTextareaHeight,
+      autoGrow,
+      supportsFieldSizing,
+      value,
+      defaultValue,
+    ]);
 
     const handleRef = useCallback(
       (element: HTMLTextAreaElement | null) => {
@@ -118,6 +126,8 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaBaseProps>(
         rows={lines}
         id={id}
         style={computedStyle}
+        value={value}
+        defaultValue={defaultValue}
       />
     );
   }
