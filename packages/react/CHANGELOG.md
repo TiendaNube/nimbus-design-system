@@ -2,6 +2,12 @@
 
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories every day, with simplicity, accessibility, consistency and performance.
 
+## 2025-09-23 `5.27.0`
+
+#### 🎉 New features
+
+- Added `autoGrow` property to `Textarea` component, which allows the textarea to grow with content up to the new `maxLines` limit (if provided) and then scroll. Also added `minLines` property to set the minimum height of the textarea to the given number of lines. ([#357](https://github.com/TiendaNube/nimbus-design-system/pull/357) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-09-23 `5.26.0`
 
 #### 🎉 New features
