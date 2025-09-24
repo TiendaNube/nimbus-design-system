@@ -20,6 +20,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaBaseProps>(
       maxLines,
       minLines,
       id,
+      resize = true,
       ...rest
     },
     ref
@@ -40,6 +41,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaBaseProps>(
     const className = [
       textarea.classnames.appearance[appearance],
       autoGrow && textarea.classnames.fieldSizing,
+      textarea.classnames.resize[resize ? "enabled" : "disabled"],
     ]
       .filter(Boolean)
       .join(" ");

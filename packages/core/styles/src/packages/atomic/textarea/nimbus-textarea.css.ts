@@ -117,3 +117,12 @@ export const appearance = styleVariants({
 export const fieldSizing = style({
   fieldSizing: "content",
 } as any);
+
+export const resize = styleVariants({
+  enabled: {
+    resize: "both",
+  },
+  disabled: {
+    resize: "none",
+  },
+});

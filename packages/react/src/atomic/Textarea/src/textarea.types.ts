@@ -42,6 +42,11 @@ export interface TextareaProperties {
    * ID of the textarea
    * */
   id: string;
+  /**
+   * Enable/disable textarea resize functionality
+   * @default true
+   */
+  resize?: boolean;
 }
 
 export type TextareaBaseProps = TextareaProperties &
