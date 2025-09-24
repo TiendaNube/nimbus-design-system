@@ -349,6 +349,12 @@ describe("GIVEN <Textarea />", () => {
 
       render(<Textarea id="test" autoGrow data-testid="textarea-element" />);
 
+      const textarea = screen.getByRole<HTMLTextAreaElement>("textbox");
+      expect(textarea.className).toContain("fieldSizing");
+      // No JS fallback: no inline height/overflow set
+      expect(textarea.style.height).toBe("");
+      expect(textarea.style.overflowY).toBe("");
+
       // Restore original function
       global.CSS.supports = originalSupports;
     });
@@ -357,6 +363,10 @@ describe("GIVEN <Textarea />", () => {
       render(
         <Textarea id="test" autoGrow={false} data-testid="textarea-element" />
       );
+      const textarea = screen.getByRole<HTMLTextAreaElement>("textbox");
+      expect(textarea.className).not.toContain("fieldSizing");
+      expect(textarea.style.height).toBe("");
+      expect(textarea.style.overflowY).toBe("");
     });
   });
 });
