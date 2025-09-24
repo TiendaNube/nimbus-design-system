@@ -49,3 +49,13 @@ export const ResizableTextarea: Story = {
     </Box>
   ),
 };
+
+export const TransparentTextarea: Story = {
+  args: {
+    appearance: "transparent",
+    lines: 2,
+    id: "transparent",
+    placeholder: "Transparent textarea",
+    resize: false,
+  },
+};

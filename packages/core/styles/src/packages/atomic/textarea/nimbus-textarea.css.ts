@@ -102,7 +102,6 @@ export const appearance = styleVariants({
     {
       border: "transparent",
       backgroundColor: varsThemeBase.colors.neutral.background,
-      resize: "none",
       ":focus": {
         borderColor: "none",
         boxShadow: "none",
