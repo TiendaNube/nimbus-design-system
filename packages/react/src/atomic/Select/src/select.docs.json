@@ -27,13 +27,19 @@
     {
       "description": "Change the visual style of the select.",
       "default": "neutral",
-      "enum": ["ai-generative", "danger", "neutral", "success", "warning"],
+      "enum": [
+        "ai-generative",
+        "danger",
+        "neutral",
+        "success",
+        "warning"
+      ],
       "type": "string",
       "title": "appearance",
       "required": false
     },
     {
-      "description": "Shows ai-generative appearance with active ai focus shadow.",
+      "description": "Shows ai-generative appearance with active ai focus shadow.\nWhen true, this styling takes precedence over `appearance`.",
       "default": false,
       "type": "boolean",
       "title": "aiGenerated",
