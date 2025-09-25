@@ -19,6 +19,7 @@ const Select = forwardRef<HTMLSelectElement, SelectBaseProps>(
       id,
       children,
       appearance = "neutral",
+      aiGenerated = false,
       ...rest
     },
     ref
@@ -32,7 +33,11 @@ const Select = forwardRef<HTMLSelectElement, SelectBaseProps>(
         ref={ref}
         id={id}
         name={name}
-        className={select.classnames.appearance[appearance]}
+        className={
+          aiGenerated
+            ? select.classnames.aiGenerated
+            : select.classnames.appearance[appearance]
+        }
       >
         {children}
       </select>

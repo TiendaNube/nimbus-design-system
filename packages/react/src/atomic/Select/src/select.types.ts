@@ -25,7 +25,13 @@ export interface SelectProperties {
    * Change the visual style of the select.
    * @default neutral
    */
-  appearance?: "success" | "warning" | "danger" | "neutral";
+  appearance?: "success" | "warning" | "danger" | "neutral" | "ai-generative";
+  /**
+   * Shows ai-generative appearance with active ai focus shadow.
+   * When true, this styling takes precedence over `appearance`.
+   * @default false
+   */
+  aiGenerated?: boolean;
 }
 
 export type SelectBaseProps = SelectProperties &
