@@ -5,4 +5,5 @@ releases:
 
 declined:
   - nimbus-design-system
+  - "@nimbus-ds/textarea"
   - "@nimbus-ds/stepper"
