@@ -1,6 +1,7 @@
 import { globalStyle, style, styleVariants } from "@vanilla-extract/css";
 
 import { varsThemeBase } from "../../../themes";
+import { gradients, createBorderGradient } from "../../../gradients";
 
 export const container = style({
   position: "relative",
@@ -86,6 +87,18 @@ export const appearance = styleVariants({
       },
     },
   ],
+  "ai-generative": [
+    base,
+    {
+      background: createBorderGradient(
+        gradients.aiGenerativeInteractive,
+        varsThemeBase.colors.neutral.background
+      ),
+      border: "transparent",
+      borderWidth: varsThemeBase.shape.border.width[1],
+      borderStyle: "solid",
+    },
+  ],
 });
 
 globalStyle(`${base} option`, {
@@ -95,3 +108,8 @@ globalStyle(`${base} option`, {
 globalStyle(`${base} option[value=""][disabled]`, {
   color: varsThemeBase.colors.neutral.textDisabled,
 });
+
+export const aiGenerated = style([
+  appearance["ai-generative"],
+  { boxShadow: varsThemeBase.utils.aiFocus },
+]);

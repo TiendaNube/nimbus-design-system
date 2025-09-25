@@ -2,6 +2,12 @@
 
 Use a select box when a user needs to select one option from a list.
 
+## 2025-09-25 `2.6.0`
+
+#### 🎉 New features
+
+- Added `ai-generative` appearance and `aiGenerated` property to highlight AI-generated select fields with Nimbus AI gradient styling. ([#XXX](https://github.com/TiendaNube/nimbus-design-system/pull/XXX) by [@contributor](https://github.com/contributor))
+
 ## 2025-03-18 `2.5.0`
 
 #### 🎉 New features
