@@ -6,7 +6,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 #### 🎉 New features
 
-- `Select`: Added `ai-generative` appearance and `aiGenerated` property using Nimbus AI interactive gradient. ([#XXX](https://github.com/TiendaNube/nimbus-design-system/pull/XXX) by [@contributor](https://github.com/contributor))
+- `Select`: Added `ai-generative` appearance and `aiGenerated` property using Nimbus AI interactive gradient. ([#361](https://github.com/TiendaNube/nimbus-design-system/pull/361) by [@contributor](https://github.com/contributor))
 
 ## 2025-09-23 `9.30.0`
 

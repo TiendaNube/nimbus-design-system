@@ -6,7 +6,7 @@ Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team 
 
 #### 🎉 New features
 
-- Added `ai-generative` appearance and `aiGenerated` property to `Select` component to match Nimbus AI gradient style. ([#XXX](https://github.com/TiendaNube/nimbus-design-system/pull/XXX) by [@contributor](https://github.com/contributor))
+- Added `ai-generative` appearance and `aiGenerated` property to `Select` component to match Nimbus AI gradient style. ([#361](https://github.com/TiendaNube/nimbus-design-system/pull/361) by [@contributor](https://github.com/contributor))
 
 ## 2025-09-23 `5.27.0`
 
