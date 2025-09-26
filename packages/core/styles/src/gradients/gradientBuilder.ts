@@ -42,3 +42,24 @@ export const createBorderGradient = (
   backgroundColor,
   `linear-gradient(${backgroundColor}, ${backgroundColor}) padding-box, ${gradient} border-box`,
 ];
+
+/**
+ * Creates a text gradient with a fallback background color.
+ * @param gradient - The gradient to use for the text. Commonly the return value of createLinearGradient function.
+ * @returns An object with common properties to achieve a text gradient.
+ * @example Use case with vanilla-extract:
+ * ```ts
+ * const variants = vanillaStyle({
+ *   ...createTextGradient(gradients.aiGenerativeInteractive),
+ * });
+ * ```
+ */
+export const createTextGradient = (gradient: string) => ({
+    backgroundImage: gradient,
+    backgroundSize: "100%",
+    backgroundRepeat: "no-repeat",
+    WebkitBackgroundClip: "text",
+    backgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+    color: "transparent",
+  });

@@ -29,18 +29,38 @@ const Text: React.FC<TextProps> & TextComponents = ({
     WebkitLineClamp: lineClamp as any,
   });
 
+  const isAiColor = color in text.aiColors;
+
   return (
     <As
       {...rest}
       className={[
         text.classnames.base,
         lineClamp && text.classnames.trim,
-        className,
+        !isAiColor && className,
       ].join(" ")}
-      style={style}
+      style={!isAiColor ? style : undefined}
       {...otherProps}
     >
-      {children}
+      {isAiColor ? (
+        <As
+          className={[
+            text.classnames.aiStyles[
+              color as keyof typeof text.classnames.aiStyles
+            ],
+            className,
+          ].join(" ")}
+          style={{
+            ...style,
+            display: "inline",
+            width: "fit-content",
+          }}
+        >
+          {children}
+        </As>
+      ) : (
+        children
+      )}
     </As>
   );
 };

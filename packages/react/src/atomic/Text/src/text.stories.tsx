@@ -93,3 +93,12 @@ export const textDecoration: Story = {
     textDecoration: "line-through",
   },
 };
+
+export const aiGenerative: Story = {
+  args: {
+    color: "ai-generative",
+    children: "AI Generated Content",
+    fontSize: "highlight",
+    fontWeight: "bold",
+  },
+};
