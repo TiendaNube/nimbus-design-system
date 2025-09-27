@@ -27,15 +27,15 @@ const base = style({
   margin: 0,
 });
 
+const aiGenerative = style({
+  ...createTextGradient(gradients.aiGenerativeInteractive),
+});
+
 const trim = style({
   display: "-webkit-box",
   overflow: "hidden",
   textOverflow: "ellipsis",
   WebkitBoxOrient: "vertical",
-});
-
-const aiGenerative = style({
-  ...createTextGradient(gradients.aiGenerativeInteractive),
 });
 
 const aiStyles = {

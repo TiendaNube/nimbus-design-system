@@ -55,13 +55,18 @@ export const createBorderGradient = (
  * ```
  */
 export const createTextGradient = (gradient: string) => ({
-  backgroundImage: gradient,
-  backgroundSize: "100%",
-  backgroundRepeat: "no-repeat",
-  WebkitBackgroundClip: "text",
-  backgroundClip: "text",
-  WebkitTextFillColor: "transparent",
-  color: "transparent",
-  width: "fit-content",
-  display: "inline-block",
+  // This makes a fallback to the parent color when the gradient is not applied.
+  color: "inherit",
+  // Only apply the gradient if the browser supports it.
+  "@supports ((background-clip: text) or (-webkit-background-clip: text))": {
+    backgroundImage: gradient,
+    backgroundSize: "100%",
+    backgroundRepeat: "no-repeat",
+    WebkitBackgroundClip: "text",
+    backgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+    color: "transparent",
+    width: "fit-content",
+    display: "inline",
+  },
 });
