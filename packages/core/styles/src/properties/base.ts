@@ -44,12 +44,10 @@ export const baseColors = {
   "neutral-textLow": varsThemeBase.colors.neutral.textLow,
   "neutral-textHigh": varsThemeBase.colors.neutral.textHigh,
 
-  "aiGenerative-background": varsThemeBase.colors.aiGenerative.background,
-  "aiGenerative-surface": varsThemeBase.colors.aiGenerative.surface,
-  "aiGenerative-surfaceHighlight":
+  "ai-generativeSurface": varsThemeBase.colors.aiGenerative.surface,
+  "ai-generativeSurfaceHighlight":
     varsThemeBase.colors.aiGenerative.surfaceHighlight,
-  "aiGenerative-textLow": varsThemeBase.colors.aiGenerative.textLow,
-  "aiGenerative-textHigh": varsThemeBase.colors.aiGenerative.textHigh,
-  "aiGenerative-interactivePressed":
-    varsThemeBase.colors.aiGenerative.interactivePressed,
+  "ai-generativeInteractive": varsThemeBase.colors.aiGenerative.background,
+  "ai-generativeTextLow": varsThemeBase.colors.aiGenerative.textLow,
+  "ai-generativeTextHigh": varsThemeBase.colors.aiGenerative.textHigh,
 };

@@ -86,7 +86,7 @@ const iconButtonBackgroundColorProperties = {
   "neutral-interactive": backgroundColorProperties["neutral-interactive"],
   "neutral-surfaceHighlight":
     backgroundColorProperties["neutral-surfaceHighlight"],
-  "ai-generativeSurface": backgroundColorProperties["aiGenerative-surface"],
+  "ai-generativeSurface": backgroundColorProperties["ai-generativeSurface"],
 };
 
 const iconButtonBorderColorProperties = {

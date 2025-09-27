@@ -54,9 +54,6 @@ export const styles = {
  * -----------------------------------------------------------------------------------------------*/
 const aiColors = {
   "ai-generative": "transparent", // Special case for gradient handled in the styles
-  // Placeholder entries for future AI color types
-  // "ai-generative-interactive": "transparent",
-  // "ai-generative-highlight": "transparent",
 } as const;
 
 const textColorProperties = {
