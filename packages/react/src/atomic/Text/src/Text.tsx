@@ -35,6 +35,10 @@ const Text: React.FC<TextProps> & TextComponents = ({
       className={[
         text.classnames.base,
         lineClamp && text.classnames.trim,
+        color in text.aiColors &&
+          text.classnames.aiStyles[
+            color as keyof typeof text.classnames.aiStyles
+          ],
         className,
       ].join(" ")}
       style={style}

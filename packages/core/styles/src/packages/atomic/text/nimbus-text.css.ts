@@ -14,6 +14,8 @@ import {
   wordBreakProperties,
 } from "../../../properties";
 import { mediaQueries, varsThemeBase } from "../../../themes";
+import { gradients } from "../../../gradients";
+import { createTextGradient } from "../../../gradients/gradientBuilder";
 
 /* -------------------------------------------------------------------------------------------------
  * Style
@@ -25,6 +27,10 @@ const base = style({
   margin: 0,
 });
 
+const aiGenerative = style({
+  ...createTextGradient(gradients.aiGenerativeInteractive),
+});
+
 const trim = style({
   display: "-webkit-box",
   overflow: "hidden",
@@ -32,14 +38,23 @@ const trim = style({
   WebkitBoxOrient: "vertical",
 });
 
+const aiStyles = {
+  "ai-generative": aiGenerative,
+} as const;
+
 export const styles = {
   base,
   trim,
+  aiGenerative,
+  aiStyles,
 };
 
 /* -------------------------------------------------------------------------------------------------
  * Sprinkle
  * -----------------------------------------------------------------------------------------------*/
+const aiColors = {
+  "ai-generative": "transparent", // Special case for gradient handled in the styles
+} as const;
 
 const textColorProperties = {
   currentColor: "currentColor",
@@ -70,6 +85,8 @@ const textColorProperties = {
   "neutral-textDisabled": colorProperties["neutral-textDisabled"],
   "neutral-textLow": colorProperties["neutral-textLow"],
   "neutral-textHigh": colorProperties["neutral-textHigh"],
+
+  ...aiColors,
 };
 
 const properties = {
@@ -112,4 +129,6 @@ const sprinkle = createRainbowSprinkles(defineProperties);
 export const textSprinkle = {
   sprinkle,
   properties,
+  aiColors,
+  aiStyles,
 };

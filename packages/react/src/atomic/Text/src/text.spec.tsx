@@ -271,4 +271,19 @@ describe("GIVEN <Text />", () => {
       ).toContain("textDecoration-line-through");
     });
   });
+
+  describe("THEN should correctly render ai-generative appearance", () => {
+    it("THEN should apply gradient styles when color is ai-generative", () => {
+      makeSut({ color: "ai-generative", as: "span" }); // Use span to avoid DOM nesting issues
+      const element = screen.getByTestId("text-element");
+      expect(element.getAttribute("class")).toContain("aiGenerative");
+    });
+
+    it("THEN should render ai-generative text with proper content", () => {
+      makeSut({ color: "ai-generative", as: "span" });
+      const element = screen.getByTestId("text-element");
+      expect(element.textContent).toBe(content);
+      expect(element.getAttribute("class")).toContain("aiGenerative");
+    });
+  });
 });

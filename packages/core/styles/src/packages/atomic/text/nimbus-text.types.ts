@@ -42,6 +42,7 @@ export interface TextSprinkle {
   textAlign?: TextAlign | TextConditions<TextAlign>;
   /**
    * The color property is used to set the color of the text.
+   * Note: Gradients like 'ai-generative' changes other properties like 'width' and 'display', which could make the component behave differently. Ensure to visually test the component when dynamically changing the color.
    * @default neutral-textLow
    */
   color?: TextColorProperties | TextConditions<TextColorProperties>;

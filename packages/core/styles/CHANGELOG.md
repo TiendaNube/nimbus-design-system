@@ -2,6 +2,13 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2025-09-26 `9.32.0`
+
+#### 🎉 New features
+
+- `Text`: Added `ai-generative` appearance using Nimbus AI interactive gradient with text gradient treatment. ([#363](https://github.com/TiendaNube/nimbus-design-system/pull/363) by [@joacotornello](https://github.com/joacotornello))
+- Added `createTextGradient` utility function to gradient builder for creating text gradient styles. ([#363](https://github.com/TiendaNube/nimbus-design-system/pull/363) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-09-25 `9.31.0`
 
 #### 🎉 New features
