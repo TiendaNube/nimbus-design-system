@@ -55,11 +55,13 @@ export const createBorderGradient = (
  * ```
  */
 export const createTextGradient = (gradient: string) => ({
-    backgroundImage: gradient,
-    backgroundSize: "100%",
-    backgroundRepeat: "no-repeat",
-    WebkitBackgroundClip: "text",
-    backgroundClip: "text",
-    WebkitTextFillColor: "transparent",
-    color: "transparent",
-  });
+  backgroundImage: gradient,
+  backgroundSize: "100%",
+  backgroundRepeat: "no-repeat",
+  WebkitBackgroundClip: "text",
+  backgroundClip: "text",
+  WebkitTextFillColor: "transparent",
+  color: "transparent",
+  width: "fit-content",
+  display: "inline-block",
+});

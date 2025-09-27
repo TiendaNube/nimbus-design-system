@@ -276,17 +276,14 @@ describe("GIVEN <Text />", () => {
     it("THEN should apply gradient styles when color is ai-generative", () => {
       makeSut({ color: "ai-generative", as: "span" }); // Use span to avoid DOM nesting issues
       const element = screen.getByTestId("text-element");
-      const spanChild = element.querySelector("span");
-      expect(spanChild).toBeInTheDocument();
-      expect(spanChild?.getAttribute("class")).toContain("aiGenerative");
+      expect(element.getAttribute("class")).toContain("aiGenerative");
     });
 
-    it("THEN should wrap content in span for ai-generative colors", () => {
-      makeSut({ color: "ai-generative", as: "div" });
+    it("THEN should render ai-generative text with proper content", () => {
+      makeSut({ color: "ai-generative", as: "span" });
       const element = screen.getByTestId("text-element");
-      const spanWrapper = element.querySelector("span");
-      expect(spanWrapper).toBeInTheDocument();
-      expect(spanWrapper?.textContent).toBe(content);
+      expect(element.textContent).toBe(content);
+      expect(element.getAttribute("class")).toContain("aiGenerative");
     });
   });
 });
