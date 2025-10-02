@@ -24,6 +24,15 @@ export const textarea: Story = {
   },
 };
 
+export const AiGeneratedTextarea: Story = {
+  args: {
+    aiGenerated: true,
+    lines: 2,
+    id: "ai-generated",
+    placeholder: "AI generated textarea",
+  },
+};
+
 export const WithResizeDisabled: Story = {
   args: {
     appearance: "neutral",

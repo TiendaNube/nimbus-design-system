@@ -125,3 +125,8 @@ export const resize = styleVariants({
     resize: "none",
   },
 });
+
+export const aiGenerated = style([
+  appearance["ai-generative"],
+  { boxShadow: varsThemeBase.utils.aiFocus },
+]);

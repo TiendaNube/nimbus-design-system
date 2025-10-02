@@ -60,6 +60,22 @@ describe("GIVEN <Textarea />", () => {
       ).toContain("appearance_transparent");
     });
 
+    it("THEN should correctly render the aiGenerated prop as aiGenerated class", () => {
+      makeSut({ aiGenerated: true });
+      expect(
+        screen.getByRole<HTMLTextAreaElement>("textbox").getAttribute("class")
+      ).toContain("aiGenerated");
+    });
+
+    it("THEN aiGenerated should take precedence when appearance is also provided", () => {
+      makeSut({ appearance: "danger", aiGenerated: true });
+      const className = screen
+        .getByRole<HTMLTextAreaElement>("textbox")
+        .getAttribute("class");
+      expect(className).toContain("aiGenerated");
+      expect(className).toContain("appearance_danger");
+    });
+
     it("THEN should render the id", () => {
       makeSut();
       expect(screen.getByRole<HTMLTextAreaElement>("textbox").id).toContain(
