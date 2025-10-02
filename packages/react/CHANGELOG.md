@@ -6,7 +6,7 @@ Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team 
 
 #### 🎉 New features
 
-- `Textarea`: Added boolean prop `aiGenerated` to highlight AI-filled values without changing APIs. It applies the AI generative border, white background and a pink focus ring. ([#XXX](https://github.com/TiendaNube/nimbus-design-system/pull/XXX) by [@contributor](https://github.com/contributor))
+- `Textarea`: Added boolean prop `aiGenerated` to highlight AI-filled values without changing APIs. It applies the AI generative border, white background and a pink focus ring. ([#364](https://github.com/TiendaNube/nimbus-design-system/pull/364) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-09-26 `5.29.0`
 
@@ -18,7 +18,7 @@ Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team 
 
 #### 🎉 New features
 
-- Added `ai-generative` appearance and `aiGenerated` property to `Select` component to match Nimbus AI gradient style. ([#361](https://github.com/TiendaNube/nimbus-design-system/pull/361) by [@contributor](https://github.com/contributor))
+- Added `ai-generative` appearance and `aiGenerated` property to `Select` component to match Nimbus AI gradient style. ([#361](https://github.com/TiendaNube/nimbus-design-system/pull/361) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-09-23 `5.27.0`
 

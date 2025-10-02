@@ -6,7 +6,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 #### 🎉 New features
 
-- `Textarea`: Added `aiGenerated` CSS class that combines `ai-generative` appearance with AI focus ring box shadow. ([#XXX](https://github.com/TiendaNube/nimbus-design-system/pull/XXX) by [@contributor](https://github.com/contributor))
+- `Textarea`: Added `aiGenerated` CSS class that combines `ai-generative` appearance with AI focus ring box shadow. ([#364](https://github.com/TiendaNube/nimbus-design-system/pull/364) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-09-26 `9.32.0`
 
@@ -19,7 +19,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 #### 🎉 New features
 
-- `Select`: Added `ai-generative` appearance and `aiGenerated` property using Nimbus AI interactive gradient. ([#361](https://github.com/TiendaNube/nimbus-design-system/pull/361) by [@contributor](https://github.com/contributor))
+- `Select`: Added `ai-generative` appearance and `aiGenerated` property using Nimbus AI interactive gradient. ([#361](https://github.com/TiendaNube/nimbus-design-system/pull/361) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-09-23 `9.30.0`
 
@@ -106,7 +106,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 #### 🐛 Bug fixes
 
-- `Toast`: Align progress variant background with Figma by using `neutral.textHigh`. ([#333](https://github.com/TiendaNube/nimbus-design-system/pull/333) by [@contributor](https://github.com/contributor))
+- `Toast`: Align progress variant background with Figma by using `neutral.textHigh`. ([#333](https://github.com/TiendaNube/nimbus-design-system/pull/333) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-08-04 `9.21.1`
 

@@ -5,4 +5,5 @@ releases:
 
 declined:
   - nimbus-design-system
+  - "@nimbus-ds/select"
   - "@nimbus-ds/stepper"
