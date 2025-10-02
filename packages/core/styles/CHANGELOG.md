@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2025-10-02 `9.33.0`
+
+#### 🎉 New features
+
+- `Textarea`: Added `aiGenerated` CSS class that combines `ai-generative` appearance with AI focus ring box shadow. ([#XXX](https://github.com/TiendaNube/nimbus-design-system/pull/XXX) by [@contributor](https://github.com/contributor))
+
 ## 2025-09-26 `9.32.0`
 
 #### 🎉 New features

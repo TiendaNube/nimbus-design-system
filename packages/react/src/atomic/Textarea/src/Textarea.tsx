@@ -19,6 +19,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaBaseProps>(
       className: _className,
       style: _style,
       appearance = "neutral",
+      aiGenerated = false,
       lines = 2,
       autoGrow = false,
       maxLines,
@@ -109,6 +110,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaBaseProps>(
     );
 
     const className = [
+      aiGenerated && textarea.classnames.aiGenerated,
       textarea.classnames.appearance[appearance],
       autoGrow && textarea.classnames.fieldSizing,
       textarea.classnames.resize[resize ? "enabled" : "disabled"],

@@ -2,6 +2,12 @@
 
 The Textarea component allows the user to enter or edit information in long text format.
 
+## 2025-10-02 `2.6.0`
+
+#### 🎉 New features
+
+- Added boolean prop `aiGenerated` to `Textarea` to highlight AI-filled values without changing APIs. It applies the AI generative border, white background and a pink focus ring. ([#XXX](https://github.com/TiendaNube/nimbus-design-system/pull/XXX) by [@contributor](https://github.com/contributor))
+
 ## 2025-09-23 `2.5.0`
 
 #### 🎉 New features
