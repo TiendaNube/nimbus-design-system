@@ -1,0 +1,20 @@
+{
+  "name": "Box",
+  "type": "component",
+  "registry": "nimbus",
+  "files": [
+    {
+      "path": "templates/Box.tsx",
+      "contentType": "text",
+      "target": "components/ui/box.tsx"
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "@nimbus-ds/components",
+      "version": "*"
+    }
+  ]
+}
+
+
