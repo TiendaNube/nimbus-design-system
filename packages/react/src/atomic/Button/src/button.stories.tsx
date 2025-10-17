@@ -141,3 +141,19 @@ export const aiSecondary: Story = {
     appearance: "ai-secondary",
   },
 };
+
+export const small: Story = {
+  args: {
+    children: "Small Button",
+    size: "small",
+    appearance: "primary",
+  },
+};
+
+export const medium: Story = {
+  args: {
+    children: "Medium Button",
+    size: "medium",
+    appearance: "primary",
+  },
+};

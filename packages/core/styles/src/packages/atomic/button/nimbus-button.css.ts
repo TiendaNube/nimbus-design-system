@@ -37,6 +37,16 @@ export const fullWidth = style({
   width: "100%",
 });
 
+export const size = styleVariants({
+  medium: {},
+  small: {
+    height: "1.75rem",
+    padding: `${varsThemeBase.spacing["1-5"]} ${varsThemeBase.spacing[2]}`,
+    fontSize: varsThemeBase.fontSize.body.caption,
+    lineHeight: varsThemeBase.lineWeight.body.caption,
+  },
+});
+
 export const appearance = styleVariants({
   primary: [
     base,
