@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2025-10-17 `9.34.0`
+
+#### 🎉 New features
+
+- `Button`: Added `size` style variants with support for `small` and `medium` sizes. ([#PR](https://github.com/TiendaNube/nimbus-design-system/pull/PR) by [@usuario](https://github.com/usuario))
+
 ## 2025-10-02 `9.33.0`
 
 #### 🎉 New features

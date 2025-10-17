@@ -2,6 +2,12 @@
 
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories every day, with simplicity, accessibility, consistency and performance.
 
+## 2025-10-17 `5.31.0`
+
+#### 🎉 New features
+
+- `Button`: Added `size` property with support for `small` and `medium` sizes to provide more flexible button sizing options. ([#PR](https://github.com/TiendaNube/nimbus-design-system/pull/PR) by [@usuario](https://github.com/usuario))
+
 ## 2025-10-02 `5.30.0`
 
 #### 🎉 New features
