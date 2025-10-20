@@ -165,6 +165,7 @@ export const appearance = styleVariants({
           gradients.aiGenerativeHover,
           varsThemeBase.colors.neutral.surface
         ),
+        boxShadow: varsThemeBase.utils.aiFocus,
       },
       ":active": {
         background: createBorderGradient(
