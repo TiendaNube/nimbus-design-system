@@ -1,3 +1,6 @@
 releases:
   "@nimbus-ds/styles": minor
-  nimbus-design-system: minor
+
+declined:
+  - nimbus-design-system
+  - "@nimbus-ds/stepper"
