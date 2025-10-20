@@ -7,6 +7,11 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 #### 🎉 New features
 
 - `Button`: Added `:hover` effect to the AI secondary appearance. ([#366](https://github.com/TiendaNube/nimbus-design-system/pull/366) by [@jffs](https://github.com/jffs))
+## 2025-10-17 `9.34.0`
+
+#### 🎉 New features
+
+- `Button`: Added `size` style variants with support for `small` and `medium` sizes. ([#365](https://github.com/TiendaNube/nimbus-design-system/pull/365) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-10-02 `9.33.0`
 
