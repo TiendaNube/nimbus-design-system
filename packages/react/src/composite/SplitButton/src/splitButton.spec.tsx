@@ -78,7 +78,7 @@ describe("GIVEN <SplitButton />", () => {
 
   describe("WHEN position prop is provided", () => {
     it("THEN should render popover in the specified position", async () => {
-      makeSut({ position: "top" });
+      makeSut({ popoverPosition: "top" });
       const iconButton = screen.getByLabelText("Show more actions");
       fireEvent.click(iconButton);
 

@@ -1,7 +1,11 @@
-export { SplitButton } from "./SplitButton";
+"use client";
+
+import { SplitButton } from "./SplitButton";
+
 export type {
   SplitButtonProps,
   SplitButtonProperties,
-  SplitButtonActionProps,
-  SplitButtonActionProperties,
 } from "./splitButton.types";
+
+export { SplitButton };
+export default SplitButton;
