@@ -55,8 +55,6 @@ const baseSecondary = style([
 const createAppearanceStyles = () => ({
   background: varsThemeBase.colors.primary.interactive,
   borderColor: varsThemeBase.colors.primary.interactive,
-  borderRightWidth: "2px",
-  borderRightColor: varsThemeBase.colors.primary.interactiveHover,
   color: varsThemeBase.colors.neutral.background,
   ":hover": {
     background: varsThemeBase.colors.primary.interactiveHover,
@@ -76,7 +74,14 @@ const createAppearanceStyles = () => ({
 });
 
 export const primaryAppearance = styleVariants({
-  primary: [basePrimary, createAppearanceStyles()],
+  primary: [
+    basePrimary,
+    {
+      ...createAppearanceStyles(),
+      borderRightColor: varsThemeBase.colors.primary.interactiveHover,
+      borderRightWidth: "2px",
+    },
+  ],
 });
 
 export const secondaryAppearance = styleVariants({
