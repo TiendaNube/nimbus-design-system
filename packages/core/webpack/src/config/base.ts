@@ -57,6 +57,9 @@ const webpack = ({
   resolve: {
     alias: aliasItems,
     extensions: [".tsx", ".ts", ".js"],
+    // Improve resolution performance
+    symlinks: false,
+    cacheWithContext: false,
   },
   /**
    * External dependencies configuration.
