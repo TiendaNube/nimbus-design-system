@@ -52,72 +52,33 @@ const baseSecondary = style([
   },
 ]);
 
-const createAppearanceStyles = (
-  background: string,
-  borderColor: string,
-  textColor: string,
-  hoverBackground: string,
-  hoverBorderColor: string,
-  activeBackground: string,
-  activeBorderColor: string,
-  disabledBackground: string,
-  disabledBorderColor: string,
-  focusBorderColor: string
-) => ({
-  background,
-  borderColor,
+const createAppearanceStyles = () => ({
+  background: varsThemeBase.colors.primary.interactive,
+  borderColor: varsThemeBase.colors.primary.interactive,
   borderRightWidth: "2px",
-  borderRightColor: hoverBorderColor,
-  color: textColor,
+  borderRightColor: varsThemeBase.colors.primary.interactiveHover,
+  color: varsThemeBase.colors.neutral.background,
   ":hover": {
-    background: hoverBackground,
-    borderColor: hoverBorderColor,
+    background: varsThemeBase.colors.primary.interactiveHover,
+    borderColor: varsThemeBase.colors.primary.interactiveHover,
   },
   ":active": {
-    background: activeBackground,
-    borderColor: activeBorderColor,
+    background: varsThemeBase.colors.primary.interactivePressed,
+    borderColor: varsThemeBase.colors.primary.interactivePressed,
   },
   ":disabled": {
-    background: disabledBackground,
-    borderColor: disabledBorderColor,
+    background: varsThemeBase.colors.neutral.surfaceDisabled,
+    borderColor: varsThemeBase.colors.primary.surfaceHighlight,
   },
   ":focus": {
-    borderColor: focusBorderColor,
+    borderColor: varsThemeBase.colors.primary.interactiveHover,
   },
 });
 
 export const primaryAppearance = styleVariants({
-  primary: [
-    basePrimary,
-    createAppearanceStyles(
-      varsThemeBase.colors.primary.interactive,
-      varsThemeBase.colors.primary.interactive,
-      varsThemeBase.colors.neutral.background,
-      varsThemeBase.colors.primary.interactiveHover,
-      varsThemeBase.colors.primary.interactiveHover,
-      varsThemeBase.colors.primary.interactivePressed,
-      varsThemeBase.colors.primary.interactivePressed,
-      varsThemeBase.colors.neutral.surfaceDisabled,
-      varsThemeBase.colors.primary.surfaceHighlight,
-      varsThemeBase.colors.primary.interactiveHover
-    ),
-  ],
+  primary: [basePrimary, createAppearanceStyles()],
 });
 
 export const secondaryAppearance = styleVariants({
-  primary: [
-    baseSecondary,
-    createAppearanceStyles(
-      varsThemeBase.colors.primary.interactive,
-      varsThemeBase.colors.primary.interactive,
-      varsThemeBase.colors.neutral.background,
-      varsThemeBase.colors.primary.interactiveHover,
-      varsThemeBase.colors.primary.interactiveHover,
-      varsThemeBase.colors.primary.interactivePressed,
-      varsThemeBase.colors.primary.interactivePressed,
-      varsThemeBase.colors.neutral.surfaceDisabled,
-      varsThemeBase.colors.primary.surfaceHighlight,
-      varsThemeBase.colors.primary.interactiveHover
-    ),
-  ],
+  primary: [baseSecondary, createAppearanceStyles()],
 });
