@@ -68,7 +68,7 @@ const createAppearanceStyles = () => ({
     background: varsThemeBase.colors.neutral.surfaceDisabled,
     borderColor: varsThemeBase.colors.primary.surfaceHighlight,
   },
-  ":focus": {
+  ":focus-visible": {
     borderColor: varsThemeBase.colors.primary.interactiveHover,
   },
 });
@@ -79,7 +79,7 @@ export const primaryAppearance = styleVariants({
     {
       ...createAppearanceStyles(),
       borderRightColor: varsThemeBase.colors.primary.interactiveHover,
-      borderRightWidth: "2px",
+      borderRightWidth: varsThemeBase.shape.border.width[2],
     },
   ],
 });
