@@ -2,12 +2,18 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2025-10-20 `9.36.0`
+
+#### 🎉 New features
+
+- Style definitions for the `SplitButton` composite component. ([#367](https://github.com/TiendaNube/nimbus-design-system/pull/367) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-10-20 `9.35.0`
 
 #### 🎉 New features
 
 - `Button`: Added `:hover` effect to the AI secondary appearance. ([#366](https://github.com/TiendaNube/nimbus-design-system/pull/366) by [@jffs](https://github.com/jffs))
-  
+
 ## 2025-10-17 `9.34.0`
 
 #### 🎉 New features

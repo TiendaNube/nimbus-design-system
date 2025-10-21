@@ -99,6 +99,9 @@
       "@nimbus-ds/stepper": ["./packages/react/src/composite/Stepper/src"],
       "@nimbus-ds/scroll-pane": [
         "./packages/react/src/composite/ScrollPane/src"
+      ],
+      "@nimbus-ds/split-button": [
+        "./packages/react/src/composite/SplitButton/src"
       ]
     }
   }

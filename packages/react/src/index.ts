@@ -47,3 +47,4 @@ export * from "@nimbus-ds/stepper";
 export * from "@nimbus-ds/tabs";
 export * from "@nimbus-ds/table";
 export * from "@nimbus-ds/segmented-control";
+export * from "@nimbus-ds/split-button";

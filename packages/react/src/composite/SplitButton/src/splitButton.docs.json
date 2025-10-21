@@ -1,0 +1,132 @@
+{
+  "id": "split-button",
+  "name": "SplitButton",
+  "totalProps": 10,
+  "packageName": "@nimbus-ds/split-button",
+  "version": "0.0.0",
+  "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/split-button",
+  "props": [
+    {
+      "description": "The content of the primary button.",
+      "type": "React.ReactNode",
+      "title": "children",
+      "required": true
+    },
+    {
+      "description": "Change the visual style of the split button.",
+      "default": "primary",
+      "enum": [
+        "primary",
+        "danger",
+        "neutral",
+        "transparent",
+        "ai-primary",
+        "ai-secondary"
+      ],
+      "type": "string",
+      "title": "appearance",
+      "required": false
+    },
+    {
+      "description": "Change the size of the split button.",
+      "default": "medium",
+      "enum": ["medium", "small"],
+      "type": "string",
+      "title": "size",
+      "required": false
+    },
+    {
+      "description": "Disables the entire split button.",
+      "default": false,
+      "type": "boolean",
+      "title": "disabled",
+      "required": false
+    },
+    {
+      "description": "Determines if the split button should grow to fill the full width of its container.",
+      "default": false,
+      "type": "boolean",
+      "title": "fullWidth",
+      "required": false
+    },
+    {
+      "description": "Callback function when the primary button is clicked.",
+      "type": "() => void;",
+      "title": "onClick",
+      "required": false
+    },
+    {
+      "description": "Controls the visibility of the popover.",
+      "type": "boolean",
+      "title": "open",
+      "required": false
+    },
+    {
+      "description": "Callback function to control popover opening and closing.",
+      "type": "(open: boolean) => void;",
+      "title": "onOpenChange",
+      "required": false
+    },
+    {
+      "description": "Position of the popover relative to the button.",
+      "default": "bottom-end",
+      "enum": [
+        "top",
+        "right",
+        "bottom",
+        "left",
+        "bottom-start",
+        "bottom-end",
+        "left-start",
+        "left-end",
+        "right-start",
+        "right-end",
+        "top-start",
+        "top-end"
+      ],
+      "type": "string",
+      "title": "position",
+      "required": false
+    },
+    {
+      "description": "Width of the popover menu.",
+      "default": "280px",
+      "type": "string",
+      "title": "popoverWidth",
+      "required": false
+    }
+  ],
+  "subComponents": [
+    {
+      "name": "SplitButton.Action",
+      "totalProps": 4,
+      "props": [
+        {
+          "description": "The content of the action item.",
+          "type": "React.ReactNode",
+          "title": "children",
+          "required": true
+        },
+        {
+          "description": "Optional icon to display before the action text.",
+          "type": "React.ReactNode",
+          "title": "icon",
+          "required": false
+        },
+        {
+          "description": "Callback function when the action is clicked.",
+          "type": "() => void;",
+          "title": "onClick",
+          "required": false
+        },
+        {
+          "description": "Disables the action item.",
+          "default": false,
+          "type": "boolean",
+          "title": "disabled",
+          "required": false
+        }
+      ]
+    }
+  ]
+}
