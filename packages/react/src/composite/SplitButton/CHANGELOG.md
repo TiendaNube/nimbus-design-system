@@ -2,7 +2,7 @@
 
 The Split Button component combines a primary action button with a dropdown menu of related secondary actions.
 
-## 2025-10-20 `0.0.0`
+## 2025-10-21 `1.0.0`
 
 #### 🎉 New features
 
