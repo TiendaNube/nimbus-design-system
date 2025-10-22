@@ -2,6 +2,12 @@
 
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories every day, with simplicity, accessibility, consistency and performance.
 
+## 2025-10-22 `5.32.1`
+
+#### 🐛 Bug fixes
+
+- `Tooltip`: Fixed tooltip arrow color to match the design system ([#368](https://github.com/TiendaNube/nimbus-design-system/pull/368) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-10-21 `5.32.0`
 
 #### 🎉 New features

@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2025-10-22 `9.36.1`
+
+#### 🐛 Bug fixes
+
+- `Box`: Adds support for `neutral-textHigh` color in `nimbus-box` component. ([#368](https://github.com/TiendaNube/nimbus-design-system/pull/368) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-10-21 `9.36.0`
 
 #### 🎉 New features

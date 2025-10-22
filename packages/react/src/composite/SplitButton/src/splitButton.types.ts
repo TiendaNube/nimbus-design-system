@@ -8,7 +8,6 @@ import {
   SplitButtonSecondary,
 } from "./components";
 
-
 export interface SplitButtonComponents {
   Action: typeof SplitButtonAction;
   Primary: typeof SplitButtonPrimary;
