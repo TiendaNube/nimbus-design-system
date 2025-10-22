@@ -108,7 +108,7 @@ const Tooltip: React.FC<TooltipProps> = ({
                 data-testid="arrow-element"
                 ref={arrowRef}
                 context={context}
-                color="neutral-textLow"
+                color="neutral-textHigh"
                 fill="currentColor"
               />
             )}

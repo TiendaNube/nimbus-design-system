@@ -1,0 +1,10 @@
+releases:
+  "@nimbus-ds/components": patch
+  "@nimbus-ds/styles": patch
+  "@nimbus-ds/tooltip": patch
+
+declined:
+  - nimbus-design-system
+  - "@nimbus-ds/icon"
+  - "@nimbus-ds/segmented-control"
+  - "@nimbus-ds/stepper"

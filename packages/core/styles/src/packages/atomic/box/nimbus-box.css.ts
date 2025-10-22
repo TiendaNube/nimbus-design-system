@@ -78,6 +78,7 @@ const boxBackgroundColorProperties = {
   "neutral-surfaceDisabled":
     backgroundColorProperties["neutral-surfaceDisabled"],
   "neutral-textLow": backgroundColorProperties["neutral-textLow"],
+  "neutral-textHigh": backgroundColorProperties["neutral-textHigh"],
   "ai-generative-surface": backgroundColorProperties["ai-generativeSurface"],
   "ai-generative-surfaceHighlight":
     backgroundColorProperties["ai-generativeSurfaceHighlight"],
