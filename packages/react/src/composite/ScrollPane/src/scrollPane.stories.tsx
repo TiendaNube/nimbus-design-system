@@ -13,6 +13,7 @@ import {
   ChevronDownIcon,
 } from "@nimbus-ds/icons";
 import { SegmentedControl } from "@nimbus-ds/segmented-control";
+import { mapBoxProps } from ".storybook/utils";
 import { ScrollPane } from "./ScrollPane";
 
 const meta: Meta<typeof ScrollPane> = {
@@ -23,6 +24,7 @@ const meta: Meta<typeof ScrollPane> = {
       control: { type: "boolean" },
       description: "Whether to show gradient overlays when content overflows",
       table: {
+        category: "Component",
         defaultValue: { summary: "true" },
       },
     },
@@ -30,6 +32,7 @@ const meta: Meta<typeof ScrollPane> = {
       control: { type: "boolean" },
       description: "Whether to show navigation arrows for scrolling",
       table: {
+        category: "Component",
         defaultValue: { summary: "false" },
       },
     },
@@ -37,6 +40,7 @@ const meta: Meta<typeof ScrollPane> = {
       control: { type: "boolean" },
       description: "Whether to show the scrollbar",
       table: {
+        category: "Component",
         defaultValue: { summary: "true" },
       },
     },
@@ -45,6 +49,7 @@ const meta: Meta<typeof ScrollPane> = {
       options: ["horizontal", "vertical"],
       description: "The direction of the scroll",
       table: {
+        category: "Component",
         defaultValue: { summary: "horizontal" },
       },
     },
@@ -52,9 +57,15 @@ const meta: Meta<typeof ScrollPane> = {
       control: { type: "boolean" },
       description: "Whether items should scroll into view when clicked",
       table: {
+        category: "Component",
         defaultValue: { summary: "true" },
       },
     },
+    children: {
+      control: { disable: true },
+      table: { category: "Component" },
+    },
+    ...mapBoxProps(),
   },
   decorators: [
     (Story) => (
