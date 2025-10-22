@@ -7,4 +7,5 @@ declined:
   - nimbus-design-system
   - "@nimbus-ds/icon"
   - "@nimbus-ds/segmented-control"
+  - "@nimbus-ds/split-button"
   - "@nimbus-ds/stepper"
