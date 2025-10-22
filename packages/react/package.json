@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/components",
-  "version": "5.31.0",
+  "version": "5.32.0",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -188,6 +188,10 @@
     "./Sidebar": {
       "import": "./dist/Sidebar/index.js",
       "require": "./dist/Sidebar/index.js"
+    },
+    "./SplitButton": {
+      "import": "./dist/SplitButton/index.js",
+      "require": "./dist/SplitButton/index.js"
     },
     "./Stepper": {
       "import": "./dist/Stepper/index.js",
