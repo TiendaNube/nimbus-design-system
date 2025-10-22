@@ -4,13 +4,29 @@ import { action } from "@storybook/addon-actions";
 import { Box } from "@nimbus-ds/box";
 import { HomeIcon, CopyIcon } from "@nimbus-ds/icons";
 import { Button } from "@nimbus-ds/button";
+import { mapBoxProps } from ".storybook/utils";
 import { SplitButton } from "./SplitButton";
 
 const meta: Meta<typeof SplitButton> = {
   title: "Composite/SplitButton",
   component: SplitButton,
   argTypes: {
-    disabled: { control: "boolean" },
+    children: {
+      control: { disable: true },
+      table: { category: "Component" },
+    },
+    disabled: {
+      control: "boolean",
+      table: { category: "Component" },
+    },
+    open: {
+      control: "boolean",
+      table: { category: "Component" },
+    },
+    onOpenChange: {
+      control: { disable: true },
+      table: { category: "Component" },
+    },
     popoverPosition: {
       control: "select",
       options: [
@@ -27,7 +43,9 @@ const meta: Meta<typeof SplitButton> = {
         "top-start",
         "top-end",
       ],
+      table: { category: "Component" },
     },
+    ...mapBoxProps(["display", "gap", "position"]),
   },
   tags: ["autodocs"],
 };

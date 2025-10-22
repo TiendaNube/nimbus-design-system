@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Button } from "@nimbus-ds/button";
 import { Box } from "@nimbus-ds/box";
 import { Text } from "@nimbus-ds/text";
+import { mapBoxProps } from ".storybook/utils";
 import { Stepper } from "./Stepper";
 
 const meta: Meta<typeof Stepper> = {
@@ -21,11 +22,18 @@ const meta: Meta<typeof Stepper> = {
     activeStep: {
       control: { type: "number", min: 0, max: 4 },
       description: "The currently active step (0-based index)",
+      table: { category: "Component" },
     },
     selectedStep: {
       control: { type: "number", min: 0, max: 4 },
       description: "The currently selected step (0-based index)",
+      table: { category: "Component" },
     },
+    children: {
+      control: { disable: true },
+      table: { category: "Component" },
+    },
+    ...mapBoxProps(["display", "flexWrap", "gap"]),
   },
   tags: ["autodocs"],
 };
