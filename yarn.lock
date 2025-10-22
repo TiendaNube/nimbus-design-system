@@ -2990,7 +2990,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/popover@workspace:packages/react/src/atomic/Popover":
+"@nimbus-ds/popover@workspace:^, @nimbus-ds/popover@workspace:packages/react/src/atomic/Popover":
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/popover@workspace:packages/react/src/atomic/Popover"
   dependencies:
@@ -3128,6 +3128,24 @@ __metadata:
   dependencies:
     "@nimbus-ds/webpack": "workspace:^"
     "@vanilla-extract/dynamic": ^2.0.3
+  peerDependencies:
+    react: ^16.8 || ^17.0 || ^18.0
+    react-dom: ^16.8 || ^17.0 || ^18.0
+  languageName: unknown
+  linkType: soft
+
+"@nimbus-ds/split-button@workspace:packages/react/src/composite/SplitButton":
+  version: 0.0.0-use.local
+  resolution: "@nimbus-ds/split-button@workspace:packages/react/src/composite/SplitButton"
+  dependencies:
+    "@nimbus-ds/box": "workspace:^"
+    "@nimbus-ds/button": "workspace:^"
+    "@nimbus-ds/icon": "workspace:^"
+    "@nimbus-ds/icons": "workspace:^"
+    "@nimbus-ds/popover": "workspace:^"
+    "@nimbus-ds/styles": "workspace:^"
+    "@nimbus-ds/text": "workspace:^"
+    "@nimbus-ds/webpack": "workspace:^"
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0

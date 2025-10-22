@@ -57,6 +57,9 @@ const config: Config.InitialOptions = {
     "@nimbus-ds/stepper": "<rootDir>/packages/react/src/composite/Stepper/src",
     "@nimbus-ds/scroll-pane":
       "<rootDir>/packages/react/src/composite/ScrollPane/src",
+    "@nimbus-ds/split-button":
+      "<rootDir>/packages/react/src/composite/SplitButton/src",
+
     // commons
     "^.+\\.svg$": "jest-svg-transformer",
     "^@common$": "<rootDir>/packages/react/src/common",
