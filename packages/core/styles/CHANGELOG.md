@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2025-10-23 `9.36.2`
+
+#### 🐛 Bug fixes
+
+- `SplitButton`: Fixed border right width to match design system. ([#369](https://github.com/TiendaNube/nimbus-design-system/pull/369) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-10-22 `9.36.1`
 
 #### 🐛 Bug fixes

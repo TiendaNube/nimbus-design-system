@@ -79,7 +79,7 @@ export const primaryAppearance = styleVariants({
     {
       ...createAppearanceStyles(),
       borderRightColor: varsThemeBase.colors.primary.interactiveHover,
-      borderRightWidth: varsThemeBase.shape.border.width[2],
+      borderRightWidth: varsThemeBase.shape.border.width[1],
     },
   ],
 });
