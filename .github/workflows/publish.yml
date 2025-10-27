@@ -13,9 +13,13 @@ jobs:
   publish-packages-npm:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    permissions:
+      contents: read
+      id-token: write   # 🔑 habilita Trusted Publishing (OIDC)
     env:
       TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
       TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
+
     steps:
       - name: Increase swapfile
         run: |
@@ -27,7 +31,7 @@ jobs:
           sudo swapon --show
           
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - uses: ./.github/actions/setup-node-deps
 
@@ -57,10 +61,10 @@ jobs:
       - name: Build docs
         run: yarn build:docs
 
-      - name: Publish packages
-        run: yarn publish:stable
-        env:
-          YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTOMATION_PUBLISH }}
+      # 🚀 Publicación usando Trusted Publishing (sin token estático)
+      - name: Publish packages to npm
+        run: |
+          yarn publish:stable --provenance --access public
 
       - name: Branch protection OFF
         run: |
@@ -87,7 +91,7 @@ jobs:
     needs: publish-packages-npm
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Trigger github action create github tag
         run: |
@@ -101,7 +105,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Trigger github action send slack notifications
         run: |
@@ -120,7 +124,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Trigger github action update documentation
         run: |
