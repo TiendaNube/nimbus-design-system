@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2025-10-23 `9.37.0`
+
+#### 🎉 New features
+
+- `Button`: Added gradient glow effect on hover to the AI secondary appearance. ([#371](https://github.com/TiendaNube/nimbus-design-system/pull/371) by [@jffs](https://github.com/jffs))
+
 ## 2025-10-23 `9.36.2`
 
 #### 🐛 Bug fixes
