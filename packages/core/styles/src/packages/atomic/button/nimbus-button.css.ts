@@ -169,18 +169,7 @@ export const appearance = styleVariants({
       ),
       borderColor: "transparent",
       color: varsThemeBase.colors.neutral.textHigh,
-      transition: `box-shadow ${varsThemeBase.motion.speed.fast} ease`,
       position: "relative",
-      ":before": {
-        content: "",
-        position: "absolute",
-        inset: "-0.5px",
-        background: gradients.aiGenerativeHover,
-        filter: "blur(8px)",
-        zIndex: -1,
-        opacity: 0,
-        transition: `opacity ${varsThemeBase.motion.speed.fast} ease`,
-      },
       ":hover": {
         background: createBorderGradient(
           gradients.aiGenerativeHover,
@@ -207,5 +196,11 @@ export const appearance = styleVariants({
 const aiSecondaryStyle = appearance["ai-secondary"];
 
 globalStyle(`${aiSecondaryStyle}:hover:before`, {
+  content: "",
+  position: "absolute",
+  inset: "-0.5px",
+  background: gradients.aiGenerativeHover,
+  filter: "blur(8px)",
+  zIndex: -1,
   opacity: 0.5,
 });
