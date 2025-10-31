@@ -1,9 +1,6 @@
 import { style, styleVariants } from "@vanilla-extract/css";
-import tokens from "@nimbus-ds/tokens/dist/js/tokens";
 import { varsThemeBase } from "../../../themes";
 import { createBorderGradient, gradients } from "../../../gradients";
-
-const aiGenerativeColors = tokens.color.light.aiGenerative;
 
 const base = style({
   display: "flex",
@@ -179,9 +176,7 @@ export const appearance = styleVariants({
           varsThemeBase.colors.neutral.surface
         ),
         boxShadow: `
-          0 0 16px ${aiGenerativeColors["interactive-hover"].value}66,
-          0 0 24px ${aiGenerativeColors["interactive-hover"].value}40,
-          0 4px 16px ${aiGenerativeColors["interactive-hover"].value}33
+  0 0 16px color-mix(in srgb, ${varsThemeBase.colors.aiGradient.purpleHigh} 25%, transparent)
         `,
       },
       ":active": {
