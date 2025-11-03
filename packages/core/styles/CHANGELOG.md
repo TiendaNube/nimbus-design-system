@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2025-10-31 `9.37.1`
+
+#### 🐛 Bug fixes
+
+- `Button`: Fixed hover effect to the AI secondary appearance using boxShadows. ([#372](https://github.com/TiendaNube/nimbus-design-system/pull/372) by [@jffs](https://github.com/jffs))
+
 ## 2025-10-23 `9.37.0`
 
 #### 🎉 New features

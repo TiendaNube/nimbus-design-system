@@ -1,4 +1,4 @@
-import { style, styleVariants, globalStyle } from "@vanilla-extract/css";
+import { style, styleVariants } from "@vanilla-extract/css";
 import { varsThemeBase } from "../../../themes";
 import { createBorderGradient, gradients } from "../../../gradients";
 
@@ -175,6 +175,7 @@ export const appearance = styleVariants({
           gradients.aiGenerativeHover,
           varsThemeBase.colors.neutral.surface
         ),
+        boxShadow: `0 0 16px color-mix(in srgb, ${varsThemeBase.colors.aiGenerative.interactiveHover} 70%, transparent)`,
       },
       ":active": {
         background: createBorderGradient(
@@ -191,16 +192,4 @@ export const appearance = styleVariants({
       },
     },
   ],
-});
-
-const aiSecondaryStyle = appearance["ai-secondary"];
-
-globalStyle(`${aiSecondaryStyle}:hover:before`, {
-  content: "",
-  position: "absolute",
-  inset: "-0.5px",
-  background: gradients.aiGenerativeHover,
-  filter: "blur(8px)",
-  zIndex: -1,
-  opacity: 0.5,
 });
