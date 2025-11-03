@@ -6,7 +6,7 @@ Use Popovers to bring attention to specific user interface elements and suggest 
 
 #### 🐛 Bug fixes
 
-- Fixed `onVisibility` callback to properly trigger when popover visibility changes. ([#372](https://github.com/TiendaNube/nimbus-design-system/pull/372) by [@joacotornello](https://github.com/joacotornello))
+- Fixed `onVisibility` callback to properly trigger when popover visibility changes. ([#373](https://github.com/TiendaNube/nimbus-design-system/pull/373) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-08-14 `4.3.1`
 
