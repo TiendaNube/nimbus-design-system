@@ -175,9 +175,7 @@ export const appearance = styleVariants({
           gradients.aiGenerativeHover,
           varsThemeBase.colors.neutral.surface
         ),
-        boxShadow: `
-  0 0 16px color-mix(in srgb, ${varsThemeBase.colors.aiGradient.purpleHigh} 25%, transparent)
-        `,
+        boxShadow: `0 0 16px color-mix(in srgb, ${varsThemeBase.colors.aiGenerative.interactiveHover} 70%, transparent)`,
       },
       ":active": {
         background: createBorderGradient(
