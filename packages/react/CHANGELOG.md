@@ -2,6 +2,12 @@
 
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories every day, with simplicity, accessibility, consistency and performance.
 
+## 2025-11-03 `5.32.2`
+
+#### 🐛 Bug fixes
+
+- `Popover`: Fixed `onVisibility` callback to properly trigger when popover visibility changes. ([#373](https://github.com/TiendaNube/nimbus-design-system/pull/373) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-10-22 `5.32.1`
 
 #### 🐛 Bug fixes
