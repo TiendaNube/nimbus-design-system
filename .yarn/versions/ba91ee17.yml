@@ -1,5 +1,5 @@
 releases:
-  "@nimbus-ds/styles": minor
+  "@nimbus-ds/styles": patch
 
 declined:
   - nimbus-design-system
