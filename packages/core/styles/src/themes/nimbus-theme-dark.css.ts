@@ -68,6 +68,8 @@ const darkTheme = {
       surface: lightColors.aiGenerative.surface.value as string,
       background: lightColors.aiGenerative.background.value as string,
       textHigh: lightColors.aiGenerative["text-high"].value as string,
+      interactiveHover: lightColors.aiGenerative["interactive-hover"]
+        .value as string,
     },
     aiGradient: {
       blueHigh: lightColors.aiGradient["blue-high"].value as string,
