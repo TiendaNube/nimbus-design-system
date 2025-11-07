@@ -1,0 +1,27 @@
+releases:
+  "@nimbus-ds/icons": minor
+
+declined:
+  - nimbus-design-system
+  - "@nimbus-ds/components"
+  - "@nimbus-ds/button"
+  - "@nimbus-ds/chip"
+  - "@nimbus-ds/file-uploader"
+  - "@nimbus-ds/icon"
+  - "@nimbus-ds/icon-button"
+  - "@nimbus-ds/input"
+  - "@nimbus-ds/label"
+  - "@nimbus-ds/link"
+  - "@nimbus-ds/multi-select"
+  - "@nimbus-ds/select"
+  - "@nimbus-ds/tag"
+  - "@nimbus-ds/thumbnail"
+  - "@nimbus-ds/toast"
+  - "@nimbus-ds/accordion"
+  - "@nimbus-ds/alert"
+  - "@nimbus-ds/modal"
+  - "@nimbus-ds/pagination"
+  - "@nimbus-ds/segmented-control"
+  - "@nimbus-ds/split-button"
+  - "@nimbus-ds/stepper"
+  - "@nimbus-ds/scroll-pane"
