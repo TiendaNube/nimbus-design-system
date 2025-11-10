@@ -6,6 +6,7 @@ releases:
 declined:
   - nimbus-design-system
   - "@nimbus-ds/button"
+  - "@nimbus-ds/checkbox"
   - "@nimbus-ds/chip"
   - "@nimbus-ds/file-uploader"
   - "@nimbus-ds/icon-button"
