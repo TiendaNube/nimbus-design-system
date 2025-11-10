@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2025-11-10 `9.38.0`
+
+#### 🎉 New features
+
+- `Icon`: Added `ai-gradientPurpleHigh` color to the colors. ([#375](https://github.com/TiendaNube/nimbus-design-system/pull/375) by [@jffs](https://github.com/jffs))
+
 ## 2025-10-31 `9.37.1`
 
 #### 🐛 Bug fixes

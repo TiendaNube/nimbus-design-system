@@ -50,4 +50,6 @@ export const baseColors = {
   "ai-generativeInteractive": varsThemeBase.colors.aiGenerative.background,
   "ai-generativeTextLow": varsThemeBase.colors.aiGenerative.textLow,
   "ai-generativeTextHigh": varsThemeBase.colors.aiGenerative.textHigh,
+
+  "ai-gradientPurpleHigh": varsThemeBase.colors.aiGradient.purpleHigh,
 };
