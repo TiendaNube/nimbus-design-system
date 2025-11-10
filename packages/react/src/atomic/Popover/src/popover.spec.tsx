@@ -132,13 +132,7 @@ describe("GIVEN <Popover />", () => {
       const popover = screen.getByTestId("popover-element");
       expect(popover).toBeDefined();
       fireEvent.click(screen.getByTestId("popover-container"));
-      expect(mockedOnVisibility).toHaveBeenCalledWith(
-        false,
-        expect.objectContaining({
-          isTrusted: false,
-        }),
-        "click"
-      );
+      expect(mockedOnVisibility).toHaveBeenCalledWith(false);
     });
 
     it("THEN should render popover with transparent overlay when renderOverlay prop is true", async () => {
@@ -239,13 +233,7 @@ describe("GIVEN <Popover />", () => {
       expect(popover).toBeNull();
       fireEvent.click(screen.getByTestId("popover-container"));
 
-      expect(mockedOnVisibility).toHaveBeenCalledWith(
-        true,
-        expect.objectContaining({
-          isTrusted: false,
-        }),
-        "click"
-      );
+      expect(mockedOnVisibility).toHaveBeenCalledWith(true);
     });
   });
 

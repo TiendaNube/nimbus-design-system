@@ -17,6 +17,8 @@ import {
   TransitionTiming,
   AlignSelf,
   WordBreak,
+  TextOverflow,
+  WhiteSpace,
 } from "../types";
 import { baseColors } from "./base";
 
@@ -272,4 +274,15 @@ export const wordBreakProperties: WordBreak[] = [
   "break-all",
   "keep-all",
   "break-word",
+];
+
+export const textOverflowProperties: TextOverflow[] = ["clip", "ellipsis"];
+
+export const whiteSpaceProperties: WhiteSpace[] = [
+  "normal",
+  "nowrap",
+  "pre",
+  "pre-wrap",
+  "pre-line",
+  "break-spaces",
 ];

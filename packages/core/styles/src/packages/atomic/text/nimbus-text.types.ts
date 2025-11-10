@@ -3,6 +3,9 @@ import {
   TextAlign,
   TextDecoration,
   WordBreak,
+  TextOverflow,
+  WhiteSpace,
+  Overflow,
 } from "../../../types";
 import { textSprinkle } from "./nimbus-text.css";
 
@@ -55,11 +58,24 @@ export interface TextSprinkle {
    */
   WebkitLineClamp?: number | TextConditions<number>;
   /**
-   * The amount of lines at which the text will be trimmed, showing an ellipsis when overflowed.
+   * The wordBreak property sets whether line breaks appear wherever the text would otherwise overflow its content box.
    */
   wordBreak?: WordBreak | TextConditions<WordBreak>;
   /**
    * The textDecoration shorthand property sets the appearance of decorative lines on text.
    */
   textDecoration?: TextDecoration | TextConditions<TextDecoration>;
+  /**
+   * The textOverflow property specifies how overflowed content that is not displayed should be signaled to the user (e.g., 'ellipsis' for '...', 'clip' for hard cutoff).
+   * Note: This property only works when overflow is set to 'hidden'.
+   */
+  textOverflow?: TextOverflow | TextConditions<TextOverflow>;
+  /**
+   * The whiteSpace property sets how white space inside an element is handled.
+   */
+  whiteSpace?: WhiteSpace | TextConditions<WhiteSpace>;
+  /**
+   * The overflow property specifies what happens if content overflows an element's box.
+   */
+  overflow?: Overflow | TextConditions<Overflow>;
 }
