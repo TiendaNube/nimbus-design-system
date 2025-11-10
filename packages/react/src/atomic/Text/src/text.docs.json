@@ -3,7 +3,7 @@
   "name": "Text",
   "totalProps": 13,
   "packageName": "@nimbus-ds/text",
-  "version": "6.5.0",
+  "version": "6.6.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/text",
   "props": [
     {
