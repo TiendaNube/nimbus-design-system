@@ -82,7 +82,6 @@ const boxBackgroundColorProperties = {
   "ai-generative-surface": backgroundColorProperties["ai-generativeSurface"],
   "ai-generative-surfaceHighlight":
     backgroundColorProperties["ai-generativeSurfaceHighlight"],
-  "ai-gradient-purple-high": backgroundColorProperties["ai-gradientPurpleHigh"],
   transparent: "transparent",
 };
 

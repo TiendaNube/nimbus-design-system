@@ -6,7 +6,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 #### 🎉 New features
 
-- `Box` and `Icon`: Added `ai-gradientPurpleHigh` color to the AI secondary appearance. ([#373](https://github.com/TiendaNube/nimbus-design-system/pull/373) by [@jffs](https://github.com/jffs))
+- `Icon`: Added `ai-gradientPurpleHigh` color to the colors. ([#373](https://github.com/TiendaNube/nimbus-design-system/pull/373) by [@jffs](https://github.com/jffs))
 
 ## 2025-10-31 `9.37.1`
 
