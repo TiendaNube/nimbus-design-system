@@ -2,6 +2,12 @@
 
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories every day, with simplicity, accessibility, consistency and performance.
 
+## 2025-11-10 `5.34.0`
+
+#### 🎉 New features
+
+- `Text`: Added `textOverflow`, `whiteSpace`, and `overflow` properties to `Text` component. ([#376](https://github.com/TiendaNube/nimbus-design-system/pull/376) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-11-10 `5.33.0`
 
 #### 🎉 New features
