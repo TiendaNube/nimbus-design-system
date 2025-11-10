@@ -2,6 +2,12 @@
 
 Text is a basic component that allows us to write blocks of text and give it formatting to use within other components, sections and pages of our application or website.
 
+## 2025-11-10 `6.6.0`
+
+#### 🎉 New features
+
+- Added `textOverflow`, `whiteSpace`, and `overflow` properties to `Text` component. ([#PR](https://github.com/TiendaNube/nimbus-design-system/pull/PR) by [@contributor](https://github.com/contributor))
+
 ## 2025-09-26 `6.5.0`
 
 #### 🎉 New features

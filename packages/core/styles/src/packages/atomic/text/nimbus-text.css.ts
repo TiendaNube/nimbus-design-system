@@ -12,6 +12,9 @@ import {
   textAlignProperties,
   textDecorationProperties,
   wordBreakProperties,
+  textOverflowProperties,
+  whiteSpaceProperties,
+  overflowProperties,
 } from "../../../properties";
 import { mediaQueries, varsThemeBase } from "../../../themes";
 import { gradients } from "../../../gradients";
@@ -97,6 +100,9 @@ const properties = {
   fontSize: fontSizeProperties,
   wordBreak: wordBreakProperties,
   textDecoration: textDecorationProperties,
+  textOverflow: textOverflowProperties,
+  whiteSpace: whiteSpaceProperties,
+  overflow: overflowProperties,
 };
 
 const defineProperties = defineRainbowProperties({
