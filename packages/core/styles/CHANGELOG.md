@@ -6,7 +6,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 #### 🎉 New features
 
-- `Text`: Added `textOverflow`, `whiteSpace`, and `overflow` properties support. ([#PR](https://github.com/TiendaNube/nimbus-design-system/pull/PR) by [@contributor](https://github.com/contributor))
+- `Text`: Added `textOverflow`, `whiteSpace`, and `overflow` properties support. ([#376](https://github.com/TiendaNube/nimbus-design-system/pull/376) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-11-10 `9.38.0`
 
