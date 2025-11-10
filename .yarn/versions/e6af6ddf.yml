@@ -1,10 +1,10 @@
 releases:
+  "@nimbus-ds/components": minor
   "@nimbus-ds/icons": minor
   "@nimbus-ds/styles": minor
 
 declined:
   - nimbus-design-system
-  - "@nimbus-ds/components"
   - "@nimbus-ds/button"
   - "@nimbus-ds/chip"
   - "@nimbus-ds/file-uploader"
