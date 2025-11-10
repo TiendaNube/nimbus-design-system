@@ -28,6 +28,7 @@
       "default": "neutral-textHigh",
       "enum": [
         "ai-generative",
+        "ai-gradientPurpleHigh",
         "currentColor",
         "danger-interactive",
         "danger-surface",
