@@ -1,7 +1,7 @@
 {
   "id": "text",
   "name": "Text",
-  "totalProps": 10,
+  "totalProps": 13,
   "packageName": "@nimbus-ds/text",
   "version": "6.5.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/text",
@@ -385,6 +385,74 @@
       "required": false
     },
     {
+      "description": "The overflow property specifies what happens if content overflows an element's box.",
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "xs": {
+              "enum": [
+                "auto",
+                "hidden",
+                "scroll",
+                "visible"
+              ],
+              "type": "string",
+              "title": "xs"
+            },
+            "md": {
+              "enum": [
+                "auto",
+                "hidden",
+                "scroll",
+                "visible"
+              ],
+              "type": "string",
+              "title": "md"
+            },
+            "lg": {
+              "enum": [
+                "auto",
+                "hidden",
+                "scroll",
+                "visible"
+              ],
+              "type": "string",
+              "title": "lg"
+            },
+            "xl": {
+              "enum": [
+                "auto",
+                "hidden",
+                "scroll",
+                "visible"
+              ],
+              "type": "string",
+              "title": "xl"
+            }
+          },
+          "additionalProperties": false,
+          "propertyOrder": [
+            "xs",
+            "md",
+            "lg",
+            "xl"
+          ]
+        },
+        {
+          "enum": [
+            "auto",
+            "hidden",
+            "scroll",
+            "visible"
+          ],
+          "type": "string"
+        }
+      ],
+      "title": "overflow",
+      "required": false
+    },
+    {
       "description": "The textAlign property specifies the horizontal alignment of text.",
       "default": "left",
       "anyOf": [
@@ -517,7 +585,143 @@
       "required": false
     },
     {
-      "description": "The amount of lines at which the text will be trimmed, showing an ellipsis when overflowed.",
+      "description": "The textOverflow property specifies how overflowed content that is not displayed should be signaled to the user (e.g., 'ellipsis' for '...', 'clip' for hard cutoff).\nNote: This property only works when overflow is set to 'hidden'.",
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "xs": {
+              "enum": [
+                "clip",
+                "ellipsis"
+              ],
+              "type": "string",
+              "title": "xs"
+            },
+            "md": {
+              "enum": [
+                "clip",
+                "ellipsis"
+              ],
+              "type": "string",
+              "title": "md"
+            },
+            "lg": {
+              "enum": [
+                "clip",
+                "ellipsis"
+              ],
+              "type": "string",
+              "title": "lg"
+            },
+            "xl": {
+              "enum": [
+                "clip",
+                "ellipsis"
+              ],
+              "type": "string",
+              "title": "xl"
+            }
+          },
+          "additionalProperties": false,
+          "propertyOrder": [
+            "xs",
+            "md",
+            "lg",
+            "xl"
+          ]
+        },
+        {
+          "enum": [
+            "clip",
+            "ellipsis"
+          ],
+          "type": "string"
+        }
+      ],
+      "title": "textOverflow",
+      "required": false
+    },
+    {
+      "description": "The whiteSpace property sets how white space inside an element is handled.",
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "xs": {
+              "enum": [
+                "break-spaces",
+                "normal",
+                "nowrap",
+                "pre",
+                "pre-line",
+                "pre-wrap"
+              ],
+              "type": "string",
+              "title": "xs"
+            },
+            "md": {
+              "enum": [
+                "break-spaces",
+                "normal",
+                "nowrap",
+                "pre",
+                "pre-line",
+                "pre-wrap"
+              ],
+              "type": "string",
+              "title": "md"
+            },
+            "lg": {
+              "enum": [
+                "break-spaces",
+                "normal",
+                "nowrap",
+                "pre",
+                "pre-line",
+                "pre-wrap"
+              ],
+              "type": "string",
+              "title": "lg"
+            },
+            "xl": {
+              "enum": [
+                "break-spaces",
+                "normal",
+                "nowrap",
+                "pre",
+                "pre-line",
+                "pre-wrap"
+              ],
+              "type": "string",
+              "title": "xl"
+            }
+          },
+          "additionalProperties": false,
+          "propertyOrder": [
+            "xs",
+            "md",
+            "lg",
+            "xl"
+          ]
+        },
+        {
+          "enum": [
+            "break-spaces",
+            "normal",
+            "nowrap",
+            "pre",
+            "pre-line",
+            "pre-wrap"
+          ],
+          "type": "string"
+        }
+      ],
+      "title": "whiteSpace",
+      "required": false
+    },
+    {
+      "description": "The wordBreak property sets whether line breaks appear wherever the text would otherwise overflow its content box.",
       "anyOf": [
         {
           "type": "object",
