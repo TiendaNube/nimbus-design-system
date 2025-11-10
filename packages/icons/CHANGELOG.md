@@ -2,12 +2,6 @@
 
 Nimbus-icons is an open source icon system built by Nuvemshop / Tiendanube.
 
-## 2025-11-10 `1.15.0`
-
-#### 🎉 New features
-
-- Adds `ai-gradient-purple-high` color for icons. ([#375](https://github.com/TiendaNube/nimbus-design-system/pull/375) by [@jffs](https://github.com/jffs))
-
 ## 2025-11-07 `1.14.0`
 
 #### 🎉 New features
