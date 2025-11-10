@@ -29,9 +29,9 @@ const Text: React.FC<TextProps> & TextComponents = ({
     fontWeight: fontWeight as any,
     fontSize: fontSize as any,
     textDecoration: textDecoration as any,
-    textOverflow: textOverflow as any,
-    whiteSpace: whiteSpace as any,
-    overflow: overflow as any,
+    textOverflow,
+    whiteSpace,
+    overflow,
     WebkitLineClamp: lineClamp as any,
   });
 

@@ -58,7 +58,7 @@ export interface TextSprinkle {
    */
   WebkitLineClamp?: number | TextConditions<number>;
   /**
-   * The amount of lines at which the text will be trimmed, showing an ellipsis when overflowed.
+   * The wordBreak property sets whether line breaks appear wherever the text would otherwise overflow its content box.
    */
   wordBreak?: WordBreak | TextConditions<WordBreak>;
   /**
@@ -66,7 +66,7 @@ export interface TextSprinkle {
    */
   textDecoration?: TextDecoration | TextConditions<TextDecoration>;
   /**
-   * The textOverflow property specifies how overflowed content that is not displayed should be signaled to the user.
+   * The textOverflow property specifies how overflowed content that is not displayed should be signaled to the user (e.g., 'ellipsis' for '...', 'clip' for hard cutoff).
    * Note: This property only works when overflow is set to 'hidden'.
    */
   textOverflow?: TextOverflow | TextConditions<TextOverflow>;
