@@ -3,6 +3,7 @@ releases:
   "@nimbus-ds/text": minor
 
 declined:
+  - nimbus-design-system
   - "@nimbus-ds/badge"
   - "@nimbus-ds/checkbox"
   - "@nimbus-ds/chip"
@@ -20,6 +21,3 @@ declined:
   - "@nimbus-ds/split-button"
   - "@nimbus-ds/stepper"
   - "@nimbus-ds/tabs"
-
-undecided:
-  - nimbus-design-system
