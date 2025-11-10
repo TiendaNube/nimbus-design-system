@@ -6,7 +6,7 @@ Nimbus-icons is an open source icon system built by Nuvemshop / Tiendanube.
 
 #### 🎉 New features
 
-- Adds `ia-coin` icon. ([#374](https://github.com/TiendaNube/nimbus-design-system/pull/374) by [@jffs](https://github.com/NimbusAgent))
+- Adds `ia-coin` icon. ([#374](https://github.com/TiendaNube/nimbus-design-system/pull/374) by [@jffs](https://github.com/jffs))
 
 ## 2025-09-17 `1.13.1`
 
