@@ -10,4 +10,4 @@ import {
  */
 export const isControlled = (
   props: UncontrolledAccordionProperties | ControlledAccordionProperties
-): props is ControlledAccordionProperties => "selected" in props;
+): props is ControlledAccordionProperties => "selectedItem" in props;
