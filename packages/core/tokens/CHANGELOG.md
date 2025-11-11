@@ -2,6 +2,12 @@
 
 Our design tokens are the foundations of Nimbus Design System.
 
+## 2025-11-11 `9.5.0`
+
+#### 🎉 New features
+
+- Added new `xxl` breakpoint token. ([#380](https://github.com/TiendaNube/nimbus-design-system/pull/380) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-09-17 `9.4.0`
 
 #### 🎉 New features
