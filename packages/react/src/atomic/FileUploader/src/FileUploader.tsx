@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useCallback } from "react";
+import React, { useMemo, useState, useCallback, useRef } from "react";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
 import { fileUploader, vars } from "@nimbus-ds/styles";
 import { PlusCircleIcon } from "@nimbus-ds/icons";
@@ -37,6 +37,7 @@ const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
 }: FileUploaderProps) => {
   const color = useMemo(() => (disabled ? "neutral" : "primary"), [disabled]);
   const [isDragging, setIsDragging] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const handleDragOver = useCallback(
     (event: React.DragEvent<HTMLLabelElement>) => {
@@ -79,9 +80,7 @@ const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
           return;
         }
 
-        const inputElement = document.getElementById(
-          id || DEFAULT_INPUT_ID
-        ) as HTMLInputElement;
+        const inputElement = inputRef.current;
 
         if (inputElement) {
           try {
@@ -106,16 +105,7 @@ const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
         }
       }
     },
-    [
-      disabled,
-      onChange,
-      id,
-      accept,
-      onDrop,
-      onDropReject,
-      onDropSuccess,
-      onError,
-    ]
+    [disabled, onChange, accept, onDrop, onDropReject, onDropSuccess, onError]
   );
 
   return (
@@ -154,6 +144,7 @@ const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
         </Text>
       )}
       <input
+        ref={inputRef}
         className={fileUploader.classnames.container__input}
         type="file"
         accept={accept}
