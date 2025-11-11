@@ -323,7 +323,7 @@ const ControlledAccordionStory = () => {
       </Box>
 
       <Card padding="none">
-        <Accordion selected={selectedItem} onSelect={setSelectedItem}>
+        <Accordion selectedItem={selectedItem} onItemSelect={setSelectedItem}>
           <Accordion.Item index="settings">
             <Accordion.Header
               title="Settings"

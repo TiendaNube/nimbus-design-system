@@ -37,8 +37,8 @@ const ControlledAccordion = () => {
 
   return (
     <Accordion
-      selected={selected}
-      onSelect={setSelected}
+      selectedItem={selected}
+      onItemSelect={setSelected}
       data-testid="controlled-accordion"
     >
       <Accordion.Item index="0">
@@ -77,14 +77,14 @@ describe("GIVEN <Accordion />", () => {
   describe("WHEN rendered in controlled mode", () => {
     it("THEN should correctly handle controlled selection", () => {
       render(<ControlledAccordion />);
-      
+
       // Initially, item 0 should be selected
       expect(screen.getByTestId("controlled-body-0")).toBeDefined();
-      
+
       // Click on header 1 to select item 1
       fireEvent.click(screen.getByTestId("controlled-header-1"));
       expect(screen.getByTestId("controlled-body-1")).toBeDefined();
-      
+
       // Click on header 1 again to close it
       fireEvent.click(screen.getByTestId("controlled-header-1"));
       expect(screen.queryByTestId("controlled-body-1")).toBeNull();

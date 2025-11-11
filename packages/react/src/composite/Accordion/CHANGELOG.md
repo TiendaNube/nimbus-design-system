@@ -2,6 +2,12 @@
 
 The Accordion component allows us to compress content into containers that can be opened or closed.
 
+## 2025-11-11 `1.6.0`
+
+#### 🎉 New features
+
+- Added controlled mode support allowing external state management of accordion selection. ([#TBD](https://github.com/TiendaNube/nimbus-design-system/pull/TBD) by [@TBD](https://github.com/TBD))
+
 ## 2025-03-18 `1.5.0`
 
 #### 🎉 New features

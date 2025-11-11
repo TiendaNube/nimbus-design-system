@@ -35,7 +35,7 @@ const Accordion: React.FC<AccordionProps> & AccordionComponents = ({
   const selected = useMemo(() => {
     if (isControlledMode) {
       const controlledProps = rest as ControlledAccordionProperties;
-      return controlledProps.selected;
+      return controlledProps.selectedItem;
     }
     return internalSelected;
   }, [isControlledMode, internalSelected, rest]);
@@ -44,8 +44,8 @@ const Accordion: React.FC<AccordionProps> & AccordionComponents = ({
     (selectedId: string) => {
       if (isControlledMode) {
         const controlledProps = rest as ControlledAccordionProperties;
-        if (controlledProps.onSelect) {
-          controlledProps.onSelect(selectedId);
+        if (controlledProps.onItemSelect) {
+          controlledProps.onItemSelect(selectedId);
         }
       } else {
         setInternalSelected(selectedId);
@@ -64,8 +64,8 @@ const Accordion: React.FC<AccordionProps> & AccordionComponents = ({
 
   // Extract controlled props to avoid passing them to the div
   const {
-    selected: _selected,
-    onSelect: _onSelect,
+    selectedItem: _selectedItem,
+    onItemSelect: _onItemSelect,
     selectedDefault: _selectedDefault,
     ...divProps
   } = rest as any;

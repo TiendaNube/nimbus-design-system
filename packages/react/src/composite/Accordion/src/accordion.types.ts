@@ -27,12 +27,12 @@ export interface ControlledAccordionProperties extends AccordionBaseProperties {
   /**
    * The currently selected accordion item ID.
    */
-  selected: string;
+  selectedItem: string;
   /**
    * Callback fired when the selected accordion item changes.
    * @param selectedId The ID of the selected accordion item
    */
-  onSelect?: (selectedId: string) => void;
+  onItemSelect?: (selectedId: string) => void;
 }
 
 /**
@@ -42,7 +42,7 @@ export type AccordionProps = (
   | UncontrolledAccordionProperties
   | ControlledAccordionProperties
 ) &
-  Omit<HTMLAttributes<HTMLElement>, "onSelect" | "selected">;
+  Omit<HTMLAttributes<HTMLElement>, "onItemSelect" | "selectedItem">;
 
 // For docs purposes, we need to merge the two types
 export type AccordionProperties = AccordionBaseProperties &
