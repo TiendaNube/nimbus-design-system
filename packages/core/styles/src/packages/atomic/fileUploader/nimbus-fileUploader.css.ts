@@ -22,6 +22,7 @@ export const container = style({
   borderWidth: varsThemeBase.shape.border.width[2],
   borderColor: varsThemeBase.colors.primary.interactive,
   borderStyle: "dashed",
+  transition: `background ${varsThemeBase.motion.speed.fast} ease, border-color ${varsThemeBase.motion.speed.fast} ease`,
 });
 
 const container__input = style({
@@ -33,6 +34,11 @@ const disabled = style({
   borderColor: varsThemeBase.colors.neutral.interactive,
 });
 
+const dragging = style({
+  borderColor: varsThemeBase.colors.primary.textHigh,
+  background: varsThemeBase.colors.primary.surfaceHighlight,
+});
+
 export const skeleton = style({
   display: "flex",
 });
@@ -41,6 +47,7 @@ export const styles = {
   container,
   container__input,
   disabled,
+  dragging,
   skeleton,
 };
 

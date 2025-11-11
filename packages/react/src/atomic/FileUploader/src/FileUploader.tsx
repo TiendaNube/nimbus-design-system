@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState, useCallback } from "react";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
 import { fileUploader, vars } from "@nimbus-ds/styles";
 import { PlusCircleIcon } from "@nimbus-ds/icons";
@@ -10,6 +10,10 @@ import {
   FileUploaderComponents,
 } from "./fileUploader.types";
 import { FileUploaderSkeleton } from "./components";
+import {
+  isFileAccepted,
+  createFileListFromFiles,
+} from "./FileUploader.definitions";
 
 const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
   className: _className,
@@ -21,9 +25,82 @@ const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
   flexDirection = "column",
   placeholder,
   disabled,
+  onDrop,
+  onDropReject,
+  onDropSuccess,
   ...rest
 }: FileUploaderProps) => {
   const color = useMemo(() => (disabled ? "neutral" : "primary"), [disabled]);
+  const [isDragging, setIsDragging] = useState(false);
+
+  const handleDragOver = useCallback(
+    (event: React.DragEvent<HTMLLabelElement>) => {
+      event.preventDefault();
+      event.stopPropagation();
+      if (!disabled) {
+        setIsDragging(true);
+      }
+    },
+    [disabled]
+  );
+
+  const handleDragLeave = useCallback(
+    (event: React.DragEvent<HTMLLabelElement>) => {
+      event.preventDefault();
+      event.stopPropagation();
+      setIsDragging(false);
+    },
+    []
+  );
+
+  const handleDrop = useCallback(
+    (event: React.DragEvent<HTMLLabelElement>) => {
+      event.preventDefault();
+      event.stopPropagation();
+      setIsDragging(false);
+
+      onDrop?.(event);
+
+      if (disabled || !rest.onChange) return;
+
+      const droppedFiles = event.dataTransfer.files;
+      if (droppedFiles && droppedFiles.length > 0) {
+        const acceptedFiles = Array.from(droppedFiles).filter((file) =>
+          isFileAccepted(file, accept)
+        );
+
+        if (acceptedFiles.length === 0) {
+          onDropReject?.(event);
+          return;
+        }
+
+        const inputElement = document.getElementById(
+          rest.id || "input-file"
+        ) as HTMLInputElement;
+
+        if (inputElement) {
+          try {
+            createFileListFromFiles(acceptedFiles, inputElement);
+
+            const changeEvent = new Event("change", { bubbles: true });
+            Object.defineProperty(changeEvent, "target", {
+              writable: false,
+              value: inputElement,
+            });
+
+            rest.onChange(
+              changeEvent as unknown as React.ChangeEvent<HTMLInputElement>
+            );
+            onDropSuccess?.(event);
+          } catch (error) {
+            console.error("Error handling file drop:", error);
+          }
+        }
+      }
+    },
+    [disabled, rest, accept, onDrop, onDropReject, onDropSuccess]
+  );
+
   return (
     <label
       data-testid="file-uploader-container"
@@ -36,11 +113,15 @@ const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
           cursor: disabled ? "auto" : "pointer",
         }),
         disabled && fileUploader.classnames.disabled,
+        isDragging && !disabled && fileUploader.classnames.dragging,
       ].join(" ")}
       style={assignInlineVars({
         [vars.width]: width,
         [vars.height]: height,
       })}
+      onDragOver={handleDragOver}
+      onDragLeave={handleDragLeave}
+      onDrop={handleDrop}
     >
       <Icon
         color={`${color}-interactive`}
