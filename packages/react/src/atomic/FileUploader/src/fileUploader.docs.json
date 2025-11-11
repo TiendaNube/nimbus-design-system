@@ -1,7 +1,7 @@
 {
   "id": "fileUploader",
   "name": "FileUploader",
-  "totalProps": 6,
+  "totalProps": 10,
   "packageName": "@nimbus-ds/file-uploader",
   "version": "2.6.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/file-uploader",
@@ -36,16 +36,7 @@
     {
       "description": "Permitted aspect ratios for the size of the file uploader.",
       "default": "1/1",
-      "enum": [
-        "1/1",
-        "1/2",
-        "16/9",
-        "2/1",
-        "3/4",
-        "4/3",
-        "9/16",
-        "none"
-      ],
+      "enum": ["1/1", "1/2", "16/9", "2/1", "3/4", "4/3", "9/16", "none"],
       "type": "string",
       "title": "aspectRatio",
       "required": false
@@ -53,12 +44,41 @@
     {
       "description": "Defines the position of the placeholder in relation to the icon.",
       "default": "column",
-      "enum": [
-        "column",
-        "row"
-      ],
+      "enum": ["column", "row"],
       "type": "string",
       "title": "flexDirection",
+      "required": false
+    },
+    {
+      "description": "Callback fired when files are dropped (before validation)",
+      "type": "object",
+      "additionalProperties": false,
+      "propertyOrder": [],
+      "title": "onDrop",
+      "required": false
+    },
+    {
+      "description": "Callback fired when all dropped files are rejected due to file type validation",
+      "type": "object",
+      "additionalProperties": false,
+      "propertyOrder": [],
+      "title": "onDropReject",
+      "required": false
+    },
+    {
+      "description": "Callback fired when files are successfully accepted and processed",
+      "type": "object",
+      "additionalProperties": false,
+      "propertyOrder": [],
+      "title": "onDropSuccess",
+      "required": false
+    },
+    {
+      "description": "Callback fired when an error occurs during file drop processing",
+      "type": "object",
+      "additionalProperties": false,
+      "propertyOrder": [],
+      "title": "onError",
       "required": false
     }
   ],
@@ -82,16 +102,7 @@
         {
           "description": "Permitted aspect ratios for the size of the file uploader.",
           "default": "1/1",
-          "enum": [
-            "1/1",
-            "1/2",
-            "16/9",
-            "2/1",
-            "3/4",
-            "4/3",
-            "9/16",
-            "none"
-          ],
+          "enum": ["1/1", "1/2", "16/9", "2/1", "3/4", "4/3", "9/16", "none"],
           "type": "string",
           "title": "aspectRatio",
           "required": false

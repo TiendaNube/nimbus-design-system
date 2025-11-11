@@ -2,11 +2,17 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
-## 2025-11-11 `9.39.1`
+## 2025-11-11 `9.40.1`
 
 #### 🐛 Bug fixes
 
 - `Box`: Fixed `active` dynamic property getting overridden by `hover` property. ([#379](https://github.com/TiendaNube/nimbus-design-system/pull/379) by [@joacotornello](https://github.com/joacotornello))
+
+## 2025-11-11 `9.40.0`
+
+#### 🎉 New features
+
+- `FileUploader`: Adds drag and drop support to the component. ([#378](https://github.com/TiendaNube/nimbus-design-system/pull/378) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-11-10 `9.39.0`
 
