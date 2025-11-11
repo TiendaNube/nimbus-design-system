@@ -5,6 +5,7 @@ import React, {
   useCallback,
   useMemo,
 } from "react";
+import ScrollContainer from "react-indiana-drag-scroll";
 import { Box } from "@nimbus-ds/box";
 
 import { scrollPane } from "@nimbus-ds/styles";
@@ -48,14 +49,6 @@ const ScrollPane: React.FC<ScrollPaneProps> & ScrollPaneComponents = ({
   const [canScrollStart, setCanScrollStart] = useState(false);
   const [canScrollEnd, setCanScrollEnd] = useState(false);
   const [isScrolling, setIsScrolling] = useState(false);
-  const [isGrabbing, setIsGrabbing] = useState(false);
-  const grabScrollRef = useRef({
-    isDown: false,
-    startX: 0,
-    startY: 0,
-    scrollLeft: 0,
-    scrollTop: 0,
-  });
 
   const checkScrollPosition = useCallback(() => {
     if (!containerRef.current) return;
@@ -144,53 +137,6 @@ const ScrollPane: React.FC<ScrollPaneProps> & ScrollPaneComponents = ({
     [direction]
   );
 
-  const handleMouseDown = useCallback(
-    (e: React.MouseEvent<HTMLDivElement>) => {
-      if (!enableGrabScroll || !containerRef.current) return;
-
-      const container = containerRef.current;
-      grabScrollRef.current.isDown = true;
-      grabScrollRef.current.startX = e.pageX - container.offsetLeft;
-      grabScrollRef.current.startY = e.pageY - container.offsetTop;
-      grabScrollRef.current.scrollLeft = container.scrollLeft;
-      grabScrollRef.current.scrollTop = container.scrollTop;
-      setIsGrabbing(true);
-    },
-    [enableGrabScroll]
-  );
-
-  const handleMouseLeave = useCallback(() => {
-    if (!enableGrabScroll) return;
-    grabScrollRef.current.isDown = false;
-    setIsGrabbing(false);
-  }, [enableGrabScroll]);
-
-  const handleMouseUp = useCallback(() => {
-    if (!enableGrabScroll) return;
-    grabScrollRef.current.isDown = false;
-    setIsGrabbing(false);
-  }, [enableGrabScroll]);
-
-  const handleMouseMove = useCallback(
-    (e: React.MouseEvent<HTMLDivElement>) => {
-      if (!enableGrabScroll || !grabScrollRef.current.isDown || !containerRef.current) return;
-
-      e.preventDefault();
-      const container = containerRef.current;
-      const x = e.pageX - container.offsetLeft;
-      const y = e.pageY - container.offsetTop;
-      const walkX = x - grabScrollRef.current.startX;
-      const walkY = y - grabScrollRef.current.startY;
-
-      if (direction === "horizontal") {
-        container.scrollLeft = grabScrollRef.current.scrollLeft - walkX;
-      } else {
-        container.scrollTop = grabScrollRef.current.scrollTop - walkY;
-      }
-    },
-    [enableGrabScroll, direction]
-  );
-
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return undefined;
@@ -227,67 +173,83 @@ const ScrollPane: React.FC<ScrollPaneProps> & ScrollPaneComponents = ({
     [direction, scrollToItemOnClick, enableGrabScroll, scrollToDirection]
   );
 
+  const scrollAreaClassName = [
+    scrollPane.classnames.scrollArea,
+    scrollPane.classnames.direction[direction],
+    !showScrollbar && scrollPane.classnames.scrollAreaHidden,
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  const scrollAreaStyle = {
+    cursor: enableGrabScroll ? "grab" : undefined,
+  };
+
+  const scrollContent = (
+    <>
+      <Box
+        display="flex"
+        flexDirection={direction === "horizontal" ? "row" : "column"}
+        margin="1"
+        {...contentContainerProps}
+      >
+        {children}
+      </Box>
+
+      {showGradients && (
+        <>
+          {canScrollStart && (
+            <div
+              className={[
+                scrollPane.classnames.gradient,
+                scrollPane.classnames.gradientVariants[
+                  getPosition("start", direction)
+                ],
+              ].join(" ")}
+            />
+          )}
+          {canScrollEnd && (
+            <div
+              className={[
+                scrollPane.classnames.gradient,
+                scrollPane.classnames.gradientVariants[
+                  getPosition("end", direction)
+                ],
+              ].join(" ")}
+            />
+          )}
+        </>
+      )}
+
+      {showArrows && (
+        <>
+          {canScrollStart && scrollPaneArrowStart}
+          {canScrollEnd && scrollPaneArrowEnd}
+        </>
+      )}
+    </>
+  );
+
   return (
     <ScrollPaneContext.Provider value={contextValue}>
       <Box as="div" position="relative" {...rest}>
-        <div
-          ref={containerRef}
-          className={[
-            scrollPane.classnames.scrollArea,
-            scrollPane.classnames.direction[direction],
-            !showScrollbar && scrollPane.classnames.scrollAreaHidden,
-          ]
-            .filter(Boolean)
-            .join(" ")}
-          onMouseDown={handleMouseDown}
-          onMouseLeave={handleMouseLeave}
-          onMouseUp={handleMouseUp}
-          onMouseMove={handleMouseMove}
-          style={{
-            cursor: enableGrabScroll
-              ? isGrabbing
-                ? "grabbing"
-                : "grab"
-              : undefined,
-            userSelect: enableGrabScroll ? "none" : undefined,
-          }}
-        >
-          <Box display="flex" margin="1" {...contentContainerProps}>
-            {children}
-          </Box>
-
-          {showGradients && (
-            <>
-              {canScrollStart && (
-                <div
-                  className={[
-                    scrollPane.classnames.gradient,
-                    scrollPane.classnames.gradientVariants[
-                      getPosition("start", direction)
-                    ],
-                  ].join(" ")}
-                />
-              )}
-              {canScrollEnd && (
-                <div
-                  className={[
-                    scrollPane.classnames.gradient,
-                    scrollPane.classnames.gradientVariants[
-                      getPosition("end", direction)
-                    ],
-                  ].join(" ")}
-                />
-              )}
-            </>
-          )}
-
-          {showArrows && (
-            <>
-              {canScrollStart && scrollPaneArrowStart}
-              {canScrollEnd && scrollPaneArrowEnd}
-            </>
-          )}
-        </div>
+        {enableGrabScroll ? (
+          <ScrollContainer
+            innerRef={containerRef}
+            className={scrollAreaClassName}
+            style={scrollAreaStyle}
+          >
+            {scrollContent}
+          </ScrollContainer>
+        ) : (
+          <div
+            ref={containerRef}
+            className={scrollAreaClassName}
+            style={scrollAreaStyle}
+          >
+            {scrollContent}
+          </div>
+        )}
       </Box>
     </ScrollPaneContext.Provider>
   );
