@@ -1,35 +1,77 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useCallback } from "react";
 
-import { AccordionProps, AccordionComponents } from "./accordion.types";
+import {
+  AccordionProps,
+  AccordionComponents,
+  ControlledAccordionProperties,
+  UncontrolledAccordionProperties,
+} from "./accordion.types";
 import { AccordionBody, AccordionItem, AccordionHeader } from "./components";
 import { AccordionContext } from "./contexts";
+import { isControlled } from "./accordion.definitions";
 
 const Accordion: React.FC<AccordionProps> & AccordionComponents = ({
   className: _className,
   style: _style,
   children,
-  selectedDefault,
   className,
   ...rest
 }: AccordionProps) => {
-  const [selected, onSelect] = useState("");
+  // Internal state for uncontrolled mode
+  const [internalSelected, setInternalSelected] = useState("");
 
+  const isControlledMode = isControlled(rest);
+
+  // Initialize uncontrolled mode with selectedDefault
   useEffect(() => {
-    if (selectedDefault) {
-      onSelect(selectedDefault);
+    if (!isControlledMode) {
+      const uncontrolledProps = rest as UncontrolledAccordionProperties;
+      if (uncontrolledProps.selectedDefault) {
+        setInternalSelected(uncontrolledProps.selectedDefault);
+      }
     }
-  }, [selectedDefault]);
+  }, [isControlledMode, rest]);
+
+  const selected = useMemo(() => {
+    if (isControlledMode) {
+      const controlledProps = rest as ControlledAccordionProperties;
+      return controlledProps.selected;
+    }
+    return internalSelected;
+  }, [isControlledMode, internalSelected, rest]);
+
+  const handleSelect = useCallback(
+    (selectedId: string) => {
+      if (isControlledMode) {
+        const controlledProps = rest as ControlledAccordionProperties;
+        if (controlledProps.onSelect) {
+          controlledProps.onSelect(selectedId);
+        }
+      } else {
+        setInternalSelected(selectedId);
+      }
+    },
+    [isControlledMode, rest]
+  );
 
   const context = useMemo(
     () => ({
       selected,
-      onSelect,
+      onSelect: handleSelect,
     }),
-    [selected, onSelect]
+    [selected, handleSelect]
   );
 
+  // Extract controlled props to avoid passing them to the div
+  const {
+    selected: _selected,
+    onSelect: _onSelect,
+    selectedDefault: _selectedDefault,
+    ...divProps
+  } = rest as any;
+
   return (
-    <div {...rest}>
+    <div {...divProps}>
       <AccordionContext.Provider value={context}>
         {children}
       </AccordionContext.Provider>

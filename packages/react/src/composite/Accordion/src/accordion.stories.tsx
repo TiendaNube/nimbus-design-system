@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { TiendanubeIcon, UserGroupIcon } from "@nimbus-ds/icons";
 import { Text } from "@nimbus-ds/text";
@@ -7,6 +7,7 @@ import { Box } from "@nimbus-ds/box";
 import { Card } from "@nimbus-ds/card";
 import { Title } from "@nimbus-ds/title";
 import { Radio } from "@nimbus-ds/radio";
+import { Button } from "@nimbus-ds/button";
 
 import { Accordion } from "./Accordion";
 
@@ -286,5 +287,113 @@ export const withoutIconToogle: Story = {
         </div>
       </Card>
     ),
+  },
+};
+
+const ControlledAccordionStory = () => {
+  const [selectedItem, setSelectedItem] = useState("settings");
+
+  return (
+    <Box display="flex" flexDirection="column" gap="4">
+      <Box display="flex" gap="2" flexWrap="wrap">
+        <Button
+          appearance={selectedItem === "settings" ? "primary" : "neutral"}
+          onClick={() => setSelectedItem("settings")}
+        >
+          Open Settings
+        </Button>
+        <Button
+          appearance={selectedItem === "notifications" ? "primary" : "neutral"}
+          onClick={() => setSelectedItem("notifications")}
+        >
+          Open Notifications
+        </Button>
+        <Button
+          appearance={selectedItem === "privacy" ? "primary" : "neutral"}
+          onClick={() => setSelectedItem("privacy")}
+        >
+          Open Privacy
+        </Button>
+        <Button
+          appearance={selectedItem === "" ? "primary" : "neutral"}
+          onClick={() => setSelectedItem("")}
+        >
+          Close All
+        </Button>
+      </Box>
+
+      <Card padding="none">
+        <Accordion selected={selectedItem} onSelect={setSelectedItem}>
+          <Accordion.Item index="settings">
+            <Accordion.Header
+              title="Settings"
+              subtitle="Manage your account preferences"
+              icon={<TiendanubeIcon size={18} />}
+              borderTop="none"
+            />
+            <Accordion.Body>
+              <Box padding="4">
+                <Text>
+                  Configure your application settings, themes, and preferences.
+                  This section is controlled externally by the buttons above.
+                </Text>
+              </Box>
+            </Accordion.Body>
+          </Accordion.Item>
+
+          <Accordion.Item index="notifications">
+            <Accordion.Header
+              title="Notifications"
+              subtitle="Control your notification preferences"
+              icon={<UserGroupIcon size={18} />}
+            />
+            <Accordion.Body>
+              <Box padding="4">
+                <Text>
+                  Manage email notifications, push notifications, and alert
+                  preferences. The accordion state is synchronized with external
+                  controls.
+                </Text>
+              </Box>
+            </Accordion.Body>
+          </Accordion.Item>
+
+          <Accordion.Item index="privacy">
+            <Accordion.Header
+              title="Privacy & Security"
+              subtitle="Manage your privacy settings"
+              icon={<TiendanubeIcon size={18} />}
+            />
+            <Accordion.Body>
+              <Box padding="4">
+                <Text>
+                  Control data sharing, privacy settings, and security options.
+                  Notice how the selected state is managed by the parent
+                  component.
+                </Text>
+              </Box>
+            </Accordion.Body>
+          </Accordion.Item>
+        </Accordion>
+      </Card>
+
+      <Box padding="3" backgroundColor="neutral-surface" borderRadius="2">
+        <Text fontSize="caption" color="neutral-textLow">
+          <strong>Currently selected:</strong> {selectedItem || "None"}
+        </Text>
+      </Box>
+    </Box>
+  );
+};
+
+export const Controlled: Story = {
+  render: () => <ControlledAccordionStory />,
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Demonstrates controlled mode where the accordion selection is managed by external state. Use the buttons to control which accordion item is open, or click the accordion headers directly. The selected state is synchronized between the buttons and the accordion.",
+      },
+    },
   },
 };
