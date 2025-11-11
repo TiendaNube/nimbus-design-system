@@ -3,7 +3,7 @@
   "name": "Box",
   "totalProps": 91,
   "packageName": "@nimbus-ds/box",
-  "version": "4.3.1",
+  "version": "4.3.2",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/box",
   "props": [
     {
@@ -57,6 +57,10 @@
             "xl": {
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -70,7 +74,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -125,6 +130,10 @@
             "xl": {
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -138,7 +147,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -193,6 +203,10 @@
             "xl": {
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -206,7 +220,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -261,6 +276,10 @@
             "xl": {
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -274,7 +293,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -329,6 +349,10 @@
             "xl": {
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -342,7 +366,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -397,6 +422,10 @@
             "xl": {
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -410,7 +439,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -465,6 +495,10 @@
             "xl": {
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -478,7 +512,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -533,6 +568,10 @@
             "xl": {
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -546,7 +585,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -601,6 +641,10 @@
             "xl": {
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -614,7 +658,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -669,6 +714,10 @@
             "xl": {
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -682,7 +731,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -737,6 +787,10 @@
             "xl": {
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -750,7 +804,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -805,6 +860,10 @@
             "xl": {
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -818,7 +877,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -873,6 +933,10 @@
             "xl": {
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -886,7 +950,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -991,6 +1056,15 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "nowrap",
+                "wrap",
+                "wrap-reverse"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -1004,7 +1078,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -1064,6 +1139,10 @@
             "xl": {
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -1077,7 +1156,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -1132,6 +1212,10 @@
             "xl": {
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -1145,7 +1229,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -1200,6 +1285,10 @@
             "xl": {
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -1213,7 +1302,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -1268,6 +1358,10 @@
             "xl": {
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -1281,7 +1375,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -1336,6 +1431,10 @@
             "xl": {
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -1349,7 +1448,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -1484,6 +1584,18 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "block",
+                "flex",
+                "grid",
+                "inline-flex",
+                "inline-grid",
+                "none"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -1497,7 +1609,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -1640,6 +1753,18 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "center",
+                "flex-end",
+                "flex-start",
+                "space-around",
+                "space-between",
+                "space-evenly"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -1653,7 +1778,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -1776,6 +1902,16 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "column",
+                "column-reverse",
+                "row",
+                "row-reverse"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -1789,7 +1925,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -1920,6 +2057,17 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "baseline",
+                "center",
+                "flex-end",
+                "flex-start",
+                "stretch"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -1933,7 +2081,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -2075,6 +2224,18 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "auto",
+                "baseline",
+                "center",
+                "flex-end",
+                "flex-start",
+                "stretch"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -2088,7 +2249,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -2391,6 +2553,34 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "none"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -2404,7 +2594,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -2723,6 +2914,34 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "none"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -2736,7 +2955,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -2945,6 +3165,23 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "all",
+                "auto",
+                "fill",
+                "inherit",
+                "none",
+                "painted",
+                "stroke",
+                "visible",
+                "visibleFill",
+                "visiblePainted",
+                "visibleStroke"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -2958,7 +3195,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -3096,6 +3334,17 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "absolute",
+                "fixed",
+                "relative",
+                "static",
+                "sticky"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -3109,7 +3358,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -3231,6 +3481,16 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "auto",
+                "hidden",
+                "scroll",
+                "visible"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -3244,7 +3504,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -3365,6 +3626,16 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "auto",
+                "hidden",
+                "scroll",
+                "visible"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -3378,7 +3649,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -3499,6 +3771,16 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "auto",
+                "hidden",
+                "scroll",
+                "visible"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -3512,7 +3794,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -3643,6 +3926,17 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "auto",
+                "grab",
+                "inherit",
+                "not-allowed",
+                "pointer"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -3656,7 +3950,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -4000,6 +4295,38 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "ai-generative-surface",
+                "ai-generative-surfaceHighlight",
+                "danger-interactive",
+                "danger-surface",
+                "danger-surfaceHighlight",
+                "danger-textLow",
+                "neutral-background",
+                "neutral-interactive",
+                "neutral-surface",
+                "neutral-surfaceDisabled",
+                "neutral-surfaceHighlight",
+                "neutral-textHigh",
+                "neutral-textLow",
+                "primary-interactive",
+                "primary-surface",
+                "primary-surfaceHighlight",
+                "primary-textLow",
+                "success-interactive",
+                "success-surface",
+                "success-surfaceHighlight",
+                "success-textLow",
+                "transparent",
+                "warning-interactive",
+                "warning-surface",
+                "warning-surfaceHighlight",
+                "warning-textLow"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -4013,7 +4340,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -4386,6 +4714,39 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "ai-generative-surface",
+                "ai-generative-surfaceHighlight",
+                "currentColor",
+                "danger-interactive",
+                "danger-surface",
+                "danger-surfaceHighlight",
+                "danger-textLow",
+                "neutral-background",
+                "neutral-interactive",
+                "neutral-surface",
+                "neutral-surfaceDisabled",
+                "neutral-surfaceHighlight",
+                "neutral-textHigh",
+                "neutral-textLow",
+                "primary-interactive",
+                "primary-surface",
+                "primary-surfaceHighlight",
+                "primary-textLow",
+                "success-interactive",
+                "success-surface",
+                "success-surfaceHighlight",
+                "success-textLow",
+                "transparent",
+                "warning-interactive",
+                "warning-surface",
+                "warning-surfaceHighlight",
+                "warning-textLow"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -4399,7 +4760,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -4613,6 +4975,23 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "0-5",
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "base",
+                "full",
+                "half",
+                "none"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -4626,7 +5005,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -4774,6 +5154,18 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "none"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -4787,7 +5179,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -4930,6 +5323,18 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "none"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -4943,7 +5348,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -5086,6 +5492,18 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "none"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -5099,7 +5517,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -5242,6 +5661,18 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "none"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -5255,7 +5686,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -5398,6 +5830,18 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "none"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -5411,7 +5855,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -5554,6 +5999,18 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "none"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -5567,7 +6024,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -5710,6 +6168,18 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "none"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -5723,7 +6193,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -5976,6 +6447,29 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "danger-interactive",
+                "danger-surface",
+                "danger-surfaceHighlight",
+                "neutral-interactive",
+                "neutral-surface",
+                "neutral-surfaceDisabled",
+                "neutral-surfaceHighlight",
+                "primary-interactive",
+                "primary-surface",
+                "primary-surfaceHighlight",
+                "success-interactive",
+                "success-surface",
+                "success-surfaceHighlight",
+                "transparent",
+                "warning-interactive",
+                "warning-surface",
+                "warning-surfaceHighlight"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -5989,7 +6483,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -6133,6 +6628,17 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "dashed",
+                "dotted",
+                "hidden",
+                "none",
+                "solid"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -6146,7 +6652,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -6249,6 +6756,14 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "border-box",
+                "content-box"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -6262,7 +6777,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -6421,6 +6937,20 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "0",
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "aiFocus",
+                "focusRing"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -6434,7 +6964,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -6739,6 +7270,34 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "none"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -6752,7 +7311,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -7071,6 +7631,34 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "none"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -7084,7 +7672,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -7403,6 +7992,34 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "none"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -7416,7 +8033,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -7735,6 +8353,34 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "none"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -7748,7 +8394,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -8067,6 +8714,34 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "none"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -8080,7 +8755,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -8409,6 +9085,35 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "auto",
+                "none"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -8422,7 +9127,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -8752,6 +9458,35 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "auto",
+                "none"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -8765,7 +9500,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -9095,6 +9831,35 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "auto",
+                "none"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -9108,7 +9873,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -9438,6 +10204,35 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "auto",
+                "none"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -9451,7 +10246,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -9781,6 +10577,35 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "auto",
+                "none"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -9794,7 +10619,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -9964,6 +10790,19 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "ease",
+                "ease-in",
+                "ease-in-out",
+                "ease-out",
+                "linear",
+                "step-end",
+                "step-start"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -9977,7 +10816,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -10041,6 +10881,10 @@
             "xl": {
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -10054,7 +10898,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -10109,6 +10954,10 @@
             "xl": {
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -10122,7 +10971,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -10237,6 +11087,16 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "base",
+                "fast",
+                "slow",
+                "slower"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -10250,7 +11110,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -10421,6 +11282,21 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "100",
+                "200",
+                "300",
+                "400",
+                "500",
+                "600",
+                "700",
+                "800",
+                "900"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -10434,7 +11310,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -10550,6 +11427,15 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "ai-generative-interactive",
+                "ai-generative-interactive-border",
+                "transparent"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -10563,7 +11449,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -10623,6 +11510,10 @@
             "xl": {
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -10636,7 +11527,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -10691,6 +11583,10 @@
             "xl": {
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -10704,7 +11600,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -10759,6 +11656,10 @@
             "xl": {
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -10772,7 +11673,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -10827,6 +11729,10 @@
             "xl": {
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -10840,7 +11746,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -10945,6 +11852,15 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "line-through",
+                "none",
+                "underline"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -10958,7 +11874,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -11018,6 +11935,10 @@
             "xl": {
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -11031,7 +11952,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -11326,6 +12248,34 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "none"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -11339,7 +12289,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -11658,6 +12609,34 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "none"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -11671,7 +12650,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -11990,6 +12970,34 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "none"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -12003,7 +13011,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -12322,6 +13331,34 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "none"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -12335,7 +13372,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -12654,6 +13692,34 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "none"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -12667,7 +13733,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -12986,6 +14053,34 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "none"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -12999,7 +14094,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -13318,6 +14414,34 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "none"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -13331,7 +14455,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -13650,6 +14775,34 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "none"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -13663,7 +14816,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -13982,6 +15136,34 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "none"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -13995,7 +15177,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -14324,6 +15507,35 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "auto",
+                "none"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -14337,7 +15549,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -14667,6 +15880,35 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "auto",
+                "none"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -14680,7 +15922,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -15010,6 +16253,35 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "auto",
+                "none"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -15023,7 +16295,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -15353,6 +16626,35 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "auto",
+                "none"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -15366,7 +16668,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -15696,6 +16999,35 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "auto",
+                "none"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -15709,7 +17041,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -16039,6 +17372,35 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "auto",
+                "none"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -16052,7 +17414,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -16382,6 +17745,35 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "auto",
+                "none"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -16395,7 +17787,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -16725,6 +18118,35 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "auto",
+                "none"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -16738,7 +18160,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -17068,6 +18491,35 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "auto",
+                "none"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -17081,7 +18533,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -17452,6 +18905,39 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "h1",
+                "h2",
+                "h3",
+                "h4",
+                "h5",
+                "h6"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -17465,7 +18951,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -17600,6 +19087,15 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "bold",
+                "medium",
+                "regular"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -17613,7 +19109,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -17964,6 +19461,39 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "h1",
+                "h2",
+                "h3",
+                "h4",
+                "h5",
+                "h6"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -17977,7 +19507,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -18122,6 +19653,16 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "center",
+                "justify",
+                "left",
+                "right"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -18135,7 +19676,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
