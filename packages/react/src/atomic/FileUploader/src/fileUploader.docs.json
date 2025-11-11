@@ -1,7 +1,7 @@
 {
   "id": "fileUploader",
   "name": "FileUploader",
-  "totalProps": 6,
+  "totalProps": 10,
   "packageName": "@nimbus-ds/file-uploader",
   "version": "2.6.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/file-uploader",
@@ -59,6 +59,38 @@
       ],
       "type": "string",
       "title": "flexDirection",
+      "required": false
+    },
+    {
+      "description": "Callback fired when files are dropped (before validation)",
+      "type": "object",
+      "additionalProperties": false,
+      "propertyOrder": [],
+      "title": "onDrop",
+      "required": false
+    },
+    {
+      "description": "Callback fired when all dropped files are rejected due to file type validation",
+      "type": "object",
+      "additionalProperties": false,
+      "propertyOrder": [],
+      "title": "onDropReject",
+      "required": false
+    },
+    {
+      "description": "Callback fired when files are successfully accepted and processed",
+      "type": "object",
+      "additionalProperties": false,
+      "propertyOrder": [],
+      "title": "onDropSuccess",
+      "required": false
+    },
+    {
+      "description": "Callback fired when an error occurs during file drop processing",
+      "type": "object",
+      "additionalProperties": false,
+      "propertyOrder": [],
+      "title": "onError",
       "required": false
     }
   ],
