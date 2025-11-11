@@ -1,9 +1,10 @@
 import React from "react";
-import { Box } from "@nimbus-ds/box";
 
 import { ScrollPaneItemProps } from "./scrollPaneItem.types";
 import { useScrollPaneContext } from "../../contexts/ScrollPaneContext";
 import { scrollItemIntoView } from "./ScrollPaneItem.definitions";
+import { scrollPane } from "@nimbus-ds/styles";
+
 
 /**
  * ScrollPaneItem is a wrapper component for items within a ScrollPane.
@@ -33,9 +34,9 @@ const ScrollPaneItem: React.FC<ScrollPaneItemProps> = ({
   };
 
   return (
-    <Box {...rest} onClick={handleClick}>
+    <div className={scrollPane.classnames.item} onClick={handleClick}>
       {children}
-    </Box>
+    </div>
   );
 };
 

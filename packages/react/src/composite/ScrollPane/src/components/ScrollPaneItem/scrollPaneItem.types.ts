@@ -1,5 +1,4 @@
 import React, { ReactNode } from "react";
-import { BoxProps } from "@nimbus-ds/box";
 
 export interface ScrollPaneItemProperties {
   /**
@@ -24,4 +23,4 @@ export interface ScrollPaneItemProperties {
 }
 
 export type ScrollPaneItemProps = ScrollPaneItemProperties &
-  Omit<BoxProps, "children">;
+  Omit<React.HTMLAttributes<HTMLDivElement>, "children">;
