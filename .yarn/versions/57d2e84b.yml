@@ -8,6 +8,7 @@ declined:
   - "@nimbus-ds/button"
   - "@nimbus-ds/chip"
   - "@nimbus-ds/divider"
+  - "@nimbus-ds/file-uploader"
   - "@nimbus-ds/icon"
   - "@nimbus-ds/popover"
   - "@nimbus-ds/progress-bar"
