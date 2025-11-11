@@ -117,8 +117,8 @@ const defineProperties = defineRainbowProperties({
     xl: {
       "@media": mediaQueries.xl(),
     },
-    active: { selector: "&:active" },
     hover: { selector: "&:hover" },
+    active: { selector: "&:active" },
     focus: { selector: "&:focus" },
   },
   defaultCondition: "xs",

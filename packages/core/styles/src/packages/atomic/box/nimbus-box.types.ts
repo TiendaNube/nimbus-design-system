@@ -40,6 +40,7 @@ type BoxBackgroundProperties = keyof typeof propertiesBox.background;
 
 interface BoxConditions<T> extends Conditions<T> {
   focus?: T;
+  focusVisible?: T;
   focusWithin?: T;
   active?: T;
   hover?: T;

@@ -1,5 +1,6 @@
 import React, { forwardRef } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
+import { action } from "@storybook/addon-actions";
 import { mapBoxProps } from ".storybook/utils";
 import { Box as BoxComponent, BoxProps } from "./Box";
 
@@ -88,5 +89,29 @@ export const aiGenerated: Story = {
       height="5rem"
       width="12rem"
     />
+  ),
+};
+
+export const asButton: Story = {
+  render: () => (
+    <BoxComponent
+      as="button"
+      type="button"
+      padding="2"
+      color="neutral-textHigh"
+      cursor="pointer"
+      borderWidth="1"
+      borderStyle="solid"
+      onClick={action("clicked")}
+      borderRadius="2"
+      borderColor="neutral-interactive"
+      backgroundColor={{
+        xs: "transparent",
+        hover: "neutral-surface",
+        active: "neutral-interactive",
+      }}
+    >
+      Box as Button
+    </BoxComponent>
   ),
 };
