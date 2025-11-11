@@ -15,7 +15,8 @@ export interface AccordionBaseProperties {
   children?: ReactNode;
 }
 
-export interface UncontrolledAccordionProperties extends AccordionBaseProperties {
+export interface UncontrolledAccordionProperties
+  extends AccordionBaseProperties {
   /**
    * Informs which accordion item is open by default, this value must be the same as informed in the index of each item
    */
@@ -40,7 +41,8 @@ export interface ControlledAccordionProperties extends AccordionBaseProperties {
 export type AccordionProps = (
   | UncontrolledAccordionProperties
   | ControlledAccordionProperties
-) & HTMLAttributes<HTMLElement>;
+) &
+  Omit<HTMLAttributes<HTMLElement>, "onSelect" | "selected">;
 
 // For docs purposes, we need to merge the two types
 export type AccordionProperties = AccordionBaseProperties &
