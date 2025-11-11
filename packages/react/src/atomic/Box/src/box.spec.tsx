@@ -39,7 +39,7 @@ describe("GIVEN <Box />", () => {
       makeSut({ as: "button" } as any);
       const box = screen.getByTestId("box-element");
       expect(box.tagName).toBe("BUTTON");
-      expect(box.getAttribute("class")).toMatch(/nimbus-box__\w+__0/);
+      expect(box.getAttribute("class")).toContain("nimbus-box_asButton__");
     });
 
     it("THEN should apply button focus class when rendered as button", () => {
