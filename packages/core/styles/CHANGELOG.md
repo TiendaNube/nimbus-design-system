@@ -6,7 +6,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 #### 🎉 New features
 
-- `FileUploader`: Adds drag and drop support to the component. ([#300](https://github.com/TiendaNube/nimbus-design-system/pull/300) by [@joacotornello](https://github.com/joacotornello))
+- `FileUploader`: Adds drag and drop support to the component. ([#378](https://github.com/TiendaNube/nimbus-design-system/pull/378) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-11-10 `9.39.0`
 
