@@ -7,4 +7,4 @@ import { ControlledAccordionProperties } from "./accordion.types";
  */
 export const isControlled = (
   props: any
-): props is ControlledAccordionProperties => "selected" in props;
+): props is ControlledAccordionProperties => "selectedItem" in props;
