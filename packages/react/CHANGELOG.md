@@ -2,6 +2,13 @@
 
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories every day, with simplicity, accessibility, consistency and performance.
 
+## 2025-11-11 `5.35.0`
+
+#### 🎉 New features
+
+- `FileUploader`: Adds drag and drop support to the component. ([#378](https://github.com/TiendaNube/nimbus-design-system/pull/378) by [@joacotornello](https://github.com/joacotornello))
+- `FileUploader`: Adds `onDrop`, `onDropReject` and `onDropSuccess` callbacks to the component. ([#378](https://github.com/TiendaNube/nimbus-design-system/pull/378) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-11-10 `5.34.0`
 
 #### 🎉 New features

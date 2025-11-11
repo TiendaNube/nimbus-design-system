@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState, useCallback, useRef } from "react";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
 import { fileUploader, vars } from "@nimbus-ds/styles";
 import { PlusCircleIcon } from "@nimbus-ds/icons";
@@ -10,6 +10,12 @@ import {
   FileUploaderComponents,
 } from "./fileUploader.types";
 import { FileUploaderSkeleton } from "./components";
+import {
+  isFileAccepted,
+  createFileListFromFiles,
+} from "./FileUploader.definitions";
+
+const DEFAULT_INPUT_ID = "input-file";
 
 const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
   className: _className,
@@ -21,13 +27,91 @@ const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
   flexDirection = "column",
   placeholder,
   disabled,
+  onDrop,
+  onDropReject,
+  onDropSuccess,
+  onError,
+  id,
+  onChange,
   ...rest
 }: FileUploaderProps) => {
   const color = useMemo(() => (disabled ? "neutral" : "primary"), [disabled]);
+  const [isDragging, setIsDragging] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const handleDragOver = useCallback(
+    (event: React.DragEvent<HTMLLabelElement>) => {
+      event.preventDefault();
+      event.stopPropagation();
+      if (!disabled) {
+        setIsDragging(true);
+      }
+    },
+    [disabled]
+  );
+
+  const handleDragLeave = useCallback(
+    (event: React.DragEvent<HTMLLabelElement>) => {
+      event.preventDefault();
+      event.stopPropagation();
+      setIsDragging(false);
+    },
+    []
+  );
+
+  const handleDrop = useCallback(
+    (event: React.DragEvent<HTMLLabelElement>) => {
+      event.preventDefault();
+      event.stopPropagation();
+      setIsDragging(false);
+
+      if (disabled || !onChange) return;
+
+      onDrop?.(event);
+
+      const droppedFiles = event.dataTransfer.files;
+      if (droppedFiles && droppedFiles.length > 0) {
+        const acceptedFiles = Array.from(droppedFiles).filter((file) =>
+          isFileAccepted(file, accept)
+        );
+
+        if (acceptedFiles.length === 0) {
+          onDropReject?.(event);
+          return;
+        }
+
+        const inputElement = inputRef.current;
+
+        if (inputElement) {
+          try {
+            createFileListFromFiles(acceptedFiles, inputElement);
+
+            const changeEvent = new Event("change", { bubbles: true });
+            Object.defineProperty(changeEvent, "target", {
+              writable: false,
+              value: inputElement,
+            });
+
+            onChange(
+              changeEvent as unknown as React.ChangeEvent<HTMLInputElement>
+            );
+            onDropSuccess?.(event);
+          } catch (error) {
+            const errorInstance =
+              error instanceof Error ? error : new Error(String(error));
+            onError?.(errorInstance);
+            console.error("Error handling file drop:", error);
+          }
+        }
+      }
+    },
+    [disabled, onChange, accept, onDrop, onDropReject, onDropSuccess, onError]
+  );
+
   return (
     <label
       data-testid="file-uploader-container"
-      htmlFor={!disabled ? rest.id || "input-file" : "disabled"}
+      htmlFor={!disabled ? id || DEFAULT_INPUT_ID : "disabled"}
       className={[
         fileUploader.classnames.container,
         fileUploader.sprinkle({
@@ -36,11 +120,15 @@ const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
           cursor: disabled ? "auto" : "pointer",
         }),
         disabled && fileUploader.classnames.disabled,
+        isDragging && !disabled && fileUploader.classnames.dragging,
       ].join(" ")}
       style={assignInlineVars({
         [vars.width]: width,
         [vars.height]: height,
       })}
+      onDragOver={handleDragOver}
+      onDragLeave={handleDragLeave}
+      onDrop={handleDrop}
     >
       <Icon
         color={`${color}-interactive`}
@@ -56,11 +144,13 @@ const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
         </Text>
       )}
       <input
+        ref={inputRef}
         className={fileUploader.classnames.container__input}
         type="file"
         accept={accept}
         disabled={disabled}
-        id={rest.id || "input-file"}
+        id={id || DEFAULT_INPUT_ID}
+        onChange={onChange}
         {...rest}
       />
     </label>
