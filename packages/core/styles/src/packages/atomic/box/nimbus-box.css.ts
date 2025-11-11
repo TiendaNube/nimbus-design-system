@@ -2,6 +2,7 @@ import {
   createRainbowSprinkles,
   defineProperties as defineRainbowProperties,
 } from "rainbow-sprinkles";
+import { style } from "@vanilla-extract/css";
 import {
   backgroundColorProperties,
   borderColorProperties,
@@ -159,9 +160,10 @@ const defineProperties = defineRainbowProperties({
     xl: {
       "@media": mediaQueries.xl(),
     },
-    active: { selector: "&:active" },
     hover: { selector: "&:hover" },
+    active: { selector: "&:active" },
     focus: { selector: "&:focus" },
+    focusVisible: { selector: "&:focus-visible" },
     focusWithin: { selector: "&:focus-within" },
     disabled: { selector: "&:disabled" },
   },
@@ -310,6 +312,13 @@ const properties = {
 };
 
 const sprinkle = createRainbowSprinkles(defineProperties);
+
+export const asButton = style({
+  ":focus-visible": {
+    outline: "none",
+    boxShadow: varsThemeBase.utils.focus,
+  },
+});
 
 export const boxSprinkle = {
   sprinkle,

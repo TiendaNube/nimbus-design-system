@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2025-11-11 `9.39.1`
+
+#### 🐛 Bug fixes
+
+- `Box`: Fixed `active` dynamic property getting overridden by `hover` property. ([#377](https://github.com/TiendaNube/nimbus-design-system/pull/377) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-11-10 `9.39.0`
 
 #### 🎉 New features

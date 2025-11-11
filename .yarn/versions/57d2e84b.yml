@@ -1,0 +1,24 @@
+releases:
+  "@nimbus-ds/box": patch
+  "@nimbus-ds/components": patch
+  "@nimbus-ds/styles": patch
+
+declined:
+  - nimbus-design-system
+  - "@nimbus-ds/button"
+  - "@nimbus-ds/chip"
+  - "@nimbus-ds/divider"
+  - "@nimbus-ds/icon"
+  - "@nimbus-ds/popover"
+  - "@nimbus-ds/progress-bar"
+  - "@nimbus-ds/tooltip"
+  - "@nimbus-ds/accordion"
+  - "@nimbus-ds/alert"
+  - "@nimbus-ds/card"
+  - "@nimbus-ds/modal"
+  - "@nimbus-ds/scroll-pane"
+  - "@nimbus-ds/segmented-control"
+  - "@nimbus-ds/sidebar"
+  - "@nimbus-ds/split-button"
+  - "@nimbus-ds/stepper"
+  - "@nimbus-ds/tabs"

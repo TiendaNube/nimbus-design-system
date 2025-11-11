@@ -2,6 +2,13 @@
 
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories every day, with simplicity, accessibility, consistency and performance.
 
+## 2025-11-11 `5.34.1`
+
+#### 🐛 Bug fixes
+
+- `Box`: Fixed `active` dynamic property getting overridden by `hover` property. ([#377](https://github.com/TiendaNube/nimbus-design-system/pull/377) by [@joacotornello](https://github.com/joacotornello))
+- `Box`: Improved accessibility of `Box` component when rendered as `button`. ([#377](https://github.com/TiendaNube/nimbus-design-system/pull/377) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-11-10 `5.34.0`
 
 #### 🎉 New features

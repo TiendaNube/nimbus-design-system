@@ -2,6 +2,14 @@
 
 A low-level utility component that accepts styled system props to enable custom theme-aware styling
 
+## 2025-11-11 `4.3.2`
+
+#### 🎉 New features
+
+- Fixed `active` dynamic property getting overridden by `hover` property. ([#377](https://github.com/TiendaNube/nimbus-design-system/pull/377) by [@joacotornello](https://github.com/joacotornello))
+- Improved accessibility of `Box` component when rendered as `button`. ([#377](https://github.com/TiendaNube/nimbus-design-system/pull/377) by [@joacotornello](https://github.com/joacotornello))
+- Added `asButton` story to `Box` component. ([#377](https://github.com/TiendaNube/nimbus-design-system/pull/377) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-09-17 `4.3.1`
 
 #### 🐛 Bug fixes
