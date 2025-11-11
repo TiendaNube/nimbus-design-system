@@ -2,7 +2,7 @@ import React, { forwardRef } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { mapBoxProps } from ".storybook/utils";
-import { SampleBox } from "@nimbus-ds/components/src/common/storybook/sampleBox";
+import { SampleBox } from "@common/storybook";
 import { Box as BoxComponent, BoxProps } from "./Box";
 
 export const Basic: React.FC<BoxProps> = forwardRef((props: BoxProps) => (
