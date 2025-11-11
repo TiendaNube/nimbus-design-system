@@ -7,4 +7,5 @@ export const mediaQueries = {
   md: () => `screen and (min-width: ${breakpoint.md.value})`,
   lg: () => `screen and (min-width: ${breakpoint.lg.value})`,
   xl: () => `screen and (min-width: ${breakpoint.xl.value})`,
+  xxl: () => `screen and (min-width: ${breakpoint.xxl.value})`,
 };
