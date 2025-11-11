@@ -17,41 +17,44 @@ const Accordion: React.FC<AccordionProps> & AccordionComponents = ({
   className,
   ...rest
 }: AccordionProps) => {
-  // Internal state for uncontrolled mode
-  const [internalSelected, setInternalSelected] = useState("");
-
   const isControlledMode = isControlled(rest);
 
-  // Initialize uncontrolled mode with selectedDefault
+  const selectedDefault = !isControlledMode
+    ? (rest as UncontrolledAccordionProperties).selectedDefault
+    : undefined;
+  const controlledSelected = isControlledMode
+    ? (rest as ControlledAccordionProperties).selectedItem
+    : undefined;
+  const onItemSelect = isControlledMode
+    ? (rest as ControlledAccordionProperties).onItemSelect
+    : undefined;
+
+  const [internalSelected, setInternalSelected] = useState("");
+
   useEffect(() => {
-    if (!isControlledMode) {
-      const uncontrolledProps = rest as UncontrolledAccordionProperties;
-      if (uncontrolledProps.selectedDefault) {
-        setInternalSelected(uncontrolledProps.selectedDefault);
-      }
+    if (!isControlledMode && selectedDefault) {
+      setInternalSelected(selectedDefault);
     }
-  }, [isControlledMode, rest]);
+  }, [isControlledMode, selectedDefault]);
 
   const selected = useMemo(() => {
     if (isControlledMode) {
-      const controlledProps = rest as ControlledAccordionProperties;
-      return controlledProps.selectedItem;
+      return controlledSelected ?? "";
     }
     return internalSelected;
-  }, [isControlledMode, internalSelected, rest]);
+  }, [isControlledMode, internalSelected, controlledSelected]);
 
   const handleSelect = useCallback(
     (selectedId: string) => {
       if (isControlledMode) {
-        const controlledProps = rest as ControlledAccordionProperties;
-        if (controlledProps.onItemSelect) {
-          controlledProps.onItemSelect(selectedId);
+        if (onItemSelect) {
+          onItemSelect(selectedId);
         }
       } else {
         setInternalSelected(selectedId);
       }
     },
-    [isControlledMode, rest]
+    [isControlledMode, onItemSelect]
   );
 
   const context = useMemo(

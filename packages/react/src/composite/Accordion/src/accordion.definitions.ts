@@ -1,4 +1,7 @@
-import { ControlledAccordionProperties } from "./accordion.types";
+import {
+  ControlledAccordionProperties,
+  UncontrolledAccordionProperties,
+} from "./accordion.types";
 
 /**
  * Checks if the accordion is in controlled mode.
@@ -6,5 +9,5 @@ import { ControlledAccordionProperties } from "./accordion.types";
  * @returns True if the accordion is controlled, false otherwise
  */
 export const isControlled = (
-  props: any
+  props: UncontrolledAccordionProperties | ControlledAccordionProperties
 ): props is ControlledAccordionProperties => "selected" in props;
