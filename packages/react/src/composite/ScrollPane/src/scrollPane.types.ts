@@ -53,6 +53,13 @@ export interface ScrollPaneProperties {
   scrollToItemOnClick?: boolean;
 
   /**
+   * Enable grab-to-scroll functionality (click and drag to scroll)
+   * When enabled, prevents item dragging inside the ScrollPane
+   * @default false
+   */
+  enableGrabScroll?: boolean;
+
+  /**
    * Custom arrow component to render at the start of the scroll area
    */
   scrollPaneArrowStart?: React.ReactNode;

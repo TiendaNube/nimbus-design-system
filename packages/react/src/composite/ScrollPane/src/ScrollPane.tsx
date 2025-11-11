@@ -37,6 +37,7 @@ const ScrollPane: React.FC<ScrollPaneProps> & ScrollPaneComponents = ({
   showScrollbar = true,
   direction = "horizontal",
   scrollToItemOnClick = true,
+  enableGrabScroll = false,
   scrollPaneArrowStart,
   scrollPaneArrowEnd,
   contentContainerProps,
@@ -47,6 +48,14 @@ const ScrollPane: React.FC<ScrollPaneProps> & ScrollPaneComponents = ({
   const [canScrollStart, setCanScrollStart] = useState(false);
   const [canScrollEnd, setCanScrollEnd] = useState(false);
   const [isScrolling, setIsScrolling] = useState(false);
+  const [isGrabbing, setIsGrabbing] = useState(false);
+  const grabScrollRef = useRef({
+    isDown: false,
+    startX: 0,
+    startY: 0,
+    scrollLeft: 0,
+    scrollTop: 0,
+  });
 
   const checkScrollPosition = useCallback(() => {
     if (!containerRef.current) return;
@@ -135,6 +144,53 @@ const ScrollPane: React.FC<ScrollPaneProps> & ScrollPaneComponents = ({
     [direction]
   );
 
+  const handleMouseDown = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      if (!enableGrabScroll || !containerRef.current) return;
+
+      const container = containerRef.current;
+      grabScrollRef.current.isDown = true;
+      grabScrollRef.current.startX = e.pageX - container.offsetLeft;
+      grabScrollRef.current.startY = e.pageY - container.offsetTop;
+      grabScrollRef.current.scrollLeft = container.scrollLeft;
+      grabScrollRef.current.scrollTop = container.scrollTop;
+      setIsGrabbing(true);
+    },
+    [enableGrabScroll]
+  );
+
+  const handleMouseLeave = useCallback(() => {
+    if (!enableGrabScroll) return;
+    grabScrollRef.current.isDown = false;
+    setIsGrabbing(false);
+  }, [enableGrabScroll]);
+
+  const handleMouseUp = useCallback(() => {
+    if (!enableGrabScroll) return;
+    grabScrollRef.current.isDown = false;
+    setIsGrabbing(false);
+  }, [enableGrabScroll]);
+
+  const handleMouseMove = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      if (!enableGrabScroll || !grabScrollRef.current.isDown || !containerRef.current) return;
+
+      e.preventDefault();
+      const container = containerRef.current;
+      const x = e.pageX - container.offsetLeft;
+      const y = e.pageY - container.offsetTop;
+      const walkX = x - grabScrollRef.current.startX;
+      const walkY = y - grabScrollRef.current.startY;
+
+      if (direction === "horizontal") {
+        container.scrollLeft = grabScrollRef.current.scrollLeft - walkX;
+      } else {
+        container.scrollTop = grabScrollRef.current.scrollTop - walkY;
+      }
+    },
+    [enableGrabScroll, direction]
+  );
+
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return undefined;
@@ -164,10 +220,11 @@ const ScrollPane: React.FC<ScrollPaneProps> & ScrollPaneComponents = ({
     () => ({
       direction,
       scrollToItemOnClick,
+      enableGrabScroll,
       containerRef,
       scrollToDirection,
     }),
-    [direction, scrollToItemOnClick, scrollToDirection]
+    [direction, scrollToItemOnClick, enableGrabScroll, scrollToDirection]
   );
 
   return (
@@ -182,6 +239,18 @@ const ScrollPane: React.FC<ScrollPaneProps> & ScrollPaneComponents = ({
           ]
             .filter(Boolean)
             .join(" ")}
+          onMouseDown={handleMouseDown}
+          onMouseLeave={handleMouseLeave}
+          onMouseUp={handleMouseUp}
+          onMouseMove={handleMouseMove}
+          style={{
+            cursor: enableGrabScroll
+              ? isGrabbing
+                ? "grabbing"
+                : "grab"
+              : undefined,
+            userSelect: enableGrabScroll ? "none" : undefined,
+          }}
         >
           <Box display="flex" margin="1" {...contentContainerProps}>
             {children}

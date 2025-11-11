@@ -32,8 +32,19 @@ const ScrollPaneItem: React.FC<ScrollPaneItemProps> = ({
     }
   };
 
+  const handleDragStart = (event: React.DragEvent<HTMLDivElement>) => {
+    if (context.enableGrabScroll) {
+      event.preventDefault();
+    }
+  };
+
   return (
-    <Box {...rest} onClick={handleClick}>
+    <Box
+      {...rest}
+      onClick={handleClick}
+      onDragStart={handleDragStart}
+      draggable={!context.enableGrabScroll}
+    >
       {children}
     </Box>
   );
