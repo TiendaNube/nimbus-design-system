@@ -15,6 +15,8 @@ import {
   createFileListFromFiles,
 } from "./FileUploader.definitions";
 
+const DEFAULT_INPUT_ID = "input-file";
+
 const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
   className: _className,
   style: _style,
@@ -28,6 +30,9 @@ const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
   onDrop,
   onDropReject,
   onDropSuccess,
+  onError,
+  id,
+  onChange,
   ...rest
 }: FileUploaderProps) => {
   const color = useMemo(() => (disabled ? "neutral" : "primary"), [disabled]);
@@ -59,9 +64,9 @@ const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
       event.stopPropagation();
       setIsDragging(false);
 
-      onDrop?.(event);
+      if (disabled || !onChange) return;
 
-      if (disabled || !rest.onChange) return;
+      onDrop?.(event);
 
       const droppedFiles = event.dataTransfer.files;
       if (droppedFiles && droppedFiles.length > 0) {
@@ -75,7 +80,7 @@ const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
         }
 
         const inputElement = document.getElementById(
-          rest.id || "input-file"
+          id || DEFAULT_INPUT_ID
         ) as HTMLInputElement;
 
         if (inputElement) {
@@ -88,23 +93,35 @@ const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
               value: inputElement,
             });
 
-            rest.onChange(
+            onChange(
               changeEvent as unknown as React.ChangeEvent<HTMLInputElement>
             );
             onDropSuccess?.(event);
           } catch (error) {
+            const errorInstance =
+              error instanceof Error ? error : new Error(String(error));
+            onError?.(errorInstance);
             console.error("Error handling file drop:", error);
           }
         }
       }
     },
-    [disabled, rest, accept, onDrop, onDropReject, onDropSuccess]
+    [
+      disabled,
+      onChange,
+      id,
+      accept,
+      onDrop,
+      onDropReject,
+      onDropSuccess,
+      onError,
+    ]
   );
 
   return (
     <label
       data-testid="file-uploader-container"
-      htmlFor={!disabled ? rest.id || "input-file" : "disabled"}
+      htmlFor={!disabled ? id || DEFAULT_INPUT_ID : "disabled"}
       className={[
         fileUploader.classnames.container,
         fileUploader.sprinkle({
@@ -141,7 +158,8 @@ const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
         type="file"
         accept={accept}
         disabled={disabled}
-        id={rest.id || "input-file"}
+        id={id || DEFAULT_INPUT_ID}
+        onChange={onChange}
         {...rest}
       />
     </label>

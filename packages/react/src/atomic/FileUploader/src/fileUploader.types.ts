@@ -48,6 +48,10 @@ export interface FileUploaderProperties {
    * Callback fired when files are successfully accepted and processed
    */
   onDropSuccess?: (event: DragEvent<HTMLLabelElement>) => void;
+  /**
+   * Callback fired when an error occurs during file drop processing
+   */
+  onError?: (error: Error) => void;
 }
 
 export type FileUploaderProps = FileUploaderProperties &

@@ -1,16 +1,23 @@
 export const isFileAccepted = (file: File, accept: string): boolean => {
-  if (!accept || accept === "*") return true;
+  const trimmedAccept = accept.trim();
+  if (!trimmedAccept || trimmedAccept === "*") return true;
 
-  const acceptedTypes = accept.split(",").map((type) => type.trim());
+  const acceptedTypes = trimmedAccept.split(",").map((type) => type.trim());
+  const fileNameLower = file.name.toLowerCase();
 
   return acceptedTypes.some((acceptedType) => {
     if (acceptedType.endsWith("/*")) {
-      const baseType = acceptedType.slice(0, -2);
+      const wildcardSuffixLength = 2;
+      const baseType = acceptedType.slice(
+        0,
+        acceptedType.length - wildcardSuffixLength
+      );
       return file.type.startsWith(baseType);
     }
 
     if (acceptedType.startsWith(".")) {
-      return file.name.toLowerCase().endsWith(acceptedType.toLowerCase());
+      const acceptedTypeLower = acceptedType.toLowerCase();
+      return fileNameLower.endsWith(acceptedTypeLower);
     }
 
     return file.type === acceptedType;
