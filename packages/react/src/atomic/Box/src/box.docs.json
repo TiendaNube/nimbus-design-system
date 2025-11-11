@@ -22,6 +22,10 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "type": "string",
               "title": "focusWithin"
@@ -58,6 +62,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -85,6 +90,10 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "type": "string",
               "title": "focusWithin"
@@ -121,6 +130,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -148,6 +158,10 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "type": "string",
               "title": "focusWithin"
@@ -184,6 +198,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -211,6 +226,10 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "type": "string",
               "title": "focusWithin"
@@ -247,6 +266,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -274,6 +294,10 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "type": "string",
               "title": "focusWithin"
@@ -310,6 +334,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -337,6 +362,10 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "type": "string",
               "title": "focusWithin"
@@ -373,6 +402,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -400,6 +430,10 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "type": "string",
               "title": "focusWithin"
@@ -436,6 +470,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -463,6 +498,10 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "type": "string",
               "title": "focusWithin"
@@ -499,6 +538,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -526,6 +566,10 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "type": "string",
               "title": "focusWithin"
@@ -562,6 +606,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -589,6 +634,10 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "type": "string",
               "title": "focusWithin"
@@ -625,6 +674,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -652,6 +702,10 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "type": "string",
               "title": "focusWithin"
@@ -688,6 +742,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -715,6 +770,10 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "type": "string",
               "title": "focusWithin"
@@ -751,6 +810,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -778,6 +838,10 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "type": "string",
               "title": "focusWithin"
@@ -814,6 +878,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -846,6 +911,15 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "nowrap",
+                "wrap",
+                "wrap-reverse"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "nowrap",
@@ -922,6 +996,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -954,6 +1029,10 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "type": "string",
               "title": "focusWithin"
@@ -990,6 +1069,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -1017,6 +1097,10 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "type": "string",
               "title": "focusWithin"
@@ -1053,6 +1137,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -1080,6 +1165,10 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "type": "string",
               "title": "focusWithin"
@@ -1116,6 +1205,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -1143,6 +1233,10 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "type": "string",
               "title": "focusWithin"
@@ -1179,6 +1273,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -1206,6 +1301,10 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "type": "string",
               "title": "focusWithin"
@@ -1242,6 +1341,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -1277,6 +1377,18 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "block",
+                "flex",
+                "grid",
+                "inline-flex",
+                "inline-grid",
+                "none"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "block",
@@ -1377,6 +1489,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -1420,6 +1533,18 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "center",
+                "flex-end",
+                "flex-start",
+                "space-around",
+                "space-between",
+                "space-evenly"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "center",
@@ -1520,6 +1645,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -1561,6 +1687,16 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "column",
+                "column-reverse",
+                "row",
+                "row-reverse"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "column",
@@ -1645,6 +1781,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -1685,6 +1822,17 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "baseline",
+                "center",
+                "flex-end",
+                "flex-start",
+                "stretch"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "baseline",
@@ -1777,6 +1925,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -1819,6 +1968,18 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "auto",
+                "baseline",
+                "center",
+                "flex-end",
+                "flex-start",
+                "stretch"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "auto",
@@ -1919,6 +2080,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -1978,6 +2140,34 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "none"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "0-5",
@@ -2206,6 +2396,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -2281,6 +2472,34 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "none"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "0-5",
@@ -2509,6 +2728,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -2573,6 +2793,23 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "all",
+                "auto",
+                "fill",
+                "inherit",
+                "none",
+                "painted",
+                "stroke",
+                "visible",
+                "visibleFill",
+                "visiblePainted",
+                "visibleStroke"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "all",
@@ -2713,6 +2950,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -2760,6 +2998,17 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "absolute",
+                "fixed",
+                "relative",
+                "static",
+                "sticky"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "absolute",
@@ -2852,6 +3101,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -2892,6 +3142,16 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "auto",
+                "hidden",
+                "scroll",
+                "visible"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "auto",
@@ -2976,6 +3236,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -3015,6 +3276,16 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "auto",
+                "hidden",
+                "scroll",
+                "visible"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "auto",
@@ -3099,6 +3370,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -3138,6 +3410,16 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "auto",
+                "hidden",
+                "scroll",
+                "visible"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "auto",
@@ -3222,6 +3504,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -3262,6 +3545,17 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "auto",
+                "grab",
+                "inherit",
+                "not-allowed",
+                "pointer"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "auto",
@@ -3354,6 +3648,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -3418,6 +3713,38 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "ai-generative-surface",
+                "ai-generative-surfaceHighlight",
+                "danger-interactive",
+                "danger-surface",
+                "danger-surfaceHighlight",
+                "danger-textLow",
+                "neutral-background",
+                "neutral-interactive",
+                "neutral-surface",
+                "neutral-surfaceDisabled",
+                "neutral-surfaceHighlight",
+                "neutral-textHigh",
+                "neutral-textLow",
+                "primary-interactive",
+                "primary-surface",
+                "primary-surfaceHighlight",
+                "primary-textLow",
+                "success-interactive",
+                "success-surface",
+                "success-surfaceHighlight",
+                "success-textLow",
+                "transparent",
+                "warning-interactive",
+                "warning-surface",
+                "warning-surfaceHighlight",
+                "warning-textLow"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "ai-generative-surface",
@@ -3678,6 +4005,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -3762,6 +4090,39 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "ai-generative-surface",
+                "ai-generative-surfaceHighlight",
+                "currentColor",
+                "danger-interactive",
+                "danger-surface",
+                "danger-surfaceHighlight",
+                "danger-textLow",
+                "neutral-background",
+                "neutral-interactive",
+                "neutral-surface",
+                "neutral-surfaceDisabled",
+                "neutral-surfaceHighlight",
+                "neutral-textHigh",
+                "neutral-textLow",
+                "primary-interactive",
+                "primary-surface",
+                "primary-surfaceHighlight",
+                "primary-textLow",
+                "success-interactive",
+                "success-surface",
+                "success-surfaceHighlight",
+                "success-textLow",
+                "transparent",
+                "warning-interactive",
+                "warning-surface",
+                "warning-surfaceHighlight",
+                "warning-textLow"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "ai-generative-surface",
@@ -4030,6 +4391,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -4099,6 +4461,23 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "0-5",
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "base",
+                "full",
+                "half",
+                "none"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "0-5",
@@ -4239,6 +4618,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -4287,6 +4667,18 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "none"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "1",
@@ -4387,6 +4779,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -4430,6 +4823,18 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "none"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "1",
@@ -4530,6 +4935,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -4573,6 +4979,18 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "none"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "1",
@@ -4673,6 +5091,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -4716,6 +5135,18 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "none"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "1",
@@ -4816,6 +5247,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -4859,6 +5291,18 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "none"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "1",
@@ -4959,6 +5403,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -5002,6 +5447,18 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "none"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "1",
@@ -5102,6 +5559,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -5145,6 +5603,18 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "none"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "1",
@@ -5245,6 +5715,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -5299,6 +5770,29 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "danger-interactive",
+                "danger-surface",
+                "danger-surfaceHighlight",
+                "neutral-interactive",
+                "neutral-surface",
+                "neutral-surfaceDisabled",
+                "neutral-surfaceHighlight",
+                "primary-interactive",
+                "primary-surface",
+                "primary-surfaceHighlight",
+                "success-interactive",
+                "success-surface",
+                "success-surfaceHighlight",
+                "transparent",
+                "warning-interactive",
+                "warning-surface",
+                "warning-surfaceHighlight"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "danger-interactive",
@@ -5487,6 +5981,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -5540,6 +6035,17 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "dashed",
+                "dotted",
+                "hidden",
+                "none",
+                "solid"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "dashed",
@@ -5632,6 +6138,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -5671,6 +6178,14 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "border-box",
+                "content-box"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "border-box",
@@ -5739,6 +6254,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -5780,6 +6296,20 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "0",
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "aiFocus",
+                "focusRing"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "0",
@@ -5896,6 +6426,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -5957,6 +6488,34 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "none"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "0-5",
@@ -6185,6 +6744,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -6260,6 +6820,34 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "none"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "0-5",
@@ -6488,6 +7076,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -6563,6 +7152,34 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "none"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "0-5",
@@ -6791,6 +7408,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -6866,6 +7484,34 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "none"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "0-5",
@@ -7094,6 +7740,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -7169,6 +7816,34 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "none"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "0-5",
@@ -7397,6 +8072,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -7473,6 +8149,35 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "auto",
+                "none"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "0-5",
@@ -7709,6 +8414,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -7786,6 +8492,35 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "auto",
+                "none"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "0-5",
@@ -8022,6 +8757,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -8099,6 +8835,35 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "auto",
+                "none"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "0-5",
@@ -8335,6 +9100,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -8412,6 +9178,35 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "auto",
+                "none"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "0-5",
@@ -8648,6 +9443,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -8725,6 +9521,35 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "auto",
+                "none"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "0-5",
@@ -8961,6 +9786,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -9022,6 +9848,19 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "ease",
+                "ease-in",
+                "ease-in-out",
+                "ease-out",
+                "linear",
+                "step-end",
+                "step-start"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "ease",
@@ -9130,6 +9969,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -9166,6 +10006,10 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "type": "string",
               "title": "focusWithin"
@@ -9202,6 +10046,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -9229,6 +10074,10 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "type": "string",
               "title": "focusWithin"
@@ -9265,6 +10114,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -9298,6 +10148,16 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "base",
+                "fast",
+                "slow",
+                "slower"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "base",
@@ -9382,6 +10242,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -9426,6 +10287,21 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "100",
+                "200",
+                "300",
+                "400",
+                "500",
+                "600",
+                "700",
+                "800",
+                "900"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "100",
@@ -9550,6 +10426,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -9593,6 +10470,15 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "ai-generative-interactive",
+                "ai-generative-interactive-border",
+                "transparent"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "ai-generative-interactive",
@@ -9669,6 +10555,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -9701,6 +10588,10 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "type": "string",
               "title": "focusWithin"
@@ -9737,6 +10628,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -9764,6 +10656,10 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "type": "string",
               "title": "focusWithin"
@@ -9800,6 +10696,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -9827,6 +10724,10 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "type": "string",
               "title": "focusWithin"
@@ -9863,6 +10764,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -9890,6 +10792,10 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "type": "string",
               "title": "focusWithin"
@@ -9926,6 +10832,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -9958,6 +10865,15 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "line-through",
+                "none",
+                "underline"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "line-through",
@@ -10034,6 +10950,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -10066,6 +10983,10 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "type": "string",
               "title": "focusWithin"
@@ -10102,6 +11023,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -10153,6 +11075,34 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "none"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "0-5",
@@ -10381,6 +11331,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -10456,6 +11407,34 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "none"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "0-5",
@@ -10684,6 +11663,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -10759,6 +11739,34 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "none"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "0-5",
@@ -10987,6 +11995,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -11062,6 +12071,34 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "none"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "0-5",
@@ -11290,6 +12327,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -11365,6 +12403,34 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "none"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "0-5",
@@ -11593,6 +12659,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -11668,6 +12735,34 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "none"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "0-5",
@@ -11896,6 +12991,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -11971,6 +13067,34 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "none"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "0-5",
@@ -12199,6 +13323,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -12274,6 +13399,34 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "none"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "0-5",
@@ -12502,6 +13655,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -12577,6 +13731,34 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "none"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "0-5",
@@ -12805,6 +13987,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -12881,6 +14064,35 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "auto",
+                "none"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "0-5",
@@ -13117,6 +14329,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -13194,6 +14407,35 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "auto",
+                "none"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "0-5",
@@ -13430,6 +14672,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -13507,6 +14750,35 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "auto",
+                "none"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "0-5",
@@ -13743,6 +15015,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -13820,6 +15093,35 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "auto",
+                "none"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "0-5",
@@ -14056,6 +15358,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -14133,6 +15436,35 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "auto",
+                "none"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "0-5",
@@ -14369,6 +15701,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -14446,6 +15779,35 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "auto",
+                "none"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "0-5",
@@ -14682,6 +16044,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -14759,6 +16122,35 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "auto",
+                "none"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "0-5",
@@ -14995,6 +16387,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -15072,6 +16465,35 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "auto",
+                "none"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "0-5",
@@ -15308,6 +16730,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -15385,6 +16808,35 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "auto",
+                "none"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "0-5",
@@ -15621,6 +17073,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -15703,6 +17156,39 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "h1",
+                "h2",
+                "h3",
+                "h4",
+                "h5",
+                "h6"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "0-5",
@@ -15971,6 +17457,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -16033,6 +17520,15 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "bold",
+                "medium",
+                "regular"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "bold",
@@ -16109,6 +17605,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -16171,6 +17668,39 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "0-5",
+                "1",
+                "1-5",
+                "10",
+                "11",
+                "12",
+                "14",
+                "16",
+                "18",
+                "2",
+                "2-5",
+                "20",
+                "3",
+                "3-5",
+                "4",
+                "4-5",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "h1",
+                "h2",
+                "h3",
+                "h4",
+                "h5",
+                "h6"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "0-5",
@@ -16439,6 +17969,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
@@ -16502,6 +18033,16 @@
               "type": "string",
               "title": "focus"
             },
+            "focusVisible": {
+              "enum": [
+                "center",
+                "justify",
+                "left",
+                "right"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
             "focusWithin": {
               "enum": [
                 "center",
@@ -16586,6 +18127,7 @@
           "additionalProperties": false,
           "propertyOrder": [
             "focus",
+            "focusVisible",
             "focusWithin",
             "active",
             "hover",
