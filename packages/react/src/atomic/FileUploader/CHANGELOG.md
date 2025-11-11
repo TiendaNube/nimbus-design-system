@@ -6,8 +6,8 @@ The File Uploader component is used to upload files.
 
 #### 🎉 New features
 
-- Adds drag and drop support to the component. ([#300](https://github.com/TiendaNube/nimbus-design-system/pull/300) by [@joacotornello](https://github.com/joacotornello))
-- Adds `onDrop`, `onDropReject` and `onDropSuccess` callbacks to the component. ([#300](https://github.com/TiendaNube/nimbus-design-system/pull/300) by [@joacotornello](https://github.com/joacotornello))
+- Adds drag and drop support to the component. ([#378](https://github.com/TiendaNube/nimbus-design-system/pull/378) by [@joacotornello](https://github.com/joacotornello))
+- Adds `onDrop`, `onDropReject` and `onDropSuccess` callbacks to the component. ([#378](https://github.com/TiendaNube/nimbus-design-system/pull/378) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-03-18 `2.6.0`
 
