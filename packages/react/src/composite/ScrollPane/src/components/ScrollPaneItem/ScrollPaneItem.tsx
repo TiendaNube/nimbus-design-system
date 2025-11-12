@@ -1,10 +1,9 @@
 import React from "react";
 
+import { scrollPane } from "@nimbus-ds/styles";
 import { ScrollPaneItemProps } from "./scrollPaneItem.types";
 import { useScrollPaneContext } from "../../contexts/ScrollPaneContext";
 import { scrollItemIntoView } from "./ScrollPaneItem.definitions";
-import { scrollPane } from "@nimbus-ds/styles";
-
 
 /**
  * ScrollPaneItem is a wrapper component for items within a ScrollPane.
@@ -33,8 +32,22 @@ const ScrollPaneItem: React.FC<ScrollPaneItemProps> = ({
     }
   };
 
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      handleClick(event as unknown as React.MouseEvent<HTMLDivElement>);
+    }
+  };
+
   return (
-    <div className={scrollPane.classnames.item} onClick={handleClick}>
+    <div
+      className={scrollPane.classnames.item}
+      onClick={handleClick}
+      onKeyDown={handleKeyDown}
+      role="button"
+      tabIndex={0}
+      {...rest}
+    >
       {children}
     </div>
   );

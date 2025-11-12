@@ -112,7 +112,7 @@ export const HorizontalCards: Story = {
   render: (args) => (
     <ScrollPane {...args}>
       {Array.from({ length: 10 }, (_, i) => (
-        <ScrollPane.Item key={i} padding="2">
+        <ScrollPane.Item key={i}>
           <Card padding="base">
             <Text fontSize="base" fontWeight="bold">
               Card {i + 1}
@@ -206,7 +206,7 @@ export const VerticalScroll: Story = {
       maxHeight="200px"
     >
       {Array.from({ length: 8 }, (_, i) => (
-        <ScrollPane.Item key={i} padding="2">
+        <ScrollPane.Item key={i}>
           <Card padding="base">
             <Text fontWeight="bold">Notification {i + 1}</Text>
             <Text fontSize="caption" color="neutral-textLow">
@@ -244,7 +244,7 @@ export const CardLargeContent: Story = {
   render: (args) => (
     <Card padding="base">
       <ScrollPane {...args} scrollToItemOnClick={false}>
-        <ScrollPane.Item padding="4" height="200px">
+        <ScrollPane.Item>
           <Text fontWeight="bold">Large Content Example</Text>
           <Text>
             This is an example of how the ScrollPane component can handle large
