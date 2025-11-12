@@ -141,17 +141,31 @@ const ScrollPane: React.FC<ScrollPaneProps> & ScrollPaneComponents = ({
     const container = containerRef.current;
     if (!container) return undefined;
 
-    // Initial check
-    checkScrollPosition();
+    // Initial check with a small delay for ScrollContainer initialization
+    const initialCheckTimeout = setTimeout(
+      () => {
+        checkScrollPosition();
+      },
+      enableGrabScroll ? 50 : 0
+    );
 
     // Add scroll listener
     container.addEventListener("scroll", handleScroll);
 
     // Add resize observer to check when content changes
-    const resizeObserver = new ResizeObserver(checkScrollPosition);
+    const resizeObserver = new ResizeObserver(() => {
+      // Add small delay for ScrollContainer to update its internal state
+      setTimeout(checkScrollPosition, enableGrabScroll ? 10 : 0);
+    });
     resizeObserver.observe(container);
 
+    // For ScrollContainer, also observe children to catch dynamic content
+    if (enableGrabScroll && container.firstElementChild) {
+      resizeObserver.observe(container.firstElementChild);
+    }
+
     return () => {
+      clearTimeout(initialCheckTimeout);
       container.removeEventListener("scroll", handleScroll);
       resizeObserver.disconnect();
 
@@ -160,7 +174,7 @@ const ScrollPane: React.FC<ScrollPaneProps> & ScrollPaneComponents = ({
         clearTimeout(scrollTimeoutRef.current);
       }
     };
-  }, [checkScrollPosition, handleScroll]);
+  }, [checkScrollPosition, handleScroll, enableGrabScroll]);
 
   const contextValue = useMemo(
     () => ({
@@ -235,6 +249,9 @@ const ScrollPane: React.FC<ScrollPaneProps> & ScrollPaneComponents = ({
       <Box as="div" position="relative" {...rest}>
         {enableGrabScroll ? (
           <ScrollContainer
+            hideScrollbars={false}
+            horizontal={direction === "horizontal"}
+            vertical={direction === "vertical"}
             innerRef={containerRef}
             className={scrollAreaClassName}
             style={scrollAreaStyle}
