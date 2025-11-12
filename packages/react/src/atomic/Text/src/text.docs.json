@@ -149,6 +149,36 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "ai-generative",
+                "currentColor",
+                "danger-interactive",
+                "danger-surface",
+                "danger-textHigh",
+                "danger-textLow",
+                "neutral-background",
+                "neutral-interactive",
+                "neutral-surface",
+                "neutral-textDisabled",
+                "neutral-textHigh",
+                "neutral-textLow",
+                "primary-interactive",
+                "primary-surface",
+                "primary-textHigh",
+                "primary-textLow",
+                "success-interactive",
+                "success-surface",
+                "success-textHigh",
+                "success-textLow",
+                "warning-interactive",
+                "warning-surface",
+                "warning-textHigh",
+                "warning-textLow"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -156,7 +186,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -234,6 +265,15 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "base",
+                "caption",
+                "highlight"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -241,7 +281,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -298,6 +339,15 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "bold",
+                "medium",
+                "regular"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -305,7 +355,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -362,6 +413,15 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "base",
+                "caption",
+                "highlight"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -369,7 +429,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -429,6 +490,16 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "auto",
+                "hidden",
+                "scroll",
+                "visible"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -436,7 +507,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -498,6 +570,16 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "center",
+                "justify",
+                "left",
+                "right"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -505,7 +587,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -562,6 +645,15 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "line-through",
+                "none",
+                "underline"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -569,7 +661,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -621,6 +714,14 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "clip",
+                "ellipsis"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -628,7 +729,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -695,6 +797,18 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "break-spaces",
+                "normal",
+                "nowrap",
+                "pre",
+                "pre-line",
+                "pre-wrap"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -702,7 +816,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -765,6 +880,16 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "break-all",
+                "break-word",
+                "keep-all",
+                "normal"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -772,7 +897,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -809,6 +935,10 @@
             "xl": {
               "type": "number",
               "title": "xl"
+            },
+            "xxl": {
+              "type": "number",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -816,7 +946,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {

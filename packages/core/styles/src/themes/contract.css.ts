@@ -188,6 +188,7 @@ export const vars = createGlobalThemeContract(
       md: "",
       lg: "",
       xl: "",
+      xxl: "",
     },
     utils: {
       focus: "",

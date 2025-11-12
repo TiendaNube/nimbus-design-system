@@ -3,6 +3,7 @@ export interface Conditions<T> {
   md?: T;
   lg?: T;
   xl?: T;
+  xxl?: T;
 }
 export type AspectRatio =
   | "1/1"

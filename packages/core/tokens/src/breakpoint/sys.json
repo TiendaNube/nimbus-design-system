@@ -15,6 +15,10 @@
     "xl": {
       "value": "1200px",
       "comment": "Commonly used for bigger desktop resolutions."
+    },
+    "xxl": {
+      "value": "1920px",
+      "comment": "Commonly used for extra large desktop resolutions."
     }
   }
 }

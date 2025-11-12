@@ -59,6 +59,10 @@
             "xl": {
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -66,7 +70,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {

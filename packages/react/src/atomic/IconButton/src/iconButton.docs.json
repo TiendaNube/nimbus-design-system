@@ -100,6 +100,10 @@
             "xl": {
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -110,7 +114,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -224,6 +229,20 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "ai-generativeSurface",
+                "neutral-interactive",
+                "neutral-interactiveHover",
+                "neutral-interactivePressed",
+                "neutral-surface",
+                "neutral-surfaceHighlight",
+                "primary-interactive",
+                "transparent"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -234,7 +253,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -337,6 +357,17 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "ai-generativeSurface",
+                "neutral-interactive",
+                "neutral-surface",
+                "neutral-surfaceHighlight",
+                "transparent"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -347,7 +378,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
