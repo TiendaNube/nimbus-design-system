@@ -1,2 +1,6 @@
 releases:
+  "@nimbus-ds/components": minor
   "@nimbus-ds/scroll-pane": minor
+
+declined:
+  - nimbus-design-system
