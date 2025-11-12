@@ -618,6 +618,182 @@ describe("ScrollPane", () => {
       expect(mockScrollTo).not.toHaveBeenCalled();
     });
   });
+
+  describe("Grab Scroll", () => {
+    it("enables grab scroll when enableGrabScroll is true", () => {
+      const { container } = render(
+        <ScrollPane enableGrabScroll>
+          <ScrollPane.Item>Item 1</ScrollPane.Item>
+        </ScrollPane>
+      );
+
+      const scrollArea = container.querySelector('[class*="scrollArea"]') as HTMLElement;
+      expect(scrollArea).toBeInTheDocument();
+      expect(scrollArea.style.cursor).toBe("grab");
+    });
+
+    it("does not enable grab scroll by default", () => {
+      const { container } = render(
+        <ScrollPane>
+          <ScrollPane.Item>Item 1</ScrollPane.Item>
+        </ScrollPane>
+      );
+
+      const scrollArea = container.querySelector('[class*="scrollArea"]') as HTMLElement;
+      expect(scrollArea).toBeInTheDocument();
+      expect(scrollArea.style.cursor).toBe("");
+    });
+
+    it("handles horizontal grab scroll on mouse drag", () => {
+      Object.defineProperty(HTMLElement.prototype, "offsetLeft", {
+        configurable: true,
+        value: 0,
+      });
+
+      const { container } = render(
+        <ScrollPane enableGrabScroll direction="horizontal">
+          <ScrollPane.Item>Item 1</ScrollPane.Item>
+        </ScrollPane>
+      );
+
+      const scrollArea = container.querySelector('[class*="scrollArea"]') as HTMLElement;
+
+      fireEvent.mouseDown(scrollArea, { pageX: 100, pageY: 50 });
+      expect(scrollArea.style.cursor).toBe("grabbing");
+
+      fireEvent.mouseMove(scrollArea, { pageX: 80, pageY: 50 });
+      
+      fireEvent.mouseUp(scrollArea);
+      expect(scrollArea.style.cursor).toBe("grab");
+    });
+
+    it("handles vertical grab scroll on mouse drag", () => {
+      Object.defineProperty(HTMLElement.prototype, "offsetTop", {
+        configurable: true,
+        value: 0,
+      });
+
+      const { container } = render(
+        <ScrollPane enableGrabScroll direction="vertical">
+          <ScrollPane.Item>Item 1</ScrollPane.Item>
+        </ScrollPane>
+      );
+
+      const scrollArea = container.querySelector('[class*="scrollArea"]') as HTMLElement;
+
+      fireEvent.mouseDown(scrollArea, { pageX: 50, pageY: 100 });
+      expect(scrollArea.style.cursor).toBe("grabbing");
+
+      fireEvent.mouseMove(scrollArea, { pageX: 50, pageY: 80 });
+      
+      fireEvent.mouseUp(scrollArea);
+      expect(scrollArea.style.cursor).toBe("grab");
+    });
+
+    it("resets grab state on mouse leave", () => {
+      const { container } = render(
+        <ScrollPane enableGrabScroll>
+          <ScrollPane.Item>Item 1</ScrollPane.Item>
+        </ScrollPane>
+      );
+
+      const scrollArea = container.querySelector('[class*="scrollArea"]') as HTMLElement;
+
+      fireEvent.mouseDown(scrollArea, { pageX: 100, pageY: 50 });
+      expect(scrollArea.style.cursor).toBe("grabbing");
+
+      fireEvent.mouseLeave(scrollArea);
+      expect(scrollArea.style.cursor).toBe("grab");
+    });
+
+    it("does not trigger scroll when not dragging", () => {
+      const { container } = render(
+        <ScrollPane enableGrabScroll>
+          <ScrollPane.Item>Item 1</ScrollPane.Item>
+        </ScrollPane>
+      );
+
+      const scrollArea = container.querySelector('[class*="scrollArea"]') as HTMLElement;
+      const initialScrollLeft = scrollArea.scrollLeft;
+
+      fireEvent.mouseMove(scrollArea, { pageX: 80, pageY: 50 });
+      
+      expect(scrollArea.scrollLeft).toBe(initialScrollLeft);
+    });
+
+    it("prevents item dragging when grab scroll is enabled", () => {
+      render(
+        <ScrollPane enableGrabScroll>
+          <ScrollPane.Item data-testid="item-1">Item 1</ScrollPane.Item>
+        </ScrollPane>
+      );
+
+      const item = screen.getByTestId("item-1");
+      expect(item).toHaveAttribute("draggable", "false");
+    });
+
+    it("allows item dragging when grab scroll is disabled", () => {
+      render(
+        <ScrollPane enableGrabScroll={false}>
+          <ScrollPane.Item data-testid="item-1">Item 1</ScrollPane.Item>
+        </ScrollPane>
+      );
+
+      const item = screen.getByTestId("item-1");
+      expect(item).toHaveAttribute("draggable", "true");
+    });
+
+    it("prevents default drag start when grab scroll is enabled", () => {
+      render(
+        <ScrollPane enableGrabScroll>
+          <ScrollPane.Item data-testid="item-1">Item 1</ScrollPane.Item>
+        </ScrollPane>
+      );
+
+      const item = screen.getByTestId("item-1");
+      const dragEvent = new Event("dragstart", { bubbles: true, cancelable: true });
+      const preventDefaultSpy = jest.spyOn(dragEvent, "preventDefault");
+      
+      item.dispatchEvent(dragEvent);
+      
+      expect(preventDefaultSpy).toHaveBeenCalled();
+    });
+
+    it("applies user-select none when grab scroll is enabled", () => {
+      const { container } = render(
+        <ScrollPane enableGrabScroll>
+          <ScrollPane.Item>Item 1</ScrollPane.Item>
+        </ScrollPane>
+      );
+
+      const scrollArea = container.querySelector('[class*="scrollArea"]') as HTMLElement;
+      expect(scrollArea.style.userSelect).toBe("none");
+    });
+
+    it("works with other features simultaneously", () => {
+      const { container } = render(
+        <ScrollPane
+          enableGrabScroll
+          showGradients
+          showArrows
+          scrollPaneArrowStart={<ScrollPane.ArrowHorizontalStart>←</ScrollPane.ArrowHorizontalStart>}
+          scrollPaneArrowEnd={<ScrollPane.ArrowHorizontalEnd>→</ScrollPane.ArrowHorizontalEnd>}
+        >
+          <ScrollPane.Item>Item 1</ScrollPane.Item>
+        </ScrollPane>
+      );
+
+      const scrollArea = container.querySelector('[class*="scrollArea"]') as HTMLElement;
+      expect(scrollArea).toBeInTheDocument();
+      expect(scrollArea.style.cursor).toBe("grab");
+
+      const leftArrow = screen.getByLabelText("Scroll backward");
+      const rightArrow = screen.getByLabelText("Scroll forward");
+      
+      expect(leftArrow).toBeInTheDocument();
+      expect(rightArrow).toBeInTheDocument();
+    });
+  });
 });
 
 describe("ScrollPane.Item", () => {

@@ -5,6 +5,7 @@ import React, {
   useCallback,
   useMemo,
 } from "react";
+import ScrollContainer from "react-indiana-drag-scroll";
 import { Box } from "@nimbus-ds/box";
 
 import { scrollPane } from "@nimbus-ds/styles";
@@ -37,6 +38,7 @@ const ScrollPane: React.FC<ScrollPaneProps> & ScrollPaneComponents = ({
   showScrollbar = true,
   direction = "horizontal",
   scrollToItemOnClick = true,
+  enableGrabScroll = false,
   scrollPaneArrowStart,
   scrollPaneArrowEnd,
   contentContainerProps,
@@ -164,61 +166,90 @@ const ScrollPane: React.FC<ScrollPaneProps> & ScrollPaneComponents = ({
     () => ({
       direction,
       scrollToItemOnClick,
+      enableGrabScroll,
       containerRef,
       scrollToDirection,
     }),
-    [direction, scrollToItemOnClick, scrollToDirection]
+    [direction, scrollToItemOnClick, enableGrabScroll, scrollToDirection]
+  );
+
+  const scrollAreaClassName = [
+    scrollPane.classnames.scrollArea,
+    scrollPane.classnames.direction[direction],
+    !showScrollbar && scrollPane.classnames.scrollAreaHidden,
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  const scrollAreaStyle = {
+    cursor: enableGrabScroll ? "grab" : undefined,
+  };
+
+  const scrollContent = (
+    <>
+      <Box
+        display="flex"
+        flexDirection={direction === "horizontal" ? "row" : "column"}
+        margin="1"
+        {...contentContainerProps}
+      >
+        {children}
+      </Box>
+
+      {showGradients && (
+        <>
+          {canScrollStart && (
+            <div
+              className={[
+                scrollPane.classnames.gradient,
+                scrollPane.classnames.gradientVariants[
+                  getPosition("start", direction)
+                ],
+              ].join(" ")}
+            />
+          )}
+          {canScrollEnd && (
+            <div
+              className={[
+                scrollPane.classnames.gradient,
+                scrollPane.classnames.gradientVariants[
+                  getPosition("end", direction)
+                ],
+              ].join(" ")}
+            />
+          )}
+        </>
+      )}
+
+      {showArrows && (
+        <>
+          {canScrollStart && scrollPaneArrowStart}
+          {canScrollEnd && scrollPaneArrowEnd}
+        </>
+      )}
+    </>
   );
 
   return (
     <ScrollPaneContext.Provider value={contextValue}>
       <Box as="div" position="relative" {...rest}>
-        <div
-          ref={containerRef}
-          className={[
-            scrollPane.classnames.scrollArea,
-            scrollPane.classnames.direction[direction],
-            !showScrollbar && scrollPane.classnames.scrollAreaHidden,
-          ]
-            .filter(Boolean)
-            .join(" ")}
-        >
-          <Box display="flex" margin="1" {...contentContainerProps}>
-            {children}
-          </Box>
-
-          {showGradients && (
-            <>
-              {canScrollStart && (
-                <div
-                  className={[
-                    scrollPane.classnames.gradient,
-                    scrollPane.classnames.gradientVariants[
-                      getPosition("start", direction)
-                    ],
-                  ].join(" ")}
-                />
-              )}
-              {canScrollEnd && (
-                <div
-                  className={[
-                    scrollPane.classnames.gradient,
-                    scrollPane.classnames.gradientVariants[
-                      getPosition("end", direction)
-                    ],
-                  ].join(" ")}
-                />
-              )}
-            </>
-          )}
-
-          {showArrows && (
-            <>
-              {canScrollStart && scrollPaneArrowStart}
-              {canScrollEnd && scrollPaneArrowEnd}
-            </>
-          )}
-        </div>
+        {enableGrabScroll ? (
+          <ScrollContainer
+            innerRef={containerRef}
+            className={scrollAreaClassName}
+            style={scrollAreaStyle}
+          >
+            {scrollContent}
+          </ScrollContainer>
+        ) : (
+          <div
+            ref={containerRef}
+            className={scrollAreaClassName}
+            style={scrollAreaStyle}
+          >
+            {scrollContent}
+          </div>
+        )}
       </Box>
     </ScrollPaneContext.Provider>
   );

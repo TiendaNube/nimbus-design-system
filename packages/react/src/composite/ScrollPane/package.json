@@ -46,7 +46,8 @@
     "react-dom": "^16.8 || ^17.0 || ^18.0"
   },
   "dependencies": {
-    "@nimbus-ds/box": "workspace:^"
+    "@nimbus-ds/box": "workspace:^",
+    "react-indiana-drag-scroll": "^2.2.0"
   },
   "devDependencies": {
     "@nimbus-ds/button": "workspace:^",
