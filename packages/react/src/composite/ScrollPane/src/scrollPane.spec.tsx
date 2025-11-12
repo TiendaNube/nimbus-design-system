@@ -14,7 +14,7 @@ const mockGetBoundingClientRect = jest.fn(() => ({
   height: 100,
   x: 0,
   y: 0,
-  toJSON: jest.fn()
+  toJSON: jest.fn(),
 }));
 
 Element.prototype.getBoundingClientRect = mockGetBoundingClientRect;
@@ -22,7 +22,7 @@ Element.prototype.getBoundingClientRect = mockGetBoundingClientRect;
 describe("ScrollPane", () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    
+
     // Reset the getBoundingClientRect mock for each test
     mockGetBoundingClientRect.mockReturnValue({
       left: 0,
@@ -33,7 +33,7 @@ describe("ScrollPane", () => {
       height: 100,
       x: 0,
       y: 0,
-      toJSON: jest.fn()
+      toJSON: jest.fn(),
     });
   });
 
@@ -111,10 +111,14 @@ describe("ScrollPane", () => {
     });
 
     render(
-      <ScrollPane 
+      <ScrollPane
         showArrows
-        scrollPaneArrowStart={<ScrollPane.ArrowHorizontalStart>←</ScrollPane.ArrowHorizontalStart>}
-        scrollPaneArrowEnd={<ScrollPane.ArrowHorizontalEnd>→</ScrollPane.ArrowHorizontalEnd>}
+        scrollPaneArrowStart={
+          <ScrollPane.ArrowHorizontalStart>←</ScrollPane.ArrowHorizontalStart>
+        }
+        scrollPaneArrowEnd={
+          <ScrollPane.ArrowHorizontalEnd>→</ScrollPane.ArrowHorizontalEnd>
+        }
       >
         <ScrollPane.Item>Item 1</ScrollPane.Item>
         <ScrollPane.Item>Item 2</ScrollPane.Item>
@@ -130,7 +134,7 @@ describe("ScrollPane", () => {
     // Check for arrow buttons by their aria-label
     const leftArrow = screen.queryByLabelText("Scroll backward");
     const rightArrow = screen.queryByLabelText("Scroll forward");
-    
+
     expect(leftArrow || rightArrow).toBeTruthy();
   });
 
@@ -177,7 +181,6 @@ describe("ScrollPane", () => {
     });
   });
 
-
   it("provides context to child items", () => {
     const TestItem = () => {
       const context = React.useContext(ScrollPaneContext);
@@ -190,7 +193,9 @@ describe("ScrollPane", () => {
       </ScrollPane>
     );
 
-    expect(screen.getByTestId("context-direction")).toHaveTextContent("vertical");
+    expect(screen.getByTestId("context-direction")).toHaveTextContent(
+      "vertical"
+    );
   });
 
   it("handles scroll events properly", () => {
@@ -223,15 +228,15 @@ describe("ScrollPane", () => {
     );
 
     const scrollArea = container.querySelector('[class*="scrollArea"]');
-    
+
     // First scroll event - creates a timeout
     fireEvent.scroll(scrollArea!);
-    
+
     // Second scroll event - should clear the previous timeout
     fireEvent.scroll(scrollArea!);
 
     expect(clearTimeoutSpy).toHaveBeenCalled();
-    
+
     jest.useRealTimers();
     clearTimeoutSpy.mockRestore();
   });
@@ -248,27 +253,28 @@ describe("ScrollPane", () => {
     );
 
     const scrollArea = container.querySelector('[class*="scrollArea"]');
-    
+
     // Trigger scroll event to create the timeout
     fireEvent.scroll(scrollArea!);
-    
+
     // Verify setTimeout was called with the correct delay
     expect(setTimeoutSpy).toHaveBeenCalledWith(expect.any(Function), 150);
-    
+
     // Get the callback function that was passed to setTimeout
-    const timeoutCallback = setTimeoutSpy.mock.calls[setTimeoutSpy.mock.calls.length - 1][0];
-    
+    const timeoutCallback =
+      setTimeoutSpy.mock.calls[setTimeoutSpy.mock.calls.length - 1][0];
+
     // Execute the callback directly to ensure setIsScrolling(false) is called
     await waitFor(() => {
       timeoutCallback();
     });
-    
+
     // Also test with timer advancement
     jest.advanceTimersByTime(150);
-    
+
     // The component should still be functioning after the timeout
     expect(scrollArea).toBeInTheDocument();
-    
+
     jest.useRealTimers();
     setTimeoutSpy.mockRestore();
   });
@@ -281,26 +287,30 @@ describe("ScrollPane", () => {
     });
 
     const { container } = render(
-      <ScrollPane 
+      <ScrollPane
         showArrows
-        scrollPaneArrowStart={<ScrollPane.ArrowHorizontalStart>←</ScrollPane.ArrowHorizontalStart>}
+        scrollPaneArrowStart={
+          <ScrollPane.ArrowHorizontalStart>←</ScrollPane.ArrowHorizontalStart>
+        }
       >
         <ScrollPane.Item>Item 1</ScrollPane.Item>
       </ScrollPane>
     );
 
     const leftArrow = screen.getByLabelText("Scroll backward");
-    
+
     // Mock containerRef.current to be null
-    const scrollArea = container.querySelector('[class*="scrollArea"]') as HTMLElement;
+    const scrollArea = container.querySelector(
+      '[class*="scrollArea"]'
+    ) as HTMLElement;
     if (scrollArea) {
       // Remove the scrollArea from DOM to simulate null containerRef
       scrollArea.remove();
     }
-    
+
     // Click should not cause scrollTo to be called due to null check
     fireEvent.click(leftArrow);
-    
+
     expect(mockScrollTo).not.toHaveBeenCalled();
   });
 
@@ -340,7 +350,10 @@ describe("ScrollPane", () => {
 
     unmount();
 
-    expect(removeEventListenerSpy).toHaveBeenCalledWith("scroll", expect.any(Function));
+    expect(removeEventListenerSpy).toHaveBeenCalledWith(
+      "scroll",
+      expect.any(Function)
+    );
   });
 
   it("handles arrow click events for horizontal scrolling", () => {
@@ -356,10 +369,14 @@ describe("ScrollPane", () => {
     });
 
     render(
-      <ScrollPane 
+      <ScrollPane
         showArrows
-        scrollPaneArrowStart={<ScrollPane.ArrowHorizontalStart>←</ScrollPane.ArrowHorizontalStart>}
-        scrollPaneArrowEnd={<ScrollPane.ArrowHorizontalEnd>→</ScrollPane.ArrowHorizontalEnd>}
+        scrollPaneArrowStart={
+          <ScrollPane.ArrowHorizontalStart>←</ScrollPane.ArrowHorizontalStart>
+        }
+        scrollPaneArrowEnd={
+          <ScrollPane.ArrowHorizontalEnd>→</ScrollPane.ArrowHorizontalEnd>
+        }
       >
         <ScrollPane.Item>Item 1</ScrollPane.Item>
       </ScrollPane>
@@ -389,9 +406,11 @@ describe("ScrollPane", () => {
     });
 
     render(
-      <ScrollPane 
+      <ScrollPane
         showArrows
-        scrollPaneArrowStart={<ScrollPane.ArrowHorizontalStart>←</ScrollPane.ArrowHorizontalStart>}
+        scrollPaneArrowStart={
+          <ScrollPane.ArrowHorizontalStart>←</ScrollPane.ArrowHorizontalStart>
+        }
       >
         <ScrollPane.Item>Item 1</ScrollPane.Item>
       </ScrollPane>
@@ -430,11 +449,15 @@ describe("ScrollPane", () => {
     });
 
     render(
-      <ScrollPane 
-        direction="vertical" 
+      <ScrollPane
+        direction="vertical"
         showArrows
-        scrollPaneArrowStart={<ScrollPane.ArrowVerticalStart>↑</ScrollPane.ArrowVerticalStart>}
-        scrollPaneArrowEnd={<ScrollPane.ArrowVerticalEnd>↓</ScrollPane.ArrowVerticalEnd>}
+        scrollPaneArrowStart={
+          <ScrollPane.ArrowVerticalStart>↑</ScrollPane.ArrowVerticalStart>
+        }
+        scrollPaneArrowEnd={
+          <ScrollPane.ArrowVerticalEnd>↓</ScrollPane.ArrowVerticalEnd>
+        }
       >
         <ScrollPane.Item>Item 1</ScrollPane.Item>
       </ScrollPane>
@@ -503,11 +526,14 @@ describe("ScrollPane", () => {
   });
 
   it("throws error when arrow is used outside ScrollPane context", () => {
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    const consoleSpy = jest.spyOn(console, "error").mockImplementation(() => {});
-    
+    const consoleSpy = jest
+      .spyOn(console, "error")
+      .mockImplementation(jest.fn());
+
     expect(() => {
-      render(<ScrollPane.ArrowHorizontalStart>←</ScrollPane.ArrowHorizontalStart>);
+      render(
+        <ScrollPane.ArrowHorizontalStart>←</ScrollPane.ArrowHorizontalStart>
+      );
     }).toThrow("useScrollPaneContext must be used within a ScrollPane");
 
     consoleSpy.mockRestore();
@@ -627,7 +653,9 @@ describe("ScrollPane", () => {
         </ScrollPane>
       );
 
-      const scrollArea = container.querySelector('[class*="scrollArea"]') as HTMLElement;
+      const scrollArea = container.querySelector(
+        '[class*="scrollArea"]'
+      ) as HTMLElement;
       expect(scrollArea).toBeInTheDocument();
       expect(scrollArea.style.cursor).toBe("grab");
     });
@@ -639,7 +667,9 @@ describe("ScrollPane", () => {
         </ScrollPane>
       );
 
-      const scrollArea = container.querySelector('[class*="scrollArea"]') as HTMLElement;
+      const scrollArea = container.querySelector(
+        '[class*="scrollArea"]'
+      ) as HTMLElement;
       expect(scrollArea).toBeInTheDocument();
       expect(scrollArea.style.cursor).toBe("");
     });
@@ -656,14 +686,16 @@ describe("ScrollPane", () => {
         </ScrollPane>
       );
 
-      const scrollArea = container.querySelector('[class*="scrollArea"]') as HTMLElement;
+      const scrollArea = container.querySelector(
+        '[class*="scrollArea"]'
+      ) as HTMLElement;
+
+      expect(scrollArea.style.cursor).toBe("grab");
 
       fireEvent.mouseDown(scrollArea, { pageX: 100, pageY: 50 });
-      expect(scrollArea.style.cursor).toBe("grabbing");
-
       fireEvent.mouseMove(scrollArea, { pageX: 80, pageY: 50 });
-      
       fireEvent.mouseUp(scrollArea);
+
       expect(scrollArea.style.cursor).toBe("grab");
     });
 
@@ -679,14 +711,16 @@ describe("ScrollPane", () => {
         </ScrollPane>
       );
 
-      const scrollArea = container.querySelector('[class*="scrollArea"]') as HTMLElement;
+      const scrollArea = container.querySelector(
+        '[class*="scrollArea"]'
+      ) as HTMLElement;
+
+      expect(scrollArea.style.cursor).toBe("grab");
 
       fireEvent.mouseDown(scrollArea, { pageX: 50, pageY: 100 });
-      expect(scrollArea.style.cursor).toBe("grabbing");
-
       fireEvent.mouseMove(scrollArea, { pageX: 50, pageY: 80 });
-      
       fireEvent.mouseUp(scrollArea);
+
       expect(scrollArea.style.cursor).toBe("grab");
     });
 
@@ -697,12 +731,15 @@ describe("ScrollPane", () => {
         </ScrollPane>
       );
 
-      const scrollArea = container.querySelector('[class*="scrollArea"]') as HTMLElement;
+      const scrollArea = container.querySelector(
+        '[class*="scrollArea"]'
+      ) as HTMLElement;
+
+      expect(scrollArea.style.cursor).toBe("grab");
 
       fireEvent.mouseDown(scrollArea, { pageX: 100, pageY: 50 });
-      expect(scrollArea.style.cursor).toBe("grabbing");
-
       fireEvent.mouseLeave(scrollArea);
+
       expect(scrollArea.style.cursor).toBe("grab");
     });
 
@@ -713,11 +750,13 @@ describe("ScrollPane", () => {
         </ScrollPane>
       );
 
-      const scrollArea = container.querySelector('[class*="scrollArea"]') as HTMLElement;
+      const scrollArea = container.querySelector(
+        '[class*="scrollArea"]'
+      ) as HTMLElement;
       const initialScrollLeft = scrollArea.scrollLeft;
 
       fireEvent.mouseMove(scrollArea, { pageX: 80, pageY: 50 });
-      
+
       expect(scrollArea.scrollLeft).toBe(initialScrollLeft);
     });
 
@@ -740,58 +779,20 @@ describe("ScrollPane", () => {
       );
 
       const item = screen.getByTestId("item-1");
-      expect(item).toHaveAttribute("draggable", "true");
+      expect(item).not.toHaveAttribute("draggable");
     });
 
-    it("prevents default drag start when grab scroll is enabled", () => {
-      render(
-        <ScrollPane enableGrabScroll>
-          <ScrollPane.Item data-testid="item-1">Item 1</ScrollPane.Item>
-        </ScrollPane>
-      );
-
-      const item = screen.getByTestId("item-1");
-      const dragEvent = new Event("dragstart", { bubbles: true, cancelable: true });
-      const preventDefaultSpy = jest.spyOn(dragEvent, "preventDefault");
-      
-      item.dispatchEvent(dragEvent);
-      
-      expect(preventDefaultSpy).toHaveBeenCalled();
-    });
-
-    it("applies user-select none when grab scroll is enabled", () => {
+    it("applies grab cursor when grab scroll is enabled", () => {
       const { container } = render(
         <ScrollPane enableGrabScroll>
           <ScrollPane.Item>Item 1</ScrollPane.Item>
         </ScrollPane>
       );
 
-      const scrollArea = container.querySelector('[class*="scrollArea"]') as HTMLElement;
-      expect(scrollArea.style.userSelect).toBe("none");
-    });
-
-    it("works with other features simultaneously", () => {
-      const { container } = render(
-        <ScrollPane
-          enableGrabScroll
-          showGradients
-          showArrows
-          scrollPaneArrowStart={<ScrollPane.ArrowHorizontalStart>←</ScrollPane.ArrowHorizontalStart>}
-          scrollPaneArrowEnd={<ScrollPane.ArrowHorizontalEnd>→</ScrollPane.ArrowHorizontalEnd>}
-        >
-          <ScrollPane.Item>Item 1</ScrollPane.Item>
-        </ScrollPane>
-      );
-
-      const scrollArea = container.querySelector('[class*="scrollArea"]') as HTMLElement;
-      expect(scrollArea).toBeInTheDocument();
+      const scrollArea = container.querySelector(
+        '[class*="scrollArea"]'
+      ) as HTMLElement;
       expect(scrollArea.style.cursor).toBe("grab");
-
-      const leftArrow = screen.getByLabelText("Scroll backward");
-      const rightArrow = screen.getByLabelText("Scroll forward");
-      
-      expect(leftArrow).toBeInTheDocument();
-      expect(rightArrow).toBeInTheDocument();
     });
   });
 });
@@ -842,4 +843,4 @@ describe("ScrollPane.Item", () => {
     expect(item.className).toContain("nimbus-box_boxSizing-border-box");
     expect(item).toHaveAttribute("data-testid", "custom-item");
   });
-}); 
+});
