@@ -6,7 +6,7 @@ The ScrollPane component handles responsive scrolls in lists that are overflowin
 
 #### 🎉 New features
 
-- Added `enableGrabScroll` property to enable grab scroll functionality. ([#381](https://github.com/TiendaNube/nimbus-design-system/pull/381) by [@joacotornello](https://github.com/joacotornello))
+- Added `enableGrabScroll` property to enable grab scroll functionality. ([#382](https://github.com/TiendaNube/nimbus-design-system/pull/382) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-09-10 `1.0.1`
 
