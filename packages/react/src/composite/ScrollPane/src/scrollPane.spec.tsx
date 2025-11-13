@@ -279,37 +279,54 @@ describe("ScrollPane", () => {
     setTimeoutSpy.mockRestore();
   });
 
-  it("returns early when containerRef.current is null in scrollToDirection", () => {
+  it("returns early when containerRef.current is null in scrollToDirection", async () => {
     const mockScrollTo = jest.fn();
     Object.defineProperty(HTMLElement.prototype, "scrollTo", {
       configurable: true,
       value: mockScrollTo,
     });
 
+    Object.defineProperty(HTMLElement.prototype, "scrollWidth", {
+      configurable: true,
+      value: 1000,
+    });
+    Object.defineProperty(HTMLElement.prototype, "clientWidth", {
+      configurable: true,
+      value: 300,
+    });
+    Object.defineProperty(HTMLElement.prototype, "scrollLeft", {
+      configurable: true,
+      value: 0,
+    });
+
     const { container } = render(
       <ScrollPane
         showArrows
-        scrollPaneArrowStart={
-          <ScrollPane.ArrowHorizontalStart>←</ScrollPane.ArrowHorizontalStart>
+        scrollPaneArrowEnd={
+          <ScrollPane.ArrowHorizontalEnd>→</ScrollPane.ArrowHorizontalEnd>
         }
       >
         <ScrollPane.Item>Item 1</ScrollPane.Item>
       </ScrollPane>
     );
 
-    const leftArrow = screen.getByLabelText("Scroll backward");
-
-    // Mock containerRef.current to be null
-    const scrollArea = container.querySelector(
-      '[class*="scrollArea"]'
-    ) as HTMLElement;
+    const scrollArea = container.querySelector('[class*="scrollArea"]');
     if (scrollArea) {
-      // Remove the scrollArea from DOM to simulate null containerRef
-      scrollArea.remove();
+      fireEvent.scroll(scrollArea);
     }
 
-    // Click should not cause scrollTo to be called due to null check
-    fireEvent.click(leftArrow);
+    const rightArrow = await waitFor(() =>
+      screen.getByLabelText("Scroll forward")
+    );
+
+    const scrollAreaElement = container.querySelector(
+      '[class*="scrollArea"]'
+    ) as HTMLElement;
+    if (scrollAreaElement) {
+      scrollAreaElement.remove();
+    }
+
+    fireEvent.click(rightArrow);
 
     expect(mockScrollTo).not.toHaveBeenCalled();
   });
@@ -356,19 +373,27 @@ describe("ScrollPane", () => {
     );
   });
 
-  it("handles arrow click events for horizontal scrolling", () => {
+  it("handles arrow click events for horizontal scrolling", async () => {
     const mockScrollTo = jest.fn();
     Object.defineProperty(HTMLElement.prototype, "scrollTo", {
       configurable: true,
       value: mockScrollTo,
     });
 
+    Object.defineProperty(HTMLElement.prototype, "scrollWidth", {
+      configurable: true,
+      value: 1000,
+    });
     Object.defineProperty(HTMLElement.prototype, "clientWidth", {
       configurable: true,
       value: 300,
     });
+    Object.defineProperty(HTMLElement.prototype, "scrollLeft", {
+      configurable: true,
+      value: 100,
+    });
 
-    render(
+    const { container } = render(
       <ScrollPane
         showArrows
         scrollPaneArrowStart={
@@ -382,7 +407,14 @@ describe("ScrollPane", () => {
       </ScrollPane>
     );
 
-    const leftArrow = screen.getByLabelText("Scroll backward");
+    const scrollArea = container.querySelector('[class*="scrollArea"]');
+    if (scrollArea) {
+      fireEvent.scroll(scrollArea);
+    }
+
+    const leftArrow = await waitFor(() =>
+      screen.getByLabelText("Scroll backward")
+    );
     const rightArrow = screen.getByLabelText("Scroll forward");
 
     fireEvent.click(leftArrow);
@@ -398,33 +430,53 @@ describe("ScrollPane", () => {
     });
   });
 
-  it("handles arrow keyboard events", () => {
+  it("handles arrow keyboard events", async () => {
     const mockScrollTo = jest.fn();
     Object.defineProperty(HTMLElement.prototype, "scrollTo", {
       configurable: true,
       value: mockScrollTo,
     });
 
-    render(
+    Object.defineProperty(HTMLElement.prototype, "scrollWidth", {
+      configurable: true,
+      value: 1000,
+    });
+    Object.defineProperty(HTMLElement.prototype, "clientWidth", {
+      configurable: true,
+      value: 300,
+    });
+    Object.defineProperty(HTMLElement.prototype, "scrollLeft", {
+      configurable: true,
+      value: 0,
+    });
+
+    const { container } = render(
       <ScrollPane
         showArrows
-        scrollPaneArrowStart={
-          <ScrollPane.ArrowHorizontalStart>←</ScrollPane.ArrowHorizontalStart>
+        scrollPaneArrowEnd={
+          <ScrollPane.ArrowHorizontalEnd>→</ScrollPane.ArrowHorizontalEnd>
         }
       >
         <ScrollPane.Item>Item 1</ScrollPane.Item>
       </ScrollPane>
     );
 
-    const leftArrow = screen.getByLabelText("Scroll backward");
+    const scrollArea = container.querySelector('[class*="scrollArea"]');
+    if (scrollArea) {
+      fireEvent.scroll(scrollArea);
+    }
 
-    fireEvent.keyDown(leftArrow, { key: "Enter" });
+    const rightArrow = await waitFor(() =>
+      screen.getByLabelText("Scroll forward")
+    );
+
+    fireEvent.keyDown(rightArrow, { key: "Enter" });
     expect(mockScrollTo).toHaveBeenCalled();
 
-    fireEvent.keyDown(leftArrow, { key: " " });
+    fireEvent.keyDown(rightArrow, { key: " " });
     expect(mockScrollTo).toHaveBeenCalled();
 
-    fireEvent.keyDown(leftArrow, { key: "Tab" });
+    fireEvent.keyDown(rightArrow, { key: "Tab" });
   });
 
   it("handles vertical direction scrolling", () => {
