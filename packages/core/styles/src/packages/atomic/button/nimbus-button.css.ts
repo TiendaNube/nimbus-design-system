@@ -45,6 +45,14 @@ export const size = styleVariants({
     fontSize: varsThemeBase.fontSize.body.caption,
     lineHeight: varsThemeBase.lineWeight.body.caption,
   },
+  large: {
+    height: "2.75rem",
+    padding: `${varsThemeBase.spacing[3]} ${varsThemeBase.spacing[4]}`,
+    fontSize: varsThemeBase.fontSize.body.highlight,
+    borderRadius: varsThemeBase.shape.border.radius[3],
+    gap: varsThemeBase.spacing[2],
+    lineHeight: varsThemeBase.lineWeight.body.base,
+  },
 });
 
 export const appearance = styleVariants({

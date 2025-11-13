@@ -157,3 +157,11 @@ export const medium: Story = {
     appearance: "primary",
   },
 };
+
+export const large: Story = {
+  args: {
+    children: "Large Button",
+    size: "large",
+    appearance: "primary",
+  },
+};

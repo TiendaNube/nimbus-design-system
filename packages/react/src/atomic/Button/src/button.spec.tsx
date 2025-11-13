@@ -106,6 +106,13 @@ describe("GIVEN <Button />", () => {
       );
     });
 
+    it("THEN should apply large size class when size is large", () => {
+      makeSut({ children: "button", size: "large" });
+      expect(screen.getByRole("button").getAttribute("class")).toContain(
+        "size_large"
+      );
+    });
+
     it("THEN should apply both appearance and size classes when both are provided", () => {
       makeSut({ children: "button", appearance: "primary", size: "small" });
       const buttonClass = screen.getByRole("button").getAttribute("class");
