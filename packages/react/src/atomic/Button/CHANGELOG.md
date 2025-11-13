@@ -6,7 +6,7 @@ The Button component allows us to initiate actions, make state or page changes.
 
 #### 🎉 New features
 
-- Added `large` size to `Button` component. ([#380](https://github.com/TiendaNube/nimbus-design-system/pull/380) by [@joacotornello](https://github.com/joacotornello))
+- Added `large` size to `Button` component. ([#383](https://github.com/TiendaNube/nimbus-design-system/pull/383) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-10-17 `2.9.0`
 
