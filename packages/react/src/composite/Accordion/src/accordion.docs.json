@@ -1,7 +1,7 @@
 {
   "id": "accordion",
   "name": "Accordion",
-  "totalProps": 2,
+  "totalProps": 4,
   "packageName": "@nimbus-ds/accordion",
   "version": "1.5.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/accordion",
@@ -16,6 +16,20 @@
       "description": "Informs which accordion item is open by default, this value must be the same as informed in the index of each item",
       "type": "string",
       "title": "selectedDefault",
+      "required": false
+    },
+    {
+      "description": "The currently selected accordion item ID.",
+      "type": "string",
+      "title": "selectedItem",
+      "required": true
+    },
+    {
+      "description": "Callback fired when the selected accordion item changes.",
+      "type": "object",
+      "additionalProperties": false,
+      "propertyOrder": [],
+      "title": "onItemSelect",
       "required": false
     }
   ],
