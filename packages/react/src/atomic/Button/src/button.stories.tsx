@@ -142,6 +142,22 @@ export const aiSecondary: Story = {
   },
 };
 
+export const sizes: Story = {
+  render: (args) => (
+    <Box display="flex" flexDirection="column" gap="2">
+      <ButtonComponent {...args} size="small">
+        A button
+      </ButtonComponent>
+      <ButtonComponent {...args} size="medium">
+        A button
+      </ButtonComponent>
+      <ButtonComponent {...args} size="large">
+        A button
+      </ButtonComponent>
+    </Box>
+  ),
+};
+
 export const small: Story = {
   args: {
     children: "Small Button",
@@ -154,6 +170,14 @@ export const medium: Story = {
   args: {
     children: "Medium Button",
     size: "medium",
+    appearance: "primary",
+  },
+};
+
+export const large: Story = {
+  args: {
+    children: "Large Button",
+    size: "large",
     appearance: "primary",
   },
 };
