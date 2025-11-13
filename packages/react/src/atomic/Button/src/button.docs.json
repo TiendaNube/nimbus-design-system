@@ -63,6 +63,7 @@
       "description": "Change the size of the button.",
       "default": "medium",
       "enum": [
+        "large",
         "medium",
         "small"
       ],
