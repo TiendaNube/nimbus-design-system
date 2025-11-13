@@ -4,3 +4,4 @@ releases:
 
 declined:
   - nimbus-design-system
+  - "@nimbus-ds/accordion"
