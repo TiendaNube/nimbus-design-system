@@ -6,7 +6,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 #### 🎉 New features
 
-- `Button`: Added `large` size to the component. ([#380](https://github.com/TiendaNube/nimbus-design-system/pull/380) by [@joacotornello](https://github.com/joacotornello))
+- `Button`: Added `large` size to the component. ([#383](https://github.com/TiendaNube/nimbus-design-system/pull/383) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-11-11 `9.40.1`
 
