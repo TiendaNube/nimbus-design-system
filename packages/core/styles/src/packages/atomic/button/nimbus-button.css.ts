@@ -51,6 +51,7 @@ export const size = styleVariants({
     fontSize: varsThemeBase.fontSize.body.highlight,
     borderRadius: varsThemeBase.shape.border.radius[3],
     gap: varsThemeBase.spacing[2],
+    lineHeight: varsThemeBase.lineWeight.body.base,
   },
 });
 
