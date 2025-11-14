@@ -2,6 +2,12 @@
 
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories every day, with simplicity, accessibility, consistency and performance.
 
+## 2025-11-12 `5.38.0`
+
+#### 🎉 New features
+
+- `ScrollPane`: Added `enableGrabScroll` property to enable grab scroll functionality. ([#382](https://github.com/TiendaNube/nimbus-design-system/pull/382) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-11-13 `5.37.0`
 
 #### 🎉 New features
