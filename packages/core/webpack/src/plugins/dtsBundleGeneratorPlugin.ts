@@ -3,6 +3,7 @@
  */
 
 import WebpackShellPluginNextPlugin from "webpack-shell-plugin-next";
+import os from "os";
 import { rootDir } from "../utils";
 
 const entry = [
@@ -17,6 +18,13 @@ export const dtsBundleGeneratorPlugin = (
       scripts: [...configuration.entries],
       blocking: false,
       parallel: true,
+      // Optimize memory usage and performance for parallel execution
+      parallelOptions: {
+        maxConcurrentProcesses: Math.min(
+          8,
+          Math.max(2, Math.ceil(os.cpus().length * 0.75))
+        ),
+      },
     },
   };
 
