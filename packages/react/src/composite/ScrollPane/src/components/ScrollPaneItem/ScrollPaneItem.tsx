@@ -33,7 +33,11 @@ const ScrollPaneItem: React.FC<ScrollPaneItemProps> = ({
   };
 
   return (
-    <Box {...rest} onClick={handleClick}>
+    <Box
+      {...rest}
+      onClick={handleClick}
+      draggable={context.enableGrabScroll ? false : undefined}
+    >
       {children}
     </Box>
   );
