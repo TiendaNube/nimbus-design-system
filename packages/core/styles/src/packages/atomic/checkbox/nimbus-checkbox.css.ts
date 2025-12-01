@@ -14,10 +14,6 @@ const container = style({
   width: "fit-content",
   position: "relative",
   gap: varsThemeBase.spacing[1],
-  borderRadius: varsThemeBase.shape.border.radius[1],
-  ":focus-visible": {
-    boxShadow: varsThemeBase.utils.focus,
-  },
 });
 
 const container__input = style({
@@ -76,6 +72,10 @@ globalStyle(
 
 globalStyle(`${container} p`, {
   lineHeight: varsThemeBase.spacing[4],
+});
+
+globalStyle(`${container} input:focus-visible ~ ${container__checkmark}`, {
+  boxShadow: varsThemeBase.utils.focus,
 });
 
 export const styles = {

@@ -27,9 +27,6 @@ const container = style({
   borderWidth: varsThemeBase.shape.border.width[1],
   borderRadius: varsThemeBase.shape.border.radius[1],
   transition: `all ${varsThemeBase.motion.speed.fast} ease`,
-  ":focus-visible": {
-    boxShadow: varsThemeBase.utils.focus,
-  },
 });
 
 const container__content = styleVariants({
@@ -134,9 +131,20 @@ globalStyle(`${container} p`, {
   lineHeight: varsThemeBase.spacing[4],
 });
 
+globalStyle(`${container__input}:focus-visible ~ ${container__checkmark}`, {
+  boxShadow: varsThemeBase.utils.focus,
+});
+
 /* -------------------------------------------------------------------------------------------------
  * style as "button"
  * -----------------------------------------------------------------------------------------------*/
+
+globalStyle(
+  `${container__input}:focus-visible ~ ${container__content.button}`,
+  {
+    boxShadow: varsThemeBase.utils.focus,
+  }
+);
 
 globalStyle(`${container__input}:checked ~ ${container__content.button}`, {
   backgroundColor: varsThemeBase.colors.primary.interactive,
