@@ -12,6 +12,7 @@ const InputIcon: React.FC<InputIconProps> = ({
 }) => (
   <button
     type="button"
+    tabIndex={-1}
     data-append-position={appendPosition}
     className={[
       input.classnames.container__icon,
