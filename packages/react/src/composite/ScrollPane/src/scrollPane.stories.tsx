@@ -300,7 +300,7 @@ export const GrabScrollHorizontal: Story = {
   render: (args) => (
     <ScrollPane {...args}>
       {Array.from({ length: 10 }, (_, i) => (
-        <ScrollPane.Item key={i} padding="2">
+        <ScrollPane.Item key={i}>
           <Card padding="base">
             <Text fontSize="base" fontWeight="bold">
               Card {i + 1}
@@ -339,7 +339,7 @@ export const GrabScrollVertical: Story = {
       maxHeight="300px"
     >
       {Array.from({ length: 8 }, (_, i) => (
-        <ScrollPane.Item key={i} padding="2">
+        <ScrollPane.Item key={i}>
           <Card padding="base">
             <Text fontWeight="bold">Notification {i + 1}</Text>
             <Text fontSize="caption" color="neutral-textLow">
@@ -386,7 +386,7 @@ export const GrabScrollWithArrows: Story = {
   render: (args) => (
     <ScrollPane {...args}>
       {Array.from({ length: 10 }, (_, i) => (
-        <ScrollPane.Item key={i} padding="2">
+        <ScrollPane.Item key={i}>
           <Card padding="base">
             <Text fontSize="base" fontWeight="bold">
               Card {i + 1}
