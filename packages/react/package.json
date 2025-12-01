@@ -15,7 +15,8 @@
   },
   "dependencies": {
     "@floating-ui/react": "^0.26.0",
-    "@nimbus-ds/icons": "workspace:^"
+    "@nimbus-ds/icons": "workspace:^",
+    "react-indiana-drag-scroll": "^2.2.0"
   },
   "peerDependencies": {
     "react": "^16.8 || ^17.0 || ^18.0",

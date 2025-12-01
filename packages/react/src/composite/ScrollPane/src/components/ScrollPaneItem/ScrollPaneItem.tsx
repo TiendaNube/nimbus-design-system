@@ -45,6 +45,7 @@ const ScrollPaneItem: React.FC<ScrollPaneItemProps> = ({
       onKeyDown={handleKeyDown}
       role="button"
       tabIndex={-1}
+      draggable={context.enableGrabScroll ? false : undefined}
       {...rest}
     >
       {children}
