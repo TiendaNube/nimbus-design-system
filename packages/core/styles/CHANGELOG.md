@@ -4,16 +4,15 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 ## 2025-11-12 `9.41.1`
 
-#### 🐛 Bug fixes
+### 🐛 Bug fixes
 
-- `ScrollPane`: Fixed focus ring styles to match design system. ([#383](https://github.com/TiendaNube/nimbus-design-system/pull/383) by [@joacotornello](https://github.com/joacotornello))
-- `SegmentedControl`: Fixed focus ring styles to match design system. ([#383](https://github.com/TiendaNube/nimbus-design-system/pull/383) by [@joacotornello](https://github.com/joacotornello))
-- `Link`: Fixed focus ring styles to match design system. ([#383](https://github.com/TiendaNube/nimbus-design-system/pull/383) by [@joacotornello](https://github.com/joacotornello))
-- `IconButton`: Fixed focus ring styles to match design system. ([#383](https://github.com/TiendaNube/nimbus-design-system/pull/383) by [@joacotornello](https://github.com/joacotornello))
-- `Checkbox`: Fixed focus ring styles to match design system. ([#383](https://github.com/TiendaNube/nimbus-design-system/pull/383) by [@joacotornello](https://github.com/joacotornello))
-- `Input`: Fixed focus ring styles to match design system. ([#383](https://github.com/TiendaNube/nimbus-design-system/pull/383) by [@joacotornello](https://github.com/joacotornello))
-- `Radio`: Fixed focus ring styles to match design system. ([#383](https://github.com/TiendaNube/nimbus-design-system/pull/383) by [@joacotornello](https://github.com/joacotornello))
-
+- `ScrollPane`: Fixed focus ring styles to match design system. ([#385](https://github.com/TiendaNube/nimbus-design-system/pull/385) by [@joacotornello](https://github.com/joacotornello))
+- `SegmentedControl`: Fixed focus ring styles to match design system. ([#385](https://github.com/TiendaNube/nimbus-design-system/pull/385) by [@joacotornello](https://github.com/joacotornello))
+- `Link`: Fixed focus ring styles to match design system. ([#385](https://github.com/TiendaNube/nimbus-design-system/pull/385) by [@joacotornello](https://github.com/joacotornello))
+- `IconButton`: Fixed focus ring styles to match design system. ([#385](https://github.com/TiendaNube/nimbus-design-system/pull/385) by [@joacotornello](https://github.com/joacotornello))
+- `Checkbox`: Fixed focus ring styles to match design system. ([#385](https://github.com/TiendaNube/nimbus-design-system/pull/385) by [@joacotornello](https://github.com/joacotornello))
+- `Input`: Fixed focus ring styles to match design system. ([#385](https://github.com/TiendaNube/nimbus-design-system/pull/385) by [@joacotornello](https://github.com/joacotornello))
+- `Radio`: Fixed focus ring styles to match design system. ([#385](https://github.com/TiendaNube/nimbus-design-system/pull/385) by [@joacotornello](https://github.com/joacotornello))
 ## 2025-11-13 `9.41.0`
 
 #### 🎉 New features
