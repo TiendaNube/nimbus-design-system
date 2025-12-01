@@ -5,5 +5,7 @@ releases:
 
 declined:
   - nimbus-design-system
+  - "@nimbus-ds/button"
+  - "@nimbus-ds/accordion"
   - "@nimbus-ds/split-button"
   - "@nimbus-ds/stepper"
