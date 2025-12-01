@@ -1,7 +1,7 @@
 {
   "id": "scrollPane",
   "name": "ScrollPane",
-  "totalProps": 9,
+  "totalProps": 10,
   "packageName": "@nimbus-ds/scroll-pane",
   "version": "1.0.1",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/scroll-pane",
@@ -49,6 +49,13 @@
       "default": true,
       "type": "boolean",
       "title": "scrollToItemOnClick",
+      "required": false
+    },
+    {
+      "description": "Enable grab-to-scroll functionality (click and drag to scroll)\nWhen enabled, prevents item dragging inside the ScrollPane",
+      "default": false,
+      "type": "boolean",
+      "title": "enableGrabScroll",
       "required": false
     },
     {
