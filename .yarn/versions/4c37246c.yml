@@ -3,10 +3,10 @@ releases:
   "@nimbus-ds/styles": minor
 
 declined:
+  - nimbus-design-system
   - "@nimbus-ds/components"
   - "@nimbus-ds/button"
   - "@nimbus-ds/accordion"
   - "@nimbus-ds/scroll-pane"
   - "@nimbus-ds/split-button"
   - "@nimbus-ds/stepper"
-  - "@nimbus-ds/workspace"
