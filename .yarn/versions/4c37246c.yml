@@ -1,0 +1,9 @@
+releases:
+  "@nimbus-ds/checkbox": minor
+  "@nimbus-ds/styles": minor
+
+undecided:
+  - "@nimbus-ds/components"
+  - "@nimbus-ds/button"
+  - "@nimbus-ds/accordion"
+  - "@nimbus-ds/scroll-pane"
