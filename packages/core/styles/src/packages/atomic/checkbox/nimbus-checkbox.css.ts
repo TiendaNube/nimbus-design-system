@@ -15,7 +15,7 @@ const container = style({
   position: "relative",
   gap: varsThemeBase.spacing[1],
   borderRadius: varsThemeBase.shape.border.radius[1],
-  ":focus-within": {
+  ":focus-visible": {
     boxShadow: varsThemeBase.utils.focus,
   },
 });

@@ -27,7 +27,7 @@ const container = style({
   borderWidth: varsThemeBase.shape.border.width[1],
   borderRadius: varsThemeBase.shape.border.radius[1],
   transition: `all ${varsThemeBase.motion.speed.fast} ease`,
-  ":focus-within": {
+  ":focus-visible": {
     boxShadow: varsThemeBase.utils.focus,
   },
 });
