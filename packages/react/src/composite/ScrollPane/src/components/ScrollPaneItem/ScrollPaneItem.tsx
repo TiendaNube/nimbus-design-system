@@ -34,7 +34,6 @@ const ScrollPaneItem: React.FC<ScrollPaneItemProps> = ({
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
       handleClick(event as unknown as React.MouseEvent<HTMLDivElement>);
     }
   };
@@ -45,7 +44,7 @@ const ScrollPaneItem: React.FC<ScrollPaneItemProps> = ({
       onClick={handleClick}
       onKeyDown={handleKeyDown}
       role="button"
-      tabIndex={0}
+      tabIndex={-1}
       {...rest}
     >
       {children}
