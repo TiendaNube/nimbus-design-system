@@ -9,3 +9,4 @@ declined:
   - "@nimbus-ds/scroll-pane"
   - "@nimbus-ds/split-button"
   - "@nimbus-ds/stepper"
+  - "@nimbus-ds/workspace"
