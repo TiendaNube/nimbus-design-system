@@ -1,11 +1,17 @@
 {
   "id": "table",
   "name": "Table",
-  "totalProps": 1,
+  "totalProps": 2,
   "packageName": "@nimbus-ds/table",
   "version": "2.0.1",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/table",
   "props": [
+    {
+      "description": "Column sizing definitions applied from left to right. Use width for fixed columns and grow to distribute the remaining space proportionally.",
+      "type": "TableColumnLayout[]",
+      "title": "columnLayout",
+      "required": false
+    },
     {
       "description": "The content of the table.",
       "type": "React.ReactNode",
