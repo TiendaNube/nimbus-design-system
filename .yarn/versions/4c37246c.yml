@@ -1,10 +1,10 @@
 releases:
   "@nimbus-ds/checkbox": minor
   "@nimbus-ds/styles": minor
+  "@nimbus-ds/components": minor
 
 declined:
   - nimbus-design-system
-  - "@nimbus-ds/components"
   - "@nimbus-ds/button"
   - "@nimbus-ds/accordion"
   - "@nimbus-ds/scroll-pane"
