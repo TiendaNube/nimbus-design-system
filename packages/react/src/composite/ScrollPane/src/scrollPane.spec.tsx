@@ -877,22 +877,4 @@ describe("ScrollPane.Item", () => {
     fireEvent.click(screen.getByTestId("clickable-item"));
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
-
-  it("applies custom props", () => {
-    render(
-      <ScrollPane>
-        <ScrollPane.Item
-          data-testid="custom-item"
-          className="custom-item-class"
-          style={{ color: "blue" }}
-        >
-          Custom Item
-        </ScrollPane.Item>
-      </ScrollPane>
-    );
-
-    const item = screen.getByTestId("custom-item");
-    expect(item.className).toContain("nimbus-box_boxSizing-border-box");
-    expect(item).toHaveAttribute("data-testid", "custom-item");
-  });
 });

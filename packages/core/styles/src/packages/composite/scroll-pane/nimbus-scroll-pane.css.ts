@@ -1,4 +1,4 @@
-import { style, styleVariants } from "@vanilla-extract/css";
+import { style, styleVariants, globalStyle } from "@vanilla-extract/css";
 import { varsThemeBase } from "../../../themes";
 
 /* -------------------------------------------------------------------------------------------------
@@ -104,6 +104,13 @@ const arrowVariants = styleVariants({
   },
 });
 
+const item = style({});
+
+globalStyle(`${item} *:focus-visible`, {
+  boxShadow: "none",
+  border: `${varsThemeBase.shape.border.width[2]} solid ${varsThemeBase.colors.primary.surfaceHighlight}`,
+});
+
 export const scrollPaneStyles = {
   classnames: {
     scrollArea,
@@ -113,5 +120,6 @@ export const scrollPaneStyles = {
     gradientVariants,
     arrow,
     arrowVariants,
+    item,
   },
 };

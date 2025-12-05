@@ -2,6 +2,17 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2025-12-01 `9.41.1`
+
+### 🐛 Bug fixes
+
+- `ScrollPane`: Fixed focus ring styles to match design system. ([#385](https://github.com/TiendaNube/nimbus-design-system/pull/385) by [@joacotornello](https://github.com/joacotornello))
+- `SegmentedControl`: Fixed focus ring styles to match design system. ([#385](https://github.com/TiendaNube/nimbus-design-system/pull/385) by [@joacotornello](https://github.com/joacotornello))
+- `Link`: Fixed focus ring styles to match design system. ([#385](https://github.com/TiendaNube/nimbus-design-system/pull/385) by [@joacotornello](https://github.com/joacotornello))
+- `Checkbox`: Fixed focus ring styles to match design system, movingthe focus ring to the checkbox square instead of the parent container and displaying it only when needed. ([#385](https://github.com/TiendaNube/nimbus-design-system/pull/385) by [@joacotornello](https://github.com/joacotornello))
+- `Input`: Fixed focus ring styles to match design system. ([#385](https://github.com/TiendaNube/nimbus-design-system/pull/385) by [@joacotornello](https://github.com/joacotornello))
+- `Radio`: Fixed focus ring styles to match design system, moving the focus ring to the radio circle instead of the parent container and displaying it only when needed. Also fixes Radio As Button focus not being applied. ([#385](https://github.com/TiendaNube/nimbus-design-system/pull/385) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-11-13 `9.41.0`
 
 #### 🎉 New features

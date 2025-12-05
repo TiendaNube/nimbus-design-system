@@ -27,9 +27,6 @@ const base = style({
     backgroundColor: varsThemeBase.colors.neutral.interactive,
     borderColor: varsThemeBase.colors.neutral.interactivePressed,
   },
-  ":focus": {
-    boxShadow: varsThemeBase.utils.focus,
-  },
   ":focus-visible": {
     boxShadow: varsThemeBase.utils.focus,
   },

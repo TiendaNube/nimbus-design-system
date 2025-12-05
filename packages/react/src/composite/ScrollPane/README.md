@@ -61,4 +61,4 @@ The component includes proper ARIA labels for navigation arrows and supports key
 
 View docs [here](https://nimbus.nuvemshop.com.br/documentation/composite-components/scroll-pane).
 
-<img alt="Nimbus" style="margin-bottom: 30px;" src="https://tiendanube.github.io/design-system-nimbus/static/media/nimbus-logo.ab60bd79.png" height="30" /> 
+<img alt="Nimbus" style="margin-bottom: 30px;" src="https://tiendanube.github.io/design-system-nimbus/static/media/nimbus-logo.ab60bd79.png" height="30" />
