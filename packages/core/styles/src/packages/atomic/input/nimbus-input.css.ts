@@ -35,7 +35,7 @@ export const container = vanillaStyle({
   borderStyle: "solid",
   borderColor: varsThemeBase.colors.neutral.interactive,
   overflow: "hidden",
-  ":focus-within": {
+  ":focus-visible": {
     outline: "none",
     boxShadow: varsThemeBase.utils.focus,
   },
