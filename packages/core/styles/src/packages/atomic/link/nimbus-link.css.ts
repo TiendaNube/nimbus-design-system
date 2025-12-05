@@ -29,6 +29,7 @@ const base = style({
   width: "fit-content",
   ":focus-visible": {
     boxShadow: varsThemeBase.utils.focus,
+    outline: "none",
   },
   ":disabled": {
     opacity: 0.5,
