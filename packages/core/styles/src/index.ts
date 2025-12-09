@@ -17,7 +17,7 @@ export { box } from "./packages/atomic/box";
 export { button } from "./packages/atomic/button";
 export { checkbox } from "./packages/atomic/checkbox";
 export { chip } from "./packages/atomic/chip";
-export { fileUploader } from "./packages/atomic/fileUploader";
+export { fileUploader, fileUploaderVars } from "./packages/atomic/fileUploader";
 export { icon } from "./packages/atomic/icon";
 export { iconButton } from "./packages/atomic/iconButton";
 export { input } from "./packages/atomic/input";

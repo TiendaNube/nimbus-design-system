@@ -1,9 +1,11 @@
-import { InputHTMLAttributes, DragEvent } from "react";
+import { InputHTMLAttributes, DragEvent, ReactNode, ReactElement } from "react";
 import { fileUploader } from "@nimbus-ds/styles";
-import { FileUploaderSkeleton } from "./components";
+import { FileUploaderSkeleton, FileUploaderOverlay } from "./components";
+import { FileUploaderOverlayProps } from "./components/FileUploaderOverlay";
 
 export interface FileUploaderComponents {
   Skeleton: typeof FileUploaderSkeleton;
+  Overlay: typeof FileUploaderOverlay;
 }
 
 export interface FileUploaderProperties {
@@ -52,6 +54,40 @@ export interface FileUploaderProperties {
    * Callback fired when an error occurs during file drop processing
    */
   onError?: (error: Error) => void;
+  /**
+   * Callback fired when a drag operation enters the container
+   */
+  onDragEnter?: (event: DragEvent<HTMLLabelElement>) => void;
+  /**
+   * Callback fired when a drag operation leaves the container
+   */
+  onDragLeave?: (event: DragEvent<HTMLLabelElement>) => void;
+  /**
+   * Content to render inside the file uploader container
+   */
+  children?: ReactNode;
+  /**
+   * Hides the default icon when true
+   * @default true
+   */
+  showIcon?: boolean;
+  /**
+   * Border color of the file uploader
+   * @default primary-interactive
+   */
+  borderColor?: keyof typeof fileUploader.properties.borderColor;
+  /**
+   * Background color of the file uploader
+   * @default primary-surface
+   */
+  backgroundColor?: keyof typeof fileUploader.properties.backgroundColor;
+  /**
+   * Custom overlay element to render when dragging files over the uploader.
+   * When defined, this overlay will be displayed instead of children during drag operations.
+   */
+  dragOverlay?: ReactElement<FileUploaderOverlayProps>;
+
+  uninteractive?: boolean;
 }
 
 export type FileUploaderProps = FileUploaderProperties &
