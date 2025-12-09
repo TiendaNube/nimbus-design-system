@@ -1,4 +1,5 @@
 releases:
+  "@nimbus-ds/components": minor
   "@nimbus-ds/file-uploader": minor
   "@nimbus-ds/styles": minor
 

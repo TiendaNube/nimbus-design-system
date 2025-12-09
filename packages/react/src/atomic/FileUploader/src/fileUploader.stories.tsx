@@ -154,12 +154,7 @@ export const fileTypeValidation: Story = {
 
 export const overlayPattern: Story = {
   render: () => {
-    const [isDragging, setIsDragging] = React.useState(false);
     const { selectedFiles, handleChange } = useFileSelection();
-
-    const handleDragEnter = () => setIsDragging(true);
-    const handleDragLeave = () => setIsDragging(false);
-    const handleDropSuccess = () => setIsDragging(false);
 
     return (
       <Box display="flex" flexDirection="column" gap="4">
@@ -175,10 +170,7 @@ export const overlayPattern: Story = {
           backgroundColor="transparent"
           borderColor="transparent"
           onChange={handleChange}
-          onDragEnter={handleDragEnter}
-          onDragLeave={handleDragLeave}
-          onDropSuccess={handleDropSuccess}
-          uninteractive
+          disableClickUpload
           dragOverlay={
             <FileUploader.Overlay
               title="Add files"
@@ -241,14 +233,6 @@ export const overlayPattern: Story = {
                 </Box>
               )}
             </Box>
-            <Box
-              position="absolute"
-              top="0"
-              left="0"
-              width="100%"
-              height="100%"
-              display={isDragging ? "flex" : "none"}
-            />
           </Box>
         </FileUploader>
       </Box>

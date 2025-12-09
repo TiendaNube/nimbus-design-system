@@ -85,10 +85,15 @@ export interface FileUploaderProperties {
    * Custom overlay element to render when dragging files over the uploader.
    * When defined, this overlay will be displayed instead of children during drag operations.
    */
-  dragOverlay?: ReactElement<FileUploaderOverlayProps>;
+  dragOverlay?: ReactNode;
 
-  uninteractive?: boolean;
+  /**
+   * When true, the file uploader will not be clickable and files can only be uploaded by dragging and dropping. Useful for invisible upload areas used along FileUploader.Overlay.
+   * @default false
+   */
+  disableClickUpload?: boolean;
 }
 
-export type FileUploaderProps = FileUploaderProperties &
-  InputHTMLAttributes<HTMLInputElement>;
+export type FileUploaderProps = FileUploaderProperties & {
+  dragOverlay?: ReactElement<FileUploaderOverlayProps>;
+} & InputHTMLAttributes<HTMLInputElement>;

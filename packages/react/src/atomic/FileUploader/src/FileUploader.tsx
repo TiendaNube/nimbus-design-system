@@ -35,7 +35,7 @@ const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
   onDragLeave,
   children,
   showIcon = true,
-  uninteractive = false,
+  disableClickUpload = false,
   borderColor = "primary-interactive",
   backgroundColor = "primary-surface",
   id,
@@ -155,7 +155,7 @@ const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
         fileUploader.sprinkle({
           aspectRatio,
           flexDirection,
-          cursor: disabled || uninteractive ? "auto" : "pointer",
+          cursor: disabled || disableClickUpload ? "auto" : "pointer",
         }),
         disabled && fileUploader.classnames.disabled,
         isDragging &&
@@ -195,7 +195,7 @@ const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
         className={fileUploader.classnames.container__input}
         type="file"
         accept={accept}
-        disabled={disabled || uninteractive}
+        disabled={disabled || disableClickUpload}
         id={id || DEFAULT_INPUT_ID}
         onChange={onChange}
         {...rest}

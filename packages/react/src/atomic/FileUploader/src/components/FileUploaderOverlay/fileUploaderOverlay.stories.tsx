@@ -1,14 +1,20 @@
-import { Meta } from "@storybook/react";
+import React from "react";
+import { Meta, StoryObj } from "@storybook/react";
 import { FileUploader } from "../../FileUploader";
 
 const meta: Meta<typeof FileUploader.Overlay> = {
   title: "Atomic/FileUploader/FileUploader.Overlay",
   component: FileUploader.Overlay,
   tags: ["autodocs"],
+  render: (args) => (
+    <div style={{ width: "100px", height: "100px" }}>
+      <FileUploader.Overlay {...args} />
+    </div>
+  ),
 };
 
 export default meta;
-type Story = Meta<typeof FileUploader.Overlay>;
+type Story = StoryObj<typeof FileUploader.Overlay>;
 
 export const basic: Story = {
   args: {
@@ -21,7 +27,7 @@ export const withImage: Story = {
   args: {
     title: "Add files",
     subtitle: "Drag and drop files here or click to select files",
-    imageSrc: "https://via.placeholder.com/150",
+    imageSrc: "/static/image_mockup.png",
     backgroundColor: "neutral-background",
     borderColor: "ai-gradientPurpleHigh",
   },

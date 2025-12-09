@@ -74,14 +74,14 @@ export const overlay = style({
   borderWidth: varsThemeBase.shape.border.width[2],
   borderColor,
   borderStyle: "dashed",
-  zIndex: 10,
+  zIndex: varsThemeBase.zIndex[200],
   pointerEvents: "none",
   animation: `${overlayAppear} ${varsThemeBase.motion.speed.fast} ease-out`,
 });
 
 export const overlay__image = style({
-  maxWidth: "4rem",
-  maxHeight: "4rem",
+  maxWidth: varsThemeBase.spacing[16],
+  maxHeight: varsThemeBase.spacing[16],
   objectFit: "contain",
 });
 
@@ -132,6 +132,8 @@ const sprinkle = createSprinkles(
       aspectRatio: fileUploaderAspectRatioProperties,
       flexDirection: fileUploaderFlexDirectionProperties,
       cursor: cursorProperties,
+      backgroundColor: fileUploaderBackgroundColorProperties,
+      borderColor: fileUploaderBorderColorProperties,
     },
   })
 );

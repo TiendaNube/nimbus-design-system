@@ -1,6 +1,13 @@
 # Changelog
 
-Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories every day, with simplicity, accessibility, consistency and performance.
+Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories
+every day, with simplicity, accessibility, consistency and performance.
+
+## 2025-12-09 `5.40.0`
+
+#### 🎉 New features
+
+- `FileUploader`: Added `dragOverlay` property to render a custom overlay when dragging files over the uploader. ([#387](https://github.com/TiendaNube/nimbus-design-system/pull/387) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-12-02 `5.39.0`
 

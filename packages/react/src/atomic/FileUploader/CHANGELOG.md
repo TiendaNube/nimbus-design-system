@@ -2,6 +2,12 @@
 
 The File Uploader component is used to upload files.
 
+## 2025-12-09 `2.8.0`
+
+#### 🎉 New features
+
+- Adds `dragOverlay` property to render a custom overlay when dragging files over the uploader. ([#387](https://github.com/TiendaNube/nimbus-design-system/pull/387) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-11-11 `2.7.0`
 
 #### 🎉 New features
