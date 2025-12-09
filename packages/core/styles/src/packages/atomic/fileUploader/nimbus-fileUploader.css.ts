@@ -77,6 +77,7 @@ export const overlay = style({
   zIndex: varsThemeBase.zIndex[200],
   pointerEvents: "none",
   animation: `${overlayAppear} ${varsThemeBase.motion.speed.fast} ease-out`,
+  margin: varsThemeBase.spacing[4],
 });
 
 export const overlay__image = style({
