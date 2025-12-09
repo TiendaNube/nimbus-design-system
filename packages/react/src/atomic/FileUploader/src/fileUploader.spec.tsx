@@ -324,7 +324,7 @@ describe("GIVEN <FileUploader />", () => {
       makeSut();
       const container = screen.getByTestId("file-uploader-container");
 
-      fireEvent.dragOver(container);
+      fireEvent.dragEnter(container);
 
       expect(container.getAttribute("class")).toContain("dragging");
     });
@@ -333,7 +333,7 @@ describe("GIVEN <FileUploader />", () => {
       makeSut({ disabled: true });
       const container = screen.getByTestId("file-uploader-container");
 
-      fireEvent.dragOver(container);
+      fireEvent.dragEnter(container);
 
       expect(container.getAttribute("class")).not.toContain("dragging");
     });
@@ -342,7 +342,7 @@ describe("GIVEN <FileUploader />", () => {
       makeSut();
       const container = screen.getByTestId("file-uploader-container");
 
-      fireEvent.dragOver(container);
+      fireEvent.dragEnter(container);
       expect(container.getAttribute("class")).toContain("dragging");
 
       fireEvent.dragLeave(container);
@@ -356,7 +356,7 @@ describe("GIVEN <FileUploader />", () => {
       const file = createFile("test.jpg", "image/jpeg");
       const dropEvent = createDragEvent("drop", [file]);
 
-      fireEvent.dragOver(container);
+      fireEvent.dragEnter(container);
       expect(container.getAttribute("class")).toContain("dragging");
 
       fireEvent(container, dropEvent);
