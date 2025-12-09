@@ -1,5 +1,5 @@
 import { defineProperties, createSprinkles } from "@vanilla-extract/sprinkles";
-import { createVar, style } from "@vanilla-extract/css";
+import { createVar, style, keyframes } from "@vanilla-extract/css";
 
 import { varsThemeBase } from "../../../themes";
 import { vars } from "../../../utils";
@@ -56,6 +56,11 @@ export const skeleton = style({
   display: "flex",
 });
 
+const overlayAppear = keyframes({
+  from: { opacity: 0 },
+  to: { opacity: 1 },
+});
+
 export const overlay = style({
   position: "absolute",
   inset: 0,
@@ -71,6 +76,7 @@ export const overlay = style({
   borderStyle: "dashed",
   zIndex: 10,
   pointerEvents: "none",
+  animation: `${overlayAppear} ${varsThemeBase.motion.speed.fast} ease-out`,
 });
 
 export const overlay__image = style({
