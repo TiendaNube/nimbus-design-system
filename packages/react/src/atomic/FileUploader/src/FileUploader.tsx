@@ -31,8 +31,6 @@ const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
   onDropReject,
   onDropSuccess,
   onError,
-  onDragEnter,
-  onDragLeave,
   children,
   showIcon = true,
   disableClickUpload = false,
@@ -68,11 +66,10 @@ const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
         dragCounterRef.current += 1;
         if (dragCounterRef.current === 1) {
           setIsDragging(true);
-          onDragEnter?.(event);
         }
       }
     },
-    [disabled, onDragEnter]
+    [disabled]
   );
 
   const handleDragOver = useCallback(
@@ -90,10 +87,9 @@ const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
       dragCounterRef.current -= 1;
       if (dragCounterRef.current === 0) {
         setIsDragging(false);
-        onDragLeave?.(event);
       }
     },
-    [onDragLeave]
+    []
   );
 
   const handleDrop = useCallback(

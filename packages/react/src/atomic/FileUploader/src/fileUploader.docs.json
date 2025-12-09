@@ -1,7 +1,7 @@
 {
   "id": "fileUploader",
   "name": "FileUploader",
-  "totalProps": 18,
+  "totalProps": 16,
   "packageName": "@nimbus-ds/file-uploader",
   "version": "2.7.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/file-uploader",
@@ -79,22 +79,6 @@
       "additionalProperties": false,
       "propertyOrder": [],
       "title": "onError",
-      "required": false
-    },
-    {
-      "description": "Callback fired when a drag operation enters the container",
-      "type": "object",
-      "additionalProperties": false,
-      "propertyOrder": [],
-      "title": "onDragEnter",
-      "required": false
-    },
-    {
-      "description": "Callback fired when a drag operation leaves the container",
-      "type": "object",
-      "additionalProperties": false,
-      "propertyOrder": [],
-      "title": "onDragLeave",
       "required": false
     },
     {

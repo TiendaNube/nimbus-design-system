@@ -501,38 +501,6 @@ describe("GIVEN <FileUploader />", () => {
     });
   });
 
-  describe("WHEN using onDragEnter and onDragLeave callbacks", () => {
-    it("THEN should call onDragEnter when drag enters the container", () => {
-      const onDragEnterMock = jest.fn();
-      makeSut({ onDragEnter: onDragEnterMock });
-
-      const container = screen.getByTestId("file-uploader-container");
-      fireEvent.dragEnter(container);
-
-      expect(onDragEnterMock).toHaveBeenCalled();
-    });
-
-    it("THEN should call onDragLeave when drag leaves the container", () => {
-      const onDragLeaveMock = jest.fn();
-      makeSut({ onDragLeave: onDragLeaveMock });
-
-      const container = screen.getByTestId("file-uploader-container");
-      fireEvent.dragLeave(container);
-
-      expect(onDragLeaveMock).toHaveBeenCalled();
-    });
-
-    it("THEN should not call onDragEnter when disabled", () => {
-      const onDragEnterMock = jest.fn();
-      makeSut({ onDragEnter: onDragEnterMock, disabled: true });
-
-      const container = screen.getByTestId("file-uploader-container");
-      fireEvent.dragEnter(container);
-
-      expect(onDragEnterMock).not.toHaveBeenCalled();
-    });
-  });
-
   describe("WHEN custom colors are provided", () => {
     it("THEN should apply borderColor via style variables", () => {
       makeSut({ borderColor: "ai-gradientPurpleHigh" });

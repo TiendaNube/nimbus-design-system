@@ -55,14 +55,6 @@ export interface FileUploaderProperties {
    */
   onError?: (error: Error) => void;
   /**
-   * Callback fired when a drag operation enters the container
-   */
-  onDragEnter?: (event: DragEvent<HTMLLabelElement>) => void;
-  /**
-   * Callback fired when a drag operation leaves the container
-   */
-  onDragLeave?: (event: DragEvent<HTMLLabelElement>) => void;
-  /**
    * Content to render inside the file uploader container
    */
   children?: ReactNode;
