@@ -151,3 +151,91 @@ export const fileTypeValidation: Story = {
     );
   },
 };
+
+export const overlayPattern: Story = {
+  render: () => {
+    const { selectedFiles, handleChange } = useFileSelection();
+
+    return (
+      <Box display="flex" flexDirection="column" gap="4">
+        <Text fontWeight="bold">Overlay Pattern Example</Text>
+        <Text fontSize="caption" color="neutral-textLow">
+          Drag a file over the chat area below to see the file upload overlay
+        </Text>
+        <FileUploader
+          width="100%"
+          height="100%"
+          aspectRatio="none"
+          showIcon={false}
+          backgroundColor="transparent"
+          borderColor="transparent"
+          onChange={handleChange}
+          disableClickUpload
+          dragOverlay={
+            <FileUploader.Overlay
+              title="Add files"
+              subtitle="Drag and drop files here or click to select files"
+              backgroundColor="neutral-background"
+              borderColor="ai-gradientPurpleHigh"
+              imageSrc="/static/image_mockup.png"
+            />
+          }
+        >
+          <Box position="relative" width="100%" height="300px">
+            <Box
+              width="100%"
+              height="100%"
+              borderRadius="2"
+              borderWidth="1"
+              borderColor="neutral-surfaceHighlight"
+              borderStyle="solid"
+              padding="4"
+              display="flex"
+              flexDirection="column"
+              gap="2"
+            >
+              <Text fontWeight="bold">Chat Window</Text>
+              <Box display="flex" flexDirection="column" gap="2" flex="1">
+                <Box
+                  backgroundColor="primary-surface"
+                  padding="2"
+                  borderRadius="2"
+                  alignSelf="flex-start"
+                >
+                  <Text>Hello! How can I help you today?</Text>
+                </Box>
+                <Box
+                  backgroundColor="neutral-surfaceHighlight"
+                  padding="2"
+                  borderRadius="2"
+                  alignSelf="flex-end"
+                >
+                  <Text>I want to upload some files</Text>
+                </Box>
+                <Box
+                  backgroundColor="primary-surface"
+                  padding="2"
+                  borderRadius="2"
+                  alignSelf="flex-start"
+                >
+                  <Text>Just drag and drop them here!</Text>
+                </Box>
+              </Box>
+              {selectedFiles.length > 0 && (
+                <Box
+                  backgroundColor="success-surface"
+                  padding="2"
+                  borderRadius="2"
+                >
+                  <Text color="success-textHigh">
+                    Uploaded: {selectedFiles.map((f) => f.name).join(", ")}
+                  </Text>
+                </Box>
+              )}
+            </Box>
+          </Box>
+        </FileUploader>
+      </Box>
+    );
+  },
+};
