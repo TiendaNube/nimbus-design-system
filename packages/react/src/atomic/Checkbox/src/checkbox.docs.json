@@ -15,7 +15,10 @@
     {
       "description": "Change the visual style of the checkbox.",
       "default": "neutral",
-      "enum": ["danger", "primary"],
+      "enum": [
+        "danger",
+        "primary"
+      ],
       "type": "string",
       "title": "appearance",
       "required": false
