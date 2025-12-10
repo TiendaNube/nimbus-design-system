@@ -170,7 +170,7 @@ export const withGrowConstraints: Story = {
     const columnLayout: TableColumnLayout[] = [
       { width: "100px" },
       { grow: 2 },
-      { grow: 1 },
+      { grow: 1, minWidth: "200px" },
       { grow: 1 },
     ];
 
@@ -200,10 +200,10 @@ export const withGrowConstraints: Story = {
                 This column grows with factor 2
               </Table.Cell>
               <Table.Cell column={2}>
-                This column grows but never shrinks below 200px
+                This column grows with factor 1 but never shrinks below 200px
               </Table.Cell>
               <Table.Cell column={3}>
-                This column grows but never exceeds 150px
+                This column grows with factor 1
               </Table.Cell>
             </Table.Row>
           ))}
