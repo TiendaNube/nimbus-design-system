@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { table } from "@nimbus-ds/styles";
 
-import { TableProps, TableComponents } from "./table.types";
+import { TableProps, TableComponents, TableColumnLayout } from "./table.types";
 import { TableBody, TableCell, TableHead, TableRow } from "./components";
+import { TableContext, TableContextValue } from "./contexts";
 
 const Table: React.FC<TableProps> & TableComponents = ({
   className: _className,
@@ -11,50 +12,64 @@ const Table: React.FC<TableProps> & TableComponents = ({
   columnLayout,
   ...rest
 }: TableProps) => {
+  const getEffectiveFixedWidth = (
+    column: TableColumnLayout
+  ): string | undefined => {
+    if (column.width) return column.width;
+    return undefined;
+  };
+
   const fixedWidthExpression = columnLayout
-    ?.filter(({ width }) => Boolean(width))
-    .map(({ width }) => width)
+    ?.map(getEffectiveFixedWidth)
+    .filter(Boolean)
     .join(" + ");
 
   const totalGrow =
     columnLayout?.reduce((total, column) => {
-      if (column.width) return total;
+      if (getEffectiveFixedWidth(column)) return total;
       const growValue = column.grow ?? 0;
       return growValue > 0 ? total + growValue : total;
     }, 0) ?? 0;
 
-  const getGrowWidth = (growValue?: number) => {
-    if (!totalGrow || !growValue || growValue <= 0) return undefined;
+  const getGrowExpression = (growValue: number) => {
     const share = (growValue / totalGrow).toFixed(4);
+    if (!fixedWidthExpression) return `100% * ${share}`;
+    return `100% * ${share}`;
+  };
 
-    if (!fixedWidthExpression) return `calc(100% * ${share})`;
-    return `calc((100% - (${fixedWidthExpression})) * ${share})`;
+  const getColumnWidth = (column: TableColumnLayout): string | undefined => {
+    const fixedWidth = getEffectiveFixedWidth(column);
+    if (fixedWidth) return fixedWidth;
+
+    const growValue = column.grow;
+    if (!totalGrow || !growValue || growValue <= 0) return undefined;
+
+    return `calc(${getGrowExpression(growValue)})`;
   };
 
   const hasColumnLayout = Boolean(columnLayout?.length);
 
-  return (
-    <table {...rest} className={table.classnames.container}>
-      {hasColumnLayout ? (
-        <colgroup>
-          {columnLayout?.map((column, index) => {
-            const width = column.width ?? getGrowWidth(column.grow);
+  const contextValue = useMemo<TableContextValue>(
+    () => ({ columnLayout }),
+    [columnLayout]
+  );
 
-            return (
+  return (
+    <TableContext.Provider value={contextValue}>
+      <table {...rest} className={table.classnames.container}>
+        {hasColumnLayout ? (
+          <colgroup>
+            {columnLayout?.map((column, index) => (
               <col
                 key={`table-col-${index}`}
-                style={{
-                  width,
-                  minWidth: column.minWidth,
-                  maxWidth: column.maxWidth,
-                }}
+                style={{ width: getColumnWidth(column) }}
               />
-            );
-          })}
-        </colgroup>
-      ) : null}
-      {children}
-    </table>
+            ))}
+          </colgroup>
+        ) : null}
+        {children}
+      </table>
+    </TableContext.Provider>
   );
 };
 

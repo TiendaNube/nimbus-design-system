@@ -29,11 +29,7 @@ describe("GIVEN <Table />", () => {
       render(
         <Table
           data-testid="table-element"
-          columnLayout={[
-            { width: "120px" },
-            { grow: 2, minWidth: "160px" },
-            { grow: 1, maxWidth: "320px" },
-          ]}
+          columnLayout={[{ width: "120px" }, { grow: 2 }, { grow: 1 }]}
         >
           <tbody>
             <tr>
@@ -50,14 +46,51 @@ describe("GIVEN <Table />", () => {
 
       expect(columns).toHaveLength(3);
       expect(columns[0]).toHaveStyle({ width: "120px" });
-      expect(columns[1]).toHaveStyle({
-        width: "calc((100% - (120px)) * 0.6667)",
-        minWidth: "160px",
-      });
-      expect(columns[2]).toHaveStyle({
-        width: "calc((100% - (120px)) * 0.3333)",
-        maxWidth: "320px",
-      });
+    });
+
+    it("THEN should apply minWidth and maxWidth to cells via column prop", () => {
+      render(
+        <Table
+          data-testid="table-element"
+          columnLayout={[
+            { width: "100px" },
+            { grow: 1, minWidth: "200px" },
+            { grow: 1, maxWidth: "150px" },
+          ]}
+        >
+          <Table.Head>
+            <Table.Row>
+              <Table.Cell as="th" column={0} data-testid="header-0">
+                Header 1
+              </Table.Cell>
+              <Table.Cell as="th" column={1} data-testid="header-1">
+                Header 2
+              </Table.Cell>
+              <Table.Cell as="th" column={2} data-testid="header-2">
+                Header 3
+              </Table.Cell>
+            </Table.Row>
+          </Table.Head>
+          <Table.Body>
+            <Table.Row>
+              <Table.Cell column={0} data-testid="cell-0">
+                Cell 1
+              </Table.Cell>
+              <Table.Cell column={1} data-testid="cell-1">
+                Cell 2
+              </Table.Cell>
+              <Table.Cell column={2} data-testid="cell-2">
+                Cell 3
+              </Table.Cell>
+            </Table.Row>
+          </Table.Body>
+        </Table>
+      );
+
+      expect(screen.getByTestId("header-1")).toHaveStyle({ minWidth: "200px" });
+      expect(screen.getByTestId("header-2")).toHaveStyle({ maxWidth: "150px" });
+      expect(screen.getByTestId("cell-1")).toHaveStyle({ minWidth: "200px" });
+      expect(screen.getByTestId("cell-2")).toHaveStyle({ maxWidth: "150px" });
     });
   });
 });

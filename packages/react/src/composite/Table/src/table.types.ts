@@ -15,17 +15,14 @@ export interface TableColumnLayout {
    */
   width?: string;
   /**
-   * Minimum width applied to the column. Accepts any valid CSS width value.
-   */
-  minWidth?: string;
-  /**
-   * Maximum width applied to the column. Accepts any valid CSS width value.
-   */
-  maxWidth?: string;
-  /**
    * Growth factor that distributes remaining space among columns without a fixed width.
    */
   grow?: number;
+  /**
+   * Minimum width constraint for the column. The column will not shrink below this value.
+   * Only applies when using `grow`. Accepts any valid CSS width value.
+   */
+  minWidth?: string;
 }
 
 export interface TableProperties {

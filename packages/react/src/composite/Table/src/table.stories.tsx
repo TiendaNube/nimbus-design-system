@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Table } from "./Table";
 import { Button } from "@nimbus-ds/button";
@@ -84,8 +84,6 @@ export const withGrowColumns: Story = {
     const columnLayout: Column[] = [
       {
         id: "1",
-        minWidth: "100px",
-        maxWidth: "100px",
         width: "100px",
         hidden: false,
         title: "Column 1",
@@ -158,6 +156,55 @@ export const withGrowColumns: Story = {
                   blanditiis doloribus dolorum voluptas quo!
                 </Table.Cell>
               )}
+            </Table.Row>
+          ))}
+        </Table.Body>
+      </Table>
+    );
+  },
+};
+
+export const withGrowConstraints: Story = {
+  args: {},
+  render: () => {
+    const columnLayout: TableColumnLayout[] = [
+      { width: "100px" },
+      { grow: 2 },
+      { grow: 1 },
+      { grow: 1 },
+    ];
+
+    return (
+      <Table columnLayout={columnLayout}>
+        <Table.Head>
+          <Table.Row backgroundColor="neutral-surface">
+            <Table.Cell as="th" column={0}>
+              Fixed 100px
+            </Table.Cell>
+            <Table.Cell as="th" column={1}>
+              Grow 2x
+            </Table.Cell>
+            <Table.Cell as="th" column={2}>
+              Grow 1x (min 200px)
+            </Table.Cell>
+            <Table.Cell as="th" column={3}>
+              Grow 1x (max 150px)
+            </Table.Cell>
+          </Table.Row>
+        </Table.Head>
+        <Table.Body>
+          {Array.from({ length: 3 }, (_, i) => (
+            <Table.Row key={i}>
+              <Table.Cell column={0}>Cell 1</Table.Cell>
+              <Table.Cell column={1}>
+                This column grows with factor 2
+              </Table.Cell>
+              <Table.Cell column={2}>
+                This column grows but never shrinks below 200px
+              </Table.Cell>
+              <Table.Cell column={3}>
+                This column grows but never exceeds 150px
+              </Table.Cell>
             </Table.Row>
           ))}
         </Table.Body>
