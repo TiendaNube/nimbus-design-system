@@ -76,13 +76,15 @@ jobs:
       - name: Publish RC packages
         run: |
           IFS=',' read -ra PACKAGES <<< "${{ github.event.inputs.packages }}"
+          FAILED=0
           for package in "${PACKAGES[@]}"; do
             package=$(echo "$package" | xargs)
             if [ -n "$package" ]; then
               echo "📦 Publishing RC for $package with bump type: ${{ github.event.inputs.bump_type }}"
-              echo "y" | yarn publish:rc "$package" "${{ github.event.inputs.bump_type }}" --skip-build
+              echo "y" | yarn publish:rc "$package" "${{ github.event.inputs.bump_type }}" --skip-build || FAILED=$((FAILED + 1))
             fi
           done
+          [ $FAILED -eq 0 ] || exit 1
         env:
           YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTOMATION_PUBLISH }}
 
