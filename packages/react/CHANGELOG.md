@@ -3,6 +3,13 @@
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories
 every day, with simplicity, accessibility, consistency and performance.
 
+## 2025-12-11 `5.40.1`
+
+#### 🐛 Bug fixes
+
+- Fixes `FileUploader` to use `asOverlay` property to render a custom overlay when dragging files over the uploader. Better API usage. ([#388](https://github.com/TiendaNube/nimbus-design-system/pull/388) by [@joacotornello](https://github.com/joacotornello))
+- Fixes `FileUploaderOverlay` component to use the correct background color and border color. ([#388](https://github.com/TiendaNube/nimbus-design-system/pull/388) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-12-09 `5.40.0`
 
 #### 🎉 New features
