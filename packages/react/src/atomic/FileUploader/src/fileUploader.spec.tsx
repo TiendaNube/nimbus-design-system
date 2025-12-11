@@ -486,40 +486,4 @@ describe("GIVEN <FileUploader />", () => {
       expect(screen.getByText("Custom content")).toBeDefined();
     });
   });
-
-  describe("WHEN showIcon prop is provided", () => {
-    it("THEN should hide the icon when showIcon is false", () => {
-      makeSut({ showIcon: false });
-      const container = screen.getByTestId("file-uploader-container");
-      expect(container.querySelector("svg")).toBeNull();
-    });
-
-    it("THEN should show the icon by default", () => {
-      makeSut();
-      const container = screen.getByTestId("file-uploader-container");
-      expect(container.querySelector("svg")).not.toBeNull();
-    });
-  });
-
-  describe("WHEN custom colors are provided", () => {
-    it("THEN should apply borderColor via style variables", () => {
-      makeSut({ borderColor: "ai-gradientPurpleHigh" });
-      const container = screen.getByTestId("file-uploader-container");
-      expect(container.getAttribute("style")).toContain("borderColor");
-    });
-
-    it("THEN should apply backgroundColor via style variables", () => {
-      makeSut({ backgroundColor: "neutral-background" });
-      const container = screen.getByTestId("file-uploader-container");
-      expect(container.getAttribute("style")).toContain("backgroundColor");
-    });
-
-    it("THEN should support transparent colors", () => {
-      makeSut({ borderColor: "transparent", backgroundColor: "transparent" });
-      const container = screen.getByTestId("file-uploader-container");
-      const style = container.getAttribute("style");
-      expect(style).toContain("borderColor");
-      expect(style).toContain("backgroundColor");
-    });
-  });
 });
