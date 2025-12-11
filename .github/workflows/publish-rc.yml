@@ -77,14 +77,31 @@ jobs:
         run: |
           IFS=',' read -ra PACKAGES <<< "${{ github.event.inputs.packages }}"
           FAILED=0
+          FAILED_PACKAGES=""
           for package in "${PACKAGES[@]}"; do
             package=$(echo "$package" | xargs)
             if [ -n "$package" ]; then
               echo "📦 Publishing RC for $package with bump type: ${{ github.event.inputs.bump_type }}"
-              echo "y" | yarn publish:rc "$package" "${{ github.event.inputs.bump_type }}" --skip-build || FAILED=$((FAILED + 1))
+              set +e
+              echo "y" | yarn publish:rc "$package" "${{ github.event.inputs.bump_type }}" --skip-build
+              EXIT_CODE=$?
+              set -e
+              if [ $EXIT_CODE -ne 0 ]; then
+                echo "❌ Failed to publish $package (exit code: $EXIT_CODE)"
+                FAILED=$((FAILED + 1))
+                FAILED_PACKAGES="${FAILED_PACKAGES}${FAILED_PACKAGES:+, }$package"
+              fi
             fi
           done
-          [ $FAILED -eq 0 ] || exit 1
+          if [ $FAILED -gt 0 ]; then
+            echo ""
+            echo "=========================================="
+            echo "❌ PUBLISH SUMMARY: $FAILED package(s) failed"
+            echo "Failed packages: $FAILED_PACKAGES"
+            echo "=========================================="
+            exit 1
+          fi
+          echo "✅ All packages published successfully"
         env:
           YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTOMATION_PUBLISH }}
 
