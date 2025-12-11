@@ -140,6 +140,8 @@ const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
+        role="region"
+        aria-label="File drop zone"
       >
         <input
           ref={inputRef}
