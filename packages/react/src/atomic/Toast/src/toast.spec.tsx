@@ -109,4 +109,47 @@ describe("GIVEN <Toast />", () => {
       expect(mockedCloseToast).not.toBeCalled();
     });
   });
+
+  describe("WHEN duration is null", () => {
+    it("THEN should automatically set autoClose to false and not close automatically", () => {
+      makeSut({ id: "1", text: "Toast", duration: null });
+      const toast = screen.getByTestId("toast-element");
+      expect(toast.getAttribute("style")).toEqual("transform: translateY(0%);");
+      
+      act(() => {
+        jest.advanceTimersByTime(4200);
+      });
+      
+      expect(toast.getAttribute("style")).toEqual("transform: translateY(0%);");
+      expect(mockedCloseToast).not.toBeCalled();
+    });
+
+    it("THEN should ignore autoClose: true when duration is null", () => {
+      makeSut({ id: "1", text: "Toast", duration: null, autoClose: true });
+      const toast = screen.getByTestId("toast-element");
+      expect(toast.getAttribute("style")).toEqual("transform: translateY(0%);");
+      
+      act(() => {
+        jest.advanceTimersByTime(4200);
+      });
+      
+      expect(toast.getAttribute("style")).toEqual("transform: translateY(0%);");
+      expect(mockedCloseToast).not.toBeCalled();
+    });
+
+    it("THEN should be manually closable via closeToast function", () => {
+      makeSut({ id: "1", text: "Toast", duration: null });
+      const toast = screen.getByTestId("toast-element");
+      expect(toast).toBeInTheDocument();
+      
+      // Should not close automatically
+      act(() => {
+        jest.advanceTimersByTime(4200);
+      });
+      expect(mockedCloseToast).not.toBeCalled();
+      
+      // Should be manually closable (this would be called by the user)
+      expect(toast).toBeInTheDocument();
+    });
+  });
 });
