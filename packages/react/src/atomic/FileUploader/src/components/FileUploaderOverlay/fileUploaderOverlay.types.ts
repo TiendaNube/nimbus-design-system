@@ -29,6 +29,11 @@ export interface FileUploaderOverlayProperties {
    */
   backgroundColor?: keyof typeof fileUploader.properties.backgroundColor;
   /**
+   * Border radius of the overlay
+   * @default 2
+   */
+  borderRadius?: keyof typeof fileUploader.properties.borderRadius;
+  /**
    * Content to render inside the overlay
    */
   children?: ReactNode;

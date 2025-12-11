@@ -8,6 +8,7 @@ import {
   aspectRatioProperties,
   backgroundColorProperties,
   borderColorProperties,
+  borderRadiusProperties,
 } from "../../../properties";
 
 /* -------------------------------------------------------------------------------------------------
@@ -16,6 +17,7 @@ import {
 
 export const backgroundColor = createVar();
 export const borderColor = createVar();
+export const overlayBorderRadius = createVar();
 
 /* -------------------------------------------------------------------------------------------------
  * Style
@@ -61,23 +63,40 @@ const overlayAppear = keyframes({
   to: { opacity: 1 },
 });
 
+export const asOverlay = style({
+  width: vars.width,
+  height: vars.height,
+  position: "relative",
+});
+
+/* -------------------------------------------------------------------------------------------------
+ * FileUploader.Overlay
+ * -----------------------------------------------------------------------------------------------*/
+
 export const overlay = style({
   position: "absolute",
   inset: 0,
   display: "flex",
+  padding: varsThemeBase.spacing[4],
+  zIndex: varsThemeBase.zIndex[200],
+  pointerEvents: "none",
+  animation: `${overlayAppear} ${varsThemeBase.motion.speed.fast} ease-out`,
+  backgroundColor: "#fff",
+  borderRadius: overlayBorderRadius,
+});
+
+export const overlay__content = style({
+  display: "flex",
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "center",
+  flex: 1,
   gap: varsThemeBase.spacing[2],
   background: backgroundColor,
   borderRadius: varsThemeBase.shape.border.radius[2],
   borderWidth: varsThemeBase.shape.border.width[2],
   borderColor,
   borderStyle: "dashed",
-  zIndex: varsThemeBase.zIndex[200],
-  pointerEvents: "none",
-  animation: `${overlayAppear} ${varsThemeBase.motion.speed.fast} ease-out`,
-  margin: varsThemeBase.spacing[4],
 });
 
 export const overlay__image = style({
@@ -92,7 +111,9 @@ export const styles = {
   disabled,
   dragging,
   skeleton,
+  asOverlay,
   overlay,
+  overlay__content,
   overlay__image,
 };
 
@@ -125,6 +146,7 @@ const properties = {
   cursor: cursorProperties,
   backgroundColor: fileUploaderBackgroundColorProperties,
   borderColor: fileUploaderBorderColorProperties,
+  borderRadius: borderRadiusProperties,
 };
 
 const sprinkle = createSprinkles(

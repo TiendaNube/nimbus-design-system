@@ -41,15 +41,15 @@ export interface FileUploaderProperties {
   /**
    * Callback fired when files are dropped (before validation)
    */
-  onDrop?: (event: DragEvent<HTMLLabelElement>) => void;
+  onDrop?: (event: DragEvent<HTMLLabelElement | HTMLDivElement>) => void;
   /**
    * Callback fired when all dropped files are rejected due to file type validation
    */
-  onDropReject?: (event: DragEvent<HTMLLabelElement>) => void;
+  onDropReject?: (event: DragEvent<HTMLLabelElement | HTMLDivElement>) => void;
   /**
    * Callback fired when files are successfully accepted and processed
    */
-  onDropSuccess?: (event: DragEvent<HTMLLabelElement>) => void;
+  onDropSuccess?: (event: DragEvent<HTMLLabelElement | HTMLDivElement>) => void;
   /**
    * Callback fired when an error occurs during file drop processing
    */
@@ -58,21 +58,6 @@ export interface FileUploaderProperties {
    * Content to render inside the file uploader container
    */
   children?: ReactNode;
-  /**
-   * Hides the default icon when true
-   * @default true
-   */
-  showIcon?: boolean;
-  /**
-   * Border color of the file uploader
-   * @default primary-interactive
-   */
-  borderColor?: keyof typeof fileUploader.properties.borderColor;
-  /**
-   * Background color of the file uploader
-   * @default primary-surface
-   */
-  backgroundColor?: keyof typeof fileUploader.properties.backgroundColor;
   /**
    * Custom overlay element to render when dragging files over the uploader.
    * When defined, this overlay will be displayed instead of children during drag operations.
@@ -84,6 +69,12 @@ export interface FileUploaderProperties {
    * @default false
    */
   disableClickUpload?: boolean;
+
+  /**
+   * When true, the file uploader will be rendered as an overlay. Useful for invisible upload areas used along FileUploader.Overlay.
+   * @default false
+   */
+  asOverlay?: boolean;
 }
 
 export type FileUploaderProps = FileUploaderProperties & {
