@@ -29,6 +29,6 @@ export const withImage: Story = {
     subtitle: "Drag and drop files here or click to select files",
     imageSrc: "/static/image_mockup.png",
     backgroundColor: "neutral-background",
-    borderColor: "ai-gradientPurpleHigh",
+    borderColor: "ai-generativeInteractiveHover",
   },
 };
