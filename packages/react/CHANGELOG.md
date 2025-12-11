@@ -7,7 +7,7 @@ every day, with simplicity, accessibility, consistency and performance.
 
 #### 🎉 New features
 
-- `List`: Added `padding` property to set the padding of the list. ([#388](https://github.com/TiendaNube/nimbus-design-system/pull/388) by [@joacotornello](https://github.com/joacotornello))
+- `List`: Added `padding` property to set the padding of the list. ([#390](https://github.com/TiendaNube/nimbus-design-system/pull/390) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-12-09 `5.40.0`
 

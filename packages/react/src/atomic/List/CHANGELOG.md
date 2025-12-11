@@ -6,7 +6,7 @@ Use the list component to arrange a collection of text elements. Each list item 
 
 ### 🎉 New features
 
-- Added `padding` property to set the padding of the list. ([#388](https://github.com/TiendaNube/nimbus-design-system/pull/388) by [@joacotornello](https://github.com/joacotornello))
+- Added `padding` property to set the padding of the list. ([#390](https://github.com/TiendaNube/nimbus-design-system/pull/390) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-03-18 `2.2.1`
 
