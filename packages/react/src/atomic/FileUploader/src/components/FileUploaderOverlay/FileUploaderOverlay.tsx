@@ -60,20 +60,22 @@ const FileUploaderOverlay: React.FC<FileUploaderOverlayProps> = ({
             className={fileUploader.classnames.overlay__image}
           />
         )}
-        {title && (
-          <Text
-            color="primary-interactive"
-            fontWeight="bold"
-            fontSize="caption"
-          >
-            {title}
-          </Text>
-        )}
-        {subtitle && (
-          <Text color="primary-textLow" fontSize="caption">
-            {subtitle}
-          </Text>
-        )}
+        <div className={fileUploader.classnames.overlay__content__text}>
+          {title && (
+            <Text
+              color="neutral-textHigh"
+              fontSize="highlight"
+              fontWeight="bold"
+            >
+              {title}
+            </Text>
+          )}
+          {subtitle && (
+            <Text color="neutral-textLow" fontSize="caption">
+              {subtitle}
+            </Text>
+          )}
+        </div>
         {children}
       </div>
     </div>

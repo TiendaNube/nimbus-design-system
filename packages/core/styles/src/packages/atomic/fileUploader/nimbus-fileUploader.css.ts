@@ -32,10 +32,10 @@ export const container = style({
   gap: varsThemeBase.spacing[1],
   width: vars.width,
   height: vars.height,
-  background: backgroundColor,
+  background: varsThemeBase.colors.primary.surface,
   borderRadius: varsThemeBase.shape.border.radius[2],
   borderWidth: varsThemeBase.shape.border.width[2],
-  borderColor,
+  borderColor: varsThemeBase.colors.primary.interactive,
   borderStyle: "dashed",
   transition: `background ${varsThemeBase.motion.speed.fast} ease, border-color ${varsThemeBase.motion.speed.fast} ease`,
 });
@@ -99,6 +99,14 @@ export const overlay__content = style({
   borderStyle: "dashed",
 });
 
+export const overlay__content__text = style({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+  gap: varsThemeBase.spacing[1],
+});
+
 export const overlay__image = style({
   maxWidth: varsThemeBase.spacing[16],
   maxHeight: varsThemeBase.spacing[16],
@@ -114,6 +122,7 @@ export const styles = {
   asOverlay,
   overlay,
   overlay__content,
+  overlay__content__text,
   overlay__image,
 };
 
@@ -136,7 +145,8 @@ const fileUploaderBackgroundColorProperties = {
 
 const fileUploaderBorderColorProperties = {
   "primary-interactive": borderColorProperties["primary-interactive"],
-  "ai-gradientPurpleHigh": borderColorProperties["ai-gradientPurpleHigh"],
+  "ai-generativeInteractiveHover":
+    borderColorProperties["ai-generativeInteractiveHover"],
   transparent: "transparent",
 };
 

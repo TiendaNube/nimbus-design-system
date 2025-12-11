@@ -180,7 +180,7 @@ export const asOverlay: Story = {
                   title="Add files"
                   subtitle="Drag and drop files here or click to select files"
                   backgroundColor="neutral-background"
-                  borderColor="ai-gradientPurpleHigh"
+                  borderColor="ai-generativeInteractiveHover"
                   borderRadius="2"
                   imageSrc="/static/image_mockup.png"
                 />
