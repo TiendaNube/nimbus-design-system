@@ -39,3 +39,9 @@ export const ordered: Story = {
     as: "ol",
   },
 };
+
+export const customPadding: Story = {
+  args: {
+    padding: "2",
+  },
+};
