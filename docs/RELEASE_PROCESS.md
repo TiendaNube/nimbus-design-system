@@ -89,3 +89,9 @@ This is as simple as duplicating the most recent page and updating the version n
 
 - We only provide live demos for the latest version of a package, so remember to disable/remove the previous live demo (this avoids changes that affect older versions in our docs)
 - If the received version is a patch that does not require docs update, you can simply change the page name to match the new version instead of duplicating the same content
+
+### Troubleshooting
+
+For local publishing:
+
+- Ensure you are logged in to npm with `yarn npm login`, using credentials from the `Nimbus Design System` npm organization.
