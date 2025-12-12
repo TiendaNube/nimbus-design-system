@@ -1,0 +1,107 @@
+name: publish-rc-manual
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: "Branch to run the workflow from"
+        required: true
+        type: string
+        default: "master"
+      packages:
+        description: |
+          Comma-separated list of packages to publish (e.g., @nimbus-ds/button,@nimbus-ds/box).
+          Available packages: @nimbus-ds/components, @nimbus-ds/styles, @nimbus-ds/tokens, @nimbus-ds/icons,
+          @nimbus-ds/button, @nimbus-ds/box, @nimbus-ds/text, @nimbus-ds/icon, @nimbus-ds/checkbox,
+          @nimbus-ds/file-uploader, @nimbus-ds/table, @nimbus-ds/accordion, @nimbus-ds/modal,
+          @nimbus-ds/stepper, @nimbus-ds/segmented-control, @nimbus-ds/split-button, @nimbus-ds/scroll-pane
+        required: true
+        type: string
+      bump_type:
+        description: "Version bump type"
+        required: true
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+
+jobs:
+  publish-rc-packages:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+      TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
+    steps:
+      - name: Increase swapfile
+        run: |
+          sudo swapoff -a
+          sudo fallocate -l 15G /swapfile
+          sudo chmod 600 /swapfile
+          sudo mkswap /swapfile
+          sudo swapon /swapfile
+          sudo swapon --show
+
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.inputs.branch }}
+
+      - uses: ./.github/actions/setup-node-deps
+
+      - name: Create .env file
+        uses: DeveloperRic/action-create-env@v1.0.2
+        with:
+          full_text: |
+            GITHUB_TOKEN=${{ secrets.PAT_CHANGE_BRANCH_PROTECTION_RULES_FROM_USER_NIMBUS }}
+          include_env_vars: true
+
+      - name: Build tokens
+        run: yarn build:tokens
+
+      - name: Build icons
+        run: yarn build:icons
+
+      - name: Build components
+        run: |
+          export NODE_OPTIONS="--max_old_space_size=12288"
+          yarn build:components
+
+      - name: Build packages
+        run: |
+          export NODE_OPTIONS="--max_old_space_size=12288"
+          yarn build:packages
+
+      - name: Publish RC packages
+        run: |
+          IFS=',' read -ra PACKAGES <<< "${{ github.event.inputs.packages }}"
+          FAILED=0
+          FAILED_PACKAGES=""
+          for package in "${PACKAGES[@]}"; do
+            package=$(echo "$package" | xargs)
+            if [ -n "$package" ]; then
+              echo "📦 Publishing RC for $package with bump type: ${{ github.event.inputs.bump_type }}"
+              set +e
+              echo "y" | yarn publish:rc "$package" "${{ github.event.inputs.bump_type }}" --skip-build
+              EXIT_CODE=$?
+              set -e
+              if [ $EXIT_CODE -ne 0 ]; then
+                echo "❌ Failed to publish $package (exit code: $EXIT_CODE)"
+                FAILED=$((FAILED + 1))
+                FAILED_PACKAGES="${FAILED_PACKAGES}${FAILED_PACKAGES:+, }$package"
+              fi
+            fi
+          done
+          if [ $FAILED -gt 0 ]; then
+            echo ""
+            echo "=========================================="
+            echo "❌ PUBLISH SUMMARY: $FAILED package(s) failed"
+            echo "Failed packages: $FAILED_PACKAGES"
+            echo "=========================================="
+            exit 1
+          fi
+          echo "✅ All packages published successfully"
+        env:
+          YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTOMATION_PUBLISH }}
+
