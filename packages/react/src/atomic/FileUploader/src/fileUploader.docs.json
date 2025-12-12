@@ -1,9 +1,9 @@
 {
   "id": "fileUploader",
   "name": "FileUploader",
-  "totalProps": 16,
+  "totalProps": 14,
   "packageName": "@nimbus-ds/file-uploader",
-  "version": "2.7.0",
+  "version": "2.8.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/file-uploader",
   "props": [
     {
@@ -100,37 +100,6 @@
       "required": false
     },
     {
-      "description": "Hides the default icon when true",
-      "default": true,
-      "type": "boolean",
-      "title": "showIcon",
-      "required": false
-    },
-    {
-      "description": "Border color of the file uploader",
-      "default": "primary-interactive",
-      "enum": [
-        "ai-gradientPurpleHigh",
-        "primary-interactive",
-        "transparent"
-      ],
-      "type": "string",
-      "title": "borderColor",
-      "required": false
-    },
-    {
-      "description": "Background color of the file uploader",
-      "default": "primary-surface",
-      "enum": [
-        "neutral-background",
-        "primary-surface",
-        "transparent"
-      ],
-      "type": "string",
-      "title": "backgroundColor",
-      "required": false
-    },
-    {
       "$ref": "#/definitions/React.ReactNode",
       "description": "Custom overlay element to render when dragging files over the uploader.\nWhen defined, this overlay will be displayed instead of children during drag operations.",
       "title": "dragOverlay",
@@ -141,6 +110,13 @@
       "default": false,
       "type": "boolean",
       "title": "disableClickUpload",
+      "required": false
+    },
+    {
+      "description": "When true, the file uploader will be rendered as an overlay. Useful for invisible upload areas used along FileUploader.Overlay.",
+      "default": false,
+      "type": "boolean",
+      "title": "asOverlay",
       "required": false
     }
   ],
@@ -188,7 +164,7 @@
     },
     {
       "name": "FileUploader.Overlay",
-      "totalProps": 7,
+      "totalProps": 8,
       "props": [
         {
           "description": "Title text displayed in the overlay",
@@ -218,7 +194,7 @@
           "description": "Border color of the overlay",
           "default": "primary-interactive",
           "enum": [
-            "ai-gradientPurpleHigh",
+            "ai-generativeInteractiveHover",
             "primary-interactive",
             "transparent"
           ],
@@ -236,6 +212,25 @@
           ],
           "type": "string",
           "title": "backgroundColor",
+          "required": false
+        },
+        {
+          "description": "Border radius of the overlay",
+          "default": 2,
+          "enum": [
+            "0-5",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "base",
+            "full",
+            "half"
+          ],
+          "type": "string",
+          "title": "borderRadius",
           "required": false
         },
         {
