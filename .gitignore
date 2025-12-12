@@ -58,3 +58,6 @@ TODO.md
 
 # Build files
 **/build-temp--**
+
+# Synk
+.cursor/rules/snyk_rules.mdc
