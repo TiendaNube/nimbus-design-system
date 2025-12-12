@@ -2,6 +2,12 @@
 
 The File Uploader component is used to upload files.
 
+## 2025-12-12 `2.8.2`
+
+#### 🐛 Bug fixes
+
+- Fixes `FileUploaderOverlay` component to use the correct text alignment. ([#392](https://github.com/TiendaNube/nimbus-design-system/pull/392) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-12-11 `2.8.1`
 
 #### 🐛 Bug fixes

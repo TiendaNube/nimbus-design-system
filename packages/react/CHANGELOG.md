@@ -3,6 +3,12 @@
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories
 every day, with simplicity, accessibility, consistency and performance.
 
+## 2025-12-12 `5.40.2`
+
+#### 🐛 Bug fixes
+
+- Fixes `FileUploaderOverlay` component to use the correct text alignment. ([#392](https://github.com/TiendaNube/nimbus-design-system/pull/392) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-12-11 `5.40.1`
 
 #### 🐛 Bug fixes
