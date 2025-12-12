@@ -6,7 +6,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 #### 🐛 Bug fixes
 
-- Fixes `FileUploader` overlay padding. ([#389](https://github.com/TiendaNube/nimbus-design-system/pull/389) by [@joacotornello](https://github.com/joacotornello))
+- Fixes `FileUploader` overlay padding. ([#391](https://github.com/TiendaNube/nimbus-design-system/pull/391) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-12-11 `9.44.1`
 
