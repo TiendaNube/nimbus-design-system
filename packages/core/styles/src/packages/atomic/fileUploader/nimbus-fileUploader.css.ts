@@ -97,6 +97,7 @@ export const overlay__content = style({
   borderWidth: varsThemeBase.shape.border.width[2],
   borderColor,
   borderStyle: "dashed",
+  padding: varsThemeBase.spacing[4],
 });
 
 export const overlay__content__text = style({
