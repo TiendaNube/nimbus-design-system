@@ -1,6 +1,6 @@
 import React, { useMemo, useState, useCallback, useRef } from "react";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
-import { fileUploader, fileUploaderVars, vars } from "@nimbus-ds/styles";
+import { fileUploader, vars } from "@nimbus-ds/styles";
 import { PlusCircleIcon } from "@nimbus-ds/icons";
 import { Icon } from "@nimbus-ds/icon";
 import { Text } from "@nimbus-ds/text";
@@ -32,13 +32,11 @@ const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
   onDropSuccess,
   onError,
   children,
-  showIcon = true,
   disableClickUpload = false,
-  borderColor = "primary-interactive",
-  backgroundColor = "primary-surface",
   id,
   onChange,
   dragOverlay,
+  asOverlay = false,
   ...rest
 }: FileUploaderProps) => {
   const color = useMemo(() => (disabled ? "neutral" : "primary"), [disabled]);
@@ -46,20 +44,8 @@ const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
   const inputRef = useRef<HTMLInputElement>(null);
   const dragCounterRef = useRef(0);
 
-  const resolvedBorderColor = useMemo(
-    () => fileUploader.properties.borderColor[borderColor] ?? borderColor,
-    [borderColor]
-  );
-
-  const resolvedBackgroundColor = useMemo(
-    () =>
-      fileUploader.properties.backgroundColor[backgroundColor] ??
-      backgroundColor,
-    [backgroundColor]
-  );
-
   const handleDragEnter = useCallback(
-    (event: React.DragEvent<HTMLLabelElement>) => {
+    (event: React.DragEvent<HTMLLabelElement | HTMLDivElement>) => {
       event.preventDefault();
       event.stopPropagation();
       if (!disabled) {
@@ -73,7 +59,7 @@ const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
   );
 
   const handleDragOver = useCallback(
-    (event: React.DragEvent<HTMLLabelElement>) => {
+    (event: React.DragEvent<HTMLLabelElement | HTMLDivElement>) => {
       event.preventDefault();
       event.stopPropagation();
     },
@@ -81,7 +67,7 @@ const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
   );
 
   const handleDragLeave = useCallback(
-    (event: React.DragEvent<HTMLLabelElement>) => {
+    (event: React.DragEvent<HTMLLabelElement | HTMLDivElement>) => {
       event.preventDefault();
       event.stopPropagation();
       dragCounterRef.current -= 1;
@@ -93,7 +79,7 @@ const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
   );
 
   const handleDrop = useCallback(
-    (event: React.DragEvent<HTMLLabelElement>) => {
+    (event: React.DragEvent<HTMLLabelElement | HTMLDivElement>) => {
       event.preventDefault();
       event.stopPropagation();
       dragCounterRef.current = 0;
@@ -142,6 +128,37 @@ const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
     [disabled, onChange, accept, onDrop, onDropReject, onDropSuccess, onError]
   );
 
+  if (asOverlay) {
+    return (
+      <div
+        className={fileUploader.classnames.asOverlay}
+        style={assignInlineVars({
+          [vars.width]: width,
+          [vars.height]: height,
+        })}
+        onDragEnter={handleDragEnter}
+        onDragOver={handleDragOver}
+        onDragLeave={handleDragLeave}
+        onDrop={handleDrop}
+        role="region"
+        aria-label="File drop zone"
+      >
+        <input
+          ref={inputRef}
+          className={fileUploader.classnames.container__input}
+          type="file"
+          accept={accept}
+          disabled={disabled || disableClickUpload}
+          id={id || DEFAULT_INPUT_ID}
+          onChange={onChange}
+          {...rest}
+        />
+        {children}
+        {isDragging && !disabled && dragOverlay}
+      </div>
+    );
+  }
+
   return (
     <label
       data-testid="file-uploader-container"
@@ -154,28 +171,21 @@ const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
           cursor: disabled || disableClickUpload ? "auto" : "pointer",
         }),
         disabled && fileUploader.classnames.disabled,
-        isDragging &&
-          !disabled &&
-          !dragOverlay &&
-          fileUploader.classnames.dragging,
+        isDragging && !disabled && fileUploader.classnames.dragging,
       ].join(" ")}
       style={assignInlineVars({
         [vars.width]: width,
         [vars.height]: height,
-        [fileUploaderVars.borderColor]: resolvedBorderColor,
-        [fileUploaderVars.backgroundColor]: resolvedBackgroundColor,
       })}
       onDragEnter={handleDragEnter}
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
     >
-      {showIcon && (
-        <Icon
-          color={`${color}-interactive`}
-          source={<PlusCircleIcon size={20} />}
-        />
-      )}
+      <Icon
+        color={`${color}-interactive`}
+        source={<PlusCircleIcon size={20} />}
+      />
       {placeholder && (
         <Text
           color={`${color}-interactive`}
@@ -196,7 +206,6 @@ const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
         onChange={onChange}
         {...rest}
       />
-      {isDragging && !disabled && dragOverlay}
     </label>
   );
 };

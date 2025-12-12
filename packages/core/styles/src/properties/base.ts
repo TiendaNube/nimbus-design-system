@@ -48,6 +48,8 @@ export const baseColors = {
   "ai-generativeSurfaceHighlight":
     varsThemeBase.colors.aiGenerative.surfaceHighlight,
   "ai-generativeInteractive": varsThemeBase.colors.aiGenerative.background,
+  "ai-generativeInteractiveHover":
+    varsThemeBase.colors.aiGenerative.interactiveHover,
   "ai-generativeTextLow": varsThemeBase.colors.aiGenerative.textLow,
   "ai-generativeTextHigh": varsThemeBase.colors.aiGenerative.textHigh,
 
