@@ -71,7 +71,7 @@ const FileUploaderOverlay: React.FC<FileUploaderOverlayProps> = ({
             </Text>
           )}
           {subtitle && (
-            <Text color="neutral-textLow" fontSize="caption">
+            <Text color="neutral-textLow" fontSize="caption" textAlign="center">
               {subtitle}
             </Text>
           )}
