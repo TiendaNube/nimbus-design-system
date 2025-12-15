@@ -1,5 +1,6 @@
-import React from "react";
-import { list } from "@nimbus-ds/styles";
+import React, { useMemo } from "react";
+import { assignInlineVars } from "@vanilla-extract/dynamic";
+import { list, listVars } from "@nimbus-ds/styles";
 
 import { ListProps, ListComponents } from "./list.types";
 import { ListSkeletonItem, ListSkeleton, ListItem } from "./components";
@@ -8,13 +9,27 @@ const List: React.FC<ListProps> & ListComponents = ({
   className: _className,
   style: _style,
   as: As = "ul",
+  padding = "6",
   children,
   ...rest
-}: ListProps) => (
-  <As {...rest} className={list.classnames.container}>
-    {children}
-  </As>
-);
+}: ListProps) => {
+  const resolvedPadding = useMemo(
+    () => list.properties.padding[padding] ?? padding,
+    [padding]
+  );
+
+  return (
+    <As
+      {...rest}
+      className={list.classnames.container}
+      style={assignInlineVars({
+        [listVars.paddingInlineStart]: resolvedPadding,
+      })}
+    >
+      {children}
+    </As>
+  );
+};
 
 List.Skeleton = ListSkeleton;
 List.SkeletonItem = ListSkeletonItem;

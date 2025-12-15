@@ -26,7 +26,7 @@ export { tag } from "./packages/atomic/tag";
 export { text } from "./packages/atomic/text";
 export { title } from "./packages/atomic/title";
 export { toast } from "./packages/atomic/toast";
-export { list } from "./packages/atomic/list";
+export { list, listVars } from "./packages/atomic/list";
 export { multiSelect } from "./packages/atomic/multiSelect";
 export { popover } from "./packages/atomic/popover";
 export { radio } from "./packages/atomic/radio";

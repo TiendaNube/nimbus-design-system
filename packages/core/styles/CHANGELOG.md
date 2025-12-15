@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2025-12-11 `9.45.0`
+
+#### 🎉 New features
+
+- `List`: Added `padding` property to set the padding of the list. ([#390](https://github.com/TiendaNube/nimbus-design-system/pull/390) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-12-12 `9.44.2`
 
 #### 🐛 Bug fixes
