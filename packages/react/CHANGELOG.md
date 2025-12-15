@@ -3,6 +3,12 @@
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories
 every day, with simplicity, accessibility, consistency and performance.
 
+## 2025-12-11 `5.41.0`
+
+#### 🎉 New features
+
+- `List`: Added `padding` property to set the padding of the list. ([#390](https://github.com/TiendaNube/nimbus-design-system/pull/390) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-12-12 `5.40.2`
 
 #### 🐛 Bug fixes
