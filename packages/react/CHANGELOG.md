@@ -176,6 +176,12 @@ every day, with simplicity, accessibility, consistency and performance.
 
 - Restored `FloatingOverlay` to be a sibling of the content, to avoid breaking consumers that were modifying via custom styling the component. This will be reverted in the next major version, or when consumers fixes their custom styling. ([#349](https://github.com/TiendaNube/nimbus-design-system/pull/349) by [@joacotornello](https://github.com/joacotornello))
 
+## 2025-09-12 `5.21.2`
+
+#### 💡 Others
+
+- `SegmentedControl`: Removed gap from segmented control options. ([#348](https://github.com/TiendaNube/nimbus-design-system/pull/348) by [@mrolando-tn](https://github.com/mrolando-tn))
+
 ## 2025-09-10 `5.21.1`
 
 #### 💡 Others

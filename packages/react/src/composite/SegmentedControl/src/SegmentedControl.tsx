@@ -117,7 +117,7 @@ const SegmentedControl: React.FC<SegmentedControlProps> &
         {...boxProps}
         // Properties that can't be changed by the consumer
         display="flex"
-        gap="1"
+        gap="none"
         backgroundColor="neutral-surface"
         borderRadius="2"
       >

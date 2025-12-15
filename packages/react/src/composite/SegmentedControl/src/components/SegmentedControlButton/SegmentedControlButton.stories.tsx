@@ -132,7 +132,7 @@ export const SkeletonState: Story = {
 export const GroupExample: Story = {
   args: {
     children: (
-      <Box display="flex" gap="1" padding="1">
+      <Box display="flex" padding="1">
         <SegmentedControlButton label="Option 1" id="option-1">
           Option 1
         </SegmentedControlButton>
@@ -151,7 +151,7 @@ export const GroupExample: Story = {
 export const FullWidthGroupExample: Story = {
   args: {
     children: (
-      <Box display="flex" gap="1" padding="1" width="100%">
+      <Box display="flex" padding="1" width="100%">
         <SegmentedControlButton label="Option 1" fullWidth id="option-1">
           Option 1
         </SegmentedControlButton>
