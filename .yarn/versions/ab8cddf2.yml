@@ -1,9 +1,9 @@
 releases:
   "@nimbus-ds/components": minor
+  "@nimbus-ds/styles": minor
   "@nimbus-ds/table": minor
 
 declined:
   - nimbus-design-system
-  - "@nimbus-ds/styles"
   - "@nimbus-ds/file-uploader"
   - "@nimbus-ds/list"
