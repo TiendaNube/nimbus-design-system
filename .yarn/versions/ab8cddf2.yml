@@ -4,5 +4,7 @@ releases:
 
 declined:
   - nimbus-design-system
+  - "@nimbus-ds/file-uploader"
+  - "@nimbus-ds/list"
   - "@nimbus-ds/split-button"
   - "@nimbus-ds/stepper"
