@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import { Table } from "./Table";
 import { Button } from "@nimbus-ds/button";
+import { Table } from "./Table";
 import { TableColumnLayout } from "./table.types";
 
 const meta: Meta<typeof Table> = {
@@ -168,10 +168,10 @@ export const withGrowConstraints: Story = {
   args: {},
   render: () => {
     const columnLayout: TableColumnLayout[] = [
-      { width: "100px" },
-      { grow: 2 },
-      { grow: 1, minWidth: "200px" },
-      { grow: 1 },
+      { id: "column-1", width: "100px" },
+      { id: "column-2", grow: 2 },
+      { id: "column-3", grow: 1, minWidth: "200px" },
+      { id: "column-4", grow: 1 },
     ];
 
     return (

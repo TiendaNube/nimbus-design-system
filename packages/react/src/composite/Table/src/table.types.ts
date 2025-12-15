@@ -11,6 +11,10 @@ export interface TableComponents {
 
 export interface TableColumnLayout {
   /**
+   * Unique identifier for the column.
+   */
+  id: string;
+  /**
    * Fixed width applied to the column. Accepts any valid CSS width value.
    */
   width?: string;

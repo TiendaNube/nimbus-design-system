@@ -1,9 +1,10 @@
 import React, { useMemo } from "react";
 import { table } from "@nimbus-ds/styles";
 
-import { TableProps, TableComponents, TableColumnLayout } from "./table.types";
+import { TableProps, TableComponents } from "./table.types";
 import { TableBody, TableCell, TableHead, TableRow } from "./components";
 import { TableContext, TableContextValue } from "./contexts";
+import { getEffectiveFixedWidth, getColumnWidth } from "./Table.definitions";
 
 const Table: React.FC<TableProps> & TableComponents = ({
   className: _className,
@@ -12,40 +13,16 @@ const Table: React.FC<TableProps> & TableComponents = ({
   columnLayout,
   ...rest
 }: TableProps) => {
-  const getEffectiveFixedWidth = (
-    column: TableColumnLayout
-  ): string | undefined => {
-    if (column.width) return column.width;
-    return undefined;
-  };
+  const totalGrowValue = useMemo(
+    () =>
+      columnLayout?.reduce((total, column) => {
+        if (getEffectiveFixedWidth(column)) return total;
 
-  const fixedWidthExpression = columnLayout
-    ?.map(getEffectiveFixedWidth)
-    .filter(Boolean)
-    .join(" + ");
-
-  const totalGrow =
-    columnLayout?.reduce((total, column) => {
-      if (getEffectiveFixedWidth(column)) return total;
-      const growValue = column.grow ?? 0;
-      return growValue > 0 ? total + growValue : total;
-    }, 0) ?? 0;
-
-  const getGrowExpression = (growValue: number) => {
-    const share = (growValue / totalGrow).toFixed(4);
-    if (!fixedWidthExpression) return `100% * ${share}`;
-    return `100% * ${share}`;
-  };
-
-  const getColumnWidth = (column: TableColumnLayout): string | undefined => {
-    const fixedWidth = getEffectiveFixedWidth(column);
-    if (fixedWidth) return fixedWidth;
-
-    const growValue = column.grow;
-    if (!totalGrow || !growValue || growValue <= 0) return undefined;
-
-    return `calc(${getGrowExpression(growValue)})`;
-  };
+        const growValue = column.grow ?? 0;
+        return growValue > 0 ? total + growValue : total;
+      }, 0) ?? 0,
+    [columnLayout]
+  );
 
   const hasColumnLayout = Boolean(columnLayout?.length);
 
@@ -59,10 +36,10 @@ const Table: React.FC<TableProps> & TableComponents = ({
       <table {...rest} className={table.classnames.container}>
         {hasColumnLayout ? (
           <colgroup>
-            {columnLayout?.map((column, index) => (
+            {columnLayout?.map((column) => (
               <col
-                key={`table-col-${index}`}
-                style={{ width: getColumnWidth(column) }}
+                key={`table-col-${column.id}`}
+                style={{ width: getColumnWidth(column, totalGrowValue) }}
               />
             ))}
           </colgroup>

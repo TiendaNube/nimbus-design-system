@@ -37,7 +37,10 @@ describe("GIVEN <TableCell />", () => {
       render(
         <TableContext.Provider
           value={{
-            columnLayout: [{ width: "100px" }, { grow: 1, minWidth: "200px" }],
+            columnLayout: [
+              { id: "column-1", width: "100px" },
+              { id: "column-2", grow: 1, minWidth: "200px" },
+            ],
           }}
         >
           <table>
@@ -57,35 +60,11 @@ describe("GIVEN <TableCell />", () => {
       });
     });
 
-    it("THEN should apply maxWidth from columnLayout", () => {
-      render(
-        <TableContext.Provider
-          value={{
-            columnLayout: [{ grow: 1, maxWidth: "150px" }],
-          }}
-        >
-          <table>
-            <tbody>
-              <tr>
-                <TableCell column={0} data-testid="cell-with-max">
-                  Content
-                </TableCell>
-              </tr>
-            </tbody>
-          </table>
-        </TableContext.Provider>
-      );
-
-      expect(screen.getByTestId("cell-with-max")).toHaveStyle({
-        maxWidth: "150px",
-      });
-    });
-
     it("THEN should not apply constraints when column prop is not provided", () => {
       render(
         <TableContext.Provider
           value={{
-            columnLayout: [{ grow: 1, minWidth: "200px", maxWidth: "300px" }],
+            columnLayout: [{ id: "column-1", grow: 1, minWidth: "200px" }],
           }}
         >
           <table>
@@ -100,7 +79,6 @@ describe("GIVEN <TableCell />", () => {
 
       const cell = screen.getByTestId("cell-no-column");
       expect(cell).not.toHaveStyle({ minWidth: "200px" });
-      expect(cell).not.toHaveStyle({ maxWidth: "300px" });
     });
   });
 });

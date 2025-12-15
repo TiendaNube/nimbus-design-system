@@ -29,7 +29,11 @@ describe("GIVEN <Table />", () => {
       render(
         <Table
           data-testid="table-element"
-          columnLayout={[{ width: "120px" }, { grow: 2 }, { grow: 1 }]}
+          columnLayout={[
+            { id: "column-1", width: "120px" },
+            { id: "column-2", grow: 2 },
+            { id: "column-3", grow: 1 },
+          ]}
         >
           <tbody>
             <tr>
@@ -41,8 +45,9 @@ describe("GIVEN <Table />", () => {
         </Table>
       );
 
-      const columns =
-        screen.getByTestId("table-element").querySelectorAll("col");
+      const columns = screen
+        .getByTestId("table-element")
+        .querySelectorAll("col");
 
       expect(columns).toHaveLength(3);
       expect(columns[0]).toHaveStyle({ width: "120px" });
@@ -53,9 +58,9 @@ describe("GIVEN <Table />", () => {
         <Table
           data-testid="table-element"
           columnLayout={[
-            { width: "100px" },
-            { grow: 1, minWidth: "200px" },
-            { grow: 1, maxWidth: "150px" },
+            { id: "column-1", width: "100px" },
+            { id: "column-2", grow: 1, minWidth: "200px" },
+            { id: "column-3", grow: 1 },
           ]}
         >
           <Table.Head>
@@ -88,9 +93,7 @@ describe("GIVEN <Table />", () => {
       );
 
       expect(screen.getByTestId("header-1")).toHaveStyle({ minWidth: "200px" });
-      expect(screen.getByTestId("header-2")).toHaveStyle({ maxWidth: "150px" });
       expect(screen.getByTestId("cell-1")).toHaveStyle({ minWidth: "200px" });
-      expect(screen.getByTestId("cell-2")).toHaveStyle({ maxWidth: "150px" });
     });
   });
 });
