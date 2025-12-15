@@ -5,8 +5,7 @@ import { TableColumnLayout } from "../../table.types";
  */
 export interface TableContextValue {
   /**
-   * Column layout definitions to apply minWidth and maxWidth constraints to cells
+   * Column layout definitions to apply minWidth constraint to cells
    */
   columnLayout?: TableColumnLayout[];
 }
-

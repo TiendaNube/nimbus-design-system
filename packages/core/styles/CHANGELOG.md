@@ -6,7 +6,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 #### 🎉 New features
 
-- `Table`: Allow table layout to be controlled by the column layout. ([#400](https://github.com/TiendaNube/nimbus-design-system/pull/400) by [@joacotornello](https://github.com/joacotornello))
+- `Table`: Allow table layout to be controlled by the column layout. ([#393](https://github.com/TiendaNube/nimbus-design-system/pull/393) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-12-11 `9.45.0`
 

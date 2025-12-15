@@ -53,7 +53,7 @@ describe("GIVEN <Table />", () => {
       expect(columns[0]).toHaveStyle({ width: "120px" });
     });
 
-    it("THEN should apply minWidth and maxWidth to cells via column prop", () => {
+    it("THEN should apply minWidth to cells via column prop", () => {
       render(
         <Table
           data-testid="table-element"

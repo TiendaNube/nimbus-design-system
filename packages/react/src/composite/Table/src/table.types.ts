@@ -20,6 +20,7 @@ export interface TableColumnLayout {
   width?: string;
   /**
    * Growth factor that distributes remaining space among columns without a fixed width.
+   * Must be a positive number greater than 0.
    */
   grow?: number;
   /**

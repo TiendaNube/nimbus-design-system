@@ -7,7 +7,7 @@ every day, with simplicity, accessibility, consistency and performance.
 
 #### 🎉 New features
 
-- `Table`: Added `columnLayout` prop to allow column width and grow constraints. ([#400](https://github.com/TiendaNube/nimbus-design-system/pull/400) by [@joacotornello](https://github.com/joacotornello))
+- `Table`: Added `columnLayout` prop to allow column width and grow constraints. ([#393](https://github.com/TiendaNube/nimbus-design-system/pull/393) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-12-11 `5.41.0`
 

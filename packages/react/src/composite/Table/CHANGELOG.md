@@ -6,7 +6,7 @@ The Table component allows us to organize data with a tabular structure in a tab
 
 ### 🎉 New features
 
-- Added `columnLayout` prop to `Table` component to allow column width and grow constraints. ([#400](https://github.com/TiendaNube/nimbus-design-system/pull/400) by [@joacotornello](https://github.com/joacotornello))
+- Added `columnLayout` prop to `Table` component to allow column width and grow constraints. ([#393](https://github.com/TiendaNube/nimbus-design-system/pull/393) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-03-18 `2.0.1`
 

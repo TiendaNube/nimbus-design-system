@@ -13,8 +13,8 @@ export interface TableCellProperties extends TableSprinkle {
    */
   as?: "td" | "th";
   /**
-   * Column index (0-based) to apply minWidth/maxWidth constraints from the Table's columnLayout.
-   * When provided, the cell will inherit minWidth and maxWidth from the corresponding column definition.
+   * Column index (0-based) to apply minWidth constraint from the Table's columnLayout.
+   * When provided, the cell will inherit minWidth from the corresponding column definition.
    */
   column?: number;
 }
