@@ -188,7 +188,7 @@ export const withGrowConstraints: Story = {
               Grow 1x (min 200px)
             </Table.Cell>
             <Table.Cell as="th" column={3}>
-              Grow 1x (max 150px)
+              Grow 1x
             </Table.Cell>
           </Table.Row>
         </Table.Head>
