@@ -3,6 +3,7 @@ import { style, globalStyle } from "@vanilla-extract/css";
 
 import { varsThemeBase } from "../../../themes";
 import { borderColorProperties, cursorProperties } from "../../../properties";
+import { gradients, createBorderGradient } from "../../../gradients";
 
 /* -------------------------------------------------------------------------------------------------
  * Style
@@ -14,10 +15,6 @@ const container = style({
   width: "fit-content",
   position: "relative",
   gap: varsThemeBase.spacing[1],
-  borderRadius: varsThemeBase.shape.border.radius[1],
-  ":focus-within": {
-    boxShadow: varsThemeBase.utils.focus,
-  },
 });
 
 const container__input = style({
@@ -78,13 +75,52 @@ globalStyle(`${container} p`, {
   lineHeight: varsThemeBase.spacing[4],
 });
 
+globalStyle(`${container} input:focus-visible ~ ${container__checkmark}`, {
+  boxShadow: varsThemeBase.utils.focus,
+});
+
+const container__checkmark_aiGenerated = style({
+  background: createBorderGradient(
+    gradients.aiGenerativeInteractive,
+    varsThemeBase.colors.neutral.background
+  ),
+  borderColor: "transparent",
+  boxShadow: varsThemeBase.utils.aiFocus,
+});
+export const aiGenerated = container__checkmark_aiGenerated;
+
 export const styles = {
   container,
   container__input,
   container__checkmark,
   container__checkmark_checkicon,
   container__checkmark_checkindeterminate,
+  container__checkmark_aiGenerated,
 };
+
+globalStyle(
+  `${container} input:checked ~ ${container__checkmark_aiGenerated}`,
+  {
+    background: createBorderGradient(
+      gradients.aiGenerativeInteractive,
+      varsThemeBase.colors.primary.interactive
+    ),
+    borderColor: "transparent",
+    backgroundColor: "transparent",
+  }
+);
+
+globalStyle(
+  `${container} input:disabled ~ ${container__checkmark_aiGenerated}`,
+  {
+    background: createBorderGradient(
+      gradients.aiGenerativeInteractive,
+      varsThemeBase.colors.neutral.surfaceDisabled
+    ),
+    borderColor: "transparent",
+    backgroundColor: "transparent",
+  }
+);
 
 /* -------------------------------------------------------------------------------------------------
  * Sprinkle

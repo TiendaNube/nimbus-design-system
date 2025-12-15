@@ -35,7 +35,7 @@ export const container = vanillaStyle({
   borderStyle: "solid",
   borderColor: varsThemeBase.colors.neutral.interactive,
   overflow: "hidden",
-  ":focus-within": {
+  ":focus-visible": {
     outline: "none",
     boxShadow: varsThemeBase.utils.focus,
   },
@@ -53,6 +53,9 @@ export const container__icon = vanillaStyle({
   border: "none",
   appearance: "none",
   padding: 0,
+  ":focus-within": {
+    outline: "none",
+  },
 });
 
 export const container__icon_append = styleVariants({

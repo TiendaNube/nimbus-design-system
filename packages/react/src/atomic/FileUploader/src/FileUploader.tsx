@@ -9,7 +9,7 @@ import {
   FileUploaderProps,
   FileUploaderComponents,
 } from "./fileUploader.types";
-import { FileUploaderSkeleton } from "./components";
+import { FileUploaderSkeleton, FileUploaderOverlay } from "./components";
 import {
   isFileAccepted,
   createFileListFromFiles,
@@ -31,38 +31,58 @@ const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
   onDropReject,
   onDropSuccess,
   onError,
+  children,
+  disableClickUpload = false,
   id,
   onChange,
+  dragOverlay,
+  asOverlay = false,
   ...rest
 }: FileUploaderProps) => {
   const color = useMemo(() => (disabled ? "neutral" : "primary"), [disabled]);
   const [isDragging, setIsDragging] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  const dragCounterRef = useRef(0);
 
-  const handleDragOver = useCallback(
-    (event: React.DragEvent<HTMLLabelElement>) => {
+  const handleDragEnter = useCallback(
+    (event: React.DragEvent<HTMLLabelElement | HTMLDivElement>) => {
       event.preventDefault();
       event.stopPropagation();
       if (!disabled) {
-        setIsDragging(true);
+        dragCounterRef.current += 1;
+        if (dragCounterRef.current === 1) {
+          setIsDragging(true);
+        }
       }
     },
     [disabled]
   );
 
-  const handleDragLeave = useCallback(
-    (event: React.DragEvent<HTMLLabelElement>) => {
+  const handleDragOver = useCallback(
+    (event: React.DragEvent<HTMLLabelElement | HTMLDivElement>) => {
       event.preventDefault();
       event.stopPropagation();
-      setIsDragging(false);
+    },
+    []
+  );
+
+  const handleDragLeave = useCallback(
+    (event: React.DragEvent<HTMLLabelElement | HTMLDivElement>) => {
+      event.preventDefault();
+      event.stopPropagation();
+      dragCounterRef.current -= 1;
+      if (dragCounterRef.current === 0) {
+        setIsDragging(false);
+      }
     },
     []
   );
 
   const handleDrop = useCallback(
-    (event: React.DragEvent<HTMLLabelElement>) => {
+    (event: React.DragEvent<HTMLLabelElement | HTMLDivElement>) => {
       event.preventDefault();
       event.stopPropagation();
+      dragCounterRef.current = 0;
       setIsDragging(false);
 
       if (disabled || !onChange) return;
@@ -108,6 +128,37 @@ const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
     [disabled, onChange, accept, onDrop, onDropReject, onDropSuccess, onError]
   );
 
+  if (asOverlay) {
+    return (
+      <div
+        className={fileUploader.classnames.asOverlay}
+        style={assignInlineVars({
+          [vars.width]: width,
+          [vars.height]: height,
+        })}
+        onDragEnter={handleDragEnter}
+        onDragOver={handleDragOver}
+        onDragLeave={handleDragLeave}
+        onDrop={handleDrop}
+        role="region"
+        aria-label="File drop zone"
+      >
+        <input
+          ref={inputRef}
+          className={fileUploader.classnames.container__input}
+          type="file"
+          accept={accept}
+          disabled={disabled || disableClickUpload}
+          id={id || DEFAULT_INPUT_ID}
+          onChange={onChange}
+          {...rest}
+        />
+        {children}
+        {isDragging && !disabled && dragOverlay}
+      </div>
+    );
+  }
+
   return (
     <label
       data-testid="file-uploader-container"
@@ -117,7 +168,7 @@ const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
         fileUploader.sprinkle({
           aspectRatio,
           flexDirection,
-          cursor: disabled ? "auto" : "pointer",
+          cursor: disabled || disableClickUpload ? "auto" : "pointer",
         }),
         disabled && fileUploader.classnames.disabled,
         isDragging && !disabled && fileUploader.classnames.dragging,
@@ -126,6 +177,7 @@ const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
         [vars.width]: width,
         [vars.height]: height,
       })}
+      onDragEnter={handleDragEnter}
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
@@ -143,12 +195,13 @@ const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
           {placeholder}
         </Text>
       )}
+      {children}
       <input
         ref={inputRef}
         className={fileUploader.classnames.container__input}
         type="file"
         accept={accept}
-        disabled={disabled}
+        disabled={disabled || disableClickUpload}
         id={id || DEFAULT_INPUT_ID}
         onChange={onChange}
         {...rest}
@@ -158,7 +211,9 @@ const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
 };
 
 FileUploader.Skeleton = FileUploaderSkeleton;
+FileUploader.Overlay = FileUploaderOverlay;
 FileUploader.displayName = "FileUploader";
 FileUploader.Skeleton.displayName = "FileUploader.Skeleton";
+FileUploader.Overlay.displayName = "FileUploader.Overlay";
 
 export { FileUploader };

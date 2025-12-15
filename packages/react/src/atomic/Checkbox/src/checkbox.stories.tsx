@@ -37,3 +37,10 @@ export const danger: Story = {
     label: "Danger",
   },
 };
+
+export const aiGenerated: Story = {
+  args: {
+    label: "AI Generated",
+    aiGenerated: true,
+  },
+};

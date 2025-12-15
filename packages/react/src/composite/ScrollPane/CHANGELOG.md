@@ -2,6 +2,12 @@
 
 The ScrollPane component handles responsive scrolls in lists that are overflowing inside a container.
 
+## 2025-12-01 `1.1.1`
+
+#### 🐛 Bug fixes
+
+- `ScrollPane`: Fixed focus ring styles to match design system. ([#383](https://github.com/TiendaNube/nimbus-design-system/pull/383) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-11-12 `1.1.0`
 
 #### 🎉 New features
