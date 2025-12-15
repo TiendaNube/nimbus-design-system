@@ -202,6 +202,12 @@ every day, with simplicity, accessibility, consistency and performance.
 - `Input`: Added new `ai-generative` appearance to align with Nimbus AI gradient visuals. ([#333](https://github.com/TiendaNube/nimbus-design-system/pull/333) by [@joacotornello](https://github.com/joacotornello))
 - `Input`: Added `aiGenerated` boolean prop to highlight AI-filled values without changing existing focus behavior. ([#333](https://github.com/TiendaNube/nimbus-design-system/pull/333) by [@joacotornello](https://github.com/joacotornello))
 
+## 2025-08-21 `5.18.0`
+
+#### 🎉 New features
+
+- `Toast`: Added support for indefinite duration toasts using `duration: null` for async operations with unknown completion times. ([#335](https://github.com/TiendaNube/nimbus-design-system/pull/335) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-08-14 `5.17.3`
 
 #### 💡 Others
