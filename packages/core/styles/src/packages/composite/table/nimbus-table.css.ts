@@ -24,7 +24,6 @@ const container = style({
   fontFamily: varsThemeBase.fontFamily.sans,
   overflow: "hidden",
   width: "100%",
-  // tableLayout: "fixed",
 });
 
 const container__head = style({
