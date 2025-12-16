@@ -25,6 +25,7 @@ const TableCell: React.FC<TableCellProps> = ({
 
   const cellStyle: React.CSSProperties = {
     ...style,
+    width: columnLayout?.width,
     minWidth: columnLayout?.minWidth,
   };
 
