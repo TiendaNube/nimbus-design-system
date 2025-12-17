@@ -2,7 +2,53 @@
   "$schema": "https://turborepo.org/schema.json",
   "pipeline": {
     "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**", "build/**", "lib/**"],
+      "cache": true,
+      "persistent": false,
+      "env": ["NODE_ENV", "NODE_OPTIONS"]
+    },
+    "build:components": {
+      "outputs": ["packages/react/dist/**", "packages/react/src/*/dist/**"],
+      "cache": true,
       "dependsOn": ["^build"]
+    },
+    "build:packages": {
+      "outputs": ["packages/core/*/dist/**"],
+      "cache": true,
+      "dependsOn": ["^build"]
+    },
+    "clean": {
+      "cache": false
+    },
+    "lint": {
+      "cache": true,
+      "outputs": [".cache/eslint/**"]
+    },
+    "types:check": {
+      "cache": true,
+      "outputs": []
+    },
+    "start:dev": {
+      "dependsOn": ["build:tokens", "build:icons"],
+      "cache": false,
+      "persistent": true
+    },
+    "build:tokens": {
+      "outputs": ["packages/core/tokens/dist/**"],
+      "cache": true
+    },
+    "build:icons": {
+      "outputs": ["packages/icons/dist/**"],
+      "cache": true
     }
-  }
+  },
+  "globalDotEnv": [".env"],
+  "globalDependencies": [
+    ".eslintrc.js",
+    "tsconfig.json",
+    "babel.config.js",
+    "jest.config.ts",
+    "commitlint.config.js"
+  ]
 }
