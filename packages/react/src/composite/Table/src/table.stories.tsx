@@ -243,3 +243,112 @@ export const withNoPadding: Story = {
     ),
   },
 };
+
+export const withMinWidth: Story = {
+  args: {},
+  render: () => (
+    <div style={{ maxWidth: "500px", border: "1px dashed #ccc" }}>
+      <Table minWidth="800px">
+        <Table.Head>
+          <Table.Row backgroundColor="neutral-surface">
+            <Table.Cell as="th">Product</Table.Cell>
+            <Table.Cell as="th">Category</Table.Cell>
+            <Table.Cell as="th">Price</Table.Cell>
+            <Table.Cell as="th">Stock</Table.Cell>
+            <Table.Cell as="th">Status</Table.Cell>
+          </Table.Row>
+        </Table.Head>
+        <Table.Body>
+          {Array.from({ length: 5 }, (_, i) => (
+            <Table.Row key={i}>
+              <Table.Cell>Product {i + 1}</Table.Cell>
+              <Table.Cell>Electronics</Table.Cell>
+              <Table.Cell>$199.99</Table.Cell>
+              <Table.Cell>150 units</Table.Cell>
+              <Table.Cell>Available</Table.Cell>
+            </Table.Row>
+          ))}
+        </Table.Body>
+      </Table>
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "When the container is smaller than the table's `minWidth`, horizontal scrolling is enabled. Resize the window to see the scrolling behavior.",
+      },
+    },
+  },
+};
+
+export const withMinAndMaxWidth: Story = {
+  args: {},
+  render: () => {
+    const renderUserRows = () =>
+      Array.from({ length: 3 }, (_, i) => (
+        <Table.Row key={i}>
+          <Table.Cell>John Doe</Table.Cell>
+          <Table.Cell>john.doe@example.com</Table.Cell>
+          <Table.Cell>Administrator</Table.Cell>
+          <Table.Cell>Edit | Delete</Table.Cell>
+        </Table.Row>
+      ));
+
+    return (
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "24px",
+        }}
+      >
+        <div>
+          <p style={{ marginBottom: "8px", fontFamily: "sans-serif" }}>
+            <strong>Narrow container (300px)</strong> — scrolls horizontally
+          </p>
+          <div style={{ width: "300px", border: "1px dashed #ccc" }}>
+            <Table minWidth="600px" maxWidth="900px">
+              <Table.Head>
+                <Table.Row backgroundColor="neutral-surface">
+                  <Table.Cell as="th">Name</Table.Cell>
+                  <Table.Cell as="th">Email</Table.Cell>
+                  <Table.Cell as="th">Role</Table.Cell>
+                  <Table.Cell as="th">Actions</Table.Cell>
+                </Table.Row>
+              </Table.Head>
+              <Table.Body>{renderUserRows()}</Table.Body>
+            </Table>
+          </div>
+        </div>
+        <div>
+          <p style={{ marginBottom: "8px", fontFamily: "sans-serif" }}>
+            <strong>Wide container (100%)</strong> — table respects maxWidth of
+            900px
+          </p>
+          <div style={{ width: "100%", border: "1px dashed #ccc" }}>
+            <Table minWidth="600px" maxWidth="900px">
+              <Table.Head>
+                <Table.Row backgroundColor="neutral-surface">
+                  <Table.Cell as="th">Name</Table.Cell>
+                  <Table.Cell as="th">Email</Table.Cell>
+                  <Table.Cell as="th">Role</Table.Cell>
+                  <Table.Cell as="th">Actions</Table.Cell>
+                </Table.Row>
+              </Table.Head>
+              <Table.Body>{renderUserRows()}</Table.Body>
+            </Table>
+          </div>
+        </div>
+      </div>
+    );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Demonstrates both `minWidth` and `maxWidth` constraints. The table scrolls when the container is smaller than `minWidth` and stops growing when it reaches `maxWidth`.",
+      },
+    },
+  },
+};

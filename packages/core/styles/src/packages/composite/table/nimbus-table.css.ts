@@ -13,6 +13,11 @@ import { mediaQueries, varsThemeBase } from "../../../themes";
  * Style
  * -----------------------------------------------------------------------------------------------*/
 
+const container__wrapper = style({
+  overflowX: "auto",
+  width: "100%",
+});
+
 const container = style({
   backgroundColor: varsThemeBase.colors.neutral.background,
   borderColor: varsThemeBase.colors.neutral.surface,
@@ -57,6 +62,7 @@ globalStyle(`${container} th`, {
 });
 
 export const styles = {
+  container__wrapper,
   container,
   container__head,
   container__body,
