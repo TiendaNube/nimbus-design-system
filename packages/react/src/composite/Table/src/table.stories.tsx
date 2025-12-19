@@ -357,14 +357,14 @@ export const withFixedColumns: Story = {
   args: {},
   render: () => {
     const columnLayout: TableColumnLayout[] = [
-      { id: "column-id", width: "80px", fixed: true },
-      { id: "column-name", width: "150px", fixed: true },
+      { id: "column-id", width: "80px", fixed: "left" },
+      { id: "column-name", width: "150px", fixed: "left" },
       { id: "column-email", width: "200px" },
       { id: "column-role", width: "120px" },
       { id: "column-department", width: "150px" },
       { id: "column-location", width: "120px" },
       { id: "column-status", width: "100px" },
-      { id: "column-actions", width: "120px" },
+      { id: "column-actions", width: "120px", fixed: "right" },
     ];
 
     const data = [
@@ -416,7 +416,7 @@ export const withFixedColumns: Story = {
     ];
 
     return (
-      <div style={{ maxWidth: "1000px" }}>
+      <div>
         <Table columnLayout={columnLayout} minWidth="1040px">
           <Table.Head>
             <Table.Row backgroundColor="primary-surface">
@@ -473,7 +473,7 @@ export const withFixedColumns: Story = {
     docs: {
       description: {
         story:
-          "Demonstrates fixed (sticky) columns. The first two columns (ID and Name) remain visible while scrolling horizontally. Fixed columns use CSS `position: sticky` with calculated `left` offsets based on preceding column widths.",
+          "Demonstrates fixed (sticky) columns on both sides. The first two columns (ID and Name) are fixed to the left, while the Actions column is fixed to the right. Fixed columns use CSS `position: sticky` with calculated offsets based on adjacent column widths.",
       },
     },
   },

@@ -29,12 +29,13 @@ export interface TableColumnLayout {
    */
   minWidth?: string;
   /**
-   * When true, the column will remain fixed (sticky) during horizontal scrolling.
-   * Fixed columns use CSS `position: sticky` and stay visible on the left side.
-   * Requires a defined `width` to calculate proper left offsets.
-   * @default false
+   * Determines which side the column will be fixed (sticky) to during horizontal scrolling.
+   * Fixed columns use CSS `position: sticky` and stay visible on the specified side.
+   * Requires a defined `width` to calculate proper offsets.
+   * - 'left': Column sticks to the left side of the table
+   * - 'right': Column sticks to the right side of the table
    */
-  fixed?: boolean;
+  fixed?: "left" | "right";
 }
 
 export interface TableProperties {

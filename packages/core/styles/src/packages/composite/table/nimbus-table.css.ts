@@ -72,11 +72,16 @@ const container__cell_fixed = style({
 });
 
 /**
- * Pseudo-element separator for fixed columns.
+ * Left-fixed column style with separator on the right side.
+ */
+const container__cell_fixed_left = style({});
+
+/**
+ * Pseudo-element separator for left-fixed columns.
  * Using ::after ensures the separator stays visible when content scrolls under the fixed column,
  * as it sits on top of the cell content and adjacent cells.
  */
-globalStyle(`${container__cell_fixed}::after`, {
+globalStyle(`${container__cell_fixed_left}::after`, {
   content: '""',
   position: "absolute",
   top: 0,
@@ -85,6 +90,27 @@ globalStyle(`${container__cell_fixed}::after`, {
   width: "1px",
   backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
   boxShadow: `2px 0 4px 0 ${varsThemeBase.colors.neutral.surfaceHighlight}`,
+  pointerEvents: "none",
+});
+
+/**
+ * Right-fixed column style with separator on the left side.
+ */
+const container__cell_fixed_right = style({});
+
+/**
+ * Pseudo-element separator for right-fixed columns.
+ * Positioned on the left side of the cell with shadow going left.
+ */
+globalStyle(`${container__cell_fixed_right}::before`, {
+  content: '""',
+  position: "absolute",
+  top: 0,
+  left: "-1px",
+  bottom: 0,
+  width: "1px",
+  backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
+  boxShadow: `-2px 0 4px 0 ${varsThemeBase.colors.neutral.surfaceHighlight}`,
   pointerEvents: "none",
 });
 
@@ -101,6 +127,8 @@ export const styles = {
   container__row,
   container__cell,
   container__cell_fixed,
+  container__cell_fixed_left,
+  container__cell_fixed_right,
 };
 
 /* -------------------------------------------------------------------------------------------------

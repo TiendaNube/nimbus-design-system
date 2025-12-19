@@ -23,22 +23,33 @@ const TableCell: React.FC<TableCellProps> = ({
   const columnLayout =
     column !== undefined ? tableContext?.columnLayout?.[column] : undefined;
 
-  const isFixed = columnLayout?.fixed ?? false;
-  const fixedLeftOffset =
+  const fixedOffset =
     column !== undefined
       ? tableContext?.fixedColumnOffsets?.get(column)
       : undefined;
+
+  const isFixed = Boolean(fixedOffset);
+  const fixedSide = fixedOffset?.side;
 
   const cellStyle: React.CSSProperties = {
     ...style,
     width: columnLayout?.width,
     minWidth: columnLayout?.minWidth,
-    ...(isFixed && fixedLeftOffset !== undefined && { left: fixedLeftOffset }),
+    ...(isFixed &&
+      fixedOffset && {
+        [fixedSide as string]: fixedOffset.offset,
+      }),
   };
 
   const cellClassName = [
     table.classnames.container__cell,
     isFixed && table.classnames.container__cell_fixed,
+    isFixed &&
+      fixedSide === "left" &&
+      table.classnames.container__cell_fixed_left,
+    isFixed &&
+      fixedSide === "right" &&
+      table.classnames.container__cell_fixed_right,
     className,
   ]
     .filter(Boolean)

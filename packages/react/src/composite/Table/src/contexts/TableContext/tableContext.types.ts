@@ -1,17 +1,17 @@
 import { TableColumnLayout } from "../../table.types";
 
 /**
- * Pre-calculated left offset for a fixed column
+ * Pre-calculated offset and direction for a fixed column
  */
 export interface FixedColumnOffset {
   /**
-   * The column index
+   * The CSS offset value for sticky positioning
    */
-  columnIndex: number;
+  offset: string;
   /**
-   * The CSS left value for sticky positioning
+   * The side the column is fixed to
    */
-  left: string;
+  side: "left" | "right";
 }
 
 /**
@@ -23,7 +23,7 @@ export interface TableContextValue {
    */
   columnLayout?: TableColumnLayout[];
   /**
-   * Pre-calculated left offsets for fixed columns, indexed by column position
+   * Pre-calculated offsets for fixed columns, indexed by column position
    */
-  fixedColumnOffsets?: Map<number, string>;
+  fixedColumnOffsets?: Map<number, FixedColumnOffset>;
 }
