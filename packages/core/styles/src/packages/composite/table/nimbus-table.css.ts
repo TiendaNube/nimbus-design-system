@@ -27,7 +27,12 @@ const container = style({
   borderRadius: varsThemeBase.shape.border.radius[2],
   borderSpacing: 0,
   fontFamily: varsThemeBase.fontFamily.sans,
-  overflow: "hidden",
+  /**
+   * Using 'clip' instead of 'hidden' to maintain border-radius clipping
+   * while allowing position:sticky to work on fixed columns.
+   * 'overflow: hidden' creates a new scroll container that breaks sticky positioning.
+   */
+  overflow: "clip",
   width: "100%",
   tableLayout: "fixed",
 });
@@ -56,6 +61,33 @@ const container__cell = style({
   boxSizing: "content-box",
 });
 
+const container__cell_fixed = style({
+  position: "sticky",
+  zIndex: 30,
+  /**
+   * Use CSS variable for row background with fallback to table default.
+   * This allows fixed cells to match the row's background color when set.
+   */
+  backgroundColor: `var(--nimbus-table-row-bg, ${varsThemeBase.colors.neutral.background})`,
+});
+
+/**
+ * Pseudo-element separator for fixed columns.
+ * Using ::after ensures the separator stays visible when content scrolls under the fixed column,
+ * as it sits on top of the cell content and adjacent cells.
+ */
+globalStyle(`${container__cell_fixed}::after`, {
+  content: '""',
+  position: "absolute",
+  top: 0,
+  right: "-1px",
+  bottom: 0,
+  width: "1px",
+  backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
+  boxShadow: `2px 0 4px 0 ${varsThemeBase.colors.neutral.surfaceHighlight}`,
+  pointerEvents: "none",
+});
+
 globalStyle(`${container} th`, {
   fontWeight: "unset",
   textAlign: "unset",
@@ -68,6 +100,7 @@ export const styles = {
   container__body,
   container__row,
   container__cell,
+  container__cell_fixed,
 };
 
 /* -------------------------------------------------------------------------------------------------

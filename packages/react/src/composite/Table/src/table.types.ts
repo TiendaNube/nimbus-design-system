@@ -28,6 +28,13 @@ export interface TableColumnLayout {
    * Only applies when using `grow`. Accepts any valid CSS width value.
    */
   minWidth?: string;
+  /**
+   * When true, the column will remain fixed (sticky) during horizontal scrolling.
+   * Fixed columns use CSS `position: sticky` and stay visible on the left side.
+   * Requires a defined `width` to calculate proper left offsets.
+   * @default false
+   */
+  fixed?: boolean;
 }
 
 export interface TableProperties {

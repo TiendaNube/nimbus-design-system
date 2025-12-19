@@ -147,4 +147,104 @@ describe("GIVEN <Table />", () => {
       expect(tableElement).toHaveStyle({ maxWidth: "1000px" });
     });
   });
+
+  describe("WHEN fixed columns are provided", () => {
+    it("THEN should apply sticky positioning with left offset to fixed cells", () => {
+      render(
+        <Table
+          data-testid="table-element"
+          columnLayout={[
+            { id: "column-1", width: "100px", fixed: true },
+            { id: "column-2", width: "150px", fixed: true },
+            { id: "column-3", grow: 1 },
+          ]}
+        >
+          <Table.Head>
+            <Table.Row>
+              <Table.Cell as="th" column={0} data-testid="header-0">
+                Fixed Header 1
+              </Table.Cell>
+              <Table.Cell as="th" column={1} data-testid="header-1">
+                Fixed Header 2
+              </Table.Cell>
+              <Table.Cell as="th" column={2} data-testid="header-2">
+                Header 3
+              </Table.Cell>
+            </Table.Row>
+          </Table.Head>
+          <Table.Body>
+            <Table.Row>
+              <Table.Cell column={0} data-testid="cell-0">
+                Fixed Cell 1
+              </Table.Cell>
+              <Table.Cell column={1} data-testid="cell-1">
+                Fixed Cell 2
+              </Table.Cell>
+              <Table.Cell column={2} data-testid="cell-2">
+                Cell 3
+              </Table.Cell>
+            </Table.Row>
+          </Table.Body>
+        </Table>
+      );
+
+      // First fixed column should have left: 0px
+      expect(screen.getByTestId("header-0")).toHaveStyle({ left: "0px" });
+      expect(screen.getByTestId("cell-0")).toHaveStyle({ left: "0px" });
+
+      // Second fixed column should have left: 100px (cumulative from first column)
+      expect(screen.getByTestId("header-1")).toHaveStyle({ left: "100px" });
+      expect(screen.getByTestId("cell-1")).toHaveStyle({ left: "100px" });
+
+      // Non-fixed column should not have left style
+      expect(screen.getByTestId("header-2")).not.toHaveStyle({ left: "0px" });
+      expect(screen.getByTestId("cell-2")).not.toHaveStyle({ left: "0px" });
+    });
+
+    it("THEN should not apply fixed styles when fixed is false or undefined", () => {
+      render(
+        <Table
+          data-testid="table-element"
+          columnLayout={[
+            { id: "column-1", width: "100px" },
+            { id: "column-2", width: "150px", fixed: false },
+            { id: "column-3", grow: 1 },
+          ]}
+        >
+          <Table.Head>
+            <Table.Row>
+              <Table.Cell as="th" column={0} data-testid="header-0">
+                Header 1
+              </Table.Cell>
+              <Table.Cell as="th" column={1} data-testid="header-1">
+                Header 2
+              </Table.Cell>
+              <Table.Cell as="th" column={2} data-testid="header-2">
+                Header 3
+              </Table.Cell>
+            </Table.Row>
+          </Table.Head>
+          <Table.Body>
+            <Table.Row>
+              <Table.Cell column={0} data-testid="cell-0">
+                Cell 1
+              </Table.Cell>
+              <Table.Cell column={1} data-testid="cell-1">
+                Cell 2
+              </Table.Cell>
+              <Table.Cell column={2} data-testid="cell-2">
+                Cell 3
+              </Table.Cell>
+            </Table.Row>
+          </Table.Body>
+        </Table>
+      );
+
+      // None of the cells should have left positioning
+      expect(screen.getByTestId("header-0")).not.toHaveStyle({ left: "0px" });
+      expect(screen.getByTestId("header-1")).not.toHaveStyle({ left: "0px" });
+      expect(screen.getByTestId("cell-0")).not.toHaveStyle({ left: "0px" });
+      expect(screen.getByTestId("cell-1")).not.toHaveStyle({ left: "0px" });
+    });
+  });
 });

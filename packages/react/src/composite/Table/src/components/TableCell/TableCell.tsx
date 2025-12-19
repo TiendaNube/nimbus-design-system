@@ -23,18 +23,29 @@ const TableCell: React.FC<TableCellProps> = ({
   const columnLayout =
     column !== undefined ? tableContext?.columnLayout?.[column] : undefined;
 
+  const isFixed = columnLayout?.fixed ?? false;
+  const fixedLeftOffset =
+    column !== undefined
+      ? tableContext?.fixedColumnOffsets?.get(column)
+      : undefined;
+
   const cellStyle: React.CSSProperties = {
     ...style,
     width: columnLayout?.width,
     minWidth: columnLayout?.minWidth,
+    ...(isFixed && fixedLeftOffset !== undefined && { left: fixedLeftOffset }),
   };
 
+  const cellClassName = [
+    table.classnames.container__cell,
+    isFixed && table.classnames.container__cell_fixed,
+    className,
+  ]
+    .filter(Boolean)
+    .join(" ");
+
   return (
-    <As
-      {...otherProps}
-      style={cellStyle}
-      className={[table.classnames.container__cell, className].join(" ")}
-    >
+    <As {...otherProps} style={cellStyle} className={cellClassName}>
       {children}
     </As>
   );
