@@ -6,7 +6,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 #### 🐛 Bug fixes
 
-- Fixes `Tabs` item element border rendering above left element. ([#393](https://github.com/TiendaNube/nimbus-design-system/pull/393) by [@joacotornello](https://github.com/joacotornello))
+- Fixes `Tabs` item element border rendering above left element. ([#395](https://github.com/TiendaNube/nimbus-design-system/pull/395) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-12-11 `9.45.0`
 
