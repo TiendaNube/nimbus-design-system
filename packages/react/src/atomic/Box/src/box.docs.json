@@ -1,7 +1,7 @@
 {
   "id": "box",
   "name": "Box",
-  "totalProps": 91,
+  "totalProps": 92,
   "packageName": "@nimbus-ds/box",
   "version": "4.3.2",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/box",
@@ -19691,6 +19691,139 @@
         }
       ],
       "title": "textAlign",
+      "required": false
+    },
+    {
+      "description": "The scrollbarWidth property specifies the width of the scrollbar.",
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "focus": {
+              "enum": [
+                "auto",
+                "none",
+                "thin"
+              ],
+              "type": "string",
+              "title": "focus"
+            },
+            "focusVisible": {
+              "enum": [
+                "auto",
+                "none",
+                "thin"
+              ],
+              "type": "string",
+              "title": "focusVisible"
+            },
+            "focusWithin": {
+              "enum": [
+                "auto",
+                "none",
+                "thin"
+              ],
+              "type": "string",
+              "title": "focusWithin"
+            },
+            "active": {
+              "enum": [
+                "auto",
+                "none",
+                "thin"
+              ],
+              "type": "string",
+              "title": "active"
+            },
+            "hover": {
+              "enum": [
+                "auto",
+                "none",
+                "thin"
+              ],
+              "type": "string",
+              "title": "hover"
+            },
+            "disabled": {
+              "enum": [
+                "auto",
+                "none",
+                "thin"
+              ],
+              "type": "string",
+              "title": "disabled"
+            },
+            "xs": {
+              "enum": [
+                "auto",
+                "none",
+                "thin"
+              ],
+              "type": "string",
+              "title": "xs"
+            },
+            "md": {
+              "enum": [
+                "auto",
+                "none",
+                "thin"
+              ],
+              "type": "string",
+              "title": "md"
+            },
+            "lg": {
+              "enum": [
+                "auto",
+                "none",
+                "thin"
+              ],
+              "type": "string",
+              "title": "lg"
+            },
+            "xl": {
+              "enum": [
+                "auto",
+                "none",
+                "thin"
+              ],
+              "type": "string",
+              "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "auto",
+                "none",
+                "thin"
+              ],
+              "type": "string",
+              "title": "xxl"
+            }
+          },
+          "additionalProperties": false,
+          "propertyOrder": [
+            "focus",
+            "focusVisible",
+            "focusWithin",
+            "active",
+            "hover",
+            "disabled",
+            "xs",
+            "md",
+            "lg",
+            "xl",
+            "xxl"
+          ]
+        },
+        {
+          "enum": [
+            "auto",
+            "none",
+            "thin"
+          ],
+          "type": "string"
+        }
+      ],
+      "title": "scrollbarWidth",
       "required": false
     }
   ],
