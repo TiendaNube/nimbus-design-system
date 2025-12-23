@@ -40,6 +40,16 @@ export interface TableProperties {
    * Column sizing definitions applied from left to right. Use `width` for fixed columns and `grow` to distribute the remaining space proportionally.
    */
   columnLayout?: TableColumnLayout[];
+  /**
+   * Minimum width of the table. When the container is smaller, horizontal scrolling is enabled.
+   * Accepts any valid CSS width value (e.g., "600px", "50rem").
+   */
+  minWidth?: string;
+  /**
+   * Maximum width of the table. The table will not exceed this width.
+   * Accepts any valid CSS width value (e.g., "1200px", "80rem").
+   */
+  maxWidth?: string;
 }
 
 export type TableProps = TableProperties & HTMLAttributes<HTMLTableElement>;
