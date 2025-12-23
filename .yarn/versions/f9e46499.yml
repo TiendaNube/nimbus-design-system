@@ -3,5 +3,7 @@ releases:
 
 declined:
   - nimbus-design-system
+  - "@nimbus-ds/box"
+  - "@nimbus-ds/list"
   - "@nimbus-ds/split-button"
   - "@nimbus-ds/stepper"
