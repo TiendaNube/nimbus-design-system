@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2025-12-22 `9.46.0`
+
+#### 🎉 New features
+
+- `Box`: Added `scrollbarWidth` property to set the width of the scrollbar. ([#397](https://github.com/TiendaNube/nimbus-design-system/pull/397) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-12-11 `9.45.0`
 
 #### 🎉 New features
