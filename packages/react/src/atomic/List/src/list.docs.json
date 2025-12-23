@@ -3,7 +3,7 @@
   "name": "List",
   "totalProps": 3,
   "packageName": "@nimbus-ds/list",
-  "version": "2.2.1",
+  "version": "2.3.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/list",
   "props": [
     {
@@ -15,10 +15,7 @@
     {
       "description": "Determines the type of html list that will be rendered",
       "default": "ul",
-      "enum": [
-        "ol",
-        "ul"
-      ],
+      "enum": ["ol", "ul"],
       "type": "string",
       "title": "as",
       "required": false
@@ -26,17 +23,7 @@
     {
       "description": "The padding of the list.",
       "default": 6,
-      "enum": [
-        "0-5",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8"
-      ],
+      "enum": ["0-5", "1", "2", "3", "4", "5", "6", "7", "8"],
       "type": "string",
       "title": "padding",
       "required": false
