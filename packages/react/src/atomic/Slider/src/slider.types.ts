@@ -1,6 +1,9 @@
 import type { HTMLAttributes } from "react";
 
-/** Available appearance variants for the slider fill */
+/**
++ * Available appearance variants for the slider fill.
++ * Controls the color scheme of the active range portion of the slider.
++ */
 export type SliderAppearance =
   | "primary"
   | "success"
@@ -95,5 +98,10 @@ export interface SliderProperties {
   "data-testid"?: string;
 }
 
+/**
++ * Complete props interface for the Slider component.
++ * Combines SliderProperties with standard HTML div attributes, excluding the native onChange event
++ * in favor of the slider-specific onChange callback.
++ */
 export type SliderBaseProps = SliderProperties &
   Omit<HTMLAttributes<HTMLDivElement>, "onChange">;
