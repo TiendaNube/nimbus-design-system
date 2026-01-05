@@ -12,7 +12,7 @@ import {
 } from "./components";
 
 /** Default values for slider props */
-const SLIDER_DEFAULTS = {
+export const SLIDER_DEFAULTS = {
   min: 0,
   max: 100,
   step: 1,
