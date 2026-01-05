@@ -33,6 +33,7 @@ export * from "@nimbus-ds/toggle";
 export * from "@nimbus-ds/tooltip";
 export * from "@nimbus-ds/progress-bar";
 export * from "@nimbus-ds/divider";
+export * from "@nimbus-ds/slider";
 
 // composite
 export * from "@nimbus-ds/accordion";

@@ -40,6 +40,7 @@ export { thumbnail } from "./packages/atomic/thumbnail";
 export { textarea } from "./packages/atomic/textarea";
 export { progressBar } from "./packages/atomic/progressBar";
 export { divider } from "./packages/atomic/divider";
+export { slider } from "./packages/atomic/slider";
 
 export { accordion } from "./packages/composite/accordion";
 export { alert } from "./packages/composite/alert";
