@@ -1,1 +1,1 @@
-export { default as SliderTrack } from "./SliderTrack";
+export { SliderTrack } from "./SliderTrack";

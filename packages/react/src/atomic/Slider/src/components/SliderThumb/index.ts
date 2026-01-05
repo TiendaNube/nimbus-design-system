@@ -1,1 +1,1 @@
-export { default as SliderThumb } from "./SliderThumb";
+export { SliderThumb } from "./SliderThumb";

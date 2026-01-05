@@ -15,7 +15,7 @@ interface SliderThumbProps {
   onKeyDown: (e: KeyboardEvent<HTMLButtonElement>) => void;
 }
 
-const SliderThumb: React.FC<SliderThumbProps> = ({
+const SliderThumbComponent: React.FC<SliderThumbProps> = ({
   type,
   percentage,
   value,
@@ -54,9 +54,9 @@ const SliderThumb: React.FC<SliderThumbProps> = ({
   );
 };
 
-SliderThumb.defaultProps = {
+SliderThumbComponent.defaultProps = {
   label: undefined,
   dataTestId: undefined,
 };
 
-export default memo(SliderThumb);
+export const SliderThumb = memo(SliderThumbComponent);
