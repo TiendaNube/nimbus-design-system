@@ -5,7 +5,7 @@ import { Input } from "@nimbus-ds/input";
 import { Text } from "@nimbus-ds/text";
 import { Box } from "@nimbus-ds/box";
 
-interface SliderInputsProps {
+export interface SliderInputsProps {
   minValue: number;
   maxValue: number;
   min: number;
