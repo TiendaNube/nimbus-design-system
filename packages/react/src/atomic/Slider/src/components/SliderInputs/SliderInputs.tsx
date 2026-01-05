@@ -11,8 +11,6 @@ export interface SliderInputsProps {
   min: number;
   max: number;
   step: number;
-  localMinValue: number;
-  localMaxValue: number;
   disabled: boolean;
   minLabel?: string;
   maxLabel?: string;
@@ -28,8 +26,6 @@ const SliderInputs: React.FC<SliderInputsProps> = ({
   min,
   max,
   step,
-  localMinValue,
-  localMaxValue,
   disabled,
   minLabel,
   maxLabel,
@@ -53,7 +49,7 @@ const SliderInputs: React.FC<SliderInputsProps> = ({
         onChange={onMinChange}
         disabled={disabled}
         min={min}
-        max={localMaxValue - step}
+        max={maxValue - step}
         step={step}
         data-testid={dataTestId ? `${dataTestId}-min-input` : undefined}
         aria-label={minLabel ?? "Minimum value"}
@@ -75,7 +71,7 @@ const SliderInputs: React.FC<SliderInputsProps> = ({
         value={maxValue}
         onChange={onMaxChange}
         disabled={disabled}
-        min={localMinValue + step}
+        min={minValue + step}
         max={max}
         step={step}
         data-testid={dataTestId ? `${dataTestId}-max-input` : undefined}

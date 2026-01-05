@@ -5,7 +5,7 @@ Package-specific changes not released in any package will be added here just bef
 
 ## 2026-01-05
 
-#### 🎉 New features
+### 🎉 New features
 
 - Added new `Slider` component for range value selection with dual-thumb interaction, number inputs, keyboard navigation, and full accessibility support. ([#PR](https://github.com/TiendaNube/nimbus-design-system/pull/400) by [@vinniimiranda](https://github.com/vinniimiranda))
 

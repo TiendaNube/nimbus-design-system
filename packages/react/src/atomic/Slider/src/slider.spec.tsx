@@ -264,12 +264,10 @@ describe("GIVEN <Slider />", () => {
       "neutral",
     ] as const;
 
-    appearances.forEach((appearance) => {
-      it(`THEN should render ${appearance} appearance`, () => {
-        makeSut({ appearance });
-        const fill = screen.getByTestId("slider-fill");
-        expect(fill.className).toContain(appearance);
-      });
+    test.each(appearances)("THEN should render %s appearance", (appearance) => {
+      makeSut({ appearance });
+      const fill = screen.getByTestId("slider-fill");
+      expect(fill.className).toContain(appearance);
     });
   });
 
@@ -495,10 +493,9 @@ describe("GIVEN <Slider />", () => {
 
       const track = screen.getByTestId("slider-track");
       const trackContainer = track.parentElement;
-
-      if (trackContainer) {
-        fireEvent.mouseDown(trackContainer, { clientX: 10 });
-      }
+      expect(trackContainer).toBeInTheDocument();
+      fireEvent.mouseDown(trackContainer!, { clientX: 10 });
+      expect(onChange).toHaveBeenCalled();
 
       expect(onChange).toHaveBeenCalled();
     });
