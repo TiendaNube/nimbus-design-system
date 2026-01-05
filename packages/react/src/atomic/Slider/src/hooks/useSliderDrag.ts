@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import type { RefObject } from "react";
 
 type DragTarget = "min" | "max" | null;
@@ -47,6 +47,14 @@ export const useSliderDrag = ({
   onChangeEnd,
 }: UseSliderDragProps): UseSliderDragReturn => {
   const [isDragging, setIsDragging] = useState<DragTarget>(null);
+
+  const minValueRef = useRef(localMinValue);
+  const maxValueRef = useRef(localMaxValue);
+
+  useEffect(() => {
+    minValueRef.current = localMinValue;
+    maxValueRef.current = localMaxValue;
+  }, [localMinValue, localMaxValue]);
 
   const snapToStep = useCallback(
     (value: number): number => {
@@ -117,21 +125,25 @@ export const useSliderDrag = ({
       const value = getValueFromPosition(clientX);
 
       if (isDragging === "min") {
-        const clamped = clampValue(value, true);
-        setLocalMinValue(clamped);
-        onChange?.(clamped, localMaxValue);
-        onMinChange?.(clamped);
+        const clampedMin = clampValue(value, true);
+        const currentMax = maxValueRef.current;
+        minValueRef.current = clampedMin;
+        setLocalMinValue(clampedMin);
+        onChange?.(clampedMin, currentMax);
+        onMinChange?.(clampedMin);
       } else {
-        const clamped = clampValue(value, false);
-        setLocalMaxValue(clamped);
-        onChange?.(localMinValue, clamped);
-        onMaxChange?.(clamped);
+        const clampedMax = clampValue(value, false);
+        const currentMin = minValueRef.current;
+        maxValueRef.current = clampedMax;
+        setLocalMaxValue(clampedMax);
+        onChange?.(currentMin, clampedMax);
+        onMaxChange?.(clampedMax);
       }
     };
 
     const handleMouseUp = () => {
       setIsDragging(null);
-      onChangeEnd?.(localMinValue, localMaxValue);
+      onChangeEnd?.(minValueRef.current, maxValueRef.current);
     };
 
     document.addEventListener("mousemove", handleMouseMove);
@@ -149,8 +161,6 @@ export const useSliderDrag = ({
     isDragging,
     getValueFromPosition,
     clampValue,
-    localMinValue,
-    localMaxValue,
     setLocalMinValue,
     setLocalMaxValue,
     onChange,

@@ -213,11 +213,6 @@ const Slider = forwardRef<HTMLDivElement, SliderBaseProps>(
         <div
           className={slider.classnames.trackContainer}
           onMouseDown={handleTrackMouseDown}
-          onTouchStart={(e) =>
-            handleTrackMouseDown(
-              e as unknown as React.MouseEvent<HTMLDivElement>
-            )
-          }
           role="none"
         >
           <SliderTrack
