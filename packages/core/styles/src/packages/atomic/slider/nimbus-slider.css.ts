@@ -13,7 +13,7 @@ const baseFill = style({
   position: "absolute",
   height: "100%",
   borderRadius: varsThemeBase.shape.border.radius.full,
-  transition: `all ${varsThemeBase.motion.speed.fast} ease`,
+  transition: `left ${varsThemeBase.motion.speed.fast} ease`,
 });
 
 const baseThumb = style({
@@ -44,6 +44,10 @@ const thumbDisabled = style({
   backgroundColor: varsThemeBase.colors.neutral.textDisabled,
   cursor: "not-allowed",
   ":hover": {
+    boxShadow: "none",
+  },
+  ":focus": {
+    outline: "none",
     boxShadow: "none",
   },
   ":active": {

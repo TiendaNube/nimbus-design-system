@@ -33,6 +33,7 @@ export { radio } from "./packages/atomic/radio";
 export { select } from "./packages/atomic/select";
 export { skeleton } from "./packages/atomic/skeleton";
 export { spinner } from "./packages/atomic/spinner";
+export { slider } from "./packages/atomic/slider";
 export { toggle } from "./packages/atomic/toggle";
 export { link } from "./packages/atomic/link";
 export { tooltip } from "./packages/atomic/tooltip";
@@ -40,7 +41,6 @@ export { thumbnail } from "./packages/atomic/thumbnail";
 export { textarea } from "./packages/atomic/textarea";
 export { progressBar } from "./packages/atomic/progressBar";
 export { divider } from "./packages/atomic/divider";
-export { slider } from "./packages/atomic/slider";
 
 export { accordion } from "./packages/composite/accordion";
 export { alert } from "./packages/composite/alert";

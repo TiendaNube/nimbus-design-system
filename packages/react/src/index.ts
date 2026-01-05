@@ -23,6 +23,7 @@ export * from "@nimbus-ds/radio";
 export * from "@nimbus-ds/select";
 export * from "@nimbus-ds/skeleton";
 export * from "@nimbus-ds/spinner";
+export * from "@nimbus-ds/slider";
 export * from "@nimbus-ds/tag";
 export * from "@nimbus-ds/text";
 export * from "@nimbus-ds/textarea";
@@ -33,7 +34,6 @@ export * from "@nimbus-ds/toggle";
 export * from "@nimbus-ds/tooltip";
 export * from "@nimbus-ds/progress-bar";
 export * from "@nimbus-ds/divider";
-export * from "@nimbus-ds/slider";
 
 // composite
 export * from "@nimbus-ds/accordion";
