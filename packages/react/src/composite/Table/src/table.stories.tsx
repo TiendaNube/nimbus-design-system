@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
+import { Button } from "@nimbus-ds/button";
 import { Table } from "./Table";
+import { TableColumnLayout } from "./table.types";
 
 const meta: Meta<typeof Table> = {
   title: "Composite/Table",
@@ -67,6 +69,147 @@ export const withCustomCellWidth: Story = {
         </Table.Body>
       </>
     ),
+  },
+};
+
+type Column = {
+  id: string;
+  hidden: boolean;
+  title: string;
+} & TableColumnLayout;
+
+export const withGrowColumns: Story = {
+  args: {},
+  render: () => {
+    const columnLayout: Column[] = [
+      {
+        id: "1",
+        width: "100px",
+        hidden: false,
+        title: "Column 1",
+      },
+      { id: "2", grow: 2, hidden: false, title: "Column 2" },
+      { id: "3", grow: 1, hidden: false, title: "Column 3" },
+    ];
+    const [columns, setColumns] = useState<Column[]>(columnLayout);
+
+    const toggleColumnVisibility = (id: string) => {
+      setColumns((prev) =>
+        prev.map((column) =>
+          column.id === id ? { ...column, hidden: !column.hidden } : column
+        )
+      );
+    };
+
+    return (
+      <Table columnLayout={columns.filter((column) => !column.hidden)}>
+        <Table.Head>
+          <Table.Row backgroundColor="neutral-surface">
+            {columns
+              .filter((column) => !column.hidden)
+              .map((column) => (
+                <Table.Cell as="th" key={column.id}>
+                  {column.title}
+                  <Button onClick={() => toggleColumnVisibility(column.id)}>
+                    Hide
+                  </Button>
+                </Table.Cell>
+              ))}
+          </Table.Row>
+        </Table.Head>
+        <Table.Body>
+          {Array.from({ length: 1 }, (_, i) => (
+            <Table.Row key={i}>
+              {columns.find((column) => column.id === "1")?.hidden ? null : (
+                <Table.Cell>
+                  Cell 1 Lorem ipsum dolor sit amet consectetur adipisicing
+                  elit. Error tenetur vero odit culpa similique repellat minima
+                  aperiam explicabo veniam velit, eius assumenda tempora fugit
+                  suscipit reprehenderit ab libero sit ut. Ea sequi aut nobis
+                  eos unde, illum numquam consectetur nisi maiores consequuntur
+                  eveniet suscipit nesciunt veniam. Reprehenderit eligendi
+                  quidem quibusdam, quae sapiente, expedita eos, velit
+                  blanditiis doloribus dolorum voluptas quo!
+                </Table.Cell>
+              )}
+              {columns.find((column) => column.id === "2")?.hidden ? null : (
+                <Table.Cell>
+                  Cell 2 Lorem ipsum dolor sit amet consectetur adipisicing
+                  elit. Error tenetur vero odit culpa similique repellat minima
+                  aperiam explicabo veniam velit, eius assumenda tempora fugit
+                  suscipit reprehenderit ab libero sit ut. Ea sequi aut nobis
+                  eos unde, illum numquam consectetur nisi maiores consequuntur
+                  eveniet suscipit nesciunt veniam. Reprehenderit eligendi
+                  quidem quibusdam, quae sapiente, expedita eos, velit
+                  blanditiis doloribus dolorum voluptas quo!
+                </Table.Cell>
+              )}
+              {columns.find((column) => column.id === "3")?.hidden ? null : (
+                <Table.Cell>
+                  Cell 3 Lorem ipsum dolor sit amet consectetur adipisicing
+                  elit. Error tenetur vero odit culpa similique repellat minima
+                  aperiam explicabo veniam velit, eius assumenda tempora fugit
+                  suscipit reprehenderit ab libero sit ut. Ea sequi aut nobis
+                  eos unde, illum numquam consectetur nisi maiores consequuntur
+                  eveniet suscipit nesciunt veniam. Reprehenderit eligendi
+                  quidem quibusdam, quae sapiente, expedita eos, velit
+                  blanditiis doloribus dolorum voluptas quo!
+                </Table.Cell>
+              )}
+            </Table.Row>
+          ))}
+        </Table.Body>
+      </Table>
+    );
+  },
+};
+
+export const withGrowConstraints: Story = {
+  args: {},
+  render: () => {
+    const columnLayout: TableColumnLayout[] = [
+      { id: "column-1", width: "100px" },
+      { id: "column-2", grow: 2 },
+      { id: "column-3", grow: 1, minWidth: "200px" },
+      { id: "column-4", grow: 1 },
+    ];
+
+    return (
+      <Table columnLayout={columnLayout}>
+        <Table.Head>
+          <Table.Row backgroundColor="neutral-surface">
+            <Table.Cell as="th" column={0}>
+              Fixed 100px
+            </Table.Cell>
+            <Table.Cell as="th" column={1}>
+              Grow 2x
+            </Table.Cell>
+            <Table.Cell as="th" column={2}>
+              Grow 1x (min 200px)
+            </Table.Cell>
+            <Table.Cell as="th" column={3}>
+              Grow 1x
+            </Table.Cell>
+          </Table.Row>
+        </Table.Head>
+        <Table.Body>
+          {Array.from({ length: 3 }, (_, i) => (
+            <Table.Row key={i}>
+              <Table.Cell column={0}>Cell 1</Table.Cell>
+              <Table.Cell column={1}>
+                This column grows with factor 2
+              </Table.Cell>
+              <Table.Cell column={2}>
+                This column grows with factor 1 but never shrinks below 200px
+              </Table.Cell>
+              <Table.Cell column={3}>
+                This column grows with factor 1
+              </Table.Cell>
+            </Table.Row>
+          ))}
+        </Table.Body>
+      </Table>
+    );
   },
 };
 
