@@ -1,1 +1,1 @@
-export { default as SliderRangeLabels } from "./SliderRangeLabels";
+export { SliderRangeLabels } from "./SliderRangeLabels";

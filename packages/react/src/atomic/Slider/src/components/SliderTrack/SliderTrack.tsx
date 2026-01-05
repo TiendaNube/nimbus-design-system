@@ -11,7 +11,7 @@ interface SliderTrackProps {
   children: React.ReactNode;
 }
 
-const SliderTrack = forwardRef<HTMLDivElement, SliderTrackProps>(
+const SliderTrackComponent = forwardRef<HTMLDivElement, SliderTrackProps>(
   ({ appearance, minPercentage, maxPercentage, dataTestId, children }, ref) => (
     <div
       ref={ref}
@@ -31,9 +31,9 @@ const SliderTrack = forwardRef<HTMLDivElement, SliderTrackProps>(
   )
 );
 
-SliderTrack.displayName = "SliderTrack";
-SliderTrack.defaultProps = {
+SliderTrackComponent.displayName = "SliderTrack";
+SliderTrackComponent.defaultProps = {
   dataTestId: undefined,
 };
 
-export default memo(SliderTrack);
+export const SliderTrack = memo(SliderTrackComponent);

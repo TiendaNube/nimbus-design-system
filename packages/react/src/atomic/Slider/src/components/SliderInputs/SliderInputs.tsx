@@ -20,7 +20,7 @@ export interface SliderInputsProps {
   onMaxChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const SliderInputs: React.FC<SliderInputsProps> = ({
+const SliderInputsComponent: React.FC<SliderInputsProps> = ({
   minValue,
   maxValue,
   min,
@@ -81,10 +81,10 @@ const SliderInputs: React.FC<SliderInputsProps> = ({
   </div>
 );
 
-SliderInputs.defaultProps = {
+SliderInputsComponent.defaultProps = {
   minLabel: undefined,
   maxLabel: undefined,
   dataTestId: undefined,
 };
 
-export default memo(SliderInputs);
+export const SliderInputs = memo(SliderInputsComponent);

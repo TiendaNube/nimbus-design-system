@@ -9,7 +9,7 @@ interface SliderRangeLabelsProps {
   dataTestId?: string;
 }
 
-const SliderRangeLabels: React.FC<SliderRangeLabelsProps> = ({
+const SliderRangeLabelsComponent: React.FC<SliderRangeLabelsProps> = ({
   minDisplay,
   maxDisplay,
   prefix,
@@ -30,8 +30,8 @@ const SliderRangeLabels: React.FC<SliderRangeLabelsProps> = ({
   </div>
 );
 
-SliderRangeLabels.defaultProps = {
+SliderRangeLabelsComponent.defaultProps = {
   dataTestId: undefined,
 };
 
-export default memo(SliderRangeLabels);
+export const SliderRangeLabels = memo(SliderRangeLabelsComponent);
