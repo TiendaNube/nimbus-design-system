@@ -55,7 +55,10 @@ export const useSliderValues = ({
   );
 
   const getPercentage = useCallback(
-    (value: number): number => ((value - min) / (max - min)) * 100,
+    (value: number): number => {
+      const range = max - min;
+      return range === 0 ? 0 : ((value - min) / range) * 100;
+    },
     [min, max]
   );
 
