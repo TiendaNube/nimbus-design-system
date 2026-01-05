@@ -38,11 +38,8 @@ export const useSliderValues = ({
 
   useEffect(() => {
     setLocalMinValue(minValue);
-  }, [minValue]);
-
-  useEffect(() => {
     setLocalMaxValue(maxValue);
-  }, [maxValue]);
+  }, [minValue, maxValue]);
 
   const clampValue = useCallback(
     (value: number, isMin: boolean): number => {

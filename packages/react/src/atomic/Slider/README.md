@@ -80,27 +80,7 @@ The component fully supports keyboard navigation:
 
 ### Basic Usage
 
-```tsx
-import { Slider } from "@nimbus-ds/slider";
-
-function App() {
-  const [minValue, setMinValue] = useState(25);
-  const [maxValue, setMaxValue] = useState(75);
-
-  return (
-    <Slider
-      min={0}
-      max={100}
-      minValue={minValue}
-      maxValue={maxValue}
-      onChange={(min, max) => {
-        setMinValue(min);
-        setMaxValue(max);
-      }}
-    />
-  );
-}
-```
+````
 
 ### Price Range Filter
 
@@ -128,7 +108,7 @@ function PriceFilter() {
     />
   );
 }
-```
+````
 
 ### Without Inputs
 
