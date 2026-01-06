@@ -1,14 +1,15 @@
 import type React from "react";
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import type { RefObject } from "react";
-
-/** Throttle interval for onChange callbacks during drag (ms) */
-const DRAG_THROTTLE_MS = 50;
-
-interface TrackRect {
-  left: number;
-  width: number;
-}
+import {
+  DRAG_THROTTLE_MS,
+  type TrackRect,
+  createSnapToStep,
+  createGetValueFromClientX,
+  getClientXFromEvent,
+  attachDragListeners,
+  removeDragListeners,
+} from "./sliderDragUtils";
 
 interface UseSingleSliderDragProps {
   trackRef: RefObject<HTMLDivElement>;
@@ -54,30 +55,19 @@ export const useSingleSliderDrag = ({
     valueRef.current = value;
   }, [value]);
 
-  const snapToStep = useCallback(
-    (val: number): number => {
-      const snapped = Math.round((val - min) / step) * step + min;
-      return Math.max(min, Math.min(max, snapped));
-    },
+  const snapToStep = useMemo(
+    () => createSnapToStep(min, max, step),
     [min, max, step]
   );
 
-  const getValueFromClientX = useCallback(
-    (clientX: number, rect: TrackRect): number => {
-      const percentage = Math.max(
-        0,
-        Math.min(1, (clientX - rect.left) / rect.width)
-      );
-      const rawValue = min + percentage * (max - min);
-      return snapToStep(rawValue);
-    },
+  const getValueFromClientX = useMemo(
+    () => createGetValueFromClientX(min, max, snapToStep),
     [min, max, snapToStep]
   );
 
   const getValueFromPosition = useCallback(
     (clientX: number): number => {
       if (!trackRef.current) return min;
-
       const rect = trackRef.current.getBoundingClientRect();
       return getValueFromClientX(clientX, rect);
     },
@@ -128,7 +118,6 @@ export const useSingleSliderDrag = ({
       valueRef.current = clamped;
       setDragValue(clamped);
 
-      // Throttle onChange calls to avoid excessive re-renders
       const now = Date.now();
       if (now - lastOnChangeTimeRef.current >= DRAG_THROTTLE_MS) {
         lastOnChangeTimeRef.current = now;
@@ -138,9 +127,7 @@ export const useSingleSliderDrag = ({
     };
 
     const handleMouseMove = (e: MouseEvent | TouchEvent) => {
-      pendingClientXRef.current =
-        "touches" in e ? e.touches[0].clientX : e.clientX;
-
+      pendingClientXRef.current = getClientXFromEvent(e);
       rafIdRef.current ??= requestAnimationFrame(processMove);
     };
 
@@ -157,7 +144,6 @@ export const useSingleSliderDrag = ({
       setIsDragging(false);
       setDragValue(null);
 
-      // Ensure final value is reported if it wasn't sent due to throttling
       if (lastOnChangeValueRef.current !== finalValue) {
         onChange?.(finalValue);
       }
@@ -167,19 +153,13 @@ export const useSingleSliderDrag = ({
       onChangeEnd?.(finalValue);
     };
 
-    document.addEventListener("mousemove", handleMouseMove);
-    document.addEventListener("mouseup", handleMouseUp);
-    document.addEventListener("touchmove", handleMouseMove, { passive: true });
-    document.addEventListener("touchend", handleMouseUp);
+    attachDragListeners({ handleMouseMove, handleMouseUp });
 
     return () => {
       if (rafIdRef.current !== null) {
         cancelAnimationFrame(rafIdRef.current);
       }
-      document.removeEventListener("mousemove", handleMouseMove);
-      document.removeEventListener("mouseup", handleMouseUp);
-      document.removeEventListener("touchmove", handleMouseMove);
-      document.removeEventListener("touchend", handleMouseUp);
+      removeDragListeners({ handleMouseMove, handleMouseUp });
     };
   }, [
     isDragging,
