@@ -1,10 +1,10 @@
 import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, act } from "@testing-library/react";
 
 import { Slider } from "./Slider";
-import type { SliderProps } from "./Slider";
+import type { SliderRangeBaseProps, SliderSingleBaseProps } from "./Slider";
 
-const defaultProps: SliderProps = {
+const defaultRangeProps: SliderRangeBaseProps = {
   min: 0,
   max: 100,
   minValue: 25,
@@ -12,10 +12,20 @@ const defaultProps: SliderProps = {
   "data-testid": "slider",
 };
 
-const makeSut = (props: Partial<SliderProps> = {}) =>
-  render(<Slider {...defaultProps} {...props} />);
+const defaultSingleProps: SliderSingleBaseProps = {
+  min: 0,
+  max: 100,
+  value: 50,
+  "data-testid": "slider",
+};
 
-describe("GIVEN <Slider />", () => {
+const makeSut = (props: Partial<SliderRangeBaseProps> = {}) =>
+  render(<Slider.Range {...defaultRangeProps} {...props} />);
+
+const makeSingleSut = (props: Partial<SliderSingleBaseProps> = {}) =>
+  render(<Slider {...defaultSingleProps} {...props} />);
+
+describe("GIVEN <Slider.Range />", () => {
   describe("WHEN rendered with default props", () => {
     it("THEN should render the slider container", () => {
       makeSut();
@@ -335,58 +345,75 @@ describe("GIVEN <Slider />", () => {
   });
 
   describe("WHEN using input fields", () => {
-    it("THEN should update min value when min input changes", async () => {
+    it("THEN should update min value when min input changes and loses focus", () => {
       const onChange = jest.fn();
       makeSut({ onChange });
 
       const minInput = screen.getByTestId("slider-min-input");
       fireEvent.change(minInput, { target: { value: "30" } });
+      fireEvent.blur(minInput);
 
       expect(onChange).toHaveBeenCalledWith(30, 75);
     });
 
-    it("THEN should update max value when max input changes", async () => {
+    it("THEN should update max value when max input changes and loses focus", () => {
       const onChange = jest.fn();
       makeSut({ onChange });
 
       const maxInput = screen.getByTestId("slider-max-input");
       fireEvent.change(maxInput, { target: { value: "80" } });
+      fireEvent.blur(maxInput);
 
       expect(onChange).toHaveBeenCalledWith(25, 80);
     });
 
-    it("THEN should clamp min input value to not exceed max", async () => {
+    it("THEN should clamp min input value to not exceed max on blur", () => {
       const onChange = jest.fn();
       makeSut({ onChange, step: 1 });
 
       const minInput = screen.getByTestId("slider-min-input");
       fireEvent.change(minInput, { target: { value: "80" } });
+      fireEvent.blur(minInput);
 
       expect(onChange).toHaveBeenCalled();
       const [calledMin] = onChange.mock.calls[0];
       expect(calledMin).toBeLessThan(75);
     });
 
-    it("THEN should clamp max input value to not go below min", async () => {
+    it("THEN should clamp max input value to not go below min on blur", () => {
       const onChange = jest.fn();
       makeSut({ onChange, step: 1 });
 
       const maxInput = screen.getByTestId("slider-max-input");
       fireEvent.change(maxInput, { target: { value: "10" } });
+      fireEvent.blur(maxInput);
 
       expect(onChange).toHaveBeenCalled();
       const [, calledMax] = onChange.mock.calls[0];
       expect(calledMax).toBeGreaterThan(25);
     });
 
-    it("THEN should clamp empty input to minimum value", async () => {
+    it("THEN should reset to previous value when input is empty on blur", () => {
       const onChange = jest.fn();
-      makeSut({ onChange, min: 0 });
+      makeSut({ onChange, min: 0, minValue: 25 });
 
       const minInput = screen.getByTestId("slider-min-input");
       fireEvent.change(minInput, { target: { value: "" } });
+      fireEvent.blur(minInput);
 
-      expect(onChange).toHaveBeenCalledWith(0, 75);
+      expect(onChange).not.toHaveBeenCalled();
+      expect(minInput).toHaveValue(25);
+    });
+
+    it("THEN should commit value when pressing Enter", () => {
+      const onChange = jest.fn();
+      makeSut({ onChange });
+
+      const minInput = screen.getByTestId("slider-min-input");
+      fireEvent.change(minInput, { target: { value: "40" } });
+      fireEvent.keyDown(minInput, { key: "Enter" });
+
+      expect(onChange).toHaveBeenCalledWith(40, 75);
     });
   });
 
@@ -533,6 +560,7 @@ describe("GIVEN <Slider />", () => {
     });
 
     it("THEN should update min value during drag", () => {
+      jest.useFakeTimers();
       const onChange = jest.fn();
       const onChangeEnd = jest.fn();
       makeSut({ onChange, onChangeEnd });
@@ -541,13 +569,18 @@ describe("GIVEN <Slider />", () => {
 
       fireEvent.mouseDown(minThumb);
       fireEvent.mouseMove(document, { clientX: 30 });
+      act(() => {
+        jest.runAllTimers();
+      });
       fireEvent.mouseUp(document);
 
       expect(onChange).toHaveBeenCalled();
       expect(onChangeEnd).toHaveBeenCalled();
+      jest.useRealTimers();
     });
 
     it("THEN should update max value during drag", () => {
+      jest.useFakeTimers();
       const onChange = jest.fn();
       const onChangeEnd = jest.fn();
       makeSut({ onChange, onChangeEnd });
@@ -556,13 +589,18 @@ describe("GIVEN <Slider />", () => {
 
       fireEvent.mouseDown(maxThumb);
       fireEvent.mouseMove(document, { clientX: 80 });
+      act(() => {
+        jest.runAllTimers();
+      });
       fireEvent.mouseUp(document);
 
       expect(onChange).toHaveBeenCalled();
       expect(onChangeEnd).toHaveBeenCalled();
+      jest.useRealTimers();
     });
 
     it("THEN should handle touch events for min thumb", () => {
+      jest.useFakeTimers();
       const onChange = jest.fn();
       makeSut({ onChange });
 
@@ -570,9 +608,13 @@ describe("GIVEN <Slider />", () => {
 
       fireEvent.touchStart(minThumb);
       fireEvent.touchMove(document, { touches: [{ clientX: 30 }] });
+      act(() => {
+        jest.runAllTimers();
+      });
       fireEvent.touchEnd(document);
 
       expect(onChange).toHaveBeenCalled();
+      jest.useRealTimers();
     });
   });
 
@@ -595,10 +637,12 @@ describe("GIVEN <Slider />", () => {
   describe("WHEN values update externally (controlled component)", () => {
     it("THEN should sync local state when minValue prop changes", () => {
       const { rerender } = render(
-        <Slider {...defaultProps} minValue={25} maxValue={75} />
+        <Slider.Range {...defaultRangeProps} minValue={25} maxValue={75} />
       );
 
-      rerender(<Slider {...defaultProps} minValue={40} maxValue={75} />);
+      rerender(
+        <Slider.Range {...defaultRangeProps} minValue={40} maxValue={75} />
+      );
 
       const minThumb = screen.getByTestId("slider-min-thumb");
       expect(minThumb).toHaveAttribute("aria-valuenow", "40");
@@ -606,10 +650,12 @@ describe("GIVEN <Slider />", () => {
 
     it("THEN should sync local state when maxValue prop changes", () => {
       const { rerender } = render(
-        <Slider {...defaultProps} minValue={25} maxValue={75} />
+        <Slider.Range {...defaultRangeProps} minValue={25} maxValue={75} />
       );
 
-      rerender(<Slider {...defaultProps} minValue={25} maxValue={90} />);
+      rerender(
+        <Slider.Range {...defaultRangeProps} minValue={25} maxValue={90} />
+      );
 
       const maxThumb = screen.getByTestId("slider-max-thumb");
       expect(maxThumb).toHaveAttribute("aria-valuenow", "90");
@@ -643,7 +689,7 @@ describe("GIVEN <Slider />", () => {
   describe("WHEN ref is provided", () => {
     it("THEN should forward ref to container element", () => {
       const ref = React.createRef<HTMLDivElement>();
-      render(<Slider {...defaultProps} ref={ref} />);
+      render(<Slider.Range {...defaultRangeProps} ref={ref} />);
 
       expect(ref.current).toBeInstanceOf(HTMLDivElement);
       expect(ref.current).toHaveAttribute("data-testid", "slider");
@@ -652,7 +698,7 @@ describe("GIVEN <Slider />", () => {
 
   describe("WHEN no data-testid is provided", () => {
     it("THEN should not render data-testid attributes on subcomponents", () => {
-      render(<Slider min={0} max={100} minValue={25} maxValue={75} />);
+      render(<Slider.Range min={0} max={100} minValue={25} maxValue={75} />);
 
       expect(screen.queryByTestId("slider-min-thumb")).not.toBeInTheDocument();
       expect(screen.queryByTestId("slider-max-thumb")).not.toBeInTheDocument();
@@ -678,6 +724,171 @@ describe("GIVEN <Slider />", () => {
 
       expect(minInput).toHaveAttribute("aria-label", "Preço mínimo");
       expect(maxInput).toHaveAttribute("aria-label", "Preço máximo");
+    });
+  });
+});
+
+describe("GIVEN <Slider /> in single value mode", () => {
+  describe("WHEN rendered with value prop", () => {
+    it("THEN should render the slider container", () => {
+      makeSingleSut();
+      expect(screen.getByTestId("slider")).toBeInTheDocument();
+    });
+
+    it("THEN should render only one thumb", () => {
+      makeSingleSut();
+      expect(screen.getByTestId("slider-thumb")).toBeInTheDocument();
+      expect(screen.queryByTestId("slider-min-thumb")).not.toBeInTheDocument();
+      expect(screen.queryByTestId("slider-max-thumb")).not.toBeInTheDocument();
+    });
+
+    it("THEN should render value display when showInputs is true", () => {
+      makeSingleSut();
+      expect(screen.getByTestId("slider-thumb-value")).toBeInTheDocument();
+      expect(screen.getByTestId("slider-thumb-value")).toHaveTextContent("50");
+    });
+
+    it("THEN should render range labels", () => {
+      makeSingleSut();
+      expect(screen.getByTestId("slider-min-label")).toHaveTextContent("0");
+      expect(screen.getByTestId("slider-max-label")).toHaveTextContent("100");
+    });
+  });
+
+  describe("WHEN showInputs is false", () => {
+    it("THEN should not render the value display", () => {
+      makeSingleSut({ showInputs: false });
+      expect(
+        screen.queryByTestId("slider-thumb-value")
+      ).not.toBeInTheDocument();
+    });
+  });
+
+  describe("WHEN disabled", () => {
+    it("THEN should disable the thumb", () => {
+      makeSingleSut({ disabled: true });
+      expect(screen.getByTestId("slider-thumb")).toBeDisabled();
+    });
+  });
+
+  describe("WHEN using keyboard navigation", () => {
+    it("THEN should increase value with ArrowRight", () => {
+      const onChange = jest.fn();
+      makeSingleSut({ onChange, step: 5 });
+
+      const thumb = screen.getByTestId("slider-thumb");
+      fireEvent.keyDown(thumb, { key: "ArrowRight" });
+
+      expect(onChange).toHaveBeenCalledWith(55);
+    });
+
+    it("THEN should decrease value with ArrowLeft", () => {
+      const onChange = jest.fn();
+      makeSingleSut({ onChange, step: 5 });
+
+      const thumb = screen.getByTestId("slider-thumb");
+      fireEvent.keyDown(thumb, { key: "ArrowLeft" });
+
+      expect(onChange).toHaveBeenCalledWith(45);
+    });
+
+    it("THEN should set value to min with Home key", () => {
+      const onChange = jest.fn();
+      makeSingleSut({ onChange });
+
+      const thumb = screen.getByTestId("slider-thumb");
+      fireEvent.keyDown(thumb, { key: "Home" });
+
+      expect(onChange).toHaveBeenCalledWith(0);
+    });
+
+    it("THEN should set value to max with End key", () => {
+      const onChange = jest.fn();
+      makeSingleSut({ onChange });
+
+      const thumb = screen.getByTestId("slider-thumb");
+      fireEvent.keyDown(thumb, { key: "End" });
+
+      expect(onChange).toHaveBeenCalledWith(100);
+    });
+
+    it("THEN should not respond to keyboard when disabled", () => {
+      const onChange = jest.fn();
+      makeSingleSut({ onChange, disabled: true });
+
+      const thumb = screen.getByTestId("slider-thumb");
+      fireEvent.keyDown(thumb, { key: "ArrowRight" });
+
+      expect(onChange).not.toHaveBeenCalled();
+    });
+  });
+
+  describe("WHEN value changes", () => {
+    it("THEN should update the displayed value", () => {
+      const { rerender } = render(
+        <Slider {...defaultSingleProps} value={50} />
+      );
+
+      expect(screen.getByTestId("slider-thumb-value")).toHaveTextContent("50");
+
+      rerender(<Slider {...defaultSingleProps} value={75} />);
+
+      expect(screen.getByTestId("slider-thumb-value")).toHaveTextContent("75");
+    });
+  });
+
+  describe("WHEN dragging thumb", () => {
+    const mockRect = {
+      left: 0,
+      width: 100,
+      top: 0,
+      height: 10,
+      right: 100,
+      bottom: 10,
+      x: 0,
+      y: 0,
+      toJSON: () => ({}),
+    };
+
+    beforeEach(() => {
+      Element.prototype.getBoundingClientRect = jest.fn(() => mockRect);
+    });
+
+    it("THEN should update value during drag", () => {
+      jest.useFakeTimers();
+      const onChange = jest.fn();
+      const onChangeEnd = jest.fn();
+      makeSingleSut({ onChange, onChangeEnd });
+
+      const thumb = screen.getByTestId("slider-thumb");
+
+      fireEvent.mouseDown(thumb);
+      fireEvent.mouseMove(document, { clientX: 75 });
+      act(() => {
+        jest.runAllTimers();
+      });
+      fireEvent.mouseUp(document);
+
+      expect(onChange).toHaveBeenCalled();
+      expect(onChangeEnd).toHaveBeenCalled();
+      jest.useRealTimers();
+    });
+  });
+
+  describe("WHEN using label prop", () => {
+    it("THEN should display label above the value", () => {
+      makeSingleSut({ label: "Volume" });
+
+      expect(screen.getByText("Volume")).toBeInTheDocument();
+    });
+  });
+
+  describe("WHEN ref is provided", () => {
+    it("THEN should forward ref to container element", () => {
+      const ref = React.createRef<HTMLDivElement>();
+      render(<Slider {...defaultSingleProps} ref={ref} />);
+
+      expect(ref.current).toBeInstanceOf(HTMLDivElement);
     });
   });
 });

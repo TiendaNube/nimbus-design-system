@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 
 interface UseSliderValuesProps {
   minValue: number;
@@ -15,8 +15,6 @@ interface UseSliderValuesProps {
 interface UseSliderValuesReturn {
   localMinValue: number;
   localMaxValue: number;
-  setLocalMinValue: (value: number) => void;
-  setLocalMaxValue: (value: number) => void;
   clampValue: (value: number, isMin: boolean) => number;
   updateValues: (newMin: number, newMax: number, isEnd?: boolean) => void;
   getPercentage: (value: number) => number;
@@ -36,6 +34,14 @@ export const useSliderValues = ({
   const [localMinValue, setLocalMinValue] = useState(minValue);
   const [localMaxValue, setLocalMaxValue] = useState(maxValue);
 
+  const minValueRef = useRef(localMinValue);
+  const maxValueRef = useRef(localMaxValue);
+
+  useEffect(() => {
+    minValueRef.current = localMinValue;
+    maxValueRef.current = localMaxValue;
+  }, [localMinValue, localMaxValue]);
+
   useEffect(() => {
     setLocalMinValue(minValue);
     setLocalMaxValue(maxValue);
@@ -44,11 +50,11 @@ export const useSliderValues = ({
   const clampValue = useCallback(
     (value: number, isMin: boolean): number => {
       if (isMin) {
-        return Math.max(min, Math.min(value, localMaxValue - step));
+        return Math.max(min, Math.min(value, maxValueRef.current - step));
       }
-      return Math.min(max, Math.max(value, localMinValue + step));
+      return Math.min(max, Math.max(value, minValueRef.current + step));
     },
-    [min, max, step, localMinValue, localMaxValue]
+    [min, max, step]
   );
 
   const getPercentage = useCallback(
@@ -77,8 +83,6 @@ export const useSliderValues = ({
   return {
     localMinValue,
     localMaxValue,
-    setLocalMinValue,
-    setLocalMaxValue,
     clampValue,
     updateValues,
     getPercentage,

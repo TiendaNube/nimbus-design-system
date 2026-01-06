@@ -1,9 +1,12 @@
 import React, { forwardRef, useCallback, useRef } from "react";
-import type { ComponentPropsWithRef, KeyboardEvent, ChangeEvent } from "react";
+import type { ComponentPropsWithRef, KeyboardEvent } from "react";
 import { slider } from "@nimbus-ds/styles";
 
-import type { SliderBaseProps } from "./slider.types";
-import { useSliderValues, useSliderDrag } from "./hooks";
+import type {
+  SliderRangeBaseProps,
+  SliderSingleBaseProps,
+} from "./slider.types";
+import { useSliderValues, useSliderDrag, useSingleSliderDrag } from "./hooks";
 import {
   SliderThumb,
   SliderInputs,
@@ -26,12 +29,20 @@ export const SLIDER_DEFAULTS = {
 };
 
 /**
- * Slider component allows users to select a range of values within a defined minimum and maximum.
- * It features two draggable thumbs, optional number inputs, and customizable appearance.
+ * Slider component for selecting a single value within a range.
  *
  * @component
  * @example
  * <Slider
+ *   min={0}
+ *   max={100}
+ *   value={50}
+ *   onChange={(value) => console.log(value)}
+ * />
+ *
+ * @example
+ * // For range selection (two thumbs), use Slider.Range
+ * <Slider.Range
  *   min={0}
  *   max={100}
  *   minValue={25}
@@ -39,7 +50,172 @@ export const SLIDER_DEFAULTS = {
  *   onChange={(min, max) => console.log(min, max)}
  * />
  */
-const Slider = forwardRef<HTMLDivElement, SliderBaseProps>(
+const SliderBase = forwardRef<HTMLDivElement, SliderSingleBaseProps>(
+  (
+    {
+      className: _className,
+      style: _style,
+      min = SLIDER_DEFAULTS.min,
+      max = SLIDER_DEFAULTS.max,
+      value,
+      step = SLIDER_DEFAULTS.step,
+      appearance = SLIDER_DEFAULTS.appearance,
+      disabled = SLIDER_DEFAULTS.disabled,
+      showInputs = SLIDER_DEFAULTS.showInputs,
+      showRangeLabels = SLIDER_DEFAULTS.showRangeLabels,
+      label,
+      labelPrefix = SLIDER_DEFAULTS.labelPrefix,
+      labelSuffix = SLIDER_DEFAULTS.labelSuffix,
+      onChange,
+      onChangeEnd,
+      "data-testid": dataTestId,
+      ...rest
+    },
+    ref
+  ) => {
+    const trackRef = useRef<HTMLDivElement>(null);
+    const valueRef = useRef(value);
+    valueRef.current = value;
+
+    const clampValue = useCallback(
+      (val: number): number => Math.max(min, Math.min(max, val)),
+      [min, max]
+    );
+
+    const getPercentage = useCallback(
+      (val: number): number => {
+        const range = max - min;
+        return range === 0 ? 0 : ((val - min) / range) * 100;
+      },
+      [min, max]
+    );
+
+    const { dragValue, handleTrackMouseDown, handleThumbMouseDown } =
+      useSingleSliderDrag({
+        trackRef,
+        min,
+        max,
+        step,
+        disabled,
+        value,
+        clampValue,
+        onChange,
+        onChangeEnd,
+      });
+
+    const displayValue = dragValue ?? value;
+
+    const handleKeyDown = useCallback(
+      (e: KeyboardEvent<HTMLButtonElement>) => {
+        if (disabled) return;
+
+        let newValue: number;
+        const currentValue = valueRef.current;
+
+        switch (e.key) {
+          case "ArrowLeft":
+          case "ArrowDown":
+            newValue = clampValue(currentValue - step);
+            break;
+          case "ArrowRight":
+          case "ArrowUp":
+            newValue = clampValue(currentValue + step);
+            break;
+          case "Home":
+            newValue = min;
+            break;
+          case "End":
+            newValue = max;
+            break;
+          default:
+            return;
+        }
+
+        e.preventDefault();
+        onChange?.(newValue);
+        onChangeEnd?.(newValue);
+      },
+      [disabled, step, min, max, clampValue, onChange, onChangeEnd]
+    );
+
+    const percentage = getPercentage(displayValue);
+
+    const containerClassName = [slider.classnames.container, _className]
+      .filter(Boolean)
+      .join(" ");
+
+    return (
+      <div
+        {...rest}
+        ref={ref}
+        className={containerClassName}
+        style={_style}
+        data-testid={dataTestId}
+      >
+        {label && (
+          <div className={slider.classnames.labelContainer}>
+            <span className={slider.classnames.label}>{label}</span>
+          </div>
+        )}
+
+        <div
+          className={slider.classnames.trackContainer}
+          onMouseDown={handleTrackMouseDown}
+          role="none"
+        >
+          <SliderTrack
+            ref={trackRef}
+            appearance={appearance}
+            maxPercentage={percentage}
+            dataTestId={dataTestId}
+          >
+            <SliderThumb
+              type="single"
+              percentage={percentage}
+              value={displayValue}
+              minAriaValue={min}
+              maxAriaValue={max}
+              disabled={disabled}
+              label={label}
+              showValue={showInputs}
+              dataTestId={dataTestId ? `${dataTestId}-thumb` : undefined}
+              onMouseDown={handleThumbMouseDown}
+              onKeyDown={handleKeyDown}
+            />
+          </SliderTrack>
+        </div>
+
+        {showRangeLabels && (
+          <SliderRangeLabels
+            minDisplay={String(min)}
+            maxDisplay={String(max)}
+            prefix={labelPrefix}
+            suffix={labelSuffix}
+            dataTestId={dataTestId}
+          />
+        )}
+      </div>
+    );
+  }
+);
+
+SliderBase.displayName = "Slider";
+
+/**
+ * Range slider component for selecting a range of values (two thumbs).
+ * Use as `<Slider.Range />`.
+ *
+ * @component
+ * @example
+ * <Slider.Range
+ *   min={0}
+ *   max={100}
+ *   minValue={25}
+ *   maxValue={75}
+ *   onChange={(min, max) => console.log(min, max)}
+ * />
+ */
+const SliderRange = forwardRef<HTMLDivElement, SliderRangeBaseProps>(
   (
     {
       className: _className,
@@ -72,8 +248,6 @@ const Slider = forwardRef<HTMLDivElement, SliderBaseProps>(
     const {
       localMinValue,
       localMaxValue,
-      setLocalMinValue,
-      setLocalMaxValue,
       clampValue,
       updateValues,
       getPercentage,
@@ -89,7 +263,13 @@ const Slider = forwardRef<HTMLDivElement, SliderBaseProps>(
       onChangeEnd,
     });
 
-    const { handleTrackMouseDown, handleThumbMouseDown } = useSliderDrag({
+    const {
+      dragMinValue,
+      dragMaxValue,
+      handleTrackMouseDown,
+      handleMinMouseDown,
+      handleMaxMouseDown,
+    } = useSliderDrag({
       trackRef,
       min,
       max,
@@ -99,20 +279,26 @@ const Slider = forwardRef<HTMLDivElement, SliderBaseProps>(
       localMaxValue,
       clampValue,
       updateValues,
-      setLocalMinValue,
-      setLocalMaxValue,
-      onChange,
-      onMinChange,
-      onMaxChange,
-      onChangeEnd,
     });
 
+    const displayMinValue = dragMinValue ?? localMinValue;
+    const displayMaxValue = dragMaxValue ?? localMaxValue;
+
+    const minValueRef = useRef(localMinValue);
+    const maxValueRef = useRef(localMaxValue);
+
+    minValueRef.current = localMinValue;
+    maxValueRef.current = localMaxValue;
+
     const handleThumbKeyDown = useCallback(
-      (type: "min" | "max") => (e: KeyboardEvent<HTMLButtonElement>) => {
+      (type: "min" | "max", e: KeyboardEvent<HTMLButtonElement>) => {
         if (disabled) return;
 
         let newValue: number;
-        const currentValue = type === "min" ? localMinValue : localMaxValue;
+        const currentValue =
+          type === "min" ? minValueRef.current : maxValueRef.current;
+        const currentMinValue = minValueRef.current;
+        const currentMaxValue = maxValueRef.current;
 
         switch (e.key) {
           case "ArrowLeft":
@@ -124,10 +310,10 @@ const Slider = forwardRef<HTMLDivElement, SliderBaseProps>(
             newValue = clampValue(currentValue + step, type === "min");
             break;
           case "Home":
-            newValue = type === "min" ? min : localMinValue + step;
+            newValue = type === "min" ? min : currentMinValue + step;
             break;
           case "End":
-            newValue = type === "max" ? max : localMaxValue - step;
+            newValue = type === "max" ? max : currentMaxValue - step;
             break;
           default:
             return;
@@ -135,49 +321,42 @@ const Slider = forwardRef<HTMLDivElement, SliderBaseProps>(
 
         e.preventDefault();
         if (type === "min") {
-          updateValues(newValue, localMaxValue, true);
+          updateValues(newValue, currentMaxValue, true);
         } else {
-          updateValues(localMinValue, newValue, true);
+          updateValues(currentMinValue, newValue, true);
         }
       },
-      [
-        disabled,
-        localMinValue,
-        localMaxValue,
-        step,
-        min,
-        max,
-        clampValue,
-        updateValues,
-      ]
+      [disabled, step, min, max, clampValue, updateValues]
     );
 
-    const handleMinInputChange = useCallback(
-      (e: ChangeEvent<HTMLInputElement>) => {
-        const parsedValue = Number(e.target.value);
+    const handleMinKeyDown = useCallback(
+      (e: KeyboardEvent<HTMLButtonElement>) => handleThumbKeyDown("min", e),
+      [handleThumbKeyDown]
+    );
 
-        if (!Number.isNaN(parsedValue)) {
-          const clamped = clampValue(parsedValue, true);
-          updateValues(clamped, localMaxValue, true);
-        }
+    const handleMaxKeyDown = useCallback(
+      (e: KeyboardEvent<HTMLButtonElement>) => handleThumbKeyDown("max", e),
+      [handleThumbKeyDown]
+    );
+
+    const handleMinInputCommit = useCallback(
+      (value: number) => {
+        const clamped = clampValue(value, true);
+        updateValues(clamped, maxValueRef.current, true);
       },
-      [clampValue, localMaxValue, updateValues]
+      [clampValue, updateValues]
     );
 
-    const handleMaxInputChange = useCallback(
-      (e: ChangeEvent<HTMLInputElement>) => {
-        const parsedValue = Number(e.target.value);
-
-        if (!Number.isNaN(parsedValue)) {
-          const clamped = clampValue(parsedValue, false);
-          updateValues(localMinValue, clamped, true);
-        }
+    const handleMaxInputCommit = useCallback(
+      (value: number) => {
+        const clamped = clampValue(value, false);
+        updateValues(minValueRef.current, clamped, true);
       },
-      [clampValue, localMinValue, updateValues]
+      [clampValue, updateValues]
     );
 
-    const minPercentage = getPercentage(localMinValue);
-    const maxPercentage = getPercentage(localMaxValue);
+    const minPercentage = getPercentage(displayMinValue);
+    const maxPercentage = getPercentage(displayMaxValue);
 
     const containerClassName = [slider.classnames.container, _className]
       .filter(Boolean)
@@ -203,8 +382,8 @@ const Slider = forwardRef<HTMLDivElement, SliderBaseProps>(
             maxLabel={maxLabel}
             separator={inputSeparator}
             dataTestId={dataTestId}
-            onMinChange={handleMinInputChange}
-            onMaxChange={handleMaxInputChange}
+            onMinCommit={handleMinInputCommit}
+            onMaxCommit={handleMaxInputCommit}
           />
         )}
 
@@ -223,26 +402,26 @@ const Slider = forwardRef<HTMLDivElement, SliderBaseProps>(
             <SliderThumb
               type="min"
               percentage={minPercentage}
-              value={localMinValue}
+              value={displayMinValue}
               minAriaValue={min}
-              maxAriaValue={localMaxValue - step}
+              maxAriaValue={displayMaxValue - step}
               disabled={disabled}
               label={minLabel}
               dataTestId={dataTestId ? `${dataTestId}-min-thumb` : undefined}
-              onMouseDown={handleThumbMouseDown("min")}
-              onKeyDown={handleThumbKeyDown("min")}
+              onMouseDown={handleMinMouseDown}
+              onKeyDown={handleMinKeyDown}
             />
             <SliderThumb
               type="max"
               percentage={maxPercentage}
-              value={localMaxValue}
-              minAriaValue={localMinValue + step}
+              value={displayMaxValue}
+              minAriaValue={displayMinValue + step}
               maxAriaValue={max}
               disabled={disabled}
               label={maxLabel}
               dataTestId={dataTestId ? `${dataTestId}-max-thumb` : undefined}
-              onMouseDown={handleThumbMouseDown("max")}
-              onKeyDown={handleThumbKeyDown("max")}
+              onMouseDown={handleMaxMouseDown}
+              onKeyDown={handleMaxKeyDown}
             />
           </SliderTrack>
         </div>
@@ -261,7 +440,26 @@ const Slider = forwardRef<HTMLDivElement, SliderBaseProps>(
   }
 );
 
-Slider.displayName = "Slider";
+SliderRange.displayName = "Slider.Range";
 
-export type SliderProps = ComponentPropsWithRef<typeof Slider>;
-export { Slider };
+/**
+ * Slider component with Range subcomponent.
+ *
+ * @example
+ * // Single value slider
+ * <Slider value={50} onChange={(value) => console.log(value)} />
+ *
+ * @example
+ * // Range slider
+ * <Slider.Range minValue={25} maxValue={75} onChange={(min, max) => console.log(min, max)} />
+ */
+export const Slider = Object.assign(SliderBase, {
+  Range: SliderRange,
+});
+
+export type SliderProps = ComponentPropsWithRef<typeof SliderBase>;
+export type SliderRangeProps = ComponentPropsWithRef<typeof SliderRange>;
+export type {
+  SliderSingleBaseProps,
+  SliderRangeBaseProps,
+} from "./slider.types";

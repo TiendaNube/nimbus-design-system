@@ -1,9 +1,9 @@
 import type { HTMLAttributes } from "react";
 
 /**
-+ * Available appearance variants for the slider fill.
-+ * Controls the color scheme of the active range portion of the slider.
-+ */
+ * Available appearance variants for the slider fill.
+ * Controls the color scheme of the active range portion of the slider.
+ */
 export type SliderAppearance =
   | "primary"
   | "success"
@@ -11,7 +11,10 @@ export type SliderAppearance =
   | "danger"
   | "neutral";
 
-export interface SliderProperties {
+/**
+ * Common properties shared between single and range slider modes.
+ */
+interface SliderCommonProperties {
   /**
    * The minimum value of the slider range.
    * @default 0
@@ -22,14 +25,6 @@ export interface SliderProperties {
    * @default 100
    */
   max?: number;
-  /**
-   * The current minimum value selected on the slider.
-   */
-  minValue: number;
-  /**
-   * The current maximum value selected on the slider.
-   */
-  maxValue: number;
   /**
    * The step increment between values.
    * @default 1
@@ -46,7 +41,7 @@ export interface SliderProperties {
    */
   disabled?: boolean;
   /**
-   * Whether to show the number inputs for min and max values.
+   * Whether to show the number input(s).
    * @default true
    */
   showInputs?: boolean;
@@ -55,6 +50,54 @@ export interface SliderProperties {
    * @default true
    */
   showRangeLabels?: boolean;
+  /**
+   * Prefix displayed before the range label values (e.g., "R$", "$").
+   */
+  labelPrefix?: string;
+  /**
+   * Suffix displayed after the range label values (e.g., "kg", "%").
+   */
+  labelSuffix?: string;
+  /**
+   * This is an attribute used to identify a DOM node for testing purposes.
+   */
+  "data-testid"?: string;
+}
+
+/**
+ * Properties specific to single value slider mode.
+ */
+export interface SliderSingleProperties extends SliderCommonProperties {
+  /**
+   * The current value of the slider (single mode).
+   */
+  value: number;
+  /**
+   * Label for the input.
+   */
+  label?: string;
+  /**
+   * Callback fired when the value changes.
+   */
+  onChange?: (value: number) => void;
+  /**
+   * Callback fired when the user finishes interacting with the slider.
+   */
+  onChangeEnd?: (value: number) => void;
+}
+
+/**
+ * Properties specific to range slider mode (two thumbs).
+ */
+export interface SliderRangeProperties extends SliderCommonProperties {
+  /**
+   * The current minimum value selected on the slider.
+   */
+  minValue: number;
+  /**
+   * The current maximum value selected on the slider.
+   */
+  maxValue: number;
   /**
    * Label for the minimum input.
    */
@@ -69,14 +112,6 @@ export interface SliderProperties {
    */
   inputSeparator?: string;
   /**
-   * Prefix displayed before the range label values (e.g., "R$", "$").
-   */
-  labelPrefix?: string;
-  /**
-   * Suffix displayed after the range label values (e.g., "kg", "%").
-   */
-  labelSuffix?: string;
-  /**
    * Callback fired when the min or max value changes.
    */
   onChange?: (minValue: number, maxValue: number) => void;
@@ -89,19 +124,45 @@ export interface SliderProperties {
    */
   onMaxChange?: (value: number) => void;
   /**
-   * Callback fired when the user finishes interacting with the slider (on mouse/touch up).
+   * Callback fired when the user finishes interacting with the slider.
    */
   onChangeEnd?: (minValue: number, maxValue: number) => void;
-  /**
-   * This is an attribute used to identify a DOM node for testing purposes.
-   */
-  "data-testid"?: string;
 }
 
 /**
-+ * Complete props interface for the Slider component.
-+ * Combines SliderProperties with standard HTML div attributes, excluding the native onChange event
-+ * in favor of the slider-specific onChange callback.
-+ */
-export type SliderBaseProps = SliderProperties &
+ * Legacy interface for backwards compatibility.
+ * @deprecated Use SliderRangeProperties instead.
+ */
+export type SliderProperties = SliderRangeProperties;
+
+/**
+ * Props for single value slider mode.
+ */
+export type SliderSingleBaseProps = SliderSingleProperties &
   Omit<HTMLAttributes<HTMLDivElement>, "onChange">;
+
+/**
+ * Props for range slider mode.
+ */
+export type SliderRangeBaseProps = SliderRangeProperties &
+  Omit<HTMLAttributes<HTMLDivElement>, "onChange">;
+
+/**
+ * Complete props interface for the Slider component.
+ * Supports both single value mode (with `value` prop) and range mode (with `minValue`/`maxValue` props).
+ */
+export type SliderBaseProps = SliderSingleBaseProps | SliderRangeBaseProps;
+
+/**
+ * Type guard to check if props are for single value mode.
+ */
+export const isSingleMode = (
+  props: SliderBaseProps
+): props is SliderSingleBaseProps => "value" in props;
+
+/**
+ * Type guard to check if props are for range mode.
+ */
+export const isRangeMode = (
+  props: SliderBaseProps
+): props is SliderRangeBaseProps => "minValue" in props && "maxValue" in props;

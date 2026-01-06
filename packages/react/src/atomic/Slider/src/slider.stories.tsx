@@ -1,33 +1,54 @@
-import React, { useState, forwardRef } from "react";
+import React, { useState, useEffect, forwardRef } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Box } from "@nimbus-ds/box";
 import { Title } from "@nimbus-ds/title";
 
-import { Slider as SliderComponent, SliderProps } from "./Slider";
+import { Slider } from "./Slider";
+import type { SliderSingleBaseProps } from "./Slider";
 
-export const Basic: React.FC<SliderProps> = forwardRef((props: SliderProps) => {
-  const [minValue, setMinValue] = useState(props.minValue);
-  const [maxValue, setMaxValue] = useState(props.maxValue);
+// ============================================================================
+// Wrapper Component for Storybook (internal, not exported as story)
+// ============================================================================
 
-  return (
-    <SliderComponent
-      {...props}
-      minValue={minValue}
-      maxValue={maxValue}
-      onChange={(min, max) => {
-        setMinValue(min);
-        setMaxValue(max);
-        props.onChange?.(min, max);
-      }}
-    />
-  );
-}) as React.FC<SliderProps>;
+const Basic: React.FC<SliderSingleBaseProps> = forwardRef(
+  (props: SliderSingleBaseProps) => {
+    const [value, setValue] = useState(props.value);
+
+    useEffect(() => {
+      setValue(props.value);
+    }, [props.value]);
+
+    return (
+      <Slider
+        {...props}
+        value={value}
+        onChange={(val) => {
+          setValue(val);
+          props.onChange?.(val);
+        }}
+      />
+    );
+  }
+) as React.FC<SliderSingleBaseProps>;
 Basic.displayName = "Slider";
+
+// ============================================================================
+// Meta Configuration
+// ============================================================================
 
 const meta: Meta<typeof Basic> = {
   title: "Atomic/Slider",
   component: Basic,
   tags: ["autodocs"],
+  args: {
+    min: 0,
+    max: 100,
+    value: 50,
+    step: 1,
+    appearance: "primary",
+    showInputs: true,
+    showRangeLabels: true,
+  },
   argTypes: {
     min: {
       control: { type: "number" },
@@ -37,13 +58,9 @@ const meta: Meta<typeof Basic> = {
       control: { type: "number" },
       description: "Maximum range value",
     },
-    minValue: {
+    value: {
       control: { type: "number" },
-      description: "Current minimum selected value",
-    },
-    maxValue: {
-      control: { type: "number" },
-      description: "Current maximum selected value",
+      description: "Current selected value",
     },
     step: {
       control: { type: "number" },
@@ -60,23 +77,15 @@ const meta: Meta<typeof Basic> = {
     },
     showInputs: {
       control: { type: "boolean" },
-      description: "Show/hide the number inputs",
+      description: "Show/hide the current value display",
     },
     showRangeLabels: {
       control: { type: "boolean" },
       description: "Show/hide the range labels",
     },
-    minLabel: {
+    label: {
       control: { type: "text" },
-      description: "Label for the minimum input",
-    },
-    maxLabel: {
-      control: { type: "text" },
-      description: "Label for the maximum input",
-    },
-    inputSeparator: {
-      control: { type: "text" },
-      description: "Separator between inputs",
+      description: "Label displayed above the value",
     },
     labelPrefix: {
       control: { type: "text" },
@@ -92,28 +101,101 @@ const meta: Meta<typeof Basic> = {
 export default meta;
 type Story = StoryObj<typeof Basic>;
 
-export const basic: Story = {
+// ============================================================================
+// Single Value Stories
+// ============================================================================
+
+export const basic: Story = {};
+
+export const withLabel: Story = {
   args: {
-    min: 0,
-    max: 100,
-    minValue: 25,
-    maxValue: 75,
-    step: 1,
-    appearance: "primary",
-    showInputs: true,
-    showRangeLabels: true,
+    value: 75,
+    label: "Volume",
+    labelSuffix: "%",
   },
 };
 
-export const withLabels: Story = {
+export const disabled: Story = {
+  args: {
+    value: 30,
+    disabled: true,
+  },
+};
+
+export const minimal: Story = {
+  args: {
+    value: 40,
+    showInputs: false,
+    showRangeLabels: false,
+  },
+};
+
+export const customStep: Story = {
   args: {
     min: 0,
-    max: 100,
-    minValue: 20,
-    maxValue: 80,
-    minLabel: "Min.",
-    maxLabel: "Máx.",
-    inputSeparator: "↔",
+    max: 1000,
+    value: 500,
+    step: 50,
+    labelPrefix: "R$",
+  },
+};
+
+// ============================================================================
+// Range Stories (Slider.Range)
+// ============================================================================
+
+export const range: Story = {
+  render: () => {
+    const RangeSlider = () => {
+      const [minValue, setMinValue] = useState(25);
+      const [maxValue, setMaxValue] = useState(75);
+
+      return (
+        <Slider.Range
+          min={0}
+          max={100}
+          minValue={minValue}
+          maxValue={maxValue}
+          step={1}
+          appearance="primary"
+          showInputs
+          showRangeLabels
+          onChange={(min, max) => {
+            setMinValue(min);
+            setMaxValue(max);
+          }}
+        />
+      );
+    };
+
+    return <RangeSlider />;
+  },
+};
+
+export const rangeWithLabels: Story = {
+  render: () => {
+    const RangeSlider = () => {
+      const [minValue, setMinValue] = useState(20);
+      const [maxValue, setMaxValue] = useState(80);
+
+      return (
+        <Slider.Range
+          min={0}
+          max={100}
+          minValue={minValue}
+          maxValue={maxValue}
+          minLabel="Min."
+          maxLabel="Máx."
+          inputSeparator="↔"
+          onChange={(min, max) => {
+            setMinValue(min);
+            setMaxValue(max);
+          }}
+        />
+      );
+    };
+
+    return <RangeSlider />;
   },
 };
 
@@ -125,8 +207,8 @@ export const priceRange: Story = {
 
       return (
         <Box display="flex" flexDirection="column" gap="4" maxWidth="400px">
-          <Title as="h3">Price</Title>
-          <SliderComponent
+          <Title as="h3">Price Filter</Title>
+          <Slider.Range
             min={0}
             max={9800}
             minValue={minValue}
@@ -148,148 +230,49 @@ export const priceRange: Story = {
   },
 };
 
-export const withoutInputs: Story = {
-  args: {
-    min: 0,
-    max: 100,
-    minValue: 30,
-    maxValue: 70,
-    showInputs: false,
-    showRangeLabels: true,
-  },
-};
+// ============================================================================
+// Comparison Story
+// ============================================================================
 
-export const withoutLabels: Story = {
-  args: {
-    min: 0,
-    max: 100,
-    minValue: 25,
-    maxValue: 75,
-    showInputs: true,
-    showRangeLabels: false,
-  },
-};
+export const comparison: Story = {
+  render: () => {
+    const Comparison = () => {
+      const [singleValue, setSingleValue] = useState(50);
+      const [minValue, setMinValue] = useState(25);
+      const [maxValue, setMaxValue] = useState(75);
 
-export const minimal: Story = {
-  args: {
-    min: 0,
-    max: 100,
-    minValue: 25,
-    maxValue: 75,
-    showInputs: false,
-    showRangeLabels: false,
-  },
-};
+      return (
+        <Box display="flex" flexDirection="column" gap="6" maxWidth="400px">
+          <Box display="flex" flexDirection="column" gap="2">
+            <Title as="h3">{"<Slider />"}</Title>
+            <Slider
+              min={0}
+              max={100}
+              value={singleValue}
+              label="Value"
+              onChange={(val) => setSingleValue(val)}
+            />
+          </Box>
 
-export const disabled: Story = {
-  args: {
-    min: 0,
-    max: 100,
-    minValue: 25,
-    maxValue: 75,
-    disabled: true,
-  },
-};
+          <Box display="flex" flexDirection="column" gap="2">
+            <Title as="h3">{"<Slider.Range />"}</Title>
+            <Slider.Range
+              min={0}
+              max={100}
+              minValue={minValue}
+              maxValue={maxValue}
+              minLabel="Min"
+              maxLabel="Max"
+              onChange={(min, max) => {
+                setMinValue(min);
+                setMaxValue(max);
+              }}
+            />
+          </Box>
+        </Box>
+      );
+    };
 
-export const customStep: Story = {
-  args: {
-    min: 0,
-    max: 1000,
-    minValue: 200,
-    maxValue: 800,
-    step: 50,
-  },
-};
-
-export const primary: Story = {
-  args: {
-    min: 0,
-    max: 100,
-    minValue: 25,
-    maxValue: 75,
-    appearance: "primary",
-  },
-};
-
-export const success: Story = {
-  args: {
-    min: 0,
-    max: 100,
-    minValue: 25,
-    maxValue: 75,
-    appearance: "success",
-  },
-};
-
-export const warning: Story = {
-  args: {
-    min: 0,
-    max: 100,
-    minValue: 25,
-    maxValue: 75,
-    appearance: "warning",
-  },
-};
-
-export const danger: Story = {
-  args: {
-    min: 0,
-    max: 100,
-    minValue: 25,
-    maxValue: 75,
-    appearance: "danger",
-  },
-};
-
-export const neutral: Story = {
-  args: {
-    min: 0,
-    max: 100,
-    minValue: 25,
-    maxValue: 75,
-    appearance: "neutral",
-  },
-};
-
-export const customSeparator: Story = {
-  args: {
-    min: 0,
-    max: 100,
-    minValue: 25,
-    maxValue: 75,
-    inputSeparator: "to",
-    minLabel: "From",
-    maxLabel: "To",
-  },
-};
-
-export const withPrefix: Story = {
-  args: {
-    min: 0,
-    max: 1000,
-    minValue: 100,
-    maxValue: 500,
-    labelPrefix: "R$",
-  },
-};
-
-export const withSuffix: Story = {
-  args: {
-    min: 0,
-    max: 100,
-    minValue: 20,
-    maxValue: 80,
-    labelSuffix: "kg",
-  },
-};
-
-export const withPrefixAndSuffix: Story = {
-  args: {
-    min: 0,
-    max: 1000,
-    minValue: 200,
-    maxValue: 800,
-    labelPrefix: "$",
-    labelSuffix: " USD",
+    return <Comparison />;
   },
 };

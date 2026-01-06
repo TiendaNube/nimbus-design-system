@@ -16,18 +16,24 @@ const baseFill = style({
   transition: `left ${varsThemeBase.motion.speed.fast} ease`,
 });
 
-const baseThumb = style({
+export const thumbWrapper = style({
   position: "absolute",
+  transform: "translateX(-50%)",
+  top: "-0.25rem",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  zIndex: 2,
+});
+
+const baseThumb = style({
   width: "1rem",
   height: "1rem",
   borderRadius: varsThemeBase.shape.border.radius.full,
   backgroundColor: varsThemeBase.colors.primary.interactive,
   border: "none",
   cursor: "pointer",
-  transform: "translateX(-50%)",
-  top: "-0.25rem",
   transition: `box-shadow ${varsThemeBase.motion.speed.fast} ease`,
-  zIndex: 2,
   ":hover": {
     boxShadow: `0 0 0 4px ${varsThemeBase.colors.primary.surface}`,
   },
@@ -38,6 +44,15 @@ const baseThumb = style({
   ":active": {
     boxShadow: `0 0 0 6px ${varsThemeBase.colors.primary.surface}`,
   },
+});
+
+export const thumbValue = style({
+  marginTop: varsThemeBase.spacing[1],
+  fontSize: varsThemeBase.fontSize.body.caption,
+  fontWeight: varsThemeBase.fontWeight.medium,
+  color: varsThemeBase.colors.primary.interactive,
+  fontFamily: varsThemeBase.fontFamily.sans,
+  whiteSpace: "nowrap",
 });
 
 const thumbDisabled = style({
@@ -66,7 +81,7 @@ export const trackContainer = style({
   position: "relative",
   width: "100%",
   paddingTop: varsThemeBase.spacing[2],
-  paddingBottom: varsThemeBase.spacing[2],
+  paddingBottom: varsThemeBase.spacing[4],
 });
 
 export const track = baseTrack;
@@ -134,5 +149,22 @@ export const rangeLabels = style({
   width: "100%",
   color: varsThemeBase.colors.neutral.textLow,
   fontSize: varsThemeBase.fontSize.body.caption,
+  fontFamily: varsThemeBase.fontFamily.sans,
+});
+
+export const sliderRow = style({
+  display: "flex",
+  alignItems: "center",
+  gap: varsThemeBase.spacing[3],
+  width: "100%",
+});
+
+export const labelContainer = style({
+  marginBottom: varsThemeBase.spacing[1],
+});
+
+export const label = style({
+  fontSize: varsThemeBase.fontSize.body.caption,
+  color: varsThemeBase.colors.neutral.textLow,
   fontFamily: varsThemeBase.fontFamily.sans,
 });
