@@ -2,19 +2,19 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
-## 2025-12-23 `9.48.0`
+## 2025-12-23 `9.49.0`
 
 #### 🎉 New features
 
 - `Table`: Allow table layout to support fixed columns. ([#399](https://github.com/TiendaNube/nimbus-design-system/pull/399) by [@joacotornello](https://github.com/joacotornello))
 
-## 2025-12-23 `9.47.0`
+## 2025-12-23 `9.48.0`
 
 #### 🎉 New features
 
 - `Table`: Added `minWidth` and `maxWidth` props to `Table` component to allow setting the minimum and maximum width of the table. ([#398](https://github.com/TiendaNube/nimbus-design-system/pull/398) by [@joacotornello](https://github.com/joacotornello))
 
-## 2025-12-15 `9.46.0`
+## 2025-12-15 `9.47.0`
 
 #### 🎉 New features
 
