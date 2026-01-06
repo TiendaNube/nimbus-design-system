@@ -11,6 +11,8 @@ const Table: React.FC<TableProps> & TableComponents = ({
   style: _style,
   children,
   columnLayout,
+  minWidth,
+  maxWidth,
   ...rest
 }: TableProps) => {
   const totalGrowValue = useMemo(
@@ -31,21 +33,35 @@ const Table: React.FC<TableProps> & TableComponents = ({
     [columnLayout]
   );
 
+  const tableStyle = useMemo(
+    () => ({
+      minWidth,
+      maxWidth,
+    }),
+    [minWidth, maxWidth]
+  );
+
   return (
     <TableContext.Provider value={contextValue}>
-      <table {...rest} className={table.classnames.container}>
-        {hasColumnLayout ? (
-          <colgroup>
-            {columnLayout?.map((column) => (
-              <col
-                key={`table-col-${column.id}`}
-                style={{ width: getColumnWidth(column, totalGrowValue) }}
-              />
-            ))}
-          </colgroup>
-        ) : null}
-        {children}
-      </table>
+      <div className={table.classnames.container__wrapper}>
+        <table
+          {...rest}
+          className={table.classnames.container}
+          style={tableStyle}
+        >
+          {hasColumnLayout ? (
+            <colgroup>
+              {columnLayout?.map((column) => (
+                <col
+                  key={`table-col-${column.id}`}
+                  style={{ width: getColumnWidth(column, totalGrowValue) }}
+                />
+              ))}
+            </colgroup>
+          ) : null}
+          {children}
+        </table>
+      </div>
     </TableContext.Provider>
   );
 };

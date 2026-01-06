@@ -2,6 +2,12 @@
 
 The Table component allows us to organize data with a tabular structure in a table.
 
+## 2025-12-23 `2.2.0`
+
+### 🎉 New features
+
+- Added `minWidth` and `maxWidth` props to `Table` component to allow setting the minimum and maximum width of the table. ([#398](https://github.com/TiendaNube/nimbus-design-system/pull/398) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-12-15 `2.1.0`
 
 ### 🎉 New features

@@ -96,4 +96,55 @@ describe("GIVEN <Table />", () => {
       expect(screen.getByTestId("cell-1")).toHaveStyle({ minWidth: "200px" });
     });
   });
+
+  describe("WHEN minWidth and maxWidth are provided", () => {
+    it("THEN should apply minWidth to the table element", () => {
+      makeSut({
+        minWidth: "800px",
+        children: (
+          <tbody>
+            <tr>
+              <td>My content</td>
+            </tr>
+          </tbody>
+        ),
+      });
+      expect(screen.getByTestId("table-element")).toHaveStyle({
+        minWidth: "800px",
+      });
+    });
+
+    it("THEN should apply maxWidth to the table element", () => {
+      makeSut({
+        maxWidth: "1200px",
+        children: (
+          <tbody>
+            <tr>
+              <td>My content</td>
+            </tr>
+          </tbody>
+        ),
+      });
+      expect(screen.getByTestId("table-element")).toHaveStyle({
+        maxWidth: "1200px",
+      });
+    });
+
+    it("THEN should apply both minWidth and maxWidth to the table element", () => {
+      makeSut({
+        minWidth: "600px",
+        maxWidth: "1000px",
+        children: (
+          <tbody>
+            <tr>
+              <td>My content</td>
+            </tr>
+          </tbody>
+        ),
+      });
+      const tableElement = screen.getByTestId("table-element");
+      expect(tableElement).toHaveStyle({ minWidth: "600px" });
+      expect(tableElement).toHaveStyle({ maxWidth: "1000px" });
+    });
+  });
 });
