@@ -30,7 +30,6 @@ import {
   titleLineHeightProperties,
   fontWeightProperties,
   textAlignProperties,
-  scrollbarWidthProperties,
 } from "../../../properties";
 import { mediaQueries, varsThemeBase } from "../../../themes";
 import { createBorderGradient, gradients } from "../../../gradients";
@@ -246,7 +245,6 @@ const defineProperties = defineRainbowProperties({
     fontWeight: fontWeightProperties,
     fontSize: fontSizeProperties,
     textAlign: textAlignProperties,
-    scrollbarWidth: scrollbarWidthProperties,
   },
   shorthands: {
     borderWidth: [
@@ -314,7 +312,6 @@ const properties = {
   fontWeight: fontWeightProperties,
   fontSize: fontSizeProperties,
   lineHeight: lineHeightProperties,
-  scrollbarWidth: scrollbarWidthProperties,
 };
 
 const sprinkle = createRainbowSprinkles(defineProperties);

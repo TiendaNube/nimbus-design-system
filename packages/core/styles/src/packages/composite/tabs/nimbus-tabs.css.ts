@@ -51,7 +51,6 @@ const button = vanillaStyle({
   },
   ":focus": {
     boxShadow: varsThemeBase.utils.focus,
-    zIndex: 1,
   },
 });
 

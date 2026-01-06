@@ -78,4 +78,3 @@ export type WhiteSpace =
   | "pre-wrap"
   | "pre-line"
   | "break-spaces";
-export type ScrollbarWidth = "auto" | "none" | "thin";
