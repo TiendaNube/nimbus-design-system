@@ -28,9 +28,6 @@ const TableCell: React.FC<TableCellProps> = ({
       ? tableContext?.fixedColumnOffsets?.get(column)
       : undefined;
 
-  const isFixed = Boolean(fixedOffset);
-  const fixedSide = fixedOffset?.side;
-
   const cellStyle: React.CSSProperties = {
     ...style,
     width: columnLayout?.width,
@@ -42,12 +39,9 @@ const TableCell: React.FC<TableCellProps> = ({
 
   const cellClassName = [
     table.classnames.container__cell,
-    isFixed && table.classnames.container__cell_fixed,
-    isFixed &&
-      fixedSide === "left" &&
-      table.classnames.container__cell_fixed_left,
-    isFixed &&
-      fixedSide === "right" &&
+    fixedOffset && table.classnames.container__cell_fixed,
+    fixedOffset?.side === "left" && table.classnames.container__cell_fixed_left,
+    fixedOffset?.side === "right" &&
       table.classnames.container__cell_fixed_right,
     className,
   ]
