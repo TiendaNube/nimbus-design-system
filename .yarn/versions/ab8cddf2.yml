@@ -1,0 +1,12 @@
+releases:
+  "@nimbus-ds/components": minor
+  "@nimbus-ds/styles": minor
+  "@nimbus-ds/table": minor
+
+declined:
+  - nimbus-design-system
+  - "@nimbus-ds/box"
+  - "@nimbus-ds/file-uploader"
+  - "@nimbus-ds/list"
+  - "@nimbus-ds/split-button"
+  - "@nimbus-ds/stepper"

@@ -352,3 +352,129 @@ export const withMinAndMaxWidth: Story = {
     },
   },
 };
+
+export const withFixedColumns: Story = {
+  args: {},
+  render: () => {
+    const columnLayout: TableColumnLayout[] = [
+      { id: "column-id", width: "80px", fixed: "left" },
+      { id: "column-name", width: "150px", fixed: "left" },
+      { id: "column-email", width: "200px" },
+      { id: "column-role", width: "120px" },
+      { id: "column-department", width: "150px" },
+      { id: "column-location", width: "120px" },
+      { id: "column-status", width: "100px" },
+      { id: "column-actions", width: "120px", fixed: "right" },
+    ];
+
+    const data = [
+      {
+        id: "001",
+        name: "John Doe",
+        email: "john.doe@example.com",
+        role: "Admin",
+        department: "Engineering",
+        location: "New York",
+        status: "Active",
+      },
+      {
+        id: "002",
+        name: "Jane Smith",
+        email: "jane.smith@example.com",
+        role: "Manager",
+        department: "Marketing",
+        location: "Los Angeles",
+        status: "Active",
+      },
+      {
+        id: "003",
+        name: "Bob Johnson",
+        email: "bob.johnson@example.com",
+        role: "Developer",
+        department: "Engineering",
+        location: "Chicago",
+        status: "Inactive",
+      },
+      {
+        id: "004",
+        name: "Alice Brown",
+        email: "alice.brown@example.com",
+        role: "Designer",
+        department: "Design",
+        location: "San Francisco",
+        status: "Active",
+      },
+      {
+        id: "005",
+        name: "Charlie Wilson",
+        email: "charlie.wilson@example.com",
+        role: "Analyst",
+        department: "Finance",
+        location: "Boston",
+        status: "Active",
+      },
+    ];
+
+    return (
+      <div>
+        <Table columnLayout={columnLayout} minWidth="1040px">
+          <Table.Head>
+            <Table.Row backgroundColor="primary-surface">
+              <Table.Cell as="th" column={0}>
+                ID
+              </Table.Cell>
+              <Table.Cell as="th" column={1}>
+                Name
+              </Table.Cell>
+              <Table.Cell as="th" column={2}>
+                Email
+              </Table.Cell>
+              <Table.Cell as="th" column={3}>
+                Role
+              </Table.Cell>
+              <Table.Cell as="th" column={4}>
+                Department
+              </Table.Cell>
+              <Table.Cell as="th" column={5}>
+                Location
+              </Table.Cell>
+              <Table.Cell as="th" column={6}>
+                Status
+              </Table.Cell>
+              <Table.Cell as="th" column={7}>
+                Actions
+              </Table.Cell>
+            </Table.Row>
+          </Table.Head>
+          <Table.Body>
+            {data.map((row, index) => (
+              <Table.Row
+                key={row.id}
+                backgroundColor={
+                  index % 2 === 0 ? "neutral-surface" : "primary-surface"
+                }
+              >
+                <Table.Cell column={0}>{row.id}</Table.Cell>
+                <Table.Cell column={1}>{row.name}</Table.Cell>
+                <Table.Cell column={2}>{row.email}</Table.Cell>
+                <Table.Cell column={3}>{row.role}</Table.Cell>
+                <Table.Cell column={4}>{row.department}</Table.Cell>
+                <Table.Cell column={5}>{row.location}</Table.Cell>
+                <Table.Cell column={6}>{row.status}</Table.Cell>
+                <Table.Cell column={7}>Edit | Delete</Table.Cell>
+              </Table.Row>
+            ))}
+          </Table.Body>
+        </Table>
+      </div>
+    );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Demonstrates fixed (sticky) columns on both sides. The first two columns (ID and Name) are fixed to the left, while the Actions column is fixed to the right. Fixed columns use CSS `position: sticky` with calculated offsets based on adjacent column widths.",
+      },
+    },
+  },
+};

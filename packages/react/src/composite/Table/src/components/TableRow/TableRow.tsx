@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { table } from "@nimbus-ds/styles";
 
 import { TableRowProps } from "./tableRow.types";
@@ -21,10 +21,35 @@ const TableRow: React.FC<TableRowProps> = ({
     backgroundColor,
   });
 
+  // Extract the row's background color for fixed cells to inherit
+  // Look up the actual CSS variable value from the properties mapping
+  const rowStyle = useMemo(() => {
+    // Get the "rest" (default) background color key from the prop
+    const bgColorKey =
+      typeof backgroundColor === "string"
+        ? backgroundColor
+        : backgroundColor?.rest;
+
+    // Look up the actual CSS variable value from the properties mapping
+    const bgColorValue = bgColorKey
+      ? table.properties.backgroundColor[
+          bgColorKey as keyof typeof table.properties.backgroundColor
+        ]
+      : undefined;
+
+    if (bgColorValue) {
+      return {
+        ...style,
+        "--nimbus-table-row-bg": bgColorValue,
+      } as React.CSSProperties;
+    }
+    return style;
+  }, [style, backgroundColor]);
+
   return (
     <tr
       className={[table.classnames.container__row, className].join(" ")}
-      style={style}
+      style={rowStyle}
       {...otherProps}
       id={id}
       onClick={onClick}

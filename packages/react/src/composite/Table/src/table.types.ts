@@ -15,7 +15,7 @@ export interface TableColumnLayout {
    */
   id: string;
   /**
-   * Fixed width applied to the column. Accepts any valid CSS width value.
+   * Fixed width applied to the column. Accepts any valid CSS width value in pixels.
    */
   width?: string;
   /**
@@ -25,9 +25,18 @@ export interface TableColumnLayout {
   grow?: number;
   /**
    * Minimum width constraint for the column. The column will not shrink below this value.
-   * Only applies when using `grow`. Accepts any valid CSS width value.
+   * Only applies when using `grow`. Accepts any valid CSS width value in pixels.
    */
   minWidth?: string;
+  /**
+   * Determines which side the column will be fixed (sticky) to during horizontal scrolling.
+   * Fixed columns use CSS `position: sticky` and stay visible on the specified side.
+   * Only contiguous columns can be fixed (i.e. no 'normal' columns between fixed columns on the same side).
+   * Requires a defined `width` to calculate proper offsets.
+   * - 'left': Column sticks to the left side of the table
+   * - 'right': Column sticks to the right side of the table
+   */
+  fixed?: "left" | "right";
 }
 
 export interface TableProperties {

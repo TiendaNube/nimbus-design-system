@@ -4,7 +4,11 @@ import { table } from "@nimbus-ds/styles";
 import { TableProps, TableComponents } from "./table.types";
 import { TableBody, TableCell, TableHead, TableRow } from "./components";
 import { TableContext, TableContextValue } from "./contexts";
-import { getEffectiveFixedWidth, getColumnWidth } from "./Table.definitions";
+import {
+  getEffectiveFixedWidth,
+  getColumnWidth,
+  calculateFixedColumnOffsets,
+} from "./Table.definitions";
 
 const Table: React.FC<TableProps> & TableComponents = ({
   className: _className,
@@ -26,11 +30,16 @@ const Table: React.FC<TableProps> & TableComponents = ({
     [columnLayout]
   );
 
+  const fixedColumnOffsets = useMemo(
+    () => calculateFixedColumnOffsets(columnLayout),
+    [columnLayout]
+  );
+
   const hasColumnLayout = Boolean(columnLayout?.length);
 
   const contextValue = useMemo<TableContextValue>(
-    () => ({ columnLayout }),
-    [columnLayout]
+    () => ({ columnLayout, fixedColumnOffsets }),
+    [columnLayout, fixedColumnOffsets]
   );
 
   const tableStyle = useMemo(
