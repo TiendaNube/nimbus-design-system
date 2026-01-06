@@ -7,7 +7,7 @@ every day, with simplicity, accessibility, consistency and performance.
 
 #### 🎉 New features
 
-- `Table`: Allow table layout to support fixed columns. ([#398](https://github.com/TiendaNube/nimbus-design-system/pull/398) by [@joacotornello](https://github.com/joacotornello))
+- `Table`: Allow table layout to support fixed columns. ([#399](https://github.com/TiendaNube/nimbus-design-system/pull/399) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-12-23 `5.43.0`
 
