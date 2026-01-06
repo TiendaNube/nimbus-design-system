@@ -68,6 +68,10 @@ const container__cell_fixed = style({
   backgroundColor: `var(--nimbus-table-row-bg, ${varsThemeBase.colors.neutral.background})`,
 });
 
+/* -------------------------------------------------------------------------------------------------
+ * Fixed columns dividers
+ * -----------------------------------------------------------------------------------------------*/
+
 const container__cell_fixed_left = style({});
 
 /**
