@@ -19,7 +19,6 @@ const baseFill = style({
   position: "absolute",
   height: "100%",
   borderRadius: varsThemeBase.shape.border.radius.full,
-  transition: `left ${varsThemeBase.motion.speed.fast} ease`,
 });
 
 export const thumbWrapper = style({
