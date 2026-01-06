@@ -1,9 +1,9 @@
 {
   "id": "table",
   "name": "Table",
-  "totalProps": 2,
+  "totalProps": 4,
   "packageName": "@nimbus-ds/table",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/table",
   "props": [
     {
@@ -29,7 +29,7 @@
             "title": "width"
           },
           "grow": {
-            "description": "Growth factor that distributes remaining space among columns without a fixed width.",
+            "description": "Growth factor that distributes remaining space among columns without a fixed width.\nMust be a positive number greater than 0.",
             "type": "number",
             "title": "grow"
           },
@@ -40,10 +40,29 @@
           }
         },
         "additionalProperties": false,
-        "propertyOrder": ["id", "width", "grow", "minWidth"],
-        "required": ["id"]
+        "propertyOrder": [
+          "id",
+          "width",
+          "grow",
+          "minWidth"
+        ],
+        "required": [
+          "id"
+        ]
       },
       "title": "columnLayout",
+      "required": false
+    },
+    {
+      "description": "Minimum width of the table. When the container is smaller, horizontal scrolling is enabled.\nAccepts any valid CSS width value (e.g., \"600px\", \"50rem\").",
+      "type": "string",
+      "title": "minWidth",
+      "required": false
+    },
+    {
+      "description": "Maximum width of the table. The table will not exceed this width.\nAccepts any valid CSS width value (e.g., \"1200px\", \"80rem\").",
+      "type": "string",
+      "title": "maxWidth",
       "required": false
     }
   ],
@@ -73,13 +92,16 @@
         {
           "description": "Type of html tag to create for the table cell.",
           "default": "td",
-          "enum": ["td", "th"],
+          "enum": [
+            "td",
+            "th"
+          ],
           "type": "string",
           "title": "as",
           "required": false
         },
         {
-          "description": "Column index (0-based) to apply minWidth/maxWidth constraints from the Table's columnLayout.\nWhen provided, the cell will inherit minWidth and maxWidth from the corresponding column definition.",
+          "description": "Column index (0-based) to apply minWidth constraint from the Table's columnLayout.\nWhen provided, the cell will inherit minWidth from the corresponding column definition.",
           "type": "number",
           "title": "column",
           "required": false
@@ -423,47 +445,83 @@
               "type": "object",
               "properties": {
                 "rest": {
-                  "enum": ["base", "none", "small"],
+                  "enum": [
+                    "base",
+                    "none",
+                    "small"
+                  ],
                   "type": "string",
                   "title": "rest"
                 },
                 "focus": {
-                  "enum": ["base", "none", "small"],
+                  "enum": [
+                    "base",
+                    "none",
+                    "small"
+                  ],
                   "type": "string",
                   "title": "focus"
                 },
                 "active": {
-                  "enum": ["base", "none", "small"],
+                  "enum": [
+                    "base",
+                    "none",
+                    "small"
+                  ],
                   "type": "string",
                   "title": "active"
                 },
                 "hover": {
-                  "enum": ["base", "none", "small"],
+                  "enum": [
+                    "base",
+                    "none",
+                    "small"
+                  ],
                   "type": "string",
                   "title": "hover"
                 },
                 "xs": {
-                  "enum": ["base", "none", "small"],
+                  "enum": [
+                    "base",
+                    "none",
+                    "small"
+                  ],
                   "type": "string",
                   "title": "xs"
                 },
                 "md": {
-                  "enum": ["base", "none", "small"],
+                  "enum": [
+                    "base",
+                    "none",
+                    "small"
+                  ],
                   "type": "string",
                   "title": "md"
                 },
                 "lg": {
-                  "enum": ["base", "none", "small"],
+                  "enum": [
+                    "base",
+                    "none",
+                    "small"
+                  ],
                   "type": "string",
                   "title": "lg"
                 },
                 "xl": {
-                  "enum": ["base", "none", "small"],
+                  "enum": [
+                    "base",
+                    "none",
+                    "small"
+                  ],
                   "type": "string",
                   "title": "xl"
                 },
                 "xxl": {
-                  "enum": ["base", "none", "small"],
+                  "enum": [
+                    "base",
+                    "none",
+                    "small"
+                  ],
                   "type": "string",
                   "title": "xxl"
                 }
@@ -482,7 +540,11 @@
               ]
             },
             {
-              "enum": ["base", "none", "small"],
+              "enum": [
+                "base",
+                "none",
+                "small"
+              ],
               "type": "string"
             }
           ],
@@ -864,47 +926,83 @@
               "type": "object",
               "properties": {
                 "rest": {
-                  "enum": ["base", "none", "small"],
+                  "enum": [
+                    "base",
+                    "none",
+                    "small"
+                  ],
                   "type": "string",
                   "title": "rest"
                 },
                 "focus": {
-                  "enum": ["base", "none", "small"],
+                  "enum": [
+                    "base",
+                    "none",
+                    "small"
+                  ],
                   "type": "string",
                   "title": "focus"
                 },
                 "active": {
-                  "enum": ["base", "none", "small"],
+                  "enum": [
+                    "base",
+                    "none",
+                    "small"
+                  ],
                   "type": "string",
                   "title": "active"
                 },
                 "hover": {
-                  "enum": ["base", "none", "small"],
+                  "enum": [
+                    "base",
+                    "none",
+                    "small"
+                  ],
                   "type": "string",
                   "title": "hover"
                 },
                 "xs": {
-                  "enum": ["base", "none", "small"],
+                  "enum": [
+                    "base",
+                    "none",
+                    "small"
+                  ],
                   "type": "string",
                   "title": "xs"
                 },
                 "md": {
-                  "enum": ["base", "none", "small"],
+                  "enum": [
+                    "base",
+                    "none",
+                    "small"
+                  ],
                   "type": "string",
                   "title": "md"
                 },
                 "lg": {
-                  "enum": ["base", "none", "small"],
+                  "enum": [
+                    "base",
+                    "none",
+                    "small"
+                  ],
                   "type": "string",
                   "title": "lg"
                 },
                 "xl": {
-                  "enum": ["base", "none", "small"],
+                  "enum": [
+                    "base",
+                    "none",
+                    "small"
+                  ],
                   "type": "string",
                   "title": "xl"
                 },
                 "xxl": {
-                  "enum": ["base", "none", "small"],
+                  "enum": [
+                    "base",
+                    "none",
+                    "small"
+                  ],
                   "type": "string",
                   "title": "xxl"
                 }
@@ -923,7 +1021,11 @@
               ]
             },
             {
-              "enum": ["base", "none", "small"],
+              "enum": [
+                "base",
+                "none",
+                "small"
+              ],
               "type": "string"
             }
           ],
