@@ -35,10 +35,9 @@ const TableCell: React.FC<TableCellProps> = ({
     ...style,
     width: columnLayout?.width,
     minWidth: columnLayout?.minWidth,
-    ...(isFixed &&
-      fixedOffset && {
-        [fixedSide as string]: fixedOffset.offset,
-      }),
+    ...(fixedOffset && {
+      [fixedOffset.side]: fixedOffset.offset,
+    }),
   };
 
   const cellClassName = [

@@ -16,6 +16,7 @@ import { mediaQueries, varsThemeBase } from "../../../themes";
 const container__wrapper = style({
   overflowX: "auto",
   width: "100%",
+  paddingBottom: varsThemeBase.spacing["0-5"],
 });
 
 const container = style({

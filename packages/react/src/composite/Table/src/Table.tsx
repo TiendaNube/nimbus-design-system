@@ -52,10 +52,7 @@ const Table: React.FC<TableProps> & TableComponents = ({
 
   return (
     <TableContext.Provider value={contextValue}>
-      <div
-        className={table.classnames.container__wrapper}
-        style={{ paddingBottom: "0.5rem" }}
-      >
+      <div className={table.classnames.container__wrapper}>
         <table
           {...rest}
           className={table.classnames.container}
