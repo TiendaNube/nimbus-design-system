@@ -1,10 +1,16 @@
 import { style, styleVariants } from "@vanilla-extract/css";
 import { varsThemeBase } from "../../../themes";
 
+// Named constants for slider dimensions using theme tokens
+const TRACK_HEIGHT = varsThemeBase.spacing[2]; // 0.5rem (8px)
+const THUMB_SIZE = varsThemeBase.spacing[4]; // 1rem (16px)
+const THUMB_OFFSET = varsThemeBase.spacing[1]; // 0.25rem (4px) - used as negative offset
+const INPUT_SEPARATOR_HEIGHT = varsThemeBase.spacing[8]; // 2rem (32px)
+
 const baseTrack = style({
   position: "relative",
   width: "100%",
-  height: "0.5rem",
+  height: TRACK_HEIGHT,
   borderRadius: varsThemeBase.shape.border.radius.full,
   backgroundColor: varsThemeBase.colors.neutral.surfaceDisabled,
 });
@@ -19,7 +25,7 @@ const baseFill = style({
 export const thumbWrapper = style({
   position: "absolute",
   transform: "translateX(-50%)",
-  top: "-0.25rem",
+  top: `calc(-1 * ${THUMB_OFFSET})`,
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
@@ -27,8 +33,8 @@ export const thumbWrapper = style({
 });
 
 const baseThumb = style({
-  width: "1rem",
-  height: "1rem",
+  width: THUMB_SIZE,
+  height: THUMB_SIZE,
   borderRadius: varsThemeBase.shape.border.radius.full,
   backgroundColor: varsThemeBase.colors.primary.interactive,
   border: "none",
@@ -137,7 +143,7 @@ export const inputSeparator = style({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  minHeight: "2rem",
+  minHeight: INPUT_SEPARATOR_HEIGHT,
   color: varsThemeBase.colors.neutral.textLow,
   fontSize: varsThemeBase.fontSize.body.base,
   fontFamily: varsThemeBase.fontFamily.sans,
