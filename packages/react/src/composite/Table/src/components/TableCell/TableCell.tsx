@@ -14,6 +14,7 @@ const TableCell: React.FC<TableCellProps> = ({
   ...rest
 }: TableCellProps) => {
   const tableContext = useTableContext();
+  const useGridMode = tableContext?.useCustomSizes;
 
   const { className, style, otherProps } = table.sprinkle({
     ...(rest as Parameters<typeof table.sprinkle>[0]),
@@ -28,10 +29,14 @@ const TableCell: React.FC<TableCellProps> = ({
       ? tableContext?.fixedColumnOffsets?.get(column)
       : undefined;
 
+  const usesMinOrMaxWidth = columnLayout?.minWidth || columnLayout?.maxWidth;
+
   const cellStyle: React.CSSProperties = {
     ...style,
-    width: columnLayout?.width,
-    minWidth: columnLayout?.minWidth,
+    width: useGridMode ? undefined : columnLayout?.width,
+    minWidth: useGridMode ? undefined : columnLayout?.minWidth,
+    maxWidth: useGridMode ? undefined : columnLayout?.maxWidth,
+    overflow: usesMinOrMaxWidth ? "hidden" : undefined,
     ...(fixedOffset && {
       [fixedOffset.side]: fixedOffset.offset,
     }),
@@ -48,9 +53,34 @@ const TableCell: React.FC<TableCellProps> = ({
     .filter(Boolean)
     .join(" ");
 
+  const content = usesMinOrMaxWidth ? (
+    <div
+      style={{
+        maxWidth: columnLayout?.maxWidth,
+        minWidth: columnLayout?.minWidth,
+        wordWrap: "break-word",
+        overflowWrap: "break-word",
+        whiteSpace: "normal",
+      }}
+    >
+      {children}
+    </div>
+  ) : (
+    children
+  );
+
+  if (useGridMode) {
+    const role = As === "th" ? "columnheader" : "cell";
+    return (
+      <div {...otherProps} role={role} style={cellStyle} className={cellClassName}>
+        {content}
+      </div>
+    );
+  }
+
   return (
     <As {...otherProps} style={cellStyle} className={cellClassName}>
-      {children}
+      {content}
     </As>
   );
 };

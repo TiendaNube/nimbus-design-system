@@ -26,4 +26,9 @@ export interface TableContextValue {
    * Pre-calculated offsets for fixed columns, indexed by column position
    */
   fixedColumnOffsets?: Map<number, FixedColumnOffset>;
+  /**
+   * When true, the table uses div elements with CSS Grid instead of native table elements.
+   * Child components should render accordingly.
+   */
+  useCustomSizes?: boolean;
 }

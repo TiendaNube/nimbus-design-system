@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import { Button } from "@nimbus-ds/button";
 import { Table } from "./Table";
 import { TableColumnLayout } from "./table.types";
 
@@ -72,106 +71,14 @@ export const withCustomCellWidth: Story = {
   },
 };
 
-type Column = {
-  id: string;
-  hidden: boolean;
-  title: string;
-} & TableColumnLayout;
-
-export const withGrowColumns: Story = {
-  args: {},
-  render: () => {
-    const columnLayout: Column[] = [
-      {
-        id: "1",
-        width: "100px",
-        hidden: false,
-        title: "Column 1",
-      },
-      { id: "2", grow: 2, hidden: false, title: "Column 2" },
-      { id: "3", grow: 1, hidden: false, title: "Column 3" },
-    ];
-    const [columns, setColumns] = useState<Column[]>(columnLayout);
-
-    const toggleColumnVisibility = (id: string) => {
-      setColumns((prev) =>
-        prev.map((column) =>
-          column.id === id ? { ...column, hidden: !column.hidden } : column
-        )
-      );
-    };
-
-    return (
-      <Table columnLayout={columns.filter((column) => !column.hidden)}>
-        <Table.Head>
-          <Table.Row backgroundColor="neutral-surface">
-            {columns
-              .filter((column) => !column.hidden)
-              .map((column) => (
-                <Table.Cell as="th" key={column.id}>
-                  {column.title}
-                  <Button onClick={() => toggleColumnVisibility(column.id)}>
-                    Hide
-                  </Button>
-                </Table.Cell>
-              ))}
-          </Table.Row>
-        </Table.Head>
-        <Table.Body>
-          {Array.from({ length: 1 }, (_, i) => (
-            <Table.Row key={i}>
-              {columns.find((column) => column.id === "1")?.hidden ? null : (
-                <Table.Cell>
-                  Cell 1 Lorem ipsum dolor sit amet consectetur adipisicing
-                  elit. Error tenetur vero odit culpa similique repellat minima
-                  aperiam explicabo veniam velit, eius assumenda tempora fugit
-                  suscipit reprehenderit ab libero sit ut. Ea sequi aut nobis
-                  eos unde, illum numquam consectetur nisi maiores consequuntur
-                  eveniet suscipit nesciunt veniam. Reprehenderit eligendi
-                  quidem quibusdam, quae sapiente, expedita eos, velit
-                  blanditiis doloribus dolorum voluptas quo!
-                </Table.Cell>
-              )}
-              {columns.find((column) => column.id === "2")?.hidden ? null : (
-                <Table.Cell>
-                  Cell 2 Lorem ipsum dolor sit amet consectetur adipisicing
-                  elit. Error tenetur vero odit culpa similique repellat minima
-                  aperiam explicabo veniam velit, eius assumenda tempora fugit
-                  suscipit reprehenderit ab libero sit ut. Ea sequi aut nobis
-                  eos unde, illum numquam consectetur nisi maiores consequuntur
-                  eveniet suscipit nesciunt veniam. Reprehenderit eligendi
-                  quidem quibusdam, quae sapiente, expedita eos, velit
-                  blanditiis doloribus dolorum voluptas quo!
-                </Table.Cell>
-              )}
-              {columns.find((column) => column.id === "3")?.hidden ? null : (
-                <Table.Cell>
-                  Cell 3 Lorem ipsum dolor sit amet consectetur adipisicing
-                  elit. Error tenetur vero odit culpa similique repellat minima
-                  aperiam explicabo veniam velit, eius assumenda tempora fugit
-                  suscipit reprehenderit ab libero sit ut. Ea sequi aut nobis
-                  eos unde, illum numquam consectetur nisi maiores consequuntur
-                  eveniet suscipit nesciunt veniam. Reprehenderit eligendi
-                  quidem quibusdam, quae sapiente, expedita eos, velit
-                  blanditiis doloribus dolorum voluptas quo!
-                </Table.Cell>
-              )}
-            </Table.Row>
-          ))}
-        </Table.Body>
-      </Table>
-    );
-  },
-};
-
-export const withGrowConstraints: Story = {
+export const withFlexibleColumns: Story = {
   args: {},
   render: () => {
     const columnLayout: TableColumnLayout[] = [
-      { id: "column-1", width: "100px" },
-      { id: "column-2", grow: 2 },
-      { id: "column-3", grow: 1, minWidth: "200px" },
-      { id: "column-4", grow: 1 },
+      { id: "column-1", width: "80px" },
+      { id: "column-2", minWidth: "100px", maxWidth: "200px" },
+      { id: "column-3", minWidth: "150px", maxWidth: "250px" },
+      { id: "column-4" },
     ];
 
     return (
@@ -179,37 +86,109 @@ export const withGrowConstraints: Story = {
         <Table.Head>
           <Table.Row backgroundColor="neutral-surface">
             <Table.Cell as="th" column={0}>
-              Fixed 100px
+              Fixed (80px)
             </Table.Cell>
             <Table.Cell as="th" column={1}>
-              Grow 2x
+              Max 200px
             </Table.Cell>
             <Table.Cell as="th" column={2}>
-              Grow 1x (min 200px)
+              Min 150px
             </Table.Cell>
             <Table.Cell as="th" column={3}>
-              Grow 1x
+              Fixed (100px)
             </Table.Cell>
           </Table.Row>
         </Table.Head>
         <Table.Body>
           {Array.from({ length: 3 }, (_, i) => (
             <Table.Row key={i}>
-              <Table.Cell column={0}>Cell 1</Table.Cell>
+              <Table.Cell column={0}>ID-{i + 1}</Table.Cell>
               <Table.Cell column={1}>
-                This column grows with factor 2
+                This content will be truncated when it exceeds the maximum width
+                of 200px with ellipsis...
               </Table.Cell>
               <Table.Cell column={2}>
-                This column grows with factor 1 but never shrinks below 200px
+                This column has a minimum width of 150px and will not shrink
+                below that
               </Table.Cell>
-              <Table.Cell column={3}>
-                This column grows with factor 1
-              </Table.Cell>
+              <Table.Cell column={3}>Actions</Table.Cell>
             </Table.Row>
           ))}
         </Table.Body>
       </Table>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Demonstrates column width constraints. Use `width` for fixed-width columns, `maxWidth` for columns that should truncate overflow, and `minWidth` for columns that should not shrink below a certain size.",
+      },
+    },
+  },
+};
+
+export const withTruncatedContent: Story = {
+  args: {},
+  render: () => {
+    const columnLayout: TableColumnLayout[] = [
+      { id: "column-1", width: "60px" },
+      { id: "column-2", maxWidth: "180px" },
+      { id: "column-3", width: "100px" },
+    ];
+
+    const products = [
+      {
+        id: "001",
+        name: "Premium Wireless Bluetooth Headphones with Noise Cancellation Technology",
+        status: "Available",
+      },
+      {
+        id: "002",
+        name: "Ultra-Slim Portable External Battery Pack 20000mAh Fast Charging",
+        status: "Out of Stock",
+      },
+      {
+        id: "003",
+        name: "Professional Studio Quality USB Condenser Microphone Kit",
+        status: "Available",
+      },
+    ];
+
+    return (
+      <Table columnLayout={columnLayout}>
+        <Table.Head>
+          <Table.Row backgroundColor="neutral-surface">
+            <Table.Cell as="th" column={0}>
+              ID
+            </Table.Cell>
+            <Table.Cell as="th" column={1}>
+              Product Name
+            </Table.Cell>
+            <Table.Cell as="th" column={2}>
+              Status
+            </Table.Cell>
+          </Table.Row>
+        </Table.Head>
+        <Table.Body>
+          {products.map((product) => (
+            <Table.Row key={product.id}>
+              <Table.Cell column={0}>{product.id}</Table.Cell>
+              <Table.Cell column={1}>{product.name}</Table.Cell>
+              <Table.Cell column={2}>{product.status}</Table.Cell>
+            </Table.Row>
+          ))}
+        </Table.Body>
+      </Table>
+    );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Demonstrates text truncation with ellipsis using `maxWidth`. Long product names are truncated to fit within the specified maximum width.",
+      },
+    },
   },
 };
 
@@ -474,6 +453,80 @@ export const withFixedColumns: Story = {
       description: {
         story:
           "Demonstrates fixed (sticky) columns on both sides. The first two columns (ID and Name) are fixed to the left, while the Actions column is fixed to the right. Fixed columns use CSS `position: sticky` with calculated offsets based on adjacent column widths.",
+      },
+    },
+  },
+};
+
+export const withCustomSizes: Story = {
+  args: {},
+  render: () => {
+    const columnLayout: TableColumnLayout[] = [
+      { id: "column-id", width: "80px", fixed: "left" },
+      { id: "column-name", minWidth: "150px", maxWidth: "250px" },
+      { id: "column-description", grow: 1, minWidth: "100px"},
+      { id: "column-status", minWidth: "50px", maxWidth: "100px", fixed: "right" },
+    ];
+
+    const products = [
+      {
+        id: "001",
+        name: "Wireless Headphones",
+        description:
+          "Premium Bluetooth headphones with active noise cancellation, 30-hour battery life, and comfortable over-ear design for extended listening sessions.",
+        status: "Available",
+      },
+      {
+        id: "002",
+        name: "Mechanical Keyboard",
+        description:
+          "RGB backlit mechanical keyboard with Cherry MX switches, programmable macros, and detachable USB-C cable.",
+        status: "Out of Stock",
+      },
+      {
+        id: "003",
+        name: "USB Hub",
+        description: "7-port USB 3.0 hub with fast charging.",
+        status: "Available",
+      },
+    ];
+
+    return (
+      <Table columnLayout={columnLayout} useCustomSizes minWidth="700px">
+        <Table.Head> 
+          <Table.Row backgroundColor="neutral-surface">
+            <Table.Cell as="th" column={0}>
+              ID
+            </Table.Cell>
+            <Table.Cell as="th" column={1}>
+              Product Name
+            </Table.Cell>
+            <Table.Cell as="th" column={2}>
+              Description
+            </Table.Cell>
+            <Table.Cell as="th" column={3}>
+              Status
+            </Table.Cell>
+          </Table.Row>
+        </Table.Head>
+        <Table.Body>
+          {products.map((product) => (
+            <Table.Row key={product.id}>
+              <Table.Cell column={0}>{product.id}</Table.Cell>
+              <Table.Cell column={1}>{product.name}</Table.Cell>
+              <Table.Cell column={2}>{product.description}</Table.Cell>
+              <Table.Cell column={3}>{product.status}</Table.Cell>
+            </Table.Row>
+          ))}
+        </Table.Body>
+      </Table>
+    );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Demonstrates `useCustomSizes` mode which renders the table using CSS Grid instead of native table elements. This allows proper `minWidth` and `maxWidth` constraints on columns, which native HTML tables don't support well. Resize the window to see columns respect their min/max constraints.",
       },
     },
   },

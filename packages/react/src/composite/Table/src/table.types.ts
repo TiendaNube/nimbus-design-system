@@ -29,6 +29,11 @@ export interface TableColumnLayout {
    */
   minWidth?: string;
   /**
+   * Maximum width constraint for the column. The column will not grow beyond this value.
+   * Only applies when using `grow`. Accepts any valid CSS width value in pixels.
+   */
+  maxWidth?: string;
+  /**
    * Determines which side the column will be fixed (sticky) to during horizontal scrolling.
    * Fixed columns use CSS `position: sticky` and stay visible on the specified side.
    * Only contiguous columns can be fixed (i.e. no 'normal' columns between fixed columns on the same side).
@@ -59,6 +64,12 @@ export interface TableProperties {
    * Accepts any valid CSS width value (e.g., "1200px", "80rem").
    */
   maxWidth?: string;
+  /**
+   * When true, renders the table using div elements with CSS Grid layout instead of native table elements.
+   * This enables proper min-width and max-width support on columns, which native tables don't handle well.
+   * @default false
+   */
+  useCustomSizes?: boolean;
 }
 
 export type TableProps = TableProperties & HTMLAttributes<HTMLTableElement>;

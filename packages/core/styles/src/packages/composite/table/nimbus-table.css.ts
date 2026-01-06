@@ -34,6 +34,17 @@ const container = style({
   tableLayout: "fixed",
 });
 
+const container__grid = style({
+  backgroundColor: varsThemeBase.colors.neutral.background,
+  borderColor: varsThemeBase.colors.neutral.surface,
+  color: varsThemeBase.colors.neutral.textHigh,
+  boxShadow: varsThemeBase.shadow.level[2],
+  borderRadius: varsThemeBase.shape.border.radius[2],
+  fontFamily: varsThemeBase.fontFamily.sans,
+  overflow: "clip",
+  width: "100%",
+});
+
 const container__head = style({
   fontWeight: varsThemeBase.fontWeight.medium,
   fontSize: varsThemeBase.fontSize.body.base,
@@ -112,6 +123,7 @@ globalStyle(`${container} th`, {
 export const styles = {
   container__wrapper,
   container,
+  container__grid,
   container__head,
   container__body,
   container__row,
