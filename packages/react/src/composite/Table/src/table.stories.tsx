@@ -246,16 +246,9 @@ export const withNoPadding: Story = {
 
 export const withMinWidth: Story = {
   args: {},
-  render: () => {
-    const columnLayout: TableColumnLayout[] = [
-      { id: "column-1", grow: 2, minWidth: "200px" },
-      { id: "column-2", grow: 1 },
-      { id: "column-3", grow: 1 },
-      { id: "column-4", grow: 1 },
-      { id: "column-5", grow: 1 },
-    ];
-    return (
-      <Table columnLayout={columnLayout} minWidth="800px">
+  render: () => (
+    <div style={{ maxWidth: "500px", border: "1px dashed #ccc" }}>
+      <Table minWidth="800px">
         <Table.Head>
           <Table.Row backgroundColor="neutral-surface">
             <Table.Cell as="th">Product</Table.Cell>
@@ -277,8 +270,8 @@ export const withMinWidth: Story = {
           ))}
         </Table.Body>
       </Table>
-    );
-  },
+    </div>
+  ),
   parameters: {
     docs: {
       description: {
