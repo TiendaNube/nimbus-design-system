@@ -1,7 +1,16 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import type React from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import type { RefObject } from "react";
 
+/** Throttle interval for onChange callbacks during drag (ms) */
+const DRAG_THROTTLE_MS = 50;
+
 type DragTarget = "min" | "max" | null;
+
+interface TrackRect {
+  left: number;
+  width: number;
+}
 
 interface UseSliderDragProps {
   trackRef: RefObject<HTMLDivElement>;
@@ -13,20 +22,15 @@ interface UseSliderDragProps {
   localMaxValue: number;
   clampValue: (value: number, isMin: boolean) => number;
   updateValues: (newMin: number, newMax: number, isEnd?: boolean) => void;
-  setLocalMinValue: (value: number) => void;
-  setLocalMaxValue: (value: number) => void;
-  onChange?: (minValue: number, maxValue: number) => void;
-  onMinChange?: (value: number) => void;
-  onMaxChange?: (value: number) => void;
-  onChangeEnd?: (minValue: number, maxValue: number) => void;
 }
 
 interface UseSliderDragReturn {
   isDragging: DragTarget;
+  dragMinValue: number | null;
+  dragMaxValue: number | null;
   handleTrackMouseDown: (e: React.MouseEvent<HTMLDivElement>) => void;
-  handleThumbMouseDown: (
-    type: "min" | "max"
-  ) => (e: React.MouseEvent | React.TouchEvent) => void;
+  handleMinMouseDown: (e: React.MouseEvent | React.TouchEvent) => void;
+  handleMaxMouseDown: (e: React.MouseEvent | React.TouchEvent) => void;
 }
 
 export const useSliderDrag = ({
@@ -39,17 +43,19 @@ export const useSliderDrag = ({
   localMaxValue,
   clampValue,
   updateValues,
-  setLocalMinValue,
-  setLocalMaxValue,
-  onChange,
-  onMinChange,
-  onMaxChange,
-  onChangeEnd,
 }: UseSliderDragProps): UseSliderDragReturn => {
   const [isDragging, setIsDragging] = useState<DragTarget>(null);
+  const [dragMinValue, setDragMinValue] = useState<number | null>(null);
+  const [dragMaxValue, setDragMaxValue] = useState<number | null>(null);
 
   const minValueRef = useRef(localMinValue);
   const maxValueRef = useRef(localMaxValue);
+  const trackRectRef = useRef<TrackRect | null>(null);
+  const rafIdRef = useRef<number | null>(null);
+  const pendingClientXRef = useRef<number | null>(null);
+  const lastOnChangeTimeRef = useRef<number>(0);
+  const lastReportedMinRef = useRef<number | null>(null);
+  const lastReportedMaxRef = useRef<number | null>(null);
 
   useEffect(() => {
     minValueRef.current = localMinValue;
@@ -64,11 +70,8 @@ export const useSliderDrag = ({
     [min, max, step]
   );
 
-  const getValueFromPosition = useCallback(
-    (clientX: number): number => {
-      if (!trackRef.current) return min;
-
-      const rect = trackRef.current.getBoundingClientRect();
+  const getValueFromClientX = useCallback(
+    (clientX: number, rect: TrackRect): number => {
       const percentage = Math.max(
         0,
         Math.min(1, (clientX - rect.left) / rect.width)
@@ -76,7 +79,17 @@ export const useSliderDrag = ({
       const rawValue = min + percentage * (max - min);
       return snapToStep(rawValue);
     },
-    [min, max, snapToStep, trackRef]
+    [min, max, snapToStep]
+  );
+
+  const getValueFromPosition = useCallback(
+    (clientX: number): number => {
+      if (!trackRef.current) return min;
+
+      const rect = trackRef.current.getBoundingClientRect();
+      return getValueFromClientX(clientX, rect);
+    },
+    [min, trackRef, getValueFromClientX]
   );
 
   const handleTrackMouseDown = useCallback(
@@ -84,35 +97,39 @@ export const useSliderDrag = ({
       if (disabled) return;
 
       const value = getValueFromPosition(e.clientX);
-      const distanceToMin = Math.abs(value - localMinValue);
-      const distanceToMax = Math.abs(value - localMaxValue);
+      const currentMin = minValueRef.current;
+      const currentMax = maxValueRef.current;
+      const distanceToMin = Math.abs(value - currentMin);
+      const distanceToMax = Math.abs(value - currentMax);
       const isCloserToMin = distanceToMin <= distanceToMax;
 
       if (isCloserToMin) {
         const clamped = clampValue(value, true);
         setIsDragging("min");
-        updateValues(clamped, localMaxValue);
+        updateValues(clamped, currentMax);
       } else {
         const clamped = clampValue(value, false);
         setIsDragging("max");
-        updateValues(localMinValue, clamped);
+        updateValues(currentMin, clamped);
       }
     },
-    [
-      disabled,
-      getValueFromPosition,
-      localMinValue,
-      localMaxValue,
-      clampValue,
-      updateValues,
-    ]
+    [disabled, getValueFromPosition, clampValue, updateValues]
   );
 
-  const handleThumbMouseDown = useCallback(
-    (type: "min" | "max") => (e: React.MouseEvent | React.TouchEvent) => {
+  const handleMinMouseDown = useCallback(
+    (e: React.MouseEvent | React.TouchEvent) => {
       if (disabled) return;
       e.stopPropagation();
-      setIsDragging(type);
+      setIsDragging("min");
+    },
+    [disabled]
+  );
+
+  const handleMaxMouseDown = useCallback(
+    (e: React.MouseEvent | React.TouchEvent) => {
+      if (disabled) return;
+      e.stopPropagation();
+      setIsDragging("max");
     },
     [disabled]
   );
@@ -120,58 +137,110 @@ export const useSliderDrag = ({
   useEffect(() => {
     if (!isDragging) return undefined;
 
-    const handleMouseMove = (e: MouseEvent | TouchEvent) => {
-      const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
-      const value = getValueFromPosition(clientX);
+    if (trackRef.current) {
+      const rect = trackRef.current.getBoundingClientRect();
+      trackRectRef.current = { left: rect.left, width: rect.width };
+    }
+
+    const processMove = () => {
+      rafIdRef.current = null;
+      const clientX = pendingClientXRef.current;
+      if (clientX === null || !trackRectRef.current) return;
+
+      const value = getValueFromClientX(clientX, trackRectRef.current);
 
       if (isDragging === "min") {
         const clampedMin = clampValue(value, true);
-        const currentMax = maxValueRef.current;
+        if (clampedMin === minValueRef.current) return;
+
         minValueRef.current = clampedMin;
-        setLocalMinValue(clampedMin);
-        onChange?.(clampedMin, currentMax);
-        onMinChange?.(clampedMin);
+        setDragMinValue(clampedMin);
+
+        // Throttle updateValues calls to avoid excessive re-renders
+        const now = Date.now();
+        if (now - lastOnChangeTimeRef.current >= DRAG_THROTTLE_MS) {
+          lastOnChangeTimeRef.current = now;
+          lastReportedMinRef.current = clampedMin;
+          lastReportedMaxRef.current = maxValueRef.current;
+          updateValues(clampedMin, maxValueRef.current, false);
+        }
       } else {
         const clampedMax = clampValue(value, false);
-        const currentMin = minValueRef.current;
+        if (clampedMax === maxValueRef.current) return;
+
         maxValueRef.current = clampedMax;
-        setLocalMaxValue(clampedMax);
-        onChange?.(currentMin, clampedMax);
-        onMaxChange?.(clampedMax);
+        setDragMaxValue(clampedMax);
+
+        // Throttle updateValues calls to avoid excessive re-renders
+        const now = Date.now();
+        if (now - lastOnChangeTimeRef.current >= DRAG_THROTTLE_MS) {
+          lastOnChangeTimeRef.current = now;
+          lastReportedMinRef.current = minValueRef.current;
+          lastReportedMaxRef.current = clampedMax;
+          updateValues(minValueRef.current, clampedMax, false);
+        }
       }
     };
 
+    const handleMouseMove = (e: MouseEvent | TouchEvent) => {
+      pendingClientXRef.current =
+        "touches" in e ? e.touches[0].clientX : e.clientX;
+
+      rafIdRef.current ??= requestAnimationFrame(processMove);
+    };
+
     const handleMouseUp = () => {
+      if (rafIdRef.current !== null) {
+        cancelAnimationFrame(rafIdRef.current);
+        rafIdRef.current = null;
+      }
+      trackRectRef.current = null;
+      pendingClientXRef.current = null;
+
+      const finalMin = minValueRef.current;
+      const finalMax = maxValueRef.current;
+
       setIsDragging(null);
-      onChangeEnd?.(minValueRef.current, maxValueRef.current);
+      setDragMinValue(null);
+      setDragMaxValue(null);
+
+      // Ensure final values are reported if they weren't sent due to throttling
+      const needsUpdate =
+        lastReportedMinRef.current !== finalMin ||
+        lastReportedMaxRef.current !== finalMax;
+
+      lastOnChangeTimeRef.current = 0;
+      lastReportedMinRef.current = null;
+      lastReportedMaxRef.current = null;
+
+      if (needsUpdate) {
+        updateValues(finalMin, finalMax, false);
+      }
+      updateValues(finalMin, finalMax, true);
     };
 
     document.addEventListener("mousemove", handleMouseMove);
     document.addEventListener("mouseup", handleMouseUp);
-    document.addEventListener("touchmove", handleMouseMove);
+    document.addEventListener("touchmove", handleMouseMove, { passive: true });
     document.addEventListener("touchend", handleMouseUp);
 
     return () => {
+      if (rafIdRef.current !== null) {
+        cancelAnimationFrame(rafIdRef.current);
+      }
       document.removeEventListener("mousemove", handleMouseMove);
       document.removeEventListener("mouseup", handleMouseUp);
       document.removeEventListener("touchmove", handleMouseMove);
       document.removeEventListener("touchend", handleMouseUp);
     };
-  }, [
-    isDragging,
-    getValueFromPosition,
-    clampValue,
-    setLocalMinValue,
-    setLocalMaxValue,
-    onChange,
-    onMinChange,
-    onMaxChange,
-    onChangeEnd,
-  ]);
+  }, [isDragging, trackRef, getValueFromClientX, clampValue, updateValues]);
 
   return {
     isDragging,
+    dragMinValue,
+    dragMaxValue,
     handleTrackMouseDown,
-    handleThumbMouseDown,
+    handleMinMouseDown,
+    handleMaxMouseDown,
   };
 };
