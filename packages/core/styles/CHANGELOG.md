@@ -6,19 +6,25 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 #### 🎉 New features
 
-- `Table`: Allow table layout to support fixed columns. ([#398](https://github.com/TiendaNube/nimbus-design-system/pull/398) by [@joacotornello](https://github.com/joacotornello))
+- `Table`: Allow table layout to support fixed columns. ([#399](https://github.com/TiendaNube/nimbus-design-system/pull/399) by [@joacotornello](https://github.com/joacotornello))
 
-## 2025-12-23 `9.47.0`
-
-#### 🎉 New features
-
-- `Table`: Added `minWidth` and `maxWidth` props to `Table` component to allow setting the minimum and maximum width of the table. ([#398](https://github.com/TiendaNube/nimbus-design-system/pull/398) by [@joacotornello](https://github.com/joacotornello))
-
-## 2025-12-15 `9.46.0`
+## 2025-12-15 `9.47.0`
 
 #### 🎉 New features
 
 - `Table`: Allow table layout to be controlled by the column layout. ([#393](https://github.com/TiendaNube/nimbus-design-system/pull/393) by [@joacotornello](https://github.com/joacotornello))
+
+## 2025-12-19 `9.46.1`
+
+#### 🐛 Bug fixes
+
+- Fixes `Tabs` item element border rendering above left element. ([#395](https://github.com/TiendaNube/nimbus-design-system/pull/395) by [@joacotornello](https://github.com/joacotornello))
+
+## 2025-12-22 `9.46.0`
+
+#### 🎉 New features
+
+- `Box`: Added `scrollbarWidth` property to set the width of the scrollbar. ([#397](https://github.com/TiendaNube/nimbus-design-system/pull/397) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-12-11 `9.45.0`
 
