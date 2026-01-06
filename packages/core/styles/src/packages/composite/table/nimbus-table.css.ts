@@ -28,11 +28,7 @@ const container = style({
   borderRadius: varsThemeBase.shape.border.radius[2],
   borderSpacing: 0,
   fontFamily: varsThemeBase.fontFamily.sans,
-  /**
-   * Using 'clip' instead of 'hidden' to maintain border-radius clipping
-   * while allowing position:sticky to work on fixed columns.
-   * 'overflow: hidden' creates a new scroll container that breaks sticky positioning.
-   */
+  // 'clip' to maintain border-radius clipping while allowing position:sticky to work on fixed columns.
   overflow: "clip",
   width: "100%",
   tableLayout: "fixed",
@@ -72,13 +68,9 @@ const container__cell_fixed = style({
   backgroundColor: `var(--nimbus-table-row-bg, ${varsThemeBase.colors.neutral.background})`,
 });
 
-/**
- * Left-fixed column style with separator on the right side.
- */
 const container__cell_fixed_left = style({});
 
 /**
- * Pseudo-element separator for left-fixed columns.
  * Using ::after ensures the separator stays visible when content scrolls under the fixed column,
  * as it sits on top of the cell content and adjacent cells.
  */
@@ -94,15 +86,8 @@ globalStyle(`${container__cell_fixed_left}::after`, {
   pointerEvents: "none",
 });
 
-/**
- * Right-fixed column style with separator on the left side.
- */
 const container__cell_fixed_right = style({});
 
-/**
- * Pseudo-element separator for right-fixed columns.
- * Positioned on the left side of the cell with shadow going left.
- */
 globalStyle(`${container__cell_fixed_right}::before`, {
   content: '""',
   position: "absolute",
