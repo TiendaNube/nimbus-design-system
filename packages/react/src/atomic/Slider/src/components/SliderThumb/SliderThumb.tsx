@@ -9,6 +9,7 @@ interface SliderThumbProps {
   minAriaValue: number;
   maxAriaValue: number;
   disabled: boolean;
+  ariaLabel?: string;
   dataTestId?: string;
   onMouseDown: (e: React.MouseEvent | React.TouchEvent) => void;
   onKeyDown: (e: KeyboardEvent<HTMLButtonElement>) => void;
@@ -21,18 +22,16 @@ const SliderThumbComponent: React.FC<SliderThumbProps> = ({
   minAriaValue,
   maxAriaValue,
   disabled,
+  ariaLabel,
   dataTestId,
   onMouseDown,
   onKeyDown,
 }) => {
-  let ariaLabel: string;
-  if (type === "min") {
-    ariaLabel = "Minimum value";
-  } else if (type === "max") {
-    ariaLabel = "Maximum value";
-  } else {
-    ariaLabel = "Value";
-  }
+  const getDefaultAriaLabel = (): string => {
+    if (type === "min") return "Minimum value";
+    if (type === "max") return "Maximum value";
+    return "Value";
+  };
 
   return (
     <div
@@ -55,7 +54,7 @@ const SliderThumbComponent: React.FC<SliderThumbProps> = ({
         aria-valuemin={minAriaValue}
         aria-valuemax={maxAriaValue}
         aria-valuenow={value}
-        aria-label={ariaLabel}
+        aria-label={ariaLabel ?? getDefaultAriaLabel()}
         tabIndex={disabled ? -1 : 0}
         data-testid={dataTestId}
       />
@@ -64,6 +63,7 @@ const SliderThumbComponent: React.FC<SliderThumbProps> = ({
 };
 
 SliderThumbComponent.defaultProps = {
+  ariaLabel: undefined,
   dataTestId: undefined,
 };
 

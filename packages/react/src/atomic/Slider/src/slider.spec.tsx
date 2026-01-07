@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen, fireEvent, act } from "@testing-library/react";
 
 import { Slider } from "./Slider";
-import type { SliderRangeBaseProps, SliderSingleBaseProps } from "./Slider";
+import type { SliderRangeBaseProps, SliderBaseProps } from "./Slider";
 
 const defaultRangeProps: SliderRangeBaseProps = {
   min: 0,
@@ -12,7 +12,7 @@ const defaultRangeProps: SliderRangeBaseProps = {
   "data-testid": "slider",
 };
 
-const defaultSingleProps: SliderSingleBaseProps = {
+const defaultSingleProps: SliderBaseProps = {
   min: 0,
   max: 100,
   value: 50,
@@ -22,7 +22,7 @@ const defaultSingleProps: SliderSingleBaseProps = {
 const makeSut = (props: Partial<SliderRangeBaseProps> = {}) =>
   render(<Slider.Range {...defaultRangeProps} {...props} />);
 
-const makeSingleSut = (props: Partial<SliderSingleBaseProps> = {}) =>
+const makeSingleSut = (props: Partial<SliderBaseProps> = {}) =>
   render(<Slider {...defaultSingleProps} {...props} />);
 
 describe("GIVEN <Slider.Range />", () => {
