@@ -1,13 +1,12 @@
 import React, { memo, forwardRef } from "react";
 import { slider } from "@nimbus-ds/styles";
+import { assignInlineVars } from "@vanilla-extract/dynamic";
 
 import type { SliderAppearance } from "../../slider.types";
 
 interface SliderTrackProps {
   appearance: SliderAppearance;
-  /** For range mode: start of fill. For single mode: should be 0. */
   minPercentage?: number;
-  /** End of the fill (value percentage). */
   maxPercentage: number;
   dataTestId?: string;
   children: React.ReactNode;
@@ -25,10 +24,10 @@ const SliderTrackComponent = forwardRef<HTMLDivElement, SliderTrackProps>(
     >
       <div
         className={slider.classnames.fill[appearance]}
-        style={{
-          left: `${minPercentage}%`,
-          right: `${100 - maxPercentage}%`,
-        }}
+        style={assignInlineVars({
+          [slider.vars.fillLeft]: `${minPercentage}%`,
+          [slider.vars.fillRight]: `${100 - maxPercentage}%`,
+        })}
         data-testid={dataTestId ? `${dataTestId}-fill` : undefined}
       />
       {children}

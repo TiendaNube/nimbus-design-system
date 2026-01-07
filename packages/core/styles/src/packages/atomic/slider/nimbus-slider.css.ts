@@ -1,5 +1,8 @@
-import { style, styleVariants } from "@vanilla-extract/css";
+import { style, styleVariants, createVar } from "@vanilla-extract/css";
 import { varsThemeBase } from "../../../themes";
+
+export const fillLeftVar = createVar();
+export const fillRightVar = createVar();
 
 const baseTrack = style({
   position: "relative",
@@ -13,6 +16,8 @@ const baseFill = style({
   position: "absolute",
   height: "100%",
   borderRadius: varsThemeBase.shape.border.radius.full,
+  left: fillLeftVar,
+  right: fillRightVar,
 });
 
 export const thumbWrapper = style({

@@ -28,8 +28,3 @@ export const clampSingleValue = (
   min: number,
   max: number
 ): number => Math.max(min, Math.min(max, value));
-
-export const buildContainerClassName = (
-  baseClassName: string,
-  additionalClassName?: string
-): string => [baseClassName, additionalClassName].filter(Boolean).join(" ");

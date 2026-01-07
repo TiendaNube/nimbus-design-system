@@ -12,7 +12,6 @@ import {
   SLIDER_DEFAULTS,
   calculatePercentage,
   clampSingleValue,
-  buildContainerClassName,
 } from "./slider.definitions";
 
 /**
@@ -40,8 +39,6 @@ import {
 const SliderBase = forwardRef<HTMLDivElement, SliderSingleBaseProps>(
   (
     {
-      className: _className,
-      style: _style,
       min = SLIDER_DEFAULTS.min,
       max = SLIDER_DEFAULTS.max,
       value,
@@ -51,7 +48,6 @@ const SliderBase = forwardRef<HTMLDivElement, SliderSingleBaseProps>(
       onChange,
       onChangeEnd,
       "data-testid": dataTestId,
-      ...rest
     },
     ref
   ) => {
@@ -114,17 +110,10 @@ const SliderBase = forwardRef<HTMLDivElement, SliderSingleBaseProps>(
 
     const percentage = calculatePercentage(displayValue, min, max);
 
-    const containerClassName = buildContainerClassName(
-      slider.classnames.container,
-      _className
-    );
-
     return (
       <div
-        {...rest}
         ref={ref}
-        className={containerClassName}
-        style={_style}
+        className={slider.classnames.container}
         data-testid={dataTestId}
       >
         <div
@@ -175,8 +164,6 @@ SliderBase.displayName = "Slider";
 const SliderRange = forwardRef<HTMLDivElement, SliderRangeBaseProps>(
   (
     {
-      className: _className,
-      style: _style,
       min = SLIDER_DEFAULTS.min,
       max = SLIDER_DEFAULTS.max,
       minValue,
@@ -189,7 +176,6 @@ const SliderRange = forwardRef<HTMLDivElement, SliderRangeBaseProps>(
       onMaxChange,
       onChangeEnd,
       "data-testid": dataTestId,
-      ...rest
     },
     ref
   ) => {
@@ -287,17 +273,10 @@ const SliderRange = forwardRef<HTMLDivElement, SliderRangeBaseProps>(
     const minPercentage = calculatePercentage(displayMinValue, min, max);
     const maxPercentage = calculatePercentage(displayMaxValue, min, max);
 
-    const containerClassName = buildContainerClassName(
-      slider.classnames.container,
-      _className
-    );
-
     return (
       <div
-        {...rest}
         ref={ref}
-        className={containerClassName}
-        style={_style}
+        className={slider.classnames.container}
         data-testid={dataTestId}
       >
         <div
