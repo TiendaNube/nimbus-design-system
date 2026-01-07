@@ -343,8 +343,6 @@ describe("GIVEN <Slider.Range />", () => {
       expect(trackContainer).toBeInTheDocument();
       fireEvent.mouseDown(trackContainer!, { clientX: 10 });
       expect(onChange).toHaveBeenCalled();
-
-      expect(onChange).toHaveBeenCalled();
     });
 
     it("THEN should move max thumb when clicking closer to max value", () => {
@@ -354,10 +352,7 @@ describe("GIVEN <Slider.Range />", () => {
       const track = screen.getByTestId("slider-track");
       const trackContainer = track.parentElement;
 
-      if (trackContainer) {
-        fireEvent.mouseDown(trackContainer, { clientX: 90 });
-      }
-
+      fireEvent.mouseDown(trackContainer!, { clientX: 90 });
       expect(onChange).toHaveBeenCalled();
     });
   });
