@@ -1,1 +1,0 @@
-export { SliderRangeLabels } from "./SliderRangeLabels";

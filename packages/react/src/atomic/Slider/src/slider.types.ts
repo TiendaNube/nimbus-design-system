@@ -41,24 +41,6 @@ interface SliderCommonProperties {
    */
   disabled?: boolean;
   /**
-   * Whether to show the number input(s).
-   * @default true
-   */
-  showInputs?: boolean;
-  /**
-   * Whether to show the range labels below the slider.
-   * @default true
-   */
-  showRangeLabels?: boolean;
-  /**
-   * Prefix displayed before the range label values (e.g., "R$", "$").
-   */
-  labelPrefix?: string;
-  /**
-   * Suffix displayed after the range label values (e.g., "kg", "%").
-   */
-  labelSuffix?: string;
-  /**
    * This is an attribute used to identify a DOM node for testing purposes.
    */
   "data-testid"?: string;
@@ -72,10 +54,6 @@ export interface SliderSingleProperties extends SliderCommonProperties {
    * The current value of the slider (single mode).
    */
   value: number;
-  /**
-   * Label for the input.
-   */
-  label?: string;
   /**
    * Callback fired when the value changes.
    */
@@ -98,19 +76,6 @@ export interface SliderRangeProperties extends SliderCommonProperties {
    * The current maximum value selected on the slider.
    */
   maxValue: number;
-  /**
-   * Label for the minimum input.
-   */
-  minLabel?: string;
-  /**
-   * Label for the maximum input.
-   */
-  maxLabel?: string;
-  /**
-   * Separator displayed between the min and max inputs.
-   * @default "↔"
-   */
-  inputSeparator?: string;
   /**
    * Callback fired when the min or max value changes.
    */

@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from "react";
+import { calculatePercentage } from "../slider.definitions";
 
 interface UseSliderValuesProps {
   minValue: number;
@@ -15,7 +16,12 @@ interface UseSliderValuesProps {
 interface UseSliderValuesReturn {
   localMinValue: number;
   localMaxValue: number;
-  clampValue: (value: number, isMin: boolean) => number;
+  clampValue: (
+    value: number,
+    isMin: boolean,
+    currentMin?: number,
+    currentMax?: number
+  ) => number;
   updateValues: (newMin: number, newMax: number, isEnd?: boolean) => void;
   getPercentage: (value: number) => number;
 }
@@ -48,20 +54,25 @@ export const useSliderValues = ({
   }, [minValue, maxValue]);
 
   const clampValue = useCallback(
-    (value: number, isMin: boolean): number => {
+    (
+      value: number,
+      isMin: boolean,
+      currentMin?: number,
+      currentMax?: number
+    ): number => {
+      const effectiveMin = currentMin ?? minValueRef.current;
+      const effectiveMax = currentMax ?? maxValueRef.current;
+
       if (isMin) {
-        return Math.max(min, Math.min(value, maxValueRef.current - step));
+        return Math.max(min, Math.min(value, effectiveMax - step));
       }
-      return Math.min(max, Math.max(value, minValueRef.current + step));
+      return Math.min(max, Math.max(value, effectiveMin + step));
     },
     [min, max, step]
   );
 
   const getPercentage = useCallback(
-    (value: number): number => {
-      const range = max - min;
-      return range === 0 ? 0 : ((value - min) / range) * 100;
-    },
+    (value: number): number => calculatePercentage(value, min, max),
     [min, max]
   );
 
