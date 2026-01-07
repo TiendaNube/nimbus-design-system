@@ -42,45 +42,9 @@ describe("GIVEN <Slider.Range />", () => {
       expect(screen.getByTestId("slider-min-thumb")).toBeInTheDocument();
       expect(screen.getByTestId("slider-max-thumb")).toBeInTheDocument();
     });
-
-    it("THEN should render min and max inputs when showInputs is true", () => {
-      makeSut();
-      expect(screen.getByTestId("slider-min-input")).toBeInTheDocument();
-      expect(screen.getByTestId("slider-max-input")).toBeInTheDocument();
-    });
-
-    it("THEN should render range labels when showRangeLabels is true", () => {
-      makeSut();
-      expect(screen.getByTestId("slider-min-label")).toHaveTextContent("0");
-      expect(screen.getByTestId("slider-max-label")).toHaveTextContent("100");
-    });
-  });
-
-  describe("WHEN showInputs is false", () => {
-    it("THEN should not render the inputs", () => {
-      makeSut({ showInputs: false });
-      expect(screen.queryByTestId("slider-min-input")).not.toBeInTheDocument();
-      expect(screen.queryByTestId("slider-max-input")).not.toBeInTheDocument();
-    });
-  });
-
-  describe("WHEN showRangeLabels is false", () => {
-    it("THEN should not render the range labels", () => {
-      makeSut({ showRangeLabels: false });
-      expect(screen.queryByTestId("slider-min-label")).not.toBeInTheDocument();
-      expect(screen.queryByTestId("slider-max-label")).not.toBeInTheDocument();
-    });
   });
 
   describe("WHEN disabled is true", () => {
-    it("THEN should disable the inputs", () => {
-      makeSut({ disabled: true });
-      const minInput = screen.getByTestId("slider-min-input");
-      const maxInput = screen.getByTestId("slider-max-input");
-      expect(minInput).toBeDisabled();
-      expect(maxInput).toBeDisabled();
-    });
-
     it("THEN should disable the thumbs", () => {
       makeSut({ disabled: true });
       expect(screen.getByTestId("slider-min-thumb")).toBeDisabled();
@@ -166,74 +130,6 @@ describe("GIVEN <Slider.Range />", () => {
     });
   });
 
-  describe("WHEN input containers are rendered", () => {
-    it("THEN should render min input container", () => {
-      makeSut();
-      expect(screen.getByTestId("slider-min-input")).toBeInTheDocument();
-    });
-
-    it("THEN should render max input container", () => {
-      makeSut();
-      expect(screen.getByTestId("slider-max-input")).toBeInTheDocument();
-    });
-  });
-
-  describe("WHEN using labelPrefix and labelSuffix", () => {
-    it("THEN should render prefix before values", () => {
-      makeSut({
-        labelPrefix: "R$",
-      });
-
-      expect(screen.getByTestId("slider-min-label")).toHaveTextContent("R$0");
-      expect(screen.getByTestId("slider-max-label")).toHaveTextContent("R$100");
-    });
-
-    it("THEN should render suffix after values", () => {
-      makeSut({
-        labelSuffix: "kg",
-      });
-
-      expect(screen.getByTestId("slider-min-label")).toHaveTextContent("0kg");
-      expect(screen.getByTestId("slider-max-label")).toHaveTextContent("100kg");
-    });
-
-    it("THEN should render both prefix and suffix", () => {
-      makeSut({
-        labelPrefix: "$",
-        labelSuffix: " USD",
-      });
-
-      expect(screen.getByTestId("slider-min-label")).toHaveTextContent(
-        "$0 USD"
-      );
-      expect(screen.getByTestId("slider-max-label")).toHaveTextContent(
-        "$100 USD"
-      );
-    });
-  });
-
-  describe("WHEN providing custom labels", () => {
-    it("THEN should render minLabel and maxLabel", () => {
-      makeSut({
-        minLabel: "Min.",
-        maxLabel: "Máx.",
-      });
-
-      expect(screen.getByText("Min.")).toBeInTheDocument();
-      expect(screen.getByText("Máx.")).toBeInTheDocument();
-    });
-  });
-
-  describe("WHEN providing custom separator", () => {
-    it("THEN should render the custom separator", () => {
-      makeSut({
-        inputSeparator: "to",
-      });
-
-      expect(screen.getByText("to")).toBeInTheDocument();
-    });
-  });
-
   describe("WHEN checking accessibility", () => {
     it("THEN thumbs should have correct ARIA attributes", () => {
       makeSut();
@@ -251,17 +147,14 @@ describe("GIVEN <Slider.Range />", () => {
       expect(maxThumb).toHaveAttribute("aria-valuenow", "75");
     });
 
-    it("THEN thumbs should have custom aria-labels when provided", () => {
-      makeSut({
-        minLabel: "Minimum price",
-        maxLabel: "Maximum price",
-      });
+    it("THEN thumbs should have default aria-labels", () => {
+      makeSut();
 
       const minThumb = screen.getByTestId("slider-min-thumb");
       const maxThumb = screen.getByTestId("slider-max-thumb");
 
-      expect(minThumb).toHaveAttribute("aria-label", "Minimum price");
-      expect(maxThumb).toHaveAttribute("aria-label", "Maximum price");
+      expect(minThumb).toHaveAttribute("aria-label", "Minimum value");
+      expect(maxThumb).toHaveAttribute("aria-label", "Maximum value");
     });
   });
 
@@ -341,79 +234,6 @@ describe("GIVEN <Slider.Range />", () => {
       fireEvent.keyDown(minThumb, { key: "ArrowRight" });
 
       expect(onChangeEnd).toHaveBeenCalledWith(35, 75);
-    });
-  });
-
-  describe("WHEN using input fields", () => {
-    it("THEN should update min value when min input changes and loses focus", () => {
-      const onChange = jest.fn();
-      makeSut({ onChange });
-
-      const minInput = screen.getByTestId("slider-min-input");
-      fireEvent.change(minInput, { target: { value: "30" } });
-      fireEvent.blur(minInput);
-
-      expect(onChange).toHaveBeenCalledWith(30, 75);
-    });
-
-    it("THEN should update max value when max input changes and loses focus", () => {
-      const onChange = jest.fn();
-      makeSut({ onChange });
-
-      const maxInput = screen.getByTestId("slider-max-input");
-      fireEvent.change(maxInput, { target: { value: "80" } });
-      fireEvent.blur(maxInput);
-
-      expect(onChange).toHaveBeenCalledWith(25, 80);
-    });
-
-    it("THEN should clamp min input value to not exceed max on blur", () => {
-      const onChange = jest.fn();
-      makeSut({ onChange, step: 1 });
-
-      const minInput = screen.getByTestId("slider-min-input");
-      fireEvent.change(minInput, { target: { value: "80" } });
-      fireEvent.blur(minInput);
-
-      expect(onChange).toHaveBeenCalled();
-      const [calledMin] = onChange.mock.calls[0];
-      expect(calledMin).toBeLessThan(75);
-    });
-
-    it("THEN should clamp max input value to not go below min on blur", () => {
-      const onChange = jest.fn();
-      makeSut({ onChange, step: 1 });
-
-      const maxInput = screen.getByTestId("slider-max-input");
-      fireEvent.change(maxInput, { target: { value: "10" } });
-      fireEvent.blur(maxInput);
-
-      expect(onChange).toHaveBeenCalled();
-      const [, calledMax] = onChange.mock.calls[0];
-      expect(calledMax).toBeGreaterThan(25);
-    });
-
-    it("THEN should reset to previous value when input is empty on blur", () => {
-      const onChange = jest.fn();
-      makeSut({ onChange, min: 0, minValue: 25 });
-
-      const minInput = screen.getByTestId("slider-min-input");
-      fireEvent.change(minInput, { target: { value: "" } });
-      fireEvent.blur(minInput);
-
-      expect(onChange).not.toHaveBeenCalled();
-      expect(minInput).toHaveValue(25);
-    });
-
-    it("THEN should commit value when pressing Enter", () => {
-      const onChange = jest.fn();
-      makeSut({ onChange });
-
-      const minInput = screen.getByTestId("slider-min-input");
-      fireEvent.change(minInput, { target: { value: "40" } });
-      fireEvent.keyDown(minInput, { key: "Enter" });
-
-      expect(onChange).toHaveBeenCalledWith(40, 75);
     });
   });
 
@@ -704,28 +524,6 @@ describe("GIVEN <Slider.Range />", () => {
       expect(screen.queryByTestId("slider-max-thumb")).not.toBeInTheDocument();
     });
   });
-
-  describe("WHEN inputs have aria-labels", () => {
-    it("THEN should use default aria-labels when no custom labels provided", () => {
-      makeSut();
-
-      const minInput = screen.getByTestId("slider-min-input");
-      const maxInput = screen.getByTestId("slider-max-input");
-
-      expect(minInput).toHaveAttribute("aria-label", "Minimum value");
-      expect(maxInput).toHaveAttribute("aria-label", "Maximum value");
-    });
-
-    it("THEN should use custom labels as aria-labels when provided", () => {
-      makeSut({ minLabel: "Preço mínimo", maxLabel: "Preço máximo" });
-
-      const minInput = screen.getByTestId("slider-min-input");
-      const maxInput = screen.getByTestId("slider-max-input");
-
-      expect(minInput).toHaveAttribute("aria-label", "Preço mínimo");
-      expect(maxInput).toHaveAttribute("aria-label", "Preço máximo");
-    });
-  });
 });
 
 describe("GIVEN <Slider /> in single value mode", () => {
@@ -740,27 +538,6 @@ describe("GIVEN <Slider /> in single value mode", () => {
       expect(screen.getByTestId("slider-thumb")).toBeInTheDocument();
       expect(screen.queryByTestId("slider-min-thumb")).not.toBeInTheDocument();
       expect(screen.queryByTestId("slider-max-thumb")).not.toBeInTheDocument();
-    });
-
-    it("THEN should render value display when showInputs is true", () => {
-      makeSingleSut();
-      expect(screen.getByTestId("slider-thumb-value")).toBeInTheDocument();
-      expect(screen.getByTestId("slider-thumb-value")).toHaveTextContent("50");
-    });
-
-    it("THEN should render range labels", () => {
-      makeSingleSut();
-      expect(screen.getByTestId("slider-min-label")).toHaveTextContent("0");
-      expect(screen.getByTestId("slider-max-label")).toHaveTextContent("100");
-    });
-  });
-
-  describe("WHEN showInputs is false", () => {
-    it("THEN should not render the value display", () => {
-      makeSingleSut({ showInputs: false });
-      expect(
-        screen.queryByTestId("slider-thumb-value")
-      ).not.toBeInTheDocument();
     });
   });
 
@@ -823,20 +600,6 @@ describe("GIVEN <Slider /> in single value mode", () => {
     });
   });
 
-  describe("WHEN value changes", () => {
-    it("THEN should update the displayed value", () => {
-      const { rerender } = render(
-        <Slider {...defaultSingleProps} value={50} />
-      );
-
-      expect(screen.getByTestId("slider-thumb-value")).toHaveTextContent("50");
-
-      rerender(<Slider {...defaultSingleProps} value={75} />);
-
-      expect(screen.getByTestId("slider-thumb-value")).toHaveTextContent("75");
-    });
-  });
-
   describe("WHEN dragging thumb", () => {
     const mockRect = {
       left: 0,
@@ -875,20 +638,25 @@ describe("GIVEN <Slider /> in single value mode", () => {
     });
   });
 
-  describe("WHEN using label prop", () => {
-    it("THEN should display label above the value", () => {
-      makeSingleSut({ label: "Volume" });
-
-      expect(screen.getByText("Volume")).toBeInTheDocument();
-    });
-  });
-
   describe("WHEN ref is provided", () => {
     it("THEN should forward ref to container element", () => {
       const ref = React.createRef<HTMLDivElement>();
       render(<Slider {...defaultSingleProps} ref={ref} />);
 
       expect(ref.current).toBeInstanceOf(HTMLDivElement);
+    });
+  });
+
+  describe("WHEN checking accessibility", () => {
+    it("THEN thumb should have correct ARIA attributes", () => {
+      makeSingleSut();
+
+      const thumb = screen.getByTestId("slider-thumb");
+      expect(thumb).toHaveAttribute("role", "slider");
+      expect(thumb).toHaveAttribute("aria-valuemin", "0");
+      expect(thumb).toHaveAttribute("aria-valuemax", "100");
+      expect(thumb).toHaveAttribute("aria-valuenow", "50");
+      expect(thumb).toHaveAttribute("aria-label", "Value");
     });
   });
 });

@@ -44,15 +44,16 @@ export const useSingleSliderDrag = ({
   const [isDragging, setIsDragging] = useState(false);
   const [dragValue, setDragValue] = useState<number | null>(null);
 
+  const isDraggingRef = useRef(false);
   const valueRef = useRef(value);
   const trackRectRef = useRef<TrackRect | null>(null);
-  const rafIdRef = useRef<number | null>(null);
-  const pendingClientXRef = useRef<number | null>(null);
   const lastOnChangeTimeRef = useRef<number>(0);
   const lastOnChangeValueRef = useRef<number | null>(null);
 
   useEffect(() => {
-    valueRef.current = value;
+    if (!isDraggingRef.current) {
+      valueRef.current = value;
+    }
   }, [value]);
 
   const snapToStep = useMemo(
@@ -81,9 +82,10 @@ export const useSingleSliderDrag = ({
       const newValue = getValueFromPosition(e.clientX);
       const clamped = clampValue(newValue);
 
+      isDraggingRef.current = true;
       setIsDragging(true);
-      setDragValue(clamped);
       valueRef.current = clamped;
+      setDragValue(clamped);
     },
     [disabled, getValueFromPosition, clampValue]
   );
@@ -92,6 +94,7 @@ export const useSingleSliderDrag = ({
     (e: React.MouseEvent | React.TouchEvent) => {
       if (disabled) return;
       e.stopPropagation();
+      isDraggingRef.current = true;
       setIsDragging(true);
     },
     [disabled]
@@ -105,42 +108,37 @@ export const useSingleSliderDrag = ({
       trackRectRef.current = { left: rect.left, width: rect.width };
     }
 
-    const processMove = () => {
-      rafIdRef.current = null;
-      const clientX = pendingClientXRef.current;
-      if (clientX === null || !trackRectRef.current) return;
+    const processMove = (clientX: number) => {
+      if (!trackRectRef.current) return;
 
       const newValue = getValueFromClientX(clientX, trackRectRef.current);
       const clamped = clampValue(newValue);
+      const currentValue = valueRef.current;
 
-      if (clamped === valueRef.current) return;
-
-      valueRef.current = clamped;
-      setDragValue(clamped);
+      if (clamped !== currentValue) {
+        valueRef.current = clamped;
+        setDragValue(clamped);
+      }
 
       const now = Date.now();
       if (now - lastOnChangeTimeRef.current >= DRAG_THROTTLE_MS) {
         lastOnChangeTimeRef.current = now;
-        lastOnChangeValueRef.current = clamped;
-        onChange?.(clamped);
+        lastOnChangeValueRef.current = valueRef.current;
+        onChange?.(valueRef.current);
       }
     };
 
     const handleMouseMove = (e: MouseEvent | TouchEvent) => {
-      pendingClientXRef.current = getClientXFromEvent(e);
-      rafIdRef.current ??= requestAnimationFrame(processMove);
+      const clientX = getClientXFromEvent(e);
+      processMove(clientX);
     };
 
     const handleMouseUp = () => {
-      if (rafIdRef.current !== null) {
-        cancelAnimationFrame(rafIdRef.current);
-        rafIdRef.current = null;
-      }
       trackRectRef.current = null;
-      pendingClientXRef.current = null;
 
       const finalValue = valueRef.current;
 
+      isDraggingRef.current = false;
       setIsDragging(false);
       setDragValue(null);
 
@@ -156,9 +154,6 @@ export const useSingleSliderDrag = ({
     attachDragListeners({ handleMouseMove, handleMouseUp });
 
     return () => {
-      if (rafIdRef.current !== null) {
-        cancelAnimationFrame(rafIdRef.current);
-      }
       removeDragListeners({ handleMouseMove, handleMouseUp });
     };
   }, [
