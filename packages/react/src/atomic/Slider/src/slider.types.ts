@@ -48,8 +48,9 @@ interface SliderCommonProperties {
 
 /**
  * Properties specific to single value slider mode.
+ * Used for documentation generation.
  */
-export interface SliderSingleProperties extends SliderCommonProperties {
+export interface SliderProperties extends SliderCommonProperties {
   /**
    * The current value of the slider (single mode).
    */
@@ -62,6 +63,11 @@ export interface SliderSingleProperties extends SliderCommonProperties {
    * Callback fired when the user finishes interacting with the slider.
    */
   onChangeEnd?: (value: number) => void;
+  /**
+   * Accessible label for the slider thumb.
+   * @default "Value"
+   */
+  ariaLabel?: string;
 }
 
 /**
@@ -92,18 +98,22 @@ export interface SliderRangeProperties extends SliderCommonProperties {
    * Callback fired when the user finishes interacting with the slider.
    */
   onChangeEnd?: (minValue: number, maxValue: number) => void;
+  /**
+   * Accessible label for the minimum value thumb.
+   * @default "Minimum value"
+   */
+  minAriaLabel?: string;
+  /**
+   * Accessible label for the maximum value thumb.
+   * @default "Maximum value"
+   */
+  maxAriaLabel?: string;
 }
-
-/**
- * Legacy interface for backwards compatibility.
- * @deprecated Use SliderRangeProperties instead.
- */
-export type SliderProperties = SliderRangeProperties;
 
 /**
  * Props for single value slider mode.
  */
-export type SliderSingleBaseProps = SliderSingleProperties &
+export type SliderBaseProps = SliderProperties &
   Omit<HTMLAttributes<HTMLDivElement>, "onChange" | "className" | "style">;
 
 /**
@@ -111,23 +121,3 @@ export type SliderSingleBaseProps = SliderSingleProperties &
  */
 export type SliderRangeBaseProps = SliderRangeProperties &
   Omit<HTMLAttributes<HTMLDivElement>, "onChange" | "className" | "style">;
-
-/**
- * Complete props interface for the Slider component.
- * Supports both single value mode (with `value` prop) and range mode (with `minValue`/`maxValue` props).
- */
-export type SliderBaseProps = SliderSingleBaseProps | SliderRangeBaseProps;
-
-/**
- * Type guard to check if props are for single value mode.
- */
-export const isSingleMode = (
-  props: SliderBaseProps
-): props is SliderSingleBaseProps => "value" in props;
-
-/**
- * Type guard to check if props are for range mode.
- */
-export const isRangeMode = (
-  props: SliderBaseProps
-): props is SliderRangeBaseProps => "minValue" in props && "maxValue" in props;

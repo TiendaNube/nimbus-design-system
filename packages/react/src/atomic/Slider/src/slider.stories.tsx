@@ -6,10 +6,10 @@ import { Icon } from "@nimbus-ds/icon";
 import { VolumeIcon, MicrophoneIcon } from "@nimbus-ds/icons";
 
 import { Slider } from "./Slider";
-import type { SliderSingleBaseProps } from "./Slider";
+import type { SliderBaseProps } from "./Slider";
 
-const Basic: React.FC<SliderSingleBaseProps> = forwardRef(
-  (props: SliderSingleBaseProps) => {
+const Basic: React.FC<SliderBaseProps> = forwardRef(
+  (props: SliderBaseProps) => {
     const [value, setValue] = useState(props.value);
 
     useEffect(() => {
@@ -27,7 +27,7 @@ const Basic: React.FC<SliderSingleBaseProps> = forwardRef(
       />
     );
   }
-) as React.FC<SliderSingleBaseProps>;
+) as React.FC<SliderBaseProps>;
 Basic.displayName = "Slider";
 
 const meta: Meta<typeof Basic> = {
@@ -91,7 +91,7 @@ export const customStep: Story = {
   },
 };
 
-const VolumeControl: React.FC<SliderSingleBaseProps> = ({
+const VolumeControl: React.FC<SliderBaseProps> = ({
   min = 0,
   max = 100,
   step = 1,

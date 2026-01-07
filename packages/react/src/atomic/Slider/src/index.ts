@@ -8,7 +8,7 @@ export type {
   SliderProperties,
   SliderBaseProps,
   SliderAppearance,
-  SliderSingleBaseProps,
   SliderRangeBaseProps,
+  SliderRangeProperties,
 } from "./slider.types";
 export default Slider;
