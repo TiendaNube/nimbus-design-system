@@ -438,22 +438,6 @@ describe("GIVEN <Slider.Range />", () => {
     });
   });
 
-  describe("WHEN custom className and style are provided", () => {
-    it("THEN should apply custom className", () => {
-      makeSut({ className: "custom-class" });
-
-      const container = screen.getByTestId("slider");
-      expect(container.className).toContain("custom-class");
-    });
-
-    it("THEN should apply custom style", () => {
-      makeSut({ style: { marginTop: "20px" } });
-
-      const container = screen.getByTestId("slider");
-      expect(container).toHaveStyle({ marginTop: "20px" });
-    });
-  });
-
   describe("WHEN values update externally (controlled component)", () => {
     it("THEN should sync local state when minValue prop changes", () => {
       const { rerender } = render(
