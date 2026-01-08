@@ -33,7 +33,8 @@ const TableRow: React.FC<TableRowProps> = ({
         if (col.width) return col.width;
 
         const frValue = `${col.grow ?? 1}fr`;
-        if (col.minWidth && col.maxWidth) return `minmax(${col.minWidth}, ${col.maxWidth})`;
+        if (col.minWidth && col.maxWidth)
+          return `minmax(${col.minWidth}, ${col.maxWidth})`;
         if (col.minWidth) return `minmax(${col.minWidth}, ${frValue})`;
         if (col.maxWidth) return `minmax(0, ${col.maxWidth})`;
         return frValue;
@@ -68,6 +69,13 @@ const TableRow: React.FC<TableRowProps> = ({
     return baseStyle as React.CSSProperties;
   }, [style, backgroundColor, gridTemplateColumns]);
 
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (onClick && (event.key === "Enter" || event.key === " ")) {
+      event.preventDefault();
+      onClick();
+    }
+  };
+
   if (tableContext?.useCustomSizes) {
     return (
       <div
@@ -77,6 +85,8 @@ const TableRow: React.FC<TableRowProps> = ({
         {...otherProps}
         id={id}
         onClick={onClick}
+        onKeyDown={onClick ? handleKeyDown : undefined}
+        tabIndex={onClick ? 0 : undefined}
       >
         {children}
       </div>
