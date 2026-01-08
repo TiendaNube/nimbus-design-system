@@ -67,6 +67,7 @@
       "@nimbus-ds/radio": ["./packages/react/src/atomic/Radio/src"],
       "@nimbus-ds/select": ["./packages/react/src/atomic/Select/src"],
       "@nimbus-ds/skeleton": ["./packages/react/src/atomic/Skeleton/src"],
+      "@nimbus-ds/slider": ["./packages/react/src/atomic/Slider/src"],
       "@nimbus-ds/spinner": ["./packages/react/src/atomic/Spinner/src"],
       "@nimbus-ds/tag": ["./packages/react/src/atomic/Tag/src"],
       "@nimbus-ds/text": ["./packages/react/src/atomic/Text/src"],
