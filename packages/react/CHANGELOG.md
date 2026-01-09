@@ -7,7 +7,7 @@ every day, with simplicity, accessibility, consistency and performance.
 
 #### 🎉 New features
 
-- `Modal`: Added `tag` property to `Modal.Header` component to display a tag next to the title. ([#TBD](https://github.com/TiendaNube/nimbus-design-system/pull/TBD) by [@TBD](https://github.com/TBD))
+- `Modal`: Added `tag` property to `Modal.Header` component to display a tag next to the title. ([#401](https://github.com/TiendaNube/nimbus-design-system/pull/401) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-12-23 `5.44.0`
 

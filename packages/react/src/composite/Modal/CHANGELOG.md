@@ -6,7 +6,7 @@ The Modal component allows us to call the user's attention to a floating box tha
 
 #### 🎉 New features
 
-- Added `tag` property to `Modal.Header` component to display a tag next to the title. ([#TBD](https://github.com/TiendaNube/nimbus-design-system/pull/TBD) by [@TBD](https://github.com/TBD))
+- Added `tag` property to `Modal.Header` component to display a tag next to the title. ([#401](https://github.com/TiendaNube/nimbus-design-system/pull/401) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-08-25 `1.7.0`
 
