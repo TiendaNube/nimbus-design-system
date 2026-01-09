@@ -1,0 +1,9 @@
+releases:
+  "@nimbus-ds/components": minor
+  "@nimbus-ds/slider": major
+  "@nimbus-ds/styles": minor
+
+declined:
+  - nimbus-design-system
+  - "@nimbus-ds/split-button"
+  - "@nimbus-ds/stepper"

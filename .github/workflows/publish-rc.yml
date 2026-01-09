@@ -14,7 +14,8 @@ on:
           Available packages: @nimbus-ds/components, @nimbus-ds/styles, @nimbus-ds/tokens, @nimbus-ds/icons,
           @nimbus-ds/button, @nimbus-ds/box, @nimbus-ds/text, @nimbus-ds/icon, @nimbus-ds/checkbox,
           @nimbus-ds/file-uploader, @nimbus-ds/table, @nimbus-ds/accordion, @nimbus-ds/modal,
-          @nimbus-ds/stepper, @nimbus-ds/segmented-control, @nimbus-ds/split-button, @nimbus-ds/scroll-pane
+          @nimbus-ds/stepper, @nimbus-ds/segmented-control, @nimbus-ds/split-button, @nimbus-ds/scroll-pane,
+          @nimbus-ds/slider
         required: true
         type: string
       bump_type:
