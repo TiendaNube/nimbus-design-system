@@ -160,7 +160,7 @@
     },
     {
       "name": "Modal.Header",
-      "totalProps": 3,
+      "totalProps": 4,
       "props": [
         {
           "description": "The content of the modal header.",
@@ -172,6 +172,12 @@
           "description": "The title to display in the modal header.",
           "type": "string",
           "title": "title",
+          "required": false
+        },
+        {
+          "description": "The tag to display next to the title.",
+          "type": "React.ReactNode",
+          "title": "tag",
           "required": false
         },
         {
