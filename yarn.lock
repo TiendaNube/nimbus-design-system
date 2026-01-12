@@ -7782,6 +7782,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"dotenv@npm:^17.2.3":
+  version: 17.2.3
+  resolution: "dotenv@npm:17.2.3"
+  checksum: fde23eb88649041ec7a0f6a47bbe59cac3c454fc2007cf2e40b9c984aaf0636347218c56cfbbf067034b0a73f530a2698a19b4058695787eb650ec69fe234624
+  languageName: node
+  linkType: hard
+
 "dts-bundle-generator@npm:^7.1.0":
   version: 7.2.0
   resolution: "dts-bundle-generator@npm:7.2.0"
@@ -13045,6 +13052,7 @@ __metadata:
     babel-loader: ^8.2.5
     babel-plugin-module-resolver: ^5.0.0
     child_process: ^1.0.2
+    dotenv: ^17.2.3
     dts-bundle-generator: ^7.1.0
     eslint: ^8.19.0
     eslint-config-airbnb: ^19.0.4
