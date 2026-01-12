@@ -14,7 +14,7 @@
     "version": "yarn version"
   },
   "dependencies": {
-    "@floating-ui/react": "^0.26.0",
+    "@floating-ui/react": "^0.27.5",
     "@nimbus-ds/title": "workspace:^",
     "react-remove-scroll": "2.5.7"
   },
