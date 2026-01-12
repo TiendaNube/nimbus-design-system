@@ -4,6 +4,7 @@ import * as allIcons from "@nimbus-ds/icons";
 import { Icon } from "@nimbus-ds/icon";
 import { Tooltip } from "@nimbus-ds/tooltip";
 import { Box } from "@nimbus-ds/box";
+import { icon } from "@nimbus-ds/styles";
 
 const meta: Meta<typeof Icon> = {
   title: "atomic/Icon/Demo/Render",
@@ -15,10 +16,7 @@ const meta: Meta<typeof Icon> = {
       description: "Search for a specific icon",
     },
     color: {
-      control: {
-        type: "select",
-        options: ["primary-textLow", "secondary-textLow", "tertiary-textLow"],
-      },
+      options: Object.keys(icon.properties.color),
     },
   },
   render: ({ source, color }) => {
