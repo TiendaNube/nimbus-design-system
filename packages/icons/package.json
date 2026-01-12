@@ -24,6 +24,9 @@
   "bugs": {
     "url": "https://github.com/TiendaNube/nimbus-design-system/issues"
   },
+  "peerDependencies": {
+    "react": "^16.8 || ^17.0 || ^18.0 || ^19.0"
+  },
   "devDependencies": {
     "@nimbus-ds/webpack": "workspace:^",
     "@svgr/cli": "^6.5.1",

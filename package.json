@@ -55,8 +55,8 @@
   },
   "homepage": "https://github.com/TiendaNube/nimbus-design-system#readme",
   "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.18.10",
@@ -76,13 +76,13 @@
     "@storybook/testing-library": "^0.2.2",
     "@svgr/webpack": "^6.5.1",
     "@testing-library/jest-dom": "^6.6.3",
-    "@testing-library/react": "^13.3.0",
+    "@testing-library/react": "^16.0.0",
     "@testing-library/user-event": "^14.6.1",
     "@tiendanube/eslint-config": "^0.3.2",
     "@types/jest": "28.1.6",
     "@types/node": "^18.11.13",
-    "@types/react": "^18.0.15",
-    "@types/react-dom": "^18.0.6",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
     "@typescript-eslint/eslint-plugin": "^5.30.6",
     "@typescript-eslint/parser": "^5.30.6",
     "@vanilla-extract/babel-plugin": "^1.1.7",
