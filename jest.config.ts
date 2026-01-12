@@ -38,6 +38,7 @@ const config: Config.InitialOptions = {
     "@nimbus-ds/tooltip": "<rootDir>/packages/react/src/atomic/Tooltip/src",
     "@nimbus-ds/progress-bar":
       "<rootDir>/packages/react/src/atomic/ProgressBar/src",
+    "@nimbus-ds/divider": "<rootDir>/packages/react/src/atomic/Divider/src",
     // composites
     "@nimbus-ds/accordion":
       "<rootDir>/packages/react/src/composite/Accordion/src",
@@ -56,8 +57,13 @@ const config: Config.InitialOptions = {
     "@nimbus-ds/stepper": "<rootDir>/packages/react/src/composite/Stepper/src",
     "@nimbus-ds/scroll-pane":
       "<rootDir>/packages/react/src/composite/ScrollPane/src",
+    "@nimbus-ds/split-button":
+      "<rootDir>/packages/react/src/composite/SplitButton/src",
+
     // commons
     "^.+\\.svg$": "jest-svg-transformer",
+    "^@common$": "<rootDir>/packages/react/src/common",
+    "^@common/(.*)$": "<rootDir>/packages/react/src/common/$1",
   },
   transform: {
     "^.+\\.css\\.ts$": "babel-jest",

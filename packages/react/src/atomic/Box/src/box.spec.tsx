@@ -34,5 +34,19 @@ describe("GIVEN <Box />", () => {
       const box = screen.getByTestId("box-element");
       expect(box.getAttribute("class")).toContain("boxSizing-border-box");
     });
+
+    it("THEN should apply focus-visible styles when rendered as button", () => {
+      makeSut({ as: "button" } as any);
+      const box = screen.getByTestId("box-element");
+      expect(box.tagName).toBe("BUTTON");
+      expect(box.getAttribute("class")).toContain("nimbus-box_asButton__");
+    });
+
+    it("THEN should apply button focus class when rendered as button", () => {
+      makeSut({ as: "button" } as any);
+      const box = screen.getByTestId("box-element");
+      expect(box.tagName).toBe("BUTTON");
+      expect(box.getAttribute("class")).toContain("nimbus-box");
+    });
   });
 });

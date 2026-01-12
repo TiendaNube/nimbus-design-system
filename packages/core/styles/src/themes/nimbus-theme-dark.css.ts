@@ -60,12 +60,30 @@ const darkTheme = {
       textHigh: colors.neutral["text-high"].value as string,
     },
     aiGenerative: {
-      interactive: {
-        start: lightColors.aiGenerative.interactive.start.value as string,
-        middle: lightColors.aiGenerative.interactive.middle.value as string,
-        end: lightColors.aiGenerative.interactive.end.value as string,
-      },
+      textLow: lightColors.aiGenerative["text-low"].value as string,
+      interactivePressed: lightColors.aiGenerative["interactive-pressed"]
+        .value as string,
+      surfaceHighlight: lightColors.aiGenerative["surface-highlight"]
+        .value as string,
+      surface: lightColors.aiGenerative.surface.value as string,
+      background: lightColors.aiGenerative.background.value as string,
+      textHigh: lightColors.aiGenerative["text-high"].value as string,
+      interactiveHover: lightColors.aiGenerative["interactive-hover"]
+        .value as string,
     },
+    aiGradient: {
+      blueHigh: lightColors.aiGradient["blue-high"].value as string,
+      blueLight: lightColors.aiGradient["blue-light"].value as string,
+      purpleHigh: lightColors.aiGradient["purple-high"].value as string,
+      purpleLight: lightColors.aiGradient["purple-light"].value as string,
+      pinkHigh: lightColors.aiGradient["pink-high"].value as string,
+      pinkLight: lightColors.aiGradient["pink-light"].value as string,
+    },
+  },
+  utils: {
+    // Keep focus rings consistent with base theme definitions
+    focus: `0 0 0 3px ${globalTheme.colors.primary.surfaceHighlight}`,
+    aiFocus: `0 0 0 3px ${globalTheme.colors.aiGenerative.surfaceHighlight}`,
   },
   shadow: {
     level: {

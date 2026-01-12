@@ -13,6 +13,7 @@ import {
   ChevronDownIcon,
 } from "@nimbus-ds/icons";
 import { SegmentedControl } from "@nimbus-ds/segmented-control";
+import { mapBoxProps } from ".storybook/utils";
 import { ScrollPane } from "./ScrollPane";
 
 const meta: Meta<typeof ScrollPane> = {
@@ -23,6 +24,7 @@ const meta: Meta<typeof ScrollPane> = {
       control: { type: "boolean" },
       description: "Whether to show gradient overlays when content overflows",
       table: {
+        category: "Component",
         defaultValue: { summary: "true" },
       },
     },
@@ -30,6 +32,7 @@ const meta: Meta<typeof ScrollPane> = {
       control: { type: "boolean" },
       description: "Whether to show navigation arrows for scrolling",
       table: {
+        category: "Component",
         defaultValue: { summary: "false" },
       },
     },
@@ -37,6 +40,7 @@ const meta: Meta<typeof ScrollPane> = {
       control: { type: "boolean" },
       description: "Whether to show the scrollbar",
       table: {
+        category: "Component",
         defaultValue: { summary: "true" },
       },
     },
@@ -45,6 +49,7 @@ const meta: Meta<typeof ScrollPane> = {
       options: ["horizontal", "vertical"],
       description: "The direction of the scroll",
       table: {
+        category: "Component",
         defaultValue: { summary: "horizontal" },
       },
     },
@@ -52,9 +57,24 @@ const meta: Meta<typeof ScrollPane> = {
       control: { type: "boolean" },
       description: "Whether items should scroll into view when clicked",
       table: {
+        category: "Component",
         defaultValue: { summary: "true" },
       },
     },
+    enableGrabScroll: {
+      control: { type: "boolean" },
+      description:
+        "Enable grab-to-scroll functionality (click and drag to scroll)",
+      table: {
+        category: "Component",
+        defaultValue: { summary: "false" },
+      },
+    },
+    children: {
+      control: { disable: true },
+      table: { category: "Component" },
+    },
+    ...mapBoxProps(),
   },
   decorators: [
     (Story) => (
@@ -101,7 +121,7 @@ export const HorizontalCards: Story = {
   render: (args) => (
     <ScrollPane {...args}>
       {Array.from({ length: 10 }, (_, i) => (
-        <ScrollPane.Item key={i} padding="2">
+        <ScrollPane.Item key={i}>
           <Card padding="base">
             <Text fontSize="base" fontWeight="bold">
               Card {i + 1}
@@ -136,20 +156,26 @@ export const ScrollableSegmentedControls: Story = {
     ),
   },
   render: (args) => (
-    <ScrollPane {...args}>
-      <SegmentedControl>
-        {Array.from({ length: 10 }, (_, i) => (
-          <ScrollPane.Item key={i}>
-            <SegmentedControl.Button
-              label={`Button ${i + 1}`}
-              id={`Button ${i + 1}`}
-            >
-              Button {i + 1}
-            </SegmentedControl.Button>
-          </ScrollPane.Item>
-        ))}
-      </SegmentedControl>
-    </ScrollPane>
+    <Box display="flex" flexDirection="column" gap="3">
+      <ScrollPane
+        {...args}
+        display="grid"
+        contentContainerProps={{ flexShrink: "0" }}
+      >
+        <SegmentedControl>
+          {Array.from({ length: 10 }, (_, i) => (
+            <ScrollPane.Item key={i}>
+              <SegmentedControl.Button
+                label={`Button ${i + 1}`}
+                id={`Button ${i + 1}`}
+              >
+                Button {i + 1}
+              </SegmentedControl.Button>
+            </ScrollPane.Item>
+          ))}
+        </SegmentedControl>
+      </ScrollPane>
+    </Box>
   ),
 };
 
@@ -189,7 +215,7 @@ export const VerticalScroll: Story = {
       maxHeight="200px"
     >
       {Array.from({ length: 8 }, (_, i) => (
-        <ScrollPane.Item key={i} padding="2">
+        <ScrollPane.Item key={i}>
           <Card padding="base">
             <Text fontWeight="bold">Notification {i + 1}</Text>
             <Text fontSize="caption" color="neutral-textLow">
@@ -227,7 +253,7 @@ export const CardLargeContent: Story = {
   render: (args) => (
     <Card padding="base">
       <ScrollPane {...args} scrollToItemOnClick={false}>
-        <ScrollPane.Item padding="4" height="200px">
+        <ScrollPane.Item>
           <Text fontWeight="bold">Large Content Example</Text>
           <Text>
             This is an example of how the ScrollPane component can handle large
@@ -254,5 +280,124 @@ export const CardLargeContent: Story = {
         </ScrollPane.Item>
       </ScrollPane>
     </Card>
+  ),
+};
+
+export const GrabScrollHorizontal: Story = {
+  args: {
+    showGradients: true,
+    showArrows: false,
+    showScrollbar: true,
+    direction: "horizontal",
+    enableGrabScroll: true,
+    scrollToItemOnClick: false,
+  },
+  argTypes: {
+    direction: {
+      control: { disable: true },
+    },
+  },
+  render: (args) => (
+    <ScrollPane {...args}>
+      {Array.from({ length: 10 }, (_, i) => (
+        <ScrollPane.Item key={i}>
+          <Card padding="base">
+            <Text fontSize="base" fontWeight="bold">
+              Card {i + 1}
+            </Text>
+            <Text fontSize="caption" color="neutral-textLow">
+              Click and drag anywhere to scroll horizontally. Notice the grab
+              cursor when hovering.
+            </Text>
+            <Button>Action</Button>
+          </Card>
+        </ScrollPane.Item>
+      ))}
+    </ScrollPane>
+  ),
+};
+
+export const GrabScrollVertical: Story = {
+  args: {
+    showGradients: true,
+    showArrows: false,
+    showScrollbar: true,
+    direction: "vertical",
+    enableGrabScroll: true,
+    scrollToItemOnClick: false,
+  },
+  argTypes: {
+    direction: {
+      control: { disable: true },
+    },
+  },
+  render: (args) => (
+    <ScrollPane
+      {...args}
+      display="flex"
+      flexDirection="column"
+      maxHeight="300px"
+    >
+      {Array.from({ length: 8 }, (_, i) => (
+        <ScrollPane.Item key={i}>
+          <Card padding="base">
+            <Text fontWeight="bold">Notification {i + 1}</Text>
+            <Text fontSize="caption" color="neutral-textLow">
+              Click and drag to scroll vertically. The grab cursor indicates you
+              can drag to scroll.
+            </Text>
+          </Card>
+        </ScrollPane.Item>
+      ))}
+    </ScrollPane>
+  ),
+};
+
+export const GrabScrollWithArrows: Story = {
+  args: {
+    showGradients: true,
+    showArrows: true,
+    showScrollbar: false,
+    direction: "horizontal",
+    enableGrabScroll: true,
+    scrollToItemOnClick: false,
+    scrollPaneArrowStart: (
+      <ScrollPane.ArrowHorizontalStart>
+        <IconButton source={<ArrowLeftIcon />} />
+      </ScrollPane.ArrowHorizontalStart>
+    ),
+    scrollPaneArrowEnd: (
+      <ScrollPane.ArrowHorizontalEnd>
+        <IconButton source={<ArrowRightIcon />} />
+      </ScrollPane.ArrowHorizontalEnd>
+    ),
+  },
+  argTypes: {
+    scrollPaneArrowStart: {
+      control: { disable: true },
+    },
+    scrollPaneArrowEnd: {
+      control: { disable: true },
+    },
+    direction: {
+      control: { disable: true },
+    },
+  },
+  render: (args) => (
+    <ScrollPane {...args}>
+      {Array.from({ length: 10 }, (_, i) => (
+        <ScrollPane.Item key={i}>
+          <Card padding="base">
+            <Text fontSize="base" fontWeight="bold">
+              Card {i + 1}
+            </Text>
+            <Text fontSize="caption" color="neutral-textLow">
+              You can use both grab-to-scroll and arrow buttons together.
+            </Text>
+            <Button>Action</Button>
+          </Card>
+        </ScrollPane.Item>
+      ))}
+    </ScrollPane>
   ),
 };

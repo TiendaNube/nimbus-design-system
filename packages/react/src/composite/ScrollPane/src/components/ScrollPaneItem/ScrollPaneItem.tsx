@@ -1,6 +1,6 @@
 import React from "react";
-import { Box } from "@nimbus-ds/box";
 
+import { scrollPane } from "@nimbus-ds/styles";
 import { ScrollPaneItemProps } from "./scrollPaneItem.types";
 import { useScrollPaneContext } from "../../contexts/ScrollPaneContext";
 import { scrollItemIntoView } from "./ScrollPaneItem.definitions";
@@ -32,10 +32,24 @@ const ScrollPaneItem: React.FC<ScrollPaneItemProps> = ({
     }
   };
 
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === "Enter" || event.key === " ") {
+      handleClick(event as unknown as React.MouseEvent<HTMLDivElement>);
+    }
+  };
+
   return (
-    <Box {...rest} onClick={handleClick}>
+    <div
+      className={scrollPane.classnames.item}
+      onClick={handleClick}
+      onKeyDown={handleKeyDown}
+      role="button"
+      tabIndex={-1}
+      draggable={context.enableGrabScroll ? false : undefined}
+      {...rest}
+    >
       {children}
-    </Box>
+    </div>
   );
 };
 

@@ -1,6 +1,6 @@
-import { styles, checkboxSprinkle } from "./nimbus-checkbox.css";
+import * as styles from "./nimbus-checkbox.css";
 
 export const checkbox = {
-  classnames: { ...styles },
-  ...checkboxSprinkle,
+  classnames: { ...styles.styles, aiGenerated: styles.aiGenerated },
+  ...styles.checkboxSprinkle,
 };

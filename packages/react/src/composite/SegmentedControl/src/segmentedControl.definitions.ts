@@ -7,5 +7,4 @@ import { ControlledSegmentedControlProperties } from "./SegmentedControl.types";
  */
 export const isControlled = (
   props: any
-): props is ControlledSegmentedControlProperties =>
-  "selectedSegments" in props && "onSegmentsSelect" in props;
+): props is ControlledSegmentedControlProperties => "selectedSegments" in props;

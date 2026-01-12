@@ -15,7 +15,13 @@ export interface ButtonProperties {
    * Change the visual style of the button.
    * @default neutral
    */
-  appearance?: "primary" | "danger" | "neutral" | "transparent";
+  appearance?:
+    | "primary"
+    | "danger"
+    | "neutral"
+    | "transparent"
+    | "ai-primary"
+    | "ai-secondary";
   /**
    * Disables the button, disallowing user interaction.
    * @default false
@@ -26,6 +32,11 @@ export interface ButtonProperties {
    * @default false
    */
   fullWidth?: boolean;
+  /**
+   * Change the size of the button.
+   * @default medium
+   */
+  size?: "large" | "medium" | "small";
 }
 
 export type ButtonBaseProps = ButtonProperties &

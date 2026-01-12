@@ -11,14 +11,28 @@
  * });
  * ```
  */
-import tokens from "@nimbus-ds/tokens/dist/js/tokens";
+import { varsThemeBase } from "../themes";
 import { createLinearGradient } from "./gradientBuilder";
 
-const { interactive } = tokens.color.light.aiGenerative;
+const { aiGradient } = varsThemeBase.colors;
 
-export const aiGradientInteractive = createLinearGradient(
-  "90deg",
-  `${interactive.start.value} 5%`,
-  `${interactive.middle.value} 40%`,
-  `${interactive.end.value} 95%`
+export const aiGenerativeInteractive = createLinearGradient(
+  "50deg",
+  `${aiGradient.blueHigh} 28.22%`,
+  `${aiGradient.purpleHigh} 49.27%`,
+  `${aiGradient.pinkHigh} 83.12%`
+);
+
+export const aiGenerativeHover = createLinearGradient(
+  "50deg",
+  `${aiGradient.pinkHigh} 28.22%`,
+  `${aiGradient.purpleHigh} 49.27%`,
+  `${aiGradient.blueHigh} 83.12%`
+);
+
+export const aiGenerativeDisabled = createLinearGradient(
+  "50deg",
+  `${aiGradient.blueLight} 28.22%`,
+  `${aiGradient.purpleLight} 49.27%`,
+  `${aiGradient.pinkLight} 83.12%`
 );

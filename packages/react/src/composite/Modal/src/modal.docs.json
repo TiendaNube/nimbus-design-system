@@ -1,9 +1,9 @@
 {
   "id": "modal",
   "name": "Modal",
-  "totalProps": 6,
+  "totalProps": 8,
   "packageName": "@nimbus-ds/modal",
-  "version": "1.6.0",
+  "version": "1.8.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/modal",
   "props": [
     {
@@ -28,6 +28,28 @@
       "description": "Id to be embedded in the portal element",
       "type": "string",
       "title": "portalId",
+      "required": false
+    },
+    {
+      "description": "Controls whether clicking/pressing outside should close the modal.\n- boolean: enable/disable dismissal on outside press\n- function: receive the DOM event and return true to allow closing, false to ignore\n\nDefaults to true.",
+      "anyOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "propertyOrder": []
+        },
+        {
+          "type": "boolean"
+        }
+      ],
+      "title": "closeOnOutsidePress",
+      "required": false
+    },
+    {
+      "description": "The attribute name to ignore when checking for outside clicks. Useful to\nmark regions (e.g., a chat) that should not close the modal when clicked.",
+      "default": "data-nimbus-outside-press-ignore",
+      "type": "string",
+      "title": "ignoreAttributeName",
       "required": false
     },
     {
@@ -64,6 +86,10 @@
             "xl": {
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -71,7 +97,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -133,7 +160,7 @@
     },
     {
       "name": "Modal.Header",
-      "totalProps": 3,
+      "totalProps": 4,
       "props": [
         {
           "description": "The content of the modal header.",
@@ -145,6 +172,12 @@
           "description": "The title to display in the modal header.",
           "type": "string",
           "title": "title",
+          "required": false
+        },
+        {
+          "description": "The tag to display next to the title.",
+          "type": "React.ReactNode",
+          "title": "tag",
           "required": false
         },
         {

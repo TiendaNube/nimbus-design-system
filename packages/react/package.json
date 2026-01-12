@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/components",
-  "version": "5.17.1",
+  "version": "5.45.0",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -15,7 +15,8 @@
   },
   "dependencies": {
     "@floating-ui/react": "^0.26.0",
-    "@nimbus-ds/icons": "workspace:^"
+    "@nimbus-ds/icons": "workspace:^",
+    "react-indiana-drag-scroll": "^2.2.0"
   },
   "peerDependencies": {
     "react": "^16.8 || ^17.0 || ^18.0",
@@ -60,6 +61,10 @@
     "./Chip": {
       "import": "./dist/Chip/index.js",
       "require": "./dist/Chip/index.js"
+    },
+    "./Divider": {
+      "import": "./dist/Divider/index.js",
+      "require": "./dist/Divider/index.js"
     },
     "./FileUploader": {
       "import": "./dist/FileUploader/index.js",
@@ -184,6 +189,10 @@
     "./Sidebar": {
       "import": "./dist/Sidebar/index.js",
       "require": "./dist/Sidebar/index.js"
+    },
+    "./SplitButton": {
+      "import": "./dist/SplitButton/index.js",
+      "require": "./dist/SplitButton/index.js"
     },
     "./Stepper": {
       "import": "./dist/Stepper/index.js",

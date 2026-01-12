@@ -36,6 +36,8 @@
     "types": ["node", "jest"],
     "typeRoots": ["./node_modules/@types", "./types"],
     "paths": {
+      "@common": ["./packages/react/src/common"],
+      "@common/*": ["./packages/react/src/common/*"],
       "@nimbus-ds/storybook": ["./storybook"],
       "@nimbus-ds/icons": ["./packages/icons/tmp"],
       "@nimbus-ds/tokens": ["./packages/core/tokens/dist"],
@@ -77,6 +79,7 @@
       "@nimbus-ds/progress-bar": [
         "./packages/react/src/atomic/ProgressBar/src"
       ],
+      "@nimbus-ds/divider": ["./packages/react/src/atomic/Divider/src"],
       "@nimbus-ds/accordion": ["./packages/react/src/composite/Accordion/src"],
       "@nimbus-ds/alert": ["./packages/react/src/composite/Alert/src"],
       "@nimbus-ds/card": ["./packages/react/src/composite/Card/src"],
@@ -96,6 +99,9 @@
       "@nimbus-ds/stepper": ["./packages/react/src/composite/Stepper/src"],
       "@nimbus-ds/scroll-pane": [
         "./packages/react/src/composite/ScrollPane/src"
+      ],
+      "@nimbus-ds/split-button": [
+        "./packages/react/src/composite/SplitButton/src"
       ]
     }
   }

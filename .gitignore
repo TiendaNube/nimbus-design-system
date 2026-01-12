@@ -1,3 +1,5 @@
+/.cache
+/.eslintcache
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
 # Global ignoring
@@ -56,3 +58,6 @@ TODO.md
 
 # Build files
 **/build-temp--**
+
+# Snyk Security Extension - AI Rules (auto-generated)
+.cursor/rules/snyk_rules.mdc

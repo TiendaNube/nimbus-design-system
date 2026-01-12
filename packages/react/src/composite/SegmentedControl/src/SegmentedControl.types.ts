@@ -37,7 +37,7 @@ export interface ControlledSegmentedControlProperties
    * Callback fired when the selected segments change.
    * @param selectedIds Array of selected segment IDs
    */
-  onSegmentsSelect: (selectedIds: string[]) => void;
+  onSegmentsSelect?: (selectedIds: string[]) => void;
 }
 
 /**

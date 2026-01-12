@@ -15,7 +15,13 @@ export interface TagProperties {
    * Change the visual style of the tag.
    * @default neutral
    */
-  appearance?: "primary" | "success" | "warning" | "danger" | "neutral";
+  appearance?:
+    | "primary"
+    | "success"
+    | "warning"
+    | "danger"
+    | "neutral"
+    | "ai-generative";
 }
 
 export type TagProps = TagProperties & HTMLAttributes<HTMLDivElement>;

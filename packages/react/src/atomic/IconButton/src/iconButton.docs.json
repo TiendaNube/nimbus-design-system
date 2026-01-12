@@ -1,9 +1,9 @@
 {
   "id": "iconButton",
   "name": "IconButton",
-  "totalProps": 5,
+  "totalProps": 7,
   "packageName": "@nimbus-ds/icon-button",
-  "version": "4.1.2",
+  "version": "4.3.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/icon-button",
   "props": [
     {
@@ -22,6 +22,49 @@
       "type": "React.ReactNode",
       "title": "source",
       "required": true
+    },
+    {
+      "description": "Set the color for the inner Icon fill.",
+      "default": "neutral-textHigh",
+      "enum": [
+        "ai-generative",
+        "ai-gradientPurpleHigh",
+        "currentColor",
+        "danger-interactive",
+        "danger-surface",
+        "danger-textHigh",
+        "danger-textLow",
+        "neutral-background",
+        "neutral-interactive",
+        "neutral-surface",
+        "neutral-textDisabled",
+        "neutral-textHigh",
+        "neutral-textLow",
+        "primary-interactive",
+        "primary-surface",
+        "primary-textHigh",
+        "primary-textLow",
+        "success-interactive",
+        "success-surface",
+        "success-textHigh",
+        "success-textLow",
+        "warning-interactive",
+        "warning-surface",
+        "warning-textHigh",
+        "warning-textLow"
+      ],
+      "type": "string",
+      "title": "color",
+      "required": false
+    },
+    {
+      "description": "AI gradient background appearance for the button container.\nWhen provided, container color/border sprinkles are ignored in favor of gradient styles.",
+      "enum": [
+        "ai-generative"
+      ],
+      "type": "string",
+      "title": "appearance",
+      "required": false
     },
     {
       "description": "The size of the component.",
@@ -57,6 +100,10 @@
             "xl": {
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -67,7 +114,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -86,6 +134,7 @@
           "properties": {
             "focus": {
               "enum": [
+                "ai-generativeSurface",
                 "neutral-interactive",
                 "neutral-interactiveHover",
                 "neutral-interactivePressed",
@@ -99,6 +148,7 @@
             },
             "active": {
               "enum": [
+                "ai-generativeSurface",
                 "neutral-interactive",
                 "neutral-interactiveHover",
                 "neutral-interactivePressed",
@@ -112,6 +162,7 @@
             },
             "hover": {
               "enum": [
+                "ai-generativeSurface",
                 "neutral-interactive",
                 "neutral-interactiveHover",
                 "neutral-interactivePressed",
@@ -125,6 +176,7 @@
             },
             "xs": {
               "enum": [
+                "ai-generativeSurface",
                 "neutral-interactive",
                 "neutral-interactiveHover",
                 "neutral-interactivePressed",
@@ -138,6 +190,7 @@
             },
             "md": {
               "enum": [
+                "ai-generativeSurface",
                 "neutral-interactive",
                 "neutral-interactiveHover",
                 "neutral-interactivePressed",
@@ -151,6 +204,7 @@
             },
             "lg": {
               "enum": [
+                "ai-generativeSurface",
                 "neutral-interactive",
                 "neutral-interactiveHover",
                 "neutral-interactivePressed",
@@ -164,6 +218,7 @@
             },
             "xl": {
               "enum": [
+                "ai-generativeSurface",
                 "neutral-interactive",
                 "neutral-interactiveHover",
                 "neutral-interactivePressed",
@@ -174,6 +229,20 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "ai-generativeSurface",
+                "neutral-interactive",
+                "neutral-interactiveHover",
+                "neutral-interactivePressed",
+                "neutral-surface",
+                "neutral-surfaceHighlight",
+                "primary-interactive",
+                "transparent"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -184,11 +253,13 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
           "enum": [
+            "ai-generativeSurface",
             "neutral-interactive",
             "neutral-interactiveHover",
             "neutral-interactivePressed",
@@ -212,6 +283,7 @@
           "properties": {
             "focus": {
               "enum": [
+                "ai-generativeSurface",
                 "neutral-interactive",
                 "neutral-surface",
                 "neutral-surfaceHighlight",
@@ -222,6 +294,7 @@
             },
             "active": {
               "enum": [
+                "ai-generativeSurface",
                 "neutral-interactive",
                 "neutral-surface",
                 "neutral-surfaceHighlight",
@@ -232,6 +305,7 @@
             },
             "hover": {
               "enum": [
+                "ai-generativeSurface",
                 "neutral-interactive",
                 "neutral-surface",
                 "neutral-surfaceHighlight",
@@ -242,6 +316,7 @@
             },
             "xs": {
               "enum": [
+                "ai-generativeSurface",
                 "neutral-interactive",
                 "neutral-surface",
                 "neutral-surfaceHighlight",
@@ -252,6 +327,7 @@
             },
             "md": {
               "enum": [
+                "ai-generativeSurface",
                 "neutral-interactive",
                 "neutral-surface",
                 "neutral-surfaceHighlight",
@@ -262,6 +338,7 @@
             },
             "lg": {
               "enum": [
+                "ai-generativeSurface",
                 "neutral-interactive",
                 "neutral-surface",
                 "neutral-surfaceHighlight",
@@ -272,6 +349,7 @@
             },
             "xl": {
               "enum": [
+                "ai-generativeSurface",
                 "neutral-interactive",
                 "neutral-surface",
                 "neutral-surfaceHighlight",
@@ -279,6 +357,17 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "ai-generativeSurface",
+                "neutral-interactive",
+                "neutral-surface",
+                "neutral-surfaceHighlight",
+                "transparent"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -289,11 +378,13 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
           "enum": [
+            "ai-generativeSurface",
             "neutral-interactive",
             "neutral-surface",
             "neutral-surfaceHighlight",

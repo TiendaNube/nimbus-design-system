@@ -1,9 +1,9 @@
 {
   "id": "select",
   "name": "Select",
-  "totalProps": 4,
+  "totalProps": 5,
   "packageName": "@nimbus-ds/select",
-  "version": "2.5.0",
+  "version": "2.6.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/select",
   "props": [
     {
@@ -28,6 +28,7 @@
       "description": "Change the visual style of the select.",
       "default": "neutral",
       "enum": [
+        "ai-generative",
         "danger",
         "neutral",
         "success",
@@ -35,6 +36,13 @@
       ],
       "type": "string",
       "title": "appearance",
+      "required": false
+    },
+    {
+      "description": "Shows ai-generative appearance with active ai focus shadow.\nWhen true, this styling takes precedence over `appearance`.",
+      "default": false,
+      "type": "boolean",
+      "title": "aiGenerated",
       "required": false
     }
   ],

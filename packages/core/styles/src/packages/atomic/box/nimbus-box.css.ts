@@ -2,6 +2,7 @@ import {
   createRainbowSprinkles,
   defineProperties as defineRainbowProperties,
 } from "rainbow-sprinkles";
+import { style } from "@vanilla-extract/css";
 import {
   backgroundColorProperties,
   borderColorProperties,
@@ -29,8 +30,22 @@ import {
   titleLineHeightProperties,
   fontWeightProperties,
   textAlignProperties,
+  scrollbarWidthProperties,
 } from "../../../properties";
-import { mediaQueries } from "../../../themes";
+import { mediaQueries, varsThemeBase } from "../../../themes";
+import { createBorderGradient, gradients } from "../../../gradients";
+
+const [, aiInteractiveBorderBg] = createBorderGradient(
+  gradients.aiGenerativeInteractive,
+  varsThemeBase.colors.neutral.background
+);
+
+const boxBackgroundProperties = {
+  "ai-generative-interactive-border": aiInteractiveBorderBg,
+  "ai-generative-interactive": gradients.aiGenerativeInteractive,
+
+  transparent: "transparent",
+};
 
 const boxBackgroundColorProperties = {
   "primary-interactive": backgroundColorProperties["primary-interactive"],
@@ -65,6 +80,10 @@ const boxBackgroundColorProperties = {
   "neutral-surfaceDisabled":
     backgroundColorProperties["neutral-surfaceDisabled"],
   "neutral-textLow": backgroundColorProperties["neutral-textLow"],
+  "neutral-textHigh": backgroundColorProperties["neutral-textHigh"],
+  "ai-generative-surface": backgroundColorProperties["ai-generativeSurface"],
+  "ai-generative-surfaceHighlight":
+    backgroundColorProperties["ai-generativeSurfaceHighlight"],
   transparent: "transparent",
 };
 
@@ -142,9 +161,13 @@ const defineProperties = defineRainbowProperties({
     xl: {
       "@media": mediaQueries.xl(),
     },
-    active: { selector: "&:active" },
+    xxl: {
+      "@media": mediaQueries.xxl(),
+    },
     hover: { selector: "&:hover" },
+    active: { selector: "&:active" },
     focus: { selector: "&:focus" },
+    focusVisible: { selector: "&:focus-visible" },
     focusWithin: { selector: "&:focus-within" },
     disabled: { selector: "&:disabled" },
   },
@@ -177,6 +200,7 @@ const defineProperties = defineRainbowProperties({
     backgroundSize: true,
 
     transitionDuration: transitionSpeedProperties,
+    background: boxBackgroundProperties,
     backgroundColor: boxBackgroundColorProperties,
     borderColor: boxBorderColorProperties,
     borderRadius: boxBorderRadiusProperties,
@@ -222,6 +246,7 @@ const defineProperties = defineRainbowProperties({
     fontWeight: fontWeightProperties,
     fontSize: fontSizeProperties,
     textAlign: textAlignProperties,
+    scrollbarWidth: scrollbarWidthProperties,
   },
   shorthands: {
     borderWidth: [
@@ -266,6 +291,7 @@ const properties = {
   alignSelf: alignSelfProperties,
   pointerEvents: pointerEventsProperties,
   backgroundColor: boxBackgroundColorProperties,
+  background: boxBackgroundProperties,
   color: boxColorProperties,
   borderColor: boxBorderColorProperties,
   borderRadius: boxBorderRadiusProperties,
@@ -288,9 +314,17 @@ const properties = {
   fontWeight: fontWeightProperties,
   fontSize: fontSizeProperties,
   lineHeight: lineHeightProperties,
+  scrollbarWidth: scrollbarWidthProperties,
 };
 
 const sprinkle = createRainbowSprinkles(defineProperties);
+
+export const asButton = style({
+  ":focus-visible": {
+    outline: "none",
+    boxShadow: varsThemeBase.utils.focus,
+  },
+});
 
 export const boxSprinkle = {
   sprinkle,

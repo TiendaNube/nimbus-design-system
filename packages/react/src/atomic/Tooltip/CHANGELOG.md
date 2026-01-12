@@ -2,6 +2,12 @@
 
 The Tooltip component allows us to display additional information in a non-intrusive way.
 
+## 2025-10-22 `2.6.1`
+
+#### 🐛 Bug fixes
+
+- `Tooltip`: Fixed tooltip arrow color to match the design system ([#368](https://github.com/TiendaNube/nimbus-design-system/pull/368) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-03-18 `2.6.0`
 
 #### 🎉 New features

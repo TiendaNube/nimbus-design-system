@@ -1,5 +1,7 @@
+import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { text } from "@nimbus-ds/styles";
+import { Box } from "@nimbus-ds/box";
 import { argTypesConvert } from ".storybook/utils";
 import { Text } from "./Text";
 
@@ -91,5 +93,68 @@ export const textDecoration: Story = {
   args: {
     children: "Lorem ipsum dolor sit amet",
     textDecoration: "line-through",
+  },
+};
+
+export const aiGenerative: Story = {
+  args: {
+    color: "ai-generative",
+    children: "AI Generated Content",
+    fontSize: "highlight",
+    fontWeight: "bold",
+  },
+};
+
+export const textOverflowEllipsis: Story = {
+  args: {
+    children:
+      "This is a very long text that will be truncated with an ellipsis when it overflows the container width",
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+  },
+  decorators: [
+    (Story) => (
+      <Box
+        width="300px"
+        borderStyle="solid"
+        borderWidth="1"
+        borderColor="neutral-interactive"
+        padding="2"
+      >
+        <Story />
+      </Box>
+    ),
+  ],
+};
+
+export const whiteSpaceNowrap: Story = {
+  args: {
+    children:
+      "This text will not wrap to the next line even in a narrow container",
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+  },
+  decorators: [
+    (Story) => (
+      <Box
+        width="200px"
+        borderStyle="solid"
+        borderWidth="1"
+        borderColor="neutral-interactive"
+        padding="2"
+      >
+        <Story />
+      </Box>
+    ),
+  ],
+};
+
+export const whiteSpacePre: Story = {
+  args: {
+    children: `This text    has multiple
+    spaces and line breaks
+that will be preserved`,
+    whiteSpace: "pre",
   },
 };

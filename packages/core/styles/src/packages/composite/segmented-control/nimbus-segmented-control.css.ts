@@ -15,7 +15,7 @@ const buttonBase = style({
   textDecoration: "none",
   cursor: "pointer",
   boxSizing: "border-box",
-  padding: `${varsThemeBase.spacing[2]} ${varsThemeBase.spacing[4]}`,
+  padding: `${varsThemeBase.spacing[2]} ${varsThemeBase.spacing[2]}`,
   gap: varsThemeBase.spacing[1],
   fontWeight: varsThemeBase.fontWeight.medium,
   lineHeight: varsThemeBase.lineWeight.body.base,
@@ -26,12 +26,10 @@ const buttonBase = style({
   borderStyle: "solid",
   borderWidth: varsThemeBase.shape.border.width[1],
   borderColor: "transparent",
-  transition: `all ${varsThemeBase.motion.speed.slow} ease`,
-  ":focus": {
-    boxShadow: varsThemeBase.utils.focus,
-  },
+  transition: `background-color ${varsThemeBase.motion.speed.slow} ease, border-color ${varsThemeBase.motion.speed.slow} ease, box-shadow ${varsThemeBase.motion.speed.slow} ease`,
   ":focus-visible": {
     boxShadow: varsThemeBase.utils.focus,
+    outline: "none",
   },
 });
 

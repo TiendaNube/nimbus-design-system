@@ -271,4 +271,109 @@ describe("GIVEN <Text />", () => {
       ).toContain("textDecoration-line-through");
     });
   });
+
+  describe("THEN should correctly render ai-generative appearance", () => {
+    it("THEN should apply gradient styles when color is ai-generative", () => {
+      makeSut({ color: "ai-generative", as: "span" });
+      const element = screen.getByTestId("text-element");
+      expect(element.getAttribute("class")).toContain("aiGenerative");
+    });
+
+    it("THEN should render ai-generative text with proper content", () => {
+      makeSut({ color: "ai-generative", as: "span" });
+      const element = screen.getByTestId("text-element");
+      expect(element.textContent).toBe(content);
+      expect(element.getAttribute("class")).toContain("aiGenerative");
+    });
+  });
+
+  describe("THEN should correctly render textOverflow", () => {
+    it("THEN should correctly render textOverflow ellipsis", () => {
+      makeSut({ textOverflow: "ellipsis" });
+      expect(
+        screen.getByTestId("text-element").getAttribute("class")
+      ).toContain("textOverflow-ellipsis");
+    });
+
+    it("THEN should correctly render textOverflow clip", () => {
+      makeSut({ textOverflow: "clip" });
+      expect(
+        screen.getByTestId("text-element").getAttribute("class")
+      ).toContain("textOverflow-clip");
+    });
+  });
+
+  describe("THEN should correctly render whiteSpace", () => {
+    it("THEN should correctly render whiteSpace normal", () => {
+      makeSut({ whiteSpace: "normal" });
+      expect(
+        screen.getByTestId("text-element").getAttribute("class")
+      ).toContain("whiteSpace-normal");
+    });
+
+    it("THEN should correctly render whiteSpace nowrap", () => {
+      makeSut({ whiteSpace: "nowrap" });
+      expect(
+        screen.getByTestId("text-element").getAttribute("class")
+      ).toContain("whiteSpace-nowrap");
+    });
+
+    it("THEN should correctly render whiteSpace pre", () => {
+      makeSut({ whiteSpace: "pre" });
+      expect(
+        screen.getByTestId("text-element").getAttribute("class")
+      ).toContain("whiteSpace-pre");
+    });
+
+    it("THEN should correctly render whiteSpace pre-wrap", () => {
+      makeSut({ whiteSpace: "pre-wrap" });
+      expect(
+        screen.getByTestId("text-element").getAttribute("class")
+      ).toContain("whiteSpace-pre-wrap");
+    });
+
+    it("THEN should correctly render whiteSpace pre-line", () => {
+      makeSut({ whiteSpace: "pre-line" });
+      expect(
+        screen.getByTestId("text-element").getAttribute("class")
+      ).toContain("whiteSpace-pre-line");
+    });
+
+    it("THEN should correctly render whiteSpace break-spaces", () => {
+      makeSut({ whiteSpace: "break-spaces" });
+      expect(
+        screen.getByTestId("text-element").getAttribute("class")
+      ).toContain("whiteSpace-break-spaces");
+    });
+  });
+
+  describe("THEN should correctly render overflow", () => {
+    it("THEN should correctly render overflow hidden", () => {
+      makeSut({ overflow: "hidden" });
+      expect(
+        screen.getByTestId("text-element").getAttribute("class")
+      ).toContain("overflow-hidden");
+    });
+
+    it("THEN should correctly render overflow visible", () => {
+      makeSut({ overflow: "visible" });
+      expect(
+        screen.getByTestId("text-element").getAttribute("class")
+      ).toContain("overflow-visible");
+    });
+
+    it("THEN should correctly render overflow scroll", () => {
+      makeSut({ overflow: "scroll" });
+      expect(
+        screen.getByTestId("text-element").getAttribute("class")
+      ).toContain("overflow-scroll");
+    });
+
+    it("THEN should correctly render overflow auto", () => {
+      makeSut({ overflow: "auto" });
+      expect(
+        screen.getByTestId("text-element").getAttribute("class")
+      ).toContain("overflow-auto");
+    });
+  });
 });

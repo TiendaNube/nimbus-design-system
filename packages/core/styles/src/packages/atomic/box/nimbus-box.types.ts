@@ -15,6 +15,7 @@ import {
   TransitionTiming,
   TextDecoration,
   TextAlign,
+  ScrollbarWidth,
 } from "../../../types";
 import { boxSprinkle } from "./nimbus-box.css";
 
@@ -36,9 +37,11 @@ type BoxTransitionDurationProperties =
 type BoxFontSizeProperties = keyof typeof propertiesBox.fontSize;
 type BoxFontWeightProperties = keyof typeof propertiesBox.fontWeight;
 type BoxLineHeightProperties = keyof typeof propertiesBox.lineHeight;
+type BoxBackgroundProperties = keyof typeof propertiesBox.background;
 
 interface BoxConditions<T> extends Conditions<T> {
   focus?: T;
+  focusVisible?: T;
   focusWithin?: T;
   active?: T;
   hover?: T;
@@ -321,6 +324,10 @@ export interface BoxSprinkle {
    */
   zIndex?: BoxZIndexProperties | BoxConditions<BoxZIndexProperties>;
   /**
+   * The background property sets the background of the box.
+   */
+  background?: BoxBackgroundProperties | BoxConditions<BoxBackgroundProperties>;
+  /**
    * The backgroundImage property sets one or more background images on an element.
    */
   backgroundImage?: string | BoxConditions<string>;
@@ -438,4 +445,8 @@ export interface BoxSprinkle {
    * @default left
    */
   textAlign?: TextAlign | BoxConditions<TextAlign>;
+  /**
+   * The scrollbarWidth property specifies the width of the scrollbar.
+   */
+  scrollbarWidth?: ScrollbarWidth | BoxConditions<ScrollbarWidth>;
 }

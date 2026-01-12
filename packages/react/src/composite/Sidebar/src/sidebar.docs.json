@@ -1,9 +1,9 @@
 {
   "id": "sidebar",
   "name": "Sidebar",
-  "totalProps": 8,
+  "totalProps": 10,
   "packageName": "@nimbus-ds/sidebar",
-  "version": "3.4.0",
+  "version": "3.5.1",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/sidebar",
   "props": [
     {
@@ -58,6 +58,28 @@
       "required": false
     },
     {
+      "description": "Controls whether clicking/pressing outside should close the sidebar.\n- boolean: enable/disable dismissal on outside press\n- function: receive the DOM event and return true to allow closing, false to ignore\n\nDefaults to true for backward compatibility.",
+      "anyOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "propertyOrder": []
+        },
+        {
+          "type": "boolean"
+        }
+      ],
+      "title": "closeOnOutsidePress",
+      "required": false
+    },
+    {
+      "description": "The attribute name to ignore when checking for outside clicks.",
+      "default": "data-nimbus-outside-press-ignore",
+      "type": "string",
+      "title": "ignoreAttributeName",
+      "required": false
+    },
+    {
       "description": "The maxWidth property specifies the maxWidth of a sidebar's content area.",
       "default": "375px",
       "anyOf": [
@@ -79,6 +101,10 @@
             "xl": {
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -86,7 +112,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -161,6 +188,21 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "100",
+                "200",
+                "300",
+                "400",
+                "500",
+                "600",
+                "700",
+                "800",
+                "900"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -168,7 +210,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {

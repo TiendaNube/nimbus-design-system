@@ -1,5 +1,16 @@
 # Changelog
 
+## 2025-09-15 `3.5.1`
+
+#### 🐛 Bug fixes
+
+- Restored `FloatingOverlay` to be a sibling of the content, to avoid breaking consumers that were modifying the component via custom styling. This will be reverted in the next major version, or when consumers fix their custom styling. ([#349](https://github.com/TiendaNube/nimbus-design-system/pull/349) by [@joacotornello](https://github.com/joacotornello))
+## 2025-08-25 `3.5.0`
+
+#### 🎉 New features
+
+- Add optional `root` prop to scope portal and backdrop rendering to a provided elements. ([#336](https://github.com/TiendaNube/nimbus-design-system/pull/336) by [@joacotornello](https://github.com/joacotornello))
+
 The Sidebar component is a large floating container that goes into the page from the corners. It allows us to present actions, forms or sections with a lot of information about the context of the page.
 
 ## 2025-03-18 `3.4.0`

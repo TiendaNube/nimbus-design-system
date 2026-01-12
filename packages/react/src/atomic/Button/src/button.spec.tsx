@@ -83,4 +83,41 @@ describe("GIVEN <Button />", () => {
       expect(buttonClass).toContain("fullWidth");
     });
   });
+
+  describe("WHEN size prop is used", () => {
+    it("THEN should apply medium size class by default", () => {
+      makeSut({ children: "button" });
+      expect(screen.getByRole("button").getAttribute("class")).toContain(
+        "size_medium"
+      );
+    });
+
+    it("THEN should apply small size class when size is small", () => {
+      makeSut({ children: "button", size: "small" });
+      expect(screen.getByRole("button").getAttribute("class")).toContain(
+        "size_small"
+      );
+    });
+
+    it("THEN should apply medium size class when size is medium", () => {
+      makeSut({ children: "button", size: "medium" });
+      expect(screen.getByRole("button").getAttribute("class")).toContain(
+        "size_medium"
+      );
+    });
+
+    it("THEN should apply large size class when size is large", () => {
+      makeSut({ children: "button", size: "large" });
+      expect(screen.getByRole("button").getAttribute("class")).toContain(
+        "size_large"
+      );
+    });
+
+    it("THEN should apply both appearance and size classes when both are provided", () => {
+      makeSut({ children: "button", appearance: "primary", size: "small" });
+      const buttonClass = screen.getByRole("button").getAttribute("class");
+      expect(buttonClass).toContain("appearance_primary");
+      expect(buttonClass).toContain("size_small");
+    });
+  });
 });

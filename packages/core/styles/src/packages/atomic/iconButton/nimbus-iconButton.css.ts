@@ -1,4 +1,4 @@
-import { style } from "@vanilla-extract/css";
+import { style, styleVariants } from "@vanilla-extract/css";
 import {
   createRainbowSprinkles,
   defineProperties as defineRainbowProperties,
@@ -8,6 +8,7 @@ import {
   borderColorProperties,
 } from "../../../properties";
 import { varsThemeBase, mediaQueries } from "../../../themes";
+import { gradients, createBorderGradient } from "../../../gradients";
 
 /* -------------------------------------------------------------------------------------------------
  * Style
@@ -26,7 +27,7 @@ const base = style({
     backgroundColor: varsThemeBase.colors.neutral.interactive,
     borderColor: varsThemeBase.colors.neutral.interactivePressed,
   },
-  ":focus": {
+  ":focus-visible": {
     boxShadow: varsThemeBase.utils.focus,
   },
   ":disabled": {
@@ -38,6 +39,38 @@ const base = style({
 
 export const styles = {
   base,
+  appearance: styleVariants({
+    "ai-generative": [
+      base,
+      {
+        background: gradients.aiGenerativeInteractive,
+        border: "none",
+        outline: "none",
+        transition: `box-shadow ${varsThemeBase.motion.speed.fast} ease`,
+        ":hover": {
+          background: gradients.aiGenerativeHover,
+        },
+        ":active": {
+          background: varsThemeBase.colors.aiGenerative.textLow,
+          boxShadow: "none",
+        },
+        ":focus": {
+          boxShadow: "none",
+        },
+        ":focus-visible": {
+          boxShadow: varsThemeBase.utils.focus,
+          outline: "none",
+        },
+        ":disabled": {
+          background: createBorderGradient(
+            gradients.aiGenerativeDisabled,
+            varsThemeBase.colors.neutral.surfaceDisabled
+          ),
+          border: `${varsThemeBase.shape.border.width[1]} solid transparent`,
+        },
+      },
+    ],
+  }),
 };
 
 /* -------------------------------------------------------------------------------------------------
@@ -50,6 +83,7 @@ const iconButtonBackgroundColorProperties = {
   "neutral-interactive": backgroundColorProperties["neutral-interactive"],
   "neutral-surfaceHighlight":
     backgroundColorProperties["neutral-surfaceHighlight"],
+  "ai-generativeSurface": backgroundColorProperties["ai-generativeSurface"],
 };
 
 const iconButtonBorderColorProperties = {
@@ -80,8 +114,8 @@ const defineProperties = defineRainbowProperties({
     xl: {
       "@media": mediaQueries.xl(),
     },
-    active: { selector: "&:active" },
     hover: { selector: "&:hover" },
+    active: { selector: "&:active" },
     focus: { selector: "&:focus" },
   },
   defaultCondition: "xs",

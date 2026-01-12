@@ -27,8 +27,9 @@ const base = style({
   border: 0,
   padding: 0,
   width: "fit-content",
-  ":focus": {
+  ":focus-visible": {
     boxShadow: varsThemeBase.utils.focus,
+    outline: "none",
   },
   ":disabled": {
     opacity: 0.5,
@@ -47,6 +48,9 @@ export const appearance = styleVariants({
       ":active": {
         color: varsThemeBase.colors.primary.interactivePressed,
       },
+      ":disabled": {
+        color: varsThemeBase.colors.neutral.textDisabled,
+      },
     },
   ],
   danger: [
@@ -58,6 +62,9 @@ export const appearance = styleVariants({
       },
       ":active": {
         color: varsThemeBase.colors.danger.interactivePressed,
+      },
+      ":disabled": {
+        color: varsThemeBase.colors.neutral.textDisabled,
       },
     },
   ],
@@ -71,6 +78,9 @@ export const appearance = styleVariants({
       ":active": {
         color: varsThemeBase.colors.neutral.textHigh,
       },
+      ":disabled": {
+        color: varsThemeBase.colors.neutral.textDisabled,
+      },
     },
   ],
   "neutral-background": [
@@ -82,6 +92,9 @@ export const appearance = styleVariants({
       },
       ":active": {
         color: varsThemeBase.colors.neutral.surfaceDisabled,
+      },
+      ":disabled": {
+        color: varsThemeBase.colors.neutral.textDisabled,
       },
     },
   ],

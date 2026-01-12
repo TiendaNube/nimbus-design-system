@@ -2,6 +2,18 @@
 
 Use Popovers to bring attention to specific user interface elements and suggest an action or to guide users through a new experience
 
+## 2025-11-03 `4.3.2`
+
+#### 🐛 Bug fixes
+
+- Fixed `onVisibility` callback to properly trigger when popover visibility changes. ([#373](https://github.com/TiendaNube/nimbus-design-system/pull/373) by [@joacotornello](https://github.com/joacotornello))
+
+## 2025-08-14 `4.3.1`
+
+### 💡 Others
+
+- Added stories demonstrating controlled usage with `visible` and `onVisibility`, including a table pattern to ensure only one Popover is open at a time. This documents the recommended approach to replace custom global listeners and address [Issue #251](https://github.com/TiendaNube/nimbus-design-system/issues/251). ([#331](https://github.com/TiendaNube/nimbus-design-system/pull/331) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-07-24 `4.3.0`
 
 #### 🎉 New features

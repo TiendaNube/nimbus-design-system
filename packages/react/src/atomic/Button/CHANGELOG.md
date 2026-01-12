@@ -2,6 +2,25 @@
 
 The Button component allows us to initiate actions, make state or page changes.
 
+## 2025-11-13 `2.10.0`
+
+#### 🎉 New features
+
+- Added `large` size to `Button` component. ([#383](https://github.com/TiendaNube/nimbus-design-system/pull/383) by [@joacotornello](https://github.com/joacotornello))
+
+## 2025-10-17 `2.9.0`
+
+#### 🎉 New features
+
+- Added `size` property to `Button` component with support for `small` and `medium` sizes. ([365](https://github.com/TiendaNube/nimbus-design-system/pull/PR) by [@usuario](https://github.com/usuario))
+
+## 2025-09-17 `2.8.0`
+
+#### 🎉 New features
+
+- New `ai-primary` and `ai-secondary` appearances to `Button` component to match Nimbus AI gradient style. ([#353](https://github.com/TiendaNube/nimbus-design-system/pull/353) by [@joacotornello](https://github.com/joacotornello))
+- Added `:hover` and `:active` properties to `Button` component AI State to improve hover and active states. ([#353](https://github.com/TiendaNube/nimbus-design-system/pull/353) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-08-04 `2.7.0`
 
 #### 🎉 New features

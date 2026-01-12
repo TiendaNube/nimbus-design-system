@@ -2,6 +2,45 @@
 
 Nimbus-icons is an open source icon system built by Nuvemshop / Tiendanube.
 
+## 2026-01-09 `1.15.0`
+
+#### 🎉 New features
+
+- Adds `folder` icon. ([#392](https://github.com/TiendaNube/nimbus-design-system/pull/392) by [@joacotornello](https://github.com/joacotornello))
+- Adds `horizontal-padding` icon. ([#392](https://github.com/TiendaNube/nimbus-design-system/pull/392) by [@joacotornello](https://github.com/joacotornello))
+- Adds `vertical-padding` icon. ([#392](https://github.com/TiendaNube/nimbus-design-system/pull/392) by [@joacotornello](https://github.com/joacotornello))
+- Adds `margin` icon. ([#392](https://github.com/TiendaNube/nimbus-design-system/pull/392) by [@joacotornello](https://github.com/joacotornello))
+- Adds `layout` icon. ([#392](https://github.com/TiendaNube/nimbus-design-system/pull/392) by [@joacotornello](https://github.com/joacotornello))
+- Adds `thumbnail` icon. ([#392](https://github.com/TiendaNube/nimbus-design-system/pull/392) by [@joacotornello](https://github.com/joacotornello))
+- Adds `vertical-spacing` icon. ([#392](https://github.com/TiendaNube/nimbus-design-system/pull/392) by [@joacotornello](https://github.com/joacotornello))
+
+## 2025-11-07 `1.14.0`
+
+#### 🎉 New features
+
+- Adds `ia-coin` icon. ([#374](https://github.com/TiendaNube/nimbus-design-system/pull/374) by [@jffs](https://github.com/jffs))
+
+## 2025-09-17 `1.13.1`
+
+#### 🎉 New features
+
+- Updates `generative-stars` icon. ([#353](https://github.com/TiendaNube/nimbus-design-system/pull/353) by [@NimbusAgent](https://github.com/NimbusAgent))
+
+## 2025-08-22 `1.13.0`
+
+#### 🎉 New features
+
+- Adds `voice` icon. ([#337](https://github.com/TiendaNube/nimbus-design-system/pull/337) by [@NoeCondoleo](https://github.com/NoeCondoleo))
+- Updates `stop` icon. ([#337](https://github.com/TiendaNube/nimbus-design-system/pull/337) by [@NoeCondoleo](https://github.com/NoeCondoleo))
+- Adds `microphone` icon. ([#337](https://github.com/TiendaNube/nimbus-design-system/pull/337) by [@NoeCondoleo](https://github.com/NoeCondoleo))
+- Adds `plus` icon. ([#337](https://github.com/TiendaNube/nimbus-design-system/pull/337) by [@NoeCondoleo](https://github.com/NoeCondoleo))
+- Adds `arrowup` icon. ([#337](https://github.com/TiendaNube/nimbus-design-system/pull/337) by [@NoeCondoleo](https://github.com/NoeCondoleo))
+- Adds `thumbs-down` icon. ([#337](https://github.com/TiendaNube/nimbus-design-system/pull/337) by [@NoeCondoleo](https://github.com/NoeCondoleo))
+- Adds `thumbs-up` icon. ([#337](https://github.com/TiendaNube/nimbus-design-system/pull/337) by [@NoeCondoleo](https://github.com/NoeCondoleo))
+- Adds `stop-filled` icon. ([#337](https://github.com/TiendaNube/nimbus-design-system/pull/337) by [@NoeCondoleo](https://github.com/NoeCondoleo))
+- Adds `stop` icon. ([#337](https://github.com/TiendaNube/nimbus-design-system/pull/337) by [@NoeCondoleo](https://github.com/NoeCondoleo))
+- Adds `sidebar` icon. ([#337](https://github.com/TiendaNube/nimbus-design-system/pull/337) by [@NoeCondoleo](https://github.com/NoeCondoleo))
+
 ## 2025-08-01 `1.12.0`
 
 #### 🎉 New features

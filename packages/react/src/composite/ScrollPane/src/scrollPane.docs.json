@@ -1,9 +1,9 @@
 {
   "id": "scrollPane",
   "name": "ScrollPane",
-  "totalProps": 8,
+  "totalProps": 10,
   "packageName": "@nimbus-ds/scroll-pane",
-  "version": "1.0.0",
+  "version": "1.1.1",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/scroll-pane",
   "props": [
     {
@@ -52,6 +52,13 @@
       "required": false
     },
     {
+      "description": "Enable grab-to-scroll functionality (click and drag to scroll)\nWhen enabled, prevents item dragging inside the ScrollPane",
+      "default": false,
+      "type": "boolean",
+      "title": "enableGrabScroll",
+      "required": false
+    },
+    {
       "$ref": "#/definitions/React.ReactNode",
       "description": "Custom arrow component to render at the start of the scroll area",
       "title": "scrollPaneArrowStart",
@@ -61,6 +68,14 @@
       "$ref": "#/definitions/React.ReactNode",
       "description": "Custom arrow component to render at the end of the scroll area",
       "title": "scrollPaneArrowEnd",
+      "required": false
+    },
+    {
+      "description": "Props to be passed to the content container",
+      "type": "object",
+      "properties": {},
+      "additionalProperties": true,
+      "title": "contentContainerProps",
       "required": false
     }
   ],

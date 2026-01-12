@@ -1,4 +1,5 @@
 import React from "react";
+import { createPortal } from "react-dom";
 import {
   useFloating,
   useDismiss,
@@ -14,6 +15,10 @@ import { CloseIcon } from "@nimbus-ds/icons";
 import { Icon } from "@nimbus-ds/icon";
 import { modal, useTheme } from "@nimbus-ds/styles";
 
+import {
+  eventHasNodeWithAttribute,
+  DEFAULT_OUTSIDE_PRESS_IGNORE_ATTRIBUTE,
+} from "@common/event-handling";
 import { ModalProps, ModalComponents } from "./modal.types";
 import { ModalBody, ModalFooter, ModalHeader } from "./components";
 
@@ -26,6 +31,9 @@ const Modal: React.FC<ModalProps> & ModalComponents = ({
   open,
   portalId,
   onDismiss,
+  root,
+  closeOnOutsidePress = true,
+  ignoreAttributeName = DEFAULT_OUTSIDE_PRESS_IGNORE_ATTRIBUTE,
   ...rest
 }: ModalProps) => {
   const { className, style, otherProps } = modal.sprinkle({
@@ -43,8 +51,29 @@ const Modal: React.FC<ModalProps> & ModalComponents = ({
 
   const click = useClick(context);
   const role = useRole(context);
+
+  const outsidePressFn = React.useMemo<
+    ((event: PointerEvent | MouseEvent) => boolean) | boolean
+  >(() => {
+    if (!onDismiss) return false;
+    if (typeof closeOnOutsidePress === "function") {
+      return (event: PointerEvent | MouseEvent) => {
+        const allowClose = closeOnOutsidePress(event);
+        if (!allowClose) return false;
+        if (eventHasNodeWithAttribute(event, ignoreAttributeName)) return false;
+        return true;
+      };
+    }
+    if (closeOnOutsidePress) {
+      return (event: PointerEvent | MouseEvent) =>
+        !eventHasNodeWithAttribute(event, ignoreAttributeName);
+    }
+    return false;
+  }, [closeOnOutsidePress, ignoreAttributeName, onDismiss]);
+
   const dismiss = useDismiss(context, {
     outsidePressEvent: onDismiss ? "mousedown" : undefined,
+    outsidePress: outsidePressFn,
   });
 
   const { getFloatingProps } = useInteractions([click, role, dismiss]);
@@ -54,38 +83,49 @@ const Modal: React.FC<ModalProps> & ModalComponents = ({
 
   if (!open) return null;
 
+  const content = (
+    <FloatingFocusManager context={context}>
+      <div
+        {...otherProps}
+        ref={context.refs.setFloating}
+        style={style}
+        className={[modal.classnames.container, className].join(" ")}
+        aria-labelledby={headingId}
+        aria-describedby={descriptionId}
+        {...getFloatingProps()}
+        {...rest}
+      >
+        {children}
+        {onDismiss && (
+          <button
+            aria-label="Dismiss modal"
+            className={modal.classnames.container__close}
+            data-testid="dismiss-modal-button"
+            type="button"
+            onClick={() => onDismiss(!open)}
+            tabIndex={0}
+          >
+            <Icon color="neutral-textLow" source={<CloseIcon />} />
+          </button>
+        )}
+      </div>
+    </FloatingFocusManager>
+  );
+
+  if (root) {
+    return createPortal(
+      <div className={modal.classnames.overlayScoped}>{content}</div>,
+      root
+    );
+  }
+
   return (
     <FloatingPortal
       id={portalId ?? "nimbus-modal-floating"}
       root={refThemeProvider?.current}
     >
       <FloatingOverlay className={modal.classnames.overlay} lockScroll>
-        <FloatingFocusManager context={context}>
-          <div
-            {...otherProps}
-            ref={context.refs.setFloating}
-            style={style}
-            className={[modal.classnames.container, className].join(" ")}
-            aria-labelledby={headingId}
-            aria-describedby={descriptionId}
-            {...getFloatingProps()}
-            {...rest}
-          >
-            {children}
-            {onDismiss && (
-              <button
-                aria-label="Dismiss modal"
-                className={modal.classnames.container__close}
-                data-testid="dismiss-modal-button"
-                type="button"
-                onClick={() => onDismiss(!open)}
-                tabIndex={0}
-              >
-                <Icon color="neutral-textLow" source={<CloseIcon />} />
-              </button>
-            )}
-          </div>
-        </FloatingFocusManager>
+        {content}
       </FloatingOverlay>
     </FloatingPortal>
   );

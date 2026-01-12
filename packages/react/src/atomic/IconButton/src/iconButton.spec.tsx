@@ -26,5 +26,21 @@ describe("GIVEN <IconButton />", () => {
         screen.getByTestId("icon-element").getAttribute("class")
       ).toContain("color_neutral-textHigh");
     });
+
+    it("THEN should render provided icon color", () => {
+      makeSut({ as: "div", source: <div />, color: "primary-textHigh" });
+      expect(
+        screen.getByTestId("icon-element").getAttribute("class")
+      ).toContain("color_primary-textHigh");
+    });
+  });
+
+  describe("WHEN rendered with ai-generative appearance", () => {
+    it("THEN should render ai-generative appearance class", () => {
+      makeSut({ appearance: "ai-generative", source: <div /> });
+      expect(
+        screen.getByTestId("icon-button-element").getAttribute("class")
+      ).toContain("appearance_ai-generative");
+    });
   });
 });

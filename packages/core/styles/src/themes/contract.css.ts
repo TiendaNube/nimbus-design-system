@@ -52,11 +52,21 @@ export const vars = createGlobalThemeContract(
         textHigh: "",
       },
       aiGenerative: {
-        interactive: {
-          start: "",
-          middle: "",
-          end: "",
-        },
+        interactiveHover: "",
+        textLow: "",
+        interactivePressed: "",
+        surfaceHighlight: "",
+        surface: "",
+        background: "",
+        textHigh: "",
+      },
+      aiGradient: {
+        blueHigh: "",
+        blueLight: "",
+        purpleHigh: "",
+        purpleLight: "",
+        pinkHigh: "",
+        pinkLight: "",
       },
     },
     fontFamily: {
@@ -178,9 +188,11 @@ export const vars = createGlobalThemeContract(
       md: "",
       lg: "",
       xl: "",
+      xxl: "",
     },
     utils: {
       focus: "",
+      aiFocus: "",
     },
   },
   (_value, path) => `nimbus-${path.join("-")}`

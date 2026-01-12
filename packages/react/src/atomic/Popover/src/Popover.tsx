@@ -55,6 +55,11 @@ const Popover: React.FC<PopoverProps> = ({
     [visible, isVisible]
   );
 
+  const handleVisibility = (visibility: boolean) => {
+    setVisibility(visibility);
+    onVisibility?.(visibility);
+  };
+
   const middlewares = [
     offsetUI(offset),
     arrowUI({
@@ -84,7 +89,7 @@ const Popover: React.FC<PopoverProps> = ({
     strategy: "fixed",
     middleware: middlewares,
     whileElementsMounted: autoUpdate,
-    onOpenChange: onVisibility !== undefined ? onVisibility : setVisibility,
+    onOpenChange: handleVisibility,
   });
 
   const { getReferenceProps, getFloatingProps } = useInteractions([

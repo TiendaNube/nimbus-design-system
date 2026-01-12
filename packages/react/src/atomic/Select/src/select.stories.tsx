@@ -110,3 +110,34 @@ export const withPlaceholderOption: Story = {
     ),
   },
 };
+
+export const aiGenerative: Story = {
+  args: {
+    name: "Name",
+    id: "Id",
+    appearance: "ai-generative",
+    children: (
+      <>
+        <Select.Option label="AI generated option 1" value="Option 1" />
+        <Select.Option label="AI generated option 2" value="Option 2" />
+        <Select.Option label="AI generated option 3" value="Option 3" />
+      </>
+    ),
+  },
+};
+
+export const aiGenerated: Story = {
+  args: {
+    name: "Name",
+    id: "Id",
+    aiGenerated: true,
+    children: (
+      <>
+        <Select.Option label="AI-generated content option 1" value="Option 1" />
+        <Select.Option label="AI-generated content option 2" value="Option 2" />
+        <Select.Option label="AI-generated content option 3" value="Option 3" />
+        <Select.Option label="AI-generated content option 4" value="Option 4" />
+      </>
+    ),
+  },
+};

@@ -1,6 +1,12 @@
 # Changelog
 
-The SegmentedControl component is a composite component that allows us to select one or more options from a list. 
+The SegmentedControl component is a composite component that allows us to select one or more options from a list.
+
+## 2025-09-11 `2.0.1`
+
+#### 🐛 Bug fixes
+
+- Fixed controlled mode requiring both selected segments and handler for activating to only requiring 1 of either.([#319](https://github.com/TiendaNube/nimbus-design-system/pull/347) by [@mrolando-tn](https://github.com/mrolando-tn))
 
 ## 2025-07-28 `2.0.0`
 

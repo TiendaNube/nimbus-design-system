@@ -124,5 +124,35 @@ describe("cssParser utilities", () => {
       const result = parseLinearGradient(cssGradient);
       expect(result).toEqual(expected);
     });
+
+    it("should parse linear gradient with CSS variables", () => {
+      const cssGradient =
+        "linear-gradient(90deg, var(--nimbus-colors-aiGenerative-interactive-start) 28.22%, var(--nimbus-colors-aiGenerative-interactive-end) 71.78%)";
+      const expected: GradientStop[] = [
+        {
+          color: "var(--nimbus-colors-aiGenerative-interactive-start)",
+          offset: "28.22%",
+        },
+        {
+          color: "var(--nimbus-colors-aiGenerative-interactive-end)",
+          offset: "71.78%",
+        },
+      ];
+
+      const result = parseLinearGradient(cssGradient);
+      expect(result).toEqual(expected);
+    });
+
+    it("should parse linear gradient with CSS variables without decimals", () => {
+      const cssGradient =
+        "linear-gradient(45deg, var(--color-primary) 0%, var(--color-secondary) 100%)";
+      const expected: GradientStop[] = [
+        { color: "var(--color-primary)", offset: "0%" },
+        { color: "var(--color-secondary)", offset: "100%" },
+      ];
+
+      const result = parseLinearGradient(cssGradient);
+      expect(result).toEqual(expected);
+    });
   });
 });

@@ -1,5 +1,6 @@
 import { HTMLAttributes, ReactNode } from "react";
 import { modal, ModalSprinkle } from "@nimbus-ds/styles";
+import { CloseOnOutsidePress } from "@common/event-handling";
 import { ModalBody, ModalFooter, ModalHeader } from "./components";
 
 export interface ModalComponents {
@@ -28,10 +29,30 @@ export interface ModalProperties extends ModalSprinkle {
    */
   portalId?: string;
   /**
+   * Controls whether clicking/pressing outside should close the modal.
+   * - boolean: enable/disable dismissal on outside press
+   * - function: receive the DOM event and return true to allow closing, false to ignore
+   *
+   * Defaults to true.
+   */
+  closeOnOutsidePress?: boolean | CloseOnOutsidePress;
+  /**
+   * The attribute name to ignore when checking for outside clicks. Useful to
+   * mark regions (e.g., a chat) that should not close the modal when clicked.
+   * @default "data-nimbus-outside-press-ignore"
+   */
+  ignoreAttributeName?: string;
+  /**
    * The padding properties are used to generate space around an modal's content area.
    * @default base
    */
   padding?: keyof typeof modal.properties.padding;
 }
 
-export type ModalProps = ModalProperties & HTMLAttributes<HTMLDivElement>;
+export type ModalProps = ModalProperties & {
+  /**
+   * Root element where the portal should be mounted. When provided and not null,
+   * the portal renders inside this element; when null/undefined, the default root is used.
+   */
+  root?: HTMLElement | null; // We create props for HTMLElement types
+} & HTMLAttributes<HTMLDivElement>;

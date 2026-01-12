@@ -32,6 +32,7 @@ export * from "@nimbus-ds/toast";
 export * from "@nimbus-ds/toggle";
 export * from "@nimbus-ds/tooltip";
 export * from "@nimbus-ds/progress-bar";
+export * from "@nimbus-ds/divider";
 
 // composite
 export * from "@nimbus-ds/accordion";
@@ -46,3 +47,4 @@ export * from "@nimbus-ds/stepper";
 export * from "@nimbus-ds/tabs";
 export * from "@nimbus-ds/table";
 export * from "@nimbus-ds/segmented-control";
+export * from "@nimbus-ds/split-button";

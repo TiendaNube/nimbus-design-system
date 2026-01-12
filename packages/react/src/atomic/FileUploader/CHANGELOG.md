@@ -2,6 +2,32 @@
 
 The File Uploader component is used to upload files.
 
+## 2025-12-12 `2.8.2`
+
+#### 🐛 Bug fixes
+
+- Fixes `FileUploaderOverlay` component to use the correct text alignment. ([#392](https://github.com/TiendaNube/nimbus-design-system/pull/392) by [@joacotornello](https://github.com/joacotornello))
+
+## 2025-12-11 `2.8.1`
+
+#### 🐛 Bug fixes
+
+- Fixes `FileUploaderOverlay` component to use the correct background color and border color. ([#388](https://github.com/TiendaNube/nimbus-design-system/pull/388) by [@joacotornello](https://github.com/joacotornello))
+- Fixes `FileUploader` to use `asOverlay` property to render a custom overlay when dragging files over the uploader. Better API usage. ([#388](https://github.com/TiendaNube/nimbus-design-system/pull/388) by [@joacotornello](https://github.com/joacotornello))
+
+## 2025-12-09 `2.8.0`
+
+#### 🎉 New features
+
+- Adds `dragOverlay` property to render a custom overlay when dragging files over the uploader. ([#387](https://github.com/TiendaNube/nimbus-design-system/pull/387) by [@joacotornello](https://github.com/joacotornello))
+
+## 2025-11-11 `2.7.0`
+
+#### 🎉 New features
+
+- Adds drag and drop support to the component. ([#378](https://github.com/TiendaNube/nimbus-design-system/pull/378) by [@joacotornello](https://github.com/joacotornello))
+- Adds `onDrop`, `onDropReject` and `onDropSuccess` callbacks to the component. ([#378](https://github.com/TiendaNube/nimbus-design-system/pull/378) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-03-18 `2.6.0`
 
 #### 🎉 New features

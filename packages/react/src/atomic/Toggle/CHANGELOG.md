@@ -2,6 +2,18 @@
 
 The Tooltip component allows us to show additional information in a non-intrusive way.
 
+## 2025-09-15 `2.2.4`
+
+### 🐛 Bug fixes
+
+- Improved `Toggle` styles to match design requirements. ([#330](https://github.com/TiendaNube/nimbus-design-system/pull/330) by [@joacotornello](https://github.com/joacotornello))
+
+## 2025-08-12 `2.2.3`
+
+### 🐛 Bug fixes
+
+- Added `disabled` state to `Toggle` component. ([#330](https://github.com/TiendaNube/nimbus-design-system/pull/330) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-03-18 `2.2.2`
 
 ### 💡 Others

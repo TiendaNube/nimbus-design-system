@@ -21,25 +21,40 @@ const IconButton: React.FC<IconButtonProps> & IconButtonComponents = ({
     hover: "neutral-interactiveHover",
     focus: "primary-interactive",
   },
+  color = "neutral-textHigh",
+  appearance,
   source,
   ...rest
 }: IconButtonProps) => {
+  const sprinkleProps = {
+    size,
+    ...(appearance !== "ai-generative" && {
+      borderColor,
+      backgroundColor,
+    }),
+  };
+
   const { className, style, otherProps } = iconButton.sprinkle({
     ...(rest as Parameters<typeof iconButton.sprinkle>[0]),
-    size,
-    borderColor,
-    backgroundColor,
+    ...sprinkleProps,
   });
 
   return (
     <As
-      className={[iconButton.classnames.base, className].join(" ")}
+      className={[
+        className,
+        appearance
+          ? iconButton.classnames.appearance?.[appearance]
+          : iconButton.classnames.base,
+      ]
+        .filter(Boolean)
+        .join(" ")}
       style={style}
       {...otherProps}
     >
       <Icon
         data-testid="icon-element"
-        color="neutral-textHigh"
+        color={color}
         cursor="pointer"
         source={source}
       />

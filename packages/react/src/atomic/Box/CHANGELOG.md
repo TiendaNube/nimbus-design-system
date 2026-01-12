@@ -2,6 +2,26 @@
 
 A low-level utility component that accepts styled system props to enable custom theme-aware styling
 
+## 2025-11-11 `4.3.2`
+
+#### 🎉 New features
+
+- Fixed `active` dynamic property getting overridden by `hover` property. ([#379](https://github.com/TiendaNube/nimbus-design-system/pull/379) by [@joacotornello](https://github.com/joacotornello))
+- Improved accessibility of `Box` component when rendered as `button`. ([#379](https://github.com/TiendaNube/nimbus-design-system/pull/379) by [@joacotornello](https://github.com/joacotornello))
+- Added `asButton` story to `Box` component. ([#379](https://github.com/TiendaNube/nimbus-design-system/pull/379) by [@joacotornello](https://github.com/joacotornello))
+
+## 2025-09-17 `4.3.1`
+
+#### 🐛 Bug fixes
+
+- Fixed `ai-generative-interactive` and `ai-generative-interactive-border` options to match Nimbus AI gradient style. ([#352](https://github.com/TiendaNube/nimbus-design-system/pull/352) by [@joacotornello](https://github.com/joacotornello))
+
+## 2025-09-16 `4.3.0`
+
+#### 🎉 New features
+
+- Added `ai-generative-interactive` and `ai-generative-interactive-border` options to `background` property, and `aiFocus` option to `boxShadow` property. ([#352](https://github.com/TiendaNube/nimbus-design-system/pull/352) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-03-25 `4.2.0`
 
 ### 🎉 New features

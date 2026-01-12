@@ -1,5 +1,6 @@
 import { style as vanillaStyle, styleVariants } from "@vanilla-extract/css";
 import { varsThemeBase } from "../../../themes";
+import { gradients, createBorderGradient } from "../../../gradients";
 
 export const input = vanillaStyle({
   padding: varsThemeBase.spacing[2],
@@ -34,7 +35,7 @@ export const container = vanillaStyle({
   borderStyle: "solid",
   borderColor: varsThemeBase.colors.neutral.interactive,
   overflow: "hidden",
-  ":focus-within": {
+  ":focus-visible": {
     outline: "none",
     boxShadow: varsThemeBase.utils.focus,
   },
@@ -52,6 +53,9 @@ export const container__icon = vanillaStyle({
   border: "none",
   appearance: "none",
   padding: 0,
+  ":focus-within": {
+    outline: "none",
+  },
 });
 
 export const container__icon_append = styleVariants({
@@ -110,4 +114,19 @@ export const appearance = styleVariants({
       },
     },
   ],
+  "ai-generative": [
+    container,
+    {
+      background: createBorderGradient(
+        gradients.aiGenerativeInteractive,
+        varsThemeBase.colors.neutral.background
+      ),
+      borderColor: "transparent",
+    },
+  ],
 });
+
+export const aiGenerated = vanillaStyle([
+  appearance["ai-generative"],
+  { boxShadow: varsThemeBase.utils.aiFocus },
+]);

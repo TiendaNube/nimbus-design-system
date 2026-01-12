@@ -1,9 +1,9 @@
 {
   "id": "text",
   "name": "Text",
-  "totalProps": 10,
+  "totalProps": 13,
   "packageName": "@nimbus-ds/text",
-  "version": "6.4.0",
+  "version": "6.6.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/text",
   "props": [
     {
@@ -24,7 +24,7 @@
       "required": false
     },
     {
-      "description": "The color property is used to set the color of the text.",
+      "description": "The color property is used to set the color of the text.\nNote: Gradients like 'ai-generative' changes other properties like 'width' and 'display', which could make the component behave differently. Ensure to visually test the component when dynamically changing the color.",
       "default": "neutral-textLow",
       "anyOf": [
         {
@@ -32,6 +32,7 @@
           "properties": {
             "xs": {
               "enum": [
+                "ai-generative",
                 "currentColor",
                 "danger-interactive",
                 "danger-surface",
@@ -61,6 +62,7 @@
             },
             "md": {
               "enum": [
+                "ai-generative",
                 "currentColor",
                 "danger-interactive",
                 "danger-surface",
@@ -90,6 +92,7 @@
             },
             "lg": {
               "enum": [
+                "ai-generative",
                 "currentColor",
                 "danger-interactive",
                 "danger-surface",
@@ -119,6 +122,7 @@
             },
             "xl": {
               "enum": [
+                "ai-generative",
                 "currentColor",
                 "danger-interactive",
                 "danger-surface",
@@ -145,6 +149,36 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "ai-generative",
+                "currentColor",
+                "danger-interactive",
+                "danger-surface",
+                "danger-textHigh",
+                "danger-textLow",
+                "neutral-background",
+                "neutral-interactive",
+                "neutral-surface",
+                "neutral-textDisabled",
+                "neutral-textHigh",
+                "neutral-textLow",
+                "primary-interactive",
+                "primary-surface",
+                "primary-textHigh",
+                "primary-textLow",
+                "success-interactive",
+                "success-surface",
+                "success-textHigh",
+                "success-textLow",
+                "warning-interactive",
+                "warning-surface",
+                "warning-textHigh",
+                "warning-textLow"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -152,11 +186,13 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
           "enum": [
+            "ai-generative",
             "currentColor",
             "danger-interactive",
             "danger-surface",
@@ -229,6 +265,15 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "base",
+                "caption",
+                "highlight"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -236,7 +281,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -293,6 +339,15 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "bold",
+                "medium",
+                "regular"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -300,7 +355,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -357,6 +413,15 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "base",
+                "caption",
+                "highlight"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -364,7 +429,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -377,6 +443,85 @@
         }
       ],
       "title": "lineHeight",
+      "required": false
+    },
+    {
+      "description": "The overflow property specifies what happens if content overflows an element's box.",
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "xs": {
+              "enum": [
+                "auto",
+                "hidden",
+                "scroll",
+                "visible"
+              ],
+              "type": "string",
+              "title": "xs"
+            },
+            "md": {
+              "enum": [
+                "auto",
+                "hidden",
+                "scroll",
+                "visible"
+              ],
+              "type": "string",
+              "title": "md"
+            },
+            "lg": {
+              "enum": [
+                "auto",
+                "hidden",
+                "scroll",
+                "visible"
+              ],
+              "type": "string",
+              "title": "lg"
+            },
+            "xl": {
+              "enum": [
+                "auto",
+                "hidden",
+                "scroll",
+                "visible"
+              ],
+              "type": "string",
+              "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "auto",
+                "hidden",
+                "scroll",
+                "visible"
+              ],
+              "type": "string",
+              "title": "xxl"
+            }
+          },
+          "additionalProperties": false,
+          "propertyOrder": [
+            "xs",
+            "md",
+            "lg",
+            "xl",
+            "xxl"
+          ]
+        },
+        {
+          "enum": [
+            "auto",
+            "hidden",
+            "scroll",
+            "visible"
+          ],
+          "type": "string"
+        }
+      ],
+      "title": "overflow",
       "required": false
     },
     {
@@ -425,6 +570,16 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "center",
+                "justify",
+                "left",
+                "right"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -432,7 +587,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -489,6 +645,15 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "line-through",
+                "none",
+                "underline"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -496,7 +661,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -512,7 +678,165 @@
       "required": false
     },
     {
-      "description": "The amount of lines at which the text will be trimmed, showing an ellipsis when overflowed.",
+      "description": "The textOverflow property specifies how overflowed content that is not displayed should be signaled to the user (e.g., 'ellipsis' for '...', 'clip' for hard cutoff).\nNote: This property only works when overflow is set to 'hidden'.",
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "xs": {
+              "enum": [
+                "clip",
+                "ellipsis"
+              ],
+              "type": "string",
+              "title": "xs"
+            },
+            "md": {
+              "enum": [
+                "clip",
+                "ellipsis"
+              ],
+              "type": "string",
+              "title": "md"
+            },
+            "lg": {
+              "enum": [
+                "clip",
+                "ellipsis"
+              ],
+              "type": "string",
+              "title": "lg"
+            },
+            "xl": {
+              "enum": [
+                "clip",
+                "ellipsis"
+              ],
+              "type": "string",
+              "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "clip",
+                "ellipsis"
+              ],
+              "type": "string",
+              "title": "xxl"
+            }
+          },
+          "additionalProperties": false,
+          "propertyOrder": [
+            "xs",
+            "md",
+            "lg",
+            "xl",
+            "xxl"
+          ]
+        },
+        {
+          "enum": [
+            "clip",
+            "ellipsis"
+          ],
+          "type": "string"
+        }
+      ],
+      "title": "textOverflow",
+      "required": false
+    },
+    {
+      "description": "The whiteSpace property sets how white space inside an element is handled.",
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "xs": {
+              "enum": [
+                "break-spaces",
+                "normal",
+                "nowrap",
+                "pre",
+                "pre-line",
+                "pre-wrap"
+              ],
+              "type": "string",
+              "title": "xs"
+            },
+            "md": {
+              "enum": [
+                "break-spaces",
+                "normal",
+                "nowrap",
+                "pre",
+                "pre-line",
+                "pre-wrap"
+              ],
+              "type": "string",
+              "title": "md"
+            },
+            "lg": {
+              "enum": [
+                "break-spaces",
+                "normal",
+                "nowrap",
+                "pre",
+                "pre-line",
+                "pre-wrap"
+              ],
+              "type": "string",
+              "title": "lg"
+            },
+            "xl": {
+              "enum": [
+                "break-spaces",
+                "normal",
+                "nowrap",
+                "pre",
+                "pre-line",
+                "pre-wrap"
+              ],
+              "type": "string",
+              "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "break-spaces",
+                "normal",
+                "nowrap",
+                "pre",
+                "pre-line",
+                "pre-wrap"
+              ],
+              "type": "string",
+              "title": "xxl"
+            }
+          },
+          "additionalProperties": false,
+          "propertyOrder": [
+            "xs",
+            "md",
+            "lg",
+            "xl",
+            "xxl"
+          ]
+        },
+        {
+          "enum": [
+            "break-spaces",
+            "normal",
+            "nowrap",
+            "pre",
+            "pre-line",
+            "pre-wrap"
+          ],
+          "type": "string"
+        }
+      ],
+      "title": "whiteSpace",
+      "required": false
+    },
+    {
+      "description": "The wordBreak property sets whether line breaks appear wherever the text would otherwise overflow its content box.",
       "anyOf": [
         {
           "type": "object",
@@ -556,6 +880,16 @@
               ],
               "type": "string",
               "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "break-all",
+                "break-word",
+                "keep-all",
+                "normal"
+              ],
+              "type": "string",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -563,7 +897,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {
@@ -600,6 +935,10 @@
             "xl": {
               "type": "number",
               "title": "xl"
+            },
+            "xxl": {
+              "type": "number",
+              "title": "xxl"
             }
           },
           "additionalProperties": false,
@@ -607,7 +946,8 @@
             "xs",
             "md",
             "lg",
-            "xl"
+            "xl",
+            "xxl"
           ]
         },
         {

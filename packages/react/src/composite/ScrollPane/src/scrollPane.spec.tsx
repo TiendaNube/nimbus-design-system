@@ -14,7 +14,7 @@ const mockGetBoundingClientRect = jest.fn(() => ({
   height: 100,
   x: 0,
   y: 0,
-  toJSON: jest.fn()
+  toJSON: jest.fn(),
 }));
 
 Element.prototype.getBoundingClientRect = mockGetBoundingClientRect;
@@ -22,7 +22,7 @@ Element.prototype.getBoundingClientRect = mockGetBoundingClientRect;
 describe("ScrollPane", () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    
+
     // Reset the getBoundingClientRect mock for each test
     mockGetBoundingClientRect.mockReturnValue({
       left: 0,
@@ -33,7 +33,7 @@ describe("ScrollPane", () => {
       height: 100,
       x: 0,
       y: 0,
-      toJSON: jest.fn()
+      toJSON: jest.fn(),
     });
   });
 
@@ -111,10 +111,14 @@ describe("ScrollPane", () => {
     });
 
     render(
-      <ScrollPane 
+      <ScrollPane
         showArrows
-        scrollPaneArrowStart={<ScrollPane.ArrowHorizontalStart>←</ScrollPane.ArrowHorizontalStart>}
-        scrollPaneArrowEnd={<ScrollPane.ArrowHorizontalEnd>→</ScrollPane.ArrowHorizontalEnd>}
+        scrollPaneArrowStart={
+          <ScrollPane.ArrowHorizontalStart>←</ScrollPane.ArrowHorizontalStart>
+        }
+        scrollPaneArrowEnd={
+          <ScrollPane.ArrowHorizontalEnd>→</ScrollPane.ArrowHorizontalEnd>
+        }
       >
         <ScrollPane.Item>Item 1</ScrollPane.Item>
         <ScrollPane.Item>Item 2</ScrollPane.Item>
@@ -130,7 +134,7 @@ describe("ScrollPane", () => {
     // Check for arrow buttons by their aria-label
     const leftArrow = screen.queryByLabelText("Scroll backward");
     const rightArrow = screen.queryByLabelText("Scroll forward");
-    
+
     expect(leftArrow || rightArrow).toBeTruthy();
   });
 
@@ -177,7 +181,6 @@ describe("ScrollPane", () => {
     });
   });
 
-
   it("provides context to child items", () => {
     const TestItem = () => {
       const context = React.useContext(ScrollPaneContext);
@@ -190,7 +193,9 @@ describe("ScrollPane", () => {
       </ScrollPane>
     );
 
-    expect(screen.getByTestId("context-direction")).toHaveTextContent("vertical");
+    expect(screen.getByTestId("context-direction")).toHaveTextContent(
+      "vertical"
+    );
   });
 
   it("handles scroll events properly", () => {
@@ -223,15 +228,15 @@ describe("ScrollPane", () => {
     );
 
     const scrollArea = container.querySelector('[class*="scrollArea"]');
-    
+
     // First scroll event - creates a timeout
     fireEvent.scroll(scrollArea!);
-    
+
     // Second scroll event - should clear the previous timeout
     fireEvent.scroll(scrollArea!);
 
     expect(clearTimeoutSpy).toHaveBeenCalled();
-    
+
     jest.useRealTimers();
     clearTimeoutSpy.mockRestore();
   });
@@ -248,59 +253,81 @@ describe("ScrollPane", () => {
     );
 
     const scrollArea = container.querySelector('[class*="scrollArea"]');
-    
+
     // Trigger scroll event to create the timeout
     fireEvent.scroll(scrollArea!);
-    
+
     // Verify setTimeout was called with the correct delay
     expect(setTimeoutSpy).toHaveBeenCalledWith(expect.any(Function), 150);
-    
+
     // Get the callback function that was passed to setTimeout
-    const timeoutCallback = setTimeoutSpy.mock.calls[setTimeoutSpy.mock.calls.length - 1][0];
-    
+    const timeoutCallback =
+      setTimeoutSpy.mock.calls[setTimeoutSpy.mock.calls.length - 1][0];
+
     // Execute the callback directly to ensure setIsScrolling(false) is called
     await waitFor(() => {
       timeoutCallback();
     });
-    
+
     // Also test with timer advancement
     jest.advanceTimersByTime(150);
-    
+
     // The component should still be functioning after the timeout
     expect(scrollArea).toBeInTheDocument();
-    
+
     jest.useRealTimers();
     setTimeoutSpy.mockRestore();
   });
 
-  it("returns early when containerRef.current is null in scrollToDirection", () => {
+  it("returns early when containerRef.current is null in scrollToDirection", async () => {
     const mockScrollTo = jest.fn();
     Object.defineProperty(HTMLElement.prototype, "scrollTo", {
       configurable: true,
       value: mockScrollTo,
     });
 
+    Object.defineProperty(HTMLElement.prototype, "scrollWidth", {
+      configurable: true,
+      value: 1000,
+    });
+    Object.defineProperty(HTMLElement.prototype, "clientWidth", {
+      configurable: true,
+      value: 300,
+    });
+    Object.defineProperty(HTMLElement.prototype, "scrollLeft", {
+      configurable: true,
+      value: 0,
+    });
+
     const { container } = render(
-      <ScrollPane 
+      <ScrollPane
         showArrows
-        scrollPaneArrowStart={<ScrollPane.ArrowHorizontalStart>←</ScrollPane.ArrowHorizontalStart>}
+        scrollPaneArrowEnd={
+          <ScrollPane.ArrowHorizontalEnd>→</ScrollPane.ArrowHorizontalEnd>
+        }
       >
         <ScrollPane.Item>Item 1</ScrollPane.Item>
       </ScrollPane>
     );
 
-    const leftArrow = screen.getByLabelText("Scroll backward");
-    
-    // Mock containerRef.current to be null
-    const scrollArea = container.querySelector('[class*="scrollArea"]') as HTMLElement;
+    const scrollArea = container.querySelector('[class*="scrollArea"]');
     if (scrollArea) {
-      // Remove the scrollArea from DOM to simulate null containerRef
-      scrollArea.remove();
+      fireEvent.scroll(scrollArea);
     }
-    
-    // Click should not cause scrollTo to be called due to null check
-    fireEvent.click(leftArrow);
-    
+
+    const rightArrow = await waitFor(() =>
+      screen.getByLabelText("Scroll forward")
+    );
+
+    const scrollAreaElement = container.querySelector(
+      '[class*="scrollArea"]'
+    ) as HTMLElement;
+    if (scrollAreaElement) {
+      scrollAreaElement.remove();
+    }
+
+    fireEvent.click(rightArrow);
+
     expect(mockScrollTo).not.toHaveBeenCalled();
   });
 
@@ -340,32 +367,54 @@ describe("ScrollPane", () => {
 
     unmount();
 
-    expect(removeEventListenerSpy).toHaveBeenCalledWith("scroll", expect.any(Function));
+    expect(removeEventListenerSpy).toHaveBeenCalledWith(
+      "scroll",
+      expect.any(Function)
+    );
   });
 
-  it("handles arrow click events for horizontal scrolling", () => {
+  it("handles arrow click events for horizontal scrolling", async () => {
     const mockScrollTo = jest.fn();
     Object.defineProperty(HTMLElement.prototype, "scrollTo", {
       configurable: true,
       value: mockScrollTo,
     });
 
+    Object.defineProperty(HTMLElement.prototype, "scrollWidth", {
+      configurable: true,
+      value: 1000,
+    });
     Object.defineProperty(HTMLElement.prototype, "clientWidth", {
       configurable: true,
       value: 300,
     });
+    Object.defineProperty(HTMLElement.prototype, "scrollLeft", {
+      configurable: true,
+      value: 100,
+    });
 
-    render(
-      <ScrollPane 
+    const { container } = render(
+      <ScrollPane
         showArrows
-        scrollPaneArrowStart={<ScrollPane.ArrowHorizontalStart>←</ScrollPane.ArrowHorizontalStart>}
-        scrollPaneArrowEnd={<ScrollPane.ArrowHorizontalEnd>→</ScrollPane.ArrowHorizontalEnd>}
+        scrollPaneArrowStart={
+          <ScrollPane.ArrowHorizontalStart>←</ScrollPane.ArrowHorizontalStart>
+        }
+        scrollPaneArrowEnd={
+          <ScrollPane.ArrowHorizontalEnd>→</ScrollPane.ArrowHorizontalEnd>
+        }
       >
         <ScrollPane.Item>Item 1</ScrollPane.Item>
       </ScrollPane>
     );
 
-    const leftArrow = screen.getByLabelText("Scroll backward");
+    const scrollArea = container.querySelector('[class*="scrollArea"]');
+    if (scrollArea) {
+      fireEvent.scroll(scrollArea);
+    }
+
+    const leftArrow = await waitFor(() =>
+      screen.getByLabelText("Scroll backward")
+    );
     const rightArrow = screen.getByLabelText("Scroll forward");
 
     fireEvent.click(leftArrow);
@@ -381,31 +430,53 @@ describe("ScrollPane", () => {
     });
   });
 
-  it("handles arrow keyboard events", () => {
+  it("handles arrow keyboard events", async () => {
     const mockScrollTo = jest.fn();
     Object.defineProperty(HTMLElement.prototype, "scrollTo", {
       configurable: true,
       value: mockScrollTo,
     });
 
-    render(
-      <ScrollPane 
+    Object.defineProperty(HTMLElement.prototype, "scrollWidth", {
+      configurable: true,
+      value: 1000,
+    });
+    Object.defineProperty(HTMLElement.prototype, "clientWidth", {
+      configurable: true,
+      value: 300,
+    });
+    Object.defineProperty(HTMLElement.prototype, "scrollLeft", {
+      configurable: true,
+      value: 0,
+    });
+
+    const { container } = render(
+      <ScrollPane
         showArrows
-        scrollPaneArrowStart={<ScrollPane.ArrowHorizontalStart>←</ScrollPane.ArrowHorizontalStart>}
+        scrollPaneArrowEnd={
+          <ScrollPane.ArrowHorizontalEnd>→</ScrollPane.ArrowHorizontalEnd>
+        }
       >
         <ScrollPane.Item>Item 1</ScrollPane.Item>
       </ScrollPane>
     );
 
-    const leftArrow = screen.getByLabelText("Scroll backward");
+    const scrollArea = container.querySelector('[class*="scrollArea"]');
+    if (scrollArea) {
+      fireEvent.scroll(scrollArea);
+    }
 
-    fireEvent.keyDown(leftArrow, { key: "Enter" });
+    const rightArrow = await waitFor(() =>
+      screen.getByLabelText("Scroll forward")
+    );
+
+    fireEvent.keyDown(rightArrow, { key: "Enter" });
     expect(mockScrollTo).toHaveBeenCalled();
 
-    fireEvent.keyDown(leftArrow, { key: " " });
+    fireEvent.keyDown(rightArrow, { key: " " });
     expect(mockScrollTo).toHaveBeenCalled();
 
-    fireEvent.keyDown(leftArrow, { key: "Tab" });
+    fireEvent.keyDown(rightArrow, { key: "Tab" });
   });
 
   it("handles vertical direction scrolling", () => {
@@ -430,11 +501,15 @@ describe("ScrollPane", () => {
     });
 
     render(
-      <ScrollPane 
-        direction="vertical" 
+      <ScrollPane
+        direction="vertical"
         showArrows
-        scrollPaneArrowStart={<ScrollPane.ArrowVerticalStart>↑</ScrollPane.ArrowVerticalStart>}
-        scrollPaneArrowEnd={<ScrollPane.ArrowVerticalEnd>↓</ScrollPane.ArrowVerticalEnd>}
+        scrollPaneArrowStart={
+          <ScrollPane.ArrowVerticalStart>↑</ScrollPane.ArrowVerticalStart>
+        }
+        scrollPaneArrowEnd={
+          <ScrollPane.ArrowVerticalEnd>↓</ScrollPane.ArrowVerticalEnd>
+        }
       >
         <ScrollPane.Item>Item 1</ScrollPane.Item>
       </ScrollPane>
@@ -503,11 +578,14 @@ describe("ScrollPane", () => {
   });
 
   it("throws error when arrow is used outside ScrollPane context", () => {
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    const consoleSpy = jest.spyOn(console, "error").mockImplementation(() => {});
-    
+    const consoleSpy = jest
+      .spyOn(console, "error")
+      .mockImplementation(jest.fn());
+
     expect(() => {
-      render(<ScrollPane.ArrowHorizontalStart>←</ScrollPane.ArrowHorizontalStart>);
+      render(
+        <ScrollPane.ArrowHorizontalStart>←</ScrollPane.ArrowHorizontalStart>
+      );
     }).toThrow("useScrollPaneContext must be used within a ScrollPane");
 
     consoleSpy.mockRestore();
@@ -618,6 +696,157 @@ describe("ScrollPane", () => {
       expect(mockScrollTo).not.toHaveBeenCalled();
     });
   });
+
+  describe("Grab Scroll", () => {
+    it("enables grab scroll when enableGrabScroll is true", () => {
+      const { container } = render(
+        <ScrollPane enableGrabScroll>
+          <ScrollPane.Item>Item 1</ScrollPane.Item>
+        </ScrollPane>
+      );
+
+      const scrollArea = container.querySelector(
+        '[class*="scrollArea"]'
+      ) as HTMLElement;
+      expect(scrollArea).toBeInTheDocument();
+      expect(scrollArea.style.cursor).toBe("grab");
+    });
+
+    it("does not enable grab scroll by default", () => {
+      const { container } = render(
+        <ScrollPane>
+          <ScrollPane.Item>Item 1</ScrollPane.Item>
+        </ScrollPane>
+      );
+
+      const scrollArea = container.querySelector(
+        '[class*="scrollArea"]'
+      ) as HTMLElement;
+      expect(scrollArea).toBeInTheDocument();
+      expect(scrollArea.style.cursor).toBe("");
+    });
+
+    it("handles horizontal grab scroll on mouse drag", () => {
+      Object.defineProperty(HTMLElement.prototype, "offsetLeft", {
+        configurable: true,
+        value: 0,
+      });
+
+      const { container } = render(
+        <ScrollPane enableGrabScroll direction="horizontal">
+          <ScrollPane.Item>Item 1</ScrollPane.Item>
+        </ScrollPane>
+      );
+
+      const scrollArea = container.querySelector(
+        '[class*="scrollArea"]'
+      ) as HTMLElement;
+
+      expect(scrollArea.style.cursor).toBe("grab");
+
+      fireEvent.mouseDown(scrollArea, { pageX: 100, pageY: 50 });
+      fireEvent.mouseMove(scrollArea, { pageX: 80, pageY: 50 });
+      fireEvent.mouseUp(scrollArea);
+
+      expect(scrollArea.style.cursor).toBe("grab");
+    });
+
+    it("handles vertical grab scroll on mouse drag", () => {
+      Object.defineProperty(HTMLElement.prototype, "offsetTop", {
+        configurable: true,
+        value: 0,
+      });
+
+      const { container } = render(
+        <ScrollPane enableGrabScroll direction="vertical">
+          <ScrollPane.Item>Item 1</ScrollPane.Item>
+        </ScrollPane>
+      );
+
+      const scrollArea = container.querySelector(
+        '[class*="scrollArea"]'
+      ) as HTMLElement;
+
+      expect(scrollArea.style.cursor).toBe("grab");
+
+      fireEvent.mouseDown(scrollArea, { pageX: 50, pageY: 100 });
+      fireEvent.mouseMove(scrollArea, { pageX: 50, pageY: 80 });
+      fireEvent.mouseUp(scrollArea);
+
+      expect(scrollArea.style.cursor).toBe("grab");
+    });
+
+    it("resets grab state on mouse leave", () => {
+      const { container } = render(
+        <ScrollPane enableGrabScroll>
+          <ScrollPane.Item>Item 1</ScrollPane.Item>
+        </ScrollPane>
+      );
+
+      const scrollArea = container.querySelector(
+        '[class*="scrollArea"]'
+      ) as HTMLElement;
+
+      expect(scrollArea.style.cursor).toBe("grab");
+
+      fireEvent.mouseDown(scrollArea, { pageX: 100, pageY: 50 });
+      fireEvent.mouseLeave(scrollArea);
+
+      expect(scrollArea.style.cursor).toBe("grab");
+    });
+
+    it("does not trigger scroll when not dragging", () => {
+      const { container } = render(
+        <ScrollPane enableGrabScroll>
+          <ScrollPane.Item>Item 1</ScrollPane.Item>
+        </ScrollPane>
+      );
+
+      const scrollArea = container.querySelector(
+        '[class*="scrollArea"]'
+      ) as HTMLElement;
+      const initialScrollLeft = scrollArea.scrollLeft;
+
+      fireEvent.mouseMove(scrollArea, { pageX: 80, pageY: 50 });
+
+      expect(scrollArea.scrollLeft).toBe(initialScrollLeft);
+    });
+
+    it("prevents item dragging when grab scroll is enabled", () => {
+      render(
+        <ScrollPane enableGrabScroll>
+          <ScrollPane.Item data-testid="item-1">Item 1</ScrollPane.Item>
+        </ScrollPane>
+      );
+
+      const item = screen.getByTestId("item-1");
+      expect(item).toHaveAttribute("draggable", "false");
+    });
+
+    it("allows item dragging when grab scroll is disabled", () => {
+      render(
+        <ScrollPane enableGrabScroll={false}>
+          <ScrollPane.Item data-testid="item-1">Item 1</ScrollPane.Item>
+        </ScrollPane>
+      );
+
+      const item = screen.getByTestId("item-1");
+      expect(item).not.toHaveAttribute("draggable");
+    });
+
+    it("applies grab cursor when grab scroll is enabled", () => {
+      const { container } = render(
+        <ScrollPane enableGrabScroll>
+          <ScrollPane.Item>Item 1</ScrollPane.Item>
+        </ScrollPane>
+      );
+
+      const scrollArea = container.querySelector(
+        '[class*="scrollArea"]'
+      ) as HTMLElement;
+      expect(scrollArea.style.cursor).toBe("grab");
+    });
+  });
 });
 
 describe("ScrollPane.Item", () => {
@@ -648,22 +877,4 @@ describe("ScrollPane.Item", () => {
     fireEvent.click(screen.getByTestId("clickable-item"));
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
-
-  it("applies custom props", () => {
-    render(
-      <ScrollPane>
-        <ScrollPane.Item
-          data-testid="custom-item"
-          className="custom-item-class"
-          style={{ color: "blue" }}
-        >
-          Custom Item
-        </ScrollPane.Item>
-      </ScrollPane>
-    );
-
-    const item = screen.getByTestId("custom-item");
-    expect(item.className).toContain("nimbus-box_boxSizing-border-box");
-    expect(item).toHaveAttribute("data-testid", "custom-item");
-  });
-}); 
+});

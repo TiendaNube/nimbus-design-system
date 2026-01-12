@@ -30,6 +30,10 @@ The component has 3 variants that can be used according to context and applicati
 - Search - Used for search fields, this is the only variant that does not require the use of the Label component as it has an icon by default.
 - Password - Used to receive passwords or sensitive data.
 
+## AI-generated highlight
+
+- Use `aiGenerated` when the field value was filled by a Generative AI to highlight it visually. This applies the Nimbus AI gradient border, white background and a subtle pink focus ring.
+
 ## Additional elements
 
 The component has some elements that can be used together to highlight or add context to the inputs.

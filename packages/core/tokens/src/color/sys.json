@@ -50,11 +50,22 @@
         "text-high": { "value": "{color.light.neutral.0}" }
       },
       "aiGenerative": {
-        "interactive": {
-          "start": { "value": "#0050C3" },
-          "middle": { "value": "#4629BA" },
-          "end": { "value": "#D8446E" }
-        }
+        "background": { "value": "{color.light.generative.100}" },
+        "surface": { "value": "{color.light.generative.99}" },
+        "surface-highlight": { "value": "{color.light.generative.95}" },
+        "interactive": { "value": "{color.light.generative.90}" },
+        "interactive-hover": { "value": "{color.light.generative.80}" },
+        "interactive-pressed": { "value": "{color.light.generative.60}" },
+        "text-low": { "value": "{color.light.generative.50}" },
+        "text-high": { "value": "{color.light.generative.20}" }
+      },
+      "aiGradient": {
+        "blue-high": { "value": "#0050C3" },
+        "blue-light": { "value": "#96C1FC" },
+        "purple-high": { "value": "#4629BA" },
+        "purple-light": { "value": "#BCB0E8" },
+        "pink-high": { "value": "#D8446E" },
+        "pink-light": { "value": "#E5809D" }
       }
     },
     "dark": {
@@ -107,11 +118,22 @@
         "text-high": { "value": "{color.light.neutral.100}" }
       },
       "aiGenerative": {
-        "interactive": {
-          "start": { "value": "#0050C3" },
-          "middle": { "value": "#4629BA" },
-          "end": { "value": "#D8446E" }
-        }
+        "background": { "value": "{color.light.generative.100}" },
+        "surface": { "value": "{color.light.generative.99}" },
+        "surface-highlight": { "value": "{color.light.generative.95}" },
+        "interactive": { "value": "{color.light.generative.90}" },
+        "interactive-hover": { "value": "{color.light.generative.80}" },
+        "interactive-pressed": { "value": "{color.light.generative.60}" },
+        "text-low": { "value": "{color.light.generative.50}" },
+        "text-high": { "value": "{color.light.generative.20}" }
+      },
+      "aiGradient": {
+        "blue-high": { "value": "#0050C3" },
+        "blue-light": { "value": "#96C1FC" },
+        "purple-high": { "value": "#4629BA" },
+        "purple-light": { "value": "#BCB0E8" },
+        "pink-high": { "value": "#D8446E" },
+        "pink-light": { "value": "#E5809D" }
       }
     },
     "next": {

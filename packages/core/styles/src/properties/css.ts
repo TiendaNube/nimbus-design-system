@@ -17,6 +17,9 @@ import {
   TransitionTiming,
   AlignSelf,
   WordBreak,
+  TextOverflow,
+  WhiteSpace,
+  ScrollbarWidth,
 } from "../types";
 import { baseColors } from "./base";
 
@@ -42,6 +45,7 @@ export const boxShadowProperties = {
   "4": varsThemeBase.shadow.level[4],
   "5": varsThemeBase.shadow.level[5],
   focusRing: varsThemeBase.utils.focus,
+  aiFocus: varsThemeBase.utils.aiFocus,
 };
 
 export const boxSizingProperties: BoxSizing[] = ["border-box", "content-box"];
@@ -192,6 +196,12 @@ export const overflowProperties: Overflow[] = [
   "auto",
 ];
 
+export const scrollbarWidthProperties: ScrollbarWidth[] = [
+  "auto",
+  "thin",
+  "none",
+];
+
 export const transitionTimingProperties: TransitionTiming[] = [
   "ease",
   "ease-in",
@@ -271,4 +281,15 @@ export const wordBreakProperties: WordBreak[] = [
   "break-all",
   "keep-all",
   "break-word",
+];
+
+export const textOverflowProperties: TextOverflow[] = ["clip", "ellipsis"];
+
+export const whiteSpaceProperties: WhiteSpace[] = [
+  "normal",
+  "nowrap",
+  "pre",
+  "pre-wrap",
+  "pre-line",
+  "break-spaces",
 ];

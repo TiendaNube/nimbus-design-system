@@ -15,12 +15,18 @@ const Box = forwardRef(
     }: BoxBaseProps & { as: any },
     ref
   ) => {
+    const isButton = As === "button";
+
     const { className, style, otherProps } = box.sprinkle({
       ...(rest as Parameters<typeof box.sprinkle>[0]),
       boxSizing,
     });
 
-    return <As ref={ref} className={className} style={style} {...otherProps} />;
+    const classes = [className, isButton && box.asButton]
+      .filter(Boolean)
+      .join(" ");
+
+    return <As ref={ref} className={classes} style={style} {...otherProps} />;
   }
 ) as PolymorphicForwardRefComponent<"div", BoxBaseProps>;
 

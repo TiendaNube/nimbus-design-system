@@ -10,6 +10,7 @@ alwaysApply: false
 1. Each package must have its own `CHANGELOG.md` file in its root directory
 2. The main repository must have a root `CHANGELOG.md` file
 3. Changes must be documented in both the package-specific and root changelogs
+4. New versions must be documented at the TOP of the file, below the main # Changelog section, and above all other versions.
 
 ## Entry Format
 

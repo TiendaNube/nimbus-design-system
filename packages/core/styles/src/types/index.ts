@@ -3,6 +3,7 @@ export interface Conditions<T> {
   md?: T;
   lg?: T;
   xl?: T;
+  xxl?: T;
 }
 export type AspectRatio =
   | "1/1"
@@ -69,3 +70,12 @@ export type TransitionTiming =
   | "step-start"
   | "step-end";
 export type WordBreak = "normal" | "break-all" | "keep-all" | "break-word";
+export type TextOverflow = "clip" | "ellipsis";
+export type WhiteSpace =
+  | "normal"
+  | "nowrap"
+  | "pre"
+  | "pre-wrap"
+  | "pre-line"
+  | "break-spaces";
+export type ScrollbarWidth = "auto" | "none" | "thin";

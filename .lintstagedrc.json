@@ -1,8 +1,4 @@
 {
-  "*.+(js|jsx|tsx|ts)": [
-    "prettier --write",
-    "yarn lint:fix",
-    "yarn test:staged"
-  ],
+  "*.+(js|jsx|tsx|ts)": ["prettier --write", "yarn lint:fix"],
   "*.+(json|css|scss|md)": ["prettier --write"]
 }

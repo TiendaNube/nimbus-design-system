@@ -32,6 +32,7 @@ The ScrollPane component consists of:
 - **Gradient Overlays** - Visual indicators showing there's more content to scroll
 - **Navigation Arrows** - Optional clickable arrows for precise scrolling control (especially useful on desktop)
 - **Scroll-to-Item** - Automatically scrolls items into view when clicked
+- **Grab Scroll** - Click and drag to scroll functionality (like mobile touch scrolling on desktop)
 - **Direction Support** - Handles both horizontal and vertical scrolling
 - **Scrollbar Control** - Option to show or hide the scrollbar
 - **Responsive** - Works on both desktop and mobile devices
@@ -47,6 +48,8 @@ The component includes proper ARIA labels for navigation arrows and supports key
 - Apply to content that might overflow on smaller screens
 - Enable arrows for desktop users who need precise control
 - Use gradients to indicate additional content availability
+- Enable grab scroll for a more intuitive drag-to-scroll experience (similar to mobile touch scrolling)
+- Combine grab scroll with arrows and gradients for maximum usability
 
 ### Related Components
 
@@ -58,4 +61,4 @@ The component includes proper ARIA labels for navigation arrows and supports key
 
 View docs [here](https://nimbus.nuvemshop.com.br/documentation/composite-components/scroll-pane).
 
-<img alt="Nimbus" style="margin-bottom: 30px;" src="https://tiendanube.github.io/design-system-nimbus/static/media/nimbus-logo.ab60bd79.png" height="30" /> 
+<img alt="Nimbus" style="margin-bottom: 30px;" src="https://tiendanube.github.io/design-system-nimbus/static/media/nimbus-logo.ab60bd79.png" height="30" />

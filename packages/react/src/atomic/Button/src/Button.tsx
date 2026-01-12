@@ -25,7 +25,12 @@ const Button = forwardRef(
     }: ButtonBaseProps & { as: any },
     ref
   ) => {
-    const { appearance = "neutral", fullWidth = false, ...rest } = props;
+    const {
+      appearance = "neutral",
+      fullWidth = false,
+      size = "medium",
+      ...rest
+    } = props;
     const innerRef = useRef<HTMLButtonElement>(null);
     useRefObjectAsForwardedRef(ref, innerRef);
 
@@ -50,6 +55,7 @@ const Button = forwardRef(
 
     const buttonClasses = [
       button.classnames.appearance[appearance],
+      button.classnames.size[size],
       fullWidth && button.classnames.fullWidth,
     ]
       .filter(Boolean)

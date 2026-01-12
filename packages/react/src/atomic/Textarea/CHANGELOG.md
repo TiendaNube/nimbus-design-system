@@ -2,6 +2,30 @@
 
 The Textarea component allows the user to enter or edit information in long text format.
 
+## 2025-10-02 `2.6.0`
+
+#### 🎉 New features
+
+- Added boolean prop `aiGenerated` to `Textarea` to highlight AI-filled values without changing APIs. It applies the AI generative border, white background and a pink focus ring. ([#364](https://github.com/TiendaNube/nimbus-design-system/pull/364) by [@joacotornello](https://github.com/joacotornello))
+
+## 2025-09-23 `2.5.0`
+
+#### 🎉 New features
+
+- Added `autoGrow` property to `Textarea` component, which allows the textarea to grow with content up to the new `maxLines` limit (if provided) and then scroll. Also added `minLines` property to set the minimum height of the textarea to the given number of lines. ([#357](https://github.com/TiendaNube/nimbus-design-system/pull/357) by [@joacotornello](https://github.com/joacotornello))
+
+## 2025-09-17 `2.4.1`
+
+#### 🐛 Bug fixes
+
+- Fixed `ai-generative` appearance to match Nimbus AI gradient style. ([#351](https://github.com/TiendaNube/nimbus-design-system/pull/351) by [@joacotornello](https://github.com/joacotornello))
+
+## 2025-09-15 `2.4.0`
+
+#### 🎉 New features
+
+- Added `ai-generative` appearance to `Textarea` component. ([#351](https://github.com/TiendaNube/nimbus-design-system/pull/351) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-03-18 `2.3.0`
 
 #### 🎉 New features

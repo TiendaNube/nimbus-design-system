@@ -2,6 +2,18 @@
 
 The Chip component is used to flag criteria or attributes related to searches or filters of a list of information.
 
+## 2025-09-17 `2.5.0`
+
+### 🐛 Bug fixes
+
+- Added `:hover` and `:active` properties to `Chip` component AI State to improve hover and active states. ([#353](https://github.com/TiendaNube/nimbus-design-system/pull/353) by [@joacotornello](https://github.com/joacotornello))
+
+## 2025-09-04 `2.4.0`
+
+### 🎉 New features
+
+- Added `aiGenerated` prop to apply Nimbus AI gradient border and AI focus ring to highlight AI-generated chips. ([#339](https://github.com/TiendaNube/nimbus-design-system/pull/339) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-03-18 `2.3.4`
 
 ### 💡 Others

@@ -14,6 +14,9 @@ const Text: React.FC<TextProps> & TextComponents = ({
   fontWeight = "regular",
   fontSize = "base",
   textDecoration = "none",
+  textOverflow,
+  whiteSpace,
+  overflow,
   children,
   lineClamp,
   ...rest
@@ -26,6 +29,9 @@ const Text: React.FC<TextProps> & TextComponents = ({
     fontWeight: fontWeight as any,
     fontSize: fontSize as any,
     textDecoration: textDecoration as any,
+    textOverflow,
+    whiteSpace,
+    overflow,
     WebkitLineClamp: lineClamp as any,
   });
 
@@ -35,6 +41,10 @@ const Text: React.FC<TextProps> & TextComponents = ({
       className={[
         text.classnames.base,
         lineClamp && text.classnames.trim,
+        color in text.aiColors &&
+          text.classnames.aiStyles[
+            color as keyof typeof text.classnames.aiStyles
+          ],
         className,
       ].join(" ")}
       style={style}

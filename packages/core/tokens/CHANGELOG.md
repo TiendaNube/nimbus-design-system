@@ -2,6 +2,24 @@
 
 Our design tokens are the foundations of Nimbus Design System.
 
+## 2025-11-11 `9.5.0`
+
+#### 🎉 New features
+
+- Added new `xxl` breakpoint token. ([#380](https://github.com/TiendaNube/nimbus-design-system/pull/380) by [@joacotornello](https://github.com/joacotornello))
+
+## 2025-09-17 `9.4.0`
+
+#### 🎉 New features
+
+- Added new `aiGradient` color tokens and improved `aiGenerative` color tokens. ([#353](https://github.com/TiendaNube/nimbus-design-system/pull/353) by [@joacotornello](https://github.com/joacotornello))
+
+## 2025-08-20 `9.3.0`
+
+#### 🎉 New features
+
+- Added new `aiGenerative.surface-highlight` token. ([#333](https://github.com/TiendaNube/nimbus-design-system/pull/333) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-07-29 `9.2.0`
 
 #### 🎉 New features

@@ -3,7 +3,7 @@
   "name": "Icon",
   "totalProps": 3,
   "packageName": "@nimbus-ds/icon",
-  "version": "3.2.0",
+  "version": "3.3.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/icon",
   "props": [
     {
@@ -17,6 +17,7 @@
       "default": "neutral-textLow",
       "enum": [
         "ai-generative",
+        "ai-gradientPurpleHigh",
         "currentColor",
         "danger-interactive",
         "danger-surface",

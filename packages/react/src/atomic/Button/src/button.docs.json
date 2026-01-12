@@ -1,9 +1,9 @@
 {
   "id": "button",
   "name": "Button",
-  "totalProps": 5,
+  "totalProps": 6,
   "packageName": "@nimbus-ds/button",
-  "version": "2.7.0",
+  "version": "2.10.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/button",
   "props": [
     {
@@ -34,6 +34,8 @@
       "description": "Change the visual style of the button.",
       "default": "neutral",
       "enum": [
+        "ai-primary",
+        "ai-secondary",
         "danger",
         "neutral",
         "primary",
@@ -55,6 +57,18 @@
       "default": false,
       "type": "boolean",
       "title": "fullWidth",
+      "required": false
+    },
+    {
+      "description": "Change the size of the button.",
+      "default": "medium",
+      "enum": [
+        "large",
+        "medium",
+        "small"
+      ],
+      "type": "string",
+      "title": "size",
       "required": false
     }
   ],

@@ -58,6 +58,7 @@ src/
    - Follow single responsibility principle
    - Use proper prop interfaces
    - Implement proper TypeScript types. The types should be in a separate file with the same name as the component but with the suffix ".types.ts".
+   - **IMPORTANT** Constants declared within the package must be exported in order to be included in the final published build.
 
 ## Styling Guidelines
 

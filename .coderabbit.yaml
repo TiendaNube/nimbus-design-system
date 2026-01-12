@@ -83,7 +83,7 @@ reviews:
         - If widely used as a dependency, recommend adding the package name to the 'externals' attribute in webpack.config
         - This prevents the component from being bundled multiple times across different packages
         - Ensure proper package naming and versioning for external configuration
-        - Verify that the component is properly exported and consumed by dependent packages
+        - Verify that the component is properly exported and consumed by dependent packages. **IMPORTANT** Constants declared within the package must be exported in order to be included in the final published build.
         - Check for circular dependencies and proper dependency tree structure
         Flag components that should be added to webpack 'externals' to optimize bundle size and prevent duplicate code in the monorepo build.
     - path: "**/*.types.ts"
@@ -109,6 +109,64 @@ reviews:
     drafts: false
     base_branches:
       - "master"
+  pre_merge_checks:
+    docstrings:
+      mode: "warning"
+      threshold: 70
+    title:
+      mode: "warning"
+      requirements: "Follow format 'chore/fix/feat(PackageName): Title'. Use 'feat!' prefix for breaking changes."
+    description:
+      mode: "warning"
+    issue_assessment:
+      mode: "warning"
+    custom_checks:
+      - name: "Unversioned Breaking Changes"
+        mode: "error"
+        instructions: |
+          Pass/fail criteria: All breaking changes MUST have a MAJOR version bump (x.0.0) in package.json.
+          
+          Detect breaking changes by scanning for:
+          1. **Props API changes** in *.types.ts: Removed props, renamed props, type narrowing (e.g., `string | number` → `string`), optional→required changes
+          2. **Export removals** in index.ts: Any previously exported symbol (component, type, hook, utility) removed
+          3. **Token changes** in packages/core/tokens/src/**/*.json: Removed or renamed token keys
+          4. **Default value changes**: Changed defaultProps or default parameter values that alter behavior
+          
+          PASS if: No breaking changes detected, OR all breaking changes have corresponding MAJOR version bumps in package.json
+          FAIL if: Breaking changes detected but package.json shows MINOR (0.x.0) or PATCH (0.0.x) bump, or no version bump at all
+          
+          When failing, list each breaking change found and the expected MAJOR version.
+      - name: "Undocumented CSS Breaking Changes"
+        mode: "error"
+        instructions: |
+          Pass/fail criteria: All CSS/styling breaking changes MUST be documented in CHANGELOG.md under "🛠 Breaking changes" section.
+          
+          Scan *.css.ts files (Vanilla-Extract) for:
+          1. Removed exports: styleVariants, recipe, globalStyle, createVar removals
+          2. Removed variant options from recipe() (e.g., size: { small, medium, large } → { small, medium })
+          3. Renamed CSS class identifiers or CSS variables (--nimbus-*)
+          4. Changed defaultVariants in recipe()
+          5. Token reference changes (e.g., vars.colors.primary → vars.colors.brand)
+          
+          PASS if: No CSS breaking changes detected, OR all CSS breaking changes are documented in CHANGELOG.md with "🛠 Breaking changes" section
+          FAIL if: CSS breaking changes found but CHANGELOG.md lacks documentation or "🛠 Breaking changes" section is missing
+          
+          CSS breaking changes are often overlooked - this check ensures they are properly documented for consumers.
+      - name: "Breaking Change Documentation Verification"
+        mode: "error"
+        instructions: |
+          Pass/fail criteria: If package.json has MAJOR version bump OR code contains breaking changes, CHANGELOG.md MUST have "#### 🛠 Breaking changes" section.
+          
+          Cross-reference:
+          1. Check if any package.json in PR has MAJOR version bump (x.0.0)
+          2. Check if breaking changes detected in code (props removed, exports removed, tokens changed, CSS modified)
+          3. Verify CHANGELOG.md contains "#### 🛠 Breaking changes" or "### 🛠 Breaking changes" section
+          4. Verify each breaking change is documented with description and PR reference
+          
+          PASS if: No breaking changes and no MAJOR bump, OR breaking changes exist with proper CHANGELOG documentation
+          FAIL if: MAJOR bump without "🛠 Breaking changes" section, OR breaking changes in code without documentation
+          
+          Documentation format required: "- Description of breaking change. ([#PR](url) by [@author](url))"
   tools:
     github-checks:
       enabled: true
