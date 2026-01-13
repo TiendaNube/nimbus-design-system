@@ -9,7 +9,6 @@ const baseTrack = style({
   width: "100%",
   height: varsThemeBase.spacing[2],
   borderRadius: varsThemeBase.shape.border.radius.full,
-  backgroundColor: varsThemeBase.colors.neutral.surfaceDisabled,
 });
 
 const baseFill = style({
@@ -74,6 +73,10 @@ const thumbDisabled = style({
   },
 });
 
+const fillDisabled = style({
+  backgroundColor: varsThemeBase.colors.neutral.textDisabled,
+});
+
 export const container = style({
   display: "flex",
   flexDirection: "column",
@@ -88,7 +91,24 @@ export const trackContainer = style({
   paddingBottom: varsThemeBase.spacing[4],
 });
 
-export const track = baseTrack;
+export const track = styleVariants({
+  default: [
+    baseTrack,
+    {
+      backgroundColor: varsThemeBase.colors.neutral.surfaceDisabled,
+    },
+  ],
+  disabled: [
+    baseTrack,
+    {
+      backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
+      cursor: "not-allowed",
+    },
+  ],
+});
+
+export const track_disabled = track.disabled;
+export const fill_disabled = fillDisabled;
 
 export const fill = styleVariants({
   primary: [

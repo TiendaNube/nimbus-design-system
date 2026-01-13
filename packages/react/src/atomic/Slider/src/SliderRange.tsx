@@ -151,6 +151,7 @@ export const SliderRange = forwardRef<HTMLDivElement, SliderRangeBaseProps>(
             appearance={appearance}
             minPercentage={minPercentage}
             maxPercentage={maxPercentage}
+            disabled={disabled}
             dataTestId={dataTestId}
           >
             <SliderThumb
