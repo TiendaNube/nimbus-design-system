@@ -1,4 +1,5 @@
 import React, { memo, forwardRef } from "react";
+import type { ReactNode } from "react";
 import { slider } from "@nimbus-ds/styles";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
 
@@ -8,22 +9,38 @@ interface SliderTrackProps {
   appearance: SliderAppearance;
   minPercentage?: number;
   maxPercentage: number;
+  disabled?: boolean;
   dataTestId?: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 const SliderTrackComponent = forwardRef<HTMLDivElement, SliderTrackProps>(
   (
-    { appearance, minPercentage = 0, maxPercentage, dataTestId, children },
+    {
+      appearance,
+      minPercentage = 0,
+      maxPercentage,
+      disabled = false,
+      dataTestId,
+      children,
+    },
     ref
   ) => (
     <div
       ref={ref}
-      className={slider.classnames.track}
+      className={
+        disabled
+          ? slider.classnames.track.disabled
+          : slider.classnames.track.default
+      }
       data-testid={dataTestId ? `${dataTestId}-track` : undefined}
     >
       <div
-        className={slider.classnames.fill[appearance]}
+        className={
+          disabled
+            ? slider.classnames.fill_disabled
+            : slider.classnames.fill[appearance]
+        }
         style={assignInlineVars({
           [slider.vars.fillLeft]: `${minPercentage}%`,
           [slider.vars.fillRight]: `${100 - maxPercentage}%`,
@@ -38,6 +55,7 @@ const SliderTrackComponent = forwardRef<HTMLDivElement, SliderTrackProps>(
 SliderTrackComponent.displayName = "SliderTrack";
 SliderTrackComponent.defaultProps = {
   minPercentage: 0,
+  disabled: false,
   dataTestId: undefined,
 };
 

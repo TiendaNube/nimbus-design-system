@@ -124,6 +124,7 @@ const SliderBase = forwardRef<HTMLDivElement, SliderBaseProps>(
             ref={trackRef}
             appearance={appearance}
             maxPercentage={percentage}
+            disabled={disabled}
             dataTestId={dataTestId}
           >
             <SliderThumb
