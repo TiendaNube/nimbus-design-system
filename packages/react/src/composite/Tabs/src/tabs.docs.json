@@ -1,113 +1,21 @@
 {
   "id": "tabs",
   "name": "Tabs",
-  "totalProps": 5,
+  "totalProps": 0,
   "packageName": "@nimbus-ds/tabs",
   "version": "2.5.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/tabs",
-  "props": [
-    {
-      "description": "The content of the tabs.",
-      "type": "ReactElement<TabsButtonProps>[];",
-      "title": "children",
-      "required": true
-    },
-    {
-      "description": "Sets the indicated tab as active by default. If unset, defaults to first tab.",
-      "type": "number",
-      "title": "preSelectedTab",
-      "required": false
-    },
-    {
-      "description": "Determines if tabs should span available width.",
-      "default": false,
-      "type": "boolean",
-      "title": "fullWidth",
-      "required": false
-    },
-    {
-      "description": "The currently selected tab index.",
-      "type": "number",
-      "title": "selected",
-      "required": true
-    },
-    {
-      "description": "Callback fired when the selected tab changes.",
-      "type": "object",
-      "additionalProperties": false,
-      "propertyOrder": [],
-      "title": "onTabSelect",
-      "required": true
-    }
-  ],
+  "props": [],
   "subComponents": [
     {
       "name": "Tabs.Item",
-      "totalProps": 3,
-      "props": [
-        {
-          "description": "Label of the tabpanel. Used to pair with it's corresponding tab control.",
-          "type": "string",
-          "title": "label",
-          "required": true
-        },
-        {
-          "description": "Optional content of the tabpanel.",
-          "type": "ReactNode;",
-          "title": "labelContent",
-          "required": false
-        },
-        {
-          "description": "The content of the tabs item.",
-          "type": "ReactNode | ReactNode[];",
-          "title": "children",
-          "required": true
-        }
-      ]
+      "totalProps": 0,
+      "props": []
     },
     {
       "name": "Tabs.Button",
-      "totalProps": 6,
-      "props": [
-        {
-          "description": "Label of the tab button.",
-          "type": "string",
-          "title": "label",
-          "required": true
-        },
-        {
-          "$ref": "#/definitions/React.ReactNode",
-          "description": "Content of the tab button.",
-          "title": "labelContent",
-          "required": false
-        },
-        {
-          "description": "Determines if tab is active.",
-          "default": false,
-          "type": "boolean",
-          "title": "active",
-          "required": false
-        },
-        {
-          "description": "Position of the tab inside the tab list.",
-          "type": "number",
-          "title": "index",
-          "required": true
-        },
-        {
-          "description": "Function executed when clicking the tab.",
-          "type": "(index: number) => void;",
-          "title": "setActiveTab",
-          "required": true
-        },
-        {
-          "description": "Determines if tab spans all available width.",
-          "default": false,
-          "type": "boolean",
-          "title": "fullWidth",
-          "required": false
-        }
-      ]
+      "totalProps": 0,
+      "props": []
     }
   ]
 }

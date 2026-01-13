@@ -1,22 +1,10 @@
 {
   "id": "collapsible",
   "name": "Collapsible",
-  "totalProps": 2,
+  "totalProps": 0,
   "packageName": "@nimbus-ds/collapsible",
   "version": "1.1.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/collapsible",
-  "props": [
-    {
-      "$ref": "#/definitions/React.ReactNode",
-      "description": "Represents all of the things React can render.\n\nWhere {@link ReactElement} only represents JSX, `ReactNode` represents everything that can be rendered.",
-      "title": "children",
-      "required": false
-    },
-    {
-      "type": "boolean",
-      "title": "open",
-      "required": false
-    }
-  ],
+  "props": [],
   "subComponents": []
 }

@@ -1,86 +1,10 @@
 {
   "id": "tooltip",
   "name": "Tooltip",
-  "totalProps": 5,
+  "totalProps": 0,
   "packageName": "@nimbus-ds/tooltip",
   "version": "2.6.1",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/tooltip",
-  "props": [
-    {
-      "description": "An HTML element, or a function that returns one. It's used to set the position of the tooltip.",
-      "type": "React.ReactNode",
-      "title": "children",
-      "required": true
-    },
-    {
-      "description": "The text that should appear in the tooltip message.",
-      "type": "string",
-      "title": "content",
-      "required": true
-    },
-    {
-      "description": "Conditional for displaying the popover arrow.",
-      "default": false,
-      "type": "boolean",
-      "title": "arrow",
-      "required": false
-    },
-    {
-      "description": "Position of the popover.",
-      "default": "bottom",
-      "enum": [
-        "bottom",
-        "left",
-        "right",
-        "top"
-      ],
-      "type": "string",
-      "title": "position",
-      "required": false
-    },
-    {
-      "description": "The maxWidth property specifies the maximum width of a popover's content area.",
-      "anyOf": [
-        {
-          "type": "object",
-          "properties": {
-            "xs": {
-              "type": "string",
-              "title": "xs"
-            },
-            "md": {
-              "type": "string",
-              "title": "md"
-            },
-            "lg": {
-              "type": "string",
-              "title": "lg"
-            },
-            "xl": {
-              "type": "string",
-              "title": "xl"
-            },
-            "xxl": {
-              "type": "string",
-              "title": "xxl"
-            }
-          },
-          "additionalProperties": false,
-          "propertyOrder": [
-            "xs",
-            "md",
-            "lg",
-            "xl",
-            "xxl"
-          ]
-        },
-        {
-          "type": "string"
-        }
-      ],
-      "title": "maxWidth",
-      "required": false
-    }
-  ],
+  "props": [],
   "subComponents": []
 }

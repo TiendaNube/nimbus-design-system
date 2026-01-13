@@ -1,140 +1,16 @@
 {
   "id": "multiSelect",
   "name": "MultiSelect",
-  "totalProps": 7,
+  "totalProps": 0,
   "packageName": "@nimbus-ds/multi-select",
   "version": "1.1.1",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/multi-select",
-  "props": [
-    {
-      "description": "The name of the wrapper element or the select element when native.",
-      "type": "string",
-      "title": "name",
-      "required": true
-    },
-    {
-      "description": "The id of the wrapper element or the select element when native.",
-      "type": "string",
-      "title": "id",
-      "required": true
-    },
-    {
-      "description": "Change the visual style of the select.",
-      "default": "neutral",
-      "enum": [
-        "danger",
-        "neutral",
-        "success",
-        "warning"
-      ],
-      "type": "string",
-      "title": "appearance",
-      "required": false
-    },
-    {
-      "description": "Options of the MultiSelect",
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "label": {
-            "description": "Label for the option.",
-            "type": "string",
-            "title": "label"
-          },
-          "value": {
-            "description": "Value of the option",
-            "type": "string",
-            "title": "value"
-          }
-        },
-        "additionalProperties": false,
-        "propertyOrder": [
-          "label",
-          "value"
-        ],
-        "required": [
-          "label",
-          "value"
-        ]
-      },
-      "title": "options",
-      "required": true
-    },
-    {
-      "description": "Options of the MultiSelect",
-      "type": "object",
-      "additionalProperties": false,
-      "propertyOrder": [],
-      "title": "onChange",
-      "required": false
-    },
-    {
-      "description": "Deafult of the MultiSelect",
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "label": {
-            "description": "Label for the option.",
-            "type": "string",
-            "title": "label"
-          },
-          "value": {
-            "description": "Value of the option",
-            "type": "string",
-            "title": "value"
-          }
-        },
-        "additionalProperties": false,
-        "propertyOrder": [
-          "label",
-          "value"
-        ],
-        "required": [
-          "label",
-          "value"
-        ]
-      },
-      "title": "value",
-      "required": false
-    },
-    {
-      "description": "ZIndex of the MultiSelect",
-      "enum": [
-        "100",
-        "200",
-        "300",
-        "400",
-        "500",
-        "600",
-        "700",
-        "800",
-        "900"
-      ],
-      "type": "string",
-      "title": "zIndex",
-      "required": false
-    }
-  ],
+  "props": [],
   "subComponents": [
     {
       "name": "MultiSelect.Skeleton",
-      "totalProps": 2,
-      "props": [
-        {
-          "description": "Width of the skeleton. Useful when the skeleton is inside an inline element with no width of its own.",
-          "type": "string",
-          "title": "width",
-          "required": false
-        },
-        {
-          "description": "This is an attribute used to identify a DOM node for testing purposes.",
-          "type": "string",
-          "title": "data-testid",
-          "required": false
-        }
-      ]
+      "totalProps": 0,
+      "props": []
     }
   ]
 }

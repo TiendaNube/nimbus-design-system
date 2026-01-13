@@ -1,7 +1,7 @@
 {
   "id": "button",
   "name": "Button",
-  "totalProps": 6,
+  "totalProps": 1,
   "packageName": "@nimbus-ds/button",
   "version": "2.10.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/button",
@@ -23,73 +23,13 @@
       ],
       "title": "as",
       "required": false
-    },
-    {
-      "description": "The content of the button.",
-      "type": "React.ReactNode",
-      "title": "children",
-      "required": true
-    },
-    {
-      "description": "Change the visual style of the button.",
-      "default": "neutral",
-      "enum": [
-        "ai-primary",
-        "ai-secondary",
-        "danger",
-        "neutral",
-        "primary",
-        "transparent"
-      ],
-      "type": "string",
-      "title": "appearance",
-      "required": false
-    },
-    {
-      "description": "Disables the button, disallowing user interaction.",
-      "default": false,
-      "type": "boolean",
-      "title": "disabled",
-      "required": false
-    },
-    {
-      "description": "Determines if the button should grow to fill the full width of its container.",
-      "default": false,
-      "type": "boolean",
-      "title": "fullWidth",
-      "required": false
-    },
-    {
-      "description": "Change the size of the button.",
-      "default": "medium",
-      "enum": [
-        "large",
-        "medium",
-        "small"
-      ],
-      "type": "string",
-      "title": "size",
-      "required": false
     }
   ],
   "subComponents": [
     {
       "name": "Button.Skeleton",
-      "totalProps": 2,
-      "props": [
-        {
-          "description": "Width of the skeleton. Useful when the skeleton is inside an inline element with no width of its own.",
-          "type": "string",
-          "title": "width",
-          "required": false
-        },
-        {
-          "description": "This is an attribute used to identify a DOM node for testing purposes.",
-          "type": "string",
-          "title": "data-testid",
-          "required": false
-        }
-      ]
+      "totalProps": 0,
+      "props": []
     }
   ]
 }

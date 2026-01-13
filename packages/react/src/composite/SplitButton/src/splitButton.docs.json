@@ -1,57 +1,10 @@
 {
   "id": "splitButton",
   "name": "SplitButton",
-  "totalProps": 5,
+  "totalProps": 0,
   "packageName": "@nimbus-ds/split-button",
   "version": "1.0.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/split-button",
-  "props": [
-    {
-      "description": "The subcomponents (Primary and Secondary).",
-      "type": "React.ReactNode",
-      "title": "children",
-      "required": true
-    },
-    {
-      "description": "Disables the entire split button.",
-      "default": false,
-      "type": "boolean",
-      "title": "disabled",
-      "required": false
-    },
-    {
-      "description": "Controls the visibility of the popover.",
-      "type": "boolean",
-      "title": "open",
-      "required": false
-    },
-    {
-      "description": "Callback function to control popover opening and closing.",
-      "type": "(open: boolean) => void;",
-      "title": "onOpenChange",
-      "required": false
-    },
-    {
-      "description": "Position of the popover relative to the button.",
-      "default": "bottom-end",
-      "enum": [
-        "bottom",
-        "bottom-end",
-        "bottom-start",
-        "left",
-        "left-end",
-        "left-start",
-        "right",
-        "right-end",
-        "right-start",
-        "top",
-        "top-end",
-        "top-start"
-      ],
-      "type": "string",
-      "title": "popoverPosition",
-      "required": false
-    }
-  ],
+  "props": [],
   "subComponents": []
 }
