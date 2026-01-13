@@ -1,26 +1,88 @@
 {
   "id": "list",
   "name": "List",
-  "totalProps": 0,
+  "totalProps": 3,
   "packageName": "@nimbus-ds/list",
   "version": "2.3.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/list",
-  "props": [],
+  "props": [
+    {
+      "description": "The content of the list.",
+      "type": "React.ReactNode",
+      "title": "children",
+      "required": true
+    },
+    {
+      "description": "Determines the type of html list that will be rendered",
+      "default": "ul",
+      "enum": ["ol", "ul"],
+      "type": "string",
+      "title": "as",
+      "required": false
+    },
+    {
+      "description": "The padding of the list.",
+      "default": 6,
+      "enum": ["0-5", "1", "2", "3", "4", "5", "6", "7", "8"],
+      "type": "string",
+      "title": "padding",
+      "required": false
+    }
+  ],
   "subComponents": [
     {
       "name": "List.Item",
-      "totalProps": 0,
-      "props": []
+      "totalProps": 1,
+      "props": [
+        {
+          "description": "The content of the list item.",
+          "type": "React.ReactNode",
+          "title": "children",
+          "required": true
+        }
+      ]
     },
     {
       "name": "List.Skeleton",
-      "totalProps": 0,
-      "props": []
+      "totalProps": 2,
+      "props": [
+        {
+          "description": "The content of the list skeleton.",
+          "type": "React.ReactNode",
+          "title": "children",
+          "required": true
+        },
+        {
+          "description": "This is an attribute used to identify a DOM node for testing purposes.",
+          "type": "string",
+          "title": "data-testid",
+          "required": false
+        }
+      ]
     },
     {
       "name": "List.SkeletonItem",
-      "totalProps": 0,
-      "props": []
+      "totalProps": 3,
+      "props": [
+        {
+          "description": "Width of the skeleton. Useful when the skeleton is inside an inline element with no width of its own.",
+          "type": "string",
+          "title": "width",
+          "required": false
+        },
+        {
+          "description": "Height of the skeleton. Useful when you don't want to adapt the skeleton to a text element but for instance a card.",
+          "type": "string",
+          "title": "height",
+          "required": false
+        },
+        {
+          "description": "This is an attribute used to identify a DOM node for testing purposes.",
+          "type": "string",
+          "title": "data-testid",
+          "required": false
+        }
+      ]
     }
   ]
 }

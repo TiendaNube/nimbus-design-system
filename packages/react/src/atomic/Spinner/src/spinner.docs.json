@@ -1,10 +1,49 @@
 {
   "id": "spinner",
   "name": "Spinner",
-  "totalProps": 0,
+  "totalProps": 2,
   "packageName": "@nimbus-ds/spinner",
   "version": "3.1.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/spinner",
-  "props": [],
+  "props": [
+    {
+      "description": "Sets the width and height of the spinner.",
+      "default": "large",
+      "anyOf": [
+        {
+          "enum": ["large", "medium", "small"],
+          "type": "string"
+        },
+        {
+          "type": "number"
+        }
+      ],
+      "title": "size",
+      "required": false
+    },
+    {
+      "description": "Set the color for the spinner SVG fill.",
+      "default": "primary-interactive",
+      "enum": [
+        "currentColor",
+        "danger-interactive",
+        "danger-surface",
+        "danger-textLow",
+        "neutral-background",
+        "neutral-interactive",
+        "neutral-surface",
+        "neutral-textLow",
+        "primary-interactive",
+        "primary-surface",
+        "primary-textLow",
+        "success-interactive",
+        "success-surface",
+        "success-textLow"
+      ],
+      "type": "string",
+      "title": "color",
+      "required": false
+    }
+  ],
   "subComponents": []
 }

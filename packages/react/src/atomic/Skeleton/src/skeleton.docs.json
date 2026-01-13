@@ -1,10 +1,35 @@
 {
   "id": "skeleton",
   "name": "Skeleton",
-  "totalProps": 0,
+  "totalProps": 4,
   "packageName": "@nimbus-ds/skeleton",
   "version": "3.0.1",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/skeleton",
-  "props": [],
+  "props": [
+    {
+      "description": "Width of the skeleton. Useful when the skeleton is inside an inline element with no width of its own.",
+      "type": "string",
+      "title": "width",
+      "required": true
+    },
+    {
+      "description": "Height of the skeleton. Useful when you don't want to adapt the skeleton to a text element but for instance a card.",
+      "type": "string",
+      "title": "height",
+      "required": true
+    },
+    {
+      "description": "The border radius of the skeleton.",
+      "type": "string",
+      "title": "borderRadius",
+      "required": false
+    },
+    {
+      "description": "This is an attribute used to identify a DOM node for testing purposes.",
+      "type": "string",
+      "title": "data-testid",
+      "required": false
+    }
+  ],
   "subComponents": []
 }

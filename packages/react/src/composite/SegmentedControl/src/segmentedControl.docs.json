@@ -1,16 +1,73 @@
 {
   "id": "segmentedControl",
   "name": "SegmentedControl",
-  "totalProps": 0,
+  "totalProps": 4,
   "packageName": "@nimbus-ds/segmented-control",
   "version": "2.0.1",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/segmented-control",
-  "props": [],
+  "props": [
+    {
+      "$ref": "#/definitions/React.ReactNode",
+      "description": "The content of the segmented control.\nShould contain SegmentedControlButton components with unique id props.",
+      "title": "children",
+      "required": false
+    },
+    {
+      "description": "Determines if segments span all available width.",
+      "default": false,
+      "type": "boolean",
+      "title": "fullWidth",
+      "required": false
+    },
+    {
+      "description": "The currently selected segment IDs.\nAllows for single or multiple selection.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "title": "selectedSegments",
+      "required": true
+    },
+    {
+      "description": "Callback fired when the selected segments change.",
+      "type": "object",
+      "additionalProperties": false,
+      "propertyOrder": [],
+      "title": "onSegmentsSelect",
+      "required": false
+    }
+  ],
   "subComponents": [
     {
       "name": "SegmentedControl.Button",
-      "totalProps": 0,
-      "props": []
+      "totalProps": 4,
+      "props": [
+        {
+          "description": "Unique identifier for the segment button.\nRequired for proper state management and accessibility.",
+          "type": "string",
+          "title": "id",
+          "required": true
+        },
+        {
+          "description": "Label of the segment used for accessibility.",
+          "type": "string",
+          "title": "label",
+          "required": false
+        },
+        {
+          "description": "Determines if segment spans all available width.",
+          "default": false,
+          "type": "boolean",
+          "title": "fullWidth",
+          "required": false
+        },
+        {
+          "$ref": "#/definitions/React.ReactNode",
+          "description": "Represents all of the things React can render.\n\nWhere {@link ReactElement} only represents JSX, `ReactNode` represents everything that can be rendered.",
+          "title": "children",
+          "required": false
+        }
+      ]
     },
     {
       "name": "SegmentedControl.ButtonSkeleton",

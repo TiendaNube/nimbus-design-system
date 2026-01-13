@@ -1,0 +1,27 @@
+diff --git a/dist/typescript-json-schema.js b/dist/typescript-json-schema.js
+index 23cc6d1924a5ccdb1d56dbe79e0340b0534652f3..0a8409ef3b427445b3c51d7639eeefb7afa0b38f 100644
+--- a/dist/typescript-json-schema.js
++++ b/dist/typescript-json-schema.js
+@@ -456,6 +456,9 @@ var JsonSchemaGenerator = (function () {
+             else if (flags & ts.TypeFlags.ESSymbol) {
+                 definition.type = "symbol";
+             }
++            else if (flags & ts.TypeFlags.BigInt || flags & ts.TypeFlags.BigIntLiteral) {
++                definition.type = "integer";
++            }
+             else if (flags & ts.TypeFlags.Null) {
+                 definition.type = "null";
+             }
+diff --git a/typescript-json-schema.ts b/typescript-json-schema.ts
+index 5908567e5c1a4864d0ecd8fdec016e17e1a6cf26..9aad3d9ca6bfe60ed747c7dc77d9d3204def47e2 100644
+--- a/typescript-json-schema.ts
++++ b/typescript-json-schema.ts
+@@ -673,6 +673,8 @@ export class JsonSchemaGenerator {
+                 definition.type = "boolean";
+             } else if (flags & ts.TypeFlags.ESSymbol) {
+                 definition.type = "symbol";
++            } else if (flags & ts.TypeFlags.BigInt || flags & ts.TypeFlags.BigIntLiteral) {
++                definition.type = "integer";
+             } else if (flags & ts.TypeFlags.Null) {
+                 definition.type = "null";
+             } else if (flags & ts.TypeFlags.Undefined || propertyTypeString === "void") {

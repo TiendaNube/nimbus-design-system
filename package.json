@@ -134,5 +134,8 @@
     "node": ">=18",
     "yarn": ">=3.2.0"
   },
-  "packageManager": "yarn@3.2.2"
+  "packageManager": "yarn@3.2.2",
+  "resolutions": {
+    "typescript-json-schema": "patch:typescript-json-schema@npm%3A0.55.0#./.yarn/patches/typescript-json-schema-npm-0.55.0-8fc27dfa81.patch"
+  }
 }

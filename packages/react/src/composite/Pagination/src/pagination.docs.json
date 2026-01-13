@@ -1,10 +1,44 @@
 {
   "id": "pagination",
   "name": "Pagination",
-  "totalProps": 0,
+  "totalProps": 5,
   "packageName": "@nimbus-ds/pagination",
   "version": "2.4.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/pagination",
-  "props": [],
+  "props": [
+    {
+      "description": "The currently selected page.",
+      "type": "number",
+      "title": "activePage",
+      "required": true
+    },
+    {
+      "description": "The total number of pages.",
+      "type": "number",
+      "title": "pageCount",
+      "required": true
+    },
+    {
+      "description": "Called with event and page number when a page is clicked.",
+      "type": "(page: number) => void;",
+      "title": "onPageChange",
+      "required": true
+    },
+    {
+      "description": "Determines whether page numbers should be shown.",
+      "default": true,
+      "type": "boolean",
+      "title": "showNumbers",
+      "required": false
+    },
+    {
+      "description": "Custom render function for pagination items.",
+      "type": "object",
+      "additionalProperties": false,
+      "propertyOrder": [],
+      "title": "renderItem",
+      "required": false
+    }
+  ],
   "subComponents": []
 }

@@ -1,36 +1,155 @@
 {
   "id": "scrollPane",
   "name": "ScrollPane",
-  "totalProps": 0,
+  "totalProps": 10,
   "packageName": "@nimbus-ds/scroll-pane",
   "version": "1.1.1",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/scroll-pane",
-  "props": [],
+  "props": [
+    {
+      "$ref": "#/definitions/React.ReactNode",
+      "description": "The content to be rendered inside the scroll pane",
+      "title": "children",
+      "required": false
+    },
+    {
+      "description": "Whether to show gradient overlays when content overflows",
+      "default": true,
+      "type": "boolean",
+      "title": "showGradients",
+      "required": false
+    },
+    {
+      "description": "Whether to show navigation arrows for scrolling",
+      "default": false,
+      "type": "boolean",
+      "title": "showArrows",
+      "required": false
+    },
+    {
+      "description": "Whether to show the scrollbar",
+      "default": true,
+      "type": "boolean",
+      "title": "showScrollbar",
+      "required": false
+    },
+    {
+      "description": "The direction of the scroll (horizontal or vertical)",
+      "default": "horizontal",
+      "enum": ["horizontal", "vertical"],
+      "type": "string",
+      "title": "direction",
+      "required": false
+    },
+    {
+      "description": "Whether items should scroll into view when clicked",
+      "default": true,
+      "type": "boolean",
+      "title": "scrollToItemOnClick",
+      "required": false
+    },
+    {
+      "description": "Enable grab-to-scroll functionality (click and drag to scroll)\nWhen enabled, prevents item dragging inside the ScrollPane",
+      "default": false,
+      "type": "boolean",
+      "title": "enableGrabScroll",
+      "required": false
+    },
+    {
+      "$ref": "#/definitions/React.ReactNode",
+      "description": "Custom arrow component to render at the start of the scroll area",
+      "title": "scrollPaneArrowStart",
+      "required": false
+    },
+    {
+      "$ref": "#/definitions/React.ReactNode",
+      "description": "Custom arrow component to render at the end of the scroll area",
+      "title": "scrollPaneArrowEnd",
+      "required": false
+    },
+    {
+      "description": "Props to be passed to the content container",
+      "type": "object",
+      "properties": {},
+      "additionalProperties": true,
+      "title": "contentContainerProps",
+      "required": false
+    }
+  ],
   "subComponents": [
     {
       "name": "ScrollPane.Item",
-      "totalProps": 0,
-      "props": []
+      "totalProps": 3,
+      "props": [
+        {
+          "$ref": "#/definitions/React.ReactNode",
+          "description": "The content to be rendered inside the scroll pane item",
+          "title": "children",
+          "required": false
+        },
+        {
+          "description": "Custom class name for styling",
+          "type": "string",
+          "title": "className",
+          "required": false
+        },
+        {
+          "description": "Callback fired when the item is clicked",
+          "type": "object",
+          "additionalProperties": false,
+          "propertyOrder": [],
+          "title": "onClick",
+          "required": false
+        }
+      ]
     },
     {
       "name": "ScrollPane.ArrowHorizontalStart",
-      "totalProps": 0,
-      "props": []
+      "totalProps": 1,
+      "props": [
+        {
+          "$ref": "#/definitions/React.ReactNode",
+          "description": "Represents all of the things React can render.\n\nWhere {@link ReactElement} only represents JSX, `ReactNode` represents everything that can be rendered.",
+          "title": "children",
+          "required": false
+        }
+      ]
     },
     {
       "name": "ScrollPane.ArrowHorizontalEnd",
-      "totalProps": 0,
-      "props": []
+      "totalProps": 1,
+      "props": [
+        {
+          "$ref": "#/definitions/React.ReactNode",
+          "description": "Represents all of the things React can render.\n\nWhere {@link ReactElement} only represents JSX, `ReactNode` represents everything that can be rendered.",
+          "title": "children",
+          "required": false
+        }
+      ]
     },
     {
       "name": "ScrollPane.ArrowVerticalStart",
-      "totalProps": 0,
-      "props": []
+      "totalProps": 1,
+      "props": [
+        {
+          "$ref": "#/definitions/React.ReactNode",
+          "description": "Represents all of the things React can render.\n\nWhere {@link ReactElement} only represents JSX, `ReactNode` represents everything that can be rendered.",
+          "title": "children",
+          "required": false
+        }
+      ]
     },
     {
       "name": "ScrollPane.ArrowVerticalEnd",
-      "totalProps": 0,
-      "props": []
+      "totalProps": 1,
+      "props": [
+        {
+          "$ref": "#/definitions/React.ReactNode",
+          "description": "Represents all of the things React can render.\n\nWhere {@link ReactElement} only represents JSX, `ReactNode` represents everything that can be rendered.",
+          "title": "children",
+          "required": false
+        }
+      ]
     }
   ]
 }
