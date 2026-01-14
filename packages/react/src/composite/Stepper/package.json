@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/stepper",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Stepper component for guiding users through multi-step processes",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",

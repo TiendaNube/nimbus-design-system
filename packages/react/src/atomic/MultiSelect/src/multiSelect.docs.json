@@ -21,7 +21,12 @@
     {
       "description": "Change the visual style of the select.",
       "default": "neutral",
-      "enum": ["danger", "neutral", "success", "warning"],
+      "enum": [
+        "danger",
+        "neutral",
+        "success",
+        "warning"
+      ],
       "type": "string",
       "title": "appearance",
       "required": false
@@ -44,8 +49,14 @@
           }
         },
         "additionalProperties": false,
-        "propertyOrder": ["label", "value"],
-        "required": ["label", "value"]
+        "propertyOrder": [
+          "label",
+          "value"
+        ],
+        "required": [
+          "label",
+          "value"
+        ]
       },
       "title": "options",
       "required": true
@@ -76,15 +87,31 @@
           }
         },
         "additionalProperties": false,
-        "propertyOrder": ["label", "value"],
-        "required": ["label", "value"]
+        "propertyOrder": [
+          "label",
+          "value"
+        ],
+        "required": [
+          "label",
+          "value"
+        ]
       },
       "title": "value",
       "required": false
     },
     {
       "description": "ZIndex of the MultiSelect",
-      "enum": ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+      "enum": [
+        "100",
+        "200",
+        "300",
+        "400",
+        "500",
+        "600",
+        "700",
+        "800",
+        "900"
+      ],
       "type": "string",
       "title": "zIndex",
       "required": false

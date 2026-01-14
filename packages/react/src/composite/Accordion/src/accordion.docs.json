@@ -47,7 +47,10 @@
         {
           "description": "The borderBottom property defines a lower border of the accordion body.",
           "default": "none",
-          "enum": ["base", "none"],
+          "enum": [
+            "base",
+            "none"
+          ],
           "type": "string",
           "title": "borderBottom",
           "required": false
@@ -55,7 +58,10 @@
         {
           "description": "The borderTop property defines a top border of the accordion body.",
           "default": "none",
-          "enum": ["base", "none"],
+          "enum": [
+            "base",
+            "none"
+          ],
           "type": "string",
           "title": "borderTop",
           "required": false
@@ -63,7 +69,10 @@
         {
           "description": "Padding properties are used to generate space around the content area of an Accordion.Body..",
           "default": "base",
-          "enum": ["base", "none"],
+          "enum": [
+            "base",
+            "none"
+          ],
           "type": "string",
           "title": "padding",
           "required": false
@@ -132,14 +141,20 @@
         {
           "description": "The borderTop property defines a lower border of the accordion header.",
           "default": "base",
-          "enum": ["base", "none"],
+          "enum": [
+            "base",
+            "none"
+          ],
           "type": "string",
           "title": "borderTop",
           "required": false
         },
         {
           "description": "The borderBottom property defines a lower border of the accordion header.",
-          "enum": ["base", "none"],
+          "enum": [
+            "base",
+            "none"
+          ],
           "type": "string",
           "title": "borderBottom",
           "required": false
