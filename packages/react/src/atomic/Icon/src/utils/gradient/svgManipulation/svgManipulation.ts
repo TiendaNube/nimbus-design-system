@@ -33,13 +33,14 @@ export const injectGradientDefs = (
   );
 
   // Clone the SVG and add the defs as the first child
-  const existingChildren = React.Children.toArray(svg.props.children || []);
+  const svgProps = svg.props as SVGElementProps;
+  const existingChildren = React.Children.toArray(svgProps.children || []);
   const newChildren = [defsElement, ...existingChildren];
 
   return React.cloneElement(svg, {
-    ...svg.props,
+    ...svgProps,
     children: newChildren,
-  });
+  } as SVGElementProps);
 };
 
 /**

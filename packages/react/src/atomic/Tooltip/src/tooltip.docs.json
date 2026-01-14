@@ -28,12 +28,7 @@
     {
       "description": "Position of the popover.",
       "default": "bottom",
-      "enum": [
-        "bottom",
-        "left",
-        "right",
-        "top"
-      ],
+      "enum": ["bottom", "left", "right", "top"],
       "type": "string",
       "title": "position",
       "required": false
@@ -66,13 +61,7 @@
             }
           },
           "additionalProperties": false,
-          "propertyOrder": [
-            "xs",
-            "md",
-            "lg",
-            "xl",
-            "xxl"
-          ]
+          "propertyOrder": ["xs", "md", "lg", "xl", "xxl"]
         },
         {
           "type": "string"

@@ -15,14 +15,7 @@
     {
       "description": "Type of html tag to create for the title.",
       "default": "h1",
-      "enum": [
-        "h1",
-        "h2",
-        "h3",
-        "h4",
-        "h5",
-        "h6"
-      ],
+      "enum": ["h1", "h2", "h3", "h4", "h5", "h6"],
       "type": "string",
       "title": "as",
       "required": false
@@ -201,13 +194,7 @@
             }
           },
           "additionalProperties": false,
-          "propertyOrder": [
-            "xs",
-            "md",
-            "lg",
-            "xl",
-            "xxl"
-          ]
+          "propertyOrder": ["xs", "md", "lg", "xl", "xxl"]
         },
         {
           "enum": [
@@ -253,66 +240,36 @@
           "type": "object",
           "properties": {
             "xs": {
-              "enum": [
-                "bold",
-                "medium",
-                "regular"
-              ],
+              "enum": ["bold", "medium", "regular"],
               "type": "string",
               "title": "xs"
             },
             "md": {
-              "enum": [
-                "bold",
-                "medium",
-                "regular"
-              ],
+              "enum": ["bold", "medium", "regular"],
               "type": "string",
               "title": "md"
             },
             "lg": {
-              "enum": [
-                "bold",
-                "medium",
-                "regular"
-              ],
+              "enum": ["bold", "medium", "regular"],
               "type": "string",
               "title": "lg"
             },
             "xl": {
-              "enum": [
-                "bold",
-                "medium",
-                "regular"
-              ],
+              "enum": ["bold", "medium", "regular"],
               "type": "string",
               "title": "xl"
             },
             "xxl": {
-              "enum": [
-                "bold",
-                "medium",
-                "regular"
-              ],
+              "enum": ["bold", "medium", "regular"],
               "type": "string",
               "title": "xxl"
             }
           },
           "additionalProperties": false,
-          "propertyOrder": [
-            "xs",
-            "md",
-            "lg",
-            "xl",
-            "xxl"
-          ]
+          "propertyOrder": ["xs", "md", "lg", "xl", "xxl"]
         },
         {
-          "enum": [
-            "bold",
-            "medium",
-            "regular"
-          ],
+          "enum": ["bold", "medium", "regular"],
           "type": "string"
         }
       ],
@@ -493,13 +450,7 @@
             }
           },
           "additionalProperties": false,
-          "propertyOrder": [
-            "xs",
-            "md",
-            "lg",
-            "xl",
-            "xxl"
-          ]
+          "propertyOrder": ["xs", "md", "lg", "xl", "xxl"]
         },
         {
           "enum": [
@@ -545,72 +496,36 @@
           "type": "object",
           "properties": {
             "xs": {
-              "enum": [
-                "center",
-                "justify",
-                "left",
-                "right"
-              ],
+              "enum": ["center", "justify", "left", "right"],
               "type": "string",
               "title": "xs"
             },
             "md": {
-              "enum": [
-                "center",
-                "justify",
-                "left",
-                "right"
-              ],
+              "enum": ["center", "justify", "left", "right"],
               "type": "string",
               "title": "md"
             },
             "lg": {
-              "enum": [
-                "center",
-                "justify",
-                "left",
-                "right"
-              ],
+              "enum": ["center", "justify", "left", "right"],
               "type": "string",
               "title": "lg"
             },
             "xl": {
-              "enum": [
-                "center",
-                "justify",
-                "left",
-                "right"
-              ],
+              "enum": ["center", "justify", "left", "right"],
               "type": "string",
               "title": "xl"
             },
             "xxl": {
-              "enum": [
-                "center",
-                "justify",
-                "left",
-                "right"
-              ],
+              "enum": ["center", "justify", "left", "right"],
               "type": "string",
               "title": "xxl"
             }
           },
           "additionalProperties": false,
-          "propertyOrder": [
-            "xs",
-            "md",
-            "lg",
-            "xl",
-            "xxl"
-          ]
+          "propertyOrder": ["xs", "md", "lg", "xl", "xxl"]
         },
         {
-          "enum": [
-            "center",
-            "justify",
-            "left",
-            "right"
-          ],
+          "enum": ["center", "justify", "left", "right"],
           "type": "string"
         }
       ],
@@ -711,13 +626,7 @@
             }
           },
           "additionalProperties": false,
-          "propertyOrder": [
-            "xs",
-            "md",
-            "lg",
-            "xl",
-            "xxl"
-          ]
+          "propertyOrder": ["xs", "md", "lg", "xl", "xxl"]
         },
         {
           "enum": [
@@ -748,28 +657,21 @@
         {
           "description": "Type of html tag to create for the title.",
           "default": "h1",
-          "enum": [
-            "h1",
-            "h2",
-            "h3",
-            "h4",
-            "h5",
-            "h6"
-          ],
+          "enum": ["h1", "h2", "h3", "h4", "h5", "h6"],
           "type": "string",
           "title": "as",
-          "required": false
-        },
-        {
-          "description": "Height of the skeleton. Useful when you don't want to adapt the skeleton to a text element but for instance a card.",
-          "type": "string",
-          "title": "height",
           "required": false
         },
         {
           "description": "Width of the skeleton. Useful when the skeleton is inside an inline element with no width of its own.",
           "type": "string",
           "title": "width",
+          "required": false
+        },
+        {
+          "description": "Height of the skeleton. Useful when you don't want to adapt the skeleton to a text element but for instance a card.",
+          "type": "string",
+          "title": "height",
           "required": false
         },
         {

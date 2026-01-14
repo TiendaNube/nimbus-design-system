@@ -3,6 +3,16 @@
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories
 every day, with simplicity, accessibility, consistency and performance.
 
+## 2026-01-14 `5.46.0`
+
+#### 🎉 New features
+
+- Added support for React 19 in peer dependencies. ([#404](https://github.com/TiendaNube/nimbus-design-system/pull/404) by [@joacotornello](https://github.com/joacotornello))
+
+#### 📚 3rd party library updates
+
+- Updated `@floating-ui/react@0.27.5`. ([#403](https://github.com/TiendaNube/nimbus-design-system/pull/403) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2026-01-08 `5.45.0`
 
 #### 🎉 New features
