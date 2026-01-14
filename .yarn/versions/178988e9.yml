@@ -3,7 +3,7 @@ releases:
   "@nimbus-ds/alert": patch
   "@nimbus-ds/badge": patch
   "@nimbus-ds/box": patch
-  "@nimbus-ds/button": major
+  "@nimbus-ds/button": patch
   "@nimbus-ds/card": patch
   "@nimbus-ds/checkbox": patch
   "@nimbus-ds/chip": patch
@@ -11,12 +11,12 @@ releases:
   "@nimbus-ds/components": minor
   "@nimbus-ds/divider": patch
   "@nimbus-ds/file-uploader": patch
-  "@nimbus-ds/icon": major
+  "@nimbus-ds/icon": patch
   "@nimbus-ds/icon-button": patch
   "@nimbus-ds/icons": patch
   "@nimbus-ds/input": patch
   "@nimbus-ds/label": patch
-  "@nimbus-ds/link": major
+  "@nimbus-ds/link": patch
   "@nimbus-ds/list": patch
   "@nimbus-ds/modal": patch
   "@nimbus-ds/multi-select": patch
@@ -25,8 +25,8 @@ releases:
   "@nimbus-ds/progress-bar": patch
   "@nimbus-ds/radio": patch
   "@nimbus-ds/scripts": patch
-  "@nimbus-ds/scroll-pane": major
-  "@nimbus-ds/segmented-control": major
+  "@nimbus-ds/scroll-pane": patch
+  "@nimbus-ds/segmented-control": patch
   "@nimbus-ds/select": patch
   "@nimbus-ds/sidebar": patch
   "@nimbus-ds/skeleton": patch
