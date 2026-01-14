@@ -10,15 +10,11 @@ The Modal component allows us to call the user's attention to a floating box tha
 
 ## 2026-01-08 `1.8.0`
 
-The Modal component allows us to call the user's attention to a floating box that can have text, actions or forms to perform tasks by changing the focus from the background. It is an intrusive component as it interrupts the user's operation to present a message or content.
-
 #### 🎉 New features
 
 - Added `tag` property to `Modal.Header` component to display a tag next to the title. ([#401](https://github.com/TiendaNube/nimbus-design-system/pull/401) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-08-25 `1.7.0`
-
-The Modal component allows us to call the user's attention to a floating box that can have text, actions or forms to perform tasks by changing the focus from the background. It is an intrusive component as it interrupts the user's operation to present a message or content.
 
 #### 🎉 New features
 
