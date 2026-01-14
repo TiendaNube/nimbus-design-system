@@ -7,7 +7,7 @@ every day, with simplicity, accessibility, consistency and performance.
 
 #### 🎉 New features
 
-- Added support for React 19 in peer dependencies. ([#403](https://github.com/TiendaNube/nimbus-design-system/pull/403) by [@joacotornello](https://github.com/joacotornello))
+- Added support for React 19 in peer dependencies. ([#404](https://github.com/TiendaNube/nimbus-design-system/pull/404) by [@joacotornello](https://github.com/joacotornello))
 
 #### 📚 3rd party library updates
 
