@@ -2,6 +2,12 @@
 
 The Textarea component allows the user to enter or edit information in long text format.
 
+## 2026-01-13 `2.6.1`
+
+#### 🎉 New features
+
+- Adds support for React 19. ([#404](https://github.com/TiendaNube/nimbus-design-system/pull/404) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-10-02 `2.6.0`
 
 #### 🎉 New features

@@ -12,6 +12,11 @@ export interface ModalHeaderProperties {
    */
   title?: string;
   /**
+   * The tag to display next to the title.
+   * @TJS-type React.ReactNode
+   */
+  tag?: ReactNode;
+  /**
    * The padding properties are used to generate space around an modal's header content area.
    * @default none
    */

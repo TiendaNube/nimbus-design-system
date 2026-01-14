@@ -9,8 +9,8 @@ import { ForwardedRef, RefObject, useImperativeHandle } from "react";
  * **NOTE**: The `refObject` should be passed to the underlying element, NOT the `forwardedRef`.
  */
 export function useRefObjectAsForwardedRef<T>(
-  forwardedRef: ForwardedRef<T>,
-  refObject: RefObject<T>
+  forwardedRef: ForwardedRef<T | null>,
+  refObject: RefObject<T | null>
 ): void {
   useImperativeHandle<T | null, T | null>(
     forwardedRef,

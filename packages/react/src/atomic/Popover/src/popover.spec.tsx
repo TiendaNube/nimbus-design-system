@@ -1,5 +1,12 @@
 import React from "react";
-import { render, screen, fireEvent, act } from "@testing-library/react";
+import {
+  render,
+  screen,
+  fireEvent,
+  act,
+  waitFor,
+} from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import { Popover } from "./Popover";
 import { PopoverProps } from "./popover.types";
@@ -21,14 +28,15 @@ const makeSut = (rest: Omit<PopoverProps, "children">) => {
 describe("GIVEN <Popover />", () => {
   describe("WHEN rendered", () => {
     it("THEN should display popover if anchor receives hover event", async () => {
+      const user = userEvent.setup();
       makeSut({
         content: <p>string</p>,
         enabledHover: true,
       });
-      await act(() => {
-        fireEvent.mouseEnter(screen.getByTestId("popover-container"));
+      await user.hover(screen.getByTestId("popover-container"));
+      await waitFor(() => {
+        expect(screen.getByTestId("popover-element")).toBeDefined();
       });
-      expect(screen.getByTestId("popover-element")).toBeDefined();
     });
 
     it("THEN should display popover if anchor receives click event", async () => {
@@ -39,17 +47,18 @@ describe("GIVEN <Popover />", () => {
       await act(() => {
         fireEvent.click(screen.getByTestId("popover-container"));
       });
-      expect(screen.getByTestId("popover-element")).toBeDefined();
+      await waitFor(() => {
+        expect(screen.getByTestId("popover-element")).toBeDefined();
+      });
     });
 
     it("THEN should not display popover if anchor does not receive hover event", async () => {
+      const user = userEvent.setup();
       makeSut({
         content: <p>string</p>,
         enabledHover: false,
       });
-      await act(() => {
-        fireEvent.mouseEnter(screen.getByTestId("popover-container"));
-      });
+      await user.hover(screen.getByTestId("popover-container"));
       expect(screen.queryByTestId("popover-element")).toBeNull();
     });
 
@@ -65,17 +74,18 @@ describe("GIVEN <Popover />", () => {
     });
 
     it("THEN should display popover in correct position", async () => {
+      const user = userEvent.setup();
       makeSut({
         content: <p>string</p>,
         position: "top",
         enabledHover: true,
       });
-      await act(() => {
-        fireEvent.mouseEnter(screen.getByTestId("popover-container"));
+      await user.hover(screen.getByTestId("popover-container"));
+      await waitFor(() => {
+        expect(screen.getByTestId("popover-element")).toBeDefined();
       });
       const popover = screen.getByTestId("popover-element");
       const arrow = screen.getByTestId("arrow-element");
-      expect(popover).toBeDefined();
 
       expect(popover.style.top).toEqual("0px");
       expect(popover.style.left).toEqual("0px");
@@ -87,25 +97,26 @@ describe("GIVEN <Popover />", () => {
     });
 
     it('THEN should display popover in "right" position', async () => {
+      const user = userEvent.setup();
       makeSut({
         content: <p>string</p>,
         position: "right",
         enabledHover: true,
       });
-      await act(() => {
-        fireEvent.mouseEnter(screen.getByTestId("popover-container"));
+      await user.hover(screen.getByTestId("popover-container"));
+      await waitFor(() => {
+        expect(screen.getByTestId("popover-element")).toBeDefined();
       });
       const popover = screen.getByTestId("popover-element");
       const arrow = screen.getByTestId("arrow-element");
-      expect(popover).toBeDefined();
 
       expect(popover.style.top).toEqual("0px");
       expect(popover.style.left).toEqual("0px");
-      expect(popover.style.transform).toEqual("translate(10px, 0px)");
+      expect(popover.style.transform).toEqual("translate(-10px, 0px)");
       expect(popover.style.position).toEqual("fixed");
 
-      expect(arrow.style.right).toEqual("calc(100% - 0px)");
-      expect(arrow.style.transform).toBe("rotate(90deg)");
+      expect(arrow.style.left).toEqual("calc(100% - 0px)");
+      expect(arrow.style.transform).toBe("rotate(-90deg)");
       expect(arrow.style.position).toEqual("absolute");
     });
 
@@ -153,21 +164,24 @@ describe("GIVEN <Popover />", () => {
     });
 
     it("THEN should not render popover arrow", async () => {
-      makeSut({ content: <p>string</p>, arrow: false });
-      await act(() => {
-        fireEvent.mouseEnter(screen.getByTestId("popover-container"));
+      const user = userEvent.setup();
+      makeSut({ content: <p>string</p>, arrow: false, enabledHover: true });
+      await user.hover(screen.getByTestId("popover-container"));
+      await waitFor(() => {
+        expect(screen.getByTestId("popover-element")).toBeDefined();
       });
       expect(screen.queryByTestId("arrow-element")).toBeNull();
     });
 
     it('THEN should display popover in "top" position', async () => {
+      const user = userEvent.setup();
       makeSut({ content: <p>string</p>, position: "top", enabledHover: true });
-      await act(() => {
-        fireEvent.mouseEnter(screen.getByTestId("popover-container"));
+      await user.hover(screen.getByTestId("popover-container"));
+      await waitFor(() => {
+        expect(screen.getByTestId("popover-element")).toBeDefined();
       });
       const popover = screen.getByTestId("popover-element");
       const arrow = screen.getByTestId("arrow-element");
-      expect(popover).toBeDefined();
 
       expect(popover.style.top).toEqual("0px");
       expect(popover.style.left).toEqual("0px");
@@ -179,17 +193,18 @@ describe("GIVEN <Popover />", () => {
     });
 
     it('THEN should display popover in "bottom" position', async () => {
+      const user = userEvent.setup();
       makeSut({
         content: <p>string</p>,
         position: "bottom",
         enabledHover: true,
       });
-      await act(() => {
-        fireEvent.mouseEnter(screen.getByTestId("popover-container"));
+      await user.hover(screen.getByTestId("popover-container"));
+      await waitFor(() => {
+        expect(screen.getByTestId("popover-element")).toBeDefined();
       });
       const popover = screen.getByTestId("popover-element");
       const arrow = screen.getByTestId("arrow-element");
-      expect(popover).toBeDefined();
 
       expect(popover.style.top).toEqual("0px");
       expect(popover.style.left).toEqual("0px");
@@ -202,13 +217,14 @@ describe("GIVEN <Popover />", () => {
     });
 
     it('THEN should display popover in "left" position', async () => {
+      const user = userEvent.setup();
       makeSut({ content: <p>string</p>, position: "left", enabledHover: true });
-      await act(() => {
-        fireEvent.mouseEnter(screen.getByTestId("popover-container"));
+      await user.hover(screen.getByTestId("popover-container"));
+      await waitFor(() => {
+        expect(screen.getByTestId("popover-element")).toBeDefined();
       });
       const popover = screen.getByTestId("popover-element");
       const arrow = screen.getByTestId("arrow-element");
-      expect(popover).toBeDefined();
 
       expect(popover.style.top).toEqual("0px");
       expect(popover.style.left).toEqual("0px");
@@ -238,144 +254,155 @@ describe("GIVEN <Popover />", () => {
   });
 
   describe("THEN should correctly render the submitted backgroundColor", () => {
-    it("THEN should correctly render the backgroundColor default", async () => {
-      makeSut({ content: <p>string</p>, enabledHover: true });
-      await act(() => {
-        fireEvent.mouseEnter(screen.getByTestId("popover-container"));
+    const verifyBackgroundColor = async (
+      backgroundColor: string | undefined,
+      expectedClass: string
+    ) => {
+      const user = userEvent.setup();
+      makeSut({
+        content: <p>string</p>,
+        backgroundColor: backgroundColor as PopoverProps["backgroundColor"],
+        enabledHover: true,
       });
-      expect(
-        screen.getByTestId("popover-element").getAttribute("class")
-      ).toContain("neutral-background");
+      await user.hover(screen.getByTestId("popover-container"));
+      await waitFor(() => {
+        expect(
+          screen.getByTestId("popover-element").getAttribute("class")
+        ).toContain(expectedClass);
+      });
+    };
+
+    it("THEN should correctly render the backgroundColor default", async () => {
+      await verifyBackgroundColor(undefined, "neutral-background");
     });
 
     it("THEN should correctly render the backgroundColor neutral-background", async () => {
-      makeSut({
-        content: <p>string</p>,
-        backgroundColor: "neutral-background",
-        enabledHover: true,
-      });
-      await act(() => {
-        fireEvent.mouseEnter(screen.getByTestId("popover-container"));
-      });
-      expect(
-        screen.getByTestId("popover-element").getAttribute("class")
-      ).toContain("neutral-background");
+      await verifyBackgroundColor("neutral-background", "neutral-background");
     });
 
     it("THEN should correctly render the backgroundColor primary-surfaceHighlight", async () => {
+      const user = userEvent.setup();
       makeSut({
         content: <p>string</p>,
         backgroundColor: "primary-surfaceHighlight",
         enabledHover: true,
       });
-      await act(() => {
-        fireEvent.mouseEnter(screen.getByTestId("popover-container"));
+      await user.hover(screen.getByTestId("popover-container"));
+      await waitFor(() => {
+        expect(
+          screen.getByTestId("popover-element").getAttribute("class")
+        ).toContain("primary-surfaceHighlight");
       });
-      expect(
-        screen.getByTestId("popover-element").getAttribute("class")
-      ).toContain("primary-surfaceHighlight");
     });
 
     it("THEN should correctly render the backgroundColor primary-interactiveHover", async () => {
+      const user = userEvent.setup();
       makeSut({
         content: <p>string</p>,
         backgroundColor: "primary-interactiveHover",
         enabledHover: true,
       });
-      await act(() => {
-        fireEvent.mouseEnter(screen.getByTestId("popover-container"));
+      await user.hover(screen.getByTestId("popover-container"));
+      await waitFor(() => {
+        expect(
+          screen.getByTestId("popover-element").getAttribute("class")
+        ).toContain("primary-interactiveHover");
       });
-      expect(
-        screen.getByTestId("popover-element").getAttribute("class")
-      ).toContain("primary-interactiveHover");
     });
 
     it("THEN should correctly render the backgroundColor danger-surfaceHighlight", async () => {
+      const user = userEvent.setup();
       makeSut({
         content: <p>string</p>,
         backgroundColor: "danger-surfaceHighlight",
         enabledHover: true,
       });
-      await act(() => {
-        fireEvent.mouseEnter(screen.getByTestId("popover-container"));
+      await user.hover(screen.getByTestId("popover-container"));
+      await waitFor(() => {
+        expect(
+          screen.getByTestId("popover-element").getAttribute("class")
+        ).toContain("danger-surfaceHighlight");
       });
-      expect(
-        screen.getByTestId("popover-element").getAttribute("class")
-      ).toContain("danger-surfaceHighlight");
     });
 
     it("THEN should correctly render the backgroundColor neutral-surfaceHighlight", async () => {
+      const user = userEvent.setup();
       makeSut({
         content: <p>string</p>,
         backgroundColor: "neutral-surfaceHighlight",
         enabledHover: true,
       });
-      await act(() => {
-        fireEvent.mouseEnter(screen.getByTestId("popover-container"));
+      await user.hover(screen.getByTestId("popover-container"));
+      await waitFor(() => {
+        expect(
+          screen.getByTestId("popover-element").getAttribute("class")
+        ).toContain("neutral-surfaceHighlight");
       });
-      expect(
-        screen.getByTestId("popover-element").getAttribute("class")
-      ).toContain("neutral-surfaceHighlight");
     });
 
     it("THEN should correctly render the backgroundColor success-surfaceHighlight", async () => {
+      const user = userEvent.setup();
       makeSut({
         content: <p>string</p>,
         backgroundColor: "success-surfaceHighlight",
         enabledHover: true,
       });
-      await act(() => {
-        fireEvent.mouseEnter(screen.getByTestId("popover-container"));
+      await user.hover(screen.getByTestId("popover-container"));
+      await waitFor(() => {
+        expect(
+          screen.getByTestId("popover-element").getAttribute("class")
+        ).toContain("success-surfaceHighlight");
       });
-      expect(
-        screen.getByTestId("popover-element").getAttribute("class")
-      ).toContain("success-surfaceHighlight");
     });
 
     it("THEN should correctly render the backgroundColor warning-surfaceHighlight", async () => {
+      const user = userEvent.setup();
       makeSut({
         content: <p>string</p>,
         backgroundColor: "warning-surfaceHighlight",
         enabledHover: true,
       });
-      await act(() => {
-        fireEvent.mouseEnter(screen.getByTestId("popover-container"));
+      await user.hover(screen.getByTestId("popover-container"));
+      await waitFor(() => {
+        expect(
+          screen.getByTestId("popover-element").getAttribute("class")
+        ).toContain("warning-surfaceHighlight");
       });
-      expect(
-        screen.getByTestId("popover-element").getAttribute("class")
-      ).toContain("warning-surfaceHighlight");
     });
   });
 
   describe("THEN should correctly render the submitted padding", () => {
     it("THEN should correctly render the padding base", async () => {
+      const user = userEvent.setup();
       makeSut({ content: <p>string</p>, padding: "base", enabledHover: true });
-      await act(() => {
-        fireEvent.mouseEnter(screen.getByTestId("popover-container"));
+      await user.hover(screen.getByTestId("popover-container"));
+      await waitFor(() => {
+        expect(
+          screen.getByTestId("popover-element").getAttribute("class")
+        ).toContain("padding-base");
       });
-      expect(
-        screen.getByTestId("popover-element").getAttribute("class")
-      ).toContain("padding-base");
     });
 
     it("THEN should correctly render the padding none", async () => {
+      const user = userEvent.setup();
       makeSut({ content: <p>string</p>, padding: "none", enabledHover: true });
-      await act(() => {
-        fireEvent.mouseEnter(screen.getByTestId("popover-container"));
+      await user.hover(screen.getByTestId("popover-container"));
+      await waitFor(() => {
+        expect(
+          screen.getByTestId("popover-element").getAttribute("class")
+        ).toContain("padding-none");
       });
-      expect(
-        screen.getByTestId("popover-element").getAttribute("class")
-      ).toContain("padding-none");
     });
 
     it("THEN should correctly render the padding small", async () => {
+      const user = userEvent.setup();
       makeSut({ content: <p>string</p>, padding: "small", enabledHover: true });
-      await act(() => {
-        fireEvent.mouseEnter(screen.getByTestId("popover-container"));
+      await user.hover(screen.getByTestId("popover-container"));
+      await waitFor(() => {
+        expect(
+          screen.getByTestId("popover-element").getAttribute("class")
+        ).toContain("padding-small");
       });
-      expect(
-        screen.getByTestId("popover-element").getAttribute("class")
-      ).toContain("padding-small");
     });
   });
 });

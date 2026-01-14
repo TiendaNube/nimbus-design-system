@@ -27,9 +27,6 @@ export const Basic: React.FC<LinkProps & { disabled?: boolean }> = forwardRef(
 ) as React.FC<LinkProps & { disabled?: boolean }>;
 
 Basic.displayName = "Link";
-Basic.defaultProps = {
-  disabled: false,
-};
 
 const meta: Meta<typeof Basic> = {
   title: "Atomic/Link",

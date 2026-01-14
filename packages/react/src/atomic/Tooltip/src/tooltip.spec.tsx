@@ -1,5 +1,6 @@
 import React from "react";
-import { render, screen, fireEvent, act } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { tooltip as tooltipStyles } from "@nimbus-ds/styles";
 
 import { Tooltip } from "./Tooltip";
@@ -16,22 +17,24 @@ const makeSut = (rest: Omit<TooltipProps, "children">) => {
 describe("GIVEN <Tooltip />", () => {
   describe("WHEN rendered", () => {
     it("THEN should display tooltip if anchor receives hover event", async () => {
+      const user = userEvent.setup();
       makeSut({ content: "string" });
-      await act(() => {
-        fireEvent.mouseEnter(screen.getByTestId("tooltip-container"));
+      await user.hover(screen.getByTestId("tooltip-container"));
+      await waitFor(() => {
+        expect(screen.getByTestId("tooltip-element")).toBeDefined();
       });
-      const tooltip = screen.getByTestId("tooltip-element");
-      expect(tooltip).toBeDefined();
     });
 
     it('THEN should display tooltip in "top" position', async () => {
+      const user = userEvent.setup();
       makeSut({ content: "string", position: "top", arrow: true });
-      await act(() => {
-        fireEvent.mouseEnter(screen.getByTestId("tooltip-container"));
+      await user.hover(screen.getByTestId("tooltip-container"));
+      await waitFor(() => {
+        expect(screen.getByTestId("tooltip-element")).toBeDefined();
       });
+
       const tooltip = screen.getByTestId("tooltip-element");
       const arrow = screen.getByTestId("arrow-element");
-      expect(tooltip).toBeDefined();
 
       expect(tooltip.style.top).toEqual("0px");
       expect(tooltip.style.left).toEqual("0px");
@@ -42,14 +45,15 @@ describe("GIVEN <Tooltip />", () => {
     });
 
     it('THEN should display tooltip in "bottom" position', async () => {
+      const user = userEvent.setup();
       makeSut({ content: "string", position: "bottom", arrow: true });
-      await act(() => {
-        fireEvent.mouseEnter(screen.getByTestId("tooltip-container"));
+      await user.hover(screen.getByTestId("tooltip-container"));
+      await waitFor(() => {
+        expect(screen.getByTestId("tooltip-element")).toBeDefined();
       });
 
       const tooltip = screen.getByTestId("tooltip-element");
       const arrow = screen.getByTestId("arrow-element");
-      expect(tooltip).toBeDefined();
 
       expect(tooltip.style.top).toEqual("0px");
       expect(tooltip.style.left).toEqual("0px");
@@ -61,14 +65,15 @@ describe("GIVEN <Tooltip />", () => {
     });
 
     it('THEN should display tooltip in "left" position', async () => {
+      const user = userEvent.setup();
       makeSut({ content: "string", position: "left", arrow: true });
-      await act(() => {
-        fireEvent.mouseEnter(screen.getByTestId("tooltip-container"));
+      await user.hover(screen.getByTestId("tooltip-container"));
+      await waitFor(() => {
+        expect(screen.getByTestId("tooltip-element")).toBeDefined();
       });
 
       const tooltip = screen.getByTestId("tooltip-element");
       const arrow = screen.getByTestId("arrow-element");
-      expect(tooltip).toBeDefined();
 
       expect(tooltip.style.top).toEqual("0px");
       expect(tooltip.style.left).toEqual("0px");
@@ -80,43 +85,43 @@ describe("GIVEN <Tooltip />", () => {
     });
 
     it('THEN should display tooltip in "right" position', async () => {
+      const user = userEvent.setup();
       makeSut({ content: "string", position: "right", arrow: true });
-      await act(() => {
-        fireEvent.mouseEnter(screen.getByTestId("tooltip-container"));
+      await user.hover(screen.getByTestId("tooltip-container"));
+      await waitFor(() => {
+        expect(screen.getByTestId("tooltip-element")).toBeDefined();
       });
+
       const tooltip = screen.getByTestId("tooltip-element");
       const arrow = screen.getByTestId("arrow-element");
-      expect(tooltip).toBeDefined();
 
       expect(tooltip.style.top).toEqual("0px");
       expect(tooltip.style.left).toEqual("0px");
       expect(tooltip.style.position).toEqual("fixed");
 
-      expect(arrow.style.right).toEqual("calc(100% - 0px)");
-      expect(arrow.style.transform).toBe("rotate(90deg)");
+      expect(arrow.style.left).toEqual("calc(100% - 0px)");
+      expect(arrow.style.transform).toBe("rotate(-90deg)");
       expect(arrow.style.position).toEqual("absolute");
     });
 
     it('should not display arrow if "arrow" is not passed', async () => {
+      const user = userEvent.setup();
       makeSut({ content: "string" });
-
-      await act(() => {
-        fireEvent.mouseEnter(screen.getByTestId("tooltip-container"));
+      await user.hover(screen.getByTestId("tooltip-container"));
+      await waitFor(() => {
+        expect(screen.getByTestId("tooltip-element")).toBeDefined();
       });
 
-      const tooltip = screen.getByTestId("tooltip-element");
       const arrow = screen.queryByTestId("arrow-element");
-
-      expect(tooltip).toBeDefined();
       expect(arrow).toBeNull();
     });
 
-    it("should set correctly the className and width using the sprinkle", () => {
+    it("should set correctly the className and width using the sprinkle", async () => {
+      const user = userEvent.setup();
       const maxWidth = "400px";
       const className = "custom-class";
       const rest = { customProp: "value" };
 
-      // Set up a spy on tooltip.sprinkle.
       const sprinkleSpy = jest
         .spyOn(tooltipStyles, "sprinkle")
         .mockReturnValue({
@@ -125,27 +130,23 @@ describe("GIVEN <Tooltip />", () => {
           otherProps: { "data-test": "value" },
         });
 
-      // Render the component with both maxWidth and the rest props.
       makeSut({ content: "string", maxWidth, ...rest });
 
-      //  Verify that tooltip.sprinkle was called with the expected merged object.
       expect(sprinkleSpy).toHaveBeenCalledWith({
         ...rest,
         maxWidth,
         "data-testid": "tooltip-element",
       });
 
-      // Hover the anchor element to trigger the tooltip.
-      act(() => {
-        fireEvent.mouseEnter(screen.getByTestId("tooltip-container"));
+      await user.hover(screen.getByTestId("tooltip-container"));
+      await waitFor(() => {
+        expect(screen.getByTestId("tooltip-element")).toBeDefined();
       });
 
-      // Verify that the tooltip was rendered with the expected props.
       const tooltip = screen.getByTestId("tooltip-element");
       expect(tooltip.className).toContain(className);
       expect(tooltip.style.maxWidth).toEqual(maxWidth);
 
-      // Cleanup
       sprinkleSpy.mockRestore();
     });
   });

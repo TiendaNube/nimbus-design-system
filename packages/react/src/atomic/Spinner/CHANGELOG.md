@@ -2,6 +2,12 @@
 
 The Spinner component is used to inform the processing of tasks.
 
+## 2026-01-13 `3.1.1`
+
+#### 🎉 New features
+
+- Adds support for React 19. ([#404](https://github.com/TiendaNube/nimbus-design-system/pull/404) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-03-18 `3.1.0`
 
 #### 🎉 New features

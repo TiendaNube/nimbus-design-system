@@ -1,5 +1,4 @@
 import fs from "fs";
-import fetch from "node-fetch";
 import { execSync } from "child_process";
 
 /* eslint no-console: "off" */

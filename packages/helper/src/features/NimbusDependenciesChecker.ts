@@ -1,5 +1,4 @@
 import * as vscode from "vscode";
-import fetch from "node-fetch";
 import { PackageJSON, Dependencies, OutdatedDependencies } from "./types";
 
 export class NimbusDependenciesChecker {
@@ -69,7 +68,9 @@ export class NimbusDependenciesChecker {
       const currentVersion = dependencies[dependency].replace("^", "");
       const npmUrl = `https://registry.npmjs.org/${dependency}`;
       const response = await fetch(npmUrl);
-      const data = await response.json();
+      const data = (await response.json()) as {
+        "dist-tags": { latest: string };
+      };
       const latestVersion = data["dist-tags"].latest;
 
       if (currentVersion !== latestVersion) {

@@ -5,6 +5,7 @@ import { Text } from "@nimbus-ds/text";
 import { Button } from "@nimbus-ds/button";
 import { Box } from "@nimbus-ds/box";
 import { Title } from "@nimbus-ds/title";
+import { Tag } from "@nimbus-ds/tag";
 import { Modal } from "./Modal";
 import { ModalProps } from "./modal.types";
 
@@ -104,6 +105,30 @@ export const WithHeader: Story = {
     children: (
       <>
         <Modal.Header title="Title" />
+        <Modal.Body>
+          <Box
+            borderStyle="dashed"
+            padding="2"
+            borderWidth="1"
+            borderColor="neutral-interactive"
+          >
+            <Text textAlign="center">Replace me with your content</Text>
+          </Box>
+        </Modal.Body>
+      </>
+    ),
+  },
+};
+
+export const WithHeaderAndTag: Story = {
+  render,
+  args: {
+    children: (
+      <>
+        <Modal.Header
+          title="Title"
+          tag={<Tag appearance="primary">New</Tag>}
+        />
         <Modal.Body>
           <Box
             borderStyle="dashed"

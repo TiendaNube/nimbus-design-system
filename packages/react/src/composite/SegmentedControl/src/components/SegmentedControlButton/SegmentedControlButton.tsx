@@ -4,6 +4,7 @@ import React, {
   useEffect,
   useImperativeHandle,
   HTMLAttributes,
+  ForwardedRef,
 } from "react";
 import {
   PolymorphicForwardRefComponent,
@@ -34,8 +35,11 @@ const SegmentedControlButton = forwardRef(
     }: SegmentedControlButtonProps & { as: any },
     ref
   ) => {
-    const innerRef = useRef<HTMLButtonElement>(null);
-    useRefObjectAsForwardedRef(ref, innerRef);
+    const innerRef = useRef<HTMLButtonElement | null>(null);
+    useRefObjectAsForwardedRef(
+      ref as ForwardedRef<HTMLButtonElement | null>,
+      innerRef
+    );
 
     const context = useSegmentedControlContext();
 

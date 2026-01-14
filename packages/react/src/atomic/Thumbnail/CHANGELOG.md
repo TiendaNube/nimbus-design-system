@@ -2,6 +2,12 @@
 
 The Thumbnail component allows us to present thumbnails of images.
 
+## 2026-01-13 `2.3.3`
+
+#### 🎉 New features
+
+- Adds support for React 19. ([#404](https://github.com/TiendaNube/nimbus-design-system/pull/404) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-05-09 `2.3.2`
 
 #### 🐛 Bug fixes

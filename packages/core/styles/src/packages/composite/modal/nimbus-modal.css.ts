@@ -147,6 +147,12 @@ const modalHeaderProperties = {
   },
 };
 
+const modalHeaderContent = style({
+  display: "flex",
+  alignItems: "center",
+  gap: varsThemeBase.spacing[2],
+});
+
 export const modalHeaderSprinkle = {
   sprinkle: createSprinkles(
     defineSprinkleProperties({
@@ -154,6 +160,7 @@ export const modalHeaderSprinkle = {
     })
   ),
   properties: modalHeaderProperties,
+  content: modalHeaderContent,
 };
 
 const modalBodyProperties = {

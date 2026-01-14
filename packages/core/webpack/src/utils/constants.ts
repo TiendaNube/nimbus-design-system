@@ -6,6 +6,7 @@ import * as dotenv from "dotenv"; // see https://github.com/motdotla/dotenv#how-
 
 dotenv.config({
   path: join(__dirname, "../../../../../.env"),
+  quiet: true,
 });
 
 export const mode = process.env.NODE_ENV ?? "production";

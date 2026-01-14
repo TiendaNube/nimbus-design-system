@@ -174,7 +174,10 @@ export class Docgen {
 
       return schema;
     } catch (error) {
-      console.log(`Error generating the schema for ${fullTypeName}`, error);
+      const message = error instanceof Error ? error.message : String(error);
+      console.warn(
+        `⚠️  Schema generation skipped for ${fullTypeName}: ${message}`
+      );
       return {};
     }
   }

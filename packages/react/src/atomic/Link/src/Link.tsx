@@ -4,6 +4,7 @@ import React, {
   useEffect,
   useImperativeHandle,
   useRef,
+  ForwardedRef,
 } from "react";
 import {
   PolymorphicForwardRefComponent,
@@ -34,7 +35,10 @@ const Link = forwardRef(
     } = props;
 
     const innerRef = useRef<HTMLAnchorElement>(null);
-    useRefObjectAsForwardedRef(ref, innerRef);
+    useRefObjectAsForwardedRef(
+      ref as ForwardedRef<HTMLAnchorElement | null>,
+      innerRef
+    );
 
     useImperativeHandle<
       HTMLAnchorElement | HTMLButtonElement | null,

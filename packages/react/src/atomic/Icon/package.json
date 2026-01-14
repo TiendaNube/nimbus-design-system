@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/icon",
-  "version": "3.3.0",
+  "version": "3.3.1",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -19,8 +19,8 @@
   "peerDependencies": {
     "@nimbus-ds/styles": "workspace:^",
     "@nimbus-ds/typings": "workspace:^",
-    "react": "^16.8 || ^17.0 || ^18.0",
-    "react-dom": "^16.8 || ^17.0 || ^18.0"
+    "react": "^16.8 || ^17.0 || ^18.0 || ^19.0",
+    "react-dom": "^16.8 || ^17.0 || ^18.0 || ^19.0"
   },
   "devDependencies": {
     "@nimbus-ds/box": "workspace:^",

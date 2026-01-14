@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2026-01-08 `9.50.0`
+
+#### 🎉 New features
+
+- `Modal`: Added `tag` property to `Modal.Header` component to display a tag next to the title. ([#401](https://github.com/TiendaNube/nimbus-design-system/pull/401) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-12-23 `9.49.0`
 
 #### 🎉 New features

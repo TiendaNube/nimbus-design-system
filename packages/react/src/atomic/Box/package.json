@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/box",
-  "version": "4.3.2",
+  "version": "4.3.3",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -14,8 +14,8 @@
     "version": "yarn version"
   },
   "peerDependencies": {
-    "react": "^16.8 || ^17.0 || ^18.0",
-    "react-dom": "^16.8 || ^17.0 || ^18.0"
+    "react": "^16.8 || ^17.0 || ^18.0 || ^19.0",
+    "react-dom": "^16.8 || ^17.0 || ^18.0 || ^19.0"
   },
   "homepage": "https://nimbus.nuvemshop.com.br/documentation",
   "repository": {

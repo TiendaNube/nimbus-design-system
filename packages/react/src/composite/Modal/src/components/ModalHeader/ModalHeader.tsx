@@ -9,14 +9,20 @@ const ModalHeader: React.FC<ModalHeaderProps> = ({
   style: _style,
   padding = "none",
   title,
+  tag,
   children,
   ...rest
 }) => (
   <div className={modal.subComponents.header.sprinkle({ padding })} {...rest}>
-    {title && (
-      <Title data-testid="header-title" as="h4">
-        {title}
-      </Title>
+    {(title || tag) && (
+      <div className={modal.subComponents.header.content}>
+        {title && (
+          <Title data-testid="header-title" as="h4">
+            {title}
+          </Title>
+        )}
+        {tag}
+      </div>
     )}
     {children}
   </div>

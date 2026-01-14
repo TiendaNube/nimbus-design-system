@@ -14,4 +14,5 @@ export const defaultCompilerOptions: Omit<CompilerOptions, "jsx"> & {
   strictNullChecks: true,
   esModuleInterop: true,
   jsx: "react",
+  skipLibCheck: true,
 };

@@ -1,10 +1,15 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import {
   generateGradientId,
   injectGradientDefs,
   processElement,
 } from "./svgManipulation";
 import * as colorValidation from "../colorValidation";
+
+type ElementProps = Record<string, unknown>;
+
+const getChildren = (props: ElementProps): ReactNode[] =>
+  React.Children.toArray(props.children as ReactNode);
 
 // Mock the colorValidation utilities
 jest.mock("../colorValidation");
@@ -57,22 +62,26 @@ describe("svgManipulation utilities", () => {
       expect(React.isValidElement(result)).toBe(true);
       expect(result.type).toBe("svg");
 
-      const children = React.Children.toArray(result.props.children);
+      const resultProps = result.props as ElementProps;
+      const children = getChildren(resultProps);
       expect(children).toHaveLength(3);
 
       // Check that defs is first child
       const defsChild = children[0] as React.ReactElement;
+      const defsProps = defsChild.props as ElementProps;
       expect(defsChild.type).toBe("defs");
-      expect(defsChild.props.children).toBe(gradientDef);
+      expect(defsProps.children).toBe(gradientDef);
 
       // Check that original children are preserved
       const pathChild = children[1] as React.ReactElement;
+      const pathProps = pathChild.props as ElementProps;
       expect(pathChild.type).toBe("path");
-      expect(pathChild.props.d).toBe("M10 10");
+      expect(pathProps.d).toBe("M10 10");
 
       const circleChild = children[2] as React.ReactElement;
+      const circleProps = circleChild.props as ElementProps;
       expect(circleChild.type).toBe("circle");
-      expect(circleChild.props.r).toBe("5");
+      expect(circleProps.r).toBe("5");
     });
 
     it("should handle SVG with no existing children", () => {
@@ -83,11 +92,13 @@ describe("svgManipulation utilities", () => {
 
       const result = injectGradientDefs(originalSvg, gradientDef);
 
-      const children = React.Children.toArray(result.props.children);
+      const resultProps = result.props as ElementProps;
+      const children = getChildren(resultProps);
       expect(children).toHaveLength(1);
       const defsChild = children[0] as React.ReactElement;
+      const defsProps = defsChild.props as ElementProps;
       expect(defsChild.type).toBe("defs");
-      expect(defsChild.props.children).toBe(gradientDef);
+      expect(defsProps.children).toBe(gradientDef);
     });
 
     it("should preserve original SVG props", () => {
@@ -101,10 +112,11 @@ describe("svgManipulation utilities", () => {
       });
 
       const result = injectGradientDefs(originalSvg, gradientDef);
+      const resultProps = result.props as ElementProps;
 
-      expect(result.props.width).toBe("100");
-      expect(result.props.height).toBe("100");
-      expect(result.props.viewBox).toBe("0 0 100 100");
+      expect(resultProps.width).toBe("100");
+      expect(resultProps.height).toBe("100");
+      expect(resultProps.viewBox).toBe("0 0 100 100");
     });
   });
 
@@ -131,9 +143,10 @@ describe("svgManipulation utilities", () => {
         d: "M10 10",
       });
       const result = processElement(element, testGradientId);
+      const resultProps = result.props as ElementProps;
 
-      expect(result.props.fill).toBe(`url(#${testGradientId})`);
-      expect(result.props.d).toBe("M10 10");
+      expect(resultProps.fill).toBe(`url(#${testGradientId})`);
+      expect(resultProps.d).toBe("M10 10");
     });
 
     it("should replace stroke attribute with gradient URL when canUseGradient returns true", () => {
@@ -145,9 +158,10 @@ describe("svgManipulation utilities", () => {
         d: "M10 10",
       });
       const result = processElement(element, testGradientId);
+      const resultProps = result.props as ElementProps;
 
-      expect(result.props.stroke).toBe(`url(#${testGradientId})`);
-      expect(result.props.d).toBe("M10 10");
+      expect(resultProps.stroke).toBe(`url(#${testGradientId})`);
+      expect(resultProps.d).toBe("M10 10");
     });
 
     it("should replace both fill and stroke when both can use gradient", () => {
@@ -160,9 +174,10 @@ describe("svgManipulation utilities", () => {
         d: "M10 10",
       });
       const result = processElement(element, testGradientId);
+      const resultProps = result.props as ElementProps;
 
-      expect(result.props.fill).toBe(`url(#${testGradientId})`);
-      expect(result.props.stroke).toBe(`url(#${testGradientId})`);
+      expect(resultProps.fill).toBe(`url(#${testGradientId})`);
+      expect(resultProps.stroke).toBe(`url(#${testGradientId})`);
     });
 
     it("should not replace fill/stroke when canUseGradient returns false", () => {
@@ -173,9 +188,10 @@ describe("svgManipulation utilities", () => {
         stroke: "transparent",
       });
       const result = processElement(element, testGradientId);
+      const resultProps = result.props as ElementProps;
 
-      expect(result.props.fill).toBe("none");
-      expect(result.props.stroke).toBe("transparent");
+      expect(resultProps.fill).toBe("none");
+      expect(resultProps.stroke).toBe("transparent");
     });
 
     it("should replace currentColor fill with gradient URL", () => {
@@ -184,8 +200,9 @@ describe("svgManipulation utilities", () => {
         d: "M10 10",
       });
       const result = processElement(element, testGradientId);
+      const resultProps = result.props as ElementProps;
 
-      expect(result.props.fill).toBe(`url(#${testGradientId})`);
+      expect(resultProps.fill).toBe(`url(#${testGradientId})`);
     });
 
     it("should replace currentColor stroke with gradient URL", () => {
@@ -194,8 +211,9 @@ describe("svgManipulation utilities", () => {
         d: "M10 10",
       });
       const result = processElement(element, testGradientId);
+      const resultProps = result.props as ElementProps;
 
-      expect(result.props.stroke).toBe(`url(#${testGradientId})`);
+      expect(resultProps.stroke).toBe(`url(#${testGradientId})`);
     });
 
     it("should replace both currentColor fill and stroke", () => {
@@ -205,9 +223,10 @@ describe("svgManipulation utilities", () => {
         d: "M10 10",
       });
       const result = processElement(element, testGradientId);
+      const resultProps = result.props as ElementProps;
 
-      expect(result.props.fill).toBe(`url(#${testGradientId})`);
-      expect(result.props.stroke).toBe(`url(#${testGradientId})`);
+      expect(resultProps.fill).toBe(`url(#${testGradientId})`);
+      expect(resultProps.stroke).toBe(`url(#${testGradientId})`);
     });
 
     it("should process children recursively", () => {
@@ -222,14 +241,13 @@ describe("svgManipulation utilities", () => {
       );
 
       const result = processElement(element, testGradientId);
+      const resultProps = result.props as ElementProps;
 
-      const children = React.Children.toArray(result.props.children);
-      expect((children[0] as React.ReactElement).props.fill).toBe(
-        `url(#${testGradientId})`
-      );
-      expect((children[1] as React.ReactElement).props.stroke).toBe(
-        `url(#${testGradientId})`
-      );
+      const children = getChildren(resultProps);
+      const child0Props = (children[0] as React.ReactElement).props as ElementProps;
+      const child1Props = (children[1] as React.ReactElement).props as ElementProps;
+      expect(child0Props.fill).toBe(`url(#${testGradientId})`);
+      expect(child1Props.stroke).toBe(`url(#${testGradientId})`);
     });
 
     it("should handle non-React element children", () => {
@@ -243,13 +261,13 @@ describe("svgManipulation utilities", () => {
       );
 
       const result = processElement(element, testGradientId);
+      const resultProps = result.props as ElementProps;
 
       // React.Children.toArray filters out null/undefined, so we only get the path and text
-      const children = React.Children.toArray(result.props.children);
+      const children = getChildren(resultProps);
       expect(children).toHaveLength(2);
-      expect((children[0] as React.ReactElement).props.fill).toBe(
-        `url(#${testGradientId})`
-      );
+      const child0Props = (children[0] as React.ReactElement).props as ElementProps;
+      expect(child0Props.fill).toBe(`url(#${testGradientId})`);
       expect(children[1]).toBe("text content");
     });
 
@@ -262,9 +280,10 @@ describe("svgManipulation utilities", () => {
         d: "M10 10",
       });
       const result = processElement(element, testGradientId);
+      const resultProps = result.props as ElementProps;
 
-      expect(result.props.fill).toBe(`url(#${testGradientId})`);
-      expect(result.props.children).toBeUndefined();
+      expect(resultProps.fill).toBe(`url(#${testGradientId})`);
+      expect(resultProps.children).toBeUndefined();
     });
 
     it("should preserve other props unchanged", () => {
@@ -277,11 +296,12 @@ describe("svgManipulation utilities", () => {
       });
 
       const result = processElement(element, testGradientId);
+      const resultProps = result.props as ElementProps;
 
-      expect(result.props.d).toBe("M10 10");
-      expect(result.props.strokeWidth).toBe("2");
-      expect(result.props.opacity).toBe("0.5");
-      expect(result.props.className).toBe("test-class");
+      expect(resultProps.d).toBe("M10 10");
+      expect(resultProps.strokeWidth).toBe("2");
+      expect(resultProps.opacity).toBe("0.5");
+      expect(resultProps.className).toBe("test-class");
     });
 
     it("should handle complex nested structure", () => {
@@ -304,18 +324,23 @@ describe("svgManipulation utilities", () => {
       );
 
       const result = processElement(element, testGradientId);
+      const resultProps = result.props as ElementProps;
 
       // Navigate to nested elements and check they were processed
-      const children = React.Children.toArray(result.props.children);
+      const children = getChildren(resultProps);
       const g1 = children[0] as React.ReactElement;
-      const g1Children = React.Children.toArray(g1.props.children);
+      const g1Props = g1.props as ElementProps;
+      const g1Children = getChildren(g1Props);
       const path = g1Children[0] as React.ReactElement;
       const g2 = g1Children[1] as React.ReactElement;
-      const g2Children = React.Children.toArray(g2.props.children);
+      const g2Props = g2.props as ElementProps;
+      const g2Children = getChildren(g2Props);
       const circle = g2Children[0] as React.ReactElement;
+      const pathProps = path.props as ElementProps;
+      const circleProps = circle.props as ElementProps;
 
-      expect(path.props.fill).toBe(`url(#${testGradientId})`);
-      expect(circle.props.stroke).toBe(`url(#${testGradientId})`);
+      expect(pathProps.fill).toBe(`url(#${testGradientId})`);
+      expect(circleProps.stroke).toBe(`url(#${testGradientId})`);
     });
   });
 });

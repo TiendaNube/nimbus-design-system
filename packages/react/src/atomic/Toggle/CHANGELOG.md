@@ -2,6 +2,12 @@
 
 The Tooltip component allows us to show additional information in a non-intrusive way.
 
+## 2026-01-13 `2.2.5`
+
+#### 🎉 New features
+
+- Adds support for React 19. ([#404](https://github.com/TiendaNube/nimbus-design-system/pull/404) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-09-15 `2.2.4`
 
 ### 🐛 Bug fixes
