@@ -2,11 +2,11 @@
 
 Nimbus-icons is an open source icon system built by Nuvemshop / Tiendanube.
 
-## 2026-01-12 `1.16.0`
+## 2026-01-12 `1.15.1`
 
 #### 🎉 New features
 
-- Added support for React 19 in peer dependencies. ([#403](https://github.com/TiendaNube/nimbus-design-system/pull/403) by [@joacotornello](https://github.com/joacotornello))
+- Added support for React 19 in peer dependencies. ([#404](https://github.com/TiendaNube/nimbus-design-system/pull/404) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2026-01-09 `1.15.0`
 

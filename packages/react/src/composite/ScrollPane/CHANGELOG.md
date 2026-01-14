@@ -2,6 +2,12 @@
 
 The ScrollPane component handles responsive scrolls in lists that are overflowing inside a container.
 
+## 2026-01-13 `1.1.3`
+
+#### 🎉 New features
+
+- Adds support for React 19. ([#404](https://github.com/TiendaNube/nimbus-design-system/pull/404) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2026-01-13 `1.1.2`
 
 #### 🐛 Bug fixes

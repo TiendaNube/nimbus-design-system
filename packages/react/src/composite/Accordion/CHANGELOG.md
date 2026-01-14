@@ -2,6 +2,12 @@
 
 The Accordion component allows us to compress content into containers that can be opened or closed.
 
+## 2026-01-13 `1.6.1`
+
+#### 🎉 New features
+
+- Adds support for React 19. ([#404](https://github.com/TiendaNube/nimbus-design-system/pull/404) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-11-11 `1.6.0`
 
 #### 🎉 New features

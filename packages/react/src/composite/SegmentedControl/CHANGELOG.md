@@ -2,6 +2,12 @@
 
 The SegmentedControl component is a composite component that allows us to select one or more options from a list.
 
+## 2026-01-13 `2.0.2`
+
+#### 🎉 New features
+
+- Adds support for React 19. ([#404](https://github.com/TiendaNube/nimbus-design-system/pull/404) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-09-11 `2.0.1`
 
 #### 🐛 Bug fixes
