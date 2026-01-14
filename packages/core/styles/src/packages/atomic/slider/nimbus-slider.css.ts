@@ -8,7 +8,7 @@ const baseTrack = style({
   position: "relative",
   width: "100%",
   height: varsThemeBase.spacing[2],
-  borderRadius: varsThemeBase.shape.border.radius.full,
+  borderRadius: varsThemeBase.shape.border.radius.full
 });
 
 const baseFill = style({
@@ -16,7 +16,7 @@ const baseFill = style({
   height: "100%",
   borderRadius: varsThemeBase.shape.border.radius.full,
   left: fillLeftVar,
-  right: fillRightVar,
+  right: fillRightVar
 });
 
 export const thumbWrapper = style({
@@ -26,7 +26,7 @@ export const thumbWrapper = style({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  zIndex: 2,
+  zIndex: 2
 });
 
 const baseThumb = style({
@@ -38,15 +38,15 @@ const baseThumb = style({
   cursor: "pointer",
   transition: `box-shadow ${varsThemeBase.motion.speed.fast} ease`,
   ":hover": {
-    boxShadow: `0 0 0 4px ${varsThemeBase.colors.primary.surface}`,
+    boxShadow: `0 0 0 4px ${varsThemeBase.colors.primary.surface}`
   },
   ":focus": {
     outline: "none",
-    boxShadow: varsThemeBase.utils.focus,
+    boxShadow: varsThemeBase.utils.focus
   },
   ":active": {
-    boxShadow: `0 0 0 6px ${varsThemeBase.colors.primary.surface}`,
-  },
+    boxShadow: `0 0 0 6px ${varsThemeBase.colors.primary.surface}`
+  }
 });
 
 export const thumbValue = style({
@@ -55,56 +55,56 @@ export const thumbValue = style({
   fontWeight: varsThemeBase.fontWeight.medium,
   color: varsThemeBase.colors.primary.interactive,
   fontFamily: varsThemeBase.fontFamily.sans,
-  whiteSpace: "nowrap",
+  whiteSpace: "nowrap"
 });
 
 const thumbDisabled = style({
   backgroundColor: varsThemeBase.colors.neutral.textDisabled,
   cursor: "not-allowed",
   ":hover": {
-    boxShadow: "none",
+    boxShadow: "none"
   },
   ":focus": {
     outline: "none",
-    boxShadow: "none",
+    boxShadow: "none"
   },
   ":active": {
-    boxShadow: "none",
-  },
+    boxShadow: "none"
+  }
 });
 
 const fillDisabled = style({
-  backgroundColor: varsThemeBase.colors.neutral.textDisabled,
+  backgroundColor: varsThemeBase.colors.neutral.textDisabled
 });
 
 export const container = style({
   display: "flex",
   flexDirection: "column",
   gap: varsThemeBase.spacing[2],
-  width: "100%",
+  width: "100%"
 });
 
 export const trackContainer = style({
   position: "relative",
   width: "100%",
   paddingTop: varsThemeBase.spacing[2],
-  paddingBottom: varsThemeBase.spacing[4],
+  paddingBottom: varsThemeBase.spacing[4]
 });
 
 export const track = styleVariants({
   default: [
     baseTrack,
     {
-      backgroundColor: varsThemeBase.colors.neutral.surfaceDisabled,
-    },
+      backgroundColor: varsThemeBase.colors.neutral.surfaceDisabled
+    }
   ],
   disabled: [
     baseTrack,
     {
       backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
-      cursor: "not-allowed",
-    },
-  ],
+      cursor: "not-allowed"
+    }
+  ]
 });
 
 export const track_disabled = track.disabled;
@@ -114,33 +114,33 @@ export const fill = styleVariants({
   primary: [
     baseFill,
     {
-      backgroundColor: varsThemeBase.colors.primary.interactive,
-    },
+      backgroundColor: varsThemeBase.colors.primary.interactive
+    }
   ],
   success: [
     baseFill,
     {
-      backgroundColor: varsThemeBase.colors.success.interactive,
-    },
+      backgroundColor: varsThemeBase.colors.success.interactive
+    }
   ],
   warning: [
     baseFill,
     {
-      backgroundColor: varsThemeBase.colors.warning.interactive,
-    },
+      backgroundColor: varsThemeBase.colors.warning.interactive
+    }
   ],
   danger: [
     baseFill,
     {
-      backgroundColor: varsThemeBase.colors.danger.interactive,
-    },
+      backgroundColor: varsThemeBase.colors.danger.interactive
+    }
   ],
   neutral: [
     baseFill,
     {
-      backgroundColor: varsThemeBase.colors.neutral.interactive,
-    },
-  ],
+      backgroundColor: varsThemeBase.colors.neutral.interactive
+    }
+  ]
 });
 
 export const thumb = baseThumb;
@@ -150,11 +150,11 @@ export const inputsContainer = style({
   display: "flex",
   alignItems: "flex-end",
   gap: varsThemeBase.spacing[2],
-  width: "100%",
+  width: "100%"
 });
 
 export const inputWrapper = style({
-  flex: 1,
+  flex: 1
 });
 
 export const inputSeparator = style({
@@ -164,7 +164,7 @@ export const inputSeparator = style({
   minHeight: varsThemeBase.spacing[8],
   color: varsThemeBase.colors.neutral.textLow,
   fontSize: varsThemeBase.fontSize.body.base,
-  fontFamily: varsThemeBase.fontFamily.sans,
+  fontFamily: varsThemeBase.fontFamily.sans
 });
 
 export const rangeLabels = style({
@@ -173,22 +173,22 @@ export const rangeLabels = style({
   width: "100%",
   color: varsThemeBase.colors.neutral.textLow,
   fontSize: varsThemeBase.fontSize.body.caption,
-  fontFamily: varsThemeBase.fontFamily.sans,
+  fontFamily: varsThemeBase.fontFamily.sans
 });
 
 export const sliderRow = style({
   display: "flex",
   alignItems: "center",
   gap: varsThemeBase.spacing[3],
-  width: "100%",
+  width: "100%"
 });
 
 export const labelContainer = style({
-  marginBottom: varsThemeBase.spacing[1],
+  marginBottom: varsThemeBase.spacing[1]
 });
 
 export const label = style({
   fontSize: varsThemeBase.fontSize.body.caption,
   color: varsThemeBase.colors.neutral.textLow,
-  fontFamily: varsThemeBase.fontFamily.sans,
+  fontFamily: varsThemeBase.fontFamily.sans
 });
