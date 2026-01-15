@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2026-01-15 `9.50.1`
+
+#### 🐛 Bug fixes
+
+- `Table`: Fixed table borders not being displayed correctly. ([#405](https://github.com/TiendaNube/nimbus-design-system/pull/405) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2026-01-08 `9.50.0`
 
 #### 🎉 New features
