@@ -6,7 +6,7 @@ This package is intended for internal use in generating builds of each design sy
 
 #### 🐛 Bug fixes
 
-- Fixed DTS generation command to include `--no-check` flag. ([#406](https://github.com/TiendaNube/nimbus-design-system/pull/406) by [@joacotornello](https://github.com/joacotornello))
+- Fixed DTS generation command to include `--no-check` flag. ([#407](https://github.com/TiendaNube/nimbus-design-system/pull/407) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2025-08-25 `1.7.0`
 
