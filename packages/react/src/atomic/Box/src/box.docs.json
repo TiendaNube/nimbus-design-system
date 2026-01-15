@@ -3,7 +3,7 @@
   "name": "Box",
   "totalProps": 92,
   "packageName": "@nimbus-ds/box",
-  "version": "4.3.2",
+  "version": "4.3.3",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/box",
   "props": [
     {

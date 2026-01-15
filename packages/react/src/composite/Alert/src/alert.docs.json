@@ -3,7 +3,7 @@
   "name": "Alert",
   "totalProps": 5,
   "packageName": "@nimbus-ds/alert",
-  "version": "2.4.0",
+  "version": "2.4.1",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/alert",
   "props": [
     {

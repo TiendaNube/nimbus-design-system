@@ -3,7 +3,7 @@
   "name": "Toggle",
   "totalProps": 3,
   "packageName": "@nimbus-ds/toggle",
-  "version": "2.2.4",
+  "version": "2.2.5",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/toggle",
   "props": [
     {

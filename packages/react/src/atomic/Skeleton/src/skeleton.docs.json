@@ -3,7 +3,7 @@
   "name": "Skeleton",
   "totalProps": 4,
   "packageName": "@nimbus-ds/skeleton",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/skeleton",
   "props": [
     {

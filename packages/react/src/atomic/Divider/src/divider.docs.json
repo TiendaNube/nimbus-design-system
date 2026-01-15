@@ -3,7 +3,7 @@
   "name": "Divider",
   "totalProps": 3,
   "packageName": "@nimbus-ds/divider",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/divider",
   "props": [
     {

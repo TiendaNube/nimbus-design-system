@@ -3,7 +3,7 @@
   "name": "List",
   "totalProps": 3,
   "packageName": "@nimbus-ds/list",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/list",
   "props": [
     {

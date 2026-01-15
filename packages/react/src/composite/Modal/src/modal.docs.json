@@ -3,7 +3,7 @@
   "name": "Modal",
   "totalProps": 8,
   "packageName": "@nimbus-ds/modal",
-  "version": "1.8.0",
+  "version": "1.8.1",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/modal",
   "props": [
     {

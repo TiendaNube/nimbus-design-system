@@ -3,7 +3,7 @@
   "name": "Tooltip",
   "totalProps": 5,
   "packageName": "@nimbus-ds/tooltip",
-  "version": "2.6.1",
+  "version": "2.6.2",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/tooltip",
   "props": [
     {
