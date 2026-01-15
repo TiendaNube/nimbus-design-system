@@ -18,7 +18,6 @@ const container__wrapper = style({
   width: "100%",
   paddingBottom: varsThemeBase.spacing["0-5"],
   borderRadius: varsThemeBase.shape.border.radius[2],
-  borderColor: varsThemeBase.colors.neutral.surface,
   boxShadow: varsThemeBase.shadow.level[2],
 });
 
