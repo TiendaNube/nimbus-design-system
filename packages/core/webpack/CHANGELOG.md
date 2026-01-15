@@ -2,6 +2,12 @@
 
 This package is intended for internal use in generating builds of each design system package. It contains all the necessary settings and dependencies to optimize the creation of our builds.
 
+## 2026-01-15 `1.8.1`
+
+#### 🐛 Bug fixes
+
+- Fixed DTS generation command to include `--no-check` flag. ([#406](https://github.com/TiendaNube/nimbus-design-system/pull/406) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-08-25 `1.7.0`
 
 #### 🎉 New features
