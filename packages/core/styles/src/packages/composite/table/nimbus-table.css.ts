@@ -17,15 +17,14 @@ const container__wrapper = style({
   overflowX: "auto",
   width: "100%",
   paddingBottom: varsThemeBase.spacing["0-5"],
+  borderRadius: varsThemeBase.shape.border.radius[2],
+  boxShadow: varsThemeBase.shadow.level[2],
 });
 
 const container = style({
   backgroundColor: varsThemeBase.colors.neutral.background,
-  borderColor: varsThemeBase.colors.neutral.surface,
   color: varsThemeBase.colors.neutral.textHigh,
-  boxShadow: varsThemeBase.shadow.level[2],
   borderCollapse: "collapse",
-  borderRadius: varsThemeBase.shape.border.radius[2],
   borderSpacing: 0,
   fontFamily: varsThemeBase.fontFamily.sans,
   // 'clip' to maintain border-radius clipping while allowing position:sticky to work on fixed columns.
