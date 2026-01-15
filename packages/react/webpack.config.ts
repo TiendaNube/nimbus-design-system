@@ -19,7 +19,7 @@ const componentPropsJson = "components-props.json";
 const config = configuration.getConfiguration(baseConfig, {
   dtsBundleConfig: {
     entries: [
-      `node ../../node_modules/.bin/dts-bundle-generator -o ./dist/index.d.ts ./src/index.ts`,
+      `node ../../node_modules/.bin/dts-bundle-generator --no-check -o ./dist/index.d.ts ./src/index.ts`,
       ...dtsCommands,
     ],
   },

@@ -6,7 +6,7 @@ import WebpackShellPluginNextPlugin from "webpack-shell-plugin-next";
 import { rootDir } from "../utils";
 
 const entry = [
-  `node ${rootDir}/node_modules/.bin/dts-bundle-generator -o ./dist/index.d.ts ./src/index.ts`,
+  `node ${rootDir}/node_modules/.bin/dts-bundle-generator --no-check -o ./dist/index.d.ts ./src/index.ts`,
 ];
 
 export const dtsBundleGeneratorPlugin = (

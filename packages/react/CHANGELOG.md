@@ -3,6 +3,12 @@
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories
 every day, with simplicity, accessibility, consistency and performance.
 
+## 2026-01-15 `5.46.1`
+
+#### 🐛 Bug fixes
+
+- Fixed DTS generation command to include `--no-check` flag. ([#407](https://github.com/TiendaNube/nimbus-design-system/pull/407) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2026-01-14 `5.46.0`
 
 #### 🎉 New features
