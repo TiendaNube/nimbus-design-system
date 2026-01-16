@@ -3,6 +3,12 @@
 This is the log of notable changes to the Design System Nimbus that are developer-facing.
 Package-specific changes not released in any package will be added here just before the release. Until then, you can find them in changelogs of the individual packages (see [packages](./packages) directory).
 
+## 2026-01-15
+
+### 🎉 New features
+
+- Added new `Slider` component for range value selection with dual-thumb interaction, number inputs, keyboard navigation, and full accessibility support. ([#PR](https://github.com/TiendaNube/nimbus-design-system/pull/400) by [@vinniimiranda](https://github.com/vinniimiranda))
+
 ## 2026-01-14
 
 - Bumps local react dependencies to version 19. ([#404](https://github.com/TiendaNube/nimbus-design-system/pull/404) by [@joacotornello](https://github.com/joacotornello))
@@ -12,6 +18,7 @@ Package-specific changes not released in any package will be added here just bef
 #### 📚 3rd party library updates
 
 - Updated Storybook to version 8. ([#403](https://github.com/TiendaNube/nimbus-design-system/pull/403) by [@joacotornello](https://github.com/joacotornello))
+
 
 ## 2025-08-13
 
