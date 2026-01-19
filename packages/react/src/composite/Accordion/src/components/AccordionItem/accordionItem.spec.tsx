@@ -15,4 +15,21 @@ describe("GIVEN <Accordion.item />", () => {
       expect(screen.getByText("My content")).toBeDefined();
     });
   });
+
+  describe("WHEN interactive prop is provided", () => {
+    it("THEN should pass interactive=true to context", () => {
+      makeSut({ children: "Interactive content", index: "0", interactive: true });
+      expect(screen.getByText("Interactive content")).toBeDefined();
+    });
+
+    it("THEN should pass interactive=false to context", () => {
+      makeSut({ children: "Non-interactive content", index: "0", interactive: false });
+      expect(screen.getByText("Non-interactive content")).toBeDefined();
+    });
+
+    it("THEN should default to interactive=true when not provided", () => {
+      makeSut({ children: "Default interactive", index: "0" });
+      expect(screen.getByText("Default interactive")).toBeDefined();
+    });
+  });
 });

@@ -135,4 +135,72 @@ describe("GIVEN <Accordion.Header />", () => {
       ).toContain("borderTop_base");
     });
   });
+
+  describe("WHEN interactive prop is set", () => {
+    it("THEN should render as button when interactive is true (default)", () => {
+      render(
+        <Accordion>
+          <Accordion.Item index="0" interactive={true}>
+            <AccordionHeader title="Interactive" data-testid="accordion-header-element" />
+          </Accordion.Item>
+        </Accordion>
+      );
+      
+      const header = screen.getByTestId("accordion-header-element");
+      expect(header.tagName).toBe("BUTTON");
+    });
+
+    it("THEN should render as div when interactive is false", () => {
+      render(
+        <Accordion>
+          <Accordion.Item index="0" interactive={false}>
+            <AccordionHeader title="Non-interactive" data-testid="accordion-header-element" />
+          </Accordion.Item>
+        </Accordion>
+      );
+      
+      const header = screen.getByTestId("accordion-header-element");
+      expect(header.tagName).toBe("DIV");
+    });
+
+    it("THEN should not show chevron when interactive is false", () => {
+      render(
+        <Accordion>
+          <Accordion.Item index="0" interactive={false}>
+            <AccordionHeader title="Non-interactive" />
+          </Accordion.Item>
+        </Accordion>
+      );
+      
+      expect(screen.queryByTestId("accordion-icon-Toggle")).toBeNull();
+    });
+
+    it("THEN should not respond to click when interactive is false", () => {
+      const onSelectMock = jest.fn();
+      render(
+        <Accordion onItemSelect={onSelectMock}>
+          <Accordion.Item index="0" interactive={false}>
+            <AccordionHeader title="Non-interactive" data-testid="accordion-header-element" />
+          </Accordion.Item>
+        </Accordion>
+      );
+      
+      const header = screen.getByTestId("accordion-header-element");
+      fireEvent.click(header);
+      expect(onSelectMock).not.toHaveBeenCalled();
+    });
+
+    it("THEN should include static class when interactive is false", () => {
+      render(
+        <Accordion>
+          <Accordion.Item index="0" interactive={false}>
+            <AccordionHeader title="Non-interactive" data-testid="accordion-header-element" />
+          </Accordion.Item>
+        </Accordion>
+      );
+      
+      const header = screen.getByTestId("accordion-header-element");
+      expect(header.getAttribute("class")).toContain("accordion-header--static");
+    });
+  });
 });

@@ -397,3 +397,58 @@ export const Controlled: Story = {
     },
   },
 };
+
+export const NonInteractiveItems: Story = {
+  args: {
+    children: (
+      <Card padding="none">
+        <div>
+          <Accordion.Item index="0" interactive={false}>
+            <Accordion.Header
+              title="Completed step (non-interactive)"
+              subtitle="This item is static and cannot be clicked"
+              icon={<TiendanubeIcon size={18} />}
+              borderTop="none"
+            />
+          </Accordion.Item>
+          <Accordion.Item index="1">
+            <Accordion.Header
+              title="Active step (interactive)"
+              subtitle="This item can be expanded"
+              icon={<UserGroupIcon size={18} />}
+            />
+            <Accordion.Body>
+              <Box padding="4">
+                <Text>
+                  This is the body content of an interactive accordion item.
+                  Notice how the previous item has no chevron and doesn't respond
+                  to clicks.
+                </Text>
+              </Box>
+            </Accordion.Body>
+          </Accordion.Item>
+          <Accordion.Item index="2">
+            <Accordion.Header
+              title="Another active step"
+              subtitle="Also interactive"
+              icon={<TiendanubeIcon size={18} />}
+            />
+            <Accordion.Body>
+              <Box padding="4">
+                <Text>Regular interactive accordion item with expandable content.</Text>
+              </Box>
+            </Accordion.Body>
+          </Accordion.Item>
+        </div>
+      </Card>
+    ),
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Demonstrates non-interactive accordion items useful for stepper flows or completed steps. When interactive={false}, the item renders as a static div without hover effects, click handlers, or toggle chevron.",
+      },
+    },
+  },
+};

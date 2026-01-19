@@ -39,4 +39,40 @@ Whenever accordions are used in a group, when one is opened the other closes aut
 
 View docs [here](https://nimbus.nuvemshop.com.br/documentation/composite-components/accordion).
 
+### Props
+
+#### Accordion.Item
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| index | string | - | Unique identifier for the accordion item |
+| interactive | boolean | true | When false, the item renders as static (non-clickable) without hover effects or toggle icon. Useful for completed steps in a stepper flow. |
+| testId | string | - | Test identifier for the accordion item |
+| children | ReactNode | - | The content of the accordion item (typically AccordionHeader and AccordionBody) |
+
+### Examples
+
+#### Basic usage
+```tsx
+<Accordion>
+  <Accordion.Item index="0">
+    <Accordion.Header title="Title" />
+    <Accordion.Body>Content</Accordion.Body>
+  </Accordion.Item>
+</Accordion>
+```
+
+#### Non-interactive items (for stepper flows)
+```tsx
+<Accordion>
+  <Accordion.Item index="0" interactive={false}>
+    <Accordion.Header title="Completed step" subtitle="This step is done" />
+  </Accordion.Item>
+  <Accordion.Item index="1">
+    <Accordion.Header title="Current step" />
+    <Accordion.Body>Step content</Accordion.Body>
+  </Accordion.Item>
+</Accordion>
+```
+
 <img alt="Nimbus" style="margin-bottom: 30px;" src="https://tiendanube.github.io/design-system-nimbus/static/media/nimbus-logo.ab60bd79.png" height="30" />

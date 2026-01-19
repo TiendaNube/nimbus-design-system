@@ -1,0 +1,63 @@
+# Nimbus Design System - Cursor AI Rules
+
+## Communication Language
+- Always respond to user in español (Spanish)
+
+## Code Standards
+- **ALWAYS write code comments in English**
+- **ALWAYS write JSDoc documentation in English**
+- **ALWAYS write commit messages in English** (use conventional commits format)
+- Always use English for variable names, function names, and identifiers
+- Follow TypeScript strict mode
+- Follow Nimbus component patterns
+
+## Examples
+
+### ✅ Correct Code Comments
+```typescript
+/**
+ * Determines if the accordion item is interactive
+ * @param interactive - Whether the item responds to clicks
+ * @default true
+ */
+const AccordionItem: React.FC<AccordionItemProps> = ({
+  interactive = true,
+  ...
+}) => {
+  // Check if item should be rendered as static
+  if (!interactive) {
+    return <div>...</div>;
+  }
+  
+  // Render interactive button
+  return <button>...</button>;
+};
+```
+
+### ❌ Incorrect Code Comments
+```typescript
+/**
+ * Determina si el item del acordeón es interactivo
+ * @param interactive - Si el item responde a clicks
+ * @default true
+ */
+const AccordionItem: React.FC<AccordionItemProps> = ({
+  interactive = true,
+  ...
+}) => {
+  // Verificar si el item debe renderizarse como estático
+  if (!interactive) {
+    return <div>...</div>;
+  }
+  
+  // Renderizar botón interactivo
+  return <button>...</button>;
+};
+```
+
+## Commit Message Format
+```
+feat(accordion): add interactive prop to AccordionItem
+fix(button): resolve hover state issue
+docs(readme): update installation instructions
+```
