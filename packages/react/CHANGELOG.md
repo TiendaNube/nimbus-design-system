@@ -3,6 +3,12 @@
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories
 every day, with simplicity, accessibility, consistency and performance.
 
+## 2026-01-19 `5.47.0`
+
+#### 🎉 New features
+
+- Added new `Slider` component for range value selection with dual-thumb interaction, number inputs, keyboard navigation, and full accessibility support. ([#PR](https://github.com/TiendaNube/nimbus-design-system/pull/PR) by [@vinniimiranda](https://github.com/vinniimiranda))
+
 ## 2026-01-15 `5.46.1`
 
 #### 🐛 Bug fixes
