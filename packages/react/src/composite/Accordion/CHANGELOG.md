@@ -2,6 +2,11 @@
 
 The Accordion component allows us to compress content into containers that can be opened or closed.
 
+## 2026-01-19 `1.7.0`
+#### 🎉 New features
+
+- Added `interactive` prop to allow render the Accordion as a static div. ([#409](https://github.com/TiendaNube/nimbus-design-system/pull/409) by [@Pfurno-TN](https://github.com/Pfurno-TN))
+
 ## 2025-11-11 `1.6.0`
 
 #### 🎉 New features
