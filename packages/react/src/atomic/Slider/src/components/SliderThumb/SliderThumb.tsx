@@ -2,6 +2,7 @@
 import React, { memo } from "react";
 import type { KeyboardEvent, MouseEvent, TouchEvent } from "react";
 import { slider } from "@nimbus-ds/styles";
+import { assignInlineVars } from "@vanilla-extract/dynamic";
 
 interface SliderThumbProps {
   type: "min" | "max" | "single";
@@ -37,7 +38,9 @@ const SliderThumbComponent = ({
   return (
     <div
       className={slider.classnames.thumbWrapper}
-      style={{ left: `${percentage}%` }}
+      style={assignInlineVars({
+        [slider.vars.thumbLeft]: `${percentage}%`,
+      })}
     >
       <button
         type="button"

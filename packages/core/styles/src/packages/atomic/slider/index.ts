@@ -5,5 +5,6 @@ export const slider = {
   vars: {
     fillLeft: styles.fillLeftVar,
     fillRight: styles.fillRightVar,
+    thumbLeft: styles.thumbLeftVar,
   },
 };
