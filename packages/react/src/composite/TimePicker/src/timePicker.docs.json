@@ -1,0 +1,87 @@
+{
+  "description": "TimePicker allows users to select a time value using either a scroll-based wheel picker or a dropdown list of time options.",
+  "displayName": "TimePicker",
+  "props": {
+    "value": {
+      "description": "Current time value (HH:mm string format or Date object)",
+      "type": "string | Date | null",
+      "required": false
+    },
+    "onChange": {
+      "description": "Callback fired when the time changes",
+      "type": "(value: string | null, date: Date | null) => void",
+      "required": false
+    },
+    "format": {
+      "description": "Time format: 12-hour with AM/PM or 24-hour",
+      "type": "\"12h\" | \"24h\"",
+      "defaultValue": "\"24h\"",
+      "required": false
+    },
+    "mode": {
+      "description": "Picker mode: scroll (wheel columns) or dropdown (time list)",
+      "type": "\"scroll\" | \"dropdown\"",
+      "defaultValue": "\"scroll\"",
+      "required": false
+    },
+    "step": {
+      "description": "Step interval in minutes for dropdown mode",
+      "type": "number",
+      "defaultValue": "30",
+      "required": false
+    },
+    "minTime": {
+      "description": "Minimum selectable time (HH:mm string format)",
+      "type": "string",
+      "required": false
+    },
+    "maxTime": {
+      "description": "Maximum selectable time (HH:mm string format)",
+      "type": "string",
+      "required": false
+    },
+    "disabled": {
+      "description": "Whether the picker is disabled",
+      "type": "boolean",
+      "defaultValue": "false",
+      "required": false
+    },
+    "placeholder": {
+      "description": "Placeholder text for the input field",
+      "type": "string",
+      "defaultValue": "\"Select time\"",
+      "required": false
+    },
+    "open": {
+      "description": "Controls the open state of the picker panel (controlled mode)",
+      "type": "boolean",
+      "required": false
+    },
+    "onOpenChange": {
+      "description": "Callback fired when the panel open state changes",
+      "type": "(open: boolean) => void",
+      "required": false
+    },
+    "aria-label": {
+      "description": "Accessible label for the time picker input",
+      "type": "string",
+      "required": false
+    },
+    "name": {
+      "description": "Name attribute for the hidden input (for form submission)",
+      "type": "string",
+      "required": false
+    },
+    "required": {
+      "description": "Whether the input is required",
+      "type": "boolean",
+      "defaultValue": "false",
+      "required": false
+    },
+    "id": {
+      "description": "ID attribute for the input element",
+      "type": "string",
+      "required": false
+    }
+  }
+}

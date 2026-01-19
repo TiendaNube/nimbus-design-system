@@ -1,0 +1,38 @@
+{
+  "name": "@nimbus-ds/time-picker",
+  "version": "0.0.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "yarn g:webpack",
+    "clean": "rm -rf dist",
+    "version": "yarn version"
+  },
+  "dependencies": {
+    "@floating-ui/react": "^0.27.5",
+    "@nimbus-ds/icon": "workspace:^",
+    "@nimbus-ds/icons": "workspace:^",
+    "@nimbus-ds/input": "workspace:^"
+  },
+  "peerDependencies": {
+    "react": "^16.8 || ^17.0 || ^18.0 || ^19.0",
+    "react-dom": "^16.8 || ^17.0 || ^18.0 || ^19.0"
+  },
+  "homepage": "https://nimbus.nuvemshop.com.br/documentation",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TiendaNube/nimbus-design-system.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TiendaNube/nimbus-design-system/issues"
+  },
+  "devDependencies": {
+    "@nimbus-ds/webpack": "workspace:^"
+  }
+}
