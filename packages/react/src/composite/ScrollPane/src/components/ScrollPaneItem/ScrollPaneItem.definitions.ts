@@ -8,13 +8,13 @@ const isItemFullyVisible = (
 ): boolean => {
   if (direction === "horizontal") {
     return (
-      itemRect.left >= containerRect.left && itemRect.right <= containerRect.right
+      itemRect.left >= containerRect.left &&
+      itemRect.right <= containerRect.right
     );
-  } 
-    return (
-      itemRect.top >= containerRect.top && itemRect.bottom <= containerRect.bottom
-    );
-  
+  }
+  return (
+    itemRect.top >= containerRect.top && itemRect.bottom <= containerRect.bottom
+  );
 };
 
 /**
@@ -23,14 +23,18 @@ const isItemFullyVisible = (
 export const scrollItemIntoView = (
   container: HTMLElement,
   item: HTMLElement,
-  direction: "horizontal" | "vertical"
+  direction: "horizontal" | "vertical",
+  behavior: "hidden-items" | "always" = "hidden-items"
 ) => {
   // Get current positions and dimensions including any padding/borders
   const containerRect = container.getBoundingClientRect();
   const itemRect = item.getBoundingClientRect();
 
-  // Check if the item needs to be scrolled into view
-  if (isItemFullyVisible(containerRect, itemRect, direction)) {
+  // Check if the item needs to be scrolled into view (only for 'hidden-items' behavior)
+  if (
+    behavior === "hidden-items" &&
+    isItemFullyVisible(containerRect, itemRect, direction)
+  ) {
     return; // Item is already fully visible, no need to scroll
   }
 

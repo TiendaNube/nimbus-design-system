@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, RefObject } from "react";
 import type { BoxProps } from "@nimbus-ds/box";
 import type { ScrollPaneItemProps } from "./components/ScrollPaneItem";
 import type {
@@ -53,6 +53,14 @@ export interface ScrollPaneProperties {
   scrollToItemOnClick?: boolean;
 
   /**
+   * Defines the scroll behavior when clicking on items
+   * - 'hidden-items': Only scrolls to items that are not fully visible (default)
+   * - 'always': Always scrolls to items, centering them in the viewport
+   * @default "hidden-items"
+   */
+  scrollBehavior?: "hidden-items" | "always";
+
+  /**
    * Enable grab-to-scroll functionality (click and drag to scroll)
    * When enabled, prevents item dragging inside the ScrollPane
    * @default false
@@ -73,6 +81,11 @@ export interface ScrollPaneProperties {
    * Props to be passed to the content container
    */
   contentContainerProps?: object;
+
+  /**
+   * Ref to the scroll container
+   */
+  scrollContainerRef?: RefObject<HTMLDivElement | null>;
 }
 
 export type ScrollPaneProps = ScrollPaneProperties &

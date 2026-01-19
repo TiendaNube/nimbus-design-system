@@ -7,35 +7,57 @@ const { classnames } = timePicker;
 /**
  * TimePickerOption is a single selectable time option in dropdown mode.
  */
-export const TimePickerOption = forwardRef<HTMLButtonElement, TimePickerOptionProps>(
-  ({ selected, current, disabled, children, onSelect, onClick, ...rest }, ref) => {
-    const getState = (): keyof typeof classnames.optionState => {
-      if (disabled) return "disabled";
-      if (selected) return "selected";
-      if (current) return "current";
-      return "default";
-    };
-
+export const TimePickerOption = forwardRef<
+  HTMLButtonElement,
+  TimePickerOptionProps
+>(
+  (
+    {
+      selected,
+      current,
+      disabled,
+      children,
+      onSelect,
+      onClick,
+      onKeyDown,
+      ...rest
+    },
+    ref
+  ) => {
     const handleClick = useCallback(
       (event: React.MouseEvent<HTMLButtonElement>) => {
-        if (disabled) return;
-        onClick?.(event);
-        onSelect?.();
+        if (!disabled) {
+          onClick?.(event);
+          onSelect?.();
+        }
       },
       [disabled, onClick, onSelect]
     );
 
     const handleKeyDown = useCallback(
       (event: React.KeyboardEvent<HTMLButtonElement>) => {
-        if (disabled) return;
+        onKeyDown?.(event);
 
-        if (event.key === "Enter" || event.key === " ") {
+        if (
+          !event.defaultPrevented &&
+          !disabled &&
+          (event.key === "Enter" || event.key === " ")
+        ) {
           event.preventDefault();
           onSelect?.();
         }
       },
-      [disabled, onSelect]
+      [disabled, onSelect, onKeyDown]
     );
+
+    let state: "disabled" | "selected" | "current" | "default" = "default";
+    if (disabled) {
+      state = "disabled";
+    } else if (selected) {
+      state = "selected";
+    } else if (current) {
+      state = "current";
+    }
 
     return (
       <button
@@ -45,7 +67,7 @@ export const TimePickerOption = forwardRef<HTMLButtonElement, TimePickerOptionPr
         aria-selected={selected}
         aria-disabled={disabled}
         disabled={disabled}
-        className={classnames.optionState[getState()]}
+        className={classnames.optionState[state]}
         onClick={handleClick}
         onKeyDown={handleKeyDown}
         {...rest}

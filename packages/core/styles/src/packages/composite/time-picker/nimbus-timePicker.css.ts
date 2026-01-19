@@ -1,4 +1,4 @@
-import { style, styleVariants, globalStyle } from "@vanilla-extract/css";
+import { style, styleVariants } from "@vanilla-extract/css";
 import { varsThemeBase } from "../../../themes";
 
 /* -------------------------------------------------------------------------------------------------
@@ -10,11 +10,30 @@ const panel = style({
   flexDirection: "row",
   backgroundColor: varsThemeBase.colors.neutral.background,
   borderRadius: varsThemeBase.shape.border.radius[2],
-  boxShadow: varsThemeBase.shadow.level[2],
+  boxShadow: varsThemeBase.shadow.level[3],
   padding: varsThemeBase.spacing[2],
   gap: varsThemeBase.spacing[2],
   boxSizing: "border-box",
   zIndex: varsThemeBase.zIndex[800],
+});
+
+const panelDropdown = style({
+  padding: varsThemeBase.spacing[1],
+});
+
+/* -------------------------------------------------------------------------------------------------
+ * Style - Buttons
+ * -----------------------------------------------------------------------------------------------*/
+
+const buttonBase = style({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  padding: `${varsThemeBase.spacing[2]} ${varsThemeBase.spacing[3]}`,
+  fontFamily: varsThemeBase.fontFamily.sans,
+  fontSize: varsThemeBase.fontSize.body.base,
+  fontWeight: varsThemeBase.fontWeight.regular,
+  height: "32px",
 });
 
 /* -------------------------------------------------------------------------------------------------
@@ -24,18 +43,8 @@ const panel = style({
 const column = style({
   display: "flex",
   flexDirection: "column",
-  overflowY: "auto",
-  overflowX: "hidden",
-  scrollBehavior: "smooth",
   height: "240px",
   minWidth: "56px",
-  scrollbarWidth: "none",
-  msOverflowStyle: "none",
-  selectors: {
-    "&::-webkit-scrollbar": {
-      display: "none",
-    },
-  },
 });
 
 const columnLabel = style({
@@ -52,30 +61,24 @@ const columnLabel = style({
  * Style - Option (Time Items)
  * -----------------------------------------------------------------------------------------------*/
 
-const optionBase = style({
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  padding: `${varsThemeBase.spacing[2]} ${varsThemeBase.spacing[3]}`,
-  fontFamily: varsThemeBase.fontFamily.sans,
-  fontSize: varsThemeBase.fontSize.body.base,
-  fontWeight: varsThemeBase.fontWeight.regular,
-  lineHeight: varsThemeBase.lineWeight.body.base,
-  borderRadius: varsThemeBase.shape.border.radius[1],
-  scrollSnapAlign: "center",
-  cursor: "pointer",
-  transition: `background-color ${varsThemeBase.motion.speed.fast} ease, color ${varsThemeBase.motion.speed.fast} ease`,
-  userSelect: "none",
-  minHeight: "36px",
-  boxSizing: "border-box",
-  border: "none",
-  outline: "none",
-  selectors: {
-    "&:focus-visible": {
-      boxShadow: varsThemeBase.utils.focus,
+const optionBase = style([
+  buttonBase,
+  {
+    borderRadius: varsThemeBase.shape.border.radius[1],
+    scrollSnapAlign: "center",
+    cursor: "pointer",
+    transition: `background-color ${varsThemeBase.motion.speed.fast} ease, color ${varsThemeBase.motion.speed.fast} ease`,
+    userSelect: "none",
+    boxSizing: "border-box",
+    border: "none",
+    outline: "none",
+    selectors: {
+      "&:focus-visible": {
+        boxShadow: varsThemeBase.utils.focus,
+      },
     },
   },
-});
+]);
 
 const optionState = styleVariants({
   default: [
@@ -145,27 +148,9 @@ const optionState = styleVariants({
 const dropdownList = style({
   display: "flex",
   flexDirection: "column",
-  overflowY: "auto",
-  overflowX: "hidden",
-  maxHeight: "280px",
   minWidth: "100px",
   gap: varsThemeBase.spacing["0-5"],
-  scrollbarWidth: "thin",
   boxSizing: "border-box",
-});
-
-globalStyle(`${dropdownList}::-webkit-scrollbar`, {
-  width: "4px",
-});
-
-globalStyle(`${dropdownList}::-webkit-scrollbar-track`, {
-  background: varsThemeBase.colors.neutral.surface,
-  borderRadius: varsThemeBase.shape.border.radius.full,
-});
-
-globalStyle(`${dropdownList}::-webkit-scrollbar-thumb`, {
-  background: varsThemeBase.colors.neutral.surfaceHighlight,
-  borderRadius: varsThemeBase.shape.border.radius.full,
 });
 
 /* -------------------------------------------------------------------------------------------------
@@ -278,9 +263,21 @@ const gradientPosition = styleVariants({
  * -----------------------------------------------------------------------------------------------*/
 
 const columnWrapper = style({
-  position: "relative",
   display: "flex",
   flexDirection: "column",
+  height: "240px",
+});
+
+/* -------------------------------------------------------------------------------------------------
+ * Style - Dropdown Wrapper
+ * -----------------------------------------------------------------------------------------------*/
+
+const dropdownWrapper = style({
+  display: "flex",
+  flexDirection: "column",
+  height: "280px",
+  minWidth: "100px",
+  overflowY: "auto",
 });
 
 /* -------------------------------------------------------------------------------------------------
@@ -290,9 +287,11 @@ const columnWrapper = style({
 export const timePickerStyles = {
   classnames: {
     panel,
+    panelDropdown,
     column,
     columnLabel,
     columnWrapper,
+    dropdownWrapper,
     optionState,
     dropdownList,
     ampmContainer,

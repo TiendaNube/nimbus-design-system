@@ -70,7 +70,7 @@ export interface TimePickerProperties {
    */
   mode?: PickerMode;
   /**
-   * Step interval in minutes for dropdown mode.
+   * Step interval in minutes for both scroll and dropdown modes.
    * Common values: 15, 30, 60.
    * @default 30
    */
@@ -171,6 +171,11 @@ export interface TimePickerColumnProps {
    * Label for the column (for accessibility).
    */
   label?: string;
+  /**
+   * Step interval in minutes (only applies to minutes column).
+   * @default 1
+   */
+  step?: number;
 }
 
 export interface TimePickerOptionProps

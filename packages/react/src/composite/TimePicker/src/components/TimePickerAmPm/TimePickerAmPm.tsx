@@ -28,28 +28,35 @@ export const TimePickerAmPm: React.FC<TimePickerAmPmProps> = ({
     (event: React.KeyboardEvent, ampm: AmPm) => {
       if (disabled) return;
 
-      switch (event.key) {
-        case "ArrowUp":
-        case "ArrowDown":
-          event.preventDefault();
-          onChange(value === "AM" ? "PM" : "AM");
-          break;
-        case "Enter":
-        case " ":
-          event.preventDefault();
-          handleSelect(ampm);
-          break;
-        default:
-          break;
+      if (event.key === "ArrowUp" || event.key === "ArrowDown") {
+        event.preventDefault();
+        onChange(value === "AM" ? "PM" : "AM");
+      } else if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        handleSelect(ampm);
       }
     },
     [disabled, value, onChange, handleSelect]
   );
 
-  const ampmOptions: Array<{ key: AmPm; label: string }> = [
-    { key: "AM", label: amLabel },
-    { key: "PM", label: pmLabel },
-  ];
+  const renderButton = (key: AmPm, label: string) => {
+    const isSelected = value === key;
+    return (
+      <button
+        key={key}
+        type="button"
+        role="radio"
+        aria-checked={isSelected}
+        disabled={disabled}
+        className={classnames.ampmState[isSelected ? "selected" : "default"]}
+        onClick={() => handleSelect(key)}
+        onKeyDown={(e) => handleKeyDown(e, key)}
+        tabIndex={isSelected ? 0 : -1}
+      >
+        {label}
+      </button>
+    );
+  };
 
   return (
     <div
@@ -57,28 +64,8 @@ export const TimePickerAmPm: React.FC<TimePickerAmPmProps> = ({
       role="group"
       aria-label={selectorLabel}
     >
-      {ampmOptions.map(({ key, label }) => {
-        const isSelected = value === key;
-        const state: keyof typeof classnames.ampmState = isSelected
-          ? "selected"
-          : "default";
-
-        return (
-          <button
-            key={key}
-            type="button"
-            role="radio"
-            aria-checked={isSelected}
-            disabled={disabled}
-            className={classnames.ampmState[state]}
-            onClick={() => handleSelect(key)}
-            onKeyDown={(e) => handleKeyDown(e, key)}
-            tabIndex={isSelected ? 0 : -1}
-          >
-            {label}
-          </button>
-        );
-      })}
+      {renderButton("AM", amLabel)}
+      {renderButton("PM", pmLabel)}
     </div>
   );
 };
