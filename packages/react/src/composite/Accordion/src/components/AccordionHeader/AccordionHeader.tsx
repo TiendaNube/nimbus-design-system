@@ -72,9 +72,8 @@ const AccordionHeader: React.FC<AccordionHeaderProps> = ({
       <div
         data-testid={testId || `accordion-header-${index}`}
         {...rest}
-        style={{ cursor: 'default', width: '100%', boxSizing: 'border-box' }}
         className={[
-          accordion.classnames.header,
+          accordion.classnames.header_static,
           accordion.sprinkle({
             borderTop,
             borderBottom,
