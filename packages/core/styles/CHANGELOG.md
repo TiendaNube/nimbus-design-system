@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2026-01-19 `9.52.0`
+
+#### 🎉 New features
+
+- `Slider`: Added new `Slider` component for range value selection with dual-thumb interaction, number inputs, keyboard navigation, and full accessibility support. ([#400](https://github.com/TiendaNube/nimbus-design-system/pull/400) by [@vinniimiranda](https://github.com/vinniimiranda))
+
 ## 2026-01-19 `9.51.0`
 
 #### 🎉 New features
