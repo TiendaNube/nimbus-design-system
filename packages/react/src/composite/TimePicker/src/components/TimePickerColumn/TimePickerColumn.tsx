@@ -26,7 +26,7 @@ export const TimePickerColumn: React.FC<TimePickerColumnProps> = ({
   const getValues = useCallback((): number[] => {
     if (type === "hours") {
       if (format === "12h") {
-        return Array.from({ length: 12 }, (_, i) => i === 0 ? 12 : i);
+        return Array.from({ length: 12 }, (_, i) => (i === 0 ? 12 : i));
       }
       return Array.from({ length: 24 }, (_, i) => i);
     }
@@ -44,11 +44,12 @@ export const TimePickerColumn: React.FC<TimePickerColumnProps> = ({
 
       const itemHeight = 36;
       const containerHeight = columnRef.current.clientHeight;
-      const scrollTop = index * itemHeight - (containerHeight / 2 - itemHeight / 2);
+      const scrollTop =
+        index * itemHeight - (containerHeight / 2 - itemHeight / 2);
 
       columnRef.current.scrollTo({
         top: Math.max(0, scrollTop),
-        behavior: smooth ? "smooth" : "auto",
+        behavior: smooth ? "smooth" : "instant",
       });
     },
     [values]
@@ -74,7 +75,8 @@ export const TimePickerColumn: React.FC<TimePickerColumnProps> = ({
       switch (event.key) {
         case "ArrowUp": {
           event.preventDefault();
-          const prevIndex = currentIndex > 0 ? currentIndex - 1 : values.length - 1;
+          const prevIndex =
+            currentIndex > 0 ? currentIndex - 1 : values.length - 1;
           const prevValue = values[prevIndex];
           if (!isDisabled?.(prevValue)) {
             onSelect(prevValue);
@@ -83,7 +85,8 @@ export const TimePickerColumn: React.FC<TimePickerColumnProps> = ({
         }
         case "ArrowDown": {
           event.preventDefault();
-          const nextIndex = currentIndex < values.length - 1 ? currentIndex + 1 : 0;
+          const nextIndex =
+            currentIndex < values.length - 1 ? currentIndex + 1 : 0;
           const nextValue = values[nextIndex];
           if (!isDisabled?.(nextValue)) {
             onSelect(nextValue);
@@ -104,7 +107,9 @@ export const TimePickerColumn: React.FC<TimePickerColumnProps> = ({
     [values, isDisabled, onSelect]
   );
 
-  const getOptionState = (itemValue: number): keyof typeof classnames.optionState => {
+  const getOptionState = (
+    itemValue: number
+  ): keyof typeof classnames.optionState => {
     if (isDisabled?.(itemValue)) return "disabled";
     if (itemValue === value) return "selected";
     return "default";

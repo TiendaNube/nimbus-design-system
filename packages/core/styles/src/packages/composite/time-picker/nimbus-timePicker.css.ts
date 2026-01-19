@@ -26,7 +26,6 @@ const column = style({
   flexDirection: "column",
   overflowY: "auto",
   overflowX: "hidden",
-  scrollSnapType: "y mandatory",
   scrollBehavior: "smooth",
   height: "240px",
   minWidth: "56px",

@@ -1,9 +1,5 @@
 import { useState, useCallback, useMemo, useEffect } from "react";
-import {
-  TimeFormat,
-  TimeValue,
-  AmPm,
-} from "../../timePicker.types";
+import { TimeFormat, TimeValue, AmPm } from "../../timePicker.types";
 
 interface UseTimePickerStateProps {
   value?: string | Date | null;
@@ -22,7 +18,13 @@ interface UseTimePickerStateReturn {
   setAmPm: (ampm: AmPm) => void;
   selectTime: (hours: number, minutes: number, ampm?: AmPm) => void;
   clear: () => void;
-  dropdownOptions: Array<{ value: string; hours: number; minutes: number; ampm?: AmPm; disabled: boolean }>;
+  dropdownOptions: Array<{
+    value: string;
+    hours: number;
+    minutes: number;
+    ampm?: AmPm;
+    disabled: boolean;
+  }>;
   isTimeDisabled: (hours: number, minutes: number, ampm?: AmPm) => boolean;
   isHourDisabled: (hour: number) => boolean;
   isMinuteDisabled: (minute: number) => boolean;
@@ -89,25 +91,34 @@ function parseTimeString(
   return null;
 }
 
-function formatTimeValue(timeValue: TimeValue | null, format: TimeFormat): string {
+function formatTimeValue(
+  timeValue: TimeValue | null,
+  format: TimeFormat
+): string {
   if (!timeValue) return "";
 
   if (format === "12h") {
-    return `${padZero(timeValue.hours)}:${padZero(timeValue.minutes)} ${timeValue.ampm || "AM"}`;
+    return `${padZero(timeValue.hours)}:${padZero(timeValue.minutes)} ${
+      timeValue.ampm || "AM"
+    }`;
   }
   return `${padZero(timeValue.hours)}:${padZero(timeValue.minutes)}`;
 }
 
-function timeValueToDate(timeValue: TimeValue | null, format: TimeFormat): Date | null {
+function timeValueToDate(
+  timeValue: TimeValue | null,
+  format: TimeFormat
+): Date | null {
   if (!timeValue) return null;
 
   const date = new Date();
   let hours24: number;
 
   if (format === "12h" && timeValue.ampm) {
-    hours24 = timeValue.ampm === "PM" 
-      ? (timeValue.hours % 12) + 12 
-      : timeValue.hours % 12;
+    hours24 =
+      timeValue.ampm === "PM"
+        ? (timeValue.hours % 12) + 12
+        : timeValue.hours % 12;
   } else {
     hours24 = timeValue.hours;
   }
@@ -116,7 +127,7 @@ function timeValueToDate(timeValue: TimeValue | null, format: TimeFormat): Date 
   return date;
 }
 
-function parseMinMaxTime(time: string | undefined, format: TimeFormat): number | null {
+function parseMinMaxTime(time: string | undefined): number | null {
   if (!time) return null;
 
   const parsed = parseTimeString(time, "24h");
@@ -150,12 +161,16 @@ export function useTimePickerState({
     setInternalValue(parsed);
   }, [value, format]);
 
-  const minMinutes = useMemo(() => parseMinMaxTime(minTime, format), [minTime, format]);
-  const maxMinutes = useMemo(() => parseMinMaxTime(maxTime, format), [maxTime, format]);
+  const minMinutes = useMemo(() => parseMinMaxTime(minTime), [minTime]);
+  const maxMinutes = useMemo(() => parseMinMaxTime(maxTime), [maxTime]);
 
   const isTimeDisabled = useCallback(
     (hours: number, minutes: number, ampm?: AmPm): boolean => {
-      const totalMinutes = timeToMinutes(hours, minutes, format === "12h" ? ampm : undefined);
+      const totalMinutes = timeToMinutes(
+        hours,
+        minutes,
+        format === "12h" ? ampm : undefined
+      );
 
       if (minMinutes !== null && totalMinutes < minMinutes) return true;
       if (maxMinutes !== null && totalMinutes > maxMinutes) return true;
@@ -175,7 +190,7 @@ export function useTimePickerState({
         if (maxMinutes !== null && hourStart > maxMinutes) return true;
       } else {
         const ampmValue = internalValue?.ampm || "AM";
-        let hour24 = ampmValue === "PM" ? (hour % 12) + 12 : hour % 12;
+        const hour24 = ampmValue === "PM" ? (hour % 12) + 12 : hour % 12;
         const hourStart = hour24 * 60;
         const hourEnd = hour24 * 60 + 59;
 
@@ -213,7 +228,7 @@ export function useTimePickerState({
       const newValue: TimeValue = {
         hours,
         minutes: internalValue?.minutes ?? 0,
-        ampm: format === "12h" ? (internalValue?.ampm ?? "AM") : undefined,
+        ampm: format === "12h" ? internalValue?.ampm ?? "AM" : undefined,
       };
       setInternalValue(newValue);
       notifyChange(newValue);
@@ -226,7 +241,7 @@ export function useTimePickerState({
       const newValue: TimeValue = {
         hours: internalValue?.hours ?? (format === "12h" ? 12 : 0),
         minutes,
-        ampm: format === "12h" ? (internalValue?.ampm ?? "AM") : undefined,
+        ampm: format === "12h" ? internalValue?.ampm ?? "AM" : undefined,
       };
       setInternalValue(newValue);
       notifyChange(newValue);
