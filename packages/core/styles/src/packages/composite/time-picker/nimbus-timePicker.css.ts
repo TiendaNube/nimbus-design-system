@@ -43,6 +43,7 @@ const buttonBase = style({
 const column = style({
   display: "flex",
   flexDirection: "column",
+  alignItems: "center",
   height: "240px",
   minWidth: "56px",
 });
