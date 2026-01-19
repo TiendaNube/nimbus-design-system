@@ -421,8 +421,8 @@ export const NonInteractiveItems: Story = {
               <Box padding="4">
                 <Text>
                   This is the body content of an interactive accordion item.
-                  Notice how the previous item has no chevron and doesn't respond
-                  to clicks.
+                  Notice how the previous item has no chevron and doesn`t
+                  respond to clicks.
                 </Text>
               </Box>
             </Accordion.Body>
@@ -435,7 +435,9 @@ export const NonInteractiveItems: Story = {
             />
             <Accordion.Body>
               <Box padding="4">
-                <Text>Regular interactive accordion item with expandable content.</Text>
+                <Text>
+                  Regular interactive accordion item with expandable content.
+                </Text>
               </Box>
             </Accordion.Body>
           </Accordion.Item>
