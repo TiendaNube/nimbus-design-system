@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2026-01-19 `9.51.0`
+
+#### 🎉 New features
+
+- `Box`: Added AI generative color tokens (`ai-generative-surface`, `ai-generative-surfaceHighlight`, `ai-generative-interactive`, `ai-generative-interactiveHover`, `ai-generative-textLow`, `ai-generative-textHigh`) to `borderColor` property. ([#407](https://github.com/TiendaNube/nimbus-design-system/pull/407) by [@jfernandez](https://github.com/jfernandez))
+
 ## 2026-01-15 `9.50.1`
 
 #### 🐛 Bug fixes
