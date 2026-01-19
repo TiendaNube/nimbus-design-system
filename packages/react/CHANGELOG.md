@@ -3,6 +3,12 @@
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories
 every day, with simplicity, accessibility, consistency and performance.
 
+## 2026-01-19 `5.47.0`
+
+#### 🎉 New features
+
+- `Accordion`: Added `interactive` prop to allow render the Accordion as a static div. ([#409](https://github.com/TiendaNube/nimbus-design-system/pull/409) by [@Pfurno-TN](https://github.com/Pfurno-TN))
+
 ## 2026-01-15 `5.46.1`
 
 #### 🐛 Bug fixes
@@ -79,11 +85,6 @@ every day, with simplicity, accessibility, consistency and performance.
 #### 🐛 Bug fixes
 
 - `ScrollPane`: Fixed focus ring styles to match design system. ([#385](https://github.com/TiendaNube/nimbus-design-system/pull/385) by [@joacotornello](https://github.com/joacotornello))
-
-## 2026-01-19 `5.39.0`
-#### 🎉 New features
-
-- `Accordion`: Added `interactive` prop to allow render the Accordion as a static div. ([#409](https://github.com/TiendaNube/nimbus-design-system/pull/409) by [@Pfurno-TN](https://github.com/Pfurno-TN))
 
 ## 2025-11-12 `5.38.0`
 
