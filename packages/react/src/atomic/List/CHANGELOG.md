@@ -2,6 +2,18 @@
 
 Use the list component to arrange a collection of text elements. Each list item begins with either a bullet or a number.
 
+## 2026-01-13 `2.3.1`
+
+#### 🎉 New features
+
+- Adds support for React 19. ([#404](https://github.com/TiendaNube/nimbus-design-system/pull/404) by [@joacotornello](https://github.com/joacotornello))
+
+## 2025-12-11 `2.3.0`
+
+### 🎉 New features
+
+- Added `padding` property to set the padding of the list. ([#390](https://github.com/TiendaNube/nimbus-design-system/pull/390) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-03-18 `2.2.1`
 
 ### 💡 Others

@@ -3,7 +3,7 @@
   "name": "Pagination",
   "totalProps": 5,
   "packageName": "@nimbus-ds/pagination",
-  "version": "2.4.0",
+  "version": "2.4.1",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/pagination",
   "props": [
     {

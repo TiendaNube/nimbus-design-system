@@ -3,7 +3,7 @@
   "name": "Toast",
   "totalProps": 6,
   "packageName": "@nimbus-ds/toast",
-  "version": "2.4.0",
+  "version": "2.4.1",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/toast",
   "props": [
     {

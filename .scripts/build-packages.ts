@@ -17,15 +17,15 @@ try {
 
   const packageBuilder = new PackageBuilder();
   const packagesToBuild = packageBuilder.getPackagesToBuild(paths[0]);
-  const nimbusHelper = packagesToBuild.find(
-    (packageToBuild) => packageToBuild === "nimbus-helper"
-  );
-  if (!!nimbusHelper) {
-    packageBuilder.triggerBuildGithubAction(
-      "https://api.github.com/repos/tiendanube/nimbus-design-system/actions/workflows/62481985/dispatches",
-      { ref: "master" }
-    );
-  }
+  // const nimbusHelper = packagesToBuild.find(
+  //   (packageToBuild) => packageToBuild === "nimbus-helper"
+  // );
+  // if (!!nimbusHelper) {
+  //   packageBuilder.triggerBuildGithubAction(
+  //     "https://api.github.com/repos/tiendanube/nimbus-design-system/actions/workflows/62481985/dispatches",
+  //     { ref: "master" }
+  //   );
+  // }
 
   const removePackages = [
     "nimbus-design-system",

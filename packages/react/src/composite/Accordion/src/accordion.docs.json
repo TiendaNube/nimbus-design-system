@@ -3,7 +3,7 @@
   "name": "Accordion",
   "totalProps": 4,
   "packageName": "@nimbus-ds/accordion",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/accordion",
   "props": [
     {

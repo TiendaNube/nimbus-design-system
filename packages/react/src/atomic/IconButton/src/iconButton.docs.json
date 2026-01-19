@@ -3,7 +3,7 @@
   "name": "IconButton",
   "totalProps": 7,
   "packageName": "@nimbus-ds/icon-button",
-  "version": "4.3.0",
+  "version": "4.3.1",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/icon-button",
   "props": [
     {
@@ -403,15 +403,15 @@
       "totalProps": 3,
       "props": [
         {
-          "description": "Height of the skeleton. Useful when you don't want to adapt the skeleton to a text element but for instance a card.",
-          "type": "string",
-          "title": "height",
-          "required": false
-        },
-        {
           "description": "Width of the skeleton. Useful when the skeleton is inside an inline element with no width of its own.",
           "type": "string",
           "title": "width",
+          "required": false
+        },
+        {
+          "description": "Height of the skeleton. Useful when you don't want to adapt the skeleton to a text element but for instance a card.",
+          "type": "string",
+          "title": "height",
           "required": false
         },
         {

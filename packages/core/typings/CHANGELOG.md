@@ -2,6 +2,13 @@
 
 This package is intended for internal use in creating components with polymorphic typing.
 
+## 2026-01-13 `1.3.1`
+
+#### 🐛 Bug fixes
+
+- Fixed `useRefObjectAsForwardedRef` hook to allow null values in the ref object. ([#404](https://github.com/TiendaNube/nimbus-design-system/pull/404) by [@joacotornello](https://github.com/joacotornello))
+- Adds support for React 19. ([#404](https://github.com/TiendaNube/nimbus-design-system/pull/404) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-07-29 `1.3.0`
 
 #### 🎉 New features

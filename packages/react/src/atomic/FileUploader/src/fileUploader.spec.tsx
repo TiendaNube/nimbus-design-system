@@ -324,7 +324,7 @@ describe("GIVEN <FileUploader />", () => {
       makeSut();
       const container = screen.getByTestId("file-uploader-container");
 
-      fireEvent.dragOver(container);
+      fireEvent.dragEnter(container);
 
       expect(container.getAttribute("class")).toContain("dragging");
     });
@@ -333,7 +333,7 @@ describe("GIVEN <FileUploader />", () => {
       makeSut({ disabled: true });
       const container = screen.getByTestId("file-uploader-container");
 
-      fireEvent.dragOver(container);
+      fireEvent.dragEnter(container);
 
       expect(container.getAttribute("class")).not.toContain("dragging");
     });
@@ -342,7 +342,7 @@ describe("GIVEN <FileUploader />", () => {
       makeSut();
       const container = screen.getByTestId("file-uploader-container");
 
-      fireEvent.dragOver(container);
+      fireEvent.dragEnter(container);
       expect(container.getAttribute("class")).toContain("dragging");
 
       fireEvent.dragLeave(container);
@@ -356,7 +356,7 @@ describe("GIVEN <FileUploader />", () => {
       const file = createFile("test.jpg", "image/jpeg");
       const dropEvent = createDragEvent("drop", [file]);
 
-      fireEvent.dragOver(container);
+      fireEvent.dragEnter(container);
       expect(container.getAttribute("class")).toContain("dragging");
 
       fireEvent(container, dropEvent);
@@ -459,6 +459,31 @@ describe("GIVEN <FileUploader />", () => {
       expect(
         screen.getByTestId("file-uploader-container").getAttribute("class")
       ).toContain("aspectRatio_9/16");
+    });
+  });
+
+  describe("WHEN children prop is provided", () => {
+    it("THEN should render children content", () => {
+      render(
+        <FileUploader data-testid="file-uploader-element">
+          <span data-testid="custom-child">Custom content</span>
+        </FileUploader>
+      );
+      expect(screen.getByTestId("custom-child")).toBeDefined();
+      expect(screen.getByText("Custom content")).toBeDefined();
+    });
+
+    it("THEN should render children alongside placeholder", () => {
+      render(
+        <FileUploader
+          data-testid="file-uploader-element"
+          placeholder="Helper text"
+        >
+          <span data-testid="custom-child">Custom content</span>
+        </FileUploader>
+      );
+      expect(screen.getByText("Helper text")).toBeDefined();
+      expect(screen.getByText("Custom content")).toBeDefined();
     });
   });
 });

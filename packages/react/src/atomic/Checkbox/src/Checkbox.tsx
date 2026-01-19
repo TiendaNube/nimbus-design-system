@@ -13,6 +13,7 @@ const Checkbox: React.FC<CheckboxProps> & CheckboxComponents = ({
   className: _className,
   style: _style,
   appearance = "primary",
+  aiGenerated = false,
   indeterminate = false,
   label,
   id,
@@ -34,6 +35,8 @@ const Checkbox: React.FC<CheckboxProps> & CheckboxComponents = ({
       ],
     [indeterminate, appearance, disabled]
   );
+
+  const shouldApplyAI = aiGenerated && appearance !== "danger";
 
   return (
     <label
@@ -57,9 +60,11 @@ const Checkbox: React.FC<CheckboxProps> & CheckboxComponents = ({
         data-testid="checkmark"
         className={[
           checkbox.classnames.container__checkmark,
-          checkbox.sprinkle({
-            borderColor,
-          }),
+          shouldApplyAI
+            ? checkbox.classnames.aiGenerated
+            : checkbox.sprinkle({
+                borderColor,
+              }),
         ].join(" ")}
       >
         <div className={checkbox.classnames.container__checkmark_checkicon}>

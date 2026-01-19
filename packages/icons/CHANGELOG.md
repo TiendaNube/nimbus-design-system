@@ -2,6 +2,24 @@
 
 Nimbus-icons is an open source icon system built by Nuvemshop / Tiendanube.
 
+## 2026-01-12 `1.15.1`
+
+#### 🎉 New features
+
+- Added support for React 19 in peer dependencies. ([#404](https://github.com/TiendaNube/nimbus-design-system/pull/404) by [@joacotornello](https://github.com/joacotornello))
+
+## 2026-01-09 `1.15.0`
+
+#### 🎉 New features
+
+- Adds `folder` icon. ([#392](https://github.com/TiendaNube/nimbus-design-system/pull/392) by [@joacotornello](https://github.com/joacotornello))
+- Adds `horizontal-padding` icon. ([#392](https://github.com/TiendaNube/nimbus-design-system/pull/392) by [@joacotornello](https://github.com/joacotornello))
+- Adds `vertical-padding` icon. ([#392](https://github.com/TiendaNube/nimbus-design-system/pull/392) by [@joacotornello](https://github.com/joacotornello))
+- Adds `margin` icon. ([#392](https://github.com/TiendaNube/nimbus-design-system/pull/392) by [@joacotornello](https://github.com/joacotornello))
+- Adds `layout` icon. ([#392](https://github.com/TiendaNube/nimbus-design-system/pull/392) by [@joacotornello](https://github.com/joacotornello))
+- Adds `thumbnail` icon. ([#392](https://github.com/TiendaNube/nimbus-design-system/pull/392) by [@joacotornello](https://github.com/joacotornello))
+- Adds `vertical-spacing` icon. ([#392](https://github.com/TiendaNube/nimbus-design-system/pull/392) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-11-07 `1.14.0`
 
 #### 🎉 New features

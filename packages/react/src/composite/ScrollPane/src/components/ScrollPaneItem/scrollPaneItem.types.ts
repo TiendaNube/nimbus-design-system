@@ -1,5 +1,4 @@
 import React, { ReactNode } from "react";
-import { BoxProps } from "@nimbus-ds/box";
 
 export interface ScrollPaneItemProperties {
   /**
@@ -13,15 +12,11 @@ export interface ScrollPaneItemProperties {
   className?: string;
 
   /**
-   * Custom inline styles
-   */
-  style?: React.CSSProperties;
-
-  /**
    * Callback fired when the item is clicked
    */
   onClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
 }
 
-export type ScrollPaneItemProps = ScrollPaneItemProperties &
-  Omit<BoxProps, "children">;
+export type ScrollPaneItemProps = ScrollPaneItemProperties & {
+  style?: React.CSSProperties;
+} & Omit<React.HTMLAttributes<HTMLDivElement>, "children">;

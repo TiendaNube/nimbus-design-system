@@ -3,7 +3,7 @@
   "name": "Text",
   "totalProps": 13,
   "packageName": "@nimbus-ds/text",
-  "version": "6.6.0",
+  "version": "6.6.1",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/text",
   "props": [
     {
@@ -21,6 +21,154 @@
       ],
       "type": "string",
       "title": "as",
+      "required": false
+    },
+    {
+      "description": "The fontSize property sets the size of the text.",
+      "default": "base",
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "xs": {
+              "enum": [
+                "base",
+                "caption",
+                "highlight"
+              ],
+              "type": "string",
+              "title": "xs"
+            },
+            "md": {
+              "enum": [
+                "base",
+                "caption",
+                "highlight"
+              ],
+              "type": "string",
+              "title": "md"
+            },
+            "lg": {
+              "enum": [
+                "base",
+                "caption",
+                "highlight"
+              ],
+              "type": "string",
+              "title": "lg"
+            },
+            "xl": {
+              "enum": [
+                "base",
+                "caption",
+                "highlight"
+              ],
+              "type": "string",
+              "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "base",
+                "caption",
+                "highlight"
+              ],
+              "type": "string",
+              "title": "xxl"
+            }
+          },
+          "additionalProperties": false,
+          "propertyOrder": [
+            "xs",
+            "md",
+            "lg",
+            "xl",
+            "xxl"
+          ]
+        },
+        {
+          "enum": [
+            "base",
+            "caption",
+            "highlight"
+          ],
+          "type": "string"
+        }
+      ],
+      "title": "fontSize",
+      "required": false
+    },
+    {
+      "description": "The fontWeight property sets how thick or thin characters in text should be displayed.",
+      "default": "regular",
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "xs": {
+              "enum": [
+                "bold",
+                "medium",
+                "regular"
+              ],
+              "type": "string",
+              "title": "xs"
+            },
+            "md": {
+              "enum": [
+                "bold",
+                "medium",
+                "regular"
+              ],
+              "type": "string",
+              "title": "md"
+            },
+            "lg": {
+              "enum": [
+                "bold",
+                "medium",
+                "regular"
+              ],
+              "type": "string",
+              "title": "lg"
+            },
+            "xl": {
+              "enum": [
+                "bold",
+                "medium",
+                "regular"
+              ],
+              "type": "string",
+              "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "bold",
+                "medium",
+                "regular"
+              ],
+              "type": "string",
+              "title": "xxl"
+            }
+          },
+          "additionalProperties": false,
+          "propertyOrder": [
+            "xs",
+            "md",
+            "lg",
+            "xl",
+            "xxl"
+          ]
+        },
+        {
+          "enum": [
+            "bold",
+            "medium",
+            "regular"
+          ],
+          "type": "string"
+        }
+      ],
+      "title": "fontWeight",
       "required": false
     },
     {
@@ -224,154 +372,6 @@
       "required": false
     },
     {
-      "description": "The fontSize property sets the size of the text.",
-      "default": "base",
-      "anyOf": [
-        {
-          "type": "object",
-          "properties": {
-            "xs": {
-              "enum": [
-                "base",
-                "caption",
-                "highlight"
-              ],
-              "type": "string",
-              "title": "xs"
-            },
-            "md": {
-              "enum": [
-                "base",
-                "caption",
-                "highlight"
-              ],
-              "type": "string",
-              "title": "md"
-            },
-            "lg": {
-              "enum": [
-                "base",
-                "caption",
-                "highlight"
-              ],
-              "type": "string",
-              "title": "lg"
-            },
-            "xl": {
-              "enum": [
-                "base",
-                "caption",
-                "highlight"
-              ],
-              "type": "string",
-              "title": "xl"
-            },
-            "xxl": {
-              "enum": [
-                "base",
-                "caption",
-                "highlight"
-              ],
-              "type": "string",
-              "title": "xxl"
-            }
-          },
-          "additionalProperties": false,
-          "propertyOrder": [
-            "xs",
-            "md",
-            "lg",
-            "xl",
-            "xxl"
-          ]
-        },
-        {
-          "enum": [
-            "base",
-            "caption",
-            "highlight"
-          ],
-          "type": "string"
-        }
-      ],
-      "title": "fontSize",
-      "required": false
-    },
-    {
-      "description": "The fontWeight property sets how thick or thin characters in text should be displayed.",
-      "default": "regular",
-      "anyOf": [
-        {
-          "type": "object",
-          "properties": {
-            "xs": {
-              "enum": [
-                "bold",
-                "medium",
-                "regular"
-              ],
-              "type": "string",
-              "title": "xs"
-            },
-            "md": {
-              "enum": [
-                "bold",
-                "medium",
-                "regular"
-              ],
-              "type": "string",
-              "title": "md"
-            },
-            "lg": {
-              "enum": [
-                "bold",
-                "medium",
-                "regular"
-              ],
-              "type": "string",
-              "title": "lg"
-            },
-            "xl": {
-              "enum": [
-                "bold",
-                "medium",
-                "regular"
-              ],
-              "type": "string",
-              "title": "xl"
-            },
-            "xxl": {
-              "enum": [
-                "bold",
-                "medium",
-                "regular"
-              ],
-              "type": "string",
-              "title": "xxl"
-            }
-          },
-          "additionalProperties": false,
-          "propertyOrder": [
-            "xs",
-            "md",
-            "lg",
-            "xl",
-            "xxl"
-          ]
-        },
-        {
-          "enum": [
-            "bold",
-            "medium",
-            "regular"
-          ],
-          "type": "string"
-        }
-      ],
-      "title": "fontWeight",
-      "required": false
-    },
-    {
       "description": "The lineHeight property specifies the line height of the text.",
       "default": "base",
       "anyOf": [
@@ -443,85 +443,6 @@
         }
       ],
       "title": "lineHeight",
-      "required": false
-    },
-    {
-      "description": "The overflow property specifies what happens if content overflows an element's box.",
-      "anyOf": [
-        {
-          "type": "object",
-          "properties": {
-            "xs": {
-              "enum": [
-                "auto",
-                "hidden",
-                "scroll",
-                "visible"
-              ],
-              "type": "string",
-              "title": "xs"
-            },
-            "md": {
-              "enum": [
-                "auto",
-                "hidden",
-                "scroll",
-                "visible"
-              ],
-              "type": "string",
-              "title": "md"
-            },
-            "lg": {
-              "enum": [
-                "auto",
-                "hidden",
-                "scroll",
-                "visible"
-              ],
-              "type": "string",
-              "title": "lg"
-            },
-            "xl": {
-              "enum": [
-                "auto",
-                "hidden",
-                "scroll",
-                "visible"
-              ],
-              "type": "string",
-              "title": "xl"
-            },
-            "xxl": {
-              "enum": [
-                "auto",
-                "hidden",
-                "scroll",
-                "visible"
-              ],
-              "type": "string",
-              "title": "xxl"
-            }
-          },
-          "additionalProperties": false,
-          "propertyOrder": [
-            "xs",
-            "md",
-            "lg",
-            "xl",
-            "xxl"
-          ]
-        },
-        {
-          "enum": [
-            "auto",
-            "hidden",
-            "scroll",
-            "visible"
-          ],
-          "type": "string"
-        }
-      ],
-      "title": "overflow",
       "required": false
     },
     {
@@ -602,79 +523,6 @@
         }
       ],
       "title": "textAlign",
-      "required": false
-    },
-    {
-      "description": "The textDecoration shorthand property sets the appearance of decorative lines on text.",
-      "anyOf": [
-        {
-          "type": "object",
-          "properties": {
-            "xs": {
-              "enum": [
-                "line-through",
-                "none",
-                "underline"
-              ],
-              "type": "string",
-              "title": "xs"
-            },
-            "md": {
-              "enum": [
-                "line-through",
-                "none",
-                "underline"
-              ],
-              "type": "string",
-              "title": "md"
-            },
-            "lg": {
-              "enum": [
-                "line-through",
-                "none",
-                "underline"
-              ],
-              "type": "string",
-              "title": "lg"
-            },
-            "xl": {
-              "enum": [
-                "line-through",
-                "none",
-                "underline"
-              ],
-              "type": "string",
-              "title": "xl"
-            },
-            "xxl": {
-              "enum": [
-                "line-through",
-                "none",
-                "underline"
-              ],
-              "type": "string",
-              "title": "xxl"
-            }
-          },
-          "additionalProperties": false,
-          "propertyOrder": [
-            "xs",
-            "md",
-            "lg",
-            "xl",
-            "xxl"
-          ]
-        },
-        {
-          "enum": [
-            "line-through",
-            "none",
-            "underline"
-          ],
-          "type": "string"
-        }
-      ],
-      "title": "textDecoration",
       "required": false
     },
     {
@@ -956,6 +804,158 @@
       ],
       "title": "lineClamp",
       "required": false
+    },
+    {
+      "description": "The overflow property specifies what happens if content overflows an element's box.",
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "xs": {
+              "enum": [
+                "auto",
+                "hidden",
+                "scroll",
+                "visible"
+              ],
+              "type": "string",
+              "title": "xs"
+            },
+            "md": {
+              "enum": [
+                "auto",
+                "hidden",
+                "scroll",
+                "visible"
+              ],
+              "type": "string",
+              "title": "md"
+            },
+            "lg": {
+              "enum": [
+                "auto",
+                "hidden",
+                "scroll",
+                "visible"
+              ],
+              "type": "string",
+              "title": "lg"
+            },
+            "xl": {
+              "enum": [
+                "auto",
+                "hidden",
+                "scroll",
+                "visible"
+              ],
+              "type": "string",
+              "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "auto",
+                "hidden",
+                "scroll",
+                "visible"
+              ],
+              "type": "string",
+              "title": "xxl"
+            }
+          },
+          "additionalProperties": false,
+          "propertyOrder": [
+            "xs",
+            "md",
+            "lg",
+            "xl",
+            "xxl"
+          ]
+        },
+        {
+          "enum": [
+            "auto",
+            "hidden",
+            "scroll",
+            "visible"
+          ],
+          "type": "string"
+        }
+      ],
+      "title": "overflow",
+      "required": false
+    },
+    {
+      "description": "The textDecoration shorthand property sets the appearance of decorative lines on text.",
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "xs": {
+              "enum": [
+                "line-through",
+                "none",
+                "underline"
+              ],
+              "type": "string",
+              "title": "xs"
+            },
+            "md": {
+              "enum": [
+                "line-through",
+                "none",
+                "underline"
+              ],
+              "type": "string",
+              "title": "md"
+            },
+            "lg": {
+              "enum": [
+                "line-through",
+                "none",
+                "underline"
+              ],
+              "type": "string",
+              "title": "lg"
+            },
+            "xl": {
+              "enum": [
+                "line-through",
+                "none",
+                "underline"
+              ],
+              "type": "string",
+              "title": "xl"
+            },
+            "xxl": {
+              "enum": [
+                "line-through",
+                "none",
+                "underline"
+              ],
+              "type": "string",
+              "title": "xxl"
+            }
+          },
+          "additionalProperties": false,
+          "propertyOrder": [
+            "xs",
+            "md",
+            "lg",
+            "xl",
+            "xxl"
+          ]
+        },
+        {
+          "enum": [
+            "line-through",
+            "none",
+            "underline"
+          ],
+          "type": "string"
+        }
+      ],
+      "title": "textDecoration",
+      "required": false
     }
   ],
   "subComponents": [
@@ -974,15 +974,15 @@
           "required": false
         },
         {
-          "description": "Height of the skeleton. Useful when you don't want to adapt the skeleton to a text element but for instance a card.",
-          "type": "string",
-          "title": "height",
-          "required": false
-        },
-        {
           "description": "Width of the skeleton. Useful when the skeleton is inside an inline element with no width of its own.",
           "type": "string",
           "title": "width",
+          "required": false
+        },
+        {
+          "description": "Height of the skeleton. Useful when you don't want to adapt the skeleton to a text element but for instance a card.",
+          "type": "string",
+          "title": "height",
           "required": false
         },
         {

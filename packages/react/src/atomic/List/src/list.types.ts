@@ -1,4 +1,5 @@
 import { HTMLAttributes, ReactNode } from "react";
+import { list } from "@nimbus-ds/styles";
 import { ListSkeletonItem, ListSkeleton, ListItem } from "./components";
 
 export interface ListComponents {
@@ -18,6 +19,11 @@ export interface ListProperties {
    * @default ul
    */
   as?: "ul" | "ol";
+  /**
+   * The padding of the list.
+   * @default 6
+   */
+  padding?: keyof typeof list.properties.padding;
 }
 
 export type ListProps = ListProperties &

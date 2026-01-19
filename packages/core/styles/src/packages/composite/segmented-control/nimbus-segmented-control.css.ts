@@ -26,12 +26,10 @@ const buttonBase = style({
   borderStyle: "solid",
   borderWidth: varsThemeBase.shape.border.width[1],
   borderColor: "transparent",
-  transition: `all ${varsThemeBase.motion.speed.slow} ease`,
-  ":focus": {
-    boxShadow: varsThemeBase.utils.focus,
-  },
+  transition: `background-color ${varsThemeBase.motion.speed.slow} ease, border-color ${varsThemeBase.motion.speed.slow} ease, box-shadow ${varsThemeBase.motion.speed.slow} ease`,
   ":focus-visible": {
     boxShadow: varsThemeBase.utils.focus,
+    outline: "none",
   },
 });
 

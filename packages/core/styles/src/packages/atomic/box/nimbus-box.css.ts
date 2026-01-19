@@ -30,6 +30,7 @@ import {
   titleLineHeightProperties,
   fontWeightProperties,
   textAlignProperties,
+  scrollbarWidthProperties,
 } from "../../../properties";
 import { mediaQueries, varsThemeBase } from "../../../themes";
 import { createBorderGradient, gradients } from "../../../gradients";
@@ -107,6 +108,10 @@ const boxBorderColorProperties = {
   "neutral-surface": borderColorProperties["neutral-surface"],
   "neutral-surfaceDisabled": borderColorProperties["neutral-surfaceDisabled"],
   "neutral-surfaceHighlight": borderColorProperties["neutral-surfaceHighlight"],
+
+  "ai-generative-interactiveHover":
+    borderColorProperties["ai-generativeInteractiveHover"],
+
   transparent: "transparent",
 };
 
@@ -245,6 +250,7 @@ const defineProperties = defineRainbowProperties({
     fontWeight: fontWeightProperties,
     fontSize: fontSizeProperties,
     textAlign: textAlignProperties,
+    scrollbarWidth: scrollbarWidthProperties,
   },
   shorthands: {
     borderWidth: [
@@ -312,6 +318,7 @@ const properties = {
   fontWeight: fontWeightProperties,
   fontSize: fontSizeProperties,
   lineHeight: lineHeightProperties,
+  scrollbarWidth: scrollbarWidthProperties,
 };
 
 const sprinkle = createRainbowSprinkles(defineProperties);

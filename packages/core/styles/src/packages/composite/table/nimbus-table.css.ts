@@ -13,16 +13,22 @@ import { mediaQueries, varsThemeBase } from "../../../themes";
  * Style
  * -----------------------------------------------------------------------------------------------*/
 
+const container__wrapper = style({
+  overflowX: "auto",
+  width: "100%",
+  paddingBottom: varsThemeBase.spacing["0-5"],
+  borderRadius: varsThemeBase.shape.border.radius[2],
+  boxShadow: varsThemeBase.shadow.level[2],
+});
+
 const container = style({
   backgroundColor: varsThemeBase.colors.neutral.background,
-  borderColor: varsThemeBase.colors.neutral.surface,
   color: varsThemeBase.colors.neutral.textHigh,
-  boxShadow: varsThemeBase.shadow.level[2],
   borderCollapse: "collapse",
-  borderRadius: varsThemeBase.shape.border.radius[2],
   borderSpacing: 0,
   fontFamily: varsThemeBase.fontFamily.sans,
-  overflow: "hidden",
+  // 'clip' to maintain border-radius clipping while allowing position:sticky to work on fixed columns.
+  overflow: "clip",
   width: "100%",
   tableLayout: "fixed",
 });
@@ -51,17 +57,67 @@ const container__cell = style({
   boxSizing: "content-box",
 });
 
+const container__cell_fixed = style({
+  position: "sticky",
+  zIndex: 30,
+  /**
+   * Use CSS variable for row background with fallback to table default.
+   * This allows fixed cells to match the row's background color when set.
+   */
+  backgroundColor: `var(--nimbus-table-row-bg, ${varsThemeBase.colors.neutral.background})`,
+});
+
+/* -------------------------------------------------------------------------------------------------
+ * Fixed columns dividers
+ * -----------------------------------------------------------------------------------------------*/
+
+const container__cell_fixed_left = style({});
+
+/**
+ * Using ::after ensures the separator stays visible when content scrolls under the fixed column,
+ * as it sits on top of the cell content and adjacent cells.
+ */
+globalStyle(`${container__cell_fixed_left}::after`, {
+  content: '""',
+  position: "absolute",
+  top: 0,
+  right: "-1px",
+  bottom: 0,
+  width: "1px",
+  backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
+  boxShadow: `2px 0 4px 0 ${varsThemeBase.colors.neutral.surfaceHighlight}`,
+  pointerEvents: "none",
+});
+
+const container__cell_fixed_right = style({});
+
+globalStyle(`${container__cell_fixed_right}::before`, {
+  content: '""',
+  position: "absolute",
+  top: 0,
+  left: "-1px",
+  bottom: 0,
+  width: "1px",
+  backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
+  boxShadow: `-2px 0 4px 0 ${varsThemeBase.colors.neutral.surfaceHighlight}`,
+  pointerEvents: "none",
+});
+
 globalStyle(`${container} th`, {
   fontWeight: "unset",
   textAlign: "unset",
 });
 
 export const styles = {
+  container__wrapper,
   container,
   container__head,
   container__body,
   container__row,
   container__cell,
+  container__cell_fixed,
+  container__cell_fixed_left,
+  container__cell_fixed_right,
 };
 
 /* -------------------------------------------------------------------------------------------------

@@ -3,7 +3,7 @@
   "name": "SegmentedControl",
   "totalProps": 4,
   "packageName": "@nimbus-ds/segmented-control",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/segmented-control",
   "props": [
     {

@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/webpack",
-  "version": "1.7.0",
+  "version": "1.7.2",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [

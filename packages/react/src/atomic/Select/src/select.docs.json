@@ -3,7 +3,7 @@
   "name": "Select",
   "totalProps": 5,
   "packageName": "@nimbus-ds/select",
-  "version": "2.6.0",
+  "version": "2.6.1",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/select",
   "props": [
     {
