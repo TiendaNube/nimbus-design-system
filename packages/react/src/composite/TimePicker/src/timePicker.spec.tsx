@@ -4,11 +4,8 @@ import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { TimePicker } from "./TimePicker";
 import { TimePickerProps } from "./timePicker.types";
 
-const makeSut = (props: Partial<TimePickerProps> = {}) => {
-  return render(
-    <TimePicker data-testid="timepicker-element" {...props} />
-  );
-};
+const makeSut = (props: Partial<TimePickerProps> = {}) =>
+  render(<TimePicker data-testid="timepicker-element" {...props} />);
 
 const ControlledTimePicker = (props: Partial<TimePickerProps> = {}) => {
   const [time, setTime] = useState<string | null>(props.value as string | null);
@@ -90,7 +87,9 @@ describe("GIVEN <TimePicker />", () => {
       fireEvent.click(input);
 
       await waitFor(() => {
-        expect(screen.getByRole("group", { name: "AM/PM selector" })).toBeDefined();
+        expect(
+          screen.getByRole("group", { name: "AM/PM selector" })
+        ).toBeDefined();
       });
     });
   });
@@ -250,9 +249,9 @@ describe("GIVEN <TimePicker />", () => {
   describe("WHEN rendered with accessibility attributes", () => {
     it("THEN should apply aria-label", () => {
       makeSut({ "aria-label": "Select appointment time" });
-      expect(
-        screen.getByRole("combobox").getAttribute("aria-label")
-      ).toBe("Select appointment time");
+      expect(screen.getByRole("combobox").getAttribute("aria-label")).toBe(
+        "Select appointment time"
+      );
     });
   });
 
@@ -266,7 +265,9 @@ describe("GIVEN <TimePicker />", () => {
 
     it("THEN should apply id to the input", () => {
       makeSut({ id: "time-input" });
-      expect(screen.getByRole("combobox").getAttribute("id")).toBe("time-input");
+      expect(screen.getByRole("combobox").getAttribute("id")).toBe(
+        "time-input"
+      );
     });
   });
 
