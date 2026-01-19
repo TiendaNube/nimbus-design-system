@@ -140,15 +140,12 @@ describe("GIVEN <Accordion.Header />", () => {
     it("THEN should render as button when interactive is true (default)", () => {
       render(
         <Accordion>
-          <Accordion.Item index="0" interactive>
-            <AccordionHeader
-              title="Interactive"
-              data-testid="accordion-header-element"
-            />
+          <Accordion.Item index="0" interactive={true}>
+            <AccordionHeader title="Interactive" data-testid="accordion-header-element" />
           </Accordion.Item>
         </Accordion>
       );
-
+      
       const header = screen.getByTestId("accordion-header-element");
       expect(header.tagName).toBe("BUTTON");
     });
@@ -157,14 +154,11 @@ describe("GIVEN <Accordion.Header />", () => {
       render(
         <Accordion>
           <Accordion.Item index="0" interactive={false}>
-            <AccordionHeader
-              title="Non-interactive"
-              data-testid="accordion-header-element"
-            />
+            <AccordionHeader title="Non-interactive" data-testid="accordion-header-element" />
           </Accordion.Item>
         </Accordion>
       );
-
+      
       const header = screen.getByTestId("accordion-header-element");
       expect(header.tagName).toBe("DIV");
     });
@@ -177,7 +171,7 @@ describe("GIVEN <Accordion.Header />", () => {
           </Accordion.Item>
         </Accordion>
       );
-
+      
       expect(screen.queryByTestId("accordion-icon-Toggle")).toBeNull();
     });
 
@@ -186,35 +180,14 @@ describe("GIVEN <Accordion.Header />", () => {
       render(
         <Accordion onItemSelect={onSelectMock}>
           <Accordion.Item index="0" interactive={false}>
-            <AccordionHeader
-              title="Non-interactive"
-              data-testid="accordion-header-element"
-            />
+            <AccordionHeader title="Non-interactive" data-testid="accordion-header-element" />
           </Accordion.Item>
         </Accordion>
       );
-
+      
       const header = screen.getByTestId("accordion-header-element");
       fireEvent.click(header);
       expect(onSelectMock).not.toHaveBeenCalled();
-    });
-
-    it("THEN should include static class when interactive is false", () => {
-      render(
-        <Accordion>
-          <Accordion.Item index="0" interactive={false}>
-            <AccordionHeader
-              title="Non-interactive"
-              data-testid="accordion-header-element"
-            />
-          </Accordion.Item>
-        </Accordion>
-      );
-
-      const header = screen.getByTestId("accordion-header-element");
-      expect(header.getAttribute("class")).toContain(
-        "accordion-header--static"
-      );
     });
   });
 });

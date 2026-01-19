@@ -78,7 +78,6 @@ const AccordionHeader: React.FC<AccordionHeaderProps> = ({
             borderTop,
             borderBottom,
           }),
-          "accordion-header--static",
         ].join(" ")}
       >
         {headerContent}
