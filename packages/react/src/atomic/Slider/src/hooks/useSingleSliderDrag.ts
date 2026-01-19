@@ -12,7 +12,7 @@ import {
 } from "./sliderDragUtils";
 
 interface UseSingleSliderDragProps {
-  trackRef: RefObject<HTMLDivElement>;
+  trackRef: RefObject<HTMLDivElement | null>;
   min: number;
   max: number;
   step: number;

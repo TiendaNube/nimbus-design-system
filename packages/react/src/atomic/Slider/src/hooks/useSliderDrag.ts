@@ -14,7 +14,7 @@ import {
 type DragTarget = "min" | "max" | null;
 
 interface UseSliderDragProps {
-  trackRef: RefObject<HTMLDivElement>;
+  trackRef: RefObject<HTMLDivElement | null>;
   min: number;
   max: number;
   step: number;

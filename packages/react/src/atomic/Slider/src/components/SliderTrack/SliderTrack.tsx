@@ -5,6 +5,7 @@ import { assignInlineVars } from "@vanilla-extract/dynamic";
 
 import type { SliderAppearance } from "../../slider.types";
 
+/* eslint-disable react/require-default-props */
 interface SliderTrackProps {
   appearance: SliderAppearance;
   minPercentage?: number;
@@ -22,7 +23,7 @@ const SliderTrackComponent = forwardRef<HTMLDivElement, SliderTrackProps>(
       maxPercentage,
       disabled = false,
       dataTestId,
-      children
+      children,
     },
     ref
   ) => (
@@ -43,7 +44,7 @@ const SliderTrackComponent = forwardRef<HTMLDivElement, SliderTrackProps>(
         }
         style={assignInlineVars({
           [slider.vars.fillLeft]: `${minPercentage}%`,
-          [slider.vars.fillRight]: `${100 - maxPercentage}%`
+          [slider.vars.fillRight]: `${100 - maxPercentage}%`,
         })}
         data-testid={dataTestId ? `${dataTestId}-fill` : undefined}
       />
@@ -53,10 +54,5 @@ const SliderTrackComponent = forwardRef<HTMLDivElement, SliderTrackProps>(
 );
 
 SliderTrackComponent.displayName = "SliderTrack";
-SliderTrackComponent.defaultProps = {
-  minPercentage: 0,
-  disabled: false,
-  dataTestId: undefined
-};
 
 export const SliderTrack = memo(SliderTrackComponent);
