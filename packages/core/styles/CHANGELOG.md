@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2026-01-20 `9.52.0`
+
+#### 🎉 New features
+
+- `Accordion`: Added `interactive` prop to allow render the Accordion as a static div. ([#409](https://github.com/TiendaNube/nimbus-design-system/pull/409) by [@Pfurno-TN](https://github.com/Pfurno-TN))
+
 ## 2026-01-19 `9.51.0`
 
 #### 🎉 New features
