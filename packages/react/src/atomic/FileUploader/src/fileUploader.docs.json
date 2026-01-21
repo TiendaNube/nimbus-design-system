@@ -36,7 +36,16 @@
     {
       "description": "Permitted aspect ratios for the size of the file uploader.",
       "default": "1/1",
-      "enum": ["1/1", "1/2", "16/9", "2/1", "3/4", "4/3", "9/16", "none"],
+      "enum": [
+        "1/1",
+        "1/2",
+        "16/9",
+        "2/1",
+        "3/4",
+        "4/3",
+        "9/16",
+        "none"
+      ],
       "type": "string",
       "title": "aspectRatio",
       "required": false
@@ -44,7 +53,10 @@
     {
       "description": "Defines the position of the placeholder in relation to the icon.",
       "default": "column",
-      "enum": ["column", "row"],
+      "enum": [
+        "column",
+        "row"
+      ],
       "type": "string",
       "title": "flexDirection",
       "required": false
@@ -128,7 +140,16 @@
         {
           "description": "Permitted aspect ratios for the size of the file uploader.",
           "default": "1/1",
-          "enum": ["1/1", "1/2", "16/9", "2/1", "3/4", "4/3", "9/16", "none"],
+          "enum": [
+            "1/1",
+            "1/2",
+            "16/9",
+            "2/1",
+            "3/4",
+            "4/3",
+            "9/16",
+            "none"
+          ],
           "type": "string",
           "title": "aspectRatio",
           "required": false
@@ -184,7 +205,11 @@
         {
           "description": "Background color of the overlay",
           "default": "primary-surface",
-          "enum": ["neutral-background", "primary-surface", "transparent"],
+          "enum": [
+            "neutral-background",
+            "primary-surface",
+            "transparent"
+          ],
           "type": "string",
           "title": "backgroundColor",
           "required": false
@@ -192,7 +217,18 @@
         {
           "description": "Border radius of the overlay",
           "default": 2,
-          "enum": ["0-5", "1", "2", "3", "4", "5", "6", "base", "full", "half"],
+          "enum": [
+            "0-5",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "base",
+            "full",
+            "half"
+          ],
           "type": "string",
           "title": "borderRadius",
           "required": false

@@ -15,7 +15,13 @@
     {
       "description": "Change the visual style of the alert.",
       "default": "neutral",
-      "enum": ["danger", "neutral", "primary", "success", "warning"],
+      "enum": [
+        "danger",
+        "neutral",
+        "primary",
+        "success",
+        "warning"
+      ],
       "type": "string",
       "title": "appearance",
       "required": false

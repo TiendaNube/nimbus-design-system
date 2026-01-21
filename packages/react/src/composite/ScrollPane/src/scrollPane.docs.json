@@ -36,7 +36,10 @@
     {
       "description": "The direction of the scroll (horizontal or vertical)",
       "default": "horizontal",
-      "enum": ["horizontal", "vertical"],
+      "enum": [
+        "horizontal",
+        "vertical"
+      ],
       "type": "string",
       "title": "direction",
       "required": false
