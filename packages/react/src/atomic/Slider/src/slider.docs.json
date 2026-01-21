@@ -59,7 +59,13 @@
     {
       "description": "Visual appearance of the slider fill.",
       "default": "primary",
-      "enum": ["danger", "neutral", "primary", "success", "warning"],
+      "enum": [
+        "danger",
+        "neutral",
+        "primary",
+        "success",
+        "warning"
+      ],
       "type": "string",
       "title": "appearance",
       "required": false
@@ -165,7 +171,13 @@
         {
           "description": "Visual appearance of the slider fill.",
           "default": "primary",
-          "enum": ["danger", "neutral", "primary", "success", "warning"],
+          "enum": [
+            "danger",
+            "neutral",
+            "primary",
+            "success",
+            "warning"
+          ],
           "type": "string",
           "title": "appearance",
           "required": false
