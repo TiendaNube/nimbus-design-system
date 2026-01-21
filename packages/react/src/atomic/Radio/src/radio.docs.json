@@ -15,10 +15,7 @@
     {
       "description": "Change the visual style of the radio.",
       "default": "radio",
-      "enum": [
-        "button",
-        "radio"
-      ],
+      "enum": ["button", "radio"],
       "type": "string",
       "title": "as",
       "required": false
@@ -56,10 +53,7 @@
         {
           "description": "Change the visual style of the radio.",
           "default": "radio",
-          "enum": [
-            "button",
-            "radio"
-          ],
+          "enum": ["button", "radio"],
           "type": "string",
           "title": "as",
           "required": false

@@ -43,16 +43,17 @@ View docs [here](https://nimbus.nuvemshop.com.br/documentation/composite-compone
 
 #### Accordion.Item
 
-| Property | Type | Default | Description |
-|----------|------|---------|-------------|
-| index | string | - | Unique identifier for the accordion item |
-| interactive | boolean | true | When false, the item renders as static (non-clickable) without hover effects or toggle icon. Useful for completed steps in a stepper flow. |
-| testId | string | - | Test identifier for the accordion item |
-| children | ReactNode | - | The content of the accordion item (typically AccordionHeader and AccordionBody) |
+| Property    | Type      | Default | Description                                                                                                                                |
+| ----------- | --------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| index       | string    | -       | Unique identifier for the accordion item                                                                                                   |
+| interactive | boolean   | true    | When false, the item renders as static (non-clickable) without hover effects or toggle icon. Useful for completed steps in a stepper flow. |
+| testId      | string    | -       | Test identifier for the accordion item                                                                                                     |
+| children    | ReactNode | -       | The content of the accordion item (typically AccordionHeader and AccordionBody)                                                            |
 
 ### Examples
 
 #### Basic usage
+
 ```tsx
 <Accordion>
   <Accordion.Item index="0">
@@ -63,6 +64,7 @@ View docs [here](https://nimbus.nuvemshop.com.br/documentation/composite-compone
 ```
 
 #### Non-interactive items (for stepper flows)
+
 ```tsx
 <Accordion>
   <Accordion.Item index="0" interactive={false}>

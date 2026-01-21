@@ -55,11 +55,7 @@
     {
       "description": "The padding properties are used to generate space around an modal's content area.",
       "default": "base",
-      "enum": [
-        "base",
-        "none",
-        "small"
-      ],
+      "enum": ["base", "none", "small"],
       "type": "string",
       "title": "padding",
       "required": false
@@ -93,13 +89,7 @@
             }
           },
           "additionalProperties": false,
-          "propertyOrder": [
-            "xs",
-            "md",
-            "lg",
-            "xl",
-            "xxl"
-          ]
+          "propertyOrder": ["xs", "md", "lg", "xl", "xxl"]
         },
         {
           "type": "string"
@@ -123,11 +113,7 @@
         {
           "description": "The padding properties are used to generate space around an modal's body content area.",
           "default": "none",
-          "enum": [
-            "base",
-            "none",
-            "small"
-          ],
+          "enum": ["base", "none", "small"],
           "type": "string",
           "title": "padding",
           "required": false
@@ -147,11 +133,7 @@
         {
           "description": "The padding properties are used to generate space around an modal's footer content area.",
           "default": "none",
-          "enum": [
-            "base",
-            "none",
-            "small"
-          ],
+          "enum": ["base", "none", "small"],
           "type": "string",
           "title": "padding",
           "required": false
@@ -183,11 +165,7 @@
         {
           "description": "The padding properties are used to generate space around an modal's header content area.",
           "default": "none",
-          "enum": [
-            "base",
-            "none",
-            "small"
-          ],
+          "enum": ["base", "none", "small"],
           "type": "string",
           "title": "padding",
           "required": false

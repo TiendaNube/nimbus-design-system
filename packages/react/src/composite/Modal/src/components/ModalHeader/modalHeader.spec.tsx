@@ -20,7 +20,10 @@ describe("GIVEN <Modal.Header />", () => {
       expect(screen.queryByTestId("header-title")).toBeNull();
     });
     it("THEN should render the submitted tag", () => {
-      makeSut({ title: "My Title", tag: <span data-testid="header-tag">Tag</span> });
+      makeSut({
+        title: "My Title",
+        tag: <span data-testid="header-tag">Tag</span>,
+      });
       expect(screen.getByTestId("header-tag")).toBeDefined();
       expect(screen.getByText("Tag")).toBeDefined();
     });

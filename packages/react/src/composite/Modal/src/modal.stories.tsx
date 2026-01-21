@@ -125,10 +125,7 @@ export const WithHeaderAndTag: Story = {
   args: {
     children: (
       <>
-        <Modal.Header
-          title="Title"
-          tag={<Tag appearance="primary">New</Tag>}
-        />
+        <Modal.Header title="Title" tag={<Tag appearance="primary">New</Tag>} />
         <Modal.Body>
           <Box
             borderStyle="dashed"

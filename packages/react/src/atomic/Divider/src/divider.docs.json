@@ -9,10 +9,7 @@
     {
       "description": "Defines the orientation of the divider.",
       "default": "horizontal",
-      "enum": [
-        "horizontal",
-        "vertical"
-      ],
+      "enum": ["horizontal", "vertical"],
       "type": "string",
       "title": "orientation",
       "required": false
@@ -20,9 +17,7 @@
     {
       "description": "Visual appearance color.",
       "default": "neutral",
-      "enum": [
-        "neutral"
-      ],
+      "enum": ["neutral"],
       "type": "string",
       "title": "appearance",
       "required": false
@@ -30,11 +25,7 @@
     {
       "description": "Thickness level based on shape.border.width tokens.",
       "default": 1,
-      "enum": [
-        1,
-        2,
-        3
-      ],
+      "enum": [1, 2, 3],
       "type": "number",
       "title": "thickness",
       "required": false

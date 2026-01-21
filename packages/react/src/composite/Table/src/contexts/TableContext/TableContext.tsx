@@ -13,4 +13,3 @@ export const TableContext = createContext<TableContextValue | null>(null);
  */
 export const useTableContext = (): TableContextValue | null =>
   useContext(TableContext);
-

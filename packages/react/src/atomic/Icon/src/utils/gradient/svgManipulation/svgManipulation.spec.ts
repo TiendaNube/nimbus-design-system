@@ -244,8 +244,10 @@ describe("svgManipulation utilities", () => {
       const resultProps = result.props as ElementProps;
 
       const children = getChildren(resultProps);
-      const child0Props = (children[0] as React.ReactElement).props as ElementProps;
-      const child1Props = (children[1] as React.ReactElement).props as ElementProps;
+      const child0Props = (children[0] as React.ReactElement)
+        .props as ElementProps;
+      const child1Props = (children[1] as React.ReactElement)
+        .props as ElementProps;
       expect(child0Props.fill).toBe(`url(#${testGradientId})`);
       expect(child1Props.stroke).toBe(`url(#${testGradientId})`);
     });
@@ -266,7 +268,8 @@ describe("svgManipulation utilities", () => {
       // React.Children.toArray filters out null/undefined, so we only get the path and text
       const children = getChildren(resultProps);
       expect(children).toHaveLength(2);
-      const child0Props = (children[0] as React.ReactElement).props as ElementProps;
+      const child0Props = (children[0] as React.ReactElement)
+        .props as ElementProps;
       expect(child0Props.fill).toBe(`url(#${testGradientId})`);
       expect(children[1]).toBe("text content");
     });

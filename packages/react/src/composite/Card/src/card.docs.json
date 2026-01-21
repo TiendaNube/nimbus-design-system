@@ -15,11 +15,7 @@
     {
       "description": "The padding properties are used to generate space around an card's content area.",
       "default": "base",
-      "enum": [
-        "base",
-        "none",
-        "small"
-      ],
+      "enum": ["base", "none", "small"],
       "type": "string",
       "title": "padding",
       "required": false
@@ -59,11 +55,7 @@
         {
           "description": "The padding properties are used to generate space around an card's body content area.",
           "default": "none",
-          "enum": [
-            "base",
-            "none",
-            "small"
-          ],
+          "enum": ["base", "none", "small"],
           "type": "string",
           "title": "padding",
           "required": false
@@ -83,11 +75,7 @@
         {
           "description": "The padding properties are used to generate space around an card's footer content area.",
           "default": "none",
-          "enum": [
-            "base",
-            "none",
-            "small"
-          ],
+          "enum": ["base", "none", "small"],
           "type": "string",
           "title": "padding",
           "required": false
@@ -113,11 +101,7 @@
         {
           "description": "The padding properties are used to generate space around an card's header content area.",
           "default": "none",
-          "enum": [
-            "base",
-            "none",
-            "small"
-          ],
+          "enum": ["base", "none", "small"],
           "type": "string",
           "title": "padding",
           "required": false
