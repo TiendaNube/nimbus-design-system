@@ -88,6 +88,7 @@ export const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
     );
 
     const {
+      initialValue,
       timeValue,
       displayValue,
       setHours,
@@ -149,7 +150,6 @@ export const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
     const handleOptionSelect = useCallback(
       (hours: number, minutes: number, ampm?: "AM" | "PM") => {
         selectTime(hours, minutes, ampm);
-        handleOpenChange(false);
       },
       [selectTime, handleOpenChange]
     );
@@ -158,7 +158,8 @@ export const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
       <>
         <TimePickerColumn
           type="hours"
-          value={timeValue?.hours ?? (format === "12h" ? 12 : 0)}
+          value={initialValue?.hours ?? (format === "12h" ? 12 : 0)}
+          selected={timeValue?.hours ?? (format === "12h" ? 12 : 0)}
           onSelect={setHours}
           format={format}
           isDisabled={isHourDisabled}
@@ -171,7 +172,8 @@ export const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
         <div className={classnames.divider} />
         <TimePickerColumn
           type="minutes"
-          value={timeValue?.minutes ?? 0}
+          value={initialValue?.minutes ?? 0}
+          selected={timeValue?.minutes ?? 0}
           onSelect={setMinutes}
           format={format}
           isDisabled={isMinuteDisabled}
@@ -225,8 +227,11 @@ export const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
 
     const renderDropdownMode = () => {
       const currentTimeValue = `${padZero(
-        timeValue?.hours ?? (format === "12h" ? 12 : 0)
-      )}:${padZero(timeValue?.minutes ?? 0)}`;
+        initialValue?.hours ?? (format === "12h" ? 12 : 0)
+      )}:${padZero(initialValue?.minutes ?? 0)}`;
+
+      const selectedTimeValue = `${padZero(timeValue?.hours ?? 0)}:${padZero(timeValue?.minutes ?? 0)}`;
+
       const hasSelection = dropdownTimeOptions.some(
         (option) => option.value === currentTimeValue
       );
@@ -296,13 +301,15 @@ export const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
             >
               <div className={classnames.dropdownList} role="listbox">
                 {dropdownTimeOptions.map((option, index) => {
-                  const selected = option.value === currentTimeValue;
+                  const isCurrent = option.value === currentTimeValue;
+                  const isSelected = option.value === selectedTimeValue;
+
                   const isFirstEnabled =
                     !hasSelection && index === firstEnabledIndex;
-                  const shouldBeTabable = selected || isFirstEnabled;
+                  const shouldBeTabable = isCurrent || isFirstEnabled;
 
                   let optionRef;
-                  if (selected) {
+                  if (isCurrent) {
                     optionRef = selectedOptionRef;
                   } else if (isFirstEnabled) {
                     optionRef = firstOptionRef;
@@ -312,7 +319,8 @@ export const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
                     <TimePickerOption
                       key={option.value}
                       ref={optionRef}
-                      selected={selected}
+                      current={isCurrent}
+                      selected={isSelected}
                       disabled={option.disabled}
                       onSelect={() =>
                         handleOptionSelect(
@@ -380,7 +388,7 @@ export const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
                 ref={refs.setFloating}
                 className={
                   classnames.panel +
-                  (mode === "dropdown" ? ` ${  classnames.panelDropdown}` : "")
+                  (mode === "dropdown" ? ` ${classnames.panelDropdown}` : "")
                 }
                 style={floatingStyles}
                 {...getFloatingProps()}

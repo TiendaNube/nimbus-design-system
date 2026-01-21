@@ -5,6 +5,7 @@ import { TimePickerColumnProps } from "../../timePicker.types";
 import { padZero } from "../../utils/timeUtils";
 
 const { classnames } = timePicker;
+const ITEM_HEIGHT = 32;
 
 /**
  * TimePickerColumn renders a scrollable column of time values (hours or minutes).
@@ -13,6 +14,7 @@ const { classnames } = timePicker;
 export const TimePickerColumn: React.FC<TimePickerColumnProps> = ({
   type,
   value,
+  selected,
   onSelect,
   format,
   isDisabled,
@@ -48,10 +50,9 @@ export const TimePickerColumn: React.FC<TimePickerColumnProps> = ({
     const index = values.indexOf(value);
     if (index === -1) return;
 
-    const itemHeight = 36;
     const containerHeight = scrollContainer.clientHeight;
     const scrollTop =
-      index * itemHeight - (containerHeight / 2 - itemHeight / 2);
+      index * ITEM_HEIGHT - (containerHeight / 2 - ITEM_HEIGHT / 2);
 
     scrollContainer.scrollTo({
       top: Math.max(0, scrollTop),
@@ -124,7 +125,8 @@ export const TimePickerColumn: React.FC<TimePickerColumnProps> = ({
     itemValue: number
   ): keyof typeof classnames.optionState => {
     if (isDisabled?.(itemValue)) return "disabled";
-    if (itemValue === value) return "selected";
+    if (itemValue === selected) return "selected";
+    if (itemValue === value) return "current";
     return "default";
   };
 

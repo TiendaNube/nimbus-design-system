@@ -139,7 +139,7 @@ type OmittedHTMLAttributes = "value" | "onChange" | "placeholder" | "disabled";
 
 export interface TimePickerProps
   extends TimePickerProperties,
-    Omit<HTMLAttributes<HTMLDivElement>, OmittedHTMLAttributes> {
+  Omit<HTMLAttributes<HTMLDivElement>, OmittedHTMLAttributes> {
   /**
    * Ref to the container element.
    */
@@ -152,9 +152,15 @@ export interface TimePickerColumnProps {
    */
   type: "hours" | "minutes";
   /**
-   * Currently selected value.
+   * Current time picker column value.
    */
   value: number;
+
+  /**
+   * Currently selected value.
+   */
+  selected: number | null;
+
   /**
    * Callback when a value is selected.
    */

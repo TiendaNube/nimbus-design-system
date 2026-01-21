@@ -18,6 +18,7 @@ interface UseTimePickerStateProps {
 }
 
 interface UseTimePickerStateReturn {
+  initialValue: TimeValue | null;
   timeValue: TimeValue | null;
   displayValue: string;
   setHours: (hours: number) => void;
@@ -51,14 +52,8 @@ export function useTimePickerState({
   minTime,
   maxTime,
 }: UseTimePickerStateProps): UseTimePickerStateReturn {
-  const [internalValue, setInternalValue] = useState<TimeValue | null>(() =>
-    parseTimeString(value, format)
-  );
-
-  useEffect(() => {
-    const parsed = parseTimeString(value, format);
-    setInternalValue(parsed);
-  }, [value, format]);
+  const [internalValue, setInternalValue] = useState<TimeValue | null>(null);
+  const initialValue = useMemo(() => parseTimeString(value, format), [value, format]);
 
   const minMinutes = useMemo(() => parseMinMaxTime(minTime), [minTime]);
   const maxMinutes = useMemo(() => parseMinMaxTime(maxTime), [maxTime]);
@@ -94,8 +89,8 @@ export function useTimePickerState({
 
   const isMinuteDisabled = useCallback(
     (minute: number): boolean => internalValue
-        ? isTimeDisabled(internalValue.hours, minute, internalValue.ampm)
-        : false,
+      ? isTimeDisabled(internalValue.hours, minute, internalValue.ampm)
+      : false,
     [internalValue, isTimeDisabled]
   );
 
@@ -201,11 +196,12 @@ export function useTimePickerState({
   }, [format, step, isTimeDisabled]);
 
   const displayValue = useMemo(
-    () => formatTimeValue(internalValue, format),
-    [internalValue, format]
+    () => formatTimeValue(initialValue, format),
+    [initialValue, format]
   );
 
   return {
+    initialValue,
     timeValue: internalValue,
     displayValue,
     setHours,

@@ -11,8 +11,8 @@ const panel = style({
   backgroundColor: varsThemeBase.colors.neutral.background,
   borderRadius: varsThemeBase.shape.border.radius[2],
   boxShadow: varsThemeBase.shadow.level[3],
-  padding: varsThemeBase.spacing[2],
-  gap: varsThemeBase.spacing[2],
+  padding: `${varsThemeBase.spacing[1]} ${varsThemeBase.spacing[2]}`,
+  gap: varsThemeBase.spacing[1],
   boxSizing: "border-box",
   zIndex: varsThemeBase.zIndex[800],
 });
@@ -45,7 +45,6 @@ const column = style({
   flexDirection: "column",
   alignItems: "center",
   height: "240px",
-  minWidth: "56px",
 });
 
 const columnLabel = style({
@@ -223,10 +222,12 @@ const ampmState = styleVariants({
  * -----------------------------------------------------------------------------------------------*/
 
 const divider = style({
-  width: varsThemeBase.shape.border.width[1],
-  backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
-  alignSelf: "stretch",
-  margin: `${varsThemeBase.spacing[2]} 0`,
+  alignContent: "center",
+  ":after": {
+    content: ":",
+    display: "block",
+    margin: `${varsThemeBase.spacing[2]} 0`,
+  },
 });
 
 /* -------------------------------------------------------------------------------------------------
