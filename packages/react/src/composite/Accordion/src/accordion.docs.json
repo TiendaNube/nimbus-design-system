@@ -3,7 +3,7 @@
   "name": "Accordion",
   "totalProps": 4,
   "packageName": "@nimbus-ds/accordion",
-  "version": "1.6.1",
+  "version": "1.7.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/accordion",
   "props": [
     {
@@ -81,7 +81,7 @@
     },
     {
       "name": "Accordion.Item",
-      "totalProps": 3,
+      "totalProps": 4,
       "props": [
         {
           "description": "The content of the accordion body.",
@@ -94,6 +94,13 @@
           "type": "string",
           "title": "index",
           "required": true
+        },
+        {
+          "description": "Determines if the accordion item is interactive (clickable) or static.\nWhen false, the header renders as a div without click handlers, hover effects, or toggle icon.",
+          "default": true,
+          "type": "boolean",
+          "title": "interactive",
+          "required": false
         },
         {
           "description": "This is an attribute used to identify a DOM node for testing purposes.",

@@ -2,7 +2,7 @@
 
 The Slider component allows users to select a range of values within a defined minimum and maximum.
 
-## 2026-01-05 `0.0.1`
+## 2026-01-21 `1.0.0`
 
 #### 🎉 New features
 

@@ -2,6 +2,12 @@
 
 Nimbus-icons is an open source icon system built by Nuvemshop / Tiendanube.
 
+## 2026-01-21 `1.16.0`
+
+#### 🎉 New features
+
+- Adds `lightningbolt` icon. ([#396](https://github.com/TiendaNube/nimbus-design-system/pull/396) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-01-12 `1.15.1`
 
 #### 🎉 New features

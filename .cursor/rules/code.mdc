@@ -4,6 +4,21 @@ alwaysApply: true
 
 # Code rules and conventions
 
+## Code Standards
+- **ALWAYS write code comments in English**
+- **ALWAYS write JSDoc documentation in English**
+- **ALWAYS write commit messages in English** (use conventional commits format)
+- Always use English for variable names, function names, and identifiers
+- Follow TypeScript strict mode
+- Follow Nimbus component patterns
+
+## Commit Message Format
+```
+feat(accordion): add interactive prop to AccordionItem
+fix(button): resolve hover state issue
+docs(readme): update installation instructions
+```
+
 ## Code rules
 
 We use SonarCloud and ESLint to analyze the code and provide suggestions for improvements. These are rules that are enforced by the CI pipeline, and should be followed by all developers. Never break these rules, as the PR won't be merged.
