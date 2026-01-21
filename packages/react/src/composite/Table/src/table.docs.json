@@ -1,9 +1,9 @@
 {
   "id": "table",
   "name": "Table",
-  "totalProps": 1,
+  "totalProps": 4,
   "packageName": "@nimbus-ds/table",
-  "version": "2.0.1",
+  "version": "2.3.1",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/table",
   "props": [
     {
@@ -11,6 +11,58 @@
       "type": "React.ReactNode",
       "title": "children",
       "required": true
+    },
+    {
+      "description": "Column sizing definitions applied from left to right. Use `width` for fixed columns and `grow` to distribute the remaining space proportionally.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "Unique identifier for the column.",
+            "type": "string",
+            "title": "id"
+          },
+          "width": {
+            "description": "Fixed width applied to the column. Accepts any valid CSS width value in pixels.",
+            "type": "string",
+            "title": "width"
+          },
+          "grow": {
+            "description": "Growth factor that distributes remaining space among columns without a fixed width.\nMust be a positive number greater than 0.",
+            "type": "number",
+            "title": "grow"
+          },
+          "minWidth": {
+            "description": "Minimum width constraint for the column. The column will not shrink below this value.\nOnly applies when using `grow`. Accepts any valid CSS width value in pixels.",
+            "type": "string",
+            "title": "minWidth"
+          },
+          "fixed": {
+            "description": "Determines which side the column will be fixed (sticky) to during horizontal scrolling.\nFixed columns use CSS `position: sticky` and stay visible on the specified side.\nOnly contiguous columns can be fixed (i.e. no 'normal' columns between fixed columns on the same side).\nRequires a defined `width` to calculate proper offsets.\n- 'left': Column sticks to the left side of the table\n- 'right': Column sticks to the right side of the table",
+            "enum": ["left", "right"],
+            "type": "string",
+            "title": "fixed"
+          }
+        },
+        "additionalProperties": false,
+        "propertyOrder": ["id", "width", "grow", "minWidth", "fixed"],
+        "required": ["id"]
+      },
+      "title": "columnLayout",
+      "required": false
+    },
+    {
+      "description": "Minimum width of the table. When the container is smaller, horizontal scrolling is enabled.\nAccepts any valid CSS width value (e.g., \"600px\", \"50rem\").",
+      "type": "string",
+      "title": "minWidth",
+      "required": false
+    },
+    {
+      "description": "Maximum width of the table. The table will not exceed this width.\nAccepts any valid CSS width value (e.g., \"1200px\", \"80rem\").",
+      "type": "string",
+      "title": "maxWidth",
+      "required": false
     }
   ],
   "subComponents": [
@@ -28,7 +80,7 @@
     },
     {
       "name": "Table.Cell",
-      "totalProps": 7,
+      "totalProps": 8,
       "props": [
         {
           "description": "The content of the table cell.",
@@ -39,12 +91,15 @@
         {
           "description": "Type of html tag to create for the table cell.",
           "default": "td",
-          "enum": [
-            "td",
-            "th"
-          ],
+          "enum": ["td", "th"],
           "type": "string",
           "title": "as",
+          "required": false
+        },
+        {
+          "description": "Column index (0-based) to apply minWidth constraint from the Table's columnLayout.\nWhen provided, the cell will inherit minWidth from the corresponding column definition.",
+          "type": "number",
+          "title": "column",
           "required": false
         },
         {
@@ -386,83 +441,47 @@
               "type": "object",
               "properties": {
                 "rest": {
-                  "enum": [
-                    "base",
-                    "none",
-                    "small"
-                  ],
+                  "enum": ["base", "none", "small"],
                   "type": "string",
                   "title": "rest"
                 },
                 "focus": {
-                  "enum": [
-                    "base",
-                    "none",
-                    "small"
-                  ],
+                  "enum": ["base", "none", "small"],
                   "type": "string",
                   "title": "focus"
                 },
                 "active": {
-                  "enum": [
-                    "base",
-                    "none",
-                    "small"
-                  ],
+                  "enum": ["base", "none", "small"],
                   "type": "string",
                   "title": "active"
                 },
                 "hover": {
-                  "enum": [
-                    "base",
-                    "none",
-                    "small"
-                  ],
+                  "enum": ["base", "none", "small"],
                   "type": "string",
                   "title": "hover"
                 },
                 "xs": {
-                  "enum": [
-                    "base",
-                    "none",
-                    "small"
-                  ],
+                  "enum": ["base", "none", "small"],
                   "type": "string",
                   "title": "xs"
                 },
                 "md": {
-                  "enum": [
-                    "base",
-                    "none",
-                    "small"
-                  ],
+                  "enum": ["base", "none", "small"],
                   "type": "string",
                   "title": "md"
                 },
                 "lg": {
-                  "enum": [
-                    "base",
-                    "none",
-                    "small"
-                  ],
+                  "enum": ["base", "none", "small"],
                   "type": "string",
                   "title": "lg"
                 },
                 "xl": {
-                  "enum": [
-                    "base",
-                    "none",
-                    "small"
-                  ],
+                  "enum": ["base", "none", "small"],
                   "type": "string",
                   "title": "xl"
                 },
                 "xxl": {
-                  "enum": [
-                    "base",
-                    "none",
-                    "small"
-                  ],
+                  "enum": ["base", "none", "small"],
                   "type": "string",
                   "title": "xxl"
                 }
@@ -481,11 +500,7 @@
               ]
             },
             {
-              "enum": [
-                "base",
-                "none",
-                "small"
-              ],
+              "enum": ["base", "none", "small"],
               "type": "string"
             }
           ],
@@ -867,83 +882,47 @@
               "type": "object",
               "properties": {
                 "rest": {
-                  "enum": [
-                    "base",
-                    "none",
-                    "small"
-                  ],
+                  "enum": ["base", "none", "small"],
                   "type": "string",
                   "title": "rest"
                 },
                 "focus": {
-                  "enum": [
-                    "base",
-                    "none",
-                    "small"
-                  ],
+                  "enum": ["base", "none", "small"],
                   "type": "string",
                   "title": "focus"
                 },
                 "active": {
-                  "enum": [
-                    "base",
-                    "none",
-                    "small"
-                  ],
+                  "enum": ["base", "none", "small"],
                   "type": "string",
                   "title": "active"
                 },
                 "hover": {
-                  "enum": [
-                    "base",
-                    "none",
-                    "small"
-                  ],
+                  "enum": ["base", "none", "small"],
                   "type": "string",
                   "title": "hover"
                 },
                 "xs": {
-                  "enum": [
-                    "base",
-                    "none",
-                    "small"
-                  ],
+                  "enum": ["base", "none", "small"],
                   "type": "string",
                   "title": "xs"
                 },
                 "md": {
-                  "enum": [
-                    "base",
-                    "none",
-                    "small"
-                  ],
+                  "enum": ["base", "none", "small"],
                   "type": "string",
                   "title": "md"
                 },
                 "lg": {
-                  "enum": [
-                    "base",
-                    "none",
-                    "small"
-                  ],
+                  "enum": ["base", "none", "small"],
                   "type": "string",
                   "title": "lg"
                 },
                 "xl": {
-                  "enum": [
-                    "base",
-                    "none",
-                    "small"
-                  ],
+                  "enum": ["base", "none", "small"],
                   "type": "string",
                   "title": "xl"
                 },
                 "xxl": {
-                  "enum": [
-                    "base",
-                    "none",
-                    "small"
-                  ],
+                  "enum": ["base", "none", "small"],
                   "type": "string",
                   "title": "xxl"
                 }
@@ -962,11 +941,7 @@
               ]
             },
             {
-              "enum": [
-                "base",
-                "none",
-                "small"
-              ],
+              "enum": ["base", "none", "small"],
               "type": "string"
             }
           ],

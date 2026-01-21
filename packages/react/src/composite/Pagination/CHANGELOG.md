@@ -2,6 +2,12 @@
 
 The Pagination component allows us to navigate between a very large list of entries.
 
+## 2026-01-13 `2.4.1`
+
+#### 🎉 New features
+
+- Adds support for React 19. ([#404](https://github.com/TiendaNube/nimbus-design-system/pull/404) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-03-18 `2.4.0`
 
 #### 🎉 New features

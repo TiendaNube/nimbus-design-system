@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/components",
-  "version": "5.41.0",
+  "version": "5.47.0",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -14,13 +14,13 @@
     "version": "yarn version"
   },
   "dependencies": {
-    "@floating-ui/react": "^0.26.0",
+    "@floating-ui/react": "^0.27.5",
     "@nimbus-ds/icons": "workspace:^",
     "react-indiana-drag-scroll": "^2.2.0"
   },
   "peerDependencies": {
-    "react": "^16.8 || ^17.0 || ^18.0",
-    "react-dom": "^16.8 || ^17.0 || ^18.0"
+    "react": "^16.8 || ^17.0 || ^18.0 || ^19.0",
+    "react-dom": "^16.8 || ^17.0 || ^18.0 || ^19.0"
   },
   "homepage": "https://nimbus.nuvemshop.com.br/documentation",
   "repository": {

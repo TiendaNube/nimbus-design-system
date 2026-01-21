@@ -19,6 +19,7 @@ import {
   WordBreak,
   TextOverflow,
   WhiteSpace,
+  ScrollbarWidth,
 } from "../types";
 import { baseColors } from "./base";
 
@@ -193,6 +194,12 @@ export const overflowProperties: Overflow[] = [
   "hidden",
   "scroll",
   "auto",
+];
+
+export const scrollbarWidthProperties: ScrollbarWidth[] = [
+  "auto",
+  "thin",
+  "none",
 ];
 
 export const transitionTimingProperties: TransitionTiming[] = [

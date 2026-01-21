@@ -3,7 +3,7 @@
   "name": "Popover",
   "totalProps": 20,
   "packageName": "@nimbus-ds/popover",
-  "version": "4.3.2",
+  "version": "4.3.3",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/popover",
   "props": [
     {
@@ -129,13 +129,7 @@
             }
           },
           "additionalProperties": false,
-          "propertyOrder": [
-            "xs",
-            "md",
-            "lg",
-            "xl",
-            "xxl"
-          ]
+          "propertyOrder": ["xs", "md", "lg", "xl", "xxl"]
         },
         {
           "type": "string"
@@ -172,13 +166,7 @@
             }
           },
           "additionalProperties": false,
-          "propertyOrder": [
-            "xs",
-            "md",
-            "lg",
-            "xl",
-            "xxl"
-          ]
+          "propertyOrder": ["xs", "md", "lg", "xl", "xxl"]
         },
         {
           "type": "string"
@@ -215,13 +203,7 @@
             }
           },
           "additionalProperties": false,
-          "propertyOrder": [
-            "xs",
-            "md",
-            "lg",
-            "xl",
-            "xxl"
-          ]
+          "propertyOrder": ["xs", "md", "lg", "xl", "xxl"]
         },
         {
           "type": "string"
@@ -313,13 +295,7 @@
             }
           },
           "additionalProperties": false,
-          "propertyOrder": [
-            "xs",
-            "md",
-            "lg",
-            "xl",
-            "xxl"
-          ]
+          "propertyOrder": ["xs", "md", "lg", "xl", "xxl"]
         },
         {
           "enum": [
@@ -414,13 +390,7 @@
             }
           },
           "additionalProperties": false,
-          "propertyOrder": [
-            "xs",
-            "md",
-            "lg",
-            "xl",
-            "xxl"
-          ]
+          "propertyOrder": ["xs", "md", "lg", "xl", "xxl"]
         },
         {
           "enum": [
@@ -512,13 +482,7 @@
             }
           },
           "additionalProperties": false,
-          "propertyOrder": [
-            "xs",
-            "md",
-            "lg",
-            "xl",
-            "xxl"
-          ]
+          "propertyOrder": ["xs", "md", "lg", "xl", "xxl"]
         },
         {
           "enum": [
@@ -544,66 +508,36 @@
           "type": "object",
           "properties": {
             "xs": {
-              "enum": [
-                "base",
-                "none",
-                "small"
-              ],
+              "enum": ["base", "none", "small"],
               "type": "string",
               "title": "xs"
             },
             "md": {
-              "enum": [
-                "base",
-                "none",
-                "small"
-              ],
+              "enum": ["base", "none", "small"],
               "type": "string",
               "title": "md"
             },
             "lg": {
-              "enum": [
-                "base",
-                "none",
-                "small"
-              ],
+              "enum": ["base", "none", "small"],
               "type": "string",
               "title": "lg"
             },
             "xl": {
-              "enum": [
-                "base",
-                "none",
-                "small"
-              ],
+              "enum": ["base", "none", "small"],
               "type": "string",
               "title": "xl"
             },
             "xxl": {
-              "enum": [
-                "base",
-                "none",
-                "small"
-              ],
+              "enum": ["base", "none", "small"],
               "type": "string",
               "title": "xxl"
             }
           },
           "additionalProperties": false,
-          "propertyOrder": [
-            "xs",
-            "md",
-            "lg",
-            "xl",
-            "xxl"
-          ]
+          "propertyOrder": ["xs", "md", "lg", "xl", "xxl"]
         },
         {
-          "enum": [
-            "base",
-            "none",
-            "small"
-          ],
+          "enum": ["base", "none", "small"],
           "type": "string"
         }
       ],
@@ -617,72 +551,36 @@
           "type": "object",
           "properties": {
             "xs": {
-              "enum": [
-                "auto",
-                "hidden",
-                "scroll",
-                "visible"
-              ],
+              "enum": ["auto", "hidden", "scroll", "visible"],
               "type": "string",
               "title": "xs"
             },
             "md": {
-              "enum": [
-                "auto",
-                "hidden",
-                "scroll",
-                "visible"
-              ],
+              "enum": ["auto", "hidden", "scroll", "visible"],
               "type": "string",
               "title": "md"
             },
             "lg": {
-              "enum": [
-                "auto",
-                "hidden",
-                "scroll",
-                "visible"
-              ],
+              "enum": ["auto", "hidden", "scroll", "visible"],
               "type": "string",
               "title": "lg"
             },
             "xl": {
-              "enum": [
-                "auto",
-                "hidden",
-                "scroll",
-                "visible"
-              ],
+              "enum": ["auto", "hidden", "scroll", "visible"],
               "type": "string",
               "title": "xl"
             },
             "xxl": {
-              "enum": [
-                "auto",
-                "hidden",
-                "scroll",
-                "visible"
-              ],
+              "enum": ["auto", "hidden", "scroll", "visible"],
               "type": "string",
               "title": "xxl"
             }
           },
           "additionalProperties": false,
-          "propertyOrder": [
-            "xs",
-            "md",
-            "lg",
-            "xl",
-            "xxl"
-          ]
+          "propertyOrder": ["xs", "md", "lg", "xl", "xxl"]
         },
         {
-          "enum": [
-            "auto",
-            "hidden",
-            "scroll",
-            "visible"
-          ],
+          "enum": ["auto", "hidden", "scroll", "visible"],
           "type": "string"
         }
       ],

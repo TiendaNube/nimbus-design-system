@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/accordion",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -20,8 +20,8 @@
     "@nimbus-ds/title": "workspace:^"
   },
   "peerDependencies": {
-    "react": "^16.8 || ^17.0 || ^18.0",
-    "react-dom": "^16.8 || ^17.0 || ^18.0"
+    "react": "^16.8 || ^17.0 || ^18.0 || ^19.0",
+    "react-dom": "^16.8 || ^17.0 || ^18.0 || ^19.0"
   },
   "homepage": "https://nimbus.nuvemshop.com.br/documentation",
   "repository": {

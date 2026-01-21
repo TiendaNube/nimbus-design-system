@@ -3,6 +3,52 @@
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories
 every day, with simplicity, accessibility, consistency and performance.
 
+## 2026-01-19 `5.47.0`
+
+#### 🎉 New features
+
+- `Accordion`: Added `interactive` prop to allow render the Accordion as a static div. ([#409](https://github.com/TiendaNube/nimbus-design-system/pull/409) by [@Pfurno-TN](https://github.com/Pfurno-TN))
+
+## 2026-01-15 `5.46.1`
+
+#### 🐛 Bug fixes
+
+- Fixed DTS generation command to include `--no-check` flag. ([#407](https://github.com/TiendaNube/nimbus-design-system/pull/407) by [@joacotornello](https://github.com/joacotornello))
+
+## 2026-01-14 `5.46.0`
+
+#### 🎉 New features
+
+- Added support for React 19 in peer dependencies. ([#404](https://github.com/TiendaNube/nimbus-design-system/pull/404) by [@joacotornello](https://github.com/joacotornello))
+
+#### 📚 3rd party library updates
+
+- Updated `@floating-ui/react@0.27.5`. ([#403](https://github.com/TiendaNube/nimbus-design-system/pull/403) by [@joacotornello](https://github.com/joacotornello))
+
+## 2026-01-08 `5.45.0`
+
+#### 🎉 New features
+
+- `Modal`: Added `tag` property to `Modal.Header` component to display a tag next to the title. ([#401](https://github.com/TiendaNube/nimbus-design-system/pull/401) by [@joacotornello](https://github.com/joacotornello))
+
+## 2025-12-23 `5.44.0`
+
+#### 🎉 New features
+
+- `Table`: Allow table layout to support fixed columns. ([#399](https://github.com/TiendaNube/nimbus-design-system/pull/399) by [@joacotornello](https://github.com/joacotornello))
+
+## 2025-12-23 `5.43.0`
+
+#### 🎉 New features
+
+- `Table`: Added `minWidth` and `maxWidth` props to `Table` component to allow setting the minimum and maximum width of the table. ([#398](https://github.com/TiendaNube/nimbus-design-system/pull/398) by [@joacotornello](https://github.com/joacotornello))
+
+## 2025-12-15 `5.42.0`
+
+#### 🎉 New features
+
+- `Table`: Added `columnLayout` prop to allow column width and grow constraints. ([#393](https://github.com/TiendaNube/nimbus-design-system/pull/393) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-12-11 `5.41.0`
 
 #### 🎉 New features

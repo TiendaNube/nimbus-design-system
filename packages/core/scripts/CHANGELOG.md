@@ -2,6 +2,12 @@
 
 This package is intended for internal use in generating custom script builds at design system build time.
 
+## 2026-01-13 `1.8.1`
+
+#### 🐛 Bug fixes
+
+- Fixed `typescript-json-schema` to skip lib check and adds better error handling. ([#404](https://github.com/TiendaNube/nimbus-design-system/pull/404) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-08-05 `1.8.0`
 
 #### 🎉 New features

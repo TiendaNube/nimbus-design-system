@@ -15,6 +15,7 @@ import {
   TransitionTiming,
   TextDecoration,
   TextAlign,
+  ScrollbarWidth,
 } from "../../../types";
 import { boxSprinkle } from "./nimbus-box.css";
 
@@ -444,4 +445,8 @@ export interface BoxSprinkle {
    * @default left
    */
   textAlign?: TextAlign | BoxConditions<TextAlign>;
+  /**
+   * The scrollbarWidth property specifies the width of the scrollbar.
+   */
+  scrollbarWidth?: ScrollbarWidth | BoxConditions<ScrollbarWidth>;
 }

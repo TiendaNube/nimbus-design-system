@@ -2,6 +2,12 @@
 
 The Card component allows us to group contents and related actions, making it easier to identify groups of information.
 
+## 2026-01-13 `3.1.3`
+
+#### 🎉 New features
+
+- Adds support for React 19. ([#404](https://github.com/TiendaNube/nimbus-design-system/pull/404) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-03-18 `3.1.2`
 
 ### 💡 Others

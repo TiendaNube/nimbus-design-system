@@ -3,7 +3,7 @@
   "name": "Label",
   "totalProps": 3,
   "packageName": "@nimbus-ds/label",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/label",
   "props": [
     {

@@ -3,16 +3,13 @@
   "name": "Sidebar",
   "totalProps": 10,
   "packageName": "@nimbus-ds/sidebar",
-  "version": "3.5.1",
+  "version": "3.5.2",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/sidebar",
   "props": [
     {
       "description": "Side from which the sidebar will appear.",
       "default": "right",
-      "enum": [
-        "left",
-        "right"
-      ],
+      "enum": ["left", "right"],
       "type": "string",
       "title": "position",
       "required": false
@@ -20,11 +17,7 @@
     {
       "description": "The padding properties are used to generate space around an sidebar's content area.",
       "default": "base",
-      "enum": [
-        "base",
-        "none",
-        "small"
-      ],
+      "enum": ["base", "none", "small"],
       "type": "string",
       "title": "padding",
       "required": false
@@ -108,13 +101,7 @@
             }
           },
           "additionalProperties": false,
-          "propertyOrder": [
-            "xs",
-            "md",
-            "lg",
-            "xl",
-            "xxl"
-          ]
+          "propertyOrder": ["xs", "md", "lg", "xl", "xxl"]
         },
         {
           "type": "string"
@@ -206,13 +193,7 @@
             }
           },
           "additionalProperties": false,
-          "propertyOrder": [
-            "xs",
-            "md",
-            "lg",
-            "xl",
-            "xxl"
-          ]
+          "propertyOrder": ["xs", "md", "lg", "xl", "xxl"]
         },
         {
           "enum": [
@@ -247,11 +228,7 @@
         {
           "description": "The padding properties are used to generate space around an sidebar's body content area.",
           "default": "base",
-          "enum": [
-            "base",
-            "none",
-            "small"
-          ],
+          "enum": ["base", "none", "small"],
           "type": "string",
           "title": "padding",
           "required": false
@@ -271,11 +248,7 @@
         {
           "description": "The padding properties are used to generate space around an sidebar's footer content area.",
           "default": "base",
-          "enum": [
-            "base",
-            "none",
-            "small"
-          ],
+          "enum": ["base", "none", "small"],
           "type": "string",
           "title": "padding",
           "required": false
@@ -301,11 +274,7 @@
         {
           "description": "The padding properties are used to generate space around an sidebar's header content area.",
           "default": "base",
-          "enum": [
-            "base",
-            "none",
-            "small"
-          ],
+          "enum": ["base", "none", "small"],
           "type": "string",
           "title": "padding",
           "required": false

@@ -2,6 +2,60 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2026-01-20 `9.52.0`
+
+#### 🎉 New features
+
+- `Accordion`: Added `interactive` prop to allow render the Accordion as a static div. ([#409](https://github.com/TiendaNube/nimbus-design-system/pull/409) by [@Pfurno-TN](https://github.com/Pfurno-TN))
+
+## 2026-01-19 `9.51.0`
+
+#### 🎉 New features
+
+- `Box`: Added AI generative color token (`ai-generative-interactiveHover`) to `borderColor` property. ([#408](https://github.com/TiendaNube/nimbus-design-system/pull/408) by [@jffs](https://github.com/jffs))
+
+## 2026-01-15 `9.50.1`
+
+#### 🐛 Bug fixes
+
+- `Table`: Fixed table borders not being displayed correctly. ([#406](https://github.com/TiendaNube/nimbus-design-system/pull/406) by [@joacotornello](https://github.com/joacotornello))
+
+## 2026-01-08 `9.50.0`
+
+#### 🎉 New features
+
+- `Modal`: Added `tag` property to `Modal.Header` component to display a tag next to the title. ([#401](https://github.com/TiendaNube/nimbus-design-system/pull/401) by [@joacotornello](https://github.com/joacotornello))
+
+## 2025-12-23 `9.49.0`
+
+#### 🎉 New features
+
+- `Table`: Allow table layout to support fixed columns. ([#399](https://github.com/TiendaNube/nimbus-design-system/pull/399) by [@joacotornello](https://github.com/joacotornello))
+
+## 2025-12-23 `9.48.0`
+
+#### 🎉 New features
+
+- `Table`: Added `minWidth` and `maxWidth` props to `Table` component to allow setting the minimum and maximum width of the table. ([#398](https://github.com/TiendaNube/nimbus-design-system/pull/398) by [@joacotornello](https://github.com/joacotornello))
+
+## 2025-12-15 `9.47.0`
+
+#### 🎉 New features
+
+- `Table`: Allow table layout to be controlled by the column layout. ([#393](https://github.com/TiendaNube/nimbus-design-system/pull/393) by [@joacotornello](https://github.com/joacotornello))
+
+## 2025-12-19 `9.46.1`
+
+#### 🐛 Bug fixes
+
+- Fixes `Tabs` item element border rendering above left element. ([#395](https://github.com/TiendaNube/nimbus-design-system/pull/395) by [@joacotornello](https://github.com/joacotornello))
+
+## 2025-12-22 `9.46.0`
+
+#### 🎉 New features
+
+- `Box`: Added `scrollbarWidth` property to set the width of the scrollbar. ([#397](https://github.com/TiendaNube/nimbus-design-system/pull/397) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-12-11 `9.45.0`
 
 #### 🎉 New features

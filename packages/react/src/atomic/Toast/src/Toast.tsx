@@ -44,8 +44,8 @@ const Toast: React.FC<ToastProps> & ToastComponents = ({
   text,
   ...rest
 }: ToastProps) => {
-  const closeIntervalRef = useRef<any>();
-  const animationIntervalRef = useRef<any>();
+  const closeIntervalRef = useRef<number | null>(null);
+  const animationIntervalRef = useRef<number | null>(null);
 
   const [show, setShow] = useState(false);
   const { closeToast } = useToast();
@@ -53,10 +53,10 @@ const Toast: React.FC<ToastProps> & ToastComponents = ({
   const close = useCallback(() => {
     // start animation
     setShow(true);
-    closeIntervalRef.current = setInterval(() => {
+    closeIntervalRef.current = window.setInterval(() => {
       // remove animation
       setShow(false);
-      animationIntervalRef.current = setTimeout(() => {
+      animationIntervalRef.current = window.setTimeout(() => {
         // remove toast in list
         closeToast(id);
       }, 200); // this timeout is to allow render the out transition
@@ -76,8 +76,12 @@ const Toast: React.FC<ToastProps> & ToastComponents = ({
     }
     return () => {
       // clear interval animation
-      clearInterval(closeIntervalRef?.current);
-      clearInterval(animationIntervalRef?.current);
+      if (closeIntervalRef.current !== null) {
+        clearInterval(closeIntervalRef.current);
+      }
+      if (animationIntervalRef.current !== null) {
+        clearInterval(animationIntervalRef.current);
+      }
     };
   }, [close, autoClose]);
 

@@ -3,7 +3,7 @@
   "name": "Accordion",
   "totalProps": 4,
   "packageName": "@nimbus-ds/accordion",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/accordion",
   "props": [
     {
@@ -47,10 +47,7 @@
         {
           "description": "The borderBottom property defines a lower border of the accordion body.",
           "default": "none",
-          "enum": [
-            "base",
-            "none"
-          ],
+          "enum": ["base", "none"],
           "type": "string",
           "title": "borderBottom",
           "required": false
@@ -58,10 +55,7 @@
         {
           "description": "The borderTop property defines a top border of the accordion body.",
           "default": "none",
-          "enum": [
-            "base",
-            "none"
-          ],
+          "enum": ["base", "none"],
           "type": "string",
           "title": "borderTop",
           "required": false
@@ -69,10 +63,7 @@
         {
           "description": "Padding properties are used to generate space around the content area of an Accordion.Body..",
           "default": "base",
-          "enum": [
-            "base",
-            "none"
-          ],
+          "enum": ["base", "none"],
           "type": "string",
           "title": "padding",
           "required": false
@@ -81,7 +72,7 @@
     },
     {
       "name": "Accordion.Item",
-      "totalProps": 3,
+      "totalProps": 4,
       "props": [
         {
           "description": "The content of the accordion body.",
@@ -94,6 +85,13 @@
           "type": "string",
           "title": "index",
           "required": true
+        },
+        {
+          "description": "Determines if the accordion item is interactive (clickable) or static.\nWhen false, the header renders as a div without click handlers, hover effects, or toggle icon.",
+          "default": true,
+          "type": "boolean",
+          "title": "interactive",
+          "required": false
         },
         {
           "description": "This is an attribute used to identify a DOM node for testing purposes.",
@@ -141,20 +139,14 @@
         {
           "description": "The borderTop property defines a lower border of the accordion header.",
           "default": "base",
-          "enum": [
-            "base",
-            "none"
-          ],
+          "enum": ["base", "none"],
           "type": "string",
           "title": "borderTop",
           "required": false
         },
         {
           "description": "The borderBottom property defines a lower border of the accordion header.",
-          "enum": [
-            "base",
-            "none"
-          ],
+          "enum": ["base", "none"],
           "type": "string",
           "title": "borderBottom",
           "required": false
