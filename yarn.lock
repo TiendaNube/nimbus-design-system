@@ -3099,7 +3099,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/input@workspace:packages/react/src/atomic/Input":
+"@nimbus-ds/input@workspace:^, @nimbus-ds/input@workspace:packages/react/src/atomic/Input":
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/input@workspace:packages/react/src/atomic/Input"
   dependencies:
@@ -3328,6 +3328,20 @@ __metadata:
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0 || ^19.0
     react-dom: ^16.8 || ^17.0 || ^18.0 || ^19.0
+  languageName: unknown
+  linkType: soft
+
+"@nimbus-ds/slider@workspace:packages/react/src/atomic/Slider":
+  version: 0.0.0-use.local
+  resolution: "@nimbus-ds/slider@workspace:packages/react/src/atomic/Slider"
+  dependencies:
+    "@nimbus-ds/box": "workspace:^"
+    "@nimbus-ds/input": "workspace:^"
+    "@nimbus-ds/text": "workspace:^"
+    "@nimbus-ds/webpack": "workspace:^"
+  peerDependencies:
+    react: ^16.8 || ^17.0 || ^18.0
+    react-dom: ^16.8 || ^17.0 || ^18.0
   languageName: unknown
   linkType: soft
 

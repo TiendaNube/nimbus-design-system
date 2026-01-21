@@ -118,6 +118,10 @@
       "import": "./dist/Skeleton/index.js",
       "require": "./dist/Skeleton/index.js"
     },
+    "./Slider": {
+      "import": "./dist/Slider/index.js",
+      "require": "./dist/Slider/index.js"
+    },
     "./Spinner": {
       "import": "./dist/Spinner/index.js",
       "require": "./dist/Spinner/index.js"
