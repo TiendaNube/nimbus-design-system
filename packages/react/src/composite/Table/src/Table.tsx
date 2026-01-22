@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useRef, useEffect, useCallback, useState } from "react";
 import { table } from "@nimbus-ds/styles";
 
 import { TableProps, TableComponents } from "./table.types";
@@ -17,8 +17,17 @@ const Table: React.FC<TableProps> & TableComponents = ({
   columnLayout,
   minWidth,
   maxWidth,
+  stickyScrollbar = false,
   ...rest
 }: TableProps) => {
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const scrollbarTrackRef = useRef<HTMLDivElement>(null);
+  const scrollbarInnerRef = useRef<HTMLDivElement>(null);
+  const scrollbarFooterRef = useRef<HTMLDivElement>(null);
+  const isSyncingRef = useRef(false);
+
+  const [isScrollbarVisible, setIsScrollbarVisible] = useState(false);
+  const [scrollbarPosition, setScrollbarPosition] = useState({ left: 0, width: 0 });
   const totalGrowValue = useMemo(
     () =>
       columnLayout?.reduce((total, column) => {
@@ -50,9 +59,120 @@ const Table: React.FC<TableProps> & TableComponents = ({
     [minWidth, maxWidth]
   );
 
+  const updateScrollbarWidth = useCallback(() => {
+    const wrapper = wrapperRef.current;
+    const inner = scrollbarInnerRef.current;
+    if (!wrapper || !inner) return;
+    inner.style.width = `${wrapper.scrollWidth}px`;
+  }, []);
+
+  const createScrollHandler = useCallback(
+    (source: HTMLElement, target: HTMLElement) => () => {
+      if (isSyncingRef.current) return;
+      isSyncingRef.current = true;
+      target.scrollLeft = source.scrollLeft;
+      requestAnimationFrame(() => {
+        isSyncingRef.current = false;
+      });
+    },
+    []
+  );
+
+  const updateVisibilityAndPosition = useCallback(() => {
+    const wrapper = wrapperRef.current;
+    if (!wrapper) return;
+
+    const rect = wrapper.getBoundingClientRect();
+    const viewportHeight = window.innerHeight;
+
+    const tablePartiallyVisible = rect.top < viewportHeight && rect.bottom > 0;
+    const tableBottomBelowViewport = rect.bottom > viewportHeight;
+    const hasHorizontalOverflow = wrapper.scrollWidth > wrapper.clientWidth;
+
+    const shouldShow =
+      tablePartiallyVisible && tableBottomBelowViewport && hasHorizontalOverflow;
+
+    setIsScrollbarVisible(shouldShow);
+    setScrollbarPosition({ left: rect.left, width: rect.width });
+  }, []);
+
+  useEffect(() => {
+    if (!stickyScrollbar) return undefined;
+
+    const wrapper = wrapperRef.current;
+    const track = scrollbarTrackRef.current;
+    if (!wrapper || !track) return undefined;
+
+    const wrapperToTrack = createScrollHandler(wrapper, track);
+    const trackToWrapper = createScrollHandler(track, wrapper);
+
+    wrapper.addEventListener("scroll", wrapperToTrack);
+    track.addEventListener("scroll", trackToWrapper);
+
+    const handleUpdate = () => {
+      updateScrollbarWidth();
+      updateVisibilityAndPosition();
+    };
+
+    const findScrollableAncestors = (element: HTMLElement | null): HTMLElement[] => {
+      const ancestors: HTMLElement[] = [];
+      let current = element?.parentElement;
+      while (current) {
+        const style = window.getComputedStyle(current);
+        const overflowY = style.overflowY;
+        if (overflowY === "auto" || overflowY === "scroll") {
+          ancestors.push(current);
+        }
+        current = current.parentElement;
+      }
+      return ancestors;
+    };
+
+    const scrollableAncestors = findScrollableAncestors(wrapper);
+    scrollableAncestors.forEach((ancestor) => {
+      ancestor.addEventListener("scroll", handleUpdate, { passive: true });
+    });
+
+    const intersectionObserver = new IntersectionObserver(handleUpdate, {
+      root: null,
+      threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
+    });
+    intersectionObserver.observe(wrapper);
+
+    window.addEventListener("scroll", handleUpdate, { passive: true });
+    window.addEventListener("resize", handleUpdate, { passive: true });
+
+    const resizeObserver = new ResizeObserver(handleUpdate);
+    resizeObserver.observe(wrapper);
+
+    handleUpdate();
+
+    return () => {
+      wrapper.removeEventListener("scroll", wrapperToTrack);
+      track.removeEventListener("scroll", trackToWrapper);
+      scrollableAncestors.forEach((ancestor) => {
+        ancestor.removeEventListener("scroll", handleUpdate);
+      });
+      intersectionObserver.disconnect();
+      window.removeEventListener("scroll", handleUpdate);
+      window.removeEventListener("resize", handleUpdate);
+      resizeObserver.disconnect();
+    };
+  }, [stickyScrollbar, createScrollHandler, updateScrollbarWidth, updateVisibilityAndPosition]);
+
+  const wrapperClassName = stickyScrollbar
+    ? `${table.classnames.container__wrapper} ${table.classnames.container__wrapper_hidden_scrollbar}`
+    : table.classnames.container__wrapper;
+
+  const scrollbarStyle: React.CSSProperties = {
+    left: scrollbarPosition.left,
+    width: scrollbarPosition.width,
+    display: isScrollbarVisible ? "block" : "none",
+  };
+
   return (
     <TableContext.Provider value={contextValue}>
-      <div className={table.classnames.container__wrapper}>
+      <div ref={wrapperRef} className={wrapperClassName}>
         <table
           {...rest}
           className={table.classnames.container}
@@ -71,6 +191,24 @@ const Table: React.FC<TableProps> & TableComponents = ({
           {children}
         </table>
       </div>
+      {stickyScrollbar && (
+        <div
+          ref={scrollbarFooterRef}
+          className={table.classnames.sticky_scrollbar_footer}
+          style={scrollbarStyle}
+          data-testid="table-sticky-scrollbar"
+        >
+          <div
+            ref={scrollbarTrackRef}
+            className={table.classnames.sticky_scrollbar_track}
+          >
+            <div
+              ref={scrollbarInnerRef}
+              className={table.classnames.sticky_scrollbar_inner}
+            />
+          </div>
+        </div>
+      )}
     </TableContext.Provider>
   );
 };

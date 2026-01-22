@@ -351,4 +351,50 @@ describe("GIVEN <Table />", () => {
       expect(screen.getByTestId("cell-1")).not.toHaveStyle({ left: "0px" });
     });
   });
+
+  describe("WHEN stickyScrollbar is provided", () => {
+    it("THEN should render sticky scrollbar when stickyScrollbar is true", () => {
+      makeSut({
+        stickyScrollbar: true,
+        children: (
+          <tbody>
+            <tr>
+              <td>My content</td>
+            </tr>
+          </tbody>
+        ),
+      });
+
+      expect(screen.getByTestId("table-sticky-scrollbar")).toBeDefined();
+    });
+
+    it("THEN should not render sticky scrollbar when stickyScrollbar is false", () => {
+      makeSut({
+        stickyScrollbar: false,
+        children: (
+          <tbody>
+            <tr>
+              <td>My content</td>
+            </tr>
+          </tbody>
+        ),
+      });
+
+      expect(screen.queryByTestId("table-sticky-scrollbar")).toBeNull();
+    });
+
+    it("THEN should not render sticky scrollbar when stickyScrollbar is undefined", () => {
+      makeSut({
+        children: (
+          <tbody>
+            <tr>
+              <td>My content</td>
+            </tr>
+          </tbody>
+        ),
+      });
+
+      expect(screen.queryByTestId("table-sticky-scrollbar")).toBeNull();
+    });
+  });
 });
