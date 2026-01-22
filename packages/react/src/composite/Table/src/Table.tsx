@@ -1,4 +1,10 @@
-import React, { useMemo } from "react";
+import React, {
+  useMemo,
+  useRef,
+  useState,
+  useCallback,
+  useEffect,
+} from "react";
 import { table } from "@nimbus-ds/styles";
 
 import { TableProps, TableComponents } from "./table.types";
@@ -19,6 +25,10 @@ const Table: React.FC<TableProps> & TableComponents = ({
   maxWidth,
   ...rest
 }: TableProps) => {
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const [hasScrolledLeft, setHasScrolledLeft] = useState(false);
+  const [hasScrolledRight, setHasScrolledRight] = useState(false);
+
   const totalGrowValue = useMemo(
     () =>
       columnLayout?.reduce((total, column) => {
@@ -35,7 +45,37 @@ const Table: React.FC<TableProps> & TableComponents = ({
     [columnLayout]
   );
 
+  const hasFixedColumns = fixedColumnOffsets !== undefined;
   const hasColumnLayout = Boolean(columnLayout?.length);
+
+  const checkScrollPosition = useCallback(() => {
+    const wrapper = wrapperRef.current;
+    if (!wrapper) return;
+
+    const { scrollLeft, scrollWidth, clientWidth } = wrapper;
+    const maxScrollLeft = scrollWidth - clientWidth;
+
+    setHasScrolledLeft(scrollLeft > 0);
+    setHasScrolledRight(scrollLeft < maxScrollLeft - 1);
+  }, []);
+
+  useEffect(() => {
+    if (!hasFixedColumns) return undefined;
+
+    const wrapper = wrapperRef.current;
+    if (!wrapper) return undefined;
+
+    checkScrollPosition();
+    wrapper.addEventListener("scroll", checkScrollPosition, { passive: true });
+
+    const resizeObserver = new ResizeObserver(checkScrollPosition);
+    resizeObserver.observe(wrapper);
+
+    return () => {
+      wrapper.removeEventListener("scroll", checkScrollPosition);
+      resizeObserver.disconnect();
+    };
+  }, [checkScrollPosition, hasFixedColumns]);
 
   const contextValue = useMemo<TableContextValue>(
     () => ({ columnLayout, fixedColumnOffsets }),
@@ -52,7 +92,12 @@ const Table: React.FC<TableProps> & TableComponents = ({
 
   return (
     <TableContext.Provider value={contextValue}>
-      <div className={table.classnames.container__wrapper}>
+      <div
+        ref={wrapperRef}
+        className={table.classnames.container__wrapper}
+        data-scroll-left={hasScrolledLeft || undefined}
+        data-scroll-right={hasScrolledRight || undefined}
+      >
         <table
           {...rest}
           className={table.classnames.container}

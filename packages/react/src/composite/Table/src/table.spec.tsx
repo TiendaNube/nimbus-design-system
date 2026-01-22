@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render, screen, act, fireEvent } from "@testing-library/react";
 
 import { Table } from "./Table";
 import { TableProps } from "./table.types";
@@ -349,6 +349,142 @@ describe("GIVEN <Table />", () => {
       expect(screen.getByTestId("header-1")).not.toHaveStyle({ left: "0px" });
       expect(screen.getByTestId("cell-0")).not.toHaveStyle({ left: "0px" });
       expect(screen.getByTestId("cell-1")).not.toHaveStyle({ left: "0px" });
+    });
+  });
+
+  describe("WHEN table has fixed columns and is scrolled", () => {
+    const mockScrollableWrapper = (
+      wrapper: HTMLElement,
+      scrollLeft: number,
+      scrollWidth: number,
+      clientWidth: number
+    ) => {
+      Object.defineProperty(wrapper, "scrollLeft", {
+        value: scrollLeft,
+        configurable: true,
+      });
+      Object.defineProperty(wrapper, "scrollWidth", {
+        value: scrollWidth,
+        configurable: true,
+      });
+      Object.defineProperty(wrapper, "clientWidth", {
+        value: clientWidth,
+        configurable: true,
+      });
+    };
+
+    const renderTableWithFixedColumns = () =>
+      render(
+        <Table
+          data-testid="table-element"
+          columnLayout={[
+            { id: "column-1", width: "100px", fixed: "left" },
+            { id: "column-2", width: "200px" },
+            { id: "column-3", width: "200px" },
+            { id: "column-4", width: "100px", fixed: "right" },
+          ]}
+        >
+          <Table.Body>
+            <Table.Row>
+              <Table.Cell column={0}>Cell 1</Table.Cell>
+              <Table.Cell column={1}>Cell 2</Table.Cell>
+              <Table.Cell column={2}>Cell 3</Table.Cell>
+              <Table.Cell column={3}>Cell 4</Table.Cell>
+            </Table.Row>
+          </Table.Body>
+        </Table>
+      );
+
+    it("THEN should set data-scroll-right when there is content to scroll", () => {
+      renderTableWithFixedColumns();
+
+      const wrapper = screen
+        .getByTestId("table-element")
+        .closest("[class]") as HTMLElement;
+
+      act(() => {
+        mockScrollableWrapper(wrapper, 0, 600, 400);
+        wrapper.dispatchEvent(new Event("scroll"));
+      });
+
+      expect(wrapper).not.toHaveAttribute("data-scroll-left");
+      expect(wrapper).toHaveAttribute("data-scroll-right");
+    });
+
+    it("THEN should set data-scroll-left when scrolled from start position", () => {
+      renderTableWithFixedColumns();
+
+      const wrapper = screen
+        .getByTestId("table-element")
+        .closest("[class]") as HTMLElement;
+
+      act(() => {
+        mockScrollableWrapper(wrapper, 50, 600, 400);
+        wrapper.dispatchEvent(new Event("scroll"));
+      });
+
+      expect(wrapper).toHaveAttribute("data-scroll-left");
+      expect(wrapper).toHaveAttribute("data-scroll-right");
+    });
+
+    it("THEN should only set data-scroll-left when scrolled to end", () => {
+      renderTableWithFixedColumns();
+
+      const wrapper = screen
+        .getByTestId("table-element")
+        .closest("[class]") as HTMLElement;
+
+      act(() => {
+        mockScrollableWrapper(wrapper, 200, 600, 400);
+        wrapper.dispatchEvent(new Event("scroll"));
+      });
+
+      expect(wrapper).toHaveAttribute("data-scroll-left");
+      expect(wrapper).not.toHaveAttribute("data-scroll-right");
+    });
+
+    it("THEN should have no scroll attributes when content fits without scrolling", () => {
+      renderTableWithFixedColumns();
+
+      const wrapper = screen
+        .getByTestId("table-element")
+        .closest("[class]") as HTMLElement;
+
+      act(() => {
+        mockScrollableWrapper(wrapper, 0, 400, 400);
+        wrapper.dispatchEvent(new Event("scroll"));
+      });
+
+      expect(wrapper).not.toHaveAttribute("data-scroll-left");
+      expect(wrapper).not.toHaveAttribute("data-scroll-right");
+    });
+  });
+
+  describe("WHEN table has no fixed columns", () => {
+    it("THEN should not track scroll position", () => {
+      render(
+        <Table
+          data-testid="table-element"
+          columnLayout={[
+            { id: "column-1", width: "100px" },
+            { id: "column-2", width: "200px" },
+          ]}
+        >
+          <Table.Body>
+            <Table.Row>
+              <Table.Cell column={0}>Cell 1</Table.Cell>
+              <Table.Cell column={1}>Cell 2</Table.Cell>
+            </Table.Row>
+          </Table.Body>
+        </Table>
+      );
+
+      const wrapper = screen
+        .getByTestId("table-element")
+        .closest("[class]") as HTMLElement;
+
+      expect(wrapper).not.toHaveAttribute("data-scroll-left");
+      expect(wrapper).not.toHaveAttribute("data-scroll-right");
     });
   });
 });

@@ -72,36 +72,45 @@ const container__cell_fixed = style({
  * -----------------------------------------------------------------------------------------------*/
 
 const container__cell_fixed_left = style({});
-
-/**
- * Using ::after ensures the separator stays visible when content scrolls under the fixed column,
- * as it sits on top of the cell content and adjacent cells.
- */
-globalStyle(`${container__cell_fixed_left}::after`, {
-  content: '""',
-  position: "absolute",
-  top: 0,
-  right: "-1px",
-  bottom: 0,
-  width: "1px",
-  backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
-  boxShadow: `2px 0 4px 0 ${varsThemeBase.colors.neutral.surfaceHighlight}`,
-  pointerEvents: "none",
-});
-
 const container__cell_fixed_right = style({});
 
-globalStyle(`${container__cell_fixed_right}::before`, {
-  content: '""',
-  position: "absolute",
-  top: 0,
-  left: "-1px",
-  bottom: 0,
-  width: "1px",
-  backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
-  boxShadow: `-2px 0 4px 0 ${varsThemeBase.colors.neutral.surfaceHighlight}`,
-  pointerEvents: "none",
-});
+/**
+ * Shadow for left-fixed columns - only visible when content is scrolled underneath.
+ * The data-scroll-left attribute is set on the wrapper when scrollLeft > 0.
+ */
+globalStyle(
+  `${container__wrapper}[data-scroll-left] ${container__cell_fixed_left}::after`,
+  {
+    content: '""',
+    position: "absolute",
+    top: 0,
+    right: "-1px",
+    bottom: 0,
+    width: "1px",
+    backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
+    boxShadow: `2px 0 4px 0 ${varsThemeBase.colors.neutral.surfaceHighlight}`,
+    pointerEvents: "none",
+  }
+);
+
+/**
+ * Shadow for right-fixed columns - only visible when there is more content to scroll.
+ * The data-scroll-right attribute is set on the wrapper when scrollLeft < maxScrollLeft.
+ */
+globalStyle(
+  `${container__wrapper}[data-scroll-right] ${container__cell_fixed_right}::before`,
+  {
+    content: '""',
+    position: "absolute",
+    top: 0,
+    left: "-1px",
+    bottom: 0,
+    width: "1px",
+    backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
+    boxShadow: `-2px 0 4px 0 ${varsThemeBase.colors.neutral.surfaceHighlight}`,
+    pointerEvents: "none",
+  }
+);
 
 globalStyle(`${container} th`, {
   fontWeight: "unset",
