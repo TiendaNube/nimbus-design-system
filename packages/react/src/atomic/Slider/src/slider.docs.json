@@ -3,7 +3,7 @@
   "name": "Slider",
   "totalProps": 10,
   "packageName": "@nimbus-ds/slider",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/slider",
   "props": [
     {

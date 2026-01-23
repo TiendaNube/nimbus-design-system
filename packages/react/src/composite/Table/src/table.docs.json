@@ -1,7 +1,7 @@
 {
   "id": "table",
   "name": "Table",
-  "totalProps": 4,
+  "totalProps": 5,
   "packageName": "@nimbus-ds/table",
   "version": "2.3.1",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/table",
@@ -73,6 +73,13 @@
       "description": "Maximum width of the table. The table will not exceed this width.\nAccepts any valid CSS width value (e.g., \"1200px\", \"80rem\").",
       "type": "string",
       "title": "maxWidth",
+      "required": false
+    },
+    {
+      "description": "Shows a sticky scrollbar at the bottom of the viewport when the table overflows horizontally.\nThe scrollbar stays visible while scrolling vertically, making it easier to navigate wide tables.",
+      "default": false,
+      "type": "boolean",
+      "title": "stickyScrollbar",
       "required": false
     }
   ],
