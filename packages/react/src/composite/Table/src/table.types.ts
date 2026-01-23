@@ -59,6 +59,12 @@ export interface TableProperties {
    * Accepts any valid CSS width value (e.g., "1200px", "80rem").
    */
   maxWidth?: string;
+  /**
+   * Shows a sticky scrollbar at the bottom of the viewport when the table overflows horizontally.
+   * The scrollbar stays visible while scrolling vertically, making it easier to navigate wide tables.
+   * @default false
+   */
+  stickyScrollbar?: boolean;
 }
 
 export type TableProps = TableProperties & HTMLAttributes<HTMLTableElement>;
