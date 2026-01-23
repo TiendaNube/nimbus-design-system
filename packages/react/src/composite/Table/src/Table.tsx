@@ -27,8 +27,10 @@ const Table: React.FC<TableProps> & TableComponents = ({
   ...rest
 }: TableProps) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const [hasScrolledLeft, setHasScrolledLeft] = useState(false);
-  const [hasScrolledRight, setHasScrolledRight] = useState(false);
+  const [scrollState, setScrollState] = useState({
+    left: false,
+    right: false,
+  });
   const scrollbarTrackRef = useRef<HTMLDivElement>(null);
   const scrollbarInnerRef = useRef<HTMLDivElement>(null);
   const isSyncingRef = useRef(false);
@@ -57,17 +59,17 @@ const Table: React.FC<TableProps> & TableComponents = ({
     if (!wrapper) return;
 
     const { scrollLeft, scrollWidth, clientWidth } = wrapper;
-    const maxScrollLeft = scrollWidth - clientWidth;
+    const maxScroll = scrollWidth - clientWidth;
 
-    setHasScrolledLeft(scrollLeft > 0);
-    setHasScrolledRight(scrollLeft < maxScrollLeft - 1);
+    setScrollState({
+      left: scrollLeft > 0,
+      right: scrollLeft < maxScroll - 1, // -1 accounts for subpixel rounding
+    });
   }, []);
 
   useEffect(() => {
-    if (!hasFixedColumns) return undefined;
-
     const wrapper = wrapperRef.current;
-    if (!wrapper) return undefined;
+    if (!hasFixedColumns || !wrapper) return undefined;
 
     checkScrollPosition();
     wrapper.addEventListener("scroll", checkScrollPosition, { passive: true });
@@ -151,8 +153,8 @@ const Table: React.FC<TableProps> & TableComponents = ({
       <div
         ref={wrapperRef}
         className={wrapperClassName}
-        data-scroll-left={hasScrolledLeft || undefined}
-        data-scroll-right={hasScrolledRight || undefined}
+        data-scroll-left={scrollState.left || undefined}
+        data-scroll-right={scrollState.right || undefined}
       >
         <table
           {...rest}
