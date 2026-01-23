@@ -144,7 +144,6 @@ const sticky_scrollbar_track = style({
     "&::-webkit-scrollbar-thumb": {
       borderRadius: "4px",
       backgroundColor: "rgba(0, 0, 0, .5)",
-      boxShadow: "0 .0625rem 0 0 var(--p-color-border) inset"
     },
   },
 });

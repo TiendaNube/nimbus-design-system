@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useEffect, useCallback, useState } from "react";
+import React, { useMemo, useRef, useEffect, useCallback } from "react";
 import { table } from "@nimbus-ds/styles";
 
 import { TableProps, TableComponents } from "./table.types";
@@ -26,8 +26,6 @@ const Table: React.FC<TableProps> & TableComponents = ({
   const scrollbarFooterRef = useRef<HTMLDivElement>(null);
   const isSyncingRef = useRef(false);
 
-  const [isScrollbarVisible, setIsScrollbarVisible] = useState(false);
-  const [scrollbarPosition, setScrollbarPosition] = useState({ left: 0, width: 0 });
   const totalGrowValue = useMemo(
     () =>
       columnLayout?.reduce((total, column) => {
@@ -78,24 +76,6 @@ const Table: React.FC<TableProps> & TableComponents = ({
     []
   );
 
-  const updateVisibilityAndPosition = useCallback(() => {
-    const wrapper = wrapperRef.current;
-    if (!wrapper) return;
-
-    const rect = wrapper.getBoundingClientRect();
-    const viewportHeight = window.innerHeight;
-
-    const tablePartiallyVisible = rect.top < viewportHeight && rect.bottom > 0;
-    const tableBottomBelowViewport = rect.bottom > viewportHeight;
-    const hasHorizontalOverflow = wrapper.scrollWidth > wrapper.clientWidth;
-
-    const shouldShow =
-      tablePartiallyVisible && tableBottomBelowViewport && hasHorizontalOverflow;
-
-    setIsScrollbarVisible(shouldShow);
-    setScrollbarPosition({ left: rect.left, width: rect.width });
-  }, []);
-
   useEffect(() => {
     if (!stickyScrollbar) return undefined;
 
@@ -111,7 +91,6 @@ const Table: React.FC<TableProps> & TableComponents = ({
 
     const handleUpdate = () => {
       updateScrollbarWidth();
-      updateVisibilityAndPosition();
     };
 
     const findScrollableAncestors = (element: HTMLElement | null): HTMLElement[] => {
@@ -158,17 +137,11 @@ const Table: React.FC<TableProps> & TableComponents = ({
       window.removeEventListener("resize", handleUpdate);
       resizeObserver.disconnect();
     };
-  }, [stickyScrollbar, createScrollHandler, updateScrollbarWidth, updateVisibilityAndPosition]);
+  }, [stickyScrollbar, createScrollHandler, updateScrollbarWidth]);
 
   const wrapperClassName = stickyScrollbar
     ? `${table.classnames.container__wrapper} ${table.classnames.container__wrapper_hidden_scrollbar}`
     : table.classnames.container__wrapper;
-
-  const scrollbarStyle: React.CSSProperties = {
-    left: scrollbarPosition.left,
-    width: scrollbarPosition.width,
-    display: isScrollbarVisible ? "block" : "none",
-  };
 
   return (
     <TableContext.Provider value={contextValue}>
@@ -195,7 +168,6 @@ const Table: React.FC<TableProps> & TableComponents = ({
         <div
           ref={scrollbarFooterRef}
           className={table.classnames.sticky_scrollbar_footer}
-          style={scrollbarStyle}
           data-testid="table-sticky-scrollbar"
         >
           <div

@@ -509,7 +509,7 @@ export const withStickyScrollbar: Story = {
     }));
 
     return (
-      <div style={{ maxWidth: "600px", border: "1px dashed #ccc" }}>
+      <div style={{ border: "1px dashed #ccc" }}>
         <Table
           columnLayout={columnLayout}
           minWidth={minWidth}
