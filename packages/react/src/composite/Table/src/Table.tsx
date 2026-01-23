@@ -93,25 +93,6 @@ const Table: React.FC<TableProps> & TableComponents = ({
       updateScrollbarWidth();
     };
 
-    const findScrollableAncestors = (element: HTMLElement | null): HTMLElement[] => {
-      const ancestors: HTMLElement[] = [];
-      let current = element?.parentElement;
-      while (current) {
-        const style = window.getComputedStyle(current);
-        const overflowY = style.overflowY;
-        if (overflowY === "auto" || overflowY === "scroll") {
-          ancestors.push(current);
-        }
-        current = current.parentElement;
-      }
-      return ancestors;
-    };
-
-    const scrollableAncestors = findScrollableAncestors(wrapper);
-    scrollableAncestors.forEach((ancestor) => {
-      ancestor.addEventListener("scroll", handleUpdate, { passive: true });
-    });
-
     const intersectionObserver = new IntersectionObserver(handleUpdate, {
       root: null,
       threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
@@ -129,9 +110,6 @@ const Table: React.FC<TableProps> & TableComponents = ({
     return () => {
       wrapper.removeEventListener("scroll", wrapperToTrack);
       track.removeEventListener("scroll", trackToWrapper);
-      scrollableAncestors.forEach((ancestor) => {
-        ancestor.removeEventListener("scroll", handleUpdate);
-      });
       intersectionObserver.disconnect();
       window.removeEventListener("scroll", handleUpdate);
       window.removeEventListener("resize", handleUpdate);
