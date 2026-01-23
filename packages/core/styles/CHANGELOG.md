@@ -2,11 +2,17 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
-## 2026-01-22 `9.53.1`
+## 2026-01-23 `9.54.1`
 
 #### 🐛 Bug fixes
 
-- `Table`: Fixed sticky column shadows to only display when content is scrolled underneath them, improving visual consistency during horizontal scrolling.
+- `Table`: Fixed sticky column shadows to only display when content is scrolled underneath them, improving visual consistency during horizontal scrolling. ([#411](https://github.com/TiendaNube/nimbus-design-system/pull/411) by [@joacotornello](https://github.com/joacotornello))
+
+## 2026-01-23 `9.54.0`
+
+#### 🎉 New features
+
+- `Table`: Added `stickyScrollbar` prop to show a sticky scrollbar at the bottom of the viewport when the table overflows horizontally. ([#411](https://github.com/TiendaNube/nimbus-design-system/pull/411) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2026-01-21 `9.53.0`
 

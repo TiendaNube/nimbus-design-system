@@ -3,11 +3,17 @@
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories
 every day, with simplicity, accessibility, consistency and performance.
 
-## 2026-01-22 `5.48.1`
+## 2026-01-23 `5.49.1`
 
 #### 🐛 Bug fixes
 
-- `Table`: Fixed sticky column shadows to only display when content is scrolled underneath them, improving visual consistency during horizontal scrolling.
+- `Table`: Fixed sticky column shadows to only display when content is scrolled underneath them, improving visual consistency during horizontal scrolling. ([#411](https://github.com/TiendaNube/nimbus-design-system/pull/411) by [@joacotornello](https://github.com/joacotornello))
+
+## 2026-01-23 `5.49.0`
+
+#### 🎉 New features
+
+- `Table`: Added `stickyScrollbar` prop to show a sticky scrollbar at the bottom of the viewport when the table overflows horizontally. ([#411](https://github.com/TiendaNube/nimbus-design-system/pull/411) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2026-01-21 `5.48.0`
 

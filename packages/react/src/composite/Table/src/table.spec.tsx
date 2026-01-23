@@ -352,139 +352,178 @@ describe("GIVEN <Table />", () => {
     });
   });
 
-  describe("WHEN table has fixed columns and is scrolled", () => {
-    const mockScrollableWrapper = (
-      wrapper: HTMLElement,
-      scrollLeft: number,
-      scrollWidth: number,
-      clientWidth: number
-    ) => {
+  describe("WHEN stickyScrollbar is enabled", () => {
+    type ResizeObserverCb = (
+      entries: ResizeObserverEntry[],
+      observer: ResizeObserver
+    ) => void;
+
+    let originalRAF: typeof requestAnimationFrame;
+    let mockResizeObserver: jest.Mock;
+    let resizeCallback: ResizeObserverCb;
+
+    beforeEach(() => {
+      originalRAF = global.requestAnimationFrame;
+      global.requestAnimationFrame = (cb: (time: number) => void) => {
+        cb(0);
+        return 0;
+      };
+
+      mockResizeObserver = jest.fn((callback: ResizeObserverCb) => {
+        resizeCallback = callback;
+        return {
+          observe: jest.fn(),
+          unobserve: jest.fn(),
+          disconnect: jest.fn(),
+        };
+      });
+      global.ResizeObserver = mockResizeObserver;
+    });
+
+    afterEach(() => {
+      global.requestAnimationFrame = originalRAF;
+      jest.restoreAllMocks();
+    });
+
+    it("THEN should apply hidden scrollbar class to wrapper", () => {
+      const { container } = render(
+        <Table stickyScrollbar data-testid="table-element">
+          <tbody>
+            <tr>
+              <td>Content</td>
+            </tr>
+          </tbody>
+        </Table>
+      );
+
+      const wrapper = container.querySelector(
+        '[class*="container__wrapper"]'
+      ) as HTMLElement;
+      expect(wrapper.className).toContain(
+        "container__wrapper_hidden_scrollbar"
+      );
+    });
+
+    it("THEN should not apply hidden scrollbar class when disabled", () => {
+      const { container } = render(
+        <Table stickyScrollbar={false} data-testid="table-element">
+          <tbody>
+            <tr>
+              <td>Content</td>
+            </tr>
+          </tbody>
+        </Table>
+      );
+
+      const wrapper = container.querySelector(
+        '[class*="container__wrapper"]'
+      ) as HTMLElement;
+      expect(wrapper.className).not.toContain(
+        "container__wrapper_hidden_scrollbar"
+      );
+    });
+
+    it("THEN should sync scroll position from wrapper to track", () => {
+      const { container } = render(
+        <Table stickyScrollbar data-testid="table-element">
+          <tbody>
+            <tr>
+              <td>Content</td>
+            </tr>
+          </tbody>
+        </Table>
+      );
+
+      const wrapper = container.querySelector(
+        '[class*="container__wrapper"]'
+      ) as HTMLElement;
+      const track = container.querySelector(
+        '[class*="sticky_scrollbar_track"]'
+      ) as HTMLElement;
+
       Object.defineProperty(wrapper, "scrollLeft", {
-        value: scrollLeft,
-        configurable: true,
+        value: 150,
+        writable: true,
       });
-      Object.defineProperty(wrapper, "scrollWidth", {
-        value: scrollWidth,
-        configurable: true,
-      });
-      Object.defineProperty(wrapper, "clientWidth", {
-        value: clientWidth,
-        configurable: true,
-      });
-    };
+      wrapper.dispatchEvent(new Event("scroll"));
 
-    const renderTableWithFixedColumns = () =>
-      render(
-        <Table
-          data-testid="table-element"
-          columnLayout={[
-            { id: "column-1", width: "100px", fixed: "left" },
-            { id: "column-2", width: "200px" },
-            { id: "column-3", width: "200px" },
-            { id: "column-4", width: "100px", fixed: "right" },
-          ]}
-        >
-          <Table.Body>
-            <Table.Row>
-              <Table.Cell column={0}>Cell 1</Table.Cell>
-              <Table.Cell column={1}>Cell 2</Table.Cell>
-              <Table.Cell column={2}>Cell 3</Table.Cell>
-              <Table.Cell column={3}>Cell 4</Table.Cell>
-            </Table.Row>
-          </Table.Body>
+      expect(track.scrollLeft).toBe(150);
+    });
+
+    it("THEN should sync scroll position from track to wrapper", () => {
+      const { container } = render(
+        <Table stickyScrollbar data-testid="table-element">
+          <tbody>
+            <tr>
+              <td>Content</td>
+            </tr>
+          </tbody>
         </Table>
       );
 
-    it("THEN should set data-scroll-right when there is content to scroll", () => {
-      renderTableWithFixedColumns();
+      const wrapper = container.querySelector(
+        '[class*="container__wrapper"]'
+      ) as HTMLElement;
+      const track = container.querySelector(
+        '[class*="sticky_scrollbar_track"]'
+      ) as HTMLElement;
 
-      const wrapper = screen
-        .getByTestId("table-element")
-        .closest("[class]") as HTMLElement;
-
-      act(() => {
-        mockScrollableWrapper(wrapper, 0, 600, 400);
-        wrapper.dispatchEvent(new Event("scroll"));
+      Object.defineProperty(track, "scrollLeft", {
+        value: 200,
+        writable: true,
       });
+      track.dispatchEvent(new Event("scroll"));
 
-      expect(wrapper).not.toHaveAttribute("data-scroll-left");
-      expect(wrapper).toHaveAttribute("data-scroll-right");
+      expect(wrapper.scrollLeft).toBe(200);
     });
 
-    it("THEN should set data-scroll-left when scrolled from start position", () => {
-      renderTableWithFixedColumns();
-
-      const wrapper = screen
-        .getByTestId("table-element")
-        .closest("[class]") as HTMLElement;
-
-      act(() => {
-        mockScrollableWrapper(wrapper, 50, 600, 400);
-        wrapper.dispatchEvent(new Event("scroll"));
-      });
-
-      expect(wrapper).toHaveAttribute("data-scroll-left");
-      expect(wrapper).toHaveAttribute("data-scroll-right");
-    });
-
-    it("THEN should only set data-scroll-left when scrolled to end", () => {
-      renderTableWithFixedColumns();
-
-      const wrapper = screen
-        .getByTestId("table-element")
-        .closest("[class]") as HTMLElement;
-
-      act(() => {
-        mockScrollableWrapper(wrapper, 200, 600, 400);
-        wrapper.dispatchEvent(new Event("scroll"));
-      });
-
-      expect(wrapper).toHaveAttribute("data-scroll-left");
-      expect(wrapper).not.toHaveAttribute("data-scroll-right");
-    });
-
-    it("THEN should have no scroll attributes when content fits without scrolling", () => {
-      renderTableWithFixedColumns();
-
-      const wrapper = screen
-        .getByTestId("table-element")
-        .closest("[class]") as HTMLElement;
-
-      act(() => {
-        mockScrollableWrapper(wrapper, 0, 400, 400);
-        wrapper.dispatchEvent(new Event("scroll"));
-      });
-
-      expect(wrapper).not.toHaveAttribute("data-scroll-left");
-      expect(wrapper).not.toHaveAttribute("data-scroll-right");
-    });
-  });
-
-  describe("WHEN table has no fixed columns", () => {
-    it("THEN should not track scroll position", () => {
-      render(
-        <Table
-          data-testid="table-element"
-          columnLayout={[
-            { id: "column-1", width: "100px" },
-            { id: "column-2", width: "200px" },
-          ]}
-        >
-          <Table.Body>
-            <Table.Row>
-              <Table.Cell column={0}>Cell 1</Table.Cell>
-              <Table.Cell column={1}>Cell 2</Table.Cell>
-            </Table.Row>
-          </Table.Body>
+    it("THEN should set scrollbar inner width to match wrapper scroll width", () => {
+      const { container } = render(
+        <Table stickyScrollbar data-testid="table-element">
+          <tbody>
+            <tr>
+              <td>Content</td>
+            </tr>
+          </tbody>
         </Table>
       );
 
-      const wrapper = screen
-        .getByTestId("table-element")
-        .closest("[class]") as HTMLElement;
+      const wrapper = container.querySelector(
+        '[class*="container__wrapper"]'
+      ) as HTMLElement;
+      const inner = container.querySelector(
+        '[class*="sticky_scrollbar_inner"]'
+      ) as HTMLElement;
 
-      expect(wrapper).not.toHaveAttribute("data-scroll-left");
-      expect(wrapper).not.toHaveAttribute("data-scroll-right");
+      Object.defineProperty(wrapper, "scrollWidth", { value: 1500 });
+      resizeCallback([], {} as ResizeObserver);
+
+      expect(inner.style.width).toBe("1500px");
+    });
+
+    it("THEN should remove scroll event listeners on unmount", () => {
+      const removeEventListenerSpy = jest.spyOn(
+        HTMLElement.prototype,
+        "removeEventListener"
+      );
+
+      const { unmount } = render(
+        <Table stickyScrollbar data-testid="table-element">
+          <tbody>
+            <tr>
+              <td>Content</td>
+            </tr>
+          </tbody>
+        </Table>
+      );
+
+      unmount();
+
+      const scrollEventsCleaned = removeEventListenerSpy.mock.calls.filter(
+        (call) => call[0] === "scroll"
+      ).length;
+
+      expect(scrollEventsCleaned).toBeGreaterThanOrEqual(2);
     });
   });
 });

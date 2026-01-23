@@ -117,8 +117,55 @@ globalStyle(`${container} th`, {
   textAlign: "unset",
 });
 
+/* -------------------------------------------------------------------------------------------------
+ * Sticky Scrollbar
+ * -----------------------------------------------------------------------------------------------*/
+
+const container__wrapper_hidden_scrollbar = style({
+  scrollbarWidth: "none",
+  selectors: {
+    "&::-webkit-scrollbar": {
+      display: "none",
+    },
+  },
+});
+
+const sticky_scrollbar_footer = style({
+  position: "sticky",
+  bottom: 0,
+  left: 0,
+  width: "100%",
+  zIndex: 40,
+  backgroundColor: varsThemeBase.colors.neutral.background,
+  boxShadow: `0 -1px 0 0 ${varsThemeBase.colors.neutral.surfaceHighlight}`,
+});
+
+const sticky_scrollbar_track = style({
+  overflowX: "auto",
+
+  selectors: {
+    "&::-webkit-scrollbar": {
+      WebkitAppearance: "none",
+      width: "1px",
+      height: varsThemeBase.spacing["2"],
+    },
+    "&::-webkit-scrollbar-thumb": {
+      borderRadius: varsThemeBase.shape.border.radius[2],
+      backgroundColor: varsThemeBase.colors.neutral.interactive,
+    },
+    "&::-webkit-scrollbar-thumb:hover": {
+      backgroundColor: varsThemeBase.colors.neutral.interactiveHover,
+    },
+  },
+});
+
+const sticky_scrollbar_inner = style({
+  height: "1px",
+});
+
 export const styles = {
   container__wrapper,
+  container__wrapper_hidden_scrollbar,
   container,
   container__head,
   container__body,
@@ -127,6 +174,9 @@ export const styles = {
   container__cell_fixed,
   container__cell_fixed_left,
   container__cell_fixed_right,
+  sticky_scrollbar_footer,
+  sticky_scrollbar_track,
+  sticky_scrollbar_inner,
 };
 
 /* -------------------------------------------------------------------------------------------------
