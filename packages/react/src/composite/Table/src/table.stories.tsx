@@ -482,7 +482,7 @@ export const withFixedColumns: Story = {
 export const withStickyScrollbar: Story = {
   args: {
     stickyScrollbar: true,
-    minWidth: "1040px", 
+    minWidth: "1040px",
   },
   render: ({ stickyScrollbar, minWidth }) => {
     const columnLayout: TableColumnLayout[] = [
@@ -509,61 +509,57 @@ export const withStickyScrollbar: Story = {
     }));
 
     return (
-      <div style={{ border: "1px dashed #ccc" }}>
-        <Table
-          columnLayout={columnLayout}
-          minWidth={minWidth}
-          stickyScrollbar={stickyScrollbar}
-        >
-          <Table.Head>
-            <Table.Row backgroundColor="neutral-surface">
-              <Table.Cell as="th" column={0}>
-                ID
-              </Table.Cell>
-              <Table.Cell as="th" column={1}>
-                Name
-              </Table.Cell>
-              <Table.Cell as="th" column={2}>
-                Email
-              </Table.Cell>
-              <Table.Cell as="th" column={3}>
-                Role
-              </Table.Cell>
-              <Table.Cell as="th" column={4}>
-                Department
-              </Table.Cell>
-              <Table.Cell as="th" column={5}>
-                Location
-              </Table.Cell>
-              <Table.Cell as="th" column={6}>
-                Status
-              </Table.Cell>
-              <Table.Cell as="th" column={7}>
-                Actions
-              </Table.Cell>
+      <Table
+        columnLayout={columnLayout}
+        minWidth={minWidth}
+        stickyScrollbar={stickyScrollbar}
+      >
+        <Table.Head>
+          <Table.Row backgroundColor="neutral-surface">
+            <Table.Cell as="th" column={0}>
+              ID
+            </Table.Cell>
+            <Table.Cell as="th" column={1}>
+              Name
+            </Table.Cell>
+            <Table.Cell as="th" column={2}>
+              Email
+            </Table.Cell>
+            <Table.Cell as="th" column={3}>
+              Role
+            </Table.Cell>
+            <Table.Cell as="th" column={4}>
+              Department
+            </Table.Cell>
+            <Table.Cell as="th" column={5}>
+              Location
+            </Table.Cell>
+            <Table.Cell as="th" column={6}>
+              Status
+            </Table.Cell>
+            <Table.Cell as="th" column={7}>
+              Actions
+            </Table.Cell>
+          </Table.Row>
+        </Table.Head>
+        <Table.Body>
+          {data.map((row, index) => (
+            <Table.Row
+              key={row.id}
+              backgroundColor={index % 2 === 0 ? undefined : "neutral-surface"}
+            >
+              <Table.Cell column={0}>{row.id}</Table.Cell>
+              <Table.Cell column={1}>{row.name}</Table.Cell>
+              <Table.Cell column={2}>{row.email}</Table.Cell>
+              <Table.Cell column={3}>{row.role}</Table.Cell>
+              <Table.Cell column={4}>{row.department}</Table.Cell>
+              <Table.Cell column={5}>{row.location}</Table.Cell>
+              <Table.Cell column={6}>{row.status}</Table.Cell>
+              <Table.Cell column={7}>Edit | Delete</Table.Cell>
             </Table.Row>
-          </Table.Head>
-          <Table.Body>
-            {data.map((row, index) => (
-              <Table.Row
-                key={row.id}
-                backgroundColor={
-                  index % 2 === 0 ? undefined : "neutral-surface"
-                }
-              >
-                <Table.Cell column={0}>{row.id}</Table.Cell>
-                <Table.Cell column={1}>{row.name}</Table.Cell>
-                <Table.Cell column={2}>{row.email}</Table.Cell>
-                <Table.Cell column={3}>{row.role}</Table.Cell>
-                <Table.Cell column={4}>{row.department}</Table.Cell>
-                <Table.Cell column={5}>{row.location}</Table.Cell>
-                <Table.Cell column={6}>{row.status}</Table.Cell>
-                <Table.Cell column={7}>Edit | Delete</Table.Cell>
-              </Table.Row>
-            ))}
-          </Table.Body>
-        </Table>
-      </div>
+          ))}
+        </Table.Body>
+      </Table>
     );
   },
   parameters: {
@@ -573,6 +569,5 @@ export const withStickyScrollbar: Story = {
           "Demonstrates the sticky scrollbar feature. The scrollbar remains visible at the bottom of the viewport when scrolling vertically, making it easier to navigate wide tables. The scrollbar is synchronized with the table's horizontal scroll position.",
       },
     },
-
   },
 };

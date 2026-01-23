@@ -112,7 +112,6 @@ globalStyle(`${container} th`, {
  * Sticky Scrollbar
  * -----------------------------------------------------------------------------------------------*/
 
-
 const container__wrapper_hidden_scrollbar = style({
   scrollbarWidth: "none",
   selectors: {
@@ -139,11 +138,14 @@ const sticky_scrollbar_track = style({
     "&::-webkit-scrollbar": {
       WebkitAppearance: "none",
       width: "1px",
-      height: varsThemeBase.spacing["2"]
+      height: varsThemeBase.spacing["2"],
     },
     "&::-webkit-scrollbar-thumb": {
-      borderRadius: "4px",
-      backgroundColor: "rgba(0, 0, 0, .5)",
+      borderRadius: varsThemeBase.shape.border.radius[2],
+      backgroundColor: varsThemeBase.colors.neutral.interactive,
+    },
+    "&::-webkit-scrollbar-thumb:hover": {
+      backgroundColor: varsThemeBase.colors.neutral.interactiveHover,
     },
   },
 });

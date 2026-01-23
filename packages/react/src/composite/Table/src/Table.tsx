@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useEffect, useCallback } from "react";
+import React, { useMemo, useRef, useEffect } from "react";
 import { table } from "@nimbus-ds/styles";
 
 import { TableProps, TableComponents } from "./table.types";
@@ -23,7 +23,6 @@ const Table: React.FC<TableProps> & TableComponents = ({
   const wrapperRef = useRef<HTMLDivElement>(null);
   const scrollbarTrackRef = useRef<HTMLDivElement>(null);
   const scrollbarInnerRef = useRef<HTMLDivElement>(null);
-  const scrollbarFooterRef = useRef<HTMLDivElement>(null);
   const isSyncingRef = useRef(false);
 
   const totalGrowValue = useMemo(
@@ -57,65 +56,53 @@ const Table: React.FC<TableProps> & TableComponents = ({
     [minWidth, maxWidth]
   );
 
-  const updateScrollbarWidth = useCallback(() => {
-    const wrapper = wrapperRef.current;
-    const inner = scrollbarInnerRef.current;
-    if (!wrapper || !inner) return;
-    inner.style.width = `${wrapper.scrollWidth}px`;
-  }, []);
-
-  const createScrollHandler = useCallback(
-    (source: HTMLElement, target: HTMLElement) => () => {
-      if (isSyncingRef.current) return;
-      isSyncingRef.current = true;
-      target.scrollLeft = source.scrollLeft;
-      requestAnimationFrame(() => {
-        isSyncingRef.current = false;
-      });
-    },
-    []
-  );
-
   useEffect(() => {
     if (!stickyScrollbar) return undefined;
 
     const wrapper = wrapperRef.current;
     const track = scrollbarTrackRef.current;
-    if (!wrapper || !track) return undefined;
+    const inner = scrollbarInnerRef.current;
+    if (!wrapper || !track || !inner) return undefined;
 
-    const wrapperToTrack = createScrollHandler(wrapper, track);
-    const trackToWrapper = createScrollHandler(track, wrapper);
-
-    wrapper.addEventListener("scroll", wrapperToTrack);
-    track.addEventListener("scroll", trackToWrapper);
-
-    const handleUpdate = () => {
-      updateScrollbarWidth();
+    const updateScrollbarWidth = () => {
+      inner.style.width = `${wrapper.scrollWidth}px`;
     };
 
-    const intersectionObserver = new IntersectionObserver(handleUpdate, {
-      root: null,
-      threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
-    });
-    intersectionObserver.observe(wrapper);
+    const syncScrollFromWrapper = () => {
+      if (isSyncingRef.current) return;
+      isSyncingRef.current = true;
+      track.scrollLeft = wrapper.scrollLeft;
+      requestAnimationFrame(() => {
+        isSyncingRef.current = false;
+      });
+    };
 
-    window.addEventListener("scroll", handleUpdate, { passive: true });
-    window.addEventListener("resize", handleUpdate, { passive: true });
+    const syncScrollFromTrack = () => {
+      if (isSyncingRef.current) return;
+      isSyncingRef.current = true;
+      wrapper.scrollLeft = track.scrollLeft;
+      requestAnimationFrame(() => {
+        isSyncingRef.current = false;
+      });
+    };
 
-    const resizeObserver = new ResizeObserver(handleUpdate);
+    wrapper.addEventListener("scroll", syncScrollFromWrapper);
+    track.addEventListener("scroll", syncScrollFromTrack);
+
+    window.addEventListener("resize", updateScrollbarWidth, { passive: true });
+
+    const resizeObserver = new ResizeObserver(updateScrollbarWidth);
     resizeObserver.observe(wrapper);
 
-    handleUpdate();
+    updateScrollbarWidth();
 
     return () => {
-      wrapper.removeEventListener("scroll", wrapperToTrack);
-      track.removeEventListener("scroll", trackToWrapper);
-      intersectionObserver.disconnect();
-      window.removeEventListener("scroll", handleUpdate);
-      window.removeEventListener("resize", handleUpdate);
+      wrapper.removeEventListener("scroll", syncScrollFromWrapper);
+      track.removeEventListener("scroll", syncScrollFromTrack);
+      window.removeEventListener("resize", updateScrollbarWidth);
       resizeObserver.disconnect();
     };
-  }, [stickyScrollbar, createScrollHandler, updateScrollbarWidth]);
+  }, [stickyScrollbar]);
 
   const wrapperClassName = stickyScrollbar
     ? `${table.classnames.container__wrapper} ${table.classnames.container__wrapper_hidden_scrollbar}`
@@ -144,7 +131,6 @@ const Table: React.FC<TableProps> & TableComponents = ({
       </div>
       {stickyScrollbar && (
         <div
-          ref={scrollbarFooterRef}
           className={table.classnames.sticky_scrollbar_footer}
           data-testid="table-sticky-scrollbar"
         >
