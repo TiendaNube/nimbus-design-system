@@ -148,8 +148,12 @@ const Table: React.FC<TableProps> & TableComponents = ({
 
   return (
     <TableContext.Provider value={contextValue}>
-      <div ref={wrapperRef} className={wrapperClassName} data-scroll-left={hasScrolledLeft || undefined}
-        data-scroll-right={hasScrolledRight || undefined}>
+      <div
+        ref={wrapperRef}
+        className={wrapperClassName}
+        data-scroll-left={hasScrolledLeft || undefined}
+        data-scroll-right={hasScrolledRight || undefined}
+      >
         <table
           {...rest}
           className={table.classnames.container}

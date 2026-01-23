@@ -354,8 +354,10 @@ export const withMinAndMaxWidth: Story = {
 };
 
 export const withFixedColumns: Story = {
-  args: {},
-  render: () => {
+  args: {
+    stickyScrollbar: false,
+  },
+  render: ({ stickyScrollbar }) => {
     const columnLayout: TableColumnLayout[] = [
       { id: "column-id", width: "80px", fixed: "left" },
       { id: "column-name", width: "150px", fixed: "left" },
@@ -417,7 +419,11 @@ export const withFixedColumns: Story = {
 
     return (
       <div>
-        <Table columnLayout={columnLayout} minWidth="1040px">
+        <Table
+          columnLayout={columnLayout}
+          minWidth="1040px"
+          stickyScrollbar={stickyScrollbar}
+        >
           <Table.Head>
             <Table.Row backgroundColor="primary-surface">
               <Table.Cell as="th" column={0}>
