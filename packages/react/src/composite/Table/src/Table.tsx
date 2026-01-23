@@ -61,9 +61,11 @@ const Table: React.FC<TableProps> & TableComponents = ({
     const { scrollLeft, scrollWidth, clientWidth } = wrapper;
     const maxScroll = scrollWidth - clientWidth;
 
-    setScrollState({
-      left: scrollLeft > 0,
-      right: scrollLeft < maxScroll - 1, // -1 accounts for subpixel rounding
+    setScrollState((prev) => {
+      const left = scrollLeft > 0;
+      const right = scrollLeft < maxScroll - 1; // -1 accounts for subpixel rounding
+      if (prev.left === left && prev.right === right) return prev;
+      return { left, right };
     });
   }, []);
 

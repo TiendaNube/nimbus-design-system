@@ -492,14 +492,14 @@ export const withStickyScrollbar: Story = {
   },
   render: ({ stickyScrollbar, minWidth }) => {
     const columnLayout: TableColumnLayout[] = [
-      { id: "column-id", width: "80px" },
+      { id: "column-id", width: "80px", fixed: "left" },
       { id: "column-name", width: "150px" },
       { id: "column-email", width: "200px" },
       { id: "column-role", width: "120px" },
       { id: "column-department", width: "150px" },
       { id: "column-location", width: "120px" },
       { id: "column-status", width: "100px" },
-      { id: "column-actions", width: "120px" },
+      { id: "column-actions", width: "120px", fixed: "right" },
     ];
 
     const data = Array.from({ length: 20 }, (_, i) => ({
@@ -549,10 +549,13 @@ export const withStickyScrollbar: Story = {
           </Table.Row>
         </Table.Head>
         <Table.Body>
-          {data.map((row, index) => (
+          {data.map((row) => (
             <Table.Row
               key={row.id}
-              backgroundColor={index % 2 === 0 ? undefined : "neutral-surface"}
+              backgroundColor={{
+                active: "neutral-background",
+                hover: "neutral-surface",
+              }}
             >
               <Table.Cell column={0}>{row.id}</Table.Cell>
               <Table.Cell column={1}>{row.name}</Table.Cell>

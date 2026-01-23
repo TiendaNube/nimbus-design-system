@@ -60,11 +60,16 @@ const container__cell = style({
 const container__cell_fixed = style({
   position: "sticky",
   zIndex: 30,
-  /**
-   * Use CSS variable for row background with fallback to table default.
-   * This allows fixed cells to match the row's background color when set.
-   */
   backgroundColor: `var(--nimbus-table-row-bg, ${varsThemeBase.colors.neutral.background})`,
+  transition: `background-color ${varsThemeBase.motion.speed.fast} ease-in-out`,
+});
+
+globalStyle(`${container__row}:hover ${container__cell_fixed}`, {
+  backgroundColor: `var(--nimbus-table-row-bg-hover, var(--nimbus-table-row-bg, ${varsThemeBase.colors.neutral.background}))`,
+});
+
+globalStyle(`${container__row}:active ${container__cell_fixed}`, {
+  backgroundColor: `var(--nimbus-table-row-bg-active, var(--nimbus-table-row-bg, ${varsThemeBase.colors.neutral.background}))`,
 });
 
 /* -------------------------------------------------------------------------------------------------

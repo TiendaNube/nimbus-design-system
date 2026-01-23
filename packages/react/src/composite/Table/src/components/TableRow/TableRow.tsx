@@ -21,29 +21,30 @@ const TableRow: React.FC<TableRowProps> = ({
     backgroundColor,
   });
 
-  // Extract the row's background color for fixed cells to inherit
-  // Look up the actual CSS variable value from the properties mapping
   const rowStyle = useMemo(() => {
-    // Get the "rest" (default) background color key from the prop
-    const bgColorKey =
-      typeof backgroundColor === "string"
-        ? backgroundColor
-        : backgroundColor?.rest;
+    const bgProps = table.properties.backgroundColor;
+    type BgColorKey = keyof typeof bgProps;
 
-    // Look up the actual CSS variable value from the properties mapping
-    const bgColorValue = bgColorKey
-      ? table.properties.backgroundColor[
-          bgColorKey as keyof typeof table.properties.backgroundColor
-        ]
-      : undefined;
+    const isStringBg = typeof backgroundColor === "string";
+    const restKey = isStringBg ? backgroundColor : backgroundColor?.rest;
+    const hoverKey = isStringBg ? undefined : backgroundColor?.hover;
+    const activeKey = isStringBg ? undefined : backgroundColor?.active;
 
-    if (bgColorValue) {
-      return {
-        ...style,
-        "--nimbus-table-row-bg": bgColorValue,
-      } as React.CSSProperties;
+    const cssVars: Record<string, string> = {};
+    if (restKey && bgProps[restKey as BgColorKey]) {
+      cssVars["--nimbus-table-row-bg"] = bgProps[restKey as BgColorKey];
     }
-    return style;
+    if (hoverKey && bgProps[hoverKey as BgColorKey]) {
+      cssVars["--nimbus-table-row-bg-hover"] = bgProps[hoverKey as BgColorKey];
+    }
+    if (activeKey && bgProps[activeKey as BgColorKey]) {
+      cssVars["--nimbus-table-row-bg-active"] =
+        bgProps[activeKey as BgColorKey];
+    }
+
+    return Object.keys(cssVars).length > 0
+      ? ({ ...style, ...cssVars } as React.CSSProperties)
+      : style;
   }, [style, backgroundColor]);
 
   return (
