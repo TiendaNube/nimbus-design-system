@@ -67,6 +67,13 @@ const Table: React.FC<TableProps> & TableComponents = ({
     });
   }, []);
 
+  const updateScrollbarWidth = useCallback(() => {
+    const wrapper = wrapperRef.current;
+    const inner = scrollbarInnerRef.current;
+    if (!wrapper || !inner) return;
+    inner.style.width = `${wrapper.scrollWidth}px`;
+  }, []);
+
   useEffect(() => {
     const wrapper = wrapperRef.current;
     if (!hasFixedColumns || !wrapper) return undefined;
@@ -74,14 +81,32 @@ const Table: React.FC<TableProps> & TableComponents = ({
     checkScrollPosition();
     wrapper.addEventListener("scroll", checkScrollPosition, { passive: true });
 
-    const resizeObserver = new ResizeObserver(checkScrollPosition);
+    return () => {
+      wrapper.removeEventListener("scroll", checkScrollPosition);
+    };
+  }, [checkScrollPosition, hasFixedColumns]);
+
+  useEffect(() => {
+    const wrapper = wrapperRef.current;
+    if (!wrapper || (!hasFixedColumns && !stickyScrollbar)) return undefined;
+
+    const handleResize = () => {
+      if (hasFixedColumns) checkScrollPosition();
+      if (stickyScrollbar) updateScrollbarWidth();
+    };
+
+    const resizeObserver = new ResizeObserver(handleResize);
     resizeObserver.observe(wrapper);
 
     return () => {
-      wrapper.removeEventListener("scroll", checkScrollPosition);
       resizeObserver.disconnect();
     };
-  }, [checkScrollPosition, hasFixedColumns]);
+  }, [
+    hasFixedColumns,
+    stickyScrollbar,
+    checkScrollPosition,
+    updateScrollbarWidth,
+  ]);
 
   const contextValue = useMemo<TableContextValue>(
     () => ({ columnLayout, fixedColumnOffsets }),
@@ -101,12 +126,7 @@ const Table: React.FC<TableProps> & TableComponents = ({
 
     const wrapper = wrapperRef.current;
     const track = scrollbarTrackRef.current;
-    const inner = scrollbarInnerRef.current;
-    if (!wrapper || !track || !inner) return undefined;
-
-    const updateScrollbarWidth = () => {
-      inner.style.width = `${wrapper.scrollWidth}px`;
-    };
+    if (!wrapper || !track) return undefined;
 
     const syncScrollFromWrapper = () => {
       if (isSyncingRef.current) return;
@@ -128,11 +148,7 @@ const Table: React.FC<TableProps> & TableComponents = ({
 
     wrapper.addEventListener("scroll", syncScrollFromWrapper);
     track.addEventListener("scroll", syncScrollFromTrack);
-
     window.addEventListener("resize", updateScrollbarWidth, { passive: true });
-
-    const resizeObserver = new ResizeObserver(updateScrollbarWidth);
-    resizeObserver.observe(wrapper);
 
     updateScrollbarWidth();
 
@@ -140,9 +156,8 @@ const Table: React.FC<TableProps> & TableComponents = ({
       wrapper.removeEventListener("scroll", syncScrollFromWrapper);
       track.removeEventListener("scroll", syncScrollFromTrack);
       window.removeEventListener("resize", updateScrollbarWidth);
-      resizeObserver.disconnect();
     };
-  }, [stickyScrollbar]);
+  }, [stickyScrollbar, updateScrollbarWidth]);
 
   const wrapperClassName = stickyScrollbar
     ? `${table.classnames.container__wrapper} ${table.classnames.container__wrapper_hidden_scrollbar}`
