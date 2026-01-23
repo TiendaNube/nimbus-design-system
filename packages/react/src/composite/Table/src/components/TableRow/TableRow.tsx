@@ -30,17 +30,17 @@ const TableRow: React.FC<TableRowProps> = ({
     const hoverKey = isStringBg ? undefined : backgroundColor?.hover;
     const activeKey = isStringBg ? undefined : backgroundColor?.active;
 
+    const getBgValue = (key: string | undefined): string | undefined =>
+      key && key in bgProps ? bgProps[key as BgColorKey] : undefined;
+
     const cssVars: Record<string, string> = {};
-    if (restKey && bgProps[restKey as BgColorKey]) {
-      cssVars["--nimbus-table-row-bg"] = bgProps[restKey as BgColorKey];
-    }
-    if (hoverKey && bgProps[hoverKey as BgColorKey]) {
-      cssVars["--nimbus-table-row-bg-hover"] = bgProps[hoverKey as BgColorKey];
-    }
-    if (activeKey && bgProps[activeKey as BgColorKey]) {
-      cssVars["--nimbus-table-row-bg-active"] =
-        bgProps[activeKey as BgColorKey];
-    }
+    const restBg = getBgValue(restKey);
+    const hoverBg = getBgValue(hoverKey);
+    const activeBg = getBgValue(activeKey);
+
+    if (restBg) cssVars["--nimbus-table-row-bg"] = restBg;
+    if (hoverBg) cssVars["--nimbus-table-row-bg-hover"] = hoverBg;
+    if (activeBg) cssVars["--nimbus-table-row-bg-active"] = activeBg;
 
     return Object.keys(cssVars).length > 0
       ? ({ ...style, ...cssVars } as React.CSSProperties)
