@@ -1,6 +1,6 @@
 import { AmPm } from "../../timePicker.types";
 
-function convertTo24HoursDropdown(
+function convertTo24Hours(
     hours: number,
     ampm: AmPm | undefined
   ): number {
@@ -13,4 +13,4 @@ function convertTo24HoursDropdown(
     return hours;
   }
 
-export { convertTo24HoursDropdown };
+export { convertTo24Hours };

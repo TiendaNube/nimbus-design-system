@@ -4,6 +4,7 @@ export type {
   TimePickerProperties,
   TimePickerLabels,
   TimeFormat,
+  TimePickerMode,
   TimeValue,
   AmPm,
 } from "./timePicker.types";

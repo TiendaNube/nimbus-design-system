@@ -4,7 +4,11 @@ export interface TimePickerAmPmProps {
     /**
      * Currently selected AM/PM value.
      */
-    value: AmPm;
+    current?: AmPm;
+    /**
+     * Selected AM/PM value.
+     */
+    selected?: AmPm;
     /**
      * Callback when new value of AM/PM is selected.
      */

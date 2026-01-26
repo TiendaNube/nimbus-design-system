@@ -34,7 +34,6 @@ export function useTimePickerState({
   step,
 }: UseTimePickerStateProps): UseTimePickerStateReturn {
   const [internalValue, setInternalValue] = useState<Partial<TimeValue>>({
-    ampm: "AM",
   });
   const initialValue = useMemo(
     () => parseTimeString(value, format),
@@ -86,7 +85,7 @@ export function useTimePickerState({
   );
 
   const clear = useCallback(() => {
-    setInternalValue({ ampm: "AM" });
+    setInternalValue({});
   }, [setInternalValue]);
 
   const hourOptions = useMemo(

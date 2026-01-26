@@ -9,6 +9,10 @@ const meta: Meta<typeof TimePicker> = {
   component: TimePicker,
   argTypes: {
     value: { control: "text" },
+    mode: {
+      control: "radio",
+      options: ["scroll", "dropdown"],
+    },
     format: {
       control: "radio",
       options: ["12h", "24h"],
@@ -66,7 +70,8 @@ export const dropdownMode: Story = {
     const [time, setTime] = useState<string | null>("14:30");
     return (
       <Box display="flex" flexDirection="column" gap="2">
-        <TimePicker.Dropdown
+        <TimePicker
+          mode="dropdown"
           value={time}
           onChange={(value) => setTime(value)}
           step={30}
@@ -85,7 +90,8 @@ export const dropdownMode12h: Story = {
     const [time, setTime] = useState<string | null>(null);
     return (
       <Box display="flex" flexDirection="column" gap="2">
-        <TimePicker.Dropdown
+        <TimePicker
+          mode="dropdown"
           value={time}
           onChange={(value) => setTime(value)}
           format="12h"
@@ -119,19 +125,20 @@ export const customStep1: Story = {
   },
 };
 
-export const customStep: Story = {
+export const customStepDropdown: Story = {
   render: () => {
     const [time, setTime] = useState<string | null>(null);
     return (
       <Box display="flex" flexDirection="column" gap="2">
-        <TimePicker.Dropdown
+        <TimePicker
+          mode="dropdown"
           value={time}
           onChange={(value) => setTime(value)}
           step={15}
           placeholder="15-minute intervals"
         />
         <Text fontSize="caption" color="neutral-textLow">
-          Step: 15 minutes
+          Step: 15 minutes (dropdown mode)
         </Text>
       </Box>
     );

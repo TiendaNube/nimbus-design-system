@@ -2,6 +2,7 @@ import React, { HTMLAttributes, RefObject } from "react";
 
 export type TimeFormat = "12h" | "24h";
 export type AmPm = "AM" | "PM";
+export type TimePickerMode = "scroll" | "dropdown";
 
 /**
  * Translatable labels for the TimePicker component.
@@ -47,6 +48,13 @@ export interface TimeValue {
 }
 
 export interface TimePickerProperties {
+  /**
+   * Display mode for the time picker panel.
+   * - "scroll": Shows a scroll-based wheel picker with separate hour/minute columns.
+   * - "dropdown": Shows a single scrollable list of time options.
+   * @default "scroll"
+   */
+  mode?: TimePickerMode;
   /**
    * Current time value (HH:mm string format or Date object).
    * For 12h format, use "HH:mm AM/PM" or just "HH:mm" (will default to AM).
@@ -237,6 +245,32 @@ export interface TimePickerOptionProps
    * @default "option"
    */
   role?: "option" | "radio";
+}
+
+export interface TimePickerPanelBaseProps {
+  format: TimeFormat;
+  disabled: boolean;
+  labels: TimePickerLabels;
+  ariaLabel?: string;
+}
+
+export interface TimePickerScrollPanelProps extends TimePickerPanelBaseProps {
+  hourOptions: number[];
+  minuteOptions: number[];
+  initialValue: TimeValue | null;
+  timeValue: Partial<TimeValue> | null;
+  setHours: (hours: number) => void;
+  setMinutes: (minutes: number) => void;
+  setAmPm: (ampm: AmPm) => void;
+}
+
+export interface TimePickerDropdownPanelProps extends TimePickerPanelBaseProps {
+  step: number;
+  dropdownOptions: DropdownOption[];
+  initialValue: TimeValue | null;
+  internalTimeValue: Partial<TimeValue> | null;
+  selectTime: (hours: number, minutes: number, ampm?: AmPm) => void;
+  setAmPm: (ampm: AmPm) => void;
 }
 
 

@@ -1,298 +1,136 @@
-import React, { forwardRef, useState, useCallback, useMemo, useRef, useEffect } from "react";
-import {
-  useFloating,
-  useClick,
-  useDismiss,
-  useInteractions,
-  offset,
-  flip,
-  shift,
-  autoUpdate,
-  FloatingPortal,
-  FloatingFocusManager,
-} from "@floating-ui/react";
+import React, { useMemo, useRef, useEffect } from "react";
 import { timePicker } from "@nimbus-ds/styles";
-import { Input } from "@nimbus-ds/input";
-import { Icon } from "@nimbus-ds/icon";
-import { ClockIcon } from "@nimbus-ds/icons";
 import { useCanScroll } from "../../../../../common/hooks";
 
-import { TimePickerProps, AmPm } from "../../timePicker.types";
-import { useTimePickerState } from "../../hooks";
+import { TimePickerDropdownPanelProps } from "../../timePicker.types";
 import { padZero } from "../../utils/timeUtils";
 import { TimePickerAmPm, TimePickerColumn } from "../index";
-import { convertTo24HoursDropdown } from "./TimePicker.definitions";
 
 const { classnames } = timePicker;
 
-
-
 /**
- * TimePickerDropdown displays a dropdown list of time options.
- * Shows the initial value with light blue styling and tracks the selected value
- * with dark blue styling. Only commits changes to the parent when the panel closes.
+ * Internal dropdown panel component that displays a scrollable list
+ * of time options with optional AM/PM toggle.
  */
-export const TimePickerDropdown = forwardRef<HTMLDivElement, TimePickerProps>(
-  (
-    {
-      value,
-      onChange,
-      format = "24h",
-      step = 30,
-      disabled = false,
-      placeholder = "Select time (dropdown)",
-      open: controlledOpen,
-      onOpenChange,
-      "aria-label": ariaLabel,
-      "aria-labelledby": ariaLabelledBy,
-      "aria-describedby": ariaDescribedBy,
-      name,
-      required = false,
-      id,
-      labels = {},
-      ...rest
-    },
-    ref
-  ) => {
-    const [uncontrolledOpen, setUncontrolledOpen] = useState(false);
-    const scrollContainerRef = useRef<HTMLDivElement>(null);
-    const isOpen = controlledOpen ?? uncontrolledOpen;
+export const TimePickerDropdown: React.FC<TimePickerDropdownPanelProps> = ({
+  format,
+  disabled,
+  labels,
+  ariaLabel,
+  step,
+  dropdownOptions,
+  initialValue,
+  internalTimeValue,
+  selectTime,
+  setAmPm,
+}) => {
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
-    const {
-      canScrollStart: canScrollTop,
-      canScrollEnd: canScrollBottom,
-      checkScrollPosition,
-    } = useCanScroll({
-      direction: "vertical",
-      scrollContainerRef,
-    });
+  const {
+    canScrollStart: canScrollTop,
+    canScrollEnd: canScrollBottom,
+    checkScrollPosition,
+  } = useCanScroll({
+    direction: "vertical",
+    scrollContainerRef,
+  });
 
-    useEffect(() => {
-      if (!isOpen) return undefined;
+  useEffect(() => {
+    let resizeObserver: ResizeObserver | null = null;
+    const handleScroll = () => checkScrollPosition();
 
-      let resizeObserver: ResizeObserver | null = null;
-      const handleScroll = () => checkScrollPosition();
+    const setupScrollTracking = () => {
+      const container = scrollContainerRef.current;
+      if (!container) return;
 
-      const setupScrollTracking = () => {
-        const container = scrollContainerRef.current;
-        if (!container) return;
+      checkScrollPosition();
+      container.addEventListener("scroll", handleScroll);
 
-        checkScrollPosition();
-        container.addEventListener("scroll", handleScroll);
+      resizeObserver = new ResizeObserver(() => {
+        requestAnimationFrame(checkScrollPosition);
+      });
+      resizeObserver.observe(container);
+    };
 
-        resizeObserver = new ResizeObserver(() => {
-          requestAnimationFrame(checkScrollPosition);
-        });
-        resizeObserver.observe(container);
-      };
+    const frameId = requestAnimationFrame(setupScrollTracking);
 
-      const frameId = requestAnimationFrame(setupScrollTracking);
+    return () => {
+      cancelAnimationFrame(frameId);
+      const container = scrollContainerRef.current;
+      if (container) {
+        container.removeEventListener("scroll", handleScroll);
+      }
+      resizeObserver?.disconnect();
+    };
+  }, [checkScrollPosition]);
 
-      return () => {
-        cancelAnimationFrame(frameId);
-        const container = scrollContainerRef.current;
-        if (container) {
-          container.removeEventListener("scroll", handleScroll);
-        }
-        resizeObserver?.disconnect();
-      };
-    }, [isOpen, checkScrollPosition]);
+  const currentTimeValue = useMemo(
+    () =>
+      initialValue
+        ? `${padZero(initialValue.hours)}:${padZero(initialValue.minutes)}`
+        : null,
+    [initialValue]
+  );
 
-    const {
-      timeValue: internalTimeValue,
-      initialValue,
-      displayValue,
-      dropdownOptions,
-      selectTime,
-      setAmPm,
-    } = useTimePickerState({
-      value,
-      onChange: undefined,
-      format,
-      step,
-    });
-
-    const handleOpenChange = useCallback(
-      (newOpen: boolean) => {
-        if (!newOpen && internalTimeValue && onChange) {
-          if (
-            internalTimeValue.hours !== undefined &&
-            internalTimeValue.minutes !== undefined
-          ) {
-            const { hours, minutes, ampm } = internalTimeValue;
-            const formattedValue =
-              format === "12h"
-                ? `${padZero(hours)}:${padZero(minutes)} ${ampm}`
-                : `${padZero(hours)}:${padZero(minutes)}`;
-
-            const date = new Date();
-            if (format === "12h") {
-              const hours24 = convertTo24HoursDropdown(hours, ampm);
-              date.setHours(hours24, minutes, 0, 0);
-            } else {
-              date.setHours(hours, minutes, 0, 0);
-            }
-
-            onChange(formattedValue, date);
-          }
-        }
-
-        if (newOpen) {
-          selectTime(
-            initialValue?.hours ?? 0,
-            initialValue?.minutes ?? 0,
-            initialValue?.ampm
-          );
-        }
-
-        if (controlledOpen === undefined) {
-          setUncontrolledOpen(newOpen);
-        }
-        onOpenChange?.(newOpen);
-      },
-      [
-        controlledOpen,
-        onOpenChange,
-        onChange,
-        selectTime,
-        initialValue,
-        format,
-        internalTimeValue,
-      ]
-    );
-
-    const { refs, floatingStyles, context } = useFloating({
-      open: isOpen,
-      onOpenChange: handleOpenChange,
-      middleware: [offset(4), flip(), shift({ padding: 8 })],
-      whileElementsMounted: autoUpdate,
-      placement: "bottom-start",
-    });
-
-    const { getReferenceProps, getFloatingProps } = useInteractions([
-      useClick(context, { enabled: !disabled }),
-      useDismiss(context),
-    ]);
-
-    const handleKeyDown = useCallback(
-      (event: React.KeyboardEvent) => {
-        if (disabled) return;
-
-        if (
-          (!isOpen && (event.key === "Enter" || event.key === " ")) ||
-          (isOpen && event.key === "Escape")
-        ) {
-          event.preventDefault();
-          handleOpenChange(!isOpen);
-        }
-      },
-      [disabled, isOpen, handleOpenChange]
-    );
-
-    const currentTimeValue = useMemo(
-      () =>
-        initialValue
-          ? `${padZero(initialValue.hours)}:${padZero(initialValue.minutes)}`
-          : null,
-      [initialValue]
-    );
-
-    const selectedTimeValue = useMemo(
-      () =>
-        internalTimeValue &&
-          internalTimeValue.hours !== undefined &&
-          internalTimeValue.minutes !== undefined
-          ? `${padZero(internalTimeValue.hours)}:${padZero(
+  const selectedTimeValue = useMemo(
+    () =>
+      internalTimeValue &&
+      internalTimeValue.hours !== undefined &&
+      internalTimeValue.minutes !== undefined
+        ? `${padZero(internalTimeValue.hours)}:${padZero(
             internalTimeValue.minutes
           )}`
-          : null,
-      [internalTimeValue]
-    );
+        : null,
+    [internalTimeValue]
+  );
 
-    const currentAmPm = initialValue?.ampm ?? "AM";
-    const selectedAmPm = internalTimeValue?.ampm ?? currentAmPm;
+  const currentAmPm = initialValue?.ampm ?? "AM";
+  const selectedAmPm = internalTimeValue?.ampm ?? currentAmPm;
 
-    const filteredOptions = useMemo(() => {
-      if (format === "24h") {
-        return dropdownOptions;
-      }
-      return dropdownOptions.filter((opt) => opt.ampm === selectedAmPm);
-    }, [dropdownOptions, format, selectedAmPm]);
+  const filteredOptions = useMemo(() => {
+    if (format === "24h") {
+      return dropdownOptions;
+    }
+    return dropdownOptions.filter((opt) => opt.ampm === selectedAmPm);
+  }, [dropdownOptions, format, selectedAmPm]);
 
-    return (
-      <div ref={ref} {...rest}>
-        <div ref={refs.setReference} {...getReferenceProps()}>
-          <Input
-            id={id}
-            name={name}
-            value={displayValue}
-            placeholder={placeholder}
-            disabled={disabled}
-            readOnly
-            required={required}
-            aria-label={ariaLabel}
-            aria-labelledby={ariaLabelledBy}
-            aria-describedby={ariaDescribedBy}
-            aria-expanded={isOpen}
-            aria-haspopup="listbox"
-            role="combobox"
-            onKeyDown={handleKeyDown}
-            append={<Icon source={<ClockIcon />} color="currentColor" />}
-            appendPosition="end"
-          />
-        </div>
-
-        {isOpen && (
-          <FloatingPortal>
-            <FloatingFocusManager context={context} modal={false}>
-              <div
-                ref={refs.setFloating}
-                className={`${classnames.panel} ${classnames.panelDropdown}`}
-                style={floatingStyles}
-                {...getFloatingProps()}
-              >
-                <div style={{ position: "relative", display: "flex", flex: 1 }}>
-                  <div className={classnames.dropdownScrollContainer} ref={scrollContainerRef}>
-                    <TimePickerColumn
-                      type="combined"
-                      options={filteredOptions}
-                      currentValue={currentTimeValue}
-                      selectedValue={selectedTimeValue}
-                      onSelectTime={selectTime}
-                      format={format}
-                      step={step}
-                      label={ariaLabel}
-                      scrollContainerRef={scrollContainerRef}
-                    />
-                    {format === "12h" && (
-                      <div className={classnames.dropdownAmPmSticky}>
-                        <TimePickerAmPm
-                          value={selectedAmPm}
-                          onSelect={setAmPm}
-                          disabled={disabled}
-                          amLabel={labels.amLabel || "AM"}
-                          pmLabel={labels.pmLabel || "PM"}
-                          selectorLabel={
-                            labels.amPmSelectorLabel || "AM/PM selector"
-                          }
-                        />
-                      </div>
-                    )}
-                  </div>
-                  {canScrollTop && (
-                    <div className={classnames.gradientPosition.top} />
-                  )}
-                  {canScrollBottom && (
-                    <div className={classnames.gradientPosition.bottom} />
-                  )}
-                </div>
-              </div>
-            </FloatingFocusManager>
-          </FloatingPortal>
+  return (
+    <div style={{ position: "relative", display: "flex", flex: 1 }}>
+      <div
+        className={classnames.dropdownScrollContainer}
+        ref={scrollContainerRef}
+      >
+        <TimePickerColumn
+          type="combined"
+          options={filteredOptions}
+          currentValue={currentTimeValue}
+          selectedValue={selectedTimeValue}
+          onSelectTime={selectTime}
+          format={format}
+          step={step}
+          label={ariaLabel}
+          scrollContainerRef={scrollContainerRef}
+        />
+        {format === "12h" && (
+          <div className={classnames.dropdownAmPmSticky}>
+            <TimePickerAmPm
+              current={currentAmPm}
+              selected={selectedAmPm}
+              onSelect={setAmPm}
+              disabled={disabled}
+              amLabel={labels.amLabel || "AM"}
+              pmLabel={labels.pmLabel || "PM"}
+              selectorLabel={labels.amPmSelectorLabel || "AM/PM selector"}
+            />
+          </div>
         )}
       </div>
-    );
-  }
-);
+      {canScrollTop && <div className={classnames.gradientPosition.top} />}
+      {canScrollBottom && (
+        <div className={classnames.gradientPosition.bottom} />
+      )}
+    </div>
+  );
+};
 
-TimePickerDropdown.displayName = "TimePicker.Dropdown";
+TimePickerDropdown.displayName = "TimePickerDropdown";

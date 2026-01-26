@@ -11,7 +11,8 @@ const { classnames } = timePicker;
  * Implements the roving tabindex pattern for radio group keyboard navigation.
  */
 export const TimePickerAmPm: React.FC<TimePickerAmPmProps> = ({
-  value,
+  current,
+  selected,
   onSelect,
   disabled,
   amLabel = "AM",
@@ -29,15 +30,15 @@ export const TimePickerAmPm: React.FC<TimePickerAmPmProps> = ({
       targetRef.current?.focus();
       pendingFocusRef.current = null;
     }
-  }, [value]);
+  }, [current]);
 
   const handleSelect = useCallback(
     (ampm: AmPm) => {
-      if (!disabled && ampm !== value) {
+      if (!disabled && ampm !== selected) {
         onSelect(ampm);
       }
     },
-    [disabled, value, onSelect]
+    [disabled, selected, onSelect]
   );
 
   const handleKeyDown = useCallback(
@@ -46,7 +47,7 @@ export const TimePickerAmPm: React.FC<TimePickerAmPmProps> = ({
 
       if (event.key === "ArrowUp" || event.key === "ArrowDown") {
         event.preventDefault();
-        const newValue = value === "AM" ? "PM" : "AM";
+        const newValue = selected === "AM" ? "PM" : "AM";
         if (newValue == "AM") {
           amButtonRef.current?.focus();
         } else {
@@ -54,7 +55,7 @@ export const TimePickerAmPm: React.FC<TimePickerAmPmProps> = ({
         }
       }
     },
-    [disabled, value, onSelect]
+    [disabled, selected, onSelect]
   );
 
   return (
@@ -66,22 +67,24 @@ export const TimePickerAmPm: React.FC<TimePickerAmPmProps> = ({
       <TimePickerOption
         ref={amButtonRef}
         role="radio"
-        selected={value === "AM"}
+        selected={selected === "AM"}
+        current={current === "AM"}
         disabled={disabled}
         onSelect={() => handleSelect("AM")}
         onKeyDown={(e) => handleKeyDown(e, "AM")}
-        tabIndex={value === "AM" ? 0 : -1}
+        tabIndex={selected === "AM" ? 0 : -1}
       >
         {amLabel}
       </TimePickerOption>
       <TimePickerOption
         ref={pmButtonRef}
         role="radio"
-        selected={value === "PM"}
+        selected={selected === "PM"}
+        current={current === "PM"}
         disabled={disabled}
         onSelect={() => handleSelect("PM")}
         onKeyDown={(e) => handleKeyDown(e, "PM")}
-        tabIndex={value === "PM" ? 0 : -1}
+        tabIndex={selected === "PM" ? 0 : -1}
       >
         {pmLabel}
       </TimePickerOption>
