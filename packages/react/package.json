@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/components",
-  "version": "5.46.0",
+  "version": "5.49.0",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -117,6 +117,10 @@
     "./Skeleton": {
       "import": "./dist/Skeleton/index.js",
       "require": "./dist/Skeleton/index.js"
+    },
+    "./Slider": {
+      "import": "./dist/Slider/index.js",
+      "require": "./dist/Slider/index.js"
     },
     "./Spinner": {
       "import": "./dist/Spinner/index.js",

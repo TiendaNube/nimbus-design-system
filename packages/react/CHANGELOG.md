@@ -3,6 +3,30 @@
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories
 every day, with simplicity, accessibility, consistency and performance.
 
+## 2026-01-23 `5.49.0`
+
+#### 🎉 New features
+
+- `Table`: Added `stickyScrollbar` prop to show a sticky scrollbar at the bottom of the viewport when the table overflows horizontally. ([#411](https://github.com/TiendaNube/nimbus-design-system/pull/411) by [@joacotornello](https://github.com/joacotornello))
+
+## 2026-01-21 `5.48.0`
+
+#### 🎉 New features
+
+- Added new `Slider` component for range value selection with dual-thumb interaction, number inputs, keyboard navigation, and full accessibility support. ([#400](https://github.com/TiendaNube/nimbus-design-system/pull/400) by [@vinniimiranda](https://github.com/vinniimiranda))
+
+## 2026-01-19 `5.47.0`
+
+#### 🎉 New features
+
+- `Accordion`: Added `interactive` prop to allow render the Accordion as a static div. ([#409](https://github.com/TiendaNube/nimbus-design-system/pull/409) by [@Pfurno-TN](https://github.com/Pfurno-TN))
+
+## 2026-01-15 `5.46.1`
+
+#### 🐛 Bug fixes
+
+- Fixed DTS generation command to include `--no-check` flag. ([#407](https://github.com/TiendaNube/nimbus-design-system/pull/407) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2026-01-14 `5.46.0`
 
 #### 🎉 New features

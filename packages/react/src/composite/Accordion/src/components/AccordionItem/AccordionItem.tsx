@@ -6,9 +6,13 @@ import { AccordionItemProps } from "./accordionItem.types";
 const AccordionItem: React.FC<AccordionItemProps> = ({
   children,
   index,
+  interactive = true,
   testId,
 }) => {
-  const context = useMemo(() => ({ index, testId }), [index, testId]);
+  const context = useMemo(
+    () => ({ index, interactive, testId }),
+    [index, interactive, testId]
+  );
   return (
     <AccordionItemContext.Provider value={context}>
       {children}

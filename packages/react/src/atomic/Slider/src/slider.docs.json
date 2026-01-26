@@ -1,0 +1,201 @@
+{
+  "id": "slider",
+  "name": "Slider",
+  "totalProps": 10,
+  "packageName": "@nimbus-ds/slider",
+  "version": "1.0.0",
+  "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/slider",
+  "props": [
+    {
+      "description": "The current value of the slider (single mode).",
+      "type": "number",
+      "title": "value",
+      "required": true
+    },
+    {
+      "description": "Callback fired when the value changes.",
+      "type": "object",
+      "additionalProperties": false,
+      "propertyOrder": [],
+      "title": "onChange",
+      "required": false
+    },
+    {
+      "description": "Callback fired when the user finishes interacting with the slider.",
+      "type": "object",
+      "additionalProperties": false,
+      "propertyOrder": [],
+      "title": "onChangeEnd",
+      "required": false
+    },
+    {
+      "description": "Accessible label for the slider thumb.",
+      "default": "Value",
+      "type": "string",
+      "title": "ariaLabel",
+      "required": false
+    },
+    {
+      "description": "The minimum value of the slider range.",
+      "default": 0,
+      "type": "number",
+      "title": "min",
+      "required": false
+    },
+    {
+      "description": "The maximum value of the slider range.",
+      "default": 100,
+      "type": "number",
+      "title": "max",
+      "required": false
+    },
+    {
+      "description": "The step increment between values.",
+      "default": 1,
+      "type": "number",
+      "title": "step",
+      "required": false
+    },
+    {
+      "description": "Visual appearance of the slider fill.",
+      "default": "primary",
+      "enum": [
+        "danger",
+        "neutral",
+        "primary",
+        "success",
+        "warning"
+      ],
+      "type": "string",
+      "title": "appearance",
+      "required": false
+    },
+    {
+      "description": "Whether the slider is disabled.",
+      "default": false,
+      "type": "boolean",
+      "title": "disabled",
+      "required": false
+    },
+    {
+      "description": "This is an attribute used to identify a DOM node for testing purposes.",
+      "type": "string",
+      "title": "data-testid",
+      "required": false
+    }
+  ],
+  "subComponents": [
+    {
+      "name": "Slider.Range",
+      "totalProps": 14,
+      "props": [
+        {
+          "description": "The current minimum value selected on the slider.",
+          "type": "number",
+          "title": "minValue",
+          "required": true
+        },
+        {
+          "description": "The current maximum value selected on the slider.",
+          "type": "number",
+          "title": "maxValue",
+          "required": true
+        },
+        {
+          "description": "Callback fired when the min or max value changes.",
+          "type": "object",
+          "additionalProperties": false,
+          "propertyOrder": [],
+          "title": "onChange",
+          "required": false
+        },
+        {
+          "description": "Callback fired when the min value changes.",
+          "type": "object",
+          "additionalProperties": false,
+          "propertyOrder": [],
+          "title": "onMinChange",
+          "required": false
+        },
+        {
+          "description": "Callback fired when the max value changes.",
+          "type": "object",
+          "additionalProperties": false,
+          "propertyOrder": [],
+          "title": "onMaxChange",
+          "required": false
+        },
+        {
+          "description": "Callback fired when the user finishes interacting with the slider.",
+          "type": "object",
+          "additionalProperties": false,
+          "propertyOrder": [],
+          "title": "onChangeEnd",
+          "required": false
+        },
+        {
+          "description": "Accessible label for the minimum value thumb.",
+          "default": "Minimum value",
+          "type": "string",
+          "title": "minAriaLabel",
+          "required": false
+        },
+        {
+          "description": "Accessible label for the maximum value thumb.",
+          "default": "Maximum value",
+          "type": "string",
+          "title": "maxAriaLabel",
+          "required": false
+        },
+        {
+          "description": "The minimum value of the slider range.",
+          "default": 0,
+          "type": "number",
+          "title": "min",
+          "required": false
+        },
+        {
+          "description": "The maximum value of the slider range.",
+          "default": 100,
+          "type": "number",
+          "title": "max",
+          "required": false
+        },
+        {
+          "description": "The step increment between values.",
+          "default": 1,
+          "type": "number",
+          "title": "step",
+          "required": false
+        },
+        {
+          "description": "Visual appearance of the slider fill.",
+          "default": "primary",
+          "enum": [
+            "danger",
+            "neutral",
+            "primary",
+            "success",
+            "warning"
+          ],
+          "type": "string",
+          "title": "appearance",
+          "required": false
+        },
+        {
+          "description": "Whether the slider is disabled.",
+          "default": false,
+          "type": "boolean",
+          "title": "disabled",
+          "required": false
+        },
+        {
+          "description": "This is an attribute used to identify a DOM node for testing purposes.",
+          "type": "string",
+          "title": "data-testid",
+          "required": false
+        }
+      ]
+    }
+  ]
+}

@@ -15,6 +15,15 @@ const header = style({
   border: "none",
 });
 
+const header_static = style({
+  width: "100%",
+  cursor: "default",
+  backgroundColor: varsThemeBase.colors.neutral.background,
+  padding: varsThemeBase.spacing[4],
+  border: "none",
+  boxSizing: "border-box",
+});
+
 const header_active = style({
   backgroundColor: varsThemeBase.colors.neutral.surface,
 });
@@ -49,6 +58,7 @@ const body = style({
 
 export const styles = {
   header,
+  header_static,
   header__content,
   header__description,
   header__title,

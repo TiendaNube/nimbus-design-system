@@ -2,6 +2,30 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2026-01-23 `9.54.0`
+
+#### 🎉 New features
+
+- `Table`: Added `stickyScrollbar` prop to show a sticky scrollbar at the bottom of the viewport when the table overflows horizontally. ([#411](https://github.com/TiendaNube/nimbus-design-system/pull/411) by [@joacotornello](https://github.com/joacotornello))
+
+## 2026-01-21 `9.53.0`
+
+#### 🎉 New features
+
+- `Slider`: Added new `Slider` component for range value selection with dual-thumb interaction, number inputs, keyboard navigation, and full accessibility support. ([#400](https://github.com/TiendaNube/nimbus-design-system/pull/400) by [@vinniimiranda](https://github.com/vinniimiranda))
+
+## 2026-01-20 `9.52.0`
+
+#### 🎉 New features
+
+- `Accordion`: Added `interactive` prop to allow render the Accordion as a static div. ([#409](https://github.com/TiendaNube/nimbus-design-system/pull/409) by [@Pfurno-TN](https://github.com/Pfurno-TN))
+
+## 2026-01-19 `9.51.0`
+
+#### 🎉 New features
+
+- `Box`: Added AI generative color token (`ai-generative-interactiveHover`) to `borderColor` property. ([#408](https://github.com/TiendaNube/nimbus-design-system/pull/408) by [@jffs](https://github.com/jffs))
+
 ## 2026-01-15 `9.50.1`
 
 #### 🐛 Bug fixes
