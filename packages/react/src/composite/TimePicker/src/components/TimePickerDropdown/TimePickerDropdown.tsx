@@ -249,7 +249,7 @@ export const TimePickerDropdown = forwardRef<HTMLDivElement, TimePickerProps>(
 
         if (currentEnabledIndex === -1) return;
 
-        let targetOption;
+        let targetOption: (typeof enabledOptions)[number] | undefined;
 
         switch (event.key) {
           case "ArrowUp": {
@@ -275,8 +275,9 @@ export const TimePickerDropdown = forwardRef<HTMLDivElement, TimePickerProps>(
         }
 
         if (targetOption) {
+          const targetValue = targetOption.value;
           const targetIndex = filteredOptions.findIndex(
-            (opt) => opt.value === targetOption.value
+            (opt) => opt.value === targetValue
           );
           const buttonElement = document.querySelector(
             `[data-timepicker-time-index="${targetIndex}"]`

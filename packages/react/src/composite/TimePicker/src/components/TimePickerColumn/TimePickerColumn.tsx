@@ -38,7 +38,10 @@ export const TimePickerColumn: React.FC<TimePickerColumnProps> = ({
     ).filter((minute) => minute < 60);
   }, [type, format, step]);
 
-  const firstEnabledValue = useMemo(() => values.find((v) => !isDisabled?.(v)), [values, isDisabled]);
+  const firstEnabledValue = useMemo(
+    () => values.find((v) => !isDisabled?.(v)),
+    [values, isDisabled]
+  );
 
   useEffect(() => {
     if (!isInitialMount.current) return;
@@ -59,7 +62,7 @@ export const TimePickerColumn: React.FC<TimePickerColumnProps> = ({
 
     scrollContainer.scrollTo({
       top: Math.max(0, scrollTop),
-      behavior: "instant",
+      behavior: "instant" as any,
     });
 
     const selectedOption = optionRefs.current.get(value);
