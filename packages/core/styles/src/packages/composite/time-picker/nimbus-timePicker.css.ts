@@ -1,6 +1,8 @@
 import { style, styleVariants } from "@vanilla-extract/css";
 import { varsThemeBase } from "../../../themes";
 
+const PANEL_HEIGHT = "160px";
+
 /* -------------------------------------------------------------------------------------------------
  * Style - Panel
  * -----------------------------------------------------------------------------------------------*/
@@ -44,7 +46,7 @@ const column = style({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  height: "240px",
+  height: PANEL_HEIGHT,
 });
 
 const columnLabel = style({
@@ -267,7 +269,7 @@ const gradientPosition = styleVariants({
 const columnWrapper = style({
   display: "flex",
   flexDirection: "column",
-  height: "240px",
+  height: PANEL_HEIGHT,
 });
 
 /* -------------------------------------------------------------------------------------------------
@@ -277,7 +279,7 @@ const columnWrapper = style({
 const dropdownWrapper = style({
   display: "flex",
   flexDirection: "column",
-  height: "280px",
+  height: PANEL_HEIGHT,
   minWidth: "100px",
   overflowY: "auto",
 });

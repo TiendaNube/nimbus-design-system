@@ -7,6 +7,11 @@ import { TimePickerProps } from "./timePicker.types";
 const makeSut = (props: Partial<TimePickerProps> = {}) =>
   render(<TimePicker data-testid="timepicker-element" {...props} />);
 
+const makeSutDropdown = (props: Partial<TimePickerProps> = {}) =>
+  render(
+    <TimePicker.Dropdown data-testid="timepicker-dropdown-element" {...props} />
+  );
+
 const ControlledTimePicker = (props: Partial<TimePickerProps> = {}) => {
   const [time, setTime] = useState<string | null>(props.value as string | null);
   return (
@@ -79,9 +84,9 @@ describe("GIVEN <TimePicker />", () => {
     });
   });
 
-  describe("WHEN rendered in scroll mode with 12h format", () => {
+  describe("WHEN rendered with 12h format", () => {
     it("THEN should show AM/PM selector when panel is open", async () => {
-      makeSut({ format: "12h", mode: "scroll" });
+      makeSut({ format: "12h" });
       const input = screen.getByRole("combobox");
 
       fireEvent.click(input);
@@ -94,9 +99,9 @@ describe("GIVEN <TimePicker />", () => {
     });
   });
 
-  describe("WHEN rendered in dropdown mode", () => {
+  describe("WHEN rendered as dropdown variant", () => {
     it("THEN should show time options in the dropdown", async () => {
-      makeSut({ mode: "dropdown", step: 30 });
+      makeSutDropdown({ step: 30 });
       const input = screen.getByRole("combobox");
 
       fireEvent.click(input);
@@ -109,10 +114,10 @@ describe("GIVEN <TimePicker />", () => {
     });
   });
 
-  describe("WHEN selecting a time in dropdown mode", () => {
-    it("THEN should call onChange with the selected value", async () => {
+  describe("WHEN selecting a time in dropdown variant", () => {
+    it("THEN should call onChange with the selected value only on panel close", async () => {
       const handleChange = jest.fn();
-      makeSut({ mode: "dropdown", step: 60, onChange: handleChange });
+      makeSutDropdown({ step: 60, onChange: handleChange });
       const input = screen.getByRole("combobox");
 
       fireEvent.click(input);
@@ -122,11 +127,17 @@ describe("GIVEN <TimePicker />", () => {
         fireEvent.click(option);
       });
 
-      expect(handleChange).toHaveBeenCalledWith("10:00", expect.any(Date));
+      expect(handleChange).not.toHaveBeenCalled();
+
+      fireEvent.keyDown(input, { key: "Escape" });
+
+      await waitFor(() => {
+        expect(handleChange).toHaveBeenCalledWith("10:00", expect.any(Date));
+      });
     });
 
-    it("THEN should close the panel after selection", async () => {
-      makeSut({ mode: "dropdown", step: 60 });
+    it("THEN should close the panel and commit value on escape", async () => {
+      makeSutDropdown({ step: 60 });
       const input = screen.getByRole("combobox");
 
       fireEvent.click(input);
@@ -135,6 +146,8 @@ describe("GIVEN <TimePicker />", () => {
         const option = screen.getByText("10:00");
         fireEvent.click(option);
       });
+
+      fireEvent.keyDown(input, { key: "Escape" });
 
       await waitFor(() => {
         expect(input.getAttribute("aria-expanded")).toBe("false");
@@ -160,10 +173,9 @@ describe("GIVEN <TimePicker />", () => {
     });
   });
 
-  describe("WHEN minTime and maxTime are set in dropdown mode", () => {
+  describe("WHEN minTime and maxTime are set in dropdown variant", () => {
     it("THEN should mark times outside range as disabled", async () => {
-      makeSut({
-        mode: "dropdown",
+      makeSutDropdown({
         step: 60,
         minTime: "09:00",
         maxTime: "17:00",
@@ -278,9 +290,9 @@ describe("GIVEN <TimePicker />", () => {
     });
   });
 
-  describe("WHEN step prop is set in dropdown mode", () => {
+  describe("WHEN step prop is set in dropdown variant", () => {
     it("THEN should display options at correct intervals", async () => {
-      makeSut({ mode: "dropdown", step: 15 });
+      makeSutDropdown({ step: 15 });
       const input = screen.getByRole("combobox");
 
       fireEvent.click(input);

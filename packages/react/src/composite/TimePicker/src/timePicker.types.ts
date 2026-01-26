@@ -1,7 +1,6 @@
 import React, { HTMLAttributes, RefObject } from "react";
 
 export type TimeFormat = "12h" | "24h";
-export type PickerMode = "scroll" | "dropdown";
 export type AmPm = "AM" | "PM";
 
 /**
@@ -65,14 +64,11 @@ export interface TimePickerProperties {
    */
   format?: TimeFormat;
   /**
-   * Picker mode: scroll (wheel columns) or dropdown (time list).
-   * @default "scroll"
-   */
-  mode?: PickerMode;
-  /**
-   * Step interval in minutes for both scroll and dropdown modes.
-   * Common values: 15, 30, 60.
-   * @default 30
+   * Step interval in minutes for the time picker.
+   * For scroll mode: controls minute increments in the minutes column.
+   * For dropdown mode: controls the time options shown in the list.
+   * Common values: 1, 15, 30, 60.
+   * @default 1 for scroll picker, 30 for dropdown
    */
   step?: number;
   /**
@@ -139,7 +135,7 @@ type OmittedHTMLAttributes = "value" | "onChange" | "placeholder" | "disabled";
 
 export interface TimePickerProps
   extends TimePickerProperties,
-  Omit<HTMLAttributes<HTMLDivElement>, OmittedHTMLAttributes> {
+    Omit<HTMLAttributes<HTMLDivElement>, OmittedHTMLAttributes> {
   /**
    * Ref to the container element.
    */
@@ -154,12 +150,12 @@ export interface TimePickerColumnProps {
   /**
    * Current time picker column value.
    */
-  value: number;
+  value?: number;
 
   /**
    * Currently selected value.
    */
-  selected: number | null;
+  selected?: number;
 
   /**
    * Callback when a value is selected.

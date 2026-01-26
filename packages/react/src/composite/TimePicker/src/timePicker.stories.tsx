@@ -13,10 +13,6 @@ const meta: Meta<typeof TimePicker> = {
       control: "radio",
       options: ["12h", "24h"],
     },
-    mode: {
-      control: "radio",
-      options: ["scroll", "dropdown"],
-    },
     step: {
       control: "number",
     },
@@ -69,13 +65,12 @@ export const format12h: Story = {
 
 export const dropdownMode: Story = {
   render: () => {
-    const [time, setTime] = useState<string | null>(null);
+    const [time, setTime] = useState<string | null>("14:30");
     return (
       <Box display="flex" flexDirection="column" gap="2">
-        <TimePicker
+        <TimePicker.Dropdown
           value={time}
           onChange={(value) => setTime(value)}
-          mode="dropdown"
           step={30}
           placeholder="Select time (dropdown)"
         />
@@ -92,10 +87,9 @@ export const dropdownMode12h: Story = {
     const [time, setTime] = useState<string | null>(null);
     return (
       <Box display="flex" flexDirection="column" gap="2">
-        <TimePicker
+        <TimePicker.Dropdown
           value={time}
           onChange={(value) => setTime(value)}
-          mode="dropdown"
           format="12h"
           step={30}
           placeholder="Select time"
@@ -113,12 +107,11 @@ export const withMinMaxTime: Story = {
     const [time, setTime] = useState<string | null>("09:00");
     return (
       <Box display="flex" flexDirection="column" gap="2">
-        <TimePicker
+        <TimePicker.Dropdown
           value={time}
           onChange={(value) => setTime(value)}
           minTime="09:00"
           maxTime="17:00"
-          mode="dropdown"
           step={30}
           placeholder="Business hours only"
         />
@@ -154,10 +147,9 @@ export const customStep: Story = {
     const [time, setTime] = useState<string | null>(null);
     return (
       <Box display="flex" flexDirection="column" gap="2">
-        <TimePicker
+        <TimePicker.Dropdown
           value={time}
           onChange={(value) => setTime(value)}
-          mode="dropdown"
           step={15}
           placeholder="15-minute intervals"
         />
@@ -231,8 +223,7 @@ export const playground: Story = {
   args: {
     value: "10:30",
     format: "24h",
-    mode: "scroll",
-    step: 30,
+    step: 1,
     disabled: false,
     placeholder: "Select time",
     minTime: undefined,

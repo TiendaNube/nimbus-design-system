@@ -38,6 +38,7 @@ export function parseTimeString(
       const { hours, ampm } = to12Hour(hours24);
       return { hours, minutes, ampm };
     }
+
     return { hours: hours24, minutes };
   }
 

@@ -1,9 +1,8 @@
-import { useState, useCallback, useMemo, useEffect } from "react";
+import { useState, useCallback, useMemo } from "react";
 import { TimeFormat, TimeValue, AmPm } from "../../timePicker.types";
 import {
   parseTimeString,
   formatTimeValue,
-  timeValueToDate,
   timeToMinutes,
   padZero,
 } from "../../utils/timeUtils";
@@ -19,7 +18,7 @@ interface UseTimePickerStateProps {
 
 interface UseTimePickerStateReturn {
   initialValue: TimeValue | null;
-  timeValue: TimeValue | null;
+  timeValue: Partial<TimeValue> | null;
   displayValue: string;
   setHours: (hours: number) => void;
   setMinutes: (minutes: number) => void;
@@ -46,14 +45,18 @@ function parseMinMaxTime(time: string | undefined): number | null {
 
 export function useTimePickerState({
   value,
-  onChange,
   format,
   step,
   minTime,
   maxTime,
 }: UseTimePickerStateProps): UseTimePickerStateReturn {
-  const [internalValue, setInternalValue] = useState<TimeValue | null>(null);
-  const initialValue = useMemo(() => parseTimeString(value, format), [value, format]);
+  const [internalValue, setInternalValue] = useState<Partial<TimeValue>>({
+    ampm: "AM",
+  });
+  const initialValue = useMemo(
+    () => parseTimeString(value, format),
+    [value, format]
+  );
 
   const minMinutes = useMemo(() => parseMinMaxTime(minTime), [minTime]);
   const maxMinutes = useMemo(() => parseMinMaxTime(maxTime), [maxTime]);
@@ -88,73 +91,60 @@ export function useTimePickerState({
   );
 
   const isMinuteDisabled = useCallback(
-    (minute: number): boolean => internalValue
-      ? isTimeDisabled(internalValue.hours, minute, internalValue.ampm)
-      : false,
+    (minute: number): boolean =>
+      internalValue
+        ? isTimeDisabled(internalValue.hours ?? 0, minute, internalValue.ampm)
+        : false,
     [internalValue, isTimeDisabled]
-  );
-
-  const updateValue = useCallback(
-    (newValue: TimeValue | null) => {
-      setInternalValue(newValue);
-      if (onChange) {
-        const formattedValue = formatTimeValue(newValue, format);
-        const dateValue = timeValueToDate(newValue, format);
-        onChange(formattedValue || null, dateValue);
-      }
-    },
-    [onChange, format]
   );
 
   const setHours = useCallback(
     (hours: number) => {
-      updateValue({
+      setInternalValue((prev) => ({
+        ...prev,
         hours,
-        minutes: internalValue?.minutes ?? 0,
-        ampm: format === "12h" ? internalValue?.ampm ?? "AM" : undefined,
-      });
+      }));
     },
-    [internalValue, format, updateValue]
+    [setInternalValue]
   );
 
   const setMinutes = useCallback(
     (minutes: number) => {
-      updateValue({
-        hours: internalValue?.hours ?? (format === "12h" ? 12 : 0),
+      setInternalValue((prev) => ({
+        ...prev,
         minutes,
-        ampm: format === "12h" ? internalValue?.ampm ?? "AM" : undefined,
-      });
+      }));
     },
-    [internalValue, format, updateValue]
+    [setInternalValue]
   );
 
   const setAmPm = useCallback(
     (ampm: AmPm) => {
       if (format === "12h") {
-        updateValue({
-          hours: internalValue?.hours ?? 12,
-          minutes: internalValue?.minutes ?? 0,
+        setInternalValue((prev) => ({
+          ...prev,
           ampm,
-        });
+        }));
       }
     },
-    [internalValue, format, updateValue]
+    [format, setInternalValue]
   );
 
   const selectTime = useCallback(
     (hours: number, minutes: number, ampm?: AmPm) => {
-      updateValue({
+      setInternalValue((prev) => ({
+        ...prev,
         hours,
         minutes,
         ampm: format === "12h" ? ampm : undefined,
-      });
+      }));
     },
-    [format, updateValue]
+    [format, setInternalValue]
   );
 
   const clear = useCallback(() => {
-    updateValue(null);
-  }, [updateValue]);
+    setInternalValue({ ampm: "AM" });
+  }, [setInternalValue]);
 
   const dropdownOptions = useMemo(() => {
     const options: Array<{

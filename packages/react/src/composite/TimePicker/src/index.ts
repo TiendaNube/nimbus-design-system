@@ -1,10 +1,9 @@
 export { TimePicker } from "./TimePicker";
 export type {
-    TimePickerProps,
-    TimePickerProperties,
-    TimePickerLabels,
-    TimeFormat,
-    PickerMode,
-    TimeValue,
-    AmPm,
+  TimePickerProps,
+  TimePickerProperties,
+  TimePickerLabels,
+  TimeFormat,
+  TimeValue,
+  AmPm,
 } from "./timePicker.types";

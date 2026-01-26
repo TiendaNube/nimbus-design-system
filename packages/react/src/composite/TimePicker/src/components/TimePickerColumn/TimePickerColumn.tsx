@@ -38,8 +38,11 @@ export const TimePickerColumn: React.FC<TimePickerColumnProps> = ({
     ).filter((minute) => minute < 60);
   }, [type, format, step]);
 
+  const firstEnabledValue = useMemo(() => values.find((v) => !isDisabled?.(v)), [values, isDisabled]);
+
   useEffect(() => {
     if (!isInitialMount.current) return;
+    if (!value) return;
 
     isInitialMount.current = false;
     if (!wrapperRef.current) return;
@@ -180,7 +183,12 @@ export const TimePickerColumn: React.FC<TimePickerColumnProps> = ({
                     className={classnames.optionState[state]}
                     onClick={() => !disabled && onSelect(itemValue)}
                     onKeyDown={(e) => handleKeyDown(e, itemValue)}
-                    tabIndex={itemValue === value ? 0 : -1}
+                    tabIndex={
+                      itemValue === value ||
+                      (value === undefined && itemValue === firstEnabledValue)
+                        ? 0
+                        : -1
+                    }
                   >
                     {padZero(itemValue)}
                   </button>

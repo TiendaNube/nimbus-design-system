@@ -3249,7 +3249,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/scroll-pane@workspace:packages/react/src/composite/ScrollPane":
+"@nimbus-ds/scroll-pane@workspace:^, @nimbus-ds/scroll-pane@workspace:packages/react/src/composite/ScrollPane":
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/scroll-pane@workspace:packages/react/src/composite/ScrollPane"
   dependencies:
@@ -3482,6 +3482,7 @@ __metadata:
     "@nimbus-ds/icon": "workspace:^"
     "@nimbus-ds/icons": "workspace:^"
     "@nimbus-ds/input": "workspace:^"
+    "@nimbus-ds/scroll-pane": "workspace:^"
     "@nimbus-ds/webpack": "workspace:^"
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0 || ^19.0
