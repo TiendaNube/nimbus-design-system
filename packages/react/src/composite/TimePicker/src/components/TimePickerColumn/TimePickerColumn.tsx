@@ -30,7 +30,6 @@ export const TimePickerColumn: React.FC<TimePickerColumnProps> = (props) => {
       value={props.value}
       selected={props.selected}
       onSelect={props.onSelect}
-      isDisabled={props.isDisabled}
     />
   );
 };
@@ -41,23 +40,19 @@ const SingleColumn: React.FC<SingleColumnProps> = ({
   value,
   selected,
   onSelect,
-  isDisabled,
   label,
 }) => {
   const optionRefs = useRef<Map<number, HTMLButtonElement>>(new Map());
   const currentValueRef = useRef<HTMLButtonElement>(null);
-  const firstEnabledRef = useRef<HTMLButtonElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
-  const firstEnabledIndex = options.findIndex((v) => !isDisabled?.(v));
   const hasCurrentValue = value !== undefined;
 
   useEffect(() => {
-    const targetRef = currentValueRef.current || firstEnabledRef.current;
-    if (targetRef) {
-      targetRef.scrollIntoView({
+    if (currentValueRef.current) {
+      currentValueRef.current.scrollIntoView({
         block: "center",
-        behavior: "instant" as any
+        behavior: "instant" as ScrollBehavior,
       });
     }
   }, []);
@@ -68,11 +63,10 @@ const SingleColumn: React.FC<SingleColumnProps> = ({
         event,
         currentIndex: index,
         totalOptions: options.length,
-        isDisabledAtIndex: (idx) => isDisabled?.(options[idx]) ?? false,
         optionRefs,
       });
     },
-    [options, isDisabled]
+    [options.length]
   );
 
   return (
@@ -95,20 +89,11 @@ const SingleColumn: React.FC<SingleColumnProps> = ({
           aria-label={label || type}
         >
           {options.map((itemValue, index) => {
-            const disabled = isDisabled?.(itemValue) ?? false;
             const isCurrent = itemValue === value;
-            const isFirstEnabled = !hasCurrentValue && index === firstEnabledIndex;
-
-            let optionRef: typeof currentValueRef | undefined;
-            if (isCurrent) {
-              optionRef = currentValueRef;
-            } else if (isFirstEnabled) {
-              optionRef = firstEnabledRef;
-            }
+            const isFirst = !hasCurrentValue && index === 0;
 
             return (
               <ScrollPane.Item key={itemValue}>
-                {/* TODO: move to sprinkle css styles */}
                 <div
                   style={{
                     display: "flex",
@@ -123,16 +108,15 @@ const SingleColumn: React.FC<SingleColumnProps> = ({
                       } else {
                         optionRefs.current.delete(index);
                       }
-                      if (optionRef) {
-                        optionRef.current = el;
+                      if (isCurrent) {
+                        currentValueRef.current = el;
                       }
                     }}
                     selected={itemValue === selected}
                     current={isCurrent}
-                    disabled={disabled}
                     onSelect={() => onSelect(itemValue)}
                     onKeyDown={(e) => handleKeyDown(e, index)}
-                    tabIndex={isCurrent || isFirstEnabled ? 0 : -1}
+                    tabIndex={isCurrent || isFirst ? 0 : -1}
                   >
                     {padZero(itemValue)}
                   </TimePickerOption>
@@ -157,18 +141,15 @@ const CombinedColumn: React.FC<CombinedColumnProps> = ({
 }) => {
   const optionRefs = useRef<Map<number, HTMLButtonElement>>(new Map());
   const currentValueRef = useRef<HTMLButtonElement>(null);
-  const firstEnabledRef = useRef<HTMLButtonElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   const hasSelection = options.some(
     (option) => option.value.split(" ")[0] === currentValue
   );
-  const firstEnabledIndex = options.findIndex((opt) => !opt.disabled);
 
   useEffect(() => {
-    const targetRef = currentValueRef.current || firstEnabledRef.current;
-    if (targetRef) {
-      targetRef.scrollIntoView({
+    if (currentValueRef.current) {
+      currentValueRef.current.scrollIntoView({
         block: "center",
         behavior: "instant" as ScrollBehavior,
       });
@@ -181,11 +162,10 @@ const CombinedColumn: React.FC<CombinedColumnProps> = ({
         event,
         currentIndex: index,
         totalOptions: options.length,
-        isDisabledAtIndex: (idx) => options[idx]?.disabled ?? false,
         optionRefs,
       });
     },
-    [options]
+    [options.length]
   );
 
   return (
@@ -212,16 +192,7 @@ const CombinedColumn: React.FC<CombinedColumnProps> = ({
             const optionTimeValue = option.value.split(" ")[0];
             const isCurrent = optionTimeValue === currentValue;
             const isSelected = optionTimeValue === selectedValue;
-
-            const isFirstEnabled = !hasSelection && index === firstEnabledIndex;
-            const shouldBeTabable = isCurrent || isFirstEnabled;
-
-            let optionRef: typeof currentValueRef | undefined;
-            if (isCurrent) {
-              optionRef = currentValueRef;
-            } else if (isFirstEnabled) {
-              optionRef = firstEnabledRef;
-            }
+            const isFirst = !hasSelection && index === 0;
 
             return (
               <ScrollPane.Item key={option.value}>
@@ -239,18 +210,17 @@ const CombinedColumn: React.FC<CombinedColumnProps> = ({
                       } else {
                         optionRefs.current.delete(index);
                       }
-                      if (optionRef) {
-                        optionRef.current = el;
+                      if (isCurrent) {
+                        currentValueRef.current = el;
                       }
                     }}
                     current={isCurrent}
                     selected={isSelected}
-                    disabled={option.disabled}
                     onSelect={() =>
                       onSelectTime(option.hours, option.minutes, option.ampm)
                     }
                     onKeyDown={(e) => handleKeyDown(e, index)}
-                    tabIndex={shouldBeTabable ? 0 : -1}
+                    tabIndex={isCurrent || isFirst ? 0 : -1}
                   >
                     {optionTimeValue}
                   </TimePickerOption>

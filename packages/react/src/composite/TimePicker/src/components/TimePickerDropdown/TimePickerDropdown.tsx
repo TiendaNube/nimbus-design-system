@@ -21,34 +21,16 @@ import { TimePickerProps, AmPm } from "../../timePicker.types";
 import { useTimePickerState } from "../../hooks";
 import { padZero } from "../../utils/timeUtils";
 import { TimePickerAmPm, TimePickerColumn } from "../index";
+import { convertTo24HoursDropdown } from "./TimePicker.definitions";
 
 const { classnames } = timePicker;
 
-function convertTo24HoursDropdown(
-  hours: number,
-  ampm: AmPm | undefined
-): number {
-  if (ampm === "PM" && hours !== 12) {
-    return hours + 12;
-  }
-  if (ampm === "AM" && hours === 12) {
-    return 0;
-  }
-  return hours;
-}
+
 
 /**
  * TimePickerDropdown displays a dropdown list of time options.
  * Shows the initial value with light blue styling and tracks the selected value
  * with dark blue styling. Only commits changes to the parent when the panel closes.
- *
- * @example
- * // Basic 24h dropdown with 30-minute intervals
- * <TimePicker.Dropdown value="14:30" onChange={(value) => console.log(value)} step={30} />
- *
- * @example
- * // 12h format with 15-minute intervals
- * <TimePicker.Dropdown format="12h" step={15} />
  */
 export const TimePickerDropdown = forwardRef<HTMLDivElement, TimePickerProps>(
   (
@@ -57,8 +39,6 @@ export const TimePickerDropdown = forwardRef<HTMLDivElement, TimePickerProps>(
       onChange,
       format = "24h",
       step = 30,
-      minTime,
-      maxTime,
       disabled = false,
       placeholder = "Select time (dropdown)",
       open: controlledOpen,
@@ -130,8 +110,6 @@ export const TimePickerDropdown = forwardRef<HTMLDivElement, TimePickerProps>(
       onChange: undefined,
       format,
       step,
-      minTime,
-      maxTime,
     });
 
     const handleOpenChange = useCallback(
@@ -211,20 +189,6 @@ export const TimePickerDropdown = forwardRef<HTMLDivElement, TimePickerProps>(
       [disabled, isOpen, handleOpenChange]
     );
 
-    const handleOptionSelect = useCallback(
-      (hours: number, minutes: number, ampm?: AmPm) => {
-        selectTime(hours, minutes, ampm);
-      },
-      [selectTime]
-    );
-
-    const handleAmPmChange = useCallback(
-      (newAmPm: AmPm) => {
-        setAmPm(newAmPm);
-      },
-      [setAmPm]
-    );
-
     const currentTimeValue = useMemo(
       () =>
         initialValue
@@ -236,11 +200,11 @@ export const TimePickerDropdown = forwardRef<HTMLDivElement, TimePickerProps>(
     const selectedTimeValue = useMemo(
       () =>
         internalTimeValue &&
-        internalTimeValue.hours !== undefined &&
-        internalTimeValue.minutes !== undefined
+          internalTimeValue.hours !== undefined &&
+          internalTimeValue.minutes !== undefined
           ? `${padZero(internalTimeValue.hours)}:${padZero(
-              internalTimeValue.minutes
-            )}`
+            internalTimeValue.minutes
+          )}`
           : null,
       [internalTimeValue]
     );
@@ -294,7 +258,7 @@ export const TimePickerDropdown = forwardRef<HTMLDivElement, TimePickerProps>(
                       options={filteredOptions}
                       currentValue={currentTimeValue}
                       selectedValue={selectedTimeValue}
-                      onSelectTime={handleOptionSelect}
+                      onSelectTime={selectTime}
                       format={format}
                       step={step}
                       label={ariaLabel}
@@ -304,7 +268,7 @@ export const TimePickerDropdown = forwardRef<HTMLDivElement, TimePickerProps>(
                       <div className={classnames.dropdownAmPmSticky}>
                         <TimePickerAmPm
                           value={selectedAmPm}
-                          onChange={handleAmPmChange}
+                          onSelect={setAmPm}
                           disabled={disabled}
                           amLabel={labels.amLabel || "AM"}
                           pmLabel={labels.pmLabel || "PM"}

@@ -16,8 +16,6 @@ const meta: Meta<typeof TimePicker> = {
     step: {
       control: "number",
     },
-    minTime: { control: "text" },
-    maxTime: { control: "text" },
     disabled: { control: "boolean" },
     placeholder: { control: "text" },
     labels: {
@@ -96,35 +94,6 @@ export const dropdownMode12h: Story = {
         />
         <Text fontSize="caption" color="neutral-textLow">
           Selected: {time || "None"}
-        </Text>
-      </Box>
-    );
-  },
-};
-
-export const withMinMaxTime: Story = {
-  render: () => {
-    const [time, setTime] = useState<string | null>("09:00");
-    return (
-      <Box display="flex" flexDirection="column" gap="2">
-        <TimePicker.Dropdown
-          value={time}
-          onChange={(value) => setTime(value)}
-          minTime="09:00"
-          maxTime="17:00"
-          step={30}
-          placeholder="Business hours only"
-        />
-        <TimePicker
-          value={time}
-          onChange={(value) => setTime(value)}
-          minTime="09:00"
-          maxTime="17:00"
-          format="24h"
-          placeholder="Business hours only"
-        />
-        <Text fontSize="caption" color="neutral-textLow">
-          Available times: 09:00 - 17:00
         </Text>
       </Box>
     );
@@ -234,7 +203,5 @@ export const playground: Story = {
     step: 1,
     disabled: false,
     placeholder: "Select time",
-    minTime: undefined,
-    maxTime: undefined,
   },
 };

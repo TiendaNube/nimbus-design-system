@@ -72,16 +72,6 @@ export interface TimePickerProperties {
    */
   step?: number;
   /**
-   * Minimum selectable time (HH:mm string format).
-   * Times before this will be disabled.
-   */
-  minTime?: string;
-  /**
-   * Maximum selectable time (HH:mm string format).
-   * Times after this will be disabled.
-   */
-  maxTime?: string;
-  /**
    * Whether the picker is disabled.
    * @default false
    */
@@ -147,7 +137,6 @@ export interface DropdownOption {
   hours: number;
   minutes: number;
   ampm?: AmPm;
-  disabled?: boolean;
 }
 
 interface TimePickerColumnBaseProps {
@@ -188,10 +177,6 @@ interface TimePickerColumnSingleProps extends TimePickerColumnBaseProps {
    * Callback when a value is selected.
    */
   onSelect: (value: number) => void;
-  /**
-   * Function to determine if a value is disabled.
-   */
-  isDisabled?: (value: number) => boolean;
 }
 
 interface TimePickerColumnCombinedProps extends TimePickerColumnBaseProps {

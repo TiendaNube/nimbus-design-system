@@ -64,8 +64,6 @@ const TimePickerComponent = forwardRef<HTMLDivElement, TimePickerProps>(
       onChange,
       format = "24h",
       step = 1,
-      minTime,
-      maxTime,
       disabled = false,
       placeholder = "Select time",
       open: controlledOpen,
@@ -93,16 +91,12 @@ const TimePickerComponent = forwardRef<HTMLDivElement, TimePickerProps>(
       setAmPm,
       hourOptions,
       minuteOptions,
-      isHourDisabled,
-      isMinuteDisabled,
       clear,
     } = useTimePickerState({
       value,
       onChange,
       format,
       step,
-      minTime,
-      maxTime,
     });
 
     const handleOpenChange = useCallback(
@@ -217,7 +211,6 @@ const TimePickerComponent = forwardRef<HTMLDivElement, TimePickerProps>(
                   selected={timeValue?.hours}
                   onSelect={setHours}
                   format={format}
-                  isDisabled={isHourDisabled}
                   label={
                     format === "12h"
                       ? labels.hourLabel || "Hour"
@@ -232,7 +225,6 @@ const TimePickerComponent = forwardRef<HTMLDivElement, TimePickerProps>(
                   selected={timeValue?.minutes}
                   onSelect={setMinutes}
                   format={format}
-                  isDisabled={isMinuteDisabled}
                   label={labels.minutesLabel || "Minutes"}
                 />
                 {format === "12h" && (

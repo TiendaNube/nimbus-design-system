@@ -8,7 +8,6 @@ interface SingleColumnProps {
     selected?: number;
     onSelect: (value: number) => void;
     format: "12h" | "24h";
-    isDisabled?: (value: number) => boolean;
     label?: string;
 }
 

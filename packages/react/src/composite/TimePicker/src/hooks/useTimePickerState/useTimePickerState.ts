@@ -1,19 +1,12 @@
 import { useState, useCallback, useMemo } from "react";
 import { TimeFormat, TimeValue, AmPm } from "../../timePicker.types";
-import {
-  parseTimeString,
-  formatTimeValue,
-  timeToMinutes,
-  padZero,
-} from "../../utils/timeUtils";
+import { parseTimeString, formatTimeValue, padZero } from "../../utils/timeUtils";
 
 interface UseTimePickerStateProps {
   value?: string | Date | null;
   onChange?: (value: string | null, date: Date | null) => void;
   format: TimeFormat;
   step: number;
-  minTime?: string;
-  maxTime?: string;
 }
 
 interface UseTimePickerStateReturn {
@@ -32,25 +25,13 @@ interface UseTimePickerStateReturn {
     hours: number;
     minutes: number;
     ampm?: AmPm;
-    disabled: boolean;
   }>;
-  isTimeDisabled: (hours: number, minutes: number, ampm?: AmPm) => boolean;
-  isHourDisabled: (hour: number) => boolean;
-  isMinuteDisabled: (minute: number) => boolean;
-}
-
-function parseMinMaxTime(time: string | undefined): number | null {
-  if (!time) return null;
-  const parsed = parseTimeString(time, "24h");
-  return parsed ? parsed.hours * 60 + parsed.minutes : null;
 }
 
 export function useTimePickerState({
   value,
   format,
   step,
-  minTime,
-  maxTime,
 }: UseTimePickerStateProps): UseTimePickerStateReturn {
   const [internalValue, setInternalValue] = useState<Partial<TimeValue>>({
     ampm: "AM",
@@ -58,51 +39,6 @@ export function useTimePickerState({
   const initialValue = useMemo(
     () => parseTimeString(value, format),
     [value, format]
-  );
-
-  const minMinutes = useMemo(() => parseMinMaxTime(minTime), [minTime]);
-  const maxMinutes = useMemo(() => parseMinMaxTime(maxTime), [maxTime]);
-
-  const isTimeDisabled = useCallback(
-    (hours: number, minutes: number, ampm?: AmPm): boolean => {
-      const totalMinutes = timeToMinutes(
-        hours,
-        minutes,
-        format === "12h" ? ampm : undefined
-      );
-      return (
-        (minMinutes !== null && totalMinutes < minMinutes) ||
-        (maxMinutes !== null && totalMinutes > maxMinutes)
-      );
-    },
-    [format, minMinutes, maxMinutes]
-  );
-
-  const isHourDisabled = useCallback(
-    (hour: number): boolean => {
-      const ampm =
-        format === "12h"
-          ? internalValue?.ampm ?? initialValue?.ampm ?? "AM"
-          : undefined;
-      const totalMinutes = timeToMinutes(hour, 0, ampm);
-      const hourEnd = totalMinutes + 59;
-
-      return (
-        (minMinutes !== null && hourEnd < minMinutes) ||
-        (maxMinutes !== null && totalMinutes > maxMinutes)
-      );
-    },
-    [format, internalValue?.ampm, initialValue?.ampm, minMinutes, maxMinutes]
-  );
-
-  const isMinuteDisabled = useCallback(
-    (minute: number): boolean => {
-      const hours = internalValue?.hours ?? initialValue?.hours;
-      const ampm = internalValue?.ampm ?? initialValue?.ampm;
-
-      return hours !== undefined ? isTimeDisabled(hours, minute, ampm) : false;
-    },
-    [internalValue, initialValue, isTimeDisabled]
   );
 
   const setHours = useCallback(
@@ -175,7 +111,6 @@ export function useTimePickerState({
       hours: number;
       minutes: number;
       ampm?: AmPm;
-      disabled: boolean;
     }> = [];
 
     if (format === "24h") {
@@ -185,7 +120,6 @@ export function useTimePickerState({
             value: `${padZero(h)}:${padZero(m)}`,
             hours: h,
             minutes: m,
-            disabled: isTimeDisabled(h, m),
           });
         }
       }
@@ -198,7 +132,6 @@ export function useTimePickerState({
               hours: h,
               minutes: m,
               ampm,
-              disabled: isTimeDisabled(h, m, ampm),
             });
           }
         }
@@ -206,7 +139,7 @@ export function useTimePickerState({
     }
 
     return options;
-  }, [format, hourOptions, minuteOptions, isTimeDisabled]);
+  }, [format, hourOptions, minuteOptions]);
 
   const displayValue = useMemo(
     () => formatTimeValue(initialValue, format),
@@ -225,8 +158,5 @@ export function useTimePickerState({
     hourOptions,
     minuteOptions,
     dropdownOptions,
-    isTimeDisabled,
-    isHourDisabled,
-    isMinuteDisabled,
   };
 }

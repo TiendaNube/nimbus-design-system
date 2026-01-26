@@ -15,15 +15,6 @@ export function to12Hour(hours24: number): { hours: number; ampm: AmPm } {
   return { hours, ampm };
 }
 
-export function timeToMinutes(
-  hours: number,
-  minutes: number,
-  ampm?: AmPm
-): number {
-  const hours24 = to24Hour(hours, ampm);
-  return hours24 * 60 + minutes;
-}
-
 export function parseTimeString(
   value: string | Date | null | undefined,
   format: TimeFormat
