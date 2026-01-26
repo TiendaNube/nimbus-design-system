@@ -20,6 +20,7 @@ export const TimePickerOption = forwardRef<
       onSelect,
       onClick,
       onKeyDown,
+      role = "option",
       ...rest
     },
     ref
@@ -59,12 +60,17 @@ export const TimePickerOption = forwardRef<
       state = "current";
     }
 
+    const ariaProps =
+      role === "radio"
+        ? { "aria-checked": selected }
+        : { "aria-selected": selected };
+
     return (
       <button
         ref={ref}
         type="button"
-        role="option"
-        aria-selected={selected}
+        role={role}
+        {...ariaProps}
         aria-disabled={disabled}
         disabled={disabled}
         className={classnames.optionState[state]}

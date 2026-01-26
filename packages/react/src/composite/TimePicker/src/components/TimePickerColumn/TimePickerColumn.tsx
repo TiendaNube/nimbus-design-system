@@ -1,124 +1,78 @@
-import React, { useRef, useEffect, useCallback, useMemo } from "react";
+import React, { useRef, useEffect, useCallback } from "react";
 import { ScrollPane } from "@nimbus-ds/scroll-pane";
 import { timePicker } from "@nimbus-ds/styles";
 import { TimePickerColumnProps } from "../../timePicker.types";
 import { padZero } from "../../utils/timeUtils";
 import { TimePickerOption } from "../TimePickerOption";
+import type { SingleColumnProps, CombinedColumnProps } from "./TimePicker.types";
+import { handleColumnKeyDown } from "./TimePickerColumn.definitions";
 
 const { classnames } = timePicker;
-const ITEM_HEIGHT = 32;
 
 /**
- * TimePickerColumn renders a scrollable column of time values (hours or minutes).
- * Uses ScrollPane with gradients to indicate scrollable content.
+ * TimePickerColumn renders a scrollable column of time values.
+ * For type "hours" or "minutes": Uses ScrollPane with gradients.
+ * For type "combined": Renders a simple scrollable list of full time options.
  */
-export const TimePickerColumn: React.FC<TimePickerColumnProps> = ({
+export const TimePickerColumn: React.FC<TimePickerColumnProps> = (props) => {
+  const { type, format, label } = props;
+
+  if (type === "combined") {
+    return <CombinedColumn {...props} />;
+  }
+
+  return (
+    <SingleColumn
+      type={type}
+      format={format}
+      label={label}
+      options={props.options}
+      value={props.value}
+      selected={props.selected}
+      onSelect={props.onSelect}
+      isDisabled={props.isDisabled}
+    />
+  );
+};
+
+const SingleColumn: React.FC<SingleColumnProps> = ({
   type,
+  options,
   value,
   selected,
   onSelect,
-  format,
   isDisabled,
   label,
-  step = 1,
 }) => {
-  const isInitialMount = useRef(true);
   const optionRefs = useRef<Map<number, HTMLButtonElement>>(new Map());
+  const currentValueRef = useRef<HTMLButtonElement>(null);
+  const firstEnabledRef = useRef<HTMLButtonElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const scrollPaneRef = useRef<HTMLDivElement>(null);
 
-  const values = useMemo((): number[] => {
-    if (type === "hours") {
-      return format === "12h"
-        ? [12, ...Array.from({ length: 11 }, (_, i) => i + 1)]
-        : Array.from({ length: 24 }, (_, i) => i);
-    }
-    return Array.from(
-      { length: Math.ceil(60 / step) },
-      (_, i) => i * step
-    ).filter((minute) => minute < 60);
-  }, [type, format, step]);
-
-  const firstEnabledValue = useMemo(
-    () => values.find((v) => !isDisabled?.(v)),
-    [values, isDisabled]
-  );
+  const firstEnabledIndex = options.findIndex((v) => !isDisabled?.(v));
+  const hasCurrentValue = value !== undefined;
 
   useEffect(() => {
-    if (!isInitialMount.current) return;
-    if (!value) return;
-
-    isInitialMount.current = false;
-    if (!wrapperRef.current) return;
-
-    const scrollContainer = scrollPaneRef.current;
-    if (!scrollContainer) return;
-
-    const index = values.indexOf(value);
-    if (index === -1) return;
-
-    const containerHeight = scrollContainer.clientHeight;
-    const scrollTop =
-      index * ITEM_HEIGHT - (containerHeight / 2 - ITEM_HEIGHT / 2);
-
-    scrollContainer.scrollTo({
-      top: Math.max(0, scrollTop),
-      behavior: "instant" as any,
-    });
-
-    const selectedOption = optionRefs.current.get(value);
-    if (selectedOption && document.activeElement !== selectedOption) {
-      const shouldFocus = scrollContainer.contains(document.activeElement);
-      if (shouldFocus) {
-        selectedOption.focus();
-      }
+    const targetRef = currentValueRef.current || firstEnabledRef.current;
+    if (targetRef) {
+      targetRef.scrollIntoView({
+        block: "center",
+        behavior: "instant" as any
+      });
     }
-  }, [value, values]);
+  }, []);
 
   const handleKeyDown = useCallback(
-    (event: React.KeyboardEvent, itemValue: number) => {
-      const currentIndex = values.indexOf(itemValue);
-
-      switch (event.key) {
-        case "ArrowUp": {
-          event.preventDefault();
-          let prevIndex =
-            currentIndex > 0 ? currentIndex - 1 : values.length - 1;
-          let prevValue = values[prevIndex];
-
-          while (isDisabled?.(prevValue) && prevIndex !== currentIndex) {
-            prevIndex = prevIndex > 0 ? prevIndex - 1 : values.length - 1;
-            prevValue = values[prevIndex];
-          }
-
-          if (!isDisabled?.(prevValue)) {
-            const prevOption = optionRefs.current.get(prevValue);
-            prevOption?.focus();
-          }
-          break;
-        }
-        case "ArrowDown": {
-          event.preventDefault();
-          let nextIndex =
-            currentIndex < values.length - 1 ? currentIndex + 1 : 0;
-          let nextValue = values[nextIndex];
-
-          while (isDisabled?.(nextValue) && nextIndex !== currentIndex) {
-            nextIndex = nextIndex < values.length - 1 ? nextIndex + 1 : 0;
-            nextValue = values[nextIndex];
-          }
-
-          if (!isDisabled?.(nextValue)) {
-            const nextOption = optionRefs.current.get(nextValue);
-            nextOption?.focus();
-          }
-          break;
-        }
-        default:
-          break;
-      }
+    (event: React.KeyboardEvent, index: number) => {
+      handleColumnKeyDown({
+        event,
+        currentIndex: index,
+        totalOptions: options.length,
+        isDisabledAtIndex: (idx) => isDisabled?.(options[idx]) ?? false,
+        optionRefs,
+      });
     },
-    [values, isDisabled]
+    [options, isDisabled]
   );
 
   return (
@@ -134,15 +88,23 @@ export const TimePickerColumn: React.FC<TimePickerColumnProps> = ({
           flexDirection: "column",
           margin: "none",
         }}
-        scrollContainerRef={scrollPaneRef}
       >
         <div
           className={classnames.column}
           role="listbox"
           aria-label={label || type}
         >
-          {values.map((itemValue) => {
+          {options.map((itemValue, index) => {
             const disabled = isDisabled?.(itemValue) ?? false;
+            const isCurrent = itemValue === value;
+            const isFirstEnabled = !hasCurrentValue && index === firstEnabledIndex;
+
+            let optionRef: typeof currentValueRef | undefined;
+            if (isCurrent) {
+              optionRef = currentValueRef;
+            } else if (isFirstEnabled) {
+              optionRef = firstEnabledRef;
+            }
 
             return (
               <ScrollPane.Item key={itemValue}>
@@ -157,24 +119,140 @@ export const TimePickerColumn: React.FC<TimePickerColumnProps> = ({
                   <TimePickerOption
                     ref={(el) => {
                       if (el) {
-                        optionRefs.current.set(itemValue, el);
+                        optionRefs.current.set(index, el);
                       } else {
-                        optionRefs.current.delete(itemValue);
+                        optionRefs.current.delete(index);
+                      }
+                      if (optionRef) {
+                        optionRef.current = el;
                       }
                     }}
                     selected={itemValue === selected}
-                    current={itemValue === value}
+                    current={isCurrent}
                     disabled={disabled}
                     onSelect={() => onSelect(itemValue)}
-                    onKeyDown={(e) => handleKeyDown(e, itemValue)}
-                    tabIndex={
-                      itemValue === value ||
-                      (value === undefined && itemValue === firstEnabledValue)
-                        ? 0
-                        : -1
-                    }
+                    onKeyDown={(e) => handleKeyDown(e, index)}
+                    tabIndex={isCurrent || isFirstEnabled ? 0 : -1}
                   >
                     {padZero(itemValue)}
+                  </TimePickerOption>
+                </div>
+              </ScrollPane.Item>
+            );
+          })}
+        </div>
+      </ScrollPane>
+    </div>
+  );
+};
+
+
+const CombinedColumn: React.FC<CombinedColumnProps> = ({
+  scrollContainerRef,
+  options,
+  currentValue,
+  selectedValue,
+  onSelectTime,
+  label,
+}) => {
+  const optionRefs = useRef<Map<number, HTMLButtonElement>>(new Map());
+  const currentValueRef = useRef<HTMLButtonElement>(null);
+  const firstEnabledRef = useRef<HTMLButtonElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+
+  const hasSelection = options.some(
+    (option) => option.value.split(" ")[0] === currentValue
+  );
+  const firstEnabledIndex = options.findIndex((opt) => !opt.disabled);
+
+  useEffect(() => {
+    const targetRef = currentValueRef.current || firstEnabledRef.current;
+    if (targetRef) {
+      targetRef.scrollIntoView({
+        block: "center",
+        behavior: "instant" as ScrollBehavior,
+      });
+    }
+  }, []);
+
+  const handleKeyDown = useCallback(
+    (event: React.KeyboardEvent, index: number) => {
+      handleColumnKeyDown({
+        event,
+        currentIndex: index,
+        totalOptions: options.length,
+        isDisabledAtIndex: (idx) => options[idx]?.disabled ?? false,
+        optionRefs,
+      });
+    },
+    [options]
+  );
+
+  return (
+    <div className={classnames.columnWrapper} ref={wrapperRef}>
+      <ScrollPane
+        direction="vertical"
+        showGradients={false}
+        showScrollbar={false}
+        scrollToItemOnClick
+        scrollBehavior="always"
+        contentContainerProps={{
+          display: "flex",
+          flexDirection: "column",
+          margin: "none",
+        }}
+        scrollContainerRef={scrollContainerRef}
+      >
+        <div
+          className={classnames.dropdownList}
+          role="listbox"
+          aria-label={label}
+        >
+          {options.map((option, index) => {
+            const optionTimeValue = option.value.split(" ")[0];
+            const isCurrent = optionTimeValue === currentValue;
+            const isSelected = optionTimeValue === selectedValue;
+
+            const isFirstEnabled = !hasSelection && index === firstEnabledIndex;
+            const shouldBeTabable = isCurrent || isFirstEnabled;
+
+            let optionRef: typeof currentValueRef | undefined;
+            if (isCurrent) {
+              optionRef = currentValueRef;
+            } else if (isFirstEnabled) {
+              optionRef = firstEnabledRef;
+            }
+
+            return (
+              <ScrollPane.Item key={option.value}>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <TimePickerOption
+                    ref={(el) => {
+                      if (el) {
+                        optionRefs.current.set(index, el);
+                      } else {
+                        optionRefs.current.delete(index);
+                      }
+                      if (optionRef) {
+                        optionRef.current = el;
+                      }
+                    }}
+                    current={isCurrent}
+                    selected={isSelected}
+                    disabled={option.disabled}
+                    onSelect={() =>
+                      onSelectTime(option.hours, option.minutes, option.ampm)
+                    }
+                    onKeyDown={(e) => handleKeyDown(e, index)}
+                    tabIndex={shouldBeTabable ? 0 : -1}
+                  >
+                    {optionTimeValue}
                   </TimePickerOption>
                 </div>
               </ScrollPane.Item>

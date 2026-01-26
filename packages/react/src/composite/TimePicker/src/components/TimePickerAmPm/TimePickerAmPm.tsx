@@ -1,6 +1,8 @@
 import React, { useCallback, useRef, useEffect } from "react";
 import { timePicker } from "@nimbus-ds/styles";
-import { TimePickerAmPmProps, AmPm } from "../../timePicker.types";
+import { TimePickerAmPmProps } from "./TimePickerAmPm.types";
+import { TimePickerOption } from "../TimePickerOption";
+import { AmPm } from "../../timePicker.types";
 
 const { classnames } = timePicker;
 
@@ -10,7 +12,7 @@ const { classnames } = timePicker;
  */
 export const TimePickerAmPm: React.FC<TimePickerAmPmProps> = ({
   value,
-  onChange,
+  onSelect,
   disabled,
   amLabel = "AM",
   pmLabel = "PM",
@@ -32,27 +34,27 @@ export const TimePickerAmPm: React.FC<TimePickerAmPmProps> = ({
   const handleSelect = useCallback(
     (ampm: AmPm) => {
       if (!disabled && ampm !== value) {
-        onChange(ampm);
+        onSelect(ampm);
       }
     },
-    [disabled, value, onChange]
+    [disabled, value, onSelect]
   );
 
   const handleKeyDown = useCallback(
-    (event: React.KeyboardEvent, ampm: AmPm) => {
+    (event: React.KeyboardEvent, currentAmPm: AmPm) => {
       if (disabled) return;
 
       if (event.key === "ArrowUp" || event.key === "ArrowDown") {
         event.preventDefault();
         const newValue = value === "AM" ? "PM" : "AM";
-        pendingFocusRef.current = newValue;
-        onChange(newValue);
-      } else if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
-        handleSelect(ampm);
+        if (newValue == "AM") {
+          amButtonRef.current?.focus();
+        } else {
+          pmButtonRef.current?.focus();
+        }
       }
     },
-    [disabled, value, onChange, handleSelect]
+    [disabled, value, onSelect]
   );
 
   return (
@@ -61,36 +63,28 @@ export const TimePickerAmPm: React.FC<TimePickerAmPmProps> = ({
       role="radiogroup"
       aria-label={selectorLabel}
     >
-      <button
+      <TimePickerOption
         ref={amButtonRef}
-        type="button"
         role="radio"
-        aria-checked={value === "AM"}
+        selected={value === "AM"}
         disabled={disabled}
-        className={
-          classnames.ampmState[value === "AM" ? "selected" : "default"]
-        }
-        onClick={() => handleSelect("AM")}
+        onSelect={() => handleSelect("AM")}
         onKeyDown={(e) => handleKeyDown(e, "AM")}
         tabIndex={value === "AM" ? 0 : -1}
       >
         {amLabel}
-      </button>
-      <button
+      </TimePickerOption>
+      <TimePickerOption
         ref={pmButtonRef}
-        type="button"
         role="radio"
-        aria-checked={value === "PM"}
+        selected={value === "PM"}
         disabled={disabled}
-        className={
-          classnames.ampmState[value === "PM" ? "selected" : "default"]
-        }
-        onClick={() => handleSelect("PM")}
+        onSelect={() => handleSelect("PM")}
         onKeyDown={(e) => handleKeyDown(e, "PM")}
         tabIndex={value === "PM" ? 0 : -1}
       >
         {pmLabel}
-      </button>
+      </TimePickerOption>
     </div>
   );
 };

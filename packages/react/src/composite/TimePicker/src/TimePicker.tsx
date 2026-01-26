@@ -91,6 +91,8 @@ const TimePickerComponent = forwardRef<HTMLDivElement, TimePickerProps>(
       setHours,
       setMinutes,
       setAmPm,
+      hourOptions,
+      minuteOptions,
       isHourDisabled,
       isMinuteDisabled,
       clear,
@@ -210,6 +212,7 @@ const TimePickerComponent = forwardRef<HTMLDivElement, TimePickerProps>(
               >
                 <TimePickerColumn
                   type="hours"
+                  options={hourOptions}
                   value={initialValue?.hours}
                   selected={timeValue?.hours}
                   onSelect={setHours}
@@ -224,20 +227,20 @@ const TimePickerComponent = forwardRef<HTMLDivElement, TimePickerProps>(
                 <div className={classnames.divider} />
                 <TimePickerColumn
                   type="minutes"
+                  options={minuteOptions}
                   value={initialValue?.minutes}
                   selected={timeValue?.minutes}
                   onSelect={setMinutes}
                   format={format}
                   isDisabled={isMinuteDisabled}
                   label={labels.minutesLabel || "Minutes"}
-                  step={step}
                 />
                 {format === "12h" && (
                   <>
                     <div className={classnames.divider} />
                     <TimePickerAmPm
                       value={timeValue?.ampm ?? "AM"}
-                      onChange={setAmPm}
+                      onSelect={setAmPm}
                       disabled={disabled}
                       amLabel={labels.amLabel || "AM"}
                       pmLabel={labels.pmLabel || "PM"}

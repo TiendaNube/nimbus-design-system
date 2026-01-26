@@ -10,6 +10,7 @@ import ScrollContainer from "react-indiana-drag-scroll";
 import { Box } from "@nimbus-ds/box";
 
 import { scrollPane } from "@nimbus-ds/styles";
+import { useCanScroll } from "../../../common/hooks";
 
 import { ScrollPaneProps, ScrollPaneComponents } from "./scrollPane.types";
 import {
@@ -55,31 +56,12 @@ const ScrollPaneComponent = forwardRef<HTMLDivElement, ScrollPaneProps>(
     const scrollContainerRef =
       externalScrollContainerRef || internalScrollContainerRef;
     const scrollTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-    const [canScrollStart, setCanScrollStart] = useState(false);
-    const [canScrollEnd, setCanScrollEnd] = useState(false);
     const [isScrolling, setIsScrolling] = useState(false);
 
-    const checkScrollPosition = useCallback(() => {
-      if (!scrollContainerRef.current) return;
-
-      const container = scrollContainerRef.current;
-      const {
-        scrollLeft,
-        scrollTop,
-        scrollWidth,
-        scrollHeight,
-        clientWidth,
-        clientHeight,
-      } = container;
-
-      if (direction === "horizontal") {
-        setCanScrollStart(scrollLeft > 0);
-        setCanScrollEnd(scrollLeft < scrollWidth - clientWidth - 1);
-      } else {
-        setCanScrollStart(scrollTop > 0);
-        setCanScrollEnd(scrollTop < scrollHeight - clientHeight - 1);
-      }
-    }, [direction, scrollContainerRef]);
+    const { canScrollStart, canScrollEnd, checkScrollPosition } = useCanScroll({
+      direction,
+      scrollContainerRef,
+    });
 
     const handleScroll = useCallback(() => {
       if (!isScrolling) {

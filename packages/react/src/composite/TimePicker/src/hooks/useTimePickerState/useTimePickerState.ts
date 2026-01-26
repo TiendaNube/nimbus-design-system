@@ -25,6 +25,8 @@ interface UseTimePickerStateReturn {
   setAmPm: (ampm: AmPm) => void;
   selectTime: (hours: number, minutes: number, ampm?: AmPm) => void;
   clear: () => void;
+  hourOptions: number[];
+  minuteOptions: number[];
   dropdownOptions: Array<{
     value: string;
     hours: number;
@@ -151,6 +153,22 @@ export function useTimePickerState({
     setInternalValue({ ampm: "AM" });
   }, [setInternalValue]);
 
+  const hourOptions = useMemo(
+    (): number[] =>
+      format === "12h"
+        ? [12, ...Array.from({ length: 11 }, (_, i) => i + 1)]
+        : Array.from({ length: 24 }, (_, i) => i),
+    [format]
+  );
+
+  const minuteOptions = useMemo(
+    (): number[] =>
+      Array.from({ length: Math.ceil(60 / step) }, (_, i) => i * step).filter(
+        (minute) => minute < 60
+      ),
+    [step]
+  );
+
   const dropdownOptions = useMemo(() => {
     const options: Array<{
       value: string;
@@ -161,8 +179,8 @@ export function useTimePickerState({
     }> = [];
 
     if (format === "24h") {
-      for (let h = 0; h < 24; h++) {
-        for (let m = 0; m < 60; m += step) {
+      for (const h of hourOptions) {
+        for (const m of minuteOptions) {
           options.push({
             value: `${padZero(h)}:${padZero(m)}`,
             hours: h,
@@ -173,8 +191,8 @@ export function useTimePickerState({
       }
     } else {
       (["AM", "PM"] as AmPm[]).forEach((ampm) => {
-        [12, ...Array.from({ length: 11 }, (_, i) => i + 1)].forEach((h) => {
-          for (let m = 0; m < 60; m += step) {
+        for (const h of hourOptions) {
+          for (const m of minuteOptions) {
             options.push({
               value: `${padZero(h)}:${padZero(m)} ${ampm}`,
               hours: h,
@@ -183,12 +201,12 @@ export function useTimePickerState({
               disabled: isTimeDisabled(h, m, ampm),
             });
           }
-        });
+        }
       });
     }
 
     return options;
-  }, [format, step, isTimeDisabled]);
+  }, [format, hourOptions, minuteOptions, isTimeDisabled]);
 
   const displayValue = useMemo(
     () => formatTimeValue(initialValue, format),
@@ -204,6 +222,8 @@ export function useTimePickerState({
     setAmPm,
     selectTime,
     clear,
+    hourOptions,
+    minuteOptions,
     dropdownOptions,
     isTimeDisabled,
     isHourDisabled,

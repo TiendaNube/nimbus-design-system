@@ -135,40 +135,26 @@ type OmittedHTMLAttributes = "value" | "onChange" | "placeholder" | "disabled";
 
 export interface TimePickerProps
   extends TimePickerProperties,
-    Omit<HTMLAttributes<HTMLDivElement>, OmittedHTMLAttributes> {
+  Omit<HTMLAttributes<HTMLDivElement>, OmittedHTMLAttributes> {
   /**
    * Ref to the container element.
    */
   ref?: RefObject<HTMLDivElement>;
 }
 
-export interface TimePickerColumnProps {
-  /**
-   * Type of values displayed in the column.
-   */
-  type: "hours" | "minutes";
-  /**
-   * Current time picker column value.
-   */
-  value?: number;
+export interface DropdownOption {
+  value: string;
+  hours: number;
+  minutes: number;
+  ampm?: AmPm;
+  disabled?: boolean;
+}
 
-  /**
-   * Currently selected value.
-   */
-  selected?: number;
-
-  /**
-   * Callback when a value is selected.
-   */
-  onSelect: (value: number) => void;
+interface TimePickerColumnBaseProps {
   /**
    * Time format (affects hour range for hours column).
    */
   format: TimeFormat;
-  /**
-   * Function to determine if a value is disabled.
-   */
-  isDisabled?: (value: number) => boolean;
   /**
    * Label for the column (for accessibility).
    */
@@ -180,8 +166,67 @@ export interface TimePickerColumnProps {
   step?: number;
 }
 
+interface TimePickerColumnSingleProps extends TimePickerColumnBaseProps {
+  /**
+   * Type of values displayed in the column.
+   */
+  type: "hours" | "minutes";
+  /**
+   * Available options for the column.
+   * When provided, the column uses these values instead of computing them internally.
+   */
+  options: number[];
+  /**
+   * Current time picker column value.
+   */
+  value?: number;
+  /**
+   * Currently selected value.
+   */
+  selected?: number;
+  /**
+   * Callback when a value is selected.
+   */
+  onSelect: (value: number) => void;
+  /**
+   * Function to determine if a value is disabled.
+   */
+  isDisabled?: (value: number) => boolean;
+}
+
+interface TimePickerColumnCombinedProps extends TimePickerColumnBaseProps {
+  /**
+   * Type "combined" shows full time options (HH:mm) in a simple scrollable list.
+   */
+  type: "combined";
+  /**
+   * Pre-computed dropdown options for combined mode.
+   */
+  options: DropdownOption[];
+  /**
+   * The current/initial time value string (e.g., "14:30").
+   */
+  currentValue?: string | null;
+  /**
+   * The currently selected time value string.
+   */
+  selectedValue?: string | null;
+  /**
+   * Callback when a time option is selected.
+   */
+  onSelectTime: (hours: number, minutes: number, ampm?: AmPm) => void;
+  /**
+   * Ref to the scroll container.
+   */
+  scrollContainerRef?: RefObject<HTMLDivElement | null>;
+}
+
+export type TimePickerColumnProps =
+  | TimePickerColumnSingleProps
+  | TimePickerColumnCombinedProps;
+
 export interface TimePickerOptionProps
-  extends HTMLAttributes<HTMLButtonElement> {
+  extends Omit<HTMLAttributes<HTMLButtonElement>, "role"> {
   /**
    * Whether this option is currently selected.
    */
@@ -202,34 +247,11 @@ export interface TimePickerOptionProps
    * Callback when this option is selected.
    */
   onSelect?: () => void;
+  /**
+   * ARIA role for the button. Use "option" for listbox and "radio" for radiogroup.
+   * @default "option"
+   */
+  role?: "option" | "radio";
 }
 
-export interface TimePickerAmPmProps {
-  /**
-   * Currently selected AM/PM value.
-   */
-  value: AmPm;
-  /**
-   * Callback when AM/PM changes.
-   */
-  onChange: (value: AmPm) => void;
-  /**
-   * Whether the AM/PM selector is disabled.
-   */
-  disabled?: boolean;
-  /**
-   * Display text for the AM option.
-   * @default "AM"
-   */
-  amLabel?: string;
-  /**
-   * Display text for the PM option.
-   * @default "PM"
-   */
-  pmLabel?: string;
-  /**
-   * Accessible label for the AM/PM selector group.
-   * @default "AM/PM selector"
-   */
-  selectorLabel?: string;
-}
+

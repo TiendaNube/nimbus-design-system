@@ -1,11 +1,4 @@
-import React, {
-  forwardRef,
-  useState,
-  useCallback,
-  useRef,
-  useEffect,
-  useMemo,
-} from "react";
+import React, { forwardRef, useState, useCallback, useMemo, useRef, useEffect } from "react";
 import {
   useFloating,
   useClick,
@@ -22,11 +15,12 @@ import { timePicker } from "@nimbus-ds/styles";
 import { Input } from "@nimbus-ds/input";
 import { Icon } from "@nimbus-ds/icon";
 import { ClockIcon } from "@nimbus-ds/icons";
+import { useCanScroll } from "../../../../../common/hooks";
 
 import { TimePickerProps, AmPm } from "../../timePicker.types";
 import { useTimePickerState } from "../../hooks";
 import { padZero } from "../../utils/timeUtils";
-import { TimePickerOption, TimePickerAmPm } from "../index";
+import { TimePickerAmPm, TimePickerColumn } from "../index";
 
 const { classnames } = timePicker;
 
@@ -81,10 +75,48 @@ export const TimePickerDropdown = forwardRef<HTMLDivElement, TimePickerProps>(
     ref
   ) => {
     const [uncontrolledOpen, setUncontrolledOpen] = useState(false);
-
+    const scrollContainerRef = useRef<HTMLDivElement>(null);
     const isOpen = controlledOpen ?? uncontrolledOpen;
-    const selectedOptionRef = useRef<HTMLButtonElement>(null);
-    const firstOptionRef = useRef<HTMLButtonElement>(null);
+
+    const {
+      canScrollStart: canScrollTop,
+      canScrollEnd: canScrollBottom,
+      checkScrollPosition,
+    } = useCanScroll({
+      direction: "vertical",
+      scrollContainerRef,
+    });
+
+    useEffect(() => {
+      if (!isOpen) return undefined;
+
+      let resizeObserver: ResizeObserver | null = null;
+      const handleScroll = () => checkScrollPosition();
+
+      const setupScrollTracking = () => {
+        const container = scrollContainerRef.current;
+        if (!container) return;
+
+        checkScrollPosition();
+        container.addEventListener("scroll", handleScroll);
+
+        resizeObserver = new ResizeObserver(() => {
+          requestAnimationFrame(checkScrollPosition);
+        });
+        resizeObserver.observe(container);
+      };
+
+      const frameId = requestAnimationFrame(setupScrollTracking);
+
+      return () => {
+        cancelAnimationFrame(frameId);
+        const container = scrollContainerRef.current;
+        if (container) {
+          container.removeEventListener("scroll", handleScroll);
+        }
+        resizeObserver?.disconnect();
+      };
+    }, [isOpen, checkScrollPosition]);
 
     const {
       timeValue: internalTimeValue,
@@ -164,18 +196,6 @@ export const TimePickerDropdown = forwardRef<HTMLDivElement, TimePickerProps>(
       useDismiss(context),
     ]);
 
-    useEffect(() => {
-      if (isOpen) {
-        const targetRef = selectedOptionRef.current || firstOptionRef.current;
-        if (targetRef) {
-          targetRef.scrollIntoView({
-            block: "center",
-            behavior: "auto",
-          });
-        }
-      }
-    }, [isOpen]);
-
     const handleKeyDown = useCallback(
       (event: React.KeyboardEvent) => {
         if (disabled) return;
@@ -235,59 +255,6 @@ export const TimePickerDropdown = forwardRef<HTMLDivElement, TimePickerProps>(
       return dropdownOptions.filter((opt) => opt.ampm === selectedAmPm);
     }, [dropdownOptions, format, selectedAmPm]);
 
-    const hasSelection = filteredOptions.some(
-      (option) => option.value.split(" ")[0] === currentTimeValue
-    );
-    const firstEnabledIndex = filteredOptions.findIndex((opt) => !opt.disabled);
-
-    const handleTimeKeyDown = useCallback(
-      (event: React.KeyboardEvent, index: number) => {
-        const enabledOptions = filteredOptions.filter((opt) => !opt.disabled);
-        const currentEnabledIndex = enabledOptions.findIndex(
-          (opt) => opt.value === filteredOptions[index].value
-        );
-
-        if (currentEnabledIndex === -1) return;
-
-        let targetOption: (typeof enabledOptions)[number] | undefined;
-
-        switch (event.key) {
-          case "ArrowUp": {
-            event.preventDefault();
-            const prevIndex =
-              currentEnabledIndex > 0
-                ? currentEnabledIndex - 1
-                : enabledOptions.length - 1;
-            targetOption = enabledOptions[prevIndex];
-            break;
-          }
-          case "ArrowDown": {
-            event.preventDefault();
-            const nextIndex =
-              currentEnabledIndex < enabledOptions.length - 1
-                ? currentEnabledIndex + 1
-                : 0;
-            targetOption = enabledOptions[nextIndex];
-            break;
-          }
-          default:
-            return;
-        }
-
-        if (targetOption) {
-          const targetValue = targetOption.value;
-          const targetIndex = filteredOptions.findIndex(
-            (opt) => opt.value === targetValue
-          );
-          const buttonElement = document.querySelector(
-            `[data-timepicker-time-index="${targetIndex}"]`
-          ) as HTMLButtonElement;
-          buttonElement?.focus();
-        }
-      },
-      [filteredOptions]
-    );
-
     return (
       <div ref={ref} {...rest}>
         <div ref={refs.setReference} {...getReferenceProps()}>
@@ -320,60 +287,39 @@ export const TimePickerDropdown = forwardRef<HTMLDivElement, TimePickerProps>(
                 style={floatingStyles}
                 {...getFloatingProps()}
               >
-                <div className={classnames.dropdownScrollContainer}>
-                  <div className={classnames.dropdownList} role="listbox">
-                    {filteredOptions.map((option, index) => {
-                      const optionTimeValue = option.value.split(" ")[0];
-                      const isCurrent = optionTimeValue === currentTimeValue;
-                      const isSelected = optionTimeValue === selectedTimeValue;
-
-                      const isFirstEnabled =
-                        !hasSelection && index === firstEnabledIndex;
-                      const shouldBeTabable = isCurrent || isFirstEnabled;
-
-                      let optionRef;
-                      if (isCurrent) {
-                        optionRef = selectedOptionRef;
-                      } else if (isFirstEnabled) {
-                        optionRef = firstOptionRef;
-                      }
-
-                      return (
-                        <TimePickerOption
-                          key={option.value}
-                          ref={optionRef}
-                          current={isCurrent}
-                          selected={isSelected}
-                          disabled={option.disabled}
-                          onSelect={() =>
-                            handleOptionSelect(
-                              option.hours,
-                              option.minutes,
-                              option.ampm
-                            )
+                <div style={{ position: "relative", display: "flex", flex: 1 }}>
+                  <div className={classnames.dropdownScrollContainer} ref={scrollContainerRef}>
+                    <TimePickerColumn
+                      type="combined"
+                      options={filteredOptions}
+                      currentValue={currentTimeValue}
+                      selectedValue={selectedTimeValue}
+                      onSelectTime={handleOptionSelect}
+                      format={format}
+                      step={step}
+                      label={ariaLabel}
+                      scrollContainerRef={scrollContainerRef}
+                    />
+                    {format === "12h" && (
+                      <div className={classnames.dropdownAmPmSticky}>
+                        <TimePickerAmPm
+                          value={selectedAmPm}
+                          onChange={handleAmPmChange}
+                          disabled={disabled}
+                          amLabel={labels.amLabel || "AM"}
+                          pmLabel={labels.pmLabel || "PM"}
+                          selectorLabel={
+                            labels.amPmSelectorLabel || "AM/PM selector"
                           }
-                          onKeyDown={(e) => handleTimeKeyDown(e, index)}
-                          tabIndex={shouldBeTabable ? 0 : -1}
-                          data-timepicker-time-index={index}
-                        >
-                          {optionTimeValue}
-                        </TimePickerOption>
-                      );
-                    })}
+                        />
+                      </div>
+                    )}
                   </div>
-                  {format === "12h" && (
-                    <div className={classnames.dropdownAmPmSticky}>
-                      <TimePickerAmPm
-                        value={selectedAmPm}
-                        onChange={handleAmPmChange}
-                        disabled={disabled}
-                        amLabel={labels.amLabel || "AM"}
-                        pmLabel={labels.pmLabel || "PM"}
-                        selectorLabel={
-                          labels.amPmSelectorLabel || "AM/PM selector"
-                        }
-                      />
-                    </div>
+                  {canScrollTop && (
+                    <div className={classnames.gradientPosition.top} />
+                  )}
+                  {canScrollBottom && (
+                    <div className={classnames.gradientPosition.bottom} />
                   )}
                 </div>
               </div>

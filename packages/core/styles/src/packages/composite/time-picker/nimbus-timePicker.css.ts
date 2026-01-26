@@ -2,6 +2,7 @@ import { style, styleVariants } from "@vanilla-extract/css";
 import { varsThemeBase } from "../../../themes";
 
 const PANEL_HEIGHT = "160px";
+const ITEM_HEIGHT = 32;
 
 /* -------------------------------------------------------------------------------------------------
  * Style - Panel
@@ -35,7 +36,7 @@ const buttonBase = style({
   fontFamily: varsThemeBase.fontFamily.sans,
   fontSize: varsThemeBase.fontSize.body.base,
   fontWeight: varsThemeBase.fontWeight.regular,
-  height: "32px",
+  height: ITEM_HEIGHT,
 });
 
 /* -------------------------------------------------------------------------------------------------
@@ -150,9 +151,6 @@ const optionState = styleVariants({
 const dropdownList = style({
   display: "flex",
   flexDirection: "column",
-  minWidth: "100px",
-  gap: varsThemeBase.spacing["0-5"],
-  boxSizing: "border-box",
 });
 
 /* -------------------------------------------------------------------------------------------------
@@ -181,7 +179,7 @@ const ampmButton = style({
   transition: `background-color ${varsThemeBase.motion.speed.fast} ease, color ${varsThemeBase.motion.speed.fast} ease`,
   userSelect: "none",
   minWidth: "40px",
-  minHeight: "32px",
+  minHeight: ITEM_HEIGHT,
   boxSizing: "border-box",
   border: "none",
   outline: "none",
@@ -324,4 +322,5 @@ export const timePickerStyles = {
     divider,
     gradientPosition,
   },
+  ITEM_HEIGHT,
 };
