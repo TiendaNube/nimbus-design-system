@@ -1,5 +1,6 @@
 releases:
   "@nimbus-ds/components": minor
+  "@nimbus-ds/scroll-pane": patch
   "@nimbus-ds/styles": minor
   "@nimbus-ds/time-picker": major
 
