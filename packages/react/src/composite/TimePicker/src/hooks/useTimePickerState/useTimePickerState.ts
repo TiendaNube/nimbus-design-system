@@ -78,7 +78,10 @@ export function useTimePickerState({
 
   const isHourDisabled = useCallback(
     (hour: number): boolean => {
-      const ampm = format === "12h" ? internalValue?.ampm || "AM" : undefined;
+      const ampm =
+        format === "12h"
+          ? internalValue?.ampm ?? initialValue?.ampm ?? "AM"
+          : undefined;
       const totalMinutes = timeToMinutes(hour, 0, ampm);
       const hourEnd = totalMinutes + 59;
 
@@ -87,15 +90,17 @@ export function useTimePickerState({
         (maxMinutes !== null && totalMinutes > maxMinutes)
       );
     },
-    [format, internalValue?.ampm, minMinutes, maxMinutes]
+    [format, internalValue?.ampm, initialValue?.ampm, minMinutes, maxMinutes]
   );
 
   const isMinuteDisabled = useCallback(
-    (minute: number): boolean =>
-      internalValue?.hours !== undefined
-        ? isTimeDisabled(internalValue.hours, minute, internalValue.ampm)
-        : false,
-    [internalValue, isTimeDisabled]
+    (minute: number): boolean => {
+      const hours = internalValue?.hours ?? initialValue?.hours;
+      const ampm = internalValue?.ampm ?? initialValue?.ampm;
+
+      return hours !== undefined ? isTimeDisabled(hours, minute, ampm) : false;
+    },
+    [internalValue, initialValue, isTimeDisabled]
   );
 
   const setHours = useCallback(

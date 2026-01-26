@@ -1,8 +1,9 @@
 import React, { useRef, useEffect, useCallback, useMemo } from "react";
-import { timePicker } from "@nimbus-ds/styles";
 import { ScrollPane } from "@nimbus-ds/scroll-pane";
+import { timePicker } from "@nimbus-ds/styles";
 import { TimePickerColumnProps } from "../../timePicker.types";
 import { padZero } from "../../utils/timeUtils";
+import { TimePickerOption } from "../TimePickerOption";
 
 const { classnames } = timePicker;
 const ITEM_HEIGHT = 32;
@@ -113,28 +114,12 @@ export const TimePickerColumn: React.FC<TimePickerColumnProps> = ({
           }
           break;
         }
-        case "Enter":
-        case " ":
-          event.preventDefault();
-          if (!isDisabled?.(itemValue)) {
-            onSelect(itemValue);
-          }
-          break;
         default:
           break;
       }
     },
-    [values, isDisabled, onSelect]
+    [values, isDisabled]
   );
-
-  const getOptionState = (
-    itemValue: number
-  ): keyof typeof classnames.optionState => {
-    if (isDisabled?.(itemValue)) return "disabled";
-    if (itemValue === selected) return "selected";
-    if (itemValue === value) return "current";
-    return "default";
-  };
 
   return (
     <div className={classnames.columnWrapper} ref={wrapperRef}>
@@ -157,7 +142,6 @@ export const TimePickerColumn: React.FC<TimePickerColumnProps> = ({
           aria-label={label || type}
         >
           {values.map((itemValue) => {
-            const state = getOptionState(itemValue);
             const disabled = isDisabled?.(itemValue) ?? false;
 
             return (
@@ -170,7 +154,7 @@ export const TimePickerColumn: React.FC<TimePickerColumnProps> = ({
                     justifyContent: "center",
                   }}
                 >
-                  <button
+                  <TimePickerOption
                     ref={(el) => {
                       if (el) {
                         optionRefs.current.set(itemValue, el);
@@ -178,13 +162,10 @@ export const TimePickerColumn: React.FC<TimePickerColumnProps> = ({
                         optionRefs.current.delete(itemValue);
                       }
                     }}
-                    type="button"
-                    role="option"
-                    aria-selected={itemValue === value}
-                    aria-disabled={disabled}
+                    selected={itemValue === selected}
+                    current={itemValue === value}
                     disabled={disabled}
-                    className={classnames.optionState[state]}
-                    onClick={() => !disabled && onSelect(itemValue)}
+                    onSelect={() => onSelect(itemValue)}
                     onKeyDown={(e) => handleKeyDown(e, itemValue)}
                     tabIndex={
                       itemValue === value ||
@@ -194,7 +175,7 @@ export const TimePickerColumn: React.FC<TimePickerColumnProps> = ({
                     }
                   >
                     {padZero(itemValue)}
-                  </button>
+                  </TimePickerOption>
                 </div>
               </ScrollPane.Item>
             );

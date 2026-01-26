@@ -115,6 +115,14 @@ export const withMinMaxTime: Story = {
           step={30}
           placeholder="Business hours only"
         />
+        <TimePicker
+          value={time}
+          onChange={(value) => setTime(value)}
+          minTime="09:00"
+          maxTime="17:00"
+          format="24h"
+          placeholder="Business hours only"
+        />
         <Text fontSize="caption" color="neutral-textLow">
           Available times: 09:00 - 17:00
         </Text>
