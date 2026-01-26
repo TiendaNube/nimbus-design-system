@@ -5,17 +5,23 @@ interface KeyboardNavigationParams {
   currentIndex: number;
   totalOptions: number;
   optionRefs: React.RefObject<Map<number, HTMLButtonElement>>;
+  onTabNext?: () => void;
+  onTabPrev?: () => void;
 }
 
 /**
- * Handles keyboard navigation (ArrowUp/ArrowDown) for time picker columns.
- * Wraps around the list.
+ * Handles keyboard navigation for time picker columns.
+ * - ArrowUp/ArrowDown: Navigate within column (wraps around)
+ * - Tab: Move to next column
+ * - Shift+Tab: Move to previous column
  */
 export function handleColumnKeyDown({
   event,
   currentIndex,
   totalOptions,
   optionRefs,
+  onTabNext,
+  onTabPrev,
 }: KeyboardNavigationParams): void {
   switch (event.key) {
     case "ArrowUp": {
@@ -28,6 +34,16 @@ export function handleColumnKeyDown({
       event.preventDefault();
       const nextIndex = (currentIndex + 1) % totalOptions;
       optionRefs.current?.get(nextIndex)?.focus();
+      break;
+    }
+    case "Tab": {
+      if (event.shiftKey && onTabPrev) {
+        event.preventDefault();
+        onTabPrev();
+      } else if (!event.shiftKey && onTabNext) {
+        event.preventDefault();
+        onTabNext();
+      }
       break;
     }
     default:

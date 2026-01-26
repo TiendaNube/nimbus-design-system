@@ -185,6 +185,14 @@ interface TimePickerColumnSingleProps extends TimePickerColumnBaseProps {
    * Callback when a value is selected.
    */
   onSelect: (value: number) => void;
+  /**
+   * Callback when Tab is pressed to move to next column.
+   */
+  onTabNext?: () => void;
+  /**
+   * Callback when Shift+Tab is pressed to move to previous column.
+   */
+  onTabPrev?: () => void;
 }
 
 interface TimePickerColumnCombinedProps extends TimePickerColumnBaseProps {

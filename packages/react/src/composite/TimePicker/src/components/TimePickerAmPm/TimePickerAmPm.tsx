@@ -18,6 +18,7 @@ export const TimePickerAmPm: React.FC<TimePickerAmPmProps> = ({
   amLabel = "AM",
   pmLabel = "PM",
   selectorLabel = "AM/PM selector",
+  onTabPrev,
 }) => {
   const amButtonRef = useRef<HTMLButtonElement>(null);
   const pmButtonRef = useRef<HTMLButtonElement>(null);
@@ -47,15 +48,20 @@ export const TimePickerAmPm: React.FC<TimePickerAmPmProps> = ({
 
       if (event.key === "ArrowUp" || event.key === "ArrowDown") {
         event.preventDefault();
-        const newValue = selected === "AM" ? "PM" : "AM";
-        if (newValue == "AM") {
+        const newValue = currentAmPm === "AM" ? "PM" : "AM";
+        if (newValue === "AM") {
           amButtonRef.current?.focus();
         } else {
           pmButtonRef.current?.focus();
         }
       }
+
+      if (event.key === "Tab" && event.shiftKey && onTabPrev) {
+        event.preventDefault();
+        onTabPrev();
+      }
     },
-    [disabled, selected, onSelect]
+    [disabled, selected, onTabPrev]
   );
 
   return (

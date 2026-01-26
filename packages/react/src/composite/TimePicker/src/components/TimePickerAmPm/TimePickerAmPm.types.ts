@@ -32,4 +32,8 @@ export interface TimePickerAmPmProps {
      * @default "AM/PM selector"
      */
     selectorLabel?: string;
+    /**
+     * Callback when Shift+Tab is pressed to move to previous column.
+     */
+    onTabPrev?: () => void;
 }

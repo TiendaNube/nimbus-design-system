@@ -30,6 +30,8 @@ export const TimePickerColumn: React.FC<TimePickerColumnProps> = (props) => {
       value={props.value}
       selected={props.selected}
       onSelect={props.onSelect}
+      onTabNext={props.onTabNext}
+      onTabPrev={props.onTabPrev}
     />
   );
 };
@@ -41,6 +43,8 @@ const SingleColumn: React.FC<SingleColumnProps> = ({
   selected,
   onSelect,
   label,
+  onTabNext,
+  onTabPrev,
 }) => {
   const optionRefs = useRef<Map<number, HTMLButtonElement>>(new Map());
   const currentValueRef = useRef<HTMLButtonElement>(null);
@@ -64,9 +68,11 @@ const SingleColumn: React.FC<SingleColumnProps> = ({
         currentIndex: index,
         totalOptions: options.length,
         optionRefs,
+        onTabNext,
+        onTabPrev,
       });
     },
-    [options.length]
+    [options.length, onTabNext, onTabPrev]
   );
 
   return (

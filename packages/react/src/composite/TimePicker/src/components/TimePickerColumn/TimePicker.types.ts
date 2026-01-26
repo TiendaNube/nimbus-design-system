@@ -1,7 +1,12 @@
 import { RefObject } from "react";
 import { DropdownOption } from "../../timePicker.types";
 
-interface SingleColumnProps {
+interface TabNavigationProps {
+    onTabNext?: () => void;
+    onTabPrev?: () => void;
+}
+
+interface SingleColumnProps extends TabNavigationProps {
     type: "hours" | "minutes";
     options: number[];
     value?: number;
@@ -11,7 +16,7 @@ interface SingleColumnProps {
     label?: string;
 }
 
-interface CombinedColumnProps {
+interface CombinedColumnProps extends TabNavigationProps {
     scrollContainerRef?: RefObject<HTMLDivElement | null>;
     type: "combined";
     options: DropdownOption[];
@@ -23,4 +28,4 @@ interface CombinedColumnProps {
     step?: number;
 }
 
-export type { SingleColumnProps, CombinedColumnProps };
+export type { SingleColumnProps, CombinedColumnProps, TabNavigationProps };
