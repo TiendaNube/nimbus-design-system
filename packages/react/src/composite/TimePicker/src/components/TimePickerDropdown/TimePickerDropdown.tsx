@@ -308,7 +308,6 @@ export const TimePickerDropdown = forwardRef<HTMLDivElement, TimePickerProps>(
             onKeyDown={handleKeyDown}
             append={<Icon source={<ClockIcon />} color="currentColor" />}
             appendPosition="end"
-            style={{ cursor: disabled ? "not-allowed" : "pointer" }}
           />
         </div>
 

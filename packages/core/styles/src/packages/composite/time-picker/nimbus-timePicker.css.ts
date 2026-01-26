@@ -133,7 +133,7 @@ const optionState = styleVariants({
     {
       backgroundColor: "transparent",
       color: varsThemeBase.colors.neutral.textDisabled,
-      cursor: "not-allowed",
+      cursor: "default",
       selectors: {
         "&:hover": {
           backgroundColor: "transparent",

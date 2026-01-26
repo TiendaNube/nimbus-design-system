@@ -92,8 +92,8 @@ export function useTimePickerState({
 
   const isMinuteDisabled = useCallback(
     (minute: number): boolean =>
-      internalValue
-        ? isTimeDisabled(internalValue.hours ?? 0, minute, internalValue.ampm)
+      internalValue?.hours !== undefined
+        ? isTimeDisabled(internalValue.hours, minute, internalValue.ampm)
         : false,
     [internalValue, isTimeDisabled]
   );
