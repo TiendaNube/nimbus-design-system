@@ -5,7 +5,7 @@ Package-specific changes not released in any package will be added here just bef
 
 ## 2026-01-23
 
-- Introduced new 'changelogs' Cursor skill to help with changelog management. ([#414](https://github.com/TiendaNube/nimbus-design-system/pull/414) by [@joacotornello](https://github.com/joacotornello))
+- Introduced new 'changelogs' Cursor skill to help with changelog management. ([#413](https://github.com/TiendaNube/nimbus-design-system/pull/413) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2026-01-14
 

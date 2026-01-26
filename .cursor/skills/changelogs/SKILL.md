@@ -68,19 +68,19 @@ Determine the change type based on commit messages and diff:
 
 1. **Be concise**: One sentence summarizing the user-facing impact
 2. **Focus on "what"**: Describe the outcome, not implementation details
-3. **Use present tense**: "Add", "Fix", "Update", not "Added", "Fixed"
+3. **Use past tense**: "Added", "Fixed", "Updated", not "Add", "Fix", "Update"
 4. **Avoid code details**: No mention of specific functions, variables, or files
 
 **Good examples:**
 
-- `Add disabled state styling to Input component.`
-- `Fix focus ring not appearing on keyboard navigation.`
-- `Update Button to support icon-only variant.`
+- `Added disabled state styling to Input component.`
+- `Fixed focus ring not appearing on keyboard navigation.`
+- `Updated Button to support icon-only variant.`
 
 **Bad examples:**
 
 - `Update Input.tsx to add handleFocus callback and modify CSS classes.`
-- `Fix bug in line 45 of nimbus-input.css.ts where outline was missing.`
+- `Fixes bug in line 45 of nimbus-input.css.ts where outline was missing.`
 
 ### Step 5: Ask for Missing Information
 
