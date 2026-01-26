@@ -22,7 +22,6 @@ import { timePicker } from "@nimbus-ds/styles";
 import { Input } from "@nimbus-ds/input";
 import { Icon } from "@nimbus-ds/icon";
 import { ClockIcon } from "@nimbus-ds/icons";
-import { ScrollPane } from "@nimbus-ds/scroll-pane";
 
 import { TimePickerProps, AmPm } from "../../timePicker.types";
 import { useTimePickerState } from "../../hooks";
@@ -321,76 +320,62 @@ export const TimePickerDropdown = forwardRef<HTMLDivElement, TimePickerProps>(
                 style={floatingStyles}
                 {...getFloatingProps()}
               >
-                <div className={classnames.dropdownWrapper}>
-                  <ScrollPane
-                    direction="vertical"
-                    showGradients
-                    showScrollbar
-                    scrollToItemOnClick={false}
-                    contentContainerProps={{
-                      display: "flex",
-                      flexDirection: "column",
-                      margin: "none",
-                    }}
-                  >
-                    <div className={classnames.dropdownList} role="listbox">
-                      {filteredOptions.map((option, index) => {
-                        const optionTimeValue = option.value.split(" ")[0];
-                        const isCurrent = optionTimeValue === currentTimeValue;
-                        const isSelected =
-                          optionTimeValue === selectedTimeValue;
+                <div className={classnames.dropdownScrollContainer}>
+                  <div className={classnames.dropdownList} role="listbox">
+                    {filteredOptions.map((option, index) => {
+                      const optionTimeValue = option.value.split(" ")[0];
+                      const isCurrent = optionTimeValue === currentTimeValue;
+                      const isSelected = optionTimeValue === selectedTimeValue;
 
-                        const isFirstEnabled =
-                          !hasSelection && index === firstEnabledIndex;
-                        const shouldBeTabable = isCurrent || isFirstEnabled;
+                      const isFirstEnabled =
+                        !hasSelection && index === firstEnabledIndex;
+                      const shouldBeTabable = isCurrent || isFirstEnabled;
 
-                        let optionRef;
-                        if (isCurrent) {
-                          optionRef = selectedOptionRef;
-                        } else if (isFirstEnabled) {
-                          optionRef = firstOptionRef;
-                        }
-
-                        return (
-                          <TimePickerOption
-                            key={option.value}
-                            ref={optionRef}
-                            current={isCurrent}
-                            selected={isSelected}
-                            disabled={option.disabled}
-                            onSelect={() =>
-                              handleOptionSelect(
-                                option.hours,
-                                option.minutes,
-                                option.ampm
-                              )
-                            }
-                            onKeyDown={(e) => handleTimeKeyDown(e, index)}
-                            tabIndex={shouldBeTabable ? 0 : -1}
-                            data-timepicker-time-index={index}
-                          >
-                            {optionTimeValue}
-                          </TimePickerOption>
-                        );
-                      })}
-                    </div>
-                  </ScrollPane>
-                </div>
-                {format === "12h" && (
-                  <>
-                    <div className={classnames.divider} />
-                    <TimePickerAmPm
-                      value={selectedAmPm}
-                      onChange={handleAmPmChange}
-                      disabled={disabled}
-                      amLabel={labels.amLabel || "AM"}
-                      pmLabel={labels.pmLabel || "PM"}
-                      selectorLabel={
-                        labels.amPmSelectorLabel || "AM/PM selector"
+                      let optionRef;
+                      if (isCurrent) {
+                        optionRef = selectedOptionRef;
+                      } else if (isFirstEnabled) {
+                        optionRef = firstOptionRef;
                       }
-                    />
-                  </>
-                )}
+
+                      return (
+                        <TimePickerOption
+                          key={option.value}
+                          ref={optionRef}
+                          current={isCurrent}
+                          selected={isSelected}
+                          disabled={option.disabled}
+                          onSelect={() =>
+                            handleOptionSelect(
+                              option.hours,
+                              option.minutes,
+                              option.ampm
+                            )
+                          }
+                          onKeyDown={(e) => handleTimeKeyDown(e, index)}
+                          tabIndex={shouldBeTabable ? 0 : -1}
+                          data-timepicker-time-index={index}
+                        >
+                          {optionTimeValue}
+                        </TimePickerOption>
+                      );
+                    })}
+                  </div>
+                  {format === "12h" && (
+                    <div className={classnames.dropdownAmPmSticky}>
+                      <TimePickerAmPm
+                        value={selectedAmPm}
+                        onChange={handleAmPmChange}
+                        disabled={disabled}
+                        amLabel={labels.amLabel || "AM"}
+                        pmLabel={labels.pmLabel || "PM"}
+                        selectorLabel={
+                          labels.amPmSelectorLabel || "AM/PM selector"
+                        }
+                      />
+                    </div>
+                  )}
+                </div>
               </div>
             </FloatingFocusManager>
           </FloatingPortal>

@@ -20,7 +20,7 @@ const panel = style({
 });
 
 const panelDropdown = style({
-  padding: varsThemeBase.spacing[1],
+  padding: `${varsThemeBase.spacing[1]} 0 ${varsThemeBase.spacing[1]} ${varsThemeBase.spacing[1]}`,
 });
 
 /* -------------------------------------------------------------------------------------------------
@@ -164,6 +164,7 @@ const ampmContainer = style({
   flexDirection: "column",
   gap: varsThemeBase.spacing[1],
   padding: `${varsThemeBase.spacing[1]} 0`,
+  justifyContent: "center",
 });
 
 const ampmButton = style({
@@ -284,6 +285,24 @@ const dropdownWrapper = style({
   overflowY: "auto",
 });
 
+const dropdownScrollContainer = style({
+  display: "flex",
+  flexDirection: "row",
+  height: PANEL_HEIGHT,
+  overflowY: "auto",
+  gap: varsThemeBase.spacing[1],
+  paddingRight: varsThemeBase.spacing[2],
+  scrollbarWidth: "thin",
+});
+
+const dropdownAmPmSticky = style({
+  position: "sticky",
+  top: "50%",
+  transform: "translateY(-50%)",
+  height: "fit-content",
+  alignSelf: "flex-start",
+});
+
 /* -------------------------------------------------------------------------------------------------
  * Export
  * -----------------------------------------------------------------------------------------------*/
@@ -296,6 +315,8 @@ export const timePickerStyles = {
     columnLabel,
     columnWrapper,
     dropdownWrapper,
+    dropdownScrollContainer,
+    dropdownAmPmSticky,
     optionState,
     dropdownList,
     ampmContainer,
