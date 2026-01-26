@@ -81,6 +81,7 @@ export const appearance = styleVariants({
       borderColor: varsThemeBase.colors.neutral.interactive,
       ":focus-within": {
         borderColor: varsThemeBase.colors.primary.interactiveHover,
+        boxShadow: varsThemeBase.utils.focus,
       },
     },
   ],
@@ -91,6 +92,7 @@ export const appearance = styleVariants({
       borderColor: varsThemeBase.colors.success.interactive,
       ":focus-within": {
         borderColor: varsThemeBase.colors.success.interactiveHover,
+        boxShadow: varsThemeBase.utils.focus,
       },
     },
   ],
@@ -101,6 +103,7 @@ export const appearance = styleVariants({
       borderColor: varsThemeBase.colors.warning.interactive,
       ":focus-within": {
         borderColor: varsThemeBase.colors.warning.interactiveHover,
+        boxShadow: varsThemeBase.utils.focus,
       },
     },
   ],
@@ -111,6 +114,7 @@ export const appearance = styleVariants({
       borderColor: varsThemeBase.colors.danger.interactive,
       ":focus-within": {
         borderColor: varsThemeBase.colors.danger.interactiveHover,
+        boxShadow: varsThemeBase.utils.focus,
       },
     },
   ],
@@ -122,6 +126,9 @@ export const appearance = styleVariants({
         varsThemeBase.colors.neutral.background
       ),
       borderColor: "transparent",
+      ":focus-within": {
+        boxShadow: varsThemeBase.utils.focus,
+      },
     },
   ],
 });
