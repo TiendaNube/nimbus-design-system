@@ -186,7 +186,7 @@ export const TimePickerDropdown = forwardRef<HTMLDivElement, TimePickerProps>(
           (isOpen && event.key === "Escape")
         ) {
           event.preventDefault();
-          handleOpenChange(false);
+          handleOpenChange(!isOpen);
         }
       },
       [disabled, isOpen, handleOpenChange]
