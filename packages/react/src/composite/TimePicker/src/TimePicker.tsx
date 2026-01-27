@@ -39,7 +39,7 @@ const { classnames } = timePicker;
  * // Dropdown mode
  * <TimePicker mode="dropdown" value="14:30" onChange={(value) => console.log(value)} step={30} />
  */
-const TimePickerComponent = forwardRef<HTMLDivElement, TimePickerProps>(
+const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
   (
     {
       value,
@@ -264,21 +264,6 @@ const TimePickerComponent = forwardRef<HTMLDivElement, TimePickerProps>(
   }
 );
 
-TimePickerComponent.displayName = "TimePicker";
+TimePicker.displayName = "TimePicker";
 
-/**
- * TimePicker.Dropdown is a convenience wrapper that renders the TimePicker
- * with mode="dropdown". Provided for backward compatibility.
- *
- * @deprecated Use `<TimePicker mode="dropdown" />` instead.
- */
-const TimePickerDropdownWrapper = forwardRef<
-  HTMLDivElement,
-  Omit<TimePickerProps, "mode">
->((props, ref) => <TimePickerComponent ref={ref} {...props} mode="dropdown" />);
-
-TimePickerDropdownWrapper.displayName = "TimePicker.Dropdown";
-
-export const TimePicker = Object.assign(TimePickerComponent, {
-  Dropdown: TimePickerDropdownWrapper,
-});
+export { TimePicker };

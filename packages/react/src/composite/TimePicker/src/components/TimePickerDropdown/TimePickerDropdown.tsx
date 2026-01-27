@@ -85,7 +85,7 @@ export const TimePickerDropdown: React.FC<TimePickerDropdownProps> = ({
   );
 
   const currentAmPm = initialValue?.ampm;
-  const selectedAmPm = internalTimeValue?.ampm ?? "AM";
+  const selectedAmPm = internalTimeValue?.ampm ?? currentAmPm ?? "AM";
 
   return (
     <div className={classnames.dropdownColumnsWrapper}>

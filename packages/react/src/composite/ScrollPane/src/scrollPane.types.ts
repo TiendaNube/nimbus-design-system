@@ -16,6 +16,8 @@ export interface ScrollPaneComponents {
   ArrowVerticalEnd: React.FC<ScrollPaneArrowVerticalEndProperties>;
 }
 
+export type ScrollPaneScrollBehavior = "hidden-items" | "always";
+
 export interface ScrollPaneProperties {
   /**
    * The content to be rendered inside the scroll pane
@@ -58,7 +60,7 @@ export interface ScrollPaneProperties {
    * - 'always': Always scrolls to items, centering them in the viewport
    * @default "hidden-items"
    */
-  scrollBehavior?: "hidden-items" | "always";
+  scrollBehavior?: ScrollPaneScrollBehavior;
 
   /**
    * Enable grab-to-scroll functionality (click and drag to scroll)

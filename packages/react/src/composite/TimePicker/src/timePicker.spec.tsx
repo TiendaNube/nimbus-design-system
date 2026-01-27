@@ -7,11 +7,6 @@ import { TimePickerProps } from "./timePicker.types";
 const makeSut = (props: Partial<TimePickerProps> = {}) =>
   render(<TimePicker data-testid="timepicker-element" {...props} />);
 
-const makeSutDropdown = (props: Partial<TimePickerProps> = {}) =>
-  render(
-    <TimePicker.Dropdown data-testid="timepicker-dropdown-element" {...props} />
-  );
-
 const ControlledTimePicker = (props: Partial<TimePickerProps> = {}) => {
   const [time, setTime] = useState<string | null>(props.value as string | null);
   return (
@@ -101,7 +96,7 @@ describe("GIVEN <TimePicker />", () => {
 
   describe("WHEN rendered as dropdown variant", () => {
     it("THEN should show time options in the dropdown", async () => {
-      makeSutDropdown({ step: 30 });
+      makeSut({ mode: "dropdown", step: 30 });
       const input = screen.getByRole("combobox");
 
       fireEvent.click(input);
@@ -117,7 +112,7 @@ describe("GIVEN <TimePicker />", () => {
   describe("WHEN selecting a time in dropdown variant", () => {
     it("THEN should call onChange with the selected value only on panel close", async () => {
       const handleChange = jest.fn();
-      makeSutDropdown({ step: 60, onChange: handleChange });
+      makeSut({ mode: "dropdown", step: 60, onChange: handleChange });
       const input = screen.getByRole("combobox");
 
       fireEvent.click(input);
@@ -137,7 +132,7 @@ describe("GIVEN <TimePicker />", () => {
     });
 
     it("THEN should close the panel and commit value on escape", async () => {
-      makeSutDropdown({ step: 60 });
+      makeSut({ mode: "dropdown", step: 60 });
       const input = screen.getByRole("combobox");
 
       fireEvent.click(input);
@@ -260,7 +255,7 @@ describe("GIVEN <TimePicker />", () => {
 
   describe("WHEN step prop is set in dropdown variant", () => {
     it("THEN should display options at correct intervals", async () => {
-      makeSutDropdown({ step: 15 });
+      makeSut({ mode: "dropdown", step: 15 });
       const input = screen.getByRole("combobox");
 
       fireEvent.click(input);

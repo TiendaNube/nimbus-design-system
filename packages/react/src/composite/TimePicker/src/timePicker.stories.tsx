@@ -62,6 +62,17 @@ export const withValue: Story = {
   },
 };
 
+export const withDateValue: Story = {
+  render: () => {
+    const [time, setTime] = useState<Date | null>(new Date());
+    return (
+      <Box display="flex" flexDirection="column" gap="2">
+        <TimePicker value={time} onChange={(_, date) => setTime(date)} />
+      </Box>
+    );
+  },
+};
+
 export const format12h: Story = {
   render: () => {
     const [time, setTime] = useState<string | null>();
@@ -83,7 +94,7 @@ export const format12h: Story = {
 
 export const dropdownMode: Story = {
   render: () => {
-    const [time, setTime] = useState<string | null>();
+    const [time, setTime] = useState<string | null>("14:30");
     return (
       <Box display="flex" flexDirection="column" gap="2">
         <TimePicker
@@ -103,7 +114,7 @@ export const dropdownMode: Story = {
 
 export const dropdownMode12h: Story = {
   render: () => {
-    const [time, setTime] = useState<string | null>(null);
+    const [time, setTime] = useState<string | null>("14:30");
     return (
       <Box display="flex" flexDirection="column" gap="2">
         <TimePicker
@@ -122,7 +133,7 @@ export const dropdownMode12h: Story = {
   },
 };
 
-export const customStep1: Story = {
+export const customStep: Story = {
   render: () => {
     const [time, setTime] = useState<string | null>(null);
     return (

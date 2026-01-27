@@ -1,3 +1,5 @@
+import type { ScrollPaneScrollBehavior } from "../../scrollPane.types";
+
 /**
  * Helper function to check if an item is fully visible within the container
  */
@@ -24,7 +26,7 @@ export const scrollItemIntoView = (
   container: HTMLElement,
   item: HTMLElement,
   direction: "horizontal" | "vertical",
-  behavior: "hidden-items" | "always" = "hidden-items"
+  behavior: ScrollPaneScrollBehavior = "hidden-items"
 ) => {
   // Get current positions and dimensions including any padding/borders
   const containerRect = container.getBoundingClientRect();
