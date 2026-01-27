@@ -1,4 +1,4 @@
-import type { HTMLAttributes, RefObject } from "react";
+import type { HTMLAttributes } from "react";
 
 export type TimeFormat = "12h" | "24h";
 export type AmPm = "AM" | "PM";
@@ -133,12 +133,7 @@ type OmittedHTMLAttributes = "value" | "onChange" | "placeholder" | "disabled";
 
 export interface TimePickerProps
   extends TimePickerProperties,
-    Omit<HTMLAttributes<HTMLDivElement>, OmittedHTMLAttributes> {
-  /**
-   * Ref to the container element.
-   */
-  ref?: RefObject<HTMLDivElement>;
-}
+    Omit<HTMLAttributes<HTMLDivElement>, OmittedHTMLAttributes> {}
 
 export interface DropdownOption {
   value: string;

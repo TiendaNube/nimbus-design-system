@@ -75,16 +75,13 @@ function buildCombinedOptions(
   selectedValue: string | null | undefined,
   onSelectTime: (hours: number, minutes: number, ampm?: "AM" | "PM") => void
 ): OptionItem[] {
-  return options.map((option) => {
-    const optionTimeValue = option.value.split(" ")[0];
-    return {
-      key: option.value,
-      displayValue: optionTimeValue,
-      isCurrent: optionTimeValue === currentValue,
-      isSelected: optionTimeValue === selectedValue,
-      onSelect: () => onSelectTime(option.hours, option.minutes, option.ampm),
-    };
-  });
+  return options.map((option) => ({
+    key: option.value,
+    displayValue: option.value,
+    isCurrent: option.value === currentValue,
+    isSelected: option.value === selectedValue,
+    onSelect: () => onSelectTime(option.hours, option.minutes, option.ampm),
+  }));
 }
 
 export { buildSingleOptions, buildCombinedOptions, handleColumnKeyDown };

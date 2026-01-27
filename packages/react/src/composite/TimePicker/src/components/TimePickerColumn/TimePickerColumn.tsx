@@ -5,7 +5,8 @@ import type {
   TimePickerColumnProps,
   TimePickerColumnSingleProps,
   TimePickerColumnCombinedProps,
- OptionItem } from "./TimePickerColumn.types";
+  OptionItem,
+} from "./TimePickerColumn.types";
 import { TimePickerOption } from "../TimePickerOption";
 import {
   buildSingleOptions,
@@ -112,13 +113,7 @@ export const TimePickerColumn: React.FC<TimePickerColumnProps> = ({
 
             return (
               <ScrollPane.Item key={option.key}>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
+                <div className={classnames.scrollPaneItemWrapper}>
                   <TimePickerOption
                     ref={(el) => {
                       if (el) {

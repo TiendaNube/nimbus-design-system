@@ -2,7 +2,7 @@ import { style, styleVariants } from "@vanilla-extract/css";
 import { varsThemeBase } from "../../../themes";
 
 const PANEL_HEIGHT = "160px";
-const ITEM_HEIGHT = 32;
+const ITEM_HEIGHT = varsThemeBase.spacing[8];
 
 /* -------------------------------------------------------------------------------------------------
  * Style - Panel
@@ -302,6 +302,39 @@ const dropdownAmPmSticky = style({
 });
 
 /* -------------------------------------------------------------------------------------------------
+ * Style - Dropdown Columns Wrapper
+ * -----------------------------------------------------------------------------------------------*/
+
+const dropdownColumnsWrapper = style({
+  position: "relative",
+  display: "flex",
+  flex: 1,
+});
+
+/* -------------------------------------------------------------------------------------------------
+ * Style - Scroll Pane Item Wrapper
+ * -----------------------------------------------------------------------------------------------*/
+
+const scrollPaneItemWrapper = style({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+});
+
+/* -------------------------------------------------------------------------------------------------
+ * Style - Input Cursor
+ * -----------------------------------------------------------------------------------------------*/
+
+const inputCursor = styleVariants({
+  enabled: {
+    cursor: "pointer",
+  },
+  disabled: {
+    cursor: "default",
+  },
+});
+
+/* -------------------------------------------------------------------------------------------------
  * Export
  * -----------------------------------------------------------------------------------------------*/
 
@@ -315,6 +348,9 @@ export const timePickerStyles = {
     dropdownWrapper,
     dropdownScrollContainer,
     dropdownAmPmSticky,
+    dropdownColumnsWrapper,
+    scrollPaneItemWrapper,
+    inputCursor,
     optionState,
     dropdownList,
     ampmContainer,

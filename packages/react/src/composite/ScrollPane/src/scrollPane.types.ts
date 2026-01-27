@@ -81,16 +81,15 @@ export interface ScrollPaneProperties {
    * Props to be passed to the content container
    */
   contentContainerProps?: object;
-
-  /**
-   * Ref to the scroll container
-   */
-  scrollContainerRef?: RefObject<HTMLDivElement | null>;
 }
 
 export type ScrollPaneProps = ScrollPaneProperties &
   Omit<BoxProps, "children"> & {
     contentContainerProps?: BoxProps;
+    /**
+     * Ref to the scroll container
+     */
+    scrollContainerRef?: RefObject<HTMLDivElement | null>;
   };
 
 export type ScrollPanePosition =

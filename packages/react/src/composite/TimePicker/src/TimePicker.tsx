@@ -16,11 +16,10 @@ import { Input } from "@nimbus-ds/input";
 import { Icon } from "@nimbus-ds/icon";
 import { ClockIcon } from "@nimbus-ds/icons";
 
-import type { AmPm, TimePickerProps } from "./timePicker.types";
+import type { TimePickerProps } from "./timePicker.types";
 import { useTimePickerState } from "./hooks";
 import { TimePickerScroll, TimePickerDropdown } from "./components";
-import { padZero } from "./utils";
-import { convertTo24Hours } from "./TimePicker.definitions";
+import { padZero, to24Hour } from "./utils";
 
 const { classnames } = timePicker;
 
@@ -102,14 +101,15 @@ const TimePickerComponent = forwardRef<HTMLDivElement, TimePickerProps>(
               timeValue.minutes !== undefined
             ) {
               const { hours, minutes, ampm } = timeValue;
+              const finalAmPm = ampm ?? initialValue?.ampm ?? "AM";
               const formattedValue =
                 format === "12h"
-                  ? `${padZero(hours)}:${padZero(minutes)} ${ampm}`
+                  ? `${padZero(hours)}:${padZero(minutes)} ${finalAmPm}`
                   : `${padZero(hours)}:${padZero(minutes)}`;
 
               const date = new Date();
               if (format === "12h") {
-                const hours24 = convertTo24Hours(hours, hours, ampm);
+                const hours24 = to24Hour(hours, finalAmPm);
                 date.setHours(hours24, minutes, 0, 0);
               } else {
                 date.setHours(hours, minutes, 0, 0);
@@ -118,20 +118,14 @@ const TimePickerComponent = forwardRef<HTMLDivElement, TimePickerProps>(
               onChange(formattedValue, date);
             }
           }
-
-          if (newOpen) {
-            selectTime(
-              initialValue?.hours ?? 0,
-              initialValue?.minutes ?? 0,
-              initialValue?.ampm
-            );
-          }
         } else {
           if (onChange && timeValue && !newOpen) {
-            const { hours, minutes, ampm } = timeValue;
-            const finalHours = hours ?? (initialValue?.hours as number);
-            const finalMinutes = minutes ?? (initialValue?.minutes as number);
-            const finalAmPm = ampm ?? (initialValue?.ampm as AmPm);
+            const defaultHour = format === "12h" ? 12 : 0;
+            const finalHours =
+              timeValue.hours ?? initialValue?.hours ?? defaultHour;
+            const finalMinutes =
+              timeValue.minutes ?? initialValue?.minutes ?? 0;
+            const finalAmPm = timeValue.ampm ?? initialValue?.ampm ?? "AM";
 
             const formattedValue =
               format === "12h"
@@ -140,7 +134,7 @@ const TimePickerComponent = forwardRef<HTMLDivElement, TimePickerProps>(
 
             const date = new Date();
             if (format === "12h") {
-              const hours24 = convertTo24Hours(hours, finalHours, finalAmPm);
+              const hours24 = to24Hour(finalHours, finalAmPm);
               date.setHours(hours24, finalMinutes, 0, 0);
             } else {
               date.setHours(finalHours, finalMinutes, 0, 0);
@@ -163,7 +157,6 @@ const TimePickerComponent = forwardRef<HTMLDivElement, TimePickerProps>(
         format,
         clear,
         mode,
-        selectTime,
       ]
     );
 
@@ -220,7 +213,9 @@ const TimePickerComponent = forwardRef<HTMLDivElement, TimePickerProps>(
             onKeyDown={handleKeyDown}
             append={<Icon source={<ClockIcon />} color="currentColor" />}
             appendPosition="end"
-            style={{ cursor: disabled ? "not-allowed" : "pointer" }}
+            className={
+              classnames.inputCursor[disabled ? "disabled" : "enabled"]
+            }
           />
         </div>
 

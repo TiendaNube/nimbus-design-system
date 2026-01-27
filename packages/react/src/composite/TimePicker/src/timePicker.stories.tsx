@@ -28,6 +28,22 @@ const meta: Meta<typeof TimePicker> = {
     },
   },
   tags: ["autodocs"],
+  render: ({ value, ...rest }) => {
+    const [time, setTime] = useState<string | null>(value as string | null);
+
+    return (
+      <Box display="flex" flexDirection="column" gap="2">
+        <TimePicker
+          {...rest}
+          value={time}
+          onChange={(value) => setTime(value)}
+        />
+        <Text fontSize="caption" color="neutral-textLow">
+          Selected: {time || "None"}
+        </Text>
+      </Box>
+    );
+  },
 };
 
 export default meta;
@@ -48,7 +64,7 @@ export const withValue: Story = {
 
 export const format12h: Story = {
   render: () => {
-    const [time, setTime] = useState<string | null>("09:30 AM");
+    const [time, setTime] = useState<string | null>();
     return (
       <Box display="flex" flexDirection="column" gap="2">
         <TimePicker
@@ -67,7 +83,7 @@ export const format12h: Story = {
 
 export const dropdownMode: Story = {
   render: () => {
-    const [time, setTime] = useState<string | null>("14:30");
+    const [time, setTime] = useState<string | null>();
     return (
       <Box display="flex" flexDirection="column" gap="2">
         <TimePicker

@@ -15,7 +15,9 @@ export function useTimePickerState({
   format,
   step,
 }: UseTimePickerStateProps): UseTimePickerStateReturn {
-  const [internalValue, setInternalValue] = useState<Partial<TimeValue>>({});
+  const [internalValue, setInternalValue] = useState<Partial<TimeValue> | null>(
+    null
+  );
   const initialValue = useMemo(
     () => parseTimeString(value, format),
     [value, format]
@@ -66,7 +68,7 @@ export function useTimePickerState({
   );
 
   const clear = useCallback(() => {
-    setInternalValue({});
+    setInternalValue(null);
   }, [setInternalValue]);
 
   const hourOptions = useMemo(
@@ -85,28 +87,17 @@ export function useTimePickerState({
     [step]
   );
 
-  const dropdownOptions = useMemo(() => {
-    if (format === "24h") {
-      return hourOptions.flatMap((h) =>
+  const dropdownOptions = useMemo(
+    () =>
+      hourOptions.flatMap((h) =>
         minuteOptions.map((m) => ({
           value: `${padZero(h)}:${padZero(m)}`,
           hours: h,
           minutes: m,
         }))
-      );
-    }
-
-    return (["AM", "PM"] as AmPm[]).flatMap((ampm) =>
-      hourOptions.flatMap((h) =>
-        minuteOptions.map((m) => ({
-          value: `${padZero(h)}:${padZero(m)} ${ampm}`,
-          hours: h,
-          minutes: m,
-          ampm,
-        }))
-      )
-    );
-  }, [format, hourOptions, minuteOptions]);
+      ),
+    [hourOptions, minuteOptions]
+  );
 
   const displayValue = useMemo(
     () => formatTimeValue(initialValue, format),

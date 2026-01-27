@@ -84,25 +84,18 @@ export const TimePickerDropdown: React.FC<TimePickerDropdownProps> = ({
     [internalTimeValue]
   );
 
-  const currentAmPm = initialValue?.ampm ?? "AM";
-  const selectedAmPm = internalTimeValue?.ampm ?? currentAmPm;
-
-  const filteredOptions = useMemo(() => {
-    if (format === "24h") {
-      return dropdownOptions;
-    }
-    return dropdownOptions.filter((opt) => opt.ampm === selectedAmPm);
-  }, [dropdownOptions, format, selectedAmPm]);
+  const currentAmPm = initialValue?.ampm;
+  const selectedAmPm = internalTimeValue?.ampm ?? "AM";
 
   return (
-    <div style={{ position: "relative", display: "flex", flex: 1 }}>
+    <div className={classnames.dropdownColumnsWrapper}>
       <div
         className={classnames.dropdownScrollContainer}
         ref={scrollContainerRef}
       >
         <TimePickerColumn
           type="combined"
-          options={filteredOptions}
+          options={dropdownOptions}
           currentValue={currentTimeValue}
           selectedValue={selectedTimeValue}
           onSelectTime={selectTime}

@@ -28,8 +28,8 @@ export const TimePickerOption = forwardRef<
     const handleClick = useCallback(
       (event: React.MouseEvent<HTMLButtonElement>) => {
         if (!disabled) {
-          onClick?.(event);
           onSelect?.();
+          onClick?.(event);
         }
       },
       [disabled, onClick, onSelect]
