@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, RefObject } from "react";
+import type { HTMLAttributes, RefObject } from "react";
 
 export type TimeFormat = "12h" | "24h";
 export type AmPm = "AM" | "PM";
@@ -133,7 +133,7 @@ type OmittedHTMLAttributes = "value" | "onChange" | "placeholder" | "disabled";
 
 export interface TimePickerProps
   extends TimePickerProperties,
-  Omit<HTMLAttributes<HTMLDivElement>, OmittedHTMLAttributes> {
+    Omit<HTMLAttributes<HTMLDivElement>, OmittedHTMLAttributes> {
   /**
    * Ref to the container element.
    */
@@ -147,138 +147,9 @@ export interface DropdownOption {
   ampm?: AmPm;
 }
 
-interface TimePickerColumnBaseProps {
-  /**
-   * Time format (affects hour range for hours column).
-   */
-  format: TimeFormat;
-  /**
-   * Label for the column (for accessibility).
-   */
-  label?: string;
-  /**
-   * Step interval in minutes (only applies to minutes column).
-   * @default 1
-   */
-  step?: number;
-}
-
-interface TimePickerColumnSingleProps extends TimePickerColumnBaseProps {
-  /**
-   * Type of values displayed in the column.
-   */
-  type: "hours" | "minutes";
-  /**
-   * Available options for the column.
-   * When provided, the column uses these values instead of computing them internally.
-   */
-  options: number[];
-  /**
-   * Current time picker column value.
-   */
-  value?: number;
-  /**
-   * Currently selected value.
-   */
-  selected?: number;
-  /**
-   * Callback when a value is selected.
-   */
-  onSelect: (value: number) => void;
-  /**
-   * Callback when Tab is pressed to move to next column.
-   */
-  onTabNext?: () => void;
-  /**
-   * Callback when Shift+Tab is pressed to move to previous column.
-   */
-  onTabPrev?: () => void;
-}
-
-interface TimePickerColumnCombinedProps extends TimePickerColumnBaseProps {
-  /**
-   * Type "combined" shows full time options (HH:mm) in a simple scrollable list.
-   */
-  type: "combined";
-  /**
-   * Pre-computed dropdown options for combined mode.
-   */
-  options: DropdownOption[];
-  /**
-   * The current/initial time value string (e.g., "14:30").
-   */
-  currentValue?: string | null;
-  /**
-   * The currently selected time value string.
-   */
-  selectedValue?: string | null;
-  /**
-   * Callback when a time option is selected.
-   */
-  onSelectTime: (hours: number, minutes: number, ampm?: AmPm) => void;
-  /**
-   * Ref to the scroll container.
-   */
-  scrollContainerRef?: RefObject<HTMLDivElement | null>;
-}
-
-export type TimePickerColumnProps =
-  | TimePickerColumnSingleProps
-  | TimePickerColumnCombinedProps;
-
-export interface TimePickerOptionProps
-  extends Omit<HTMLAttributes<HTMLButtonElement>, "role"> {
-  /**
-   * Whether this option is currently selected.
-   */
-  selected?: boolean;
-  /**
-   * Whether this option represents the current time.
-   */
-  current?: boolean;
-  /**
-   * Whether this option is disabled.
-   */
-  disabled?: boolean;
-  /**
-   * The display value/label for this option.
-   */
-  children: React.ReactNode;
-  /**
-   * Callback when this option is selected.
-   */
-  onSelect?: () => void;
-  /**
-   * ARIA role for the button. Use "option" for listbox and "radio" for radiogroup.
-   * @default "option"
-   */
-  role?: "option" | "radio";
-}
-
 export interface TimePickerPanelBaseProps {
   format: TimeFormat;
   disabled: boolean;
   labels: TimePickerLabels;
   ariaLabel?: string;
 }
-
-export interface TimePickerScrollPanelProps extends TimePickerPanelBaseProps {
-  hourOptions: number[];
-  minuteOptions: number[];
-  initialValue: TimeValue | null;
-  timeValue: Partial<TimeValue> | null;
-  setHours: (hours: number) => void;
-  setMinutes: (minutes: number) => void;
-  setAmPm: (ampm: AmPm) => void;
-}
-
-export interface TimePickerDropdownPanelProps extends TimePickerPanelBaseProps {
-  step: number;
-  dropdownOptions: DropdownOption[];
-  initialValue: TimeValue | null;
-  internalTimeValue: Partial<TimeValue> | null;
-  selectTime: (hours: number, minutes: number, ampm?: AmPm) => void;
-  setAmPm: (ampm: AmPm) => void;
-}
-
-

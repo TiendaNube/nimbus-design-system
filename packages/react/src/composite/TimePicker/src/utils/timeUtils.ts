@@ -1,21 +1,39 @@
 import { TimeValue, TimeFormat, AmPm } from "../timePicker.types";
 
-export function padZero(num: number): string {
-  return num.toString().padStart(2, "0");
-}
-
-export function to24Hour(hours: number, ampm?: AmPm): number {
+function to24Hour(hours: number, ampm?: AmPm): number {
   if (!ampm) return hours;
   return ampm === "PM" ? (hours % 12) + 12 : hours % 12;
 }
 
-export function to12Hour(hours24: number): { hours: number; ampm: AmPm } {
+function to12Hour(hours24: number): { hours: number; ampm: AmPm } {
   const ampm: AmPm = hours24 >= 12 ? "PM" : "AM";
   const hours = hours24 % 12 || 12;
   return { hours, ampm };
 }
 
-export function parseTimeString(
+/**
+ * Pads a number with zeros to make it two digits.
+ * @param num - The number to pad.
+ * @returns The padded number.
+ * @example
+ * padZero(1) // "01"
+ * padZero(10) // "10"
+ */
+function padZero(num: number): string {
+  return num.toString().padStart(2, "0");
+}
+
+/**
+ * Parses a time string or Date object to a TimeValue object.
+ * @param value - The time string or Date object to parse.
+ * @param format - The format to use.
+ * @returns The parsed TimeValue object.
+ * @example
+ * parseTimeString("10:30", "12h") // { hours: 10, minutes: 30, ampm: "AM" }
+ * parseTimeString("10:30", "24h") // { hours: 10, minutes: 30 }
+ * parseTimeString("10:30", "12h") // { hours: 10, minutes: 30, ampm: "AM" }
+ */
+function parseTimeString(
   value: string | Date | null | undefined,
   format: TimeFormat
 ): TimeValue | null {
@@ -66,7 +84,16 @@ export function parseTimeString(
   return null;
 }
 
-export function formatTimeValue(
+/**
+ * Formats a TimeValue object to a string representation of the time.
+ * @param timeValue - The TimeValue object to format.
+ * @param format - The format to use.
+ * @returns The formatted time string.
+ * @example
+ * formatTimeValue({ hours: 10, minutes: 30 }, "12h") // "10:30 AM"
+ * formatTimeValue({ hours: 10, minutes: 30 }, "24h") // "10:30"
+ */
+function formatTimeValue(
   timeValue: TimeValue | null,
   format: TimeFormat
 ): string {
@@ -78,17 +105,4 @@ export function formatTimeValue(
     : formatted;
 }
 
-export function timeValueToDate(
-  timeValue: TimeValue | null,
-  format: TimeFormat
-): Date | null {
-  if (!timeValue) return null;
-
-  const date = new Date();
-  const hours24 =
-    format === "12h"
-      ? to24Hour(timeValue.hours, timeValue.ampm)
-      : timeValue.hours;
-  date.setHours(hours24, timeValue.minutes, 0, 0);
-  return date;
-}
+export { padZero, parseTimeString, formatTimeValue, to24Hour, to12Hour };

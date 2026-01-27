@@ -1,36 +1,14 @@
 import { useState, useCallback, useMemo } from "react";
-import { TimeFormat, TimeValue, AmPm } from "../../timePicker.types";
 import {
   parseTimeString,
   formatTimeValue,
   padZero,
 } from "../../utils/timeUtils";
-
-interface UseTimePickerStateProps {
-  value?: string | Date | null;
-  onChange?: (value: string | null, date: Date | null) => void;
-  format: TimeFormat;
-  step: number;
-}
-
-interface UseTimePickerStateReturn {
-  initialValue: TimeValue | null;
-  timeValue: Partial<TimeValue> | null;
-  displayValue: string;
-  setHours: (hours: number) => void;
-  setMinutes: (minutes: number) => void;
-  setAmPm: (ampm: AmPm) => void;
-  selectTime: (hours: number, minutes: number, ampm?: AmPm) => void;
-  clear: () => void;
-  hourOptions: number[];
-  minuteOptions: number[];
-  dropdownOptions: Array<{
-    value: string;
-    hours: number;
-    minutes: number;
-    ampm?: AmPm;
-  }>;
-}
+import type { TimeValue, AmPm } from "../../timePicker.types";
+import type {
+  UseTimePickerStateProps,
+  UseTimePickerStateReturn,
+} from "./useTimePickerState.types";
 
 export function useTimePickerState({
   value,

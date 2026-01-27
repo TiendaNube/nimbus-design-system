@@ -1,10 +1,9 @@
 import React, { useMemo, useRef, useEffect } from "react";
 import { timePicker } from "@nimbus-ds/styles";
 import { useCanScroll } from "@common/hooks";
-
-import { TimePickerDropdownPanelProps } from "../../timePicker.types";
 import { padZero } from "../../utils/timeUtils";
 import { TimePickerAmPm, TimePickerColumn } from "../index";
+import type { TimePickerDropdownProps } from "./TimePickerDropdown.types";
 
 const { classnames } = timePicker;
 
@@ -12,7 +11,7 @@ const { classnames } = timePicker;
  * Internal dropdown panel component that displays a scrollable list
  * of time options with optional AM/PM toggle.
  */
-export const TimePickerDropdown: React.FC<TimePickerDropdownPanelProps> = ({
+export const TimePickerDropdown: React.FC<TimePickerDropdownProps> = ({
   format,
   disabled,
   labels,

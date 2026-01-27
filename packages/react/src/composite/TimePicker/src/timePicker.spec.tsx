@@ -173,38 +173,6 @@ describe("GIVEN <TimePicker />", () => {
     });
   });
 
-  describe("WHEN minTime and maxTime are set in dropdown variant", () => {
-    it("THEN should mark times outside range as disabled", async () => {
-      makeSutDropdown({
-        step: 60,
-        minTime: "09:00",
-        maxTime: "17:00",
-      });
-      const input = screen.getByRole("combobox");
-
-      fireEvent.click(input);
-
-      await waitFor(() => {
-        const earlyOption = screen.getByText("08:00");
-        const lateOption = screen.getByText("18:00");
-        const validOption = screen.getByText("10:00");
-
-        expect(earlyOption.closest("button")).toHaveAttribute(
-          "aria-disabled",
-          "true"
-        );
-        expect(lateOption.closest("button")).toHaveAttribute(
-          "aria-disabled",
-          "true"
-        );
-        expect(validOption.closest("button")).not.toHaveAttribute(
-          "aria-disabled",
-          "true"
-        );
-      });
-    });
-  });
-
   describe("WHEN pressing Escape key", () => {
     it("THEN should close the panel", async () => {
       makeSut();

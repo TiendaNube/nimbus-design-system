@@ -1,12 +1,10 @@
 import React, { useRef, useCallback } from "react";
 import { timePicker } from "@nimbus-ds/styles";
-
-import { TimePickerScrollPanelProps } from "../../timePicker.types";
 import { TimePickerColumn, TimePickerAmPm } from "../index";
 import { focusColumnOption } from "./TimePickerScroll.definitions";
+import type { TimePickerScrollPanelProps } from "./TimePickerScroll.types";
 
 const { classnames } = timePicker;
-
 
 /**
  * Internal scroll panel component that displays hour and minute columns
