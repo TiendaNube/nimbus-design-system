@@ -88,7 +88,7 @@ describe("GIVEN <TimePicker />", () => {
 
       await waitFor(() => {
         expect(
-          screen.getByRole("group", { name: "AM/PM selector" })
+          screen.getByRole("radiogroup", { name: "AM/PM selector" })
         ).toBeDefined();
       });
     });
