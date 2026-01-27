@@ -99,8 +99,7 @@ const TimePickerComponent = forwardRef<HTMLDivElement, TimePickerProps>(
           if (!newOpen && timeValue && onChange) {
             if (
               timeValue.hours !== undefined &&
-              timeValue.minutes !== undefined &&
-              timeValue.ampm !== undefined
+              timeValue.minutes !== undefined
             ) {
               const { hours, minutes, ampm } = timeValue;
               const formattedValue =

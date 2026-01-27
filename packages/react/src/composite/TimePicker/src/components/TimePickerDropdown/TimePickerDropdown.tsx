@@ -1,6 +1,6 @@
 import React, { useMemo, useRef, useEffect } from "react";
 import { timePicker } from "@nimbus-ds/styles";
-import { useCanScroll } from "../../../../../common/hooks";
+import { useCanScroll } from "@common/hooks";
 
 import { TimePickerDropdownPanelProps } from "../../timePicker.types";
 import { padZero } from "../../utils/timeUtils";
@@ -37,12 +37,14 @@ export const TimePickerDropdown: React.FC<TimePickerDropdownPanelProps> = ({
 
   useEffect(() => {
     let resizeObserver: ResizeObserver | null = null;
+    let containerRef: HTMLDivElement | null = null;
     const handleScroll = () => checkScrollPosition();
 
     const setupScrollTracking = () => {
       const container = scrollContainerRef.current;
       if (!container) return;
 
+      containerRef = container;
       checkScrollPosition();
       container.addEventListener("scroll", handleScroll);
 
@@ -56,9 +58,8 @@ export const TimePickerDropdown: React.FC<TimePickerDropdownPanelProps> = ({
 
     return () => {
       cancelAnimationFrame(frameId);
-      const container = scrollContainerRef.current;
-      if (container) {
-        container.removeEventListener("scroll", handleScroll);
+      if (containerRef) {
+        containerRef.removeEventListener("scroll", handleScroll);
       }
       resizeObserver?.disconnect();
     };

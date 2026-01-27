@@ -1,6 +1,10 @@
 import { useState, useCallback, useMemo } from "react";
 import { TimeFormat, TimeValue, AmPm } from "../../timePicker.types";
-import { parseTimeString, formatTimeValue, padZero } from "../../utils/timeUtils";
+import {
+  parseTimeString,
+  formatTimeValue,
+  padZero,
+} from "../../utils/timeUtils";
 
 interface UseTimePickerStateProps {
   value?: string | Date | null;
@@ -33,8 +37,7 @@ export function useTimePickerState({
   format,
   step,
 }: UseTimePickerStateProps): UseTimePickerStateReturn {
-  const [internalValue, setInternalValue] = useState<Partial<TimeValue>>({
-  });
+  const [internalValue, setInternalValue] = useState<Partial<TimeValue>>({});
   const initialValue = useMemo(
     () => parseTimeString(value, format),
     [value, format]
@@ -105,39 +108,26 @@ export function useTimePickerState({
   );
 
   const dropdownOptions = useMemo(() => {
-    const options: Array<{
-      value: string;
-      hours: number;
-      minutes: number;
-      ampm?: AmPm;
-    }> = [];
-
     if (format === "24h") {
-      for (const h of hourOptions) {
-        for (const m of minuteOptions) {
-          options.push({
-            value: `${padZero(h)}:${padZero(m)}`,
-            hours: h,
-            minutes: m,
-          });
-        }
-      }
-    } else {
-      (["AM", "PM"] as AmPm[]).forEach((ampm) => {
-        for (const h of hourOptions) {
-          for (const m of minuteOptions) {
-            options.push({
-              value: `${padZero(h)}:${padZero(m)} ${ampm}`,
-              hours: h,
-              minutes: m,
-              ampm,
-            });
-          }
-        }
-      });
+      return hourOptions.flatMap((h) =>
+        minuteOptions.map((m) => ({
+          value: `${padZero(h)}:${padZero(m)}`,
+          hours: h,
+          minutes: m,
+        }))
+      );
     }
 
-    return options;
+    return (["AM", "PM"] as AmPm[]).flatMap((ampm) =>
+      hourOptions.flatMap((h) =>
+        minuteOptions.map((m) => ({
+          value: `${padZero(h)}:${padZero(m)} ${ampm}`,
+          hours: h,
+          minutes: m,
+          ampm,
+        }))
+      )
+    );
   }, [format, hourOptions, minuteOptions]);
 
   const displayValue = useMemo(

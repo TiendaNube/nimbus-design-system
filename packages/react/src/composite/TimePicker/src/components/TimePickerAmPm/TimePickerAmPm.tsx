@@ -61,7 +61,7 @@ export const TimePickerAmPm: React.FC<TimePickerAmPmProps> = ({
         onTabPrev();
       }
     },
-    [disabled, selected, onTabPrev]
+    [disabled, onTabPrev]
   );
 
   return (

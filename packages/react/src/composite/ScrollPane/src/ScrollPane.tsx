@@ -10,7 +10,7 @@ import ScrollContainer from "react-indiana-drag-scroll";
 import { Box } from "@nimbus-ds/box";
 
 import { scrollPane } from "@nimbus-ds/styles";
-import { useCanScroll } from "../../../common/hooks";
+import { useCanScroll } from "@common/hooks";
 
 import { ScrollPaneProps, ScrollPaneComponents } from "./scrollPane.types";
 import {

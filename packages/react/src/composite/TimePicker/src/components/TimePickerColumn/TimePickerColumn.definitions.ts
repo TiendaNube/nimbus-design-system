@@ -1,4 +1,7 @@
 import React from "react";
+import { padZero } from "../../utils/timeUtils";
+import type { OptionItem } from "./TimePickerColumn.types";
+import { DropdownOption } from "../../timePicker.types";
 
 interface KeyboardNavigationParams {
   event: React.KeyboardEvent;
@@ -15,7 +18,7 @@ interface KeyboardNavigationParams {
  * - Tab: Move to next column
  * - Shift+Tab: Move to previous column
  */
-export function handleColumnKeyDown({
+function handleColumnKeyDown({
   event,
   currentIndex,
   totalOptions,
@@ -50,3 +53,38 @@ export function handleColumnKeyDown({
       break;
   }
 }
+
+function buildSingleOptions(
+  options: number[],
+  value: number | undefined,
+  selected: number | undefined,
+  onSelect: (value: number) => void
+): OptionItem[] {
+  return options.map((itemValue) => ({
+    key: itemValue,
+    displayValue: padZero(itemValue),
+    isCurrent: itemValue === value,
+    isSelected: itemValue === selected,
+    onSelect: () => onSelect(itemValue),
+  }));
+}
+
+function buildCombinedOptions(
+  options: DropdownOption[],
+  currentValue: string | null | undefined,
+  selectedValue: string | null | undefined,
+  onSelectTime: (hours: number, minutes: number, ampm?: "AM" | "PM") => void
+): OptionItem[] {
+  return options.map((option) => {
+    const optionTimeValue = option.value.split(" ")[0];
+    return {
+      key: option.value,
+      displayValue: optionTimeValue,
+      isCurrent: optionTimeValue === currentValue,
+      isSelected: optionTimeValue === selectedValue,
+      onSelect: () => onSelectTime(option.hours, option.minutes, option.ampm),
+    };
+  });
+}
+
+export { buildSingleOptions, buildCombinedOptions, handleColumnKeyDown };

@@ -1,184 +1,101 @@
-import React, { useRef, useEffect, useCallback } from "react";
+import React, { useRef, useEffect, useCallback, useMemo } from "react";
 import { ScrollPane } from "@nimbus-ds/scroll-pane";
 import { timePicker } from "@nimbus-ds/styles";
-import { TimePickerColumnProps } from "../../timePicker.types";
-import { padZero } from "../../utils/timeUtils";
+import type {
+  TimePickerColumnProps,
+  TimePickerColumnSingleProps,
+  TimePickerColumnCombinedProps,
+ OptionItem } from "./TimePickerColumn.types";
 import { TimePickerOption } from "../TimePickerOption";
-import type { SingleColumnProps, CombinedColumnProps } from "./TimePicker.types";
-import { handleColumnKeyDown } from "./TimePickerColumn.definitions";
+import {
+  buildSingleOptions,
+  buildCombinedOptions,
+  handleColumnKeyDown,
+} from "./TimePickerColumn.definitions";
 
 const { classnames } = timePicker;
 
 /**
  * TimePickerColumn renders a scrollable column of time values.
- * For type "hours" or "minutes": Uses ScrollPane with gradients.
- * For type "combined": Renders a simple scrollable list of full time options.
+ * For type "hours" or "minutes": Uses ScrollPane with gradients for wheel-style selection.
+ * For type "combined": Renders a flat scrollable list of full time options.
  */
-export const TimePickerColumn: React.FC<TimePickerColumnProps> = (props) => {
-  const { type, format, label } = props;
-
-  if (type === "combined") {
-    return <CombinedColumn {...props} />;
-  }
-
-  return (
-    <SingleColumn
-      type={type}
-      format={format}
-      label={label}
-      options={props.options}
-      value={props.value}
-      selected={props.selected}
-      onSelect={props.onSelect}
-      onTabNext={props.onTabNext}
-      onTabPrev={props.onTabPrev}
-    />
-  );
-};
-
-const SingleColumn: React.FC<SingleColumnProps> = ({
+export const TimePickerColumn: React.FC<TimePickerColumnProps> = ({
   type,
-  options,
-  value,
-  selected,
-  onSelect,
   label,
-  onTabNext,
-  onTabPrev,
-}) => {
+  ...rest
+}: TimePickerColumnProps) => {
+  const isCombined = type === "combined";
+
   const optionRefs = useRef<Map<number, HTMLButtonElement>>(new Map());
   const currentValueRef = useRef<HTMLButtonElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
-  const hasCurrentValue = value !== undefined;
+  const normalizedOptions = useMemo<OptionItem[]>(() => {
+    if (isCombined) {
+      const props = rest as TimePickerColumnCombinedProps;
+      return buildCombinedOptions(
+        props.options,
+        props.currentValue,
+        props.selectedValue,
+        props.onSelectTime
+      );
+    }
+    const props = rest as TimePickerColumnSingleProps;
+    return buildSingleOptions(
+      props.options,
+      props.value,
+      props.selected,
+      props.onSelect
+    );
+  }, [rest, isCombined]);
+
+  const hasCurrentValue = normalizedOptions.some((opt) => opt.isCurrent);
 
   useEffect(() => {
     if (currentValueRef.current) {
       currentValueRef.current.scrollIntoView({
         block: "center",
-        behavior: "instant" as ScrollBehavior,
+        // ScrollBehavior is not defined in current TS configuration
+        behavior: "instant" as any,
       });
     }
   }, []);
+
+  const onTabNext = isCombined
+    ? undefined
+    : (rest as TimePickerColumnSingleProps).onTabNext;
+  const onTabPrev = isCombined
+    ? undefined
+    : (rest as TimePickerColumnSingleProps).onTabPrev;
 
   const handleKeyDown = useCallback(
     (event: React.KeyboardEvent, index: number) => {
       handleColumnKeyDown({
         event,
         currentIndex: index,
-        totalOptions: options.length,
+        totalOptions: normalizedOptions.length,
         optionRefs,
         onTabNext,
         onTabPrev,
       });
     },
-    [options.length, onTabNext, onTabPrev]
+    [normalizedOptions.length, onTabNext, onTabPrev]
   );
+
+  const scrollContainerRef = isCombined
+    ? (rest as TimePickerColumnCombinedProps).scrollContainerRef
+    : undefined;
+  const listClassName = isCombined
+    ? classnames.dropdownList
+    : classnames.column;
+  const ariaLabel = label || (isCombined ? undefined : type);
 
   return (
     <div className={classnames.columnWrapper} ref={wrapperRef}>
       <ScrollPane
         direction="vertical"
-        showGradients
-        showScrollbar={false}
-        scrollToItemOnClick
-        scrollBehavior="always"
-        contentContainerProps={{
-          display: "flex",
-          flexDirection: "column",
-          margin: "none",
-        }}
-      >
-        <div
-          className={classnames.column}
-          role="listbox"
-          aria-label={label || type}
-        >
-          {options.map((itemValue, index) => {
-            const isCurrent = itemValue === value;
-            const isFirst = !hasCurrentValue && index === 0;
-
-            return (
-              <ScrollPane.Item key={itemValue}>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <TimePickerOption
-                    ref={(el) => {
-                      if (el) {
-                        optionRefs.current.set(index, el);
-                      } else {
-                        optionRefs.current.delete(index);
-                      }
-                      if (isCurrent) {
-                        currentValueRef.current = el;
-                      }
-                    }}
-                    selected={itemValue === selected}
-                    current={isCurrent}
-                    onSelect={() => onSelect(itemValue)}
-                    onKeyDown={(e) => handleKeyDown(e, index)}
-                    tabIndex={isCurrent || isFirst ? 0 : -1}
-                  >
-                    {padZero(itemValue)}
-                  </TimePickerOption>
-                </div>
-              </ScrollPane.Item>
-            );
-          })}
-        </div>
-      </ScrollPane>
-    </div>
-  );
-};
-
-
-const CombinedColumn: React.FC<CombinedColumnProps> = ({
-  scrollContainerRef,
-  options,
-  currentValue,
-  selectedValue,
-  onSelectTime,
-  label,
-}) => {
-  const optionRefs = useRef<Map<number, HTMLButtonElement>>(new Map());
-  const currentValueRef = useRef<HTMLButtonElement>(null);
-  const wrapperRef = useRef<HTMLDivElement>(null);
-
-  const hasSelection = options.some(
-    (option) => option.value.split(" ")[0] === currentValue
-  );
-
-  useEffect(() => {
-    if (currentValueRef.current) {
-      currentValueRef.current.scrollIntoView({
-        block: "center",
-        behavior: "instant" as ScrollBehavior,
-      });
-    }
-  }, []);
-
-  const handleKeyDown = useCallback(
-    (event: React.KeyboardEvent, index: number) => {
-      handleColumnKeyDown({
-        event,
-        currentIndex: index,
-        totalOptions: options.length,
-        optionRefs,
-      });
-    },
-    [options.length]
-  );
-
-  return (
-    <div className={classnames.columnWrapper} ref={wrapperRef}>
-      <ScrollPane
-        direction="vertical"
-        showGradients={false}
+        showGradients={!isCombined}
         showScrollbar={false}
         scrollToItemOnClick
         scrollBehavior="always"
@@ -189,19 +106,12 @@ const CombinedColumn: React.FC<CombinedColumnProps> = ({
         }}
         scrollContainerRef={scrollContainerRef}
       >
-        <div
-          className={classnames.dropdownList}
-          role="listbox"
-          aria-label={label}
-        >
-          {options.map((option, index) => {
-            const optionTimeValue = option.value.split(" ")[0];
-            const isCurrent = optionTimeValue === currentValue;
-            const isSelected = optionTimeValue === selectedValue;
-            const isFirst = !hasSelection && index === 0;
+        <div className={listClassName} role="listbox" aria-label={ariaLabel}>
+          {normalizedOptions.map((option, index) => {
+            const isFirst = !hasCurrentValue && index === 0;
 
             return (
-              <ScrollPane.Item key={option.value}>
+              <ScrollPane.Item key={option.key}>
                 <div
                   style={{
                     display: "flex",
@@ -216,19 +126,17 @@ const CombinedColumn: React.FC<CombinedColumnProps> = ({
                       } else {
                         optionRefs.current.delete(index);
                       }
-                      if (isCurrent) {
+                      if (option.isCurrent) {
                         currentValueRef.current = el;
                       }
                     }}
-                    current={isCurrent}
-                    selected={isSelected}
-                    onSelect={() =>
-                      onSelectTime(option.hours, option.minutes, option.ampm)
-                    }
+                    selected={option.isSelected}
+                    current={option.isCurrent}
+                    onSelect={option.onSelect}
                     onKeyDown={(e) => handleKeyDown(e, index)}
-                    tabIndex={isCurrent || isFirst ? 0 : -1}
+                    tabIndex={option.isCurrent || isFirst ? 0 : -1}
                   >
-                    {optionTimeValue}
+                    {option.displayValue}
                   </TimePickerOption>
                 </div>
               </ScrollPane.Item>
