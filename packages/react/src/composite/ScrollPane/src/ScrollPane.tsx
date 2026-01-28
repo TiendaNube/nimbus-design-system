@@ -11,7 +11,7 @@ import { Box } from "@nimbus-ds/box";
 import { scrollPane } from "@nimbus-ds/styles";
 import { useCanScroll } from "@common/hooks";
 
-import { ScrollPaneProps, ScrollPaneComponents } from "./scrollPane.types";
+import { ScrollPaneProps } from "./scrollPane.types";
 import {
   ScrollPaneItem,
   ScrollPaneContext,
@@ -32,7 +32,7 @@ import { getPosition } from "./ScrollPane.definitions";
  *   <ScrollPane.Item>Item 2</ScrollPane.Item>
  * </ScrollPane>
  */
-const ScrollPaneComponent = ({
+const ScrollPane = ({
   children,
   showGradients = true,
   showArrows = false,
@@ -266,10 +266,7 @@ const ScrollPaneComponent = ({
   );
 };
 
-ScrollPaneComponent.displayName = "ScrollPane";
-
-const ScrollPane = ScrollPaneComponent as typeof ScrollPaneComponent &
-  ScrollPaneComponents;
+ScrollPane.displayName = "ScrollPane";
 
 ScrollPane.Item = ScrollPaneItem;
 
