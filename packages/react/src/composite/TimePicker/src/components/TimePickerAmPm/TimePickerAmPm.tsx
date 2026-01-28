@@ -1,8 +1,8 @@
 import React, { useCallback, useRef, useEffect } from "react";
 import { timePicker } from "@nimbus-ds/styles";
-import { TimePickerAmPmProps } from "./TimePickerAmPm.types";
+import type { TimePickerAmPmProps } from "./TimePickerAmPm.types";
 import { TimePickerOption } from "../TimePickerOption";
-import { AmPm } from "../../timePicker.types";
+import type { AmPm } from "../../timePicker.types";
 
 const { classnames } = timePicker;
 

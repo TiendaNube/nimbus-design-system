@@ -1,4 +1,4 @@
-import { AmPm, TimeFormat, TimeValue } from "../../timePicker.types";
+import type { AmPm, TimeFormat, TimeValue } from "../../timePicker.types";
 
 export interface UseTimePickerStateProps {
   value?: string | Date | null;

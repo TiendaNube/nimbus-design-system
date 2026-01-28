@@ -1,4 +1,4 @@
-import { TimeValue, TimeFormat, AmPm } from "../timePicker.types";
+import type { TimeValue, TimeFormat, AmPm } from "../timePicker.types";
 
 function to24Hour(hours: number, ampm?: AmPm): number {
   if (!ampm) return hours;

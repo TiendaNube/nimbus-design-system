@@ -7,6 +7,7 @@ The ScrollPane component handles responsive scrolls in lists that are overflowin
 #### 🎉 New features
 
 - Added `scrollContainerRef` property to allow passing a ref to the scroll container. ([#414](https://github.com/TiendaNube/nimbus-design-system/pull/414) by [@joacotornello](https://github.com/joacotornello))
+- Added `scrollBehavior` property to allow specifying the scroll behavior when clicking on items. ([#414](https://github.com/TiendaNube/nimbus-design-system/pull/414) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2026-01-13 `1.1.3`
 

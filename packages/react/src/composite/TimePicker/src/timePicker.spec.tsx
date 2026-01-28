@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 
 import { TimePicker } from "./TimePicker";
-import { TimePickerProps } from "./timePicker.types";
+import type { TimePickerProps } from "./timePicker.types";
 
 const makeSut = (props: Partial<TimePickerProps> = {}) =>
   render(<TimePicker data-testid="timepicker-element" {...props} />);

@@ -1,4 +1,4 @@
-import { AmPm } from "../../timePicker.types";
+import type { AmPm } from "../../timePicker.types";
 
 export const HOURS_IN_HALF_DAY = 12;
 export const MIDNIGHT_HOUR = 0;

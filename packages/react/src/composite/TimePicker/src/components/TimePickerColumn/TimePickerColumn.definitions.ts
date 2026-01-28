@@ -1,7 +1,7 @@
-import React from "react";
+import type React from "react";
 import { padZero } from "../../utils/timeUtils";
 import type { OptionItem } from "./TimePickerColumn.types";
-import { DropdownOption } from "../../timePicker.types";
+import type { DropdownOption } from "../../timePicker.types";
 
 interface KeyboardNavigationParams {
   event: React.KeyboardEvent;
