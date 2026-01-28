@@ -1,4 +1,10 @@
-import React, { useMemo, useRef, useEffect } from "react";
+import React, {
+  useMemo,
+  useRef,
+  useState,
+  useCallback,
+  useEffect,
+} from "react";
 import { table } from "@nimbus-ds/styles";
 
 import { TableProps, TableComponents } from "./table.types";
@@ -21,6 +27,10 @@ const Table: React.FC<TableProps> & TableComponents = ({
   ...rest
 }: TableProps) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
+  const [scrollState, setScrollState] = useState({
+    left: false,
+    right: false,
+  });
   const scrollbarTrackRef = useRef<HTMLDivElement>(null);
   const scrollbarInnerRef = useRef<HTMLDivElement>(null);
   const isSyncingRef = useRef(false);
@@ -41,7 +51,64 @@ const Table: React.FC<TableProps> & TableComponents = ({
     [columnLayout]
   );
 
+  const hasFixedColumns = fixedColumnOffsets !== undefined;
   const hasColumnLayout = Boolean(columnLayout?.length);
+
+  const checkScrollPosition = useCallback(() => {
+    const wrapper = wrapperRef.current;
+    if (!wrapper) return;
+
+    const { scrollLeft, scrollWidth, clientWidth } = wrapper;
+    const maxScroll = scrollWidth - clientWidth;
+
+    setScrollState((prev) => {
+      const left = scrollLeft > 0;
+      const right = scrollLeft < maxScroll - 1; // -1 accounts for subpixel rounding
+      if (prev.left === left && prev.right === right) return prev;
+      return { left, right };
+    });
+  }, []);
+
+  const updateScrollbarWidth = useCallback(() => {
+    const wrapper = wrapperRef.current;
+    const inner = scrollbarInnerRef.current;
+    if (!wrapper || !inner) return;
+    inner.style.width = `${wrapper.scrollWidth}px`;
+  }, []);
+
+  useEffect(() => {
+    const wrapper = wrapperRef.current;
+    if (!hasFixedColumns || !wrapper) return undefined;
+
+    checkScrollPosition();
+    wrapper.addEventListener("scroll", checkScrollPosition, { passive: true });
+
+    return () => {
+      wrapper.removeEventListener("scroll", checkScrollPosition);
+    };
+  }, [checkScrollPosition, hasFixedColumns]);
+
+  useEffect(() => {
+    const wrapper = wrapperRef.current;
+    if (!wrapper || (!hasFixedColumns && !stickyScrollbar)) return undefined;
+
+    const handleResize = () => {
+      if (hasFixedColumns) checkScrollPosition();
+      if (stickyScrollbar) updateScrollbarWidth();
+    };
+
+    const resizeObserver = new ResizeObserver(handleResize);
+    resizeObserver.observe(wrapper);
+
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, [
+    hasFixedColumns,
+    stickyScrollbar,
+    checkScrollPosition,
+    updateScrollbarWidth,
+  ]);
 
   const contextValue = useMemo<TableContextValue>(
     () => ({ columnLayout, fixedColumnOffsets }),
@@ -61,12 +128,7 @@ const Table: React.FC<TableProps> & TableComponents = ({
 
     const wrapper = wrapperRef.current;
     const track = scrollbarTrackRef.current;
-    const inner = scrollbarInnerRef.current;
-    if (!wrapper || !track || !inner) return undefined;
-
-    const updateScrollbarWidth = () => {
-      inner.style.width = `${wrapper.scrollWidth}px`;
-    };
+    if (!wrapper || !track) return undefined;
 
     const syncScrollFromWrapper = () => {
       if (isSyncingRef.current) return;
@@ -88,11 +150,7 @@ const Table: React.FC<TableProps> & TableComponents = ({
 
     wrapper.addEventListener("scroll", syncScrollFromWrapper);
     track.addEventListener("scroll", syncScrollFromTrack);
-
     window.addEventListener("resize", updateScrollbarWidth, { passive: true });
-
-    const resizeObserver = new ResizeObserver(updateScrollbarWidth);
-    resizeObserver.observe(wrapper);
 
     updateScrollbarWidth();
 
@@ -100,9 +158,8 @@ const Table: React.FC<TableProps> & TableComponents = ({
       wrapper.removeEventListener("scroll", syncScrollFromWrapper);
       track.removeEventListener("scroll", syncScrollFromTrack);
       window.removeEventListener("resize", updateScrollbarWidth);
-      resizeObserver.disconnect();
     };
-  }, [stickyScrollbar]);
+  }, [stickyScrollbar, updateScrollbarWidth]);
 
   const wrapperClassName = stickyScrollbar
     ? `${table.classnames.container__wrapper} ${table.classnames.container__wrapper_hidden_scrollbar}`
@@ -110,7 +167,12 @@ const Table: React.FC<TableProps> & TableComponents = ({
 
   return (
     <TableContext.Provider value={contextValue}>
-      <div ref={wrapperRef} className={wrapperClassName}>
+      <div
+        ref={wrapperRef}
+        className={wrapperClassName}
+        data-scroll-left={scrollState.left || undefined}
+        data-scroll-right={scrollState.right || undefined}
+      >
         <table
           {...rest}
           className={table.classnames.container}
