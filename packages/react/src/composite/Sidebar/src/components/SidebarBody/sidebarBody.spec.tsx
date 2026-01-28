@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import { SidebarBody } from "./SidebarBody";
-import { SidebarBodyProps } from "./sidebarBody.types";
+import type { SidebarBodyProps } from "./sidebarBody.types";
 
 const makeSut = (props: SidebarBodyProps) => {
   render(<SidebarBody {...props} data-testid="body-element" />);

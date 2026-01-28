@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import { LinkSkeleton } from "./LinkSkeleton";
-import { LinkSkeletonProps } from "./linkSkeleton.types";
+import type { LinkSkeletonProps } from "./linkSkeleton.types";
 
 const makeSut = (props?: LinkSkeletonProps) => {
   render(<LinkSkeleton {...props} data-testid="skeleton-element" />);

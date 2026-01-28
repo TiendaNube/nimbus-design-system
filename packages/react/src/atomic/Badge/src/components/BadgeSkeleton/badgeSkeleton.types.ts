@@ -1,4 +1,4 @@
-import { SkeletonProps } from "@nimbus-ds/skeleton";
+import type { SkeletonProps } from "@nimbus-ds/skeleton";
 
 export type BadgeSkeletonProperties = Partial<Pick<SkeletonProps, "width">> &
   Partial<Pick<SkeletonProps, "height">> & {

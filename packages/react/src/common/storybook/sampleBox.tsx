@@ -1,5 +1,6 @@
 import React from "react";
-import { Box, BoxProps } from "@nimbus-ds/box";
+import type { BoxProps } from "@nimbus-ds/box";
+import { Box } from "@nimbus-ds/box";
 
 /**
  * A styled container component for Storybook examples that provides

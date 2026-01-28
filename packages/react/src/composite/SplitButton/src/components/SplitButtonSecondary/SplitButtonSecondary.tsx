@@ -4,7 +4,7 @@ import { ChevronDownIcon } from "@nimbus-ds/icons";
 import { Popover } from "@nimbus-ds/popover";
 import { Box } from "@nimbus-ds/box";
 
-import { SplitButtonSecondaryProps } from "./SplitButtonSecondary.types";
+import type { SplitButtonSecondaryProps } from "./SplitButtonSecondary.types";
 import { useSplitButtonContext } from "../../contexts";
 
 export const SplitButtonSecondary: React.FC<SplitButtonSecondaryProps> = ({

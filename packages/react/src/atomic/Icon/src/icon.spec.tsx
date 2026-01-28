@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import { Icon } from "./Icon";
-import { IconProps } from "./icon.types";
+import type { IconProps } from "./icon.types";
 
 import { isGradient, applyGradientToSvg } from "./utils/gradient";
 

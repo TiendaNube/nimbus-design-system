@@ -1,7 +1,8 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 
-import { Input, InputProps } from "./Input";
+import type { InputProps } from "./Input";
+import { Input } from "./Input";
 
 const makeSut = (rest?: Omit<InputProps, "children">) => {
   render(<Input {...rest} data-testid="input-element" />);

@@ -1,7 +1,7 @@
 import { renderHook } from "@testing-library/react";
 
 import { usePagination } from "./usePagination";
-import { UsePaginationProps } from "./usePagination.types";
+import type { UsePaginationProps } from "./usePagination.types";
 
 const makeSut = (rest: UsePaginationProps) =>
   renderHook(() => usePagination(rest));

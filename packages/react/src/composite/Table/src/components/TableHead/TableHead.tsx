@@ -1,7 +1,7 @@
 import React from "react";
 import { table } from "@nimbus-ds/styles";
 
-import { TableHeadProps } from "./tableHead.types";
+import type { TableHeadProps } from "./tableHead.types";
 
 const TableHead: React.FC<TableHeadProps> = ({
   className: _className,

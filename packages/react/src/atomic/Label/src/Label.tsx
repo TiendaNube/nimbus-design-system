@@ -1,7 +1,7 @@
 import React from "react";
 import { label } from "@nimbus-ds/styles";
 
-import { LabelProps, LabelComponents } from "./label.types";
+import type { LabelProps, LabelComponents } from "./label.types";
 import { LabelSkeleton } from "./components";
 
 const Label: React.FC<LabelProps> & LabelComponents = ({

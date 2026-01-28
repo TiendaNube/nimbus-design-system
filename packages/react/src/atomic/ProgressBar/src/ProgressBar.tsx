@@ -1,7 +1,8 @@
-import React, { ComponentPropsWithRef, forwardRef, useMemo } from "react";
+import type { ComponentPropsWithRef } from "react";
+import React, { forwardRef, useMemo } from "react";
 import { progressBar } from "@nimbus-ds/styles";
 
-import {
+import type {
   ProgressBarBaseProps,
   ProgressBarComponents,
 } from "./progressBar.types";

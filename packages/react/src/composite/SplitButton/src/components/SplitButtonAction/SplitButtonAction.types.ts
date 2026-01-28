@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
-import { BoxProps } from "@nimbus-ds/box";
+import type { ReactNode } from "react";
+import type { BoxProps } from "@nimbus-ds/box";
 
 export interface SplitButtonActionProperties {
   /**

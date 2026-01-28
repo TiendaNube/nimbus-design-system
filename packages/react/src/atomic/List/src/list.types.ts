@@ -1,6 +1,6 @@
-import { HTMLAttributes, ReactNode } from "react";
-import { list } from "@nimbus-ds/styles";
-import { ListSkeletonItem, ListSkeleton, ListItem } from "./components";
+import type { HTMLAttributes, ReactNode } from "react";
+import type { list } from "@nimbus-ds/styles";
+import type { ListSkeletonItem, ListSkeleton, ListItem } from "./components";
 
 export interface ListComponents {
   Skeleton: typeof ListSkeleton;

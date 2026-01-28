@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Skeleton } from "@nimbus-ds/skeleton";
-import { InputSkeletonProps } from "./inputSkeleton.types";
+import type { InputSkeletonProps } from "./inputSkeleton.types";
 
 const InputSkeleton: React.FC<InputSkeletonProps> = ({
   width,

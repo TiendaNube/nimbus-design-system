@@ -1,5 +1,5 @@
-import { HTMLAttributes, ReactNode } from "react";
-import { sidebar } from "@nimbus-ds/styles";
+import type { HTMLAttributes, ReactNode } from "react";
+import type { sidebar } from "@nimbus-ds/styles";
 
 export interface SidebarHeaderProperties {
   /**

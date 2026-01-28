@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import { ThemeProvider } from ".";
-import { ThemeProviderProps } from "./themeProvider.types";
+import type { ThemeProviderProps } from "./themeProvider.types";
 
 const makeSut = (props: ThemeProviderProps) => {
   render(<ThemeProvider {...props} data-testid="theme-provider-element" />);

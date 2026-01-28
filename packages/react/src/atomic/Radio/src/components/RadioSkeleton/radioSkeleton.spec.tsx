@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import { RadioSkeleton } from "./RadioSkeleton";
-import { RadioSkeletonProps } from "./radioSkeleton.types";
+import type { RadioSkeletonProps } from "./radioSkeleton.types";
 
 const makeSut = (props?: RadioSkeletonProps) => {
   render(<RadioSkeleton {...props} data-testid="skeleton-element" />);

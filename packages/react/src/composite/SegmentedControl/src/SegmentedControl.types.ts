@@ -1,6 +1,6 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 import type { BoxProps } from "@nimbus-ds/box";
-import {
+import type {
   SegmentedControlButton,
   SegmentedControlButtonSkeleton,
 } from "./components";

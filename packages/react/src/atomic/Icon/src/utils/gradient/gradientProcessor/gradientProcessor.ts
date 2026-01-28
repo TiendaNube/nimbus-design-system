@@ -1,5 +1,6 @@
-import React, { ReactNode } from "react";
-import { GradientTypes } from "../types";
+import type { ReactNode } from "react";
+import React from "react";
+import type { GradientTypes } from "../types";
 import {
   generateGradientId,
   injectGradientDefs,

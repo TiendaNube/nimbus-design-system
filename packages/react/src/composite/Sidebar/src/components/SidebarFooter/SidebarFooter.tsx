@@ -1,7 +1,7 @@
 import React from "react";
 import { sidebar } from "@nimbus-ds/styles";
 
-import { SidebarFooterProps } from "./sidebarFooter.types";
+import type { SidebarFooterProps } from "./sidebarFooter.types";
 
 const SidebarFooter: React.FC<SidebarFooterProps> = ({
   className: _className,

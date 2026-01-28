@@ -1,4 +1,4 @@
-import { Conditions, TextAlign } from "../../../types";
+import type { Conditions, TextAlign } from "../../../types";
 import { titleSprinkle } from "./nimbus-title.css";
 
 const { properties: propertiesTitle } = titleSprinkle;

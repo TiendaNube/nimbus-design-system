@@ -1,13 +1,9 @@
-import React, {
-  ComponentPropsWithRef,
-  ForwardRefExoticComponent,
-  forwardRef,
-  useRef,
-} from "react";
+import type { ComponentPropsWithRef, ForwardRefExoticComponent } from "react";
+import React, { forwardRef, useRef } from "react";
 import { useRefObjectAsForwardedRef } from "@nimbus-ds/typings";
 import { input } from "@nimbus-ds/styles";
 
-import { InputBaseProps, InputComponents } from "./input.types";
+import type { InputBaseProps, InputComponents } from "./input.types";
 import {
   InputPassword,
   InputSearch,

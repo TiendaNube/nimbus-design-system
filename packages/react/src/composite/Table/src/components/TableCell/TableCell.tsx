@@ -1,7 +1,7 @@
 import React from "react";
 import { table } from "@nimbus-ds/styles";
 
-import { TableCellProps } from "./tableCell.types";
+import type { TableCellProps } from "./tableCell.types";
 import { useTableContext } from "../../contexts";
 
 const TableCell: React.FC<TableCellProps> = ({

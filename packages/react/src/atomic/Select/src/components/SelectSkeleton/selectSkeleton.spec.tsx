@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import { SelectSkeleton } from "./SelectSkeleton";
-import { SelectSkeletonProps } from "./selectSkeleton.types";
+import type { SelectSkeletonProps } from "./selectSkeleton.types";
 
 const makeSut = (props?: SelectSkeletonProps) => {
   render(<SelectSkeleton {...props} data-testid="skeleton-element" />);

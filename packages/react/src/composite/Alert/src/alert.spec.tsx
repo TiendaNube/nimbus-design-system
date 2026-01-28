@@ -2,7 +2,7 @@ import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 
 import { Alert } from "./Alert";
-import { AlertProps } from "./alert.types";
+import type { AlertProps } from "./alert.types";
 
 const alertChildren = "myAlertChildren";
 const alertTitle = "myAlertTitle";

@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import { CardFooter } from "./CardFooter";
-import { CardFooterProps } from "./cardFooter.types";
+import type { CardFooterProps } from "./cardFooter.types";
 
 const makeSut = (props: CardFooterProps) => {
   render(<CardFooter {...props} data-testid="footer-element" />);

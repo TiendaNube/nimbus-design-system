@@ -3,6 +3,12 @@
 This is the log of notable changes to the Design System Nimbus that are developer-facing.
 Package-specific changes not released in any package will be added here just before the release. Until then, you can find them in changelogs of the individual packages (see [packages](./packages) directory).
 
+## 2026-01-28
+
+### 📚 3rd party library updates
+
+- Adds `@typescript-eslint/consistent-type-imports` rule to ESLint configuration. ([#415](https://github.com/TiendaNube/nimbus-design-system/pull/415) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2026-01-14
 
 - Bumps local react dependencies to version 19. ([#404](https://github.com/TiendaNube/nimbus-design-system/pull/404) by [@joacotornello](https://github.com/joacotornello))

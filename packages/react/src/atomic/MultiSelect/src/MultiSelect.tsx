@@ -1,4 +1,5 @@
-import React, { ComponentPropsWithRef, useState, useEffect } from "react";
+import type { ComponentPropsWithRef } from "react";
+import React, { useState, useEffect } from "react";
 import { multiSelect } from "@nimbus-ds/styles";
 import { Icon } from "@nimbus-ds/icon";
 import { Popover } from "@nimbus-ds/popover";
@@ -7,7 +8,7 @@ import { Text } from "@nimbus-ds/text";
 import { Chip } from "@nimbus-ds/chip";
 import { ChevronDownIcon } from "@nimbus-ds/icons";
 
-import {
+import type {
   MultiSelectComponents,
   MultiSelectBaseProps,
   MultiSelectOption,

@@ -1,7 +1,8 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 
-import { Button, ButtonProps } from "./Button";
+import type { ButtonProps } from "./Button";
+import { Button } from "./Button";
 
 const makeSut = (
   rest: ButtonProps & { as?: "button" | "a"; href?: string }

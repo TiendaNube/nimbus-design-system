@@ -1,5 +1,5 @@
 import { varsThemeBase } from "../themes";
-import {
+import type {
   AlignItems,
   AspectRatio,
   BorderStyle,

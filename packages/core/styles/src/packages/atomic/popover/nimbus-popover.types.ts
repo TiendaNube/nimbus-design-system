@@ -1,4 +1,4 @@
-import { Conditions, Overflow } from "../../../types";
+import type { Conditions, Overflow } from "../../../types";
 import { popoverSprinkle } from "./nimbus-popover.css";
 
 const { properties: propertiesPopover } = popoverSprinkle;

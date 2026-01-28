@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { table } from "@nimbus-ds/styles";
 
-import { TableRowProps } from "./tableRow.types";
+import type { TableRowProps } from "./tableRow.types";
 
 const TableRow: React.FC<TableRowProps> = ({
   className: _className,

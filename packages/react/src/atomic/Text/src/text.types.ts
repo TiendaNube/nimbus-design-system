@@ -1,7 +1,7 @@
-import { ReactNode, HTMLAttributes } from "react";
-import { TextSprinkle } from "@nimbus-ds/styles";
+import type { ReactNode, HTMLAttributes } from "react";
+import type { TextSprinkle } from "@nimbus-ds/styles";
 
-import { TextSkeleton } from "./components";
+import type { TextSkeleton } from "./components";
 
 export interface TextComponents {
   Skeleton: typeof TextSkeleton;

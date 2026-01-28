@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import { CardHeader } from "./CardHeader";
-import { CardHeaderProps } from "./cardHeader.types";
+import type { CardHeaderProps } from "./cardHeader.types";
 
 const makeSut = (props?: CardHeaderProps) => {
   render(<CardHeader {...props} data-testid="header-element" />);

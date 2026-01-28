@@ -1,4 +1,4 @@
-import {
+import type {
   Conditions,
   TextAlign,
   TextDecoration,

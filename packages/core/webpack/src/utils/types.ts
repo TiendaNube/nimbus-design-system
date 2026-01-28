@@ -1,4 +1,4 @@
-import {
+import type {
   MoveFilesIntoDistFolderPluginOptions,
   UseClientInjectionPluginOptions,
 } from "../plugins";

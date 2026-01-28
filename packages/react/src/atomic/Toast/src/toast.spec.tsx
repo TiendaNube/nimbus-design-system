@@ -3,7 +3,7 @@ import { render, screen, act } from "@testing-library/react";
 
 import { Toast } from "./Toast";
 import { ToastContext } from "./contexts";
-import { ToastProps } from "./toast.types";
+import type { ToastProps } from "./toast.types";
 
 const mockedAddToast = jest.fn();
 const mockedCloseToast = jest.fn();

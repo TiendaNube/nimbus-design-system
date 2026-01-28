@@ -1,13 +1,10 @@
-import React, {
-  forwardRef,
-  ForwardRefExoticComponent,
-  ComponentPropsWithRef,
-} from "react";
+import type { ForwardRefExoticComponent, ComponentPropsWithRef } from "react";
+import React, { forwardRef } from "react";
 import { select } from "@nimbus-ds/styles";
 import { Icon } from "@nimbus-ds/icon";
 import { ChevronDownIcon } from "@nimbus-ds/icons";
 
-import { SelectComponents, SelectBaseProps } from "./select.types";
+import type { SelectComponents, SelectBaseProps } from "./select.types";
 import { SelectGroup, SelectOption, SelectSkeleton } from "./components";
 
 const Select = forwardRef<HTMLSelectElement, SelectBaseProps>(

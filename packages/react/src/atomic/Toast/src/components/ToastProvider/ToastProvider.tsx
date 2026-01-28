@@ -2,9 +2,9 @@ import React, { useCallback, useMemo } from "react";
 import { toast as toastStyle } from "@nimbus-ds/styles";
 
 import { ToastContext } from "../../contexts";
-import { ToastProps } from "../../toast.types";
+import type { ToastProps } from "../../toast.types";
 import { Toast } from "../../Toast";
-import { ToastProviderProps } from "./toastProvider.types";
+import type { ToastProviderProps } from "./toastProvider.types";
 import { uniqueId } from "./toastProvider.definitions";
 
 const ToastProvider: React.FC<ToastProviderProps> = ({ children }) => {

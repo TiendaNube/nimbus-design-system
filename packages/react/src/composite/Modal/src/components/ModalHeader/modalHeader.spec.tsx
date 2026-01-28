@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import { ModalHeader } from "./ModalHeader";
-import { ModalHeaderProps } from "./modalHeader.types";
+import type { ModalHeaderProps } from "./modalHeader.types";
 
 const makeSut = (props?: ModalHeaderProps) => {
   render(<ModalHeader {...props} data-testid="header-element" />);

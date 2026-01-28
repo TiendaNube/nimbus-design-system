@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 import { Text } from "@nimbus-ds/text";
 import { Box } from "@nimbus-ds/box";
 import { ScrollPane } from "@nimbus-ds/scroll-pane";
 import { SegmentedControl } from "./SegmentedControl";
-import { ControlledSegmentedControlProperties } from "./SegmentedControl.types";
+import type { ControlledSegmentedControlProperties } from "./SegmentedControl.types";
 
 // Helper function to render segmented control buttons
 const renderSegmentButtons = (names: string[]) =>

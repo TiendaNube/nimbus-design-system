@@ -1,10 +1,8 @@
 import React, { forwardRef } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 
-import {
-  InputSearch as InputSearchComponent,
-  InputSearchProps,
-} from "./InputSearch";
+import type { InputSearchProps } from "./InputSearch";
+import { InputSearch as InputSearchComponent } from "./InputSearch";
 
 export const Basic: React.FC<InputSearchProps> = forwardRef(
   (props: InputSearchProps) => <InputSearchComponent {...props} />

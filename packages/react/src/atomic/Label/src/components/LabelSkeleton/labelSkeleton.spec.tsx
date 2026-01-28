@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import { LabelSkeleton } from "./LabelSkeleton";
-import { LabelSkeletonProps } from "./labelSkeleton.types";
+import type { LabelSkeletonProps } from "./labelSkeleton.types";
 
 const makeSut = (props?: LabelSkeletonProps) => {
   render(<LabelSkeleton {...props} data-testid="skeleton-element" />);

@@ -2,7 +2,7 @@ import React from "react";
 import { Title } from "@nimbus-ds/title";
 import { card } from "@nimbus-ds/styles";
 
-import { CardHeaderProps } from "./cardHeader.types";
+import type { CardHeaderProps } from "./cardHeader.types";
 
 const CardHeader: React.FC<CardHeaderProps> = ({
   className: _className,

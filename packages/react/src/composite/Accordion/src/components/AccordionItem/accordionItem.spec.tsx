@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import { AccordionItem } from "./AccordionItem";
-import { AccordionItemProps } from "./accordionItem.types";
+import type { AccordionItemProps } from "./accordionItem.types";
 
 const makeSut = (props: AccordionItemProps) => {
   render(<AccordionItem {...props} data-testid="footer-element" />);

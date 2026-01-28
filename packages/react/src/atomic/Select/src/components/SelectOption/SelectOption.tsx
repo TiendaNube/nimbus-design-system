@@ -1,6 +1,6 @@
 import React from "react";
 
-import { SelectOptionProps } from "./selectOption.types";
+import type { SelectOptionProps } from "./selectOption.types";
 
 const SelectOption: React.FC<SelectOptionProps> = ({
   className: _className,

@@ -1,8 +1,9 @@
 import React, { useState, useCallback, useMemo, useRef } from "react";
 
-import { Box, BoxProps } from "@nimbus-ds/box";
+import type { BoxProps } from "@nimbus-ds/box";
+import { Box } from "@nimbus-ds/box";
 
-import {
+import type {
   SegmentedControlProps,
   SegmentedControlComponents,
   ControlledSegmentedControlProperties,
@@ -10,10 +11,8 @@ import {
 import { SegmentedControlButton } from "./components";
 import { isControlled } from "./segmentedControl.definitions";
 import { SegmentedControlButtonSkeleton } from "./components/SegmentedControlButton/components/SegmentedControlButtonSkeleton/SegmentedControlButtonSkeleton";
-import {
-  SegmentedControlContext,
-  SegmentedControlContextValue,
-} from "./contexts/SegmentedControlContext";
+import type { SegmentedControlContextValue } from "./contexts/SegmentedControlContext";
+import { SegmentedControlContext } from "./contexts/SegmentedControlContext";
 
 /**
  * SegmentedControl component for grouped selection controls

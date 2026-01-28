@@ -3,7 +3,7 @@ import { renderHook } from "@testing-library/react";
 
 import { useTheme } from "./useTheme";
 import { ThemeProvider } from "../../ThemeProvider";
-import { Theme } from "../../themeProvider.types";
+import type { Theme } from "../../themeProvider.types";
 
 const makeSut = (theme?: Theme) =>
   renderHook(() => useTheme(), {

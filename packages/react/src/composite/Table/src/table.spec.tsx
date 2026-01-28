@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen, act } from "@testing-library/react";
 
 import { Table } from "./Table";
-import { TableProps } from "./table.types";
+import type { TableProps } from "./table.types";
 
 const makeSut = (rest: TableProps) => {
   render(<Table {...rest} data-testid="table-element" />);

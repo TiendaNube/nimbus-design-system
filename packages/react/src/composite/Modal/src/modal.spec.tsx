@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 
 import { Modal } from "./Modal";
-import { ModalProps } from "./modal.types";
+import type { ModalProps } from "./modal.types";
 
 const mockedOnDismiss = jest.fn();
 

@@ -1,6 +1,7 @@
 import { useContext } from "react";
 
-import { AccordionContext, AccordionContextProps } from "../../contexts";
+import type { AccordionContextProps } from "../../contexts";
+import { AccordionContext } from "../../contexts";
 
 export const useAccordion: () => AccordionContextProps = () => {
   const context = useContext(AccordionContext);

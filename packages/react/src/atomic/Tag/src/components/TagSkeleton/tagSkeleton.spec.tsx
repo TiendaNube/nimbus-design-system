@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import { TagSkeleton } from "./TagSkeleton";
-import { TagSkeletonProps } from "./tagSkeleton.types";
+import type { TagSkeletonProps } from "./tagSkeleton.types";
 
 const makeSut = (props?: TagSkeletonProps) => {
   render(<TagSkeleton {...props} data-testid="skeleton-element" />);

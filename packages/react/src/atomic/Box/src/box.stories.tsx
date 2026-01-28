@@ -3,7 +3,8 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { mapBoxProps } from ".storybook/utils";
 import { SampleBox } from "@common/storybook";
-import { Box as BoxComponent, BoxProps } from "./Box";
+import type { BoxProps } from "./Box";
+import { Box as BoxComponent } from "./Box";
 
 export const Basic: React.FC<BoxProps> = forwardRef((props: BoxProps) => (
   <BoxComponent {...props} />

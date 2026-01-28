@@ -15,7 +15,7 @@ import {
 import { tooltip, useTheme } from "@nimbus-ds/styles";
 import { Text } from "@nimbus-ds/text";
 import { Box } from "@nimbus-ds/box";
-import { TooltipProps } from "./tooltip.types";
+import type { TooltipProps } from "./tooltip.types";
 
 const Tooltip: React.FC<TooltipProps> = ({
   className: _className,

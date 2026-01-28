@@ -1,4 +1,4 @@
-import { Conditions } from "../../../types";
+import type { Conditions } from "../../../types";
 import { modalSprinkle } from "./nimbus-modal.css";
 
 const { properties: propertiesModal } = modalSprinkle;

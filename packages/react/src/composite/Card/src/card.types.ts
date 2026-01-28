@@ -1,6 +1,6 @@
-import { HTMLAttributes, ReactNode } from "react";
-import { card } from "@nimbus-ds/styles";
-import { CardBody, CardFooter, CardHeader } from "./components";
+import type { HTMLAttributes, ReactNode } from "react";
+import type { card } from "@nimbus-ds/styles";
+import type { CardBody, CardFooter, CardHeader } from "./components";
 
 export interface CardComponents {
   Body: typeof CardBody;

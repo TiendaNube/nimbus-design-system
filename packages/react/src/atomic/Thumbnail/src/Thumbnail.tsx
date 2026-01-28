@@ -4,7 +4,7 @@ import { CameraIcon } from "@nimbus-ds/icons";
 import { thumbnail, vars } from "@nimbus-ds/styles";
 import { Icon } from "@nimbus-ds/icon";
 
-import { ThumbnailProps, ThumbnailComponents } from "./thumbnail.types";
+import type { ThumbnailProps, ThumbnailComponents } from "./thumbnail.types";
 import { ThumbnailSkeleton } from "./components";
 
 const Thumbnail: React.FC<ThumbnailProps> & ThumbnailComponents = ({

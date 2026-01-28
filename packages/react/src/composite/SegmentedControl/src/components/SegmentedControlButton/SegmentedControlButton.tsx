@@ -1,18 +1,15 @@
+import type { HTMLAttributes, ForwardedRef } from "react";
 import React, {
   forwardRef,
   useRef,
   useEffect,
   useImperativeHandle,
-  HTMLAttributes,
-  ForwardedRef,
 } from "react";
-import {
-  PolymorphicForwardRefComponent,
-  useRefObjectAsForwardedRef,
-} from "@nimbus-ds/typings";
+import type { PolymorphicForwardRefComponent } from "@nimbus-ds/typings";
+import { useRefObjectAsForwardedRef } from "@nimbus-ds/typings";
 import { segmentedControl } from "@nimbus-ds/styles";
 
-import {
+import type {
   SegmentedControlButtonComponents,
   SegmentedControlButtonProps,
 } from "./SegmentedControlButton.types";

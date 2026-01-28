@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import { SidebarHeader } from "./SidebarHeader";
-import { SidebarHeaderProps } from "./sidebarHeader.types";
+import type { SidebarHeaderProps } from "./sidebarHeader.types";
 
 const makeSut = (props?: SidebarHeaderProps) => {
   render(<SidebarHeader {...props} data-testid="header-element" />);

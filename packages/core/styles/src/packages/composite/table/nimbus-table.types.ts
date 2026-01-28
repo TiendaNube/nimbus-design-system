@@ -1,4 +1,4 @@
-import { Conditions } from "../../../types";
+import type { Conditions } from "../../../types";
 import { tableSprinkle } from "./nimbus-table.css";
 
 const { properties: propertiesTable } = tableSprinkle;

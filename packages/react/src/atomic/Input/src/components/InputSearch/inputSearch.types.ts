@@ -1,5 +1,5 @@
-import { InputHTMLAttributes } from "react";
-import { InputBaseProps } from "../../input.types";
+import type { InputHTMLAttributes } from "react";
+import type { InputBaseProps } from "../../input.types";
 
 export type InputSearchProperties = Pick<
   InputBaseProps,

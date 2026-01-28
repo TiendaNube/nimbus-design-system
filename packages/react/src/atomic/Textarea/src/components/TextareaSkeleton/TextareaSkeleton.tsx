@@ -1,7 +1,7 @@
 import React from "react";
 import { Skeleton } from "@nimbus-ds/skeleton";
 
-import { TextareaSkeletonProps } from "./textareaSkeleton.types";
+import type { TextareaSkeletonProps } from "./textareaSkeleton.types";
 
 const TextareaSkeleton: React.FC<TextareaSkeletonProps> = ({
   width,

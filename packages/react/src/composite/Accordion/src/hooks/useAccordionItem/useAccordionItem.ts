@@ -1,9 +1,7 @@
 import { useContext } from "react";
 
-import {
-  AccordionItemContext,
-  AccordionItemContextProps,
-} from "../../contexts";
+import type { AccordionItemContextProps } from "../../contexts";
+import { AccordionItemContext } from "../../contexts";
 
 export const useAccordionItem: () => AccordionItemContextProps = () => {
   const context = useContext(AccordionItemContext);

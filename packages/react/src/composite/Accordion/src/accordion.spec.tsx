@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 
 import { Accordion } from "./Accordion";
-import { AccordionProps } from "./accordion.types";
+import type { AccordionProps } from "./accordion.types";
 
 const makeSut = ({ children, ...rest }: AccordionProps) => {
   render(

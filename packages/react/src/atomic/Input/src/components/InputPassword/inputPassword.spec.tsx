@@ -1,7 +1,8 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 
-import { InputPassword, InputPasswordProps } from "./InputPassword";
+import type { InputPasswordProps } from "./InputPassword";
+import { InputPassword } from "./InputPassword";
 
 const makeSut = (rest?: InputPasswordProps) => {
   render(<InputPassword {...rest} data-testid="my-input" />);

@@ -2,7 +2,7 @@ import React from "react";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 
 import { SplitButton } from "./SplitButton";
-import { SplitButtonProps } from "./splitButton.types";
+import type { SplitButtonProps } from "./splitButton.types";
 
 const primaryButtonText = "Save";
 const action1Text = "Save as draft";

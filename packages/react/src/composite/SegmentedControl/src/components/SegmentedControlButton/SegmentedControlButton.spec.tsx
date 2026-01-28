@@ -3,10 +3,8 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { segmentedControl } from "@nimbus-ds/styles";
 import { SegmentedControlButton } from ".";
 import { SegmentedControlButtonSkeleton } from "./components";
-import {
-  SegmentedControlContext,
-  SegmentedControlContextValue,
-} from "../../contexts/SegmentedControlContext";
+import type { SegmentedControlContextValue } from "../../contexts/SegmentedControlContext";
+import { SegmentedControlContext } from "../../contexts/SegmentedControlContext";
 
 // Mock context value for testing
 const createMockContextValue = (

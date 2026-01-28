@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { DOTS, range } from "./usePagination.definitions";
 
-import { UsePaginationProps } from "./usePagination.types";
+import type { UsePaginationProps } from "./usePagination.types";
 
 export const usePagination = ({
   pageCount,

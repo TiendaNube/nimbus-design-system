@@ -1,6 +1,6 @@
-import { ReactNode, HTMLAttributes } from "react";
-import { link } from "@nimbus-ds/styles";
-import { LinkSkeleton } from "./components";
+import type { ReactNode, HTMLAttributes } from "react";
+import type { link } from "@nimbus-ds/styles";
+import type { LinkSkeleton } from "./components";
 
 export interface LinkComponents {
   Skeleton: typeof LinkSkeleton;
@@ -21,7 +21,7 @@ export interface LinkProperties {
    * The textDecoration property specifies the decoration added to link.
    * @default neutral
    */
-  textDecoration?: typeof link.properties.textDecoration[number];
+  textDecoration?: (typeof link.properties.textDecoration)[number];
   /**
    * The fontSize property sets the size of the link.
    * @default base

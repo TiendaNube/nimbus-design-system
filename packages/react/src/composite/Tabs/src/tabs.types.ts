@@ -1,6 +1,6 @@
-import { HTMLAttributes, ReactElement } from "react";
-import { TabsButton, TabsItem } from "./components";
-import { TabsButtonProps } from "./components/TabsButton/tabsButton.types";
+import type { HTMLAttributes, ReactElement } from "react";
+import type { TabsButton, TabsItem } from "./components";
+import type { TabsButtonProps } from "./components/TabsButton/tabsButton.types";
 
 export interface TabsComponents {
   Button: typeof TabsButton;

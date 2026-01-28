@@ -3,7 +3,7 @@ import { CloseIcon } from "@nimbus-ds/icons";
 import { chip } from "@nimbus-ds/styles";
 import { Text } from "@nimbus-ds/text";
 import { Icon } from "@nimbus-ds/icon";
-import { ChipProps, ChipComponents } from "./chip.types";
+import type { ChipProps, ChipComponents } from "./chip.types";
 import { ChipSkeleton } from "./components";
 
 const Chip: React.FC<ChipProps> & ChipComponents = ({

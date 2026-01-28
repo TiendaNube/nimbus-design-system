@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import { SelectOption } from "./SelectOption";
-import { SelectOptionProps } from "./selectOption.types";
+import type { SelectOptionProps } from "./selectOption.types";
 
 const makeSut = (rest: SelectOptionProps) => {
   render(<SelectOption {...rest} data-testid="option-element" />);

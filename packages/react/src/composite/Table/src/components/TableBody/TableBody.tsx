@@ -1,7 +1,7 @@
 import React from "react";
 import { table } from "@nimbus-ds/styles";
 
-import { TableBodyProps } from "./tableBody.types";
+import type { TableBodyProps } from "./tableBody.types";
 
 const TableBody: React.FC<TableBodyProps> = ({
   className: _className,

@@ -5,7 +5,7 @@ import { Icon as NimbusIcon } from "@nimbus-ds/icon";
 import { ChevronDownIcon, ChevronUpIcon } from "@nimbus-ds/icons";
 import { accordion } from "@nimbus-ds/styles";
 
-import { AccordionHeaderProps } from "./accordionHeader.types";
+import type { AccordionHeaderProps } from "./accordionHeader.types";
 import { useAccordion, useAccordionItem } from "../../hooks";
 
 const AccordionHeader: React.FC<AccordionHeaderProps> = ({

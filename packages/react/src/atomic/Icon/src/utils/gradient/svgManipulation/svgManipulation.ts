@@ -1,5 +1,6 @@
-import React, { ReactElement } from "react";
-import { SVGElementProps } from "@nimbus-ds/typings";
+import type { ReactElement } from "react";
+import React from "react";
+import type { SVGElementProps } from "@nimbus-ds/typings";
 import { canUseGradient } from "../colorValidation";
 import {
   GRADIENT_ID_LENGTH,

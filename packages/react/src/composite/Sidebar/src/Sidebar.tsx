@@ -16,7 +16,7 @@ import {
 } from "@common/event-handling";
 
 import { SidebarBody, SidebarFooter, SidebarHeader } from "./components";
-import { SidebarComponents, SidebarProps } from "./sidebar.types";
+import type { SidebarComponents, SidebarProps } from "./sidebar.types";
 
 const Sidebar: React.FC<SidebarProps> & SidebarComponents = ({
   className: _className,

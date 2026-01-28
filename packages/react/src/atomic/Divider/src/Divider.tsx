@@ -1,7 +1,7 @@
 import React from "react";
 import { divider } from "@nimbus-ds/styles";
 
-import { DividerProps } from "./divider.types";
+import type { DividerProps } from "./divider.types";
 
 const Divider: React.FC<DividerProps> = ({
   className,

@@ -15,7 +15,7 @@ import {
 } from "@nimbus-ds/icons";
 import { toast } from "@nimbus-ds/styles";
 
-import {
+import type {
   IconColor,
   ToastComponents,
   ToastProps,

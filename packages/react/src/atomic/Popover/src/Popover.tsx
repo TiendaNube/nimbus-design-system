@@ -17,7 +17,7 @@ import {
 } from "@floating-ui/react";
 import { popover, useTheme } from "@nimbus-ds/styles";
 
-import { PopoverProps } from "./popover.types";
+import type { PopoverProps } from "./popover.types";
 
 const Popover: React.FC<PopoverProps> = ({
   className: _className,
