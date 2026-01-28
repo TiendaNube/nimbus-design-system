@@ -1,15 +1,18 @@
-import type { ComponentPropsWithRef, ForwardedRef } from "react";
 import React, {
+  ComponentPropsWithRef,
   forwardRef,
   useEffect,
   useImperativeHandle,
   useRef,
+  ForwardedRef,
 } from "react";
-import type { PolymorphicForwardRefComponent } from "@nimbus-ds/typings";
-import { useRefObjectAsForwardedRef } from "@nimbus-ds/typings";
+import {
+  PolymorphicForwardRefComponent,
+  useRefObjectAsForwardedRef,
+} from "@nimbus-ds/typings";
 import { link } from "@nimbus-ds/styles";
 
-import type { LinkBaseProps, LinkComponents } from "./link.types";
+import { LinkBaseProps, LinkComponents } from "./link.types";
 import { LinkSkeleton } from "./components";
 
 const Link = forwardRef(

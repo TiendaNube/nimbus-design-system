@@ -3,7 +3,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { Button } from "@nimbus-ds/button/src";
 
 import { Pagination } from "./Pagination";
-import type { PaginationProps } from "./pagination.types";
+import { PaginationProps } from "./pagination.types";
 
 const mockedOnPageChange = jest.fn();
 

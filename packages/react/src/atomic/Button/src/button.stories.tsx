@@ -6,8 +6,7 @@ import { Badge } from "@nimbus-ds/badge";
 import { Spinner } from "@nimbus-ds/spinner";
 
 import { Box } from "@nimbus-ds/box";
-import type { ButtonProps } from "./Button";
-import { Button as ButtonComponent } from "./Button";
+import { Button as ButtonComponent, ButtonProps } from "./Button";
 
 export const Basic: React.FC<ButtonProps> = forwardRef(
   ({ children = "Button", ...props }: ButtonProps) => (

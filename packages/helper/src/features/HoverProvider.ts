@@ -1,12 +1,12 @@
 import fs from "fs";
 import path from "path";
 import { dotCase } from "change-case";
-import type { JSXOpeningElement } from "@babel/types";
+import { JSXOpeningElement } from "@babel/types";
 import * as vscode from "vscode";
 import * as babelParser from "@babel/parser";
 import * as babelTraverse from "@babel/traverse";
 
-import type { Document, DocumentProps } from "./types";
+import { Document, DocumentProps } from "./types";
 
 export class HoverProvider implements vscode.HoverProvider {
   private hovered = {

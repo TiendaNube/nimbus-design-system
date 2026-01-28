@@ -1,4 +1,4 @@
-import type { Conditions } from "../../../types";
+import { Conditions } from "../../../types";
 
 export interface TooltipSprinkle {
   /**

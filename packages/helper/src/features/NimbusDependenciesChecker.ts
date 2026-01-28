@@ -1,5 +1,5 @@
 import * as vscode from "vscode";
-import type { PackageJSON, Dependencies, OutdatedDependencies } from "./types";
+import { PackageJSON, Dependencies, OutdatedDependencies } from "./types";
 
 export class NimbusDependenciesChecker {
   async check() {

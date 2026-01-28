@@ -1,8 +1,8 @@
-import type { ReactNode, ButtonHTMLAttributes } from "react";
-import type { IconButtonSprinkle } from "@nimbus-ds/styles";
+import { ReactNode, ButtonHTMLAttributes } from "react";
+import { IconButtonSprinkle } from "@nimbus-ds/styles";
 import type { IconProps } from "@nimbus-ds/icon";
 
-import type { IconButtonSkeleton } from "./components";
+import { IconButtonSkeleton } from "./components";
 
 export interface IconButtonComponents {
   Skeleton: typeof IconButtonSkeleton;

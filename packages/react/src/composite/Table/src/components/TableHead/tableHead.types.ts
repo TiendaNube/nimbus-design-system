@@ -1,4 +1,4 @@
-import type { ReactNode, HTMLAttributes } from "react";
+import { ReactNode, HTMLAttributes } from "react";
 
 export interface TableHeadProperties {
   /**

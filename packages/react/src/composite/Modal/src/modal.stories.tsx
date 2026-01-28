@@ -7,7 +7,7 @@ import { Box } from "@nimbus-ds/box";
 import { Title } from "@nimbus-ds/title";
 import { Tag } from "@nimbus-ds/tag";
 import { Modal } from "./Modal";
-import type { ModalProps } from "./modal.types";
+import { ModalProps } from "./modal.types";
 
 const meta: Meta<typeof Modal> = {
   title: "Composite/Modal",

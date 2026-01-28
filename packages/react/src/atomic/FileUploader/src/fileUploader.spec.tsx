@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 
 import { FileUploader } from "./FileUploader";
-import type { FileUploaderProps } from "./fileUploader.types";
+import { FileUploaderProps } from "./fileUploader.types";
 import { isFileAccepted } from "./FileUploader.definitions";
 
 const makeSut = (rest?: FileUploaderProps) => {

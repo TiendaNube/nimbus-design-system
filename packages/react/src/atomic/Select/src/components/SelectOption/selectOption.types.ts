@@ -1,4 +1,4 @@
-import type { OptionHTMLAttributes } from "react";
+import { OptionHTMLAttributes } from "react";
 
 export interface SelectOptionProperties {
   /**

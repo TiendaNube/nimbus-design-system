@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import { FileUploaderSkeleton } from "./FileUploaderSkeleton";
-import type { FileUploaderSkeletonProps } from "./fileUploaderSkeleton.types";
+import { FileUploaderSkeletonProps } from "./fileUploaderSkeleton.types";
 
 const makeSut = (props?: FileUploaderSkeletonProps) => {
   render(<FileUploaderSkeleton {...props} data-testid="skeleton-element" />);

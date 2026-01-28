@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import { Thumbnail } from "./Thumbnail";
-import type { ThumbnailProps } from "./thumbnail.types";
+import { ThumbnailProps } from "./thumbnail.types";
 
 const makeSut = (rest: ThumbnailProps) => {
   render(<Thumbnail {...rest} data-testid="thumbnail-element" />);

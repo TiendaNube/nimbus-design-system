@@ -5,7 +5,7 @@ import { PlusCircleIcon } from "@nimbus-ds/icons";
 import { Icon } from "@nimbus-ds/icon";
 import { Text } from "@nimbus-ds/text";
 
-import type {
+import {
   FileUploaderProps,
   FileUploaderComponents,
 } from "./fileUploader.types";

@@ -1,4 +1,4 @@
-import type { OptgroupHTMLAttributes, ReactNode } from "react";
+import { OptgroupHTMLAttributes, ReactNode } from "react";
 
 export interface SelectGroupProperties {
   /**

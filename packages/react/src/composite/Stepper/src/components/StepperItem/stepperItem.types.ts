@@ -1,4 +1,4 @@
-import type { HTMLAttributes } from "react";
+import { HTMLAttributes } from "react";
 
 /**
  * Represents the visual state of a step
@@ -18,4 +18,4 @@ export interface StepperItemProperties {
 }
 
 export type StepperItemProps = StepperItemProperties &
-  HTMLAttributes<HTMLDivElement>;
+  HTMLAttributes<HTMLDivElement>; 

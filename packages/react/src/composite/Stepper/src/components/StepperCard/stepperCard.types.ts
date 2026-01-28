@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { ReactNode } from "react";
 
 export interface StepperCardProperties {
   /**
@@ -8,4 +8,4 @@ export interface StepperCardProperties {
   children: ReactNode;
 }
 
-export type StepperCardProps = StepperCardProperties;
+export type StepperCardProps = StepperCardProperties; 

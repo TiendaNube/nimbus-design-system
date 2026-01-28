@@ -3,7 +3,7 @@ import { Box } from "@nimbus-ds/box";
 import { Icon } from "@nimbus-ds/icon";
 import { Text } from "@nimbus-ds/text";
 
-import type { SplitButtonActionProps } from "./SplitButtonAction.types";
+import { SplitButtonActionProps } from "./SplitButtonAction.types";
 
 const SplitButtonAction: React.FC<SplitButtonActionProps> = ({
   children,

@@ -2,7 +2,7 @@ import React from "react";
 import { badge } from "@nimbus-ds/styles";
 import { Text } from "@nimbus-ds/text";
 
-import type { BadgeProps, BadgeComponents } from "./badge.types";
+import { BadgeProps, BadgeComponents } from "./badge.types";
 import { BadgeSkeleton } from "./components";
 
 const Badge: React.FC<BadgeProps> & BadgeComponents = ({

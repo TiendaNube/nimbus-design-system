@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import { ToggleSkeleton } from "./ToggleSkeleton";
-import type { ToggleSkeletonProps } from "./toggleSkeleton.types";
+import { ToggleSkeletonProps } from "./toggleSkeleton.types";
 
 const makeSut = (props?: ToggleSkeletonProps) => {
   render(<ToggleSkeleton {...props} data-testid="skeleton-element" />);

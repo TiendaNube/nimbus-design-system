@@ -1,6 +1,7 @@
-import type { ForwardRefExoticComponent, ComponentPropsWithRef } from "react";
 import React, {
   forwardRef,
+  ForwardRefExoticComponent,
+  ComponentPropsWithRef,
   useMemo,
   useEffect,
   useRef,
@@ -8,7 +9,7 @@ import React, {
 } from "react";
 import { textarea } from "@nimbus-ds/styles";
 
-import type { TextareaComponents, TextareaBaseProps } from "./textarea.types";
+import { TextareaComponents, TextareaBaseProps } from "./textarea.types";
 import { TextareaSkeleton } from "./components";
 import { adjustTextareaHeightFallback } from "./Textarea.definitions";
 

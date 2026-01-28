@@ -1,4 +1,4 @@
-import type { Compiler } from "webpack";
+import { Compiler } from "webpack";
 import { existsSync, readFileSync } from "fs";
 import path from "path";
 

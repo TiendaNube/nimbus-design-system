@@ -1,8 +1,7 @@
 import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 
-import type { MultiSelectProps } from "./MultiSelect";
-import { MultiSelect } from "./MultiSelect";
+import { MultiSelect, MultiSelectProps } from "./MultiSelect";
 
 const selectName = "myName";
 const selectId = "myId";

@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Skeleton } from "@nimbus-ds/skeleton";
-import type { ChipSkeletonProps } from "./chipSkeleton.types";
+import { ChipSkeletonProps } from "./chipSkeleton.types";
 
 const ChipSkeleton: React.FC<ChipSkeletonProps> = ({
   width,

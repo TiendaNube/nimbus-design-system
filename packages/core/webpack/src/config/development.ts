@@ -1,7 +1,7 @@
 /**
  * Created by: Júnior Conquista (junior.conquista@nuvemshop.com.br)
  */
-import type { Configuration } from "webpack";
+import { Configuration } from "webpack";
 import { terserJSPlugin } from "../plugins";
 
 const webpack: Configuration = {

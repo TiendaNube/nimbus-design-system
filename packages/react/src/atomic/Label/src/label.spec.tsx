@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import { Label } from "./Label";
-import type { LabelProps } from "./label.types";
+import { LabelProps } from "./label.types";
 
 const content = "myText";
 

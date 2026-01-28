@@ -1,5 +1,5 @@
-import type { SkeletonProps } from "@nimbus-ds/skeleton";
-import type { FileUploaderProps } from "../../fileUploader.types";
+import { SkeletonProps } from "@nimbus-ds/skeleton";
+import { FileUploaderProps } from "../../fileUploader.types";
 
 export type FileUploaderSkeletonProperties = Partial<
   Pick<SkeletonProps, "width">

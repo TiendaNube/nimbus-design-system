@@ -1,7 +1,7 @@
 import React from "react";
 import { modal } from "@nimbus-ds/styles";
 
-import type { ModalBodyProps } from "./modalBody.types";
+import { ModalBodyProps } from "./modalBody.types";
 
 const ModalBody: React.FC<ModalBodyProps> = ({
   className: _className,

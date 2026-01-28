@@ -3,7 +3,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import { Toggle } from "./Toggle";
-import type { ToggleProps } from "./toggle.types";
+import { ToggleProps } from "./toggle.types";
 
 const makeSut = (props: ToggleProps) => {
   render(<Toggle {...props} data-testid="toggle-input" />);

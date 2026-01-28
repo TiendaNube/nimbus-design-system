@@ -1,4 +1,4 @@
-import type { TableColumnLayout } from "../../table.types";
+import { TableColumnLayout } from "../../table.types";
 
 /**
  * Pre-calculated offset and direction for a fixed column

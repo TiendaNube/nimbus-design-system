@@ -1,5 +1,5 @@
-import type { InputHTMLAttributes } from "react";
-import type { RadioSkeleton } from "./components";
+import { InputHTMLAttributes } from "react";
+import { RadioSkeleton } from "./components";
 
 export interface RadioComponents {
   Skeleton: typeof RadioSkeleton;

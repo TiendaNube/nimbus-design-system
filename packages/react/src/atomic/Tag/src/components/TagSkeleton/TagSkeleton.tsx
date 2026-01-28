@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Skeleton } from "@nimbus-ds/skeleton";
-import type { TagSkeletonProps } from "./tagSkeleton.types";
+import { TagSkeletonProps } from "./tagSkeleton.types";
 
 const TagSkeleton: React.FC<TagSkeletonProps> = ({
   width,

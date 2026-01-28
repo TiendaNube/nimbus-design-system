@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import { AlertSkeleton } from "./AlertSkeleton";
-import type { AlertSkeletonProps } from "./alertSkeleton.types";
+import { AlertSkeletonProps } from "./alertSkeleton.types";
 
 const makeSut = (props?: AlertSkeletonProps) => {
   render(<AlertSkeleton {...props} data-testid="skeleton-element" />);

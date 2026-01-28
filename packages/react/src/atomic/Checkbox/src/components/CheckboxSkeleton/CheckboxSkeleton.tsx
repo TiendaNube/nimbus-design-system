@@ -2,7 +2,7 @@ import React from "react";
 import { Skeleton } from "@nimbus-ds/skeleton";
 import { checkbox } from "@nimbus-ds/styles";
 
-import type { CheckboxSkeletonProps } from "./checkboxSkeleton.types";
+import { CheckboxSkeletonProps } from "./checkboxSkeleton.types";
 
 const CheckboxSkeleton: React.FC<CheckboxSkeletonProps> = ({
   width,

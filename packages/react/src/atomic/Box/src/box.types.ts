@@ -1,5 +1,5 @@
-import type { ReactNode, HTMLAttributes } from "react";
-import type { BoxSprinkle } from "@nimbus-ds/styles";
+import { ReactNode, HTMLAttributes } from "react";
+import { BoxSprinkle } from "@nimbus-ds/styles";
 
 export interface BoxProperties extends BoxSprinkle {
   /**

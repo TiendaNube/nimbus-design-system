@@ -1,6 +1,6 @@
-import type { HTMLAttributes } from "react";
+import { HTMLAttributes } from "react";
 
-import type { ToastProvider } from "./components";
+import { ToastProvider } from "./components";
 
 export interface ToastComponents {
   Provider: typeof ToastProvider;

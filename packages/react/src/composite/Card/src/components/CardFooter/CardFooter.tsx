@@ -1,7 +1,7 @@
 import React from "react";
 import { card } from "@nimbus-ds/styles";
 
-import type { CardFooterProps } from "./cardFooter.types";
+import { CardFooterProps } from "./cardFooter.types";
 
 const CardFooter: React.FC<CardFooterProps> = ({
   className: _className,

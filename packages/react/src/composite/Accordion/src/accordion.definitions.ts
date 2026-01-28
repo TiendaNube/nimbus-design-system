@@ -1,4 +1,4 @@
-import type {
+import {
   ControlledAccordionProperties,
   UncontrolledAccordionProperties,
 } from "./accordion.types";

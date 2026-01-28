@@ -1,5 +1,5 @@
 import React from "react";
-import type { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { FileUploader } from "../../FileUploader";
 
 const meta: Meta<typeof FileUploader.Overlay> = {

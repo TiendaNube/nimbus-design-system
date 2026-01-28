@@ -2,7 +2,7 @@ import React from "react";
 import { thumbnail, vars } from "@nimbus-ds/styles";
 import { Skeleton } from "@nimbus-ds/skeleton";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
-import type { ThumbnailSkeletonProps } from "./thumbnailSkeleton.types";
+import { ThumbnailSkeletonProps } from "./thumbnailSkeleton.types";
 
 const ThumbnailSkeleton: React.FC<ThumbnailSkeletonProps> = ({
   width = "100%",

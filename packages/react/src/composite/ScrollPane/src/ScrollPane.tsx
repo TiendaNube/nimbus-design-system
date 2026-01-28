@@ -10,7 +10,7 @@ import { Box } from "@nimbus-ds/box";
 
 import { scrollPane } from "@nimbus-ds/styles";
 
-import type { ScrollPaneProps, ScrollPaneComponents } from "./scrollPane.types";
+import { ScrollPaneProps, ScrollPaneComponents } from "./scrollPane.types";
 import {
   ScrollPaneItem,
   ScrollPaneContext,

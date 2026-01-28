@@ -1,8 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 
-import type { SelectProps } from "./Select";
-import { Select } from "./Select";
+import { Select, SelectProps } from "./Select";
 
 const selectName = "myName";
 const selectId = "myId";

@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Skeleton } from "@nimbus-ds/skeleton";
-import type { LinkSkeletonProps } from "./linkSkeleton.types";
+import { LinkSkeletonProps } from "./linkSkeleton.types";
 
 const LinkSkeleton: React.FC<LinkSkeletonProps> = ({
   width,

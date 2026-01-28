@@ -2,7 +2,7 @@ import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 
 import { TabsButton } from "./TabsButton";
-import type { TabsButtonProps } from "./tabsButton.types";
+import { TabsButtonProps } from "./tabsButton.types";
 
 const buttonLabel = "myButtonLabel";
 const buttonLabelReactNode = <p data-testid="label-element">myButtonContent</p>;

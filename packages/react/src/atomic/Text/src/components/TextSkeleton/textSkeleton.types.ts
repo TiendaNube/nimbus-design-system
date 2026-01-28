@@ -1,5 +1,5 @@
-import type { SkeletonProps } from "@nimbus-ds/skeleton";
-import type { text } from "@nimbus-ds/styles";
+import { SkeletonProps } from "@nimbus-ds/skeleton";
+import { text } from "@nimbus-ds/styles";
 
 export type TextSkeletonProperties = {
   fontSize?: keyof typeof text.properties.fontSize;

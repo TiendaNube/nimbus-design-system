@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import { IconSkeleton } from "./IconSkeleton";
-import type { IconSkeletonProps } from "./iconSkeleton.types";
+import { IconSkeletonProps } from "./iconSkeleton.types";
 
 const makeSut = (props?: IconSkeletonProps) => {
   render(<IconSkeleton {...props} data-testid="skeleton-element" />);

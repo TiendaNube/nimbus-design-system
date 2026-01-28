@@ -1,6 +1,6 @@
 import React from "react";
 
-import type { SelectGroupProps } from "./selectGroup.types";
+import { SelectGroupProps } from "./selectGroup.types";
 
 const SelectGroup: React.FC<SelectGroupProps> = ({
   className: _className,

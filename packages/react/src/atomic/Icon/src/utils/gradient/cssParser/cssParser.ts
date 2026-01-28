@@ -1,4 +1,4 @@
-import type { GradientStop } from "../types";
+import { GradientStop } from "../types";
 
 /**
  * Extracts gradient color stops from CSS gradient strings

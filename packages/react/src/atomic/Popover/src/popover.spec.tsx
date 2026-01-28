@@ -9,7 +9,7 @@ import {
 import userEvent from "@testing-library/user-event";
 
 import { Popover } from "./Popover";
-import type { PopoverProps } from "./popover.types";
+import { PopoverProps } from "./popover.types";
 
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
   observe: jest.fn(),

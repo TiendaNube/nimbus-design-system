@@ -7,10 +7,9 @@ import React, {
 } from "react";
 import { table } from "@nimbus-ds/styles";
 
-import type { TableProps, TableComponents } from "./table.types";
+import { TableProps, TableComponents } from "./table.types";
 import { TableBody, TableCell, TableHead, TableRow } from "./components";
-import type { TableContextValue } from "./contexts";
-import { TableContext } from "./contexts";
+import { TableContext, TableContextValue } from "./contexts";
 import {
   getEffectiveFixedWidth,
   getColumnWidth,

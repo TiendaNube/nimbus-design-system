@@ -1,6 +1,6 @@
-import type { InputHTMLAttributes } from "react";
-import type { multiSelect } from "@nimbus-ds/styles";
-import type { MultiSelectSkeleton } from "./components";
+import { InputHTMLAttributes } from "react";
+import { multiSelect } from "@nimbus-ds/styles";
+import { MultiSelectSkeleton } from "./components";
 
 export interface MultiSelectComponents {
   Skeleton: typeof MultiSelectSkeleton;

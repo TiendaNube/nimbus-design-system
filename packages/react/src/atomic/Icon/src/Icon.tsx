@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { icon } from "@nimbus-ds/styles";
 
-import type { IconProps, IconComponents } from "./icon.types";
+import { IconProps, IconComponents } from "./icon.types";
 import { IconSkeleton } from "./components";
 import { applyGradientToSvg, isGradient } from "./utils/gradient";
 

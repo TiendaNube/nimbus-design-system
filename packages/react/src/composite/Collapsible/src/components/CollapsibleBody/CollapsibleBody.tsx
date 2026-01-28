@@ -1,7 +1,7 @@
 import React from "react";
 
 import { collapsible } from "@nimbus-ds/styles";
-import type { CollapsibleBodyProps } from "./collapsibleBody.types";
+import { CollapsibleBodyProps } from "./collapsibleBody.types";
 import { useCollapsible } from "../../hooks/useCollapsible";
 
 const CollapsibleBody: React.FC<CollapsibleBodyProps> = ({

@@ -1,4 +1,4 @@
-import type { ScrollPanePosition } from "./scrollPane.types";
+import { ScrollPanePosition } from "./scrollPane.types";
 
 /**
  * Helper function to get the suffix for the position based on the position and direction
@@ -13,7 +13,7 @@ const getPositionSuffix = (
   if (isStart) {
     return isHorizontal ? "left" : "top";
   }
-
+  
   return isHorizontal ? "right" : "bottom";
 };
 

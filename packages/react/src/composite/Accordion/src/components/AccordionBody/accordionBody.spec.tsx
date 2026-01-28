@@ -3,7 +3,7 @@ import { render, screen } from "@testing-library/react";
 
 import { Accordion } from "../../Accordion";
 import { AccordionBody } from "./AccordionBody";
-import type { AccordionBodyProps } from "./accordionBody.types";
+import { AccordionBodyProps } from "./accordionBody.types";
 
 const makeSut = (props: AccordionBodyProps, selectedDefault = "0") => {
   render(

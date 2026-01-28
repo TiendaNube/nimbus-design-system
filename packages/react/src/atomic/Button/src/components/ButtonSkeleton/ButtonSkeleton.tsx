@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Skeleton } from "@nimbus-ds/skeleton";
-import type { ButtonSkeletonProps } from "./buttonSkeleton.types";
+import { ButtonSkeletonProps } from "./buttonSkeleton.types";
 
 const ButtonSkeleton: React.FC<ButtonSkeletonProps> = ({
   width,

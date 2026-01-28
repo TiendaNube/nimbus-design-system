@@ -1,5 +1,4 @@
-import type { ButtonHTMLAttributes, PropsWithChildren } from "react";
-import type React from "react";
+import React, { ButtonHTMLAttributes, PropsWithChildren } from "react";
 import type { SegmentedControlButtonSkeletonProps } from "./components/SegmentedControlButtonSkeleton/SegmentedControlButtonSkeleton.types";
 
 export type SegmentedControlButtonProperties = PropsWithChildren<{

@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import type { SegmentedControlContextValue } from "./SegmentedControlContext.types";
+import { SegmentedControlContextValue } from "./SegmentedControlContext.types";
 
 /**
  * Context for SegmentedControl to communicate with SegmentedControlButton components

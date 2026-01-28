@@ -1,5 +1,5 @@
-import type { HTMLAttributes } from "react";
-import type { ProgressBarSkeleton } from "./components";
+import { HTMLAttributes } from "react";
+import { ProgressBarSkeleton } from "./components";
 
 export interface ProgressBarComponents {
   Skeleton: typeof ProgressBarSkeleton;

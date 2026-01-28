@@ -19,7 +19,7 @@ import {
   eventHasNodeWithAttribute,
   DEFAULT_OUTSIDE_PRESS_IGNORE_ATTRIBUTE,
 } from "@common/event-handling";
-import type { ModalProps, ModalComponents } from "./modal.types";
+import { ModalProps, ModalComponents } from "./modal.types";
 import { ModalBody, ModalFooter, ModalHeader } from "./components";
 
 const Modal: React.FC<ModalProps> & ModalComponents = ({

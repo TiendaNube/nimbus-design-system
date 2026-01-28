@@ -1,5 +1,5 @@
-import type { HTMLAttributes, ReactNode } from "react";
-import type { accordion } from "@nimbus-ds/styles";
+import { HTMLAttributes, ReactNode } from "react";
+import { accordion } from "@nimbus-ds/styles";
 
 export interface AccordionBodyProperties {
   /**

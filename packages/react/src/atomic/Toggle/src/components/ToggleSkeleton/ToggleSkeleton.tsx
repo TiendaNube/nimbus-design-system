@@ -2,7 +2,7 @@ import React from "react";
 import { Skeleton } from "@nimbus-ds/skeleton";
 import { toggle } from "@nimbus-ds/styles";
 
-import type { ToggleSkeletonProps } from "./toggleSkeleton.types";
+import { ToggleSkeletonProps } from "./toggleSkeleton.types";
 
 const ToggleSkeleton: React.FC<ToggleSkeletonProps> = ({
   width,

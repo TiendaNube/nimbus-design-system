@@ -3,7 +3,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import { Chip } from "./Chip";
-import type { ChipProps } from "./chip.types";
+import { ChipProps } from "./chip.types";
 
 const makeSut = (rest: ChipProps) => {
   render(<Chip {...rest} data-testid="chip-element" />);

@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import { CheckboxSkeleton } from "./CheckboxSkeleton";
-import type { CheckboxSkeletonProps } from "./checkboxSkeleton.types";
+import { CheckboxSkeletonProps } from "./checkboxSkeleton.types";
 
 const makeSut = (props?: CheckboxSkeletonProps) => {
   render(<CheckboxSkeleton {...props} data-testid="skeleton-element" />);

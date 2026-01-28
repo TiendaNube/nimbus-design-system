@@ -1,6 +1,6 @@
-import type { ReactNode, HTMLAttributes } from "react";
-import type { CollapsibleBody } from "./components/CollapsibleBody/CollapsibleBody";
-import type { CollapsibleItem } from "./components/CollapsibleItem/CollapsibleItem";
+import { ReactNode, HTMLAttributes } from "react";
+import { CollapsibleBody } from "./components/CollapsibleBody/CollapsibleBody";
+import { CollapsibleItem } from "./components/CollapsibleItem/CollapsibleItem";
 
 export interface CollapsibleComponents {
   Body: typeof CollapsibleBody;

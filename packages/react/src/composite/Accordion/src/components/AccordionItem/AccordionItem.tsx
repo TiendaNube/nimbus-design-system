@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 
 import { AccordionItemContext } from "../../contexts";
-import type { AccordionItemProps } from "./accordionItem.types";
+import { AccordionItemProps } from "./accordionItem.types";
 
 const AccordionItem: React.FC<AccordionItemProps> = ({
   children,

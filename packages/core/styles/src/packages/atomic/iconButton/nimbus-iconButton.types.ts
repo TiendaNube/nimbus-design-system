@@ -1,4 +1,4 @@
-import type { Conditions } from "../../../types";
+import { Conditions } from "../../../types";
 import { iconButtonSprinkle } from "./nimbus-iconButton.css";
 
 const { properties: propertiesIconButton } = iconButtonSprinkle;

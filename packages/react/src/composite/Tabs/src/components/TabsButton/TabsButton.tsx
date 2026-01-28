@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import { tabs } from "@nimbus-ds/styles";
 
 import { generateID } from "../../tabs.definitions";
-import type { TabsButtonProps } from "./tabsButton.types";
+import { TabsButtonProps } from "./tabsButton.types";
 
 const TabsButton: React.FC<TabsButtonProps> = ({
   className: _className,

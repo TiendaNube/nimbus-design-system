@@ -2,7 +2,7 @@ import React from "react";
 import { Title } from "@nimbus-ds/title";
 import { modal } from "@nimbus-ds/styles";
 
-import type { ModalHeaderProps } from "./modalHeader.types";
+import { ModalHeaderProps } from "./modalHeader.types";
 
 const ModalHeader: React.FC<ModalHeaderProps> = ({
   className: _className,

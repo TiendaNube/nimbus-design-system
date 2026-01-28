@@ -1,5 +1,5 @@
-import type { HTMLAttributes, ReactNode } from "react";
-import type { LabelSkeleton } from "./components";
+import { HTMLAttributes, ReactNode } from "react";
+import { LabelSkeleton } from "./components";
 
 export interface LabelComponents {
   Skeleton: typeof LabelSkeleton;

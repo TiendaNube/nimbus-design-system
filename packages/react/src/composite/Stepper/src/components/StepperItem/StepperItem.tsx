@@ -4,7 +4,7 @@ import { Text } from "@nimbus-ds/text";
 import { CheckCircleIcon } from "@nimbus-ds/icons";
 import { stepper } from "@nimbus-ds/styles";
 
-import type { StepperItemProps } from "./stepperItem.types";
+import { StepperItemProps } from "./stepperItem.types";
 import { StepperContext } from "../StepperContext";
 import { joinClassNames, StepperItemState } from "./StepperItem.definitions";
 

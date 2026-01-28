@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import { ListSkeletonItem } from "./ListSkeletonItem";
-import type { ListSkeletonItemProps } from "./listSkeletonitem.types";
+import { ListSkeletonItemProps } from "./listSkeletonitem.types";
 
 const makeSut = (props?: ListSkeletonItemProps) => {
   render(<ListSkeletonItem {...props} data-testid="skeleton-element" />);

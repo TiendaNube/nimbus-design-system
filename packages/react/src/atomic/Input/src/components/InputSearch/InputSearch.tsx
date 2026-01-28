@@ -1,12 +1,11 @@
-import type { ComponentPropsWithRef } from "react";
-import React, { forwardRef, useRef } from "react";
+import React, { ComponentPropsWithRef, forwardRef, useRef } from "react";
 import { useRefObjectAsForwardedRef } from "@nimbus-ds/typings";
 import { SearchIcon } from "@nimbus-ds/icons";
 import { input } from "@nimbus-ds/styles";
 import { Icon } from "@nimbus-ds/icon";
 
 import { InputIcon } from "../InputIcon";
-import type { InputSearchBaseProps } from "./inputSearch.types";
+import { InputSearchBaseProps } from "./inputSearch.types";
 
 const InputSearch = forwardRef<HTMLInputElement, InputSearchBaseProps>(
   (

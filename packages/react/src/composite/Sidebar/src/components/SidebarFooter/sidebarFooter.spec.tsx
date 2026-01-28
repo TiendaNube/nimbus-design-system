@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import { SidebarFooter } from "./SidebarFooter";
-import type { SidebarFooterProps } from "./sidebarFooter.types";
+import { SidebarFooterProps } from "./sidebarFooter.types";
 
 const makeSut = (props: SidebarFooterProps) => {
   render(<SidebarFooter {...props} data-testid="footer-element" />);

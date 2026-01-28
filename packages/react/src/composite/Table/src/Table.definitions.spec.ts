@@ -1,5 +1,5 @@
 import { getEffectiveFixedWidth, getColumnWidth } from "./Table.definitions";
-import type { TableColumnLayout } from "./table.types";
+import { TableColumnLayout } from "./table.types";
 
 describe("GIVEN getEffectiveFixedWidth", () => {
   it("THEN returns the fixed width when defined", () => {

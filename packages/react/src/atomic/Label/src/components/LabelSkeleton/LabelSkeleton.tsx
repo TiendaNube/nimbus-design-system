@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Skeleton } from "@nimbus-ds/skeleton";
-import type { LabelSkeletonProps } from "./labelSkeleton.types";
+import { LabelSkeletonProps } from "./labelSkeleton.types";
 
 const LabelSkeleton: React.FC<LabelSkeletonProps> = ({
   width,

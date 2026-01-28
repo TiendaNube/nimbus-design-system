@@ -1,6 +1,6 @@
-import type { InputHTMLAttributes, ReactNode } from "react";
+import { InputHTMLAttributes, ReactNode } from "react";
 
-import type { InputPassword, InputSearch, InputSkeleton } from "./components";
+import { InputPassword, InputSearch, InputSkeleton } from "./components";
 
 export interface InputComponents {
   Password: typeof InputPassword;

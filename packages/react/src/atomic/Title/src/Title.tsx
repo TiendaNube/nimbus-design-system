@@ -1,7 +1,7 @@
 import React from "react";
 import { title } from "@nimbus-ds/styles";
 
-import type { TitleProps, TitleComponents } from "./title.types";
+import { TitleProps, TitleComponents } from "./title.types";
 import { TitleSkeleton } from "./components";
 
 const Title: React.FC<TitleProps> & TitleComponents = ({

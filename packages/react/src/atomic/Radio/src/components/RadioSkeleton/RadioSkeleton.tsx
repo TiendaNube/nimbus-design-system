@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import { Skeleton } from "@nimbus-ds/skeleton";
 import { radio } from "@nimbus-ds/styles";
 
-import type { RadioSkeletonProps } from "./radioSkeleton.types";
+import { RadioSkeletonProps } from "./radioSkeleton.types";
 
 const RadioSkeleton: React.FC<RadioSkeletonProps> = ({
   width,

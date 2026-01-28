@@ -1,5 +1,5 @@
-import type { ReactNode, HTMLAttributes } from "react";
-import type { fileUploader } from "@nimbus-ds/styles";
+import { ReactNode, HTMLAttributes } from "react";
+import { fileUploader } from "@nimbus-ds/styles";
 
 export interface FileUploaderOverlayProperties {
   /**

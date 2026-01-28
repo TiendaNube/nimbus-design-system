@@ -1,5 +1,5 @@
-import type { HTMLAttributes, ReactNode } from "react";
-import type { AlertSkeleton } from "./components";
+import { HTMLAttributes, ReactNode } from "react";
+import { AlertSkeleton } from "./components";
 
 export interface AlertComponents {
   Skeleton: typeof AlertSkeleton;

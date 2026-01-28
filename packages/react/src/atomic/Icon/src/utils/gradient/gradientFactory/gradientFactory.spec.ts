@@ -1,7 +1,6 @@
-import type { ReactNode } from "react";
-import React from "react";
+import React, { ReactNode } from "react";
 import { getGradientStops, createSvgGradientDef } from "./gradientFactory";
-import type { GradientTypes } from "../types";
+import { GradientTypes } from "../types";
 import * as cssParser from "../cssParser";
 import * as svgManipulation from "../svgManipulation";
 

@@ -1,5 +1,5 @@
-import type { InputHTMLAttributes } from "react";
-import type { ToggleSkeleton } from "./components";
+import { InputHTMLAttributes } from "react";
+import { ToggleSkeleton } from "./components";
 
 export interface ToggleComponents {
   Skeleton: typeof ToggleSkeleton;

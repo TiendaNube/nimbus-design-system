@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Skeleton } from "@nimbus-ds/skeleton";
-import type { IconSkeletonProps } from "./iconSkeleton.types";
+import { IconSkeletonProps } from "./iconSkeleton.types";
 
 const IconSkeleton: React.FC<IconSkeletonProps> = ({
   width,

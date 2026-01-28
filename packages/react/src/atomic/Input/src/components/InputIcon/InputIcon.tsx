@@ -1,7 +1,7 @@
 import React from "react";
 import { input } from "@nimbus-ds/styles";
 
-import type { InputIconProps } from "./inputIcon.types";
+import { InputIconProps } from "./inputIcon.types";
 
 const InputIcon: React.FC<InputIconProps> = ({
   className: _className,

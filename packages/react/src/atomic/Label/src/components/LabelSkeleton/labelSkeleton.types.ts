@@ -1,4 +1,4 @@
-import type { SkeletonProps } from "@nimbus-ds/skeleton";
+import { SkeletonProps } from "@nimbus-ds/skeleton";
 
 export type LabelSkeletonProperties = Partial<Pick<SkeletonProps, "width">> &
   Partial<Pick<SkeletonProps, "height">> & {

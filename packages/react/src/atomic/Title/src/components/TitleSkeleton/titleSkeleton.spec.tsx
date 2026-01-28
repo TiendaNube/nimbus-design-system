@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import { TitleSkeleton } from "./TitleSkeleton";
-import type { TitleSkeletonProps } from "./titleSkeleton.types";
+import { TitleSkeletonProps } from "./titleSkeleton.types";
 
 const makeSut = (props?: TitleSkeletonProps) => {
   render(<TitleSkeleton {...props} data-testid="skeleton-element" />);

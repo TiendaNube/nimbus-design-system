@@ -1,6 +1,6 @@
-import type { ReactNode, HTMLAttributes } from "react";
-import type { TitleSprinkle } from "@nimbus-ds/styles";
-import type { TitleSkeleton } from "./components";
+import { ReactNode, HTMLAttributes } from "react";
+import { TitleSprinkle } from "@nimbus-ds/styles";
+import { TitleSkeleton } from "./components";
 
 export interface TitleComponents {
   Skeleton: typeof TitleSkeleton;

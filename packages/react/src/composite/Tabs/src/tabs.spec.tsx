@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 
 import { Tabs } from "./Tabs";
-import type { TabsProps, ControlledTabsProperties } from "./tabs.types";
+import { TabsProps, ControlledTabsProperties } from "./tabs.types";
 
 const tabContent = "myTabsContent";
 

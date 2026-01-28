@@ -1,6 +1,6 @@
 import React from "react";
 import { Skeleton } from "@nimbus-ds/skeleton";
-import type { ProgressBarSkeletonProperties } from "./ProgressBarSkeleton.types";
+import { ProgressBarSkeletonProperties } from "./ProgressBarSkeleton.types";
 
 const ProgressBarSkeleton: React.FC<ProgressBarSkeletonProperties> = ({
   width = "100%",

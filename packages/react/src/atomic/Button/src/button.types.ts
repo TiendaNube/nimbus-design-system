@@ -1,5 +1,5 @@
-import type { ReactNode, ButtonHTMLAttributes } from "react";
-import type { ButtonSkeleton } from "./components";
+import { ReactNode, ButtonHTMLAttributes } from "react";
+import { ButtonSkeleton } from "./components";
 
 export interface ButtonComponents {
   Skeleton: typeof ButtonSkeleton;

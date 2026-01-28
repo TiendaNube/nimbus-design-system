@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import { ModalBody } from "./ModalBody";
-import type { ModalBodyProps } from "./modalBody.types";
+import { ModalBodyProps } from "./modalBody.types";
 
 const makeSut = (props: ModalBodyProps) => {
   render(<ModalBody {...props} data-testid="body-element" />);

@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Box } from "@nimbus-ds/box";
 import { SampleBox } from "@common/storybook";
 import { Divider } from "./Divider";
-import type { DividerProps } from "./divider.types";
+import { DividerProps } from "./divider.types";
 
 const meta: Meta<typeof Divider> = {
   title: "Atomic/Divider",

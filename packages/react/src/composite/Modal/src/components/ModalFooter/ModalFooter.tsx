@@ -1,7 +1,7 @@
 import React from "react";
 import { modal } from "@nimbus-ds/styles";
 
-import type { ModalFooterProps } from "./modalFooter.types";
+import { ModalFooterProps } from "./modalFooter.types";
 
 const ModalFooter: React.FC<ModalFooterProps> = ({
   className: _className,

@@ -3,7 +3,7 @@ import { Text } from "@nimbus-ds/text";
 import { toggle } from "@nimbus-ds/styles";
 import { Box } from "@nimbus-ds/box";
 
-import type { ToggleProps, ToggleComponents } from "./toggle.types";
+import { ToggleProps, ToggleComponents } from "./toggle.types";
 import { ToggleSkeleton } from "./components";
 
 const Toggle: React.FC<ToggleProps> & ToggleComponents = ({

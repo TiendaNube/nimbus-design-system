@@ -1,9 +1,5 @@
-import type { HTMLAttributes, ReactNode } from "react";
-import type {
-  AccordionBody,
-  AccordionItem,
-  AccordionHeader,
-} from "./components";
+import { HTMLAttributes, ReactNode } from "react";
+import { AccordionBody, AccordionItem, AccordionHeader } from "./components";
 
 export interface AccordionComponents {
   Body: typeof AccordionBody;

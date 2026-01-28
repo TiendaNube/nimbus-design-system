@@ -1,7 +1,7 @@
 import React from "react";
 import { card } from "@nimbus-ds/styles";
 
-import type { CardProps, CardComponents } from "./card.types";
+import { CardProps, CardComponents } from "./card.types";
 import { CardBody, CardFooter, CardHeader } from "./components";
 
 const Card: React.FC<CardProps> & CardComponents = ({

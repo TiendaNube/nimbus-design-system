@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import { TabsItem } from "./TabsItem";
-import type { TabsItemProps } from "./tabsItem.types";
+import { TabsItemProps } from "./tabsItem.types";
 
 import { generateID } from "../../tabs.definitions";
 

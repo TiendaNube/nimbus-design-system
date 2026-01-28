@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
 import { list, listVars } from "@nimbus-ds/styles";
 
-import type { ListProps, ListComponents } from "./list.types";
+import { ListProps, ListComponents } from "./list.types";
 import { ListSkeletonItem, ListSkeleton, ListItem } from "./components";
 
 const List: React.FC<ListProps> & ListComponents = ({

@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import { Tag } from "./Tag";
-import type { TagProps } from "./tag.types";
+import { TagProps } from "./tag.types";
 
 const content = "myText";
 

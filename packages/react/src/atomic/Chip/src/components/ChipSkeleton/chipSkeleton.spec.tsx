@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import { ChipSkeleton } from "./ChipSkeleton";
-import type { ChipSkeletonProps } from "./chipSkeleton.types";
+import { ChipSkeletonProps } from "./chipSkeleton.types";
 
 const makeSut = (props?: ChipSkeletonProps) => {
   render(<ChipSkeleton {...props} data-testid="skeleton-element" />);

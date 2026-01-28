@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import { TableHead } from "./TableHead";
-import type { TableHeadProps } from "./tableHead.types";
+import { TableHeadProps } from "./tableHead.types";
 
 const makeSut = (rest: TableHeadProps) => {
   render(

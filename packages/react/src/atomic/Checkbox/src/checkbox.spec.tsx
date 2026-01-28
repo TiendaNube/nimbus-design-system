@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import { Checkbox } from "./Checkbox";
-import type { CheckboxProps } from "./checkbox.types";
+import { CheckboxProps } from "./checkbox.types";
 
 jest.mock("./checkbox-check.svg", () => () => <svg />);
 

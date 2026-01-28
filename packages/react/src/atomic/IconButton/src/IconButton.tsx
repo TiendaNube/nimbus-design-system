@@ -2,7 +2,7 @@ import React from "react";
 import { iconButton } from "@nimbus-ds/styles";
 import { Icon } from "@nimbus-ds/icon";
 
-import type { IconButtonProps, IconButtonComponents } from "./iconButton.types";
+import { IconButtonProps, IconButtonComponents } from "./iconButton.types";
 import { IconButtonSkeleton } from "./components";
 
 const IconButton: React.FC<IconButtonProps> & IconButtonComponents = ({

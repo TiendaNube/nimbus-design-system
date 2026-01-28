@@ -1,5 +1,5 @@
-import type { HTMLAttributes, ReactNode } from "react";
-import type { TooltipSprinkle } from "@nimbus-ds/styles";
+import { HTMLAttributes, ReactNode } from "react";
+import { TooltipSprinkle } from "@nimbus-ds/styles";
 
 export interface TooltipProperties extends TooltipSprinkle {
   /**

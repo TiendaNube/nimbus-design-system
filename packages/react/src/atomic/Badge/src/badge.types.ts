@@ -1,5 +1,5 @@
-import type { HTMLAttributes } from "react";
-import type { BadgeSkeleton } from "./components";
+import { HTMLAttributes } from "react";
+import { BadgeSkeleton } from "./components";
 
 export interface BadgeComponents {
   Skeleton: typeof BadgeSkeleton;

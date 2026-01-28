@@ -1,5 +1,4 @@
-import type { ReactNode } from "react";
-import type React from "react";
+import React, { ReactNode } from "react";
 
 export interface ScrollPaneItemProperties {
   /**

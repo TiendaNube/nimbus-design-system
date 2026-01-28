@@ -1,6 +1,6 @@
-import type { SVGAttributes } from "react";
+import { SVGAttributes } from "react";
 
-import type { spinner } from "@nimbus-ds/styles";
+import { spinner } from "@nimbus-ds/styles";
 
 export interface SpinnerProperties {
   /**

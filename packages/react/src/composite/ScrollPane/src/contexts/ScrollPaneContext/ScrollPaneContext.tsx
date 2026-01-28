@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import type { ScrollPaneContextValue } from "./ScrollPaneContext.types";
+import { ScrollPaneContextValue } from "./ScrollPaneContext.types";
 
 export const ScrollPaneContext = createContext<ScrollPaneContextValue | null>(
   null

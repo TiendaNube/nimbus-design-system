@@ -4,10 +4,9 @@
  * This configuration is shared across all packages in the monorepo.
  */
 import merge from "webpack-merge";
-import type { Configuration } from "webpack";
+import { Configuration } from "webpack";
 
-import type { WebpackBaseConfig } from "../utils";
-import { arrayFilterEmpty, isProduction } from "../utils";
+import { arrayFilterEmpty, isProduction, WebpackBaseConfig } from "../utils";
 import { typescriptRule, svgRule } from "../rules";
 import {
   dtsBundleGeneratorPlugin,

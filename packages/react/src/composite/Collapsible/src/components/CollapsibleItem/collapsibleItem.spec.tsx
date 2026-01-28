@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import { CollapsibleItem } from "./CollapsibleItem";
-import type { CollapsibleItemProps } from "./collapsibleItem.types";
+import { CollapsibleItemProps } from "./collapsibleItem.types";
 
 const makeSut = (props: CollapsibleItemProps) => {
   render(<CollapsibleItem {...props} data-testid="element" />);

@@ -1,7 +1,7 @@
 import React from "react";
 import { fileUploader } from "@nimbus-ds/styles";
 import { Skeleton } from "@nimbus-ds/skeleton";
-import type { FileUploaderSkeletonProps } from "./fileUploaderSkeleton.types";
+import { FileUploaderSkeletonProps } from "./fileUploaderSkeleton.types";
 
 const FileUploaderSkeleton: React.FC<FileUploaderSkeletonProps> = ({
   width,

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo, useCallback } from "react";
 
-import type {
+import {
   AccordionProps,
   AccordionComponents,
   ControlledAccordionProperties,

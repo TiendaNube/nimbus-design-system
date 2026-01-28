@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import { TableBody } from "./TableBody";
-import type { TableBodyProps } from "./tableBody.types";
+import { TableBodyProps } from "./tableBody.types";
 
 const makeSut = (rest: TableBodyProps) => {
   render(

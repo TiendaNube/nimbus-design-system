@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import { SelectGroup } from "./SelectGroup";
-import type { SelectGroupProps } from "./selectGroup.types";
+import { SelectGroupProps } from "./selectGroup.types";
 
 const makeSut = (rest: SelectGroupProps) => {
   render(<SelectGroup {...rest} data-testid="group-element" />);

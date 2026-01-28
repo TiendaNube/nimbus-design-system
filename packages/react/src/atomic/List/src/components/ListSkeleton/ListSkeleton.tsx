@@ -1,7 +1,7 @@
 import React from "react";
 import { list } from "@nimbus-ds/styles";
 
-import type { ListSkeletonProps } from "./listSkeleton.types";
+import { ListSkeletonProps } from "./listSkeleton.types";
 
 const ListSkeleton: React.FC<ListSkeletonProps> = ({
   className: _className,

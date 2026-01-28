@@ -1,12 +1,16 @@
-import type { ComponentPropsWithRef } from "react";
-import React, { forwardRef, useRef, useState } from "react";
+import React, {
+  ComponentPropsWithRef,
+  forwardRef,
+  useRef,
+  useState,
+} from "react";
 import { useRefObjectAsForwardedRef } from "@nimbus-ds/typings";
 import { EyeIcon, EyeOffIcon } from "@nimbus-ds/icons";
 import { input } from "@nimbus-ds/styles";
 import { Icon } from "@nimbus-ds/icon";
 
 import { InputIcon } from "../InputIcon";
-import type { InputPasswordBaseProps } from "./inputPassword.types";
+import { InputPasswordBaseProps } from "./inputPassword.types";
 
 const InputPassword = forwardRef<HTMLInputElement, InputPasswordBaseProps>(
   (

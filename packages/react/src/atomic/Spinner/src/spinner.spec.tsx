@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import { Spinner } from "./Spinner";
-import type { SpinnerProps } from "./spinner.types";
+import { SpinnerProps } from "./spinner.types";
 
 const makeSut = (rest?: SpinnerProps) => {
   render(<Spinner {...rest} data-testid="spinner-element" />);

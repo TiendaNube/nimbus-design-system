@@ -1,7 +1,7 @@
 import React from "react";
 import { scrollPane } from "@nimbus-ds/styles";
 import { useScrollPaneContext } from "../../contexts/ScrollPaneContext";
-import type {
+import {
   ScrollPaneArrowBaseProps,
   ScrollPaneArrowProperties,
 } from "./ScrollPaneArrow.types";

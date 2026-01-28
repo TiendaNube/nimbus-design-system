@@ -1,15 +1,18 @@
-import type { ComponentPropsWithRef, ForwardedRef } from "react";
 import React, {
+  ComponentPropsWithRef,
   forwardRef,
   useRef,
   useEffect,
   useImperativeHandle,
+  ForwardedRef,
 } from "react";
-import type { PolymorphicForwardRefComponent } from "@nimbus-ds/typings";
-import { useRefObjectAsForwardedRef } from "@nimbus-ds/typings";
+import {
+  PolymorphicForwardRefComponent,
+  useRefObjectAsForwardedRef,
+} from "@nimbus-ds/typings";
 import { button } from "@nimbus-ds/styles";
 
-import type { ButtonBaseProps, ButtonComponents } from "./button.types";
+import { ButtonBaseProps, ButtonComponents } from "./button.types";
 import { ButtonSkeleton } from "./components";
 
 const Button = forwardRef(

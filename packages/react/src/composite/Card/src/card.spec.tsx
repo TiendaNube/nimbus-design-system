@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import { Card } from "./Card";
-import type { CardProps } from "./card.types";
+import { CardProps } from "./card.types";
 
 const makeSut = (rest: CardProps) => {
   render(<Card {...rest} data-testid="card-element" />);
