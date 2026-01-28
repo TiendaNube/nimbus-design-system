@@ -2,7 +2,7 @@ import React from "react";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
 import { skeleton, vars } from "@nimbus-ds/styles";
 
-import { SkeletonProps } from "./skeleton.types";
+import { type SkeletonProps } from "./skeleton.types";
 
 const Skeleton: React.FC<SkeletonProps> = ({
   className: _className,

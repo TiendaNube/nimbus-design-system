@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen, act } from "@testing-library/react";
 
 import { useToast } from "../../hooks";
-import { ToastProps } from "../../toast.types";
+import { type ToastProps } from "../../toast.types";
 import { Toast } from "../../Toast";
 
 const Button: React.FC<{ toast: ToastProps; id: string }> = ({ toast, id }) => {

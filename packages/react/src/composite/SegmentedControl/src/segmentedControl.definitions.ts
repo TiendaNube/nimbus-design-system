@@ -1,4 +1,4 @@
-import { ControlledSegmentedControlProperties } from "./SegmentedControl.types";
+import { type ControlledSegmentedControlProperties } from "./SegmentedControl.types";
 
 /**
  * Checks if the segmented control is in controlled mode.

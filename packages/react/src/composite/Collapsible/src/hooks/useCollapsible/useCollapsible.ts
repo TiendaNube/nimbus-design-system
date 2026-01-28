@@ -1,6 +1,9 @@
 import { useContext } from "react";
 
-import { CollapsibleContext, CollapsibleContextProps } from "../../contexts";
+import {
+  CollapsibleContext,
+  type CollapsibleContextProps,
+} from "../../contexts";
 
 export const useCollapsible: () => CollapsibleContextProps = () => {
   const context = useContext(CollapsibleContext);

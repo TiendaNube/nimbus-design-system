@@ -7,7 +7,7 @@ import { Text } from "@nimbus-ds/text";
 import { sidebar } from "@nimbus-ds/styles";
 import { argTypesConvert } from ".storybook/utils";
 import { Sidebar } from "./Sidebar";
-import { SidebarProps } from "./sidebar.types";
+import { type SidebarProps } from "./sidebar.types";
 
 const meta: Meta<typeof Sidebar> = {
   title: "Composite/Sidebar",

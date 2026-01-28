@@ -5,7 +5,7 @@ import { SegmentedControlButton } from ".";
 import { SegmentedControlButtonSkeleton } from "./components";
 import {
   SegmentedControlContext,
-  SegmentedControlContextValue,
+  type SegmentedControlContextValue,
 } from "../../contexts/SegmentedControlContext";
 
 // Mock context value for testing

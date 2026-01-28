@@ -1,7 +1,7 @@
 import React from "react";
 import { tag } from "@nimbus-ds/styles";
 
-import { TagProps, TagComponents } from "./tag.types";
+import { type TagProps, type TagComponents } from "./tag.types";
 import { TagSkeleton } from "./components";
 
 const Tag: React.FC<TagProps> & TagComponents = ({

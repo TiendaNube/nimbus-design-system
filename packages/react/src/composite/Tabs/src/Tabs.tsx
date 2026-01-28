@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { tabs } from "@nimbus-ds/styles";
 
-import { TabsProps, TabsComponents } from "./tabs.types";
+import { type TabsProps, type TabsComponents } from "./tabs.types";
 import { TabsButton, TabsItem } from "./components";
 import { isControlled } from "./tabs.definitions";
 

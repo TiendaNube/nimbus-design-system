@@ -16,10 +16,10 @@ import {
 import { toast } from "@nimbus-ds/styles";
 
 import {
-  IconColor,
-  ToastComponents,
-  ToastProps,
-  TypesColors,
+  type IconColor,
+  type ToastComponents,
+  type ToastProps,
+  type TypesColors,
 } from "./toast.types";
 import { useToast } from "./hooks";
 import { ToastProvider } from "./components";

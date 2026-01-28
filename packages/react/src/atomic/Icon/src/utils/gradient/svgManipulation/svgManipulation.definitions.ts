@@ -1,4 +1,4 @@
-import { SVGElementProps } from "@nimbus-ds/typings";
+import { type SVGElementProps } from "@nimbus-ds/typings";
 
 /**
  * Length of the unique identifier portion for gradient IDs

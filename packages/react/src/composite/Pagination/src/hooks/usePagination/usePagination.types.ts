@@ -1,4 +1,4 @@
-import { PaginationProps } from "../../pagination.types";
+import { type PaginationProps } from "../../pagination.types";
 
 export type UsePaginationProps = Pick<
   PaginationProps,

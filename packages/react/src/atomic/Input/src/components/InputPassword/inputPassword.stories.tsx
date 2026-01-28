@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import {
   InputPassword as InputPasswordComponent,
-  InputPasswordProps,
+  type InputPasswordProps,
 } from "./InputPassword";
 
 export const Basic: React.FC<InputPasswordProps> = forwardRef(
