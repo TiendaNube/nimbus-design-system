@@ -1,9 +1,0 @@
-releases:
-  "@nimbus-ds/components": patch
-  "@nimbus-ds/styles": patch
-  "@nimbus-ds/table": patch
-
-declined:
-  - nimbus-design-system
-  - "@nimbus-ds/split-button"
-  - "@nimbus-ds/stepper"
