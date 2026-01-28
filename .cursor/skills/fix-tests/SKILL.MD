@@ -17,14 +17,14 @@ Fix failing tests by adapting them to the current code implementation.
 ## Determine Target Module
 
 1. **If user specifies a module**: Use the provided module name (component, hook, util, folder path, or file name)
-2. **If user has an open `.spec` file**: Extract the module name from the open spec file path
+2. **If user has an open `.spec` or `.test` file**: Extract the module name from the open spec/test file path
 3. **If neither**: Ask the user which module to test
 
 ## Instructions
 
 ### Step 1: Identify the Module
 
-Check if the user provided a MODULE_NAME. If not, check open files for any `.spec.tsx` or `.spec.ts` file. Use the module name from the spec file path.
+Check if the user provided a MODULE_NAME. If not, check open files for any `.spec.tsx` or `.spec.ts` or `.test.tsx` or `.test.ts` file. Use the module name from the spec/test file path.
 
 If no module can be determined, ask:
 > Which module should I run tests for? (e.g., `TimePicker`, `Button`, `useToggle`, or a path like `src/composite/TimePicker`)
