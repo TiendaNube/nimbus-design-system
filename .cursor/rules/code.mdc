@@ -34,7 +34,7 @@ We use SonarCloud and ESLint to analyze the code and provide suggestions for imp
 8. Omit unnecessary else branches after a return.
 9. Refactor functions that exceed the acceptable cyclomatic complexity threshold **>10**.
 10. Always use 'import type' instead of 'import' when importing types.
-11. Avoid writting explicitly 'undefined'. Use 'null' instead.
+11. When explicitly clearing or resetting a value, prefer 'null' over 'undefined'. Reserve 'undefined' for TypeScript's natural behavior (optional properties, uninitialized variables).
 
 ### React rules
 1. Use functional components instead of class components.
