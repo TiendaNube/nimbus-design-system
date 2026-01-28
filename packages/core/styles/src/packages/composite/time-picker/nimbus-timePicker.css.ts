@@ -158,64 +158,34 @@ const dropdownList = style({
  * -----------------------------------------------------------------------------------------------*/
 
 const ampmContainer = style({
-  display: "flex",
-  flexDirection: "column",
-  gap: varsThemeBase.spacing[1],
-  padding: `${varsThemeBase.spacing[1]} 0`,
+  display: "grid",
+  gridTemplateRows: `repeat(5, 1fr)`,
   justifyContent: "center",
+  height: PANEL_HEIGHT,
 });
 
-const ampmButton = style({
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  padding: `${varsThemeBase.spacing[2]} ${varsThemeBase.spacing[3]}`,
-  fontFamily: varsThemeBase.fontFamily.sans,
-  fontSize: varsThemeBase.fontSize.body.caption,
-  fontWeight: varsThemeBase.fontWeight.medium,
-  lineHeight: varsThemeBase.lineWeight.body.caption,
-  borderRadius: varsThemeBase.shape.border.radius[1],
-  cursor: "pointer",
-  transition: `background-color ${varsThemeBase.motion.speed.fast} ease, color ${varsThemeBase.motion.speed.fast} ease`,
-  userSelect: "none",
-  minWidth: "40px",
-  minHeight: ITEM_HEIGHT,
-  boxSizing: "border-box",
-  border: "none",
-  outline: "none",
-  selectors: {
-    "&:focus-visible": {
-      boxShadow: varsThemeBase.utils.focus,
-    },
+const amButtonState = styleVariants({
+  default: {
+    gridRow: 3,
+  },
+  PM: {
+    gridRow: 2,
+  },
+  AM: {
+    gridRow: 3,
   },
 });
 
-const ampmState = styleVariants({
-  default: [
-    ampmButton,
-    {
-      backgroundColor: "transparent",
-      color: varsThemeBase.colors.neutral.textLow,
-      selectors: {
-        "&:hover": {
-          backgroundColor: varsThemeBase.colors.neutral.surface,
-          color: varsThemeBase.colors.neutral.textHigh,
-        },
-      },
-    },
-  ],
-  selected: [
-    ampmButton,
-    {
-      backgroundColor: varsThemeBase.colors.primary.interactive,
-      color: varsThemeBase.colors.neutral.background,
-      selectors: {
-        "&:hover": {
-          backgroundColor: varsThemeBase.colors.primary.interactiveHover,
-        },
-      },
-    },
-  ],
+const pmButtonState = styleVariants({
+  default: {
+    gridRow: 4,
+  },
+  PM: {
+    gridRow: 3,
+  },
+  AM: {
+    gridRow: 4,
+  },
 });
 
 /* -------------------------------------------------------------------------------------------------
@@ -354,7 +324,8 @@ export const timePickerStyles = {
     optionState,
     dropdownList,
     ampmContainer,
-    ampmState,
+    amButtonState,
+    pmButtonState,
     divider,
     gradientPosition,
   },

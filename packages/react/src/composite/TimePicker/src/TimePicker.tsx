@@ -95,37 +95,36 @@ const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
         onOpenChange?.(newOpen);
 
         if (mode === "dropdown") {
-          if (!newOpen && timeValue && onChange) {
-            if (
-              timeValue.hours !== undefined &&
-              timeValue.minutes !== undefined
-            ) {
-              const { hours, minutes, ampm } = timeValue;
-              const finalAmPm = ampm ?? initialValue?.ampm ?? "AM";
-              const formattedValue =
-                format === "12h"
-                  ? `${padZero(hours)}:${padZero(minutes)} ${finalAmPm}`
-                  : `${padZero(hours)}:${padZero(minutes)}`;
+          if (!newOpen && onChange && (timeValue || initialValue)) {
+            const defaultHour = format === "12h" ? 12 : 0;
+            const hours =
+              timeValue?.hours ?? initialValue?.hours ?? defaultHour;
+            const minutes = timeValue?.minutes ?? initialValue?.minutes ?? 0;
+            const finalAmPm = timeValue?.ampm ?? initialValue?.ampm ?? "AM";
 
-              const date = new Date();
-              if (format === "12h") {
-                const hours24 = to24Hour(hours, finalAmPm);
-                date.setHours(hours24, minutes, 0, 0);
-              } else {
-                date.setHours(hours, minutes, 0, 0);
-              }
+            const formattedValue =
+              format === "12h"
+                ? `${padZero(hours)}:${padZero(minutes)} ${finalAmPm}`
+                : `${padZero(hours)}:${padZero(minutes)}`;
 
-              onChange(formattedValue, date);
+            const date = new Date();
+            if (format === "12h") {
+              const hours24 = to24Hour(hours, finalAmPm);
+              date.setHours(hours24, minutes, 0, 0);
+            } else {
+              date.setHours(hours, minutes, 0, 0);
             }
+
+            onChange(formattedValue, date);
           }
         } else {
-          if (onChange && timeValue && !newOpen) {
+          if (onChange && !newOpen && (timeValue || initialValue)) {
             const defaultHour = format === "12h" ? 12 : 0;
             const finalHours =
-              timeValue.hours ?? initialValue?.hours ?? defaultHour;
+              timeValue?.hours ?? initialValue?.hours ?? defaultHour;
             const finalMinutes =
-              timeValue.minutes ?? initialValue?.minutes ?? 0;
-            const finalAmPm = timeValue.ampm ?? initialValue?.ampm ?? "AM";
+              timeValue?.minutes ?? initialValue?.minutes ?? 0;
+            const finalAmPm = timeValue?.ampm ?? initialValue?.ampm ?? "AM";
 
             const formattedValue =
               format === "12h"

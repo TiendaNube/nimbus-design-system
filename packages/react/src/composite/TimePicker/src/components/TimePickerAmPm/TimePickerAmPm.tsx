@@ -70,30 +70,34 @@ export const TimePickerAmPm: React.FC<TimePickerAmPmProps> = ({
       role="radiogroup"
       aria-label={selectorLabel}
     >
-      <TimePickerOption
-        ref={amButtonRef}
-        role="radio"
-        selected={selected === "AM"}
-        current={current === "AM"}
-        disabled={disabled}
-        onSelect={() => handleSelect("AM")}
-        onKeyDown={(e) => handleKeyDown(e, "AM")}
-        tabIndex={selected === "AM" ? 0 : -1}
-      >
-        {amLabel}
-      </TimePickerOption>
-      <TimePickerOption
-        ref={pmButtonRef}
-        role="radio"
-        selected={selected === "PM"}
-        current={current === "PM"}
-        disabled={disabled}
-        onSelect={() => handleSelect("PM")}
-        onKeyDown={(e) => handleKeyDown(e, "PM")}
-        tabIndex={selected === "PM" ? 0 : -1}
-      >
-        {pmLabel}
-      </TimePickerOption>
+      <div className={classnames.amButtonState[current ?? "default"]}>
+        <TimePickerOption
+          ref={amButtonRef}
+          role="radio"
+          selected={selected === "AM"}
+          current={current === "AM"}
+          disabled={disabled}
+          onSelect={() => handleSelect("AM")}
+          onKeyDown={(e) => handleKeyDown(e, "AM")}
+          tabIndex={selected === "AM" ? 0 : -1}
+        >
+          {amLabel}
+        </TimePickerOption>
+      </div>
+      <div className={classnames.pmButtonState[current ?? "default"]}>
+        <TimePickerOption
+          ref={pmButtonRef}
+          role="radio"
+          selected={selected === "PM"}
+          current={current === "PM"}
+          disabled={disabled}
+          onSelect={() => handleSelect("PM")}
+          onKeyDown={(e) => handleKeyDown(e, "PM")}
+          tabIndex={selected === "PM" ? 0 : -1}
+        >
+          {pmLabel}
+        </TimePickerOption>
+      </div>
     </div>
   );
 };
