@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2026-01-28 `9.55.0`
+
+#### 🎉 New features
+
+- `TimePicker`: Added `TimePicker` component for time selection with scroll and dropdown modes, 12h and 24h formats, AM/PM toggle, time constraints, step intervals, keyboard navigation, and full accessibility support. ([#414](https://github.com/TiendaNube/nimbus-design-system/pull/414) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2026-01-23 `9.54.1`
 
 #### 🐛 Bug fixes
