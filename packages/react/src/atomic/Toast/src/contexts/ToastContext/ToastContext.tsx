@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { ToastContextProps } from "./toastContext.types";
+import { type ToastContextProps } from "./toastContext.types";
 
 export const ToastContext = createContext<ToastContextProps>(
   {} as ToastContextProps

@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Skeleton } from "@nimbus-ds/skeleton";
-import { BadgeSkeletonProps } from "./badgeSkeleton.types";
+import { type BadgeSkeletonProps } from "./badgeSkeleton.types";
 
 const BadgeSkeleton: React.FC<BadgeSkeletonProps> = ({
   width,

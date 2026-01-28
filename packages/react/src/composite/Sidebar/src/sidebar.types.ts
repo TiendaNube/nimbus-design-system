@@ -1,7 +1,11 @@
-import { HTMLAttributes, ReactNode } from "react";
-import { sidebar, SidebarSprinkle } from "@nimbus-ds/styles";
-import { CloseOnOutsidePress } from "@common/event-handling";
-import { SidebarBody, SidebarFooter, SidebarHeader } from "./components";
+import { type HTMLAttributes, type ReactNode } from "react";
+import { type sidebar, type SidebarSprinkle } from "@nimbus-ds/styles";
+import { type CloseOnOutsidePress } from "@common/event-handling";
+import {
+  type SidebarBody,
+  type SidebarFooter,
+  type SidebarHeader,
+} from "./components";
 
 export interface SidebarComponents {
   Body: typeof SidebarBody;

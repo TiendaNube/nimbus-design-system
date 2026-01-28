@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 
-import { ProgressBar, ProgressBarProps } from "./ProgressBar";
+import { ProgressBar, type ProgressBarProps } from "./ProgressBar";
 
 const makeSut = (rest: ProgressBarProps) => {
   render(<ProgressBar {...rest} data-testid="progress-bar-element" />);

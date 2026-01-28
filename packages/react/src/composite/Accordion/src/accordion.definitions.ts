@@ -1,6 +1,6 @@
 import {
-  ControlledAccordionProperties,
-  UncontrolledAccordionProperties,
+  type ControlledAccordionProperties,
+  type UncontrolledAccordionProperties,
 } from "./accordion.types";
 
 /**

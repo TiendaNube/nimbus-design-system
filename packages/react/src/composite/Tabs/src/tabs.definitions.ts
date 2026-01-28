@@ -1,4 +1,4 @@
-import { ControlledTabsProperties } from "./tabs.types";
+import { type ControlledTabsProperties } from "./tabs.types";
 
 export const generateID = (name: string) =>
   name.toLowerCase().replace(" ", "-");

@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import { Text } from "@nimbus-ds/text";
 import { radio } from "@nimbus-ds/styles";
 
-import { RadioProps, RadioComponents } from "./radio.types";
+import { type RadioProps, type RadioComponents } from "./radio.types";
 import { RadioSkeleton } from "./components";
 
 const Radio: React.FC<RadioProps> & RadioComponents = ({

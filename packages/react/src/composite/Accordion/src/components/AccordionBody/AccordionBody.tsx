@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { accordion } from "@nimbus-ds/styles";
 
-import { AccordionBodyProps } from "./accordionBody.types";
+import { type AccordionBodyProps } from "./accordionBody.types";
 import { useAccordion, useAccordionItem } from "../../hooks";
 
 const AccordionBody: React.FC<AccordionBodyProps> = ({

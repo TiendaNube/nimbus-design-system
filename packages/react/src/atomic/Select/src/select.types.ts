@@ -1,5 +1,9 @@
-import { ReactNode, SelectHTMLAttributes } from "react";
-import { SelectGroup, SelectOption, SelectSkeleton } from "./components";
+import { type ReactNode, type SelectHTMLAttributes } from "react";
+import {
+  type SelectGroup,
+  type SelectOption,
+  type SelectSkeleton,
+} from "./components";
 
 export interface SelectComponents {
   Group: typeof SelectGroup;

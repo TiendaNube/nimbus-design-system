@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import { TableCell } from "./TableCell";
-import { TableCellProps } from "./tableCell.types";
+import { type TableCellProps } from "./tableCell.types";
 import { TableContext } from "../../contexts";
 
 const cellContent = "My content";
