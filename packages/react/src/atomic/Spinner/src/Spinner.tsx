@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
 import { spinner, vars } from "@nimbus-ds/styles";
 
-import { SpinnerProps } from "./spinner.types";
+import { type SpinnerProps } from "./spinner.types";
 import { sizes } from "./spinner.definitions";
 
 const Spinner: React.FC<SpinnerProps> = ({

@@ -1,7 +1,7 @@
 import React from "react";
 import { sidebar } from "@nimbus-ds/styles";
 
-import { SidebarBodyProps } from "./sidebarBody.types";
+import { type SidebarBodyProps } from "./sidebarBody.types";
 
 const SidebarBody: React.FC<SidebarBodyProps> = ({
   className: _className,

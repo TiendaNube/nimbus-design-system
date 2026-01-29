@@ -1,5 +1,5 @@
-import { HTMLAttributes, ReactNode } from "react";
-import { modal } from "@nimbus-ds/styles";
+import { type HTMLAttributes, type ReactNode } from "react";
+import { type modal } from "@nimbus-ds/styles";
 
 export interface ModalHeaderProperties {
   /**

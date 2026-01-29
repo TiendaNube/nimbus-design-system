@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { TiendanubeIcon } from "@nimbus-ds/icons";
 import { Icon } from "@nimbus-ds/icon";
 
-import { Input as InputComponent, InputProps } from "./Input";
+import { Input as InputComponent, type InputProps } from "./Input";
 
 export const Basic: React.FC<InputProps> = forwardRef((props: InputProps) => (
   <InputComponent {...props} />

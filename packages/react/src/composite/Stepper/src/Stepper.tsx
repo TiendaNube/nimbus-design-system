@@ -1,14 +1,14 @@
 import React, { useEffect, useMemo, useState } from "react";
 
-import { Box, BoxProps } from "@nimbus-ds/box";
+import { Box, type BoxProps } from "@nimbus-ds/box";
 import {
-  StepperProps,
-  StepperComponents,
-  ControlledStepperProperties,
+  type StepperProps,
+  type StepperComponents,
+  type ControlledStepperProperties,
 } from "./stepper.types";
 import { StepperItem, StepperCard, StepperContext } from "./components";
 import { isControlled } from "./stepper.definitions";
-import { StepperItemProps } from "./components/StepperItem/stepperItem.types";
+import { type StepperItemProps } from "./components/StepperItem/stepperItem.types";
 
 /**
  * Stepper component guides users through a multi-step process,

@@ -5,7 +5,7 @@ import { Title } from "@nimbus-ds/title";
 import { Icon } from "@nimbus-ds/icon";
 
 import { AlertSkeleton } from "./components";
-import { AlertProps, AlertComponents } from "./alert.types";
+import { type AlertProps, type AlertComponents } from "./alert.types";
 import { alertVariants } from "./alert.definitions";
 
 const Alert: React.FC<AlertProps> & AlertComponents = ({

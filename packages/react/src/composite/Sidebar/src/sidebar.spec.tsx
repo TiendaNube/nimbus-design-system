@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 
 import { Sidebar } from "./Sidebar";
-import { SidebarProps } from "./sidebar.types";
+import { type SidebarProps } from "./sidebar.types";
 
 const makeSut = (rest: SidebarProps) => {
   render(<Sidebar {...rest} data-testid="sidebar-element" />);

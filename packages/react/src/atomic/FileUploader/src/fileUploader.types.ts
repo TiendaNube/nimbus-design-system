@@ -1,7 +1,15 @@
-import { InputHTMLAttributes, DragEvent, ReactNode, ReactElement } from "react";
-import { fileUploader } from "@nimbus-ds/styles";
-import { FileUploaderSkeleton, FileUploaderOverlay } from "./components";
-import { FileUploaderOverlayProps } from "./components/FileUploaderOverlay";
+import {
+  type InputHTMLAttributes,
+  type DragEvent,
+  type ReactNode,
+  type ReactElement,
+} from "react";
+import { type fileUploader } from "@nimbus-ds/styles";
+import {
+  type FileUploaderSkeleton,
+  type FileUploaderOverlay,
+} from "./components";
+import { type FileUploaderOverlayProps } from "./components/FileUploaderOverlay";
 
 export interface FileUploaderComponents {
   Skeleton: typeof FileUploaderSkeleton;

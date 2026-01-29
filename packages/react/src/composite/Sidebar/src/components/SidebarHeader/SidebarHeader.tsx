@@ -2,7 +2,7 @@ import React from "react";
 import { Title } from "@nimbus-ds/title";
 import { sidebar } from "@nimbus-ds/styles";
 
-import { SidebarHeaderProps } from "./sidebarHeader.types";
+import { type SidebarHeaderProps } from "./sidebarHeader.types";
 
 const SidebarHeader: React.FC<SidebarHeaderProps> = ({
   className: _className,

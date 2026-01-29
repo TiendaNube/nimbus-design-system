@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 
 import { themes } from "./themeProvider.definitions";
-import { ThemeProviderProps } from "./themeProvider.types";
+import { type ThemeProviderProps } from "./themeProvider.types";
 import { ThemeProviderContext } from "./contexts";
 
 const ThemeProvider: React.FC<ThemeProviderProps> = ({

@@ -4,7 +4,10 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@nimbus-ds/icons";
 import { Button } from "@nimbus-ds/button";
 
 import { usePagination, DOTS } from "./hooks";
-import { PaginationProps, PaginationItemData } from "./pagination.types";
+import {
+  type PaginationProps,
+  type PaginationItemData,
+} from "./pagination.types";
 import { generateKey } from "./pagination.definitions";
 
 const Pagination: React.FC<PaginationProps> = ({

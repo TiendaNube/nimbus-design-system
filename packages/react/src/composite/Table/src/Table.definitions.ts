@@ -1,5 +1,5 @@
-import { TableColumnLayout } from "./table.types";
-import { FixedColumnOffset } from "./contexts/TableContext/tableContext.types";
+import { type TableColumnLayout } from "./table.types";
+import { type FixedColumnOffset } from "./contexts/TableContext/tableContext.types";
 
 const getEffectiveFixedWidth = (
   column: TableColumnLayout

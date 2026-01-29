@@ -6,8 +6,8 @@ import { Icon } from "@nimbus-ds/icon";
 import { Text } from "@nimbus-ds/text";
 
 import {
-  FileUploaderProps,
-  FileUploaderComponents,
+  type FileUploaderProps,
+  type FileUploaderComponents,
 } from "./fileUploader.types";
 import { FileUploaderSkeleton, FileUploaderOverlay } from "./components";
 import {

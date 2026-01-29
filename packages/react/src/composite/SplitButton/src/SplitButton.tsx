@@ -1,13 +1,16 @@
 import React, { useState, useCallback, useMemo } from "react";
 import { Box } from "@nimbus-ds/box";
 
-import { SplitButtonProps, SplitButtonComponents } from "./splitButton.types";
+import {
+  type SplitButtonProps,
+  type SplitButtonComponents,
+} from "./splitButton.types";
 import {
   SplitButtonAction,
   SplitButtonPrimary,
   SplitButtonSecondary,
 } from "./components";
-import { SplitButtonContext, SplitButtonContextValue } from "./contexts";
+import { SplitButtonContext, type SplitButtonContextValue } from "./contexts";
 
 /**
  * SplitButton component allows users to perform actions by clicking a primary button and displaying a dropdown menu with additional actions.

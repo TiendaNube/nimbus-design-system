@@ -3,7 +3,7 @@ import { assignInlineVars } from "@vanilla-extract/dynamic";
 import { fileUploader, fileUploaderVars } from "@nimbus-ds/styles";
 import { Text } from "@nimbus-ds/text";
 
-import { FileUploaderOverlayProps } from "./fileUploaderOverlay.types";
+import { type FileUploaderOverlayProps } from "./fileUploaderOverlay.types";
 
 /**
  * Overlay component displayed during drag operations on FileUploader.

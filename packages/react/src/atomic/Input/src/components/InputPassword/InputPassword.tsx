@@ -1,5 +1,5 @@
 import React, {
-  ComponentPropsWithRef,
+  type ComponentPropsWithRef,
   forwardRef,
   useRef,
   useState,
@@ -10,7 +10,7 @@ import { input } from "@nimbus-ds/styles";
 import { Icon } from "@nimbus-ds/icon";
 
 import { InputIcon } from "../InputIcon";
-import { InputPasswordBaseProps } from "./inputPassword.types";
+import { type InputPasswordBaseProps } from "./inputPassword.types";
 
 const InputPassword = forwardRef<HTMLInputElement, InputPasswordBaseProps>(
   (

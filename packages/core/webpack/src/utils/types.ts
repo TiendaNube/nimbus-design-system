@@ -1,6 +1,6 @@
 import {
-  MoveFilesIntoDistFolderPluginOptions,
-  UseClientInjectionPluginOptions,
+  type MoveFilesIntoDistFolderPluginOptions,
+  type UseClientInjectionPluginOptions,
 } from "../plugins";
 
 export type WebpackBaseConfig = {

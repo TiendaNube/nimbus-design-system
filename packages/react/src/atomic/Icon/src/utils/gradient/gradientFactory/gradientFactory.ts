@@ -1,6 +1,6 @@
-import React, { ReactElement } from "react";
+import React, { type ReactElement } from "react";
 import { gradients } from "@nimbus-ds/styles";
-import { GradientStop, GradientTypes } from "../types";
+import { type GradientStop, type GradientTypes } from "../types";
 import { parseLinearGradient } from "../cssParser";
 
 /**

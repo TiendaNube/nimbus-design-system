@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useMemo, useCallback } from "react";
 
 import {
-  AccordionProps,
-  AccordionComponents,
-  ControlledAccordionProperties,
-  UncontrolledAccordionProperties,
+  type AccordionProps,
+  type AccordionComponents,
+  type ControlledAccordionProperties,
+  type UncontrolledAccordionProperties,
 } from "./accordion.types";
 import { AccordionBody, AccordionItem, AccordionHeader } from "./components";
 import { AccordionContext } from "./contexts";

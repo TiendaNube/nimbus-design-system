@@ -1,7 +1,7 @@
 import React from "react";
 import { text } from "@nimbus-ds/styles";
 
-import { TextProps, TextComponents } from "./text.types";
+import { type TextProps, type TextComponents } from "./text.types";
 import { TextSkeleton } from "./components";
 
 const Text: React.FC<TextProps> & TextComponents = ({

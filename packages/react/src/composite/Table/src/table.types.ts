@@ -1,6 +1,11 @@
-import { ReactNode, HTMLAttributes } from "react";
+import { type ReactNode, type HTMLAttributes } from "react";
 
-import { TableBody, TableCell, TableHead, TableRow } from "./components";
+import {
+  type TableBody,
+  type TableCell,
+  type TableHead,
+  type TableRow,
+} from "./components";
 
 export interface TableComponents {
   Body: typeof TableBody;
