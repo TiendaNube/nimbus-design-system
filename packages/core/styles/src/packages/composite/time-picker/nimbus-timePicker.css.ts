@@ -21,7 +21,7 @@ const panel = style({
 });
 
 const panelDropdown = style({
-  padding: `${varsThemeBase.spacing[1]} 0 ${varsThemeBase.spacing[1]} ${varsThemeBase.spacing[1]}`,
+  padding: varsThemeBase.spacing[1],
 });
 
 /* -------------------------------------------------------------------------------------------------

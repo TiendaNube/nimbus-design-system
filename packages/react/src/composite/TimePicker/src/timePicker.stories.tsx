@@ -114,7 +114,7 @@ export const dropdownMode: Story = {
 
 export const dropdownMode12h: Story = {
   render: () => {
-    const [time, setTime] = useState<string | null>("14:30");
+    const [time, setTime] = useState<string | null>("02:30 AM");
     return (
       <Box display="flex" flexDirection="column" gap="2">
         <TimePicker
