@@ -9,6 +9,10 @@ Package-specific changes not released in any package will be added here just bef
 
 - Added new `fix-tests` skill to fix tests to match current code implementation. ([#414](https://github.com/TiendaNube/nimbus-design-system/pull/414) by [@joacotornello](https://github.com/joacotornello))
 
+## 2026-01-23
+
+- Introduced new 'changelogs' Cursor skill to help with changelog management. ([#413](https://github.com/TiendaNube/nimbus-design-system/pull/413) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2026-01-14
 
 - Bumps local react dependencies to version 19. ([#404](https://github.com/TiendaNube/nimbus-design-system/pull/404) by [@joacotornello](https://github.com/joacotornello))
