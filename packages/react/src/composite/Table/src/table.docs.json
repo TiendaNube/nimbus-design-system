@@ -3,7 +3,7 @@
   "name": "Table",
   "totalProps": 5,
   "packageName": "@nimbus-ds/table",
-  "version": "2.4.0",
+  "version": "2.4.1",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/table",
   "props": [
     {
@@ -40,14 +40,25 @@
           },
           "fixed": {
             "description": "Determines which side the column will be fixed (sticky) to during horizontal scrolling.\nFixed columns use CSS `position: sticky` and stay visible on the specified side.\nOnly contiguous columns can be fixed (i.e. no 'normal' columns between fixed columns on the same side).\nRequires a defined `width` to calculate proper offsets.\n- 'left': Column sticks to the left side of the table\n- 'right': Column sticks to the right side of the table",
-            "enum": ["left", "right"],
+            "enum": [
+              "left",
+              "right"
+            ],
             "type": "string",
             "title": "fixed"
           }
         },
         "additionalProperties": false,
-        "propertyOrder": ["id", "width", "grow", "minWidth", "fixed"],
-        "required": ["id"]
+        "propertyOrder": [
+          "id",
+          "width",
+          "grow",
+          "minWidth",
+          "fixed"
+        ],
+        "required": [
+          "id"
+        ]
       },
       "title": "columnLayout",
       "required": false
@@ -98,7 +109,10 @@
         {
           "description": "Type of html tag to create for the table cell.",
           "default": "td",
-          "enum": ["td", "th"],
+          "enum": [
+            "td",
+            "th"
+          ],
           "type": "string",
           "title": "as",
           "required": false
@@ -448,47 +462,83 @@
               "type": "object",
               "properties": {
                 "rest": {
-                  "enum": ["base", "none", "small"],
+                  "enum": [
+                    "base",
+                    "none",
+                    "small"
+                  ],
                   "type": "string",
                   "title": "rest"
                 },
                 "focus": {
-                  "enum": ["base", "none", "small"],
+                  "enum": [
+                    "base",
+                    "none",
+                    "small"
+                  ],
                   "type": "string",
                   "title": "focus"
                 },
                 "active": {
-                  "enum": ["base", "none", "small"],
+                  "enum": [
+                    "base",
+                    "none",
+                    "small"
+                  ],
                   "type": "string",
                   "title": "active"
                 },
                 "hover": {
-                  "enum": ["base", "none", "small"],
+                  "enum": [
+                    "base",
+                    "none",
+                    "small"
+                  ],
                   "type": "string",
                   "title": "hover"
                 },
                 "xs": {
-                  "enum": ["base", "none", "small"],
+                  "enum": [
+                    "base",
+                    "none",
+                    "small"
+                  ],
                   "type": "string",
                   "title": "xs"
                 },
                 "md": {
-                  "enum": ["base", "none", "small"],
+                  "enum": [
+                    "base",
+                    "none",
+                    "small"
+                  ],
                   "type": "string",
                   "title": "md"
                 },
                 "lg": {
-                  "enum": ["base", "none", "small"],
+                  "enum": [
+                    "base",
+                    "none",
+                    "small"
+                  ],
                   "type": "string",
                   "title": "lg"
                 },
                 "xl": {
-                  "enum": ["base", "none", "small"],
+                  "enum": [
+                    "base",
+                    "none",
+                    "small"
+                  ],
                   "type": "string",
                   "title": "xl"
                 },
                 "xxl": {
-                  "enum": ["base", "none", "small"],
+                  "enum": [
+                    "base",
+                    "none",
+                    "small"
+                  ],
                   "type": "string",
                   "title": "xxl"
                 }
@@ -507,7 +557,11 @@
               ]
             },
             {
-              "enum": ["base", "none", "small"],
+              "enum": [
+                "base",
+                "none",
+                "small"
+              ],
               "type": "string"
             }
           ],
@@ -889,47 +943,83 @@
               "type": "object",
               "properties": {
                 "rest": {
-                  "enum": ["base", "none", "small"],
+                  "enum": [
+                    "base",
+                    "none",
+                    "small"
+                  ],
                   "type": "string",
                   "title": "rest"
                 },
                 "focus": {
-                  "enum": ["base", "none", "small"],
+                  "enum": [
+                    "base",
+                    "none",
+                    "small"
+                  ],
                   "type": "string",
                   "title": "focus"
                 },
                 "active": {
-                  "enum": ["base", "none", "small"],
+                  "enum": [
+                    "base",
+                    "none",
+                    "small"
+                  ],
                   "type": "string",
                   "title": "active"
                 },
                 "hover": {
-                  "enum": ["base", "none", "small"],
+                  "enum": [
+                    "base",
+                    "none",
+                    "small"
+                  ],
                   "type": "string",
                   "title": "hover"
                 },
                 "xs": {
-                  "enum": ["base", "none", "small"],
+                  "enum": [
+                    "base",
+                    "none",
+                    "small"
+                  ],
                   "type": "string",
                   "title": "xs"
                 },
                 "md": {
-                  "enum": ["base", "none", "small"],
+                  "enum": [
+                    "base",
+                    "none",
+                    "small"
+                  ],
                   "type": "string",
                   "title": "md"
                 },
                 "lg": {
-                  "enum": ["base", "none", "small"],
+                  "enum": [
+                    "base",
+                    "none",
+                    "small"
+                  ],
                   "type": "string",
                   "title": "lg"
                 },
                 "xl": {
-                  "enum": ["base", "none", "small"],
+                  "enum": [
+                    "base",
+                    "none",
+                    "small"
+                  ],
                   "type": "string",
                   "title": "xl"
                 },
                 "xxl": {
-                  "enum": ["base", "none", "small"],
+                  "enum": [
+                    "base",
+                    "none",
+                    "small"
+                  ],
                   "type": "string",
                   "title": "xxl"
                 }
@@ -948,7 +1038,11 @@
               ]
             },
             {
-              "enum": ["base", "none", "small"],
+              "enum": [
+                "base",
+                "none",
+                "small"
+              ],
               "type": "string"
             }
           ],
