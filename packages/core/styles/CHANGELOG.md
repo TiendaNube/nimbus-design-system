@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2026-01-29 `9.54.2`
+
+#### 🐛 Bug fixes
+
+- `Input`: Add missing focus ring to all appearance variants. ([#413](https://github.com/TiendaNube/nimbus-design-system/pull/413) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2026-01-23 `9.54.1`
 
 #### 🐛 Bug fixes
