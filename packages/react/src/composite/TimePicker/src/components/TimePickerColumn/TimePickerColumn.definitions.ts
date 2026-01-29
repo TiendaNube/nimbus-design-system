@@ -73,14 +73,14 @@ function buildCombinedOptions(
   options: DropdownOption[],
   currentValue: string | null | undefined,
   selectedValue: string | null | undefined,
-  onSelectTime: (hours: number, minutes: number, ampm?: "AM" | "PM") => void
+  onSelectTime: (hours: number, minutes: number) => void
 ): OptionItem[] {
   return options.map((option) => ({
     key: option.value,
     displayValue: option.value,
     isCurrent: option.value === currentValue,
     isSelected: option.value === selectedValue,
-    onSelect: () => onSelectTime(option.hours, option.minutes, option.ampm),
+    onSelect: () => onSelectTime(option.hours, option.minutes),
   }));
 }
 

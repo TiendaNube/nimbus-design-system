@@ -56,15 +56,14 @@ export function useTimePickerState({
   );
 
   const selectTime = useCallback(
-    (hours: number, minutes: number, ampm?: AmPm) => {
+    (hours: number, minutes: number) => {
       setInternalValue((prev) => ({
         ...prev,
         hours,
         minutes,
-        ampm: format === "12h" ? ampm : undefined,
       }));
     },
-    [format, setInternalValue]
+    [setInternalValue]
   );
 
   const clear = useCallback(() => {

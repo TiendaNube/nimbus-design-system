@@ -182,13 +182,12 @@ describe("GIVEN useTimePickerState", () => {
       const { result } = makeSut({ format: "12h", step: 1 });
 
       act(() => {
-        result.current.selectTime(2, 30, "PM");
+        result.current.selectTime(2, 30);
       });
 
       expect(result.current.timeValue).toEqual({
         hours: 2,
         minutes: 30,
-        ampm: "PM",
       });
     });
   });

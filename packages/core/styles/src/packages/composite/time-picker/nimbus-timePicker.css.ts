@@ -158,34 +158,10 @@ const dropdownList = style({
  * -----------------------------------------------------------------------------------------------*/
 
 const ampmContainer = style({
-  display: "grid",
-  gridTemplateRows: `repeat(5, 1fr)`,
-  justifyContent: "center",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
   height: PANEL_HEIGHT,
-});
-
-const amButtonState = styleVariants({
-  default: {
-    gridRow: 3,
-  },
-  PM: {
-    gridRow: 2,
-  },
-  AM: {
-    gridRow: 3,
-  },
-});
-
-const pmButtonState = styleVariants({
-  default: {
-    gridRow: 4,
-  },
-  PM: {
-    gridRow: 3,
-  },
-  AM: {
-    gridRow: 4,
-  },
 });
 
 /* -------------------------------------------------------------------------------------------------
@@ -212,6 +188,7 @@ const gradientOverlay = style({
   height: varsThemeBase.spacing[6],
   pointerEvents: "none",
   zIndex: varsThemeBase.zIndex[100],
+  width: "50%",
 });
 
 const gradientPosition = styleVariants({
@@ -254,21 +231,22 @@ const dropdownWrapper = style({
 });
 
 const dropdownScrollContainer = style({
+  position: "relative",
   display: "flex",
   flexDirection: "row",
   height: PANEL_HEIGHT,
   overflowY: "auto",
   gap: varsThemeBase.spacing[1],
-  paddingRight: varsThemeBase.spacing[2],
   scrollbarWidth: "thin",
+  scrollbarColor: `${varsThemeBase.colors.neutral.surfaceHighlight} transparent`,
 });
 
 const dropdownAmPmSticky = style({
-  position: "sticky",
-  top: "50%",
-  transform: "translateY(-50%)",
-  height: "fit-content",
-  alignSelf: "flex-start",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+  height: PANEL_HEIGHT,
 });
 
 /* -------------------------------------------------------------------------------------------------
@@ -324,8 +302,6 @@ export const timePickerStyles = {
     optionState,
     dropdownList,
     ampmContainer,
-    amButtonState,
-    pmButtonState,
     divider,
     gradientPosition,
   },

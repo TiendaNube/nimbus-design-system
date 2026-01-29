@@ -1,5 +1,5 @@
 import type { RefObject } from "react";
-import type { TimeFormat , DropdownOption , AmPm } from "../../timePicker.types";
+import type { TimeFormat, DropdownOption } from "../../timePicker.types";
 
 interface TabNavigationProps {
   onTabNext?: () => void;
@@ -83,7 +83,7 @@ export interface TimePickerColumnCombinedProps
   /**
    * Callback when a time option is selected.
    */
-  onSelectTime: (hours: number, minutes: number, ampm?: AmPm) => void;
+  onSelectTime: (hours: number, minutes: number) => void;
   /**
    * Ref to the scroll container.
    */

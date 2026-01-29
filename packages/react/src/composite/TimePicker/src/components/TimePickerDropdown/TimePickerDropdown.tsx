@@ -104,20 +104,20 @@ export const TimePickerDropdown: React.FC<TimePickerDropdownProps> = ({
           label={ariaLabel}
           scrollContainerRef={scrollContainerRef}
         />
-        {format === "12h" && (
-          <div className={classnames.dropdownAmPmSticky}>
-            <TimePickerAmPm
-              current={currentAmPm}
-              selected={selectedAmPm}
-              onSelect={setAmPm}
-              disabled={disabled}
-              amLabel={labels.amLabel || "AM"}
-              pmLabel={labels.pmLabel || "PM"}
-              selectorLabel={labels.amPmSelectorLabel || "AM/PM selector"}
-            />
-          </div>
-        )}
       </div>
+      {format === "12h" && (
+        <div className={classnames.dropdownAmPmSticky}>
+          <TimePickerAmPm
+            current={currentAmPm}
+            selected={selectedAmPm}
+            onSelect={setAmPm}
+            disabled={disabled}
+            amLabel={labels.amLabel || "AM"}
+            pmLabel={labels.pmLabel || "PM"}
+            selectorLabel={labels.amPmSelectorLabel || "AM/PM selector"}
+          />
+        </div>
+      )}
       {canScrollTop && <div className={classnames.gradientPosition.top} />}
       {canScrollBottom && (
         <div className={classnames.gradientPosition.bottom} />
