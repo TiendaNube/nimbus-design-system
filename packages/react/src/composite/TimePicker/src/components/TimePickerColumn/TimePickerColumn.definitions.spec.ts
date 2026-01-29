@@ -217,7 +217,7 @@ describe("GIVEN buildCombinedOptions", () => {
     });
   });
 
-  it("THEN onSelectTime callback passes hours, minutes and ampm", () => {
+  it("THEN onSelectTime callback passes hours and minutes", () => {
     const onSelectTime = jest.fn();
     const result = buildCombinedOptions(
       dropdownOptions,
@@ -228,6 +228,6 @@ describe("GIVEN buildCombinedOptions", () => {
 
     result[2].onSelect();
 
-    expect(onSelectTime).toHaveBeenCalledWith(2, 0, "PM");
+    expect(onSelectTime).toHaveBeenCalledWith(2, 0);
   });
 });
