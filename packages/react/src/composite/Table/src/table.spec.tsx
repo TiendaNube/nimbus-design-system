@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render, screen, act } from "@testing-library/react";
 
 import { Table } from "./Table";
 import { TableProps } from "./table.types";
@@ -349,6 +349,106 @@ describe("GIVEN <Table />", () => {
       expect(screen.getByTestId("header-1")).not.toHaveStyle({ left: "0px" });
       expect(screen.getByTestId("cell-0")).not.toHaveStyle({ left: "0px" });
       expect(screen.getByTestId("cell-1")).not.toHaveStyle({ left: "0px" });
+    });
+  });
+
+  describe("WHEN scroll position changes with fixed columns", () => {
+    beforeEach(() => {
+      global.ResizeObserver = jest.fn(() => ({
+        observe: jest.fn(),
+        unobserve: jest.fn(),
+        disconnect: jest.fn(),
+      }));
+    });
+
+    afterEach(() => {
+      jest.restoreAllMocks();
+    });
+
+    it("THEN scroll indicators should only appear after user scrolls", () => {
+      const { container } = render(
+        <Table
+          data-testid="table-element"
+          columnLayout={[
+            { id: "column-1", width: "100px", fixed: "left" },
+            { id: "column-2", grow: 1 },
+            { id: "column-3", width: "100px", fixed: "right" },
+          ]}
+        >
+          <Table.Body>
+            <Table.Row>
+              <Table.Cell column={0}>Left</Table.Cell>
+              <Table.Cell column={1}>Middle</Table.Cell>
+              <Table.Cell column={2}>Right</Table.Cell>
+            </Table.Row>
+          </Table.Body>
+        </Table>
+      );
+
+      const wrapper = container.querySelector(
+        '[class*="container__wrapper"]'
+      ) as HTMLElement;
+
+      expect(wrapper).not.toHaveAttribute("data-scroll-left");
+      expect(wrapper).not.toHaveAttribute("data-scroll-right");
+
+      Object.defineProperties(wrapper, {
+        scrollLeft: { value: 50, configurable: true },
+        scrollWidth: { value: 500, configurable: true },
+        clientWidth: { value: 300, configurable: true },
+      });
+      act(() => {
+        wrapper.dispatchEvent(new Event("scroll"));
+      });
+
+      expect(wrapper).toHaveAttribute("data-scroll-left", "true");
+      expect(wrapper).toHaveAttribute("data-scroll-right", "true");
+    });
+
+    it("THEN scroll indicators should reflect edge positions correctly", () => {
+      const { container } = render(
+        <Table
+          data-testid="table-element"
+          columnLayout={[
+            { id: "column-1", width: "100px", fixed: "left" },
+            { id: "column-2", grow: 1 },
+          ]}
+        >
+          <Table.Body>
+            <Table.Row>
+              <Table.Cell column={0}>Left</Table.Cell>
+              <Table.Cell column={1}>Content</Table.Cell>
+            </Table.Row>
+          </Table.Body>
+        </Table>
+      );
+
+      const wrapper = container.querySelector(
+        '[class*="container__wrapper"]'
+      ) as HTMLElement;
+
+      Object.defineProperties(wrapper, {
+        scrollLeft: { value: 0, configurable: true },
+        scrollWidth: { value: 500, configurable: true },
+        clientWidth: { value: 300, configurable: true },
+      });
+      act(() => {
+        wrapper.dispatchEvent(new Event("scroll"));
+      });
+
+      expect(wrapper).not.toHaveAttribute("data-scroll-left");
+      expect(wrapper).toHaveAttribute("data-scroll-right", "true");
+
+      Object.defineProperty(wrapper, "scrollLeft", {
+        value: 200,
+        configurable: true,
+      });
+      act(() => {
+        wrapper.dispatchEvent(new Event("scroll"));
+      });
+
+      expect(wrapper).toHaveAttribute("data-scroll-left", "true");
+      expect(wrapper).not.toHaveAttribute("data-scroll-right");
     });
   });
 
