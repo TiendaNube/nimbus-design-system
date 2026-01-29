@@ -5,3 +5,4 @@ declined:
   - nimbus-design-system
   - "@nimbus-ds/split-button"
   - "@nimbus-ds/stepper"
+  - "@nimbus-ds/table"
