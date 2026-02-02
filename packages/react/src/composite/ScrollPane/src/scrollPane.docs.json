@@ -1,7 +1,7 @@
 {
   "id": "scrollPane",
   "name": "ScrollPane",
-  "totalProps": 10,
+  "totalProps": 11,
   "packageName": "@nimbus-ds/scroll-pane",
   "version": "1.1.2",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/scroll-pane",
@@ -36,10 +36,7 @@
     {
       "description": "The direction of the scroll (horizontal or vertical)",
       "default": "horizontal",
-      "enum": [
-        "horizontal",
-        "vertical"
-      ],
+      "enum": ["horizontal", "vertical"],
       "type": "string",
       "title": "direction",
       "required": false
@@ -49,6 +46,14 @@
       "default": true,
       "type": "boolean",
       "title": "scrollToItemOnClick",
+      "required": false
+    },
+    {
+      "description": "Defines the scroll behavior when clicking on items\n- 'hidden-items': Only scrolls to items that are not fully visible (default)\n- 'always': Always scrolls to items, centering them in the viewport",
+      "default": "hidden-items",
+      "enum": ["always", "hidden-items"],
+      "type": "string",
+      "title": "scrollBehavior",
       "required": false
     },
     {

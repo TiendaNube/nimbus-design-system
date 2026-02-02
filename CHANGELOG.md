@@ -3,6 +3,12 @@
 This is the log of notable changes to the Design System Nimbus that are developer-facing.
 Package-specific changes not released in any package will be added here just before the release. Until then, you can find them in changelogs of the individual packages (see [packages](./packages) directory).
 
+## 2026-01-27
+
+#### 🎉 New features
+
+- Added new `fix-tests` skill to fix tests to match current code implementation. ([#414](https://github.com/TiendaNube/nimbus-design-system/pull/414) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2026-01-23
 
 - Introduced new 'changelogs' Cursor skill to help with changelog management. ([#413](https://github.com/TiendaNube/nimbus-design-system/pull/413) by [@joacotornello](https://github.com/joacotornello))
