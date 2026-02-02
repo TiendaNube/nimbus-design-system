@@ -88,25 +88,31 @@ export const TimePickerDropdown: React.FC<TimePickerDropdownProps> = ({
   const selectedAmPm = internalTimeValue?.ampm ?? currentAmPm ?? "AM";
 
   return (
-    <div className={classnames.dropdownColumnsWrapper}>
-      <div
-        className={classnames.dropdownScrollContainer}
-        ref={scrollContainerRef}
-      >
-        <TimePickerColumn
-          type="combined"
-          options={dropdownOptions}
-          currentValue={currentTimeValue}
-          selectedValue={selectedTimeValue}
-          onSelectTime={selectTime}
-          format={format}
-          step={step}
-          label={ariaLabel}
-          scrollContainerRef={scrollContainerRef}
-        />
+    <>
+      <div className={classnames.dropdownColumnsWrapper}>
+        <div
+          className={classnames.dropdownScrollContainer}
+          ref={scrollContainerRef}
+        >
+          <TimePickerColumn
+            type="combined"
+            options={dropdownOptions}
+            currentValue={currentTimeValue}
+            selectedValue={selectedTimeValue}
+            onSelectTime={selectTime}
+            format={format}
+            step={step}
+            label={ariaLabel}
+            scrollContainerRef={scrollContainerRef}
+          />
+        </div>
+        {canScrollTop && <div className={classnames.gradientPosition.top} />}
+        {canScrollBottom && (
+          <div className={classnames.gradientPosition.bottom} />
+        )}
       </div>
       {format === "12h" && (
-        <div className={classnames.dropdownAmPmSticky}>
+        <div className={classnames.dropdownAmPm}>
           <TimePickerAmPm
             current={currentAmPm}
             selected={selectedAmPm}
@@ -118,11 +124,7 @@ export const TimePickerDropdown: React.FC<TimePickerDropdownProps> = ({
           />
         </div>
       )}
-      {canScrollTop && <div className={classnames.gradientPosition.top} />}
-      {canScrollBottom && (
-        <div className={classnames.gradientPosition.bottom} />
-      )}
-    </div>
+    </>
   );
 };
 

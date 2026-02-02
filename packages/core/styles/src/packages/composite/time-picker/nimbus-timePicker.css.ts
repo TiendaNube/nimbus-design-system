@@ -188,7 +188,6 @@ const gradientOverlay = style({
   height: varsThemeBase.spacing[6],
   pointerEvents: "none",
   zIndex: varsThemeBase.zIndex[100],
-  width: "50%",
 });
 
 const gradientPosition = styleVariants({
@@ -241,7 +240,7 @@ const dropdownScrollContainer = style({
   scrollbarColor: `${varsThemeBase.colors.neutral.surfaceHighlight} transparent`,
 });
 
-const dropdownAmPmSticky = style({
+const dropdownAmPm = style({
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
@@ -295,7 +294,7 @@ export const timePickerStyles = {
     columnWrapper,
     dropdownWrapper,
     dropdownScrollContainer,
-    dropdownAmPmSticky,
+    dropdownAmPm,
     dropdownColumnsWrapper,
     scrollPaneItemWrapper,
     inputCursor,
