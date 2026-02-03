@@ -16,14 +16,28 @@ const base = vanillaStyle({
   zIndex: varsThemeBase.zIndex[800],
 });
 
-export const container = vanillaStyle({
+const containerBase = vanillaStyle({
   display: "flex",
   alignItems: "center",
   position: "fixed",
-  bottom: "2rem",
   flexDirection: "column-reverse",
   left: 0,
   right: 0,
+});
+
+export const container = styleVariants({
+  default: [
+    containerBase,
+    {
+      bottom: varsThemeBase.spacing[8],
+    },
+  ],
+  high: [
+    containerBase,
+    {
+      bottom: `calc(env(safe-area-inset-bottom, 0px) + 6rem)`,
+    },
+  ],
 });
 
 export const appearance = styleVariants({

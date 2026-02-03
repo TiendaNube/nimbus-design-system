@@ -7,7 +7,10 @@ import { Toast } from "../../Toast";
 import { ToastProviderProps } from "./toastProvider.types";
 import { uniqueId } from "./toastProvider.definitions";
 
-const ToastProvider: React.FC<ToastProviderProps> = ({ children }) => {
+const ToastProvider: React.FC<ToastProviderProps> = ({
+  children,
+  offset = "default",
+}) => {
   const [toasts, setToasts] = React.useState<ToastProps[]>([]);
 
   const addToast = useCallback(
@@ -32,7 +35,7 @@ const ToastProvider: React.FC<ToastProviderProps> = ({ children }) => {
   return (
     <ToastContext.Provider value={contextValue}>
       {children}
-      <div className={toastStyle.classnames.container}>
+      <div className={toastStyle.classnames.container[offset]}>
         {toasts.map((toast, index) => (
           <Toast key={toast.id} position={index} {...toast} />
         ))}
