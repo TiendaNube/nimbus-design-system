@@ -61,12 +61,23 @@
   "subComponents": [
     {
       "name": "Toast.Provider",
-      "totalProps": 1,
+      "totalProps": 2,
       "props": [
         {
           "type": "React.ReactNode",
           "title": "children",
           "required": true
+        },
+        {
+          "description": "Controls the vertical offset of the toast container from the bottom.\nUse \"high\" for mobile apps with bottom navigation bars.",
+          "default": "default",
+          "enum": [
+            "default",
+            "high"
+          ],
+          "type": "string",
+          "title": "offset",
+          "required": false
         }
       ]
     }
