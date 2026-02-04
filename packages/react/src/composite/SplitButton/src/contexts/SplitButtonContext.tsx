@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { PopoverProps } from "@nimbus-ds/popover";
+import { type PopoverProps } from "@nimbus-ds/popover";
 
 export interface SplitButtonContextValue {
   disabled: boolean;

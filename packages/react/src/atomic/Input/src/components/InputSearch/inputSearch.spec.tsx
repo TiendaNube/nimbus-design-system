@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 
-import { InputSearch, InputSearchProps } from "./InputSearch";
+import { InputSearch, type InputSearchProps } from "./InputSearch";
 
 const makeSut = (rest?: InputSearchProps) => {
   render(<InputSearch {...rest} data-testid="my-input" />);

@@ -3,7 +3,7 @@ import { fireEvent, render, screen } from "@testing-library/react";
 
 import { Collapsible } from "../../Collapsible";
 import { CollapsibleBody } from "./CollapsibleBody";
-import { CollapsibleBodyProps } from "./collapsibleBody.types";
+import { type CollapsibleBodyProps } from "./collapsibleBody.types";
 
 const clickMock = jest.fn();
 

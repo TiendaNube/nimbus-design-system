@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Skeleton } from "@nimbus-ds/skeleton";
-import { AlertSkeletonProps } from "./alertSkeleton.types";
+import { type AlertSkeletonProps } from "./alertSkeleton.types";
 
 const AlertSkeleton: React.FC<AlertSkeletonProps> = ({
   width,

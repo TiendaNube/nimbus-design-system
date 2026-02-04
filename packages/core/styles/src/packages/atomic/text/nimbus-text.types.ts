@@ -1,11 +1,11 @@
 import {
-  Conditions,
-  TextAlign,
-  TextDecoration,
-  WordBreak,
-  TextOverflow,
-  WhiteSpace,
-  Overflow,
+  type Conditions,
+  type TextAlign,
+  type TextDecoration,
+  type WordBreak,
+  type TextOverflow,
+  type WhiteSpace,
+  type Overflow,
 } from "../../../types";
 import { textSprinkle } from "./nimbus-text.css";
 

@@ -4,7 +4,7 @@ import { Button } from "@nimbus-ds/button";
 import { Box } from "@nimbus-ds/box";
 import { Toast } from "./Toast";
 import { useToast } from "./hooks";
-import { ToastOffset } from "./components";
+import { type ToastOffset } from "./components";
 
 const meta: Meta<typeof Toast> = {
   title: "Atomic/Toast",

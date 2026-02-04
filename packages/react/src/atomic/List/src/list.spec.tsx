@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import { List } from "./List";
-import { ListProps } from "./list.types";
+import { type ListProps } from "./list.types";
 
 const content = "myText";
 

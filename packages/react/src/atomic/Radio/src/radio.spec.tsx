@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import { Radio } from "./Radio";
-import { RadioProps } from "./radio.types";
+import { type RadioProps } from "./radio.types";
 
 const makeSut = (props: RadioProps) => {
   render(<Radio {...props} data-testid="radio-input" />);

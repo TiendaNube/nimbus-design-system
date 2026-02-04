@@ -1,5 +1,5 @@
-import { HTMLAttributes, ReactNode } from "react";
-import { PopoverSprinkle } from "@nimbus-ds/styles";
+import { type HTMLAttributes, type ReactNode } from "react";
+import { type PopoverSprinkle } from "@nimbus-ds/styles";
 
 type PopoverPlacement =
   | "top"

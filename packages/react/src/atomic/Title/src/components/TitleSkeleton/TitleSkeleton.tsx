@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Skeleton } from "@nimbus-ds/skeleton";
-import { TitleSkeletonProps } from "./titleSkeleton.types";
+import { type TitleSkeletonProps } from "./titleSkeleton.types";
 import { sizes } from "./titleSkeleton.definitions";
 
 const TitleSkeleton: React.FC<TitleSkeletonProps> = ({

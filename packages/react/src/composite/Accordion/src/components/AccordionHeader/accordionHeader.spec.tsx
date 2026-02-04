@@ -3,7 +3,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 
 import { Accordion } from "../../Accordion";
 import { AccordionHeader } from "./AccordionHeader";
-import { AccordionHeaderProps } from "./accordionHeader.types";
+import { type AccordionHeaderProps } from "./accordionHeader.types";
 
 const makeSut = (props?: AccordionHeaderProps, selectedDefault = "0") => {
   render(

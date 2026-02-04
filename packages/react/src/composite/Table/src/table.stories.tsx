@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Button } from "@nimbus-ds/button";
 import { Table } from "./Table";
-import { TableColumnLayout } from "./table.types";
+import { type TableColumnLayout } from "./table.types";
 
 const meta: Meta<typeof Table> = {
   title: "Composite/Table",

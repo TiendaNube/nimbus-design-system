@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { TableContextValue } from "./tableContext.types";
+import { type TableContextValue } from "./tableContext.types";
 
 /**
  * Context for Table to communicate column layout constraints with TableCell components

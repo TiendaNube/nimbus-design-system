@@ -3,18 +3,18 @@ import React, {
   useRef,
   useEffect,
   useImperativeHandle,
-  HTMLAttributes,
-  ForwardedRef,
+  type HTMLAttributes,
+  type ForwardedRef,
 } from "react";
 import {
-  PolymorphicForwardRefComponent,
+  type PolymorphicForwardRefComponent,
   useRefObjectAsForwardedRef,
 } from "@nimbus-ds/typings";
 import { segmentedControl } from "@nimbus-ds/styles";
 
 import {
-  SegmentedControlButtonComponents,
-  SegmentedControlButtonProps,
+  type SegmentedControlButtonComponents,
+  type SegmentedControlButtonProps,
 } from "./SegmentedControlButton.types";
 import { SegmentedControlButtonSkeleton } from "./components/SegmentedControlButtonSkeleton/SegmentedControlButtonSkeleton";
 import { useSegmentedControlContext } from "../../contexts/SegmentedControlContext";

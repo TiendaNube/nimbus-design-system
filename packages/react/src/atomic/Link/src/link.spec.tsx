@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 
-import { Link, LinkProps } from "./Link";
+import { Link, type LinkProps } from "./Link";
 
 const makeSut = (rest: LinkProps & { as?: "a" | "button"; href?: string }) => {
   render(<Link as={rest.as || "a"} {...rest} data-testid="link-element" />);
