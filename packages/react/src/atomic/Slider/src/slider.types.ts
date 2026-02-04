@@ -41,6 +41,21 @@ interface SliderCommonProperties {
    */
   disabled?: boolean;
   /**
+   * Whether to show min/max labels below the slider.
+   * @default false
+   */
+  showLabels?: boolean;
+  /**
+   * Custom label for the minimum value.
+   * If not provided, displays the min value.
+   */
+  minLabel?: string;
+  /**
+   * Custom label for the maximum value.
+   * If not provided, displays the max value.
+   */
+  maxLabel?: string;
+  /**
    * This is an attribute used to identify a DOM node for testing purposes.
    */
   "data-testid"?: string;

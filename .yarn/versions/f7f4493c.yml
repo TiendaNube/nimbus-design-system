@@ -1,0 +1,6 @@
+releases:
+  "@nimbus-ds/slider": minor
+  "@nimbus-ds/styles": minor
+
+declined:
+  - nimbus-design-system

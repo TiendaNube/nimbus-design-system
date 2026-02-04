@@ -60,6 +60,7 @@ const meta: Meta<typeof RangeWrapper> = {
     step: 1,
     appearance: "primary",
     disabled: false,
+    showLabels: false,
   },
   argTypes: {
     min: {
@@ -91,6 +92,18 @@ const meta: Meta<typeof RangeWrapper> = {
       control: { type: "boolean" },
       description: "Whether the slider is disabled",
     },
+    showLabels: {
+      control: { type: "boolean" },
+      description: "Whether to show min/max labels below the slider",
+    },
+    minLabel: {
+      control: { type: "text" },
+      description: "Custom label for the minimum value",
+    },
+    maxLabel: {
+      control: { type: "text" },
+      description: "Custom label for the maximum value",
+    },
   },
 };
 
@@ -102,6 +115,20 @@ export const basic: Story = {};
 export const disabled: Story = {
   args: {
     disabled: true,
+  },
+};
+
+export const withLabels: Story = {
+  args: {
+    showLabels: true,
+  },
+};
+
+export const withCustomLabels: Story = {
+  args: {
+    showLabels: true,
+    minLabel: "Min",
+    maxLabel: "Max",
   },
 };
 

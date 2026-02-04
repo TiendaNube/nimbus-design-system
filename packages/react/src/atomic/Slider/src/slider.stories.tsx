@@ -40,6 +40,7 @@ const meta: Meta<typeof Basic> = {
     value: 50,
     step: 1,
     appearance: "primary",
+    showLabels: false,
   },
   argTypes: {
     min: {
@@ -67,6 +68,18 @@ const meta: Meta<typeof Basic> = {
       control: { type: "boolean" },
       description: "Whether the slider is disabled",
     },
+    showLabels: {
+      control: { type: "boolean" },
+      description: "Whether to show min/max labels below the slider",
+    },
+    minLabel: {
+      control: { type: "text" },
+      description: "Custom label for the minimum value",
+    },
+    maxLabel: {
+      control: { type: "text" },
+      description: "Custom label for the maximum value",
+    },
   },
 };
 
@@ -88,6 +101,20 @@ export const customStep: Story = {
     max: 1000,
     value: 500,
     step: 50,
+  },
+};
+
+export const withLabels: Story = {
+  args: {
+    showLabels: true,
+  },
+};
+
+export const withCustomLabels: Story = {
+  args: {
+    showLabels: true,
+    minLabel: "Low",
+    maxLabel: "High",
   },
 };
 

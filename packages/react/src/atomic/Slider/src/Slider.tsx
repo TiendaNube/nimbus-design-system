@@ -4,7 +4,7 @@ import { slider } from "@nimbus-ds/styles";
 
 import type { SliderBaseProps } from "./slider.types";
 import { useSingleSliderDrag } from "./hooks";
-import { SliderThumb, SliderTrack } from "./components";
+import { SliderThumb, SliderTrack, SliderLabels } from "./components";
 import {
   SLIDER_DEFAULTS,
   calculatePercentage,
@@ -43,6 +43,9 @@ const SliderBase = forwardRef<HTMLDivElement, SliderBaseProps>(
       step = SLIDER_DEFAULTS.step,
       appearance = SLIDER_DEFAULTS.appearance,
       disabled = SLIDER_DEFAULTS.disabled,
+      showLabels = false,
+      minLabel,
+      maxLabel,
       onChange,
       onChangeEnd,
       ariaLabel,
@@ -141,6 +144,15 @@ const SliderBase = forwardRef<HTMLDivElement, SliderBaseProps>(
             />
           </SliderTrack>
         </div>
+        {showLabels && (
+          <SliderLabels
+            min={min}
+            max={max}
+            minLabel={minLabel}
+            maxLabel={maxLabel}
+            dataTestId={dataTestId}
+          />
+        )}
       </div>
     );
   }
