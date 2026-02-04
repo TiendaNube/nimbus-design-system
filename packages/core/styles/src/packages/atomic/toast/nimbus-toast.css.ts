@@ -35,7 +35,7 @@ export const container = styleVariants({
   high: [
     containerBase,
     {
-      bottom: `calc(env(safe-area-inset-bottom, 0px) + 6rem)`,
+      bottom: `calc(env(safe-area-inset-bottom, 0px) + 5rem)`,
     },
   ],
 });
