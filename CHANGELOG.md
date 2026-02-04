@@ -3,6 +3,20 @@
 This is the log of notable changes to the Design System Nimbus that are developer-facing.
 Package-specific changes not released in any package will be added here just before the release. Until then, you can find them in changelogs of the individual packages (see [packages](./packages) directory).
 
+## 2026-02-04
+
+#### 🎉 New features
+
+- Added min/max labels support to Slider component with `showLabels`, `minLabel`, and `maxLabel` props. ([#417](https://github.com/TiendaNube/nimbus-design-system/pull/417) by [@noecondoleo](https://github.com/noecondoleo))
+
+#### 🎨 Visual changes
+
+- Updated Slider component visual design to match latest Figma specifications, including track height, thumb styling, and spacing adjustments. ([#417](https://github.com/TiendaNube/nimbus-design-system/pull/417) by [@noecondoleo](https://github.com/noecondoleo))
+
+#### 🐛 Bug fixes
+
+- Fixed Slider disabled fill not rendering correctly. ([#417](https://github.com/TiendaNube/nimbus-design-system/pull/417) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-01-23
 
 - Introduced new 'changelogs' Cursor skill to help with changelog management. ([#413](https://github.com/TiendaNube/nimbus-design-system/pull/413) by [@joacotornello](https://github.com/joacotornello))

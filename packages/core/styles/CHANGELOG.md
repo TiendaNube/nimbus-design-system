@@ -2,6 +2,24 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2026-02-04 `9.55.0`
+
+#### 🎨 Visual changes
+
+- `Slider`: Updated track height from 8px to 4px according to Figma specs. ([#417](https://github.com/TiendaNube/nimbus-design-system/pull/417) by [@noecondoleo](https://github.com/noecondoleo))
+- `Slider`: Updated thumb design to white background with 2px blue border (was solid blue). ([#417](https://github.com/TiendaNube/nimbus-design-system/pull/417) by [@noecondoleo](https://github.com/noecondoleo))
+- `Slider`: Updated disabled thumb to white background with 2px gray border. ([#417](https://github.com/TiendaNube/nimbus-design-system/pull/417) by [@noecondoleo](https://github.com/noecondoleo))
+- `Slider`: Updated disabled fill color to neutral.surfaceHighlight for better contrast. ([#417](https://github.com/TiendaNube/nimbus-design-system/pull/417) by [@noecondoleo](https://github.com/noecondoleo))
+- `Slider`: Updated spacing between slider track and bottom labels to 12px. ([#417](https://github.com/TiendaNube/nimbus-design-system/pull/417) by [@noecondoleo](https://github.com/noecondoleo))
+
+#### 🎉 New features
+
+- `Slider`: Added styles for new `labelsContainer` to support min/max labels rendering. ([#417](https://github.com/TiendaNube/nimbus-design-system/pull/417) by [@noecondoleo](https://github.com/noecondoleo))
+
+#### 🐛 Bug fixes
+
+- `Slider`: Fixed disabled fill not rendering correctly by properly extending baseFill styles. ([#417](https://github.com/TiendaNube/nimbus-design-system/pull/417) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-01-29 `9.54.2`
 
 #### 🐛 Bug fixes
