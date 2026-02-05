@@ -118,20 +118,6 @@ export const disabled: Story = {
   },
 };
 
-export const withLabels: Story = {
-  args: {
-    showLabels: true,
-  },
-};
-
-export const withCustomLabels: Story = {
-  args: {
-    showLabels: true,
-    minLabel: "Min",
-    maxLabel: "Max",
-  },
-};
-
 const PriceRangeFilter: React.FC<SliderRangeBaseProps> = ({
   min = 0,
   max = 1000,
@@ -224,6 +210,59 @@ export const priceRangeExample: Story = {
     minValue: 150,
     maxValue: 850,
     step: 10,
+    appearance: "primary",
+  },
+};
+
+const AgeRangeFilter: React.FC<SliderRangeBaseProps> = ({
+  min = 18,
+  max = 65,
+  step = 1,
+  minValue: minValueProp = 25,
+  maxValue: maxValueProp = 45,
+  appearance = "primary",
+}) => {
+  const [minAge, setMinAge] = useState(minValueProp);
+  const [maxAge, setMaxAge] = useState(maxValueProp);
+
+  useEffect(() => {
+    setMinAge(minValueProp);
+  }, [minValueProp]);
+
+  useEffect(() => {
+    setMaxAge(maxValueProp);
+  }, [maxValueProp]);
+
+  return (
+    <Box display="flex" flexDirection="column" gap="2" maxWidth="400px">
+      <Title as="h4">Filter by age</Title>
+      <Slider.Range
+        min={min}
+        max={max}
+        minValue={minAge}
+        maxValue={maxAge}
+        step={step}
+        appearance={appearance}
+        onChange={(newMin, newMax) => {
+          setMinAge(newMin);
+          setMaxAge(newMax);
+        }}
+        showLabels
+        minLabel="Min age"
+        maxLabel="Max age"
+      />
+    </Box>
+  );
+};
+
+export const withLabelsExample: Story = {
+  render: (args) => <AgeRangeFilter {...args} />,
+  args: {
+    min: 18,
+    max: 65,
+    minValue: 25,
+    maxValue: 45,
+    step: 1,
     appearance: "primary",
   },
 };

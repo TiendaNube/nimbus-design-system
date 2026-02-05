@@ -104,20 +104,6 @@ export const customStep: Story = {
   },
 };
 
-export const withLabels: Story = {
-  args: {
-    showLabels: true,
-  },
-};
-
-export const withCustomLabels: Story = {
-  args: {
-    showLabels: true,
-    minLabel: "Low",
-    maxLabel: "High",
-  },
-};
-
 const VolumeControl: React.FC<SliderBaseProps> = ({
   min = 0,
   max = 100,
@@ -163,6 +149,48 @@ export const volumeControlExample: Story = {
     min: 0,
     max: 100,
     value: 65,
+    step: 1,
+    appearance: "primary",
+  },
+};
+
+const BrightnessControl: React.FC<SliderBaseProps> = ({
+  min = 0,
+  max = 100,
+  step = 1,
+  value: valueProp = 75,
+  appearance = "primary",
+}) => {
+  const [brightness, setBrightness] = useState(valueProp);
+
+  useEffect(() => {
+    setBrightness(valueProp);
+  }, [valueProp]);
+
+  return (
+    <Box display="flex" flexDirection="column" gap="2" maxWidth="300px">
+      <Text fontWeight="medium">Brightness</Text>
+      <Slider
+        min={min}
+        max={max}
+        step={step}
+        value={brightness}
+        appearance={appearance}
+        onChange={setBrightness}
+        showLabels
+        minLabel="Low"
+        maxLabel="High"
+      />
+    </Box>
+  );
+};
+
+export const withLabelsExample: Story = {
+  render: (args) => <BrightnessControl {...args} />,
+  args: {
+    min: 0,
+    max: 100,
+    value: 75,
     step: 1,
     appearance: "primary",
   },
