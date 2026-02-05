@@ -40,7 +40,6 @@ const meta: Meta<typeof Basic> = {
     value: 50,
     step: 1,
     appearance: "primary",
-    showLabels: false,
   },
   argTypes: {
     min: {
@@ -67,18 +66,6 @@ const meta: Meta<typeof Basic> = {
     disabled: {
       control: { type: "boolean" },
       description: "Whether the slider is disabled",
-    },
-    showLabels: {
-      control: { type: "boolean" },
-      description: "Whether to show min/max labels below the slider",
-    },
-    minLabel: {
-      control: { type: "text" },
-      description: "Custom label for the minimum value",
-    },
-    maxLabel: {
-      control: { type: "text" },
-      description: "Custom label for the maximum value",
     },
   },
 };
@@ -177,9 +164,6 @@ const BrightnessControl: React.FC<SliderBaseProps> = ({
         value={brightness}
         appearance={appearance}
         onChange={setBrightness}
-        showLabels
-        minLabel="Low"
-        maxLabel="High"
       />
     </Box>
   );

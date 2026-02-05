@@ -4,7 +4,7 @@ import { slider } from "@nimbus-ds/styles";
 
 import type { SliderRangeBaseProps } from "./slider.types";
 import { useSliderValues, useSliderDrag } from "./hooks";
-import { SliderThumb, SliderTrack, SliderLabels } from "./components";
+import { SliderThumb, SliderTrack } from "./components";
 import { SLIDER_DEFAULTS, calculatePercentage } from "./slider.definitions";
 
 /**
@@ -31,16 +31,13 @@ export const SliderRange = forwardRef<HTMLDivElement, SliderRangeBaseProps>(
       step = SLIDER_DEFAULTS.step,
       appearance = SLIDER_DEFAULTS.appearance,
       disabled = SLIDER_DEFAULTS.disabled,
-      showLabels = false,
-      minLabel,
-      maxLabel,
       onChange,
       onMinChange,
       onMaxChange,
       onChangeEnd,
       minAriaLabel,
       maxAriaLabel,
-      "data-testid": dataTestId
+      "data-testid": dataTestId,
     },
     ref
   ) => {
@@ -56,7 +53,7 @@ export const SliderRange = forwardRef<HTMLDivElement, SliderRangeBaseProps>(
         onChange,
         onMinChange,
         onMaxChange,
-        onChangeEnd
+        onChangeEnd,
       });
 
     const {
@@ -64,7 +61,7 @@ export const SliderRange = forwardRef<HTMLDivElement, SliderRangeBaseProps>(
       dragMaxValue,
       handleTrackMouseDown,
       handleMinMouseDown,
-      handleMaxMouseDown
+      handleMaxMouseDown,
     } = useSliderDrag({
       trackRef,
       min,
@@ -74,7 +71,7 @@ export const SliderRange = forwardRef<HTMLDivElement, SliderRangeBaseProps>(
       localMinValue,
       localMaxValue,
       clampValue,
-      updateValues
+      updateValues,
     });
 
     const displayMinValue = dragMinValue ?? localMinValue;
@@ -183,15 +180,6 @@ export const SliderRange = forwardRef<HTMLDivElement, SliderRangeBaseProps>(
             />
           </SliderTrack>
         </div>
-        {showLabels && (
-          <SliderLabels
-            min={min}
-            max={max}
-            minLabel={minLabel}
-            maxLabel={maxLabel}
-            dataTestId={dataTestId}
-          />
-        )}
       </div>
     );
   }

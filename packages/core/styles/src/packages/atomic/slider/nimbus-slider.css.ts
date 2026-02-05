@@ -197,10 +197,3 @@ export const label = style({
   color: varsThemeBase.colors.neutral.textLow,
   fontFamily: varsThemeBase.fontFamily.sans,
 });
-
-export const labelsContainer = style({
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "space-between",
-  width: "100%",
-});
