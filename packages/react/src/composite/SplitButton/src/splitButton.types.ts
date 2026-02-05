@@ -1,11 +1,11 @@
-import { ReactNode } from "react";
-import { BoxProps } from "@nimbus-ds/box";
+import { type ReactNode } from "react";
+import { type BoxProps } from "@nimbus-ds/box";
 
-import { PopoverProps } from "@nimbus-ds/popover";
+import { type PopoverProps } from "@nimbus-ds/popover";
 import {
-  SplitButtonAction,
-  SplitButtonPrimary,
-  SplitButtonSecondary,
+  type SplitButtonAction,
+  type SplitButtonPrimary,
+  type SplitButtonSecondary,
 } from "./components";
 
 export interface SplitButtonComponents {

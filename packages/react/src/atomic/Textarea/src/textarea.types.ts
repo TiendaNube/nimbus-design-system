@@ -1,5 +1,5 @@
-import { TextareaHTMLAttributes } from "react";
-import { TextareaSkeleton } from "./components";
+import { type TextareaHTMLAttributes } from "react";
+import { type TextareaSkeleton } from "./components";
 
 export interface TextareaComponents {
   Skeleton: typeof TextareaSkeleton;

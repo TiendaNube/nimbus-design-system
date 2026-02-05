@@ -1,9 +1,9 @@
 import React, { useEffect, useMemo, useState } from "react";
 
 import {
-  CollapsibleProperties,
-  CollapsibleBaseProps,
-  CollapsibleComponents,
+  type CollapsibleProperties,
+  type CollapsibleBaseProps,
+  type CollapsibleComponents,
 } from "./collapsible.types";
 import { CollapsibleBody } from "./components/CollapsibleBody/CollapsibleBody";
 import { CollapsibleItem } from "./components/CollapsibleItem/CollapsibleItem";

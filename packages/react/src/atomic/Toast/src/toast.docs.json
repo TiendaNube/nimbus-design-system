@@ -3,7 +3,7 @@
   "name": "Toast",
   "totalProps": 6,
   "packageName": "@nimbus-ds/toast",
-  "version": "2.4.1",
+  "version": "2.5.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/toast",
   "props": [
     {
@@ -61,12 +61,23 @@
   "subComponents": [
     {
       "name": "Toast.Provider",
-      "totalProps": 1,
+      "totalProps": 2,
       "props": [
         {
           "type": "React.ReactNode",
           "title": "children",
           "required": true
+        },
+        {
+          "description": "Controls the vertical offset of the toast container from the bottom.\nUse \"high\" for mobile apps with bottom navigation bars.",
+          "default": "default",
+          "enum": [
+            "default",
+            "high"
+          ],
+          "type": "string",
+          "title": "offset",
+          "required": false
         }
       ]
     }

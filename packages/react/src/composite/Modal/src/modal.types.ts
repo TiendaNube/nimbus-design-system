@@ -1,7 +1,11 @@
-import { HTMLAttributes, ReactNode } from "react";
-import { modal, ModalSprinkle } from "@nimbus-ds/styles";
-import { CloseOnOutsidePress } from "@common/event-handling";
-import { ModalBody, ModalFooter, ModalHeader } from "./components";
+import { type HTMLAttributes, type ReactNode } from "react";
+import { type modal, type ModalSprinkle } from "@nimbus-ds/styles";
+import { type CloseOnOutsidePress } from "@common/event-handling";
+import {
+  type ModalBody,
+  type ModalFooter,
+  type ModalHeader,
+} from "./components";
 
 export interface ModalComponents {
   Body: typeof ModalBody;

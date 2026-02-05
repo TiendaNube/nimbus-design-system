@@ -1,5 +1,5 @@
-import { ReactNode, HTMLAttributes } from "react";
-import { TagSkeleton } from "./components";
+import { type ReactNode, type HTMLAttributes } from "react";
+import { type TagSkeleton } from "./components";
 
 export interface TagComponents {
   Skeleton: typeof TagSkeleton;

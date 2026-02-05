@@ -1,5 +1,5 @@
-import { ReactNode, HTMLAttributes } from "react";
-import { TableSprinkle } from "@nimbus-ds/styles";
+import { type ReactNode, type HTMLAttributes } from "react";
+import { type TableSprinkle } from "@nimbus-ds/styles";
 
 export interface TableRowProperties extends TableSprinkle {
   /**

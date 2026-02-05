@@ -14,6 +14,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 #### 🎉 New features
 
+- `Toast`: Added `offset` style variants to support different vertical positioning for mobile apps with bottom navigation bars. ([#416](https://github.com/TiendaNube/nimbus-design-system/pull/416) by [@joacotornello](https://github.com/joacotornello))
 - `Slider`: Added styles for new `labelsContainer` to support min/max labels rendering. ([#417](https://github.com/TiendaNube/nimbus-design-system/pull/417) by [@noecondoleo](https://github.com/noecondoleo))
 
 #### 🐛 Bug fixes

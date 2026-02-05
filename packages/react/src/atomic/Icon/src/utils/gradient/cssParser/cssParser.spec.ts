@@ -1,5 +1,5 @@
 import { parseLinearGradient } from "./cssParser";
-import { GradientStop } from "../types";
+import { type GradientStop } from "../types";
 
 describe("cssParser utilities", () => {
   describe("parseLinearGradient", () => {
