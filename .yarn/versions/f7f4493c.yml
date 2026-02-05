@@ -1,6 +1,8 @@
 releases:
-  "@nimbus-ds/slider": minor
-  "@nimbus-ds/styles": minor
+  "@nimbus-ds/slider": patch
+  "@nimbus-ds/styles": patch
 
 declined:
   - nimbus-design-system
+  - "@nimbus-ds/split-button"
+  - "@nimbus-ds/stepper"
