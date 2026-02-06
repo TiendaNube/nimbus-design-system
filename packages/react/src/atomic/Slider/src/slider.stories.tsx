@@ -140,3 +140,52 @@ export const volumeControlExample: Story = {
     appearance: "primary",
   },
 };
+
+const BrightnessControl: React.FC<SliderBaseProps> = ({
+  min = 0,
+  max = 100,
+  step = 1,
+  value: valueProp = 75,
+  appearance = "primary",
+}) => {
+  const [brightness, setBrightness] = useState(valueProp);
+
+  useEffect(() => {
+    setBrightness(valueProp);
+  }, [valueProp]);
+
+  return (
+    <Box display="flex" flexDirection="column" maxWidth="300px">
+      <Box marginBottom="2">
+        <Text fontWeight="medium">Brightness</Text>
+      </Box>
+      <Slider
+        min={min}
+        max={max}
+        step={step}
+        value={brightness}
+        appearance={appearance}
+        onChange={setBrightness}
+      />
+      <Box display="flex" justifyContent="space-between">
+        <Text fontSize="caption" color="neutral-textLow">
+          Low
+        </Text>
+        <Text fontSize="caption" color="neutral-textLow">
+          High
+        </Text>
+      </Box>
+    </Box>
+  );
+};
+
+export const withLabelsExample: Story = {
+  render: (args) => <BrightnessControl {...args} />,
+  args: {
+    min: 0,
+    max: 100,
+    value: 75,
+    step: 1,
+    appearance: "primary",
+  },
+};
