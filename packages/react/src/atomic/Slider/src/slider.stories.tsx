@@ -155,8 +155,10 @@ const BrightnessControl: React.FC<SliderBaseProps> = ({
   }, [valueProp]);
 
   return (
-    <Box display="flex" flexDirection="column" gap="2" maxWidth="300px">
-      <Text fontWeight="medium">Brightness</Text>
+    <Box display="flex" flexDirection="column" maxWidth="300px">
+      <Box marginBottom="2">
+        <Text fontWeight="medium">Brightness</Text>
+      </Box>
       <Slider
         min={min}
         max={max}

@@ -221,8 +221,10 @@ const AgeRangeFilter: React.FC<SliderRangeBaseProps> = ({
   }, [maxValueProp]);
 
   return (
-    <Box display="flex" flexDirection="column" gap="2" maxWidth="400px">
-      <Title as="h4">Filter by age</Title>
+    <Box display="flex" flexDirection="column" maxWidth="400px">
+      <Box marginBottom="2">
+        <Title as="h4">Filter by age</Title>
+      </Box>
       <Slider.Range
         min={min}
         max={max}
