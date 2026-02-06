@@ -11,16 +11,13 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 - `Slider`: Updated disabled thumb to white background with 2px gray border. ([#417](https://github.com/TiendaNube/nimbus-design-system/pull/417) by [@noecondoleo](https://github.com/noecondoleo))
 - `Slider`: Updated disabled fill color to neutral.surfaceHighlight for better contrast. ([#417](https://github.com/TiendaNube/nimbus-design-system/pull/417) by [@noecondoleo](https://github.com/noecondoleo))
 - `Slider`: Updated spacing between slider track and bottom labels to 12px. ([#417](https://github.com/TiendaNube/nimbus-design-system/pull/417) by [@noecondoleo](https://github.com/noecondoleo))
+- `Slider`: Fixed disabled fill not rendering correctly by properly extending baseFill styles. ([#417](https://github.com/TiendaNube/nimbus-design-system/pull/417) by [@noecondoleo](https://github.com/noecondoleo))
 
 ## 2026-02-04 `9.55.0`
 
 #### 🎉 New features
 
 - `Toast`: Added `offset` style variants to support different vertical positioning for mobile apps with bottom navigation bars. ([#416](https://github.com/TiendaNube/nimbus-design-system/pull/416) by [@joacotornello](https://github.com/joacotornello))
-
-#### 🐛 Bug fixes
-
-- `Slider`: Fixed disabled fill not rendering correctly by properly extending baseFill styles. ([#417](https://github.com/TiendaNube/nimbus-design-system/pull/417) by [@noecondoleo](https://github.com/noecondoleo))
 
 ## 2026-01-29 `9.54.2`
 
