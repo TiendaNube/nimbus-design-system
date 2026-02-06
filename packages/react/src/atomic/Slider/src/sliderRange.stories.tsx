@@ -235,6 +235,14 @@ const AgeRangeFilter: React.FC<SliderRangeBaseProps> = ({
           setMaxAge(newMax);
         }}
       />
+      <Box display="flex" justifyContent="space-between">
+        <Text fontSize="caption" color="neutral-textLow">
+          Min age
+        </Text>
+        <Text fontSize="caption" color="neutral-textLow">
+          Max age
+        </Text>
+      </Box>
     </Box>
   );
 };

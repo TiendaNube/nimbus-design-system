@@ -165,6 +165,14 @@ const BrightnessControl: React.FC<SliderBaseProps> = ({
         appearance={appearance}
         onChange={setBrightness}
       />
+      <Box display="flex" justifyContent="space-between">
+        <Text fontSize="caption" color="neutral-textLow">
+          Low
+        </Text>
+        <Text fontSize="caption" color="neutral-textLow">
+          High
+        </Text>
+      </Box>
     </Box>
   );
 };
