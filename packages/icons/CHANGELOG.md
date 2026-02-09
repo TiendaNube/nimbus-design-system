@@ -2,7 +2,7 @@
 
 Nimbus-icons is an open source icon system built by Nuvemshop / Tiendanube.
 
-## 2026-02-06 `1.17.0`
+## 2026-02-06 `1.17.0` (minor version bump)
 
 #### 🎉 New features
 
