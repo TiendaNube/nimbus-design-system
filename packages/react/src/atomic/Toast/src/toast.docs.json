@@ -21,7 +21,12 @@
     {
       "description": "Change the visual style of the toast.",
       "default": "primary",
-      "enum": ["danger", "primary", "progress", "success"],
+      "enum": [
+        "danger",
+        "primary",
+        "progress",
+        "success"
+      ],
       "type": "string",
       "title": "type",
       "required": false
@@ -29,7 +34,11 @@
     {
       "description": "The time in milliseconds that the toast message should persist.",
       "default": 4000,
-      "enum": [16000, 4000, 8000],
+      "enum": [
+        16000,
+        4000,
+        8000
+      ],
       "type": "number",
       "title": "duration",
       "required": false
@@ -62,7 +71,10 @@
         {
           "description": "Controls the vertical offset of the toast container from the bottom.\nUse \"high\" for mobile apps with bottom navigation bars.",
           "default": "default",
-          "enum": ["default", "high"],
+          "enum": [
+            "default",
+            "high"
+          ],
           "type": "string",
           "title": "offset",
           "required": false

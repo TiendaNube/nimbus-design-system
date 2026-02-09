@@ -36,7 +36,10 @@
     {
       "description": "The direction of the scroll (horizontal or vertical)",
       "default": "horizontal",
-      "enum": ["horizontal", "vertical"],
+      "enum": [
+        "horizontal",
+        "vertical"
+      ],
       "type": "string",
       "title": "direction",
       "required": false
@@ -51,7 +54,10 @@
     {
       "description": "Defines the scroll behavior when clicking on items\n- 'hidden-items': Only scrolls to items that are not fully visible (default)\n- 'always': Always scrolls to items, centering them in the viewport",
       "default": "hidden-items",
-      "enum": ["always", "hidden-items"],
+      "enum": [
+        "always",
+        "hidden-items"
+      ],
       "type": "string",
       "title": "scrollBehavior",
       "required": false
