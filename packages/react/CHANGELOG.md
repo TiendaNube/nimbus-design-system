@@ -3,6 +3,13 @@
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories
 every day, with simplicity, accessibility, consistency and performance.
 
+## 2026-02-09 `5.51.0`
+
+#### 🎉 New features
+
+- `ScrollPane`: Added `scrollContainerRef` property to allow passing a ref to the scroll container. ([#414](https://github.com/TiendaNube/nimbus-design-system/pull/414) by [@joacotornello](https://github.com/joacotornello))
+- `TimePicker`: New `TimePicker` component for time selection with scroll and dropdown modes, 12h and 24h formats, AM/PM toggle, time constraints, step intervals, keyboard navigation, and full accessibility support. ([#414](https://github.com/TiendaNube/nimbus-design-system/pull/414) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2026-02-03 `5.50.0`
 
 #### 🎉 New features

@@ -27,7 +27,12 @@ const ScrollPaneItem: React.FC<ScrollPaneItemProps> = ({
       const item = event.currentTarget;
 
       if (container && item && context.direction) {
-        scrollItemIntoView(container, item, context.direction);
+        scrollItemIntoView(
+          container,
+          item,
+          context.direction,
+          context.scrollBehavior
+        );
       }
     }
   };

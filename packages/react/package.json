@@ -209,6 +209,10 @@
     "./Tabs": {
       "import": "./dist/Tabs/index.js",
       "require": "./dist/Tabs/index.js"
+    },
+    "./TimePicker": {
+      "import": "./dist/TimePicker/index.js",
+      "require": "./dist/TimePicker/index.js"
     }
   }
 }

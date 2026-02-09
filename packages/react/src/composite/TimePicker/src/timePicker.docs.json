@@ -1,0 +1,174 @@
+{
+  "id": "timePicker",
+  "name": "TimePicker",
+  "totalProps": 16,
+  "packageName": "@nimbus-ds/time-picker",
+  "version": "0.0.0",
+  "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/time-picker",
+  "props": [
+    {
+      "description": "Display mode for the time picker panel.\n- \"scroll\": Shows a scroll-based wheel picker with separate hour/minute columns.\n- \"dropdown\": Shows a single scrollable list of time options.",
+      "default": "scroll",
+      "enum": ["dropdown", "scroll"],
+      "type": "string",
+      "title": "mode",
+      "required": false
+    },
+    {
+      "description": "Current time value (HH:mm string format or Date object).\nFor 12h format, use \"HH:mm AM/PM\" or just \"HH:mm\" (will default to AM).",
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date-time"
+        },
+        {
+          "type": ["null", "string"]
+        }
+      ],
+      "title": "value",
+      "required": false
+    },
+    {
+      "description": "Callback fired when the time changes.",
+      "type": "object",
+      "additionalProperties": false,
+      "propertyOrder": [],
+      "title": "onChange",
+      "required": false
+    },
+    {
+      "description": "Time format: 12-hour with AM/PM or 24-hour.",
+      "default": "24h",
+      "enum": ["12h", "24h"],
+      "type": "string",
+      "title": "format",
+      "required": false
+    },
+    {
+      "description": "Step interval in minutes for the time picker.\nFor scroll mode: controls minute increments in the minutes column.\nFor dropdown mode: controls the time options shown in the list.\nCommon values: 1, 15, 30, 60.",
+      "default": "1 for scroll picker, 30 for dropdown",
+      "type": "number",
+      "title": "step",
+      "required": false
+    },
+    {
+      "description": "Whether the picker is disabled.",
+      "default": false,
+      "type": "boolean",
+      "title": "disabled",
+      "required": false
+    },
+    {
+      "description": "Placeholder text for the input field.",
+      "default": "Select time",
+      "type": "string",
+      "title": "placeholder",
+      "required": false
+    },
+    {
+      "description": "Controls the open state of the picker panel (controlled mode).",
+      "type": "boolean",
+      "title": "open",
+      "required": false
+    },
+    {
+      "description": "Callback fired when the panel open state changes.",
+      "type": "object",
+      "additionalProperties": false,
+      "propertyOrder": [],
+      "title": "onOpenChange",
+      "required": false
+    },
+    {
+      "description": "Accessible label for the time picker input.",
+      "type": "string",
+      "title": "aria-label",
+      "required": false
+    },
+    {
+      "description": "ID of an element that labels the time picker.",
+      "type": "string",
+      "title": "aria-labelledby",
+      "required": false
+    },
+    {
+      "description": "ID of an element that describes the time picker.",
+      "type": "string",
+      "title": "aria-describedby",
+      "required": false
+    },
+    {
+      "description": "Name attribute for the hidden input (for form submission).",
+      "type": "string",
+      "title": "name",
+      "required": false
+    },
+    {
+      "description": "Whether the input is required.",
+      "default": false,
+      "type": "boolean",
+      "title": "required",
+      "required": false
+    },
+    {
+      "description": "ID attribute for the input element.",
+      "type": "string",
+      "title": "id",
+      "required": false
+    },
+    {
+      "description": "Translatable labels for the TimePicker component.\nAll texts can be customized for localization.",
+      "type": "object",
+      "properties": {
+        "hoursLabel": {
+          "description": "Label for the hours column in 24h format.",
+          "default": "Hours",
+          "type": "string",
+          "title": "hoursLabel"
+        },
+        "hourLabel": {
+          "description": "Label for the hour column in 12h format.",
+          "default": "Hour",
+          "type": "string",
+          "title": "hourLabel"
+        },
+        "minutesLabel": {
+          "description": "Label for the minutes column.",
+          "default": "Minutes",
+          "type": "string",
+          "title": "minutesLabel"
+        },
+        "amPmSelectorLabel": {
+          "description": "Accessible label for the AM/PM selector group.",
+          "default": "AM/PM selector",
+          "type": "string",
+          "title": "amPmSelectorLabel"
+        },
+        "amLabel": {
+          "description": "Display text for the AM option.",
+          "default": "AM",
+          "type": "string",
+          "title": "amLabel"
+        },
+        "pmLabel": {
+          "description": "Display text for the PM option.",
+          "default": "PM",
+          "type": "string",
+          "title": "pmLabel"
+        }
+      },
+      "additionalProperties": false,
+      "propertyOrder": [
+        "hoursLabel",
+        "hourLabel",
+        "minutesLabel",
+        "amPmSelectorLabel",
+        "amLabel",
+        "pmLabel"
+      ],
+      "title": "labels",
+      "required": false
+    }
+  ],
+  "subComponents": []
+}

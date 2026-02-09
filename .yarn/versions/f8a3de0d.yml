@@ -1,0 +1,12 @@
+releases:
+  "@nimbus-ds/components": minor
+  "@nimbus-ds/scroll-pane": minor
+  "@nimbus-ds/styles": minor
+  "@nimbus-ds/time-picker": major
+
+declined:
+  - nimbus-design-system
+  - "@nimbus-ds/toast"
+  - "@nimbus-ds/split-button"
+  - "@nimbus-ds/stepper"
+  - "@nimbus-ds/table"

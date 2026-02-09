@@ -103,6 +103,9 @@
       ],
       "@nimbus-ds/split-button": [
         "./packages/react/src/composite/SplitButton/src"
+      ],
+      "@nimbus-ds/time-picker": [
+        "./packages/react/src/composite/TimePicker/src"
       ]
     }
   }

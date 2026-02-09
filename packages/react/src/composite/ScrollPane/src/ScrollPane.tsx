@@ -9,11 +9,9 @@ import ScrollContainer from "react-indiana-drag-scroll";
 import { Box } from "@nimbus-ds/box";
 
 import { scrollPane } from "@nimbus-ds/styles";
+import { useCanScroll } from "@common/hooks";
 
-import {
-  type ScrollPaneProps,
-  type ScrollPaneComponents,
-} from "./scrollPane.types";
+import { type ScrollPaneProps } from "./scrollPane.types";
 import {
   ScrollPaneItem,
   ScrollPaneContext,
@@ -34,46 +32,31 @@ import { getPosition } from "./ScrollPane.definitions";
  *   <ScrollPane.Item>Item 2</ScrollPane.Item>
  * </ScrollPane>
  */
-const ScrollPane: React.FC<ScrollPaneProps> & ScrollPaneComponents = ({
+const ScrollPane = ({
   children,
   showGradients = true,
   showArrows = false,
   showScrollbar = true,
+  scrollContainerRef: externalScrollContainerRef,
   direction = "horizontal",
   scrollToItemOnClick = true,
+  scrollBehavior = "hidden-items",
   enableGrabScroll = false,
   scrollPaneArrowStart,
   scrollPaneArrowEnd,
   contentContainerProps,
   ...rest
 }: ScrollPaneProps) => {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const internalScrollContainerRef = useRef<HTMLDivElement>(null);
+  const scrollContainerRef =
+    externalScrollContainerRef || internalScrollContainerRef;
   const scrollTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const [canScrollStart, setCanScrollStart] = useState(false);
-  const [canScrollEnd, setCanScrollEnd] = useState(false);
   const [isScrolling, setIsScrolling] = useState(false);
 
-  const checkScrollPosition = useCallback(() => {
-    if (!containerRef.current) return;
-
-    const container = containerRef.current;
-    const {
-      scrollLeft,
-      scrollTop,
-      scrollWidth,
-      scrollHeight,
-      clientWidth,
-      clientHeight,
-    } = container;
-
-    if (direction === "horizontal") {
-      setCanScrollStart(scrollLeft > 0);
-      setCanScrollEnd(scrollLeft < scrollWidth - clientWidth - 1);
-    } else {
-      setCanScrollStart(scrollTop > 0);
-      setCanScrollEnd(scrollTop < scrollHeight - clientHeight - 1);
-    }
-  }, [direction]);
+  const { canScrollStart, canScrollEnd, checkScrollPosition } = useCanScroll({
+    direction,
+    scrollContainerRef,
+  });
 
   const handleScroll = useCallback(() => {
     if (!isScrolling) {
@@ -95,9 +78,9 @@ const ScrollPane: React.FC<ScrollPaneProps> & ScrollPaneComponents = ({
 
   const scrollToDirection = useCallback(
     (scrollDirection: "start" | "end") => {
-      if (!containerRef.current) return;
+      if (!scrollContainerRef.current) return;
 
-      const container = containerRef.current;
+      const container = scrollContainerRef.current;
       const scrollAmount =
         direction === "horizontal"
           ? container.clientWidth * 0.8
@@ -137,11 +120,11 @@ const ScrollPane: React.FC<ScrollPaneProps> & ScrollPaneComponents = ({
         });
       }
     },
-    [direction]
+    [direction, scrollContainerRef]
   );
 
   useEffect(() => {
-    const container = containerRef.current;
+    const container = scrollContainerRef.current;
     if (!container) return undefined;
 
     // Initial check with a small delay for ScrollContainer initialization
@@ -177,17 +160,25 @@ const ScrollPane: React.FC<ScrollPaneProps> & ScrollPaneComponents = ({
         clearTimeout(scrollTimeoutRef.current);
       }
     };
-  }, [checkScrollPosition, handleScroll, enableGrabScroll]);
+  }, [checkScrollPosition, handleScroll, enableGrabScroll, scrollContainerRef]);
 
   const contextValue = useMemo(
     () => ({
       direction,
       scrollToItemOnClick,
+      scrollBehavior,
       enableGrabScroll,
-      containerRef,
+      containerRef: scrollContainerRef,
       scrollToDirection,
     }),
-    [direction, scrollToItemOnClick, enableGrabScroll, scrollToDirection]
+    [
+      direction,
+      scrollToItemOnClick,
+      scrollBehavior,
+      enableGrabScroll,
+      scrollContainerRef,
+      scrollToDirection,
+    ]
   );
 
   const scrollAreaClassName = [
@@ -249,13 +240,13 @@ const ScrollPane: React.FC<ScrollPaneProps> & ScrollPaneComponents = ({
 
   return (
     <ScrollPaneContext.Provider value={contextValue}>
-      <Box as="div" position="relative" {...rest}>
+      <Box position="relative" {...rest}>
         {enableGrabScroll ? (
           <ScrollContainer
             hideScrollbars={false}
             horizontal={direction === "horizontal"}
             vertical={direction === "vertical"}
-            innerRef={containerRef}
+            innerRef={scrollContainerRef}
             className={scrollAreaClassName}
             style={scrollAreaStyle}
           >
@@ -263,7 +254,7 @@ const ScrollPane: React.FC<ScrollPaneProps> & ScrollPaneComponents = ({
           </ScrollContainer>
         ) : (
           <div
-            ref={containerRef}
+            ref={scrollContainerRef}
             className={scrollAreaClassName}
             style={scrollAreaStyle}
           >

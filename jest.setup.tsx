@@ -2,6 +2,9 @@ import "@vanilla-extract/css/disableRuntimeStyles";
 import React from "react";
 import "@testing-library/jest-dom";
 
+/**
+ * Mock icons to avoid errors when importing icons in TEST files.
+ */
 jest.mock("@nimbus-ds/icons", () => ({
   __esModule: true,
   ...jest.requireActual("@nimbus-ds/icons"),
@@ -19,6 +22,7 @@ jest.mock("@nimbus-ds/icons", () => ({
   CameraIcon: () => <svg />,
   ChevronLeftIcon: () => <svg />,
   ChevronRightIcon: () => <svg />,
+  ClockIcon: () => <svg />,
 }));
 
 // Mock ResizeObserver
