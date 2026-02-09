@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 
-import { Textarea, TextareaProps } from "./Textarea";
+import { Textarea, type TextareaProps } from "./Textarea";
 
 const textareaId = "myId";
 

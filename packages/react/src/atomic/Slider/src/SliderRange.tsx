@@ -37,7 +37,7 @@ export const SliderRange = forwardRef<HTMLDivElement, SliderRangeBaseProps>(
       onChangeEnd,
       minAriaLabel,
       maxAriaLabel,
-      "data-testid": dataTestId
+      "data-testid": dataTestId,
     },
     ref
   ) => {
@@ -53,7 +53,7 @@ export const SliderRange = forwardRef<HTMLDivElement, SliderRangeBaseProps>(
         onChange,
         onMinChange,
         onMaxChange,
-        onChangeEnd
+        onChangeEnd,
       });
 
     const {
@@ -61,7 +61,7 @@ export const SliderRange = forwardRef<HTMLDivElement, SliderRangeBaseProps>(
       dragMaxValue,
       handleTrackMouseDown,
       handleMinMouseDown,
-      handleMaxMouseDown
+      handleMaxMouseDown,
     } = useSliderDrag({
       trackRef,
       min,
@@ -71,7 +71,7 @@ export const SliderRange = forwardRef<HTMLDivElement, SliderRangeBaseProps>(
       localMinValue,
       localMaxValue,
       clampValue,
-      updateValues
+      updateValues,
     });
 
     const displayMinValue = dragMinValue ?? localMinValue;

@@ -1,4 +1,5 @@
-import React, { ReactNode, RefObject } from "react";
+import { type ReactNode, type RefObject } from "react";
+import type React from "react";
 import type { BoxProps } from "@nimbus-ds/box";
 import type { ScrollPaneItemProps } from "./components/ScrollPaneItem";
 import type {

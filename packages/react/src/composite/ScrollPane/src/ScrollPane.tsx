@@ -11,7 +11,7 @@ import { Box } from "@nimbus-ds/box";
 import { scrollPane } from "@nimbus-ds/styles";
 import { useCanScroll } from "@common/hooks";
 
-import { ScrollPaneProps } from "./scrollPane.types";
+import { type ScrollPaneProps } from "./scrollPane.types";
 import {
   ScrollPaneItem,
   ScrollPaneContext,

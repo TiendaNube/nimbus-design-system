@@ -1,8 +1,8 @@
-import React, { ComponentPropsWithRef, forwardRef } from "react";
-import { PolymorphicForwardRefComponent } from "@nimbus-ds/typings";
+import React, { type ComponentPropsWithRef, forwardRef } from "react";
+import { type PolymorphicForwardRefComponent } from "@nimbus-ds/typings";
 import { box } from "@nimbus-ds/styles";
 
-import { BoxBaseProps } from "./box.types";
+import { type BoxBaseProps } from "./box.types";
 
 const Box = forwardRef(
   (

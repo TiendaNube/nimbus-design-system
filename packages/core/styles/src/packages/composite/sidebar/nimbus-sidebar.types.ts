@@ -1,5 +1,5 @@
-import { Conditions } from "../../../types";
-import { sidebarSprinkle } from "./nimbus-sidebar.css";
+import { type Conditions } from "../../../types";
+import { type sidebarSprinkle } from "./nimbus-sidebar.css";
 
 type SidebarPaddingProperties = keyof typeof sidebarSprinkle.properties.padding;
 type SidebarZIndexProperties = keyof typeof sidebarSprinkle.properties.zIndex;

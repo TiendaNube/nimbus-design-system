@@ -8,7 +8,7 @@ export const thumbLeftVar = createVar();
 const baseTrack = style({
   position: "relative",
   width: "100%",
-  height: varsThemeBase.spacing[2],
+  height: varsThemeBase.spacing[1],
   borderRadius: varsThemeBase.shape.border.radius.full,
 });
 
@@ -23,7 +23,7 @@ const baseFill = style({
 export const thumbWrapper = style({
   position: "absolute",
   transform: "translateX(-50%)",
-  top: `calc(-1 * ${varsThemeBase.spacing[1]})`,
+  top: `calc(-1 * ${varsThemeBase.spacing["1-5"]})`,
   left: thumbLeftVar,
   display: "flex",
   flexDirection: "column",
@@ -35,8 +35,8 @@ const baseThumb = style({
   width: varsThemeBase.spacing[4],
   height: varsThemeBase.spacing[4],
   borderRadius: varsThemeBase.shape.border.radius.full,
-  backgroundColor: varsThemeBase.colors.primary.interactive,
-  border: "none",
+  backgroundColor: varsThemeBase.colors.neutral.background,
+  border: `2px solid ${varsThemeBase.colors.primary.interactive}`,
   cursor: "pointer",
   transition: `box-shadow ${varsThemeBase.motion.speed.fast} ease`,
   ":hover": {
@@ -61,7 +61,8 @@ export const thumbValue = style({
 });
 
 const thumbDisabled = style({
-  backgroundColor: varsThemeBase.colors.neutral.textDisabled,
+  backgroundColor: varsThemeBase.colors.neutral.background,
+  border: `2px solid ${varsThemeBase.colors.neutral.surfaceHighlight}`,
   cursor: "not-allowed",
   ":hover": {
     boxShadow: "none",
@@ -75,14 +76,16 @@ const thumbDisabled = style({
   },
 });
 
-const fillDisabled = style({
-  backgroundColor: varsThemeBase.colors.neutral.textDisabled,
-});
+const fillDisabled = style([
+  baseFill,
+  {
+    backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
+  },
+]);
 
 export const container = style({
   display: "flex",
   flexDirection: "column",
-  gap: varsThemeBase.spacing[2],
   width: "100%",
 });
 
@@ -90,7 +93,7 @@ export const trackContainer = style({
   position: "relative",
   width: "100%",
   paddingTop: varsThemeBase.spacing[2],
-  paddingBottom: varsThemeBase.spacing[4],
+  paddingBottom: varsThemeBase.spacing[3],
 });
 
 export const track = styleVariants({
@@ -103,7 +106,7 @@ export const track = styleVariants({
   disabled: [
     baseTrack,
     {
-      backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
+      backgroundColor: varsThemeBase.colors.neutral.surfaceDisabled,
       cursor: "not-allowed",
     },
   ],

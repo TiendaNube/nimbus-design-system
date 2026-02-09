@@ -34,11 +34,11 @@ git diff origin/master --name-only
 
 Determine which packages were modified by checking changed file paths:
 
-- `packages/react/src/atomic/<Component>/*` → Update `packages/react/src/atomic/<Component>/CHANGELOG.md`
-- `packages/react/src/composite/<Component>/*` → Update `packages/react/src/composite/<Component>/CHANGELOG.md`
+- `packages/react/src/atomic/<Component>/*` → Update `packages/react/src/atomic/<Component>/CHANGELOG.md` and `react` directory `CHANGELOG.md`
+- `packages/react/src/composite/<Component>/*` → Update `packages/react/src/composite/<Component>/CHANGELOG.md` and `react` directory `CHANGELOG.md`
 - `packages/core/styles/*` → Update `packages/core/styles/CHANGELOG.md`
 - `packages/core/tokens/*` → Update `packages/core/tokens/CHANGELOG.md`
-- Any package change → Also update the root `CHANGELOG.md`
+- Any root monorepo configuration change → Also update the root `CHANGELOG.md`
 
 ### Step 3: Classify the Change
 

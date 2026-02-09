@@ -5,7 +5,7 @@ import { checkbox } from "@nimbus-ds/styles";
 
 import CheckIcon from "./checkbox-check.svg";
 import IndeterminateIcon from "./checkbox-indeterminate.svg";
-import { CheckboxProps, CheckboxComponents } from "./checkbox.types";
+import { type CheckboxProps, type CheckboxComponents } from "./checkbox.types";
 import { CheckboxSkeleton } from "./components";
 import { borderColors, textColors } from "./checkbox.definitions";
 

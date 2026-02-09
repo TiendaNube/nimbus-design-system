@@ -2,6 +2,12 @@
 
 The Toast component allows us to notify users in an informational tone, describing that something has happened or is happening, without interrupting navigation.
 
+## 2026-02-03 `2.5.0`
+
+#### 🎉 New features
+
+- Added `offset` prop to `ToastProvider` to control vertical positioning from the bottom. Use `"high"` for mobile apps with bottom navigation bars. ([#416](https://github.com/TiendaNube/nimbus-design-system/pull/416) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2026-01-13 `2.4.1`
 
 #### 🎉 New features
