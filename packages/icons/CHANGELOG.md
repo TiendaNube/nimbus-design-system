@@ -6,11 +6,11 @@ Nimbus-icons is an open source icon system built by Nuvemshop / Tiendanube.
 
 #### 🎉 New features
 
-- Adds `arrows-diagonal-out` icon. (by [@karemcarvalho-hue](https://github.com/karemcarvalho-hue))
-- Adds `arrows-diagonal-in` icon. (by [@karemcarvalho-hue](https://github.com/karemcarvalho-hue))
-- Adds `arrows-expand` icon. (by [@karemcarvalho-hue](https://github.com/karemcarvalho-hue))
-- Adds `arrows-collapse` icon. (by [@karemcarvalho-hue](https://github.com/karemcarvalho-hue))
-- Adds `generative-pencil` icon. (by [@karemcarvalho-hue](https://github.com/karemcarvalho-hue))
+- Adds `arrows-diagonal-out` icon. ([#420](https://github.com/TiendaNube/nimbus-design-system/pull/420) by [@karemcarvalho-hue](https://github.com/karemcarvalho-hue))
+- Adds `arrows-diagonal-in` icon. ([#420](https://github.com/TiendaNube/nimbus-design-system/pull/420) by [@karemcarvalho-hue](https://github.com/karemcarvalho-hue))
+- Adds `arrows-expand` icon. ([#420](https://github.com/TiendaNube/nimbus-design-system/pull/420) by [@karemcarvalho-hue](https://github.com/karemcarvalho-hue))
+- Adds `arrows-collapse` icon. ([#420](https://github.com/TiendaNube/nimbus-design-system/pull/420) by [@karemcarvalho-hue](https://github.com/karemcarvalho-hue))
+- Adds `generative-pencil` icon. ([#420](https://github.com/TiendaNube/nimbus-design-system/pull/420) by [@karemcarvalho-hue](https://github.com/karemcarvalho-hue))
 
 ## 2026-01-21 `1.16.0`
 
