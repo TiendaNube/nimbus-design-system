@@ -1,6 +1,8 @@
 import { style, styleVariants, globalStyle } from "@vanilla-extract/css";
 import { varsThemeBase } from "../themes";
 
+const SCROLLBAR_WIDTH = "4px";
+
 const thinScrollbarBase = style({
   // Firefox
   scrollbarWidth: "thin",
@@ -11,7 +13,7 @@ const thinScrollbarBase = style({
     },
     // Chrome, Safari, Edge
     "&::-webkit-scrollbar": {
-      width: "4px",
+      width: SCROLLBAR_WIDTH,
     },
     "&::-webkit-scrollbar-track": {
       background: "transparent",
