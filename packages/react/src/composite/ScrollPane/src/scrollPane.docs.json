@@ -3,7 +3,7 @@
   "name": "ScrollPane",
   "totalProps": 11,
   "packageName": "@nimbus-ds/scroll-pane",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/scroll-pane",
   "props": [
     {

@@ -3,7 +3,7 @@
   "name": "TimePicker",
   "totalProps": 16,
   "packageName": "@nimbus-ds/time-picker",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/time-picker",
   "props": [
     {
