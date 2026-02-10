@@ -39,6 +39,9 @@ export const fullWidth = style({
 
 export const size = styleVariants({
   medium: {},
+  compact: {
+    padding: `${varsThemeBase.spacing[2]} ${varsThemeBase.spacing[2]}`,
+  },
   small: {
     height: "1.75rem",
     padding: `${varsThemeBase.spacing["1-5"]} ${varsThemeBase.spacing[2]}`,

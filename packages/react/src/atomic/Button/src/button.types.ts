@@ -36,7 +36,7 @@ export interface ButtonProperties {
    * Change the size of the button.
    * @default medium
    */
-  size?: "large" | "medium" | "small";
+  size?: "large" | "medium" | "compact" | "small";
 }
 
 export type ButtonBaseProps = ButtonProperties &

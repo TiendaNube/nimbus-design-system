@@ -106,6 +106,13 @@ describe("GIVEN <Button />", () => {
       );
     });
 
+    it("THEN should apply compact size class when size is compact", () => {
+      makeSut({ children: "button", size: "compact" });
+      expect(screen.getByRole("button").getAttribute("class")).toContain(
+        "size_compact"
+      );
+    });
+
     it("THEN should apply large size class when size is large", () => {
       makeSut({ children: "button", size: "large" });
       expect(screen.getByRole("button").getAttribute("class")).toContain(
