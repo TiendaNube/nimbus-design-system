@@ -1,11 +1,15 @@
-import { style, styleVariants, globalStyle } from "@vanilla-extract/css";
+import { style, globalStyle } from "@vanilla-extract/css";
 import { varsThemeBase } from "../themes";
 
 /** Width used for thin scrollbars across WebKit browsers. */
-export const SCROLLBAR_WIDTH = "4px";
+const SCROLLBAR_WIDTH = "4px";
 
-/** Base CSS styles for a thin, theme-aware scrollbar with hover reveal. */
-const thinScrollbarBase = style({
+/**
+ * Internal thin scrollbar style — applied directly to Nimbus components.
+ * Shows a subtle scrollbar thumb on hover, thin and theme-aware.
+ * Not exported publicly; used by Textarea, Menu, etc.
+ */
+export const thinScrollbar = style({
   // Firefox
   scrollbarWidth: "thin",
   scrollbarColor: "transparent transparent",
@@ -31,22 +35,25 @@ const thinScrollbarBase = style({
 });
 
 /**
- * Thin scrollbar variants.
- *
- * - `hover`: Scrollbar thumb only appears on hover (default, recommended for clean UI)
- * - `always`: Scrollbar thumb is always visible when content overflows
+ * Thin scrollbar that is always visible (not just on hover).
+ * Used for components where permanent scroll indication is needed.
  */
-export const thinScrollbar = styleVariants({
-  hover: [thinScrollbarBase],
-  always: [
-    thinScrollbarBase,
-    {
-      scrollbarColor: `${varsThemeBase.colors.neutral.interactive} transparent`,
+export const thinScrollbarAlways = style({
+  scrollbarWidth: "thin",
+  scrollbarColor: `${varsThemeBase.colors.neutral.interactive} transparent`,
+  selectors: {
+    "&::-webkit-scrollbar": {
+      width: SCROLLBAR_WIDTH,
     },
-  ],
+    "&::-webkit-scrollbar-track": {
+      background: "transparent",
+    },
+    "&::-webkit-scrollbar-thumb": {
+      borderRadius: varsThemeBase.shape.border.radius[1],
+    },
+  },
 });
 
-// WebKit "always" variant - thumb always visible without hover
-globalStyle(`${thinScrollbar.always}::-webkit-scrollbar-thumb`, {
+globalStyle(`${thinScrollbarAlways}::-webkit-scrollbar-thumb`, {
   background: varsThemeBase.colors.neutral.interactive,
 });
