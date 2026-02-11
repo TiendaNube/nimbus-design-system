@@ -1,12 +1,15 @@
 releases:
   "@nimbus-ds/styles": minor
+  "@nimbus-ds/textarea": patch
+  "@nimbus-ds/scroll-pane": patch
+  "@nimbus-ds/time-picker": patch
+  "@nimbus-ds/components": patch
 
 declined:
   - nimbus-design-system
   - "@nimbus-ds/icons"
   - "@nimbus-ds/webpack"
   - nimbus-helper
-  - "@nimbus-ds/components"
   - "@nimbus-ds/badge"
   - "@nimbus-ds/box"
   - "@nimbus-ds/button"
@@ -30,7 +33,6 @@ declined:
   - "@nimbus-ds/spinner"
   - "@nimbus-ds/tag"
   - "@nimbus-ds/text"
-  - "@nimbus-ds/textarea"
   - "@nimbus-ds/thumbnail"
   - "@nimbus-ds/title"
   - "@nimbus-ds/toast"
@@ -42,11 +44,9 @@ declined:
   - "@nimbus-ds/collapsible"
   - "@nimbus-ds/modal"
   - "@nimbus-ds/pagination"
-  - "@nimbus-ds/scroll-pane"
   - "@nimbus-ds/segmented-control"
   - "@nimbus-ds/sidebar"
   - "@nimbus-ds/split-button"
   - "@nimbus-ds/stepper"
   - "@nimbus-ds/table"
   - "@nimbus-ds/tabs"
-  - "@nimbus-ds/time-picker"

@@ -5,7 +5,7 @@
 */
 
 export * from "./components";
-export { vars, scrollbar } from "./utils";
+export { vars } from "./utils";
 export {
   gradients,
   createLinearGradient,
