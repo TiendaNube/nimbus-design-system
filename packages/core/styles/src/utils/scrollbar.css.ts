@@ -1,8 +1,10 @@
 import { style, styleVariants, globalStyle } from "@vanilla-extract/css";
 import { varsThemeBase } from "../themes";
 
-const SCROLLBAR_WIDTH = "4px";
+/** Width used for thin scrollbars across WebKit browsers. */
+export const SCROLLBAR_WIDTH = "4px";
 
+/** Base CSS styles for a thin, theme-aware scrollbar with hover reveal. */
 const thinScrollbarBase = style({
   // Firefox
   scrollbarWidth: "thin",
