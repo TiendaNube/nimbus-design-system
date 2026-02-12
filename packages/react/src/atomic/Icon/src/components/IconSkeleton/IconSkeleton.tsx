@@ -4,11 +4,13 @@ import { Skeleton } from "@nimbus-ds/skeleton";
 import { type IconSkeletonProps } from "./iconSkeleton.types";
 
 const IconSkeleton: React.FC<IconSkeletonProps> = ({
+  className,
   width,
   height,
   "data-testid": dataTestId,
 }) => (
   <Skeleton
+    className={className}
     width={width ?? "1rem"}
     height={height ?? "1rem"}
     borderRadius="0.25rem"

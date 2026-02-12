@@ -8,4 +8,5 @@ export interface StepperCardProperties {
   children: ReactNode;
 }
 
-export type StepperCardProps = StepperCardProperties;
+export type StepperCardProps = StepperCardProperties &
+  Pick<HTMLDivElement, "className">;

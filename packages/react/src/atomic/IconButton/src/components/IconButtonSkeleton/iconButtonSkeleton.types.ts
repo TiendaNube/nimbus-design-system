@@ -1,7 +1,7 @@
 import { type SkeletonProps } from "@nimbus-ds/skeleton";
 
 export type IconButtonSkeletonProperties = Partial<
-  Pick<SkeletonProps, "width" | "height">
+  Pick<SkeletonProps, "width" | "height" | "className">
 > & {
   /**
    * This is an attribute used to identify a DOM node for testing purposes.

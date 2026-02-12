@@ -6,7 +6,7 @@ import { IconSkeleton } from "./components";
 import { applyGradientToSvg, isGradient } from "./utils/gradient";
 
 const Icon: React.FC<IconProps> & IconComponents = ({
-  className: _className,
+  className,
   style: _style,
   color = "neutral-textLow",
   cursor = "inherit",
@@ -23,6 +23,7 @@ const Icon: React.FC<IconProps> & IconComponents = ({
     <div
       {...rest}
       className={[
+        className,
         icon.sprinkle({
           ...(!renderGradient && {
             color,
@@ -30,7 +31,9 @@ const Icon: React.FC<IconProps> & IconComponents = ({
           cursor,
         }),
         icon.classnames.base,
-      ].join(" ")}
+      ]
+        .filter(Boolean)
+        .join(" ")}
     >
       {processedSource}
     </div>

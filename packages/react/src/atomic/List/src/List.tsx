@@ -6,7 +6,7 @@ import { type ListProps, type ListComponents } from "./list.types";
 import { ListSkeletonItem, ListSkeleton, ListItem } from "./components";
 
 const List: React.FC<ListProps> & ListComponents = ({
-  className: _className,
+  className,
   style: _style,
   as: As = "ul",
   padding = "6",
@@ -21,7 +21,9 @@ const List: React.FC<ListProps> & ListComponents = ({
   return (
     <As
       {...rest}
-      className={list.classnames.container}
+      className={[className, list.classnames.container]
+        .filter(Boolean)
+        .join(" ")}
       style={assignInlineVars({
         [listVars.paddingInlineStart]: resolvedPadding,
       })}

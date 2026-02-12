@@ -37,6 +37,7 @@ import { SliderRange } from "./SliderRange";
 const SliderBase = forwardRef<HTMLDivElement, SliderBaseProps>(
   (
     {
+      className,
       min = SLIDER_DEFAULTS.min,
       max = SLIDER_DEFAULTS.max,
       value,
@@ -112,7 +113,7 @@ const SliderBase = forwardRef<HTMLDivElement, SliderBaseProps>(
     return (
       <div
         ref={ref}
-        className={slider.classnames.container}
+        className={[className, slider.classnames.container].join(" ")}
         data-testid={dataTestId}
       >
         <div

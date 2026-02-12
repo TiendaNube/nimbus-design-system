@@ -18,7 +18,7 @@ import { ButtonSkeleton } from "./components";
 const Button = forwardRef(
   (
     {
-      className: _className,
+      className,
       style: _style,
       as: As = "button",
       children,
@@ -58,6 +58,7 @@ const Button = forwardRef(
     }, [innerRef]);
 
     const buttonClasses = [
+      className,
       button.classnames.appearance[appearance],
       button.classnames.size[size],
       fullWidth && button.classnames.fullWidth,

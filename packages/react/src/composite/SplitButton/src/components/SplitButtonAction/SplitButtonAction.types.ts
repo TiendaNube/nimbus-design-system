@@ -27,6 +27,7 @@ export interface SplitButtonActionProperties {
 export type SplitButtonActionProps = SplitButtonActionProperties &
   Pick<
     BoxProps,
+    | "className"
     | "backgroundColor"
     | "borderWidth"
     | "display"

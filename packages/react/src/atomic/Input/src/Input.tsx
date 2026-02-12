@@ -18,7 +18,7 @@ import {
 const Input = forwardRef<HTMLInputElement, InputBaseProps>(
   (
     {
-      className: _className,
+      className,
       style: _style,
       appearance = "neutral",
       aiGenerated = false,
@@ -38,6 +38,7 @@ const Input = forwardRef<HTMLInputElement, InputBaseProps>(
       <div
         data-testid={dataTestid ? `${dataTestid}-container` : ""}
         className={[
+          className,
           aiGenerated && input.classnames.aiGenerated,
           input.classnames.appearance[appearance],
         ]

@@ -23,7 +23,7 @@ import { type ModalProps, type ModalComponents } from "./modal.types";
 import { ModalBody, ModalFooter, ModalHeader } from "./components";
 
 const Modal: React.FC<ModalProps> & ModalComponents = ({
-  className: _className,
+  className,
   style: _style,
   children,
   padding = "base",
@@ -36,7 +36,11 @@ const Modal: React.FC<ModalProps> & ModalComponents = ({
   ignoreAttributeName = DEFAULT_OUTSIDE_PRESS_IGNORE_ATTRIBUTE,
   ...rest
 }: ModalProps) => {
-  const { className, style, otherProps } = modal.sprinkle({
+  const {
+    className: classNameStyles,
+    style,
+    otherProps,
+  } = modal.sprinkle({
     ...(rest as Parameters<typeof modal.sprinkle>[0]),
     maxWidth,
     padding,
@@ -89,7 +93,9 @@ const Modal: React.FC<ModalProps> & ModalComponents = ({
         {...otherProps}
         ref={context.refs.setFloating}
         style={style}
-        className={[modal.classnames.container, className].join(" ")}
+        className={[className, modal.classnames.container, classNameStyles]
+          .filter(Boolean)
+          .join(" ")}
         aria-labelledby={headingId}
         aria-describedby={descriptionId}
         {...getFloatingProps()}

@@ -3,4 +3,6 @@ export interface SegmentedControlButtonSkeletonProps {
   width?: string;
   /** Height of the skeleton button */
   height?: string;
+  /** Additional CSS class name */
+  className?: string;
 }

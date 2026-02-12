@@ -18,7 +18,7 @@ import { LinkSkeleton } from "./components";
 const Link = forwardRef(
   (
     {
-      className: _className,
+      className,
       style: _style,
       as: As = "a",
       children,
@@ -63,6 +63,7 @@ const Link = forwardRef(
       <As
         {...(rest as any)}
         className={[
+          className,
           link.classnames.appearance[appearance],
           link.sprinkle({ textDecoration, fontSize, lineHeight }),
         ].join(" ")}

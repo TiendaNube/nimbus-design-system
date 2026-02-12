@@ -17,6 +17,7 @@ import { type StepperItemProps } from "./components/StepperItem/stepperItem.type
  * Step numbers are automatically assigned based on child position.
  */
 const StepperComponent: React.FC<StepperProps> = ({
+  className,
   activeStep,
   children,
   ...rest
@@ -81,6 +82,7 @@ const StepperComponent: React.FC<StepperProps> = ({
   return (
     <StepperContext.Provider value={contextValue}>
       <Box
+        className={className}
         display="flex"
         flexWrap="wrap"
         gap="2"

@@ -11,7 +11,7 @@ import {
 import { generateKey } from "./pagination.definitions";
 
 const Pagination: React.FC<PaginationProps> = ({
-  className: _className,
+  className,
   style: _style,
   showNumbers = true,
   activePage,
@@ -43,7 +43,12 @@ const Pagination: React.FC<PaginationProps> = ({
   };
 
   return (
-    <ul {...rest} className={pagination.classnames.container}>
+    <ul
+      {...rest}
+      className={[className, pagination.classnames.container]
+        .filter(Boolean)
+        .join(" ")}
+    >
       <li>
         <Button
           data-testid="button-pagination-prev"

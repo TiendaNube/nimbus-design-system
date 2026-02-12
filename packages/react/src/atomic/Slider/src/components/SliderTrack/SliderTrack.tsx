@@ -13,27 +13,30 @@ interface SliderTrackProps {
   disabled?: boolean;
   dataTestId?: string;
   children: ReactNode;
+  className?: string;
 }
 
 const SliderTrackComponent = forwardRef<HTMLDivElement, SliderTrackProps>(
   (
     {
+      className,
       appearance,
       minPercentage = 0,
       maxPercentage,
       disabled = false,
       dataTestId,
       children,
-    },
+    }: SliderTrackProps,
     ref
   ) => (
     <div
       ref={ref}
-      className={
+      className={[
+        className,
         disabled
           ? slider.classnames.track.disabled
-          : slider.classnames.track.default
-      }
+          : slider.classnames.track.default,
+      ].join(" ")}
       data-testid={dataTestId ? `${dataTestId}-track` : undefined}
     >
       <div
