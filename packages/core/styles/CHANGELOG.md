@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2026-02-12 `9.56.1`
+
+#### 🐛 Bug fixes
+
+- `Button`: Adjusted medium button padding from `8px 16px` to `6px 12px` to match design specifications. ([#428](https://github.com/TiendaNube/nimbus-design-system/pull/428) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-02-09 `9.56.0`
 
 #### 🎉 New features
