@@ -1,6 +1,7 @@
 import { type ReactNode } from "react";
 
 export interface StepperCardProperties {
+  className?: string;
   /**
    * The content to be rendered inside the card container
    * @TJS-type React.ReactNode
@@ -8,5 +9,4 @@ export interface StepperCardProperties {
   children: ReactNode;
 }
 
-export type StepperCardProps = StepperCardProperties &
-  Pick<HTMLDivElement, "className">;
+export type StepperCardProps = StepperCardProperties;
