@@ -11,7 +11,7 @@ const base = style({
   textDecoration: "none",
   cursor: "pointer",
   boxSizing: "border-box",
-  padding: `${varsThemeBase.spacing[2]} ${varsThemeBase.spacing[4]}`,
+  padding: `${varsThemeBase.spacing[2]} ${varsThemeBase.spacing[3]}`,
   gap: varsThemeBase.spacing[1],
   fontWeight: varsThemeBase.fontWeight.medium,
   lineHeight: varsThemeBase.lineWeight.body.base,
@@ -39,9 +39,6 @@ export const fullWidth = style({
 
 export const size = styleVariants({
   medium: {},
-  compact: {
-    padding: varsThemeBase.spacing[2],
-  },
   small: {
     height: "1.75rem",
     padding: `${varsThemeBase.spacing["1-5"]} ${varsThemeBase.spacing[2]}`,
