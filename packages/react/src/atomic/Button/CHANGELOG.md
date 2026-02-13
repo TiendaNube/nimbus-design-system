@@ -2,12 +2,6 @@
 
 The Button component allows us to initiate actions, make state or page changes.
 
-## 2026-02-12 `2.10.2`
-
-#### 🐛 Bug fixes
-
-- Adjusted medium button padding from `8px 16px` to `6px 12px` to match design specifications. ([#428](https://github.com/TiendaNube/nimbus-design-system/pull/428) by [@noecondoleo](https://github.com/noecondoleo))
-
 ## 2026-01-13 `2.10.1`
 
 #### 🎉 New features
