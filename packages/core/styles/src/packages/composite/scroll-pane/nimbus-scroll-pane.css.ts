@@ -1,5 +1,6 @@
 import { style, styleVariants, globalStyle } from "@vanilla-extract/css";
 import { varsThemeBase } from "../../../themes";
+import { thinScrollbar } from "../../../utils/scrollbar.css";
 
 /* -------------------------------------------------------------------------------------------------
  * Style
@@ -22,6 +23,8 @@ const scrollAreaHidden = style({
     },
   },
 });
+
+const scrollAreaThin = thinScrollbar;
 
 const direction = styleVariants({
   horizontal: {
@@ -115,6 +118,7 @@ export const scrollPaneStyles = {
   classnames: {
     scrollArea,
     scrollAreaHidden,
+    scrollAreaThin,
     direction,
     gradient,
     gradientVariants,
