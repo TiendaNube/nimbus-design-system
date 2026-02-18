@@ -45,7 +45,7 @@
   "subComponents": [
     {
       "name": "Thumbnail.Skeleton",
-      "totalProps": 3,
+      "totalProps": 4,
       "props": [
         {
           "description": "Permitted aspect ratios for the size of the thumbnail image.",
@@ -67,6 +67,11 @@
           "description": "Width of the skeleton. Useful when the skeleton is inside an inline element with no width of its own.",
           "type": "string",
           "title": "width",
+          "required": false
+        },
+        {
+          "type": "string",
+          "title": "className",
           "required": false
         },
         {

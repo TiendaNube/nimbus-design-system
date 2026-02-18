@@ -743,7 +743,7 @@
   "subComponents": [
     {
       "name": "Title.Skeleton",
-      "totalProps": 4,
+      "totalProps": 5,
       "props": [
         {
           "description": "Type of html tag to create for the title.",
@@ -764,6 +764,11 @@
           "description": "Width of the skeleton. Useful when the skeleton is inside an inline element with no width of its own.",
           "type": "string",
           "title": "width",
+          "required": false
+        },
+        {
+          "type": "string",
+          "title": "className",
           "required": false
         },
         {
