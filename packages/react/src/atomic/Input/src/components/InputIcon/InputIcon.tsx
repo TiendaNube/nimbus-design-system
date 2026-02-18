@@ -4,7 +4,7 @@ import { input } from "@nimbus-ds/styles";
 import { type InputIconProps } from "./inputIcon.types";
 
 const InputIcon: React.FC<InputIconProps> = ({
-  className: _className,
+  className,
   style: _style,
   appendPosition,
   children,
@@ -15,9 +15,12 @@ const InputIcon: React.FC<InputIconProps> = ({
     tabIndex={-1}
     data-append-position={appendPosition}
     className={[
+      className,
       input.classnames.container__icon,
       input.classnames.container__icon_append[appendPosition],
-    ].join(" ")}
+    ]
+      .filter(Boolean)
+      .join(" ")}
     {...rest}
   >
     {children}

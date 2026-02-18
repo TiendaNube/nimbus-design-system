@@ -3,13 +3,13 @@ import React from "react";
 import { type SelectOptionProps } from "./selectOption.types";
 
 const SelectOption: React.FC<SelectOptionProps> = ({
-  className: _className,
+  className,
   style: _style,
   label,
   value,
   ...rest
 }) => (
-  <option {...rest} label={label} value={value}>
+  <option className={className} {...rest} label={label} value={value}>
     {label}
   </option>
 );

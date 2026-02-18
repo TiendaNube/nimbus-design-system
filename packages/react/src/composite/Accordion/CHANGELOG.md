@@ -2,6 +2,12 @@
 
 The Accordion component allows us to compress content into containers that can be opened or closed.
 
+## 2026-02-12 `1.8.0`
+
+#### 🎉 New features
+
+- Enabled `className` prop forwarding to allow consumers to pass custom CSS classes. ([#426](https://github.com/TiendaNube/nimbus-design-system/pull/426) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2026-01-19 `1.7.0`
 
 #### 🎉 New features

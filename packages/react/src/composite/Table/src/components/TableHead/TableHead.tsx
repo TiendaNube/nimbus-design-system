@@ -4,12 +4,17 @@ import { table } from "@nimbus-ds/styles";
 import { type TableHeadProps } from "./tableHead.types";
 
 const TableHead: React.FC<TableHeadProps> = ({
-  className: _className,
+  className,
   style: _style,
   children,
   ...rest
 }: TableHeadProps) => (
-  <thead {...rest} className={table.classnames.container__head}>
+  <thead
+    {...rest}
+    className={[className, table.classnames.container__head]
+      .filter(Boolean)
+      .join(" ")}
+  >
     {children}
   </thead>
 );

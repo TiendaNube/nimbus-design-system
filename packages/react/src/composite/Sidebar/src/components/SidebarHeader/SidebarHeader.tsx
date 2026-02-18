@@ -5,20 +5,28 @@ import { sidebar } from "@nimbus-ds/styles";
 import { type SidebarHeaderProps } from "./sidebarHeader.types";
 
 const SidebarHeader: React.FC<SidebarHeaderProps> = ({
-  className: _className,
+  className,
   style: _style,
   title,
   children,
   ...rest
 }) => {
-  const { className, style, otherProps } = sidebar.sprinkle(
-    rest as Parameters<typeof sidebar.sprinkle>[0]
-  );
+  const {
+    className: classNameStyles,
+    style,
+    otherProps,
+  } = sidebar.sprinkle(rest as Parameters<typeof sidebar.sprinkle>[0]);
   return (
     <div
       {...otherProps}
       style={style}
-      className={[className, sidebar.classnames.container__header].join(" ")}
+      className={[
+        className,
+        classNameStyles,
+        sidebar.classnames.container__header,
+      ]
+        .filter(Boolean)
+        .join(" ")}
     >
       {title && (
         <Title as="h2" data-testid="header-title">

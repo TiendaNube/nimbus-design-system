@@ -5,7 +5,7 @@ import { generateID } from "../../tabs.definitions";
 import { type TabsButtonProps } from "./tabsButton.types";
 
 const TabsButton: React.FC<TabsButtonProps> = ({
-  className: _className,
+  className,
   style: _style,
   label,
   labelContent,
@@ -23,9 +23,12 @@ const TabsButton: React.FC<TabsButtonProps> = ({
 
   return (
     <li
-      className={
-        tabs.classnames.container__item[fullWidth ? "fullWidth" : "default"]
-      }
+      className={[
+        className,
+        tabs.classnames.container__item[fullWidth ? "fullWidth" : "default"],
+      ]
+        .filter(Boolean)
+        .join(" ")}
       role="presentation"
       {...rest}
     >

@@ -10,7 +10,7 @@ import { CheckboxSkeleton } from "./components";
 import { borderColors, textColors } from "./checkbox.definitions";
 
 const Checkbox: React.FC<CheckboxProps> & CheckboxComponents = ({
-  className: _className,
+  className,
   style: _style,
   appearance = "primary",
   aiGenerated = false,
@@ -42,11 +42,14 @@ const Checkbox: React.FC<CheckboxProps> & CheckboxComponents = ({
     <label
       htmlFor={id || name}
       className={[
+        className,
         checkbox.classnames.container,
         checkbox.sprinkle({
           cursor: disabled ? "auto" : "pointer",
         }),
-      ].join(" ")}
+      ]
+        .filter(Boolean)
+        .join(" ")}
     >
       <input
         {...rest}

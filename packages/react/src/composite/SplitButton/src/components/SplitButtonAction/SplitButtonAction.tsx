@@ -6,6 +6,7 @@ import { Text } from "@nimbus-ds/text";
 import { type SplitButtonActionProps } from "./SplitButtonAction.types";
 
 const SplitButtonAction: React.FC<SplitButtonActionProps> = ({
+  className,
   children,
   icon,
   onClick,
@@ -13,6 +14,7 @@ const SplitButtonAction: React.FC<SplitButtonActionProps> = ({
   ...rest
 }) => (
   <Box
+    className={className}
     backgroundColor={{
       xs: "transparent",
       hover: disabled ? "transparent" : "neutral-surface",

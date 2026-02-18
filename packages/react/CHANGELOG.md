@@ -3,6 +3,12 @@
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories
 every day, with simplicity, accessibility, consistency and performance.
 
+## 2026-02-12 `5.52.0`
+
+#### 🎉 New features
+
+- Enabled `className` prop forwarding across all atomic and composite components, allowing consumers to pass custom CSS classes. ([#426](https://github.com/TiendaNube/nimbus-design-system/pull/426) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2026-02-09 `5.51.0`
 
 #### 🎉 New features

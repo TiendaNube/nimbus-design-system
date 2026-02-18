@@ -5,7 +5,7 @@ import { type TableCellProps } from "./tableCell.types";
 import { useTableContext } from "../../contexts";
 
 const TableCell: React.FC<TableCellProps> = ({
-  className: _className,
+  className,
   style: _style,
   children,
   padding = "small",
@@ -15,7 +15,11 @@ const TableCell: React.FC<TableCellProps> = ({
 }: TableCellProps) => {
   const tableContext = useTableContext();
 
-  const { className, style, otherProps } = table.sprinkle({
+  const {
+    className: classNameStyles,
+    style,
+    otherProps,
+  } = table.sprinkle({
     ...(rest as Parameters<typeof table.sprinkle>[0]),
     padding,
   });
@@ -38,12 +42,13 @@ const TableCell: React.FC<TableCellProps> = ({
   };
 
   const cellClassName = [
+    className,
     table.classnames.container__cell,
     fixedOffset && table.classnames.container__cell_fixed,
     fixedOffset?.side === "left" && table.classnames.container__cell_fixed_left,
     fixedOffset?.side === "right" &&
       table.classnames.container__cell_fixed_right,
-    className,
+    classNameStyles,
   ]
     .filter(Boolean)
     .join(" ");

@@ -4,13 +4,18 @@ import { modal } from "@nimbus-ds/styles";
 import { type ModalBodyProps } from "./modalBody.types";
 
 const ModalBody: React.FC<ModalBodyProps> = ({
-  className: _className,
+  className,
   style: _style,
   padding = "base",
   children,
   ...rest
 }) => (
-  <div className={modal.subComponents.body.sprinkle({ padding })} {...rest}>
+  <div
+    className={[className, modal.subComponents.body.sprinkle({ padding })]
+      .filter(Boolean)
+      .join(" ")}
+    {...rest}
+  >
     {children}
   </div>
 );

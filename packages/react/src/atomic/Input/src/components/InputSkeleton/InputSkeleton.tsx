@@ -4,10 +4,12 @@ import { Skeleton } from "@nimbus-ds/skeleton";
 import { type InputSkeletonProps } from "./inputSkeleton.types";
 
 const InputSkeleton: React.FC<InputSkeletonProps> = ({
+  className,
   width,
   "data-testid": dataTestId,
 }) => (
   <Skeleton
+    className={className}
     data-testid={dataTestId}
     width={width ?? "100%"}
     height="2rem"

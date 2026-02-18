@@ -10,6 +10,7 @@ import { type FileUploaderOverlayProps } from "./fileUploaderOverlay.types";
  * Renders a customizable visual feedback with optional title, subtitle and image.
  */
 const FileUploaderOverlay: React.FC<FileUploaderOverlayProps> = ({
+  className,
   title,
   subtitle,
   imageSrc,
@@ -40,7 +41,7 @@ const FileUploaderOverlay: React.FC<FileUploaderOverlayProps> = ({
   return (
     <div
       data-testid="file-uploader-overlay"
-      className={fileUploader.classnames.overlay}
+      className={[className, fileUploader.classnames.overlay].join(" ")}
       style={assignInlineVars({
         [fileUploaderVars.overlayBorderRadius]: resolvedBorderRadius,
       })}

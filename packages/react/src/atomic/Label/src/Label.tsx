@@ -5,7 +5,7 @@ import { type LabelProps, type LabelComponents } from "./label.types";
 import { LabelSkeleton } from "./components";
 
 const Label: React.FC<LabelProps> & LabelComponents = ({
-  className: _className,
+  className,
   style: _style,
   children,
   htmlFor,
@@ -15,9 +15,12 @@ const Label: React.FC<LabelProps> & LabelComponents = ({
   <label
     {...rest}
     className={[
+      className,
       label.classnames.base,
       hidden ? label.classnames.hidden : "",
-    ].join(" ")}
+    ]
+      .filter(Boolean)
+      .join(" ")}
     htmlFor={htmlFor}
   >
     {children}

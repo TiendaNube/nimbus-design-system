@@ -8,8 +8,10 @@ import { type StepperCardProps } from "./stepperCard.types";
  * It provides consistent styling and spacing for stepper-related content.
  * Uses the design system's Card component with small padding for optimal layout.
  */
-const StepperCard: React.FC<StepperCardProps> = ({ children }) => (
-  <Card padding="small">{children}</Card>
+const StepperCard: React.FC<StepperCardProps> = ({ className, children }) => (
+  <Card className={className} padding="small">
+    {children}
+  </Card>
 );
 
 StepperCard.displayName = "Stepper.Card";
