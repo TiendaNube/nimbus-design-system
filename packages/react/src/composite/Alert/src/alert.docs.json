@@ -3,7 +3,7 @@
   "name": "Alert",
   "totalProps": 5,
   "packageName": "@nimbus-ds/alert",
-  "version": "2.4.1",
+  "version": "2.5.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/alert",
   "props": [
     {
@@ -15,7 +15,13 @@
     {
       "description": "Change the visual style of the alert.",
       "default": "neutral",
-      "enum": ["danger", "neutral", "primary", "success", "warning"],
+      "enum": [
+        "danger",
+        "neutral",
+        "primary",
+        "success",
+        "warning"
+      ],
       "type": "string",
       "title": "appearance",
       "required": false

@@ -3,7 +3,7 @@
   "name": "Icon",
   "totalProps": 3,
   "packageName": "@nimbus-ds/icon",
-  "version": "3.3.1",
+  "version": "3.4.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/icon",
   "props": [
     {
@@ -34,6 +34,7 @@
         "primary-textHigh",
         "primary-textLow",
         "success-interactive",
+        "success-interactivePressed",
         "success-surface",
         "success-textHigh",
         "success-textLow",
@@ -49,7 +50,13 @@
     {
       "description": "The cursor property specifies the mouse cursor to be displayed when pointing over an element.",
       "default": "inherit",
-      "enum": ["auto", "grab", "inherit", "not-allowed", "pointer"],
+      "enum": [
+        "auto",
+        "grab",
+        "inherit",
+        "not-allowed",
+        "pointer"
+      ],
       "type": "string",
       "title": "cursor",
       "required": false

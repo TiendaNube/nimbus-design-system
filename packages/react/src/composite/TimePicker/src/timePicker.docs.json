@@ -9,7 +9,10 @@
     {
       "description": "Display mode for the time picker panel.\n- \"scroll\": Shows a scroll-based wheel picker with separate hour/minute columns.\n- \"dropdown\": Shows a single scrollable list of time options.",
       "default": "scroll",
-      "enum": ["dropdown", "scroll"],
+      "enum": [
+        "dropdown",
+        "scroll"
+      ],
       "type": "string",
       "title": "mode",
       "required": false
@@ -22,7 +25,10 @@
           "format": "date-time"
         },
         {
-          "type": ["null", "string"]
+          "type": [
+            "null",
+            "string"
+          ]
         }
       ],
       "title": "value",
@@ -39,7 +45,10 @@
     {
       "description": "Time format: 12-hour with AM/PM or 24-hour.",
       "default": "24h",
-      "enum": ["12h", "24h"],
+      "enum": [
+        "12h",
+        "24h"
+      ],
       "type": "string",
       "title": "format",
       "required": false

@@ -3,7 +3,7 @@
   "name": "Text",
   "totalProps": 13,
   "packageName": "@nimbus-ds/text",
-  "version": "6.6.1",
+  "version": "6.7.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/text",
   "props": [
     {
@@ -15,7 +15,10 @@
     {
       "description": "Type of html tag to create for the Text component.",
       "default": "p",
-      "enum": ["p", "span"],
+      "enum": [
+        "p",
+        "span"
+      ],
       "type": "string",
       "title": "as",
       "required": false
@@ -28,36 +31,66 @@
           "type": "object",
           "properties": {
             "xs": {
-              "enum": ["base", "caption", "highlight"],
+              "enum": [
+                "base",
+                "caption",
+                "highlight"
+              ],
               "type": "string",
               "title": "xs"
             },
             "md": {
-              "enum": ["base", "caption", "highlight"],
+              "enum": [
+                "base",
+                "caption",
+                "highlight"
+              ],
               "type": "string",
               "title": "md"
             },
             "lg": {
-              "enum": ["base", "caption", "highlight"],
+              "enum": [
+                "base",
+                "caption",
+                "highlight"
+              ],
               "type": "string",
               "title": "lg"
             },
             "xl": {
-              "enum": ["base", "caption", "highlight"],
+              "enum": [
+                "base",
+                "caption",
+                "highlight"
+              ],
               "type": "string",
               "title": "xl"
             },
             "xxl": {
-              "enum": ["base", "caption", "highlight"],
+              "enum": [
+                "base",
+                "caption",
+                "highlight"
+              ],
               "type": "string",
               "title": "xxl"
             }
           },
           "additionalProperties": false,
-          "propertyOrder": ["xs", "md", "lg", "xl", "xxl"]
+          "propertyOrder": [
+            "xs",
+            "md",
+            "lg",
+            "xl",
+            "xxl"
+          ]
         },
         {
-          "enum": ["base", "caption", "highlight"],
+          "enum": [
+            "base",
+            "caption",
+            "highlight"
+          ],
           "type": "string"
         }
       ],
@@ -72,36 +105,66 @@
           "type": "object",
           "properties": {
             "xs": {
-              "enum": ["bold", "medium", "regular"],
+              "enum": [
+                "bold",
+                "medium",
+                "regular"
+              ],
               "type": "string",
               "title": "xs"
             },
             "md": {
-              "enum": ["bold", "medium", "regular"],
+              "enum": [
+                "bold",
+                "medium",
+                "regular"
+              ],
               "type": "string",
               "title": "md"
             },
             "lg": {
-              "enum": ["bold", "medium", "regular"],
+              "enum": [
+                "bold",
+                "medium",
+                "regular"
+              ],
               "type": "string",
               "title": "lg"
             },
             "xl": {
-              "enum": ["bold", "medium", "regular"],
+              "enum": [
+                "bold",
+                "medium",
+                "regular"
+              ],
               "type": "string",
               "title": "xl"
             },
             "xxl": {
-              "enum": ["bold", "medium", "regular"],
+              "enum": [
+                "bold",
+                "medium",
+                "regular"
+              ],
               "type": "string",
               "title": "xxl"
             }
           },
           "additionalProperties": false,
-          "propertyOrder": ["xs", "md", "lg", "xl", "xxl"]
+          "propertyOrder": [
+            "xs",
+            "md",
+            "lg",
+            "xl",
+            "xxl"
+          ]
         },
         {
-          "enum": ["bold", "medium", "regular"],
+          "enum": [
+            "bold",
+            "medium",
+            "regular"
+          ],
           "type": "string"
         }
       ],
@@ -134,6 +197,7 @@
                 "primary-textHigh",
                 "primary-textLow",
                 "success-interactive",
+                "success-interactivePressed",
                 "success-surface",
                 "success-textHigh",
                 "success-textLow",
@@ -164,6 +228,7 @@
                 "primary-textHigh",
                 "primary-textLow",
                 "success-interactive",
+                "success-interactivePressed",
                 "success-surface",
                 "success-textHigh",
                 "success-textLow",
@@ -194,6 +259,7 @@
                 "primary-textHigh",
                 "primary-textLow",
                 "success-interactive",
+                "success-interactivePressed",
                 "success-surface",
                 "success-textHigh",
                 "success-textLow",
@@ -224,6 +290,7 @@
                 "primary-textHigh",
                 "primary-textLow",
                 "success-interactive",
+                "success-interactivePressed",
                 "success-surface",
                 "success-textHigh",
                 "success-textLow",
@@ -254,6 +321,7 @@
                 "primary-textHigh",
                 "primary-textLow",
                 "success-interactive",
+                "success-interactivePressed",
                 "success-surface",
                 "success-textHigh",
                 "success-textLow",
@@ -267,7 +335,13 @@
             }
           },
           "additionalProperties": false,
-          "propertyOrder": ["xs", "md", "lg", "xl", "xxl"]
+          "propertyOrder": [
+            "xs",
+            "md",
+            "lg",
+            "xl",
+            "xxl"
+          ]
         },
         {
           "enum": [
@@ -288,6 +362,7 @@
             "primary-textHigh",
             "primary-textLow",
             "success-interactive",
+            "success-interactivePressed",
             "success-surface",
             "success-textHigh",
             "success-textLow",
@@ -310,36 +385,66 @@
           "type": "object",
           "properties": {
             "xs": {
-              "enum": ["base", "caption", "highlight"],
+              "enum": [
+                "base",
+                "caption",
+                "highlight"
+              ],
               "type": "string",
               "title": "xs"
             },
             "md": {
-              "enum": ["base", "caption", "highlight"],
+              "enum": [
+                "base",
+                "caption",
+                "highlight"
+              ],
               "type": "string",
               "title": "md"
             },
             "lg": {
-              "enum": ["base", "caption", "highlight"],
+              "enum": [
+                "base",
+                "caption",
+                "highlight"
+              ],
               "type": "string",
               "title": "lg"
             },
             "xl": {
-              "enum": ["base", "caption", "highlight"],
+              "enum": [
+                "base",
+                "caption",
+                "highlight"
+              ],
               "type": "string",
               "title": "xl"
             },
             "xxl": {
-              "enum": ["base", "caption", "highlight"],
+              "enum": [
+                "base",
+                "caption",
+                "highlight"
+              ],
               "type": "string",
               "title": "xxl"
             }
           },
           "additionalProperties": false,
-          "propertyOrder": ["xs", "md", "lg", "xl", "xxl"]
+          "propertyOrder": [
+            "xs",
+            "md",
+            "lg",
+            "xl",
+            "xxl"
+          ]
         },
         {
-          "enum": ["base", "caption", "highlight"],
+          "enum": [
+            "base",
+            "caption",
+            "highlight"
+          ],
           "type": "string"
         }
       ],
@@ -354,36 +459,72 @@
           "type": "object",
           "properties": {
             "xs": {
-              "enum": ["center", "justify", "left", "right"],
+              "enum": [
+                "center",
+                "justify",
+                "left",
+                "right"
+              ],
               "type": "string",
               "title": "xs"
             },
             "md": {
-              "enum": ["center", "justify", "left", "right"],
+              "enum": [
+                "center",
+                "justify",
+                "left",
+                "right"
+              ],
               "type": "string",
               "title": "md"
             },
             "lg": {
-              "enum": ["center", "justify", "left", "right"],
+              "enum": [
+                "center",
+                "justify",
+                "left",
+                "right"
+              ],
               "type": "string",
               "title": "lg"
             },
             "xl": {
-              "enum": ["center", "justify", "left", "right"],
+              "enum": [
+                "center",
+                "justify",
+                "left",
+                "right"
+              ],
               "type": "string",
               "title": "xl"
             },
             "xxl": {
-              "enum": ["center", "justify", "left", "right"],
+              "enum": [
+                "center",
+                "justify",
+                "left",
+                "right"
+              ],
               "type": "string",
               "title": "xxl"
             }
           },
           "additionalProperties": false,
-          "propertyOrder": ["xs", "md", "lg", "xl", "xxl"]
+          "propertyOrder": [
+            "xs",
+            "md",
+            "lg",
+            "xl",
+            "xxl"
+          ]
         },
         {
-          "enum": ["center", "justify", "left", "right"],
+          "enum": [
+            "center",
+            "justify",
+            "left",
+            "right"
+          ],
           "type": "string"
         }
       ],
@@ -397,36 +538,60 @@
           "type": "object",
           "properties": {
             "xs": {
-              "enum": ["clip", "ellipsis"],
+              "enum": [
+                "clip",
+                "ellipsis"
+              ],
               "type": "string",
               "title": "xs"
             },
             "md": {
-              "enum": ["clip", "ellipsis"],
+              "enum": [
+                "clip",
+                "ellipsis"
+              ],
               "type": "string",
               "title": "md"
             },
             "lg": {
-              "enum": ["clip", "ellipsis"],
+              "enum": [
+                "clip",
+                "ellipsis"
+              ],
               "type": "string",
               "title": "lg"
             },
             "xl": {
-              "enum": ["clip", "ellipsis"],
+              "enum": [
+                "clip",
+                "ellipsis"
+              ],
               "type": "string",
               "title": "xl"
             },
             "xxl": {
-              "enum": ["clip", "ellipsis"],
+              "enum": [
+                "clip",
+                "ellipsis"
+              ],
               "type": "string",
               "title": "xxl"
             }
           },
           "additionalProperties": false,
-          "propertyOrder": ["xs", "md", "lg", "xl", "xxl"]
+          "propertyOrder": [
+            "xs",
+            "md",
+            "lg",
+            "xl",
+            "xxl"
+          ]
         },
         {
-          "enum": ["clip", "ellipsis"],
+          "enum": [
+            "clip",
+            "ellipsis"
+          ],
           "type": "string"
         }
       ],
@@ -501,7 +666,13 @@
             }
           },
           "additionalProperties": false,
-          "propertyOrder": ["xs", "md", "lg", "xl", "xxl"]
+          "propertyOrder": [
+            "xs",
+            "md",
+            "lg",
+            "xl",
+            "xxl"
+          ]
         },
         {
           "enum": [
@@ -525,36 +696,72 @@
           "type": "object",
           "properties": {
             "xs": {
-              "enum": ["break-all", "break-word", "keep-all", "normal"],
+              "enum": [
+                "break-all",
+                "break-word",
+                "keep-all",
+                "normal"
+              ],
               "type": "string",
               "title": "xs"
             },
             "md": {
-              "enum": ["break-all", "break-word", "keep-all", "normal"],
+              "enum": [
+                "break-all",
+                "break-word",
+                "keep-all",
+                "normal"
+              ],
               "type": "string",
               "title": "md"
             },
             "lg": {
-              "enum": ["break-all", "break-word", "keep-all", "normal"],
+              "enum": [
+                "break-all",
+                "break-word",
+                "keep-all",
+                "normal"
+              ],
               "type": "string",
               "title": "lg"
             },
             "xl": {
-              "enum": ["break-all", "break-word", "keep-all", "normal"],
+              "enum": [
+                "break-all",
+                "break-word",
+                "keep-all",
+                "normal"
+              ],
               "type": "string",
               "title": "xl"
             },
             "xxl": {
-              "enum": ["break-all", "break-word", "keep-all", "normal"],
+              "enum": [
+                "break-all",
+                "break-word",
+                "keep-all",
+                "normal"
+              ],
               "type": "string",
               "title": "xxl"
             }
           },
           "additionalProperties": false,
-          "propertyOrder": ["xs", "md", "lg", "xl", "xxl"]
+          "propertyOrder": [
+            "xs",
+            "md",
+            "lg",
+            "xl",
+            "xxl"
+          ]
         },
         {
-          "enum": ["break-all", "break-word", "keep-all", "normal"],
+          "enum": [
+            "break-all",
+            "break-word",
+            "keep-all",
+            "normal"
+          ],
           "type": "string"
         }
       ],
@@ -589,7 +796,13 @@
             }
           },
           "additionalProperties": false,
-          "propertyOrder": ["xs", "md", "lg", "xl", "xxl"]
+          "propertyOrder": [
+            "xs",
+            "md",
+            "lg",
+            "xl",
+            "xxl"
+          ]
         },
         {
           "type": "number"
@@ -605,36 +818,72 @@
           "type": "object",
           "properties": {
             "xs": {
-              "enum": ["auto", "hidden", "scroll", "visible"],
+              "enum": [
+                "auto",
+                "hidden",
+                "scroll",
+                "visible"
+              ],
               "type": "string",
               "title": "xs"
             },
             "md": {
-              "enum": ["auto", "hidden", "scroll", "visible"],
+              "enum": [
+                "auto",
+                "hidden",
+                "scroll",
+                "visible"
+              ],
               "type": "string",
               "title": "md"
             },
             "lg": {
-              "enum": ["auto", "hidden", "scroll", "visible"],
+              "enum": [
+                "auto",
+                "hidden",
+                "scroll",
+                "visible"
+              ],
               "type": "string",
               "title": "lg"
             },
             "xl": {
-              "enum": ["auto", "hidden", "scroll", "visible"],
+              "enum": [
+                "auto",
+                "hidden",
+                "scroll",
+                "visible"
+              ],
               "type": "string",
               "title": "xl"
             },
             "xxl": {
-              "enum": ["auto", "hidden", "scroll", "visible"],
+              "enum": [
+                "auto",
+                "hidden",
+                "scroll",
+                "visible"
+              ],
               "type": "string",
               "title": "xxl"
             }
           },
           "additionalProperties": false,
-          "propertyOrder": ["xs", "md", "lg", "xl", "xxl"]
+          "propertyOrder": [
+            "xs",
+            "md",
+            "lg",
+            "xl",
+            "xxl"
+          ]
         },
         {
-          "enum": ["auto", "hidden", "scroll", "visible"],
+          "enum": [
+            "auto",
+            "hidden",
+            "scroll",
+            "visible"
+          ],
           "type": "string"
         }
       ],
@@ -648,36 +897,66 @@
           "type": "object",
           "properties": {
             "xs": {
-              "enum": ["line-through", "none", "underline"],
+              "enum": [
+                "line-through",
+                "none",
+                "underline"
+              ],
               "type": "string",
               "title": "xs"
             },
             "md": {
-              "enum": ["line-through", "none", "underline"],
+              "enum": [
+                "line-through",
+                "none",
+                "underline"
+              ],
               "type": "string",
               "title": "md"
             },
             "lg": {
-              "enum": ["line-through", "none", "underline"],
+              "enum": [
+                "line-through",
+                "none",
+                "underline"
+              ],
               "type": "string",
               "title": "lg"
             },
             "xl": {
-              "enum": ["line-through", "none", "underline"],
+              "enum": [
+                "line-through",
+                "none",
+                "underline"
+              ],
               "type": "string",
               "title": "xl"
             },
             "xxl": {
-              "enum": ["line-through", "none", "underline"],
+              "enum": [
+                "line-through",
+                "none",
+                "underline"
+              ],
               "type": "string",
               "title": "xxl"
             }
           },
           "additionalProperties": false,
-          "propertyOrder": ["xs", "md", "lg", "xl", "xxl"]
+          "propertyOrder": [
+            "xs",
+            "md",
+            "lg",
+            "xl",
+            "xxl"
+          ]
         },
         {
-          "enum": ["line-through", "none", "underline"],
+          "enum": [
+            "line-through",
+            "none",
+            "underline"
+          ],
           "type": "string"
         }
       ],
@@ -691,7 +970,11 @@
       "totalProps": 5,
       "props": [
         {
-          "enum": ["base", "caption", "highlight"],
+          "enum": [
+            "base",
+            "caption",
+            "highlight"
+          ],
           "type": "string",
           "title": "fontSize",
           "required": false
