@@ -1,0 +1,4 @@
+releases:
+  "@nimbus-ds/components": minor
+  "@nimbus-ds/icon": minor
+  "@nimbus-ds/text": minor
