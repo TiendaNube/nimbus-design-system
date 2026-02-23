@@ -7,7 +7,7 @@ every day, with simplicity, accessibility, consistency and performance.
 
 #### 🎉 New features
 
-- Added `success-interactivePressed` color property to `Icon` and `Text` components.
+- Added `success-interactivePressed` color property to `Icon` and `Text` components. ([`#433`](https://github.com/TiendaNube/nimbus-design-system/pull/433) by [`@jetchart-tiendanube`](https://github.com/jetchart-tiendanube))
 
 ## 2026-02-12 `5.52.0`
 
