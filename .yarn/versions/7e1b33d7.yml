@@ -27,5 +27,6 @@ declined:
   - "@nimbus-ds/toggle"
   - "@nimbus-ds/alert"
   - "@nimbus-ds/scroll-pane"
+  - "@nimbus-ds/split-button"
   - "@nimbus-ds/stepper"
   - "@nimbus-ds/time-picker"
