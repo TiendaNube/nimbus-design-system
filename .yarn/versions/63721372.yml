@@ -2,9 +2,9 @@ releases:
   "@nimbus-ds/components": minor
   "@nimbus-ds/icon": minor
   "@nimbus-ds/text": minor
-  nimbus-design-system: minor
 
 declined:
+  - nimbus-design-system
   - "@nimbus-ds/badge"
   - "@nimbus-ds/button"
   - "@nimbus-ds/checkbox"
