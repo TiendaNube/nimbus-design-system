@@ -28,6 +28,7 @@ const iconColorProperties = {
 
   "success-surface": colorProperties["success-surface"],
   "success-interactive": colorProperties["success-textLow"],
+  "success-interactivePressed": colorProperties["success-interactivePressed"],
   "success-textLow": colorProperties["success-textLow"],
   "success-textHigh": colorProperties["success-textHigh"],
 

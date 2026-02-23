@@ -2,6 +2,12 @@
 
 Text is a basic component that allows us to write blocks of text and give it formatting to use within other components, sections and pages of our application or website.
 
+## 2026-02-23 `6.8.0`
+
+#### 🎉 New features
+
+- Added `success-interactivePressed` color property to `Text` component. ([`#432`](https://github.com/TiendaNube/nimbus-design-system/pull/432) by [`@jetchart-tiendanube`](https://github.com/jetchart-tiendanube))
+
 ## 2026-02-12 `6.7.0`
 
 #### 🎉 New features

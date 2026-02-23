@@ -9,10 +9,7 @@
     {
       "description": "Type of html tag to create for the Icon Button component.",
       "default": "button",
-      "enum": [
-        "button",
-        "div"
-      ],
+      "enum": ["button", "div"],
       "type": "string",
       "title": "as",
       "required": false
@@ -59,9 +56,7 @@
     },
     {
       "description": "AI gradient background appearance for the button container.\nWhen provided, container color/border sprinkles are ignored in favor of gradient styles.",
-      "enum": [
-        "ai-generative"
-      ],
+      "enum": ["ai-generative"],
       "type": "string",
       "title": "appearance",
       "required": false

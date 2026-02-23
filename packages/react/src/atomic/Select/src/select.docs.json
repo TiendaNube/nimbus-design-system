@@ -27,13 +27,7 @@
     {
       "description": "Change the visual style of the select.",
       "default": "neutral",
-      "enum": [
-        "ai-generative",
-        "danger",
-        "neutral",
-        "success",
-        "warning"
-      ],
+      "enum": ["ai-generative", "danger", "neutral", "success", "warning"],
       "type": "string",
       "title": "appearance",
       "required": false
