@@ -1,0 +1,6 @@
+releases:
+  "@nimbus-ds/icon": minor
+  "@nimbus-ds/text": minor
+
+undecided:
+  - "@nimbus-ds/styles"

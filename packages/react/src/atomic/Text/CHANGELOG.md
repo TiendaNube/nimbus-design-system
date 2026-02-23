@@ -2,6 +2,12 @@
 
 Text is a basic component that allows us to write blocks of text and give it formatting to use within other components, sections and pages of our application or website.
 
+## 2026-02-23 `6.7.0`
+
+#### 🎉 New features
+
+- Added `success-interactivePressed` color property to `Text` component.
+
 ## 2026-01-13 `6.6.1`
 
 #### 🎉 New features

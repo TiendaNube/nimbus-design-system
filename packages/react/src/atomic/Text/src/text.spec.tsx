@@ -146,6 +146,13 @@ describe("GIVEN <Text />", () => {
       ).toContain("color-success-interactive");
     });
 
+    it("THEN should correctly render the color success-interactivePressed", () => {
+      makeSut({ color: "success-interactivePressed" });
+      expect(
+        screen.getByTestId("text-element").getAttribute("class")
+      ).toContain("color-success-interactivePressed");
+    });
+
     it("THEN should correctly render the color warning-textLow", () => {
       makeSut({ color: "warning-textLow" });
       expect(

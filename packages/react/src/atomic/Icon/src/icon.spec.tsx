@@ -58,6 +58,13 @@ describe("GIVEN <Icon />", () => {
       ).toContain("color_success-textHigh");
     });
 
+    it("THEN should correctly render the color success-interactivePressed", () => {
+      makeSut({ source: <svg />, color: "success-interactivePressed" });
+      expect(
+        screen.getByTestId("icon-element").getAttribute("class")
+      ).toContain("color_success-interactivePressed");
+    });
+
     it("THEN should correctly render the color warning-textLow", () => {
       makeSut({ source: <svg />, color: "warning-textLow" });
       expect(
