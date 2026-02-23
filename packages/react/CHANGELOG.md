@@ -3,6 +3,12 @@
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories
 every day, with simplicity, accessibility, consistency and performance.
 
+## 2026-02-23 `5.53.0`
+
+#### 🎉 New features
+
+- Added `success-interactivePressed` color property to `Icon` and `Text` components. ([`#433`](https://github.com/TiendaNube/nimbus-design-system/pull/433) by [`@jetchart-tiendanube`](https://github.com/jetchart-tiendanube))
+
 ## 2026-02-12 `5.52.0`
 
 #### 🎉 New features
