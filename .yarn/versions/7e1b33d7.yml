@@ -6,14 +6,17 @@ releases:
   "@nimbus-ds/card": minor
   "@nimbus-ds/checkbox": minor
   "@nimbus-ds/chip": minor
+  "@nimbus-ds/components": minor
   "@nimbus-ds/file-uploader": minor
   "@nimbus-ds/icon": minor
   "@nimbus-ds/icon-button": minor
   "@nimbus-ds/input": minor
   "@nimbus-ds/label": minor
+  "@nimbus-ds/link": minor
   "@nimbus-ds/modal": minor
   "@nimbus-ds/multi-select": minor
   "@nimbus-ds/pagination": minor
+  "@nimbus-ds/progress-bar": minor
   "@nimbus-ds/radio": minor
   "@nimbus-ds/scroll-pane": minor
   "@nimbus-ds/segmented-control": minor
@@ -26,7 +29,10 @@ releases:
   "@nimbus-ds/tabs": minor
   "@nimbus-ds/tag": minor
   "@nimbus-ds/text": minor
+  "@nimbus-ds/textarea": minor
   "@nimbus-ds/thumbnail": minor
+  "@nimbus-ds/time-picker": minor
+  "@nimbus-ds/title": minor
   "@nimbus-ds/toast": minor
   "@nimbus-ds/toggle": minor
   nimbus-design-system: minor
