@@ -6,7 +6,7 @@ Text is a basic component that allows us to write blocks of text and give it for
 
 #### 🎉 New features
 
-- Added `success-interactivePressed` color property to `Text` component.
+- Added `success-interactivePressed` color property to `Text` component. ([`#432`](https://github.com/TiendaNube/nimbus-design-system/pull/432) by [`@jetchart-tiendanube`](https://github.com/jetchart-tiendanube))
 
 ## 2026-02-12 `6.7.0`
 
