@@ -4,11 +4,14 @@ import { CameraIcon } from "@nimbus-ds/icons";
 import { thumbnail, vars } from "@nimbus-ds/styles";
 import { Icon } from "@nimbus-ds/icon";
 
-import { ThumbnailProps, ThumbnailComponents } from "./thumbnail.types";
+import {
+  type ThumbnailProps,
+  type ThumbnailComponents,
+} from "./thumbnail.types";
 import { ThumbnailSkeleton } from "./components";
 
 const Thumbnail: React.FC<ThumbnailProps> & ThumbnailComponents = ({
-  className: _className,
+  className,
   style: _style,
   aspectRatio = "1/1",
   width = "100%",
@@ -19,9 +22,12 @@ const Thumbnail: React.FC<ThumbnailProps> & ThumbnailComponents = ({
 }: ThumbnailProps) => (
   <div
     className={[
+      className,
       thumbnail.classnames.container,
       thumbnail.classnames.width,
-    ].join(" ")}
+    ]
+      .filter(Boolean)
+      .join(" ")}
     style={assignInlineVars({
       [vars.width]: width,
     })}

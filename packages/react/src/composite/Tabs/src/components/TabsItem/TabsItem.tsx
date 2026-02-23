@@ -2,10 +2,10 @@ import React from "react";
 import { tabs } from "@nimbus-ds/styles";
 
 import { generateID } from "../../tabs.definitions";
-import { TabsItemProps } from "./tabsItem.types";
+import { type TabsItemProps } from "./tabsItem.types";
 
 const TabsItem: React.FC<TabsItemProps> = ({
-  className: _className,
+  className,
   style: _style,
   label,
   children,
@@ -18,7 +18,9 @@ const TabsItem: React.FC<TabsItemProps> = ({
       id={`panel-${ariaID}`}
       role="tabpanel"
       aria-labelledby={`tab-${ariaID}`}
-      className={tabs.classnames.container__panel}
+      className={[className, tabs.classnames.container__panel]
+        .filter(Boolean)
+        .join(" ")}
       tabIndex={-1}
     >
       {children}

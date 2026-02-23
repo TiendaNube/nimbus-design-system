@@ -4,7 +4,7 @@ import userEvent from "@testing-library/user-event";
 import { tooltip as tooltipStyles } from "@nimbus-ds/styles";
 
 import { Tooltip } from "./Tooltip";
-import { TooltipProps } from "./tooltip.types";
+import { type TooltipProps } from "./tooltip.types";
 
 const makeSut = (rest: Omit<TooltipProps, "children">) => {
   render(

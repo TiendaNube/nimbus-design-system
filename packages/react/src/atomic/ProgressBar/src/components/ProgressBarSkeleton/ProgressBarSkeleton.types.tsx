@@ -1,5 +1,5 @@
-import { SkeletonProps } from "@nimbus-ds/skeleton";
+import { type SkeletonProps } from "@nimbus-ds/skeleton";
 
 export type ProgressBarSkeletonProperties = Partial<
-  Pick<SkeletonProps, "width" | "height" | "data-testid">
+  Pick<SkeletonProps, "width" | "height" | "className" | "data-testid">
 >;

@@ -5,6 +5,7 @@ import { slider } from "@nimbus-ds/styles";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
 
 interface SliderThumbProps {
+  className?: string;
   type: "min" | "max" | "single";
   percentage: number;
   value: number;
@@ -18,6 +19,7 @@ interface SliderThumbProps {
 }
 
 const SliderThumbComponent = ({
+  className,
   type,
   percentage,
   value,
@@ -37,7 +39,7 @@ const SliderThumbComponent = ({
 
   return (
     <div
-      className={slider.classnames.thumbWrapper}
+      className={[className, slider.classnames.thumbWrapper].join(" ")}
       style={assignInlineVars({
         [slider.vars.thumbLeft]: `${percentage}%`,
       })}

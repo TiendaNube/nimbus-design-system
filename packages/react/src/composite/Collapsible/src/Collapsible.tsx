@@ -1,16 +1,16 @@
 import React, { useEffect, useMemo, useState } from "react";
 
 import {
-  CollapsibleProperties,
-  CollapsibleBaseProps,
-  CollapsibleComponents,
+  type CollapsibleProperties,
+  type CollapsibleBaseProps,
+  type CollapsibleComponents,
 } from "./collapsible.types";
 import { CollapsibleBody } from "./components/CollapsibleBody/CollapsibleBody";
 import { CollapsibleItem } from "./components/CollapsibleItem/CollapsibleItem";
 import { CollapsibleContext } from "./contexts";
 
 const Collapsible: React.FC<CollapsibleProperties> & CollapsibleComponents = ({
-  className: _className,
+  className,
   style: _style,
   open,
   children,
@@ -34,7 +34,9 @@ const Collapsible: React.FC<CollapsibleProperties> & CollapsibleComponents = ({
 
   return (
     <CollapsibleContext.Provider value={context}>
-      <div {...rest}>{children}</div>
+      <div className={className} {...rest}>
+        {children}
+      </div>
     </CollapsibleContext.Provider>
   );
 };

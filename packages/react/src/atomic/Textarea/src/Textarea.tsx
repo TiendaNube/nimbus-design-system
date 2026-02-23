@@ -1,7 +1,7 @@
 import React, {
   forwardRef,
-  ForwardRefExoticComponent,
-  ComponentPropsWithRef,
+  type ForwardRefExoticComponent,
+  type ComponentPropsWithRef,
   useMemo,
   useEffect,
   useRef,
@@ -9,14 +9,17 @@ import React, {
 } from "react";
 import { textarea } from "@nimbus-ds/styles";
 
-import { TextareaComponents, TextareaBaseProps } from "./textarea.types";
+import {
+  type TextareaComponents,
+  type TextareaBaseProps,
+} from "./textarea.types";
 import { TextareaSkeleton } from "./components";
 import { adjustTextareaHeightFallback } from "./Textarea.definitions";
 
 const Textarea = forwardRef<HTMLTextAreaElement, TextareaBaseProps>(
   (
     {
-      className: _className,
+      className,
       style: _style,
       appearance = "neutral",
       aiGenerated = false,
@@ -109,7 +112,8 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaBaseProps>(
       [rest, adjustTextareaHeight]
     );
 
-    const className = [
+    const classes = [
+      className,
       aiGenerated && textarea.classnames.aiGenerated,
       textarea.classnames.appearance[appearance],
       autoGrow && textarea.classnames.fieldSizing,
@@ -124,7 +128,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaBaseProps>(
         onInput={handleInput}
         onChange={handleChange}
         ref={handleRef}
-        className={className}
+        className={classes}
         rows={lines}
         id={id}
         style={computedStyle}

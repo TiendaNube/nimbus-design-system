@@ -1,7 +1,7 @@
-import { SkeletonProps } from "@nimbus-ds/skeleton";
+import { type SkeletonProps } from "@nimbus-ds/skeleton";
 
 export type AlertSkeletonProperties = Partial<
-  Pick<SkeletonProps, "width" | "height" | "data-testid">
+  Pick<SkeletonProps, "width" | "height" | "className" | "data-testid">
 >;
 
 export type AlertSkeletonProps = AlertSkeletonProperties;

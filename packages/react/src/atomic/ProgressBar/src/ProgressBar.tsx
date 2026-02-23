@@ -1,9 +1,9 @@
-import React, { ComponentPropsWithRef, forwardRef, useMemo } from "react";
+import React, { type ComponentPropsWithRef, forwardRef, useMemo } from "react";
 import { progressBar } from "@nimbus-ds/styles";
 
 import {
-  ProgressBarBaseProps,
-  ProgressBarComponents,
+  type ProgressBarBaseProps,
+  type ProgressBarComponents,
 } from "./progressBar.types";
 import { ProgressBarSkeleton } from "./components";
 
@@ -21,13 +21,7 @@ import { ProgressBarSkeleton } from "./components";
  */
 const ProgressBar = forwardRef<HTMLDivElement, ProgressBarBaseProps>(
   (
-    {
-      className: _className,
-      style: _style,
-      value,
-      appearance = "neutral",
-      ...rest
-    },
+    { className, style: _style, value, appearance = "neutral", ...rest },
     ref
   ) => {
     // Ensure value is within 0-100 range
@@ -41,7 +35,7 @@ const ProgressBar = forwardRef<HTMLDivElement, ProgressBarBaseProps>(
       <div
         {...rest}
         ref={ref}
-        className={[progressBar.classnames.container, _className]
+        className={[className, progressBar.classnames.container]
           .filter(Boolean)
           .join(" ")}
         style={_style}

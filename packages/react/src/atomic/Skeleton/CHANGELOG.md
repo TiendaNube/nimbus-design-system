@@ -2,6 +2,12 @@
 
 The skeleton is a basic component that displays a placeholder preview of its content before the data is loaded, reducing the feeling of slow loading time.
 
+## 2026-02-12 `2.3.0`
+
+#### 🎉 New features
+
+- Enabled `className` prop forwarding to allow consumers to pass custom CSS classes. ([#426](https://github.com/TiendaNube/nimbus-design-system/pull/426) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2026-01-13 `2.2.2`
 
 #### 🎉 New features

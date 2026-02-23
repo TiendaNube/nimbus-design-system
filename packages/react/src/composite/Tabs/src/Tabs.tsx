@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { tabs } from "@nimbus-ds/styles";
 
-import { TabsProps, TabsComponents } from "./tabs.types";
+import { type TabsProps, type TabsComponents } from "./tabs.types";
 import { TabsButton, TabsItem } from "./components";
 import { isControlled } from "./tabs.definitions";
 
 const Tabs: React.FC<TabsProps> & TabsComponents = ({
-  className: _className,
+  className,
   style: _style,
   children,
   preSelectedTab,
@@ -25,7 +25,7 @@ const Tabs: React.FC<TabsProps> & TabsComponents = ({
     : setInternalSelectedTab;
 
   return (
-    <div {...rest}>
+    <div className={className} {...rest}>
       <ul role="tablist" className={tabs.classnames.container}>
         {React.Children.map(children, (item, index) => {
           const {

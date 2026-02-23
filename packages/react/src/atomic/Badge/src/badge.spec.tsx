@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import { Badge } from "./Badge";
-import { BadgeProps } from "./badge.types";
+import { type BadgeProps } from "./badge.types";
 
 const makeSut = (rest: BadgeProps) => {
   render(<Badge {...rest} data-testid="badge-element" />);

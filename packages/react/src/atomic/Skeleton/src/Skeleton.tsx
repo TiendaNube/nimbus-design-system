@@ -2,10 +2,10 @@ import React from "react";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
 import { skeleton, vars } from "@nimbus-ds/styles";
 
-import { SkeletonProps } from "./skeleton.types";
+import { type SkeletonProps } from "./skeleton.types";
 
 const Skeleton: React.FC<SkeletonProps> = ({
-  className: _className,
+  className,
   style: _style,
   height,
   width,
@@ -13,7 +13,7 @@ const Skeleton: React.FC<SkeletonProps> = ({
   ...rest
 }) => (
   <div
-    className={skeleton.classnames.base}
+    className={[className, skeleton.classnames.base].filter(Boolean).join(" ")}
     style={assignInlineVars({
       [vars.width]: width,
       [vars.height]: height,

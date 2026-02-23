@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import { TextSkeleton } from "./TextSkeleton";
-import { TextSkeletonProps } from "./textSkeleton.types";
+import { type TextSkeletonProps } from "./textSkeleton.types";
 
 const makeSut = (props?: TextSkeletonProps) => {
   render(<TextSkeleton {...props} data-testid="skeleton-element" />);

@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/popover",
-  "version": "4.3.3",
+  "version": "4.4.0",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [

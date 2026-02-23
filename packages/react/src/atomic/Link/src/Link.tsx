@@ -1,24 +1,24 @@
 import React, {
-  ComponentPropsWithRef,
+  type ComponentPropsWithRef,
   forwardRef,
   useEffect,
   useImperativeHandle,
   useRef,
-  ForwardedRef,
+  type ForwardedRef,
 } from "react";
 import {
-  PolymorphicForwardRefComponent,
+  type PolymorphicForwardRefComponent,
   useRefObjectAsForwardedRef,
 } from "@nimbus-ds/typings";
 import { link } from "@nimbus-ds/styles";
 
-import { LinkBaseProps, LinkComponents } from "./link.types";
+import { type LinkBaseProps, type LinkComponents } from "./link.types";
 import { LinkSkeleton } from "./components";
 
 const Link = forwardRef(
   (
     {
-      className: _className,
+      className,
       style: _style,
       as: As = "a",
       children,
@@ -63,6 +63,7 @@ const Link = forwardRef(
       <As
         {...(rest as any)}
         className={[
+          className,
           link.classnames.appearance[appearance],
           link.sprinkle({ textDecoration, fontSize, lineHeight }),
         ].join(" ")}

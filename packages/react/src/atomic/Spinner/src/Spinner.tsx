@@ -2,11 +2,11 @@ import React, { useMemo } from "react";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
 import { spinner, vars } from "@nimbus-ds/styles";
 
-import { SpinnerProps } from "./spinner.types";
+import { type SpinnerProps } from "./spinner.types";
 import { sizes } from "./spinner.definitions";
 
 const Spinner: React.FC<SpinnerProps> = ({
-  className: _className,
+  className,
   style: _style,
   color = "primary-interactive",
   size = "large",
@@ -20,9 +20,13 @@ const Spinner: React.FC<SpinnerProps> = ({
   return (
     <svg
       viewBox="0 0 50 50"
-      className={[spinner.sprinkle({ color }), spinner.classnames.base].join(
-        " "
-      )}
+      className={[
+        className,
+        spinner.sprinkle({ color }),
+        spinner.classnames.base,
+      ]
+        .filter(Boolean)
+        .join(" ")}
       style={assignInlineVars({
         [vars.width]: scale,
         [vars.height]: scale,

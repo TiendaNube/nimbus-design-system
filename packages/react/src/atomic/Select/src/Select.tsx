@@ -1,19 +1,19 @@
 import React, {
   forwardRef,
-  ForwardRefExoticComponent,
-  ComponentPropsWithRef,
+  type ForwardRefExoticComponent,
+  type ComponentPropsWithRef,
 } from "react";
 import { select } from "@nimbus-ds/styles";
 import { Icon } from "@nimbus-ds/icon";
 import { ChevronDownIcon } from "@nimbus-ds/icons";
 
-import { SelectComponents, SelectBaseProps } from "./select.types";
+import { type SelectComponents, type SelectBaseProps } from "./select.types";
 import { SelectGroup, SelectOption, SelectSkeleton } from "./components";
 
 const Select = forwardRef<HTMLSelectElement, SelectBaseProps>(
   (
     {
-      className: _className,
+      className,
       style: _style,
       name,
       id,
@@ -33,11 +33,14 @@ const Select = forwardRef<HTMLSelectElement, SelectBaseProps>(
         ref={ref}
         id={id}
         name={name}
-        className={
+        className={[
+          className,
           aiGenerated
             ? select.classnames.aiGenerated
-            : select.classnames.appearance[appearance]
-        }
+            : select.classnames.appearance[appearance],
+        ]
+          .filter(Boolean)
+          .join(" ")}
       >
         {children}
       </select>

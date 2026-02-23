@@ -2,11 +2,11 @@ import React, { useMemo } from "react";
 import { Text } from "@nimbus-ds/text";
 import { radio } from "@nimbus-ds/styles";
 
-import { RadioProps, RadioComponents } from "./radio.types";
+import { type RadioProps, type RadioComponents } from "./radio.types";
 import { RadioSkeleton } from "./components";
 
 const Radio: React.FC<RadioProps> & RadioComponents = ({
-  className: _className,
+  className,
   style: _style,
   as = "radio",
   label,
@@ -22,9 +22,12 @@ const Radio: React.FC<RadioProps> & RadioComponents = ({
     <label
       htmlFor={id || name}
       className={[
+        className,
         radio.classnames.container,
         radio.sprinkle({ cursor: disabled ? "auto" : "pointer" }),
-      ].join(" ")}
+      ]
+        .filter(Boolean)
+        .join(" ")}
     >
       <input
         {...rest}

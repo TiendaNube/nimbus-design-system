@@ -7,9 +7,9 @@ import React, {
 } from "react";
 import { table } from "@nimbus-ds/styles";
 
-import { TableProps, TableComponents } from "./table.types";
+import { type TableProps, type TableComponents } from "./table.types";
 import { TableBody, TableCell, TableHead, TableRow } from "./components";
-import { TableContext, TableContextValue } from "./contexts";
+import { TableContext, type TableContextValue } from "./contexts";
 import {
   getEffectiveFixedWidth,
   getColumnWidth,
@@ -17,7 +17,7 @@ import {
 } from "./Table.definitions";
 
 const Table: React.FC<TableProps> & TableComponents = ({
-  className: _className,
+  className,
   style: _style,
   children,
   columnLayout,
@@ -175,7 +175,9 @@ const Table: React.FC<TableProps> & TableComponents = ({
       >
         <table
           {...rest}
-          className={table.classnames.container}
+          className={[className, table.classnames.container]
+            .filter(Boolean)
+            .join(" ")}
           style={tableStyle}
         >
           {hasColumnLayout ? (

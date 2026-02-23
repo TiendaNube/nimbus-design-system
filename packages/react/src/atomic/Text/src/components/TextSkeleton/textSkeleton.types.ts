@@ -1,8 +1,10 @@
-import { SkeletonProps } from "@nimbus-ds/skeleton";
-import { text } from "@nimbus-ds/styles";
+import { type SkeletonProps } from "@nimbus-ds/skeleton";
+import { type text } from "@nimbus-ds/styles";
 
 export type TextSkeletonProperties = {
   fontSize?: keyof typeof text.properties.fontSize;
-} & Partial<Pick<SkeletonProps, "width" | "height" | "data-testid">>;
+} & Partial<
+  Pick<SkeletonProps, "width" | "height" | "className" | "data-testid">
+>;
 
 export type TextSkeletonProps = TextSkeletonProperties;

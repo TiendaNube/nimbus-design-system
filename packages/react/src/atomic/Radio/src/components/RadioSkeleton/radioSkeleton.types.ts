@@ -1,7 +1,9 @@
-import { SkeletonProps } from "@nimbus-ds/skeleton";
-import { RadioProps } from "../../radio.types";
+import { type SkeletonProps } from "@nimbus-ds/skeleton";
+import { type RadioProps } from "../../radio.types";
 
-export type RadioSkeletonProperties = Partial<Pick<SkeletonProps, "width">> &
+export type RadioSkeletonProperties = Partial<
+  Pick<SkeletonProps, "width" | "className">
+> &
   Partial<Pick<RadioProps, "as">> & {
     /**
      * This is an attribute used to identify a DOM node for testing purposes.

@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import { ModalFooter } from "./ModalFooter";
-import { ModalFooterProps } from "./modalFooter.types";
+import { type ModalFooterProps } from "./modalFooter.types";
 
 const makeSut = (props: ModalFooterProps) => {
   render(<ModalFooter {...props} data-testid="footer-element" />);

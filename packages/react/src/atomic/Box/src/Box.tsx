@@ -1,13 +1,13 @@
-import React, { ComponentPropsWithRef, forwardRef } from "react";
-import { PolymorphicForwardRefComponent } from "@nimbus-ds/typings";
+import React, { type ComponentPropsWithRef, forwardRef } from "react";
+import { type PolymorphicForwardRefComponent } from "@nimbus-ds/typings";
 import { box } from "@nimbus-ds/styles";
 
-import { BoxBaseProps } from "./box.types";
+import { type BoxBaseProps } from "./box.types";
 
 const Box = forwardRef(
   (
     {
-      className: _className,
+      className,
       style: _style,
       as: As = "div",
       boxSizing = "border-box",
@@ -17,12 +17,16 @@ const Box = forwardRef(
   ) => {
     const isButton = As === "button";
 
-    const { className, style, otherProps } = box.sprinkle({
+    const {
+      className: classNameStyles,
+      style,
+      otherProps,
+    } = box.sprinkle({
       ...(rest as Parameters<typeof box.sprinkle>[0]),
       boxSizing,
     });
 
-    const classes = [className, isButton && box.asButton]
+    const classes = [className, classNameStyles, isButton && box.asButton]
       .filter(Boolean)
       .join(" ");
 

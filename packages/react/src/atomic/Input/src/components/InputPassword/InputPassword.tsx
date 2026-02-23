@@ -1,5 +1,5 @@
 import React, {
-  ComponentPropsWithRef,
+  type ComponentPropsWithRef,
   forwardRef,
   useRef,
   useState,
@@ -10,12 +10,12 @@ import { input } from "@nimbus-ds/styles";
 import { Icon } from "@nimbus-ds/icon";
 
 import { InputIcon } from "../InputIcon";
-import { InputPasswordBaseProps } from "./inputPassword.types";
+import { type InputPasswordBaseProps } from "./inputPassword.types";
 
 const InputPassword = forwardRef<HTMLInputElement, InputPasswordBaseProps>(
   (
     {
-      className: _className,
+      className,
       style: _style,
       appearance = "neutral",
       aiGenerated = false,
@@ -35,6 +35,7 @@ const InputPassword = forwardRef<HTMLInputElement, InputPasswordBaseProps>(
     return (
       <div
         className={[
+          className,
           input.classnames.appearance[appearance],
           aiGenerated && input.classnames.aiGenerated,
         ]

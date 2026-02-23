@@ -2,13 +2,18 @@ import React from "react";
 import { Skeleton } from "@nimbus-ds/skeleton";
 import { toggle } from "@nimbus-ds/styles";
 
-import { ToggleSkeletonProps } from "./toggleSkeleton.types";
+import { type ToggleSkeletonProps } from "./toggleSkeleton.types";
 
 const ToggleSkeleton: React.FC<ToggleSkeletonProps> = ({
+  className,
   width,
   "data-testid": dataTestId,
 }) => (
-  <div className={toggle.classnames.container}>
+  <div
+    className={[className, toggle.classnames.container]
+      .filter(Boolean)
+      .join(" ")}
+  >
     <Skeleton
       width="2rem"
       height="1rem"

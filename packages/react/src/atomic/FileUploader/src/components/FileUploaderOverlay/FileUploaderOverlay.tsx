@@ -3,13 +3,14 @@ import { assignInlineVars } from "@vanilla-extract/dynamic";
 import { fileUploader, fileUploaderVars } from "@nimbus-ds/styles";
 import { Text } from "@nimbus-ds/text";
 
-import { FileUploaderOverlayProps } from "./fileUploaderOverlay.types";
+import { type FileUploaderOverlayProps } from "./fileUploaderOverlay.types";
 
 /**
  * Overlay component displayed during drag operations on FileUploader.
  * Renders a customizable visual feedback with optional title, subtitle and image.
  */
 const FileUploaderOverlay: React.FC<FileUploaderOverlayProps> = ({
+  className,
   title,
   subtitle,
   imageSrc,
@@ -40,7 +41,7 @@ const FileUploaderOverlay: React.FC<FileUploaderOverlayProps> = ({
   return (
     <div
       data-testid="file-uploader-overlay"
-      className={fileUploader.classnames.overlay}
+      className={[className, fileUploader.classnames.overlay].join(" ")}
       style={assignInlineVars({
         [fileUploaderVars.overlayBorderRadius]: resolvedBorderRadius,
       })}

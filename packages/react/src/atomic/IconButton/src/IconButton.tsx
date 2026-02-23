@@ -2,11 +2,14 @@ import React from "react";
 import { iconButton } from "@nimbus-ds/styles";
 import { Icon } from "@nimbus-ds/icon";
 
-import { IconButtonProps, IconButtonComponents } from "./iconButton.types";
+import {
+  type IconButtonProps,
+  type IconButtonComponents,
+} from "./iconButton.types";
 import { IconButtonSkeleton } from "./components";
 
 const IconButton: React.FC<IconButtonProps> & IconButtonComponents = ({
-  className: _className,
+  className,
   style: _style,
   as: As = "button",
   size = "2.75rem",
@@ -34,7 +37,11 @@ const IconButton: React.FC<IconButtonProps> & IconButtonComponents = ({
     }),
   };
 
-  const { className, style, otherProps } = iconButton.sprinkle({
+  const {
+    className: classNameStyles,
+    style,
+    otherProps,
+  } = iconButton.sprinkle({
     ...(rest as Parameters<typeof iconButton.sprinkle>[0]),
     ...sprinkleProps,
   });
@@ -43,6 +50,7 @@ const IconButton: React.FC<IconButtonProps> & IconButtonComponents = ({
     <As
       className={[
         className,
+        classNameStyles,
         appearance
           ? iconButton.classnames.appearance?.[appearance]
           : iconButton.classnames.base,

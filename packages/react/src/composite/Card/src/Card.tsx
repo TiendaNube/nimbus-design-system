@@ -1,11 +1,11 @@
 import React from "react";
 import { card } from "@nimbus-ds/styles";
 
-import { CardProps, CardComponents } from "./card.types";
+import { type CardProps, type CardComponents } from "./card.types";
 import { CardBody, CardFooter, CardHeader } from "./components";
 
 const Card: React.FC<CardProps> & CardComponents = ({
-  className: _className,
+  className,
   style: _style,
   children,
   padding = "base",
@@ -14,9 +14,12 @@ const Card: React.FC<CardProps> & CardComponents = ({
 }: CardProps) => (
   <div
     className={[
+      className,
       card.classnames.container,
       card.sprinkle({ padding, backgroundColor }),
-    ].join(" ")}
+    ]
+      .filter(Boolean)
+      .join(" ")}
     {...rest}
   >
     {children}

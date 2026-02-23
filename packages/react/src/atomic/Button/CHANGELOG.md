@@ -2,6 +2,12 @@
 
 The Button component allows us to initiate actions, make state or page changes.
 
+## 2026-02-12 `2.11.0`
+
+#### 🎉 New features
+
+- Enabled `className` prop forwarding to allow consumers to pass custom CSS classes. ([#426](https://github.com/TiendaNube/nimbus-design-system/pull/426) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2026-01-13 `2.10.1`
 
 #### 🎉 New features

@@ -1,11 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { fn } from "@storybook/test";
 
 import { MultiSelect } from "./MultiSelect";
 
 const meta: Meta<typeof MultiSelect> = {
   title: "Atomic/MultiSelect",
   component: MultiSelect,
-
+  args: {
+    onChange: fn(),
+  },
   tags: ["autodocs"],
 };
 

@@ -15,10 +15,7 @@
     {
       "description": "Change the visual style of the checkbox.",
       "default": "neutral",
-      "enum": [
-        "danger",
-        "primary"
-      ],
+      "enum": ["danger", "primary"],
       "type": "string",
       "title": "appearance",
       "required": false
@@ -59,12 +56,17 @@
   "subComponents": [
     {
       "name": "Checkbox.Skeleton",
-      "totalProps": 2,
+      "totalProps": 3,
       "props": [
         {
           "description": "Width of the skeleton. Useful when the skeleton is inside an inline element with no width of its own.",
           "type": "string",
           "title": "width",
+          "required": false
+        },
+        {
+          "type": "string",
+          "title": "className",
           "required": false
         },
         {

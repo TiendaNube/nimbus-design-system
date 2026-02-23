@@ -1,16 +1,16 @@
-import React, { ComponentPropsWithRef, forwardRef, useRef } from "react";
+import React, { type ComponentPropsWithRef, forwardRef, useRef } from "react";
 import { useRefObjectAsForwardedRef } from "@nimbus-ds/typings";
 import { SearchIcon } from "@nimbus-ds/icons";
 import { input } from "@nimbus-ds/styles";
 import { Icon } from "@nimbus-ds/icon";
 
 import { InputIcon } from "../InputIcon";
-import { InputSearchBaseProps } from "./inputSearch.types";
+import { type InputSearchBaseProps } from "./inputSearch.types";
 
 const InputSearch = forwardRef<HTMLInputElement, InputSearchBaseProps>(
   (
     {
-      className: _className,
+      className,
       style: _style,
       appearance = "neutral",
       aiGenerated = false,
@@ -26,6 +26,7 @@ const InputSearch = forwardRef<HTMLInputElement, InputSearchBaseProps>(
     return (
       <div
         className={[
+          className,
           input.classnames.appearance[appearance],
           aiGenerated && input.classnames.aiGenerated,
         ]

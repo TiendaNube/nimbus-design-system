@@ -16,10 +16,10 @@ import {
 import { toast } from "@nimbus-ds/styles";
 
 import {
-  IconColor,
-  ToastComponents,
-  ToastProps,
-  TypesColors,
+  type IconColor,
+  type ToastComponents,
+  type ToastProps,
+  type TypesColors,
 } from "./toast.types";
 import { useToast } from "./hooks";
 import { ToastProvider } from "./components";
@@ -34,7 +34,7 @@ const icons = {
 };
 
 const Toast: React.FC<ToastProps> & ToastComponents = ({
-  className: _className,
+  className,
   style: _style,
   type = "primary",
   duration = 4000,
@@ -102,7 +102,9 @@ const Toast: React.FC<ToastProps> & ToastComponents = ({
   return (
     <div
       id={id}
-      className={toast.classnames.appearance[type]}
+      className={[className, toast.classnames.appearance[type]]
+        .filter(Boolean)
+        .join(" ")}
       style={{
         transform: isVisible
           ? `translateY(${position * -HEIGHT_TOAST}%)`

@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 
-import { Box, BoxProps } from "./Box";
+import { Box, type BoxProps } from "./Box";
 
 const makeSut = (props: BoxProps) => {
   render(<Box {...props} data-testid="box-element" />);

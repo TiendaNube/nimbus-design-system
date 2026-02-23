@@ -2,7 +2,7 @@ import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 
 import { TableRow } from "./TableRow";
-import { TableRowProps } from "./tableRow.types";
+import { type TableRowProps } from "./tableRow.types";
 
 const mockedClickFunction = jest.fn();
 

@@ -5,11 +5,11 @@ import { Icon as NimbusIcon } from "@nimbus-ds/icon";
 import { ChevronDownIcon, ChevronUpIcon } from "@nimbus-ds/icons";
 import { accordion } from "@nimbus-ds/styles";
 
-import { AccordionHeaderProps } from "./accordionHeader.types";
+import { type AccordionHeaderProps } from "./accordionHeader.types";
 import { useAccordion, useAccordionItem } from "../../hooks";
 
 const AccordionHeader: React.FC<AccordionHeaderProps> = ({
-  className: _className,
+  className,
   style: _style,
   children,
   title,
@@ -73,12 +73,15 @@ const AccordionHeader: React.FC<AccordionHeaderProps> = ({
         data-testid={testId || `accordion-header-${index}`}
         {...rest}
         className={[
+          className,
           accordion.classnames.header_static,
           accordion.sprinkle({
             borderTop,
             borderBottom,
           }),
-        ].join(" ")}
+        ]
+          .filter(Boolean)
+          .join(" ")}
       >
         {headerContent}
       </div>
@@ -93,13 +96,16 @@ const AccordionHeader: React.FC<AccordionHeaderProps> = ({
       {...rest}
       onClick={handleSelect}
       className={[
+        className,
         accordion.classnames.header,
         accordion.sprinkle({
           borderTop,
           borderBottom: !isOpen ? borderBottom : "none",
         }),
         isOpen && accordion.classnames.header_active,
-      ].join(" ")}
+      ]
+        .filter(Boolean)
+        .join(" ")}
     >
       {headerContent}
     </button>

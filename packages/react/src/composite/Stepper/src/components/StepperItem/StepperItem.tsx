@@ -4,7 +4,7 @@ import { Text } from "@nimbus-ds/text";
 import { CheckCircleIcon } from "@nimbus-ds/icons";
 import { stepper } from "@nimbus-ds/styles";
 
-import { StepperItemProps } from "./stepperItem.types";
+import { type StepperItemProps } from "./stepperItem.types";
 import { StepperContext } from "../StepperContext";
 import { joinClassNames, StepperItemState } from "./StepperItem.definitions";
 
@@ -13,7 +13,7 @@ import { joinClassNames, StepperItemState } from "./StepperItem.definitions";
  * It displays the step number or check icon, label, and connecting line.
  */
 const StepperItem: React.FC<StepperItemProps> = ({
-  className: _className,
+  className,
   style: _style,
   step,
   label,
@@ -72,6 +72,7 @@ const StepperItem: React.FC<StepperItemProps> = ({
     <>
       <div
         className={joinClassNames(
+          className,
           stepper.classnames.item,
           (isPendingStep || isSelectedStep) && stepper.classnames.item__disabled
         )}

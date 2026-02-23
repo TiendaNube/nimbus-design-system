@@ -1,10 +1,11 @@
 import React from "react";
 import { splitButton } from "@nimbus-ds/styles";
 
-import { SplitButtonPrimaryProps } from "./SplitButtonPrimary.types";
+import { type SplitButtonPrimaryProps } from "./SplitButtonPrimary.types";
 import { useSplitButtonContext } from "../../contexts";
 
 export const SplitButtonPrimary: React.FC<SplitButtonPrimaryProps> = ({
+  className,
   children,
   disabled,
   onClick,
@@ -16,7 +17,7 @@ export const SplitButtonPrimary: React.FC<SplitButtonPrimaryProps> = ({
   return (
     <button
       type="button"
-      className={splitButton.primaryAppearance.primary}
+      className={[className, splitButton.primaryAppearance.primary].join(" ")}
       disabled={isDisabled}
       onClick={onClick}
       {...rest}

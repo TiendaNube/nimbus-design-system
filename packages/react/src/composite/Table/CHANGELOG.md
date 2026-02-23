@@ -2,6 +2,12 @@
 
 The Table component allows us to organize data with a tabular structure in a table.
 
+## 2026-02-12 `2.5.0`
+
+#### 🎉 New features
+
+- Enabled `className` prop forwarding to allow consumers to pass custom CSS classes. ([#426](https://github.com/TiendaNube/nimbus-design-system/pull/426) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2026-01-23 `2.4.0`
 
 #### 🎉 New features

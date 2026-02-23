@@ -1,4 +1,5 @@
-import React, { HTMLAttributes } from "react";
+import { type HTMLAttributes } from "react";
+import type React from "react";
 
 export interface PaginationItemData {
   pageNumber: number | string;

@@ -6,8 +6,8 @@ import { Icon } from "@nimbus-ds/icon";
 import { Text } from "@nimbus-ds/text";
 
 import {
-  FileUploaderProps,
-  FileUploaderComponents,
+  type FileUploaderProps,
+  type FileUploaderComponents,
 } from "./fileUploader.types";
 import { FileUploaderSkeleton, FileUploaderOverlay } from "./components";
 import {
@@ -18,7 +18,7 @@ import {
 const DEFAULT_INPUT_ID = "input-file";
 
 const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
-  className: _className,
+  className,
   style: _style,
   aspectRatio = "1/1",
   width = "100%",
@@ -164,6 +164,7 @@ const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
       data-testid="file-uploader-container"
       htmlFor={!disabled ? id || DEFAULT_INPUT_ID : "disabled"}
       className={[
+        className,
         fileUploader.classnames.container,
         fileUploader.sprinkle({
           aspectRatio,
@@ -172,7 +173,9 @@ const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
         }),
         disabled && fileUploader.classnames.disabled,
         isDragging && !disabled && fileUploader.classnames.dragging,
-      ].join(" ")}
+      ]
+        .filter(Boolean)
+        .join(" ")}
       style={assignInlineVars({
         [vars.width]: width,
         [vars.height]: height,

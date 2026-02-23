@@ -2,6 +2,12 @@
 
 Use a multi-select box when a user needs to select more than one option from a list.
 
+## 2026-02-12 `1.2.0`
+
+#### 🎉 New features
+
+- Enabled `className` prop forwarding to allow consumers to pass custom CSS classes. ([#426](https://github.com/TiendaNube/nimbus-design-system/pull/426) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2026-01-13 `1.1.1`
 
 #### 🎉 New features

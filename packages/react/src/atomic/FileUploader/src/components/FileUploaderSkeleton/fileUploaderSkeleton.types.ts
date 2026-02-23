@@ -1,10 +1,9 @@
-import { SkeletonProps } from "@nimbus-ds/skeleton";
-import { FileUploaderProps } from "../../fileUploader.types";
+import { type SkeletonProps } from "@nimbus-ds/skeleton";
+import { type FileUploaderProps } from "../../fileUploader.types";
 
 export type FileUploaderSkeletonProperties = Partial<
-  Pick<SkeletonProps, "width">
+  Pick<SkeletonProps, "width" | "height" | "className">
 > &
-  Partial<Pick<SkeletonProps, "height">> &
   Partial<Pick<FileUploaderProps, "aspectRatio">> & {
     /**
      * This is an attribute used to identify a DOM node for testing purposes.

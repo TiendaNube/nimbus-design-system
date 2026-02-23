@@ -4,10 +4,11 @@ import { ChevronDownIcon } from "@nimbus-ds/icons";
 import { Popover } from "@nimbus-ds/popover";
 import { Box } from "@nimbus-ds/box";
 
-import { SplitButtonSecondaryProps } from "./SplitButtonSecondary.types";
+import { type SplitButtonSecondaryProps } from "./SplitButtonSecondary.types";
 import { useSplitButtonContext } from "../../contexts";
 
 export const SplitButtonSecondary: React.FC<SplitButtonSecondaryProps> = ({
+  className,
   children,
   ariaLabel = "Show more actions",
   disabled,
@@ -34,7 +35,9 @@ export const SplitButtonSecondary: React.FC<SplitButtonSecondaryProps> = ({
     >
       <button
         type="button"
-        className={splitButton.secondaryAppearance.primary}
+        className={[className, splitButton.secondaryAppearance.primary].join(
+          " "
+        )}
         disabled={isDisabled}
         aria-label={ariaLabel}
         aria-expanded={context.open}

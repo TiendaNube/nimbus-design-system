@@ -2,6 +2,35 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2026-02-12 `9.56.1`
+
+#### 🐛 Bug fixes
+
+- `Button`: Adjusted medium button padding from `8px 16px` to `6px 12px` to match design specifications. ([#428](https://github.com/TiendaNube/nimbus-design-system/pull/428) by [@noecondoleo](https://github.com/noecondoleo))
+
+## 2026-02-09 `9.56.0`
+
+#### 🎉 New features
+
+- `TimePicker`: Added `TimePicker` component for time selection with scroll and dropdown modes, 12h and 24h formats, AM/PM toggle, time constraints, step intervals, keyboard navigation, and full accessibility support. ([#414](https://github.com/TiendaNube/nimbus-design-system/pull/414) by [@joacotornello](https://github.com/joacotornello))
+
+## 2026-02-04 `9.55.1`
+
+#### 🐛 Bug fixes
+
+- `Slider`: Updated track height from 8px to 4px according to Figma specs. ([#417](https://github.com/TiendaNube/nimbus-design-system/pull/417) by [@noecondoleo](https://github.com/noecondoleo))
+- `Slider`: Updated thumb design to white background with 2px blue border (was solid blue). ([#417](https://github.com/TiendaNube/nimbus-design-system/pull/417) by [@noecondoleo](https://github.com/noecondoleo))
+- `Slider`: Updated disabled thumb to white background with 2px gray border. ([#417](https://github.com/TiendaNube/nimbus-design-system/pull/417) by [@noecondoleo](https://github.com/noecondoleo))
+- `Slider`: Updated disabled fill color to neutral.surfaceHighlight for better contrast. ([#417](https://github.com/TiendaNube/nimbus-design-system/pull/417) by [@noecondoleo](https://github.com/noecondoleo))
+- `Slider`: Updated spacing between slider track and bottom labels to 12px. ([#417](https://github.com/TiendaNube/nimbus-design-system/pull/417) by [@noecondoleo](https://github.com/noecondoleo))
+- `Slider`: Fixed disabled fill not rendering correctly by properly extending baseFill styles. ([#417](https://github.com/TiendaNube/nimbus-design-system/pull/417) by [@noecondoleo](https://github.com/noecondoleo))
+
+## 2026-02-04 `9.55.0`
+
+#### 🎉 New features
+
+- `Toast`: Added `offset` style variants to support different vertical positioning for mobile apps with bottom navigation bars. ([#416](https://github.com/TiendaNube/nimbus-design-system/pull/416) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2026-01-29 `9.54.2`
 
 #### 🐛 Bug fixes

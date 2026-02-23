@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/components",
-  "version": "5.49.1",
+  "version": "5.52.0",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -209,6 +209,10 @@
     "./Tabs": {
       "import": "./dist/Tabs/index.js",
       "require": "./dist/Tabs/index.js"
+    },
+    "./TimePicker": {
+      "import": "./dist/TimePicker/index.js",
+      "require": "./dist/TimePicker/index.js"
     }
   }
 }

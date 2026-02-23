@@ -49,13 +49,7 @@
     {
       "description": "The cursor property specifies the mouse cursor to be displayed when pointing over an element.",
       "default": "inherit",
-      "enum": [
-        "auto",
-        "grab",
-        "inherit",
-        "not-allowed",
-        "pointer"
-      ],
+      "enum": ["auto", "grab", "inherit", "not-allowed", "pointer"],
       "type": "string",
       "title": "cursor",
       "required": false
@@ -64,12 +58,17 @@
   "subComponents": [
     {
       "name": "Icon.Skeleton",
-      "totalProps": 3,
+      "totalProps": 4,
       "props": [
         {
           "description": "Width of the skeleton. Useful when the skeleton is inside an inline element with no width of its own.",
           "type": "string",
           "title": "width",
+          "required": false
+        },
+        {
+          "type": "string",
+          "title": "className",
           "required": false
         },
         {

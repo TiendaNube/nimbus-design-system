@@ -2,6 +2,18 @@
 
 Nimbus-icons is an open source icon system built by Nuvemshop / Tiendanube.
 
+## 2026-02-06 `1.17.0` (minor version bump)
+
+`@nimbus-ds/icons`@1.17.0|minor: Added navigation and editing icons (arrows-diagonal-out, arrows-diagonal-in, arrows-expand, arrows-collapse, generative-pencil).
+
+#### 🎉 New features
+
+- Adds `arrows-diagonal-out` icon. ([#420](https://github.com/TiendaNube/nimbus-design-system/pull/420) by [@karemcarvalho-hue](https://github.com/karemcarvalho-hue))
+- Adds `arrows-diagonal-in` icon. ([#420](https://github.com/TiendaNube/nimbus-design-system/pull/420) by [@karemcarvalho-hue](https://github.com/karemcarvalho-hue))
+- Adds `arrows-expand` icon. ([#420](https://github.com/TiendaNube/nimbus-design-system/pull/420) by [@karemcarvalho-hue](https://github.com/karemcarvalho-hue))
+- Adds `arrows-collapse` icon. ([#420](https://github.com/TiendaNube/nimbus-design-system/pull/420) by [@karemcarvalho-hue](https://github.com/karemcarvalho-hue))
+- Adds `generative-pencil` icon. ([#420](https://github.com/TiendaNube/nimbus-design-system/pull/420) by [@karemcarvalho-hue](https://github.com/karemcarvalho-hue))
+
 ## 2026-01-21 `1.16.0`
 
 #### 🎉 New features

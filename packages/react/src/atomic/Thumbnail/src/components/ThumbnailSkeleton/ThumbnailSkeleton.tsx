@@ -2,14 +2,19 @@ import React from "react";
 import { thumbnail, vars } from "@nimbus-ds/styles";
 import { Skeleton } from "@nimbus-ds/skeleton";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
-import { ThumbnailSkeletonProps } from "./thumbnailSkeleton.types";
+import { type ThumbnailSkeletonProps } from "./thumbnailSkeleton.types";
 
 const ThumbnailSkeleton: React.FC<ThumbnailSkeletonProps> = ({
+  className,
   width = "100%",
   aspectRatio = "1/1",
   "data-testid": dataTestId,
 }) => (
-  <div className={thumbnail.classnames.skeleton}>
+  <div
+    className={[className, thumbnail.classnames.skeleton]
+      .filter(Boolean)
+      .join(" ")}
+  >
     <div
       data-testid="thumbnail-skeleton-container"
       className={[

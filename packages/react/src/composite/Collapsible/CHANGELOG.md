@@ -2,6 +2,12 @@
 
 The Collapsible is a component that can hid and show another component when a event is triggered from a button or a link.
 
+## 2026-02-12 `1.2.0`
+
+#### 🎉 New features
+
+- Enabled `className` prop forwarding to allow consumers to pass custom CSS classes. ([#426](https://github.com/TiendaNube/nimbus-design-system/pull/426) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2026-01-13 `1.1.1`
 
 #### 🎉 New features

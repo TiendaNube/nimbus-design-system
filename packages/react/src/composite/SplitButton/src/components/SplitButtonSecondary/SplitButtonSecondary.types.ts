@@ -1,4 +1,4 @@
-import { ReactNode, ButtonHTMLAttributes } from "react";
+import { type ReactNode, type ButtonHTMLAttributes } from "react";
 
 export interface SplitButtonSecondaryProperties {
   /**

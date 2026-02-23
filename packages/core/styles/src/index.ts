@@ -55,6 +55,7 @@ export { table } from "./packages/composite/table";
 export { segmentedControl } from "./packages/composite/segmented-control";
 export { scrollPane } from "./packages/composite/scroll-pane";
 export { splitButton } from "./packages/composite/split-button";
+export { timePicker } from "./packages/composite/time-picker";
 
 export { calendar } from "./packages/patterns/calendar";
 export { editor } from "./packages/patterns/editor";

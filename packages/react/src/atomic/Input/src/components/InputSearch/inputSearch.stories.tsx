@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import {
   InputSearch as InputSearchComponent,
-  InputSearchProps,
+  type InputSearchProps,
 } from "./InputSearch";
 
 export const Basic: React.FC<InputSearchProps> = forwardRef(

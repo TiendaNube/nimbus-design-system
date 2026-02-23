@@ -3,11 +3,11 @@ import { CloseIcon } from "@nimbus-ds/icons";
 import { chip } from "@nimbus-ds/styles";
 import { Text } from "@nimbus-ds/text";
 import { Icon } from "@nimbus-ds/icon";
-import { ChipProps, ChipComponents } from "./chip.types";
+import { type ChipProps, type ChipComponents } from "./chip.types";
 import { ChipSkeleton } from "./components";
 
 const Chip: React.FC<ChipProps> & ChipComponents = ({
-  className: _className,
+  className,
   style: _style,
   text,
   icon,
@@ -19,6 +19,7 @@ const Chip: React.FC<ChipProps> & ChipComponents = ({
   <div
     {...rest}
     className={[
+      className,
       chip.classnames.base,
       aiGenerated && chip.classnames.aiGenerated,
     ]

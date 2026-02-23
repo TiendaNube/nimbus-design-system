@@ -1,14 +1,14 @@
 import React, { useEffect, useMemo, useState } from "react";
 
-import { Box, BoxProps } from "@nimbus-ds/box";
+import { Box, type BoxProps } from "@nimbus-ds/box";
 import {
-  StepperProps,
-  StepperComponents,
-  ControlledStepperProperties,
+  type StepperProps,
+  type StepperComponents,
+  type ControlledStepperProperties,
 } from "./stepper.types";
 import { StepperItem, StepperCard, StepperContext } from "./components";
 import { isControlled } from "./stepper.definitions";
-import { StepperItemProps } from "./components/StepperItem/stepperItem.types";
+import { type StepperItemProps } from "./components/StepperItem/stepperItem.types";
 
 /**
  * Stepper component guides users through a multi-step process,
@@ -17,6 +17,7 @@ import { StepperItemProps } from "./components/StepperItem/stepperItem.types";
  * Step numbers are automatically assigned based on child position.
  */
 const StepperComponent: React.FC<StepperProps> = ({
+  className,
   activeStep,
   children,
   ...rest
@@ -81,6 +82,7 @@ const StepperComponent: React.FC<StepperProps> = ({
   return (
     <StepperContext.Provider value={contextValue}>
       <Box
+        className={className}
         display="flex"
         flexWrap="wrap"
         gap="2"

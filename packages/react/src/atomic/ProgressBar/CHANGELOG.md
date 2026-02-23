@@ -2,6 +2,12 @@
 
 The ProgressBar component allows us to display the progress of an operation or task in a visual format.
 
+## 2026-02-12 `1.1.0`
+
+#### 🎉 New features
+
+- Enabled `className` prop forwarding to allow consumers to pass custom CSS classes. ([#426](https://github.com/TiendaNube/nimbus-design-system/pull/426) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2026-01-13 `1.0.1`
 
 #### 🎉 New features

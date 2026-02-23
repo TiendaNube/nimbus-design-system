@@ -5,7 +5,7 @@ import { ExternalLinkIcon } from "@nimbus-ds/icons";
 import { Icon } from "@nimbus-ds/icon";
 import { Text } from "@nimbus-ds/text";
 
-import { Link as LinkComponent, LinkProps } from "./Link";
+import { Link as LinkComponent, type LinkProps } from "./Link";
 
 export const Basic: React.FC<LinkProps & { disabled?: boolean }> = forwardRef(
   ({

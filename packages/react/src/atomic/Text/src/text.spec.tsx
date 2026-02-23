@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import { Text } from ".";
-import { TextProps } from "./text.types";
+import { type TextProps } from "./text.types";
 
 const content = "myText";
 

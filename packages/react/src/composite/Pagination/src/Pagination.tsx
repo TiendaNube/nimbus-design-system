@@ -4,11 +4,14 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@nimbus-ds/icons";
 import { Button } from "@nimbus-ds/button";
 
 import { usePagination, DOTS } from "./hooks";
-import { PaginationProps, PaginationItemData } from "./pagination.types";
+import {
+  type PaginationProps,
+  type PaginationItemData,
+} from "./pagination.types";
 import { generateKey } from "./pagination.definitions";
 
 const Pagination: React.FC<PaginationProps> = ({
-  className: _className,
+  className,
   style: _style,
   showNumbers = true,
   activePage,
@@ -40,7 +43,12 @@ const Pagination: React.FC<PaginationProps> = ({
   };
 
   return (
-    <ul {...rest} className={pagination.classnames.container}>
+    <ul
+      {...rest}
+      className={[className, pagination.classnames.container]
+        .filter(Boolean)
+        .join(" ")}
+    >
       <li>
         <Button
           data-testid="button-pagination-prev"

@@ -5,12 +5,12 @@ import { checkbox } from "@nimbus-ds/styles";
 
 import CheckIcon from "./checkbox-check.svg";
 import IndeterminateIcon from "./checkbox-indeterminate.svg";
-import { CheckboxProps, CheckboxComponents } from "./checkbox.types";
+import { type CheckboxProps, type CheckboxComponents } from "./checkbox.types";
 import { CheckboxSkeleton } from "./components";
 import { borderColors, textColors } from "./checkbox.definitions";
 
 const Checkbox: React.FC<CheckboxProps> & CheckboxComponents = ({
-  className: _className,
+  className,
   style: _style,
   appearance = "primary",
   aiGenerated = false,
@@ -42,11 +42,14 @@ const Checkbox: React.FC<CheckboxProps> & CheckboxComponents = ({
     <label
       htmlFor={id || name}
       className={[
+        className,
         checkbox.classnames.container,
         checkbox.sprinkle({
           cursor: disabled ? "auto" : "pointer",
         }),
-      ].join(" ")}
+      ]
+        .filter(Boolean)
+        .join(" ")}
     >
       <input
         {...rest}

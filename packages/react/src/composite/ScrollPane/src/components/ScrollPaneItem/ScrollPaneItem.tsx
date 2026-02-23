@@ -1,7 +1,7 @@
 import React from "react";
 
 import { scrollPane } from "@nimbus-ds/styles";
-import { ScrollPaneItemProps } from "./scrollPaneItem.types";
+import { type ScrollPaneItemProps } from "./scrollPaneItem.types";
 import { useScrollPaneContext } from "../../contexts/ScrollPaneContext";
 import { scrollItemIntoView } from "./ScrollPaneItem.definitions";
 
@@ -27,7 +27,12 @@ const ScrollPaneItem: React.FC<ScrollPaneItemProps> = ({
       const item = event.currentTarget;
 
       if (container && item && context.direction) {
-        scrollItemIntoView(container, item, context.direction);
+        scrollItemIntoView(
+          container,
+          item,
+          context.direction,
+          context.scrollBehavior
+        );
       }
     }
   };

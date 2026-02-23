@@ -3,18 +3,18 @@ import React, {
   useRef,
   useEffect,
   useImperativeHandle,
-  HTMLAttributes,
-  ForwardedRef,
+  type HTMLAttributes,
+  type ForwardedRef,
 } from "react";
 import {
-  PolymorphicForwardRefComponent,
+  type PolymorphicForwardRefComponent,
   useRefObjectAsForwardedRef,
 } from "@nimbus-ds/typings";
 import { segmentedControl } from "@nimbus-ds/styles";
 
 import {
-  SegmentedControlButtonComponents,
-  SegmentedControlButtonProps,
+  type SegmentedControlButtonComponents,
+  type SegmentedControlButtonProps,
 } from "./SegmentedControlButton.types";
 import { SegmentedControlButtonSkeleton } from "./components/SegmentedControlButtonSkeleton/SegmentedControlButtonSkeleton";
 import { useSegmentedControlContext } from "../../contexts/SegmentedControlContext";
@@ -22,7 +22,7 @@ import { useSegmentedControlContext } from "../../contexts/SegmentedControlConte
 const SegmentedControlButton = forwardRef(
   (
     {
-      className: _className,
+      className,
       style: _style,
       as: As = "button",
       id,
@@ -88,9 +88,11 @@ const SegmentedControlButton = forwardRef(
 
     const { classnames } = segmentedControl.subcomponents.button;
     const buttonClassName = [
+      className,
       classnames.appearance[isSelected ? "selected" : "default"],
     ]
       .concat(shouldUseFullWidth ? classnames.fullWidth : "")
+      .filter(Boolean)
       .join(" ");
 
     return (
