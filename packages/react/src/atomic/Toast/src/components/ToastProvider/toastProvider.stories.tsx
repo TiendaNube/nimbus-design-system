@@ -6,7 +6,13 @@ import { Toast } from "../../Toast";
 const meta: Meta<typeof Toast.Provider> = {
   title: "Atomic/Toast/Toast.Provider",
   component: Toast.Provider,
-  argTypes: { children: { control: { disable: true } } },
+  argTypes: {
+    children: { control: { disable: true } },
+    behavior: {
+      control: { type: "radio" },
+      options: ["stacked", "single"],
+    },
+  },
   tags: ["autodocs"],
 };
 
@@ -16,5 +22,12 @@ type Story = StoryObj<typeof Toast.Provider>;
 export const basic: Story = {
   args: {
     children: <Text>App</Text>,
+  },
+};
+
+export const singleBehavior: Story = {
+  args: {
+    children: <Text>App with single toast behavior</Text>,
+    behavior: "single",
   },
 };
