@@ -3,6 +3,12 @@
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories
 every day, with simplicity, accessibility, consistency and performance.
 
+## 2026-02-24 `5.54.0`
+
+#### 🎉 New features
+
+- `Toast`: Added `behavior` prop to `ToastProvider` to control how multiple toasts are handled. Use `"single"` to replace the current toast instead of stacking. ([#434](https://github.com/TiendaNube/nimbus-design-system/pull/434) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2026-02-23 `5.53.0`
 
 #### 🎉 New features
