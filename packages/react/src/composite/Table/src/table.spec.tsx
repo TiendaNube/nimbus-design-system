@@ -24,6 +24,61 @@ describe("GIVEN <Table />", () => {
     });
   });
 
+  describe("WHEN borderRadius is 'none'", () => {
+    it("THEN should apply the no-radius class to the wrapper", () => {
+      const { container } = render(
+        <Table borderRadius="none" data-testid="table-element">
+          <tbody>
+            <tr>
+              <td>Content</td>
+            </tr>
+          </tbody>
+        </Table>
+      );
+
+      const wrapper = container.querySelector(
+        '[class*="container__wrapper"]'
+      ) as HTMLElement;
+      expect(wrapper.className).toContain("container__wrapper_no_radius");
+    });
+  });
+
+  describe("WHEN borderRadius is '2' or not provided", () => {
+    it("THEN should not apply the no-radius class by default", () => {
+      const { container } = render(
+        <Table data-testid="table-element">
+          <tbody>
+            <tr>
+              <td>Content</td>
+            </tr>
+          </tbody>
+        </Table>
+      );
+
+      const wrapper = container.querySelector(
+        '[class*="container__wrapper"]'
+      ) as HTMLElement;
+      expect(wrapper.className).not.toContain("container__wrapper_no_radius");
+    });
+
+    it("THEN should not apply the no-radius class when explicitly '2'", () => {
+      const { container } = render(
+        <Table borderRadius="2" data-testid="table-element">
+          <tbody>
+            <tr>
+              <td>Content</td>
+            </tr>
+          </tbody>
+        </Table>
+      );
+
+      const wrapper = container.querySelector(
+        '[class*="container__wrapper"]'
+      ) as HTMLElement;
+      expect(wrapper.className).not.toContain("container__wrapper_no_radius");
+    });
+  });
+
   describe("WHEN columnLayout is provided", () => {
     it("THEN should render a colgroup with calculated widths", () => {
       render(

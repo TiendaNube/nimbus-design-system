@@ -24,6 +24,7 @@ const Table: React.FC<TableProps> & TableComponents = ({
   minWidth,
   maxWidth,
   stickyScrollbar = false,
+  borderRadius = "2",
   ...rest
 }: TableProps) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -161,9 +162,13 @@ const Table: React.FC<TableProps> & TableComponents = ({
     };
   }, [stickyScrollbar, updateScrollbarWidth]);
 
-  const wrapperClassName = stickyScrollbar
-    ? `${table.classnames.container__wrapper} ${table.classnames.container__wrapper_hidden_scrollbar}`
-    : table.classnames.container__wrapper;
+  const wrapperClassName = [
+    table.classnames.container__wrapper,
+    stickyScrollbar && table.classnames.container__wrapper_hidden_scrollbar,
+    borderRadius === "none" && table.classnames.container__wrapper_no_radius,
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   return (
     <TableContext.Provider value={contextValue}>

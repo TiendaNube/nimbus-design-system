@@ -21,6 +21,10 @@ const container__wrapper = style({
   boxShadow: varsThemeBase.shadow.level[2],
 });
 
+const container__wrapper_no_radius = style({
+  borderRadius: 0,
+});
+
 const container = style({
   backgroundColor: varsThemeBase.colors.neutral.background,
   color: varsThemeBase.colors.neutral.textHigh,
@@ -170,6 +174,7 @@ const sticky_scrollbar_inner = style({
 
 export const styles = {
   container__wrapper,
+  container__wrapper_no_radius,
   container__wrapper_hidden_scrollbar,
   container,
   container__head,

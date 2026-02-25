@@ -70,6 +70,11 @@ export interface TableProperties {
    * @default false
    */
   stickyScrollbar?: boolean;
+  /**
+   * Controls the border radius of the table wrapper.
+   * @default "2"
+   */
+  borderRadius?: "none" | "2";
 }
 
 export type TableProps = TableProperties & HTMLAttributes<HTMLTableElement>;
