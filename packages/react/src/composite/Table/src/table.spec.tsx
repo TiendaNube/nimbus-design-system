@@ -40,7 +40,7 @@ describe("GIVEN <Table />", () => {
         '[class*="container__wrapper"]'
       ) as HTMLElement;
       expect(wrapper.getAttribute("style")).toMatch(
-        /--borderRadius__\w{0,9}: 0;/
+        /--borderRadius-rest__\w{0,9}: 0;/
       );
     });
   });
@@ -61,7 +61,7 @@ describe("GIVEN <Table />", () => {
         '[class*="container__wrapper"]'
       ) as HTMLElement;
       expect(wrapper.getAttribute("style")).not.toMatch(
-        /--borderRadius__\w{0,9}: 0;/
+        /--borderRadius-rest__\w{0,9}: 0;/
       );
     });
   });
