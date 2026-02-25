@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2026-02-13 `9.57.0`
+
+#### 🎉 New features
+
+- `Table`: Added wrapper sprinkle with `borderRadius` property to control the table wrapper's border radius via design tokens. ([#435](https://github.com/TiendaNube/nimbus-design-system/pull/435) by [@jffs](https://github.com/jffs))
+
 ## 2026-02-12 `9.56.1`
 
 #### 🐛 Bug fixes
