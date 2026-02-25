@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Button } from "@nimbus-ds/button";
+import { table } from "@nimbus-ds/styles";
+import { argTypesConvert } from ".storybook/utils";
 import { Table } from "./Table";
 import { type TableColumnLayout } from "./table.types";
 
@@ -9,6 +11,7 @@ const meta: Meta<typeof Table> = {
   component: Table,
   argTypes: {
     children: { control: { disable: true } },
+    ...argTypesConvert(table.wrapper.properties),
   },
   tags: ["autodocs"],
 };
