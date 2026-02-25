@@ -25,7 +25,7 @@ describe("GIVEN <Table />", () => {
   });
 
   describe("WHEN borderRadius is 'none'", () => {
-    it("THEN should apply the no-radius class to the wrapper", () => {
+    it("THEN should apply border-radius 0 to the wrapper", () => {
       const { container } = render(
         <Table borderRadius="none" data-testid="table-element">
           <tbody>
@@ -39,12 +39,12 @@ describe("GIVEN <Table />", () => {
       const wrapper = container.querySelector(
         '[class*="container__wrapper"]'
       ) as HTMLElement;
-      expect(wrapper.className).toContain("container__wrapper_no_radius");
+      expect(wrapper).toHaveStyle({ borderRadius: "0" });
     });
   });
 
   describe("WHEN borderRadius is '2' or not provided", () => {
-    it("THEN should not apply the no-radius class by default", () => {
+    it("THEN should apply the default border-radius to the wrapper", () => {
       const { container } = render(
         <Table data-testid="table-element">
           <tbody>
@@ -58,24 +58,7 @@ describe("GIVEN <Table />", () => {
       const wrapper = container.querySelector(
         '[class*="container__wrapper"]'
       ) as HTMLElement;
-      expect(wrapper.className).not.toContain("container__wrapper_no_radius");
-    });
-
-    it("THEN should not apply the no-radius class when explicitly '2'", () => {
-      const { container } = render(
-        <Table borderRadius="2" data-testid="table-element">
-          <tbody>
-            <tr>
-              <td>Content</td>
-            </tr>
-          </tbody>
-        </Table>
-      );
-
-      const wrapper = container.querySelector(
-        '[class*="container__wrapper"]'
-      ) as HTMLElement;
-      expect(wrapper.className).not.toContain("container__wrapper_no_radius");
+      expect(wrapper).not.toHaveStyle({ borderRadius: "0" });
     });
   });
 

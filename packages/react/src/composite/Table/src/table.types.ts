@@ -1,4 +1,5 @@
 import { type ReactNode, type HTMLAttributes } from "react";
+import { type TableWrapperSprinkle } from "@nimbus-ds/styles";
 
 import {
   type TableBody,
@@ -44,7 +45,7 @@ export interface TableColumnLayout {
   fixed?: "left" | "right";
 }
 
-export interface TableProperties {
+export interface TableProperties extends TableWrapperSprinkle {
   /**
    * The content of the table.
    * @TJS-type React.ReactNode
@@ -70,11 +71,6 @@ export interface TableProperties {
    * @default false
    */
   stickyScrollbar?: boolean;
-  /**
-   * Controls the border radius of the table wrapper.
-   * @default "2"
-   */
-  borderRadius?: "none" | "2";
 }
 
 export type TableProps = TableProperties & HTMLAttributes<HTMLTableElement>;
