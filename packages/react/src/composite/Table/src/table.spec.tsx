@@ -25,7 +25,7 @@ describe("GIVEN <Table />", () => {
   });
 
   describe("WHEN borderRadius is 'none'", () => {
-    it("THEN should apply border-radius 0 to the wrapper", () => {
+    it("THEN should apply border-radius 0 via sprinkle CSS variable", () => {
       const { container } = render(
         <Table borderRadius="none" data-testid="table-element">
           <tbody>
@@ -39,12 +39,14 @@ describe("GIVEN <Table />", () => {
       const wrapper = container.querySelector(
         '[class*="container__wrapper"]'
       ) as HTMLElement;
-      expect(wrapper).toHaveStyle({ borderRadius: "0" });
+      expect(wrapper.getAttribute("style")).toMatch(
+        /--borderRadius__\w{0,9}: 0;/
+      );
     });
   });
 
   describe("WHEN borderRadius is '2' or not provided", () => {
-    it("THEN should apply the default border-radius to the wrapper", () => {
+    it("THEN should apply the default border-radius token via sprinkle CSS variable", () => {
       const { container } = render(
         <Table data-testid="table-element">
           <tbody>
@@ -58,7 +60,9 @@ describe("GIVEN <Table />", () => {
       const wrapper = container.querySelector(
         '[class*="container__wrapper"]'
       ) as HTMLElement;
-      expect(wrapper).not.toHaveStyle({ borderRadius: "0" });
+      expect(wrapper.getAttribute("style")).not.toMatch(
+        /--borderRadius__\w{0,9}: 0;/
+      );
     });
   });
 
