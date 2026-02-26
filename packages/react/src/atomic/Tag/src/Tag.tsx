@@ -5,13 +5,18 @@ import { type TagProps, type TagComponents } from "./tag.types";
 import { TagSkeleton } from "./components";
 
 const Tag: React.FC<TagProps> & TagComponents = ({
-  className: _className,
+  className,
   style: _style,
   appearance = "neutral",
   children,
   ...rest
 }: TagProps) => (
-  <div {...rest} className={tag.classnames.appearance[appearance]}>
+  <div
+    {...rest}
+    className={[className, tag.classnames.appearance[appearance]]
+      .filter(Boolean)
+      .join(" ")}
+  >
     {children}
   </div>
 );

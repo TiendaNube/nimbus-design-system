@@ -7,7 +7,7 @@ import { type ToggleProps, type ToggleComponents } from "./toggle.types";
 import { ToggleSkeleton } from "./components";
 
 const Toggle: React.FC<ToggleProps> & ToggleComponents = ({
-  className: _className,
+  className,
   style: _style,
   label,
   id,
@@ -22,7 +22,12 @@ const Toggle: React.FC<ToggleProps> & ToggleComponents = ({
   );
 
   return (
-    <label htmlFor={id || name} className={toggle.classnames.container}>
+    <label
+      htmlFor={id || name}
+      className={[className, toggle.classnames.container]
+        .filter(Boolean)
+        .join(" ")}
+    >
       <input
         {...rest}
         id={id || name}

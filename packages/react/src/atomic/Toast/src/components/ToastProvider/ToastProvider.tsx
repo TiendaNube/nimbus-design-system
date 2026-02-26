@@ -10,17 +10,18 @@ import { uniqueId } from "./toastProvider.definitions";
 const ToastProvider: React.FC<ToastProviderProps> = ({
   children,
   offset = "default",
+  behavior = "stacked",
 }) => {
   const [toasts, setToasts] = React.useState<ToastProps[]>([]);
 
   const addToast = useCallback(
     ({ id, ...newToast }: Omit<ToastProps, "id"> & { id?: string }): void => {
-      setToasts((prevState) => [
-        ...prevState,
-        { ...newToast, id: id || uniqueId() },
-      ]);
+      const toast = { ...newToast, id: id || uniqueId() };
+      setToasts((prevState) =>
+        behavior === "single" ? [toast] : [...prevState, toast]
+      );
     },
-    []
+    [behavior]
   );
 
   const closeToast = useCallback((id: string) => {

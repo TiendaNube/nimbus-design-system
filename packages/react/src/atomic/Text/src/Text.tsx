@@ -5,7 +5,7 @@ import { type TextProps, type TextComponents } from "./text.types";
 import { TextSkeleton } from "./components";
 
 const Text: React.FC<TextProps> & TextComponents = ({
-  className: _className,
+  className,
   style: _style,
   as: As = "p",
   color = "neutral-textLow",
@@ -21,7 +21,11 @@ const Text: React.FC<TextProps> & TextComponents = ({
   lineClamp,
   ...rest
 }: TextProps) => {
-  const { className, style, otherProps } = text.sprinkle({
+  const {
+    className: classNameStyles,
+    style,
+    otherProps,
+  } = text.sprinkle({
     ...(rest as Parameters<typeof text.sprinkle>[0]),
     color: color as any,
     textAlign,
@@ -39,13 +43,14 @@ const Text: React.FC<TextProps> & TextComponents = ({
     <As
       {...rest}
       className={[
+        className,
         text.classnames.base,
         lineClamp && text.classnames.trim,
         color in text.aiColors &&
           text.classnames.aiStyles[
             color as keyof typeof text.classnames.aiStyles
           ],
-        className,
+        classNameStyles,
       ].join(" ")}
       style={style}
       {...otherProps}

@@ -5,7 +5,7 @@ import { type AccordionBodyProps } from "./accordionBody.types";
 import { useAccordion, useAccordionItem } from "../../hooks";
 
 const AccordionBody: React.FC<AccordionBodyProps> = ({
-  className: _className,
+  className,
   style: _style,
   children,
   borderBottom = "none",
@@ -25,9 +25,12 @@ const AccordionBody: React.FC<AccordionBodyProps> = ({
   return (
     <div
       className={[
+        className,
         accordion.classnames.body,
         accordion.sprinkle({ borderBottom, borderTop, padding }),
-      ].join(" ")}
+      ]
+        .filter(Boolean)
+        .join(" ")}
       {...rest}
     >
       {children}

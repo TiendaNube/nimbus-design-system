@@ -2,6 +2,12 @@
 
 Labels are mainly used to accompany form controls such as inputs, checkboxes, selects, etc. and describe the information that is required inside of each control. They can be visually hidden for UI requirements but can still be read by assistive technologies. They can also include icons or other components to support the relaying of content.
 
+## 2026-02-12 `2.3.0`
+
+#### 🎉 New features
+
+- Enabled `className` prop forwarding to allow consumers to pass custom CSS classes. ([#426](https://github.com/TiendaNube/nimbus-design-system/pull/426) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2026-01-13 `2.2.2`
 
 #### 🎉 New features

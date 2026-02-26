@@ -15,7 +15,7 @@ import {
 import { MultiSelectSkeleton } from "./components";
 
 const MultiSelect: React.FC<MultiSelectBaseProps> & MultiSelectComponents = ({
-  className: _className,
+  className,
   style: _style,
   options,
   appearance = "neutral",
@@ -103,7 +103,9 @@ const MultiSelect: React.FC<MultiSelectBaseProps> & MultiSelectComponents = ({
       zIndex={zIndex ?? "900"}
     >
       <div
-        className={multiSelect.classnames.appearance[appearance]}
+        className={[className, multiSelect.classnames.appearance[appearance]]
+          .filter(Boolean)
+          .join(" ")}
         // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
         tabIndex={0}
         {...rest}

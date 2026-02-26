@@ -3,7 +3,7 @@
   "name": "Input",
   "totalProps": 6,
   "packageName": "@nimbus-ds/input",
-  "version": "2.6.1",
+  "version": "2.7.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/input",
   "props": [
     {
@@ -123,12 +123,17 @@
     },
     {
       "name": "Input.Skeleton",
-      "totalProps": 2,
+      "totalProps": 3,
       "props": [
         {
           "description": "Width of the skeleton. Useful when the skeleton is inside an inline element with no width of its own.",
           "type": "string",
           "title": "width",
+          "required": false
+        },
+        {
+          "type": "string",
+          "title": "className",
           "required": false
         },
         {

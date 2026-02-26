@@ -3,7 +3,7 @@
   "name": "Radio",
   "totalProps": 5,
   "packageName": "@nimbus-ds/radio",
-  "version": "2.3.1",
+  "version": "2.4.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/radio",
   "props": [
     {
@@ -45,12 +45,17 @@
   "subComponents": [
     {
       "name": "Radio.Skeleton",
-      "totalProps": 3,
+      "totalProps": 4,
       "props": [
         {
           "description": "Width of the skeleton. Useful when the skeleton is inside an inline element with no width of its own.",
           "type": "string",
           "title": "width",
+          "required": false
+        },
+        {
+          "type": "string",
+          "title": "className",
           "required": false
         },
         {

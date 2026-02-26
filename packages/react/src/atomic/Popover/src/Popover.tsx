@@ -20,7 +20,7 @@ import { popover, useTheme } from "@nimbus-ds/styles";
 import { type PopoverProps } from "./popover.types";
 
 const Popover: React.FC<PopoverProps> = ({
-  className: _className,
+  className,
   style: _style,
   visible,
   onVisibility,
@@ -39,7 +39,11 @@ const Popover: React.FC<PopoverProps> = ({
   content,
   ...rest
 }) => {
-  const { className, style, otherProps } = popover.sprinkle({
+  const {
+    className: classNameStyles,
+    style,
+    otherProps,
+  } = popover.sprinkle({
     ...(rest as Parameters<typeof popover.sprinkle>[0]),
     width,
     padding: padding as any,
@@ -116,7 +120,9 @@ const Popover: React.FC<PopoverProps> = ({
     <div
       {...otherProps}
       ref={context.refs.setFloating}
-      className={[popover.classnames.content, className].join(" ")}
+      className={[className, popover.classnames.content, classNameStyles].join(
+        " "
+      )}
       style={{
         ...style,
         ...floatingStyles,

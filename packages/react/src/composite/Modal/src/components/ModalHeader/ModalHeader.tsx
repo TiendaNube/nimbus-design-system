@@ -5,7 +5,7 @@ import { modal } from "@nimbus-ds/styles";
 import { type ModalHeaderProps } from "./modalHeader.types";
 
 const ModalHeader: React.FC<ModalHeaderProps> = ({
-  className: _className,
+  className,
   style: _style,
   padding = "none",
   title,
@@ -13,7 +13,12 @@ const ModalHeader: React.FC<ModalHeaderProps> = ({
   children,
   ...rest
 }) => (
-  <div className={modal.subComponents.header.sprinkle({ padding })} {...rest}>
+  <div
+    className={[className, modal.subComponents.header.sprinkle({ padding })]
+      .filter(Boolean)
+      .join(" ")}
+    {...rest}
+  >
     {(title || tag) && (
       <div className={modal.subComponents.header.content}>
         {title && (

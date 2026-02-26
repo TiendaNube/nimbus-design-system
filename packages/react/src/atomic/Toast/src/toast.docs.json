@@ -3,7 +3,7 @@
   "name": "Toast",
   "totalProps": 6,
   "packageName": "@nimbus-ds/toast",
-  "version": "2.5.0",
+  "version": "2.6.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/toast",
   "props": [
     {
@@ -61,7 +61,7 @@
   "subComponents": [
     {
       "name": "Toast.Provider",
-      "totalProps": 2,
+      "totalProps": 3,
       "props": [
         {
           "type": "React.ReactNode",
@@ -77,6 +77,17 @@
           ],
           "type": "string",
           "title": "offset",
+          "required": false
+        },
+        {
+          "description": "Controls how multiple toasts are handled.\n\"stacked\" - new toasts are piled up alongside already rendered ones.\n\"single\" - only one toast is shown at a time; each new toast immediately replaces the previous one.",
+          "default": "stacked",
+          "enum": [
+            "single",
+            "stacked"
+          ],
+          "type": "string",
+          "title": "behavior",
           "required": false
         }
       ]

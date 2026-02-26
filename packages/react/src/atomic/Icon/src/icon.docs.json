@@ -3,7 +3,7 @@
   "name": "Icon",
   "totalProps": 3,
   "packageName": "@nimbus-ds/icon",
-  "version": "3.3.1",
+  "version": "3.5.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/icon",
   "props": [
     {
@@ -34,6 +34,7 @@
         "primary-textHigh",
         "primary-textLow",
         "success-interactive",
+        "success-interactivePressed",
         "success-surface",
         "success-textHigh",
         "success-textLow",
@@ -64,12 +65,17 @@
   "subComponents": [
     {
       "name": "Icon.Skeleton",
-      "totalProps": 3,
+      "totalProps": 4,
       "props": [
         {
           "description": "Width of the skeleton. Useful when the skeleton is inside an inline element with no width of its own.",
           "type": "string",
           "title": "width",
+          "required": false
+        },
+        {
+          "type": "string",
+          "title": "className",
           "required": false
         },
         {

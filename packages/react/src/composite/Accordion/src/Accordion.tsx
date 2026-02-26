@@ -11,10 +11,9 @@ import { AccordionContext } from "./contexts";
 import { isControlled } from "./accordion.definitions";
 
 const Accordion: React.FC<AccordionProps> & AccordionComponents = ({
-  className: _className,
+  className,
   style: _style,
   children,
-  className,
   ...rest
 }: AccordionProps) => {
   const isControlledMode = isControlled(rest);
@@ -74,7 +73,7 @@ const Accordion: React.FC<AccordionProps> & AccordionComponents = ({
   } = rest as any;
 
   return (
-    <div {...divProps}>
+    <div className={className} {...divProps}>
       <AccordionContext.Provider value={context}>
         {children}
       </AccordionContext.Provider>

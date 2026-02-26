@@ -2,6 +2,18 @@
 
 Icons are used to visually communicate core parts of the product and available actions. They can act as wayfinding tools to help merchants more easily understand where they are in the product, and common interaction patterns that are available.
 
+## 2026-02-23 `1.34.0`
+
+#### 🎉 New features
+
+- Added `success-interactivePressed` color property to `Icon` component. ([`#433`](https://github.com/TiendaNube/nimbus-design-system/pull/433) by [`@jetchart-tiendanube`](https://github.com/jetchart-tiendanube))
+
+## 2026-02-12 `1.33.0`
+
+#### 🎉 New features
+
+- Enabled `className` prop forwarding to allow consumers to pass custom CSS classes. ([#426](https://github.com/TiendaNube/nimbus-design-system/pull/426) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2026-01-13 `1.32.1`
 
 #### 🎉 New features

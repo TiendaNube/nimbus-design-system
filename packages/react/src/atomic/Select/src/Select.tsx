@@ -13,7 +13,7 @@ import { SelectGroup, SelectOption, SelectSkeleton } from "./components";
 const Select = forwardRef<HTMLSelectElement, SelectBaseProps>(
   (
     {
-      className: _className,
+      className,
       style: _style,
       name,
       id,
@@ -33,11 +33,14 @@ const Select = forwardRef<HTMLSelectElement, SelectBaseProps>(
         ref={ref}
         id={id}
         name={name}
-        className={
+        className={[
+          className,
           aiGenerated
             ? select.classnames.aiGenerated
-            : select.classnames.appearance[appearance]
-        }
+            : select.classnames.appearance[appearance],
+        ]
+          .filter(Boolean)
+          .join(" ")}
       >
         {children}
       </select>

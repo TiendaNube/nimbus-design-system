@@ -4,13 +4,19 @@ import { Skeleton } from "@nimbus-ds/skeleton";
 import { type FileUploaderSkeletonProps } from "./fileUploaderSkeleton.types";
 
 const FileUploaderSkeleton: React.FC<FileUploaderSkeletonProps> = ({
+  className,
   width,
   aspectRatio = "1/1",
   height,
   "data-testid": dataTestId,
 }) => (
   <div
-    className={aspectRatio !== "none" ? fileUploader.classnames.skeleton : ""}
+    className={[
+      className,
+      aspectRatio !== "none" ? fileUploader.classnames.skeleton : "",
+    ]
+      .filter(Boolean)
+      .join(" ")}
   >
     <div
       data-testid="file-uploader-skeleton-container"

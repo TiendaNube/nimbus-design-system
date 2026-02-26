@@ -18,7 +18,7 @@ import { Box } from "@nimbus-ds/box";
 import { type TooltipProps } from "./tooltip.types";
 
 const Tooltip: React.FC<TooltipProps> = ({
-  className: _className,
+  className,
   style: _style,
   children,
   content,
@@ -63,7 +63,11 @@ const Tooltip: React.FC<TooltipProps> = ({
     }),
   ]);
 
-  const { className, style, otherProps } = tooltip.sprinkle({
+  const {
+    className: classNameStyles,
+    style,
+    otherProps,
+  } = tooltip.sprinkle({
     ...(rest as Parameters<typeof tooltip.sprinkle>[0]),
     maxWidth,
   });
@@ -87,7 +91,11 @@ const Tooltip: React.FC<TooltipProps> = ({
             {...rest}
             {...otherProps}
             ref={context.refs.setFloating}
-            className={[tooltip.classnames.content, className].join(" ")}
+            className={[
+              className,
+              tooltip.classnames.content,
+              classNameStyles,
+            ].join(" ")}
             style={{
               ...style,
               ...floatingStyles,

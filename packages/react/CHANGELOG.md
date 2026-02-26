@@ -3,6 +3,24 @@
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories
 every day, with simplicity, accessibility, consistency and performance.
 
+## 2026-02-24 `5.54.0`
+
+#### 🎉 New features
+
+- `Toast`: Added `behavior` prop to `ToastProvider` to control how multiple toasts are handled. Use `"single"` to replace the current toast instead of stacking. ([#434](https://github.com/TiendaNube/nimbus-design-system/pull/434) by [@joacotornello](https://github.com/joacotornello))
+
+## 2026-02-23 `5.53.0`
+
+#### 🎉 New features
+
+- Added `success-interactivePressed` color property to `Icon` and `Text` components. ([`#433`](https://github.com/TiendaNube/nimbus-design-system/pull/433) by [`@jetchart-tiendanube`](https://github.com/jetchart-tiendanube))
+
+## 2026-02-12 `5.52.0`
+
+#### 🎉 New features
+
+- Enabled `className` prop forwarding across all atomic and composite components, allowing consumers to pass custom CSS classes. ([#426](https://github.com/TiendaNube/nimbus-design-system/pull/426) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2026-02-09 `5.51.0`
 
 #### 🎉 New features

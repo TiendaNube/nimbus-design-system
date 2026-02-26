@@ -1,11 +1,12 @@
 import { type SkeletonProps } from "@nimbus-ds/skeleton";
 
-export type IconSkeletonProperties = Partial<Pick<SkeletonProps, "width">> &
-  Partial<Pick<SkeletonProps, "height">> & {
-    /**
-     * This is an attribute used to identify a DOM node for testing purposes.
-     */
-    "data-testid"?: string;
-  };
+export type IconSkeletonProperties = Partial<
+  Pick<SkeletonProps, "width" | "height" | "className">
+> & {
+  /**
+   * This is an attribute used to identify a DOM node for testing purposes.
+   */
+  "data-testid"?: string;
+};
 
 export type IconSkeletonProps = IconSkeletonProperties;

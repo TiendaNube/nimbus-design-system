@@ -19,7 +19,7 @@ import { SidebarBody, SidebarFooter, SidebarHeader } from "./components";
 import { type SidebarComponents, type SidebarProps } from "./sidebar.types";
 
 const Sidebar: React.FC<SidebarProps> & SidebarComponents = ({
-  className: _className,
+  className,
   style: _style,
   position = "right",
   maxWidth = "375px",
@@ -32,7 +32,11 @@ const Sidebar: React.FC<SidebarProps> & SidebarComponents = ({
   ignoreAttributeName = DEFAULT_OUTSIDE_PRESS_IGNORE_ATTRIBUTE,
   ...rest
 }: SidebarProps) => {
-  const { className, style, otherProps } = sidebar.sprinkle({
+  const {
+    className: classNameStyles,
+    style,
+    otherProps,
+  } = sidebar.sprinkle({
     ...(rest as Parameters<typeof sidebar.sprinkle>[0]),
     maxWidth,
   });
@@ -85,13 +89,16 @@ const Sidebar: React.FC<SidebarProps> & SidebarComponents = ({
         style={style}
         {...getFloatingProps()}
         className={[
+          className,
           root
             ? sidebar.classnames.containerScoped
             : sidebar.classnames.container,
           sidebar.classnames.position[position],
-          className,
+          classNameStyles,
           open && sidebar.classnames.isVisible,
-        ].join(" ")}
+        ]
+          .filter(Boolean)
+          .join(" ")}
       >
         {needRemoveScroll ? <RemoveScroll>{children}</RemoveScroll> : children}
       </div>

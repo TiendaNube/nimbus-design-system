@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
+import { action } from "@storybook/addon-actions";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Button } from "@nimbus-ds/button";
 import { Box } from "@nimbus-ds/box";
 import { Toast } from "./Toast";
 import { useToast } from "./hooks";
-import { type ToastOffset } from "./components";
 
 const meta: Meta<typeof Toast> = {
   title: "Atomic/Toast",
@@ -54,36 +54,44 @@ export const progress: Story = {
   },
 };
 
-const ToastTrigger: React.FC = () => {
+type ToastTriggerProps = {
+  text: string;
+  onShowToast: () => void;
+};
+
+const ToastTrigger = ({ text, onShowToast }: ToastTriggerProps) => {
   const { addToast } = useToast();
 
   const handleClick = (): void => {
+    onShowToast();
+
     addToast({
       id: "1",
       type: "success",
-      text: "Toast triggered from button!",
+      text,
     });
   };
 
-  return <Button onClick={handleClick}>Show Toast</Button>;
+  return <Button onClick={handleClick}>Show toast</Button>;
 };
 
-const OffsetTemplate: React.FC<{ offset: ToastOffset }> = ({ offset }) => (
-  <Toast.Provider offset={offset}>
-    <Box
-      display="flex"
-      flexDirection="column"
-      gap="4"
-      padding="4"
-      minHeight="300px"
-    >
-      <ToastTrigger />
-    </Box>
-  </Toast.Provider>
-);
-
 export const withProviderDefault: Story = {
-  render: () => <OffsetTemplate offset="default" />,
+  render: () => (
+    <Toast.Provider offset="default">
+      <Box
+        display="flex"
+        flexDirection="column"
+        gap="4"
+        padding="4"
+        minHeight="300px"
+      >
+        <ToastTrigger
+          text="Toast triggered from button!"
+          onShowToast={action("showToast")}
+        />
+      </Box>
+    </Toast.Provider>
+  ),
   parameters: {
     docs: {
       description: {
@@ -94,13 +102,34 @@ export const withProviderDefault: Story = {
   },
 };
 
-export const withProviderHighOffset: Story = {
-  render: () => <OffsetTemplate offset="high" />,
+export const withProviderSingleBehavior: Story = {
+  render: () => {
+    const [index, setIndex] = useState(0);
+    const handleClick = () => {
+      setIndex(index + 1);
+    };
+
+    return (
+      <Toast.Provider behavior="single">
+        <Box
+          display="flex"
+          flexDirection="column"
+          gap="4"
+          padding="4"
+          minHeight="300px"
+        >
+          <ToastTrigger
+            text={`Show Toast ${index}`}
+            onShowToast={handleClick}
+          />
+        </Box>
+      </Toast.Provider>
+    );
+  },
   parameters: {
     docs: {
       description: {
-        story:
-          "High offset for mobile apps with bottom navigation. Uses safe-area-inset-bottom + 10rem.",
+        story: "Single toast behavior. Only one toast is shown at a time.",
       },
     },
   },

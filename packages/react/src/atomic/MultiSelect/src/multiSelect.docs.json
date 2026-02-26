@@ -3,7 +3,7 @@
   "name": "MultiSelect",
   "totalProps": 7,
   "packageName": "@nimbus-ds/multi-select",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/multi-select",
   "props": [
     {
@@ -120,12 +120,17 @@
   "subComponents": [
     {
       "name": "MultiSelect.Skeleton",
-      "totalProps": 2,
+      "totalProps": 3,
       "props": [
         {
           "description": "Width of the skeleton. Useful when the skeleton is inside an inline element with no width of its own.",
           "type": "string",
           "title": "width",
+          "required": false
+        },
+        {
+          "type": "string",
+          "title": "className",
           "required": false
         },
         {

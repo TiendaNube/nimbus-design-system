@@ -1,6 +1,7 @@
 import { type ReactNode } from "react";
 
 export type ToastOffset = "default" | "high";
+export type ToastBehavior = "stacked" | "single";
 
 export interface ToastProviderProperties {
   /**
@@ -13,6 +14,13 @@ export interface ToastProviderProperties {
    * @default "default"
    */
   offset?: ToastOffset;
+  /**
+   * Controls how multiple toasts are handled.
+   * "stacked" - new toasts are piled up alongside already rendered ones.
+   * "single" - only one toast is shown at a time; each new toast immediately replaces the previous one.
+   * @default "stacked"
+   */
+  behavior?: ToastBehavior;
 }
 
 export type ToastProviderProps = ToastProviderProperties;

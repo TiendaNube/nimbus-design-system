@@ -5,7 +5,7 @@ import { type TitleProps, type TitleComponents } from "./title.types";
 import { TitleSkeleton } from "./components";
 
 const Title: React.FC<TitleProps> & TitleComponents = ({
-  className: _className,
+  className,
   style: _style,
   as: As = "h1",
   color = "neutral-textHigh",
@@ -19,9 +19,12 @@ const Title: React.FC<TitleProps> & TitleComponents = ({
   <As
     {...rest}
     className={[
+      className,
       title.sprinkle({ color, textAlign, lineHeight, fontWeight, fontSize }),
       title.classnames.appearance[As],
-    ].join(" ")}
+    ]
+      .filter(Boolean)
+      .join(" ")}
   >
     {children}
   </As>

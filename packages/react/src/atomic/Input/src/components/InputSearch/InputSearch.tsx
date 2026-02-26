@@ -10,7 +10,7 @@ import { type InputSearchBaseProps } from "./inputSearch.types";
 const InputSearch = forwardRef<HTMLInputElement, InputSearchBaseProps>(
   (
     {
-      className: _className,
+      className,
       style: _style,
       appearance = "neutral",
       aiGenerated = false,
@@ -26,6 +26,7 @@ const InputSearch = forwardRef<HTMLInputElement, InputSearchBaseProps>(
     return (
       <div
         className={[
+          className,
           input.classnames.appearance[appearance],
           aiGenerated && input.classnames.aiGenerated,
         ]

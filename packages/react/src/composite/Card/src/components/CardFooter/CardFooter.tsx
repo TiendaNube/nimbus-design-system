@@ -4,7 +4,7 @@ import { card } from "@nimbus-ds/styles";
 import { type CardFooterProps } from "./cardFooter.types";
 
 const CardFooter: React.FC<CardFooterProps> = ({
-  className: _className,
+  className,
   style: _style,
   padding = "none",
   children,
@@ -12,9 +12,12 @@ const CardFooter: React.FC<CardFooterProps> = ({
 }) => (
   <div
     className={[
+      className,
       card.classnames.container__footer,
       card.subComponents.footer.sprinkle({ padding }),
-    ].join(" ")}
+    ]
+      .filter(Boolean)
+      .join(" ")}
     {...rest}
   >
     {children}

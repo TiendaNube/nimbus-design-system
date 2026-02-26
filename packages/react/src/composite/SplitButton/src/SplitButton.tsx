@@ -16,6 +16,7 @@ import { SplitButtonContext, type SplitButtonContextValue } from "./contexts";
  * SplitButton component allows users to perform actions by clicking a primary button and displaying a dropdown menu with additional actions.
  */
 const SplitButton: React.FC<SplitButtonProps> & SplitButtonComponents = ({
+  className,
   children,
   disabled = false,
   open: controlledOpen,
@@ -50,7 +51,7 @@ const SplitButton: React.FC<SplitButtonProps> & SplitButtonComponents = ({
 
   return (
     <SplitButtonContext.Provider value={contextValue}>
-      <Box display="flex" gap="none" {...rest}>
+      <Box className={className} display="flex" gap="none" {...rest}>
         {children}
       </Box>
     </SplitButtonContext.Provider>

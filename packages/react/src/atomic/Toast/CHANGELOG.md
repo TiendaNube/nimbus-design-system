@@ -2,6 +2,18 @@
 
 The Toast component allows us to notify users in an informational tone, describing that something has happened or is happening, without interrupting navigation.
 
+## 2026-02-24 `2.7.0`
+
+#### 🎉 New features
+
+- Added `behavior` prop to `ToastProvider` to control how multiple toasts are handled. Use `"single"` to replace the current toast instead of stacking. ([#434](https://github.com/TiendaNube/nimbus-design-system/pull/434) by [@joacotornello](https://github.com/joacotornello))
+
+## 2026-02-12 `2.6.0`
+
+#### 🎉 New features
+
+- Enabled `className` prop forwarding to allow consumers to pass custom CSS classes. ([#426](https://github.com/TiendaNube/nimbus-design-system/pull/426) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2026-02-03 `2.5.0`
 
 #### 🎉 New features

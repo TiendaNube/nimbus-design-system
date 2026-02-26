@@ -22,7 +22,7 @@ import { useSegmentedControlContext } from "../../contexts/SegmentedControlConte
 const SegmentedControlButton = forwardRef(
   (
     {
-      className: _className,
+      className,
       style: _style,
       as: As = "button",
       id,
@@ -88,9 +88,11 @@ const SegmentedControlButton = forwardRef(
 
     const { classnames } = segmentedControl.subcomponents.button;
     const buttonClassName = [
+      className,
       classnames.appearance[isSelected ? "selected" : "default"],
     ]
       .concat(shouldUseFullWidth ? classnames.fullWidth : "")
+      .filter(Boolean)
       .join(" ");
 
     return (

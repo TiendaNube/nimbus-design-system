@@ -15,7 +15,7 @@ import { type InputPasswordBaseProps } from "./inputPassword.types";
 const InputPassword = forwardRef<HTMLInputElement, InputPasswordBaseProps>(
   (
     {
-      className: _className,
+      className,
       style: _style,
       appearance = "neutral",
       aiGenerated = false,
@@ -35,6 +35,7 @@ const InputPassword = forwardRef<HTMLInputElement, InputPasswordBaseProps>(
     return (
       <div
         className={[
+          className,
           input.classnames.appearance[appearance],
           aiGenerated && input.classnames.aiGenerated,
         ]

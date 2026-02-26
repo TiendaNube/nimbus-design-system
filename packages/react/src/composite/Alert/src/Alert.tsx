@@ -9,7 +9,7 @@ import { type AlertProps, type AlertComponents } from "./alert.types";
 import { alertVariants } from "./alert.definitions";
 
 const Alert: React.FC<AlertProps> & AlertComponents = ({
-  className: _className,
+  className,
   style: _style,
   title,
   appearance = "neutral",
@@ -29,7 +29,9 @@ const Alert: React.FC<AlertProps> & AlertComponents = ({
       {...rest}
       aria-live="polite"
       role={alertVariants[appearance].role}
-      className={alert.classnames.appearance[appearance]}
+      className={[className, alert.classnames.appearance[appearance]]
+        .filter(Boolean)
+        .join(" ")}
     >
       <div className={alert.classnames.container}>
         <Icon color={`${appearance}-textLow`} source={<AlertIcon />} />

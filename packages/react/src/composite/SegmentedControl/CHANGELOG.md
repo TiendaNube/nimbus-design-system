@@ -2,6 +2,12 @@
 
 The SegmentedControl component is a composite component that allows us to select one or more options from a list.
 
+## 2026-02-12 `2.1.0`
+
+#### 🎉 New features
+
+- Enabled `className` prop forwarding to allow consumers to pass custom CSS classes. ([#426](https://github.com/TiendaNube/nimbus-design-system/pull/426) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2026-01-13 `2.0.2`
 
 #### 🎉 New features

@@ -3,7 +3,7 @@
   "name": "FileUploader",
   "totalProps": 14,
   "packageName": "@nimbus-ds/file-uploader",
-  "version": "2.8.3",
+  "version": "2.9.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/file-uploader",
   "props": [
     {
@@ -123,12 +123,17 @@
   "subComponents": [
     {
       "name": "FileUploader.Skeleton",
-      "totalProps": 4,
+      "totalProps": 5,
       "props": [
         {
           "description": "Width of the skeleton. Useful when the skeleton is inside an inline element with no width of its own.",
           "type": "string",
           "title": "width",
+          "required": false
+        },
+        {
+          "type": "string",
+          "title": "className",
           "required": false
         },
         {

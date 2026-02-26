@@ -3,7 +3,7 @@
   "name": "ProgressBar",
   "totalProps": 2,
   "packageName": "@nimbus-ds/progress-bar",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/progress-bar",
   "props": [
     {
@@ -31,12 +31,17 @@
   "subComponents": [
     {
       "name": "ProgressBar.Skeleton",
-      "totalProps": 3,
+      "totalProps": 4,
       "props": [
         {
           "description": "Width of the skeleton. Useful when the skeleton is inside an inline element with no width of its own.",
           "type": "string",
           "title": "width",
+          "required": false
+        },
+        {
+          "type": "string",
+          "title": "className",
           "required": false
         },
         {

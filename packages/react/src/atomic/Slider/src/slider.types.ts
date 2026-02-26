@@ -114,7 +114,7 @@ export interface SliderRangeProperties extends SliderCommonProperties {
  * Props for single value slider mode.
  */
 export type SliderBaseProps = SliderProperties &
-  Omit<HTMLAttributes<HTMLDivElement>, "onChange" | "className" | "style">;
+  Omit<HTMLAttributes<HTMLDivElement>, "onChange" | "style">;
 
 /**
  * Props for range slider mode.

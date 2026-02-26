@@ -2,6 +2,12 @@
 
 The Link component allows us to navigate to external addresses.
 
+## 2026-02-12 `4.4.0`
+
+#### 🎉 New features
+
+- Enabled `className` prop forwarding to allow consumers to pass custom CSS classes. ([#426](https://github.com/TiendaNube/nimbus-design-system/pull/426) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2026-01-13 `4.3.1`
 
 #### 🎉 New features

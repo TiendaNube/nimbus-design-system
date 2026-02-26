@@ -11,7 +11,7 @@ import {
 import { ThumbnailSkeleton } from "./components";
 
 const Thumbnail: React.FC<ThumbnailProps> & ThumbnailComponents = ({
-  className: _className,
+  className,
   style: _style,
   aspectRatio = "1/1",
   width = "100%",
@@ -22,9 +22,12 @@ const Thumbnail: React.FC<ThumbnailProps> & ThumbnailComponents = ({
 }: ThumbnailProps) => (
   <div
     className={[
+      className,
       thumbnail.classnames.container,
       thumbnail.classnames.width,
-    ].join(" ")}
+    ]
+      .filter(Boolean)
+      .join(" ")}
     style={assignInlineVars({
       [vars.width]: width,
     })}

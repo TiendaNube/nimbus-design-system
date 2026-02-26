@@ -5,7 +5,7 @@ import { type CollapsibleBodyProps } from "./collapsibleBody.types";
 import { useCollapsible } from "../../hooks/useCollapsible";
 
 const CollapsibleBody: React.FC<CollapsibleBodyProps> = ({
-  className: _className,
+  className,
   style: _style,
   children,
   visibleWhen = "open",
@@ -24,7 +24,10 @@ const CollapsibleBody: React.FC<CollapsibleBodyProps> = ({
   };
 
   return show ? (
-    <div {...rest} className={classNames[direction]}>
+    <div
+      {...rest}
+      className={[className, classNames[direction]].filter(Boolean).join(" ")}
+    >
       {children}
     </div>
   ) : null;

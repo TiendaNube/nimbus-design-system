@@ -4,7 +4,7 @@ import { table } from "@nimbus-ds/styles";
 import { type TableRowProps } from "./tableRow.types";
 
 const TableRow: React.FC<TableRowProps> = ({
-  className: _className,
+  className,
   style: _style,
   children,
   id,
@@ -16,7 +16,11 @@ const TableRow: React.FC<TableRowProps> = ({
   },
   ...rest
 }: TableRowProps) => {
-  const { className, style, otherProps } = table.sprinkle({
+  const {
+    className: classNameStyles,
+    style,
+    otherProps,
+  } = table.sprinkle({
     ...(rest as Parameters<typeof table.sprinkle>[0]),
     backgroundColor,
   });
@@ -49,7 +53,9 @@ const TableRow: React.FC<TableRowProps> = ({
 
   return (
     <tr
-      className={[table.classnames.container__row, className].join(" ")}
+      className={[className, table.classnames.container__row, classNameStyles]
+        .filter(Boolean)
+        .join(" ")}
       style={rowStyle}
       {...otherProps}
       id={id}
