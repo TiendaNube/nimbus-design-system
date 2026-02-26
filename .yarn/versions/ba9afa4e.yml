@@ -1,6 +1,0 @@
-releases:
-  "@nimbus-ds/components": patch
-  "@nimbus-ds/table": patch
-
-declined:
-  - nimbus-design-system
