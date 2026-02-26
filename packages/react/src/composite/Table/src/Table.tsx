@@ -27,6 +27,7 @@ const Table: React.FC<TableProps> & TableComponents = ({
   ...rest
 }: TableProps) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
+  const tableRef = useRef<HTMLTableElement>(null);
   const [scrollState, setScrollState] = useState({
     left: false,
     right: false,
@@ -99,6 +100,9 @@ const Table: React.FC<TableProps> & TableComponents = ({
 
     const resizeObserver = new ResizeObserver(handleResize);
     resizeObserver.observe(wrapper);
+    if (tableRef.current) {
+      resizeObserver.observe(tableRef.current);
+    }
 
     return () => {
       resizeObserver.disconnect();
@@ -174,6 +178,7 @@ const Table: React.FC<TableProps> & TableComponents = ({
         data-scroll-right={scrollState.right || undefined}
       >
         <table
+          ref={tableRef}
           {...rest}
           className={[className, table.classnames.container]
             .filter(Boolean)

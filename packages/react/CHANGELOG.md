@@ -3,6 +3,12 @@
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories
 every day, with simplicity, accessibility, consistency and performance.
 
+## 2026-02-25 `5.54.1`
+
+#### 🐛 Bug fixes
+
+- `Table`: Fixed sticky scrollbar scroll indicators not updating when table columns are dynamically added or removed. ([#435](https://github.com/TiendaNube/nimbus-design-system/pull/435) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2026-02-24 `5.54.0`
 
 #### 🎉 New features

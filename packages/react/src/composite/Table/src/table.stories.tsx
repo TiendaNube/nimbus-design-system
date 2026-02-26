@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Button } from "@nimbus-ds/button";
 import { Table } from "./Table";
@@ -576,6 +576,289 @@ export const withStickyScrollbar: Story = {
       description: {
         story:
           "Demonstrates the sticky scrollbar feature. The scrollbar remains visible at the bottom of the viewport when scrolling vertically, making it easier to navigate wide tables. The scrollbar is synchronized with the table's horizontal scroll position.",
+      },
+    },
+  },
+};
+
+type ToggleColumn = {
+  id: string;
+  title: string;
+  hidden: boolean;
+  dataKey: string;
+} & TableColumnLayout;
+
+export const withStickyScrollbarAndColumnToggle: Story = {
+  args: {},
+  render: () => {
+    const initialColumns: ToggleColumn[] = [
+      {
+        id: "col-id",
+        title: "ID",
+        width: "80px",
+        hidden: false,
+        dataKey: "id",
+        fixed: "left",
+      },
+      {
+        id: "col-name",
+        title: "Name",
+        width: "150px",
+        hidden: false,
+        dataKey: "name",
+      },
+      {
+        id: "col-email",
+        title: "Email",
+        width: "200px",
+        hidden: false,
+        dataKey: "email",
+      },
+      {
+        id: "col-role",
+        title: "Role",
+        width: "120px",
+        hidden: false,
+        dataKey: "role",
+      },
+      {
+        id: "col-department",
+        title: "Department",
+        width: "150px",
+        hidden: false,
+        dataKey: "department",
+      },
+      {
+        id: "col-location",
+        title: "Location",
+        width: "120px",
+        hidden: false,
+        dataKey: "location",
+      },
+      {
+        id: "col-status",
+        title: "Status",
+        width: "100px",
+        hidden: false,
+        dataKey: "status",
+      },
+      // Extra columns — hidden by default
+      {
+        id: "col-phone",
+        title: "Phone",
+        width: "140px",
+        hidden: true,
+        dataKey: "phone",
+      },
+      {
+        id: "col-hire-date",
+        title: "Hire Date",
+        width: "120px",
+        hidden: true,
+        dataKey: "hireDate",
+      },
+      {
+        id: "col-salary",
+        title: "Salary",
+        width: "110px",
+        hidden: true,
+        dataKey: "salary",
+      },
+      {
+        id: "col-manager",
+        title: "Manager",
+        width: "150px",
+        hidden: true,
+        dataKey: "manager",
+      },
+      {
+        id: "col-team",
+        title: "Team",
+        width: "130px",
+        hidden: true,
+        dataKey: "team",
+      },
+      {
+        id: "col-floor",
+        title: "Floor",
+        width: "80px",
+        hidden: true,
+        dataKey: "floor",
+      },
+      {
+        id: "col-start-time",
+        title: "Start Time",
+        width: "110px",
+        hidden: true,
+        dataKey: "startTime",
+      },
+      {
+        id: "col-notes",
+        title: "Notes",
+        width: "180px",
+        hidden: true,
+        dataKey: "notes",
+      },
+      // Actions always last
+      {
+        id: "col-actions",
+        title: "Actions",
+        width: "120px",
+        hidden: false,
+        dataKey: "actions",
+        fixed: "right",
+      },
+    ];
+
+    const [columns, setColumns] = useState<ToggleColumn[]>(initialColumns);
+    const [menuOpen, setMenuOpen] = useState(false);
+    const menuRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+      const handleClickOutside = (e: MouseEvent) => {
+        if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+          setMenuOpen(false);
+        }
+      };
+      document.addEventListener("mousedown", handleClickOutside);
+      return () =>
+        document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
+
+    const toggleColumn = (id: string) => {
+      setColumns((prev) =>
+        prev.map((col) =>
+          col.id === id ? { ...col, hidden: !col.hidden } : col
+        )
+      );
+    };
+
+    const visibleColumns = columns.filter((col) => !col.hidden);
+
+    const columnLayout: TableColumnLayout[] = visibleColumns.map((col) => ({
+      id: col.id,
+      width: col.width,
+      ...(col.fixed && { fixed: col.fixed }),
+    }));
+
+    const data: Record<string, string>[] = Array.from(
+      { length: 20 },
+      (_, i) => ({
+        id: String(i + 1).padStart(3, "0"),
+        name: `User ${i + 1}`,
+        email: `user${i + 1}@example.com`,
+        role: ["Admin", "Manager", "Developer", "Designer", "Analyst"][i % 5],
+        department: ["Engineering", "Marketing", "Design", "Finance", "Sales"][
+          i % 5
+        ],
+        location: ["New York", "Los Angeles", "Chicago", "San Francisco"][
+          i % 4
+        ],
+        status: i % 3 === 0 ? "Inactive" : "Active",
+        phone: `+1 555-${String(1000 + i)}`,
+        hireDate: `2023-${String((i % 12) + 1).padStart(2, "0")}-15`,
+        salary: `$${(60000 + i * 5000).toLocaleString()}`,
+        manager: ["Alice", "Bob", "Charlie", "Diana"][i % 4],
+        team: ["Alpha", "Beta", "Gamma", "Delta", "Epsilon"][i % 5],
+        floor: String((i % 5) + 1),
+        startTime: `${8 + (i % 3)}:00 AM`,
+        notes: `Note for user ${i + 1}`,
+        actions: "Edit | Delete",
+      })
+    );
+
+    const totalMinWidth = visibleColumns.reduce((sum, col) => sum + parseInt(col.width || "100", 10), 0);
+
+    return (
+      <div style={{ position: "relative" }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            marginBottom: "8px",
+          }}
+        >
+          <div ref={menuRef} style={{ position: "relative" }}>
+            <Button onClick={() => setMenuOpen((prev) => !prev)}>
+              Columns
+            </Button>
+            {menuOpen && (
+              <div
+                style={{
+                  position: "absolute",
+                  right: 0,
+                  top: "100%",
+                  marginTop: "4px",
+                  background: "#fff",
+                  border: "1px solid #ccc",
+                  borderRadius: "6px",
+                  padding: "8px 0",
+                  zIndex: 800,
+                  minWidth: "180px",
+                  boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+                }}
+              >
+                {columns.map((col) => (
+                  <label
+                    htmlFor={`col-toggle-${col.id}`}
+                    key={col.id}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "8px",
+                      padding: "4px 12px",
+                      cursor: "pointer",
+                      fontSize: "14px",
+                      fontFamily: "sans-serif",
+                    }}
+                  >
+                    <input
+                      id={`col-toggle-${col.id}`}
+                      type="checkbox"
+                      checked={!col.hidden}
+                      onChange={() => toggleColumn(col.id)}
+                    />
+                    {col.title}
+                  </label>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+        <Table
+          columnLayout={columnLayout}
+          minWidth={`${totalMinWidth}px`}
+          stickyScrollbar
+        >
+          <Table.Head>
+            <Table.Row backgroundColor="neutral-surface">
+              {visibleColumns.map((col, index) => (
+                <Table.Cell as="th" key={col.id} column={index}>
+                  {col.title}
+                </Table.Cell>
+              ))}
+            </Table.Row>
+          </Table.Head>
+          <Table.Body>
+            {data.map((row) => (
+              <Table.Row key={row.id}>
+                {visibleColumns.map((col, index) => (
+                  <Table.Cell key={col.id} column={index}>
+                    {row[col.dataKey]}
+                  </Table.Cell>
+                ))}
+              </Table.Row>
+            ))}
+          </Table.Body>
+        </Table>
+      </div>
+    );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Demonstrates a sticky scrollbar table with a column toggle button. Half of the columns are hidden by default and can be revealed via the Columns dropdown in the top-right corner.",
       },
     },
   },
