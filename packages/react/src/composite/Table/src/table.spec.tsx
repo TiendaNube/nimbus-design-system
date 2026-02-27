@@ -24,6 +24,48 @@ describe("GIVEN <Table />", () => {
     });
   });
 
+  describe("WHEN borderRadius is 'none'", () => {
+    it("THEN should apply border-radius 0 via sprinkle CSS variable", () => {
+      const { container } = render(
+        <Table borderRadius="none" data-testid="table-element">
+          <tbody>
+            <tr>
+              <td>Content</td>
+            </tr>
+          </tbody>
+        </Table>
+      );
+
+      const wrapper = container.querySelector(
+        '[class*="container__wrapper"]'
+      ) as HTMLElement;
+      expect(wrapper.getAttribute("style")).toMatch(
+        /--borderRadius-rest__\w+: 0;/
+      );
+    });
+  });
+
+  describe("WHEN borderRadius is '2' or not provided", () => {
+    it("THEN should apply the default border-radius token via sprinkle CSS variable", () => {
+      const { container } = render(
+        <Table data-testid="table-element">
+          <tbody>
+            <tr>
+              <td>Content</td>
+            </tr>
+          </tbody>
+        </Table>
+      );
+
+      const wrapper = container.querySelector(
+        '[class*="container__wrapper"]'
+      ) as HTMLElement;
+      expect(wrapper.getAttribute("style")).not.toMatch(
+        /--borderRadius-rest__\w+: 0;/
+      );
+    });
+  });
+
   describe("WHEN columnLayout is provided", () => {
     it("THEN should render a colgroup with calculated widths", () => {
       render(

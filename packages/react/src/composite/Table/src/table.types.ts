@@ -1,4 +1,5 @@
 import { type ReactNode, type HTMLAttributes } from "react";
+import { type TableWrapperSprinkle } from "@nimbus-ds/styles";
 
 import {
   type TableBody,
@@ -44,7 +45,7 @@ export interface TableColumnLayout {
   fixed?: "left" | "right";
 }
 
-export interface TableProperties {
+export interface TableProperties extends TableWrapperSprinkle {
   /**
    * The content of the table.
    * @TJS-type React.ReactNode

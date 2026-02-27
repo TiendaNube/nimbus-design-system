@@ -24,8 +24,11 @@ const Table: React.FC<TableProps> & TableComponents = ({
   minWidth,
   maxWidth,
   stickyScrollbar = false,
+  borderRadius = "2",
   ...rest
 }: TableProps) => {
+  const { className: wrapperSprinkleClassName, style: wrapperSprinkleStyle } =
+    table.wrapper.sprinkle({ borderRadius });
   const wrapperRef = useRef<HTMLDivElement>(null);
   const tableRef = useRef<HTMLTableElement>(null);
   const [scrollState, setScrollState] = useState({
@@ -165,15 +168,20 @@ const Table: React.FC<TableProps> & TableComponents = ({
     };
   }, [stickyScrollbar, updateScrollbarWidth]);
 
-  const wrapperClassName = stickyScrollbar
-    ? `${table.classnames.container__wrapper} ${table.classnames.container__wrapper_hidden_scrollbar}`
-    : table.classnames.container__wrapper;
+  const wrapperClassName = [
+    table.classnames.container__wrapper,
+    stickyScrollbar && table.classnames.container__wrapper_hidden_scrollbar,
+    wrapperSprinkleClassName,
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   return (
     <TableContext.Provider value={contextValue}>
       <div
         ref={wrapperRef}
         className={wrapperClassName}
+        style={wrapperSprinkleStyle}
         data-scroll-left={scrollState.left || undefined}
         data-scroll-right={scrollState.right || undefined}
       >

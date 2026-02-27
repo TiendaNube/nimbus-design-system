@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Button } from "@nimbus-ds/button";
+import { table } from "@nimbus-ds/styles";
+import { argTypesConvert } from ".storybook/utils";
 import { Table } from "./Table";
 import { type TableColumnLayout } from "./table.types";
 
@@ -9,12 +11,23 @@ const meta: Meta<typeof Table> = {
   component: Table,
   argTypes: {
     children: { control: { disable: true } },
+    ...argTypesConvert(table.wrapper.properties),
   },
   tags: ["autodocs"],
 };
 
 export default meta;
 type Story = StoryObj<typeof Table>;
+
+const renderRows = (count: number) =>
+  Array.from({ length: count }, (_, i) => (
+    <Table.Row key={i}>
+      <Table.Cell>Cell 1</Table.Cell>
+      <Table.Cell>Cell 2</Table.Cell>
+      <Table.Cell>Cell 3</Table.Cell>
+      <Table.Cell>Cell 4</Table.Cell>
+    </Table.Row>
+  ));
 
 export const basic: Story = {
   args: {
@@ -28,16 +41,7 @@ export const basic: Story = {
             <Table.Cell as="th">Header 4</Table.Cell>
           </Table.Row>
         </Table.Head>
-        <Table.Body>
-          {Array.from({ length: 10 }, (_, i) => (
-            <Table.Row key={i}>
-              <Table.Cell>Cell 1</Table.Cell>
-              <Table.Cell>Cell 2</Table.Cell>
-              <Table.Cell>Cell 3</Table.Cell>
-              <Table.Cell>Cell 4</Table.Cell>
-            </Table.Row>
-          ))}
-        </Table.Body>
+        <Table.Body>{renderRows(10)}</Table.Body>
       </>
     ),
   },
@@ -239,6 +243,25 @@ export const withNoPadding: Story = {
             </Table.Row>
           ))}
         </Table.Body>
+      </>
+    ),
+  },
+};
+
+export const withNoBorderRadius: Story = {
+  args: {
+    borderRadius: "none",
+    children: (
+      <>
+        <Table.Head>
+          <Table.Row backgroundColor="neutral-surface">
+            <Table.Cell as="th">Header 1</Table.Cell>
+            <Table.Cell as="th">Header 2</Table.Cell>
+            <Table.Cell as="th">Header 3</Table.Cell>
+            <Table.Cell as="th">Header 4</Table.Cell>
+          </Table.Row>
+        </Table.Head>
+        <Table.Body>{renderRows(5)}</Table.Body>
       </>
     ),
   },

@@ -1,8 +1,13 @@
-import { styles, tableSprinkle } from "./nimbus-table.css";
+import {
+  styles,
+  tableSprinkle,
+  tableWrapperSprinkle,
+} from "./nimbus-table.css";
 
 export const table = {
   classnames: { ...styles },
   ...tableSprinkle,
+  wrapper: tableWrapperSprinkle,
 };
 
-export type { TableSprinkle } from "./nimbus-table.types";
+export type { TableSprinkle, TableWrapperSprinkle } from "./nimbus-table.types";

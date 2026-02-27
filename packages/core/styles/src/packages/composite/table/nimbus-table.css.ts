@@ -6,6 +6,7 @@ import {
 import {
   paddingProperties,
   backgroundColorProperties,
+  borderRadiusProperties,
 } from "../../../properties";
 import { mediaQueries, varsThemeBase } from "../../../themes";
 
@@ -17,7 +18,6 @@ const container__wrapper = style({
   overflowX: "auto",
   width: "100%",
   paddingBottom: varsThemeBase.spacing["0-5"],
-  borderRadius: varsThemeBase.shape.border.radius[2],
   boxShadow: varsThemeBase.shadow.level[2],
 });
 
@@ -239,4 +239,35 @@ const properties = {
 export const tableSprinkle = {
   sprinkle,
   properties,
+};
+
+/* -------------------------------------------------------------------------------------------------
+ * Wrapper Sprinkle
+ * -----------------------------------------------------------------------------------------------*/
+
+const tableBorderRadiusProperties = {
+  none: "0",
+  "2": borderRadiusProperties["2"],
+};
+
+const defineWrapperProperties = defineRainbowProperties({
+  conditions: {
+    rest: {},
+  },
+  defaultCondition: "rest",
+  staticProperties: {},
+  dynamicProperties: {
+    borderRadius: tableBorderRadiusProperties,
+  },
+});
+
+const wrapperSprinkle = createRainbowSprinkles(defineWrapperProperties);
+
+const wrapperProperties = {
+  borderRadius: tableBorderRadiusProperties,
+};
+
+export const tableWrapperSprinkle = {
+  sprinkle: wrapperSprinkle,
+  properties: wrapperProperties,
 };
