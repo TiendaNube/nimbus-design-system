@@ -2,11 +2,18 @@
 
 The Table component allows us to organize data with a tabular structure in a table.
 
-## 2026-02-13 `2.6.0`
+## 2026-02-27 `2.6.0`
 
 #### 🎉 New features
 
 - Added `borderRadius` prop to `Table` to allow removing the table wrapper's rounded corners. ([#435](https://github.com/TiendaNube/nimbus-design-system/pull/435) by [@jffs](https://github.com/jffs))
+
+## 2026-02-25 `2.5.1`
+
+#### 🐛 Bug fixes
+
+- Fixed sticky scrollbar scroll indicators not updating when table columns are dynamically added or removed. ([#435](https://github.com/TiendaNube/nimbus-design-system/pull/435) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2026-02-12 `2.5.0`
 
 #### 🎉 New features
