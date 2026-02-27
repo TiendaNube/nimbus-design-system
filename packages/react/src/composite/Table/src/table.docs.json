@@ -1,9 +1,9 @@
 {
   "id": "table",
   "name": "Table",
-  "totalProps": 5,
+  "totalProps": 6,
   "packageName": "@nimbus-ds/table",
-  "version": "2.5.0",
+  "version": "2.5.1",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/table",
   "props": [
     {
@@ -80,6 +80,17 @@
       "default": false,
       "type": "boolean",
       "title": "stickyScrollbar",
+      "required": false
+    },
+    {
+      "description": "Controls the border radius of the table wrapper.\nUse \"none\" for no border radius or \"2\" for the default token value.",
+      "default": "2",
+      "enum": [
+        "2",
+        "none"
+      ],
+      "type": "string",
+      "title": "borderRadius",
       "required": false
     }
   ],
