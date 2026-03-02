@@ -11,7 +11,7 @@ export interface DividerProperties {
    * Visual appearance color.
    * @default neutral
    */
-  appearance?: "neutral" | "primary";
+  appearance?: "neutral";
 
   /**
    * Thickness level based on shape.border.width tokens.

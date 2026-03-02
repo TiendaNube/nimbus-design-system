@@ -40,12 +40,6 @@ export const basic: Story = {
   args: {},
 };
 
-export const primary: Story = {
-  args: {
-    appearance: "primary",
-  },
-};
-
 export const vertical: Story = {
   render: (args: DividerProps) => (
     <Box height="10rem" width="10rem">

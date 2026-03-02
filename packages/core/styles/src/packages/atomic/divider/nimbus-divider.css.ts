@@ -36,7 +36,6 @@ export const verticalThickness = styleVariants({
 
 export const appearance = styleVariants({
   neutral: [base],
-  primary: [base, { backgroundColor: varsThemeBase.colors.primary.textLow }],
 });
 
 export const customWidth = style({
