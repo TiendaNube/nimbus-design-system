@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2026-03-02 `9.60.1`
+
+#### 🐛 Bug fixes
+
+- `Popover`: Updated content border radius to match design specifications. ([#439](https://github.com/TiendaNube/nimbus-design-system/pull/439) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2026-03-02 `9.60.0`
 
 #### 🎉 New features

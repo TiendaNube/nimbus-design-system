@@ -2,6 +2,12 @@
 
 Use Popovers to bring attention to specific user interface elements and suggest an action or to guide users through a new experience
 
+## 2026-03-02 `4.4.1`
+
+#### 🐛 Bug fixes
+
+- Updated Popover border radius and arrow tip radius to match design specifications. ([#439](https://github.com/TiendaNube/nimbus-design-system/pull/439) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2026-02-12 `4.4.0`
 
 #### 🎉 New features
