@@ -2,6 +2,7 @@ import { style, styleVariants } from "@vanilla-extract/css";
 
 import { varsThemeBase } from "../../../themes";
 import { gradients, createBorderGradient } from "../../../gradients";
+import { thinScrollbar } from "../../../utils/scrollbar.css";
 
 // CSS custom properties for consistent height calculations
 const textareaHeightVars = style({
@@ -15,6 +16,7 @@ const textareaHeightVars = style({
 
 const base = style([
   textareaHeightVars,
+  thinScrollbar,
   {
     width: "100%",
     appearance: "none",

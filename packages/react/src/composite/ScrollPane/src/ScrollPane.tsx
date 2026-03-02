@@ -185,6 +185,7 @@ const ScrollPane = ({
     scrollPane.classnames.scrollArea,
     scrollPane.classnames.direction[direction],
     !showScrollbar && scrollPane.classnames.scrollAreaHidden,
+    showScrollbar && scrollPane.classnames.scrollAreaThin,
   ]
     .filter(Boolean)
     .join(" ");
