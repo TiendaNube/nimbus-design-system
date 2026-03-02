@@ -18,6 +18,22 @@ export interface DividerProperties {
    * @default 1
    */
   thickness?: 1 | 2 | 3;
+
+  /**
+   * CSS width of the divider. Applies to horizontal orientation only.
+   * @default "100%"
+   */
+  width?: string;
+
+  /**
+   * CSS margin-left applied to the divider.
+   */
+  marginLeft?: string;
+
+  /**
+   * CSS margin-right applied to the divider.
+   */
+  marginRight?: string;
 }
 
 export type DividerProps = DividerProperties & HTMLAttributes<HTMLHRElement>;

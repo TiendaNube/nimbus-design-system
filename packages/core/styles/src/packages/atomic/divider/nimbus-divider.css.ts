@@ -1,5 +1,6 @@
 import { style, styleVariants } from "@vanilla-extract/css";
 import { varsThemeBase } from "../../../themes";
+import { vars } from "../../../utils";
 
 const base = style({
   width: "100%",
@@ -35,4 +36,16 @@ export const verticalThickness = styleVariants({
 
 export const appearance = styleVariants({
   neutral: [base],
+});
+
+export const customWidth = style({
+  width: vars.width,
+});
+
+export const customMarginLeft = style({
+  marginLeft: vars.marginLeft,
+});
+
+export const customMarginRight = style({
+  marginRight: vars.marginRight,
 });
