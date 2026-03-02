@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2026-03-02 `9.59.0`
+
+#### 🎉 New features
+
+- `Divider`: Added CSS variable-driven `customWidth`, `customMarginLeft` and `customMarginRight` classes and shared `marginLeft`/`marginRight` vars. ([#437](https://github.com/TiendaNube/nimbus-design-system/pull/437) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2026-03-02 `9.58.0`
 
 #### 🎉 New features

@@ -13,6 +13,15 @@ const meta: Meta<typeof Divider> = {
       control: { type: "radio" },
       options: ["horizontal", "vertical"],
     },
+    width: {
+      control: { type: "text" },
+    },
+    marginLeft: {
+      control: { type: "text" },
+    },
+    marginRight: {
+      control: { type: "text" },
+    },
   },
   render: (args: DividerProps) => (
     <Box height="10rem" width="10rem">
@@ -60,5 +69,19 @@ export const thickness2: Story = {
 export const thickness3: Story = {
   args: {
     thickness: 3,
+  },
+};
+
+export const customWidth: Story = {
+  args: {
+    width: "50%",
+  },
+};
+
+export const withMargins: Story = {
+  args: {
+    width: "80%",
+    marginLeft: "auto",
+    marginRight: "auto",
   },
 };
