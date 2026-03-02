@@ -1,7 +1,7 @@
 {
   "id": "divider",
   "name": "Divider",
-  "totalProps": 3,
+  "totalProps": 6,
   "packageName": "@nimbus-ds/divider",
   "version": "1.0.1",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/divider",
@@ -37,6 +37,25 @@
       ],
       "type": "number",
       "title": "thickness",
+      "required": false
+    },
+    {
+      "description": "CSS width of the divider. Applies to horizontal orientation only.",
+      "default": "100%",
+      "type": "string",
+      "title": "width",
+      "required": false
+    },
+    {
+      "description": "CSS margin-left applied to the divider.",
+      "type": "string",
+      "title": "marginLeft",
+      "required": false
+    },
+    {
+      "description": "CSS margin-right applied to the divider.",
+      "type": "string",
+      "title": "marginRight",
       "required": false
     }
   ],
