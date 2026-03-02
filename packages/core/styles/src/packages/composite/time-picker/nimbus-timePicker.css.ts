@@ -1,6 +1,5 @@
 import { style, styleVariants } from "@vanilla-extract/css";
 import { varsThemeBase } from "../../../themes";
-import { thinScrollbarAlways } from "../../../utils/scrollbar.css";
 
 const PANEL_HEIGHT = "160px";
 const ITEM_HEIGHT = varsThemeBase.spacing[8];
@@ -222,28 +221,24 @@ const columnWrapper = style({
  * Style - Dropdown Wrapper
  * -----------------------------------------------------------------------------------------------*/
 
-const dropdownWrapper = style([
-  thinScrollbarAlways,
-  {
-    display: "flex",
-    flexDirection: "column",
-    height: PANEL_HEIGHT,
-    minWidth: "100px",
-    overflowY: "auto",
-  },
-]);
+const dropdownWrapper = style({
+  display: "flex",
+  flexDirection: "column",
+  height: PANEL_HEIGHT,
+  minWidth: "100px",
+  overflowY: "auto",
+});
 
-const dropdownScrollContainer = style([
-  thinScrollbarAlways,
-  {
-    position: "relative",
-    display: "flex",
-    flexDirection: "row",
-    height: PANEL_HEIGHT,
-    overflowY: "auto",
-    gap: varsThemeBase.spacing[1],
-  },
-]);
+const dropdownScrollContainer = style({
+  position: "relative",
+  display: "flex",
+  flexDirection: "row",
+  height: PANEL_HEIGHT,
+  overflowY: "auto",
+  gap: varsThemeBase.spacing[1],
+  scrollbarWidth: "thin",
+  scrollbarColor: `${varsThemeBase.colors.neutral.surfaceHighlight} transparent`,
+});
 
 const dropdownAmPm = style({
   display: "flex",

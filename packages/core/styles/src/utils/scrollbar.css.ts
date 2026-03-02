@@ -2,12 +2,11 @@ import { style, globalStyle } from "@vanilla-extract/css";
 import { varsThemeBase } from "../themes";
 
 /** Width used for thin scrollbars across WebKit browsers. */
-const SCROLLBAR_WIDTH = "4px";
+export const SCROLLBAR_WIDTH = "4px";
 
 /**
- * Internal thin scrollbar style — applied directly to Nimbus components.
+ * Thin scrollbar style — applied directly to Nimbus components.
  * Shows a subtle scrollbar thumb on hover, thin and theme-aware.
- * Not exported publicly; used by Textarea, Menu, etc.
  */
 export const thinScrollbar = style({
   // Firefox
