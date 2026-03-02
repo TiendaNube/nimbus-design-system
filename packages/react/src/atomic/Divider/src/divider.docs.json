@@ -3,7 +3,7 @@
   "name": "Divider",
   "totalProps": 6,
   "packageName": "@nimbus-ds/divider",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/divider",
   "props": [
     {
@@ -21,7 +21,8 @@
       "description": "Visual appearance color.",
       "default": "neutral",
       "enum": [
-        "neutral"
+        "neutral",
+        "primary"
       ],
       "type": "string",
       "title": "appearance",
