@@ -2,6 +2,12 @@
 
 Dividers are used to separate content in a list or grid. They can be horizontal or vertical.
 
+## 2026-03-02 `1.2.0`
+
+#### 🎉 New features
+
+- Added `primary` appearance variant to Divider component. ([#438](https://github.com/TiendaNube/nimbus-design-system/pull/438) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2026-03-02 `1.1.0`
 
 #### 🎉 New features
