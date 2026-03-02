@@ -136,6 +136,7 @@ const Popover: React.FC<PopoverProps> = ({
           ref={arrowRef}
           context={context}
           fill="currentColor"
+          tipRadius={3}
         />
       )}
     </div>
