@@ -2,6 +2,13 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2026-03-02 `9.58.0`
+
+#### 🎉 New features
+
+- `Textarea`: Added thin scrollbar styling for better visual consistency. ([#430](https://github.com/TiendaNube/nimbus-design-system/pull/430) by [@karemcarvalho-hue](https://github.com/karemcarvalho-hue))
+- `ScrollPane`: Added thin scrollbar variant. ([#430](https://github.com/TiendaNube/nimbus-design-system/pull/430) by [@karemcarvalho-hue](https://github.com/karemcarvalho-hue))
+
 ## 2026-02-13 `9.57.0`
 
 #### 🎉 New features
