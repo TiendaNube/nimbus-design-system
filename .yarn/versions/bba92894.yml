@@ -1,0 +1,5 @@
+releases:
+  "@nimbus-ds/components": patch
+
+declined:
+  - nimbus-design-system
