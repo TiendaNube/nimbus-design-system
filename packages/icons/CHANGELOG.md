@@ -2,6 +2,23 @@
 
 Nimbus-icons is an open source icon system built by Nuvemshop / Tiendanube.
 
+## 2026-03-04 `1.18.0` (minor version bump)
+
+#### 🎉 New features
+
+- Adds `buttons` icon. ([#430](https://github.com/TiendaNube/nimbus-design-system/pull/430) by @NimbusAgent)
+- Adds `rounded-corners` icon. ([#430](https://github.com/TiendaNube/nimbus-design-system/pull/430) by @NimbusAgent)
+- Adds `letter-spacing` icon. ([#430](https://github.com/TiendaNube/nimbus-design-system/pull/430) by @NimbusAgent)
+- Adds `all-caps` icon. ([#430](https://github.com/TiendaNube/nimbus-design-system/pull/430) by @NimbusAgent)
+- Adds `top-alignment` icon. ([#430](https://github.com/TiendaNube/nimbus-design-system/pull/430) by @NimbusAgent)
+- Adds `middle-alignment` icon. ([#430](https://github.com/TiendaNube/nimbus-design-system/pull/430) by @NimbusAgent)
+- Adds `bottom-alignment` icon. ([#430](https://github.com/TiendaNube/nimbus-design-system/pull/430) by @NimbusAgent)
+- Adds `crop` icon. ([#430](https://github.com/TiendaNube/nimbus-design-system/pull/430) by @NimbusAgent)
+- Adds `horizontal-spacing` icon. ([#430](https://github.com/TiendaNube/nimbus-design-system/pull/430) by @NimbusAgent)
+- Adds `carousel` icon. ([#430](https://github.com/TiendaNube/nimbus-design-system/pull/430) by @NimbusAgent)
+- Adds `animation` icon. ([#430](https://github.com/TiendaNube/nimbus-design-system/pull/430) by @NimbusAgent)
+- Adds `spacing` icon. ([#430](https://github.com/TiendaNube/nimbus-design-system/pull/430) by @NimbusAgent)
+
 ## 2026-02-06 `1.17.0` (minor version bump)
 
 `@nimbus-ds/icons`@1.17.0|minor: Added navigation and editing icons (arrows-diagonal-out, arrows-diagonal-in, arrows-expand, arrows-collapse, generative-pencil).
