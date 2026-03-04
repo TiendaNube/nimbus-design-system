@@ -2,6 +2,14 @@
 
 The ProgressBar component allows us to display the progress of an operation or task in a visual format.
 
+## 2026-03-04 `1.2.0`
+
+#### 🎉 New features
+
+- Added `boxShadow` prop to apply a glow effect to the progress bar fill. ([#441](https://github.com/TiendaNube/nimbus-design-system/pull/441) by [@joacotornello](https://github.com/joacotornello))
+- Added `height` prop to allow custom progress bar height. ([#441](https://github.com/TiendaNube/nimbus-design-system/pull/441) by [@joacotornello](https://github.com/joacotornello))
+- Added `backgroundColor` prop to change the track background color. ([#441](https://github.com/TiendaNube/nimbus-design-system/pull/441) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2026-02-12 `1.1.0`
 
 #### 🎉 New features

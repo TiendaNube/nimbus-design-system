@@ -3,6 +3,12 @@
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories
 every day, with simplicity, accessibility, consistency and performance.
 
+## 2026-03-04 `5.56.0`
+
+#### 🎉 New features
+
+- `ProgressBar`: Added `boxShadow`, `height`, and `backgroundColor` props for enhanced customization. ([#441](https://github.com/TiendaNube/nimbus-design-system/pull/441) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2026-03-02 `5.55.1`
 
 #### 🐛 Bug fixes

@@ -31,6 +31,21 @@ const meta: Meta<typeof ProgressBar> = {
       ],
       description: "Change the visual style of the progress bar.",
     },
+    boxShadow: {
+      control: { type: "select" },
+      options: [0, 1, 2],
+      description:
+        "Applies a box shadow to the progress bar fill using the appearance color.",
+    },
+    backgroundColor: {
+      control: { type: "select" },
+      options: ["neutral-surfaceDisabled", "neutral-background"],
+      description: "Change the background color of the progress bar track.",
+    },
+    height: {
+      control: { type: "text" },
+      description: "Custom height for the progress bar.",
+    },
   },
   render: (args) => (
     <Box maxWidth="250px">
@@ -81,5 +96,48 @@ export const AIInteractive: Story = {
   args: {
     value: 60,
     appearance: "ai-generative",
+  },
+};
+
+export const Playground: Story = {
+  args: {
+    value: 50,
+    appearance: "neutral",
+    boxShadow: 0,
+    backgroundColor: "neutral-surfaceDisabled",
+    height: "0.5rem",
+  },
+};
+
+export const WithBackgroundColor: Story = {
+  args: {
+    value: 50,
+    appearance: "neutral",
+    backgroundColor: "neutral-background",
+  },
+};
+
+export const WithBoxShadow: Story = {
+  args: {
+    value: 60,
+    appearance: "primary",
+    boxShadow: 2,
+  },
+};
+
+export const CustomHeight: Story = {
+  args: {
+    value: 50,
+    appearance: "primary",
+    height: "1rem",
+  },
+};
+
+export const CustomHeightWithShadow: Story = {
+  args: {
+    value: 75,
+    appearance: "success",
+    height: "1rem",
+    boxShadow: 2,
   },
 };

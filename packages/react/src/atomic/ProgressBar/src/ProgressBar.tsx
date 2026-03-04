@@ -21,7 +21,16 @@ import { ProgressBarSkeleton } from "./components";
  */
 const ProgressBar = forwardRef<HTMLDivElement, ProgressBarBaseProps>(
   (
-    { className, style: _style, value, appearance = "neutral", ...rest },
+    {
+      className,
+      style,
+      value,
+      appearance = "neutral",
+      backgroundColor = "neutral-surfaceDisabled",
+      boxShadow = 0,
+      height,
+      ...rest
+    },
     ref
   ) => {
     // Ensure value is within 0-100 range
@@ -31,14 +40,35 @@ const ProgressBar = forwardRef<HTMLDivElement, ProgressBarBaseProps>(
     );
     const percentage = `${clampedValue}%`;
 
+    const containerClass =
+      boxShadow > 0
+        ? progressBar.classnames.containerNoOverflow
+        : progressBar.classnames.container;
+
+    const containerStyle: React.CSSProperties = {
+      ...(style ?? {}),
+      ...(height ? { height } : {}),
+    };
+
+    const fillStyle: React.CSSProperties = {
+      width: percentage,
+      ...(boxShadow > 0
+        ? { boxShadow: progressBar.shadowMap[boxShadow as 1 | 2] }
+        : {}),
+    };
+
     return (
       <div
         {...rest}
         ref={ref}
-        className={[className, progressBar.classnames.container]
+        className={[
+          className,
+          containerClass,
+          progressBar.classnames.backgroundColor[backgroundColor],
+        ]
           .filter(Boolean)
           .join(" ")}
-        style={_style}
+        style={containerStyle}
         role="progressbar"
         aria-valuenow={clampedValue}
         aria-valuemin={0}
@@ -46,7 +76,7 @@ const ProgressBar = forwardRef<HTMLDivElement, ProgressBarBaseProps>(
       >
         <div
           className={progressBar.classnames.appearance[appearance]}
-          style={{ width: percentage }}
+          style={fillStyle}
           data-testid="progress-bar-fill"
         />
       </div>
