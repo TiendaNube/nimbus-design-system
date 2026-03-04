@@ -80,4 +80,52 @@ describe("GIVEN <ProgressBar />", () => {
       expect(fillElement.className).toContain("ai-generative");
     });
   });
+
+  describe("WHEN boxShadow prop is provided", () => {
+    it("THEN should apply box shadow to the fill element when boxShadow is 1", () => {
+      makeSut({ value: 50, boxShadow: 1 });
+      const fillElement = screen.getByTestId("progress-bar-fill");
+      expect(fillElement.style.boxShadow).toBeTruthy();
+    });
+
+    it("THEN should apply box shadow to the fill element when boxShadow is 2", () => {
+      makeSut({ value: 50, boxShadow: 2 });
+      const fillElement = screen.getByTestId("progress-bar-fill");
+      expect(fillElement.style.boxShadow).toBeTruthy();
+    });
+
+    it("THEN should not apply box shadow when boxShadow is 0", () => {
+      makeSut({ value: 50, boxShadow: 0 });
+      const fillElement = screen.getByTestId("progress-bar-fill");
+      expect(fillElement.style.boxShadow).toBeFalsy();
+    });
+
+    it("THEN should use containerNoOverflow class when boxShadow > 0", () => {
+      makeSut({ value: 50, boxShadow: 1 });
+      const progressBar = screen.getByRole("progressbar");
+      expect(progressBar.className).toContain("containerNoOverflow");
+    });
+  });
+
+  describe("WHEN backgroundColor prop is provided", () => {
+    it("THEN should apply neutral-surfaceDisabled background by default", () => {
+      makeSut({ value: 50 });
+      const progressBar = screen.getByRole("progressbar");
+      expect(progressBar.className).toContain("neutral-surfaceDisabled");
+    });
+
+    it("THEN should apply neutral-background class when specified", () => {
+      makeSut({ value: 50, backgroundColor: "neutral-background" });
+      const progressBar = screen.getByRole("progressbar");
+      expect(progressBar.className).toContain("neutral-background");
+    });
+  });
+
+  describe("WHEN height prop is provided", () => {
+    it("THEN should apply custom height to the container", () => {
+      makeSut({ value: 50, height: "1rem" });
+      const progressBar = screen.getByRole("progressbar");
+      expect(progressBar).toHaveStyle({ height: "1rem" });
+    });
+  });
 });
