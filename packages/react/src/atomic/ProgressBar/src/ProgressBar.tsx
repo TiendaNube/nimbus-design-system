@@ -23,7 +23,7 @@ const ProgressBar = forwardRef<HTMLDivElement, ProgressBarBaseProps>(
   (
     {
       className,
-      style: _style,
+      style,
       value,
       appearance = "neutral",
       backgroundColor = "neutral-surfaceDisabled",
@@ -46,6 +46,7 @@ const ProgressBar = forwardRef<HTMLDivElement, ProgressBarBaseProps>(
         : progressBar.classnames.container;
 
     const containerStyle: React.CSSProperties = {
+      ...(style ?? {}),
       ...(height ? { height } : {}),
     };
 

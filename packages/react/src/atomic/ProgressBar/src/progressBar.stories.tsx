@@ -99,6 +99,24 @@ export const AIInteractive: Story = {
   },
 };
 
+export const Playground: Story = {
+  args: {
+    value: 50,
+    appearance: "neutral",
+    boxShadow: 0,
+    backgroundColor: "neutral-surfaceDisabled",
+    height: "0.5rem",
+  },
+};
+
+export const WithBackgroundColor: Story = {
+  args: {
+    value: 50,
+    appearance: "neutral",
+    backgroundColor: "neutral-background",
+  },
+};
+
 export const WithBoxShadow: Story = {
   args: {
     value: 60,

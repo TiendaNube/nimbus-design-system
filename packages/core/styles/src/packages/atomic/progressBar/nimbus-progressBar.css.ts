@@ -4,24 +4,21 @@ import { gradients } from "../../../gradients";
 
 export const fillColorVar = createVar();
 
-const base = style({
+const baseProperties = {
   display: "flex",
   alignItems: "center",
   width: "100%",
-  height: "0.5rem", // 8px
+  height: varsThemeBase.spacing[2],
   borderRadius: varsThemeBase.shape.border.radius.full,
-  overflow: "hidden",
   position: "relative",
+} as const;
+
+const base = style({
+  ...baseProperties,
+  overflow: "hidden",
 });
 
-export const containerNoOverflow = style({
-  display: "flex",
-  alignItems: "center",
-  width: "100%",
-  height: "0.5rem", // 8px
-  borderRadius: varsThemeBase.shape.border.radius.full,
-  position: "relative",
-});
+export const containerNoOverflow = style(baseProperties);
 
 const fill = style({
   height: "100%",
@@ -80,6 +77,7 @@ export const appearance = styleVariants({
   "ai-generative": [
     fill,
     {
+      backgroundColor: varsThemeBase.colors.primary.interactive,
       backgroundImage: gradients.aiGenerativeInteractive,
       vars: { [fillColorVar]: varsThemeBase.colors.primary.interactive },
     },
