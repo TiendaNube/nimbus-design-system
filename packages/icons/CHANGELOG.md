@@ -2,6 +2,14 @@
 
 Nimbus-icons is an open source icon system built by Nuvemshop / Tiendanube.
 
+## 2026-03-06 `1.19.0`
+
+`@nimbus-ds/icons@1.19.0|minor: Added Instagram icon.`
+
+#### 🎉 New features
+
+- Adds `instagram` icon. ([#445](https://github.com/TiendaNube/nimbus-design-system/pull/445) by [@karemcarvalho-hue](https://github.com/karemcarvalho-hue))
+
 ## 2026-03-04 `1.18.0` 
 
 #### 🎉 New features
