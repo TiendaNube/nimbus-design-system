@@ -3,6 +3,8 @@ releases:
 
 declined:
   - nimbus-design-system
+  - "@nimbus-ds/components"
+  - "@nimbus-ds/button"
   - "@nimbus-ds/chip"
   - "@nimbus-ds/file-uploader"
   - "@nimbus-ds/icon"
