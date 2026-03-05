@@ -1,0 +1,5 @@
+releases:
+  "@nimbus-ds/icons": minor
+
+declined:
+  - nimbus-design-system
