@@ -4,20 +4,22 @@ Nimbus-icons is an open source icon system built by Nuvemshop / Tiendanube.
 
 ## 2026-03-04 `1.18.0` (minor version bump)
 
+`@nimbus-ds/icons`@1.18.0|minor: Added news SVG icons (buttons, rounded-corners, letter-spacing, all-caps, alignment controls, crop, carousel, animation, spacing).
+
 #### 🎉 New features
 
-- Adds `buttons` icon. ([#430](https://github.com/TiendaNube/nimbus-design-system/pull/430) by @NimbusAgent)
-- Adds `rounded-corners` icon. ([#430](https://github.com/TiendaNube/nimbus-design-system/pull/430) by @NimbusAgent)
-- Adds `letter-spacing` icon. ([#430](https://github.com/TiendaNube/nimbus-design-system/pull/430) by @NimbusAgent)
-- Adds `all-caps` icon. ([#430](https://github.com/TiendaNube/nimbus-design-system/pull/430) by @NimbusAgent)
-- Adds `top-alignment` icon. ([#430](https://github.com/TiendaNube/nimbus-design-system/pull/430) by @NimbusAgent)
-- Adds `middle-alignment` icon. ([#430](https://github.com/TiendaNube/nimbus-design-system/pull/430) by @NimbusAgent)
-- Adds `bottom-alignment` icon. ([#430](https://github.com/TiendaNube/nimbus-design-system/pull/430) by @NimbusAgent)
-- Adds `crop` icon. ([#430](https://github.com/TiendaNube/nimbus-design-system/pull/430) by @NimbusAgent)
-- Adds `horizontal-spacing` icon. ([#430](https://github.com/TiendaNube/nimbus-design-system/pull/430) by @NimbusAgent)
-- Adds `carousel` icon. ([#430](https://github.com/TiendaNube/nimbus-design-system/pull/430) by @NimbusAgent)
-- Adds `animation` icon. ([#430](https://github.com/TiendaNube/nimbus-design-system/pull/430) by @NimbusAgent)
-- Adds `spacing` icon. ([#430](https://github.com/TiendaNube/nimbus-design-system/pull/430) by @NimbusAgent)
+- Adds `buttons` icon. ([#442](https://github.com/TiendaNube/nimbus-design-system/pull/442) by [@noecondoleo](https://github.com/noecondoleo))
+- Adds `rounded-corners` icon. ([#442](https://github.com/TiendaNube/nimbus-design-system/pull/442) by [@noecondoleo](https://github.com/noecondoleo))
+- Adds `letter-spacing` icon. ([#442](https://github.com/TiendaNube/nimbus-design-system/pull/442) by [@noecondoleo](https://github.com/noecondoleo))
+- Adds `all-caps` icon. ([#442](https://github.com/TiendaNube/nimbus-design-system/pull/442) by [@noecondoleo](https://github.com/noecondoleo))
+- Adds `top-alignment` icon. ([#442](https://github.com/TiendaNube/nimbus-design-system/pull/442) by [@noecondoleo](https://github.com/noecondoleo))
+- Adds `middle-alignment` icon. ([#442](https://github.com/TiendaNube/nimbus-design-system/pull/442) by [@noecondoleo](https://github.com/noecondoleo))
+- Adds `bottom-alignment` icon. ([#442](https://github.com/TiendaNube/nimbus-design-system/pull/442) by [@noecondoleo](https://github.com/noecondoleo))
+- Adds `crop` icon. ([#442](https://github.com/TiendaNube/nimbus-design-system/pull/442) by [@noecondoleo](https://github.com/noecondoleo))
+- Adds `horizontal-spacing` icon. ([#442](https://github.com/TiendaNube/nimbus-design-system/pull/442) by [@noecondoleo](https://github.com/noecondoleo))
+- Adds `carousel` icon. ([#442](https://github.com/TiendaNube/nimbus-design-system/pull/442) by [@noecondoleo](https://github.com/noecondoleo))
+- Adds `animation` icon. ([#442](https://github.com/TiendaNube/nimbus-design-system/pull/442) by [@noecondoleo](https://github.com/noecondoleo))
+- Adds `spacing` icon. ([#442](https://github.com/TiendaNube/nimbus-design-system/pull/442) by [@noecondoleo](https://github.com/noecondoleo))
 
 ## 2026-02-06 `1.17.0` (minor version bump)
 
