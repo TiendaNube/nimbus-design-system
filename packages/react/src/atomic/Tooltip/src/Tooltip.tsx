@@ -103,13 +103,17 @@ const Tooltip: React.FC<TooltipProps> = ({
             }}
             {...getFloatingProps()}
           >
-            <Text
-              color="neutral-background"
-              fontSize="caption"
-              lineHeight="caption"
-            >
-              {content}
-            </Text>
+            {typeof content === "string" ? (
+              <Text
+                color="neutral-background"
+                fontSize="caption"
+                lineHeight="caption"
+              >
+                {content}
+              </Text>
+            ) : (
+              content
+            )}
             {arrow && (
               <Box
                 as={FloatingArrow}

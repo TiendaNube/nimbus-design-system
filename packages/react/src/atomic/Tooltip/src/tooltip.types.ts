@@ -1,5 +1,6 @@
-import { type HTMLAttributes, type ReactNode } from "react";
+import { type HTMLAttributes, type ReactNode, type ReactElement } from "react";
 import { type TooltipSprinkle } from "@nimbus-ds/styles";
+import { type TextProps } from "@nimbus-ds/text";
 
 export interface TooltipProperties extends TooltipSprinkle {
   /**
@@ -8,9 +9,10 @@ export interface TooltipProperties extends TooltipSprinkle {
    */
   children: ReactNode;
   /**
-   * The text that should appear in the tooltip message.
+   * The content that should appear in the tooltip message. It can be a plain string or a Text component.
+   * @TJS-type string | React.ReactElement<TextProps>
    */
-  content: string;
+  content: string | ReactElement<TextProps>;
   /**
    * Conditional for displaying the popover arrow.
    * @default false
@@ -23,4 +25,5 @@ export interface TooltipProperties extends TooltipSprinkle {
   position?: "top" | "bottom" | "left" | "right";
 }
 
-export type TooltipProps = TooltipProperties & HTMLAttributes<HTMLDivElement>;
+export type TooltipProps = TooltipProperties &
+  Omit<HTMLAttributes<HTMLDivElement>, "content">;

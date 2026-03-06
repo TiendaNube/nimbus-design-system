@@ -2,6 +2,7 @@ import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { tooltip as tooltipStyles } from "@nimbus-ds/styles";
+import { Text } from "@nimbus-ds/text";
 
 import { Tooltip } from "./Tooltip";
 import { type TooltipProps } from "./tooltip.types";
@@ -102,6 +103,22 @@ describe("GIVEN <Tooltip />", () => {
       expect(arrow.style.left).toEqual("calc(100% - 0px)");
       expect(arrow.style.transform).toBe("rotate(-90deg)");
       expect(arrow.style.position).toEqual("absolute");
+    });
+
+    it("THEN should display tooltip with a Text element as content", async () => {
+      const user = userEvent.setup();
+      makeSut({
+        content: (
+          <Text color="neutral-background" fontSize="caption">
+            Custom text
+          </Text>
+        ),
+      });
+      await user.hover(screen.getByTestId("tooltip-container"));
+      await waitFor(() => {
+        expect(screen.getByTestId("tooltip-element")).toBeDefined();
+        expect(screen.getByText("Custom text")).toBeDefined();
+      });
     });
 
     it('should not display arrow if "arrow" is not passed', async () => {

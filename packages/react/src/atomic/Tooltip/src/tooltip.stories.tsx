@@ -56,3 +56,13 @@ export const left: Story = {
     position: "left",
   },
 };
+
+export const customText: Story = {
+  args: {
+    content: (
+      <Text color="neutral-background" fontSize="caption" lineHeight="caption">
+        Custom styled text
+      </Text>
+    ),
+  },
+};
