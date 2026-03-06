@@ -2,6 +2,23 @@
 
 Nimbus-icons is an open source icon system built by Nuvemshop / Tiendanube.
 
+## 2026-03-04 `1.18.0` 
+
+#### 🎉 New features
+
+- Adds `buttons` icon. ([#442](https://github.com/TiendaNube/nimbus-design-system/pull/442) by [@noecondoleo](https://github.com/noecondoleo))
+- Adds `rounded-corners` icon. ([#442](https://github.com/TiendaNube/nimbus-design-system/pull/442) by [@noecondoleo](https://github.com/noecondoleo))
+- Adds `letter-spacing` icon. ([#442](https://github.com/TiendaNube/nimbus-design-system/pull/442) by [@noecondoleo](https://github.com/noecondoleo))
+- Adds `all-caps` icon. ([#442](https://github.com/TiendaNube/nimbus-design-system/pull/442) by [@noecondoleo](https://github.com/noecondoleo))
+- Adds `top-alignment` icon. ([#442](https://github.com/TiendaNube/nimbus-design-system/pull/442) by [@noecondoleo](https://github.com/noecondoleo))
+- Adds `middle-alignment` icon. ([#442](https://github.com/TiendaNube/nimbus-design-system/pull/442) by [@noecondoleo](https://github.com/noecondoleo))
+- Adds `bottom-alignment` icon. ([#442](https://github.com/TiendaNube/nimbus-design-system/pull/442) by [@noecondoleo](https://github.com/noecondoleo))
+- Adds `crop` icon. ([#442](https://github.com/TiendaNube/nimbus-design-system/pull/442) by [@noecondoleo](https://github.com/noecondoleo))
+- Adds `horizontal-spacing` icon. ([#442](https://github.com/TiendaNube/nimbus-design-system/pull/442) by [@noecondoleo](https://github.com/noecondoleo))
+- Adds `carousel` icon. ([#442](https://github.com/TiendaNube/nimbus-design-system/pull/442) by [@noecondoleo](https://github.com/noecondoleo))
+- Adds `animation` icon. ([#442](https://github.com/TiendaNube/nimbus-design-system/pull/442) by [@noecondoleo](https://github.com/noecondoleo))
+- Adds `spacing` icon. ([#442](https://github.com/TiendaNube/nimbus-design-system/pull/442) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-02-06 `1.17.0` (minor version bump)
 
 `@nimbus-ds/icons`@1.17.0|minor: Added navigation and editing icons (arrows-diagonal-out, arrows-diagonal-in, arrows-expand, arrows-collapse, generative-pencil).
