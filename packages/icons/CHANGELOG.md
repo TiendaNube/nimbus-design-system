@@ -2,9 +2,7 @@
 
 Nimbus-icons is an open source icon system built by Nuvemshop / Tiendanube.
 
-## 2026-03-04 `1.18.0` (minor version bump)
-
-`@nimbus-ds/icons`@1.18.0|minor: Added news SVG icons (buttons, rounded-corners, letter-spacing, all-caps, alignment controls, crop, carousel, animation, spacing).
+## 2026-03-04 `1.18.0` 
 
 #### 🎉 New features
 
