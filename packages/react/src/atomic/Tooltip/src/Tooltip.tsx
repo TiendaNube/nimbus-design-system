@@ -107,6 +107,7 @@ const Tooltip: React.FC<TooltipProps> = ({
               color="neutral-background"
               fontSize="caption"
               lineHeight="caption"
+              whiteSpace="pre-line"
             >
               {content}
             </Text>
