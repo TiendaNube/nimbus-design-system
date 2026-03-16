@@ -2,6 +2,13 @@
 
 Nimbus-icons is an open source icon system built by Nuvemshop / Tiendanube.
 
+## 2026-03-16 `1.20.0`
+
+#### 🎉 New features
+
+- Adds `metafield` icon. ([#TBD](https://github.com/TiendaNube/nimbus-design-system/pull/TBD) by [@noecondoleo](https://github.com/noecondoleo))
+- Adds `slideshow` icon. ([#TBD](https://github.com/TiendaNube/nimbus-design-system/pull/TBD) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-03-06 `1.19.0`
 
 #### 🎉 New features
