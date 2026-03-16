@@ -2,6 +2,22 @@
 
 Nimbus-icons is an open source icon system built by Nuvemshop / Tiendanube.
 
+## 2026-03-16 `1.20.0`
+
+#### 🎉 New features
+
+- Adds `max-height` icon. ([#449](https://github.com/TiendaNube/nimbus-design-system/pull/449) by [@NimbusAgent](https://github.com/NimbusAgent))
+- Adds `underline` icon. ([#449](https://github.com/TiendaNube/nimbus-design-system/pull/449) by [@NimbusAgent](https://github.com/NimbusAgent))
+- Adds `font-color` icon. ([#449](https://github.com/TiendaNube/nimbus-design-system/pull/449) by [@NimbusAgent](https://github.com/NimbusAgent))
+- Adds `color-picker` icon. ([#449](https://github.com/TiendaNube/nimbus-design-system/pull/449) by [@NimbusAgent](https://github.com/NimbusAgent))
+- Adds `quote` icon. ([#449](https://github.com/TiendaNube/nimbus-design-system/pull/449) by [@NimbusAgent](https://github.com/NimbusAgent))
+- Adds `header` icon. ([#449](https://github.com/TiendaNube/nimbus-design-system/pull/449) by [@NimbusAgent](https://github.com/NimbusAgent))
+- Adds `footer` icon. ([#449](https://github.com/TiendaNube/nimbus-design-system/pull/449) by [@NimbusAgent](https://github.com/NimbusAgent))
+- Adds `image-text` icon. ([#449](https://github.com/TiendaNube/nimbus-design-system/pull/449) by [@NimbusAgent](https://github.com/NimbusAgent))
+- Adds `video` icon. ([#449](https://github.com/TiendaNube/nimbus-design-system/pull/449) by [@NimbusAgent](https://github.com/NimbusAgent))
+- Adds `video-text` icon. ([#449](https://github.com/TiendaNube/nimbus-design-system/pull/449) by [@NimbusAgent](https://github.com/NimbusAgent))
+- Adds `database` icon. ([#449](https://github.com/TiendaNube/nimbus-design-system/pull/449) by [@NimbusAgent](https://github.com/NimbusAgent))
+
 ## 2026-03-06 `1.19.0`
 
 #### 🎉 New features
