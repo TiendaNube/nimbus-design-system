@@ -6,10 +6,10 @@ Nimbus-icons is an open source icon system built by Nuvemshop / Tiendanube.
 
 #### 💡 Others
 
-- Updates `bold` icon. ([#430](https://github.com/TiendaNube/nimbus-design-system/pull/430) by [@NimbusAgent](https://github.com/NimbusAgent))
-- Updates `italic` icon. ([#430](https://github.com/TiendaNube/nimbus-design-system/pull/430) by [@NimbusAgent](https://github.com/NimbusAgent))
-- Updates `list` icon. ([#430](https://github.com/TiendaNube/nimbus-design-system/pull/430) by [@NimbusAgent](https://github.com/NimbusAgent))
-- Updates `ordered-list` icon. ([#430](https://github.com/TiendaNube/nimbus-design-system/pull/430) by [@NimbusAgent](https://github.com/NimbusAgent))
+- Updates `bold` icon. ([#448](https://github.com/TiendaNube/nimbus-design-system/pull/448) by [@noecondoleo](https://github.com/noecondoleo))
+- Updates `italic` icon. ([#448](https://github.com/TiendaNube/nimbus-design-system/pull/448) by [@noecondoleo](https://github.com/noecondoleo))
+- Updates `list` icon. ([#448](https://github.com/TiendaNube/nimbus-design-system/pull/448) by [@noecondoleo](https://github.com/noecondoleo))
+- Updates `ordered-list` icon. ([#448](https://github.com/TiendaNube/nimbus-design-system/pull/448) by [@noecondoleo](https://github.com/noecondoleo))
 
 ## 2026-03-06 `1.19.0`
 
