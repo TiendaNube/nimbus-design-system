@@ -71,8 +71,13 @@ jobs:
           title: "feat: publish release"
           body: |
             Automated publish release — updates package versions and docs.
+          add-paths: |
+            packages/**/package.json
+            **/*.docs.json
+            .yarn/versions/**
           branch: release/publish-${{ github.run_id }}
           base: master
+          
 
   trigger-action-create-github-tag:
     runs-on: ubuntu-latest
