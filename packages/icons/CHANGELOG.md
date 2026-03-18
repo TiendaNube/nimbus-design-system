@@ -18,13 +18,22 @@ Nimbus-icons is an open source icon system built by Nuvemshop / Tiendanube.
 - Adds `video-text` icon. ([#449](https://github.com/TiendaNube/nimbus-design-system/pull/449) by [@NimbusAgent](https://github.com/NimbusAgent))
 - Adds `database` icon. ([#449](https://github.com/TiendaNube/nimbus-design-system/pull/449) by [@NimbusAgent](https://github.com/NimbusAgent))
 
+## 2026-03-16 `1.19.1`
+
+#### 💡 Others
+
+- Updates `bold` icon. ([#448](https://github.com/TiendaNube/nimbus-design-system/pull/448) by [@noecondoleo](https://github.com/noecondoleo))
+- Updates `italic` icon. ([#448](https://github.com/TiendaNube/nimbus-design-system/pull/448) by [@noecondoleo](https://github.com/noecondoleo))
+- Updates `list` icon. ([#448](https://github.com/TiendaNube/nimbus-design-system/pull/448) by [@noecondoleo](https://github.com/noecondoleo))
+- Updates `ordered-list` icon. ([#448](https://github.com/TiendaNube/nimbus-design-system/pull/448) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-03-06 `1.19.0`
 
 #### 🎉 New features
 
 - Adds `instagram` icon. ([#445](https://github.com/TiendaNube/nimbus-design-system/pull/445) by [@karemcarvalho-hue](https://github.com/karemcarvalho-hue))
 
-## 2026-03-04 `1.18.0` 
+## 2026-03-04 `1.18.0`
 
 #### 🎉 New features
 
