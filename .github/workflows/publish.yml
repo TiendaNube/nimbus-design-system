@@ -8,6 +8,7 @@ on:
     paths-ignore:
       - "**/package.json"
       - ".yarn/versions/**"
+      - "**/*.docs.json"
 
 jobs:
   publish-packages-npm:
@@ -27,7 +28,7 @@ jobs:
           sudo swapon --show
           
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - uses: ./.github/actions/setup-node-deps
 
@@ -62,32 +63,23 @@ jobs:
         env:
           YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTOMATION_PUBLISH }}
 
-      - name: Branch protection OFF
-        run: |
-          curl --request PUT \
-          --url 'https://api.github.com/repos/tiendanube/nimbus-design-system/branches/master/protection' \
-          --header 'Authorization: token ${{ secrets.PAT_CHANGE_BRANCH_PROTECTION_RULES_FROM_USER_NIMBUS }}' \
-          --data '{"enforce_admins":false,"required_pull_request_reviews":null,"required_status_checks":null,"required_conversation_resolution":false,"restrictions":null,"required_linear_history":false}'
-
-      - name: Commit release
-        uses: stefanzweifel/git-auto-commit-action@v4
+      - name: Create release PR
+        uses: peter-evans/create-pull-request@v7
         with:
-          commit_message: "feat: publish release"
-
-      - name: Branch protection ON
-        run: |
-          curl --request PUT \
-          --url 'https://api.github.com/repos/tiendanube/nimbus-design-system/branches/master/protection' \
-          --header 'Authorization: token ${{ secrets.PAT_CHANGE_BRANCH_PROTECTION_RULES_FROM_USER_NIMBUS }}' \
-          --header 'Accept: application/vnd.github.luke-cage-preview+json' \
-          --data '{"enforce_admins":true,"required_pull_request_reviews":{"dismiss_stale_reviews":true,"require_code_owner_reviews":true,"required_approving_review_count":1},"required_conversation_resolution":true,"required_status_checks":null,"restrictions":null,"required_linear_history":true}'
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "feat: publish release [skip ci]"
+          title: "feat: publish release"
+          body: |
+            Automated publish release — updates package versions and docs.
+          branch: release/publish-${{ github.run_id }}
+          base: master
 
   trigger-action-create-github-tag:
     runs-on: ubuntu-latest
     needs: publish-packages-npm
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Trigger github action create github tag
         run: |
@@ -101,7 +93,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Trigger github action send slack notifications
         run: |
@@ -120,7 +112,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Trigger github action update documentation
         run: |
