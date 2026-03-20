@@ -65,14 +65,14 @@ export const getComponentsPackageExports = (
 
       entryFile = tempFilePath; // override entry to use the temp file
 
-      extraCommands.push(`&& rm ${tempFilePath}`); // Cleanup the temp file after running the DTS command
+      extraCommands.push(`&& rm "${tempFilePath}"`); // Cleanup the temp file after running the DTS command
     }
 
     // 3. Build the webpack entry, with relative path.
     webpackEntries[componentName] = entryFile;
 
     // 4. Prepare the DTS bundle generator command for this component, removing the temp file after running it for cleanup
-    const dtsCommand = `node ${rootDir}/node_modules/.bin/dts-bundle-generator --no-check -o ./dist/${componentName}/index.d.ts ${entryFile} ${extraCommands.join(
+    const dtsCommand = `node "${rootDir}/node_modules/.bin/dts-bundle-generator" --no-check -o ./dist/${componentName}/index.d.ts ${entryFile} ${extraCommands.join(
       ""
     )}`;
     dtsCommands.push(dtsCommand);
