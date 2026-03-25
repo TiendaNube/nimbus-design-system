@@ -5,6 +5,7 @@ export const vars = createGlobalThemeContract(
     colors: {
       primary: {
         surface: "",
+        surfaceDisabled: "",
         surfaceHighlight: "",
         interactive: "",
         interactiveHover: "",
@@ -14,6 +15,7 @@ export const vars = createGlobalThemeContract(
       },
       success: {
         surface: "",
+        surfaceDisabled: "",
         surfaceHighlight: "",
         interactive: "",
         interactiveHover: "",
@@ -23,6 +25,7 @@ export const vars = createGlobalThemeContract(
       },
       warning: {
         surface: "",
+        surfaceDisabled: "",
         surfaceHighlight: "",
         interactive: "",
         interactiveHover: "",
@@ -32,6 +35,7 @@ export const vars = createGlobalThemeContract(
       },
       danger: {
         surface: "",
+        surfaceDisabled: "",
         surfaceHighlight: "",
         interactive: "",
         interactiveHover: "",

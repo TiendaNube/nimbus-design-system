@@ -2,6 +2,7 @@ import { varsThemeBase } from "../themes";
 
 export const baseColors = {
   "primary-surface": varsThemeBase.colors.primary.surface,
+  "primary-surfaceDisabled": varsThemeBase.colors.primary.surfaceDisabled,
   "primary-surfaceHighlight": varsThemeBase.colors.primary.surfaceHighlight,
   "primary-interactive": varsThemeBase.colors.primary.interactive,
   "primary-interactiveHover": varsThemeBase.colors.primary.interactiveHover,
@@ -10,6 +11,7 @@ export const baseColors = {
   "primary-textHigh": varsThemeBase.colors.primary.textHigh,
 
   "success-surface": varsThemeBase.colors.success.surface,
+  "success-surfaceDisabled": varsThemeBase.colors.success.surfaceDisabled,
   "success-surfaceHighlight": varsThemeBase.colors.success.surfaceHighlight,
   "success-interactive": varsThemeBase.colors.success.interactive,
   "success-interactiveHover": varsThemeBase.colors.success.interactiveHover,
@@ -18,6 +20,7 @@ export const baseColors = {
   "success-textHigh": varsThemeBase.colors.success.textHigh,
 
   "warning-surface": varsThemeBase.colors.warning.surface,
+  "warning-surfaceDisabled": varsThemeBase.colors.warning.surfaceDisabled,
   "warning-surfaceHighlight": varsThemeBase.colors.warning.surfaceHighlight,
   "warning-interactive": varsThemeBase.colors.warning.interactive,
   "warning-interactiveHover": varsThemeBase.colors.warning.interactiveHover,
@@ -26,6 +29,7 @@ export const baseColors = {
   "warning-textHigh": varsThemeBase.colors.warning.textHigh,
 
   "danger-surface": varsThemeBase.colors.danger.surface,
+  "danger-surfaceDisabled": varsThemeBase.colors.danger.surfaceDisabled,
   "danger-surfaceHighlight": varsThemeBase.colors.danger.surfaceHighlight,
   "danger-interactive": varsThemeBase.colors.danger.interactive,
   "danger-interactiveHover": varsThemeBase.colors.danger.interactiveHover,

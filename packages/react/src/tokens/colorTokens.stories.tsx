@@ -15,6 +15,7 @@ const semanticFamilies: Record<
     cssPrefix: "--nimbus-colors-primary",
     roles: [
       "surface",
+      "surfaceDisabled",
       "surfaceHighlight",
       "interactive",
       "interactiveHover",
@@ -27,6 +28,7 @@ const semanticFamilies: Record<
     cssPrefix: "--nimbus-colors-success",
     roles: [
       "surface",
+      "surfaceDisabled",
       "surfaceHighlight",
       "interactive",
       "interactiveHover",
@@ -39,6 +41,7 @@ const semanticFamilies: Record<
     cssPrefix: "--nimbus-colors-warning",
     roles: [
       "surface",
+      "surfaceDisabled",
       "surfaceHighlight",
       "interactive",
       "interactiveHover",
@@ -51,6 +54,7 @@ const semanticFamilies: Record<
     cssPrefix: "--nimbus-colors-danger",
     roles: [
       "surface",
+      "surfaceDisabled",
       "surfaceHighlight",
       "interactive",
       "interactiveHover",

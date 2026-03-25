@@ -14,6 +14,7 @@ const nextDarkTheme = {
     ...globalTheme.colors,
     primary: {
       surface: nextColors.primary.surface.value as string,
+      surfaceDisabled: nextColors.primary["surface-disabled"].value as string,
       surfaceHighlight: nextColors.primary["surface-highlight"].value as string,
       interactive: nextColors.primary.interactive.value as string,
       interactiveHover: nextColors.primary["interactive-hover"].value as string,
@@ -24,6 +25,7 @@ const nextDarkTheme = {
     },
     success: {
       surface: colors.success.surface.value as string,
+      surfaceDisabled: colors.success["surface-disabled"].value as string,
       surfaceHighlight: colors.success["surface-highlight"].value as string,
       interactive: colors.success.interactive.value as string,
       interactiveHover: colors.success["interactive-hover"].value as string,
@@ -33,6 +35,7 @@ const nextDarkTheme = {
     },
     warning: {
       surface: colors.warning.surface.value as string,
+      surfaceDisabled: colors.warning["surface-disabled"].value as string,
       surfaceHighlight: colors.warning["surface-highlight"].value as string,
       interactive: colors.warning.interactive.value as string,
       interactiveHover: colors.warning["interactive-hover"].value as string,
@@ -42,6 +45,7 @@ const nextDarkTheme = {
     },
     danger: {
       surface: colors.danger.surface.value as string,
+      surfaceDisabled: colors.danger["surface-disabled"].value as string,
       surfaceHighlight: colors.danger["surface-highlight"].value as string,
       interactive: colors.danger.interactive.value as string,
       interactiveHover: colors.danger["interactive-hover"].value as string,
