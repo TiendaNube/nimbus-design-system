@@ -1,6 +1,8 @@
+releases:
+  "@nimbus-ds/styles": patch
+  "@nimbus-ds/tokens": patch
+
 declined:
   - nimbus-design-system
-  - "@nimbus-ds/styles"
-  - "@nimbus-ds/tokens"
   - "@nimbus-ds/webpack"
   - "@nimbus-ds/icons"
