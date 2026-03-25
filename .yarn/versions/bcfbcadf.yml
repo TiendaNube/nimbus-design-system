@@ -6,3 +6,6 @@ declined:
   - nimbus-design-system
   - "@nimbus-ds/webpack"
   - "@nimbus-ds/icons"
+  - "@nimbus-ds/split-button"
+  - "@nimbus-ds/stepper"
+  - "@nimbus-ds/time-picker"
