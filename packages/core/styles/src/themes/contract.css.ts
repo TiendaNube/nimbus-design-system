@@ -57,6 +57,7 @@ export const vars = createGlobalThemeContract(
       },
       aiGenerative: {
         interactiveHover: "",
+        interactive: "",
         textLow: "",
         interactivePressed: "",
         surfaceHighlight: "",

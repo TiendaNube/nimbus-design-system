@@ -67,6 +67,7 @@ export const globalTheme = {
     aiGenerative: {
       interactiveHover: colors.aiGenerative["interactive-hover"]
         .value as string,
+      interactive: colors.aiGenerative.interactive.value as string,
       textLow: colors.aiGenerative["text-low"].value as string,
       interactivePressed: colors.aiGenerative["interactive-pressed"]
         .value as string,

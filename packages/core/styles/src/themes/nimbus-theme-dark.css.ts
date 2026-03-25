@@ -65,6 +65,7 @@ const darkTheme = {
     },
     aiGenerative: {
       textLow: lightColors.aiGenerative["text-low"].value as string,
+      interactive: lightColors.aiGenerative.interactive.value as string,
       interactivePressed: lightColors.aiGenerative["interactive-pressed"]
         .value as string,
       surfaceHighlight: lightColors.aiGenerative["surface-highlight"]
