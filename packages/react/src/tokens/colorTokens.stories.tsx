@@ -7,98 +7,96 @@ const refColors = tokens.color.light as Record<
   Record<string, { value: string }>
 >;
 
-const semanticFamilies: Record<
-  string,
-  { cssPrefix: string; roles: string[] }
-> = {
-  primary: {
-    cssPrefix: "--nimbus-colors-primary",
-    roles: [
-      "surface",
-      "surfaceHighlight",
-      "interactive",
-      "interactiveHover",
-      "interactivePressed",
-      "textLow",
-      "textHigh",
-    ],
-  },
-  success: {
-    cssPrefix: "--nimbus-colors-success",
-    roles: [
-      "surface",
-      "surfaceHighlight",
-      "interactive",
-      "interactiveHover",
-      "interactivePressed",
-      "textLow",
-      "textHigh",
-    ],
-  },
-  warning: {
-    cssPrefix: "--nimbus-colors-warning",
-    roles: [
-      "surface",
-      "surfaceHighlight",
-      "interactive",
-      "interactiveHover",
-      "interactivePressed",
-      "textLow",
-      "textHigh",
-    ],
-  },
-  danger: {
-    cssPrefix: "--nimbus-colors-danger",
-    roles: [
-      "surface",
-      "surfaceHighlight",
-      "interactive",
-      "interactiveHover",
-      "interactivePressed",
-      "textLow",
-      "textHigh",
-    ],
-  },
-  neutral: {
-    cssPrefix: "--nimbus-colors-neutral",
-    roles: [
-      "background",
-      "surface",
-      "surfaceDisabled",
-      "surfaceHighlight",
-      "interactive",
-      "interactiveHover",
-      "interactivePressed",
-      "textDisabled",
-      "textLow",
-      "textHigh",
-    ],
-  },
-  aiGenerative: {
-    cssPrefix: "--nimbus-colors-aiGenerative",
-    roles: [
-      "background",
-      "surface",
-      "surfaceHighlight",
-      "interactive",
-      "interactiveHover",
-      "interactivePressed",
-      "textLow",
-      "textHigh",
-    ],
-  },
-  aiGradient: {
-    cssPrefix: "--nimbus-colors-aiGradient",
-    roles: [
-      "blueHigh",
-      "blueLight",
-      "purpleHigh",
-      "purpleLight",
-      "pinkHigh",
-      "pinkLight",
-    ],
-  },
-};
+const semanticFamilies: Record<string, { cssPrefix: string; roles: string[] }> =
+  {
+    primary: {
+      cssPrefix: "--nimbus-colors-primary",
+      roles: [
+        "surface",
+        "surfaceHighlight",
+        "interactive",
+        "interactiveHover",
+        "interactivePressed",
+        "textLow",
+        "textHigh",
+      ],
+    },
+    success: {
+      cssPrefix: "--nimbus-colors-success",
+      roles: [
+        "surface",
+        "surfaceHighlight",
+        "interactive",
+        "interactiveHover",
+        "interactivePressed",
+        "textLow",
+        "textHigh",
+      ],
+    },
+    warning: {
+      cssPrefix: "--nimbus-colors-warning",
+      roles: [
+        "surface",
+        "surfaceHighlight",
+        "interactive",
+        "interactiveHover",
+        "interactivePressed",
+        "textLow",
+        "textHigh",
+      ],
+    },
+    danger: {
+      cssPrefix: "--nimbus-colors-danger",
+      roles: [
+        "surface",
+        "surfaceHighlight",
+        "interactive",
+        "interactiveHover",
+        "interactivePressed",
+        "textLow",
+        "textHigh",
+      ],
+    },
+    neutral: {
+      cssPrefix: "--nimbus-colors-neutral",
+      roles: [
+        "background",
+        "surface",
+        "surfaceDisabled",
+        "surfaceHighlight",
+        "interactive",
+        "interactiveHover",
+        "interactivePressed",
+        "textDisabled",
+        "textLow",
+        "textHigh",
+      ],
+    },
+    aiGenerative: {
+      cssPrefix: "--nimbus-colors-aiGenerative",
+      roles: [
+        "background",
+        "surface",
+        "surfaceHighlight",
+        "interactive",
+        "interactiveHover",
+        "interactivePressed",
+        "textLow",
+        "textHigh",
+      ],
+    },
+    aiGradient: {
+      cssPrefix: "--nimbus-colors-aiGradient",
+      roles: [
+        "blueHigh",
+        "blueLight",
+        "purpleHigh",
+        "purpleLight",
+        "pinkHigh",
+        "pinkLight",
+      ],
+    },
+  };
 
 const styles = {
   page: {
@@ -161,17 +159,23 @@ const styles = {
   } as React.CSSProperties,
 };
 
-const ColorSwatch: React.FC<{
+function ColorSwatch({
+  color,
+  name,
+  hexValue,
+}: {
   color: string;
   name: string;
-  hexValue?: string;
-}> = ({ color, name, hexValue }) => (
-  <div style={styles.swatch}>
-    <div style={{ ...styles.colorBox, backgroundColor: color }} />
-    <span style={styles.label}>{name}</span>
-    {hexValue && <span style={styles.value}>{hexValue}</span>}
-  </div>
-);
+  hexValue?: string; // eslint-disable-line react/require-default-props
+}) {
+  return (
+    <div style={styles.swatch}>
+      <div style={{ ...styles.colorBox, backgroundColor: color }} />
+      <span style={styles.label}>{name}</span>
+      {hexValue && <span style={styles.value}>{hexValue}</span>}
+    </div>
+  );
+}
 
 const ReferencePalette: React.FC = () => (
   <div>
