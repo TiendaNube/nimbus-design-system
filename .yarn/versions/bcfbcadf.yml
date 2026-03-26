@@ -1,11 +1,14 @@
 releases:
+  "@nimbus-ds/split-button": patch
+  "@nimbus-ds/stepper": patch
   "@nimbus-ds/styles": patch
+  "@nimbus-ds/time-picker": patch
   "@nimbus-ds/tokens": patch
 
 declined:
   - nimbus-design-system
   - "@nimbus-ds/webpack"
   - "@nimbus-ds/icons"
-  - "@nimbus-ds/split-button"
-  - "@nimbus-ds/stepper"
-  - "@nimbus-ds/time-picker"
+
+undecided:
+  - "@nimbus-ds/button"
