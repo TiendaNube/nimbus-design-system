@@ -17,7 +17,7 @@
           "comment": "It can be used for caption text and very small components like labels, inputs or chips. Must not be used for body text."
         },
         "base": {
-          "value": "{font.size.3-5}",
+          "value": "0.8125rem",
           "comment": "It can be used for plain text and large amounts of content."
         },
         "highlight": {
