@@ -52,11 +52,8 @@ jobs:
       - uses: ./.github/actions/setup-node-deps
 
       - name: Create .env file
-        uses: DeveloperRic/action-create-env@v1.0.2
-        with:
-          full_text: |
-            GITHUB_TOKEN=${{ secrets.PAT_CHANGE_BRANCH_PROTECTION_RULES_FROM_USER_NIMBUS }}
-          include_env_vars: true
+        run: |
+          echo "GITHUB_TOKEN=${{ secrets.PAT_CHANGE_BRANCH_PROTECTION_RULES_FROM_USER_NIMBUS }}" > .env
 
       - name: Build tokens
         run: yarn build:tokens
