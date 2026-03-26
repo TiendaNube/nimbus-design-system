@@ -91,6 +91,7 @@ export const primary: Story = {
   args: {
     children: "Button",
     appearance: "primary",
+    disabled: true,
   },
 };
 
@@ -98,6 +99,23 @@ export const danger: Story = {
   args: {
     children: "Button",
     appearance: "danger",
+    disabled: false,
+  },
+};
+
+export const success: Story = {
+  args: {
+    children: "Button",
+    appearance: "success",
+    disabled: false,
+  },
+};
+
+export const warning: Story = {
+  args: {
+    children: "Button",
+    appearance: "warning",
+    disabled: false,
   },
 };
 
@@ -105,6 +123,7 @@ export const neutral: Story = {
   args: {
     children: "Button",
     appearance: "neutral",
+    disabled: false,
   },
 };
 
@@ -112,6 +131,7 @@ export const transparent: Story = {
   args: {
     children: "Button",
     appearance: "transparent",
+    disabled: false,
   },
 };
 
@@ -132,6 +152,7 @@ export const aiPrimary: Story = {
   args: {
     children: "Button",
     appearance: "ai-primary",
+    disabled: false,
   },
 };
 
@@ -139,6 +160,7 @@ export const aiSecondary: Story = {
   args: {
     children: "Button",
     appearance: "ai-secondary",
+    disabled: false,
   },
 };
 

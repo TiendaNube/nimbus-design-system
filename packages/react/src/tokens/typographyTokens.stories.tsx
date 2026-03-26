@@ -258,8 +258,9 @@ const FontSizeSection: React.FC = () => (
                 <td style={styles.td}>
                   <span
                     style={{
-                      fontSize: cssVar,
-                      fontFamily: "var(--nimbus-fontFamily-sans)",
+                      fontSize: value,
+                      fontFamily:
+                        'Geist, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
                       color: "var(--nimbus-colors-neutral-textHigh)",
                       lineHeight: 1.2,
                     }}
@@ -310,9 +311,10 @@ const FontWeightSection: React.FC = () => (
             <td style={styles.td}>
               <span
                 style={{
-                  fontWeight: cssVar,
+                  fontWeight: value,
                   fontSize: 16,
-                  fontFamily: "var(--nimbus-fontFamily-sans)",
+                  fontFamily:
+                    'Geist, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
                   color: "var(--nimbus-colors-neutral-textHigh)",
                 }}
               >
@@ -360,14 +362,14 @@ const LineHeightSection: React.FC = () => (
                 <td style={styles.td}>
                   <span
                     style={{
-                      lineHeight: cssVar,
+                      lineHeight: value,
                       fontSize: 14,
-                      fontFamily: "var(--nimbus-fontFamily-sans)",
+                      fontFamily:
+                        'Geist, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
                       color: "var(--nimbus-colors-neutral-textHigh)",
                       display: "block",
                       maxWidth: 260,
-                      border:
-                        "1px dashed var(--nimbus-colors-neutral-interactive)",
+                      border: "1px dashed #d2d7ea",
                       padding: "0 4px",
                     }}
                   >

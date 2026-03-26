@@ -79,6 +79,7 @@ const semanticFamilies: Record<string, { cssPrefix: string; roles: string[] }> =
     cssPrefix: "--nimbus-colors-aiGenerative",
     roles: [
       "background",
+      "surfaceDisabled",
       "surface",
       "surfaceHighlight",
       "interactive",
@@ -146,6 +147,10 @@ const styles = {
     aspectRatio: "1",
     borderRadius: 8,
     border: "1px solid var(--nimbus-colors-neutral-surfaceHighlight)",
+    backgroundImage:
+      "linear-gradient(45deg, #e0e0e0 25%, transparent 25%), linear-gradient(-45deg, #e0e0e0 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #e0e0e0 75%), linear-gradient(-45deg, transparent 75%, #e0e0e0 75%)",
+    backgroundSize: "12px 12px",
+    backgroundPosition: "0 0, 0 6px, 6px -6px, -6px 0px",
   } as React.CSSProperties,
   label: {
     fontSize: 11,
@@ -173,7 +178,16 @@ function ColorSwatch({
 }) {
   return (
     <div style={styles.swatch}>
-      <div style={{ ...styles.colorBox, backgroundColor: color }} />
+      <div style={styles.colorBox}>
+        <div
+          style={{
+            width: "100%",
+            height: "100%",
+            borderRadius: 7,
+            backgroundColor: color,
+          }}
+        />
+      </div>
       <span style={styles.label}>{name}</span>
       {hexValue && <span style={styles.value}>{hexValue}</span>}
     </div>
@@ -210,6 +224,55 @@ const ReferencePalette: React.FC = () => (
   </div>
 );
 
+const lumiInteractive = [
+  "radial-gradient(172.39% 156.26% at 105.11% -15.62%, rgba(70, 41, 186, 0.90) 0%, rgba(70, 41, 186, 0.20) 56.73%)",
+  "radial-gradient(84.01% 107.54% at 20.17% -22.66%, #0059D5 0%, rgba(0, 89, 213, 0.20) 100%)",
+  "radial-gradient(135.71% 87.74% at 33.81% 109.38%, #D8446E 0%, rgba(216, 68, 110, 0.00) 95.37%)",
+  "#E5809D",
+].join(", ");
+
+const lumiDisabled = [
+  "radial-gradient(172.39% 156.26% at 105.11% -15.62%, rgba(70, 41, 186, 0.18) 0%, rgba(70, 41, 186, 0.04) 56.73%)",
+  "radial-gradient(84.01% 107.54% at 20.17% -22.66%, rgba(0, 89, 213, 0.20) 0%, rgba(0, 89, 213, 0.04) 100%)",
+  "radial-gradient(135.71% 87.74% at 33.81% 109.38%, rgba(216, 68, 110, 0.20) 0%, rgba(216, 68, 110, 0.00) 95.37%)",
+  "rgba(229, 128, 157, 0.20)",
+].join(", ");
+
+const aiGradientItems = [
+  {
+    name: "aiGradient-interactive",
+    gradient: lumiInteractive,
+    label: "aiGradient-interactive",
+  },
+  {
+    name: "aiGradient-disabled",
+    gradient: lumiDisabled,
+    label: "aiGradient-disabled",
+  },
+];
+
+const AiGradientsSection: React.FC = () => (
+  <div>
+    <h3 style={styles.familyTitle}>aiGradient</h3>
+    <div style={{ display: "flex", gap: 16, flexWrap: "wrap" as const }}>
+      {aiGradientItems.map(({ name, gradient, label }) => (
+        <div key={name} style={{ display: "flex", flexDirection: "column" as const, gap: 6, width: 240 }}>
+          <div
+            style={{
+              width: "100%",
+              height: 80,
+              borderRadius: 8,
+              border: "1px solid var(--nimbus-colors-neutral-surfaceHighlight)",
+              background: gradient,
+            }}
+          />
+          <span style={styles.label}>{label}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+);
+
 const SemanticTokens: React.FC = () => (
   <div>
     <h2 style={styles.sectionTitle}>Semantic Tokens</h2>
@@ -235,6 +298,7 @@ const SemanticTokens: React.FC = () => (
         </div>
       </div>
     ))}
+    <AiGradientsSection />
   </div>
 );
 

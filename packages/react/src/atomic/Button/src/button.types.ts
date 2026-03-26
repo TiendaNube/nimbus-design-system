@@ -18,6 +18,8 @@ export interface ButtonProperties {
   appearance?:
     | "primary"
     | "danger"
+    | "success"
+    | "warning"
     | "neutral"
     | "transparent"
     | "ai-primary"

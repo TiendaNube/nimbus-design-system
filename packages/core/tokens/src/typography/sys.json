@@ -69,7 +69,7 @@
           "comment": "Combined use with: font-size-body-caption"
         },
         "base": {
-          "value": "{line.height.5}",
+          "value": "{line.height.4}",
           "comment": "Combined use with: font-size-body-base"
         },
         "highlight": {

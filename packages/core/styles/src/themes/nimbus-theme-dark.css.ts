@@ -70,6 +70,7 @@ const darkTheme = {
         .value as string,
       surfaceHighlight: lightColors.aiGenerative["surface-highlight"]
         .value as string,
+      surfaceDisabled: lightColors.aiGenerative["surface-disabled"].value as string,
       surface: lightColors.aiGenerative.surface.value as string,
       background: lightColors.aiGenerative.background.value as string,
       textHigh: lightColors.aiGenerative["text-high"].value as string,

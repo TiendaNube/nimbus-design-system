@@ -76,6 +76,7 @@ export const globalTheme = {
       textHigh: colors.aiGenerative["text-high"].value as string,
       surfaceHighlight: colors.aiGenerative["surface-highlight"]
         .value as string,
+      surfaceDisabled: colors.aiGenerative["surface-disabled"].value as string,
     },
     aiGradient: {
       blueHigh: colors.aiGradient["blue-high"].value as string,
