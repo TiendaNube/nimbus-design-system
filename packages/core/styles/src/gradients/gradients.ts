@@ -12,7 +12,6 @@
  * ```
  */
 import { varsThemeBase } from "../themes";
-import { createLinearGradient } from "./gradientBuilder";
 
 const { aiGradient } = varsThemeBase.colors;
 

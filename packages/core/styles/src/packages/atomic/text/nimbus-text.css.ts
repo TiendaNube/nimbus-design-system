@@ -90,6 +90,8 @@ const textColorProperties = {
   "neutral-textLow": colorProperties["neutral-textLow"],
   "neutral-textHigh": colorProperties["neutral-textHigh"],
 
+  "ai-generativeTextHigh": colorProperties["ai-generativeTextHigh"],
+
   ...aiColors,
 };
 
