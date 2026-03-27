@@ -66,6 +66,11 @@ jobs:
           export NODE_OPTIONS="--max_old_space_size=12288"
           yarn build:components
 
+      - name: Build @nimbus-ds/components bundle
+        run: |
+          export NODE_OPTIONS="--max_old_space_size=12288"
+          yarn workspace @nimbus-ds/components build
+
       - name: Build packages
         run: |
           export NODE_OPTIONS="--max_old_space_size=12288"
