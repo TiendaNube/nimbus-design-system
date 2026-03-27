@@ -3,11 +3,6 @@ name: publish-rc-manual
 on:
   workflow_dispatch:
     inputs:
-      branch:
-        description: "Branch to run the workflow from"
-        required: true
-        type: string
-        default: "master"
       packages:
         description: |
           Comma-separated list of packages to publish (e.g., @nimbus-ds/button,@nimbus-ds/box).
@@ -46,8 +41,6 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          ref: ${{ github.event.inputs.branch }}
 
       - uses: ./.github/actions/setup-node-deps
 
