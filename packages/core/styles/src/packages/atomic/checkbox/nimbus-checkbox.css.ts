@@ -53,8 +53,8 @@ globalStyle(`${container} input:checked ~ ${container__checkmark}`, {
 });
 
 globalStyle(`${container} input:disabled ~ ${container__checkmark}`, {
-  backgroundColor: varsThemeBase.colors.neutral.surfaceDisabled,
-  borderColor: varsThemeBase.colors.neutral.interactive,
+  backgroundColor: varsThemeBase.colors.neutral.surface,
+  borderColor: varsThemeBase.colors.neutral.surfaceHighlight,
 });
 
 globalStyle(
@@ -78,6 +78,39 @@ globalStyle(`${container} p`, {
 globalStyle(`${container} input:focus-visible ~ ${container__checkmark}`, {
   boxShadow: varsThemeBase.utils.focus,
 });
+
+// Hover states — require data-appearance and data-indeterminate on the container label
+globalStyle(
+  `${container}[data-appearance="primary"]:hover input:not(:checked):not(:disabled) ~ ${container__checkmark}`,
+  {
+    backgroundColor: varsThemeBase.colors.neutral.surface,
+    borderColor: varsThemeBase.colors.neutral.interactivePressed,
+  }
+);
+
+globalStyle(
+  `${container}[data-appearance="primary"]:not([data-indeterminate]):hover input:checked:not(:disabled) ~ ${container__checkmark}`,
+  {
+    backgroundColor: varsThemeBase.colors.primary.interactiveHover,
+    borderColor: varsThemeBase.colors.primary.interactiveHover,
+  }
+);
+
+globalStyle(
+  `${container}[data-indeterminate]:hover input:not(:disabled) ~ ${container__checkmark}`,
+  {
+    backgroundColor: varsThemeBase.colors.neutral.surface,
+    borderColor: varsThemeBase.colors.primary.interactiveHover,
+  }
+);
+
+globalStyle(
+  `${container}[data-appearance="danger"]:hover input:not(:checked):not(:disabled) ~ ${container__checkmark}`,
+  {
+    backgroundColor: varsThemeBase.colors.neutral.surfaceDisabled,
+    borderColor: varsThemeBase.colors.danger.interactiveHover,
+  }
+);
 
 const container__checkmark_aiGenerated = style({
   background: createBorderGradient(

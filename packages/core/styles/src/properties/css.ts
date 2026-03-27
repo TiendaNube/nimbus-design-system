@@ -246,6 +246,7 @@ export const spacingProperties = {
 export const borderRadiusProperties = {
   "0-5": varsThemeBase.shape.border.radius["0-5"],
   "1": varsThemeBase.shape.border.radius[1],
+  "1-5": varsThemeBase.shape.border.radius["1-5"],
   "2": varsThemeBase.shape.border.radius[2],
   "3": varsThemeBase.shape.border.radius[3],
   "4": varsThemeBase.shape.border.radius[4],

@@ -41,6 +41,8 @@ const Checkbox: React.FC<CheckboxProps> & CheckboxComponents = ({
   return (
     <label
       htmlFor={id || name}
+      data-appearance={appearance}
+      data-indeterminate={indeterminate || undefined}
       className={[
         className,
         checkbox.classnames.container,

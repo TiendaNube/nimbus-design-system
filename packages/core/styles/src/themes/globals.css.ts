@@ -141,6 +141,7 @@ export const globalTheme = {
       radius: {
         "0-5": shape.border.radius["0-5"].value,
         "1": shape.border.radius[1].value,
+        "1-5": shape.border.radius["1-5"].value,
         "2": shape.border.radius[2].value,
         "3": shape.border.radius[3].value,
         "4": shape.border.radius[4].value,

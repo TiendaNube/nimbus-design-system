@@ -23,44 +23,47 @@ type Story = StoryObj<typeof IconButton>;
 
 export const basic: Story = {
   args: {
-    size: "2.75rem",
+    size: "1.75rem",
     source: <TiendanubeIcon size="small" />,
   },
 };
 
-export const primaryColor: Story = {
+export const transparent: Story = {
   args: {
-    size: "2.75rem",
-    color: "primary-textHigh",
+    size: "1.75rem",
+    appearance: "transparent",
     source: <TiendanubeIcon size="small" />,
   },
 };
 
 export const aiGenerative: Story = {
   args: {
-    size: "2.75rem",
+    size: "1.75rem",
     color: "neutral-surface",
     appearance: "ai-generative",
     source: <GenerativeStarsIcon size="small" />,
   },
 };
 
-export const aiGenerativeDisabled: Story = {
+export const aiSecondary: Story = {
   args: {
-    size: "2.75rem",
-    color: "neutral-textDisabled",
-    appearance: "ai-generative",
+    size: "1.75rem",
+    color: "ai-gradientPurpleHigh",
+    appearance: "ai-secondary",
     source: <GenerativeStarsIcon size="small" />,
-    disabled: true,
   },
 };
 
-export const aiGenerativeSurface: Story = {
+export const small: Story = {
   args: {
-    size: "2.75rem",
-    borderColor: "transparent",
-    color: "ai-generative",
-    backgroundColor: "ai-generativeSurface",
-    source: <GenerativeStarsIcon size="small" />,
+    size: "1.5rem",
+    source: <TiendanubeIcon size="small" />,
+  },
+};
+
+export const medium: Story = {
+  args: {
+    size: "1.75rem",
+    source: <TiendanubeIcon size="small" />,
   },
 };

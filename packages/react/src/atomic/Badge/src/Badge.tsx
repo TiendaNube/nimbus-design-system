@@ -10,20 +10,34 @@ const Badge: React.FC<BadgeProps> & BadgeComponents = ({
   style: _style,
   appearance = "neutral",
   theme = "surface",
+  type = "count",
   count,
   ...rest
-}: BadgeProps) => (
-  <div
-    {...rest}
-    className={[className, badge.classnames[theme][appearance]]
-      .filter(Boolean)
-      .join(" ")}
-  >
-    <Text fontSize="caption" lineHeight="caption" color="currentColor">
-      {count}
-    </Text>
-  </div>
-);
+}: BadgeProps) => {
+  if (type === "dot") {
+    return (
+      <div
+        {...rest}
+        className={[className, badge.classnames.dot[appearance]]
+          .filter(Boolean)
+          .join(" ")}
+      />
+    );
+  }
+
+  return (
+    <div
+      {...rest}
+      className={[className, badge.classnames[theme][appearance]]
+        .filter(Boolean)
+        .join(" ")}
+    >
+      <Text fontSize="caption" lineHeight="caption" color="currentColor">
+        {count}
+      </Text>
+    </div>
+  );
+};
 
 Badge.Skeleton = BadgeSkeleton;
 Badge.displayName = "Badge";

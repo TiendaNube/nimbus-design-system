@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useCallback, useRef } from "react";
+import React, { useState, useCallback, useRef } from "react";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
 import { fileUploader, vars } from "@nimbus-ds/styles";
 import { PlusCircleIcon } from "@nimbus-ds/icons";
@@ -39,7 +39,8 @@ const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
   asOverlay = false,
   ...rest
 }: FileUploaderProps) => {
-  const color = useMemo(() => (disabled ? "neutral" : "primary"), [disabled]);
+  const iconColor = disabled ? "neutral-textDisabled" : "primary-interactive";
+  const textColor = disabled ? "neutral-textDisabled" : "neutral-textLow";
   const [isDragging, setIsDragging] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const dragCounterRef = useRef(0);
@@ -186,15 +187,11 @@ const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
       onDrop={handleDrop}
     >
       <Icon
-        color={`${color}-interactive`}
-        source={<PlusCircleIcon size={20} />}
+        color={iconColor}
+        source={<PlusCircleIcon size={16} />}
       />
       {placeholder && (
-        <Text
-          color={`${color}-interactive`}
-          fontWeight="bold"
-          fontSize="caption"
-        >
+        <Text color={textColor} fontSize="caption">
           {placeholder}
         </Text>
       )}

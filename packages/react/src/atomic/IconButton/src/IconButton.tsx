@@ -12,7 +12,7 @@ const IconButton: React.FC<IconButtonProps> & IconButtonComponents = ({
   className,
   style: _style,
   as: As = "button",
-  size = "2.75rem",
+  size = "1.75rem",
   backgroundColor = {
     xs: "neutral-surface",
     active: "neutral-interactive",
@@ -22,19 +22,22 @@ const IconButton: React.FC<IconButtonProps> & IconButtonComponents = ({
     xs: "neutral-interactive",
     active: "neutral-interactivePressed",
     hover: "neutral-interactiveHover",
-    focus: "primary-interactive",
+    focus: "neutral-interactive",
   },
   color = "neutral-textHigh",
   appearance,
+  disabled,
   source,
   ...rest
 }: IconButtonProps) => {
   const sprinkleProps = {
     size,
-    ...(appearance !== "ai-generative" && {
-      borderColor,
-      backgroundColor,
-    }),
+    ...(appearance !== "ai-generative" &&
+      appearance !== "transparent" &&
+      appearance !== "ai-secondary" && {
+        borderColor,
+        backgroundColor,
+      }),
   };
 
   const {
@@ -45,6 +48,13 @@ const IconButton: React.FC<IconButtonProps> & IconButtonComponents = ({
     ...(rest as Parameters<typeof iconButton.sprinkle>[0]),
     ...sprinkleProps,
   });
+
+  const getDisabledIconColor = (): typeof color => {
+    if (appearance === "ai-generative") return "neutral-surface";
+    return "neutral-textDisabled";
+  };
+
+  const iconColor = disabled ? getDisabledIconColor() : color;
 
   return (
     <As
@@ -58,11 +68,12 @@ const IconButton: React.FC<IconButtonProps> & IconButtonComponents = ({
         .filter(Boolean)
         .join(" ")}
       style={style}
+      disabled={disabled}
       {...otherProps}
     >
       <Icon
         data-testid="icon-element"
-        color={color}
+        color={iconColor}
         cursor="pointer"
         source={source}
       />

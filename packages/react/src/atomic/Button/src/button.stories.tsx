@@ -28,6 +28,7 @@ const meta: Meta<typeof Basic> = {
         "A ref to the element rendered by this component. Because this component is polymorphic, the type will vary based on the value of the as prop.",
     },
     children: { control: { type: "text" } },
+    disabled: { control: "boolean" },
   },
   tags: ["autodocs"],
 };
@@ -71,13 +72,6 @@ export const loading: Story = {
   },
 };
 
-export const disabled: Story = {
-  args: {
-    disabled: true,
-    children: "Button",
-  },
-};
-
 export const asLink = {
   args: {
     as: "a",
@@ -91,7 +85,6 @@ export const primary: Story = {
   args: {
     children: "Button",
     appearance: "primary",
-    disabled: true,
   },
 };
 
@@ -99,7 +92,6 @@ export const danger: Story = {
   args: {
     children: "Button",
     appearance: "danger",
-    disabled: false,
   },
 };
 
@@ -107,7 +99,6 @@ export const success: Story = {
   args: {
     children: "Button",
     appearance: "success",
-    disabled: false,
   },
 };
 
@@ -115,7 +106,6 @@ export const warning: Story = {
   args: {
     children: "Button",
     appearance: "warning",
-    disabled: false,
   },
 };
 
@@ -123,7 +113,6 @@ export const neutral: Story = {
   args: {
     children: "Button",
     appearance: "neutral",
-    disabled: false,
   },
 };
 
@@ -131,7 +120,6 @@ export const transparent: Story = {
   args: {
     children: "Button",
     appearance: "transparent",
-    disabled: false,
   },
 };
 
@@ -152,7 +140,18 @@ export const aiPrimary: Story = {
   args: {
     children: "Button",
     appearance: "ai-primary",
-    disabled: false,
+  },
+};
+
+export const aiPrimaryWithIcon: Story = {
+  args: {
+    appearance: "ai-primary",
+    children: (
+      <>
+        <Icon color="currentColor" source={<ExternalLinkIcon />} />
+        Button
+      </>
+    ),
   },
 };
 
@@ -160,7 +159,18 @@ export const aiSecondary: Story = {
   args: {
     children: "Button",
     appearance: "ai-secondary",
-    disabled: false,
+  },
+};
+
+export const aiSecondaryWithIcon: Story = {
+  args: {
+    appearance: "ai-secondary",
+    children: (
+      <>
+        <Icon color="ai-gradientPurpleHigh" source={<ExternalLinkIcon />} />
+        Button
+      </>
+    ),
   },
 };
 

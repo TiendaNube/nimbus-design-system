@@ -129,6 +129,7 @@ export const vars = createGlobalThemeContract(
         radius: {
           "0-5": "",
           1: "",
+          "1-5": "",
           2: "",
           3: "",
           4: "",

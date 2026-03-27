@@ -51,7 +51,7 @@ export const appearance = styleVariants({
     base,
     {
       color: varsThemeBase.colors.neutral.textHigh,
-      backgroundColor: varsThemeBase.colors.neutral.surfaceDisabled,
+      backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
     },
   ],
   "ai-generative": [
