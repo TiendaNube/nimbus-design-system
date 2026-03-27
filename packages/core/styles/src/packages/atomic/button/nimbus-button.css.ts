@@ -231,8 +231,8 @@ export const appearance = styleVariants({
         },
       },
       ":disabled": {
-        background: gradients.aiGenerativeDisabled,
-        color: varsThemeBase.colors.neutral.textDisabled,
+        background: aiGenerativeDisabled,
+        color: varsThemeBase.colors.neutral.background,
       },
     },
   ],
