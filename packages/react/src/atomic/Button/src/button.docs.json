@@ -3,7 +3,7 @@
   "name": "Button",
   "totalProps": 6,
   "packageName": "@nimbus-ds/button",
-  "version": "2.11.0",
+  "version": "2.11.1",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/button",
   "props": [
     {
