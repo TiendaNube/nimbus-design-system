@@ -82,7 +82,7 @@ const styles = {
   } as React.CSSProperties,
 };
 
-const ShadowPreview: React.FC<{ value: string; cssVar: string }> = ({
+const ShadowPreview: React.FC<{ cssVar: string }> = ({
   cssVar,
 }) => (
   <div
@@ -124,8 +124,8 @@ const ShadowSection: React.FC = () => (
               <strong>level.{level}</strong>
               <span style={styles.tokenName}>{cssVar}</span>
             </td>
-            <td style={{ ...styles.td, width: 112 }}>
-              <ShadowPreview value={value} cssVar={cssVar} />
+            <td style={{ ...styles.td, width: 112 }} aria-label={`Preview for shadow level ${level}`}>
+              <ShadowPreview cssVar={cssVar} />
             </td>
             <td
               style={{

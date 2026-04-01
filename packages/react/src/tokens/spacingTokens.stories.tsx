@@ -163,7 +163,7 @@ const SpacingSection: React.FC = () => (
               <strong>{key}</strong>
               <span style={styles.tokenName}>{cssVar}</span>
             </td>
-            <td style={{ ...styles.td, width: 160 }}>
+            <td style={{ ...styles.td, width: 160 }} aria-label={`Preview for spacing ${key}`}>
               <SpacingPreview value={value} />
             </td>
             <td

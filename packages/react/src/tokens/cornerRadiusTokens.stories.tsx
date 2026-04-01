@@ -176,7 +176,7 @@ const CornerRadiusSection: React.FC = () => (
               <strong>{key}</strong>
               <span style={styles.tokenName}>{cssVar}</span>
             </td>
-            <td style={{ ...styles.td, width: 96 }}>
+            <td style={{ ...styles.td, width: 96 }} aria-label={`Preview for radius ${key}`}>
               <RadiusPreview value={value} cssVar={cssVar} />
             </td>
             <td style={{ ...styles.td, ...styles.valueCell }}>
