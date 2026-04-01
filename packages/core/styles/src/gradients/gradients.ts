@@ -34,6 +34,14 @@ export const aiGenerativeHoverOverlay = `linear-gradient(rgba(0,0,0,0.15), rgba(
 
 export const aiGenerativePressedOverlay = `linear-gradient(rgba(0,0,0,0.30), rgba(0,0,0,0.30)), ${lumiBase}`;
 
+/**
+ * LUMI linear gradient — for SVG icon fills.
+ * Uses the same brand colors as the LUMI radial gradient but as a linear gradient
+ * so it can be parsed and applied as SVG linearGradient color stops.
+ * Spec: Figma node 17178-6317 — Blue High → Purple High → Pink High.
+ */
+export const aiGenerativeIconGradient = `linear-gradient(33.3deg, ${aiGradient.blueHigh} 28.22%, ${aiGradient.purpleHigh} 49.27%, ${aiGradient.pinkHigh} 83.12%)`;
+
 export const aiGenerativeDisabled = [
   "radial-gradient(172.39% 156.26% at 105.11% -15.62%, rgba(70, 41, 186, 0.18) 0%, rgba(70, 41, 186, 0.04) 56.73%)",
   "radial-gradient(84.01% 107.54% at 20.17% -22.66%, rgba(0, 89, 213, 0.20) 0%, rgba(0, 89, 213, 0.04) 100%)",

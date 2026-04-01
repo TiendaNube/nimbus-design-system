@@ -8,4 +8,5 @@ export {
   aiGenerativeHoverOverlay,
   aiGenerativePressedOverlay,
   aiGenerativeDisabled,
+  aiGenerativeIconGradient,
 } from "./gradients";
