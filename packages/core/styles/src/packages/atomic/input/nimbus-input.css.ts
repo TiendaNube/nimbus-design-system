@@ -36,7 +36,7 @@ export const container = vanillaStyle({
   position: "relative",
   width: "100%",
   borderWidth: varsThemeBase.shape.border.width[1],
-  borderRadius: varsThemeBase.shape.border.radius[2],
+  borderRadius: varsThemeBase.shape.border.radius.base,
   borderStyle: "solid",
   borderColor: varsThemeBase.colors.neutral.interactive,
   overflow: "hidden",
