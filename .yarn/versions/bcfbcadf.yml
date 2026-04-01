@@ -1,4 +1,5 @@
 releases:
+  "@nimbus-ds/accordion": patch
   "@nimbus-ds/alert": patch
   "@nimbus-ds/badge": patch
   "@nimbus-ds/button": patch
