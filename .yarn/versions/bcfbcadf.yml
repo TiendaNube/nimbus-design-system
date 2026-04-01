@@ -1,7 +1,13 @@
 releases:
+  "@nimbus-ds/badge": patch
+  "@nimbus-ds/button": patch
+  "@nimbus-ds/checkbox": patch
+  "@nimbus-ds/file-uploader": patch
+  "@nimbus-ds/icon-button": patch
   "@nimbus-ds/split-button": patch
   "@nimbus-ds/stepper": patch
   "@nimbus-ds/styles": patch
+  "@nimbus-ds/tag": patch
   "@nimbus-ds/time-picker": patch
   "@nimbus-ds/tokens": patch
 
@@ -9,6 +15,3 @@ declined:
   - nimbus-design-system
   - "@nimbus-ds/webpack"
   - "@nimbus-ds/icons"
-
-undecided:
-  - "@nimbus-ds/button"
