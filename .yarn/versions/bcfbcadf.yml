@@ -1,9 +1,16 @@
 releases:
+  "@nimbus-ds/alert": patch
   "@nimbus-ds/badge": patch
   "@nimbus-ds/button": patch
+  "@nimbus-ds/card": patch
   "@nimbus-ds/checkbox": patch
   "@nimbus-ds/file-uploader": patch
   "@nimbus-ds/icon-button": patch
+  "@nimbus-ds/modal": patch
+  "@nimbus-ds/pagination": patch
+  "@nimbus-ds/scroll-pane": patch
+  "@nimbus-ds/segmented-control": patch
+  "@nimbus-ds/sidebar": patch
   "@nimbus-ds/split-button": patch
   "@nimbus-ds/stepper": patch
   "@nimbus-ds/styles": patch
