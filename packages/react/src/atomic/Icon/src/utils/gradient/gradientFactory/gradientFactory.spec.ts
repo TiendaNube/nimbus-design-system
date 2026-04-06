@@ -14,8 +14,8 @@ jest.mock("../cssParser");
 jest.mock("../svgManipulation");
 jest.mock("@nimbus-ds/styles", () => ({
   gradients: {
-    aiGenerativeInteractive:
-      "linear-gradient(90deg, #0050C3 5%, #4736B4 40%, #D8446E 95%)",
+    aiGenerativeIconGradient:
+      "linear-gradient(33.3deg, #0059D5 28.22%, #4629BA 49.27%, #D8446E 83.12%)",
   },
 }));
 
@@ -46,7 +46,7 @@ describe("gradientFactory utilities", () => {
       const result = getGradientStops("linear");
 
       expect(mockParseLinearGradient).toHaveBeenCalledWith(
-        "linear-gradient(90deg, #0050C3 5%, #4736B4 40%, #D8446E 95%)"
+        "linear-gradient(33.3deg, #0059D5 28.22%, #4629BA 49.27%, #D8446E 83.12%)"
       );
       expect(result).toEqual(mockStops);
     });
