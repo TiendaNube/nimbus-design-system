@@ -2,6 +2,15 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2026-04-06 `9.62.1`
+
+#### 🐛 Bug fixes
+
+- `Input`: Aligned container states with Figma (node 19744-43902)—neutral disabled/hover; success, warning, and danger use neutral backgrounds with semantic borders, filled vs placeholder (`:placeholder-shown`), hover, focus, and disabled; `ai-generative` uses solid `aiGenerative.textLow` border instead of a radial gradient border for SVG-safe tokens. ([#455](https://github.com/TiendaNube/nimbus-design-system/pull/455) by [@noecondoleo](https://github.com/noecondoleo))
+- `Input`: Disabled state refinements per Figma (node 19744-44033)—no focus ring when disabled, placeholder uses `neutral.textDisabled`, `aiGenerated` ring removed when disabled. ([#455](https://github.com/TiendaNube/nimbus-design-system/pull/455) by [@noecondoleo](https://github.com/noecondoleo))
+- `Input`: Disabled container matches Figma 19744-44033—fill `neutral.surfaceHighlight`, border `neutral.interactive` (all appearances); disabled `<input>` background transparent so the container fill shows through. ([#455](https://github.com/TiendaNube/nimbus-design-system/pull/455) by [@noecondoleo](https://github.com/noecondoleo))
+- `Select`: Aligned trigger states with Figma (node 19797-4857)—neutral/success/warning/danger/ai-generative use the same patterns as Input (placeholder via `option:checked:disabled`, filled value, hover, `focus` ring 2px, disabled fill `surfaceHighlight` + border `neutral.interactive`); `ai-generative` uses solid `aiGenerative.textLow` border instead of gradient. ([#455](https://github.com/TiendaNube/nimbus-design-system/pull/455) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-03-04 `9.61.0`
 
 #### 🎉 New features

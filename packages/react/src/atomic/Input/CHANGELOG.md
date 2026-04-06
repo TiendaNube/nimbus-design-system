@@ -2,6 +2,12 @@
 
 The Input component allows the user to enter or edit information in text format.
 
+## 2026-04-06 `2.7.2`
+
+#### 🐛 Bug fixes
+
+- Updated visual states for all appearances to match Figma Input component set (empty vs filled, hover, focus, disabled, AI generative border). Styles live in `@nimbus-ds/styles` `nimbus-input`. ([#455](https://github.com/TiendaNube/nimbus-design-system/pull/455) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-02-12 `2.7.0`
 
 #### 🎉 New features
