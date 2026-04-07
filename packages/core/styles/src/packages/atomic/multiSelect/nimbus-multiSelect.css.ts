@@ -17,7 +17,7 @@ const base = style({
   textAlign: "left",
   boxSizing: "border-box",
   color: varsThemeBase.colors.neutral.textHigh,
-  borderRadius: varsThemeBase.shape.border.radius[2],
+  borderRadius: varsThemeBase.shape.border.radius.base,
   margin: 0,
   paddingBottom: varsThemeBase.spacing[2],
   paddingLeft: varsThemeBase.spacing[2],

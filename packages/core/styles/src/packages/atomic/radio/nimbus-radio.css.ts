@@ -19,7 +19,7 @@ const base = style({
 const container = style({
   position: "relative",
   display: "flex",
-  alignItems: "flex-start",
+  alignItems: "center",
   width: "fit-content",
   gap: varsThemeBase.spacing[1],
   borderStyle: "solid",
@@ -34,6 +34,7 @@ const container__content = styleVariants({
     {
       transition: `all ${varsThemeBase.motion.speed.fast} ease`,
       display: "flex",
+      alignItems: "center",
       color: varsThemeBase.colors.neutral.textHigh,
     },
   ],
@@ -74,10 +75,9 @@ export const container__checkmark = style({
   width: "1rem",
   height: "1rem",
   flexShrink: 0,
+  boxSizing: "border-box",
 
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
+  display: "block",
   position: "relative",
 
   borderStyle: "solid",
@@ -87,11 +87,21 @@ export const container__checkmark = style({
   backgroundColor: varsThemeBase.colors.neutral.background,
 });
 
+/** Selected dot: 9px per Figma; absolute center avoids flex/baseline offset inside the ring. */
+const RADIO_INNER_DOT_SIZE = "0.5625rem";
+
 export const container__checkicon = style({
   display: "none",
-  width: "0.563rem",
-  height: "0.563rem",
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  width: RADIO_INNER_DOT_SIZE,
+  height: RADIO_INNER_DOT_SIZE,
+  margin: 0,
   borderRadius: varsThemeBase.shape.border.radius.full,
+  transform: "translate(-50%, -50%)",
+  boxSizing: "border-box",
+  pointerEvents: "none",
 });
 
 globalStyle(`${container__input}:checked ~ ${container__checkmark}`, {

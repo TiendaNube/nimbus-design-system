@@ -2,6 +2,16 @@ import { globalStyle, style, styleVariants } from "@vanilla-extract/css";
 
 import { varsThemeBase } from "../../../themes";
 
+/** Total control height including border (28px at default 16px root; matches Input compact row). */
+const SELECT_BORDER_BOX_HEIGHT = "1.75rem";
+
+/**
+ * Vertical padding inside the 28px border box after `line.height.body.caption` (1rem) and 1px borders.
+ * Native `<select>` often ignores `calc()` with theme vars or keeps UA padding; use an explicit rem value.
+ * Math: (1.75rem − 1rem − 2×border.width[1]) / 2 = 0.3125rem (~5px).
+ */
+const SELECT_VERTICAL_PADDING = "0.3125rem";
+
 export const container = style({
   position: "relative",
 });
@@ -21,14 +31,20 @@ const base = style({
   textAlign: "left",
   boxSizing: "border-box",
   color: varsThemeBase.colors.neutral.textHigh,
-  borderRadius: varsThemeBase.shape.border.radius[2],
+  borderRadius: varsThemeBase.shape.border.radius.base,
   margin: 0,
-  paddingBottom: varsThemeBase.spacing[2],
+  height: SELECT_BORDER_BOX_HEIGHT,
+  minHeight: SELECT_BORDER_BOX_HEIGHT,
+  maxHeight: SELECT_BORDER_BOX_HEIGHT,
+  padding: 0,
+  paddingBottom: SELECT_VERTICAL_PADDING,
   paddingLeft: varsThemeBase.spacing[2],
   paddingRight: varsThemeBase.spacing[8],
-  paddingTop: varsThemeBase.spacing[2],
+  paddingTop: SELECT_VERTICAL_PADDING,
   width: "100%",
   appearance: "none",
+  WebkitAppearance: "none",
+  MozAppearance: "none",
   outline: "none",
   transition: `all ${varsThemeBase.motion.speed.fast} ease`,
   "::placeholder": {

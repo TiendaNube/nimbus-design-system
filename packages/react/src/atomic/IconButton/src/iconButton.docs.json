@@ -69,7 +69,7 @@
     },
     {
       "description": "The size of the component.",
-      "default": "2.75rem",
+      "default": "1.75rem",
       "anyOf": [
         {
           "type": "object",

@@ -2,6 +2,12 @@
 
 Use a select box when a user needs to select one option from a list.
 
+## 2026-04-06 `2.7.3`
+
+#### 🐛 Bug fixes
+
+- `Select.Skeleton`: Height `1.75rem` and `0.375rem` radius to match compact `Select` (Figma 19797-4859). ([#455](https://github.com/TiendaNube/nimbus-design-system/pull/455) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-04-06 `2.7.2`
 
 #### 🐛 Bug fixes

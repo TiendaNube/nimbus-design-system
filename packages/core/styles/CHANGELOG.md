@@ -2,6 +2,15 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2026-04-06 `9.62.2`
+
+#### 🐛 Bug fixes
+
+- `Select`: Border radius `shape.border.radius.base` (6px) and fixed `1.75rem` (28px) border-box height; vertical padding `0.3125rem` (5px) so line-height `1rem` + 1px borders fit; `padding: 0` reset and `min/max-height` so native `<select>` does not keep ~8px UA padding (Figma 19797-4859). ([#455](https://github.com/TiendaNube/nimbus-design-system/pull/455) by [@noecondoleo](https://github.com/noecondoleo))
+- `MultiSelect`: Trigger border radius aligned with `Select` (`radius.base`). ([#455](https://github.com/TiendaNube/nimbus-design-system/pull/455) by [@noecondoleo](https://github.com/noecondoleo))
+- `Radio`: Label and label content use `align-items: center` so the 16px control centers with caption line-height text. ([#455](https://github.com/TiendaNube/nimbus-design-system/pull/455) by [@noecondoleo](https://github.com/noecondoleo))
+- `Radio`: Selected inner dot centered with `position: absolute` + `translate(-50%,-50%)` and exact `0.5625rem` (9px) size; checkmark uses `box-sizing: border-box` and `display: block` so the ring is not skewed by flex baseline. ([#455](https://github.com/TiendaNube/nimbus-design-system/pull/455) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-04-06 `9.62.1`
 
 #### 🐛 Bug fixes
