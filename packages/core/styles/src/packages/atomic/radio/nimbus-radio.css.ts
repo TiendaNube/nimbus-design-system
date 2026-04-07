@@ -40,25 +40,17 @@ const container__content = styleVariants({
   button: [
     base,
     {
-      backgroundColor: varsThemeBase.colors.neutral.surface,
+      backgroundColor: varsThemeBase.colors.neutral.background,
       borderColor: varsThemeBase.colors.neutral.interactive,
       color: varsThemeBase.colors.neutral.textHigh,
-      ":active": {
-        backgroundColor: varsThemeBase.colors.neutral.interactive,
-        borderColor: varsThemeBase.colors.neutral.interactiveHover,
-      },
-      ":hover": {
-        background: varsThemeBase.colors.neutral.surfaceHighlight,
-        borderColor: varsThemeBase.colors.neutral.interactivePressed,
-      },
     },
   ],
   disabled: [
     base,
     {
       cursor: "not-allowed",
-      backgroundColor: varsThemeBase.colors.neutral.surfaceDisabled,
-      borderColor: varsThemeBase.colors.neutral.surfaceHighlight,
+      backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
+      borderColor: varsThemeBase.colors.neutral.interactive,
       color: varsThemeBase.colors.neutral.textDisabled,
     },
   ],
@@ -77,8 +69,11 @@ const container__input = style({
  * -----------------------------------------------------------------------------------------------*/
 
 export const container__checkmark = style({
-  minWidth: "0.875rem",
-  minHeight: "0.875rem",
+  minWidth: "1rem",
+  minHeight: "1rem",
+  width: "1rem",
+  height: "1rem",
+  flexShrink: 0,
 
   display: "flex",
   alignItems: "center",
@@ -111,15 +106,28 @@ globalStyle(
   }
 );
 
-globalStyle(`${container__input}:disabled ~ ${container__checkmark}`, {
-  backgroundColor: varsThemeBase.colors.neutral.surfaceDisabled,
-  borderColor: varsThemeBase.colors.neutral.interactive,
-});
+// Radio disabled unchecked: Figma 19805-1371 — surfaceHighlight + neutral.interactive border
+globalStyle(
+  `${container__input}:disabled:not(:checked) ~ ${container__checkmark}`,
+  {
+    backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
+    borderColor: varsThemeBase.colors.neutral.interactive,
+  }
+);
+
+// Radio disabled checked: Figma 19805-57162 — surfaceDisabled fill, primary.surfaceDisabled border + dot
+globalStyle(
+  `${container__input}:disabled:checked ~ ${container__checkmark}`,
+  {
+    backgroundColor: varsThemeBase.colors.neutral.surfaceDisabled,
+    borderColor: varsThemeBase.colors.primary.surfaceDisabled,
+  }
+);
 
 globalStyle(
-  `${container__input}:disabled ~ ${container__checkmark} ${container__checkicon}`,
+  `${container__input}:disabled:checked ~ ${container__checkmark} ${container__checkicon}`,
   {
-    backgroundColor: varsThemeBase.colors.neutral.textDisabled,
+    backgroundColor: varsThemeBase.colors.primary.surfaceDisabled,
   }
 );
 
@@ -131,18 +139,77 @@ globalStyle(`${container} p`, {
   lineHeight: varsThemeBase.spacing[4],
 });
 
-globalStyle(`${container__input}:focus-visible ~ ${container__checkmark}`, {
-  boxShadow: varsThemeBase.utils.focus,
-});
+// Radio focus: Figma 19805-1396 / 19805-1400 — 2px ring on label; no separate ring on the circle
+globalStyle(
+  `${container}[data-as="radio"]:has(${container__input}:focus-visible)`,
+  {
+    boxShadow: `0 0 0 2px ${varsThemeBase.colors.neutral.interactive}`,
+  }
+);
+
+globalStyle(
+  `${container}[data-as="radio"] ${container__input}:focus-visible ~ ${container__checkmark}`,
+  {
+    boxShadow: "none",
+  }
+);
+
+// Radio unchecked hover: Figma 19805-1359 — neutral.surfaceDisabled + neutral.interactiveHover border
+globalStyle(
+  `${container}[data-as="radio"]:hover ${container__input}:not(:checked):not(:disabled) ~ ${container__checkmark}`,
+  {
+    backgroundColor: varsThemeBase.colors.neutral.surfaceDisabled,
+    borderColor: varsThemeBase.colors.neutral.interactiveHover,
+  }
+);
+
+// Radio unchecked pressed: Figma 19805-1363 — neutral.surface + neutral.interactivePressed border
+globalStyle(
+  `${container}[data-as="radio"]:active ${container__input}:not(:checked):not(:disabled) ~ ${container__checkmark}`,
+  {
+    backgroundColor: varsThemeBase.colors.neutral.surface,
+    borderColor: varsThemeBase.colors.neutral.interactivePressed,
+  }
+);
+
+// Radio checked hover / pressed (interaction parity with Checkbox)
+globalStyle(
+  `${container}[data-as="radio"]:hover ${container__input}:checked:not(:disabled) ~ ${container__checkmark}`,
+  {
+    borderColor: varsThemeBase.colors.primary.interactiveHover,
+  }
+);
+
+globalStyle(
+  `${container}[data-as="radio"]:hover ${container__input}:checked:not(:disabled) ~ ${container__checkmark} ${container__checkicon}`,
+  {
+    backgroundColor: varsThemeBase.colors.primary.interactiveHover,
+  }
+);
+
+globalStyle(
+  `${container}[data-as="radio"]:active ${container__input}:checked:not(:disabled) ~ ${container__checkmark}`,
+  {
+    borderColor: varsThemeBase.colors.primary.interactivePressed,
+  }
+);
+
+globalStyle(
+  `${container}[data-as="radio"]:active ${container__input}:checked:not(:disabled) ~ ${container__checkmark} ${container__checkicon}`,
+  {
+    backgroundColor: varsThemeBase.colors.primary.interactivePressed,
+  }
+);
 
 /* -------------------------------------------------------------------------------------------------
  * style as "button"
  * -----------------------------------------------------------------------------------------------*/
 
+// Button focus: Figma 19805-1382 / 19805-1390 — 2px neutral.interactive ring (spread)
 globalStyle(
   `${container__input}:focus-visible ~ ${container__content.button}`,
   {
-    boxShadow: varsThemeBase.utils.focus,
+    boxShadow: `0 0 0 2px ${varsThemeBase.colors.neutral.interactive}`,
   }
 );
 
@@ -152,10 +219,46 @@ globalStyle(`${container__input}:checked ~ ${container__content.button}`, {
   color: varsThemeBase.colors.neutral.background,
 });
 
-globalStyle(`${container__input}:checked ~ ${container__content.disabled}`, {
-  backgroundColor: varsThemeBase.colors.neutral.textDisabled,
-  borderColor: varsThemeBase.colors.neutral.surfaceHighlight,
-  color: varsThemeBase.colors.neutral.background,
+// Button unchecked hover: Figma 19805-1384
+globalStyle(
+  `${container}[data-as="button"]:hover ${container__input}:not(:checked):not(:disabled) ~ ${container__content.button}`,
+  {
+    backgroundColor: varsThemeBase.colors.neutral.surface,
+    borderColor: varsThemeBase.colors.neutral.interactiveHover,
+  }
+);
+
+// Button unchecked pressed: Figma 19805-1386
+globalStyle(
+  `${container}[data-as="button"]:active ${container__input}:not(:checked):not(:disabled) ~ ${container__content.button}`,
+  {
+    backgroundColor: varsThemeBase.colors.neutral.surface,
+    borderColor: varsThemeBase.colors.neutral.interactivePressed,
+  }
+);
+
+// Button checked hover / pressed
+globalStyle(
+  `${container}[data-as="button"]:hover ${container__input}:checked:not(:disabled) ~ ${container__content.button}`,
+  {
+    backgroundColor: varsThemeBase.colors.primary.interactiveHover,
+    borderColor: varsThemeBase.colors.primary.interactiveHover,
+  }
+);
+
+globalStyle(
+  `${container}[data-as="button"]:active ${container__input}:checked:not(:disabled) ~ ${container__content.button}`,
+  {
+    backgroundColor: varsThemeBase.colors.primary.interactivePressed,
+    borderColor: varsThemeBase.colors.primary.interactivePressed,
+  }
+);
+
+// Button checked disabled: Figma 19805-1392
+globalStyle(`${container__input}:checked:disabled ~ ${container__content.disabled}`, {
+  backgroundColor: varsThemeBase.colors.primary.surfaceDisabled,
+  borderColor: varsThemeBase.colors.primary.surfaceDisabled,
+  color: varsThemeBase.colors.neutral.textDisabled,
 });
 
 export const styles = {

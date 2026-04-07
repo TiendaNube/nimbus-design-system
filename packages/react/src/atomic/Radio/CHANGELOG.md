@@ -2,6 +2,12 @@
 
 Use radios when a user needs to select one option from a list.
 
+## 2026-04-06 `2.4.1`
+
+#### 🐛 Bug fixes
+
+- Set `data-as` on the root `<label>` so `@nimbus-ds/styles` can scope radio vs button interaction states per Figma (19805-1354). ([#455](https://github.com/TiendaNube/nimbus-design-system/pull/455) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-02-12 `2.4.0`
 
 #### 🎉 New features

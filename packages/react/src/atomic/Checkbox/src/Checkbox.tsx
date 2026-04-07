@@ -75,7 +75,9 @@ const Checkbox: React.FC<CheckboxProps> & CheckboxComponents = ({
         <div className={checkbox.classnames.container__checkmark_checkicon}>
           <Icon
             data-testid="icon-check"
-            color={disabled ? "neutral-textLow" : "neutral-background"}
+            color={
+              disabled ? "neutral-textDisabled" : "neutral-background"
+            }
             source={<CheckIcon />}
           />
         </div>

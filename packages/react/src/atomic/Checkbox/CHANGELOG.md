@@ -2,6 +2,13 @@
 
 The Checkbox component allows us to choose one or several options from a selection list.
 
+## 2026-04-06 `2.5.2`
+
+#### 🐛 Bug fixes
+
+- Primary appearance hover (unchecked) matches Figma: border token updated in `@nimbus-ds/styles` `nimbus-checkbox`. ([#455](https://github.com/TiendaNube/nimbus-design-system/pull/455) by [@noecondoleo](https://github.com/noecondoleo))
+- Disabled checked state: check icon color uses `neutral-textDisabled` to match Figma (node 19754-83333); disabled container tokens live in `@nimbus-ds/styles`. ([#455](https://github.com/TiendaNube/nimbus-design-system/pull/455) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-02-12 `2.5.0`
 
 #### 🎉 New features

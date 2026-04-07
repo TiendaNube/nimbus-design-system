@@ -55,10 +55,18 @@ globalStyle(`${container} input:checked ~ ${container__checkmark}`, {
   borderColor: varsThemeBase.colors.primary.interactive,
 });
 
+// Disabled checkmark (all variants): Figma nodes 19754-83328, 19754-83333, 19754-83338 — surfaceHighlight fill + neutral.interactive border
 globalStyle(`${container} input:disabled ~ ${container__checkmark}`, {
-  backgroundColor: varsThemeBase.colors.neutral.surface,
-  borderColor: varsThemeBase.colors.neutral.surfaceHighlight,
+  backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
+  borderColor: varsThemeBase.colors.neutral.interactive,
 });
+
+globalStyle(
+  `${container}[data-indeterminate] input:disabled ~ ${container__checkmark} ${container__checkmark_checkindeterminate} > div`,
+  {
+    color: varsThemeBase.colors.neutral.textDisabled,
+  }
+);
 
 globalStyle(
   `${container} input:checked ~ ${container__checkmark} ${container__checkmark_checkicon}`,
@@ -108,11 +116,45 @@ globalStyle(
   }
 );
 
+// Primary unchecked pressed: Figma node 19754-83266 — neutral.surface fill + neutral.interactivePressed border
+globalStyle(
+  `${container}[data-appearance="primary"]:not([data-indeterminate]):active input:not(:checked):not(:disabled) ~ ${container__checkmark}`,
+  {
+    backgroundColor: varsThemeBase.colors.neutral.surface,
+    borderColor: varsThemeBase.colors.neutral.interactivePressed,
+  }
+);
+
+// Indeterminate pressed: Figma node 19754-83316 — neutral.surface fill + primary.interactivePressed border; bar uses same token
+globalStyle(
+  `${container}[data-indeterminate]:active input:not(:disabled) ~ ${container__checkmark}`,
+  {
+    backgroundColor: varsThemeBase.colors.neutral.surface,
+    borderColor: varsThemeBase.colors.primary.interactivePressed,
+  }
+);
+
+globalStyle(
+  `${container}[data-indeterminate]:active input:not(:disabled) ~ ${container__checkmark} ${container__checkmark_checkindeterminate} > div`,
+  {
+    color: varsThemeBase.colors.primary.interactivePressed,
+  }
+);
+
 globalStyle(
   `${container}[data-appearance="danger"]:hover input:not(:checked):not(:disabled) ~ ${container__checkmark}`,
   {
     backgroundColor: varsThemeBase.colors.neutral.surfaceDisabled,
     borderColor: varsThemeBase.colors.danger.interactiveHover,
+  }
+);
+
+// Danger unchecked pressed: Figma node 19754-83354 — neutral.surface fill + danger.interactivePressed border (after hover so pressed wins)
+globalStyle(
+  `${container}[data-appearance="danger"]:active input:not(:checked):not(:disabled) ~ ${container__checkmark}`,
+  {
+    backgroundColor: varsThemeBase.colors.neutral.surface,
+    borderColor: varsThemeBase.colors.danger.interactivePressed,
   }
 );
 

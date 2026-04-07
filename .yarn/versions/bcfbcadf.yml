@@ -14,6 +14,7 @@ releases:
   "@nimbus-ds/modal": patch
   "@nimbus-ds/multi-select": patch
   "@nimbus-ds/pagination": patch
+  "@nimbus-ds/radio": patch
   "@nimbus-ds/scroll-pane": patch
   "@nimbus-ds/segmented-control": patch
   "@nimbus-ds/select": patch
