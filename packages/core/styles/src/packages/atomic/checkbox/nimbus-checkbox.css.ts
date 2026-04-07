@@ -26,12 +26,15 @@ const container__input = style({
 });
 
 const container__checkmark = style({
-  minWidth: "0.875rem",
-  minHeight: "0.875rem",
+  minWidth: "1rem",
+  minHeight: "1rem",
+  width: "1rem",
+  height: "1rem",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
   position: "relative",
+  flexShrink: 0,
 
   borderStyle: "solid",
   borderWidth: varsThemeBase.shape.border.width[1],
@@ -80,11 +83,12 @@ globalStyle(`${container} input:focus-visible ~ ${container__checkmark}`, {
 });
 
 // Hover states — require data-appearance and data-indeterminate on the container label
+// Primary unchecked hover: Figma node 19754-83261 — neutral.surface fill + neutral.interactiveHover border
 globalStyle(
-  `${container}[data-appearance="primary"]:hover input:not(:checked):not(:disabled) ~ ${container__checkmark}`,
+  `${container}[data-appearance="primary"]:not([data-indeterminate]):hover input:not(:checked):not(:disabled) ~ ${container__checkmark}`,
   {
     backgroundColor: varsThemeBase.colors.neutral.surface,
-    borderColor: varsThemeBase.colors.neutral.interactivePressed,
+    borderColor: varsThemeBase.colors.neutral.interactiveHover,
   }
 );
 
