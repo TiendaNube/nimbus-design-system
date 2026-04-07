@@ -2,6 +2,12 @@
 
 Our design tokens are the foundations of Nimbus Design System.
 
+## 2026-04-07 `9.5.1`
+
+#### 🎉 New features
+
+- `Motion`: Added semantic `duration` tokens (`1`–`5`, `illustrative`) and `easing` families (`linear`, `out.*`, `inOut.*`, `in.*` cubic-bezier values) aligned with the motion-design reference; legacy `speed.*` unchanged. ([#455](https://github.com/TiendaNube/nimbus-design-system/pull/455) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2025-11-11 `9.5.0`
 
 #### 🎉 New features

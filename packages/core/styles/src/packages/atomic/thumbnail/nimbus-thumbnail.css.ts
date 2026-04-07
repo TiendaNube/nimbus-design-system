@@ -8,7 +8,7 @@ import { aspectRatioProperties } from "../../../properties";
 export const container = style({
   display: "flex",
   overflow: "hidden",
-  background: varsThemeBase.colors.neutral.surfaceDisabled,
+  backgroundColor: "transparent",
   borderRadius: varsThemeBase.shape.border.radius[2],
 });
 
@@ -22,11 +22,13 @@ export const container__image = style({
 });
 
 export const container__placeholder = style({
-  width: "100%",
-  objectFit: "cover",
   display: "flex",
-  justifyContent: "center",
+  flex: "1 1 auto",
+  width: "100%",
+  minWidth: 0,
   alignItems: "center",
+  justifyContent: "center",
+  backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
 });
 
 export const skeleton = style({

@@ -3,6 +3,12 @@
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories
 every day, with simplicity, accessibility, consistency and performance.
 
+## 2026-04-07 `5.57.2`
+
+#### 🎉 New features
+
+- Storybook: Added **Tokens / Motion** overview with duration and easing tables, interactive previews, legacy `speed.*` reference, and reduced-motion snippet. ([#455](https://github.com/TiendaNube/nimbus-design-system/pull/455) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-03-04 `5.56.0`
 
 #### 🎉 New features

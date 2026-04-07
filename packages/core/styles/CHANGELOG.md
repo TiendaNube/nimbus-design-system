@@ -4,8 +4,17 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 ## 2026-04-06 `9.62.2`
 
+#### 🎉 New features
+
+- Theme: Exposed `varsThemeBase.motion.duration` and `varsThemeBase.motion.easing` from new tokens; added `transitionDurationProperties` and `transitionEasingProperties` in style property helpers. ([#455](https://github.com/TiendaNube/nimbus-design-system/pull/455) by [@noecondoleo](https://github.com/noecondoleo))
+
 #### 🐛 Bug fixes
 
+- `Thumbnail`: Empty state uses `neutral.surfaceHighlight` fill; root container is transparent so image thumbs match Figma NUI (19812-50137); placeholder layout uses flex grow. ([#455](https://github.com/TiendaNube/nimbus-design-system/pull/455) by [@noecondoleo](https://github.com/noecondoleo))
+
+#### 🐛 Bug fixes
+
+- `Textarea`: Aligned with Input/Select NUI (Figma 6535-183031)—`shape.border.radius.base`; focus ring `0 0 0 2px` with semantic stroke color per appearance; hover and filled (`:not(:placeholder-shown)`) states for success, warning, and danger; disabled border `neutral.interactive`; removed `utils.focus` / primary pressed border on focus; `ai-generative` keeps gradient with focus ring only; `aiGenerated` drops glow when disabled and shows focus ring when focused. ([#455](https://github.com/TiendaNube/nimbus-design-system/pull/455) by [@noecondoleo](https://github.com/noecondoleo))
 - `Select`: Border radius `shape.border.radius.base` (6px) and fixed `1.75rem` (28px) border-box height; vertical padding `0.3125rem` (5px) so line-height `1rem` + 1px borders fit; `padding: 0` reset and `min/max-height` so native `<select>` does not keep ~8px UA padding (Figma 19797-4859). ([#455](https://github.com/TiendaNube/nimbus-design-system/pull/455) by [@noecondoleo](https://github.com/noecondoleo))
 - `MultiSelect`: Trigger border radius aligned with `Select` (`radius.base`). ([#455](https://github.com/TiendaNube/nimbus-design-system/pull/455) by [@noecondoleo](https://github.com/noecondoleo))
 - `Radio`: Label and label content use `align-items: center` so the 16px control centers with caption line-height text. ([#455](https://github.com/TiendaNube/nimbus-design-system/pull/455) by [@noecondoleo](https://github.com/noecondoleo))

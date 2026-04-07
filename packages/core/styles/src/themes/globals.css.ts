@@ -201,6 +201,38 @@ export const globalTheme = {
       slow: motion.speed.slow.value as string,
       slower: motion.speed.slower.value as string,
     },
+    duration: {
+      1: motion.duration["1"].value as string,
+      2: motion.duration["2"].value as string,
+      3: motion.duration["3"].value as string,
+      4: motion.duration["4"].value as string,
+      5: motion.duration["5"].value as string,
+      illustrative: motion.duration.illustrative.value as string,
+    },
+    easing: {
+      linear: motion.easing.linear.value as string,
+      out: {
+        quad: motion.easing.out.quad.value as string,
+        cubic: motion.easing.out.cubic.value as string,
+        quart: motion.easing.out.quart.value as string,
+        quint: motion.easing.out.quint.value as string,
+        expo: motion.easing.out.expo.value as string,
+        circ: motion.easing.out.circ.value as string,
+      },
+      inOut: {
+        quad: motion.easing.inOut.quad.value as string,
+        cubic: motion.easing.inOut.cubic.value as string,
+        quart: motion.easing.inOut.quart.value as string,
+        quint: motion.easing.inOut.quint.value as string,
+        expo: motion.easing.inOut.expo.value as string,
+        circ: motion.easing.inOut.circ.value as string,
+      },
+      in: {
+        quad: motion.easing.in.quad.value as string,
+        cubic: motion.easing.in.cubic.value as string,
+        quart: motion.easing.in.quart.value as string,
+      },
+    },
   },
   breakpoint: {
     xs: breakpoint.xs.value,

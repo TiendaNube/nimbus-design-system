@@ -55,7 +55,7 @@ You can add, remove or modify existing tokens by editing the json files inside t
 | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | [Breakpoint](./src/breakpoint) | We use breakpoints to determine which screen sizes are relevant to make changes in the layout. With these tokens we can remain up to date with the most frequent device sizes. |
 | [Color](./src/color)           | Our color system has specific functions and are used to visually guide the user, provide hierarchy, communicate states and add depth to our interfaces.                        |
-| [Motion](./src/motion)         | We use motion values to generate micro-interactions and animate components when they have state changes or need to attract the user's attention.                               |
+| [Motion](./src/motion)         | Durations (`speed.*` legacy, `duration.*` semantic), easing curves (`easing.linear`, `easing.out|inOut|in.*`), and CSS variables for transitions.                               |
 | [Spacing](./src/spacing)       | We use spacers to separate elements both grouped or not, to create spacing between blocks of content, fields in a form or padding in buttons.                                  |
 | [typography](./src/typography) |  We use text styles to highlight information, provide titles for pages or blocks of content, featuring specific topics or text elements.                                       |
 

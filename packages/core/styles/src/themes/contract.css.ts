@@ -189,6 +189,38 @@ export const vars = createGlobalThemeContract(
         slow: "",
         slower: "",
       },
+      duration: {
+        1: "",
+        2: "",
+        3: "",
+        4: "",
+        5: "",
+        illustrative: "",
+      },
+      easing: {
+        linear: "",
+        out: {
+          quad: "",
+          cubic: "",
+          quart: "",
+          quint: "",
+          expo: "",
+          circ: "",
+        },
+        inOut: {
+          quad: "",
+          cubic: "",
+          quart: "",
+          quint: "",
+          expo: "",
+          circ: "",
+        },
+        in: {
+          quad: "",
+          cubic: "",
+          quart: "",
+        },
+      },
     },
     breakpoint: {
       xs: "",

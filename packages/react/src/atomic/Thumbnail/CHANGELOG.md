@@ -2,6 +2,12 @@
 
 The Thumbnail component allows us to present thumbnails of images.
 
+## 2026-04-07 `2.4.2`
+
+#### 🐛 Bug fixes
+
+- Empty state aligned with Figma NUI (19812-50137): `neutral.surfaceHighlight` background via styles, camera icon `neutral-interactive` at 32px (`large`). ([#455](https://github.com/TiendaNube/nimbus-design-system/pull/455) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-02-12 `2.4.0`
 
 #### 🎉 New features
