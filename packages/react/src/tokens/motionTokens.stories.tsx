@@ -4,7 +4,7 @@ import { IconButton } from "@nimbus-ds/icon-button";
 import { StopIcon } from "@nimbus-ds/icons";
 import tokens from "@nimbus-ds/tokens/dist/js/tokens";
 
-const motion = tokens.motion;
+const { motion } = tokens;
 
 /**
  * Right-pointing play triangle only (no ring). `@nimbus-ds/icons` PlayIcon includes a circle; this glyph matches common “play” affordances for demos.
@@ -262,7 +262,7 @@ const MotionTokensPage: React.FC = () => (
                 <strong>duration.{key}</strong>
                 <span style={styles.tokenName}>{cssVar}</span>
               </td>
-              <td style={{ ...styles.td, width: 160 }}>
+              <td style={{ ...styles.td, width: 160 }} aria-label={`Duration preview for ${key}`}>
                 <DurationPreview cssVarDuration={cssVar} />
               </td>
               <td
@@ -340,7 +340,7 @@ const MotionTokensPage: React.FC = () => (
                 <strong>{displayPath}</strong>
                 <span style={styles.tokenName}>{cssVar}</span>
               </td>
-              <td style={{ ...styles.td, width: 160 }}>
+              <td style={{ ...styles.td, width: 160 }} aria-label={`Easing preview for ${path}`}>
                 <EasingPreview cssVarEasing={cssVar} />
               </td>
               <td

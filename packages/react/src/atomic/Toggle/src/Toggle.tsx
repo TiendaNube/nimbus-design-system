@@ -15,38 +15,36 @@ const Toggle: React.FC<ToggleProps> & ToggleComponents = ({
   active,
   disabled,
   ...rest
-}: ToggleProps) => {
-  return (
-    <label
-      htmlFor={id || name}
-      className={[className, toggle.classnames.container]
-        .filter(Boolean)
-        .join(" ")}
-    >
-      <input
-        {...rest}
-        id={id || name}
-        name={name}
-        type="checkbox"
-        className={toggle.classnames.container__input}
-        defaultChecked={active}
-        disabled={disabled}
-        aria-disabled={disabled}
-      />
-      <span
-        data-testid="slider"
-        className={toggle.classnames.container__slider}
-      />
-      {label && (
-        <Box paddingRight="0-5">
-          <Text data-testid="text" color="neutral-textLow" lineHeight="caption">
-            {label}
-          </Text>
-        </Box>
-      )}
-    </label>
-  );
-};
+}: ToggleProps) => (
+  <label
+    htmlFor={id || name}
+    className={[className, toggle.classnames.container]
+      .filter(Boolean)
+      .join(" ")}
+  >
+    <input
+      {...rest}
+      id={id || name}
+      name={name}
+      type="checkbox"
+      className={toggle.classnames.container__input}
+      defaultChecked={active}
+      disabled={disabled}
+      aria-disabled={disabled}
+    />
+    <span
+      data-testid="slider"
+      className={toggle.classnames.container__slider}
+    />
+    {label && (
+      <Box paddingRight="0-5">
+        <Text data-testid="text" color="neutral-textLow" lineHeight="caption">
+          {label}
+        </Text>
+      </Box>
+    )}
+  </label>
+);
 
 Toggle.displayName = "Toggle";
 Toggle.Skeleton = ToggleSkeleton;
