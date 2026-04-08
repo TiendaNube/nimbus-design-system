@@ -36,6 +36,10 @@ describe("GIVEN <ToastProvider />", () => {
     jest.clearAllMocks();
   });
 
+  afterEach(() => {
+    jest.clearAllTimers();
+  });
+
   describe("THEN should ensure the correct functioning of the ToastProvider", () => {
     it("THEN should add a new toast correctly", () => {
       makeSut({ type: "primary", id: "1", text: "Toast" });
@@ -47,7 +51,7 @@ describe("GIVEN <ToastProvider />", () => {
       ).toContain("primary");
 
       const icon = screen.getByTestId("toast-icon-primary");
-      expect(icon.getAttribute("class")).toContain("color_primary-surface");
+      expect(icon.getAttribute("class")).toContain("color_neutral-textHigh");
       expect(icon.firstChild?.nodeName).toEqual("svg");
     });
 
@@ -61,7 +65,7 @@ describe("GIVEN <ToastProvider />", () => {
       ).toContain("primary");
 
       const icon = screen.getByTestId("toast-icon-primary");
-      expect(icon.getAttribute("class")).toContain("color_primary-surface");
+      expect(icon.getAttribute("class")).toContain("color_neutral-textHigh");
       expect(icon.firstChild?.nodeName).toEqual("svg");
       act(() => {
         screen.getByText("close").click();
@@ -79,7 +83,7 @@ describe("GIVEN <ToastProvider />", () => {
       ).toContain("primary");
 
       const icon = screen.getByTestId("toast-icon-primary");
-      expect(icon.getAttribute("class")).toContain("color_primary-surface");
+      expect(icon.getAttribute("class")).toContain("color_neutral-textHigh");
       expect(icon.firstChild?.nodeName).toEqual("svg");
     });
   });
