@@ -28,6 +28,7 @@ releases:
   "@nimbus-ds/thumbnail": patch
   "@nimbus-ds/time-picker": patch
   "@nimbus-ds/toast": patch
+  "@nimbus-ds/toggle": patch
   "@nimbus-ds/tokens": patch
 
 declined:
