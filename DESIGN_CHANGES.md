@@ -13,6 +13,102 @@
 | @noecondoleo | Storybook Tokens/Motion | Done | **2026-04-07:** `packages/react/src/tokens/motionTokens.stories.tsx` — duration/easing tables + previews. Outside `atomic/` / `composite/` scan paths. |
 | @noecondoleo | Thumbnail empty (React) | Done | **2026-04-07:** `Thumbnail.tsx` — empty state `neutral-interactive` camera icon; styles in report below. |
 | @noecondoleo | Input radius, Icon gradient | Done | **2026-04-01:** `e20ea795` (Input `radius.base` / 6px), `b6299388` (SVG icon linear gradient per Figma). **Before** base `79774902`; not included in the aggregated `2026-04-06 – 2026-04-07` block — see `Input` / `Icon` changelogs and `git log` on branch. |
+| @noecondoleo | Toggle NUI | Done | **2026-04-08:** Visual alignment with Figma — focus ring, active/disabled states, label color. Commit `c9329a8a`. |
+| @noecondoleo | Toast NUI | Done | **2026-04-08:** Visual alignment with Figma — background colors per appearance, border-radius, box-shadow, icon/text color mapping, spinner color. Commit `c9329a8a`. |
+| @noecondoleo | Micro-interactions (atomic) | Done | **2026-04-08:** Enter animations for Popover/Tooltip (keyframes, scale+opacity); Radio dot scale-in; ProgressBar linear easing; Toggle thumb inOut.cubic 240ms; Toast transform transition; `transition:all` replaced with explicit properties on Button, Chip, IconButton, Input, Select, Textarea, Link; `prefers-reduced-motion` global. Commit `c9329a8a`. |
+
+---
+
+## 2026-04-08 @noecondoleo — base: `ddeec1e4`
+
+NUI visual alignment for Toggle and Toast + micro-interactions on all atomic components. Commit: `c9329a8a`.
+
+| Author date | Commit | Summary |
+|-------------|--------|---------|
+| 2026-04-08 | `c9329a8a` | feat(styles): add micro-interactions to atomic components |
+
+### Component Changes
+
+**Toggle** (visual + motion)
+- Focus ring: `utils.focus` (3px blue) → `0 0 0 2px neutral.interactive` (2px neutral grey)
+- Active pressed: added explicit `neutral.interactivePressed` background to `:active` state
+- Track `transition`: `all ease` → `background-color, border-color ease 150ms`
+- Thumb `transition`: `all ease` → `left inOut.cubic 240ms + background-color ease 150ms`
+- Inactive disabled: border/background `neutral.surfaceDisabled` → `neutral.interactive`; thumb `neutral.surfaceHighlight` → `neutral.interactivePressed`
+- Active disabled: border/background `neutral.surfaceDisabled` → `neutral.textDisabled`; thumb `neutral.surfaceHighlight` → `neutral.interactive`
+- Label color: removed disabled variant — always `neutral-textLow`
+
+**Toast** (visual + motion)
+- `primary` background: `primary.textLow` → `neutral.surfaceHighlight`
+- `success` background: `success.textLow` → `success.interactivePressed`
+- `danger` background: `danger.textLow` → `danger.interactivePressed`
+- `progress` background: `neutral.textHigh` → `neutral.surfaceHighlight`
+- `borderRadius`: `shape.border.radius[2]` (8px) → `shape.border.radius.base` (6px)
+- `boxShadow`: added `0 0 2px 0 neutral.interactiveHover`
+- Icon color: per-type `*-surface` tokens → `neutral-textHigh` (primary/neutral) or `neutral-background` (success/danger)
+- Text color: same semantic mapping as icons
+- Spinner color: `neutral-surface` → `neutral-textHigh`
+- `transition`: `background-color, box-shadow, transform ease-out-quart 180ms` for enter/exit slide animation
+
+**ProgressBar** (motion)
+- `transition`: `width ease` → `width linear` (constant-speed fill matches actual progress)
+
+**Popover** (motion)
+- `transition: opacity ease` replaced by `@keyframes` enter: `scale(0.96→1) + opacity`, 180ms `ease-out-quart`
+
+**Tooltip** (motion)
+- `transition: opacity ease` replaced by `@keyframes` enter: `scale(0.97→1) + opacity`, 120ms `ease-out-quart`
+
+**Radio** (motion)
+- Selected dot: `display: none/block` toggle → `@keyframes` `scale(0→1) + opacity`, 120ms `ease-out-quart`; disabled+checked state shows dot without animation
+
+**Button** (motion)
+- Base `transition: all` → `background-color, color, border-color, box-shadow`
+- `ai-primary` appearance: `transition: all` → `transition: box-shadow` (gradients are not animatable)
+
+**Chip** (motion)
+- `transition: all` → `background-color, border-color, box-shadow`
+
+**IconButton** (motion)
+- `transition: all` → `background-color, border-color, box-shadow`
+
+**Input** (motion)
+- Container: added `transition: background-color, border-color, box-shadow` (was missing entirely)
+- Input element: `transition: all` → `transition: color` only
+
+**Select** (motion)
+- `transition: all` → `background-color, border-color, box-shadow, color`
+
+**Textarea** (motion)
+- `transition: all` → `background-color, border-color, box-shadow`
+
+**Link** (motion)
+- `transition: all` → `transition: color`
+
+**Theme / globals** (accessibility)
+- Added `prefers-reduced-motion: reduce` media query globally: `animationDuration: 0.01ms`, `transitionDuration: 0.01ms`, `animationIterationCount: 1`
+
+### Component styles changed
+
+| File | What changed |
+|------|-------------|
+| `atomic/toggle/nimbus-toggle.css.ts` | Visual NUI + specific transition properties |
+| `atomic/toast/nimbus-toast.css.ts` | Visual NUI + explicit transition with transform |
+| `atomic/progressBar/nimbus-progressBar.css.ts` | Easing `ease` → `linear` |
+| `atomic/popover/nimbus-popover.css.ts` | Keyframe enter animation |
+| `atomic/tooltip/nimbus-tooltip.css.ts` | Keyframe enter animation |
+| `atomic/radio/nimbus-radio.css.ts` | Dot scale-in keyframe animation |
+| `atomic/button/nimbus-button.css.ts` | `transition: all` → explicit properties |
+| `atomic/chip/nimbus-chip.css.ts` | `transition: all` → explicit properties |
+| `atomic/iconButton/nimbus-iconButton.css.ts` | `transition: all` → explicit properties |
+| `atomic/input/nimbus-input.css.ts` | Added container transition; input `transition: color` |
+| `atomic/select/nimbus-select.css.ts` | `transition: all` → explicit properties |
+| `atomic/textarea/nimbus-textarea.css.ts` | `transition: all` → explicit properties |
+| `atomic/link/nimbus-link.css.ts` | `transition: all` → `transition: color` |
+| `themes/globals.css.ts` | `prefers-reduced-motion` media query |
+| `react/Toast/src/Toast.tsx` | Icon/text/spinner color mapping |
+| `react/Toast/src/toast.types.ts` | `IconColor`, `TextColor` types |
+| `react/Toggle/src/Toggle.tsx` | Label always `neutral-textLow` |
 
 ---
 
