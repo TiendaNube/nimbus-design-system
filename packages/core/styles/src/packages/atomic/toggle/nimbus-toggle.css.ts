@@ -34,7 +34,7 @@ export const container__slider = vanillaStyle({
   borderWidth: varsThemeBase.shape.border.width[1],
   borderColor: varsThemeBase.colors.neutral.interactive,
   backgroundColor: varsThemeBase.colors.neutral.interactive,
-  transition: `all ${varsThemeBase.motion.speed.fast} ease`,
+  transition: `background-color ${varsThemeBase.motion.speed.fast} ease, border-color ${varsThemeBase.motion.speed.fast} ease`,
   ":before": {
     content: "",
     position: "absolute",
@@ -44,7 +44,7 @@ export const container__slider = vanillaStyle({
 
     backgroundColor: varsThemeBase.colors.neutral.background,
     borderRadius: varsThemeBase.shape.border.radius.half,
-    transition: `all ${varsThemeBase.motion.speed.fast} ease`,
+    transition: `left ${varsThemeBase.motion.duration[3]} ${varsThemeBase.motion.easing.inOut.cubic}, background-color ${varsThemeBase.motion.speed.fast} ease`,
   },
 
   ":hover": {
@@ -54,11 +54,12 @@ export const container__slider = vanillaStyle({
 
   ":active": {
     borderColor: varsThemeBase.colors.neutral.interactivePressed,
+    backgroundColor: varsThemeBase.colors.neutral.interactivePressed,
   },
 });
 
 globalStyle(`${container}:has(${container__input}:focus-visible)`, {
-  boxShadow: varsThemeBase.utils.focus,
+  boxShadow: `0 0 0 2px ${varsThemeBase.colors.neutral.interactive}`,
   outline: "none",
 });
 
@@ -80,6 +81,16 @@ globalStyle(`${container__slider}:active:before`, {
   backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
 });
 
+globalStyle(`${container} input:checked ~ ${container__slider}:hover`, {
+  borderColor: varsThemeBase.colors.primary.interactive,
+  backgroundColor: varsThemeBase.colors.primary.interactive,
+});
+
+globalStyle(`${container} input:checked ~ ${container__slider}:active`, {
+  borderColor: varsThemeBase.colors.primary.interactive,
+  backgroundColor: varsThemeBase.colors.primary.interactive,
+});
+
 globalStyle(`${container} input:checked ~ ${container__slider}:hover:before`, {
   backgroundColor: varsThemeBase.colors.neutral.surfaceDisabled,
 });
@@ -94,20 +105,28 @@ globalStyle(`${container}:has(${container__input}:disabled)`, {
 });
 
 globalStyle(`${container} input:disabled ~ ${container__slider}`, {
-  borderColor: varsThemeBase.colors.neutral.surfaceDisabled,
-  backgroundColor: varsThemeBase.colors.neutral.surfaceDisabled,
+  borderColor: varsThemeBase.colors.neutral.interactive,
+  backgroundColor: varsThemeBase.colors.neutral.interactive,
 });
 
 globalStyle(`${container} input:disabled ~ ${container__slider}:before`, {
-  backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
+  backgroundColor: varsThemeBase.colors.neutral.interactivePressed,
 });
 
 globalStyle(`${container} input:disabled ~ ${container__slider}:hover:before`, {
-  // Reset background color
-  backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
+  backgroundColor: varsThemeBase.colors.neutral.interactivePressed,
 });
 
-// Checked + disabled: keep non-interactive border color
+// Checked + disabled: distinct track color
 globalStyle(`${container} input:checked:disabled ~ ${container__slider}`, {
-  borderColor: varsThemeBase.colors.neutral.surfaceDisabled,
+  borderColor: varsThemeBase.colors.neutral.textDisabled,
+  backgroundColor: varsThemeBase.colors.neutral.textDisabled,
+});
+
+globalStyle(`${container} input:checked:disabled ~ ${container__slider}:before`, {
+  backgroundColor: varsThemeBase.colors.neutral.interactive,
+});
+
+globalStyle(`${container} input:checked:disabled ~ ${container__slider}:hover:before`, {
+  backgroundColor: varsThemeBase.colors.neutral.interactive,
 });

@@ -1,4 +1,4 @@
-import { style, styleVariants, globalStyle } from "@vanilla-extract/css";
+import { style, styleVariants, globalStyle, keyframes } from "@vanilla-extract/css";
 import { defineProperties, createSprinkles } from "@vanilla-extract/sprinkles";
 import { cursorProperties } from "../../../properties";
 import { varsThemeBase } from "../../../themes";
@@ -90,8 +90,19 @@ export const container__checkmark = style({
 /** Selected dot: 9px per Figma; absolute center avoids flex/baseline offset inside the ring. */
 const RADIO_INNER_DOT_SIZE = "0.5625rem";
 
+const radioCheckIn = keyframes({
+  from: {
+    opacity: 0,
+    transform: "translate(-50%, -50%) scale(0)",
+  },
+  to: {
+    opacity: 1,
+    transform: "translate(-50%, -50%) scale(1)",
+  },
+});
+
 export const container__checkicon = style({
-  display: "none",
+  display: "block",
   position: "absolute",
   top: "50%",
   left: "50%",
@@ -99,7 +110,8 @@ export const container__checkicon = style({
   height: RADIO_INNER_DOT_SIZE,
   margin: 0,
   borderRadius: varsThemeBase.shape.border.radius.full,
-  transform: "translate(-50%, -50%)",
+  opacity: 0,
+  transform: "translate(-50%, -50%) scale(0)",
   boxSizing: "border-box",
   pointerEvents: "none",
 });
@@ -111,7 +123,9 @@ globalStyle(`${container__input}:checked ~ ${container__checkmark}`, {
 globalStyle(
   `${container__input}:checked ~ ${container__checkmark} ${container__checkicon}`,
   {
-    display: "block",
+    opacity: 1,
+    transform: "translate(-50%, -50%) scale(1)",
+    animation: `${radioCheckIn} ${varsThemeBase.motion.duration[1]} ${varsThemeBase.motion.easing.out.quart} both`,
     backgroundColor: varsThemeBase.colors.primary.interactive,
   }
 );
@@ -137,6 +151,9 @@ globalStyle(
 globalStyle(
   `${container__input}:disabled:checked ~ ${container__checkmark} ${container__checkicon}`,
   {
+    opacity: 1,
+    transform: "translate(-50%, -50%) scale(1)",
+    animation: "none",
     backgroundColor: varsThemeBase.colors.primary.surfaceDisabled,
   }
 );
@@ -193,6 +210,8 @@ globalStyle(
 globalStyle(
   `${container}[data-as="radio"]:hover ${container__input}:checked:not(:disabled) ~ ${container__checkmark} ${container__checkicon}`,
   {
+    opacity: 1,
+    transform: "translate(-50%, -50%) scale(1)",
     backgroundColor: varsThemeBase.colors.primary.interactiveHover,
   }
 );
@@ -207,6 +226,8 @@ globalStyle(
 globalStyle(
   `${container}[data-as="radio"]:active ${container__input}:checked:not(:disabled) ~ ${container__checkmark} ${container__checkicon}`,
   {
+    opacity: 1,
+    transform: "translate(-50%, -50%) scale(1)",
     backgroundColor: varsThemeBase.colors.primary.interactivePressed,
   }
 );

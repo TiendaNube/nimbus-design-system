@@ -11,8 +11,9 @@ const base = vanillaStyle({
   boxSizing: "border-box",
   gap: varsThemeBase.spacing[1],
   padding: varsThemeBase.spacing[2],
-  borderRadius: varsThemeBase.shape.border.radius[2],
-  transition: `${varsThemeBase.motion.speed.fast} ease`,
+  borderRadius: varsThemeBase.shape.border.radius.base,
+  boxShadow: `0 0 2px 0 ${varsThemeBase.colors.neutral.interactiveHover}`,
+  transition: `background-color ${varsThemeBase.motion.speed.fast} ease, box-shadow ${varsThemeBase.motion.speed.fast} ease, transform ${varsThemeBase.motion.duration[2]} ${varsThemeBase.motion.easing.out.quart}`,
   zIndex: varsThemeBase.zIndex[800],
 });
 
@@ -44,25 +45,25 @@ export const appearance = styleVariants({
   primary: [
     base,
     {
-      background: varsThemeBase.colors.primary.textLow,
+      background: varsThemeBase.colors.neutral.surfaceHighlight,
     },
   ],
   success: [
     base,
     {
-      background: varsThemeBase.colors.success.textLow,
+      background: varsThemeBase.colors.success.interactivePressed,
     },
   ],
   danger: [
     base,
     {
-      background: varsThemeBase.colors.danger.textLow,
+      background: varsThemeBase.colors.danger.interactivePressed,
     },
   ],
   progress: [
     base,
     {
-      background: varsThemeBase.colors.neutral.textHigh,
+      background: varsThemeBase.colors.neutral.surfaceHighlight,
     },
   ],
 });

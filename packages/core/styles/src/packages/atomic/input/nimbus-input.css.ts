@@ -12,7 +12,7 @@ export const input = vanillaStyle({
   color: varsThemeBase.colors.neutral.textHigh,
   border: "none",
   backgroundColor: "transparent",
-  transition: `all ${varsThemeBase.motion.speed.fast} ease`,
+  transition: `color ${varsThemeBase.motion.speed.fast} ease`,
   ":focus-within": {
     outline: "none",
     boxShadow: "none",
@@ -41,6 +41,7 @@ export const container = vanillaStyle({
   borderStyle: "solid",
   borderColor: varsThemeBase.colors.neutral.interactive,
   overflow: "hidden",
+  transition: `background-color ${varsThemeBase.motion.speed.fast} ease, border-color ${varsThemeBase.motion.speed.fast} ease, box-shadow ${varsThemeBase.motion.speed.fast} ease`,
 });
 
 export const container__icon = vanillaStyle({

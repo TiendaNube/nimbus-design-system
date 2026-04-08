@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { Text } from "@nimbus-ds/text";
 import { toggle } from "@nimbus-ds/styles";
 import { Box } from "@nimbus-ds/box";
@@ -16,11 +16,6 @@ const Toggle: React.FC<ToggleProps> & ToggleComponents = ({
   disabled,
   ...rest
 }: ToggleProps) => {
-  const labelColor = useMemo(
-    () => (disabled ? "neutral-textLow" : "neutral-textHigh"),
-    [disabled]
-  );
-
   return (
     <label
       htmlFor={id || name}
@@ -44,7 +39,7 @@ const Toggle: React.FC<ToggleProps> & ToggleComponents = ({
       />
       {label && (
         <Box paddingRight="0-5">
-          <Text data-testid="text" color={labelColor} lineHeight="caption">
+          <Text data-testid="text" color="neutral-textLow" lineHeight="caption">
             {label}
           </Text>
         </Box>

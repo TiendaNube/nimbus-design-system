@@ -1,4 +1,4 @@
-import { style } from "@vanilla-extract/css";
+import { keyframes, style } from "@vanilla-extract/css";
 
 import { createRainbowSprinkles, defineProperties } from "rainbow-sprinkles";
 import { varsThemeBase, mediaQueries } from "../../../themes";
@@ -7,12 +7,24 @@ const container = style({
   width: "fit-content",
 });
 
+const tooltipEnter = keyframes({
+  from: {
+    opacity: 0,
+    transform: "scale(0.97)",
+  },
+  to: {
+    opacity: 1,
+    transform: "scale(1)",
+  },
+});
+
 const content = style({
   width: "fit-content",
   backgroundColor: varsThemeBase.colors.neutral.textHigh,
   padding: varsThemeBase.spacing[1],
   borderRadius: varsThemeBase.shape.border.radius[1],
-  transition: `opacity ${varsThemeBase.motion.speed.fast} ease`,
+  animation: `${tooltipEnter} ${varsThemeBase.motion.duration[1]} ${varsThemeBase.motion.easing.out.quart} both`,
+  transformOrigin: "center",
   zIndex: varsThemeBase.zIndex[800],
 });
 

@@ -1,5 +1,5 @@
 import tokens from "@nimbus-ds/tokens/dist/js/tokens";
-import { createGlobalTheme } from "@vanilla-extract/css";
+import { createGlobalTheme, globalStyle } from "@vanilla-extract/css";
 import { vars } from "./contract.css";
 
 const colors = tokens.color.light;
@@ -252,3 +252,13 @@ export const globalTheme = {
 createGlobalTheme(":root", vars, globalTheme);
 
 export const varsThemeBase = vars;
+
+globalStyle("*, *::before, *::after", {
+  "@media": {
+    "(prefers-reduced-motion: reduce)": {
+      animationDuration: "0.01ms",
+      animationIterationCount: "1",
+      transitionDuration: "0.01ms",
+    },
+  },
+});

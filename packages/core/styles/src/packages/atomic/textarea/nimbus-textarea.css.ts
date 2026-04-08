@@ -30,7 +30,7 @@ const base = style([
     color: varsThemeBase.colors.neutral.textHigh,
     borderRadius: varsThemeBase.shape.border.radius.base,
     padding: "var(--textarea-padding)",
-    transition: `all ${varsThemeBase.motion.speed.fast} ease`,
+    transition: `background-color ${varsThemeBase.motion.speed.fast} ease, border-color ${varsThemeBase.motion.speed.fast} ease, box-shadow ${varsThemeBase.motion.speed.fast} ease`,
     "::placeholder": {
       color: varsThemeBase.colors.neutral.textLow,
     },

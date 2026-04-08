@@ -27,11 +27,7 @@ const base = style({
   borderWidth: varsThemeBase.shape.border.width[1],
   borderStyle: "solid",
   borderColor: varsThemeBase.colors.neutral.interactive,
-  transition: `all ${varsThemeBase.motion.speed.fast} ease`,
-  ":disabled": {
-    color: varsThemeBase.colors.neutral.textDisabled,
-    cursor: "not-allowed",
-  },
+  transition: `background-color ${varsThemeBase.motion.speed.fast} ease, color ${varsThemeBase.motion.speed.fast} ease, border-color ${varsThemeBase.motion.speed.fast} ease, box-shadow ${varsThemeBase.motion.speed.fast} ease`,
   ":focus-visible": {
     boxShadow: varsThemeBase.utils.focus,
     outline: "none",
@@ -218,7 +214,7 @@ export const appearance = styleVariants({
       background: gradients.aiGenerativeInteractive,
       border: "none",
       color: varsThemeBase.colors.neutral.background,
-      transition: `all ${varsThemeBase.motion.speed.fast} ease`,
+      transition: `box-shadow ${varsThemeBase.motion.speed.fast} ease`,
       selectors: {
         "&:not(:disabled):hover": {
           background: aiGenerativeHoverOverlay,

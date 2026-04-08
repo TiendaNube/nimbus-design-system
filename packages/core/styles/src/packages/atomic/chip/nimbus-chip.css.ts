@@ -25,7 +25,7 @@ export const base = vanillaStyle({
   borderRadius: varsThemeBase.shape.border.radius[1],
   borderWidth: varsThemeBase.shape.border.width[1],
   borderColor: varsThemeBase.colors.neutral.interactive,
-  transition: `all ${varsThemeBase.motion.speed.fast} ease`,
+  transition: `background-color ${varsThemeBase.motion.speed.fast} ease, border-color ${varsThemeBase.motion.speed.fast} ease, box-shadow ${varsThemeBase.motion.speed.fast} ease`,
 
   ":hover": {
     background: varsThemeBase.colors.neutral.surfaceHighlight,

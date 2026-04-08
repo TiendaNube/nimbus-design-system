@@ -46,7 +46,7 @@ const base = style({
   WebkitAppearance: "none",
   MozAppearance: "none",
   outline: "none",
-  transition: `all ${varsThemeBase.motion.speed.fast} ease`,
+  transition: `background-color ${varsThemeBase.motion.speed.fast} ease, border-color ${varsThemeBase.motion.speed.fast} ease, box-shadow ${varsThemeBase.motion.speed.fast} ease, color ${varsThemeBase.motion.speed.fast} ease`,
   "::placeholder": {
     color: varsThemeBase.colors.neutral.textLow,
   },

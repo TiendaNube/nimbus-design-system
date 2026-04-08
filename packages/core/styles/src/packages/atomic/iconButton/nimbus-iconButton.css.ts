@@ -27,7 +27,7 @@ const base = style({
   borderStyle: "solid",
   borderRadius: varsThemeBase.shape.border.radius["1-5"],
   borderWidth: varsThemeBase.shape.border.width[1],
-  transition: `all ${varsThemeBase.motion.speed.fast} ease`,
+  transition: `background-color ${varsThemeBase.motion.speed.fast} ease, border-color ${varsThemeBase.motion.speed.fast} ease, box-shadow ${varsThemeBase.motion.speed.fast} ease`,
   ":focus-visible": {
     boxShadow: `0 0 0 2px ${varsThemeBase.colors.neutral.interactive}`,
     outline: "none",

@@ -9,11 +9,11 @@ export interface ToastComponents {
 export type Types = "primary" | "success" | "danger" | "progress";
 export type TypesColors = Exclude<Types, "progress"> | "neutral";
 
-export type IconColor =
-  | "primary-surface"
-  | "success-surface"
-  | "danger-surface"
-  | "neutral-surface";
+/** Color token for icons displayed inside the Toast. */
+export type IconColor = "neutral-textHigh" | "neutral-background";
+
+/** Color token for text displayed inside the Toast. */
+export type TextColor = "neutral-textHigh" | "neutral-background";
 
 export interface ToastProperties {
   /**

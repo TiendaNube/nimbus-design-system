@@ -17,6 +17,7 @@ import { toast } from "@nimbus-ds/styles";
 
 import {
   type IconColor,
+  type TextColor,
   type ToastComponents,
   type ToastProps,
   type TypesColors,
@@ -92,11 +93,18 @@ const Toast: React.FC<ToastProps> & ToastComponents = ({
     [type]
   ) as TypesColors;
 
-  const colorMapping: Record<TypesColors, IconColor> = {
-    primary: "primary-surface",
-    success: "success-surface",
-    danger: "danger-surface",
-    neutral: "neutral-surface",
+  const iconColorMapping: Record<TypesColors, IconColor> = {
+    primary: "neutral-textHigh",
+    success: "neutral-background",
+    danger: "neutral-background",
+    neutral: "neutral-textHigh",
+  };
+
+  const textColorMapping: Record<TypesColors, TextColor> = {
+    primary: "neutral-textHigh",
+    success: "neutral-background",
+    danger: "neutral-background",
+    neutral: "neutral-textHigh",
   };
 
   return (
@@ -116,18 +124,18 @@ const Toast: React.FC<ToastProps> & ToastComponents = ({
       {!isProgress && (
         <Icon
           data-testid={`toast-icon-${types}`}
-          color={colorMapping[types]}
+          color={iconColorMapping[types]}
           source={icons[type]}
         />
       )}
       {isProgress && (
         <Spinner
           data-testid={`toast-spinner-${types}`}
-          color="neutral-surface"
+          color="neutral-textHigh"
           size="small"
         />
       )}
-      <Text color={colorMapping[types]} fontSize="caption" lineHeight="caption">
+      <Text color={textColorMapping[types]} fontSize="caption" lineHeight="caption">
         {text}
       </Text>
     </div>
