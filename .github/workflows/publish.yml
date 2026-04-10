@@ -14,6 +14,12 @@ jobs:
   publish-packages-npm:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    # 1️⃣ Permisos necesarios para Trusted Publisher (id-token) y el PR (contents/pull-requests)
+    permissions:
+      id-token: write
+      contents: write
+      pull-requests: write
+
     env:
       TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
       TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
@@ -29,6 +35,15 @@ jobs:
           
       - name: Checkout
         uses: actions/checkout@v4
+
+      # 2️⃣ Configuración de Node con OIDC habilitado
+      # Nota: Si tu acción local 'setup-node-deps' no soporta auth-oidc, 
+      # podrías necesitar usar actions/setup-node@v4 directamente aquí.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Ajusta según tu .nvmrc si es necesario
+          registry-url: 'https://registry.npmjs.org/'
+          auth-oidc: true
 
       - uses: ./.github/actions/setup-node-deps
 
@@ -56,9 +71,19 @@ jobs:
         run: yarn build:docs
 
       - name: Publish packages
-        run: yarn publish:stable
+        # 3️⃣ Eliminamos YARN_NPM_AUTH_TOKEN ya que se usará la identidad OIDC
+        # Usamos 'npm publish' para asegurar la compatibilidad nativa con Trusted Publishers
+        # Si Nimbus es un monorepo, 'npm publish -w' o iterar por paquetes es lo ideal
+        run: |
+          if [ -f ".yarnrc.yml" ]; then
+            # Si usas Yarn Berry, esto configura el modo OIDC para el comando publish
+            yarn config set npmAuthIdent "" 
+            yarn config set npmAlwaysAuth false
+          fi
+          yarn publish:stable
         env:
-          YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTOMATION_PUBLISH }}
+          # Trusted Publisher funciona mejor con el cliente npm nativo o Yarn Berry configurado
+          NODE_AUTH_TOKEN: "" # Se deja vacío para forzar el uso del token OIDC
 
       - name: Create release PR
         uses: peter-evans/create-pull-request@v7
@@ -74,7 +99,6 @@ jobs:
             .yarn/versions/**
           branch: release/publish-${{ github.run_id }}
           base: master
-          
 
   trigger-action-create-github-tag:
     runs-on: ubuntu-latest
@@ -82,7 +106,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Trigger github action create github tag
         run: |
           curl --request POST \
@@ -96,7 +119,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Trigger github action send slack notifications
         run: |
           curl --request POST \
@@ -115,7 +137,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Trigger github action update documentation
         run: |
           curl --request POST \
