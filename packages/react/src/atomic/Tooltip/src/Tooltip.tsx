@@ -16,17 +16,8 @@ import {
 import { tooltip, useTheme } from "@nimbus-ds/styles";
 import { Text } from "@nimbus-ds/text";
 import { Box } from "@nimbus-ds/box";
+import { FLOATING_EASING, FLOATING_SIDE_ORIGINS } from "../../shared/floatingMotion";
 import { type TooltipProps } from "./tooltip.types";
-
-// out.quint — cubic-bezier(0.23, 1, 0.32, 1)
-const EASING = "cubic-bezier(0.23, 1, 0.32, 1)";
-
-const SIDE_ORIGINS: Record<string, string> = {
-  top: "bottom center",
-  bottom: "top center",
-  left: "right center",
-  right: "left center",
-};
 
 const Tooltip: React.FC<TooltipProps> = ({
   className,
@@ -41,20 +32,19 @@ const Tooltip: React.FC<TooltipProps> = ({
   const arrowRef = useRef(null);
   const [isVisible, setVisibility] = useState(false);
   const { refThemeProvider } = useTheme();
-  const { context, strategy, floatingStyles } = useFloating({
+  const { context, floatingStyles } = useFloating({
     open: isVisible,
     placement: position,
     strategy: "fixed",
     middleware: [
       offset(6),
-      shift(),
+      arrowUI({
+        element: arrowRef,
+      }),
       flip({
         crossAxis: position.includes("-"),
         fallbackAxisSideDirection: "end",
         padding: 5,
-      }),
-      arrowUI({
-        element: arrowRef,
       }),
       shift(),
     ],
@@ -87,7 +77,7 @@ const Tooltip: React.FC<TooltipProps> = ({
     duration: { open: 180, close: 120 },
     initial: { opacity: 0, transform: "scale(0.97)" },
     common: ({ side }) => ({
-      transformOrigin: SIDE_ORIGINS[side] ?? "center",
+      transformOrigin: FLOATING_SIDE_ORIGINS[side] ?? "center",
     }),
   });
 
@@ -108,25 +98,24 @@ const Tooltip: React.FC<TooltipProps> = ({
         {isMounted && (
           <div
             ref={context.refs.setFloating}
+            {...rest}
+            {...otherProps}
+            data-side={context.placement.split("-")[0]}
+            className={[
+              className,
+              tooltip.classnames.content,
+              classNameStyles,
+            ].join(" ")}
             style={{
               ...floatingStyles,
-              position: strategy,
+              ...style,
             }}
             {...getFloatingProps()}
           >
             <div
-              {...rest}
-              {...otherProps}
-              data-side={context.placement.split("-")[0]}
-              className={[
-                className,
-                tooltip.classnames.content,
-                classNameStyles,
-              ].join(" ")}
               style={{
-                ...style,
                 ...transitionStyles,
-                transition: `opacity ${context.open ? "180ms" : "120ms"} ${EASING}, transform ${context.open ? "180ms" : "120ms"} ${EASING}`,
+                transition: `opacity ${context.open ? "180ms" : "120ms"} ${FLOATING_EASING}, transform ${context.open ? "180ms" : "120ms"} ${FLOATING_EASING}`,
               }}
             >
               <Text

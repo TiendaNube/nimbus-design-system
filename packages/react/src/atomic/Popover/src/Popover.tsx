@@ -18,17 +18,8 @@ import {
 } from "@floating-ui/react";
 import { popover, useTheme } from "@nimbus-ds/styles";
 
+import { FLOATING_EASING, FLOATING_SIDE_ORIGINS } from "../../shared/floatingMotion";
 import { type PopoverProps } from "./popover.types";
-
-// out.quint — cubic-bezier(0.23, 1, 0.32, 1)
-const EASING = "cubic-bezier(0.23, 1, 0.32, 1)";
-
-const SIDE_ORIGINS: Record<string, string> = {
-  top: "bottom center",
-  bottom: "top center",
-  left: "right center",
-  right: "left center",
-};
 
 const Popover: React.FC<PopoverProps> = ({
   className,
@@ -50,16 +41,18 @@ const Popover: React.FC<PopoverProps> = ({
   content,
   ...rest
 }) => {
+  type SprinkleParams = Parameters<typeof popover.sprinkle>[0];
+
   const {
     className: classNameStyles,
     style,
     otherProps,
   } = popover.sprinkle({
-    ...(rest as Parameters<typeof popover.sprinkle>[0]),
+    ...(rest as SprinkleParams),
     width,
-    padding: padding as any,
-    backgroundColor: backgroundColor as any,
-    color: backgroundColor as any,
+    padding: padding as SprinkleParams["padding"],
+    backgroundColor: backgroundColor as SprinkleParams["backgroundColor"],
+    color: backgroundColor as SprinkleParams["color"],
   });
 
   const arrowRef = useRef(null);
@@ -131,26 +124,28 @@ const Popover: React.FC<PopoverProps> = ({
     duration: { open: 180, close: 120 },
     initial: { opacity: 0, transform: "scale(0.96)" },
     common: ({ side }) => ({
-      transformOrigin: SIDE_ORIGINS[side] ?? "center",
+      transformOrigin: FLOATING_SIDE_ORIGINS[side] ?? "center",
     }),
   });
 
   const popoverContent = (
     <div
       ref={context.refs.setFloating}
-      style={floatingStyles}
+      {...otherProps}
+      data-side={context.placement.split("-")[0]}
+      className={[className, popover.classnames.content, classNameStyles].join(
+        " "
+      )}
+      style={{
+        ...floatingStyles,
+        ...style,
+      }}
       {...getFloatingProps()}
     >
       <div
-        {...otherProps}
-        data-side={context.placement.split("-")[0]}
-        className={[className, popover.classnames.content, classNameStyles].join(
-          " "
-        )}
         style={{
-          ...style,
           ...transitionStyles,
-          transition: `opacity ${context.open ? "180ms" : "120ms"} ${EASING}, transform ${context.open ? "180ms" : "120ms"} ${EASING}`,
+          transition: `opacity ${context.open ? "180ms" : "120ms"} ${FLOATING_EASING}, transform ${context.open ? "180ms" : "120ms"} ${FLOATING_EASING}`,
         }}
       >
         {content}
