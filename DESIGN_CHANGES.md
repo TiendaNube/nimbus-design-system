@@ -16,8 +16,52 @@
 | @noecondoleo | Toggle NUI | Done | **2026-04-08:** Visual alignment with Figma — focus ring, active/disabled states, label color. Commit `c9329a8a`. |
 | @noecondoleo | Toast NUI | Done | **2026-04-08:** Visual alignment with Figma — background colors per appearance, border-radius, box-shadow, icon/text color mapping, spinner color. Commit `c9329a8a`. |
 | @noecondoleo | Micro-interactions (atomic) | Done | **2026-04-08:** Enter animations for Popover/Tooltip (keyframes, scale+opacity); Radio dot scale-in; ProgressBar linear easing; Toggle thumb inOut.cubic 240ms; Toast transform transition; `transition:all` replaced with explicit properties on Button, Chip, IconButton, Input, Select, Textarea, Link; `prefers-reduced-motion` global. Commit `c9329a8a`. |
+| @noecondoleo | Tooltip/Popover fix + Shadow tokens | Done | **2026-04-10:** Fix Tooltip/Popover misalignment (wrapper div pattern), add exit transitions via `useTransitionStyles` (180ms enter / 120ms exit, dynamic `transform-origin`), redesign shadow token system with `rgba` values. Commit `ea843ffe`. |
 
 ---
+
+## 2026-04-10 @noecondoleo — base: `c9329a8a`
+
+Fix Tooltip/Popover misalignment and animations + shadow token system redesign. Commit: `ea843ffe`.
+
+| Author date | Commit | Summary |
+|-------------|--------|---------|
+| 2026-04-10 | `ea843ffe` | fix(tooltip,popover,tokens): fix alignment, add exit transitions, redesign shadow tokens |
+
+### Component Changes
+
+**Tooltip** (fix + motion)
+- Fix: outer wrapper `div` handles `floatingStyles` positioning; inner `div` handles `useTransitionStyles` animations — prevents `@floating-ui` position transforms from conflicting with CSS animation transforms
+- Enter: `scale(0.97→1) + opacity`, 180ms `out.quint`, dynamic `transformOrigin` per side (`top→bottom center`, `bottom→top center`, etc.)
+- Exit: `scale(1→0.97) + opacity`, 120ms `out.quint`
+- Removed CSS `@keyframes tooltipEnter` from styles layer — animation fully driven by `useTransitionStyles`
+
+**Popover** (fix + motion)
+- Same structural fix as Tooltip (wrapper div pattern)
+- Enter: `scale(0.96→1) + opacity`, 180ms `out.quint`, dynamic `transformOrigin` per side
+- Exit: `scale(1→0.96) + opacity`, 120ms `out.quint`
+- Removed CSS `@keyframes popoverEnter` from styles layer
+
+**Shadow tokens** (design system)
+- `ref.json` light mode: replaced `{color.light.neutral.*}` token references with `rgba(72, 76, 88, X)` direct values
+  - level 1: `0px 0px 2px 0px rgba(72, 76, 88, 0.08)`
+  - level 2: `0px 0px 8px 0px rgba(72, 76, 88, 0.08)`
+  - level 3: `0px 4px 8px 0px rgba(72, 76, 88, 0.12), 0px 0px 2px 0px rgba(72, 76, 88, 0.06)`
+  - level 4: `0px 12px 16px 0px rgba(72, 76, 88, 0.16), 0px 0px 4px 0px rgba(72, 76, 88, 0.08)`
+  - level 5: `0px 24px 32px 0px rgba(72, 76, 88, 0.20), 0px 0px 4px 0px rgba(72, 76, 88, 0.08)`
+- `sys.json` dark mode: `rgba(0, 0, 0, X)` with higher opacities (0.24 → 0.48) for visibility on dark backgrounds
+
+**Toast** (tokens)
+- `boxShadow`: hardcoded `0 0 2px 0 neutral.interactiveHover` → `varsThemeBase.shadow.level[1]`
+
+### Package Version Bumps
+
+| Package | Before | After |
+|---------|--------|-------|
+| `@nimbus-ds/tokens` | `9.5.1` | `9.5.2` |
+| `@nimbus-ds/styles` | `9.62.2` | `9.62.3` |
+| `@nimbus-ds/tooltip` | `2.7.0` | `2.7.1` |
+| `@nimbus-ds/popover` | `4.4.1` | `4.4.2` |
 
 ## 2026-04-08 @noecondoleo — base: `ddeec1e4`
 
