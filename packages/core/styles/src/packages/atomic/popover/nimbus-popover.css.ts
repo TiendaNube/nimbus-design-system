@@ -1,4 +1,4 @@
-import { style, keyframes } from "@vanilla-extract/css";
+import { style } from "@vanilla-extract/css";
 import {
   createRainbowSprinkles,
   defineProperties as defineRainbowProperties,
@@ -15,17 +15,6 @@ import {
  * Style
  * -----------------------------------------------------------------------------------------------*/
 
-const popoverEnter = keyframes({
-  from: {
-    opacity: 0,
-    transform: "scale(0.96)",
-  },
-  to: {
-    opacity: 1,
-    transform: "scale(1)",
-  },
-});
-
 const content = style({
   display: "flex",
   justifyContent: "center",
@@ -34,8 +23,6 @@ const content = style({
   filter: `drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.2))`,
   boxSizing: "border-box",
   borderRadius: varsThemeBase.shape.border.radius[3],
-  animation: `${popoverEnter} ${varsThemeBase.motion.duration[2]} ${varsThemeBase.motion.easing.out.quart} both`,
-  transformOrigin: "center",
   zIndex: varsThemeBase.zIndex[800],
 });
 

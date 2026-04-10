@@ -35,24 +35,24 @@
           "comment": "Inicial level without shadow. Used for background or elements that do not need to be distinguished from the background."
         },
         "1": {
-          "value": "0px 0px 1px 0px {color.dark.neutral.interactive-hover}",
-          "comment": "Shadow level for elements that are floating at minimal distance from the background. Can be used in interactive elements."
+          "value": "0px 0px 2px 0px rgba(0, 0, 0, 0.24)",
+          "comment": "Subtle ambient shadow. Used for interactive elements with minimal elevation."
         },
         "2": {
-          "value": "0px 0px 2px 0px {color.dark.neutral.interactive-hover}",
-          "comment": "Shadow level for elements that are floating at small distance from the background. Can be used in cards."
+          "value": "0px 0px 8px 0px rgba(0, 0, 0, 0.24)",
+          "comment": "Ambient shadow without directional light. Used for cards and table containers."
         },
         "3": {
-          "value": "0px 3px 6px 0px {color.dark.neutral.surface-highlight}, 0px 0px 1px 0px {color.dark.neutral.interactive-hover}",
-          "comment": "Shadow level for elements that are floating at medium distance from the background. Can be used in popovers."
+          "value": "0px 4px 8px 0px rgba(0, 0, 0, 0.32), 0px 0px 2px 0px rgba(0, 0, 0, 0.16)",
+          "comment": "Directional shadow at medium elevation. Used for popovers and dropdowns."
         },
         "4": {
-          "value": "0px 12px 16px 0px {color.dark.neutral.surface-highlight}, 0px 0px 1px 0px {color.dark.neutral.interactive-hover}",
-          "comment": "Shadow for elements that are floating at a large distance from the background. Can be used in modals."
+          "value": "0px 12px 16px 0px rgba(0, 0, 0, 0.40), 0px 0px 4px 0px rgba(0, 0, 0, 0.24)",
+          "comment": "Directional shadow at large elevation. Used for modals."
         },
         "5": {
-          "value": "0px 24px 32px 0px {color.dark.neutral.surface-highlight}, 0px 0px 1px 0px {color.dark.neutral.interactive-hover}",
-          "comment": "Shadow level for elements that are floating at maximum distance from the background. Can be used in side modals."
+          "value": "0px 24px 32px 0px rgba(0, 0, 0, 0.48), 0px 0px 4px 0px rgba(0, 0, 0, 0.24)",
+          "comment": "Directional shadow at maximum elevation. Used for side modals and drawers."
         }
       }
     }

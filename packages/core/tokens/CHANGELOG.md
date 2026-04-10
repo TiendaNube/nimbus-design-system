@@ -2,6 +2,12 @@
 
 Our design tokens are the foundations of Nimbus Design System.
 
+## 2026-04-10 `9.5.2`
+
+#### 🐛 Bug fixes
+
+- `Shadow`: Redesigned all shadow levels (1–5) using `rgba` values with a dark neutral base (`rgba(72, 76, 88, X)`) for light mode and `rgba(0, 0, 0, X)` for dark mode, replacing previous color-token references that produced flat, unrealistic shadows.
+
 ## 2026-04-07 `9.5.1`
 
 #### 🎉 New features

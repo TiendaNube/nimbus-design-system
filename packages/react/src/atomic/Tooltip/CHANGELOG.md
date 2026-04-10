@@ -2,6 +2,13 @@
 
 The Tooltip component allows us to display additional information in a non-intrusive way.
 
+## 2026-04-10 `2.7.1`
+
+#### 🐛 Bug fixes
+
+- Fixed misalignment with trigger element by separating the floating position container (`floatingStyles`) from the animated content div, preventing `@floating-ui` positioning transforms from conflicting with CSS animation transforms.
+- Added exit transition via `useTransitionStyles`: enter 180ms / exit 120ms with `out.quint` easing and dynamic `transform-origin` based on the placement side.
+
 ## 2026-02-12 `2.7.0`
 
 #### 🎉 New features

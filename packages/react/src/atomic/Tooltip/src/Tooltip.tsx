@@ -3,6 +3,7 @@ import {
   useFloating,
   useInteractions,
   useHover,
+  useTransitionStyles,
   FloatingPortal,
   FloatingArrow,
   arrow as arrowUI,
@@ -16,6 +17,16 @@ import { tooltip, useTheme } from "@nimbus-ds/styles";
 import { Text } from "@nimbus-ds/text";
 import { Box } from "@nimbus-ds/box";
 import { type TooltipProps } from "./tooltip.types";
+
+// out.quint — cubic-bezier(0.23, 1, 0.32, 1)
+const EASING = "cubic-bezier(0.23, 1, 0.32, 1)";
+
+const SIDE_ORIGINS: Record<string, string> = {
+  top: "bottom center",
+  bottom: "top center",
+  left: "right center",
+  right: "left center",
+};
 
 const Tooltip: React.FC<TooltipProps> = ({
   className,
@@ -72,6 +83,14 @@ const Tooltip: React.FC<TooltipProps> = ({
     maxWidth,
   });
 
+  const { isMounted, styles: transitionStyles } = useTransitionStyles(context, {
+    duration: { open: 180, close: 120 },
+    initial: { opacity: 0, transform: "scale(0.97)" },
+    common: ({ side }) => ({
+      transformOrigin: SIDE_ORIGINS[side] ?? "center",
+    }),
+  });
+
   return (
     <>
       <div
@@ -86,40 +105,48 @@ const Tooltip: React.FC<TooltipProps> = ({
         id="nimbus-tooltip-floating"
         root={refThemeProvider?.current}
       >
-        {isVisible && (
+        {isMounted && (
           <div
-            {...rest}
-            {...otherProps}
             ref={context.refs.setFloating}
-            className={[
-              className,
-              tooltip.classnames.content,
-              classNameStyles,
-            ].join(" ")}
             style={{
-              ...style,
               ...floatingStyles,
               position: strategy,
             }}
             {...getFloatingProps()}
           >
-            <Text
-              color="neutral-background"
-              fontSize="caption"
-              lineHeight="caption"
+            <div
+              {...rest}
+              {...otherProps}
+              data-side={context.placement.split("-")[0]}
+              className={[
+                className,
+                tooltip.classnames.content,
+                classNameStyles,
+              ].join(" ")}
+              style={{
+                ...style,
+                ...transitionStyles,
+                transition: `opacity ${context.open ? "180ms" : "120ms"} ${EASING}, transform ${context.open ? "180ms" : "120ms"} ${EASING}`,
+              }}
             >
-              {content}
-            </Text>
-            {arrow && (
-              <Box
-                as={FloatingArrow}
-                data-testid="arrow-element"
-                ref={arrowRef}
-                context={context}
-                color="neutral-textHigh"
-                fill="currentColor"
-              />
-            )}
+              <Text
+                color="neutral-background"
+                fontSize="caption"
+                lineHeight="caption"
+              >
+                {content}
+              </Text>
+              {arrow && (
+                <Box
+                  as={FloatingArrow}
+                  data-testid="arrow-element"
+                  ref={arrowRef}
+                  context={context}
+                  color="neutral-textHigh"
+                  fill="currentColor"
+                />
+              )}
+            </div>
           </div>
         )}
       </FloatingPortal>

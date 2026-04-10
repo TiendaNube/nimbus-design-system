@@ -8,6 +8,7 @@ import {
   useHover,
   useDismiss,
   useClick,
+  useTransitionStyles,
   flip,
   shift,
   size,
@@ -18,6 +19,16 @@ import {
 import { popover, useTheme } from "@nimbus-ds/styles";
 
 import { type PopoverProps } from "./popover.types";
+
+// out.quint — cubic-bezier(0.23, 1, 0.32, 1)
+const EASING = "cubic-bezier(0.23, 1, 0.32, 1)";
+
+const SIDE_ORIGINS: Record<string, string> = {
+  top: "bottom center",
+  bottom: "top center",
+  left: "right center",
+  right: "left center",
+};
 
 const Popover: React.FC<PopoverProps> = ({
   className,
@@ -116,29 +127,43 @@ const Popover: React.FC<PopoverProps> = ({
     }),
   ]);
 
+  const { isMounted, styles: transitionStyles } = useTransitionStyles(context, {
+    duration: { open: 180, close: 120 },
+    initial: { opacity: 0, transform: "scale(0.96)" },
+    common: ({ side }) => ({
+      transformOrigin: SIDE_ORIGINS[side] ?? "center",
+    }),
+  });
+
   const popoverContent = (
     <div
-      {...otherProps}
       ref={context.refs.setFloating}
-      className={[className, popover.classnames.content, classNameStyles].join(
-        " "
-      )}
-      style={{
-        ...style,
-        ...floatingStyles,
-      }}
+      style={floatingStyles}
       {...getFloatingProps()}
     >
-      {content}
-      {arrow && (
-        <FloatingArrow
-          data-testid="arrow-element"
-          ref={arrowRef}
-          context={context}
-          fill="currentColor"
-          tipRadius={3}
-        />
-      )}
+      <div
+        {...otherProps}
+        data-side={context.placement.split("-")[0]}
+        className={[className, popover.classnames.content, classNameStyles].join(
+          " "
+        )}
+        style={{
+          ...style,
+          ...transitionStyles,
+          transition: `opacity ${context.open ? "180ms" : "120ms"} ${EASING}, transform ${context.open ? "180ms" : "120ms"} ${EASING}`,
+        }}
+      >
+        {content}
+        {arrow && (
+          <FloatingArrow
+            data-testid="arrow-element"
+            ref={arrowRef}
+            context={context}
+            fill="currentColor"
+            tipRadius={3}
+          />
+        )}
+      </div>
     </div>
   );
 
@@ -160,7 +185,7 @@ const Popover: React.FC<PopoverProps> = ({
         id="nimbus-popover-floating"
         root={refThemeProvider?.current}
       >
-        {open && (
+        {isMounted && (
           <>
             {renderOverlay && (
               <div

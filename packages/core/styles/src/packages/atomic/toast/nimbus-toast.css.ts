@@ -12,7 +12,7 @@ const base = vanillaStyle({
   gap: varsThemeBase.spacing[1],
   padding: varsThemeBase.spacing[2],
   borderRadius: varsThemeBase.shape.border.radius.base,
-  boxShadow: `0 0 2px 0 ${varsThemeBase.colors.neutral.interactiveHover}`,
+  boxShadow: varsThemeBase.shadow.level[1],
   transition: `background-color ${varsThemeBase.motion.speed.fast} ease, box-shadow ${varsThemeBase.motion.speed.fast} ease, transform ${varsThemeBase.motion.duration[2]} ${varsThemeBase.motion.easing.out.quart}`,
   zIndex: varsThemeBase.zIndex[800],
 });

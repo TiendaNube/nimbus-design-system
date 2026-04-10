@@ -2,6 +2,14 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2026-04-10 `9.62.3`
+
+#### 🐛 Bug fixes
+
+- `Tooltip`: Removed CSS `@keyframes` enter animation; animation is now fully handled by `useTransitionStyles` in the component layer.
+- `Popover`: Same as Tooltip — removed `@keyframes` enter animation.
+- `Toast`: Replaced hardcoded `box-shadow` value with `varsThemeBase.shadow.level[1]` token.
+
 ## 2026-04-06 `9.62.2`
 
 #### 🎉 New features

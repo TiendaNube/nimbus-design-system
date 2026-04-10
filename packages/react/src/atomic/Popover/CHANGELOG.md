@@ -2,6 +2,13 @@
 
 Use Popovers to bring attention to specific user interface elements and suggest an action or to guide users through a new experience
 
+## 2026-04-10 `4.4.2`
+
+#### 🐛 Bug fixes
+
+- Fixed misalignment with trigger element by separating the floating position container (`floatingStyles`) from the animated content div, preventing `@floating-ui` positioning transforms from conflicting with CSS animation transforms.
+- Added exit transition via `useTransitionStyles`: enter 180ms / exit 120ms with `out.quint` easing and dynamic `transform-origin` based on the placement side.
+
 ## 2026-03-02 `4.4.1`
 
 #### 🐛 Bug fixes
