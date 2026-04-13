@@ -18,6 +18,7 @@
 | @noecondoleo | Micro-interactions (atomic) | Done | **2026-04-08:** Enter animations for Popover/Tooltip (keyframes, scale+opacity); Radio dot scale-in; ProgressBar linear easing; Toggle thumb inOut.cubic 240ms; Toast transform transition; `transition:all` replaced with explicit properties on Button, Chip, IconButton, Input, Select, Textarea, Link; `prefers-reduced-motion` global. Commit `c9329a8a`. |
 | @noecondoleo | Tooltip/Popover fix + Shadow tokens | Done | **2026-04-10:** Fix Tooltip/Popover misalignment (wrapper div pattern), add exit transitions via `useTransitionStyles` (180ms enter / 120ms exit, dynamic `transform-origin`), redesign shadow token system with `rgba` values. Commit `ea843ffe`. |
 | @noecondoleo | Popover arrow sync + RC build fix | Done | **2026-04-13:** Fix `FloatingArrow` animating out of sync by moving opacity to outer floating div (arrow inherits fade via CSS). Fix `ComponentsBuilder` double-slash path and skip dirs without `package.json`. Commits `aef1e54c`, `fdbde219`. |
+| @noecondoleo | Webpack build robustness | Done | **2026-04-13:** Fix `getComponentsPackageExports` in `@nimbus-ds/webpack` to skip directories without `src/index.ts` (e.g. `shared/`), preventing webpack from failing when building the `@nimbus-ds/components` bundle. Commit `b06fdea4`. |
 
 ---
 
@@ -48,6 +49,23 @@ Popover arrow animation sync fix + RC build robustness fixes. Commits: `aef1e54c
 | `@nimbus-ds/popover` | `4.4.2` | `4.4.3` |
 | `@nimbus-ds/components` | `5.57.2` | `5.57.3` |
 | `@nimbus-ds/scripts` | `1.8.2` | `1.8.3` |
+| `@nimbus-ds/webpack` | — | — |
+
+## 2026-04-13 @noecondoleo — base: `3d78b8e7`
+
+Webpack build robustness fix. Commit: `b06fdea4`.
+
+| Author date | Commit | Summary |
+|-------------|--------|---------|
+| 2026-04-13 | `b06fdea4` | fix(webpack): skip directories without src/index.ts in getComponentsPackageExports |
+
+### Component Changes
+
+**getComponentsPackageExports** (webpack utils fix)
+- `getDirectories` returns all subdirectories including utility folders like `shared/` that have no `src/index.ts`
+- Added `existsSync` guard: if the resolved entry file does not exist, the directory is skipped before any webpack entry, DTS command, or package export is generated
+- Mirrors the same defensive pattern applied to `ComponentsBuilder` in the previous fix
+- No version bump needed for `@nimbus-ds/webpack` as it is in the `declined` release list
 
 ## 2026-04-10 @noecondoleo — base: `c9329a8a`
 
