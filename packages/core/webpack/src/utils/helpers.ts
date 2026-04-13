@@ -44,7 +44,10 @@ export const getComponentsPackageExports = (
     const componentName = path.basename(componentPath);
     const componentDir = path.join(baseDir, componentPath);
 
-    let entryFile = path.join(componentDir, "src", "index.ts");
+    const entryFileDefault = path.join(componentDir, "src", "index.ts");
+    if (!existsSync(entryFileDefault)) return;
+
+    let entryFile = entryFileDefault;
 
     const extraCommands = [];
     // 2. If a src/components folder exists, generate a temporary file to aggregate exports
