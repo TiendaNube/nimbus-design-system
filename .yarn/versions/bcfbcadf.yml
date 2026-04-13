@@ -36,5 +36,6 @@ releases:
 
 declined:
   - nimbus-design-system
+  - nimbus-helper
   - "@nimbus-ds/webpack"
   - "@nimbus-ds/icons"
