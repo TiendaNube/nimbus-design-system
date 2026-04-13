@@ -128,6 +128,18 @@ const Popover: React.FC<PopoverProps> = ({
     }),
   });
 
+  const dur = context.open ? "180ms" : "120ms";
+
+  const {
+    opacity,
+    transform: contentTransform,
+    transformOrigin: contentOrigin,
+  } = transitionStyles as {
+    opacity?: number;
+    transform?: string;
+    transformOrigin?: string;
+  };
+
   const popoverContent = (
     <div
       ref={context.refs.setFloating}
@@ -139,26 +151,29 @@ const Popover: React.FC<PopoverProps> = ({
       style={{
         ...floatingStyles,
         ...style,
+        opacity,
+        transition: `opacity ${dur} ${FLOATING_EASING}`,
       }}
       {...getFloatingProps()}
     >
       <div
         style={{
-          ...transitionStyles,
-          transition: `opacity ${context.open ? "180ms" : "120ms"} ${FLOATING_EASING}, transform ${context.open ? "180ms" : "120ms"} ${FLOATING_EASING}`,
+          transform: contentTransform,
+          transformOrigin: contentOrigin,
+          transition: `transform ${dur} ${FLOATING_EASING}`,
         }}
       >
         {content}
-        {arrow && (
-          <FloatingArrow
-            data-testid="arrow-element"
-            ref={arrowRef}
-            context={context}
-            fill="currentColor"
-            tipRadius={3}
-          />
-        )}
       </div>
+      {arrow && (
+        <FloatingArrow
+          data-testid="arrow-element"
+          ref={arrowRef}
+          context={context}
+          fill="currentColor"
+          tipRadius={3}
+        />
+      )}
     </div>
   );
 

@@ -4,7 +4,7 @@ import { PackageBuilder } from "../packageBuilder";
 export class ComponentsBuilder {
   private PATH: string;
 
-  constructor(packagesPath: string = "./packages/react/src/") {
+  constructor(packagesPath: string = "./packages/react/src") {
     this.PATH = packagesPath;
   }
 

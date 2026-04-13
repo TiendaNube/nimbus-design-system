@@ -2,6 +2,12 @@
 
 This package is intended for internal use in generating custom script builds at design system build time.
 
+## 2026-04-13 `1.8.3`
+
+#### 🐛 Bug fixes
+
+- Fixed double-slash path issue in `ComponentsBuilder` that caused RC builds to fail when resolving component `package.json` files. ([#455](https://github.com/TiendaNube/nimbus-design-system/pull/455) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-01-13 `1.8.1`
 
 #### 🐛 Bug fixes

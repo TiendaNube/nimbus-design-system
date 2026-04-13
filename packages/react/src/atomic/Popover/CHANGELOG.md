@@ -2,6 +2,12 @@
 
 Use Popovers to bring attention to specific user interface elements and suggest an action or to guide users through a new experience
 
+## 2026-04-13 `4.4.3`
+
+#### 🐛 Bug fixes
+
+- Fixed arrow animation running out of sync with the popover content by moving the opacity transition to the outer floating element so both the content and the arrow inherit the same fade timing. ([#455](https://github.com/TiendaNube/nimbus-design-system/pull/455) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-04-10 `4.4.2`
 
 #### 🐛 Bug fixes

@@ -3,6 +3,12 @@
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories
 every day, with simplicity, accessibility, consistency and performance.
 
+## 2026-04-13 `5.57.3`
+
+#### 🐛 Bug fixes
+
+- `Popover`: Fixed arrow animation running out of sync with the popover content by moving the opacity transition to the outer floating element so both the content and the arrow inherit the same fade timing. ([#455](https://github.com/TiendaNube/nimbus-design-system/pull/455) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-04-07 `5.57.2`
 
 #### 🎉 New features
