@@ -16,8 +16,18 @@ import {
 import { tooltip, useTheme } from "@nimbus-ds/styles";
 import { Text } from "@nimbus-ds/text";
 import { Box } from "@nimbus-ds/box";
-import { FLOATING_EASING, FLOATING_SIDE_ORIGINS } from "../../shared/floatingMotion";
 import { type TooltipProps } from "./tooltip.types";
+
+/** out.quint easing — cubic-bezier(0.23, 1, 0.32, 1) */
+const FLOATING_EASING = "cubic-bezier(0.23, 1, 0.32, 1)";
+
+/** Maps each floating side to its transform-origin value for scale animations. */
+const FLOATING_SIDE_ORIGINS: Record<string, string> = {
+  top: "bottom center",
+  bottom: "top center",
+  left: "right center",
+  right: "left center",
+};
 
 const Tooltip: React.FC<TooltipProps> = ({
   className,
