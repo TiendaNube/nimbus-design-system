@@ -17,8 +17,37 @@
 | @noecondoleo | Toast NUI | Done | **2026-04-08:** Visual alignment with Figma — background colors per appearance, border-radius, box-shadow, icon/text color mapping, spinner color. Commit `c9329a8a`. |
 | @noecondoleo | Micro-interactions (atomic) | Done | **2026-04-08:** Enter animations for Popover/Tooltip (keyframes, scale+opacity); Radio dot scale-in; ProgressBar linear easing; Toggle thumb inOut.cubic 240ms; Toast transform transition; `transition:all` replaced with explicit properties on Button, Chip, IconButton, Input, Select, Textarea, Link; `prefers-reduced-motion` global. Commit `c9329a8a`. |
 | @noecondoleo | Tooltip/Popover fix + Shadow tokens | Done | **2026-04-10:** Fix Tooltip/Popover misalignment (wrapper div pattern), add exit transitions via `useTransitionStyles` (180ms enter / 120ms exit, dynamic `transform-origin`), redesign shadow token system with `rgba` values. Commit `ea843ffe`. |
+| @noecondoleo | Popover arrow sync + RC build fix | Done | **2026-04-13:** Fix `FloatingArrow` animating out of sync by moving opacity to outer floating div (arrow inherits fade via CSS). Fix `ComponentsBuilder` double-slash path and skip dirs without `package.json`. Commits `aef1e54c`, `fdbde219`. |
 
 ---
+
+## 2026-04-13 @noecondoleo — base: `ab5d089b`
+
+Popover arrow animation sync fix + RC build robustness fixes. Commits: `aef1e54c`, `fdbde219`.
+
+| Author date | Commit | Summary |
+|-------------|--------|---------|
+| 2026-04-13 | `aef1e54c` | fix(popover,scripts): fix arrow animation sync and RC build path issue |
+| 2026-04-13 | `fdbde219` | fix(scripts): skip directories without package.json in ComponentsBuilder |
+
+### Component Changes
+
+**Popover** (motion fix)
+- Root cause: `FloatingArrow` was inside the animated inner wrapper div; `transform: scale()` on that wrapper created a new CSS containing block, causing the arrow's `position: absolute` (calculated against the outer div) to mismatch during animation
+- Fix: opacity transition moved to the **outer floating div** — arrow and content now share the same fade via CSS inheritance, with zero timing drift
+- Inner wrapper retains only the `transform: scale` + `transformOrigin` (content only); `FloatingArrow` is a sibling outside the transform wrapper
+
+**ComponentsBuilder** (RC build fix)
+- Secondary fix: `readdirSync` returns all entries in a directory including non-component folders (e.g. `shared/`); added `fs.existsSync` guard to skip any entry that does not have a `package.json`
+- This makes the builder resilient to future utility directories added alongside components
+
+### Package Version Bumps
+
+| Package | Before | After |
+|---------|--------|-------|
+| `@nimbus-ds/popover` | `4.4.2` | `4.4.3` |
+| `@nimbus-ds/components` | `5.57.2` | `5.57.3` |
+| `@nimbus-ds/scripts` | `1.8.2` | `1.8.3` |
 
 ## 2026-04-10 @noecondoleo — base: `c9329a8a`
 
