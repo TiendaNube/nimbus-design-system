@@ -13,10 +13,9 @@ export class ComponentsBuilder {
 
     const readComponents = fs.readdirSync(`${this.PATH}/${path}`);
     for (const component of readComponents) {
-      const packageJsonContent = fs.readFileSync(
-        `${this.PATH}/${path}/${component}/package.json`,
-        "utf-8"
-      );
+      const packageJsonPath = `${this.PATH}/${path}/${component}/package.json`;
+      if (!fs.existsSync(packageJsonPath)) continue;
+      const packageJsonContent = fs.readFileSync(packageJsonPath, "utf-8");
       const json = JSON.parse(packageJsonContent);
       const componentName = json.name;
       components.push(componentName);
