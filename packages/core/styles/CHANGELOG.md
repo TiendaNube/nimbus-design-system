@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2026-04-13 `9.62.4`
+
+#### 🐛 Bug fixes
+
+- `Popover`: Replaced `filter: drop-shadow(...)` with `boxShadow: varsThemeBase.shadow.level[3]` to fix a GPU compositing conflict where the shadow was rendered before the `transform: translate()` positioning applied by Floating UI, causing the shadow to appear at the wrong position in production.
+
 ## 2026-04-10 `9.62.3`
 
 #### 🐛 Bug fixes

@@ -2,6 +2,12 @@
 
 Use Popovers to bring attention to specific user interface elements and suggest an action or to guide users through a new experience
 
+## 2026-04-13 `4.4.4`
+
+#### 🐛 Bug fixes
+
+- Reverted `useTransitionStyles` animation introduced in `4.4.2` and `4.4.3` due to a race condition where the floating element was rendered at position `(0,0)` before Floating UI computed its final coordinates, causing the popover to appear at the wrong position in production. Restored direct conditional rendering based on the `open` flag.
+
 ## 2026-04-13 `4.4.3`
 
 #### 🐛 Bug fixes

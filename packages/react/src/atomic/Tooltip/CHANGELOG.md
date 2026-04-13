@@ -2,6 +2,12 @@
 
 The Tooltip component allows us to display additional information in a non-intrusive way.
 
+## 2026-04-13 `2.7.2`
+
+#### 🐛 Bug fixes
+
+- Reverted `useTransitionStyles` animation introduced in `2.7.1` due to a race condition where the floating element was rendered at position `(0,0)` before Floating UI computed its final coordinates, causing the tooltip to appear at the wrong position in production. Restored direct conditional rendering based on the `isVisible` flag.
+
 ## 2026-04-10 `2.7.1`
 
 #### 🐛 Bug fixes

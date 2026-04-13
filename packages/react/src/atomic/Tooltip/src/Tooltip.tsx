@@ -3,7 +3,6 @@ import {
   useFloating,
   useInteractions,
   useHover,
-  useTransitionStyles,
   FloatingPortal,
   FloatingArrow,
   arrow as arrowUI,
@@ -17,17 +16,6 @@ import { tooltip, useTheme } from "@nimbus-ds/styles";
 import { Text } from "@nimbus-ds/text";
 import { Box } from "@nimbus-ds/box";
 import { type TooltipProps } from "./tooltip.types";
-
-/** out.quint easing — cubic-bezier(0.23, 1, 0.32, 1) */
-const FLOATING_EASING = "cubic-bezier(0.23, 1, 0.32, 1)";
-
-/** Maps each floating side to its transform-origin value for scale animations. */
-const FLOATING_SIDE_ORIGINS: Record<string, string> = {
-  top: "bottom center",
-  bottom: "top center",
-  left: "right center",
-  right: "left center",
-};
 
 const Tooltip: React.FC<TooltipProps> = ({
   className,
@@ -83,14 +71,6 @@ const Tooltip: React.FC<TooltipProps> = ({
     maxWidth,
   });
 
-  const { isMounted, styles: transitionStyles } = useTransitionStyles(context, {
-    duration: { open: 180, close: 120 },
-    initial: { opacity: 0, transform: "scale(0.97)" },
-    common: ({ side }) => ({
-      transformOrigin: FLOATING_SIDE_ORIGINS[side] ?? "center",
-    }),
-  });
-
   return (
     <>
       <div
@@ -105,11 +85,11 @@ const Tooltip: React.FC<TooltipProps> = ({
         id="nimbus-tooltip-floating"
         root={refThemeProvider?.current}
       >
-        {isMounted && (
+        {isVisible && (
           <div
-            ref={context.refs.setFloating}
             {...rest}
             {...otherProps}
+            ref={context.refs.setFloating}
             data-side={context.placement.split("-")[0]}
             className={[
               className,
@@ -117,35 +97,28 @@ const Tooltip: React.FC<TooltipProps> = ({
               classNameStyles,
             ].join(" ")}
             style={{
-              ...floatingStyles,
               ...style,
+              ...floatingStyles,
             }}
             {...getFloatingProps()}
           >
-            <div
-              style={{
-                ...transitionStyles,
-                transition: `opacity ${context.open ? "180ms" : "120ms"} ${FLOATING_EASING}, transform ${context.open ? "180ms" : "120ms"} ${FLOATING_EASING}`,
-              }}
+            <Text
+              color="neutral-background"
+              fontSize="caption"
+              lineHeight="caption"
             >
-              <Text
-                color="neutral-background"
-                fontSize="caption"
-                lineHeight="caption"
-              >
-                {content}
-              </Text>
-              {arrow && (
-                <Box
-                  as={FloatingArrow}
-                  data-testid="arrow-element"
-                  ref={arrowRef}
-                  context={context}
-                  color="neutral-textHigh"
-                  fill="currentColor"
-                />
-              )}
-            </div>
+              {content}
+            </Text>
+            {arrow && (
+              <Box
+                as={FloatingArrow}
+                data-testid="arrow-element"
+                ref={arrowRef}
+                context={context}
+                color="neutral-textHigh"
+                fill="currentColor"
+              />
+            )}
           </div>
         )}
       </FloatingPortal>
