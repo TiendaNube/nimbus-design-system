@@ -19,6 +19,33 @@
 | @noecondoleo | Tooltip/Popover fix + Shadow tokens | Done | **2026-04-10:** Fix Tooltip/Popover misalignment (wrapper div pattern), add exit transitions via `useTransitionStyles` (180ms enter / 120ms exit, dynamic `transform-origin`), redesign shadow token system with `rgba` values. Commit `ea843ffe`. |
 | @noecondoleo | Popover arrow sync + RC build fix | Done | **2026-04-13:** Fix `FloatingArrow` animating out of sync by moving opacity to outer floating div (arrow inherits fade via CSS). Fix `ComponentsBuilder` double-slash path and skip dirs without `package.json`. Commits `aef1e54c`, `fdbde219`. |
 | @noecondoleo | Webpack build robustness | Done | **2026-04-13:** Fix `getComponentsPackageExports` in `@nimbus-ds/webpack` to skip directories without `src/index.ts` (e.g. `shared/`), preventing webpack from failing when building the `@nimbus-ds/components` bundle. Commit `b06fdea4`. |
+| @noecondoleo | Popover/Tooltip animation revert + shadow fix | Done | **2026-04-14:** Reverted `useTransitionStyles` in Popover (4.4.4) and Tooltip (2.7.2) — race condition caused floating elements to render at (0,0) before Floating UI computed position. Replaced `filter:drop-shadow` with `boxShadow:shadow.level[3]` to fix GPU compositing conflict. Commit `21cd1f18`. |
+| @noecondoleo | MultiSelect padding + vertical alignment | Done | **2026-04-14:** Reduced container padding to `spacing[1]` (4px) all sides; added `display:flex; align-items:center` to vertically align placeholder/chips with the chevron icon. Commit `c0d73d7d`. |
+
+---
+
+## 2026-04-14 — base: `e807bca6`
+
+### Component styles changed
+
+| File | +/- | What changed |
+|------|-----|-------------|
+| `atomic/multiSelect/nimbus-multiSelect.css.ts` | +3 / -4 | Updated styles: `display`, `alignItems` |
+| `atomic/popover/nimbus-popover.css.ts` | +1 / -1 | _—_ |
+
+### Atomic components changed
+
+| File | +/- | What changed |
+|------|-----|-------------|
+| `Input/package.json` | +1 / -1 | `"version": "2.7.2",` |
+| `MultiSelect/CHANGELOG.md` | +6 / -0 | `## 2026-04-14 `1.2.3`` · `#### 🐛 Bug fixes` · `- Reduced container padding to `spacing[1]` (4px) on all sides and added `display: flex; align-items: center` to vertically center placeholder and chips within the container.` |
+| `MultiSelect/package.json` | +1 / -1 | `"version": "1.2.3",` |
+| `Popover/CHANGELOG.md` | +6 / -0 | `## 2026-04-13 `4.4.4`` · `#### 🐛 Bug fixes` · `- Reverted `useTransitionStyles` animation introduced in `4.4.2` and `4.4.3` due to a race condition where the floating element was rendered at position `(0,0)` before Floating UI computed its final coordinates, causing the popover to appear at the wrong position in production. Restored direct conditional rendering based on the `open` flag.` |
+| `Popover/package.json` | +1 / -1 | `"version": "4.4.4",` |
+| `Popover/src/Popover.tsx` | +4 / -46 | `ref={context.refs.setFloating}` · `...floatingStyles,` · `{content}` |
+| `Tooltip/CHANGELOG.md` | +6 / -0 | `## 2026-04-13 `2.7.2`` · `#### 🐛 Bug fixes` · `- Reverted `useTransitionStyles` animation introduced in `2.7.1` due to a race condition where the floating element was rendered at position `(0,0)` before Floating UI computed its final coordinates, causing the tooltip to appear at the wrong position in production. Restored direct conditional rendering based on the `isVisible` flag.` |
+| `Tooltip/package.json` | +1 / -1 | `"version": "2.7.2",` |
+| `Tooltip/src/Tooltip.tsx` | +19 / -46 | `{isVisible && (` · `ref={context.refs.setFloating}` · `...floatingStyles,` |
 
 ---
 
