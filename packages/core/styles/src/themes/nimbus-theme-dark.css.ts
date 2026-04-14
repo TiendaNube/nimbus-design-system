@@ -6,7 +6,6 @@ import { globalTheme } from "./globals.css";
 
 const colors = tokens.color.dark;
 const lightColors = tokens.color.light;
-const { shadow } = tokens;
 
 const darkTheme = {
   ...globalTheme,

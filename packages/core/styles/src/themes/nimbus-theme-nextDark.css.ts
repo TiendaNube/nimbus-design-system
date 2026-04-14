@@ -6,7 +6,6 @@ import { globalTheme } from "./globals.css";
 
 const nextColors = tokens.color["next-dark"];
 const colors = tokens.color.dark;
-const { shadow } = tokens;
 
 const nextDarkTheme = {
   ...globalTheme,
