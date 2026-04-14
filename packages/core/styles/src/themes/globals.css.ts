@@ -8,7 +8,7 @@ const fontSize = tokens.font.size;
 const fontWeight = tokens.font.weight;
 const lineWeight = tokens.line.height;
 const { shape } = tokens;
-const { motion, spacing, breakpoint, zIndex } = tokens;
+const { motion, spacing, shadow, breakpoint, zIndex } = tokens;
 
 export const globalTheme = {
   colors: {
@@ -127,15 +127,13 @@ export const globalTheme = {
     },
   },
   shadow: {
-    // RGB channels of neutral.10 (#484C58) — single source of truth for shadow color
-    color: "72, 76, 88",
     level: {
-      0: "none",
-      1: `0px 0px 2px 0px rgba(${vars.shadow.color}, 0.08)`,
-      2: `0px 0px 8px 0px rgba(${vars.shadow.color}, 0.08)`,
-      3: `0px 4px 8px 0px rgba(${vars.shadow.color}, 0.12), 0px 0px 2px 0px rgba(${vars.shadow.color}, 0.06)`,
-      4: `0px 12px 16px 0px rgba(${vars.shadow.color}, 0.16), 0px 0px 4px 0px rgba(${vars.shadow.color}, 0.08)`,
-      5: `0px 24px 32px 0px rgba(${vars.shadow.color}, 0.20), 0px 0px 4px 0px rgba(${vars.shadow.color}, 0.08)`,
+      0: shadow.light.level[0].value,
+      1: shadow.light.level[1].value,
+      2: shadow.light.level[2].value,
+      3: shadow.light.level[3].value,
+      4: shadow.light.level[4].value,
+      5: shadow.light.level[5].value,
     },
   },
   shape: {

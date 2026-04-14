@@ -2,12 +2,6 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
-## 2026-04-14 `9.62.6`
-
-#### ✨ Improvements
-
-- `themes`: Introduced `shadow.color` CSS custom property (`--nimbus-shadow-color`) carrying the RGB channels of `neutral.10` (`72, 76, 88`). Shadow level values now reference this variable via `rgba(var(--nimbus-shadow-color), <opacity>)`, making all shadow levels automatically adapt when a new theme overrides `--nimbus-shadow-color`. This is a non-breaking change — the computed output is identical to the previous hardcoded values.
-
 ## 2026-04-14 `9.62.5`
 
 #### 🐛 Bug fixes
