@@ -30,6 +30,7 @@ releases:
   "@nimbus-ds/stepper": patch
   "@nimbus-ds/styles": patch
   "@nimbus-ds/tag": patch
+  "@nimbus-ds/tabs": patch
   "@nimbus-ds/text": patch
   "@nimbus-ds/textarea": patch
   "@nimbus-ds/thumbnail": patch
