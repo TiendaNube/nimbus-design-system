@@ -2,6 +2,12 @@
 
 The ProgressBar component allows us to display the progress of an operation or task in a visual format.
 
+## 2026-04-14 `1.2.1`
+
+#### 🐛 Bug fixes
+
+- Changed transition easing from ease to linear for time-accurate progress animation. Styles live in `@nimbus-ds/styles`.
+
 ## 2026-03-04 `1.2.0`
 
 #### 🎉 New features

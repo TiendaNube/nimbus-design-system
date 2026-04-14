@@ -3,6 +3,12 @@
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories
 every day, with simplicity, accessibility, consistency and performance.
 
+## 2026-04-14 `5.57.6`
+
+#### 🐛 Bug fixes
+
+- `Badge` `3.2.1`, `Button` `2.11.2`, `Chip` `2.6.2`, `FileUploader` `2.9.2`, `Link` `4.4.2`, `ProgressBar` `1.2.1`, `Spinner` `3.2.1`, `Tag` `2.5.2`, `Text` `6.8.1`, `Textarea` `2.7.1`, `Toast` `2.7.2`, `Toggle` `2.3.1`: Aligned visual states, token usage, and transition properties with Figma Norte UI. Styles live in `@nimbus-ds/styles` `9.62.5`.
+
 ## 2026-04-14 `5.57.5`
 
 #### 🐛 Bug fixes

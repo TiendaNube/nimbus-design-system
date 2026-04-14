@@ -2,6 +2,12 @@
 
 The Spinner component is used to inform the processing of tasks.
 
+## 2026-04-14 `3.2.1`
+
+#### 🐛 Bug fixes
+
+- Added spinner color token for Toast integration. Styles live in `@nimbus-ds/styles`.
+
 ## 2026-02-12 `3.2.0`
 
 #### 🎉 New features

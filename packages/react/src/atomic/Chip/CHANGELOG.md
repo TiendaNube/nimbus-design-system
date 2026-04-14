@@ -2,6 +2,12 @@
 
 The Chip component is used to flag criteria or attributes related to searches or filters of a list of information.
 
+## 2026-04-14 `2.6.2`
+
+#### 🐛 Bug fixes
+
+- Replaced `transition: all` with explicit transition properties (background-color, border-color, box-shadow). Styles live in `@nimbus-ds/styles`.
+
 ## 2026-02-12 `2.6.0`
 
 #### 🎉 New features

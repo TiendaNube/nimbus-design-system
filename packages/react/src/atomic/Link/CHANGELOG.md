@@ -2,6 +2,12 @@
 
 The Link component allows us to navigate to external addresses.
 
+## 2026-04-14 `4.4.2`
+
+#### 🐛 Bug fixes
+
+- Replaced `transition: all` with explicit `color` transition property. Styles live in `@nimbus-ds/styles`.
+
 ## 2026-02-12 `4.4.0`
 
 #### 🎉 New features

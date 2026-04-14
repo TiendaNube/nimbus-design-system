@@ -2,6 +2,12 @@
 
 The Button component allows us to initiate actions, make state or page changes.
 
+## 2026-04-14 `2.11.2`
+
+#### 🐛 Bug fixes
+
+- Updated visual states, token alignment and AI generative styles with Figma Norte UI. Replaced `transition: all` with explicit transition properties (background-color, border-color, box-shadow). Styles live in `@nimbus-ds/styles`.
+
 ## 2026-02-12 `2.11.0`
 
 #### 🎉 New features

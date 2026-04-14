@@ -2,6 +2,12 @@
 
 The File Uploader component is used to upload files.
 
+## 2026-04-14 `2.9.2`
+
+#### 🐛 Bug fixes
+
+- Updated visual states and token alignment with Figma Norte UI. Styles live in `@nimbus-ds/styles`.
+
 ## 2026-02-12 `2.9.0`
 
 #### 🎉 New features
