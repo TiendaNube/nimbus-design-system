@@ -115,6 +115,7 @@ export const vars = createGlobalThemeContract(
       },
     },
     shadow: {
+      color: "",
       level: {
         0: "",
         1: "",

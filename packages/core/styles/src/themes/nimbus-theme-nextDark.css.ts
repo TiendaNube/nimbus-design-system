@@ -73,6 +73,7 @@ const nextDarkTheme = {
     aiFocus: `0 0 0 3px ${globalTheme.colors.aiGenerative.surfaceHighlight}`,
   },
   shadow: {
+    color: "0, 0, 0",
     level: {
       0: shadow.dark.level[0].value,
       1: shadow.dark.level[1].value,
