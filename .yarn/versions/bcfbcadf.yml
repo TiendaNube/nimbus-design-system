@@ -13,20 +13,25 @@ releases:
   "@nimbus-ds/icon-button": patch
   "@nimbus-ds/input": patch
   "@nimbus-ds/label": patch
+  "@nimbus-ds/link": patch
   "@nimbus-ds/modal": patch
   "@nimbus-ds/multi-select": patch
   "@nimbus-ds/pagination": patch
   "@nimbus-ds/popover": patch
+  "@nimbus-ds/progress-bar": patch
   "@nimbus-ds/radio": patch
   "@nimbus-ds/scroll-pane": patch
   "@nimbus-ds/segmented-control": patch
   "@nimbus-ds/select": patch
   "@nimbus-ds/sidebar": patch
   "@nimbus-ds/slider": patch
+  "@nimbus-ds/spinner": patch
   "@nimbus-ds/split-button": patch
   "@nimbus-ds/stepper": patch
   "@nimbus-ds/styles": patch
   "@nimbus-ds/tag": patch
+  "@nimbus-ds/text": patch
+  "@nimbus-ds/textarea": patch
   "@nimbus-ds/thumbnail": patch
   "@nimbus-ds/time-picker": patch
   "@nimbus-ds/toast": patch
