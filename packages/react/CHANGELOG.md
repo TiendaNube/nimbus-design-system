@@ -3,6 +3,14 @@
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories
 every day, with simplicity, accessibility, consistency and performance.
 
+## 2026-04-14 `5.57.4`
+
+#### 🐛 Bug fixes
+
+- `Popover` `4.4.4`: Reverted `useTransitionStyles` animation due to a race condition causing wrong position in production; replaced `filter:drop-shadow` with `boxShadow:shadow.level[3]` to fix GPU compositing conflict.
+- `Tooltip` `2.7.2`: Reverted `useTransitionStyles` animation due to the same race condition.
+- `Input` `2.7.2`: Bumped package version to match shipped visual-state alignment with Figma (empty vs filled, hover, focus, disabled states).
+
 ## 2026-04-13 `5.57.3`
 
 #### 🐛 Bug fixes
