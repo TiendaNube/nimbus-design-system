@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2026-04-14 `9.62.5`
+
+#### 🐛 Bug fixes
+
+- `MultiSelect`: reduced container padding to `spacing[1]` (4px) on all sides; added `display: flex; align-items: center` to vertically align placeholder text and chips with the chevron icon.
+
 ## 2026-04-13 `9.62.4`
 
 #### 🐛 Bug fixes

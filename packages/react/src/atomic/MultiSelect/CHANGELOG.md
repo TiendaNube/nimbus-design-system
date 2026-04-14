@@ -2,6 +2,12 @@
 
 Use a multi-select box when a user needs to select more than one option from a list.
 
+## 2026-04-14 `1.2.3`
+
+#### 🐛 Bug fixes
+
+- Reduced container padding to `spacing[1]` (4px) on all sides and added `display: flex; align-items: center` to vertically center placeholder and chips within the container.
+
 ## 2026-04-06 `1.2.2`
 
 #### 🐛 Bug fixes
