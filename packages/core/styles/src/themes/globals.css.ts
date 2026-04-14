@@ -8,7 +8,7 @@ const fontSize = tokens.font.size;
 const fontWeight = tokens.font.weight;
 const lineWeight = tokens.line.height;
 const { shape } = tokens;
-const { motion, spacing, shadow, breakpoint, zIndex } = tokens;
+const { motion, spacing, breakpoint, zIndex } = tokens;
 
 export const globalTheme = {
   colors: {
@@ -128,12 +128,12 @@ export const globalTheme = {
   },
   shadow: {
     level: {
-      0: shadow.light.level[0].value,
-      1: shadow.light.level[1].value,
-      2: shadow.light.level[2].value,
-      3: shadow.light.level[3].value,
-      4: shadow.light.level[4].value,
-      5: shadow.light.level[5].value,
+      0: "none",
+      1: `0px 0px 2px 0px color-mix(in srgb, ${colors.neutral[10].value} 8%, transparent)`,
+      2: `0px 0px 8px 0px color-mix(in srgb, ${colors.neutral[10].value} 8%, transparent)`,
+      3: `0px 4px 8px 0px color-mix(in srgb, ${colors.neutral[10].value} 12%, transparent), 0px 0px 2px 0px color-mix(in srgb, ${colors.neutral[10].value} 6%, transparent)`,
+      4: `0px 12px 16px 0px color-mix(in srgb, ${colors.neutral[10].value} 16%, transparent), 0px 0px 4px 0px color-mix(in srgb, ${colors.neutral[10].value} 8%, transparent)`,
+      5: `0px 24px 32px 0px color-mix(in srgb, ${colors.neutral[10].value} 20%, transparent), 0px 0px 4px 0px color-mix(in srgb, ${colors.neutral[10].value} 8%, transparent)`,
     },
   },
   shape: {

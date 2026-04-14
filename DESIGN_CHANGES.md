@@ -21,6 +21,7 @@
 | @noecondoleo | Webpack build robustness | Done | **2026-04-13:** Fix `getComponentsPackageExports` in `@nimbus-ds/webpack` to skip directories without `src/index.ts` (e.g. `shared/`), preventing webpack from failing when building the `@nimbus-ds/components` bundle. Commit `b06fdea4`. |
 | @noecondoleo | Popover/Tooltip animation revert + shadow fix | Done | **2026-04-14:** Reverted `useTransitionStyles` in Popover (4.4.4) and Tooltip (2.7.2) — race condition caused floating elements to render at (0,0) before Floating UI computed position. Replaced `filter:drop-shadow` with `boxShadow:shadow.level[3]` to fix GPU compositing conflict. Commit `21cd1f18`. |
 | @noecondoleo | MultiSelect padding + vertical alignment | Done | **2026-04-14:** Reduced container padding to `spacing[1]` (4px) all sides; added `display:flex; align-items:center` to vertically align placeholder/chips with the chevron icon. Commit `c0d73d7d`. |
+|| @noecondoleo | Shadow tokens — color-mix() | Done | **2026-04-14:** Replaced hardcoded `rgba(72,76,88,...)` shadow values in `globals.css.ts` with `color-mix(in srgb, neutral.10 X%, transparent)`. Dark/nextDark themes updated to use `color-mix(in srgb, #000000 X%, transparent)`. Visual output identical. `@nimbus-ds/styles` → `9.62.6`. |
 
 ---
 

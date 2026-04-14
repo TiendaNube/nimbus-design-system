@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2026-04-14 `9.62.6`
+
+#### ✨ Improvements
+
+- `themes`: Replaced hardcoded `rgba(72, 76, 88, ...)` shadow values with `color-mix(in srgb, #484C58 X%, transparent)` referencing `neutral.10`. Dark and nextDark themes updated to `color-mix(in srgb, #000000 X%, transparent)`. Visual output is identical.
+
 ## 2026-04-14 `9.62.5`
 
 #### 🐛 Bug fixes

@@ -74,12 +74,12 @@ const nextDarkTheme = {
   },
   shadow: {
     level: {
-      0: shadow.dark.level[0].value,
-      1: shadow.dark.level[1].value,
-      2: shadow.dark.level[2].value,
-      3: shadow.dark.level[3].value,
-      4: shadow.dark.level[4].value,
-      5: shadow.dark.level[5].value,
+      0: "none",
+      1: "0px 0px 2px 0px color-mix(in srgb, #000000 24%, transparent)",
+      2: "0px 0px 8px 0px color-mix(in srgb, #000000 24%, transparent)",
+      3: "0px 4px 8px 0px color-mix(in srgb, #000000 32%, transparent), 0px 0px 2px 0px color-mix(in srgb, #000000 16%, transparent)",
+      4: "0px 12px 16px 0px color-mix(in srgb, #000000 40%, transparent), 0px 0px 4px 0px color-mix(in srgb, #000000 24%, transparent)",
+      5: "0px 24px 32px 0px color-mix(in srgb, #000000 48%, transparent), 0px 0px 4px 0px color-mix(in srgb, #000000 24%, transparent)",
     },
   },
 };
