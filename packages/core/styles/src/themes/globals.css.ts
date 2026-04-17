@@ -129,8 +129,8 @@ export const globalTheme = {
   shadow: {
     level: {
       0: "none",
-      1: `0px 0px 2px 0px color-mix(in srgb, ${colors.neutral[10].value} 8%, transparent)`,
-      2: `0px 0px 8px 0px color-mix(in srgb, ${colors.neutral[10].value} 8%, transparent)`,
+      1: `0px 0px 8px 0px color-mix(in srgb, ${colors.neutral[10].value} 8%, transparent)`,
+      2: `0px 0px 2px 0px color-mix(in srgb, ${colors.neutral[10].value} 60%, transparent)`,
       3: `0px 4px 8px 0px color-mix(in srgb, ${colors.neutral[10].value} 12%, transparent), 0px 0px 2px 0px color-mix(in srgb, ${colors.neutral[10].value} 6%, transparent)`,
       4: `0px 12px 16px 0px color-mix(in srgb, ${colors.neutral[10].value} 16%, transparent), 0px 0px 4px 0px color-mix(in srgb, ${colors.neutral[10].value} 8%, transparent)`,
       5: `0px 24px 32px 0px color-mix(in srgb, ${colors.neutral[10].value} 20%, transparent), 0px 0px 4px 0px color-mix(in srgb, ${colors.neutral[10].value} 8%, transparent)`,

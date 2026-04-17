@@ -39,7 +39,7 @@
           "comment": "Subtle ambient shadow. Used for interactive elements with minimal elevation."
         },
         "2": {
-          "value": "0px 0px 8px 0px rgba(0, 0, 0, 0.24)",
+          "value": "0px 0px 2px 0px rgba(0, 0, 0, 0.55)",
           "comment": "Ambient shadow without directional light. Used for cards and table containers."
         },
         "3": {

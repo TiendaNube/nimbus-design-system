@@ -92,7 +92,6 @@ const ShadowPreview: React.FC<{ cssVar: string }> = ({
       borderRadius: 8,
       backgroundColor: "var(--nimbus-colors-neutral-background)",
       boxShadow: cssVar,
-      border: "1px solid var(--nimbus-colors-neutral-surfaceHighlight)",
       flexShrink: 0,
     }}
   />

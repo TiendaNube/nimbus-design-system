@@ -3,11 +3,11 @@
     "level": {
       "0": { "value": "none" },
       "1": {
-        "value": "0px 0px 2px 0px rgba(72, 76, 88, 0.08)",
+        "value": "0px 0px 8px 0px rgba(72, 76, 88, 0.08)",
         "comment": "Subtle ambient shadow. Used for interactive elements with minimal elevation."
       },
       "2": {
-        "value": "0px 0px 8px 0px rgba(72, 76, 88, 0.08)",
+        "value": "0px 0px 2px 0px rgba(72, 76, 88, 0.60)",
         "comment": "Ambient shadow without directional light. Used for cards and table containers."
       },
       "3": {

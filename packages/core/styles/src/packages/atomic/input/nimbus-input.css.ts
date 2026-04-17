@@ -36,6 +36,8 @@ export const container = vanillaStyle({
   alignItems: "center",
   position: "relative",
   width: "100%",
+  height: "1.75rem",
+  boxSizing: "border-box",
   borderWidth: varsThemeBase.shape.border.width[1],
   borderRadius: varsThemeBase.shape.border.radius.base,
   borderStyle: "solid",
