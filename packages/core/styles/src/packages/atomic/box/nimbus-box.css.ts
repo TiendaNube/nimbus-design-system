@@ -74,6 +74,7 @@ const boxBackgroundColorProperties = {
 
   "neutral-background": backgroundColorProperties["neutral-background"],
   "neutral-interactive": backgroundColorProperties["neutral-interactive"],
+  "neutral-interactiveLow": backgroundColorProperties["neutral-interactiveLow"],
   "neutral-surface": backgroundColorProperties["neutral-surface"],
   "neutral-surfaceHighlight":
     backgroundColorProperties["neutral-surfaceHighlight"],
@@ -105,6 +106,7 @@ const boxBorderColorProperties = {
   "danger-surfaceHighlight": borderColorProperties["danger-surfaceHighlight"],
 
   "neutral-interactive": borderColorProperties["neutral-interactive"],
+  "neutral-interactiveLow": borderColorProperties["neutral-interactiveLow"],
   "neutral-surface": borderColorProperties["neutral-surface"],
   "neutral-surfaceDisabled": borderColorProperties["neutral-surfaceDisabled"],
   "neutral-surfaceHighlight": borderColorProperties["neutral-surfaceHighlight"],

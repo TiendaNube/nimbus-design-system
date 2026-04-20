@@ -42,6 +42,7 @@ export const baseColors = {
   "neutral-surfaceDisabled": varsThemeBase.colors.neutral.surfaceDisabled,
   "neutral-surfaceHighlight": varsThemeBase.colors.neutral.surfaceHighlight,
   "neutral-interactive": varsThemeBase.colors.neutral.interactive,
+  "neutral-interactiveLow": varsThemeBase.colors.neutral.interactiveLow,
   "neutral-interactiveHover": varsThemeBase.colors.neutral.interactiveHover,
   "neutral-interactivePressed": varsThemeBase.colors.neutral.interactivePressed,
   "neutral-textDisabled": varsThemeBase.colors.neutral.textDisabled,
