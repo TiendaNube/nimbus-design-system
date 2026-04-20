@@ -67,6 +67,7 @@ const semanticFamilies: Record<string, { cssPrefix: string; roles: string[] }> =
       "surface",
       "surfaceDisabled",
       "surfaceHighlight",
+      "interactiveLow",
       "interactive",
       "interactiveHover",
       "interactivePressed",

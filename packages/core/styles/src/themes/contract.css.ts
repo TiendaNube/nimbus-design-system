@@ -48,6 +48,7 @@ export const vars = createGlobalThemeContract(
         surface: "",
         surfaceDisabled: "",
         surfaceHighlight: "",
+        interactiveLow: "",
         interactive: "",
         interactiveHover: "",
         interactivePressed: "",

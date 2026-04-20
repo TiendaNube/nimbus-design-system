@@ -57,6 +57,7 @@ const nextDarkTheme = {
       surface: colors.neutral.surface.value as string,
       surfaceDisabled: colors.neutral["surface-disabled"].value as string,
       surfaceHighlight: colors.neutral["surface-highlight"].value as string,
+      interactiveLow: colors.neutral["interactive-low"].value as string,
       interactive: colors.neutral.interactive.value as string,
       interactiveHover: colors.neutral["interactive-hover"].value as string,
       interactivePressed: colors.neutral["interactive-pressed"].value as string,
