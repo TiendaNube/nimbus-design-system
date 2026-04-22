@@ -14,6 +14,11 @@ jobs:
   publish-packages-npm:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    permissions:
+      id-token: write
+      contents: write
+      pull-requests: write
+
     env:
       TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
       TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
@@ -26,9 +31,15 @@ jobs:
           sudo mkswap /swapfile
           sudo swapon /swapfile
           sudo swapon --show
-          
+
       - name: Checkout
         uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org/'
+          auth-oidc: true
 
       - uses: ./.github/actions/setup-node-deps
 
@@ -41,7 +52,7 @@ jobs:
 
       - name: Build icons
         run: yarn build:icons
-        
+
       - name: Build components
         run: |
           export NODE_OPTIONS="--max_old_space_size=12288"
@@ -56,9 +67,14 @@ jobs:
         run: yarn build:docs
 
       - name: Publish packages
-        run: yarn publish:stable
+        run: |
+          if [ -f ".yarnrc.yml" ]; then
+            yarn config set npmAuthIdent ""
+            yarn config set npmAlwaysAuth false
+          fi
+          yarn publish:stable
         env:
-          YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTOMATION_PUBLISH }}
+          NODE_AUTH_TOKEN: ""
 
       - name: Create release PR
         uses: peter-evans/create-pull-request@v7
@@ -74,7 +90,6 @@ jobs:
             .yarn/versions/**
           branch: release/publish-${{ github.run_id }}
           base: master
-          
 
   trigger-action-create-github-tag:
     runs-on: ubuntu-latest
@@ -82,7 +97,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Trigger github action create github tag
         run: |
           curl --request POST \
@@ -96,7 +110,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Trigger github action send slack notifications
         run: |
           curl --request POST \
@@ -115,7 +128,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Trigger github action update documentation
         run: |
           curl --request POST \
