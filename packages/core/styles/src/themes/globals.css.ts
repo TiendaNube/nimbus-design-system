@@ -186,6 +186,8 @@ export const globalTheme = {
     700: zIndex[700].value,
     800: zIndex[800].value,
     900: zIndex[900].value,
+    1000: zIndex[1000].value,
+    1100: zIndex[1100].value,
   },
   motion: {
     speed: {

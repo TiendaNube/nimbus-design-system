@@ -22,7 +22,15 @@
     },
     "900": {
       "value": "900",
-      "comment": "The highest z-index value, use not defined."
+      "comment": "The highest general-purpose z-index value, use not defined."
+    },
+    "1000": {
+      "value": "1000",
+      "comment": "Reserved for Modal overlay when zIndex='top'. Do not use elsewhere."
+    },
+    "1100": {
+      "value": "1100",
+      "comment": "Reserved for Modal container when zIndex='top'. Do not use elsewhere."
     }
   }
 }

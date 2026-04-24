@@ -174,6 +174,8 @@ export const vars = createGlobalThemeContract(
       700: "",
       800: "",
       900: "",
+      1000: "",
+      1100: "",
     },
     motion: {
       speed: {

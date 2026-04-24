@@ -274,6 +274,8 @@ export const zIndexProperties = {
   "700": varsThemeBase.zIndex[700],
   "800": varsThemeBase.zIndex[800],
   "900": varsThemeBase.zIndex[900],
+  "1000": varsThemeBase.zIndex[1000],
+  "1100": varsThemeBase.zIndex[1100],
 };
 
 export const wordBreakProperties: WordBreak[] = [
