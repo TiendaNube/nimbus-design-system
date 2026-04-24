@@ -26,6 +26,11 @@ jobs:
   publish-rc-packages:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    permissions:
+      id-token: write
+      contents: write
+      pull-requests: write
+
     env:
       TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
       TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
@@ -41,6 +46,12 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org/'
+          auth-oidc: true
 
       - uses: ./.github/actions/setup-node-deps
 
@@ -71,6 +82,10 @@ jobs:
 
       - name: Publish RC packages
         run: |
+          if [ -f ".yarnrc.yml" ]; then
+            yarn config set npmAuthIdent ""
+            yarn config set npmAlwaysAuth false
+          fi
           IFS=',' read -ra PACKAGES <<< "${{ github.event.inputs.packages }}"
           FAILED=0
           FAILED_PACKAGES=""
@@ -99,5 +114,5 @@ jobs:
           fi
           echo "✅ All packages published successfully"
         env:
-          YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTOMATION_PUBLISH }}
+          NODE_AUTH_TOKEN: ""
 
