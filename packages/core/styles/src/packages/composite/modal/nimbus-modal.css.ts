@@ -14,7 +14,7 @@ import { mediaQueries, varsThemeBase } from "../../../themes";
  * Style
  * -----------------------------------------------------------------------------------------------*/
 
-const containerBase = style({
+export const container = style({
   position: "relative",
   display: "flex",
   flexDirection: "column",
@@ -30,9 +30,9 @@ const containerBase = style({
   boxSizing: "border-box",
 });
 
-export const container = styleVariants({
-  base: [containerBase, { zIndex: varsThemeBase.zIndex[700] }],
-  top: [containerBase, { zIndex: varsThemeBase.zIndex[1100] }],
+const containerZIndex = styleVariants({
+  base: { zIndex: varsThemeBase.zIndex[700] },
+  top: { zIndex: varsThemeBase.zIndex[1100] },
 });
 
 const container__close = style({
@@ -89,14 +89,14 @@ const baseOverlay = style({
   animation: `${overlayAnimation} 0.5s ease`,
 });
 
-const overlayPortaled = style([
+const overlay = style([
   baseOverlay,
   { position: "fixed", height: "100vh", width: "100vw" },
 ]);
 
-const overlay = styleVariants({
-  base: [overlayPortaled, { zIndex: varsThemeBase.zIndex[600] }],
-  top: [overlayPortaled, { zIndex: varsThemeBase.zIndex[1000] }],
+const overlayZIndex = styleVariants({
+  base: { zIndex: varsThemeBase.zIndex[600] },
+  top: { zIndex: varsThemeBase.zIndex[1000] },
 });
 
 const overlayScoped = style([
@@ -111,8 +111,10 @@ const overlayScoped = style([
 
 export const styles = {
   overlay,
+  overlayZIndex,
   overlayScoped,
   container,
+  containerZIndex,
   container__close,
   container__footer,
 };

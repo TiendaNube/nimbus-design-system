@@ -97,7 +97,8 @@ const Modal: React.FC<ModalProps> & ModalComponents = ({
         style={style}
         className={[
           className,
-          modal.classnames.container[zIndex],
+          modal.classnames.container,
+          modal.classnames.containerZIndex[zIndex],
           classNameStyles,
         ]
           .filter(Boolean)
@@ -136,7 +137,13 @@ const Modal: React.FC<ModalProps> & ModalComponents = ({
       id={portalId ?? "nimbus-modal-floating"}
       root={refThemeProvider?.current}
     >
-      <FloatingOverlay className={modal.classnames.overlay[zIndex]} lockScroll>
+      <FloatingOverlay
+        className={[
+          modal.classnames.overlay,
+          modal.classnames.overlayZIndex[zIndex],
+        ].join(" ")}
+        lockScroll
+      >
         {content}
       </FloatingOverlay>
     </FloatingPortal>

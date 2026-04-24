@@ -77,16 +77,22 @@ describe("GIVEN <Modal />", () => {
   });
 
   describe("WHEN zIndex selects a stacking layer", () => {
-    it("THEN applies the base container and overlay classes by default", () => {
+    it("THEN applies the base containerZIndex class by default", () => {
       makeSut({ children: <div>content</div> });
       const modalElement = screen.getByTestId("modal-element");
-      expect(modalElement.className).toContain(modal.classnames.container.base);
+      expect(modalElement.className).toContain(modal.classnames.container);
+      expect(modalElement.className).toContain(
+        modal.classnames.containerZIndex.base
+      );
     });
 
-    it("AND applies the top container and overlay classes when zIndex='top'", () => {
+    it("AND applies the top containerZIndex class when zIndex='top'", () => {
       makeSut({ children: <div>content</div>, zIndex: "top" });
       const modalElement = screen.getByTestId("modal-element");
-      expect(modalElement.className).toContain(modal.classnames.container.top);
+      expect(modalElement.className).toContain(modal.classnames.container);
+      expect(modalElement.className).toContain(
+        modal.classnames.containerZIndex.top
+      );
     });
   });
 
