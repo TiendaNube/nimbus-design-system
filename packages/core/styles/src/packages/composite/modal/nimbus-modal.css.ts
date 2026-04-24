@@ -105,14 +105,19 @@ const overlayScoped = style([
     position: "absolute",
     height: "100%",
     width: "100%",
-    zIndex: varsThemeBase.zIndex[600],
   },
 ]);
+
+const overlayScopedZIndex = styleVariants({
+  base: { zIndex: varsThemeBase.zIndex[600] },
+  top: { zIndex: varsThemeBase.zIndex[1000] },
+});
 
 export const styles = {
   overlay,
   overlayZIndex,
   overlayScoped,
+  overlayScopedZIndex,
   container,
   containerZIndex,
   container__close,
