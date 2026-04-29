@@ -121,7 +121,7 @@ function publishToNpm(
     const tagFlag = `--tag ${tag}`;
     const otpFlag = otp ? ` --otp=${otp}` : "";
 
-    const command = `yarn workspace ${packageName} npm publish ${accessFlag} ${tagFlag}${otpFlag}`;
+    const command = `npm publish --workspace=${packageName} ${accessFlag} ${tagFlag}${otpFlag}`;
 
     console.log(`📤 Publishing with command: ${command}`);
 

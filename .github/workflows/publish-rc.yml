@@ -82,10 +82,6 @@ jobs:
 
       - name: Publish RC packages
         run: |
-          if [ -f ".yarnrc.yml" ]; then
-            yarn config set npmAuthIdent ""
-            yarn config set npmAlwaysAuth false
-          fi
           IFS=',' read -ra PACKAGES <<< "${{ github.event.inputs.packages }}"
           FAILED=0
           FAILED_PACKAGES=""
@@ -113,6 +109,4 @@ jobs:
             exit 1
           fi
           echo "✅ All packages published successfully"
-        env:
-          NODE_AUTH_TOKEN: ""
 
