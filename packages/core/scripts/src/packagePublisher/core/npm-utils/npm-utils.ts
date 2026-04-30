@@ -121,7 +121,7 @@ function publishToNpm(
     const tagFlag = `--tag ${tag}`;
     const otpFlag = otp ? ` --otp=${otp}` : "";
 
-    const command = `npm publish --workspace=${packageName} ${accessFlag} ${tagFlag}${otpFlag}`;
+    const command = `npm publish --workspace=${packageName} ${accessFlag} ${tagFlag} --provenance${otpFlag}`;
 
     console.log(`📤 Publishing with command: ${command}`);
 
