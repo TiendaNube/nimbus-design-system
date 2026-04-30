@@ -4,13 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       packages:
-        description: |
-          Comma-separated list of packages to publish (e.g., @nimbus-ds/button,@nimbus-ds/box).
-          Available packages: @nimbus-ds/components, @nimbus-ds/styles, @nimbus-ds/tokens, @nimbus-ds/icons,
-          @nimbus-ds/button, @nimbus-ds/box, @nimbus-ds/text, @nimbus-ds/icon, @nimbus-ds/checkbox,
-          @nimbus-ds/file-uploader, @nimbus-ds/table, @nimbus-ds/accordion, @nimbus-ds/modal,
-          @nimbus-ds/stepper, @nimbus-ds/segmented-control, @nimbus-ds/split-button, @nimbus-ds/scroll-pane,
-          @nimbus-ds/slider
+        description: "Comma-separated list of packages to publish"
         required: true
         type: string
       bump_type:
@@ -22,15 +16,16 @@ on:
           - minor
           - major
 
+# PASO 1: Agregamos permisos para OIDC (Copiado del template)
+permissions:
+  id-token: write
+  contents: write
+  pull-requests: write
+
 jobs:
   publish-rc-packages:
     runs-on: ubuntu-latest
     timeout-minutes: 30
-    permissions:
-      id-token: write
-      contents: write
-      pull-requests: write
-
     env:
       TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
       TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
@@ -45,11 +40,15 @@ jobs:
           sudo swapon --show
 
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4 # Actualizado a v4 como el template
 
+      # PASO 2: Setup Node con OIDC (Copiado del template)
       - uses: actions/setup-node@v4
+        id: setup-node
         with:
           node-version: '20'
+          registry-url: 'https://registry.npmjs.org/'
+          auth-oidc: true
 
       - uses: ./.github/actions/setup-node-deps
 
@@ -83,28 +82,35 @@ jobs:
           IFS=',' read -ra PACKAGES <<< "${{ github.event.inputs.packages }}"
           FAILED=0
           FAILED_PACKAGES=""
+
+          # Configuramos Yarn para que use el token de OIDC
+          # Esto resuelve el error YN0033
+          yarn config set npmAuthToken "$NODE_AUTH_TOKEN"
+
           for package in "${PACKAGES[@]}"; do
             package=$(echo "$package" | xargs)
             if [ -n "$package" ]; then
-              echo "📦 Publishing RC for $package with bump type: ${{ github.event.inputs.bump_type }}"
+              echo ":package: Publishing RC for $package with bump type: ${{ github.event.inputs.bump_type }}"
               set +e
               echo "y" | yarn publish:rc "$package" "${{ github.event.inputs.bump_type }}" --skip-build
               EXIT_CODE=$?
               set -e
               if [ $EXIT_CODE -ne 0 ]; then
-                echo "❌ Failed to publish $package (exit code: $EXIT_CODE)"
+                echo ":x: Failed to publish $package (exit code: $EXIT_CODE)"
                 FAILED=$((FAILED + 1))
                 FAILED_PACKAGES="${FAILED_PACKAGES}${FAILED_PACKAGES:+, }$package"
               fi
             fi
           done
+
           if [ $FAILED -gt 0 ]; then
-            echo ""
             echo "=========================================="
-            echo "❌ PUBLISH SUMMARY: $FAILED package(s) failed"
+            echo ":x: PUBLISH SUMMARY: $FAILED package(s) failed"
             echo "Failed packages: $FAILED_PACKAGES"
             echo "=========================================="
             exit 1
           fi
-          echo "✅ All packages published successfully"
-
+          echo ":white_check_mark: All packages published successfully"
+        env:
+          # PASO 3: Usamos el token generado por OIDC en lugar del secreto manual
+          NODE_AUTH_TOKEN: ${{ steps.setup-node.outputs.auth-token }}
