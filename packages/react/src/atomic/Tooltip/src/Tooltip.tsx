@@ -30,20 +30,19 @@ const Tooltip: React.FC<TooltipProps> = ({
   const arrowRef = useRef(null);
   const [isVisible, setVisibility] = useState(false);
   const { refThemeProvider } = useTheme();
-  const { context, strategy, floatingStyles } = useFloating({
+  const { context, floatingStyles } = useFloating({
     open: isVisible,
     placement: position,
     strategy: "fixed",
     middleware: [
       offset(6),
-      shift(),
+      arrowUI({
+        element: arrowRef,
+      }),
       flip({
         crossAxis: position.includes("-"),
         fallbackAxisSideDirection: "end",
         padding: 5,
-      }),
-      arrowUI({
-        element: arrowRef,
       }),
       shift(),
     ],
@@ -91,6 +90,7 @@ const Tooltip: React.FC<TooltipProps> = ({
             {...rest}
             {...otherProps}
             ref={context.refs.setFloating}
+            data-side={context.placement.split("-")[0]}
             className={[
               className,
               tooltip.classnames.content,
@@ -99,7 +99,6 @@ const Tooltip: React.FC<TooltipProps> = ({
             style={{
               ...style,
               ...floatingStyles,
-              position: strategy,
             }}
             {...getFloatingProps()}
           >

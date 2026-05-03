@@ -2,6 +2,65 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2026-04-14 `9.62.6`
+
+#### ✨ Improvements
+
+- `themes`: Replaced hardcoded `rgba(72, 76, 88, ...)` shadow values with `color-mix(in srgb, #484C58 X%, transparent)` referencing `neutral.10`. Dark and nextDark themes updated to `color-mix(in srgb, #000000 X%, transparent)`. Visual output is identical.
+
+## 2026-04-14 `9.62.5`
+
+#### 🐛 Bug fixes
+
+- `MultiSelect`: reduced container padding to `spacing[1]` (4px) on all sides; added `display: flex; align-items: center` to vertically align placeholder text and chips with the chevron icon.
+
+## 2026-04-13 `9.62.4`
+
+#### 🐛 Bug fixes
+
+- `Popover`: Replaced `filter: drop-shadow(...)` with `boxShadow: varsThemeBase.shadow.level[3]` to fix a GPU compositing conflict where the shadow was rendered before the `transform: translate()` positioning applied by Floating UI, causing the shadow to appear at the wrong position in production.
+
+## 2026-04-10 `9.62.3`
+
+#### 🐛 Bug fixes
+
+- `Tooltip`: Removed CSS `@keyframes` enter animation; animation is now fully handled by `useTransitionStyles` in the component layer.
+- `Popover`: Same as Tooltip — removed `@keyframes` enter animation.
+- `Toast`: Replaced hardcoded `box-shadow` value with `varsThemeBase.shadow.level[1]` token.
+
+## 2026-04-06 `9.62.2`
+
+#### 🎉 New features
+
+- Theme: Exposed `varsThemeBase.motion.duration` and `varsThemeBase.motion.easing` from new tokens; added `transitionDurationProperties` and `transitionEasingProperties` in style property helpers. ([#455](https://github.com/TiendaNube/nimbus-design-system/pull/455) by [@noecondoleo](https://github.com/noecondoleo))
+
+#### 🐛 Bug fixes
+
+- `Thumbnail`: Empty state uses `neutral.surfaceHighlight` fill; root container is transparent so image thumbs match Figma NUI (19812-50137); placeholder layout uses flex grow. ([#455](https://github.com/TiendaNube/nimbus-design-system/pull/455) by [@noecondoleo](https://github.com/noecondoleo))
+
+#### 🐛 Bug fixes
+
+- `Textarea`: Aligned with Input/Select NUI (Figma 6535-183031)—`shape.border.radius.base`; focus ring `0 0 0 2px` with semantic stroke color per appearance; hover and filled (`:not(:placeholder-shown)`) states for success, warning, and danger; disabled border `neutral.interactive`; removed `utils.focus` / primary pressed border on focus; `ai-generative` keeps gradient with focus ring only; `aiGenerated` drops glow when disabled and shows focus ring when focused. ([#455](https://github.com/TiendaNube/nimbus-design-system/pull/455) by [@noecondoleo](https://github.com/noecondoleo))
+- `Select`: Border radius `shape.border.radius.base` (6px) and fixed `1.75rem` (28px) border-box height; vertical padding `0.3125rem` (5px) so line-height `1rem` + 1px borders fit; `padding: 0` reset and `min/max-height` so native `<select>` does not keep ~8px UA padding (Figma 19797-4859). ([#455](https://github.com/TiendaNube/nimbus-design-system/pull/455) by [@noecondoleo](https://github.com/noecondoleo))
+- `MultiSelect`: Trigger border radius aligned with `Select` (`radius.base`). ([#455](https://github.com/TiendaNube/nimbus-design-system/pull/455) by [@noecondoleo](https://github.com/noecondoleo))
+- `Radio`: Label and label content use `align-items: center` so the 16px control centers with caption line-height text. ([#455](https://github.com/TiendaNube/nimbus-design-system/pull/455) by [@noecondoleo](https://github.com/noecondoleo))
+- `Radio`: Selected inner dot centered with `position: absolute` + `translate(-50%,-50%)` and exact `0.5625rem` (9px) size; checkmark uses `box-sizing: border-box` and `display: block` so the ring is not skewed by flex baseline. ([#455](https://github.com/TiendaNube/nimbus-design-system/pull/455) by [@noecondoleo](https://github.com/noecondoleo))
+
+## 2026-04-06 `9.62.1`
+
+#### 🐛 Bug fixes
+
+- `Input`: Aligned container states with Figma (node 19744-43902)—neutral disabled/hover; success, warning, and danger use neutral backgrounds with semantic borders, filled vs placeholder (`:placeholder-shown`), hover, focus, and disabled; `ai-generative` uses solid `aiGenerative.textLow` border instead of a radial gradient border for SVG-safe tokens. ([#455](https://github.com/TiendaNube/nimbus-design-system/pull/455) by [@noecondoleo](https://github.com/noecondoleo))
+- `Input`: Disabled state refinements per Figma (node 19744-44033)—no focus ring when disabled, placeholder uses `neutral.textDisabled`, `aiGenerated` ring removed when disabled. ([#455](https://github.com/TiendaNube/nimbus-design-system/pull/455) by [@noecondoleo](https://github.com/noecondoleo))
+- `Input`: Disabled container matches Figma 19744-44033—fill `neutral.surfaceHighlight`, border `neutral.interactive` (all appearances); disabled `<input>` background transparent so the container fill shows through. ([#455](https://github.com/TiendaNube/nimbus-design-system/pull/455) by [@noecondoleo](https://github.com/noecondoleo))
+- `Select`: Aligned trigger states with Figma (node 19797-4857)—neutral/success/warning/danger/ai-generative use the same patterns as Input (placeholder via `option:checked:disabled`, filled value, hover, `focus` ring 2px, disabled fill `surfaceHighlight` + border `neutral.interactive`); `ai-generative` uses solid `aiGenerative.textLow` border instead of gradient. ([#455](https://github.com/TiendaNube/nimbus-design-system/pull/455) by [@noecondoleo](https://github.com/noecondoleo))
+- `Checkbox`: Aligned primary unchecked hover with Figma (node 19754-83261)—`neutral.surface` fill and `neutral.interactiveHover` border; hover rule scoped with `:not([data-indeterminate])` so it does not clash with indeterminate styles; checkmark box is `1rem` (16px) to match spec. ([#455](https://github.com/TiendaNube/nimbus-design-system/pull/455) by [@noecondoleo](https://github.com/noecondoleo))
+- `Checkbox`: Primary unchecked pressed state (Figma node 19754-83266)—`neutral.surface` background and `neutral.interactivePressed` border via `:active` on the label. ([#455](https://github.com/TiendaNube/nimbus-design-system/pull/455) by [@noecondoleo](https://github.com/noecondoleo))
+- `Checkbox`: Danger unchecked pressed (Figma node 19754-83354)—`neutral.surface` background and `danger.interactivePressed` border; placed after danger hover so pressed wins. ([#455](https://github.com/TiendaNube/nimbus-design-system/pull/455) by [@noecondoleo](https://github.com/noecondoleo))
+- `Checkbox`: Indeterminate pressed (Figma node 19754-83316)—`neutral.surface` background, `primary.interactivePressed` border, and indeterminate bar/icon color `primary.interactivePressed`. ([#455](https://github.com/TiendaNube/nimbus-design-system/pull/455) by [@noecondoleo](https://github.com/noecondoleo))
+- `Checkbox`: Disabled states (Figma nodes 19754-83328 unchecked, 19754-83333 checked, 19754-83338 indeterminate)—checkmark `neutral.surfaceHighlight` fill and `neutral.interactive` border; indeterminate disabled bar color `neutral.textDisabled`. ([#455](https://github.com/TiendaNube/nimbus-design-system/pull/455) by [@noecondoleo](https://github.com/noecondoleo))
+- `Radio`: Aligned `as=radio` and `as=button` with Figma (frame 19805-1354)—radio rest/hover/pressed/disabled/checked-disabled/focus; button rest/hover/pressed/checked/hover+pressed/checked-disabled/disabled base/focus (`0 0 0 2px` `neutral.interactive`); radio circle `1rem`; `data-as` on the label drives interaction selectors. ([#455](https://github.com/TiendaNube/nimbus-design-system/pull/455) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-03-04 `9.61.0`
 
 #### 🎉 New features

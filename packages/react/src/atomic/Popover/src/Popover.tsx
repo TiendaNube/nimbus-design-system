@@ -39,16 +39,18 @@ const Popover: React.FC<PopoverProps> = ({
   content,
   ...rest
 }) => {
+  type SprinkleParams = Parameters<typeof popover.sprinkle>[0];
+
   const {
     className: classNameStyles,
     style,
     otherProps,
   } = popover.sprinkle({
-    ...(rest as Parameters<typeof popover.sprinkle>[0]),
+    ...(rest as SprinkleParams),
     width,
-    padding: padding as any,
-    backgroundColor: backgroundColor as any,
-    color: backgroundColor as any,
+    padding: padding as SprinkleParams["padding"],
+    backgroundColor: backgroundColor as SprinkleParams["backgroundColor"],
+    color: backgroundColor as SprinkleParams["color"],
   });
 
   const arrowRef = useRef(null);
@@ -120,6 +122,7 @@ const Popover: React.FC<PopoverProps> = ({
     <div
       {...otherProps}
       ref={context.refs.setFloating}
+      data-side={context.placement.split("-")[0]}
       className={[className, popover.classnames.content, classNameStyles].join(
         " "
       )}

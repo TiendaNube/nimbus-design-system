@@ -21,6 +21,7 @@ const Radio: React.FC<RadioProps> & RadioComponents = ({
   return (
     <label
       htmlFor={id || name}
+      data-as={as}
       className={[
         className,
         radio.classnames.container,

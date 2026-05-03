@@ -28,6 +28,7 @@ const meta: Meta<typeof Basic> = {
         "A ref to the element rendered by this component. Because this component is polymorphic, the type will vary based on the value of the as prop.",
     },
     children: { control: { type: "text" } },
+    disabled: { control: "boolean" },
   },
   tags: ["autodocs"],
 };
@@ -71,13 +72,6 @@ export const loading: Story = {
   },
 };
 
-export const disabled: Story = {
-  args: {
-    disabled: true,
-    children: "Button",
-  },
-};
-
 export const asLink = {
   args: {
     as: "a",
@@ -98,6 +92,20 @@ export const danger: Story = {
   args: {
     children: "Button",
     appearance: "danger",
+  },
+};
+
+export const success: Story = {
+  args: {
+    children: "Button",
+    appearance: "success",
+  },
+};
+
+export const warning: Story = {
+  args: {
+    children: "Button",
+    appearance: "warning",
   },
 };
 
@@ -135,10 +143,34 @@ export const aiPrimary: Story = {
   },
 };
 
+export const aiPrimaryWithIcon: Story = {
+  args: {
+    appearance: "ai-primary",
+    children: (
+      <>
+        <Icon color="currentColor" source={<ExternalLinkIcon />} />
+        Button
+      </>
+    ),
+  },
+};
+
 export const aiSecondary: Story = {
   args: {
     children: "Button",
     appearance: "ai-secondary",
+  },
+};
+
+export const aiSecondaryWithIcon: Story = {
+  args: {
+    appearance: "ai-secondary",
+    children: (
+      <>
+        <Icon color="ai-gradientPurpleHigh" source={<ExternalLinkIcon />} />
+        Button
+      </>
+    ),
   },
 };
 

@@ -2,6 +2,12 @@
 
 The badge component is used to communicate quantities of items or pending actions.
 
+## 2026-04-14 `3.2.1`
+
+#### 🐛 Bug fixes
+
+- Updated visual states and token alignment with Figma Norte UI. Styles live in `@nimbus-ds/styles`.
+
 ## 2026-02-12 `3.2.0`
 
 #### 🎉 New features

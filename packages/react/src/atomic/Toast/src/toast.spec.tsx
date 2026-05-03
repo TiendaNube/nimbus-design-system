@@ -27,6 +27,10 @@ describe("GIVEN <Toast />", () => {
     jest.clearAllMocks();
   });
 
+  afterEach(() => {
+    jest.clearAllTimers();
+  });
+
   describe("THEN should correctly render the submitted type", () => {
     it("THEN should correctly render the type primary", () => {
       makeSut({ type: "primary", id: "1", text: "Toast" });
@@ -35,7 +39,7 @@ describe("GIVEN <Toast />", () => {
       ).toContain("primary");
 
       const icon = screen.getByTestId("toast-icon-primary");
-      expect(icon.getAttribute("class")).toContain("color_primary-surface");
+      expect(icon.getAttribute("class")).toContain("color_neutral-textHigh");
       expect(icon.firstChild?.nodeName).toEqual("svg");
     });
 
@@ -46,7 +50,7 @@ describe("GIVEN <Toast />", () => {
       ).toContain("success");
 
       const icon = screen.getByTestId("toast-icon-success");
-      expect(icon.getAttribute("class")).toContain("color_success-surface");
+      expect(icon.getAttribute("class")).toContain("color_neutral-background");
       expect(icon.firstChild?.nodeName).toEqual("svg");
     });
 
@@ -57,7 +61,7 @@ describe("GIVEN <Toast />", () => {
       ).toContain("danger");
 
       const icon = screen.getByTestId("toast-icon-danger");
-      expect(icon.getAttribute("class")).toContain("color_danger-surface");
+      expect(icon.getAttribute("class")).toContain("color_neutral-background");
       expect(icon.firstChild?.nodeName).toEqual("svg");
     });
 
@@ -68,7 +72,7 @@ describe("GIVEN <Toast />", () => {
       ).toContain("progress");
 
       const icon = screen.getByTestId("toast-spinner-neutral");
-      expect(icon.getAttribute("class")).toContain("color_neutral-surface");
+      expect(icon.getAttribute("class")).toContain("color_neutral-textHigh");
       expect(icon.firstChild?.nodeName).toEqual("circle");
     });
 
@@ -79,7 +83,7 @@ describe("GIVEN <Toast />", () => {
       ).toContain("primary");
 
       const icon = screen.getByTestId("toast-icon-primary");
-      expect(icon.getAttribute("class")).toContain("color_primary-surface");
+      expect(icon.getAttribute("class")).toContain("color_neutral-textHigh");
       expect(icon.firstChild?.nodeName).toEqual("svg");
     });
   });

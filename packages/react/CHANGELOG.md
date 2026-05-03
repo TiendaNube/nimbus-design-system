@@ -3,6 +3,38 @@
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories
 every day, with simplicity, accessibility, consistency and performance.
 
+## 2026-04-14 `5.57.6`
+
+#### 🐛 Bug fixes
+
+- `Badge` `3.2.1`, `Button` `2.11.2`, `Chip` `2.6.2`, `FileUploader` `2.9.2`, `Link` `4.4.2`, `ProgressBar` `1.2.1`, `Spinner` `3.2.1`, `Tag` `2.5.2`, `Text` `6.8.1`, `Textarea` `2.7.1`, `Toast` `2.7.2`, `Toggle` `2.3.1`: Aligned visual states, token usage, and transition properties with Figma Norte UI. Styles live in `@nimbus-ds/styles` `9.62.5`.
+
+## 2026-04-14 `5.57.5`
+
+#### 🐛 Bug fixes
+
+- `MultiSelect` `1.2.3`: reduced padding to 4px all sides and fixed vertical alignment of placeholder/chips.
+
+## 2026-04-14 `5.57.4`
+
+#### 🐛 Bug fixes
+
+- `Popover` `4.4.4`: Reverted `useTransitionStyles` animation due to a race condition causing wrong position in production; replaced `filter:drop-shadow` with `boxShadow:shadow.level[3]` to fix GPU compositing conflict.
+- `Tooltip` `2.7.2`: Reverted `useTransitionStyles` animation due to the same race condition.
+- `Input` `2.7.2`: Bumped package version to match shipped visual-state alignment with Figma (empty vs filled, hover, focus, disabled states).
+
+## 2026-04-13 `5.57.3`
+
+#### 🐛 Bug fixes
+
+- `Popover`: Fixed arrow animation running out of sync with the popover content by moving the opacity transition to the outer floating element so both the content and the arrow inherit the same fade timing. ([#455](https://github.com/TiendaNube/nimbus-design-system/pull/455) by [@noecondoleo](https://github.com/noecondoleo))
+
+## 2026-04-07 `5.57.2`
+
+#### 🎉 New features
+
+- Storybook: Added **Tokens / Motion** overview with duration and easing tables, interactive previews, legacy `speed.*` reference, and reduced-motion snippet. ([#455](https://github.com/TiendaNube/nimbus-design-system/pull/455) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-03-04 `5.56.0`
 
 #### 🎉 New features

@@ -1,10 +1,75 @@
 {
   "motion": {
     "speed": {
-      "fast": { "value": "150ms" },
+      "fast": {
+        "value": "150ms",
+        "comment": "Legacy token. Prefer motion.duration for new work; maps closely to subtle hover (150ms ease) in motion-design guidance."
+      },
       "base": { "value": "300ms" },
       "slow": { "value": "450ms" },
       "slower": { "value": "600ms" }
+    },
+    "duration": {
+      "1": {
+        "value": "120ms",
+        "comment": "Micro feedback, quick fades, button press (--dur-1)."
+      },
+      "2": {
+        "value": "180ms",
+        "comment": "Dropdowns, popovers, small surfaces (--dur-2)."
+      },
+      "3": {
+        "value": "240ms",
+        "comment": "Dialogs, sheets, medium surfaces (--dur-3)."
+      },
+      "4": {
+        "value": "300ms",
+        "comment": "Upper bound for most product UI (--dur-4)."
+      },
+      "5": {
+        "value": "500ms",
+        "comment": "Large surfaces with steep early easing (--dur-5)."
+      },
+      "illustrative": {
+        "value": "800ms",
+        "comment": "Typical marketing or onboarding motion; full illustrative range is often 700–1200ms."
+      }
+    },
+    "easing": {
+      "linear": {
+        "value": "linear",
+        "comment": "Progress bars, marquees, spinners—time should feel constant."
+      },
+      "out": {
+        "quad": { "value": "cubic-bezier(0.25, 0.46, 0.45, 0.94)" },
+        "cubic": { "value": "cubic-bezier(0.215, 0.61, 0.355, 1)" },
+        "quart": {
+          "value": "cubic-bezier(0.165, 0.84, 0.44, 1)",
+          "comment": "Default for most enter/exit UI motion."
+        },
+        "quint": { "value": "cubic-bezier(0.23, 1, 0.32, 1)" },
+        "expo": { "value": "cubic-bezier(0.19, 1, 0.22, 1)" },
+        "circ": { "value": "cubic-bezier(0.075, 0.82, 0.165, 1)" }
+      },
+      "inOut": {
+        "quad": { "value": "cubic-bezier(0.455, 0.03, 0.515, 0.955)" },
+        "cubic": {
+          "value": "cubic-bezier(0.645, 0.045, 0.355, 1)",
+          "comment": "Default for on-screen morph and layout motion."
+        },
+        "quart": { "value": "cubic-bezier(0.77, 0, 0.175, 1)" },
+        "quint": { "value": "cubic-bezier(0.86, 0, 0.07, 1)" },
+        "expo": { "value": "cubic-bezier(1, 0, 0, 1)" },
+        "circ": { "value": "cubic-bezier(0.785, 0.135, 0.15, 0.86)" }
+      },
+      "in": {
+        "quad": { "value": "cubic-bezier(0.55, 0.085, 0.68, 0.53)" },
+        "cubic": { "value": "cubic-bezier(0.55, 0.055, 0.675, 0.19)" },
+        "quart": {
+          "value": "cubic-bezier(0.895, 0.03, 0.685, 0.22)",
+          "comment": "Rare in product UI; exits or anticipation only."
+        }
+      }
     }
   }
 }

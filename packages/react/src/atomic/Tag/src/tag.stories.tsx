@@ -105,8 +105,8 @@ export const aiGenerativeWithIcon: Story = {
     appearance: "ai-generative",
     children: (
       <>
-        <Icon source={<BoxPackedIcon size={12} />} color="ai-generative" />
-        <Text fontSize="caption" lineHeight="caption">
+        <Icon source={<BoxPackedIcon size={12} />} color="ai-generativeTextHigh" />
+        <Text fontSize="caption" lineHeight="caption" color="ai-generativeTextHigh">
           AI generated
         </Text>
       </>

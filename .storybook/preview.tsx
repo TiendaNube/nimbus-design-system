@@ -27,7 +27,7 @@ const preview: Preview = {
     },
     options: {
       storySort: {
-        order: ["Atomic", "Composite", "Skeleton"],
+        order: ["Tokens", "Atomic", "Composite", "Skeleton"],
       },
     },
     backgrounds: {

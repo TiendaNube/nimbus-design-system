@@ -23,7 +23,7 @@ export const containerNoOverflow = style(baseProperties);
 const fill = style({
   height: "100%",
   borderRadius: varsThemeBase.shape.border.radius.full,
-  transition: `width ${varsThemeBase.motion.speed.slow} ease`,
+  transition: `width ${varsThemeBase.motion.speed.slow} ${varsThemeBase.motion.easing.linear}`,
   minWidth: "0.5rem",
 });
 

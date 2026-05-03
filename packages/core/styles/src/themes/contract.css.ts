@@ -5,6 +5,7 @@ export const vars = createGlobalThemeContract(
     colors: {
       primary: {
         surface: "",
+        surfaceDisabled: "",
         surfaceHighlight: "",
         interactive: "",
         interactiveHover: "",
@@ -14,6 +15,7 @@ export const vars = createGlobalThemeContract(
       },
       success: {
         surface: "",
+        surfaceDisabled: "",
         surfaceHighlight: "",
         interactive: "",
         interactiveHover: "",
@@ -23,6 +25,7 @@ export const vars = createGlobalThemeContract(
       },
       warning: {
         surface: "",
+        surfaceDisabled: "",
         surfaceHighlight: "",
         interactive: "",
         interactiveHover: "",
@@ -32,6 +35,7 @@ export const vars = createGlobalThemeContract(
       },
       danger: {
         surface: "",
+        surfaceDisabled: "",
         surfaceHighlight: "",
         interactive: "",
         interactiveHover: "",
@@ -44,6 +48,7 @@ export const vars = createGlobalThemeContract(
         surface: "",
         surfaceDisabled: "",
         surfaceHighlight: "",
+        interactiveLow: "",
         interactive: "",
         interactiveHover: "",
         interactivePressed: "",
@@ -53,9 +58,11 @@ export const vars = createGlobalThemeContract(
       },
       aiGenerative: {
         interactiveHover: "",
+        interactive: "",
         textLow: "",
         interactivePressed: "",
         surfaceHighlight: "",
+        surfaceDisabled: "",
         surface: "",
         background: "",
         textHigh: "",
@@ -123,6 +130,7 @@ export const vars = createGlobalThemeContract(
         radius: {
           "0-5": "",
           1: "",
+          "1-5": "",
           2: "",
           3: "",
           4: "",
@@ -181,6 +189,38 @@ export const vars = createGlobalThemeContract(
         fast: "",
         slow: "",
         slower: "",
+      },
+      duration: {
+        1: "",
+        2: "",
+        3: "",
+        4: "",
+        5: "",
+        illustrative: "",
+      },
+      easing: {
+        linear: "",
+        out: {
+          quad: "",
+          cubic: "",
+          quart: "",
+          quint: "",
+          expo: "",
+          circ: "",
+        },
+        inOut: {
+          quad: "",
+          cubic: "",
+          quart: "",
+          quint: "",
+          expo: "",
+          circ: "",
+        },
+        in: {
+          quad: "",
+          cubic: "",
+          quart: "",
+        },
       },
     },
     breakpoint: {

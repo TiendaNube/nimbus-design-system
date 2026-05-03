@@ -2,6 +2,25 @@
 
 Use Popovers to bring attention to specific user interface elements and suggest an action or to guide users through a new experience
 
+## 2026-04-13 `4.4.4`
+
+#### 🐛 Bug fixes
+
+- Reverted `useTransitionStyles` animation introduced in `4.4.2` and `4.4.3` due to a race condition where the floating element was rendered at position `(0,0)` before Floating UI computed its final coordinates, causing the popover to appear at the wrong position in production. Restored direct conditional rendering based on the `open` flag.
+
+## 2026-04-13 `4.4.3`
+
+#### 🐛 Bug fixes
+
+- Fixed arrow animation running out of sync with the popover content by moving the opacity transition to the outer floating element so both the content and the arrow inherit the same fade timing. ([#455](https://github.com/TiendaNube/nimbus-design-system/pull/455) by [@noecondoleo](https://github.com/noecondoleo))
+
+## 2026-04-10 `4.4.2`
+
+#### 🐛 Bug fixes
+
+- Fixed misalignment with trigger element by separating the floating position container (`floatingStyles`) from the animated content div, preventing `@floating-ui` positioning transforms from conflicting with CSS animation transforms.
+- Added exit transition via `useTransitionStyles`: enter 180ms / exit 120ms with `out.quint` easing and dynamic `transform-origin` based on the placement side.
+
 ## 2026-03-02 `4.4.1`
 
 #### 🐛 Bug fixes

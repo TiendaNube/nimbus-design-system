@@ -49,6 +49,7 @@ const iconColorProperties = {
   "neutral-textDisabled": colorProperties["neutral-textDisabled"],
   "neutral-textHigh": colorProperties["neutral-textHigh"],
   "ai-gradientPurpleHigh": colorProperties["ai-gradientPurpleHigh"],
+  "ai-generativeTextHigh": colorProperties["ai-generativeTextHigh"],
 
   // This color will be overwritten by the Icon SVG gradient processor
   "ai-generative": "currentColor",

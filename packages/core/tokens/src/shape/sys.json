@@ -7,6 +7,7 @@
           "value": "{spacing.1}",
           "comment": "It can be used in medium or small elements with or without interactions."
         },
+        "1-5": { "value": "{spacing.1-5}" },
         "2": {
           "value": "{spacing.2}",
           "comment": "It can be used on medium or large elements with or without interactions."

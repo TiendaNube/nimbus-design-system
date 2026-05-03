@@ -12,14 +12,21 @@ export interface BadgeProperties {
    */
   appearance?: "primary" | "success" | "warning" | "danger" | "neutral";
   /**
-   * Total items to be displayed without badge
+   * Total items to be displayed in the badge.
+   * Not applicable when type is "dot".
    */
-  count: number | string;
+  count?: number | string;
   /**
    * Change the color scheme of the badge.
    * @default surface
    */
   theme?: "surface" | "light";
+  /**
+   * Change the badge shape.
+   * Use "dot" for a small indicator without text.
+   * @default count
+   */
+  type?: "count" | "dot";
 }
 
 export type BadgeProps = BadgeProperties & HTMLAttributes<HTMLElement>;

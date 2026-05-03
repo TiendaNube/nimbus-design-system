@@ -2,6 +2,12 @@
 
 The Textarea component allows the user to enter or edit information in long text format.
 
+## 2026-04-14 `2.7.1`
+
+#### 🐛 Bug fixes
+
+- Updated visual states, disabled and focus styles aligned with Figma Norte UI. Replaced `transition: all` with explicit transition properties. Styles live in `@nimbus-ds/styles`.
+
 ## 2026-02-12 `2.7.0`
 
 #### 🎉 New features

@@ -219,6 +219,42 @@ export const transitionSpeedProperties = {
   slower: varsThemeBase.motion.speed.slower,
 };
 
+/** Semantic durations (motion-design scale). Prefer over legacy `transitionSpeedProperties` for new transitions. */
+export const transitionDurationProperties = {
+  1: varsThemeBase.motion.duration[1],
+  2: varsThemeBase.motion.duration[2],
+  3: varsThemeBase.motion.duration[3],
+  4: varsThemeBase.motion.duration[4],
+  5: varsThemeBase.motion.duration[5],
+  illustrative: varsThemeBase.motion.duration.illustrative,
+};
+
+/** Cubic-bezier and linear tokens for `transition-timing-function`. */
+export const transitionEasingProperties = {
+  linear: varsThemeBase.motion.easing.linear,
+  out: {
+    quad: varsThemeBase.motion.easing.out.quad,
+    cubic: varsThemeBase.motion.easing.out.cubic,
+    quart: varsThemeBase.motion.easing.out.quart,
+    quint: varsThemeBase.motion.easing.out.quint,
+    expo: varsThemeBase.motion.easing.out.expo,
+    circ: varsThemeBase.motion.easing.out.circ,
+  },
+  inOut: {
+    quad: varsThemeBase.motion.easing.inOut.quad,
+    cubic: varsThemeBase.motion.easing.inOut.cubic,
+    quart: varsThemeBase.motion.easing.inOut.quart,
+    quint: varsThemeBase.motion.easing.inOut.quint,
+    expo: varsThemeBase.motion.easing.inOut.expo,
+    circ: varsThemeBase.motion.easing.inOut.circ,
+  },
+  in: {
+    quad: varsThemeBase.motion.easing.in.quad,
+    cubic: varsThemeBase.motion.easing.in.cubic,
+    quart: varsThemeBase.motion.easing.in.quart,
+  },
+};
+
 export const spacingProperties = {
   "0-5": varsThemeBase.spacing["0-5"],
   "1": varsThemeBase.spacing[1],
@@ -246,6 +282,7 @@ export const spacingProperties = {
 export const borderRadiusProperties = {
   "0-5": varsThemeBase.shape.border.radius["0-5"],
   "1": varsThemeBase.shape.border.radius[1],
+  "1-5": varsThemeBase.shape.border.radius["1-5"],
   "2": varsThemeBase.shape.border.radius[2],
   "3": varsThemeBase.shape.border.radius[3],
   "4": varsThemeBase.shape.border.radius[4],

@@ -26,10 +26,12 @@ export interface IconButtonProperties extends IconButtonSprinkle {
   color?: IconProps["color"];
 
   /**
-   * AI gradient background appearance for the button container.
-   * When provided, container color/border sprinkles are ignored in favor of gradient styles.
+   * Visual style of the icon button container.
+   * - `transparent`: no background or border at rest; subtle hover/active states only.
+   * - `ai-generative`: gradient background; overrides color/border sprinkles.
+   * When omitted, the default bordered appearance is used.
    */
-  appearance?: "ai-generative";
+  appearance?: "transparent" | "ai-generative" | "ai-secondary";
 }
 
 export type IconButtonProps = IconButtonProperties &

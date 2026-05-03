@@ -6,7 +6,6 @@ import { globalTheme } from "./globals.css";
 
 const nextColors = tokens.color["next-dark"];
 const colors = tokens.color.dark;
-const { shadow } = tokens;
 
 const nextDarkTheme = {
   ...globalTheme,
@@ -14,6 +13,7 @@ const nextDarkTheme = {
     ...globalTheme.colors,
     primary: {
       surface: nextColors.primary.surface.value as string,
+      surfaceDisabled: nextColors.primary["surface-disabled"].value as string,
       surfaceHighlight: nextColors.primary["surface-highlight"].value as string,
       interactive: nextColors.primary.interactive.value as string,
       interactiveHover: nextColors.primary["interactive-hover"].value as string,
@@ -24,6 +24,7 @@ const nextDarkTheme = {
     },
     success: {
       surface: colors.success.surface.value as string,
+      surfaceDisabled: colors.success["surface-disabled"].value as string,
       surfaceHighlight: colors.success["surface-highlight"].value as string,
       interactive: colors.success.interactive.value as string,
       interactiveHover: colors.success["interactive-hover"].value as string,
@@ -33,6 +34,7 @@ const nextDarkTheme = {
     },
     warning: {
       surface: colors.warning.surface.value as string,
+      surfaceDisabled: colors.warning["surface-disabled"].value as string,
       surfaceHighlight: colors.warning["surface-highlight"].value as string,
       interactive: colors.warning.interactive.value as string,
       interactiveHover: colors.warning["interactive-hover"].value as string,
@@ -42,6 +44,7 @@ const nextDarkTheme = {
     },
     danger: {
       surface: colors.danger.surface.value as string,
+      surfaceDisabled: colors.danger["surface-disabled"].value as string,
       surfaceHighlight: colors.danger["surface-highlight"].value as string,
       interactive: colors.danger.interactive.value as string,
       interactiveHover: colors.danger["interactive-hover"].value as string,
@@ -54,6 +57,7 @@ const nextDarkTheme = {
       surface: colors.neutral.surface.value as string,
       surfaceDisabled: colors.neutral["surface-disabled"].value as string,
       surfaceHighlight: colors.neutral["surface-highlight"].value as string,
+      interactiveLow: colors.neutral["interactive-low"].value as string,
       interactive: colors.neutral.interactive.value as string,
       interactiveHover: colors.neutral["interactive-hover"].value as string,
       interactivePressed: colors.neutral["interactive-pressed"].value as string,
@@ -70,12 +74,12 @@ const nextDarkTheme = {
   },
   shadow: {
     level: {
-      0: shadow.dark.level[0].value,
-      1: shadow.dark.level[1].value,
-      2: shadow.dark.level[2].value,
-      3: shadow.dark.level[3].value,
-      4: shadow.dark.level[4].value,
-      5: shadow.dark.level[5].value,
+      0: "none",
+      1: "0px 0px 8px 0px color-mix(in srgb, #000000 24%, transparent)",
+      2: "0px 0px 2px 0px color-mix(in srgb, #000000 60%, transparent)",
+      3: "0px 4px 8px 0px color-mix(in srgb, #000000 32%, transparent), 0px 0px 2px 0px color-mix(in srgb, #000000 16%, transparent)",
+      4: "0px 12px 16px 0px color-mix(in srgb, #000000 40%, transparent), 0px 0px 4px 0px color-mix(in srgb, #000000 24%, transparent)",
+      5: "0px 24px 32px 0px color-mix(in srgb, #000000 48%, transparent), 0px 0px 4px 0px color-mix(in srgb, #000000 24%, transparent)",
     },
   },
 };

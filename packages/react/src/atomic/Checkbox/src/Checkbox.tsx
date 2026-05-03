@@ -41,6 +41,8 @@ const Checkbox: React.FC<CheckboxProps> & CheckboxComponents = ({
   return (
     <label
       htmlFor={id || name}
+      data-appearance={appearance}
+      data-indeterminate={indeterminate || undefined}
       className={[
         className,
         checkbox.classnames.container,
@@ -73,7 +75,9 @@ const Checkbox: React.FC<CheckboxProps> & CheckboxComponents = ({
         <div className={checkbox.classnames.container__checkmark_checkicon}>
           <Icon
             data-testid="icon-check"
-            color={disabled ? "neutral-textLow" : "neutral-background"}
+            color={
+              disabled ? "neutral-textDisabled" : "neutral-background"
+            }
             source={<CheckIcon />}
           />
         </div>

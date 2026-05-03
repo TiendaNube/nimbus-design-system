@@ -32,12 +32,17 @@ export const container = style({
   gap: varsThemeBase.spacing[1],
   width: vars.width,
   height: vars.height,
-  background: varsThemeBase.colors.primary.surface,
+  background: varsThemeBase.colors.neutral.background,
   borderRadius: varsThemeBase.shape.border.radius[2],
-  borderWidth: varsThemeBase.shape.border.width[2],
-  borderColor: varsThemeBase.colors.primary.interactive,
+  borderWidth: varsThemeBase.shape.border.width[1],
+  borderColor: varsThemeBase.colors.neutral.textDisabled,
   borderStyle: "dashed",
   transition: `background ${varsThemeBase.motion.speed.fast} ease, border-color ${varsThemeBase.motion.speed.fast} ease`,
+  selectors: {
+    "&:hover": {
+      background: varsThemeBase.colors.neutral.surface,
+    },
+  },
 });
 
 const container__input = style({
@@ -45,8 +50,13 @@ const container__input = style({
 });
 
 const disabled = style({
-  background: varsThemeBase.colors.neutral.surfaceDisabled,
-  borderColor: varsThemeBase.colors.neutral.interactive,
+  background: varsThemeBase.colors.neutral.surfaceHighlight,
+  borderColor: varsThemeBase.colors.neutral.textDisabled,
+  selectors: {
+    "&:hover": {
+      background: varsThemeBase.colors.neutral.surfaceHighlight,
+    },
+  },
 });
 
 const dragging = style({

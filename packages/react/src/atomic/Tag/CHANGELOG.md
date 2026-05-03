@@ -2,6 +2,12 @@
 
 The Tag component is used to categorize information, organize or indicate the status of elements or components using keywords, icons or colors.
 
+## 2026-04-14 `2.5.2`
+
+#### 🐛 Bug fixes
+
+- Updated visual states and token alignment with Figma Norte UI. Styles live in `@nimbus-ds/styles`.
+
 ## 2026-02-12 `2.5.0`
 
 #### 🎉 New features

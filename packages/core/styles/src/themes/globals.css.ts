@@ -1,5 +1,5 @@
 import tokens from "@nimbus-ds/tokens/dist/js/tokens";
-import { createGlobalTheme } from "@vanilla-extract/css";
+import { createGlobalTheme, globalStyle } from "@vanilla-extract/css";
 import { vars } from "./contract.css";
 
 const colors = tokens.color.light;
@@ -8,12 +8,13 @@ const fontSize = tokens.font.size;
 const fontWeight = tokens.font.weight;
 const lineWeight = tokens.line.height;
 const { shape } = tokens;
-const { motion, spacing, shadow, breakpoint, zIndex } = tokens;
+const { motion, spacing, breakpoint, zIndex } = tokens;
 
 export const globalTheme = {
   colors: {
     primary: {
       surface: colors.primary.surface.value as string,
+      surfaceDisabled: colors.primary["surface-disabled"].value as string,
       surfaceHighlight: colors.primary["surface-highlight"].value as string,
       interactive: colors.primary.interactive.value as string,
       interactiveHover: colors.primary["interactive-hover"].value as string,
@@ -23,6 +24,7 @@ export const globalTheme = {
     },
     success: {
       surface: colors.success.surface.value as string,
+      surfaceDisabled: colors.success["surface-disabled"].value as string,
       surfaceHighlight: colors.success["surface-highlight"].value as string,
       interactive: colors.success.interactive.value as string,
       interactiveHover: colors.success["interactive-hover"].value as string,
@@ -32,6 +34,7 @@ export const globalTheme = {
     },
     warning: {
       surface: colors.warning.surface.value as string,
+      surfaceDisabled: colors.warning["surface-disabled"].value as string,
       surfaceHighlight: colors.warning["surface-highlight"].value as string,
       interactive: colors.warning.interactive.value as string,
       interactiveHover: colors.warning["interactive-hover"].value as string,
@@ -41,6 +44,7 @@ export const globalTheme = {
     },
     danger: {
       surface: colors.danger.surface.value as string,
+      surfaceDisabled: colors.danger["surface-disabled"].value as string,
       surfaceHighlight: colors.danger["surface-highlight"].value as string,
       interactive: colors.danger.interactive.value as string,
       interactiveHover: colors.danger["interactive-hover"].value as string,
@@ -53,6 +57,7 @@ export const globalTheme = {
       surface: colors.neutral.surface.value as string,
       surfaceDisabled: colors.neutral["surface-disabled"].value as string,
       surfaceHighlight: colors.neutral["surface-highlight"].value as string,
+      interactiveLow: colors.neutral["interactive-low"].value as string,
       interactive: colors.neutral.interactive.value as string,
       interactiveHover: colors.neutral["interactive-hover"].value as string,
       interactivePressed: colors.neutral["interactive-pressed"].value as string,
@@ -63,6 +68,7 @@ export const globalTheme = {
     aiGenerative: {
       interactiveHover: colors.aiGenerative["interactive-hover"]
         .value as string,
+      interactive: colors.aiGenerative.interactive.value as string,
       textLow: colors.aiGenerative["text-low"].value as string,
       interactivePressed: colors.aiGenerative["interactive-pressed"]
         .value as string,
@@ -71,6 +77,7 @@ export const globalTheme = {
       textHigh: colors.aiGenerative["text-high"].value as string,
       surfaceHighlight: colors.aiGenerative["surface-highlight"]
         .value as string,
+      surfaceDisabled: colors.aiGenerative["surface-disabled"].value as string,
     },
     aiGradient: {
       blueHigh: colors.aiGradient["blue-high"].value as string,
@@ -122,12 +129,12 @@ export const globalTheme = {
   },
   shadow: {
     level: {
-      0: shadow.light.level[0].value,
-      1: shadow.light.level[1].value,
-      2: shadow.light.level[2].value,
-      3: shadow.light.level[3].value,
-      4: shadow.light.level[4].value,
-      5: shadow.light.level[5].value,
+      0: "none",
+      1: `0px 0px 8px 0px color-mix(in srgb, ${colors.neutral[10].value} 8%, transparent)`,
+      2: `0px 0px 2px 0px color-mix(in srgb, ${colors.neutral[10].value} 60%, transparent)`,
+      3: `0px 4px 8px 0px color-mix(in srgb, ${colors.neutral[10].value} 12%, transparent), 0px 0px 2px 0px color-mix(in srgb, ${colors.neutral[10].value} 6%, transparent)`,
+      4: `0px 12px 16px 0px color-mix(in srgb, ${colors.neutral[10].value} 16%, transparent), 0px 0px 4px 0px color-mix(in srgb, ${colors.neutral[10].value} 8%, transparent)`,
+      5: `0px 24px 32px 0px color-mix(in srgb, ${colors.neutral[10].value} 20%, transparent), 0px 0px 4px 0px color-mix(in srgb, ${colors.neutral[10].value} 8%, transparent)`,
     },
   },
   shape: {
@@ -135,6 +142,7 @@ export const globalTheme = {
       radius: {
         "0-5": shape.border.radius["0-5"].value,
         "1": shape.border.radius[1].value,
+        "1-5": shape.border.radius["1-5"].value,
         "2": shape.border.radius[2].value,
         "3": shape.border.radius[3].value,
         "4": shape.border.radius[4].value,
@@ -194,6 +202,38 @@ export const globalTheme = {
       slow: motion.speed.slow.value as string,
       slower: motion.speed.slower.value as string,
     },
+    duration: {
+      1: motion.duration["1"].value as string,
+      2: motion.duration["2"].value as string,
+      3: motion.duration["3"].value as string,
+      4: motion.duration["4"].value as string,
+      5: motion.duration["5"].value as string,
+      illustrative: motion.duration.illustrative.value as string,
+    },
+    easing: {
+      linear: motion.easing.linear.value as string,
+      out: {
+        quad: motion.easing.out.quad.value as string,
+        cubic: motion.easing.out.cubic.value as string,
+        quart: motion.easing.out.quart.value as string,
+        quint: motion.easing.out.quint.value as string,
+        expo: motion.easing.out.expo.value as string,
+        circ: motion.easing.out.circ.value as string,
+      },
+      inOut: {
+        quad: motion.easing.inOut.quad.value as string,
+        cubic: motion.easing.inOut.cubic.value as string,
+        quart: motion.easing.inOut.quart.value as string,
+        quint: motion.easing.inOut.quint.value as string,
+        expo: motion.easing.inOut.expo.value as string,
+        circ: motion.easing.inOut.circ.value as string,
+      },
+      in: {
+        quad: motion.easing.in.quad.value as string,
+        cubic: motion.easing.in.cubic.value as string,
+        quart: motion.easing.in.quart.value as string,
+      },
+    },
   },
   breakpoint: {
     xs: breakpoint.xs.value,
@@ -213,3 +253,13 @@ export const globalTheme = {
 createGlobalTheme(":root", vars, globalTheme);
 
 export const varsThemeBase = vars;
+
+globalStyle("*, *::before, *::after", {
+  "@media": {
+    "(prefers-reduced-motion: reduce)": {
+      animationDuration: "0.01ms",
+      animationIterationCount: "1",
+      transitionDuration: "0.01ms",
+    },
+  },
+});

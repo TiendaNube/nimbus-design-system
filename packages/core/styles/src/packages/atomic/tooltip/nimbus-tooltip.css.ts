@@ -12,7 +12,6 @@ const content = style({
   backgroundColor: varsThemeBase.colors.neutral.textHigh,
   padding: varsThemeBase.spacing[1],
   borderRadius: varsThemeBase.shape.border.radius[1],
-  transition: `opacity ${varsThemeBase.motion.speed.fast} ease`,
   zIndex: varsThemeBase.zIndex[800],
 });
 

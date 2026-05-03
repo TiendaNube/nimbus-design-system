@@ -20,10 +20,9 @@ const content = style({
   justifyContent: "center",
   alignItems: "center",
   minHeight: "2rem",
-  filter: `drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.2))`,
+  boxShadow: varsThemeBase.shadow.level[3],
   boxSizing: "border-box",
   borderRadius: varsThemeBase.shape.border.radius[3],
-  transition: `opacity ${varsThemeBase.motion.speed.fast} ease`,
   zIndex: varsThemeBase.zIndex[800],
 });
 

@@ -2,6 +2,12 @@
 
 Text is a basic component that allows us to write blocks of text and give it formatting to use within other components, sections and pages of our application or website.
 
+## 2026-04-14 `6.8.1`
+
+#### 🐛 Bug fixes
+
+- Added AI generative text gradient color properties. Styles live in `@nimbus-ds/styles`.
+
 ## 2026-02-23 `6.8.0`
 
 #### 🎉 New features

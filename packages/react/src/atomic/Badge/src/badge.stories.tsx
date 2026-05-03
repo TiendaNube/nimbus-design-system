@@ -50,3 +50,31 @@ export const danger: Story = {
     count: "+99",
   },
 };
+
+export const light: Story = {
+  args: {
+    theme: "light",
+    count: "+99",
+  },
+};
+
+export const dot: Story = {
+  args: {
+    type: "dot",
+    appearance: "primary",
+  },
+};
+
+export const dotNeutral: Story = {
+  args: {
+    type: "dot",
+    appearance: "neutral",
+  },
+};
+
+export const dotDanger: Story = {
+  args: {
+    type: "dot",
+    appearance: "danger",
+  },
+};

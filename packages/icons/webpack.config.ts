@@ -14,7 +14,7 @@ delete config.plugins;
 config.plugins = [
   plugins.dtsBundleGeneratorPlugin({
     entries: [
-      `node ${utils.rootDir}/node_modules/.bin/dts-bundle-generator -o ./dist/index.d.ts ./tmp/index.ts`,
+      `node "${utils.rootDir}/node_modules/.bin/dts-bundle-generator" -o ./dist/index.d.ts ./tmp/index.ts`,
     ],
   }),
 ];

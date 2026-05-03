@@ -2,6 +2,12 @@
 
 The Tooltip component allows us to show additional information in a non-intrusive way.
 
+## 2026-04-14 `2.3.1`
+
+#### 🐛 Bug fixes
+
+- Updated visual states with Figma Norte UI: focus ring, active/disabled states, label color alignment. Added smooth slide animation (inOut.cubic 240ms) on toggle thumb.
+
 ## 2026-02-12 `2.3.0`
 
 #### 🎉 New features

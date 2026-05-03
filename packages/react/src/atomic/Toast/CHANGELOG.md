@@ -2,6 +2,12 @@
 
 The Toast component allows us to notify users in an informational tone, describing that something has happened or is happening, without interrupting navigation.
 
+## 2026-04-14 `2.7.2`
+
+#### 🐛 Bug fixes
+
+- Updated visual states with Figma Norte UI: background colors per appearance, border-radius, box-shadow using shadow tokens, icon/text color mapping, spinner color. Added explicit transform transition for enter/exit.
+
 ## 2026-02-24 `2.7.0`
 
 #### 🎉 New features

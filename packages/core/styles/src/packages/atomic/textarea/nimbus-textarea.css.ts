@@ -28,20 +28,17 @@ const base = style([
     fontSize: varsThemeBase.fontSize.body.base,
     lineHeight: varsThemeBase.lineWeight.body.caption,
     color: varsThemeBase.colors.neutral.textHigh,
-    borderRadius: varsThemeBase.shape.border.radius[2],
+    borderRadius: varsThemeBase.shape.border.radius.base,
     padding: "var(--textarea-padding)",
-    transition: `all ${varsThemeBase.motion.speed.fast} ease`,
+    transition: `background-color ${varsThemeBase.motion.speed.fast} ease, border-color ${varsThemeBase.motion.speed.fast} ease, box-shadow ${varsThemeBase.motion.speed.fast} ease`,
     "::placeholder": {
       color: varsThemeBase.colors.neutral.textLow,
     },
     ":disabled": {
-      border: `var(--textarea-border-width) solid ${varsThemeBase.colors.neutral.surfaceHighlight}`,
-      backgroundColor: varsThemeBase.colors.neutral.surfaceDisabled,
+      border: `var(--textarea-border-width) solid ${varsThemeBase.colors.neutral.interactive}`,
+      backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
       color: varsThemeBase.colors.neutral.textDisabled,
       cursor: "not-allowed",
-    },
-    ":focus-visible": {
-      boxShadow: varsThemeBase.utils.focus,
     },
   },
 ]);
@@ -52,8 +49,15 @@ export const appearance = styleVariants({
     {
       border: `var(--textarea-border-width) solid ${varsThemeBase.colors.neutral.interactive}`,
       backgroundColor: varsThemeBase.colors.neutral.background,
-      ":focus": {
-        borderColor: varsThemeBase.colors.primary.interactivePressed,
+      selectors: {
+        "&:hover:not(:disabled)": {
+          backgroundColor: varsThemeBase.colors.neutral.surfaceDisabled,
+          borderColor: varsThemeBase.colors.neutral.interactiveHover,
+        },
+        "&:focus:not(:disabled)": {
+          borderColor: varsThemeBase.colors.neutral.interactivePressed,
+          boxShadow: `0 0 0 2px ${varsThemeBase.colors.neutral.interactive}`,
+        },
       },
     },
   ],
@@ -61,9 +65,20 @@ export const appearance = styleVariants({
     base,
     {
       border: `var(--textarea-border-width) solid ${varsThemeBase.colors.success.interactive}`,
-      backgroundColor: varsThemeBase.colors.success.surface,
-      ":focus": {
-        borderColor: varsThemeBase.colors.success.interactivePressed,
+      backgroundColor: varsThemeBase.colors.neutral.background,
+      selectors: {
+        "&:not(:placeholder-shown):not(:disabled)": {
+          backgroundColor: varsThemeBase.colors.neutral.surfaceDisabled,
+        },
+        "&:hover:not(:disabled)": {
+          backgroundColor: varsThemeBase.colors.neutral.surfaceDisabled,
+          borderColor: varsThemeBase.colors.success.interactiveHover,
+        },
+        "&:focus:not(:disabled)": {
+          backgroundColor: varsThemeBase.colors.neutral.background,
+          borderColor: varsThemeBase.colors.success.interactiveHover,
+          boxShadow: `0 0 0 2px ${varsThemeBase.colors.success.interactive}`,
+        },
       },
     },
   ],
@@ -71,9 +86,20 @@ export const appearance = styleVariants({
     base,
     {
       border: `var(--textarea-border-width) solid ${varsThemeBase.colors.warning.interactive}`,
-      backgroundColor: varsThemeBase.colors.warning.surface,
-      ":focus": {
-        borderColor: varsThemeBase.colors.warning.interactivePressed,
+      backgroundColor: varsThemeBase.colors.neutral.background,
+      selectors: {
+        "&:not(:placeholder-shown):not(:disabled)": {
+          backgroundColor: varsThemeBase.colors.neutral.surfaceDisabled,
+        },
+        "&:hover:not(:disabled)": {
+          backgroundColor: varsThemeBase.colors.neutral.surfaceDisabled,
+          borderColor: varsThemeBase.colors.warning.interactiveHover,
+        },
+        "&:focus:not(:disabled)": {
+          backgroundColor: varsThemeBase.colors.neutral.background,
+          borderColor: varsThemeBase.colors.warning.interactiveHover,
+          boxShadow: `0 0 0 2px ${varsThemeBase.colors.warning.interactive}`,
+        },
       },
     },
   ],
@@ -81,9 +107,20 @@ export const appearance = styleVariants({
     base,
     {
       border: `var(--textarea-border-width) solid ${varsThemeBase.colors.danger.interactive}`,
-      backgroundColor: varsThemeBase.colors.danger.surface,
-      ":focus": {
-        borderColor: varsThemeBase.colors.danger.interactivePressed,
+      backgroundColor: varsThemeBase.colors.neutral.background,
+      selectors: {
+        "&:not(:placeholder-shown):not(:disabled)": {
+          backgroundColor: varsThemeBase.colors.neutral.surfaceDisabled,
+        },
+        "&:hover:not(:disabled)": {
+          backgroundColor: varsThemeBase.colors.neutral.surfaceDisabled,
+          borderColor: varsThemeBase.colors.danger.interactiveHover,
+        },
+        "&:focus:not(:disabled)": {
+          backgroundColor: varsThemeBase.colors.neutral.background,
+          borderColor: varsThemeBase.colors.danger.interactiveHover,
+          boxShadow: `0 0 0 2px ${varsThemeBase.colors.danger.interactive}`,
+        },
       },
     },
   ],
@@ -97,6 +134,11 @@ export const appearance = styleVariants({
       borderWidth: "var(--textarea-border-width)",
       borderStyle: "solid",
       borderColor: "transparent",
+      selectors: {
+        "&:focus:not(:disabled)": {
+          boxShadow: `0 0 0 2px ${varsThemeBase.colors.aiGenerative.interactive}`,
+        },
+      },
     },
   ],
   transparent: [
@@ -104,9 +146,11 @@ export const appearance = styleVariants({
     {
       border: "none",
       backgroundColor: varsThemeBase.colors.neutral.background,
-      ":focus": {
-        borderColor: "transparent",
-        boxShadow: "none",
+      selectors: {
+        "&:focus": {
+          borderColor: "transparent",
+          boxShadow: "none",
+        },
       },
       "::placeholder": {
         color: varsThemeBase.colors.neutral.textDisabled,
@@ -130,5 +174,15 @@ export const resize = styleVariants({
 
 export const aiGenerated = style([
   appearance["ai-generative"],
-  { boxShadow: varsThemeBase.utils.aiFocus },
+  {
+    boxShadow: varsThemeBase.utils.aiFocus,
+    selectors: {
+      "&:focus:not(:disabled)": {
+        boxShadow: `0 0 0 2px ${varsThemeBase.colors.aiGenerative.interactive}`,
+      },
+      "&:disabled": {
+        boxShadow: "none",
+      },
+    },
+  },
 ]);

@@ -8,7 +8,12 @@ import {
   borderColorProperties,
 } from "../../../properties";
 import { varsThemeBase, mediaQueries } from "../../../themes";
-import { gradients, createBorderGradient } from "../../../gradients";
+import {
+  gradients,
+  aiGenerativeHoverOverlay,
+  aiGenerativePressedOverlay,
+  aiGenerativeDisabled,
+} from "../../../gradients";
 
 /* -------------------------------------------------------------------------------------------------
  * Style
@@ -20,19 +25,16 @@ const base = style({
   justifyContent: "center",
   cursor: "pointer",
   borderStyle: "solid",
-  borderRadius: varsThemeBase.shape.border.radius.full,
+  borderRadius: varsThemeBase.shape.border.radius["1-5"],
   borderWidth: varsThemeBase.shape.border.width[1],
-  transition: `all ${varsThemeBase.motion.speed.fast} ease`,
-  ":active": {
-    backgroundColor: varsThemeBase.colors.neutral.interactive,
-    borderColor: varsThemeBase.colors.neutral.interactivePressed,
-  },
+  transition: `background-color ${varsThemeBase.motion.speed.fast} ease, border-color ${varsThemeBase.motion.speed.fast} ease, box-shadow ${varsThemeBase.motion.speed.fast} ease`,
   ":focus-visible": {
-    boxShadow: varsThemeBase.utils.focus,
+    boxShadow: `0 0 0 2px ${varsThemeBase.colors.neutral.interactive}`,
+    outline: "none",
   },
   ":disabled": {
-    backgroundColor: `${varsThemeBase.colors.neutral.surfaceDisabled}`,
-    borderColor: `${varsThemeBase.colors.neutral.surfaceHighlight}`,
+    backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
+    borderColor: varsThemeBase.colors.neutral.interactive,
     pointerEvents: "none",
   },
 });
@@ -40,6 +42,31 @@ const base = style({
 export const styles = {
   base,
   appearance: styleVariants({
+    transparent: [
+      base,
+      {
+        background: "transparent",
+        borderColor: "transparent",
+        selectors: {
+          "&:not(:disabled):hover": {
+            backgroundColor: varsThemeBase.colors.neutral.surface,
+            borderColor: "transparent",
+          },
+          "&:not(:disabled):active": {
+            backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
+            borderColor: "transparent",
+          },
+          "&:not(:disabled):focus-visible": {
+            borderColor: varsThemeBase.colors.neutral.interactive,
+            boxShadow: `0 0 0 2px ${varsThemeBase.colors.neutral.interactive}`,
+          },
+        },
+        ":disabled": {
+          background: varsThemeBase.colors.neutral.surfaceDisabled,
+          borderColor: varsThemeBase.colors.neutral.surfaceDisabled,
+        },
+      },
+    ],
     "ai-generative": [
       base,
       {
@@ -47,26 +74,47 @@ export const styles = {
         border: "none",
         outline: "none",
         transition: `box-shadow ${varsThemeBase.motion.speed.fast} ease`,
-        ":hover": {
-          background: gradients.aiGenerativeHover,
-        },
-        ":active": {
-          background: varsThemeBase.colors.aiGenerative.textLow,
-          boxShadow: "none",
-        },
-        ":focus": {
-          boxShadow: "none",
-        },
-        ":focus-visible": {
-          boxShadow: varsThemeBase.utils.focus,
-          outline: "none",
+        selectors: {
+          "&:not(:disabled):hover": {
+            background: aiGenerativeHoverOverlay,
+          },
+          "&:not(:disabled):active": {
+            background: aiGenerativePressedOverlay,
+            boxShadow: "none",
+          },
+          "&:not(:disabled):focus-visible": {
+            boxShadow: `0 0 0 2px ${varsThemeBase.colors.neutral.interactive}`,
+            outline: "none",
+          },
         },
         ":disabled": {
-          background: createBorderGradient(
-            gradients.aiGenerativeDisabled,
-            varsThemeBase.colors.neutral.surfaceDisabled
-          ),
-          border: `${varsThemeBase.shape.border.width[1]} solid transparent`,
+          background: aiGenerativeDisabled,
+          border: "none",
+        },
+      },
+    ],
+    "ai-secondary": [
+      base,
+      {
+        background: varsThemeBase.colors.aiGenerative.surfaceDisabled,
+        border: "none",
+        outline: "none",
+        selectors: {
+          "&:not(:disabled):hover": {
+            background: varsThemeBase.colors.aiGenerative.surface,
+          },
+          "&:not(:disabled):active": {
+            background: varsThemeBase.colors.aiGenerative.surfaceHighlight,
+          },
+          "&:not(:disabled):focus-visible": {
+            background: varsThemeBase.colors.aiGenerative.surfaceDisabled,
+            boxShadow: `0 0 0 2px ${varsThemeBase.colors.neutral.interactive}`,
+            outline: "none",
+          },
+        },
+        ":disabled": {
+          background: varsThemeBase.colors.aiGenerative.surfaceDisabled,
+          border: "none",
         },
       },
     ],
@@ -92,7 +140,6 @@ const iconButtonBorderColorProperties = {
   "neutral-interactiveHover": borderColorProperties["neutral-interactiveHover"],
   "neutral-interactivePressed":
     borderColorProperties["neutral-interactivePressed"],
-  "primary-interactive": borderColorProperties["primary-interactive"],
 };
 
 const properties = {

@@ -23,8 +23,8 @@ config.plugins = [
   plugins.cssHashRemoverPlugin,
   plugins.dtsBundleGeneratorPlugin({
     entries: [
-      `node ${utils.rootDir}/node_modules/.bin/dts-bundle-generator -o ./dist/index.d.ts ./src/index.ts`,
-      `node ${utils.rootDir}/node_modules/.bin/dts-bundle-generator -o ./dist/themes/dark.d.ts ./src/themes/nimbus-theme-dark.css.ts`,
+      `node "${utils.rootDir}/node_modules/.bin/dts-bundle-generator" -o ./dist/index.d.ts ./src/index.ts`,
+      `node "${utils.rootDir}/node_modules/.bin/dts-bundle-generator" -o ./dist/themes/dark.d.ts ./src/themes/nimbus-theme-dark.css.ts`,
     ],
   }),
   new plugins.MoveFilesIntoDistFolderPlugin(),

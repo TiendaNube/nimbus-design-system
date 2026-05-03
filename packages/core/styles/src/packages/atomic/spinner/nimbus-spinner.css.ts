@@ -65,6 +65,7 @@ const spinnerColorProperties = {
   "neutral-surface": colorProperties["neutral-surface"],
   "neutral-interactive": colorProperties["neutral-interactive"],
   "neutral-textLow": colorProperties["neutral-textLow"],
+  "neutral-textHigh": colorProperties["neutral-textHigh"],
 };
 
 const properties = {

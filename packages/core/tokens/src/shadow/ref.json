@@ -3,19 +3,24 @@
     "level": {
       "0": { "value": "none" },
       "1": {
-        "value": "0px 0px 1px 0px {color.light.neutral.interactive-hover}"
+        "value": "0px 0px 8px 0px rgba(72, 76, 88, 0.08)",
+        "comment": "Subtle ambient shadow. Used for interactive elements with minimal elevation."
       },
       "2": {
-        "value": "0px 0px 2px 0px {color.light.neutral.interactive-hover}"
+        "value": "0px 0px 2px 0px rgba(72, 76, 88, 0.60)",
+        "comment": "Ambient shadow without directional light. Used for cards and table containers."
       },
       "3": {
-        "value": "0px 3px 6px 0px {color.light.neutral.surface-highlight}, 0px 0px 1px 0px {color.light.neutral.interactive-hover}"
+        "value": "0px 4px 8px 0px rgba(72, 76, 88, 0.12), 0px 0px 2px 0px rgba(72, 76, 88, 0.06)",
+        "comment": "Directional shadow at medium elevation. Used for popovers and dropdowns."
       },
       "4": {
-        "value": "0px 12px 16px 0px {color.light.neutral.surface-highlight}, 0px 0px 1px 0px {color.light.neutral.interactive-hover}"
+        "value": "0px 12px 16px 0px rgba(72, 76, 88, 0.16), 0px 0px 4px 0px rgba(72, 76, 88, 0.08)",
+        "comment": "Directional shadow at large elevation. Used for modals."
       },
       "5": {
-        "value": "0px 24px 32px 0px {color.light.neutral.surface-highlight}, 0px 0px 1px 0px {color.light.neutral.interactive-hover}"
+        "value": "0px 24px 32px 0px rgba(72, 76, 88, 0.20), 0px 0px 4px 0px rgba(72, 76, 88, 0.08)",
+        "comment": "Directional shadow at maximum elevation. Used for side modals and drawers."
       }
     }
   }

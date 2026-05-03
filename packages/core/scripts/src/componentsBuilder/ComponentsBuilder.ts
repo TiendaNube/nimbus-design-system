@@ -4,7 +4,7 @@ import { PackageBuilder } from "../packageBuilder";
 export class ComponentsBuilder {
   private PATH: string;
 
-  constructor(packagesPath: string = "./packages/react/src/") {
+  constructor(packagesPath: string = "./packages/react/src") {
     this.PATH = packagesPath;
   }
 
@@ -13,10 +13,9 @@ export class ComponentsBuilder {
 
     const readComponents = fs.readdirSync(`${this.PATH}/${path}`);
     for (const component of readComponents) {
-      const packageJsonContent = fs.readFileSync(
-        `${this.PATH}/${path}/${component}/package.json`,
-        "utf-8"
-      );
+      const packageJsonPath = `${this.PATH}/${path}/${component}/package.json`;
+      if (!fs.existsSync(packageJsonPath)) continue;
+      const packageJsonContent = fs.readFileSync(packageJsonPath, "utf-8");
       const json = JSON.parse(packageJsonContent);
       const componentName = json.name;
       components.push(componentName);
