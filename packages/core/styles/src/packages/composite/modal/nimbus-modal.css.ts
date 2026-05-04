@@ -1,4 +1,4 @@
-import { style, keyframes } from "@vanilla-extract/css";
+import { style, styleVariants, keyframes } from "@vanilla-extract/css";
 import {
   defineProperties as defineSprinkleProperties,
   createSprinkles,
@@ -28,7 +28,11 @@ export const container = style({
   backgroundColor: varsThemeBase.colors.neutral.background,
   borderRadius: varsThemeBase.shape.border.radius[2],
   boxSizing: "border-box",
-  zIndex: varsThemeBase.zIndex[700],
+});
+
+const containerZIndex = styleVariants({
+  base: { zIndex: varsThemeBase.zIndex[700] },
+  top: { zIndex: varsThemeBase.zIndex[1100] },
 });
 
 const container__close = style({
@@ -82,7 +86,6 @@ const baseOverlay = style({
   left: 0,
   right: 0,
   backgroundColor: "rgba(0, 0, 0, 0.5)",
-  zIndex: varsThemeBase.zIndex[600],
   animation: `${overlayAnimation} 0.5s ease`,
 });
 
@@ -91,15 +94,32 @@ const overlay = style([
   { position: "fixed", height: "100vh", width: "100vw" },
 ]);
 
+const overlayZIndex = styleVariants({
+  base: { zIndex: varsThemeBase.zIndex[600] },
+  top: { zIndex: varsThemeBase.zIndex[1000] },
+});
+
 const overlayScoped = style([
   baseOverlay,
-  { position: "absolute", height: "100%", width: "100%" },
+  {
+    position: "absolute",
+    height: "100%",
+    width: "100%",
+  },
 ]);
+
+const overlayScopedZIndex = styleVariants({
+  base: { zIndex: varsThemeBase.zIndex[600] },
+  top: { zIndex: varsThemeBase.zIndex[1000] },
+});
 
 export const styles = {
   overlay,
+  overlayZIndex,
   overlayScoped,
+  overlayScopedZIndex,
   container,
+  containerZIndex,
   container__close,
   container__footer,
 };

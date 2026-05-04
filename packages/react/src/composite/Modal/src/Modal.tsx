@@ -34,6 +34,8 @@ const Modal: React.FC<ModalProps> & ModalComponents = ({
   root,
   closeOnOutsidePress = true,
   ignoreAttributeName = DEFAULT_OUTSIDE_PRESS_IGNORE_ATTRIBUTE,
+  renderDismissButton = true,
+  zIndex = "base",
   ...rest
 }: ModalProps) => {
   const {
@@ -93,7 +95,12 @@ const Modal: React.FC<ModalProps> & ModalComponents = ({
         {...otherProps}
         ref={context.refs.setFloating}
         style={style}
-        className={[className, modal.classnames.container, classNameStyles]
+        className={[
+          className,
+          modal.classnames.container,
+          modal.classnames.containerZIndex[zIndex],
+          classNameStyles,
+        ]
           .filter(Boolean)
           .join(" ")}
         aria-labelledby={headingId}
@@ -102,7 +109,7 @@ const Modal: React.FC<ModalProps> & ModalComponents = ({
         {...rest}
       >
         {children}
-        {onDismiss && (
+        {onDismiss && renderDismissButton && (
           <button
             aria-label="Dismiss modal"
             className={modal.classnames.container__close}
@@ -120,7 +127,14 @@ const Modal: React.FC<ModalProps> & ModalComponents = ({
 
   if (root) {
     return createPortal(
-      <div className={modal.classnames.overlayScoped}>{content}</div>,
+      <div
+        className={[
+          modal.classnames.overlayScoped,
+          modal.classnames.overlayScopedZIndex[zIndex],
+        ].join(" ")}
+      >
+        {content}
+      </div>,
       root
     );
   }
@@ -130,7 +144,13 @@ const Modal: React.FC<ModalProps> & ModalComponents = ({
       id={portalId ?? "nimbus-modal-floating"}
       root={refThemeProvider?.current}
     >
-      <FloatingOverlay className={modal.classnames.overlay} lockScroll>
+      <FloatingOverlay
+        className={[
+          modal.classnames.overlay,
+          modal.classnames.overlayZIndex[zIndex],
+        ].join(" ")}
+        lockScroll
+      >
         {content}
       </FloatingOverlay>
     </FloatingPortal>

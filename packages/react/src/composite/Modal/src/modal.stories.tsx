@@ -6,6 +6,7 @@ import { Button } from "@nimbus-ds/button";
 import { Box } from "@nimbus-ds/box";
 import { Title } from "@nimbus-ds/title";
 import { Tag } from "@nimbus-ds/tag";
+import { Sidebar } from "@nimbus-ds/sidebar";
 import { Modal } from "./Modal";
 import { type ModalProps } from "./modal.types";
 
@@ -21,17 +22,30 @@ const meta: Meta<typeof Modal> = {
 export default meta;
 type Story = StoryObj<typeof Modal>;
 
+const render = (args: ModalProps) => {
+  const [open, setOpen] = useState(false);
+  const handleClose = () => setOpen((prevState) => !prevState);
+  return (
+    <>
+      <Button onClick={handleClose}>Open</Button>
+      <Modal {...args} open={open} onDismiss={handleClose} />
+    </>
+  );
+};
+
+const renderWithArgs = (args: ModalProps) => {
+  const [{ open }, updateArgs] = useArgs();
+  const handleClose = () => updateArgs({ open: !open });
+  return (
+    <>
+      <Button onClick={handleClose}>Open</Button>
+      <Modal {...args} open={open} onDismiss={handleClose} />
+    </>
+  );
+};
+
 export const basic: Story = {
-  render: (args) => {
-    const [{ open }, updateArgs] = useArgs();
-    const handleClose = () => updateArgs({ open: !open });
-    return (
-      <>
-        <Button onClick={handleClose}>Open</Button>
-        <Modal {...args} open={open} onDismiss={handleClose} />
-      </>
-    );
-  },
+  render: renderWithArgs,
   args: {
     children: (
       <>
@@ -86,17 +100,6 @@ export const withRoot: Story = {
       </>
     ),
   },
-};
-
-const render = (args: ModalProps) => {
-  const [open, setOpen] = useState(false);
-  const handleClose = () => setOpen((prevState) => !prevState);
-  return (
-    <>
-      <Button onClick={handleClose}>Open</Button>
-      <Modal {...args} open={open} onDismiss={handleClose} />
-    </>
-  );
 };
 
 export const WithHeader: Story = {
@@ -224,6 +227,63 @@ export const noDismiss: Story = {
         </Modal.Body>
         <Modal.Footer>
           <Button appearance="neutral">Button</Button>
+          <Button appearance="primary">Button</Button>
+        </Modal.Footer>
+      </>
+    ),
+  },
+};
+
+export const noDismissButton: Story = {
+  render: renderWithArgs,
+  args: {
+    renderDismissButton: false,
+    children: (
+      <>
+        <Modal.Header title="No close button" />
+        <Modal.Body padding="none">
+          <Text textAlign="left">
+            The X icon is hidden, but Escape key and clicking outside still
+            close the modal.
+          </Text>
+        </Modal.Body>
+      </>
+    ),
+  },
+};
+
+export const modalOverSidebar: Story = {
+  render: (args) => {
+    const [{ open }, updateArgs] = useArgs();
+    const handleClose = () => updateArgs({ open: !open });
+    return (
+      <Box display="flex" flexDirection="column" gap="4" padding="4">
+        <Text>
+          The modal overlay and container uses higher zIndex than Sidebar when
+          zIndex=Top
+        </Text>
+        <Box display="flex" gap="4" alignItems="center">
+          <Button onClick={handleClose}>Open top-layer modal</Button>
+        </Box>
+        <Sidebar content="I stay visible underneath the overlay" open={open}>
+          <Modal.Body>Another modal</Modal.Body>
+        </Sidebar>
+        <Modal {...args} open={open} onDismiss={handleClose} />
+      </Box>
+    );
+  },
+  args: {
+    zIndex: "top",
+    children: (
+      <>
+        <Modal.Header title="Top-layer modal" />
+        <Modal.Body padding="none">
+          <Text textAlign="left">
+            This modal uses zIndex=&quot;top&quot; and renders above tooltips,
+            toasts, and popovers.
+          </Text>
+        </Modal.Body>
+        <Modal.Footer>
           <Button appearance="primary">Button</Button>
         </Modal.Footer>
       </>

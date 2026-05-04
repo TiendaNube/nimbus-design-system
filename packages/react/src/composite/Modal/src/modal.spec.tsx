@@ -1,5 +1,6 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
+import { modal } from "@nimbus-ds/styles";
 
 import { Modal } from "./Modal";
 import { type ModalProps } from "./modal.types";
@@ -7,7 +8,15 @@ import { type ModalProps } from "./modal.types";
 const mockedOnDismiss = jest.fn();
 
 const makeSut = (
-  rest: Pick<ModalProps, "children" | "padding" | "onDismiss" | "root">
+  rest: Pick<
+    ModalProps,
+    | "children"
+    | "padding"
+    | "onDismiss"
+    | "root"
+    | "renderDismissButton"
+    | "zIndex"
+  >
 ) => render(<Modal {...rest} open data-testid="modal-element" />);
 
 describe("GIVEN <Modal />", () => {
@@ -32,6 +41,58 @@ describe("GIVEN <Modal />", () => {
       });
       expect(screen.queryByTestId("dismiss-modal-button")).toBeNull();
       expect(screen.getByText("My content")).toBeDefined();
+    });
+  });
+
+  describe("WHEN renderDismissButton controls the close button", () => {
+    it("THEN renders the button by default when onDismiss is provided", () => {
+      makeSut({ children: <div>content</div>, onDismiss: jest.fn() });
+      expect(screen.getByTestId("dismiss-modal-button")).toBeDefined();
+    });
+
+    it("AND hides the button when renderDismissButton is false", () => {
+      const onDismiss = jest.fn();
+      makeSut({
+        children: <div>content</div>,
+        onDismiss,
+        renderDismissButton: false,
+      });
+      expect(screen.queryByTestId("dismiss-modal-button")).toBeNull();
+    });
+
+    it("AND still dismisses via Escape when the button is hidden", () => {
+      const onDismiss = jest.fn();
+      makeSut({
+        children: <div>content</div>,
+        onDismiss,
+        renderDismissButton: false,
+      });
+      fireEvent.keyDown(document.body, {
+        key: "Escape",
+        code: "Escape",
+        keyCode: 27,
+      });
+      expect(onDismiss).toHaveBeenCalled();
+    });
+  });
+
+  describe("WHEN zIndex selects a stacking layer", () => {
+    it("THEN applies the base containerZIndex class by default", () => {
+      makeSut({ children: <div>content</div> });
+      const modalElement = screen.getByTestId("modal-element");
+      expect(modalElement.className).toContain(modal.classnames.container);
+      expect(modalElement.className).toContain(
+        modal.classnames.containerZIndex.base
+      );
+    });
+
+    it("AND applies the top containerZIndex class when zIndex='top'", () => {
+      makeSut({ children: <div>content</div>, zIndex: "top" });
+      const modalElement = screen.getByTestId("modal-element");
+      expect(modalElement.className).toContain(modal.classnames.container);
+      expect(modalElement.className).toContain(
+        modal.classnames.containerZIndex.top
+      );
     });
   });
 

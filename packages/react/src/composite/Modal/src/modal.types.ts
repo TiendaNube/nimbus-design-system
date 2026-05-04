@@ -51,6 +51,20 @@ export interface ModalProperties extends ModalSprinkle {
    * @default base
    */
   padding?: keyof typeof modal.properties.padding;
+  /**
+   * Controls whether the built-in close (X) button renders.
+   * Only takes effect when `onDismiss` is provided.
+   * @default true
+   */
+  renderDismissButton?: boolean;
+  /**
+   * Stacking layer for the modal.
+   * - "base": standard modal layer (above the page, below floating components like tooltip/toast/popover).
+   * - "top": renders above all other floating components. Reserved exclusively for Modal.
+   *   Only effective on the default portaled path; has no effect when `root` is provided.
+   * @default "base"
+   */
+  zIndex?: "base" | "top";
 }
 
 export type ModalProps = ModalProperties & {

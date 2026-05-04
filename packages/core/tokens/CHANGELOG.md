@@ -2,6 +2,12 @@
 
 Our design tokens are the foundations of Nimbus Design System.
 
+## 2026-05-04 `9.6.0`
+
+#### 🎉 New features
+
+- Added 1000 and 1100 zIndex tokens. ([#460](https://github.com/TiendaNube/nimbus-design-system/pull/460) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2025-11-11 `9.5.0`
 
 #### 🎉 New features
