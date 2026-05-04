@@ -1,4 +1,5 @@
 releases:
+  "@nimbus-ds/components": minor
   "@nimbus-ds/modal": minor
   "@nimbus-ds/styles": minor
   "@nimbus-ds/tokens": minor
