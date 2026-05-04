@@ -2,11 +2,11 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
-## 2026-03-04 `9.61.0`
+## 2026-05-04 `9.62.0`
 
 #### 🎉 New features
 
-- `ProgressBar`: Added fill color CSS variable, background color variants, box shadow support, and no-overflow container style. ([#441](https://github.com/TiendaNube/nimbus-design-system/pull/441) by [@joacotornello](https://github.com/joacotornello))
+- Improved styles for modal. ([#460](https://github.com/TiendaNube/nimbus-design-system/pull/460) by [@joacotornello](https://github.com/joacotornello))
 
 ## 2026-03-02 `9.60.1`
 

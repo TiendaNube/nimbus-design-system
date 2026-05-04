@@ -3,6 +3,12 @@
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories
 every day, with simplicity, accessibility, consistency and performance.
 
+## 2026-05-04 `5.57.0`
+
+#### 🎉 New features
+
+- Modal: `renderDismissButton` and `zIndex` support. ([#460](https://github.com/TiendaNube/nimbus-design-system/pull/460) by [@joacotornello](https://github.com/joacotornello))
+
 ## 2026-03-04 `5.56.0`
 
 #### 🎉 New features
