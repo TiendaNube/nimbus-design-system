@@ -1,0 +1,10 @@
+releases:
+  "@nimbus-ds/modal": minor
+  "@nimbus-ds/styles": minor
+  "@nimbus-ds/tokens": minor
+
+declined:
+  - nimbus-design-system
+  - "@nimbus-ds/split-button"
+  - "@nimbus-ds/stepper"
+  - "@nimbus-ds/time-picker"
