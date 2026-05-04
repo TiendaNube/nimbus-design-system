@@ -103,6 +103,8 @@
       "description": "ZIndex of the MultiSelect",
       "enum": [
         "100",
+        "1000",
+        "1100",
         "200",
         "300",
         "400",

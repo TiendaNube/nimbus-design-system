@@ -55,9 +55,31 @@
     {
       "description": "The padding properties are used to generate space around an modal's content area.",
       "default": "base",
-      "enum": ["base", "none", "small"],
+      "enum": [
+        "base",
+        "none",
+        "small"
+      ],
       "type": "string",
       "title": "padding",
+      "required": false
+    },
+    {
+      "description": "Controls whether the built-in close (X) button renders.\nOnly takes effect when `onDismiss` is provided.",
+      "default": true,
+      "type": "boolean",
+      "title": "renderDismissButton",
+      "required": false
+    },
+    {
+      "description": "Stacking layer for the modal.\n- \"base\": standard modal layer (above the page, below floating components like tooltip/toast/popover).\n- \"top\": renders above all other floating components. Reserved exclusively for Modal.\n  Only effective on the default portaled path; has no effect when `root` is provided.",
+      "default": "base",
+      "enum": [
+        "base",
+        "top"
+      ],
+      "type": "string",
+      "title": "zIndex",
       "required": false
     },
     {
@@ -89,28 +111,19 @@
             }
           },
           "additionalProperties": false,
-          "propertyOrder": ["xs", "md", "lg", "xl", "xxl"]
+          "propertyOrder": [
+            "xs",
+            "md",
+            "lg",
+            "xl",
+            "xxl"
+          ]
         },
         {
           "type": "string"
         }
       ],
       "title": "maxWidth",
-      "required": false
-    },
-    {
-      "description": "Controls whether the built-in close (X) button renders. Only takes effect when `onDismiss` is provided.",
-      "default": "true",
-      "type": "boolean",
-      "title": "renderDismissButton",
-      "required": false
-    },
-    {
-      "description": "Stacking layer for the modal. `base` uses the standard modal layer; `top` renders above all other floating components (tooltip, toast, popover). Reserved exclusively for Modal and only effective on the default portaled path (no effect when `root` is provided).",
-      "default": "base",
-      "enum": ["base", "top"],
-      "type": "string",
-      "title": "zIndex",
       "required": false
     }
   ],
@@ -128,7 +141,11 @@
         {
           "description": "The padding properties are used to generate space around an modal's body content area.",
           "default": "none",
-          "enum": ["base", "none", "small"],
+          "enum": [
+            "base",
+            "none",
+            "small"
+          ],
           "type": "string",
           "title": "padding",
           "required": false
@@ -148,7 +165,11 @@
         {
           "description": "The padding properties are used to generate space around an modal's footer content area.",
           "default": "none",
-          "enum": ["base", "none", "small"],
+          "enum": [
+            "base",
+            "none",
+            "small"
+          ],
           "type": "string",
           "title": "padding",
           "required": false
@@ -180,7 +201,11 @@
         {
           "description": "The padding properties are used to generate space around an modal's header content area.",
           "default": "none",
-          "enum": ["base", "none", "small"],
+          "enum": [
+            "base",
+            "none",
+            "small"
+          ],
           "type": "string",
           "title": "padding",
           "required": false
