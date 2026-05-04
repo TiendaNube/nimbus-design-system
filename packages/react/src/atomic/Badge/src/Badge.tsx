@@ -10,18 +10,26 @@ const Badge: React.FC<BadgeProps> & BadgeComponents = ({
   style: _style,
   appearance = "neutral",
   theme = "surface",
+  type = "text",
   count,
   ...rest
 }: BadgeProps) => (
   <div
     {...rest}
-    className={[className, badge.classnames[theme][appearance]]
+    className={[
+      className,
+      type === "dot"
+        ? badge.classnames.dot[appearance]
+        : badge.classnames[theme][appearance],
+    ]
       .filter(Boolean)
       .join(" ")}
   >
-    <Text fontSize="caption" lineHeight="caption" color="currentColor">
-      {count}
-    </Text>
+    {type === "text" && (
+      <Text fontSize="caption" lineHeight="caption" color="currentColor">
+        {count}
+      </Text>
+    )}
   </div>
 );
 

@@ -14,12 +14,17 @@ export interface BadgeProperties {
   /**
    * Total items to be displayed without badge
    */
-  count: number | string;
+  count?: number | string;
   /**
    * Change the color scheme of the badge.
    * @default surface
    */
   theme?: "surface" | "light";
+  /**
+   * Change the badge type between a text counter and a dot indicator.
+   * @default text
+   */
+  type?: "text" | "dot";
 }
 
 export type BadgeProps = BadgeProperties & HTMLAttributes<HTMLElement>;

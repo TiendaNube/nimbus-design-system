@@ -96,4 +96,46 @@ describe("GIVEN <Badge />", () => {
       ).toContain("light_neutral");
     });
   });
+
+  describe("THEN should correctly render the type dot", () => {
+    it("THEN should correctly render the appearance primary", () => {
+      makeSut({ type: "dot", appearance: "primary" });
+      expect(
+        screen.getByTestId("badge-element").getAttribute("class")
+      ).toContain("dot_primary");
+    });
+
+    it("THEN should correctly render the appearance success", () => {
+      makeSut({ type: "dot", appearance: "success" });
+      expect(
+        screen.getByTestId("badge-element").getAttribute("class")
+      ).toContain("dot_success");
+    });
+
+    it("THEN should correctly render the appearance warning", () => {
+      makeSut({ type: "dot", appearance: "warning" });
+      expect(
+        screen.getByTestId("badge-element").getAttribute("class")
+      ).toContain("dot_warning");
+    });
+
+    it("THEN should correctly render the appearance danger", () => {
+      makeSut({ type: "dot", appearance: "danger" });
+      expect(
+        screen.getByTestId("badge-element").getAttribute("class")
+      ).toContain("dot_danger");
+    });
+
+    it("THEN should correctly render the appearance neutral", () => {
+      makeSut({ type: "dot", appearance: "neutral" });
+      expect(
+        screen.getByTestId("badge-element").getAttribute("class")
+      ).toContain("dot_neutral");
+    });
+
+    it("THEN should not render text content", () => {
+      makeSut({ type: "dot", appearance: "primary" });
+      expect(screen.getByTestId("badge-element")).toBeEmptyDOMElement();
+    });
+  });
 });
