@@ -1,7 +1,7 @@
 {
   "id": "badge",
   "name": "Badge",
-  "totalProps": 3,
+  "totalProps": 4,
   "packageName": "@nimbus-ds/badge",
   "version": "3.2.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/badge",
@@ -27,7 +27,7 @@
         "number"
       ],
       "title": "count",
-      "required": true
+      "required": false
     },
     {
       "description": "Change the color scheme of the badge.",
@@ -38,6 +38,17 @@
       ],
       "type": "string",
       "title": "theme",
+      "required": false
+    },
+    {
+      "description": "Change the badge type between a text counter and a dot indicator.",
+      "default": "text",
+      "enum": [
+        "dot",
+        "text"
+      ],
+      "type": "string",
+      "title": "type",
       "required": false
     }
   ],
