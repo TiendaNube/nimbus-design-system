@@ -7,8 +7,8 @@ const baseDot = style({
   alignItems: "center",
   justifyContent: "center",
 
-  width: "0.5rem", // 0.5rem - 8px
-  height: "0.5rem", // 0.5rem - 8px
+  width: varsThemeBase.spacing["2"],
+  height: varsThemeBase.spacing["2"],
 
   boxSizing: "border-box",
   borderRadius: varsThemeBase.shape.border.radius.full,
@@ -28,8 +28,7 @@ const base = style({
   justifyContent: "center",
 
   width: "fit-content",
-  height: "1rem", // 1rem - 16px
-  minWidth: "1rem", // 1rem - 16px
+  minWidth: varsThemeBase.spacing["4"],
 
   padding: `0 ${varsThemeBase.spacing[1]}`,
   boxSizing: "border-box",

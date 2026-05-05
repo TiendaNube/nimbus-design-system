@@ -16,6 +16,7 @@ const Badge: React.FC<BadgeProps> & BadgeComponents = ({
 }: BadgeProps) => (
   <div
     {...rest}
+    aria-hidden={type === "dot" ? true : undefined}
     className={[
       className,
       type === "dot"

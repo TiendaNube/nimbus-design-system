@@ -137,5 +137,12 @@ describe("GIVEN <Badge />", () => {
       makeSut({ type: "dot", appearance: "primary" });
       expect(screen.getByTestId("badge-element")).toBeEmptyDOMElement();
     });
+
+    it("THEN should have aria-hidden set to true", () => {
+      makeSut({ type: "dot", appearance: "primary" });
+      expect(
+        screen.getByTestId("badge-element").getAttribute("aria-hidden")
+      ).toBe("true");
+    });
   });
 });
