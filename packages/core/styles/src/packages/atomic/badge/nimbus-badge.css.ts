@@ -2,18 +2,37 @@ import { style, styleVariants } from "@vanilla-extract/css";
 
 import { varsThemeBase } from "../../../themes";
 
+const baseDot = style({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+
+  width: varsThemeBase.spacing["2"],
+  height: varsThemeBase.spacing["2"],
+
+  boxSizing: "border-box",
+  borderRadius: varsThemeBase.shape.border.radius.full,
+});
+
+export const dot = styleVariants({
+  primary: [baseDot, { backgroundColor: varsThemeBase.colors.primary.interactive }],
+  success: [baseDot, { backgroundColor: varsThemeBase.colors.success.interactive }],
+  warning: [baseDot, { backgroundColor: varsThemeBase.colors.warning.interactive }],
+  danger: [baseDot, { backgroundColor: varsThemeBase.colors.danger.interactive }],
+  neutral: [baseDot, { backgroundColor: varsThemeBase.colors.neutral.interactive }],
+});
+
 const base = style({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
 
   width: "fit-content",
-  height: "0.875rem", // 0.875rem - 14px
-  minWidth: "0.875rem", // 0.875rem - 14px
+  minWidth: varsThemeBase.spacing["4"],
 
   padding: `0 ${varsThemeBase.spacing[1]}`,
   boxSizing: "border-box",
-  borderRadius: varsThemeBase.shape.border.radius.full,
+  borderRadius: varsThemeBase.shape.border.radius["1"],
 
   lineHeight: varsThemeBase.lineWeight.body.caption,
   fontSize: varsThemeBase.fontSize.body.caption,
