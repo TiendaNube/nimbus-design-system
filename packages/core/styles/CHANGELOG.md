@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2026-05-04 `9.63.0`
+
+#### 🎉 New features
+
+- Badge: Adds type="dot" variant. ([#462](https://github.com/TiendaNube/nimbus-design-system/pull/462) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-05-04 `9.62.0`
 
 #### 🎉 New features
