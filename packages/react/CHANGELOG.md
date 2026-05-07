@@ -3,7 +3,13 @@
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories
 every day, with simplicity, accessibility, consistency and performance.
 
-## 2026-05-04 `5.57.0`
+## 2026-05-04 `5.59.0`
+
+#### 🎉 New features
+
+- Badge: Adds type="dot" variant. ([#462](https://github.com/TiendaNube/nimbus-design-system/pull/462) by [@noecondoleo](https://github.com/noecondoleo))
+
+## 2026-05-04 `5.57.0` and `5.58.0`
 
 #### 🎉 New features
 
