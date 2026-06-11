@@ -2,6 +2,12 @@
 
 Nimbus-icons is an open source icon system built by Nuvemshop / Tiendanube.
 
+## 2026-06-10 `1.22.0`
+
+#### 🎉 New features
+
+- Adds `openai` icon. ([#466](https://github.com/TiendaNube/nimbus-design-system/pull/466) by [@lucascarbonelli](https://github.com/lucascarbonelli))
+
 ## 2026-03-16 `1.21.0`
 
 #### 🎉 New features
