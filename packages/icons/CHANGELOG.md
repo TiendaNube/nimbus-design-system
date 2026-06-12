@@ -2,6 +2,12 @@
 
 Nimbus-icons is an open source icon system built by Nuvemshop / Tiendanube.
 
+## 2026-06-12 `1.23.0`
+
+#### 🎉 New features
+
+- Adds `editing-columns` icon. ([#468](https://github.com/TiendaNube/nimbus-design-system/pull/468) by [@lucascarbonelli](https://github.com/lucascarbonelli))
+
 ## 2026-06-10 `1.22.0`
 
 #### 🎉 New features
