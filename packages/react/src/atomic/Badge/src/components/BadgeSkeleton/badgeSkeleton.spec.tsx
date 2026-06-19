@@ -8,7 +8,7 @@ const makeSut = (props?: BadgeSkeletonProps) => {
   render(<BadgeSkeleton {...props} data-testid="skeleton-element" />);
 };
 
-describe("GIVEN <Tag.Skeleton />", () => {
+describe("GIVEN <Badge.Skeleton />", () => {
   describe("WHEN rendered", () => {
     it("THEN should render skeleton base", () => {
       makeSut();
@@ -20,7 +20,23 @@ describe("GIVEN <Tag.Skeleton />", () => {
         /--height__\w{0,9}: 1.25rem;/
       );
       expect(skeleton.getAttribute("style")).toMatch(
-        /--borderRadius__\w{0,9}: 0.813rem;/
+        /--borderRadius__\w{0,9}: 0.25rem;/
+      );
+    });
+  });
+
+  describe("WHEN rendered with type dot", () => {
+    it("THEN should render a circular skeleton", () => {
+      makeSut({ type: "dot" });
+      const skeleton = screen.getByTestId("skeleton-element");
+      expect(skeleton.getAttribute("style")).toMatch(
+        /--width__\w{0,9}: 0.5rem;/
+      );
+      expect(skeleton.getAttribute("style")).toMatch(
+        /--height__\w{0,9}: 0.5rem;/
+      );
+      expect(skeleton.getAttribute("style")).toMatch(
+        /--borderRadius__\w{0,9}: 9999px;/
       );
     });
   });
