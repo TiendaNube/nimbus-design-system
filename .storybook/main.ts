@@ -1,3 +1,25 @@
+// import type { StorybookConfig } from "@storybook/react-vite";
+
+// const config: StorybookConfig = {
+//   stories: [
+//     "../packages/**/*.mdx",
+//     "../packages/**/*.stories.@(js|jsx|ts|tsx)",
+//   ],
+//   addons: [
+//     "@storybook/addon-essentials",
+//     "@storybook/addon-links",
+//   ],
+//   framework: {
+//     name: "@storybook/react-vite",
+//     options: {},
+//   },
+//   docs: {
+//     autodocs: true,
+//   },
+// };
+
+// export default config;
+
 import { dirname, join } from "path";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import type { StorybookConfig } from "@storybook/react-webpack5";

@@ -1,3 +1,7 @@
+import OpenInV0 from "../v0-registry/components/OpenInV0";
+
+const REGISTRY_BASE = window.location.origin;
+
 import React from "react";
 import type { Preview } from "@storybook/react";
 
@@ -39,5 +43,20 @@ const preview: Preview = {
 export default preview;
 
 export const decorators = [
-  (renderStory) => <ThemeNimbusProvider>{renderStory()}</ThemeNimbusProvider>,
+  (Story, context) => {
+    console.log();
+    return (
+      <div>
+        <ThemeNimbusProvider>
+          <Story />
+        </ThemeNimbusProvider>
+        <div style={{ marginTop: 12 }}>
+          <OpenInV0
+            registryBaseUrl={REGISTRY_BASE}
+            itemName={context.component.displayName.toLowerCase()}
+          />
+        </div>
+      </div>
+    );
+  },
 ];
