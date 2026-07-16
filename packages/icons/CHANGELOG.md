@@ -2,6 +2,12 @@
 
 Nimbus-icons is an open source icon system built by Nuvemshop / Tiendanube.
 
+## 2026-07-08 `1.25.0`
+
+#### 🎉 New features
+
+- Adds `box-delivered` icon. ([#477](https://github.com/TiendaNube/nimbus-design-system/pull/477) by [@efbertoia](https://github.com/efbertoia))
+
 ## 2026-06-12 `1.23.0`
 
 #### 🎉 New features
