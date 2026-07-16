@@ -2,6 +2,12 @@
 
 Nimbus-icons is an open source icon system built by Nuvemshop / Tiendanube.
 
+## 2026-07-16 `1.26.0`
+
+#### 🎉 New features
+
+- Adds `double-check` icon. ([#479](https://github.com/TiendaNube/nimbus-design-system/pull/479) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
+
 ## 2026-07-08 `1.25.0`
 
 #### 🎉 New features
