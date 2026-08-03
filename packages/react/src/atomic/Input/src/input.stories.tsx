@@ -41,6 +41,28 @@ export const iconEnd: Story = {
   },
 };
 
+export const prefix: Story = {
+  args: {
+    placeholder: "0,00",
+    prefix: "$",
+  },
+};
+
+export const suffix: Story = {
+  args: {
+    placeholder: "0",
+    suffix: "kg",
+  },
+};
+
+export const prefixAndSuffix: Story = {
+  args: {
+    placeholder: "0,00",
+    prefix: "$",
+    suffix: "USD",
+  },
+};
+
 export const success: Story = {
   args: {
     placeholder: "Placeholder",

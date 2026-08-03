@@ -13,6 +13,7 @@ import {
   InputSearch,
   InputSkeleton,
   InputIcon,
+  InputText,
 } from "./components";
 
 const Input = forwardRef<HTMLInputElement, InputBaseProps>(
@@ -24,6 +25,8 @@ const Input = forwardRef<HTMLInputElement, InputBaseProps>(
       aiGenerated = false,
       appendPosition = "start",
       append,
+      prefix,
+      suffix,
       ...rest
     },
     ref
@@ -54,7 +57,23 @@ const Input = forwardRef<HTMLInputElement, InputBaseProps>(
             {append}
           </InputIcon>
         )}
+        {prefix && (
+          <InputText
+            data-testid={dataTestid ? `${dataTestid}-prefix` : ""}
+            appendPosition="start"
+          >
+            {prefix}
+          </InputText>
+        )}
         <input {...rest} ref={inputRef} className={input.classnames.input} />
+        {suffix && (
+          <InputText
+            data-testid={dataTestid ? `${dataTestid}-suffix` : ""}
+            appendPosition="end"
+          >
+            {suffix}
+          </InputText>
+        )}
         {append && appendPosition === "end" && (
           <InputIcon
             data-testid={dataTestid ? `${dataTestid}-icon` : ""}

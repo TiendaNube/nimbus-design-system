@@ -106,4 +106,61 @@ describe("GIVEN <Input />", () => {
       expect(className).toContain("appearance_ai-generative");
     });
   });
+
+  describe("THEN should correctly render the submitted prefix and suffix", () => {
+    it("should render the prefix as static text before the input", () => {
+      makeSut({ prefix: "$" });
+      const prefix = screen.getByTestId("input-element-prefix");
+      expect(prefix).toHaveTextContent("$");
+      expect(prefix.tagName).toBe("SPAN");
+    });
+
+    it("should render the suffix as static text after the input", () => {
+      makeSut({ suffix: "kg" });
+      const suffix = screen.getByTestId("input-element-suffix");
+      expect(suffix).toHaveTextContent("kg");
+      expect(suffix.tagName).toBe("SPAN");
+    });
+
+    it("should render both prefix and suffix at the same time", () => {
+      makeSut({ prefix: "$", suffix: "USD" });
+      expect(screen.getByTestId("input-element-prefix")).toHaveTextContent(
+        "$"
+      );
+      expect(screen.getByTestId("input-element-suffix")).toHaveTextContent(
+        "USD"
+      );
+    });
+
+    it("should not render prefix/suffix as a button and should not expose a button role", () => {
+      makeSut({ prefix: "$", suffix: "kg" });
+      const prefix = screen.getByTestId("input-element-prefix");
+      const suffix = screen.getByTestId("input-element-suffix");
+
+      expect(prefix.tagName).not.toBe("BUTTON");
+      expect(suffix.tagName).not.toBe("BUTTON");
+      expect(screen.queryByRole("button")).toBeNull();
+    });
+
+    it("should render prefix/suffix together with an append icon without conflicting", () => {
+      makeSut({
+        prefix: "$",
+        suffix: "kg",
+        append: <svg data-testid="my-icon" />,
+        appendPosition: "start",
+      });
+
+      expect(screen.getByTestId("input-element-prefix")).toBeDefined();
+      expect(screen.getByTestId("input-element-suffix")).toBeDefined();
+      expect(screen.getByTestId("input-element-icon")).toBeDefined();
+      expect(screen.getByTestId("my-icon")).toBeDefined();
+      expect(screen.getByRole("button")).toBeDefined();
+    });
+
+    it("should not render prefix/suffix elements when not provided", () => {
+      makeSut();
+      expect(screen.queryByTestId("input-element-prefix")).toBeNull();
+      expect(screen.queryByTestId("input-element-suffix")).toBeNull();
+    });
+  });
 });
