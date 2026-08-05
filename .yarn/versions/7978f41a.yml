@@ -1,5 +1,5 @@
 releases:
-  "@nimbus-ds/input": major
+  "@nimbus-ds/input": minor
   "@nimbus-ds/styles": minor
 
 declined:
