@@ -2,7 +2,6 @@ import React, {
   type ComponentPropsWithRef,
   type ForwardRefExoticComponent,
   forwardRef,
-  useId,
   useRef,
 } from "react";
 import { useRefObjectAsForwardedRef } from "@nimbus-ds/typings";
@@ -16,6 +15,13 @@ import {
   InputIcon,
   InputText,
 } from "./components";
+
+// Module-level counter used to derive a stable, unique id per Input
+// instance. Avoids React's useId() (React 18+ only, and this package's
+// peerDependencies support React 16.8+) and avoids Math.random() (flagged
+// by SonarCloud as a PRNG-in-security-context, even though this id is only
+// ever used to wire up aria-describedby, not for anything security-related).
+let idCounter = 0;
 
 const Input = forwardRef<HTMLInputElement, InputBaseProps>(
   (
@@ -42,8 +48,12 @@ const Input = forwardRef<HTMLInputElement, InputBaseProps>(
     const hasPrefix = prefix !== null && prefix !== undefined;
     const hasSuffix = suffix !== null && suffix !== undefined;
 
-    const reactId = useId();
-    const idBase = dataTestid || `nimbus-input-${reactId}`;
+    const generatedIdRef = useRef<string | null>(null);
+    if (generatedIdRef.current === null) {
+      idCounter += 1;
+      generatedIdRef.current = `nimbus-input-${idCounter}`;
+    }
+    const idBase = dataTestid || generatedIdRef.current;
     const prefixId = `${idBase}-prefix`;
     const suffixId = `${idBase}-suffix`;
 
