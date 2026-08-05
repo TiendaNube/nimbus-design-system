@@ -288,5 +288,52 @@ describe("GIVEN <Input />", () => {
 
       expect(describedBy).not.toContain("suffix");
     });
+
+    it("should generate distinct, valid affix ids for two instances sharing the same data-testid", () => {
+      render(
+        <>
+          <Input prefix="$" suffix="USD" data-testid="shared-testid" />
+          <Input prefix="$" suffix="USD" data-testid="shared-testid" />
+        </>
+      );
+
+      const prefixes = screen.getAllByTestId("shared-testid-prefix");
+      const suffixes = screen.getAllByTestId("shared-testid-suffix");
+      const inputs = screen.getAllByTestId("shared-testid");
+
+      expect(prefixes).toHaveLength(2);
+      expect(suffixes).toHaveLength(2);
+
+      const [prefixIdA, prefixIdB] = prefixes.map((el) =>
+        el.getAttribute("id")
+      );
+      const [suffixIdA, suffixIdB] = suffixes.map((el) =>
+        el.getAttribute("id")
+      );
+
+      // ids must exist and be valid single ARIA IDREF tokens (no whitespace)
+      [prefixIdA, prefixIdB, suffixIdA, suffixIdB].forEach((id) => {
+        expect(id).toBeTruthy();
+        expect(id).not.toMatch(/\s/);
+      });
+
+      // the two instances must not collide with each other
+      expect(prefixIdA).not.toBe(prefixIdB);
+      expect(suffixIdA).not.toBe(suffixIdB);
+
+      // each input's aria-describedby must reference only its own affix ids
+      const [describedByA, describedByB] = inputs.map((el) =>
+        el.getAttribute("aria-describedby")
+      );
+      expect(describedByA).toContain(prefixIdA);
+      expect(describedByA).toContain(suffixIdA);
+      expect(describedByA).not.toContain(prefixIdB);
+      expect(describedByA).not.toContain(suffixIdB);
+
+      expect(describedByB).toContain(prefixIdB);
+      expect(describedByB).toContain(suffixIdB);
+      expect(describedByB).not.toContain(prefixIdA);
+      expect(describedByB).not.toContain(suffixIdA);
+    });
   });
 });

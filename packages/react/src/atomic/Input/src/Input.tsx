@@ -4,6 +4,7 @@ import React, {
   forwardRef,
   useRef,
 } from "react";
+import { useId } from "@floating-ui/react";
 import { useRefObjectAsForwardedRef } from "@nimbus-ds/typings";
 import { input } from "@nimbus-ds/styles";
 
@@ -15,13 +16,6 @@ import {
   InputIcon,
   InputText,
 } from "./components";
-
-// Module-level counter used to derive a stable, unique id per Input
-// instance. Avoids React's useId() (React 18+ only, and this package's
-// peerDependencies support React 16.8+) and avoids Math.random() (flagged
-// by SonarCloud as a PRNG-in-security-context, even though this id is only
-// ever used to wire up aria-describedby, not for anything security-related).
-let idCounter = 0;
 
 const Input = forwardRef<HTMLInputElement, InputBaseProps>(
   (
@@ -48,14 +42,18 @@ const Input = forwardRef<HTMLInputElement, InputBaseProps>(
     const hasPrefix = prefix !== null && prefix !== undefined;
     const hasSuffix = suffix !== null && suffix !== undefined;
 
-    const generatedIdRef = useRef<string | null>(null);
-    if (generatedIdRef.current === null) {
-      idCounter += 1;
-      generatedIdRef.current = `nimbus-input-${idCounter}`;
-    }
-    const idBase = dataTestid || generatedIdRef.current;
-    const prefixId = `${idBase}-prefix`;
-    const suffixId = `${idBase}-suffix`;
+    // Always derive the affix ids from a per-instance generated id, never
+    // from `dataTestid` — two Input instances can share the same
+    // `data-testid`, and a `data-testid` containing whitespace would
+    // produce an invalid ARIA IDREF token. `useId` from `@floating-ui/react`
+    // uses React 18's native `useId()` when available (hydration-safe) and
+    // falls back to a slower-but-correct double-render strategy for React
+    // 17, matching the approach already used in this package's Modal
+    // component. `dataTestid` is only ever used for its own `data-testid`
+    // attribute below, never as an id source.
+    const generatedId = useId();
+    const prefixId = generatedId ? `${generatedId}-prefix` : undefined;
+    const suffixId = generatedId ? `${generatedId}-suffix` : undefined;
 
     const describedByIds = [
       hasPrefix ? prefixId : null,
