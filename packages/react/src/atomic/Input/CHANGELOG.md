@@ -4,7 +4,7 @@ The Input component allows the user to enter or edit information in text format.
 
 ## 2026-08-05 `3.0.0`
 
-#### 🎉 New features
+### 🎉 New features
 
 - Added `prefix` and `suffix` props to `Input` to display static, non-interactive text (e.g. a currency symbol or a unit of measure) inside the field container, alongside the existing `append` icon support. ([#487](https://github.com/TiendaNube/nimbus-design-system/pull/487) by [@claude[bot]](https://github.com/apps/claude))
 
