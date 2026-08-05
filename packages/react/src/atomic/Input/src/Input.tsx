@@ -2,6 +2,7 @@ import React, {
   type ComponentPropsWithRef,
   type ForwardRefExoticComponent,
   forwardRef,
+  useId,
   useRef,
 } from "react";
 import { useRefObjectAsForwardedRef } from "@nimbus-ds/typings";
@@ -41,13 +42,8 @@ const Input = forwardRef<HTMLInputElement, InputBaseProps>(
     const hasPrefix = prefix !== null && prefix !== undefined;
     const hasSuffix = suffix !== null && suffix !== undefined;
 
-    const generatedIdRef = useRef<string | null>(null);
-    if (!generatedIdRef.current) {
-      generatedIdRef.current = `nimbus-input-${Math.random()
-        .toString(36)
-        .slice(2, 9)}`;
-    }
-    const idBase = dataTestid || generatedIdRef.current;
+    const reactId = useId();
+    const idBase = dataTestid || `nimbus-input-${reactId}`;
     const prefixId = `${idBase}-prefix`;
     const suffixId = `${idBase}-suffix`;
 
