@@ -59,4 +59,9 @@ export interface InputProperties {
 }
 
 export type InputBaseProps = InputProperties &
-  InputHTMLAttributes<HTMLInputElement>;
+  // `InputHTMLAttributes` (via `HTMLAttributes`) declares a global RDFa
+  // `prefix?: string` attribute, which collides with `InputProperties.prefix`
+  // (a `ReactNode`) and silently narrows the merged type to `ReactNode &
+  // string` when intersected. Omitting keys already declared on
+  // `InputProperties` keeps our own prop types authoritative.
+  Omit<InputHTMLAttributes<HTMLInputElement>, keyof InputProperties>;

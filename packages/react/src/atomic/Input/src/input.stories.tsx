@@ -63,6 +63,16 @@ export const prefixAndSuffix: Story = {
   },
 };
 
+export const prefixWithAppendIcon: Story = {
+  name: "Recipe: currency input with prefix and append icon",
+  args: {
+    placeholder: "0,00",
+    prefix: "$",
+    append: <Icon source={<TiendanubeIcon />} />,
+    appendPosition: "end",
+  },
+};
+
 export const success: Story = {
   args: {
     placeholder: "Placeholder",

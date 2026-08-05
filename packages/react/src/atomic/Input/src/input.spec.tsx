@@ -162,5 +162,131 @@ describe("GIVEN <Input />", () => {
       expect(screen.queryByTestId("input-element-prefix")).toBeNull();
       expect(screen.queryByTestId("input-element-suffix")).toBeNull();
     });
+
+    it("should render the prefix before the input in the DOM", () => {
+      makeSut({ prefix: "$" });
+      const prefix = screen.getByTestId("input-element-prefix");
+      const inputElement = screen.getByTestId("input-element");
+
+      const position = prefix.compareDocumentPosition(inputElement);
+      // eslint-disable-next-line no-bitwise
+      expect(position & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    });
+
+    it("should render the suffix after the input in the DOM", () => {
+      makeSut({ suffix: "kg" });
+      const suffix = screen.getByTestId("input-element-suffix");
+      const inputElement = screen.getByTestId("input-element");
+
+      const position = inputElement.compareDocumentPosition(suffix);
+      // eslint-disable-next-line no-bitwise
+      expect(position & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    });
+
+    it("should render prefix and suffix around the input in DOM order", () => {
+      makeSut({ prefix: "$", suffix: "USD" });
+      const container = screen.getByTestId("input-element-container");
+      const children = Array.from(container.children);
+
+      const prefixIndex = children.indexOf(
+        screen.getByTestId("input-element-prefix")
+      );
+      const inputIndex = children.indexOf(screen.getByTestId("input-element"));
+      const suffixIndex = children.indexOf(
+        screen.getByTestId("input-element-suffix")
+      );
+
+      expect(prefixIndex).toBeGreaterThanOrEqual(0);
+      expect(prefixIndex).toBeLessThan(inputIndex);
+      expect(inputIndex).toBeLessThan(suffixIndex);
+    });
+
+    it("should render prefix as a static non-button span when disabled", () => {
+      makeSut({ prefix: "$", disabled: true });
+      const prefix = screen.getByTestId("input-element-prefix");
+
+      expect(prefix.tagName).toBe("SPAN");
+      expect(prefix).toHaveTextContent("$");
+      expect(prefix.tagName).not.toBe("BUTTON");
+      expect(screen.getByTestId<HTMLInputElement>("input-element").disabled).toBe(
+        true
+      );
+    });
+
+    it("should render suffix as a static non-button span when disabled", () => {
+      makeSut({ suffix: "kg", disabled: true });
+      const suffix = screen.getByTestId("input-element-suffix");
+
+      expect(suffix.tagName).toBe("SPAN");
+      expect(suffix).toHaveTextContent("kg");
+      expect(suffix.tagName).not.toBe("BUTTON");
+      expect(screen.getByTestId<HTMLInputElement>("input-element").disabled).toBe(
+        true
+      );
+    });
+
+    it("should render prefix and suffix as static non-button spans when disabled at the same time", () => {
+      makeSut({ prefix: "$", suffix: "kg", disabled: true });
+
+      expect(screen.queryByRole("button")).toBeNull();
+      expect(screen.getByTestId("input-element-prefix").tagName).toBe("SPAN");
+      expect(screen.getByTestId("input-element-suffix").tagName).toBe("SPAN");
+    });
+
+    it("should render a numeric 0 prefix", () => {
+      makeSut({ prefix: 0 });
+      const prefix = screen.getByTestId("input-element-prefix");
+
+      expect(prefix).toHaveTextContent("0");
+    });
+
+    it("should render a numeric 0 suffix", () => {
+      makeSut({ suffix: 0 });
+      const suffix = screen.getByTestId("input-element-suffix");
+
+      expect(suffix).toHaveTextContent("0");
+    });
+
+    it("should render both a numeric 0 prefix and suffix at the same time", () => {
+      makeSut({ prefix: 0, suffix: 0 });
+
+      expect(screen.getByTestId("input-element-prefix")).toHaveTextContent(
+        "0"
+      );
+      expect(screen.getByTestId("input-element-suffix")).toHaveTextContent(
+        "0"
+      );
+    });
+
+    it("should associate the prefix and suffix with the input via aria-describedby", () => {
+      makeSut({ prefix: "$", suffix: "USD" });
+      const inputElement = screen.getByTestId("input-element");
+      const prefix = screen.getByTestId("input-element-prefix");
+      const suffix = screen.getByTestId("input-element-suffix");
+
+      const describedBy = inputElement.getAttribute("aria-describedby");
+
+      expect(describedBy).toContain(prefix.getAttribute("id"));
+      expect(describedBy).toContain(suffix.getAttribute("id"));
+    });
+
+    it("should preserve a caller-provided aria-describedby alongside the affix ids", () => {
+      makeSut({ prefix: "$", "aria-describedby": "external-hint" });
+      const inputElement = screen.getByTestId("input-element");
+      const prefix = screen.getByTestId("input-element-prefix");
+
+      const describedBy = inputElement.getAttribute("aria-describedby");
+
+      expect(describedBy).toContain("external-hint");
+      expect(describedBy).toContain(prefix.getAttribute("id"));
+    });
+
+    it("should not include ids for affixes that are not rendered in aria-describedby", () => {
+      makeSut({ prefix: "$" });
+      const inputElement = screen.getByTestId("input-element");
+      const describedBy = inputElement.getAttribute("aria-describedby");
+
+      expect(describedBy).not.toContain("suffix");
+    });
   });
 });

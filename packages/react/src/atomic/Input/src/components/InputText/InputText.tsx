@@ -1,7 +1,7 @@
 import React from "react";
 import { input } from "@nimbus-ds/styles";
 
-import { type InputTextProps } from "./inputText.types";
+import { type InputTextProps } from "./InputText.types";
 
 /**
  * Renders static, non-interactive text (e.g. a currency symbol or unit of
@@ -12,7 +12,6 @@ import { type InputTextProps } from "./inputText.types";
  */
 const InputText: React.FC<InputTextProps> = ({
   className,
-  style: _style,
   appendPosition,
   children,
   ...rest

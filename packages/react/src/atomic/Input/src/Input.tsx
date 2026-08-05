@@ -27,6 +27,7 @@ const Input = forwardRef<HTMLInputElement, InputBaseProps>(
       append,
       prefix,
       suffix,
+      "aria-describedby": ariaDescribedby,
       ...rest
     },
     ref
@@ -36,6 +37,28 @@ const Input = forwardRef<HTMLInputElement, InputBaseProps>(
 
     const focusInput = () => inputRef.current?.focus();
     const dataTestid = rest?.["data-testid"];
+
+    const hasPrefix = prefix !== null && prefix !== undefined;
+    const hasSuffix = suffix !== null && suffix !== undefined;
+
+    const generatedIdRef = useRef<string | null>(null);
+    if (!generatedIdRef.current) {
+      generatedIdRef.current = `nimbus-input-${Math.random()
+        .toString(36)
+        .slice(2, 9)}`;
+    }
+    const idBase = dataTestid || generatedIdRef.current;
+    const prefixId = `${idBase}-prefix`;
+    const suffixId = `${idBase}-suffix`;
+
+    const describedByIds = [
+      hasPrefix ? prefixId : null,
+      ariaDescribedby || null,
+      hasSuffix ? suffixId : null,
+    ].filter(Boolean);
+    const inputAriaDescribedby = describedByIds.length
+      ? describedByIds.join(" ")
+      : undefined;
 
     return (
       <div
@@ -57,17 +80,24 @@ const Input = forwardRef<HTMLInputElement, InputBaseProps>(
             {append}
           </InputIcon>
         )}
-        {prefix && (
+        {hasPrefix && (
           <InputText
+            id={prefixId}
             data-testid={dataTestid ? `${dataTestid}-prefix` : ""}
             appendPosition="start"
           >
             {prefix}
           </InputText>
         )}
-        <input {...rest} ref={inputRef} className={input.classnames.input} />
-        {suffix && (
+        <input
+          {...rest}
+          ref={inputRef}
+          className={input.classnames.input}
+          aria-describedby={inputAriaDescribedby}
+        />
+        {hasSuffix && (
           <InputText
+            id={suffixId}
             data-testid={dataTestid ? `${dataTestid}-suffix` : ""}
             appendPosition="end"
           >
@@ -87,9 +117,7 @@ const Input = forwardRef<HTMLInputElement, InputBaseProps>(
     );
   }
 ) as ForwardRefExoticComponent<
-  InputBaseProps &
-    React.InputHTMLAttributes<HTMLInputElement> &
-    React.RefAttributes<HTMLInputElement>
+  InputBaseProps & React.RefAttributes<HTMLInputElement>
 > &
   InputComponents;
 
