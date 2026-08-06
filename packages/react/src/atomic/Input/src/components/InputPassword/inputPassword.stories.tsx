@@ -25,5 +25,6 @@ export const basic: Story = {
   name: "Input.Password",
   args: {
     placeholder: "Placeholder",
+    value: "Password123",
   },
 };
