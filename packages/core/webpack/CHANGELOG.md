@@ -6,7 +6,7 @@ This package is intended for internal use in generating builds of each design sy
 
 #### 🐛 Bug fixes
 
-- Restricted `ts-loader` diagnostics to the files each bundle imports (`onlyCompileBundledFiles`), so a package build no longer type-checks generated files that another package is writing at the same time and fails on a half-written one. ([#PR_NUMBER](https://github.com/TiendaNube/nimbus-design-system/pull/PR_NUMBER) by [@harrytiendanube](https://github.com/harrytiendanube))
+- Restricted `ts-loader` diagnostics to the files each bundle imports (`onlyCompileBundledFiles`), so a package build no longer type-checks generated files that another package is writing at the same time and fails on a half-written one. ([#492](https://github.com/TiendaNube/nimbus-design-system/pull/492) by [@harrytiendanube](https://github.com/harrytiendanube))
 
 ## 2026-01-15 `1.8.1`
 
