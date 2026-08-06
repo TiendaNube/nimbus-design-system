@@ -4,6 +4,7 @@ import React, {
   forwardRef,
   useRef,
 } from "react";
+import { useId } from "@floating-ui/react";
 import { useRefObjectAsForwardedRef } from "@nimbus-ds/typings";
 import { input } from "@nimbus-ds/styles";
 
@@ -13,6 +14,7 @@ import {
   InputSearch,
   InputSkeleton,
   InputIcon,
+  InputText,
 } from "./components";
 
 const Input = forwardRef<HTMLInputElement, InputBaseProps>(
@@ -24,6 +26,9 @@ const Input = forwardRef<HTMLInputElement, InputBaseProps>(
       aiGenerated = false,
       appendPosition = "start",
       append,
+      prefix,
+      suffix,
+      "aria-describedby": ariaDescribedby,
       ...rest
     },
     ref
@@ -33,6 +38,31 @@ const Input = forwardRef<HTMLInputElement, InputBaseProps>(
 
     const focusInput = () => inputRef.current?.focus();
     const dataTestid = rest?.["data-testid"];
+
+    const hasPrefix = prefix !== null && prefix !== undefined;
+    const hasSuffix = suffix !== null && suffix !== undefined;
+
+    // Always derive the affix ids from a per-instance generated id, never
+    // from `dataTestid` — two Input instances can share the same
+    // `data-testid`, and a `data-testid` containing whitespace would
+    // produce an invalid ARIA IDREF token. `useId` from `@floating-ui/react`
+    // uses React 18's native `useId()` when available (hydration-safe) and
+    // falls back to a slower-but-correct double-render strategy for React
+    // 17, matching the approach already used in this package's Modal
+    // component. `dataTestid` is only ever used for its own `data-testid`
+    // attribute below, never as an id source.
+    const generatedId = useId();
+    const prefixId = generatedId ? `${generatedId}-prefix` : undefined;
+    const suffixId = generatedId ? `${generatedId}-suffix` : undefined;
+
+    const describedByIds = [
+      hasPrefix ? prefixId : null,
+      ariaDescribedby || null,
+      hasSuffix ? suffixId : null,
+    ].filter(Boolean);
+    const inputAriaDescribedby = describedByIds.length
+      ? describedByIds.join(" ")
+      : undefined;
 
     return (
       <div
@@ -54,7 +84,30 @@ const Input = forwardRef<HTMLInputElement, InputBaseProps>(
             {append}
           </InputIcon>
         )}
-        <input {...rest} ref={inputRef} className={input.classnames.input} />
+        {hasPrefix && (
+          <InputText
+            id={prefixId}
+            data-testid={dataTestid ? `${dataTestid}-prefix` : ""}
+            appendPosition="start"
+          >
+            {prefix}
+          </InputText>
+        )}
+        <input
+          {...rest}
+          ref={inputRef}
+          className={input.classnames.input}
+          aria-describedby={inputAriaDescribedby}
+        />
+        {hasSuffix && (
+          <InputText
+            id={suffixId}
+            data-testid={dataTestid ? `${dataTestid}-suffix` : ""}
+            appendPosition="end"
+          >
+            {suffix}
+          </InputText>
+        )}
         {append && appendPosition === "end" && (
           <InputIcon
             data-testid={dataTestid ? `${dataTestid}-icon` : ""}
@@ -68,9 +121,7 @@ const Input = forwardRef<HTMLInputElement, InputBaseProps>(
     );
   }
 ) as ForwardRefExoticComponent<
-  InputBaseProps &
-    React.InputHTMLAttributes<HTMLInputElement> &
-    React.RefAttributes<HTMLInputElement>
+  InputBaseProps & React.RefAttributes<HTMLInputElement>
 > &
   InputComponents;
 
