@@ -55,26 +55,24 @@ const InputPassword = forwardRef<HTMLInputElement, InputPasswordBaseProps>(
             setValue(evt.target.value);
           }}
         />
-        {value && (
-          <InputIcon
-            data-testid="button-password-show"
-            appendPosition="end"
-            onClick={() => {
-              focusInput();
-              handleShow();
-            }}
-          >
-            <Icon
-              color="neutral-textDisabled"
-              source={
-                <Icon
-                  color="primary-interactive"
-                  source={show ? <EyeOffIcon /> : <EyeIcon />}
-                />
-              }
-            />
-          </InputIcon>
-        )}
+        <InputIcon
+          data-testid="button-password-show"
+          appendPosition="end"
+          onClick={() => {
+            focusInput();
+            handleShow();
+          }}
+        >
+          <Icon
+            color="neutral-textDisabled"
+            source={
+              <Icon
+                color="primary-interactive"
+                source={show ? <EyeOffIcon /> : <EyeIcon />}
+              />
+            }
+          />
+        </InputIcon>
       </div>
     );
   }

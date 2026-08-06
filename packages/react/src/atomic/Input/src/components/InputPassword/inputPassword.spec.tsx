@@ -11,12 +11,17 @@ describe("GIVEN <Input.Password />", () => {
   describe("WHEN rendered", () => {
     it("should display the password correctly to the user", () => {
       makeSut();
-      expect(screen.queryByTestId("button-password-show")).toBeNull();
+      expect(screen.queryByTestId("button-password-show")).not.toBeNull();
       const input = screen.getByTestId<HTMLInputElement>("my-input");
       fireEvent.change(input, { target: { value: "my password" } });
       expect(input.type).toEqual("password");
       fireEvent.click(screen.getByTestId("button-password-show"));
       expect(input.type).toEqual("text");
+    });
+
+    it("should render the visibility toggle button even when the field is empty", () => {
+      makeSut();
+      expect(screen.getByTestId("button-password-show")).toBeInTheDocument();
     });
 
     it("should correctly send the input change event to the onChange function", () => {
