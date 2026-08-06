@@ -7,7 +7,7 @@ Package-specific changes not released in any package will be added here just bef
 
 #### 🐛 Bug fixes
 
-- Fixed the `publish-release` workflow failing at random with `TS1208` errors on generated icon files, by restricting `ts-loader` diagnostics to the files each bundle imports. ([#492](https://github.com/TiendaNube/nimbus-design-system/pull/492) by [@harrytiendanube](https://github.com/harrytiendanube))
+- Fixed the `publish-release` workflow failing at random with `TS1208` errors on generated icon files, by scoping `ts-loader` diagnostics to the files each bundle imports and adding the missing package-local `tsconfig.json` to the three packages that lacked one. ([#492](https://github.com/TiendaNube/nimbus-design-system/pull/492) by [@harrytiendanube](https://github.com/harrytiendanube))
 
 ## 2026-01-27
 

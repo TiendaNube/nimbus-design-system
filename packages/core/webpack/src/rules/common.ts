@@ -14,25 +14,23 @@ export const typescriptRule = {
      * Report diagnostics only for the files this bundle actually imports.
      *
      * ts-loader receives no `configFile`, so it resolves the nearest
-     * `tsconfig.json` walking up from the package being built. Most packages
-     * ship their own, scoped to `include: ["./src"]`, and are therefore
-     * unaffected — but `@nimbus-ds/typings`, `@nimbus-ds/icons` and
-     * `@nimbus-ds/segmented-control` have none, so they reach the one at the
-     * root of the monorepo and inherit its repository-wide `include`: every
-     * file under `packages`, plus the generated ones those files import
-     * (`packages/icons/tmp` through the `@nimbus-ds/icons` alias, each
-     * package's `dist`).
+     * `tsconfig.json` walking up from the package being built, and every
+     * package now ships one scoped to its own sources. That scoping is what
+     * keeps a build isolated: turbo builds independent packages in parallel,
+     * and a config whose `include` reaches the whole repository pulls in files
+     * another build is rewriting at that very moment — which is how a
+     * `@nimbus-ds/typings` build came to fail on a half-written svgr icon and
+     * broke the `publish-release` workflow.
      *
-     * Turbo builds independent packages in parallel, so those three would
-     * type-check files that another build is rewriting at that very moment and
-     * fail on a half-written one — for instance TS1208 on an svgr icon still
-     * being emitted, which is what broke the `publish-release` workflow.
+     * This option is the second half of that defence, not a replacement for
+     * it. It restricts *source* diagnostics to the files each entry imports,
+     * so a stray `.ts`/`.tsx` selected by the resolved config no longer
+     * matters. Declaration files still come from that config, so a `.d.ts`
+     * under someone else's `dist` would still be read — hence both parts.
      *
-     * Scoping diagnostics to the dependency graph makes the resolved
-     * `tsconfig.json` irrelevant to the outcome, so no package depends on
-     * having a local one to stay isolated. Type coverage of files outside the
-     * graph (stories, specs) still comes from `yarn types:check`, which runs
-     * `tsc` over the whole program on every pull request and before every push.
+     * Type coverage of files outside the dependency graph (stories, specs)
+     * comes from `yarn types:check`, which runs `tsc` over the whole program
+     * on every pull request and before every push.
      */
     onlyCompileBundledFiles: true,
   },
