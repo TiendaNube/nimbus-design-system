@@ -2,11 +2,11 @@
 
 Tilte is a basic component that allows you to give titles and more hierarchy to blocks of text for sections or header components.
 
-## 2026-08-06 `3.3.0`
+## 2026-08-07 `3.3.0`
 
 #### 🎉 New features
 
-- `Title` now accepts the same flat color palette as `Text`, adding `currentColor`, `primary-surface`, `primary-interactive`, `success-surface`, `success-interactive`, `success-interactivePressed`, `warning-surface`, `warning-interactive`, `danger-surface`, `danger-interactive`, `neutral-surface`, `neutral-interactive` and `neutral-textDisabled` to the existing values. Both components now read from a single shared color map in `@nimbus-ds/styles`, so the palettes cannot drift apart again. The `ai-generative` gradient remains exclusive to `Text`, since it forces `display: inline` and `width: fit-content` and would break the block layout of a heading. Also corrected the documented default for `color`, which is `neutral-textHigh` (the docs previously stated `neutral-textLow`).
+- `Title` now accepts the same flat color palette as `Text`, adding `currentColor`, `primary-surface`, `primary-interactive`, `success-surface`, `success-interactive`, `success-interactivePressed`, `warning-surface`, `warning-interactive`, `danger-surface`, `danger-interactive`, `neutral-surface`, `neutral-interactive` and `neutral-textDisabled` to the existing values. Both components now read from a single shared color map in `@nimbus-ds/styles`, so the palettes cannot drift apart again. The `ai-generative` gradient remains exclusive to `Text`, since it forces `display: inline` and `width: fit-content` and would break the block layout of a heading. Also corrected the documented default for `color`, which is `neutral-textHigh` (the docs previously stated `neutral-textLow`). ([#496](https://github.com/TiendaNube/nimbus-design-system/pull/496) by [@lichademarchi](https://github.com/lichademarchi))
 
 ## 2026-02-12 `3.2.0`
 
