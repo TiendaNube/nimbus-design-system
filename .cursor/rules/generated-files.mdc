@@ -1,0 +1,56 @@
+---
+globs: **/*.docs.json
+alwaysApply: false
+---
+
+# Generated Files Rules
+
+`*.docs.json` files (e.g. `packages/react/src/atomic/Title/src/title.docs.json`) are **build
+artifacts**, not source files. They are tracked in git, which is why they look editable.
+
+They are produced by `yarn build:docs` (`.scripts/json-documentation.ts`), which runs the
+`Docgen` from `@nimbus-ds/scripts` over `packages/react/src/*/*/src/*.types.ts` and writes
+each result to `<component-path>/<componentId>.docs.json`. The same run also writes the
+bundle `packages/react/dist/components-props.json`, but `dist` is gitignored, so that one
+never reaches a commit.
+
+## Never edit them by hand
+
+Editing the JSON directly is always wrong: the next `yarn build:docs` overwrites it. Change
+the input instead. A `*.docs.json` is assembled from three inputs, not one:
+
+| Field in the JSON                | Comes from                                                   |
+| -------------------------------- | ------------------------------------------------------------ |
+| `props`, `totalProps`            | the `ComponentNameProperties` interface in `*.types.ts`       |
+| polymorphic entries in `props`   | the `PolymorphicForwardRefComponent<…>` signature in `*.tsx`  |
+| `version`                        | the `version` field of that component package's `package.json` |
+| `id`, `name`, `packageName`, `docLink`, `subComponents` | the component's path and folder layout    |
+
+So a `*.docs.json` diff with no `*.types.ts` change is not automatically a hand-edit — a
+version bump or a change to the component's `.tsx` signature moves it too.
+
+## Do not commit them in feature PRs
+
+CI owns these files:
+
+- `.github/workflows/pull-request.yml` runs `yarn build:docs` only to validate that docgen
+  succeeds. The generated diff is discarded.
+- `.github/workflows/publish.yml` regenerates them on `master` and includes
+  `**/*.docs.json` in the automated release PR.
+- `.github/workflows/generate-documentation.yml` (manual dispatch) regenerates and commits
+  them to `master`.
+
+So if a local `yarn build` or `yarn build:docs` leaves `*.docs.json` modified, revert those
+files before committing:
+
+```bash
+git checkout -- '**/*.docs.json'
+```
+
+Two reasons this matters:
+
+1. These files are large and machine-generated, so they conflict with the release PR that
+   touches the same paths in parallel.
+2. `publish.yml` lists `**/*.docs.json` under `paths-ignore` (together with
+   `**/package.json` and `.yarn/versions/**`). A push to `master` that changes **only**
+   ignored paths never starts `publish-release` — see `docs/RELEASE_PROCESS.md`.

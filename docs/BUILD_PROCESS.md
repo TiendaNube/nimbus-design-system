@@ -35,6 +35,50 @@ The build process iteratively compiles the following types of projects:
 
 ---
 
+### 3. Generated documentation artifacts
+
+`yarn build:docs` (`.scripts/json-documentation.ts`) runs the `Docgen` from
+`@nimbus-ds/scripts` over every `*.types.ts` under `packages/react/src/*/*/src/` and writes:
+
+- `<componentId>.docs.json` next to each component (e.g.
+  `packages/react/src/atomic/Title/src/title.docs.json`) — tracked in git
+- the bundle `packages/react/dist/components-props.json` — under the gitignored `dist`, so
+  it is only ever a local/CI build output
+
+These files are **generated, never hand-written**. Each `*.docs.json` is assembled from three
+inputs, which is worth knowing when a diff surprises you:
+
+| Field in the JSON                                       | Comes from                                                     |
+| ------------------------------------------------------- | -------------------------------------------------------------- |
+| `props`, `totalProps`                                   | the `ComponentNameProperties` interface in `*.types.ts`        |
+| polymorphic entries in `props`                          | the `PolymorphicForwardRefComponent<…>` signature in `*.tsx`   |
+| `version`                                               | the `version` field of that component package's `package.json` |
+| `id`, `name`, `packageName`, `docLink`, `subComponents` | the component's path and folder layout                         |
+
+Note the `version` input: a release bump changes every affected `*.docs.json` without any
+type change at all. That is why the release PR carries both.
+
+The tracked `*.docs.json` files are committed to the repo, but CI owns those commits:
+
+| Workflow                     | What it does with `*.docs.json`                                                    |
+| ---------------------------- | ---------------------------------------------------------------------------------- |
+| `pull-request.yml`           | Runs `yarn build:docs` to validate docgen succeeds. The diff is discarded.         |
+| `publish.yml`                | Regenerates on `master` and includes `**/*.docs.json` in the automated release PR. |
+| `generate-documentation.yml` | Manual dispatch: regenerates and commits directly to `master`.                     |
+
+Therefore **do not commit `*.docs.json` in a feature PR**. If a local `yarn build` leaves
+them dirty, revert before committing:
+
+```bash
+git checkout -- '**/*.docs.json'
+```
+
+Committing them by hand conflicts with the release PR that touches the same paths, and
+`publish.yml` lists `**/*.docs.json` under `paths-ignore` — a push touching only ignored
+paths never triggers `publish-release` (see `RELEASE_PROCESS.md`).
+
+---
+
 ## Webpack Configuration
 
 The Nimbus build architecture heavily relies on a centralized and extendable Webpack configuration package (`@nimbus-ds/webpack`). This package provides common logic, plugins, rules, and utilities that serve as the base for all other Nimbus projects and external repositories (like `@nimbus-ds/patterns`).
