@@ -12,14 +12,14 @@ export const Basic: React.FC<InputPasswordProps> = forwardRef(
 
 Basic.displayName = "Input.Password";
 
-const meta: Meta<typeof Basic> = {
+const meta: Meta<typeof InputPasswordComponent> = {
   title: "Atomic/Input/Input.Password",
-  component: Basic,
+  component: InputPasswordComponent,
   tags: ["autodocs"],
 };
 
 export default meta;
-type Story = StoryObj<typeof Basic>;
+type Story = StoryObj<typeof InputPasswordComponent>;
 
 export const basic: Story = {
   name: "Input.Password",

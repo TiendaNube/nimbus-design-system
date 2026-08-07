@@ -12,14 +12,14 @@ export const Basic: React.FC<InputSearchProps> = forwardRef(
 
 Basic.displayName = "Input.Search";
 
-const meta: Meta<typeof Basic> = {
+const meta: Meta<typeof InputSearchComponent> = {
   title: "Atomic/Input/Input.Search",
-  component: Basic,
+  component: InputSearchComponent,
   tags: ["autodocs"],
 };
 
 export default meta;
-type Story = StoryObj<typeof Basic>;
+type Story = StoryObj<typeof InputSearchComponent>;
 
 export const basic: Story = {
   name: "Input.Search",
