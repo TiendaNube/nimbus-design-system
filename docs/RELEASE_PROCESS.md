@@ -16,6 +16,26 @@ The easiest way to track changes before raising a PR is to run `yarn bump:check 
 
 Currently also with a gihub action that also validates on each pull request if the versions have changed according to the changes made to the code.
 
+> [!IMPORTANT]
+> A pull request that changes **only** files under `.yarn/versions/` will not publish anything on merge. The `publish-release` workflow lists `.yarn/versions/**`, `**/package.json` and `**/*.docs.json` under `paths-ignore` (so the automated "publish release" commit doesn't retrigger itself), which means such a push to `master` never starts the workflow at all.
+>
+> If you need to add a version bump that was forgotten in an earlier PR, include it alongside a change to a non-ignored path (any source file or doc), or wait for the next code PR to consume the pending version file.
+
+> [!IMPORTANT]
+> A component change must also release `@nimbus-ds/components`. `yarn bump:check --i` will not ask you for it.
+>
+> `@nimbus-ds/components` (the workspace at `packages/react`) is the aggregate package that ships every component, but it does not declare the component workspaces as dependencies — `packages/react/webpack.config.ts` bundles their sources directly. Yarn's dependency graph therefore has no edge to follow, so a change to, say, `@nimbus-ds/title` never causes `@nimbus-ds/components` to be offered, not even in the `declined` list.
+>
+> So after running `yarn bump:check --i`, add the line by hand:
+>
+> ```yaml
+> releases:
+>   "@nimbus-ds/title": minor
+>   "@nimbus-ds/components": minor # add manually, at the same or higher level
+> ```
+>
+> Forgetting it publishes the component while `@nimbus-ds/components` consumers get nothing. That is what happened in [#462](https://github.com/TiendaNube/nimbus-design-system/pull/462), which [#497](https://github.com/TiendaNube/nimbus-design-system/pull/497) had to fix after the fact — same story as [#440](https://github.com/TiendaNube/nimbus-design-system/pull/440) and [#464](https://github.com/TiendaNube/nimbus-design-system/pull/464). Remember to add the entry to `packages/react/CHANGELOG.md` as well as the component's own changelog.
+
 ## 🚀 Publishing Release Candidates (RC)
 
 To publish Release Candidate versions for testing before stable releases:

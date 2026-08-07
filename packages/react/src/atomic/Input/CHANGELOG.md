@@ -2,6 +2,12 @@
 
 The Input component allows the user to enter or edit information in text format.
 
+## 2026-08-05 `2.8.0`
+
+#### 🎉 New features
+
+- Added `prefix` and `suffix` props to `Input` to display static, non-interactive text (e.g. a currency symbol or a unit of measure) inside the field container, alongside the existing `append` icon support. As part of this change, `prefix`/`suffix` are now typed as `ReactNode`, so the previously-inherited native RDFa `prefix` HTML attribute (undocumented and unused, only ever forwarded automatically via spreading native `<input>` attributes) is no longer passed through to the underlying `<input>` element. ([#487](https://github.com/TiendaNube/nimbus-design-system/pull/487) by [@claude[bot]](https://github.com/apps/claude))
+
 ## 2026-02-12 `2.7.0`
 
 #### 🎉 New features
