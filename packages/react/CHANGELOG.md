@@ -3,6 +3,12 @@
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories
 every day, with simplicity, accessibility, consistency and performance.
 
+## 2026-08-07 `5.60.1`
+
+#### 🐛 Bug fixes
+
+- `Input.Password` / `Input.Search`: Fixed the Storybook Controls table showing no props by giving both components an explicit, statically resolvable prop type. ([#488](https://github.com/TiendaNube/nimbus-design-system/pull/488) by [@claude[bot]](https://github.com/apps/claude))
+
 ## 2026-05-04 `5.59.0`
 
 #### 🎉 New features
