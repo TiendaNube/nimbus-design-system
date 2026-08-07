@@ -58,6 +58,9 @@ const InputPassword = forwardRef<HTMLInputElement, InputPasswordBaseProps>(
         <InputIcon
           data-testid="button-password-show"
           appendPosition="end"
+          tabIndex={0}
+          aria-label={show ? "Hide password" : "Show password"}
+          aria-pressed={show}
           onClick={() => {
             focusInput();
             handleShow();
