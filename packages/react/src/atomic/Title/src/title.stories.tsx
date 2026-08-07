@@ -65,30 +65,18 @@ export const h6: Story = {
   },
 };
 
+const paletteColors = Object.keys(
+  title.properties.color
+) as (keyof typeof title.properties.color)[];
+
 export const colors: Story = {
   render: () => (
     <>
-      <Title as="h3" color="neutral-textHigh">
-        neutral-textHigh
-      </Title>
-      <Title as="h3" color="neutral-textLow">
-        neutral-textLow
-      </Title>
-      <Title as="h3" color="neutral-textDisabled">
-        neutral-textDisabled
-      </Title>
-      <Title as="h3" color="primary-interactive">
-        primary-interactive
-      </Title>
-      <Title as="h3" color="success-surface">
-        success-surface
-      </Title>
-      <Title as="h3" color="danger-interactive">
-        danger-interactive
-      </Title>
-      <Title as="h3" color="currentColor">
-        currentColor
-      </Title>
+      {paletteColors.map((color) => (
+        <Title key={color} as="h3" color={color}>
+          {color}
+        </Title>
+      ))}
     </>
   ),
 };
