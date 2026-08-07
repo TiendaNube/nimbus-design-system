@@ -15,8 +15,12 @@ by the release pipeline. See `.cursor/rules/package-json.mdc` and
 
 `@nimbus-ds/components` (the workspace at `packages/react`) is the aggregate package that
 ships every component. If you change **published** source of a component under
-`packages/react/src/atomic/**` or `packages/react/src/composite/**` — that is `*.ts`, `*.tsx`
-or `*.css.ts` — the version file MUST declare **both**:
+`packages/react/src/atomic/**` or `packages/react/src/composite/**`, the version file MUST
+declare **both**:
+
+- **Counts as published source:** `*.ts`, `*.tsx`, `*.css.ts`.
+- **Does not count:** `*.spec.ts`, `*.spec.tsx`, `*.stories.tsx`, `*.docs.json`. These are
+  never published, so a change limited to them needs no release at all — do not declare one.
 
 ```yaml
 releases:
@@ -59,7 +63,10 @@ This has already broken releases more than once, and the trail is in the history
 - Earlier: PR #440, `fix: bump react for a missing change`, and PR #464,
   `fix: republish packages`.
 
-## Checklist before opening a PR that touches a component
+## Checklist before opening a PR that changes published component source
+
+Skip this entirely if the PR only touches `*.spec.*`, `*.stories.tsx` or `*.docs.json` under a
+component — nothing publishable changed.
 
 1. Run `yarn bump:check --interactive` and declare the component package.
 2. Manually add `"@nimbus-ds/components": <level>` to the same `releases` block.
