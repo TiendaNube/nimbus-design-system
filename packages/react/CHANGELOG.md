@@ -3,6 +3,16 @@
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories
 every day, with simplicity, accessibility, consistency and performance.
 
+## 2026-08-07 `5.61.0`
+
+#### 🎉 New features
+
+- Title: Adds support for the `Text` color palette, except `ai-generative`, and corrects the documented default `color` to `neutral-textHigh`. ([#496](https://github.com/TiendaNube/nimbus-design-system/pull/496) by [@lichademarchi](https://github.com/lichademarchi))
+
+#### 🐛 Bug fixes
+
+- Text: Fixes `color="success-interactive"`, which resolved to the `success-textLow` token since [#110](https://github.com/TiendaNube/nimbus-design-system/pull/110). ([#496](https://github.com/TiendaNube/nimbus-design-system/pull/496) by [@lichademarchi](https://github.com/lichademarchi))
+
 ## 2026-05-04 `5.59.0`
 
 #### 🎉 New features

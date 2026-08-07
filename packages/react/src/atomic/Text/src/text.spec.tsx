@@ -1,5 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
+import { text } from "@nimbus-ds/styles";
 
 import { Text } from ".";
 import { type TextProps } from "./text.types";
@@ -151,6 +152,15 @@ describe("GIVEN <Text />", () => {
       expect(
         screen.getByTestId("text-element").getAttribute("class")
       ).toContain("color-success-interactivePressed");
+    });
+
+    // Asserted on the sprinkle map values, not on the generated class names:
+    // those derive from the map key, so they differ even when both keys point
+    // at the same token — which is exactly the regression being guarded here.
+    it("THEN should map success-interactive and success-textLow to different tokens", () => {
+      expect(text.properties.color["success-interactive"]).not.toBe(
+        text.properties.color["success-textLow"]
+      );
     });
 
     it("THEN should correctly render the color warning-textLow", () => {

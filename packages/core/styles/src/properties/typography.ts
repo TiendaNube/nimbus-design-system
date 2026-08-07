@@ -13,7 +13,7 @@ export const typographyColorProperties = {
   "primary-textHigh": colorProperties["primary-textHigh"],
 
   "success-surface": colorProperties["success-surface"],
-  "success-interactive": colorProperties["success-textLow"],
+  "success-interactive": colorProperties["success-interactive"],
   "success-interactivePressed": colorProperties["success-interactivePressed"],
   "success-textLow": colorProperties["success-textLow"],
   "success-textHigh": colorProperties["success-textHigh"],

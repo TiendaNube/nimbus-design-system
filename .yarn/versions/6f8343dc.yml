@@ -1,6 +1,7 @@
 releases:
   "@nimbus-ds/styles": minor
   "@nimbus-ds/title": minor
+  "@nimbus-ds/components": minor # the aggregate — yarn version check never offers it
 
 declined:
   - nimbus-design-system
