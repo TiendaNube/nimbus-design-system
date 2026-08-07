@@ -2,6 +2,12 @@
 
 This package is intended for internal use in generating builds of each design system package. It contains all the necessary settings and dependencies to optimize the creation of our builds.
 
+## 2026-08-06 `1.7.3`
+
+#### 🐛 Bug fixes
+
+- Scoped `ts-loader` diagnostics to the files each bundle imports (`onlyCompileBundledFiles`), and gave `@nimbus-ds/typings`, `@nimbus-ds/icons` and `@nimbus-ds/segmented-control` the package-local `tsconfig.json` every other package already had, so a build no longer reads generated files that another package is writing at the same time and fails on a half-written one. ([#492](https://github.com/TiendaNube/nimbus-design-system/pull/492) by [@harrytiendanube](https://github.com/harrytiendanube))
+
 ## 2026-01-15 `1.8.1`
 
 #### 🐛 Bug fixes
