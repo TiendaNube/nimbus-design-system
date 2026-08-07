@@ -13,13 +13,14 @@ Always read these two — they are `alwaysApply: true`:
 
 Read these when you touch the matching files, **before** editing:
 
-| Rule file                    | Applies to                                                   |
-| ---------------------------- | ------------------------------------------------------------ |
-| `types.mdc`                  | `**/*.types.ts`                                              |
-| `package-json.mdc`           | `**/package.json`                                            |
-| `changelogs.mdc`             | `**/CHANGELOG.md`                                            |
-| `components-base-config.mdc` | `**/react/**/webpack.config.ts`, `**/react/**/tsconfig.json` |
-| `generated-files.mdc`        | `**/*.docs.json`                                             |
+| Rule file                    | Applies to                                                                                |
+| ---------------------------- | ----------------------------------------------------------------------------------------- |
+| `types.mdc`                  | `**/*.types.ts`                                                                           |
+| `package-json.mdc`           | `**/package.json`                                                                         |
+| `changelogs.mdc`             | `**/CHANGELOG.md`                                                                         |
+| `components-base-config.mdc` | `**/react/**/webpack.config.ts`, `**/react/**/tsconfig.json`                              |
+| `generated-files.mdc`        | `**/*.docs.json`                                                                          |
+| `versioning.mdc`             | `.yarn/versions/*.yml`, component source under `packages/react/src/{atomic,composite}/**` |
 
 Read these when the **task** matches, regardless of which files are open (they have no
 globs — the trigger is what you are doing):
@@ -38,8 +39,12 @@ Process docs: `docs/CONTRIBUTING.md`, `docs/BUILD_PROCESS.md`, `docs/RELEASE_PRO
 modified, revert before committing:
 
 ```bash
-git checkout -- '**/*.docs.json'
+git restore --source=HEAD --staged --worktree -- '**/*.docs.json'
+git clean -f -- '**/*.docs.json'
 ```
+
+Both lines are needed: `restore` only handles tracked files, so a brand-new component's
+freshly generated `*.docs.json` is untracked and would still be picked up by `git add -A`.
 
 Full rationale in `.cursor/rules/generated-files.mdc`.
 
@@ -51,9 +56,11 @@ package's `CHANGELOG.md`.
 
 ## A component change always releases `@nimbus-ds/components` too
 
-If you touch anything under `packages/react/src/atomic/**` or `packages/react/src/composite/**`,
-the deferred version file must declare the component package **and** `@nimbus-ds/components`
-(the aggregate at `packages/react`) at the same or higher bump level:
+If you change **published** component source under `packages/react/src/atomic/**` or
+`packages/react/src/composite/**` — `*.ts`, `*.tsx`, `*.css.ts`, but **not** `*.spec.*`,
+`*.stories.tsx` or `*.docs.json`, which are never published — the deferred version file must
+declare the component package **and** `@nimbus-ds/components` (the aggregate at
+`packages/react`) at the same or higher bump level:
 
 ```yaml
 releases:
@@ -61,10 +68,13 @@ releases:
   "@nimbus-ds/components": minor # required — nothing infers this for you
 ```
 
-`yarn version check` cannot detect this: `packages/react/package.json` does not depend on the
-component workspaces, it bundles their sources via webpack. No lint, hook or CI step fails if
-you forget — the component just publishes while `@nimbus-ds/components` consumers get nothing.
-Also add the entry to `packages/react/CHANGELOG.md`, not only the component's.
+`yarn bump:check` cannot detect this: `packages/react/package.json` does not depend on the
+component workspaces, it bundles their sources via webpack, so Yarn has no dependency edge to
+follow. Nothing in lint or the git hooks catches it either — the only guard is the
+`Missing @nimbus-ds/components Release` CodeRabbit pre-merge check (`error` mode), and that
+runs after you already opened the PR. Forgetting it publishes the component while
+`@nimbus-ds/components` consumers get nothing. Also add the entry to
+`packages/react/CHANGELOG.md`, not only the component's.
 
 Full rationale in `.cursor/rules/versioning.mdc`.
 

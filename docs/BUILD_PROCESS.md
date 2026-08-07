@@ -70,8 +70,12 @@ Therefore **do not commit `*.docs.json` in a feature PR**. If a local `yarn buil
 them dirty, revert before committing:
 
 ```bash
-git checkout -- '**/*.docs.json'
+git restore --source=HEAD --staged --worktree -- '**/*.docs.json'
+git clean -f -- '**/*.docs.json'
 ```
+
+The second line matters when you added a **new** component: its `*.docs.json` did not exist
+before, so it is untracked and `restore` alone leaves it behind for `git add -A` to pick up.
 
 Committing them by hand conflicts with the release PR that touches the same paths, and
 `publish.yml` lists `**/*.docs.json` under `paths-ignore` — a push touching only ignored

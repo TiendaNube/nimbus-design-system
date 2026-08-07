@@ -1,21 +1,22 @@
 ---
 description: Use this rule whenever you modify a component under packages/react/src/atomic or packages/react/src/composite, or whenever you create or edit a deferred version file in .yarn/versions. It defines which packages must be declared for release.
-globs: .yarn/versions/*.yml
+globs: .yarn/versions/*.yml,packages/react/src/atomic/**,packages/react/src/composite/**
 alwaysApply: false
 ---
 
 # Versioning Rules
 
 Versions are never edited by hand in `package.json`. They are declared as **deferred version
-files** in `.yarn/versions/*.yml` (created by `yarn version check --interactive`) and applied
+files** in `.yarn/versions/*.yml` (created by `yarn bump:check --interactive`) and applied
 by the release pipeline. See `.cursor/rules/package-json.mdc` and
 `docs/RELEASE_PROCESS.md`.
 
 ## Always release `@nimbus-ds/components` alongside a component change
 
 `@nimbus-ds/components` (the workspace at `packages/react`) is the aggregate package that
-ships every component. If you change any component under `packages/react/src/atomic/**` or
-`packages/react/src/composite/**`, the version file MUST declare **both**:
+ships every component. If you change **published** source of a component under
+`packages/react/src/atomic/**` or `packages/react/src/composite/**` — that is `*.ts`, `*.tsx`
+or `*.css.ts` — the version file MUST declare **both**:
 
 ```yaml
 releases:
@@ -36,13 +37,17 @@ entries from `src/atomic` and `src/composite` via
 
 So the dependency is real at build time but invisible to Yarn's dependency graph:
 
-- `yarn version check` (and `yarn bump:check` in `pre-push`) will **not** offer or require
-  `@nimbus-ds/components` when only a component changed — it does not appear even in the
-  `declined` list. Compare `.yarn/versions/7978f41a.yml` (Input + Styles: `components` absent
-  entirely) with a change to `@nimbus-ds/icons`, where `components` *is* offered because that
-  edge is declared.
-- Nothing in CI fails either. The result is a published `@nimbus-ds/title` whose code never
-  reaches consumers importing `@nimbus-ds/components`.
+- `yarn bump:check` (`yarn version check`, also run by the `pre-push` hook) will **not** offer
+  or require `@nimbus-ds/components` when only a component changed — it does not appear even in
+  the `declined` list. Compare `.yarn/versions/7978f41a.yml` (Input + Styles: `components`
+  absent entirely) with a change to `@nimbus-ds/icons`, where `components` *is* offered
+  because that edge is declared.
+- No lint rule or git hook catches it. The only guard is the
+  `Missing @nimbus-ds/components Release` pre-merge check in `.coderabbit.yaml` (`error`
+  mode), which runs on the open PR — so it is a backstop, not something to rely on while
+  writing the version file. Get it right up front.
+- Otherwise the result is a published `@nimbus-ds/title` whose code never reaches consumers
+  importing `@nimbus-ds/components`.
 
 This has already broken releases more than once, and the trail is in the history:
 
@@ -56,7 +61,7 @@ This has already broken releases more than once, and the trail is in the history
 
 ## Checklist before opening a PR that touches a component
 
-1. Run `yarn version check --interactive` and declare the component package.
+1. Run `yarn bump:check --interactive` and declare the component package.
 2. Manually add `"@nimbus-ds/components": <level>` to the same `releases` block.
 3. Document the change in the component's `CHANGELOG.md` **and** in
    `packages/react/CHANGELOG.md`.

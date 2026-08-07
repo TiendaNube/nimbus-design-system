@@ -192,7 +192,10 @@ reviews:
           FAIL if: any `*.docs.json` is added/modified in a regular feature/fix/chore PR.
 
           When failing, list the generated files and tell the author to revert them with
-          `git checkout -- '**/*.docs.json'`, explaining that:
+          `git restore --source=HEAD --staged --worktree -- '**/*.docs.json'` followed by
+          `git clean -f -- '**/*.docs.json'` (the second command is needed because a newly
+          added component's `*.docs.json` is untracked, so `restore` alone leaves it staged by
+          `git add -A`), explaining that:
           - CI regenerates them: `publish.yml` rebuilds docs on master and ships them in the
             automated release PR; `pull-request.yml` builds them only as validation and
             discards the diff.

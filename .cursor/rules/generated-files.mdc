@@ -44,8 +44,12 @@ So if a local `yarn build` or `yarn build:docs` leaves `*.docs.json` modified, r
 files before committing:
 
 ```bash
-git checkout -- '**/*.docs.json'
+git restore --source=HEAD --staged --worktree -- '**/*.docs.json'
+git clean -f -- '**/*.docs.json'
 ```
+
+Both lines are required. `restore` only touches tracked files, so the `*.docs.json` of a
+**newly added** component is untracked and would survive to be staged by `git add -A`.
 
 Two reasons this matters:
 
