@@ -3,6 +3,12 @@
 This is the log of notable changes to the Design System Nimbus that are developer-facing.
 Package-specific changes not released in any package will be added here just before the release. Until then, you can find them in changelogs of the individual packages (see [packages](./packages) directory).
 
+## 2026-08-06
+
+#### 🐛 Bug fixes
+
+- Fixed the `publish-release` workflow failing at random with `TS1208` errors on generated icon files, by scoping `ts-loader` diagnostics to the files each bundle imports and adding the missing package-local `tsconfig.json` to the three packages that lacked one. ([#492](https://github.com/TiendaNube/nimbus-design-system/pull/492) by [@harrytiendanube](https://github.com/harrytiendanube))
+
 ## 2026-01-27
 
 #### 🎉 New features
