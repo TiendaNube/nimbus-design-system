@@ -3,12 +3,12 @@ import { defineProperties, createSprinkles } from "@vanilla-extract/sprinkles";
 
 import { mediaQueries, varsThemeBase } from "../../../themes";
 import {
-  colorProperties,
   titleFontSizeProperties,
   fontWeightProperties,
   titleLineHeightProperties,
   textAlignProperties,
   spacingProperties,
+  typographyColorProperties,
 } from "../../../properties";
 
 /* -------------------------------------------------------------------------------------------------
@@ -80,20 +80,6 @@ export const styles = {
  * Sprinkle
  * -----------------------------------------------------------------------------------------------*/
 
-const titleColorProperties = {
-  "primary-textHigh": colorProperties["primary-textHigh"],
-  "primary-textLow": colorProperties["primary-textLow"],
-  "success-textHigh": colorProperties["success-textHigh"],
-  "success-textLow": colorProperties["success-textLow"],
-  "warning-textHigh": colorProperties["warning-textHigh"],
-  "warning-textLow": colorProperties["warning-textLow"],
-  "danger-textHigh": colorProperties["danger-textHigh"],
-  "danger-textLow": colorProperties["danger-textLow"],
-  "neutral-textHigh": colorProperties["neutral-textHigh"],
-  "neutral-textLow": colorProperties["neutral-textLow"],
-  "neutral-background": colorProperties["neutral-background"],
-};
-
 const fontSizeProperties = {
   ...titleFontSizeProperties,
   ...spacingProperties,
@@ -105,7 +91,7 @@ const lineHeightProperties = {
 };
 
 const properties = {
-  color: titleColorProperties,
+  color: typographyColorProperties,
   textAlign: textAlignProperties,
   fontSize: fontSizeProperties,
   fontWeight: fontWeightProperties,

@@ -1,0 +1,13 @@
+releases:
+  "@nimbus-ds/styles": minor
+  "@nimbus-ds/title": minor
+
+declined:
+  - nimbus-design-system
+  - "@nimbus-ds/accordion"
+  - "@nimbus-ds/alert"
+  - "@nimbus-ds/modal"
+  - "@nimbus-ds/sidebar"
+  - "@nimbus-ds/split-button"
+  - "@nimbus-ds/stepper"
+  - "@nimbus-ds/time-picker"

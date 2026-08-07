@@ -123,6 +123,44 @@ describe("GIVEN <Title />", () => {
     });
   });
 
+  describe("THEN should correctly render the submitted color", () => {
+    const colors: NonNullable<TitleProps["color"]>[] = [
+      "currentColor",
+      "primary-surface",
+      "primary-interactive",
+      "primary-textLow",
+      "primary-textHigh",
+      "success-surface",
+      "success-interactive",
+      "success-interactivePressed",
+      "success-textLow",
+      "success-textHigh",
+      "warning-surface",
+      "warning-interactive",
+      "warning-textLow",
+      "warning-textHigh",
+      "danger-surface",
+      "danger-interactive",
+      "danger-textLow",
+      "danger-textHigh",
+      "neutral-background",
+      "neutral-surface",
+      "neutral-interactive",
+      "neutral-textDisabled",
+      "neutral-textLow",
+      "neutral-textHigh",
+    ];
+
+    colors.forEach((color) => {
+      it(`THEN should correctly render the color ${color}`, () => {
+        makeSut({ color });
+        expect(screen.getByRole("heading").getAttribute("class")).toContain(
+          `color_${color}`
+        );
+      });
+    });
+  });
+
   describe("THEN should correctly render the size", () => {
     it("THEN should correctly render the size h1", () => {
       makeSut({ fontSize: "h1" });

@@ -1,3 +1,4 @@
+import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { title } from "@nimbus-ds/styles";
 import { argTypesConvert } from ".storybook/utils";
@@ -62,6 +63,34 @@ export const h6: Story = {
     as: "h6",
     children: "Lorem ipsum dolor sit amet",
   },
+};
+
+export const colors: Story = {
+  render: () => (
+    <>
+      <Title as="h3" color="neutral-textHigh">
+        neutral-textHigh
+      </Title>
+      <Title as="h3" color="neutral-textLow">
+        neutral-textLow
+      </Title>
+      <Title as="h3" color="neutral-textDisabled">
+        neutral-textDisabled
+      </Title>
+      <Title as="h3" color="primary-interactive">
+        primary-interactive
+      </Title>
+      <Title as="h3" color="success-surface">
+        success-surface
+      </Title>
+      <Title as="h3" color="danger-interactive">
+        danger-interactive
+      </Title>
+      <Title as="h3" color="currentColor">
+        currentColor
+      </Title>
+    </>
+  ),
 };
 
 export const responsive: Story = {
