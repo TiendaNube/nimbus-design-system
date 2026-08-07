@@ -16,6 +16,11 @@ The easiest way to track changes before raising a PR is to run `yarn bump:check 
 
 Currently also with a gihub action that also validates on each pull request if the versions have changed according to the changes made to the code.
 
+> [!IMPORTANT]
+> A pull request that changes **only** files under `.yarn/versions/` will not publish anything on merge. The `publish-release` workflow lists `.yarn/versions/**`, `**/package.json` and `**/*.docs.json` under `paths-ignore` (so the automated "publish release" commit doesn't retrigger itself), which means such a push to `master` never starts the workflow at all.
+>
+> If you need to add a version bump that was forgotten in an earlier PR, include it alongside a change to a non-ignored path (any source file or doc), or wait for the next code PR to consume the pending version file.
+
 ## 🚀 Publishing Release Candidates (RC)
 
 To publish Release Candidate versions for testing before stable releases:
