@@ -136,6 +136,42 @@ reviews:
           FAIL if: Breaking changes detected but package.json shows MINOR (0.x.0) or PATCH (0.0.x) bump, or no version bump at all
           
           When failing, list each breaking change found and the expected MAJOR version.
+      - name: "Missing @nimbus-ds/components Release"
+        mode: "error"
+        instructions: |
+          Pass/fail criteria: a PR that changes component source MUST also declare a release
+          for `@nimbus-ds/components`.
+
+          `@nimbus-ds/components` is the workspace at `packages/react`. It is the aggregate
+          package that ships every component, and it builds by bundling the component
+          *sources* (`packages/react/webpack.config.ts` derives its webpack entries from
+          `src/atomic` and `src/composite`). Because `packages/react/package.json` does not
+          declare the component workspaces as dependencies, `yarn version check` never offers
+          or requires this bump — it will not even appear in the `declined` list. Nothing else
+          in CI catches it, so this check is the only guard.
+
+          Trigger: the PR adds or modifies published source under
+          `packages/react/src/atomic/*/src/**` or `packages/react/src/composite/*/src/**` —
+          that is `*.ts`, `*.tsx` or `*.css.ts`, EXCLUDING `*.spec.tsx`, `*.spec.ts`,
+          `*.stories.tsx` and `*.docs.json`, which are not published.
+
+          PASS if: no published component source changed, OR some `.yarn/versions/*.yml` in
+          the PR has `"@nimbus-ds/components"` under `releases:` with a bump level at least as
+          high as the highest level declared for any changed component package
+          (major > minor > patch). Also PASS for the automated release PR (branch
+          `release/publish-*`).
+
+          FAIL if: published component source changed and `@nimbus-ds/components` is missing
+          from `releases:`, or is declared at a lower level than a component it ships.
+
+          When failing, quote the version file and the exact line to add, e.g.
+          `"@nimbus-ds/components": minor`. Cite the precedent: PR #462 changed Badge without
+          it, and PR #497 had to be opened solely to declare the missed bump (see also #440
+          "bump react for a missing change" and #464 "republish packages").
+
+          Secondary: if the PR declares a component release, also verify the change is
+          documented in `packages/react/CHANGELOG.md`, not only in the component's own
+          `CHANGELOG.md`. Report that as a separate, lower-priority note.
       - name: "Generated Files Committed"
         mode: "warning"
         instructions: |

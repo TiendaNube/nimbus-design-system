@@ -49,6 +49,25 @@ Versions come from `yarn version` deferred files in `.yarn/versions/*.yml`, appl
 release pipeline. Do not edit `version` in any `package.json`. Document the change in the
 package's `CHANGELOG.md`.
 
+## A component change always releases `@nimbus-ds/components` too
+
+If you touch anything under `packages/react/src/atomic/**` or `packages/react/src/composite/**`,
+the deferred version file must declare the component package **and** `@nimbus-ds/components`
+(the aggregate at `packages/react`) at the same or higher bump level:
+
+```yaml
+releases:
+  "@nimbus-ds/title": minor
+  "@nimbus-ds/components": minor # required — nothing infers this for you
+```
+
+`yarn version check` cannot detect this: `packages/react/package.json` does not depend on the
+component workspaces, it bundles their sources via webpack. No lint, hook or CI step fails if
+you forget — the component just publishes while `@nimbus-ds/components` consumers get nothing.
+Also add the entry to `packages/react/CHANGELOG.md`, not only the component's.
+
+Full rationale in `.cursor/rules/versioning.mdc`.
+
 Caveat worth remembering: `publish.yml` lists `**/package.json`, `.yarn/versions/**` and
 `**/*.docs.json` under `paths-ignore`, so a push to `master` touching **only** those paths
 never triggers `publish-release`. Pair a forgotten version file with a non-ignored change.

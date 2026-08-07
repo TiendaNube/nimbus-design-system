@@ -1,0 +1,65 @@
+---
+description: Use this rule whenever you modify a component under packages/react/src/atomic or packages/react/src/composite, or whenever you create or edit a deferred version file in .yarn/versions. It defines which packages must be declared for release.
+globs: .yarn/versions/*.yml
+alwaysApply: false
+---
+
+# Versioning Rules
+
+Versions are never edited by hand in `package.json`. They are declared as **deferred version
+files** in `.yarn/versions/*.yml` (created by `yarn version check --interactive`) and applied
+by the release pipeline. See `.cursor/rules/package-json.mdc` and
+`docs/RELEASE_PROCESS.md`.
+
+## Always release `@nimbus-ds/components` alongside a component change
+
+`@nimbus-ds/components` (the workspace at `packages/react`) is the aggregate package that
+ships every component. If you change any component under `packages/react/src/atomic/**` or
+`packages/react/src/composite/**`, the version file MUST declare **both**:
+
+```yaml
+releases:
+  "@nimbus-ds/title": minor
+  "@nimbus-ds/components": minor # required: the aggregate package ships Title's code
+```
+
+Give `@nimbus-ds/components` **at least the highest bump level** among the changed component
+packages (a `major` on a component means a `major` on `components`).
+
+### Why this is not automatic
+
+`packages/react/package.json` does **not** depend on the component workspaces. Its only
+`@nimbus-ds` dependency is `@nimbus-ds/icons`. The aggregate package is built by bundling the
+component **sources** directly: `packages/react/webpack.config.ts` derives its webpack
+entries from `src/atomic` and `src/composite` via
+`utils.getComponentsPackageExports(baseDir, ["atomic", "composite"])`.
+
+So the dependency is real at build time but invisible to Yarn's dependency graph:
+
+- `yarn version check` (and `yarn bump:check` in `pre-push`) will **not** offer or require
+  `@nimbus-ds/components` when only a component changed — it does not appear even in the
+  `declined` list. Compare `.yarn/versions/7978f41a.yml` (Input + Styles: `components` absent
+  entirely) with a change to `@nimbus-ds/icons`, where `components` *is* offered because that
+  edge is declared.
+- Nothing in CI fails either. The result is a published `@nimbus-ds/title` whose code never
+  reaches consumers importing `@nimbus-ds/components`.
+
+This has already broken releases more than once, and the trail is in the history:
+
+- PR #462 (`feat(Badge): add dot variant`) declared `@nimbus-ds/badge` and
+  `@nimbus-ds/styles`, but not `@nimbus-ds/components`, even though it added the Badge entry
+  to `packages/react/CHANGELOG.md` under `5.59.0`.
+- PR #497 (`chore: declare minor release for @nimbus-ds/components`) existed only to declare
+  the bump that #462 missed.
+- Earlier: PR #440, `fix: bump react for a missing change`, and PR #464,
+  `fix: republish packages`.
+
+## Checklist before opening a PR that touches a component
+
+1. Run `yarn version check --interactive` and declare the component package.
+2. Manually add `"@nimbus-ds/components": <level>` to the same `releases` block.
+3. Document the change in the component's `CHANGELOG.md` **and** in
+   `packages/react/CHANGELOG.md`.
+4. Remember that a version file alone does not publish: `publish.yml` lists
+   `.yarn/versions/**`, `**/package.json` and `**/*.docs.json` under `paths-ignore`, so the
+   PR must also carry a non-ignored change (see `docs/RELEASE_PROCESS.md`).
