@@ -203,6 +203,10 @@ reviews:
           that is `*.ts`, `*.tsx` or `*.css.ts`, EXCLUDING `*.spec.tsx`, `*.spec.ts`,
           `*.stories.tsx` and `*.docs.json`, which are not published.
 
+          `.yarn/**` is excluded from the reviewable diff by default, so the version files are
+          not in the diff body. Read them from the repository — never infer the presence, absence
+          or level of a declaration from the diff.
+
           PASS if: no published component source changed, OR some `.yarn/versions/*.yml` in
           the PR has `"@nimbus-ds/components"` under `releases:` with a bump level at least as
           high as the highest level declared for any changed component package
@@ -211,14 +215,22 @@ reviews:
 
           EXCEPTION for a brand-new component package (its `package.json` is added in this PR,
           seeded with `"version": "0.0.0"`): its `major` is only the seed resolving to `1.0.0`, so
-          `"@nimbus-ds/components": minor` is correct and MUST pass — do not demand `major` to
+          it does not raise the required level for the aggregate — do not demand `major` to
           satisfy "at least as high". Adding a component breaks nothing for aggregate consumers.
           Precedent: #400 (`slider`), #414 (`time-picker`), #319 (`scroll-pane`) and #290
           (`segmented-control`) all pair the new package's `major` with `components: minor`.
 
+          The exception is scoped to the new packages themselves — apply it by computing the
+          required level from the changed EXISTING component packages only, then requiring
+          `@nimbus-ds/components` to be at least that level (and at least `minor`, since a new
+          component is a feature of the aggregate). So in a MIXED PR — a new package declared
+          `major` alongside an existing component that also needs `major` — the existing
+          component's `major` still governs and `"@nimbus-ds/components": minor` FAILS.
+          `minor` is only correct when every `major` in the PR belongs to a new `0.0.0` package.
+
           FAIL if: published component source changed and `@nimbus-ds/components` is missing
-          from `releases:`, or — outside the new-package exception above — is declared at a lower
-          level than a component it ships.
+          from `releases:`, or is declared below the level required by the changed existing
+          component packages, or is declared below `minor` at all.
 
           When failing, quote the version file and the exact line to add, e.g.
           `"@nimbus-ds/components": minor`. Cite the precedent: PR #462 changed Badge without
@@ -284,9 +296,13 @@ reviews:
       - name: "Breaking Change Documentation Verification"
         mode: "error"
         instructions: |
-          Pass/fail criteria: If a `.yarn/versions/*.yml` declares `major` for a package OR code
-          contains breaking changes, that package's CHANGELOG.md MUST have a
+          Pass/fail criteria: If a `.yarn/versions/*.yml` declares `major` for an EXISTING package
+          OR code contains breaking changes, that package's CHANGELOG.md MUST have a
           "#### 🛠 Breaking changes" section.
+
+          `.yarn/**` is excluded from the reviewable diff by default, so the version files are not
+          in the diff body. Read them from the repository — never infer the presence, absence or
+          level of a declaration from the diff.
 
           Cross-reference:
           1. Check if any `.yarn/versions/*.yml` in the PR declares `major` for a package. Never
@@ -296,9 +312,21 @@ reviews:
           2. Check if breaking changes detected in code (props removed, exports removed, tokens changed, CSS modified)
           3. Verify CHANGELOG.md contains "#### 🛠 Breaking changes" or "### 🛠 Breaking changes" section
           4. Verify each breaking change is documented with description and PR reference
-          
-          PASS if: No breaking changes and no `major` declaration, OR breaking changes exist with proper CHANGELOG documentation
-          FAIL if: `major` declared for an existing package without a "🛠 Breaking changes" section, OR breaking changes in code without documentation
+
+          PASS if any of:
+          - no breaking changes in code AND no `major` declared;
+          - the only `major` declarations are initial releases of new packages seeded at
+            `"version": "0.0.0"` (no breaking-changes section required for those);
+          - every `major` declared for an existing package AND every breaking change detected in
+            code has the required section, documented in that package's own CHANGELOG.md.
+
+          FAIL if any of:
+          - a `major` is declared for an existing package and that package's CHANGELOG.md has no
+            "🛠 Breaking changes" section;
+          - a breaking change is detected in code and is not documented in that section.
+
+          A mixed PR is judged per package: a new `0.0.0` package needing no section does not
+          excuse a co-changed existing package that does.
           
           Documentation format required: "- Description of breaking change. ([#PR](url) by [@author](url))"
   tools:
