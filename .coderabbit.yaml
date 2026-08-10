@@ -74,8 +74,34 @@ reviews:
         Ensure CHANGELOG.md updates follow the established format: YYYY-MM-DD version with categorized entries (Breaking changes, New features, Bug fixes, Others). 
         Each entry must include PR reference and author, and changes must be properly versioned (major/minor/patch). Changes MUST be documented in their respective package's CHANGELOG.md. 
         **CRITICAL: Clearly highlight and document the package bumps in the summary (or a comment, if unable), following exactly this structure: '@nimbus-ds/<package-name>@<bump-version>|<semver-type>: <Description>.' For example: '@nimbus-ds/styles@9.18.0|minor: Added scroll-pane new composite component...'. It is crucial to respect the requested structure.**
+
+        That bump summary is something YOU produce in the walkthrough. It is never a change
+        requested from the author, and it is never a reason to ask for an edit to `package.json`.
+        Take the package scope verbatim from the version file (`@nimbus-ds/...`) — do not
+        reconstruct it from memory.
+
+        The version in a `CHANGELOG.md` header is the version the release pipeline WILL publish,
+        so it legitimately runs ahead of the `version` in `package.json` on an open PR. Never
+        report that gap as drift; verify the bump level against `.yarn/versions/*.yml` instead.
     - path: "**/package.json"
-      instructions: "Verify version updates follow SemVer: major for breaking changes, minor for new features, patch for bug fixes. Ensure dependencies are properly versioned and peer dependencies are correctly specified."
+      instructions: |
+        NEVER suggest editing the `version` field. Versions in this repo are never bumped in
+        `package.json`: they are declared as deferred files in `.yarn/versions/*.yml` (created by
+        `yarn bump:check --interactive`) and applied by the release pipeline.
+
+        A mismatch between `version` here and the latest header in the package's `CHANGELOG.md`
+        is EXPECTED on an open PR — the pipeline has not run yet. It is NOT a finding. Do not ask
+        for the two to be "synchronized".
+
+        New packages are seeded once with `"version": "0.0.0"` and declare `major` in the version
+        file; the pipeline resolves that to `1.0.0`. Do not ask for `0.0.0` to be changed to
+        `1.0.0`, and do not read `0.0.0` as a missing bump.
+
+        The artifact to verify is the `.yarn/versions/*.yml` entry: that the changed package is
+        declared, and at the right SemVer level (major for breaking changes, minor for new
+        features, patch for bug fixes).
+
+        Do review `dependencies` and `peerDependencies` ranges normally.
     - path: "**/packages/react/src/atomic/**/*.{ts,tsx}"
       instructions: |
         Review atomic components for dependency management in monorepo context:
@@ -124,18 +150,30 @@ reviews:
       - name: "Unversioned Breaking Changes"
         mode: "error"
         instructions: |
-          Pass/fail criteria: All breaking changes MUST have a MAJOR version bump (x.0.0) in package.json.
-          
+          Pass/fail criteria: All breaking changes MUST be declared as `major` for the affected
+          package in a `.yarn/versions/*.yml` file.
+
+          Versions are NEVER bumped in `package.json` in this repo — the release pipeline applies
+          them from the deferred version files. Do not look at `package.json` for the bump, and do
+          not ask the author to edit it.
+
           Detect breaking changes by scanning for:
           1. **Props API changes** in *.types.ts: Removed props, renamed props, type narrowing (e.g., `string | number` → `string`), optional→required changes
           2. **Export removals** in index.ts: Any previously exported symbol (component, type, hook, utility) removed
           3. **Token changes** in packages/core/tokens/src/**/*.json: Removed or renamed token keys
           4. **Default value changes**: Changed defaultProps or default parameter values that alter behavior
           
-          PASS if: No breaking changes detected, OR all breaking changes have corresponding MAJOR version bumps in package.json
-          FAIL if: Breaking changes detected but package.json shows MINOR (0.x.0) or PATCH (0.0.x) bump, or no version bump at all
-          
-          When failing, list each breaking change found and the expected MAJOR version.
+          PASS if: No breaking changes detected, OR every affected package is declared `major` in a
+          `.yarn/versions/*.yml` file
+          FAIL if: Breaking changes detected but the version file declares `minor` or `patch` for
+          that package, or declares nothing for it, or the PR carries no version file at all
+
+          A brand-new package is a special case, not a failure: its `package.json` is seeded with
+          `"version": "0.0.0"` and the version file declares `major`, which the pipeline resolves
+          to `1.0.0`. Adding a new package is not itself a breaking change.
+
+          When failing, quote the version file and the exact line to change, e.g.
+          `"@nimbus-ds/title": major`.
       - name: "Missing @nimbus-ds/components Release"
         mode: "error"
         instructions: |
@@ -228,16 +266,21 @@ reviews:
       - name: "Breaking Change Documentation Verification"
         mode: "error"
         instructions: |
-          Pass/fail criteria: If package.json has MAJOR version bump OR code contains breaking changes, CHANGELOG.md MUST have "#### 🛠 Breaking changes" section.
-          
+          Pass/fail criteria: If a `.yarn/versions/*.yml` declares `major` for a package OR code
+          contains breaking changes, that package's CHANGELOG.md MUST have a
+          "#### 🛠 Breaking changes" section.
+
           Cross-reference:
-          1. Check if any package.json in PR has MAJOR version bump (x.0.0)
+          1. Check if any `.yarn/versions/*.yml` in the PR declares `major` for a package. Never
+             look at `package.json` for this — versions there are applied by the release pipeline,
+             not by the author. A new package seeded at `"version": "0.0.0"` with a `major`
+             declaration is an initial release, so it needs no breaking-changes section.
           2. Check if breaking changes detected in code (props removed, exports removed, tokens changed, CSS modified)
           3. Verify CHANGELOG.md contains "#### 🛠 Breaking changes" or "### 🛠 Breaking changes" section
           4. Verify each breaking change is documented with description and PR reference
           
-          PASS if: No breaking changes and no MAJOR bump, OR breaking changes exist with proper CHANGELOG documentation
-          FAIL if: MAJOR bump without "🛠 Breaking changes" section, OR breaking changes in code without documentation
+          PASS if: No breaking changes and no `major` declaration, OR breaking changes exist with proper CHANGELOG documentation
+          FAIL if: `major` declared for an existing package without a "🛠 Breaking changes" section, OR breaking changes in code without documentation
           
           Documentation format required: "- Description of breaking change. ([#PR](url) by [@author](url))"
   tools:
