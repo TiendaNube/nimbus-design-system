@@ -28,15 +28,23 @@ The deferred version file then declares `major`, and the pipeline resolves `0.0.
 
 ```yaml
 releases:
-  "@nimbus-ds/my-component": major
-  "@nimbus-ds/components": major # the aggregate ships the new component's code
+  "@nimbus-ds/my-component": major # 0.0.0 → 1.0.0, the initial release
+  "@nimbus-ds/components": minor # a new component is a feature, not a break
 ```
 
 Do not write `1.0.0` in `package.json` yourself, even though that is the version the initial
 `CHANGELOG.md` entry documents. See `@nimbus-ds/slider` (PR #400) and `@nimbus-ds/time-picker`
-(PR #414): both landed with `0.0.0` in the manifest and `major` in the version file. The `major`
-here is an initial release, not a breaking change, so it needs no
-`#### 🛠 Breaking changes` section.
+(PR #414): both landed with `0.0.0` in the manifest and `major` in the version file.
+
+Note that `@nimbus-ds/components` takes `minor` here, which is the one case that does **not**
+follow the "at least the highest bump level" rule below. Both bumps are correct: the component's
+`major` only expresses `0.0.0` → `1.0.0`, and adding a component removes nothing from the
+aggregate's API, so consumers of `@nimbus-ds/components` face no break. Every new package in the
+history did it this way — #400, #414, #319 (`scroll-pane`) and #290 (`segmented-control`) all pair
+the new package's `major` with `"@nimbus-ds/components": minor`.
+
+For the same reason the `major` needs no `#### 🛠 Breaking changes` section: it is an initial
+release, not a breaking change.
 
 ## Always release `@nimbus-ds/components` alongside a component change
 
@@ -56,7 +64,9 @@ releases:
 ```
 
 Give `@nimbus-ds/components` **at least the highest bump level** among the changed component
-packages (a `major` on a component means a `major` on `components`).
+packages (a `major` on a component means a `major` on `components`) — with the single exception of
+a brand-new package, whose `major` is only the `0.0.0` seed resolving to `1.0.0` and pairs with
+`minor` on the aggregate. See "A brand-new package is seeded at `0.0.0`" above.
 
 ### Why this is not automatic
 

@@ -97,9 +97,18 @@ reviews:
         file; the pipeline resolves that to `1.0.0`. Do not ask for `0.0.0` to be changed to
         `1.0.0`, and do not read `0.0.0` as a missing bump.
 
+        EXCEPTION — the one `version` finding worth raising: if the diff itself changes `version`
+        for an EXISTING package (a `-"version": "1.2.0"` / `+"version": "1.3.0"` hunk, i.e. any
+        edit other than the one-time `"0.0.0"` seed on a brand-new package), flag it as a process
+        violation. That bump belongs in `.yarn/versions/*.yml`; hand-editing it here collides with
+        the release pipeline. Ask for the manifest edit to be reverted and the level declared in a
+        version file instead.
+
         The artifact to verify is the `.yarn/versions/*.yml` entry: that the changed package is
         declared, and at the right SemVer level (major for breaking changes, minor for new
-        features, patch for bug fixes).
+        features, patch for bug fixes). Those files sit under a default-excluded path, so their
+        contents are not in the reviewable diff — read them from the repository before concluding
+        that a declaration is missing, and never infer their absence from the diff body alone.
 
         Do review `dependencies` and `peerDependencies` ranges normally.
     - path: "**/packages/react/src/atomic/**/*.{ts,tsx}"
@@ -155,7 +164,8 @@ reviews:
 
           Versions are NEVER bumped in `package.json` in this repo — the release pipeline applies
           them from the deferred version files. Do not look at `package.json` for the bump, and do
-          not ask the author to edit it.
+          not ask the author to edit it. `.yarn/**` is excluded from the reviewable diff by
+          default, so read the version files from the repository rather than from the diff body.
 
           Detect breaking changes by scanning for:
           1. **Props API changes** in *.types.ts: Removed props, renamed props, type narrowing (e.g., `string | number` → `string`), optional→required changes
@@ -199,8 +209,16 @@ reviews:
           (major > minor > patch). Also PASS for the automated release PR (branch
           `release/publish-*`).
 
+          EXCEPTION for a brand-new component package (its `package.json` is added in this PR,
+          seeded with `"version": "0.0.0"`): its `major` is only the seed resolving to `1.0.0`, so
+          `"@nimbus-ds/components": minor` is correct and MUST pass — do not demand `major` to
+          satisfy "at least as high". Adding a component breaks nothing for aggregate consumers.
+          Precedent: #400 (`slider`), #414 (`time-picker`), #319 (`scroll-pane`) and #290
+          (`segmented-control`) all pair the new package's `major` with `components: minor`.
+
           FAIL if: published component source changed and `@nimbus-ds/components` is missing
-          from `releases:`, or is declared at a lower level than a component it ships.
+          from `releases:`, or — outside the new-package exception above — is declared at a lower
+          level than a component it ships.
 
           When failing, quote the version file and the exact line to add, e.g.
           `"@nimbus-ds/components": minor`. Cite the precedent: PR #462 changed Badge without
