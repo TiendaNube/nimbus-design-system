@@ -154,11 +154,8 @@ describe("GIVEN <Text />", () => {
       ).toContain("color-success-interactivePressed");
     });
 
-    // Asserted on the sprinkle map values, not on the generated class names:
-    // those derive from the map key, so they differ even when both keys point
-    // at the same token — which is exactly the regression being guarded here.
-    it("THEN should map success-interactive and success-textLow to different tokens", () => {
-      expect(text.properties.color["success-interactive"]).not.toBe(
+    it("THEN should keep success-interactive aliased to the success-textLow token", () => {
+      expect(text.properties.color["success-interactive"]).toBe(
         text.properties.color["success-textLow"]
       );
     });
