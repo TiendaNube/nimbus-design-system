@@ -2,6 +2,12 @@
 
 Tilte is a basic component that allows you to give titles and more hierarchy to blocks of text for sections or header components.
 
+## 2026-08-07 `3.3.0`
+
+#### 🎉 New features
+
+- Adds support for the `Text` color palette in `Title`, except `ai-generative`, and corrects the documented default `color` to `neutral-textHigh`. ([#496](https://github.com/TiendaNube/nimbus-design-system/pull/496) by [@lichademarchi](https://github.com/lichademarchi))
+
 ## 2026-02-12 `3.2.0`
 
 #### 🎉 New features

@@ -11,6 +11,42 @@ files** in `.yarn/versions/*.yml` (created by `yarn bump:check --interactive`) a
 by the release pipeline. See `.cursor/rules/package-json.mdc` and
 `docs/RELEASE_PROCESS.md`.
 
+The gap this creates is expected: on an open PR the `CHANGELOG.md` header names the version the
+pipeline **will** publish, while `package.json` still holds the previous one. That is not drift —
+never "synchronize" it by hand.
+
+## A brand-new package is seeded at `0.0.0`
+
+Creating a package is the one time you write a `version` by hand, and the only value you ever
+write is the placeholder:
+
+```json
+{ "name": "@nimbus-ds/my-component", "version": "0.0.0" }
+```
+
+The deferred version file then declares `major`, and the pipeline resolves `0.0.0` → `1.0.0`:
+
+```yaml
+releases:
+  "@nimbus-ds/my-component": major # 0.0.0 → 1.0.0, the initial release
+  "@nimbus-ds/components": minor # a new component is a feature, not a break
+```
+
+Do not write `1.0.0` in `package.json` yourself, even though that is the version the initial
+`CHANGELOG.md` entry documents. See `@nimbus-ds/slider` (PR #400) and `@nimbus-ds/time-picker`
+(PR #414): both landed with `0.0.0` in the manifest and `major` in the version file.
+
+Note that `@nimbus-ds/components` takes `minor` here, which is the one case that does **not**
+follow the "at least the highest bump level" rule below — and only when the new package is the
+sole source of a `major` in the PR. Both bumps are correct: the component's
+`major` only expresses `0.0.0` → `1.0.0`, and adding a component removes nothing from the
+aggregate's API, so consumers of `@nimbus-ds/components` face no break. Every new package in the
+history did it this way — #400, #414, #319 (`scroll-pane`) and #290 (`segmented-control`) all pair
+the new package's `major` with `"@nimbus-ds/components": minor`.
+
+For the same reason the `major` needs no `#### 🛠 Breaking changes` section: it is an initial
+release, not a breaking change.
+
 ## Always release `@nimbus-ds/components` alongside a component change
 
 `@nimbus-ds/components` (the workspace at `packages/react`) is the aggregate package that
@@ -29,7 +65,19 @@ releases:
 ```
 
 Give `@nimbus-ds/components` **at least the highest bump level** among the changed component
-packages (a `major` on a component means a `major` on `components`).
+packages (a `major` on a component means a `major` on `components`), counting only **existing**
+packages: a brand-new package's `major` is just the `0.0.0` seed resolving to `1.0.0`, so it does
+not raise the required level. See "A brand-new package is seeded at `0.0.0`" above.
+
+In a **mixed** PR the existing component still governs. Adding a component while breaking another
+one means the aggregate takes `major`, not the `minor` the new package alone would have justified:
+
+```yaml
+releases:
+  "@nimbus-ds/my-component": major # new: 0.0.0 → 1.0.0
+  "@nimbus-ds/title": major # existing: a real breaking change
+  "@nimbus-ds/components": major # governed by Title, not by the new package
+```
 
 ### Why this is not automatic
 

@@ -37,7 +37,7 @@ export interface TitleSprinkle {
   textAlign?: TextAlign | TitleConditions<TextAlign>;
   /**
    * The color property is used to set the color of the title.
-   * @default neutral-textLow
+   * @default neutral-textHigh
    */
   color?: TitleColorProperties | TitleConditions<TitleColorProperties>;
 }
