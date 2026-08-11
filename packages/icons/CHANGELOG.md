@@ -2,6 +2,12 @@
 
 Nimbus-icons is an open source icon system built by Nuvemshop / Tiendanube.
 
+## 2026-08-10 `1.27.0` (minor version bump)
+
+#### 🎉 New features
+
+- Adds `double-tag` icon. ([#502](https://github.com/TiendaNube/nimbus-design-system/pull/502) by [@mrolando-tn](https://github.com/mrolando-tn))
+
 ## 2026-07-14 `1.25.0` (minor version bump)
 
 #### 🎉 New features
