@@ -313,20 +313,21 @@ reviews:
           3. Verify CHANGELOG.md contains "#### 🛠 Breaking changes" or "### 🛠 Breaking changes" section
           4. Verify each breaking change is documented with description and PR reference
 
-          PASS if any of:
-          - no breaking changes in code AND no `major` declared;
-          - the only `major` declarations are initial releases of new packages seeded at
-            `"version": "0.0.0"` (no breaking-changes section required for those);
-          - every `major` declared for an existing package AND every breaking change detected in
-            code has the required section, documented in that package's own CHANGELOG.md.
+          Evaluate PER PACKAGE, never over the PR as a whole — an exempt package must not carry
+          the whole PR. A package is "affected" if it has a `major` declaration in a version file
+          or a breaking change detected in its code.
 
-          FAIL if any of:
-          - a `major` is declared for an existing package and that package's CHANGELOG.md has no
-            "🛠 Breaking changes" section;
-          - a breaking change is detected in code and is not documented in that section.
+          PASS if EVERY affected package satisfies one of:
+          - it is a new package seeded at `"version": "0.0.0"` whose `major` is its initial
+            release — no breaking-changes section required; or
+          - it is an existing package, and its own CHANGELOG.md has the required
+            "🛠 Breaking changes" section documenting the change.
 
-          A mixed PR is judged per package: a new `0.0.0` package needing no section does not
-          excuse a co-changed existing package that does.
+          PASS trivially if there is no affected package at all.
+
+          FAIL if ANY affected existing package lacks that section — whether the trigger was its
+          `major` declaration, a breaking change detected in its code, or both. A new `0.0.0`
+          package being exempt never excuses a co-changed existing package.
           
           Documentation format required: "- Description of breaking change. ([#PR](url) by [@author](url))"
   tools:
