@@ -97,12 +97,16 @@ reviews:
         file; the pipeline resolves that to `1.0.0`. Do not ask for `0.0.0` to be changed to
         `1.0.0`, and do not read `0.0.0` as a missing bump.
 
-        EXCEPTION — the one `version` finding worth raising: if the diff itself changes `version`
-        for an EXISTING package (a `-"version": "1.2.0"` / `+"version": "1.3.0"` hunk, i.e. any
-        edit other than the one-time `"0.0.0"` seed on a brand-new package), flag it as a process
-        violation. That bump belongs in `.yarn/versions/*.yml`; hand-editing it here collides with
-        the release pipeline. Ask for the manifest edit to be reverted and the level declared in a
-        version file instead.
+        AUTOMATED RELEASE PR EXCEPTION: if the branch matches `release/publish-*`, `version`
+        changes are the release pipeline applying the deferred declarations and MUST pass. Never
+        report those generated manifest updates as manual edits.
+
+        On every other branch, the one `version` finding worth raising is a diff that changes
+        `version` for an EXISTING package (a `-"version": "1.2.0"` /
+        `+"version": "1.3.0"` hunk, i.e. any edit other than the one-time `"0.0.0"` seed on a
+        brand-new package). Flag it as a process violation: that bump belongs in
+        `.yarn/versions/*.yml`; hand-editing it here collides with the release pipeline. Ask for
+        the manifest edit to be reverted and the level declared in a version file instead.
 
         The artifact to verify is the `.yarn/versions/*.yml` entry: that the changed package is
         declared, and at the right SemVer level (major for breaking changes, minor for new
@@ -209,9 +213,8 @@ reviews:
 
           PASS if: no published component source changed, OR some `.yarn/versions/*.yml` in
           the PR has `"@nimbus-ds/components"` under `releases:` with a bump level at least as
-          high as the highest level declared for any changed component package
-          (major > minor > patch). Also PASS for the automated release PR (branch
-          `release/publish-*`).
+          high as the required level computed below (major > minor > patch). Also PASS for the
+          automated release PR (branch `release/publish-*`).
 
           EXCEPTION for a brand-new component package (its `package.json` is added in this PR,
           seeded with `"version": "0.0.0"`): its `major` is only the seed resolving to `1.0.0`, so
@@ -220,17 +223,17 @@ reviews:
           Precedent: #400 (`slider`), #414 (`time-picker`), #319 (`scroll-pane`) and #290
           (`segmented-control`) all pair the new package's `major` with `components: minor`.
 
-          The exception is scoped to the new packages themselves — apply it by computing the
-          required level from the changed EXISTING component packages only, then requiring
-          `@nimbus-ds/components` to be at least that level (and at least `minor`, since a new
-          component is a feature of the aggregate). So in a MIXED PR — a new package declared
-          `major` alongside an existing component that also needs `major` — the existing
-          component's `major` still governs and `"@nimbus-ds/components": minor` FAILS.
-          `minor` is only correct when every `major` in the PR belongs to a new `0.0.0` package.
+          Compute the required level from the changed EXISTING component packages. If the PR also
+          adds a new component package seeded at `"version": "0.0.0"`, raise that level to at least
+          `minor`, since the new component is a feature of the aggregate. Do not apply this `minor`
+          floor when the PR changes only existing component packages. So in a MIXED PR — a new
+          package declared `major` alongside an existing component that also needs `major` — the
+          existing component's `major` still governs and `"@nimbus-ds/components": minor` FAILS.
+          When the only component change is a new `0.0.0` package, `minor` is correct; when the PR
+          only patches existing components, a matching `patch` on the aggregate is correct.
 
           FAIL if: published component source changed and `@nimbus-ds/components` is missing
-          from `releases:`, or is declared below the level required by the changed existing
-          component packages, or is declared below `minor` at all.
+          from `releases:`, or is declared below the required level computed above.
 
           When failing, quote the version file and the exact line to add, e.g.
           `"@nimbus-ds/components": minor`. Cite the precedent: PR #462 changed Badge without
