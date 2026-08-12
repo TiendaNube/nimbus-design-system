@@ -28,7 +28,7 @@
     "lint": "eslint packages --ext .jsx,.js,.ts,.tsx --quiet --cache --cache-location .cache/eslint/.eslintcache",
     "lint:fix": "yarn lint --fix",
     "pre-commit": "lint-staged",
-    "pre-push": "yarn lint && yarn types:check && yarn bump:check",
+    "pre-push": "yarn lint && yarn types:check && yarn types:collisions && yarn bump:check",
     "prepare-husky": "husky install",
     "publish:next": "yarn bump:check && yarn bump:next && npm run build && yarn publish:npm:next",
     "publish:stable": "yarn bump:stable && yarn publish:npm:stable",
@@ -39,11 +39,12 @@
     "storybook": "storybook dev -p 6006",
     "start:dev": "yarn storybook",
     "test": "jest --passWithNoTests --no-cache --runInBand --watchAll=false",
-    "test:ci": "yarn types:check && jest --ci --coverage",
+    "test:ci": "yarn types:check && yarn types:collisions && jest --ci --coverage",
     "test:coverage": "yarn test --coverage",
     "test:staged": "yarn test --findRelatedTests",
     "test:watch": "yarn test --watch",
-    "types:check": "tsc --skipLibCheck --noEmit"
+    "types:check": "tsc --skipLibCheck --noEmit",
+    "types:collisions": "babel-node -x .ts ./.scripts/check-native-attr-collisions"
   },
   "repository": {
     "type": "git",
