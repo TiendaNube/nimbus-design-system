@@ -2,9 +2,9 @@
 
 <!-- Non-technical people read this section, so avoid jargon, code identifiers and type names. Keep it under ~100 words. -->
 
-**What was broken.**
+**Why this PR exists.**
 
-<!-- Describe the problem the way someone using the product or building a screen would experience it. If this is not a bugfix, say what was missing instead. -->
+<!-- Bugfix: what was broken. Feature or change request: what was missing. Tech debt/config: what was risky, slow or hard to maintain. -->
 
 **What this changes.**
 
