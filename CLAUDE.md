@@ -82,6 +82,26 @@ Caveat worth remembering: `publish.yml` lists `**/package.json`, `.yarn/versions
 `**/*.docs.json` under `paths-ignore`, so a push to `master` touching **only** those paths
 never triggers `publish-release`. Pair a forgotten version file with a non-ignored change.
 
+## Omit colliding native attribute keys before intersecting props
+
+When a component defines its own prop whose name may collide with a native HTML attribute —
+common ones to watch: `prefix`, `label`, `title`, `role`, `content`, `slot`, `is` — never
+intersect the component's props with the raw native attributes type. A bare
+`ComponentProperties & NativeHTMLAttributes<Element>` lets the native attribute's type silently
+narrow or conflict with the component's own prop. Always guard it:
+
+```typescript
+export type ComponentBaseProps = ComponentProperties &
+  Omit<NativeHTMLAttributes<Element>, keyof ComponentProperties>;
+```
+
+This exact gap caused two real bugs: PR #487 added `Input.prefix?: ReactNode`, which collided
+with the global RDFa `prefix?: string` declared on `InputHTMLAttributes`; PR #509 found the same
+collision unfixed in `Input.Password` and `Input.Search`, which intersected the raw
+`InputHTMLAttributes` directly instead of reusing the guarded `InputBaseProps`.
+
+Full rationale in `.cursor/rules/types.mdc`.
+
 ## Common commands
 
 ```bash

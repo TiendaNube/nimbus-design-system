@@ -135,6 +135,15 @@ reviews:
         - Leverage TypeScript utility types when appropriate (Partial, Pick, Omit)
         - Ensure type names are descriptive and follow PascalCase convention
         - Avoid type 'any' - use 'unknown' for truly unknown types
+        - When a base props type intersects a native HTML attributes type (e.g.
+          `ComponentProperties & InputHTMLAttributes<HTMLInputElement>`), check whether any of
+          the component's own prop names collide with a native attribute name — common ones to
+          watch: `prefix`, `label`, `title`, `role`, `content`, `slot`, `is`. A bare intersection
+          lets the native attribute's type silently narrow or conflict with the component's own
+          prop. Require `ComponentProperties & Omit<NativeHTMLAttributes<Element>, keyof
+          ComponentProperties>` instead, never the bare intersection. This exact gap caused two
+          real bugs: PR #487 (`Input.prefix` colliding with the native RDFa `prefix?: string`)
+          and PR #509 (`Input.Password`/`Input.Search`, which had not adopted the same fix).
         Flag any deviations from these patterns.
   abort_on_close: true
   auto_review:
