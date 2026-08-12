@@ -14,5 +14,7 @@ export type InputPasswordBaseProps = InputPasswordProperties &
   // `InputProperties.prefix` to a `ReactNode` those two are no longer
   // compatible, so an `InputBaseProps`-typed object (e.g. shared props spread
   // onto both `Input` and `Input.Password`) stopped being assignable here.
-  // The `Omit` drops exactly that one native attribute to restore it.
+  // The `Omit` restores it by dropping every native key `InputProperties`
+  // also declares — not just `prefix`. `disabled` is dropped too (harmless,
+  // since both sides already agree on its type).
   Omit<InputHTMLAttributes<HTMLInputElement>, keyof InputProperties>;
