@@ -3,6 +3,12 @@
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories
 every day, with simplicity, accessibility, consistency and performance.
 
+## 2026-08-12 `5.61.1`
+
+#### 🐛 Bug fixes
+
+- Input: Fixed a type error on `Input.Password` and `Input.Search` when spreading a shared `Input`-shaped props object (including `prefix`) onto them, a regression from the `prefix`/`suffix` collision fix in [#487](https://github.com/TiendaNube/nimbus-design-system/pull/487). ([#509](https://github.com/TiendaNube/nimbus-design-system/pull/509) by [@claude[bot]](https://github.com/apps/claude))
+
 ## 2026-08-07 `5.61.0`
 
 #### 🎉 New features

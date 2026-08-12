@@ -2,6 +2,12 @@
 
 The Input component allows the user to enter or edit information in text format.
 
+## 2026-08-12 `2.8.1`
+
+#### 🐛 Bug fixes
+
+- Fixed a type error on `Input.Password` and `Input.Search` when spreading a shared `Input`-shaped props object (including `prefix`) onto them, a regression from the `prefix`/`suffix` collision fix in [#487](https://github.com/TiendaNube/nimbus-design-system/pull/487). ([#509](https://github.com/TiendaNube/nimbus-design-system/pull/509) by [@claude[bot]](https://github.com/apps/claude))
+
 ## 2026-08-05 `2.8.0`
 
 #### 🎉 New features
