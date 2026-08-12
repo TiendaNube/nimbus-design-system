@@ -13,8 +13,9 @@ export type InputSearchBaseProps = InputSearchProperties &
   // `prefix?: string`, and since #487 widened `InputProperties.prefix` to a
   // `ReactNode` those two are no longer compatible, so an
   // `InputBaseProps`-typed object (e.g. shared props spread onto both `Input`
-  // and `Input.Search`) stopped being assignable here. The `Omit` restores
-  // it by dropping every native key `InputProperties` also declares — not
-  // just `prefix`. `disabled` is dropped too (harmless, since both sides
-  // already agree on its type).
+  // and `Input.Search`) stopped being assignable here. The `Omit` itself
+  // strips every native key `InputProperties` also declares — not just
+  // `prefix`, but `disabled` too — yet `disabled` comes straight back through
+  // the `Pick` above, so the composed type gives up exactly one native prop:
+  // the RDFa `prefix`.
   Omit<InputHTMLAttributes<HTMLInputElement>, keyof InputProperties>;
