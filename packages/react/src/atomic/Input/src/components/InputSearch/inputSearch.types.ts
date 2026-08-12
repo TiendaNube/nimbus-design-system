@@ -7,10 +7,12 @@ export type InputSearchProperties = Pick<
 >;
 
 export type InputSearchBaseProps = InputSearchProperties &
-  // Same collision `InputBaseProps` guards against (see `input.types.ts`):
-  // `InputHTMLAttributes` declares a global RDFa `prefix?: string` that
-  // clashes with `InputProperties.prefix` (a `ReactNode`). Omitting every key
-  // already declared on `InputProperties` keeps a wider, `InputBaseProps`-
-  // shaped object (e.g. shared props spread onto both `Input` and
-  // `Input.Search`) assignable here too.
+  // Mirrors the `Omit` on `InputBaseProps` (see `input.types.ts`). Nothing
+  // collides by name inside this type — `InputSearchProperties` picks neither
+  // `prefix` nor `suffix` — but `InputHTMLAttributes` declares a global RDFa
+  // `prefix?: string`, and since #487 widened `InputProperties.prefix` to a
+  // `ReactNode` those two are no longer compatible, so an
+  // `InputBaseProps`-typed object (e.g. shared props spread onto both `Input`
+  // and `Input.Search`) stopped being assignable here. The `Omit` drops
+  // exactly that one native attribute to restore it.
   Omit<InputHTMLAttributes<HTMLInputElement>, keyof InputProperties>;
