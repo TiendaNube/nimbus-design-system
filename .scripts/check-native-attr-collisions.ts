@@ -108,6 +108,33 @@ export interface Collision {
   nativeSide: string;
 }
 
+/**
+ * A declaration that names a native-attributes type in a shape this checker cannot reduce to a
+ * single pair of sides, so it was not checked. These are reported: in the output a silently
+ * skipped declaration is indistinguishable from one that came out clean, which is precisely how
+ * a blind spot survives unnoticed.
+ */
+export interface SkippedDeclaration {
+  /** Repo-relative path of the file declaring the props type. */
+  file: string;
+  /** 1-based line of the declaration. */
+  line: number;
+  /** Name of the props type. */
+  declaration: string;
+  /** Why the declaration has no single key set to check. */
+  reason: string;
+}
+
+/** What one run of the checker looked at, found, and could not look at. */
+export interface Analysis {
+  /** Every harmful collision found. */
+  collisions: Collision[];
+  /** How many declarations intersecting a native-attributes type were checked. */
+  checkedDeclarations: number;
+  /** Declarations naming a native-attributes type that were not checked. */
+  skippedDeclarations: SkippedDeclaration[];
+}
+
 /** Every `.ts`/`.tsx` file under `directory`, skipping build output and nested installs. */
 export function collectSourceFiles(directory: string): string[] {
   const files: string[] = [];
@@ -181,10 +208,32 @@ export function readNativeAttributeTypeNames(
   return names;
 }
 
+/**
+ * Strips the syntax that carries no meaning of its own: parentheses, and a union of a single
+ * constituent. A declaration written with a leading `|` — `type P = | Own & HTMLAttributes<T>`,
+ * which is how `TabsProps` is written at `tabs.types.ts:42` — parses as a one-member
+ * `UnionTypeNode` wrapping the intersection, so a checker that looks only for
+ * `IntersectionTypeNode` never sees the native side and skips the declaration entirely.
+ */
+function unwrapSyntacticWrappers(typeNode: ts.TypeNode): ts.TypeNode {
+  if (ts.isParenthesizedTypeNode(typeNode)) {
+    return unwrapSyntacticWrappers(typeNode.type);
+  }
+  if (ts.isUnionTypeNode(typeNode) && typeNode.types.length === 1) {
+    return unwrapSyntacticWrappers(typeNode.types[0]);
+  }
+  return typeNode;
+}
+
 /** The members of an intersection, flattened; a non-intersection node is its own member. */
 function intersectionMembers(typeNode: ts.TypeNode): ts.TypeNode[] {
-  if (!ts.isIntersectionTypeNode(typeNode)) return [typeNode];
-  return typeNode.types.flatMap(intersectionMembers);
+  const node = unwrapSyntacticWrappers(typeNode);
+  // A union of several constituents stays a single member, never flattened into siblings: a
+  // consumer holds one constituent and does not know which, so the only keys safe to reason
+  // about are the ones every constituent declares — exactly the set the checker reports for a
+  // union type, typed as the union of what each constituent declares for them.
+  if (!ts.isIntersectionTypeNode(node)) return [node];
+  return node.types.flatMap(intersectionMembers);
 }
 
 /** The referenced type name of a node, without its namespace qualifier. */
@@ -249,27 +298,64 @@ function propertiesOf(
   return properties;
 }
 
-/** Every props declaration in a source file that references a native-attributes type. */
-function propsDeclarations(
-  sourceFile: ts.SourceFile,
-  nativeTypeNames: ReadonlySet<string>
-): PropsDeclaration[] {
+/** Every type alias and interface declared in a source file, nested ones included. */
+function typeDeclarations(sourceFile: ts.SourceFile): PropsDeclaration[] {
   const declarations: PropsDeclaration[] = [];
   const visit = (node: ts.Node): void => {
     if (ts.isTypeAliasDeclaration(node) || ts.isInterfaceDeclaration(node)) {
-      if (
-        declarationSides(node).some((side) =>
-          isNativeSide(side, nativeTypeNames)
-        )
-      ) {
-        declarations.push(node);
-      }
+      declarations.push(node);
     }
     node.forEachChild(visit);
   };
   sourceFile.forEachChild(visit);
 
   return declarations;
+}
+
+/** Whether the declaration has a native-attributes side, and so can be checked. */
+function hasNativeSide(
+  declaration: PropsDeclaration,
+  nativeTypeNames: ReadonlySet<string>
+): boolean {
+  return declarationSides(declaration).some((side) =>
+    isNativeSide(side, nativeTypeNames)
+  );
+}
+
+/**
+ * A props type written as a union of several constituents, one of which intersects a
+ * native-attributes type: `type P = (Own & HTMLAttributes<T>) | (Other & HTMLAttributes<T>)`.
+ * Which constituent a consumer holds decides which keys collide and what they collide with, so
+ * there is no single own side and native side to compare — the checker does not model this and
+ * says so, instead of returning nothing and looking clean.
+ */
+function isUncheckableNativeUnion(
+  declaration: PropsDeclaration,
+  nativeTypeNames: ReadonlySet<string>
+): boolean {
+  if (!ts.isTypeAliasDeclaration(declaration)) return false;
+
+  const declared = unwrapSyntacticWrappers(declaration.type);
+  if (!ts.isUnionTypeNode(declared)) return false;
+
+  return declared.types.some((constituent) =>
+    intersectionMembers(constituent).some((member) =>
+      isNativeSide(member, nativeTypeNames)
+    )
+  );
+}
+
+/** Where a declaration is, as reported. */
+function locationOf(
+  sourceFile: ts.SourceFile,
+  declaration: PropsDeclaration
+): Pick<Collision, "file" | "line" | "declaration"> {
+  return {
+    file: path.relative(REPO_ROOT, sourceFile.fileName),
+    line:
+      sourceFile.getLineAndCharacterOfPosition(declaration.getStart()).line + 1,
+    declaration: declaration.name.text,
+  };
 }
 
 /** The parts of `declared` that a consumer can no longer pass once `effective` applies. */
@@ -312,8 +398,7 @@ function collisionsOf(
   const nativeProperties = propertiesOf(checker, nativeSides);
   const ownProperties = propertiesOf(checker, ownSides);
   const effectiveProperties = propertiesOf(checker, [declaration.name]);
-  const line =
-    sourceFile.getLineAndCharacterOfPosition(declaration.getStart()).line + 1;
+  const location = locationOf(sourceFile, declaration);
   const nativeSide = nativeSides
     .map((side) => side.getText().replace(/\s+/g, " "))
     .join(" & ");
@@ -335,9 +420,7 @@ function collisionsOf(
     if (checker.isTypeAssignableTo(ownType, effectiveType)) continue;
 
     collisions.push({
-      file: path.relative(REPO_ROOT, sourceFile.fileName),
-      line,
-      declaration: declaration.name.text,
+      ...location,
       key,
       ownType: checker.typeToString(ownType),
       nativeType: checker.typeToString(
@@ -352,37 +435,53 @@ function collisionsOf(
   return collisions;
 }
 
-/** Every harmful collision in `fileNames`. */
-export function findCollisions(
+/** Every harmful collision in `fileNames`, alongside what was and was not checked. */
+export function analyzeProgram(
   program: ts.Program,
   fileNames: readonly string[],
   nativeTypeNames: ReadonlySet<string>
-): Collision[] {
+): Analysis {
   const checker = program.getTypeChecker() as AssignabilityChecker;
   const collisions: Collision[] = [];
+  const skippedDeclarations: SkippedDeclaration[] = [];
+  let checkedDeclarations = 0;
 
   for (const fileName of fileNames) {
     const sourceFile = program.getSourceFile(fileName);
     if (!sourceFile) continue;
 
-    for (const declaration of propsDeclarations(sourceFile, nativeTypeNames)) {
-      collisions.push(
-        ...collisionsOf(checker, sourceFile, declaration, nativeTypeNames)
-      );
+    for (const declaration of typeDeclarations(sourceFile)) {
+      if (hasNativeSide(declaration, nativeTypeNames)) {
+        checkedDeclarations += 1;
+        collisions.push(
+          ...collisionsOf(checker, sourceFile, declaration, nativeTypeNames)
+        );
+      } else if (isUncheckableNativeUnion(declaration, nativeTypeNames)) {
+        skippedDeclarations.push({
+          ...locationOf(sourceFile, declaration),
+          reason:
+            "a union of several constituents, each with its own native-attributes side",
+        });
+      }
     }
   }
 
-  return collisions;
+  return { collisions, checkedDeclarations, skippedDeclarations };
 }
 
 /** Convenience wrapper used by the CLI and by the spec: build a program, then check it. */
-export function analyzeFiles(fileNames: readonly string[]): Collision[] {
+export function analyze(fileNames: readonly string[]): Analysis {
   const program = createProgram(fileNames);
-  return findCollisions(
+  return analyzeProgram(
     program,
     fileNames,
     readNativeAttributeTypeNames(program)
   );
+}
+
+/** The collisions of {@link analyze}, for callers that only care about the findings. */
+export function analyzeFiles(fileNames: readonly string[]): Collision[] {
+  return analyze(fileNames).collisions;
 }
 
 function matchesBaseline(collision: Collision, entry: BaselineEntry): boolean {
@@ -420,7 +519,30 @@ function main(): void {
     )} for prop/native-attribute collisions...\n`
   );
 
-  const collisions = analyzeFiles(fileNames);
+  const { collisions, checkedDeclarations, skippedDeclarations } =
+    analyze(fileNames);
+
+  console.log(
+    `${checkedDeclarations} declaration(s) intersect a native-attributes type and were checked.\n`
+  );
+
+  // Reported, never fatal: a props type written as a union of intersections is valid
+  // TypeScript and may well be correct — this checker simply cannot decide it. Failing would
+  // block correct code; saying nothing is what let the `TabsProps` shape go unexamined.
+  if (skippedDeclarations.length > 0) {
+    console.log(
+      `${skippedDeclarations.length} declaration(s) name a native-attributes type in a shape this\n` +
+        "checker cannot reduce to one own side and one native side, and were NOT checked.\n" +
+        "Review them by hand, or teach the checker the shape:\n"
+    );
+    skippedDeclarations.forEach((skipped) => {
+      console.log(
+        `  ${skipped.file}:${skipped.line}  ${skipped.declaration} — ${skipped.reason}`
+      );
+    });
+    console.log("");
+  }
+
   const isBaselined = (collision: Collision) =>
     knownCollisions.some((entry) => matchesBaseline(collision, entry));
   const newCollisions = collisions.filter(

@@ -72,3 +72,29 @@ export type LocalLookAlikeProps = ConflictingProperties & LocalHTMLAttributes;
 /** No finding expected: the colliding key is omitted from the native side, the correct fix. */
 export type GuardedProps = ConflictingProperties &
   Omit<HTMLAttributes<HTMLDivElement>, keyof ConflictingProperties>;
+
+/** The controlled variant of a two-shape props type, as `ControlledTabsProperties` is. */
+interface ControlledConflictingProperties extends ConflictingProperties {
+  selected: number;
+}
+
+/**
+ * One finding expected on `color`. The `TabsProps` shape (`tabs.types.ts:42`) reproduced: a
+ * leading `|` makes the declaration a *union of one constituent* wrapping the intersection, and
+ * the own side is itself a parenthesized union. A checker that only flattens
+ * `IntersectionTypeNode` finds no native side here and skips the whole declaration — which in
+ * the output is indistinguishable from a declaration that came out clean. `color` is declared by
+ * both constituents and is not omitted from the native side, so it must be reported.
+ */
+export type LeadingPipeProps =
+  | (ConflictingProperties | ControlledConflictingProperties) &
+      Omit<HTMLAttributes<HTMLDivElement>, "children">;
+
+/**
+ * No finding expected, and not silently ignored either: which constituent a consumer holds
+ * decides which keys collide, so there is no single own side and native side to compare. The
+ * checker reports this declaration as skipped.
+ */
+export type UnionArmProps =
+  | (ConflictingProperties & HTMLAttributes<HTMLDivElement>)
+  | (HandlerProperties & HTMLAttributes<HTMLDivElement>);

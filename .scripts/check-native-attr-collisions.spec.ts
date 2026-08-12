@@ -2,6 +2,7 @@ import path from "path";
 
 import type { Collision } from "./check-native-attr-collisions";
 import {
+  analyze,
   analyzeFiles,
   collectSourceFiles,
   createProgram,
@@ -108,6 +109,26 @@ describe("GIVEN check-native-attr-collisions", () => {
       const collisions = analyzeFiles([FIXTURE]);
 
       expect(keysReportedFor(collisions, "LocalLookAlikeProps")).toEqual([]);
+    });
+  });
+
+  describe("WHEN the declaration is written with a leading `|`", () => {
+    it("THEN should report its conflicting key", () => {
+      const collisions = analyzeFiles([FIXTURE]);
+
+      expect(keysReportedFor(collisions, "LeadingPipeProps")).toEqual([
+        "color",
+      ]);
+    });
+  });
+
+  describe("WHEN a props type is a union of several native intersections", () => {
+    it("THEN should report it as skipped instead of ignoring it silently", () => {
+      const { skippedDeclarations } = analyze([FIXTURE]);
+
+      expect(skippedDeclarations.map(({ declaration }) => declaration)).toEqual(
+        ["UnionArmProps"]
+      );
     });
   });
 
