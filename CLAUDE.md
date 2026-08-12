@@ -86,13 +86,14 @@ never triggers `publish-release`. Pair a forgotten version file with a non-ignor
 
 When a component defines its own prop whose name may collide with a native HTML attribute —
 common ones to watch: `prefix`, `label`, `title`, `role`, `content`, `slot`, `is` — never
-intersect the component's props with the raw native attributes type. A bare
-`ComponentProperties & NativeHTMLAttributes<Element>` lets the native attribute's type silently
+intersect the component's props with the raw `*HTMLAttributes<T>` type. A bare
+`ComponentProperties & InputHTMLAttributes<HTMLInputElement>` (substitute the
+`*HTMLAttributes<T>` for the element in question) lets the native attribute's type silently
 narrow or conflict with the component's own prop. Always guard it:
 
 ```typescript
 export type ComponentBaseProps = ComponentProperties &
-  Omit<NativeHTMLAttributes<Element>, keyof ComponentProperties>;
+  Omit<InputHTMLAttributes<HTMLInputElement>, keyof ComponentProperties>;
 ```
 
 This exact gap caused two real bugs: PR #487 added `Input.prefix?: ReactNode`, which collided

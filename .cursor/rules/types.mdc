@@ -66,12 +66,13 @@ alwaysApply: false
      names collide with an attribute the native type already declares.
    - Common collisions to watch for: `prefix`, `label`, `title`, `role`, `content`, `slot`, `is`
      — these all exist as real (often obscure) attributes on native HTML/ARIA types.
-   - A bare `ComponentProperties & NativeHTMLAttributes<Element>` lets the native attribute's
-     type silently narrow or conflict with the component's own prop, instead of erroring loudly.
+   - A bare `ComponentProperties & InputHTMLAttributes<HTMLInputElement>` (substitute the
+     `*HTMLAttributes<T>` that matches the underlying element) lets the native attribute's type
+     silently narrow or conflict with the component's own prop, instead of erroring loudly.
    - Always omit the component's own keys from the native side first:
      ```typescript
      export type ComponentBaseProps = ComponentProperties &
-       Omit<NativeHTMLAttributes<Element>, keyof ComponentProperties>;
+       Omit<InputHTMLAttributes<HTMLInputElement>, keyof ComponentProperties>;
      ```
 
 2. **Reference — the bug this exact gap caused twice**:
@@ -81,9 +82,9 @@ alwaysApply: false
    - PR #509 found the identical collision unfixed in `Input.Password` and `Input.Search`:
      `inputPassword.types.ts` and `inputSearch.types.ts` each intersected the raw
      `InputHTMLAttributes<HTMLInputElement>` directly instead of going through the guarded
-     `InputBaseProps`. Any subcomponent that repeats its own `& NativeHTMLAttributes<...>`
-     intersection is exposed to the same bug — reuse the guarded base type where possible, and
-     apply the same `Omit` when it can't be reused.
+     `InputBaseProps`. Any subcomponent that repeats its own `& *HTMLAttributes<T>` intersection
+     is exposed to the same bug — reuse the guarded base type where possible, and apply the same
+     `Omit` when it can't be reused.
 
 ## Example Structure
 
