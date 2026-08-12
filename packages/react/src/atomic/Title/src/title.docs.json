@@ -3,7 +3,7 @@
   "name": "Title",
   "totalProps": 7,
   "packageName": "@nimbus-ds/title",
-  "version": "3.2.0",
+  "version": "3.3.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/title",
   "props": [
     {
