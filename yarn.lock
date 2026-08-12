@@ -3512,7 +3512,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/title@workspace:packages/react/src/atomic/Title"
   dependencies:
-    "@nimbus-ds/box": "workspace:^"
     "@nimbus-ds/skeleton": "workspace:^"
     "@nimbus-ds/webpack": "workspace:^"
   peerDependencies:

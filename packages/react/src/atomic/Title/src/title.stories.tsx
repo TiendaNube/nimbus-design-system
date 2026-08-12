@@ -1,7 +1,5 @@
-import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { title } from "@nimbus-ds/styles";
-import { Box } from "@nimbus-ds/box";
 import { argTypesConvert } from ".storybook/utils";
 import { Title } from "./Title";
 
@@ -64,26 +62,6 @@ export const h6: Story = {
     as: "h6",
     children: "Lorem ipsum dolor sit amet",
   },
-};
-
-const paletteColors = Object.keys(
-  title.properties.color
-) as (keyof typeof title.properties.color)[];
-
-export const colors: Story = {
-  render: () => (
-    <>
-      {paletteColors.map((color) => (
-        // A mid-tone container keeps both the lightest values (neutral-background,
-        // neutral-surface) and the darkest ones legible, in light and dark themes.
-        <Box key={color} backgroundColor="neutral-surfaceHighlight" padding="2">
-          <Title as="h3" color={color}>
-            {color}
-          </Title>
-        </Box>
-      ))}
-    </>
-  ),
 };
 
 export const responsive: Story = {
