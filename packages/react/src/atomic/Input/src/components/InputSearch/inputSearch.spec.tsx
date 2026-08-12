@@ -1,6 +1,7 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 
+import { type InputBaseProps } from "../../input.types";
 import { InputSearch, type InputSearchProps } from "./InputSearch";
 
 const makeSut = (rest?: InputSearchProps) => {
@@ -30,6 +31,20 @@ describe("GIVEN <Input.Search />", () => {
         .parentElement as HTMLElement;
       expect(container.getAttribute("class")).toContain(
         "appearance_ai-generative"
+      );
+    });
+
+    it("should accept an `InputBaseProps`-shaped object including `prefix` (e.g. props shared with `Input`) without a type error", () => {
+      // Regression guard for the assignability break left by #487: it widened
+      // `InputProperties.prefix` to a `ReactNode`, while `prefix` here was
+      // still the native, string-only RDFa attribute, so an
+      // `InputBaseProps`-typed object was no longer assignable to
+      // `Input.Search`. This only covers that the spread compiles —
+      // `Input.Search` still forwards `prefix` to the underlying `<input>`.
+      const sharedProps: InputBaseProps = { prefix: "$", disabled: true };
+      render(<InputSearch {...sharedProps} data-testid="my-input" />);
+      expect(screen.getByTestId<HTMLInputElement>("my-input").disabled).toBe(
+        true
       );
     });
   });
