@@ -5,7 +5,7 @@ every day, with simplicity, accessibility, consistency and performance.
 
 ## 2026-08-12 `5.62.0`
 
-#### 🛠 Breaking changes
+#### 🛠 Reverted changes
 
 - Title: Reverts the `Text` color palette added in [#496](https://github.com/TiendaNube/nimbus-design-system/pull/496); `color` is again limited to heading-appropriate values, dropping `currentColor`, every `*-surface`, `success-interactive`, `success-interactivePressed`, `neutral-interactive` and `neutral-textDisabled`. The documented default returns to `neutral-textLow`. ([#515](https://github.com/TiendaNube/nimbus-design-system/pull/515) by [@lichademarchi](https://github.com/lichademarchi))
 
