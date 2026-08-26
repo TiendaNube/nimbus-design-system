@@ -2,7 +2,9 @@ name: "preview-storybook"
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened]
+    # `labeled` lets the storybook-preview label force a build on a pull request
+    # whose diff would not have triggered one.
+    types: [opened, synchronize, reopened, labeled]
 
 jobs:
   build-and-deploy:
@@ -16,34 +18,77 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Check for release files in ./yarn/versions
-        id: check_release
+      # The preview used to be gated on a `.yarn/versions/*.yml` carrying a
+      # `releases:` entry. That is the wrong signal: the release strategy is
+      # decided at the end of the work, while the preview is what you need in the
+      # middle of it, so the component under construction had no preview exactly
+      # when it was most useful. The gate is now the diff itself.
+      - name: Decide whether the preview would show anything new
+        id: preview_scope
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          REPO: ${{ github.repository }}
+          FORCED: ${{ contains(github.event.pull_request.labels.*.name, 'storybook-preview') }}
         run: |
-          if grep -q "^releases:" .yarn/versions/* 2>/dev/null; then
-            echo "should_skip=false" >> "$GITHUB_OUTPUT"
+          # Everything that can change a pixel of the built Storybook. Kept
+          # generous on purpose: an unnecessary preview costs ~90s of runner
+          # time, a missing one costs a review round trip.
+          #
+          # `packages/core/typings` is included because react-docgen resolves
+          # prop types when it generates the autodocs tables. `core/scripts`,
+          # `core/webpack` and `packages/helper` are not: they build the npm
+          # packages, while Storybook bundles the sources through .storybook.
+          BUILD_INPUTS='^packages/react/|^packages/core/(styles|tokens|typings)/|^packages/icons/|^\.storybook/|^(package\.json|yarn\.lock|babel\.config\.js|tsconfig\.json)$'
+
+          # Files that never reach the bundle, so never a reason to rebuild on
+          # their own: tests, the generated *.docs.json, and documentation.
+          NON_VISUAL='\.spec\.(ts|tsx)$|\.docs\.json$|\.md$'
+
+          # Reused by the comment step to deep-link every touched component.
+          if ! gh api --paginate "repos/$REPO/pulls/$PR_NUMBER/files" \
+            --jq '.[].filename' > "$RUNNER_TEMP/changed-files.txt"; then
+            echo "Could not list the changed files — building the preview anyway."
+            echo "should_build=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          if [ "$FORCED" = "true" ]; then
+            echo "Forced by the storybook-preview label."
+            echo "should_build=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          relevant=$(grep -vE "$NON_VISUAL" "$RUNNER_TEMP/changed-files.txt" || true)
+
+          if printf '%s\n' "$relevant" | grep -qE "$BUILD_INPUTS"; then
+            echo "should_build=true" >> "$GITHUB_OUTPUT"
           else
-            echo "should_skip=true" >> "$GITHUB_OUTPUT"
-            echo "## ⚠️ Storybook preview not available" >> "$GITHUB_STEP_SUMMARY"
-            echo "Storybook preview is not available for this PR because there are no changes available for a new release." >> "$GITHUB_STEP_SUMMARY"
+            echo "should_build=false" >> "$GITHUB_OUTPUT"
+            {
+              echo "## ⚠️ Storybook preview not built"
+              echo "Nothing in this pull request changes what Storybook renders."
+              echo "Add the \`storybook-preview\` label to build it anyway."
+            } >> "$GITHUB_STEP_SUMMARY"
           fi
 
       - uses: ./.github/actions/setup-node-deps
-        if: steps.check_release.outputs.should_skip == 'false'
+        if: steps.preview_scope.outputs.should_build == 'true'
 
       - name: Run build tokens
-        if: steps.check_release.outputs.should_skip == 'false'
+        if: steps.preview_scope.outputs.should_build == 'true'
         run: npm run build:tokens
 
       - name: Run build icons
-        if: steps.check_release.outputs.should_skip == 'false'
+        if: steps.preview_scope.outputs.should_build == 'true'
         run: yarn build:icons
 
       - name: Build Storybook
-        if: steps.check_release.outputs.should_skip == 'false'
+        if: steps.preview_scope.outputs.should_build == 'true'
         run: yarn build:storybook
 
       - name: 🔐 Configure AWS credentials using OIDC
-        if: steps.check_release.outputs.should_skip == 'false'
+        if: steps.preview_scope.outputs.should_build == 'true'
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/${{ secrets.AWS_DEPLOY_ROLE }}
@@ -51,37 +96,40 @@ jobs:
           audience: sts.amazonaws.com
 
       - name: Upload Storybook to S3
-        if: steps.check_release.outputs.should_skip == 'false'
+        if: steps.preview_scope.outputs.should_build == 'true'
         run: |
           aws s3 sync ./.build-storybook s3://ns-ec-dms-bs3-nimbus-preview/components/pull/${{ github.event.pull_request.number }} --delete
 
       - name: Comment Storybook preview URL on PR and Check summary
-        if: steps.check_release.outputs.should_skip == 'false'
+        if: steps.preview_scope.outputs.should_build == 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
           REPO: ${{ github.repository }}
           STORYBOOK_URL: https://ns-ec-dms-bs3-nimbus-preview.s3.us-west-2.amazonaws.com/components/pull/${{ github.event.pull_request.number }}/index.html
         run: |
+          # The file list comes from the preview_scope step, which already paged
+          # through it — the default page size hides files on large pull requests.
+          yarn preview:links "$RUNNER_TEMP/changed-files.txt" \
+            > "$RUNNER_TEMP/preview-comment.md"
+          cat "$RUNNER_TEMP/preview-comment.md"
+
           echo "Checking for existing Storybook comment..."
 
-          comments=$(curl -s -H "Authorization: token $GH_TOKEN" \
-            https://api.github.com/repos/$REPO/issues/$PR_NUMBER/comments)
+          # The marker identifies comments written by this workflow; the legacy
+          # pattern keeps pull requests commented before the marker existed from
+          # collecting a duplicate.
+          comment_id=$(gh api --paginate "repos/$REPO/issues/$PR_NUMBER/comments" \
+            --jq '.[] | select(.body | test("<!-- nimbus-storybook-preview -->") or test("View Storybook.*pull/'"$PR_NUMBER"'")) | .id' \
+            | head -1)
 
-          comment_id=$(echo "$comments" | jq -r '.[] | select(.body | test("View Storybook.*pull/'"$PR_NUMBER"'")) | .id')
-          
-          if [ ! -z "$comment_id" ]; then
-            curl -s -H "Authorization: token $GH_TOKEN" \
-              -X DELETE \
-              https://api.github.com/repos/$REPO/issues/comments/$comment_id
+          if [ -n "$comment_id" ]; then
+            gh api -X PATCH "repos/$REPO/issues/comments/$comment_id" \
+              -F "body=@$RUNNER_TEMP/preview-comment.md"
+          else
+            gh api -X POST "repos/$REPO/issues/$PR_NUMBER/comments" \
+              -F "body=@$RUNNER_TEMP/preview-comment.md"
           fi
 
-          curl -s -H "Authorization: token $GH_TOKEN" \
-            -H "Content-Type: application/json" \
-            -X POST -d "{
-              \"body\": \"🚀✨ Your Storybook preview is ready!\n\n🔗 [View Storybook]($STORYBOOK_URL)\n\nHappy reviewing! 🎉\"
-            }" \
-            https://api.github.com/repos/$REPO/issues/$PR_NUMBER/comments
-
           echo "## 🚀 Storybook Preview Ready" >> $GITHUB_STEP_SUMMARY
-          echo "[👉 View Storybook Preview]($STORYBOOK_URL)" >> $GITHUB_STEP_SUMMARY
+          cat "$RUNNER_TEMP/preview-comment.md" >> $GITHUB_STEP_SUMMARY
