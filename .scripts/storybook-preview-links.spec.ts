@@ -246,6 +246,89 @@ describe("buildCommentBody", () => {
     expect(body.startsWith(COMMENT_MARKER)).toBe(true);
   });
 
+  it("omits the decision block when the workflow states no decision", () => {
+    const body = buildCommentBody(BASE_URL, []);
+
+    expect(body).not.toContain("<details>");
+  });
+
+  it("folds the decision away behind a summary", () => {
+    const body = buildCommentBody(BASE_URL, [], {
+      trigger: "build-inputs",
+      matched: ["packages/react/src/atomic/Input/src/input.tsx"],
+    });
+
+    expect(body).toContain(
+      "<summary>Why this preview exists, and why these links</summary>"
+    );
+  });
+
+  it("lists the files that triggered the build as evidence", () => {
+    const body = buildCommentBody(BASE_URL, [], {
+      trigger: "build-inputs",
+      matched: ["yarn.lock", "packages/core/styles/src/properties/index.ts"],
+    });
+
+    expect(body).toContain("- `yarn.lock`");
+    expect(body).toContain("- `packages/core/styles/src/properties/index.ts`");
+  });
+
+  it("truncates the evidence when a pull request matched many files", () => {
+    const matched = Array.from(
+      { length: 14 },
+      (_, position) =>
+        `packages/react/src/atomic/Component${position}/src/a.tsx`
+    );
+
+    const body = buildCommentBody(BASE_URL, [], {
+      trigger: "build-inputs",
+      matched,
+    });
+
+    expect(body).toContain("- …and 4 more");
+  });
+
+  it("names the label as the reason when it forced the build", () => {
+    const body = buildCommentBody(BASE_URL, [], {
+      trigger: "label",
+      matched: [],
+    });
+
+    expect(body).toContain("`storybook-preview` label forces a preview");
+  });
+
+  it("says so when the build happened because the diff was unreadable", () => {
+    const body = buildCommentBody(BASE_URL, [], {
+      trigger: "unavailable-diff",
+      matched: [],
+    });
+
+    expect(body).toContain("could not be read");
+  });
+
+  it("explains the absence of per-component links", () => {
+    const body = buildCommentBody(BASE_URL, [], {
+      trigger: "build-inputs",
+      matched: ["yarn.lock"],
+    });
+
+    expect(body).toContain("**No link per component**");
+  });
+
+  it("explains where the per-component links come from", () => {
+    const targets = resolveStoryTargets(
+      ["packages/react/src/atomic/Input/src/input.tsx"],
+      index
+    );
+
+    const body = buildCommentBody(BASE_URL, targets, {
+      trigger: "build-inputs",
+      matched: ["packages/react/src/atomic/Input/src/input.tsx"],
+    });
+
+    expect(body).toContain("**The links above**");
+  });
+
   it("summarises the tail when too many components changed", () => {
     const targets = Array.from({ length: 11 }, (_, position) => ({
       title: `Atomic/Component${position}`,

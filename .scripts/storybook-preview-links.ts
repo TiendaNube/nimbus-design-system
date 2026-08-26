@@ -17,6 +17,12 @@ import path from "path";
 
 const DEFAULT_INDEX_PATH = ".build-storybook/index.json";
 const MAX_LINKS = 8;
+const MAX_MATCHED_FILES = 10;
+const PREVIEW_TRIGGERS: PreviewTrigger[] = [
+  "build-inputs",
+  "label",
+  "unavailable-diff",
+];
 
 /** Every published component lives in its own directory under these two roots. */
 const COMPONENT_ROOT_PATTERN =
@@ -189,9 +195,68 @@ export const previewUrl = (baseUrl: string, target: StoryTarget): string => {
   return `${baseUrl}${separator}path=${storyPath}`;
 };
 
+/**
+ * Why the workflow decided to build. The decision itself stays in the workflow,
+ * which is the only place that can make it before dependencies are installed —
+ * this module only reports it.
+ */
+export type PreviewTrigger = "build-inputs" | "label" | "unavailable-diff";
+
+const TRIGGER_REASONS: Record<PreviewTrigger, string> = {
+  "build-inputs":
+    "this pull request changes files that feed the Storybook bundle",
+  label:
+    "the `storybook-preview` label forces a preview, whatever the diff contains",
+  "unavailable-diff":
+    "the list of changed files could not be read, so the preview was built rather than skipped",
+};
+
+export interface PreviewDecision {
+  trigger: PreviewTrigger;
+  /** The files that matched, evidence for a `build-inputs` trigger. */
+  matched: string[];
+}
+
+/**
+ * Folded away behind a `<summary>`: the decision is worth being able to audit,
+ * but nobody should have to read it to reach the link.
+ */
+const buildDecisionDetails = (
+  decision: PreviewDecision,
+  linkableCount: number
+): string[] => {
+  const lines = [
+    "<details>",
+    "<summary>Why this preview exists, and why these links</summary>",
+    "",
+    `**Built because** ${TRIGGER_REASONS[decision.trigger]}.`,
+  ];
+
+  if (decision.trigger === "build-inputs" && decision.matched.length > 0) {
+    lines.push("");
+    for (const file of decision.matched.slice(0, MAX_MATCHED_FILES)) {
+      lines.push(`- \`${file}\``);
+    }
+    if (decision.matched.length > MAX_MATCHED_FILES) {
+      lines.push(`- …and ${decision.matched.length - MAX_MATCHED_FILES} more`);
+    }
+  }
+
+  lines.push("");
+  lines.push(
+    linkableCount > 0
+      ? "**The links above** come from the `index.json` of this very build, picking the stories file closest to each changed file — so a change under a sub-component lands on the sub-component's page, not on its parent's."
+      : "**No link per component** because nothing under `packages/react` or `@nimbus-ds/styles` changed, so there is no component page to point at. The root link is the whole preview."
+  );
+  lines.push("", "</details>");
+
+  return lines;
+};
+
 export const buildCommentBody = (
   baseUrl: string,
-  targets: StoryTarget[]
+  targets: StoryTarget[],
+  decision: PreviewDecision | null = null
 ): string => {
   const lines = [COMMENT_MARKER, "🚀✨ Your Storybook preview is ready!", ""];
 
@@ -209,20 +274,46 @@ export const buildCommentBody = (
   }
 
   lines.push(`🔗 [View Storybook](${baseUrl}) — full preview`, "");
+
+  if (decision) {
+    lines.push(...buildDecisionDetails(decision, linkable.length), "");
+  }
+
   lines.push("Happy reviewing! 🎉");
 
   return `${lines.join("\n")}\n`;
 };
 
-const readChangedFiles = (filePath: string | undefined): string[] => {
-  const raw = filePath
-    ? fs.readFileSync(filePath, "utf8")
-    : fs.readFileSync(0, "utf8");
-
-  return raw
+const readLines = (raw: string): string[] =>
+  raw
     .split("\n")
     .map((line) => line.trim())
     .filter(Boolean);
+
+const readChangedFiles = (filePath: string | undefined): string[] =>
+  readLines(
+    filePath ? fs.readFileSync(filePath, "utf8") : fs.readFileSync(0, "utf8")
+  );
+
+const isPreviewTrigger = (value: string): value is PreviewTrigger =>
+  PREVIEW_TRIGGERS.includes(value as PreviewTrigger);
+
+/**
+ * The workflow states its decision through PREVIEW_TRIGGER, and the files that
+ * matched through PREVIEW_MATCHED_FILES. An unset or unrecognised trigger drops
+ * the details block rather than inventing a reason for it.
+ */
+const readDecision = (): PreviewDecision | null => {
+  const trigger = process.env.PREVIEW_TRIGGER;
+  if (!trigger || !isPreviewTrigger(trigger)) return null;
+
+  const matchedPath = process.env.PREVIEW_MATCHED_FILES;
+  const matched =
+    matchedPath && fs.existsSync(matchedPath)
+      ? readLines(fs.readFileSync(matchedPath, "utf8"))
+      : [];
+
+  return { trigger, matched };
 };
 
 /**
@@ -262,7 +353,7 @@ const main = (): void => {
     ? resolveStoryTargets(readChangedFiles(process.argv[2]), index)
     : [];
 
-  process.stdout.write(buildCommentBody(baseUrl, targets));
+  process.stdout.write(buildCommentBody(baseUrl, targets, readDecision()));
 };
 
 if (require.main === module) {
