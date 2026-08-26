@@ -56,7 +56,12 @@ jobs:
           # false positives from script and metadata edits, which cannot move a
           # pixel. The uncovered case is an edit to the `build:storybook` flags
           # themselves — rare, and the label covers it.
-          BUILD_INPUTS='^packages/react/|^packages/core/(styles|tokens|typings)/|^packages/icons/|^\.storybook/|^(yarn\.lock|babel\.config\.js|tsconfig\.json)$'
+          #
+          # The last two entries are not bundle inputs but preview inputs: they
+          # decide what the comment says, and their whole job is to be checked
+          # against a real index.json, so a change to them has to produce a
+          # preview to be verified against.
+          BUILD_INPUTS='^packages/react/|^packages/core/(styles|tokens|typings)/|^packages/icons/|^\.storybook/|^(yarn\.lock|babel\.config\.js|tsconfig\.json)$|^\.scripts/storybook-preview-links\.ts$|^\.github/workflows/preview-storybook\.yml$'
 
           # Files that never reach the bundle, so never a reason to rebuild on
           # their own: tests, the generated *.docs.json, and documentation.
@@ -157,12 +162,22 @@ jobs:
           # collecting a duplicate. Restricted to bot authors because reviewers
           # quote the preview link routinely, and a PATCH against someone else's
           # comment answers 403 and takes the rest of the step with it.
-          comment_id=$(gh api --paginate "repos/$REPO/issues/$PR_NUMBER/comments" \
-            --jq '[.[]
-                   | select(.user.type == "Bot")
-                   | select((.body // "") | test("<!-- nimbus-storybook-preview -->")
-                                            or test("View Storybook.*pull/'"$PR_NUMBER"'"))
-                   | .id] | first // empty')
+          # --jq runs per page under --paginate, so the filter emits ids across
+          # pages and the pick has to happen afterwards. Assigned without a pipe
+          # so the exit status is the one gh returned, not head's; failing to
+          # read the comments posts a new one, because a duplicate is
+          # recoverable and a missing preview link is not.
+          if ! comment_ids=$(gh api --paginate "repos/$REPO/issues/$PR_NUMBER/comments" \
+            --jq '.[]
+                  | select(.user.type == "Bot")
+                  | select((.body // "") | test("<!-- nimbus-storybook-preview -->")
+                                           or test("View Storybook.*pull/'"$PR_NUMBER"'"))
+                  | .id'); then
+            echo "Could not read the existing comments — posting a new one."
+            comment_ids=""
+          fi
+
+          comment_id=$(printf '%s\n' "$comment_ids" | head -1)
 
           if [ -n "$comment_id" ]; then
             gh api -X PATCH "repos/$REPO/issues/comments/$comment_id" \
