@@ -50,7 +50,13 @@ jobs:
           # prop types when it generates the autodocs tables. `core/scripts`,
           # `core/webpack` and `packages/helper` are not: they build the npm
           # packages, while Storybook bundles the sources through .storybook.
-          BUILD_INPUTS='^packages/react/|^packages/core/(styles|tokens|typings)/|^packages/icons/|^\.storybook/|^(package\.json|yarn\.lock|babel\.config\.js|tsconfig\.json)$'
+          #
+          # The root `package.json` is deliberately absent: dependency changes
+          # always land in `yarn.lock` too, so listing the manifest only added
+          # false positives from script and metadata edits, which cannot move a
+          # pixel. The uncovered case is an edit to the `build:storybook` flags
+          # themselves — rare, and the label covers it.
+          BUILD_INPUTS='^packages/react/|^packages/core/(styles|tokens|typings)/|^packages/icons/|^\.storybook/|^(yarn\.lock|babel\.config\.js|tsconfig\.json)$'
 
           # Files that never reach the bundle, so never a reason to rebuild on
           # their own: tests, the generated *.docs.json, and documentation.
@@ -68,19 +74,29 @@ jobs:
             rm -f "$RUNNER_TEMP/changed-files.partial"
             : > "$RUNNER_TEMP/changed-files.txt"
             echo "should_build=true" >> "$GITHUB_OUTPUT"
+            echo "trigger=unavailable-diff" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
           if [ "$FORCED" = "true" ]; then
             echo "Forced by the storybook-preview label."
             echo "should_build=true" >> "$GITHUB_OUTPUT"
+            echo "trigger=label" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
           relevant=$(grep -vE "$NON_VISUAL" "$RUNNER_TEMP/changed-files.txt" || true)
 
-          if printf '%s\n' "$relevant" | grep -qE "$BUILD_INPUTS"; then
+          # The matched files are the evidence the comment folds away behind its
+          # <summary>, so the decision can be audited from the pull request.
+          printf '%s\n' "$relevant" | grep -E "$BUILD_INPUTS" \
+            > "$RUNNER_TEMP/matched-files.txt" || true
+
+          if [ -s "$RUNNER_TEMP/matched-files.txt" ]; then
             echo "should_build=true" >> "$GITHUB_OUTPUT"
+            echo "trigger=build-inputs" >> "$GITHUB_OUTPUT"
+            echo "Building because these files feed the Storybook bundle:"
+            cat "$RUNNER_TEMP/matched-files.txt"
           else
             echo "should_build=false" >> "$GITHUB_OUTPUT"
             {
@@ -125,6 +141,8 @@ jobs:
           PR_NUMBER: ${{ github.event.pull_request.number }}
           REPO: ${{ github.repository }}
           STORYBOOK_URL: https://ns-ec-dms-bs3-nimbus-preview.s3.us-west-2.amazonaws.com/components/pull/${{ github.event.pull_request.number }}/index.html
+          PREVIEW_TRIGGER: ${{ steps.preview_scope.outputs.trigger }}
+          PREVIEW_MATCHED_FILES: ${{ runner.temp }}/matched-files.txt
         run: |
           # The file list comes from the preview_scope step, which already paged
           # through it — the default page size hides files on large pull requests.
