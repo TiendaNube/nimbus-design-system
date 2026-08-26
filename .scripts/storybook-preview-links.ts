@@ -41,6 +41,7 @@ export const COMMENT_MARKER = "<!-- nimbus-storybook-preview -->";
 export interface StorybookIndexEntry {
   id: string;
   title: string;
+  name: string;
   importPath: string;
   type: string;
 }
@@ -58,6 +59,38 @@ export interface StoryTarget {
 const DOCS_ENTRY_TYPE = "docs";
 const STORY_ENTRY_TYPE = "story";
 
+/**
+ * A component with no docs page is linked through one of its stories, and which
+ * one must not depend on the order Storybook happens to emit — `ProgressBar`
+ * exports eleven. These are the baseline names the repo's story convention asks
+ * for; anything else keeps the index order, which is stable in practice but
+ * nothing this file can guarantee.
+ */
+const PRIMARY_STORY_NAMES = ["Default", "Basic", "Playground"];
+
+interface StoryCandidate {
+  id: string;
+  name: string;
+}
+
+interface StoryTargetDraft {
+  title: string;
+  docsId: string | null;
+  stories: StoryCandidate[];
+}
+
+const primaryStoryRank = (name: string): number => {
+  const rank = PRIMARY_STORY_NAMES.indexOf(name);
+
+  return rank === -1 ? PRIMARY_STORY_NAMES.length : rank;
+};
+
+/** Array#sort is stable, so equal ranks keep the order Storybook emitted. */
+const pickStoryId = (stories: StoryCandidate[]): string | null =>
+  [...stories].sort(
+    (a, b) => primaryStoryRank(a.name) - primaryStoryRank(b.name)
+  )[0]?.id ?? null;
+
 const normalizePath = (importPath: string): string =>
   importPath.replace(/^\.\//, "");
 
@@ -71,34 +104,45 @@ const byDepthThenName = (a: string, b: string): number =>
 
 /**
  * Groups the flat Storybook index by the stories file each entry came from,
- * keeping the docs page and the first story of every file.
+ * keeping the docs page and the story worth linking to.
  */
 const groupByStoriesFile = (
   index: StorybookIndex
 ): Map<string, StoryTarget> => {
-  const targets = new Map<string, StoryTarget>();
+  const drafts = new Map<string, StoryTargetDraft>();
 
   for (const entry of Object.values(index.entries ?? {})) {
-    if (!entry?.importPath) continue;
+    // A truncated or hand-edited index can carry anything: a non-string
+    // importPath would throw on `.replace` and bypass the root-link fallback.
+    if (typeof entry?.importPath !== "string") continue;
 
     const storiesFile = normalizePath(entry.importPath);
-    const target = targets.get(storiesFile) ?? {
+    const draft = drafts.get(storiesFile) ?? {
       title: entry.title,
       docsId: null,
-      storyId: null,
+      stories: [],
     };
 
-    if (entry.type === DOCS_ENTRY_TYPE && !target.docsId) {
-      target.docsId = entry.id;
+    if (entry.type === DOCS_ENTRY_TYPE && !draft.docsId) {
+      draft.docsId = entry.id;
     }
-    if (entry.type === STORY_ENTRY_TYPE && !target.storyId) {
-      target.storyId = entry.id;
+    if (entry.type === STORY_ENTRY_TYPE) {
+      draft.stories.push({ id: entry.id, name: entry.name });
     }
 
-    targets.set(storiesFile, target);
+    drafts.set(storiesFile, draft);
   }
 
-  return targets;
+  return new Map(
+    [...drafts].map(([storiesFile, draft]) => [
+      storiesFile,
+      {
+        title: draft.title,
+        docsId: draft.docsId,
+        storyId: pickStoryId(draft.stories),
+      },
+    ])
+  );
 };
 
 /** `fileUploader`, `FileUploader` and `file-uploader` all name one component. */

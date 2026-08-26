@@ -16,18 +16,21 @@ const index: StorybookIndex = {
     "atomic-input--docs": {
       id: "atomic-input--docs",
       title: "Atomic/Input",
+      name: "Docs",
       importPath: "./packages/react/src/atomic/Input/src/input.stories.tsx",
       type: "docs",
     },
     "atomic-input--basic": {
       id: "atomic-input--basic",
       title: "Atomic/Input",
+      name: "Basic",
       importPath: "./packages/react/src/atomic/Input/src/input.stories.tsx",
       type: "story",
     },
     "atomic-input-input-password--docs": {
       id: "atomic-input-input-password--docs",
       title: "Atomic/Input/Input.Password",
+      name: "Docs",
       importPath:
         "./packages/react/src/atomic/Input/src/components/InputPassword/inputPassword.stories.tsx",
       type: "docs",
@@ -35,6 +38,7 @@ const index: StorybookIndex = {
     "atomic-progressbar--basic": {
       id: "atomic-progressbar--basic",
       title: "Atomic/ProgressBar",
+      name: "Basic",
       importPath:
         "./packages/react/src/atomic/ProgressBar/src/progressBar.stories.tsx",
       type: "story",
@@ -42,10 +46,49 @@ const index: StorybookIndex = {
     "composite-timepicker--docs": {
       id: "composite-timepicker--docs",
       title: "Composite/TimePicker",
+      name: "Docs",
       importPath:
         "./packages/react/src/composite/TimePicker/src/timePicker.stories.tsx",
       type: "docs",
     },
+  },
+};
+
+const storyEntry = (
+  id: string,
+  name: string,
+  importPath: string,
+  title: string
+): StorybookIndexEntry => ({ id, name, importPath, title, type: "story" });
+
+/** Two docs-less files: one with a baseline story, one without. */
+const manyStoriesIndex: StorybookIndex = {
+  entries: {
+    // Emitted before Default on purpose.
+    "atomic-slider--custom": storyEntry(
+      "atomic-slider--custom",
+      "Custom",
+      "./packages/react/src/atomic/Slider/src/slider.stories.tsx",
+      "Atomic/Slider"
+    ),
+    "atomic-slider--default": storyEntry(
+      "atomic-slider--default",
+      "Default",
+      "./packages/react/src/atomic/Slider/src/slider.stories.tsx",
+      "Atomic/Slider"
+    ),
+    "atomic-divider--horizontal": storyEntry(
+      "atomic-divider--horizontal",
+      "Horizontal",
+      "./packages/react/src/atomic/Divider/src/divider.stories.tsx",
+      "Atomic/Divider"
+    ),
+    "atomic-divider--vertical": storyEntry(
+      "atomic-divider--vertical",
+      "Vertical",
+      "./packages/react/src/atomic/Divider/src/divider.stories.tsx",
+      "Atomic/Divider"
+    ),
   },
 };
 
@@ -165,11 +208,33 @@ describe("resolveStoryTargets", () => {
     const broken = {
       id: "broken",
       title: "Broken",
+      name: "Broken",
       type: "docs",
     } as unknown as StorybookIndexEntry;
 
     const malformed: StorybookIndex = {
       entries: { broken, ...index.entries },
+    };
+
+    const targets = resolveStoryTargets(
+      ["packages/react/src/atomic/Input/src/input.tsx"],
+      malformed
+    );
+
+    expect(targets.map(({ title }) => title)).toEqual(["Atomic/Input"]);
+  });
+
+  it("ignores an index entry whose importPath is not a string", () => {
+    const numeric = {
+      id: "numeric",
+      title: "Numeric",
+      name: "Numeric",
+      importPath: 1,
+      type: "docs",
+    } as unknown as StorybookIndexEntry;
+
+    const malformed: StorybookIndex = {
+      entries: { numeric, ...index.entries },
     };
 
     const targets = resolveStoryTargets(
@@ -202,7 +267,7 @@ describe("previewUrl", () => {
     );
   });
 
-  it("points at the first story when the component has no docs page", () => {
+  it("points at a story when the component has no docs page", () => {
     const [target] = resolveStoryTargets(
       ["packages/react/src/atomic/ProgressBar/src/progressBar.tsx"],
       index
@@ -210,6 +275,30 @@ describe("previewUrl", () => {
 
     expect(previewUrl(BASE_URL, target)).toBe(
       `${BASE_URL}?path=/story/atomic-progressbar--basic`
+    );
+  });
+
+  // ProgressBar really exports eleven stories, so "the first one in the index"
+  // is an ordering assumption these two cases pin down instead.
+  it("picks the baseline story of a docs-less component, not the index order", () => {
+    const [target] = resolveStoryTargets(
+      ["packages/react/src/atomic/Slider/src/slider.tsx"],
+      manyStoriesIndex
+    );
+
+    expect(previewUrl(BASE_URL, target)).toBe(
+      `${BASE_URL}?path=/story/atomic-slider--default`
+    );
+  });
+
+  it("keeps the index order when no story carries a baseline name", () => {
+    const [target] = resolveStoryTargets(
+      ["packages/react/src/atomic/Divider/src/divider.tsx"],
+      manyStoriesIndex
+    );
+
+    expect(previewUrl(BASE_URL, target)).toBe(
+      `${BASE_URL}?path=/story/atomic-divider--horizontal`
     );
   });
 });
