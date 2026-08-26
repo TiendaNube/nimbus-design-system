@@ -245,6 +245,30 @@ describe("resolveStoryTargets", () => {
     expect(targets.map(({ title }) => title)).toEqual(["Atomic/Input"]);
   });
 
+  it("ignores an index entry whose title is not a string", () => {
+    const untitled = {
+      id: "untitled",
+      title: 7,
+      name: "Untitled",
+      importPath: "./packages/react/src/atomic/Badge/src/badge.stories.tsx",
+      type: "docs",
+    } as unknown as StorybookIndexEntry;
+
+    const malformed: StorybookIndex = {
+      entries: { untitled, ...index.entries },
+    };
+
+    const targets = resolveStoryTargets(
+      [
+        "packages/react/src/atomic/Badge/src/badge.tsx",
+        "packages/react/src/atomic/Input/src/input.tsx",
+      ],
+      malformed
+    );
+
+    expect(targets.map(({ title }) => title)).toEqual(["Atomic/Input"]);
+  });
+
   it("skips components whose stories are absent from the index", () => {
     const targets = resolveStoryTargets(
       ["packages/react/src/atomic/Badge/src/badge.tsx"],
@@ -278,8 +302,9 @@ describe("previewUrl", () => {
     );
   });
 
-  // ProgressBar really exports eleven stories, so "the first one in the index"
-  // is an ordering assumption these two cases pin down instead.
+  // The real case is ProgressBar: eleven stories, no docs page. Slider stands in
+  // for it with Custom emitted before Default, and Divider covers a file where
+  // no story carries a baseline name at all.
   it("picks the baseline story of a docs-less component, not the index order", () => {
     const [target] = resolveStoryTargets(
       ["packages/react/src/atomic/Slider/src/slider.tsx"],

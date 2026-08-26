@@ -103,6 +103,18 @@ const byDepthThenName = (a: string, b: string): number =>
   a.split("/").length - b.split("/").length || a.localeCompare(b);
 
 /**
+ * `index.json` is generated, but a truncated or hand-edited one can hold
+ * anything, and this module's contract is to fall back to the preview root
+ * rather than throw. Checked as a set instead of one guard per field, because
+ * every one of these is either interpolated into the comment or compared:
+ * `importPath` reaches `.replace`, `title` reaches `.localeCompare`.
+ */
+const isUsableEntry = (entry: StorybookIndexEntry): boolean =>
+  typeof entry?.importPath === "string" &&
+  typeof entry?.title === "string" &&
+  typeof entry?.id === "string";
+
+/**
  * Groups the flat Storybook index by the stories file each entry came from,
  * keeping the docs page and the story worth linking to.
  */
@@ -112,9 +124,7 @@ const groupByStoriesFile = (
   const drafts = new Map<string, StoryTargetDraft>();
 
   for (const entry of Object.values(index.entries ?? {})) {
-    // A truncated or hand-edited index can carry anything: a non-string
-    // importPath would throw on `.replace` and bypass the root-link fallback.
-    if (typeof entry?.importPath !== "string") continue;
+    if (!isUsableEntry(entry)) continue;
 
     const storiesFile = normalizePath(entry.importPath);
     const draft = drafts.get(storiesFile) ?? {
