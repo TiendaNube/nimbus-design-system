@@ -1,4 +1,7 @@
-import type { StorybookIndex } from "./storybook-preview-links";
+import type {
+  StorybookIndex,
+  StorybookIndexEntry,
+} from "./storybook-preview-links";
 import {
   COMMENT_MARKER,
   buildCommentBody,
@@ -155,6 +158,26 @@ describe("resolveStoryTargets", () => {
     );
 
     expect(targets).toEqual([]);
+  });
+
+  it("ignores malformed index entries instead of throwing", () => {
+    // A truncated index.json can carry entries without an importPath.
+    const broken = {
+      id: "broken",
+      title: "Broken",
+      type: "docs",
+    } as unknown as StorybookIndexEntry;
+
+    const malformed: StorybookIndex = {
+      entries: { broken, ...index.entries },
+    };
+
+    const targets = resolveStoryTargets(
+      ["packages/react/src/atomic/Input/src/input.tsx"],
+      malformed
+    );
+
+    expect(targets.map(({ title }) => title)).toEqual(["Atomic/Input"]);
   });
 
   it("skips components whose stories are absent from the index", () => {
