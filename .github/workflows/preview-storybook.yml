@@ -6,9 +6,20 @@ on:
     # whose diff would not have triggered one.
     types: [opened, synchronize, reopened, labeled]
 
+# Two runs on the same pull request would race `aws s3 sync --delete` over one
+# prefix, and the slower one would publish the older build under the same link.
+concurrency:
+  group: storybook-preview-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+
+    # Every label fires `labeled`, but only one of them means "build this".
+    if: >-
+      github.event.action != 'labeled' ||
+      github.event.label.name == 'storybook-preview'
 
     permissions:
       id-token: write
@@ -46,9 +57,16 @@ jobs:
           NON_VISUAL='\.spec\.(ts|tsx)$|\.docs\.json$|\.md$'
 
           # Reused by the comment step to deep-link every touched component.
-          if ! gh api --paginate "repos/$REPO/pulls/$PR_NUMBER/files" \
-            --jq '.[].filename' > "$RUNNER_TEMP/changed-files.txt"; then
+          # Written aside and moved on success: the redirection truncates its
+          # target before gh runs, so a failure midway through the pages would
+          # otherwise leave a partial list that reads as a complete one.
+          if gh api --paginate "repos/$REPO/pulls/$PR_NUMBER/files" \
+            --jq '.[].filename' > "$RUNNER_TEMP/changed-files.partial"; then
+            mv "$RUNNER_TEMP/changed-files.partial" "$RUNNER_TEMP/changed-files.txt"
+          else
             echo "Could not list the changed files — building the preview anyway."
+            rm -f "$RUNNER_TEMP/changed-files.partial"
+            : > "$RUNNER_TEMP/changed-files.txt"
             echo "should_build=true" >> "$GITHUB_OUTPUT"
             exit 0
           fi
@@ -118,10 +136,15 @@ jobs:
 
           # The marker identifies comments written by this workflow; the legacy
           # pattern keeps pull requests commented before the marker existed from
-          # collecting a duplicate.
+          # collecting a duplicate. Restricted to bot authors because reviewers
+          # quote the preview link routinely, and a PATCH against someone else's
+          # comment answers 403 and takes the rest of the step with it.
           comment_id=$(gh api --paginate "repos/$REPO/issues/$PR_NUMBER/comments" \
-            --jq '.[] | select(.body | test("<!-- nimbus-storybook-preview -->") or test("View Storybook.*pull/'"$PR_NUMBER"'")) | .id' \
-            | head -1)
+            --jq '[.[]
+                   | select(.user.type == "Bot")
+                   | select((.body // "") | test("<!-- nimbus-storybook-preview -->")
+                                            or test("View Storybook.*pull/'"$PR_NUMBER"'"))
+                   | .id] | first // empty')
 
           if [ -n "$comment_id" ]; then
             gh api -X PATCH "repos/$REPO/issues/comments/$comment_id" \
@@ -131,5 +154,5 @@ jobs:
               -F "body=@$RUNNER_TEMP/preview-comment.md"
           fi
 
-          echo "## 🚀 Storybook Preview Ready" >> $GITHUB_STEP_SUMMARY
-          cat "$RUNNER_TEMP/preview-comment.md" >> $GITHUB_STEP_SUMMARY
+          echo "## 🚀 Storybook Preview Ready" >> "$GITHUB_STEP_SUMMARY"
+          cat "$RUNNER_TEMP/preview-comment.md" >> "$GITHUB_STEP_SUMMARY"

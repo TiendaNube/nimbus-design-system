@@ -73,6 +73,8 @@ const groupByStoriesFile = (
   const targets = new Map<string, StoryTarget>();
 
   for (const entry of Object.values(index.entries ?? {})) {
+    if (!entry?.importPath) continue;
+
     const storiesFile = normalizePath(entry.importPath);
     const target = targets.get(storiesFile) ?? {
       title: entry.title,
@@ -223,6 +225,10 @@ const readChangedFiles = (filePath: string | undefined): string[] => {
     .filter(Boolean);
 };
 
+/**
+ * Never throws: the upload has already succeeded by the time this runs, so a
+ * root-only link beats failing the step and leaving the reviewer no comment.
+ */
 const readIndex = (indexPath: string): StorybookIndex | null => {
   if (!fs.existsSync(indexPath)) {
     console.error(
@@ -231,7 +237,16 @@ const readIndex = (indexPath: string): StorybookIndex | null => {
     return null;
   }
 
-  return JSON.parse(fs.readFileSync(indexPath, "utf8")) as StorybookIndex;
+  try {
+    return JSON.parse(fs.readFileSync(indexPath, "utf8")) as StorybookIndex;
+  } catch (error) {
+    console.error(
+      `\x1b[33m Storybook index at ${indexPath} is unreadable, linking the preview root only: ${
+        (error as Error).message
+      } \x1b[0m`
+    );
+    return null;
+  }
 };
 
 const main = (): void => {
