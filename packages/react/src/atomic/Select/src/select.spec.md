@@ -102,12 +102,12 @@ Not applicable — `Select` forwards native `<select>` DOM event props (e.g. `on
 | Default (`neutral`) | 32px height, 1px solid border, neutral colors | AC-01, AC-03 |
 | `success` / `warning` / `danger` | Same height and box model as `neutral`; only border/background color change | AC-01, AC-03 |
 | `ai-generative` / `aiGenerated` | Same height and box model as the standard appearances; gradient border and, when `aiGenerated`, an active focus glow | AC-01, AC-04 |
-| Hover | Not applicable — no `:hover` rule exists on `Select`'s base or appearance styles |
+| Hover | Not applicable — no `:hover` rule exists on `Select`'s base or appearance styles | — |
 | Focus | Visible `box-shadow` focus ring via `:focus-visible`; border color changes via `:focus` on some appearances | AC-08 |
 | Disabled | Distinct border/background/text color, `cursor: not-allowed`; height unchanged | AC-07 |
 | Loading (`Select.Skeleton`) | 32px height, matching the loaded control | AC-02 |
-| Error | Not applicable — `Select` has no dedicated error state beyond the `danger` appearance |
-| Empty | Not evaluated — behavior with zero `<option>` children was not exercised in this baseline |
+| Error | Not applicable — `Select` has no dedicated error state beyond the `danger` appearance | — |
+| Empty | Not evaluated — behavior with zero `<option>` children was not exercised in this baseline | — |
 
 ## 6. Responsive behavior
 
