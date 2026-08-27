@@ -1,0 +1,113 @@
+name: "preview-storybook-deploy"
+
+# Generic build → deploy → comment mechanics for a Storybook PR preview,
+# shared by any Nimbus repo. What is repo-specific — deciding *whether* to
+# build (the diff gate) and *what to link to* (per-component deep links) —
+# stays local to each repo's own preview-storybook.yml, which calls this
+# after making that decision.
+on:
+  workflow_call:
+    inputs:
+      s3-prefix:
+        description: >-
+          S3 path segment that namespaces this repo's previews under the
+          shared bucket (e.g. "components" for nimbus-design-system,
+          "patterns" for nimbus-patterns).
+        required: true
+        type: string
+      build-tokens-icons:
+        description: >-
+          Whether to run "build:tokens" and "build:icons" before building
+          Storybook. Only nimbus-design-system needs this — its Storybook
+          renders the tokens/icons packages it owns; nimbus-patterns
+          consumes them as published dependencies instead.
+        required: false
+        type: boolean
+        default: false
+    secrets:
+      AWS_ACCOUNT_ID:
+        required: true
+      AWS_DEPLOY_ROLE:
+        required: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - uses: ./.github/actions/setup-node-deps
+
+      - name: Run build tokens
+        if: inputs.build-tokens-icons
+        run: npm run build:tokens
+
+      - name: Run build icons
+        if: inputs.build-tokens-icons
+        run: yarn build:icons
+
+      - name: Build Storybook
+        run: yarn build:storybook
+
+      - name: 🔐 Configure AWS credentials using OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/${{ secrets.AWS_DEPLOY_ROLE }}
+          aws-region: us-west-2
+          audience: sts.amazonaws.com
+
+      - name: Upload Storybook to S3
+        run: |
+          aws s3 sync ./.build-storybook "s3://ns-ec-dms-bs3-nimbus-preview/${{ inputs.s3-prefix }}/pull/${{ github.event.pull_request.number }}" --delete
+
+      - name: Comment Storybook preview URL on PR and Check summary
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          REPO: ${{ github.repository }}
+          STORYBOOK_URL: https://ns-ec-dms-bs3-nimbus-preview.s3.us-west-2.amazonaws.com/${{ inputs.s3-prefix }}/pull/${{ github.event.pull_request.number }}/index.html
+        run: |
+          cat > "$RUNNER_TEMP/preview-comment.md" <<EOF
+          <!-- nimbus-storybook-preview -->
+          🚀✨ Your Storybook preview is ready!
+
+          🔗 [View Storybook]($STORYBOOK_URL)
+
+          Happy reviewing! 🎉
+          EOF
+
+          echo "Checking for existing Storybook comment..."
+
+          # The marker identifies comments written by this workflow; the legacy
+          # "View Storybook...pull/<n>" pattern keeps pull requests commented
+          # before the marker existed from collecting a duplicate. Restricted
+          # to bot authors so a reviewer quoting the preview link can't be
+          # mistaken for the workflow's own comment.
+          if ! comment_ids=$(gh api --paginate "repos/$REPO/issues/$PR_NUMBER/comments" \
+            --jq '.[]
+                  | select(.user.type == "Bot")
+                  | select((.body // "") | test("<!-- nimbus-storybook-preview -->")
+                                           or test("View Storybook.*pull/'"$PR_NUMBER"'"))
+                  | .id'); then
+            echo "Could not read the existing comments — posting a new one."
+            comment_ids=""
+          fi
+
+          comment_id=$(printf '%s\n' "$comment_ids" | head -1)
+
+          if [ -n "$comment_id" ]; then
+            gh api -X PATCH "repos/$REPO/issues/comments/$comment_id" \
+              -F "body=@$RUNNER_TEMP/preview-comment.md"
+          else
+            gh api -X POST "repos/$REPO/issues/$PR_NUMBER/comments" \
+              -F "body=@$RUNNER_TEMP/preview-comment.md"
+          fi
+
+          echo "## 🚀 Storybook Preview Ready" >> "$GITHUB_STEP_SUMMARY"
+          cat "$RUNNER_TEMP/preview-comment.md" >> "$GITHUB_STEP_SUMMARY"
