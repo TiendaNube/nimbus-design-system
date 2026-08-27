@@ -4,10 +4,6 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 ## 2026-08-27 `9.68.1`
 
-#### 🛠 Breaking changes
-
-- Set the `Select` base style height to 2rem (32px), changing its rendered CSS dimensions. ([#520](https://github.com/TiendaNube/nimbus-design-system/pull/520) by [@claude](https://github.com/apps/claude))
-
 #### 🐛 Bug fixes
 
 - Fixed `Select`'s base style rendering at 34px instead of the 32px defined in Figma, by giving it an explicit height (the same box-model pattern `Button` and `Input` already use). ([#520](https://github.com/TiendaNube/nimbus-design-system/pull/520) by [@claude](https://github.com/apps/claude))
