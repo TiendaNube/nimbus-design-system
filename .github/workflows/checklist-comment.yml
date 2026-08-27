@@ -1,6 +1,10 @@
 name: checklist-comment
 
-on: pull_request
+# Runs directly on nimbus-design-system's own pull requests, and is also
+# callable as a reusable workflow from other Nimbus repos (nimbus-patterns).
+on:
+  pull_request:
+  workflow_call:
 
 jobs:
   checklist-comment:
