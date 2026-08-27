@@ -34,7 +34,19 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
+    # Two runs on the same PR would race `aws s3 sync --delete` over one
+    # prefix, and could both miss the marker comment and create duplicates.
+    concurrency:
+      group: preview-storybook-deploy-${{ github.repository }}-${{ inputs.s3-prefix }}-${{ github.event.pull_request.number }}
+      cancel-in-progress: false
+
+    # A called workflow can never get more than the caller grants (permissions
+    # only narrow, never widen), so this is also what each caller's job needs
+    # to declare. contents:read is for the checkout step below; id-token:write
+    # is required for the AWS OIDC step and is never part of the default
+    # GITHUB_TOKEN permissions.
     permissions:
+      contents: read
       id-token: write
       pull-requests: write
 
@@ -46,7 +58,7 @@ jobs:
 
       - name: Run build tokens
         if: inputs.build-tokens-icons
-        run: npm run build:tokens
+        run: yarn build:tokens
 
       - name: Run build icons
         if: inputs.build-tokens-icons
@@ -63,8 +75,19 @@ jobs:
           audience: sts.amazonaws.com
 
       - name: Upload Storybook to S3
+        env:
+          # Routed through env (not interpolated directly into the script)
+          # so a caller-controlled input can never expand into shell syntax.
+          S3_PREFIX: ${{ inputs.s3-prefix }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
         run: |
-          aws s3 sync ./.build-storybook "s3://ns-ec-dms-bs3-nimbus-preview/${{ inputs.s3-prefix }}/pull/${{ github.event.pull_request.number }}" --delete
+          case "$S3_PREFIX" in
+            */*|""|*..*)
+              echo "s3-prefix must be a single non-empty path segment, got: '$S3_PREFIX'" >&2
+              exit 1
+              ;;
+          esac
+          aws s3 sync ./.build-storybook "s3://ns-ec-dms-bs3-nimbus-preview/$S3_PREFIX/pull/$PR_NUMBER" --delete
 
       - name: Comment Storybook preview URL on PR and Check summary
         env:
