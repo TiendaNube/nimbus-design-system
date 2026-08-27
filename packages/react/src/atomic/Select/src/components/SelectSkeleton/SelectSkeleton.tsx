@@ -11,7 +11,7 @@ const SelectSkeleton: React.FC<SelectSkeletonProps> = ({
   <Skeleton
     className={className}
     width={width ?? "15rem"}
-    height="2.25rem"
+    height="2rem"
     borderRadius="0.5rem"
     data-testid={dataTestId}
   />

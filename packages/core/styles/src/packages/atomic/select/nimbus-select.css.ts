@@ -21,6 +21,11 @@ const base = style({
   lineHeight: varsThemeBase.lineWeight.body.caption,
   textAlign: "left",
   boxSizing: "border-box",
+  // Fixed component-local height (32px), matching the Figma contract and the
+  // pattern already used by Button/Input's own `base` styles: with
+  // `boxSizing: "border-box"`, an explicit height absorbs padding and border
+  // inside the box instead of letting them add to it. See issue #517.
+  height: "2rem",
   color: varsThemeBase.colors.neutral.textHigh,
   borderRadius: varsThemeBase.shape.border.radius[2],
   margin: 0,
