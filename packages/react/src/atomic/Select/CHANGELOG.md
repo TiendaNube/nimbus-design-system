@@ -2,6 +2,12 @@
 
 Use a select box when a user needs to select one option from a list.
 
+## 2026-08-27 `2.7.2`
+
+#### 🐛 Bug fixes
+
+- Fixed `Select` and `Select.Skeleton` rendering at 34px and 36px respectively, instead of the 32px defined in Figma; they now both render at 32px. ([#520](https://github.com/TiendaNube/nimbus-design-system/pull/520) by [@claude](https://github.com/apps/claude))
+
 ## 2026-02-12 `2.7.0`
 
 #### 🎉 New features
