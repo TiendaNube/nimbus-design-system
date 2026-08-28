@@ -98,3 +98,8 @@ jobs:
     permissions:
       contents: write
     uses: ./.github/workflows/generate-documentation.yml
+    # generate-documentation.yml doesn't declare a workflow_call secrets
+    # schema (its PAT and Turbo credentials are used directly in run: steps,
+    # not passed to a nested `uses:`), so explicit per-secret passthrough
+    # isn't an option here — inherit is the only way for them to arrive.
+    secrets: inherit
