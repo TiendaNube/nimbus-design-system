@@ -1,0 +1,7 @@
+releases:
+  "@nimbus-ds/components": patch
+  "@nimbus-ds/select": patch
+  "@nimbus-ds/styles": patch
+
+undecided:
+  - nimbus-design-system
