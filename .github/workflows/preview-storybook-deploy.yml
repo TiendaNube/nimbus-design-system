@@ -81,9 +81,12 @@ jobs:
           S3_PREFIX: ${{ inputs.s3-prefix }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
         run: |
+          # Allowlist, not a blacklist: S3_PREFIX ends up both in the S3 key
+          # and in the HTTPS preview URL, where "." or "#" or "?" carry their
+          # own meaning. Only plain path-segment characters are safe in both.
           case "$S3_PREFIX" in
-            */*|""|*..*)
-              echo "s3-prefix must be a single non-empty path segment, got: '$S3_PREFIX'" >&2
+            *[!A-Za-z0-9-]*|"")
+              echo "s3-prefix must be a non-empty path segment of [A-Za-z0-9-], got: '$S3_PREFIX'" >&2
               exit 1
               ;;
           esac
