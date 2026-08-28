@@ -3,5 +3,8 @@ releases:
   "@nimbus-ds/select": patch
   "@nimbus-ds/styles": patch
 
-undecided:
+declined:
   - nimbus-design-system
+  - "@nimbus-ds/split-button"
+  - "@nimbus-ds/stepper"
+  - "@nimbus-ds/time-picker"
