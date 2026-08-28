@@ -76,49 +76,25 @@ jobs:
           base: master
           
 
-  trigger-action-create-github-tag:
-    runs-on: ubuntu-latest
-    needs: publish-packages-npm
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+  create-tag-and-release:
+    needs: [publish-packages-npm]
+    permissions:
+      contents: write
+      discussions: write
+    uses: ./.github/workflows/create-github-tag.yml
 
-      - name: Trigger github action create github tag
-        run: |
-          curl --request POST \
-          --url 'https://api.github.com/repos/tiendanube/nimbus-design-system/actions/workflows/58856079/dispatches' \
-          --header 'Authorization: token ${{ secrets.PAT_CHANGE_BRANCH_PROTECTION_RULES_FROM_USER_NIMBUS }}' \
-          --data '{"ref":"master"}'
+  send-slack-notification:
+    needs: [publish-packages-npm, create-tag-and-release]
+    permissions:
+      contents: read
+    uses: ./.github/workflows/send-slack-notification.yml
+    secrets:
+      SLACK_WEBHOOK_URL_NIMBUS_UPDATES: ${{ secrets.SLACK_WEBHOOK_URL_NIMBUS_UPDATES }}
+      SLACK_WEBHOOK_URL_DEPLOYING: ${{ secrets.SLACK_WEBHOOK_URL_DEPLOYING }}
+      SLACK_WEBHOOK_URL_TECH_PRODUCT_UPDATES: ${{ secrets.SLACK_WEBHOOK_URL_TECH_PRODUCT_UPDATES }}
 
-  trigger-action-send-slack-notifications:
-    needs: [publish-packages-npm, trigger-action-create-github-tag]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Trigger github action send slack notifications
-        run: |
-          curl --request POST \
-          --url 'https://api.github.com/repos/tiendanube/nimbus-design-system/actions/workflows/58847410/dispatches' \
-          --header 'Authorization: token ${{ secrets.PAT_CHANGE_BRANCH_PROTECTION_RULES_FROM_USER_NIMBUS }}' \
-          --data '{"ref":"master"}'
-
-  trigger-action-update-generate-documentation:
-    needs:
-      [
-        publish-packages-npm,
-        trigger-action-create-github-tag,
-        trigger-action-send-slack-notifications,
-      ]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Trigger github action update documentation
-        run: |
-          curl --request POST \
-          --url 'https://api.github.com/repos/tiendanube/nimbus-design-system/actions/workflows/51785513/dispatches' \
-          --header 'Authorization: token ${{ secrets.PAT_CHANGE_BRANCH_PROTECTION_RULES_FROM_USER_NIMBUS }}' \
-          --data '{"ref":"master"}'
+  generate-documentation:
+    needs: [publish-packages-npm, create-tag-and-release, send-slack-notification]
+    permissions:
+      contents: write
+    uses: ./.github/workflows/generate-documentation.yml
