@@ -42,6 +42,8 @@ runs:
           ${{ runner.os }}-${{ runner.arch }}-yarn-packages-${{
             hashFiles('yarn.lock', '.yarnrc.yml', '.nvmrc')
           }}
+        restore-keys: |
+          ${{ runner.os }}-${{ runner.arch }}-yarn-packages-
 
     - name: Install dependencies from Yarn cache
       if: inputs.cache-mode == 'yarn-cache'
