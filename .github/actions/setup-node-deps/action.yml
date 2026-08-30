@@ -46,9 +46,9 @@ runs:
     - name: Install dependencies from Yarn cache
       if: inputs.cache-mode == 'yarn-cache'
       env:
-        YARN_PACKAGE_CACHE_HIT: ${{ steps.yarn-package-cache.outputs.cache-hit }}
+        PACKAGE_CACHE_HIT: ${{ steps.yarn-package-cache.outputs.cache-hit }}
       run: |
-        if [ "$YARN_PACKAGE_CACHE_HIT" = "true" ]; then
+        if [ "$PACKAGE_CACHE_HIT" = "true" ]; then
           yarn install --immutable --immutable-cache --mode=skip-build
         else
           yarn install --immutable --mode=skip-build
