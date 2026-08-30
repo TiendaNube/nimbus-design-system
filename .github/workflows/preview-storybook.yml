@@ -80,6 +80,7 @@ jobs:
             : > "$RUNNER_TEMP/changed-files.txt"
             echo "should_build=true" >> "$GITHUB_OUTPUT"
             echo "trigger=unavailable-diff" >> "$GITHUB_OUTPUT"
+            echo "build_mode=full" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
@@ -87,6 +88,7 @@ jobs:
             echo "Forced by the storybook-preview label."
             echo "should_build=true" >> "$GITHUB_OUTPUT"
             echo "trigger=label" >> "$GITHUB_OUTPUT"
+            echo "build_mode=full" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
@@ -102,6 +104,15 @@ jobs:
             echo "trigger=build-inputs" >> "$GITHUB_OUTPUT"
             echo "Building because these files feed the Storybook bundle:"
             cat "$RUNNER_TEMP/matched-files.txt"
+
+            if grep -qvE '^packages/react/src/prototypes/' \
+              "$RUNNER_TEMP/matched-files.txt"; then
+              echo "build_mode=full" >> "$GITHUB_OUTPUT"
+              echo "Using the full Storybook build because the diff reaches beyond prototypes."
+            else
+              echo "build_mode=prototype" >> "$GITHUB_OUTPUT"
+              echo "Using the focused prototype Storybook build."
+            fi
           else
             echo "should_build=false" >> "$GITHUB_OUTPUT"
             {
@@ -113,18 +124,49 @@ jobs:
 
       - uses: ./.github/actions/setup-node-deps
         if: steps.preview_scope.outputs.should_build == 'true'
+        with:
+          cache-mode: yarn-cache
 
       - name: Run build tokens
         if: steps.preview_scope.outputs.should_build == 'true'
         run: npm run build:tokens
 
-      - name: Run build icons
+      - name: Restore built icons
         if: steps.preview_scope.outputs.should_build == 'true'
+        id: icons-cache
+        uses: actions/cache@v4
+        with:
+          path: packages/icons/dist
+          key: >-
+            ${{ runner.os }}-icons-${{
+              hashFiles(
+                'packages/icons/src/**',
+                'packages/icons/package.json',
+                'packages/icons/svgo.config.js',
+                'packages/icons/tsconfig.json',
+                'packages/icons/webpack.config.ts',
+                'packages/core/webpack/src/**',
+                'yarn.lock'
+              )
+            }}
+
+      - name: Run build icons
+        if: >-
+          steps.preview_scope.outputs.should_build == 'true' &&
+          steps.icons-cache.outputs.cache-hit != 'true'
         run: yarn build:icons
 
       - name: Build Storybook
         if: steps.preview_scope.outputs.should_build == 'true'
-        run: yarn build:storybook
+        env:
+          PREVIEW_BUILD_MODE: ${{ steps.preview_scope.outputs.build_mode }}
+        run: |
+          if [ "$PREVIEW_BUILD_MODE" = "prototype" ]; then
+            STORYBOOK_PROTOTYPE_ONLY=true \
+              yarn exec storybook build --test -o .build-storybook
+          else
+            yarn build:storybook
+          fi
 
       - name: 🔐 Configure AWS credentials using OIDC
         if: steps.preview_scope.outputs.should_build == 'true'
