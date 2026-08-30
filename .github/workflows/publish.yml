@@ -9,6 +9,7 @@ on:
       - "**/package.json"
       - ".yarn/versions/**"
       - "**/*.docs.json"
+      - "packages/react/src/prototypes/**"
 
 jobs:
   publish-packages-npm:
@@ -26,7 +27,7 @@ jobs:
           sudo mkswap /swapfile
           sudo swapon /swapfile
           sudo swapon --show
-          
+
       - name: Checkout
         uses: actions/checkout@v4
 
@@ -41,7 +42,7 @@ jobs:
 
       - name: Build icons
         run: yarn build:icons
-        
+
       - name: Build components
         run: |
           export NODE_OPTIONS="--max_old_space_size=12288"
@@ -74,7 +75,6 @@ jobs:
             .yarn/versions/**
           branch: release/publish-${{ github.run_id }}
           base: master
-          
 
   trigger-action-create-github-tag:
     runs-on: ubuntu-latest

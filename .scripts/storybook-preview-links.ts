@@ -28,6 +28,9 @@ const PREVIEW_TRIGGERS: PreviewTrigger[] = [
 const COMPONENT_ROOT_PATTERN =
   /^packages\/react\/src\/(?:atomic|composite)\/[^/]+/;
 
+/** Prototypes share Storybook without becoming published component packages. */
+const PROTOTYPE_ROOT_PATTERN = /^packages\/react\/src\/prototypes\/[^/]+/;
+
 /** Style definitions live in their own package, keyed by the component name. */
 const STYLES_COMPONENT_PATTERN =
   /^packages\/core\/styles\/src\/packages\/(?:atomic|composite)\/([^/]+)/;
@@ -54,6 +57,10 @@ export interface StoryTarget {
   title: string;
   docsId: string | null;
   storyId: string | null;
+  prototype?: {
+    playgroundStoryId: string | null;
+    fullScreenStoryId: string | null;
+  };
 }
 
 const DOCS_ENTRY_TYPE = "docs";
@@ -90,6 +97,22 @@ const pickStoryId = (stories: StoryCandidate[]): string | null =>
   [...stories].sort(
     (a, b) => primaryStoryRank(a.name) - primaryStoryRank(b.name)
   )[0]?.id ?? null;
+
+const normalizeStoryName = (name: string): string =>
+  name.toLowerCase().replace(/[^a-z0-9]/g, "");
+
+const findStoryId = (
+  stories: StoryCandidate[],
+  wantedName: string
+): string | null => {
+  const normalizedWantedName = normalizeStoryName(wantedName);
+
+  return (
+    stories.find(
+      ({ name }) => normalizeStoryName(name) === normalizedWantedName
+    )?.id ?? null
+  );
+};
 
 const normalizePath = (importPath: string): string =>
   importPath.replace(/^\.\//, "");
@@ -136,7 +159,7 @@ const groupByStoriesFile = (
     if (entry.type === DOCS_ENTRY_TYPE && !draft.docsId) {
       draft.docsId = entry.id;
     }
-    if (entry.type === STORY_ENTRY_TYPE) {
+    if (entry.type === STORY_ENTRY_TYPE && typeof entry.name === "string") {
       draft.stories.push({ id: entry.id, name: entry.name });
     }
 
@@ -144,14 +167,23 @@ const groupByStoriesFile = (
   }
 
   return new Map(
-    [...drafts].map(([storiesFile, draft]) => [
-      storiesFile,
-      {
+    [...drafts].map(([storiesFile, draft]) => {
+      const prototype = PROTOTYPE_ROOT_PATTERN.test(storiesFile)
+        ? {
+            playgroundStoryId: findStoryId(draft.stories, "Playground"),
+            fullScreenStoryId: findStoryId(draft.stories, "Full screen"),
+          }
+        : null;
+
+      const target: StoryTarget = {
         title: draft.title,
         docsId: draft.docsId,
         storyId: pickStoryId(draft.stories),
-      },
-    ])
+        ...(prototype ? { prototype } : {}),
+      };
+
+      return [storiesFile, target] as const;
+    })
   );
 };
 
@@ -197,6 +229,7 @@ const resolveStoriesFile = (
 
   const componentRoot =
     COMPONENT_ROOT_PATTERN.exec(changedFile)?.[0] ??
+    PROTOTYPE_ROOT_PATTERN.exec(changedFile)?.[0] ??
     resolveStyledComponentRoot(changedFile, storiesFiles);
   if (!componentRoot) return null;
 
@@ -241,12 +274,28 @@ export const resolveStoryTargets = (
 };
 
 export const previewUrl = (baseUrl: string, target: StoryTarget): string => {
-  const storyPath = target.docsId
+  const storyPath = target.prototype?.playgroundStoryId
+    ? `/story/${target.prototype.playgroundStoryId}`
+    : target.docsId
     ? `/docs/${target.docsId}`
     : `/story/${target.storyId}`;
   const separator = baseUrl.includes("?") ? "&" : "?";
 
   return `${baseUrl}${separator}path=${storyPath}`;
+};
+
+export const fullScreenPreviewUrl = (
+  baseUrl: string,
+  target: StoryTarget
+): string | null => {
+  const storyId = target.prototype?.fullScreenStoryId;
+  if (!storyId) return null;
+
+  const url = new URL("iframe.html", baseUrl);
+  url.searchParams.set("id", storyId);
+  url.searchParams.set("viewMode", "story");
+
+  return url.toString();
 };
 
 /**
@@ -314,15 +363,44 @@ export const buildCommentBody = (
 ): string => {
   const lines = [COMMENT_MARKER, "🚀✨ Your Storybook preview is ready!", ""];
 
-  const linkable = targets.filter((target) => target.docsId ?? target.storyId);
+  const visibleTargets = targets.filter(
+    (target) => target.prototype || target.docsId || target.storyId
+  );
+  const linkableCount = targets.filter((target) =>
+    target.prototype
+      ? target.prototype.playgroundStoryId || target.prototype.fullScreenStoryId
+      : target.docsId || target.storyId
+  ).length;
 
-  if (linkable.length > 0) {
+  if (visibleTargets.length > 0) {
     lines.push("Jump straight to what this pull request touches:", "");
-    for (const target of linkable.slice(0, MAX_LINKS)) {
-      lines.push(`- 🔗 [${target.title}](${previewUrl(baseUrl, target)})`);
+    for (const target of visibleTargets.slice(0, MAX_LINKS)) {
+      if (!target.prototype) {
+        lines.push(`- 🔗 [${target.title}](${previewUrl(baseUrl, target)})`);
+        continue;
+      }
+
+      if (target.prototype.playgroundStoryId) {
+        lines.push(
+          `- 🔗 [${target.title} — Playground](${previewUrl(baseUrl, target)})`
+        );
+      } else {
+        lines.push(
+          `- ⚠️ ${target.title} is missing its required \`Playground\` story.`
+        );
+      }
+
+      const fullScreenUrl = fullScreenPreviewUrl(baseUrl, target);
+      if (fullScreenUrl) {
+        lines.push(`- 🖥️ [${target.title} — Full screen](${fullScreenUrl})`);
+      } else {
+        lines.push(
+          `- ⚠️ ${target.title} is missing its required \`Full screen\` story.`
+        );
+      }
     }
-    if (linkable.length > MAX_LINKS) {
-      lines.push(`- …and ${linkable.length - MAX_LINKS} more`);
+    if (visibleTargets.length > MAX_LINKS) {
+      lines.push(`- …and ${visibleTargets.length - MAX_LINKS} more`);
     }
     lines.push("");
   }
@@ -330,7 +408,7 @@ export const buildCommentBody = (
   lines.push(`🔗 [View Storybook](${baseUrl}) — full preview`, "");
 
   if (decision) {
-    lines.push(...buildDecisionDetails(decision, linkable.length), "");
+    lines.push(...buildDecisionDetails(decision, linkableCount), "");
   }
 
   lines.push("Happy reviewing! 🎉");

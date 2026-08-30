@@ -18,7 +18,7 @@ jobs:
           sudo mkswap /swapfile
           sudo swapon /swapfile
           sudo swapon --show
-          
+
       - name: Checkout
         uses: actions/checkout@v3
 
@@ -29,7 +29,7 @@ jobs:
 
       - name: Build icons
         run: yarn build:icons
-      
+
       - name: Build components
         run: |
           export NODE_OPTIONS="--max_old_space_size=12288"
@@ -38,7 +38,11 @@ jobs:
       - name: Build packages
         run: |
           export NODE_OPTIONS="--max_old_space_size=12288"
-          yarn build:packages
+          if [[ "${GITHUB_HEAD_REF}" == prototype/* ]] && ! compgen -G ".yarn/versions/*.yml" > /dev/null; then
+            echo "Prototype pull request has no release files; skipping package builds."
+          else
+            yarn build:packages
+          fi
 
       - name: Build docs
         run: yarn build:docs

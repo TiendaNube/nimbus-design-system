@@ -4,6 +4,7 @@ on: pull_request
 
 jobs:
   checklist-comment:
+    if: ${{ !startsWith(github.head_ref, 'prototype/') }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
