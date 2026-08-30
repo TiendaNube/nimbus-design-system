@@ -51,6 +51,8 @@ export both:
 
 The pull-request preview reads both story IDs from Storybook's generated
 `index.json`. Missing either story produces a warning in the preview comment.
+Keep the story title and both export names stable while the exploration is active;
+the direct preview URL should remain the same across feedback iterations.
 
 ## Nimbus imports
 

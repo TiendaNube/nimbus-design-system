@@ -11,14 +11,14 @@ runs:
   using: "composite"
   steps:
     - name: Set Node version
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v3
       with:
         node-version-file: ".nvmrc"
 
-    - name: Cache dependencies
+    - name: Cache yarn & dependencies
       if: inputs.cache-mode == 'node-modules'
-      uses: actions/cache@v4
-      id: node-modules-cache
+      uses: actions/cache@v3
+      id: yarn-cache
       with:
         path: |
           ~/.cache/yarn
@@ -28,7 +28,7 @@ runs:
     - name: Install dependencies
       if: >-
         inputs.cache-mode == 'node-modules' &&
-        steps.node-modules-cache.outputs.cache-hit != 'true'
+        steps.yarn-cache.outputs.cache-hit != 'true'
       run: yarn
       shell: bash
 

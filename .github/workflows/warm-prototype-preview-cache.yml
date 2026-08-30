@@ -1,0 +1,31 @@
+name: warm-prototype-preview-cache
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - ".github/actions/setup-node-deps/action.yml"
+      - ".github/workflows/warm-prototype-preview-cache.yml"
+      - ".nvmrc"
+      - ".yarnrc.yml"
+      - "yarn.lock"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: warm-prototype-preview-cache
+  cancel-in-progress: true
+
+jobs:
+  warm-cache:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - uses: ./.github/actions/setup-node-deps
+        with:
+          cache-mode: yarn-cache
