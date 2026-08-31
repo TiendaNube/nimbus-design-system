@@ -36,7 +36,12 @@ export interface SelectProperties {
    * @default false
    */
   aiGenerated?: boolean;
+  /**
+   * Change the size of the select.
+   * @default medium
+   */
+  size?: "medium" | "small";
 }
 
 export type SelectBaseProps = SelectProperties &
-  SelectHTMLAttributes<HTMLSelectElement>;
+  Omit<SelectHTMLAttributes<HTMLSelectElement>, "size">;

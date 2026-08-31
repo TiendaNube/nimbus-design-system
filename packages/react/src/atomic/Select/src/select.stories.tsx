@@ -31,6 +31,38 @@ export const basic: Story = {
   },
 };
 
+export const medium: Story = {
+  args: {
+    name: "Name",
+    id: "Id",
+    appearance: "neutral",
+    size: "medium",
+    children: (
+      <>
+        <Select.Option label="Option 1" value="Option 1" />
+        <Select.Option label="Option 2" value="Option 2" />
+        <Select.Option label="Option 3" value="Option 3" />
+      </>
+    ),
+  },
+};
+
+export const small: Story = {
+  args: {
+    name: "Name",
+    id: "Id",
+    appearance: "neutral",
+    size: "small",
+    children: (
+      <>
+        <Select.Option label="Option 1" value="Option 1" />
+        <Select.Option label="Option 2" value="Option 2" />
+        <Select.Option label="Option 3" value="Option 3" />
+      </>
+    ),
+  },
+};
+
 export const withGroups: Story = {
   args: {
     name: "Name",

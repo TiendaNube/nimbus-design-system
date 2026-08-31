@@ -1,7 +1,7 @@
 {
   "id": "select",
   "name": "Select",
-  "totalProps": 5,
+  "totalProps": 6,
   "packageName": "@nimbus-ds/select",
   "version": "2.7.1",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/select",
@@ -43,6 +43,17 @@
       "default": false,
       "type": "boolean",
       "title": "aiGenerated",
+      "required": false
+    },
+    {
+      "description": "Change the size of the select.",
+      "default": "medium",
+      "enum": [
+        "medium",
+        "small"
+      ],
+      "type": "string",
+      "title": "size",
       "required": false
     }
   ],

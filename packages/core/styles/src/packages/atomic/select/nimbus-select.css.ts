@@ -46,6 +46,16 @@ const base = style({
   },
 });
 
+export const size = styleVariants({
+  medium: {},
+  small: {
+    fontSize: varsThemeBase.fontSize.body.caption,
+    paddingTop: varsThemeBase.spacing[1],
+    paddingBottom: varsThemeBase.spacing[1],
+    borderRadius: varsThemeBase.shape.border.radius.base,
+  },
+});
+
 export const appearance = styleVariants({
   neutral: [
     base,

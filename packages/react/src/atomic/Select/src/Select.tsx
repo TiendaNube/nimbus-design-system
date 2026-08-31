@@ -20,6 +20,7 @@ const Select = forwardRef<HTMLSelectElement, SelectBaseProps>(
       children,
       appearance = "neutral",
       aiGenerated = false,
+      size = "medium",
       ...rest
     },
     ref
@@ -38,6 +39,7 @@ const Select = forwardRef<HTMLSelectElement, SelectBaseProps>(
           aiGenerated
             ? select.classnames.aiGenerated
             : select.classnames.appearance[appearance],
+          select.classnames.size[size],
         ]
           .filter(Boolean)
           .join(" ")}
@@ -48,7 +50,7 @@ const Select = forwardRef<HTMLSelectElement, SelectBaseProps>(
   )
 ) as ForwardRefExoticComponent<
   SelectBaseProps &
-    React.InputHTMLAttributes<HTMLSelectElement> &
+    Omit<React.InputHTMLAttributes<HTMLSelectElement>, "size"> &
     React.RefAttributes<HTMLSelectElement>
 > &
   SelectComponents;
