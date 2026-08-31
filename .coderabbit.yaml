@@ -176,11 +176,15 @@ reviews:
           2. **Export removals** in index.ts: Any previously exported symbol (component, type, hook, utility) removed
           3. **Token changes** in packages/core/tokens/src/**/*.json: Removed or renamed token keys
           4. **Default value changes**: Changed defaultProps or default parameter values that alter behavior
-          5. **CSS breaking changes**, per the "Undocumented CSS Breaking Changes" check below
+          5. **CSS breaking changes**, per items 1-5 of the "Undocumented CSS Breaking Changes"
+             check below — a removed or renamed export/identifier, a removed variant option, a
+             changed `defaultVariants`, or a token reference remapped to a different token
 
           A `*.css.ts` file being touched is never, by itself, a breaking change — only actually
-          matching item 5 above, meaning one of "Undocumented CSS Breaking Changes"'s own six
-          criteria, makes it breaking.
+          matching item 5 above makes it breaking. That check's own item 6 (a layout-affecting
+          value changed with nothing removed or renamed) requires CHANGELOG documentation there,
+          not a MAJOR bump here — whether it should is a separate, not-yet-made call; do not
+          extend item 5 to cover it without that decision.
 
           PASS if: No breaking changes detected, OR every affected package is declared `major` in a
           `.yarn/versions/*.yml` file
