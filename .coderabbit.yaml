@@ -176,7 +176,10 @@ reviews:
           2. **Export removals** in index.ts: Any previously exported symbol (component, type, hook, utility) removed
           3. **Token changes** in packages/core/tokens/src/**/*.json: Removed or renamed token keys
           4. **Default value changes**: Changed defaultProps or default parameter values that alter behavior
-          
+
+          A `*.css.ts` file being touched is never, by itself, a breaking change under item 1 or
+          item 4 above — only a removed/renamed export or a changed default matters.
+
           PASS if: No breaking changes detected, OR every affected package is declared `major` in a
           `.yarn/versions/*.yml` file
           FAIL if: Breaking changes detected but the version file declares `minor` or `patch` for
@@ -313,13 +316,16 @@ reviews:
              not by the author. A new package seeded at `"version": "0.0.0"` with a `major`
              declaration is an initial release, so it needs no breaking-changes section.
           2. Check if breaking changes detected in code: props removed, exports removed, a
-             shared/global token's value changed, or a CSS breaking change per "Undocumented CSS
-             Breaking Changes"'s own definition above (removed style/recipe/variant exports,
-             removed variant options, renamed CSS class/variable identifiers, a changed
-             defaultVariants, or a token reference swapped for a different token). A `*.css.ts`
-             file being touched is never, by itself, a breaking change — e.g. adding an explicit
-             `height` to an existing style object, to fix a component's conformance to an
-             established contract, is not breaking on its own.
+             token key removed or renamed in `packages/core/tokens/src/**/*.json` (per
+             "Unversioned Breaking Changes" item 3), or a CSS breaking change per the
+             "Undocumented CSS Breaking Changes" check above: removed `styleVariants`,
+             `recipe`, `globalStyle`, or `createVar` declarations; removed variant options;
+             renamed CSS class or CSS variable (`--nimbus-*`) identifiers; a changed
+             `defaultVariants`; or a token reference swapped for a different token. A
+             `*.css.ts` file being touched is never, by itself, a breaking change — e.g. adding
+             a property that was previously implicit or inherited, such as an explicit `height`
+             on an existing style object, removing and renaming nothing, is not breaking.
+             Conversely, a one-line change IS breaking if that line matches any criterion above.
           3. Verify CHANGELOG.md contains "#### 🛠 Breaking changes" or "### 🛠 Breaking changes" section
           4. Verify each breaking change is documented with description and PR reference
 
