@@ -306,8 +306,9 @@ reviews:
           6. Changed the *value* of an existing layout-affecting declaration — dimensions,
              display, position, or overflow — on a public component's style, even with no
              identifier removed or renamed (e.g. height: '32px' → '40px', display: 'block' →
-             'flex'); adding a previously-missing declaration that restores a documented contract
-             is a conformity fix, not this
+             'flex'); adding a previously-missing declaration that restores a documented contract,
+             or correcting a value that drifted from what the component's contract already
+             specifies, is a conformity fix, not this
 
           PASS if: No CSS breaking changes detected, OR all CSS breaking changes are documented in CHANGELOG.md with "🛠 Breaking changes" section
           FAIL if: CSS breaking changes found but CHANGELOG.md lacks documentation or "🛠 Breaking changes" section is missing
