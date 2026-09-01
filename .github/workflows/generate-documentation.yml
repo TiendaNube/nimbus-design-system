@@ -1,10 +1,18 @@
 name: "generate-documentation"
 
-on: workflow_dispatch
+# Runs on manual dispatch inside nimbus-design-system, and is also callable
+# as a reusable workflow — publish.yml chains into it directly instead of
+# dispatching it by workflow ID over the API with a PAT.
+on:
+  workflow_dispatch:
+  workflow_call:
 
 jobs:
   generate-documents:
     runs-on: ubuntu-latest
+    # Needed for git-auto-commit-action to push the generated docs.
+    permissions:
+      contents: write
     env:
       TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
       TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
