@@ -9,21 +9,33 @@
     {
       "description": "Change the visual style of the badge.",
       "default": "neutral",
-      "enum": ["danger", "neutral", "primary", "success", "warning"],
+      "enum": [
+        "danger",
+        "neutral",
+        "primary",
+        "success",
+        "warning"
+      ],
       "type": "string",
       "title": "appearance",
       "required": false
     },
     {
       "description": "Total items to be displayed without badge",
-      "type": ["string", "number"],
+      "type": [
+        "string",
+        "number"
+      ],
       "title": "count",
       "required": false
     },
     {
       "description": "Change the color scheme of the badge.",
       "default": "surface",
-      "enum": ["light", "surface"],
+      "enum": [
+        "light",
+        "surface"
+      ],
       "type": "string",
       "title": "theme",
       "required": false
@@ -31,7 +43,10 @@
     {
       "description": "Change the badge type between a text counter and a dot indicator.",
       "default": "text",
-      "enum": ["dot", "text"],
+      "enum": [
+        "dot",
+        "text"
+      ],
       "type": "string",
       "title": "type",
       "required": false
@@ -62,7 +77,10 @@
         {
           "description": "Change the badge skeleton type between a text counter and a dot indicator.",
           "default": "text",
-          "enum": ["dot", "text"],
+          "enum": [
+            "dot",
+            "text"
+          ],
           "type": "string",
           "title": "type",
           "required": false

@@ -124,7 +124,9 @@ describe("GIVEN <Input />", () => {
 
     it("should render both prefix and suffix at the same time", () => {
       makeSut({ prefix: "$", suffix: "USD" });
-      expect(screen.getByTestId("input-element-prefix")).toHaveTextContent("$");
+      expect(screen.getByTestId("input-element-prefix")).toHaveTextContent(
+        "$"
+      );
       expect(screen.getByTestId("input-element-suffix")).toHaveTextContent(
         "USD"
       );
@@ -206,9 +208,9 @@ describe("GIVEN <Input />", () => {
       expect(prefix.tagName).toBe("SPAN");
       expect(prefix).toHaveTextContent("$");
       expect(prefix.tagName).not.toBe("BUTTON");
-      expect(
-        screen.getByTestId<HTMLInputElement>("input-element").disabled
-      ).toBe(true);
+      expect(screen.getByTestId<HTMLInputElement>("input-element").disabled).toBe(
+        true
+      );
     });
 
     it("should render suffix as a static non-button span when disabled", () => {
@@ -218,9 +220,9 @@ describe("GIVEN <Input />", () => {
       expect(suffix.tagName).toBe("SPAN");
       expect(suffix).toHaveTextContent("kg");
       expect(suffix.tagName).not.toBe("BUTTON");
-      expect(
-        screen.getByTestId<HTMLInputElement>("input-element").disabled
-      ).toBe(true);
+      expect(screen.getByTestId<HTMLInputElement>("input-element").disabled).toBe(
+        true
+      );
     });
 
     it("should render prefix and suffix as static non-button spans when disabled at the same time", () => {
@@ -248,8 +250,12 @@ describe("GIVEN <Input />", () => {
     it("should render both a numeric 0 prefix and suffix at the same time", () => {
       makeSut({ prefix: 0, suffix: 0 });
 
-      expect(screen.getByTestId("input-element-prefix")).toHaveTextContent("0");
-      expect(screen.getByTestId("input-element-suffix")).toHaveTextContent("0");
+      expect(screen.getByTestId("input-element-prefix")).toHaveTextContent(
+        "0"
+      );
+      expect(screen.getByTestId("input-element-suffix")).toHaveTextContent(
+        "0"
+      );
     });
 
     it("should associate the prefix and suffix with the input via aria-describedby", () => {

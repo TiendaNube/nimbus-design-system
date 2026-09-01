@@ -13,7 +13,6 @@ Nimbus-icons is an open source icon system built by Nuvemshop / Tiendanube.
 #### 🎉 New features
 
 - Adds `chat-unread` icon. ([#478](https://github.com/TiendaNube/nimbus-design-system/pull/478) by [@ignaciomachado](https://github.com/ignaciomachado))
-
 ## 2026-07-16 `1.26.0`
 
 #### 🎉 New features
