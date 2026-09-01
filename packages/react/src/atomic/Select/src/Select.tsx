@@ -31,6 +31,7 @@ const Select = forwardRef<HTMLSelectElement, SelectBaseProps>(
       </div>
       <select
         {...rest}
+        size={typeof size === "number" ? size : undefined}
         ref={ref}
         id={id}
         name={name}
@@ -39,7 +40,7 @@ const Select = forwardRef<HTMLSelectElement, SelectBaseProps>(
           aiGenerated
             ? select.classnames.aiGenerated
             : select.classnames.appearance[appearance],
-          select.classnames.size[size],
+          select.classnames.size[typeof size === "number" ? "medium" : size],
         ]
           .filter(Boolean)
           .join(" ")}

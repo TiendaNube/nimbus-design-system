@@ -37,10 +37,11 @@ export interface SelectProperties {
    */
   aiGenerated?: boolean;
   /**
-   * Change the size of the select.
+   * Change the visual size of the select, or set the native number of visible
+   * options with a numeric value.
    * @default medium
    */
-  size?: "medium" | "small";
+  size?: "medium" | "small" | number;
 }
 
 export type SelectBaseProps = SelectProperties &

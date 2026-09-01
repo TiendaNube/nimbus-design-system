@@ -1,6 +1,6 @@
 releases:
   "@nimbus-ds/styles": minor
-  "@nimbus-ds/select": major
+  "@nimbus-ds/select": minor
   "@nimbus-ds/components": minor
 
 declined:

@@ -2,15 +2,11 @@
 
 Use a select box when a user needs to select one option from a list.
 
-## 2026-08-31 `3.0.0`
-
-#### 🛠 Breaking changes
-
-- Replaced the native numeric `size` attribute with a custom `size` prop accepting `"medium"` or `"small"` to control the select's visual size. Consumers relying on the native HTML `size` attribute (number of visible rows) should remove it, as it is no longer supported. ([#530](https://github.com/TiendaNube/nimbus-design-system/pull/530) by [@noecondoleo](https://github.com/noecondoleo))
+## 2026-08-31 `2.8.0`
 
 #### 🎉 New features
 
-- Added a `small` size variant to `Select`. ([#530](https://github.com/TiendaNube/nimbus-design-system/pull/530) by [@noecondoleo](https://github.com/noecondoleo))
+- Added a `small` visual size variant to `Select` while preserving numeric `size` values for the native HTML attribute. ([#530](https://github.com/TiendaNube/nimbus-design-system/pull/530) by [@noecondoleo](https://github.com/noecondoleo))
 
 ## 2026-02-12 `2.7.0`
 
