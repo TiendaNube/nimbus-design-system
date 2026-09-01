@@ -1,0 +1,125 @@
+---
+description: Use this rule whenever you modify a component under packages/react/src/atomic or packages/react/src/composite, or whenever you create or edit a deferred version file in .yarn/versions. It defines which packages must be declared for release.
+globs: .yarn/versions/*.yml,packages/react/src/atomic/**,packages/react/src/composite/**
+alwaysApply: false
+---
+
+# Versioning Rules
+
+Versions are never edited by hand in `package.json`. They are declared as **deferred version
+files** in `.yarn/versions/*.yml` (created by `yarn bump:check --interactive`) and applied
+by the release pipeline. See `.cursor/rules/package-json.mdc` and
+`docs/RELEASE_PROCESS.md`.
+
+The gap this creates is expected: on an open PR the `CHANGELOG.md` header names the version the
+pipeline **will** publish, while `package.json` still holds the previous one. That is not drift —
+never "synchronize" it by hand.
+
+## A brand-new package is seeded at `0.0.0`
+
+Creating a package is the one time you write a `version` by hand, and the only value you ever
+write is the placeholder:
+
+```json
+{ "name": "@nimbus-ds/my-component", "version": "0.0.0" }
+```
+
+The deferred version file then declares `major`, and the pipeline resolves `0.0.0` → `1.0.0`:
+
+```yaml
+releases:
+  "@nimbus-ds/my-component": major # 0.0.0 → 1.0.0, the initial release
+  "@nimbus-ds/components": minor # a new component is a feature, not a break
+```
+
+Do not write `1.0.0` in `package.json` yourself, even though that is the version the initial
+`CHANGELOG.md` entry documents. See `@nimbus-ds/slider` (PR #400) and `@nimbus-ds/time-picker`
+(PR #414): both landed with `0.0.0` in the manifest and `major` in the version file.
+
+Note that `@nimbus-ds/components` takes `minor` here, which is the one case that does **not**
+follow the "at least the highest bump level" rule below — and only when the new package is the
+sole source of a `major` in the PR. Both bumps are correct: the component's
+`major` only expresses `0.0.0` → `1.0.0`, and adding a component removes nothing from the
+aggregate's API, so consumers of `@nimbus-ds/components` face no break. Every new package in the
+history did it this way — #400, #414, #319 (`scroll-pane`) and #290 (`segmented-control`) all pair
+the new package's `major` with `"@nimbus-ds/components": minor`.
+
+For the same reason the `major` needs no `#### 🛠 Breaking changes` section: it is an initial
+release, not a breaking change.
+
+## Always release `@nimbus-ds/components` alongside a component change
+
+`@nimbus-ds/components` (the workspace at `packages/react`) is the aggregate package that
+ships every component. If you change **published** source of a component under
+`packages/react/src/atomic/**` or `packages/react/src/composite/**`, the version file MUST
+declare **both**:
+
+- **Counts as published source:** `*.ts`, `*.tsx`, `*.css.ts`.
+- **Does not count:** `*.spec.ts`, `*.spec.tsx`, `*.stories.tsx`, `*.docs.json`. These are
+  never published, so a change limited to them needs no release at all — do not declare one.
+
+```yaml
+releases:
+  "@nimbus-ds/title": minor
+  "@nimbus-ds/components": minor # required: the aggregate package ships Title's code
+```
+
+Give `@nimbus-ds/components` **at least the highest bump level** among the changed component
+packages (a `major` on a component means a `major` on `components`), counting only **existing**
+packages: a brand-new package's `major` is just the `0.0.0` seed resolving to `1.0.0`, so it does
+not raise the required level. See "A brand-new package is seeded at `0.0.0`" above.
+
+In a **mixed** PR the existing component still governs. Adding a component while breaking another
+one means the aggregate takes `major`, not the `minor` the new package alone would have justified:
+
+```yaml
+releases:
+  "@nimbus-ds/my-component": major # new: 0.0.0 → 1.0.0
+  "@nimbus-ds/title": major # existing: a real breaking change
+  "@nimbus-ds/components": major # governed by Title, not by the new package
+```
+
+### Why this is not automatic
+
+`packages/react/package.json` does **not** depend on the component workspaces. Its only
+`@nimbus-ds` dependency is `@nimbus-ds/icons`. The aggregate package is built by bundling the
+component **sources** directly: `packages/react/webpack.config.ts` derives its webpack
+entries from `src/atomic` and `src/composite` via
+`utils.getComponentsPackageExports(baseDir, ["atomic", "composite"])`.
+
+So the dependency is real at build time but invisible to Yarn's dependency graph:
+
+- `yarn bump:check` (`yarn version check`, also run by the `pre-push` hook) will **not** offer
+  or require `@nimbus-ds/components` when only a component changed — it does not appear even in
+  the `declined` list. Compare `.yarn/versions/7978f41a.yml` (Input + Styles: `components`
+  absent entirely) with a change to `@nimbus-ds/icons`, where `components` *is* offered
+  because that edge is declared.
+- No lint rule or git hook catches it. The only guard is the
+  `Missing @nimbus-ds/components Release` pre-merge check in `.coderabbit.yaml` (`error`
+  mode), which runs on the open PR — so it is a backstop, not something to rely on while
+  writing the version file. Get it right up front.
+- Otherwise the result is a published `@nimbus-ds/title` whose code never reaches consumers
+  importing `@nimbus-ds/components`.
+
+This has already broken releases more than once, and the trail is in the history:
+
+- PR #462 (`feat(Badge): add dot variant`) declared `@nimbus-ds/badge` and
+  `@nimbus-ds/styles`, but not `@nimbus-ds/components`, even though it added the Badge entry
+  to `packages/react/CHANGELOG.md` under `5.59.0`.
+- PR #497 (`chore: declare minor release for @nimbus-ds/components`) existed only to declare
+  the bump that #462 missed.
+- Earlier: PR #440, `fix: bump react for a missing change`, and PR #464,
+  `fix: republish packages`.
+
+## Checklist before opening a PR that changes published component source
+
+Skip this entirely if the PR only touches `*.spec.*`, `*.stories.tsx` or `*.docs.json` under a
+component — nothing publishable changed.
+
+1. Run `yarn bump:check --interactive` and declare the component package.
+2. Manually add `"@nimbus-ds/components": <level>` to the same `releases` block.
+3. Document the change in the component's `CHANGELOG.md` **and** in
+   `packages/react/CHANGELOG.md`.
+4. Remember that a version file alone does not publish: `publish.yml` lists
+   `.yarn/versions/**`, `**/package.json` and `**/*.docs.json` under `paths-ignore`, so the
+   PR must also carry a non-ignored change (see `docs/RELEASE_PROCESS.md`).

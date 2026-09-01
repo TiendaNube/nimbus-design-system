@@ -3,11 +3,33 @@
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories
 every day, with simplicity, accessibility, consistency and performance.
 
-## 2026-08-31 `5.60.0`
+## 2026-08-31 `5.63.0`
 
 #### 🎉 New features
 
 - Select: Adds a `small` size variant. ([#530](https://github.com/TiendaNube/nimbus-design-system/pull/530) by [@noecondoleo](https://github.com/noecondoleo))
+
+## 2026-08-12 `5.62.0`
+
+#### 🛠 Reverted changes
+
+- Title: Reverts the `Text` color palette added in [#496](https://github.com/TiendaNube/nimbus-design-system/pull/496); `color` is again limited to heading-appropriate values, dropping `currentColor`, every `*-surface`, `success-interactive`, `success-interactivePressed`, `neutral-interactive` and `neutral-textDisabled`. The documented default returns to `neutral-textLow`. ([#515](https://github.com/TiendaNube/nimbus-design-system/pull/515) by [@lichademarchi](https://github.com/lichademarchi))
+
+## 2026-08-12 `5.61.1`
+
+#### 🐛 Bug fixes
+
+- Input: Fixes a type error when spreading a shared `Input`-shaped props object (including `prefix`) onto `Input.Password` or `Input.Search`: since [#487](https://github.com/TiendaNube/nimbus-design-system/pull/487) widened `prefix` to a `ReactNode`, `InputBaseProps` was no longer assignable to them. As on `Input`, these subcomponents no longer accept the native RDFa `prefix` attribute. ([#509](https://github.com/TiendaNube/nimbus-design-system/pull/509) by [@claude[bot]](https://github.com/apps/claude))
+
+## 2026-08-07 `5.61.0`
+
+#### 🎉 New features
+
+- Title: Adds support for the `Text` color palette, except `ai-generative`, and corrects the documented default `color` to `neutral-textHigh`. ([#496](https://github.com/TiendaNube/nimbus-design-system/pull/496) by [@lichademarchi](https://github.com/lichademarchi))
+
+#### 🐛 Bug fixes
+
+- Text: Fixes `color="success-interactive"`, which resolved to the `success-textLow` token since [#110](https://github.com/TiendaNube/nimbus-design-system/pull/110). ([#496](https://github.com/TiendaNube/nimbus-design-system/pull/496) by [@lichademarchi](https://github.com/lichademarchi))
 
 ## 2026-05-04 `5.59.0`
 

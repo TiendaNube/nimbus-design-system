@@ -63,6 +63,28 @@ export const container__icon_append = styleVariants({
   end: { paddingRight: varsThemeBase.spacing[2] },
 });
 
+export const container__text = vanillaStyle({
+  display: "flex",
+  alignItems: "center",
+  flexShrink: 0,
+  color: varsThemeBase.colors.neutral.textLow,
+  fontWeight: varsThemeBase.fontWeight.regular,
+  fontSize: varsThemeBase.fontSize.body.base,
+  fontFamily: varsThemeBase.fontFamily.sans,
+  whiteSpace: "nowrap",
+  userSelect: "none",
+  selectors: {
+    [`${container}:has(input:disabled) &`]: {
+      color: varsThemeBase.colors.neutral.textDisabled,
+    },
+  },
+});
+
+export const container__text_append = styleVariants({
+  start: { paddingLeft: varsThemeBase.spacing[2] },
+  end: { paddingRight: varsThemeBase.spacing[2] },
+});
+
 export const container__button = vanillaStyle({
   padding: "0",
   cursor: "pointer",

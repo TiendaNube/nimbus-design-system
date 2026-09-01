@@ -38,10 +38,30 @@ export interface InputProperties {
    */
   append?: ReactNode;
   /**
+   * Static, non-interactive text displayed at the start of the input, inside
+   * the same container (e.g. a currency symbol such as "$"). Unlike
+   * `append`, it renders as plain text and is never wrapped in a button.
+   * @TJS-type React.ReactNode
+   */
+  prefix?: ReactNode;
+  /**
+   * Static, non-interactive text displayed at the end of the input, inside
+   * the same container (e.g. a unit of measure such as "kg" or "%").
+   * Unlike `append`, it renders as plain text and is never wrapped in a
+   * button.
+   * @TJS-type React.ReactNode
+   */
+  suffix?: ReactNode;
+  /**
    * This is an attribute used to identify a DOM node for testing purposes.
    */
   "data-testid"?: string;
 }
 
 export type InputBaseProps = InputProperties &
-  InputHTMLAttributes<HTMLInputElement>;
+  // `InputHTMLAttributes` (via `HTMLAttributes`) declares a global RDFa
+  // `prefix?: string` attribute, which collides with `InputProperties.prefix`
+  // (a `ReactNode`) and silently narrows the merged type to `ReactNode &
+  // string` when intersected. Omitting keys already declared on
+  // `InputProperties` keeps our own prop types authoritative.
+  Omit<InputHTMLAttributes<HTMLInputElement>, keyof InputProperties>;

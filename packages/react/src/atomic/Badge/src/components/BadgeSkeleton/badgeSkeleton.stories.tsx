@@ -11,3 +11,5 @@ export default meta;
 type Story = StoryObj<typeof Badge.Skeleton>;
 
 export const basic: Story = { args: {} };
+
+export const dot: Story = { args: { type: "dot" } };

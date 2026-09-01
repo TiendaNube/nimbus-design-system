@@ -89,7 +89,6 @@ const textColorProperties = {
   "neutral-textDisabled": colorProperties["neutral-textDisabled"],
   "neutral-textLow": colorProperties["neutral-textLow"],
   "neutral-textHigh": colorProperties["neutral-textHigh"],
-
   ...aiColors,
 };
 

@@ -2,6 +2,30 @@
 
 Nimbus-icons is an open source icon system built by Nuvemshop / Tiendanube.
 
+## 2026-08-10 `1.27.0` (minor version bump)
+
+#### 🎉 New features
+
+- Adds `double-tag` icon. ([#502](https://github.com/TiendaNube/nimbus-design-system/pull/502) by [@mrolando-tn](https://github.com/mrolando-tn))
+
+## 2026-07-14 `1.25.0` (minor version bump)
+
+#### 🎉 New features
+
+- Adds `chat-unread` icon. ([#478](https://github.com/TiendaNube/nimbus-design-system/pull/478) by [@ignaciomachado](https://github.com/ignaciomachado))
+
+## 2026-07-16 `1.26.0`
+
+#### 🎉 New features
+
+- Adds `double-check` icon. ([#479](https://github.com/TiendaNube/nimbus-design-system/pull/479) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
+
+## 2026-07-08 `1.25.0`
+
+#### 🎉 New features
+
+- Adds `box-delivered` icon. ([#477](https://github.com/TiendaNube/nimbus-design-system/pull/477) by [@efbertoia](https://github.com/efbertoia))
+
 ## 2026-06-12 `1.23.0`
 
 #### 🎉 New features

@@ -83,6 +83,7 @@ export const styles = {
 const titleColorProperties = {
   "primary-textHigh": colorProperties["primary-textHigh"],
   "primary-textLow": colorProperties["primary-textLow"],
+  "primary-interactive": colorProperties["primary-interactive"],
   "success-textHigh": colorProperties["success-textHigh"],
   "success-textLow": colorProperties["success-textLow"],
   "warning-textHigh": colorProperties["warning-textHigh"],

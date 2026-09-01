@@ -2,11 +2,28 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
-## 2026-08-31 `9.66.0`
+## 2026-08-31 `9.69.0`
 
 #### 🎉 New features
 
 - Select: Adds a `small` size style variant. ([#530](https://github.com/TiendaNube/nimbus-design-system/pull/530) by [@noecondoleo](https://github.com/noecondoleo))
+
+## 2026-08-12 `9.68.0`
+
+#### 🛠 Reverted changes
+
+- Reverts [#496](https://github.com/TiendaNube/nimbus-design-system/pull/496): the `title` sprinkle `color` is again limited to heading-appropriate values, dropping `currentColor`, every `*-surface`, `success-interactive`, `success-interactivePressed`, `neutral-interactive` and `neutral-textDisabled`. The documented default returns to `neutral-textLow`. ([#515](https://github.com/TiendaNube/nimbus-design-system/pull/515) by [@lichademarchi](https://github.com/lichademarchi))
+- Removes the `typographyColorProperties` and `typographyAiColors` exports: Text and Title each own their color map again, so a change to one can no longer alter the other. Text's palette is unchanged. ([#515](https://github.com/TiendaNube/nimbus-design-system/pull/515) by [@lichademarchi](https://github.com/lichademarchi))
+
+## 2026-08-07 `9.67.0`
+
+#### 🎉 New features
+
+- Title: Adds the `Text` color palette to the `title` sprinkle, except `ai-generative`, via a new shared `typographyColorProperties` map. ([#496](https://github.com/TiendaNube/nimbus-design-system/pull/496) by [@lichademarchi](https://github.com/lichademarchi))
+
+#### 🐛 Bug fixes
+
+- Text: Fixes `color="success-interactive"`, which resolved to the `success-textLow` token since [#110](https://github.com/TiendaNube/nimbus-design-system/pull/110). ([#496](https://github.com/TiendaNube/nimbus-design-system/pull/496) by [@lichademarchi](https://github.com/lichademarchi))
 
 ## 2026-05-04 `9.63.0`
 

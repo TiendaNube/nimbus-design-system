@@ -1,6 +1,6 @@
 {
   "name": "@nimbus-ds/input",
-  "version": "2.7.1",
+  "version": "2.8.1",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -14,6 +14,7 @@
     "version": "yarn version"
   },
   "dependencies": {
+    "@floating-ui/react": "^0.27.5",
     "@nimbus-ds/icon": "workspace:^",
     "@nimbus-ds/icons": "workspace:^",
     "@nimbus-ds/skeleton": "workspace:^"

@@ -41,6 +41,38 @@ export const iconEnd: Story = {
   },
 };
 
+export const prefix: Story = {
+  args: {
+    placeholder: "0,00",
+    prefix: "$",
+  },
+};
+
+export const suffix: Story = {
+  args: {
+    placeholder: "0",
+    suffix: "kg",
+  },
+};
+
+export const prefixAndSuffix: Story = {
+  args: {
+    placeholder: "0,00",
+    prefix: "$",
+    suffix: "USD",
+  },
+};
+
+export const prefixWithAppendIcon: Story = {
+  name: "Recipe: currency input with prefix and append icon",
+  args: {
+    placeholder: "0,00",
+    prefix: "$",
+    append: <Icon source={<TiendanubeIcon />} />,
+    appendPosition: "end",
+  },
+};
+
 export const success: Story = {
   args: {
     placeholder: "Placeholder",

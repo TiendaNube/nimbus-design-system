@@ -1,10 +1,20 @@
 name: checklist-comment
 
-on: pull_request
+# Runs directly on nimbus-design-system's own pull requests, and is also
+# callable as a reusable workflow from other Nimbus repos (nimbus-patterns).
+on:
+  pull_request:
+  workflow_call:
 
 jobs:
   checklist-comment:
     runs-on: ubuntu-latest
+    # A called workflow can never get more than the caller grants (permissions
+    # only narrow, never widen), so this is also what nimbus-patterns' calling
+    # job needs to declare.
+    permissions:
+      contents: read
+      pull-requests: write
     steps:
       - name: Checkout
         uses: actions/checkout@v3
