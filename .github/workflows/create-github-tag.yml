@@ -19,7 +19,7 @@ jobs:
         id: calver
         with:
           date_format: "%Y.%m.%d"
-          release: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
+          release: false
           release_branch: master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -29,14 +29,6 @@ jobs:
         with:
           tag: ${{ steps.calver.outputs.release }}
 
-  # NOTE for reviewers: this used to be dispatched via curl against a
-  # hardcoded workflow ID, always as a standalone `workflow_dispatch` run —
-  # so `github.event_name` above was never 'push', and the `release` input
-  # to actions-calver always evaluated false. Chained like this from
-  # publish.yml (which triggers on push to master), `release` now evaluates
-  # true for the first time. Flagging this explicitly: it's a behavior
-  # change, not just a mechanism change, and is worth a second look from
-  # whoever knows this release pipeline best before merging.
   create-github-release:
     needs: [create-github-tag]
     permissions:
