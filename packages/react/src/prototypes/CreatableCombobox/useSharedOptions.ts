@@ -57,7 +57,13 @@ const readStore = (): ComboboxOption[] => {
     if (!raw) return SEED_OPTIONS;
 
     const parsed = JSON.parse(raw);
-    return Array.isArray(parsed) ? parsed : SEED_OPTIONS;
+    // A present-but-empty array falls back to the seed list too: nothing in
+    // this prototype ever legitimately empties the store, so an empty array
+    // only means a stale/corrupted entry, and without this the seed data
+    // could never come back once that happened (see PR feedback: seed
+    // options not showing at all).
+    if (!Array.isArray(parsed) || parsed.length === 0) return SEED_OPTIONS;
+    return parsed;
   } catch {
     // Private-browsing / storage-blocked contexts fall back to the seed list
     // rather than breaking the prototype.

@@ -25,17 +25,17 @@ import { useSharedOptions, type ComboboxOption } from "./useSharedOptions";
 //
 // For the same reason, the icons below are inlined instead of imported from
 // `@nimbus-ds/icons` — these are the same paths as the design system's own
-// `close`, `search` and `plus-circle` icons, kept local to this disposable
-// prototype.
-const SearchIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-    <path d="m14.91 13.09-3.68-3.21a4.86 4.86 0 0 0 .86-2.77A5.34 5.34 0 0 0 6.59 2a5.35 5.35 0 0 0-5.5 5.15 5.34 5.34 0 0 0 5.5 5.15 5.7 5.7 0 0 0 3.82-1.44L14.08 14zM6.59 11a4.09 4.09 0 0 1-4.25-3.9 4.09 4.09 0 0 1 4.25-3.9 4.09 4.09 0 0 1 4.25 3.9A4.08 4.08 0 0 1 6.59 11" />
-  </svg>
-);
-
+// `close`, `chevron-down` and `plus-circle` icons, kept local to this
+// disposable prototype.
 const CloseIcon = () => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
     <path d="m14.41 3.27-.82-.94L8 7.17 2.41 2.33l-.82.94L7.05 8l-5.46 4.73.82.94L8 8.83l5.59 4.84.82-.94L8.95 8z" />
+  </svg>
+);
+
+const ChevronDownIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+    <path d="M8 10.18 2.39 4.52l-.89.87 5.59 5.71a1.18 1.18 0 0 0 .86.39 1.13 1.13 0 0 0 .85-.39l5.7-5.7-.88-.89z" />
   </svg>
 );
 
@@ -70,17 +70,6 @@ const optionButtonStyle: React.CSSProperties = {
   borderRadius: 4,
   cursor: "pointer",
   textAlign: "left",
-};
-
-const clearButtonStyle: React.CSSProperties = {
-  all: "unset",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  cursor: "pointer",
-  padding: 6,
-  borderRadius: 4,
-  flexShrink: 0,
 };
 
 /**
@@ -145,14 +134,16 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
       commitSelection(created);
     }, [canCreate, createOption, inputValue, commitSelection]);
 
+    // Matches the Figma proposal: clearing resets the field to empty AND
+    // closed (not back to an open, empty-query list) — the user re-opens it
+    // explicitly by clicking or typing again.
     const handleClear = useCallback(
       (event?: React.SyntheticEvent) => {
         event?.stopPropagation();
         setSelected(null);
         setInputValue("");
+        setOpen(false);
         onChange?.(null);
-        setOpen(true);
-        inputRef.current?.focus();
       },
       [onChange]
     );
@@ -205,6 +196,21 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                 </Text>
               </Box>
             )}
+            {/* The create affordance comes first, styled as a link/action
+                (not a plain option) — matching the Figma proposal, where
+                typing an unmatched query surfaces "Crear '…'" ahead of any
+                remaining filtered matches. */}
+            {canCreate && (
+              <button
+                type="button"
+                data-testid={dataTestId ? `${dataTestId}-create` : undefined}
+                onClick={handleCreate}
+                style={optionButtonStyle}
+              >
+                <Icon source={<PlusCircleIcon />} color="primary-interactive" />
+                <Text color="primary-interactive">{`Create "${inputValue.trim()}"`}</Text>
+              </button>
+            )}
             {filteredOptions.map((option) => (
               <button
                 key={option.value}
@@ -218,17 +224,6 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                 <Text color="currentColor">{option.label}</Text>
               </button>
             ))}
-            {canCreate && (
-              <button
-                type="button"
-                data-testid={dataTestId ? `${dataTestId}-create` : undefined}
-                onClick={handleCreate}
-                style={optionButtonStyle}
-              >
-                <Icon source={<PlusCircleIcon />} color="currentColor" />
-                <Text color="currentColor">{`Create "${inputValue.trim()}"`}</Text>
-              </button>
-            )}
           </div>
         }
       >
@@ -254,31 +249,39 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                 }}
                 onKeyDown={handleKeyDown}
               />
-              <button
-                type="button"
-                tabIndex={-1}
-                aria-hidden="true"
-                onClick={() => inputRef.current?.focus()}
-                className={[
-                  inputStyles.classnames.container__icon,
-                  inputStyles.classnames.container__icon_append.end,
-                ].join(" ")}
-              >
-                <Icon source={<SearchIcon />} color="neutral-textLow" />
-              </button>
+              {/* One trailing affordance that swaps role with selection
+                  state, matching the Figma proposal: a closed field shows a
+                  chevron (click focuses/opens it); once a value is selected
+                  or created, the same slot becomes the × that clears it. */}
+              {selected && !disabled ? (
+                <button
+                  type="button"
+                  aria-label="Clear selection"
+                  data-testid={dataTestId ? `${dataTestId}-clear` : undefined}
+                  onClick={handleClear}
+                  className={[
+                    inputStyles.classnames.container__icon,
+                    inputStyles.classnames.container__icon_append.end,
+                  ].join(" ")}
+                >
+                  <Icon source={<CloseIcon />} color="neutral-textLow" />
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  tabIndex={-1}
+                  aria-hidden="true"
+                  onClick={() => inputRef.current?.focus()}
+                  className={[
+                    inputStyles.classnames.container__icon,
+                    inputStyles.classnames.container__icon_append.end,
+                  ].join(" ")}
+                >
+                  <Icon source={<ChevronDownIcon />} color="neutral-textLow" />
+                </button>
+              )}
             </div>
           </div>
-          {selected && !disabled && (
-            <button
-              type="button"
-              aria-label="Clear selection"
-              data-testid={dataTestId ? `${dataTestId}-clear` : undefined}
-              onClick={handleClear}
-              style={clearButtonStyle}
-            >
-              <Icon source={<CloseIcon />} color="neutral-textLow" />
-            </button>
-          )}
         </Box>
       </Popover>
     );
