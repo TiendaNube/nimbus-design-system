@@ -6,13 +6,45 @@ import React, {
   useState,
 } from "react";
 import { Popover } from "@nimbus-ds/popover";
-import { Input } from "@nimbus-ds/input";
 import { Icon } from "@nimbus-ds/icon";
 import { Box } from "@nimbus-ds/box";
 import { Text } from "@nimbus-ds/text";
-import { SearchIcon, CloseIcon, PlusCircleIcon } from "@nimbus-ds/icons";
+import { input as inputStyles } from "@nimbus-ds/styles";
 
 import { useSharedOptions, type ComboboxOption } from "./useSharedOptions";
+
+// Not `Input` from `@nimbus-ds/input`: that component's own file statically
+// imports its `Input.Search` subcomponent, which in turn imports
+// `@nimbus-ds/icons` — and the Playground's prototype-only Storybook build
+// never runs `yarn build:icons` (see the `preview-storybook` workflow), so
+// that package has no resolvable build output at CI time, and the whole
+// bundle fails even though this prototype never renders `Input.Search`.
+// Using the same `input` vanilla-extract classnames `Input` itself is built
+// on (from `@nimbus-ds/styles`, which has no icon dependency) keeps the exact
+// visual result while side-stepping that transitive import.
+//
+// For the same reason, the icons below are inlined instead of imported from
+// `@nimbus-ds/icons` — these are the same paths as the design system's own
+// `close`, `search` and `plus-circle` icons, kept local to this disposable
+// prototype.
+const SearchIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+    <path d="m14.91 13.09-3.68-3.21a4.86 4.86 0 0 0 .86-2.77A5.34 5.34 0 0 0 6.59 2a5.35 5.35 0 0 0-5.5 5.15 5.34 5.34 0 0 0 5.5 5.15 5.7 5.7 0 0 0 3.82-1.44L14.08 14zM6.59 11a4.09 4.09 0 0 1-4.25-3.9 4.09 4.09 0 0 1 4.25-3.9 4.09 4.09 0 0 1 4.25 3.9A4.08 4.08 0 0 1 6.59 11" />
+  </svg>
+);
+
+const CloseIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+    <path d="m14.41 3.27-.82-.94L8 7.17 2.41 2.33l-.82.94L7.05 8l-5.46 4.73.82.94L8 8.83l5.59 4.84.82-.94L8.95 8z" />
+  </svg>
+);
+
+const PlusCircleIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+    <path d="M8.64 4.33H7.39v3.05H4.34v1.25h3.05v3.05h1.25V8.63h3.05V7.38H8.64z" />
+    <path d="M8 .5A7.77 7.77 0 0 0 0 8a7.77 7.77 0 0 0 8 7.5A7.77 7.77 0 0 0 16 8 7.77 7.77 0 0 0 8 .5m0 13.75A6.52 6.52 0 0 1 1.25 8 6.52 6.52 0 0 1 8 1.75 6.52 6.52 0 0 1 14.75 8 6.52 6.52 0 0 1 8 14.25" />
+  </svg>
+);
 
 export interface CreatableComboboxProps {
   /** Placeholder shown while no option is selected. */
@@ -202,26 +234,39 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
       >
         <Box ref={ref} display="flex" alignItems="center" gap="1" width="100%">
           <div style={{ flex: "1 1 auto", minWidth: 0 }}>
-            <Input
-              ref={inputRef}
-              id={id}
-              data-testid={dataTestId}
-              value={inputValue}
-              placeholder={placeholder}
-              disabled={disabled}
-              role="combobox"
-              aria-expanded={open}
-              aria-haspopup="listbox"
-              onFocus={() => !disabled && setOpen(true)}
-              onChange={(event) => {
-                setInputValue(event.target.value);
-                if (selected) setSelected(null);
-                setOpen(true);
-              }}
-              onKeyDown={handleKeyDown}
-              append={<Icon source={<SearchIcon />} color="neutral-textLow" />}
-              appendPosition="end"
-            />
+            <div className={inputStyles.classnames.appearance.neutral}>
+              <input
+                ref={inputRef}
+                id={id}
+                data-testid={dataTestId}
+                className={inputStyles.classnames.input}
+                value={inputValue}
+                placeholder={placeholder}
+                disabled={disabled}
+                role="combobox"
+                aria-expanded={open}
+                aria-haspopup="listbox"
+                onFocus={() => !disabled && setOpen(true)}
+                onChange={(event) => {
+                  setInputValue(event.target.value);
+                  if (selected) setSelected(null);
+                  setOpen(true);
+                }}
+                onKeyDown={handleKeyDown}
+              />
+              <button
+                type="button"
+                tabIndex={-1}
+                aria-hidden="true"
+                onClick={() => inputRef.current?.focus()}
+                className={[
+                  inputStyles.classnames.container__icon,
+                  inputStyles.classnames.container__icon_append.end,
+                ].join(" ")}
+              >
+                <Icon source={<SearchIcon />} color="neutral-textLow" />
+              </button>
+            </div>
           </div>
           {selected && !disabled && (
             <button
