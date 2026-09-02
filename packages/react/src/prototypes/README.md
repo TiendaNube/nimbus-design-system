@@ -19,6 +19,9 @@ Before building, record in the prototype pull request:
 - the question the prototype should help answer;
 - the owner or contact who can clarify and close the exploration.
 
+For an agent-mediated request, also record the requester and a permalink to the original
+request. This preserves the human source of the intention; it is not an approval.
+
 A prototype does not need a specification, public API, classification, release
 plan, or evidence that the idea should ship.
 
@@ -85,6 +88,8 @@ The following boundaries are mandatory:
 - never add a production export or package entry;
 - never use secrets, credentials, personal data, real customer data, or
   confidential information;
+- use only material safe for public disclosure: preview URLs are unauthenticated and
+  predictable from the pull-request number;
 - never publish or merge a prototype;
 - do not modify production code merely to make the prototype work.
 
@@ -115,6 +120,16 @@ The preview comment exposes:
 
 Keep the pull request open while the temporary preview is needed. Updating the
 branch updates both views.
+
+The process owner performs a monthly manual sweep of open draft `prototype/*` pull requests.
+List them with:
+
+```bash
+gh pr list --state open --draft --json number,headRefName,updatedAt --jq '.[] | select(.headRefName | startswith("prototype/"))'
+```
+
+For each inactive prototype, record an extension with its owner or close it after preserving
+the outcome. This is a manual process for the initial volume.
 
 ## Record the outcome and close
 

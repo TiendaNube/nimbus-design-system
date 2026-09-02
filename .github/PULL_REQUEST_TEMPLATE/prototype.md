@@ -12,6 +12,8 @@
 
 **Owner or contact:**
 
+**Original request (requester and permalink, for agent-mediated intentions):**
+
 ## What to try
 
 <!-- Describe the task participants should attempt, not the implementation. -->

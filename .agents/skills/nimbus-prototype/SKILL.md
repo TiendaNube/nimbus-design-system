@@ -17,7 +17,9 @@ check its current status rather than treating a proposed decision as accepted.
 
 ## Workflow
 
-1. Confirm the intention, participant, learning question, and owner. If the need
+1. Confirm the intention, participant, learning question, and owner. For an
+   agent-mediated request, record the requester and permalink to the original request in
+   the draft pull request as the source of the intention. If the need
    is clear enough to build, do not require a specification or introduce a
    questionnaire. If it is already understood well enough to specify, use the
    formal contribution process instead.
@@ -59,5 +61,7 @@ check its current status rather than treating a proposed decision as accepted.
   the experiment.
 - Do not publish, merge, or use credentials, personal data, customer data,
   secrets, or confidential information.
+- Preview URLs are public and predictable from the pull-request number; use only content
+  safe for public disclosure.
 - Do not infer Core or Pattern ownership from the Playground location.
 - Do not close a pull request until the needed durable evidence is preserved.
