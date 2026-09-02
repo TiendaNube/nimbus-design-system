@@ -2,6 +2,14 @@
 
 The Nimbus Helper extension is a powerful tool for developers working with VS Code. It is designed to streamline and enhance your workflow, offering advanced and customized features to maximize productivity.
 
+## 2026-09-02 `1.1.3`
+
+#### 🧪 Internal
+
+- Test release para verificar el pipeline de publicación end-to-end tras la
+  unificación de workflows de GitHub Actions (ONB-1164). Sin cambios funcionales —
+  solo un comentario en el código.
+
 ## 2023-08-07 `1.1.0`
 
 ### 🎉 New features
