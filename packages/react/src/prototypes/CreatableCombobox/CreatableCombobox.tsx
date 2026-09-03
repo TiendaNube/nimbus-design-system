@@ -221,7 +221,7 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                 onClick={() => commitSelection(option)}
                 style={optionButtonStyle}
               >
-                <Text color="currentColor">{option.label}</Text>
+                <Text color="neutral-textHigh">{option.label}</Text>
               </button>
             ))}
           </div>
