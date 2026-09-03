@@ -1,15 +1,24 @@
 import type {
+  PreviewLinksConfig,
   StorybookIndex,
   StorybookIndexEntry,
-} from "./storybook-preview-links";
+} from "./StorybookPreviewLinks";
 import {
   COMMENT_MARKER,
   buildCommentBody,
   previewUrl,
   resolveStoryTargets,
-} from "./storybook-preview-links";
+} from "./StorybookPreviewLinks";
 
 const BASE_URL = "https://preview.example.com/components/pull/42/index.html";
+
+/** nimbus-design-system's own layout — the richest fixture, since it also
+ * exercises the styles-package mapping that nimbus-patterns' config omits. */
+const config: PreviewLinksConfig = {
+  componentRootPattern: /^packages\/react\/src\/(?:atomic|composite)\/[^/]+/,
+  stylesComponentPattern:
+    /^packages\/core\/styles\/src\/packages\/(?:atomic|composite)\/([^/]+)/,
+};
 
 const index: StorybookIndex = {
   entries: {
@@ -96,7 +105,8 @@ describe("resolveStoryTargets", () => {
   it("links the docs page of the component that owns the changed file", () => {
     const targets = resolveStoryTargets(
       ["packages/react/src/atomic/Input/src/input.tsx"],
-      index
+      index,
+      config
     );
 
     expect(targets).toEqual([
@@ -113,7 +123,8 @@ describe("resolveStoryTargets", () => {
       [
         "packages/react/src/atomic/Input/src/components/InputPassword/inputPassword.tsx",
       ],
-      index
+      index,
+      config
     );
 
     expect(targets.map(({ title }) => title)).toEqual([
@@ -124,7 +135,8 @@ describe("resolveStoryTargets", () => {
   it("falls back to the entry point for files outside any stories directory", () => {
     const targets = resolveStoryTargets(
       ["packages/react/src/atomic/Input/package.json"],
-      index
+      index,
+      config
     );
 
     expect(targets.map(({ title }) => title)).toEqual(["Atomic/Input"]);
@@ -135,7 +147,8 @@ describe("resolveStoryTargets", () => {
       [
         "packages/react/src/atomic/Input/src/components/InputPassword/inputPassword.stories.tsx",
       ],
-      index
+      index,
+      config
     );
 
     expect(targets.map(({ title }) => title)).toEqual([
@@ -150,7 +163,8 @@ describe("resolveStoryTargets", () => {
         "packages/react/src/atomic/Input/src/input.types.ts",
         "packages/react/src/atomic/Input/CHANGELOG.md",
       ],
-      index
+      index,
+      config
     );
 
     expect(targets.map(({ title }) => title)).toEqual(["Atomic/Input"]);
@@ -159,7 +173,8 @@ describe("resolveStoryTargets", () => {
   it("maps a style definition back to the component it styles", () => {
     const targets = resolveStoryTargets(
       ["packages/core/styles/src/packages/atomic/input/nimbus-input.css.ts"],
-      index
+      index,
+      config
     );
 
     expect(targets.map(({ title }) => title)).toEqual(["Atomic/Input"]);
@@ -170,7 +185,8 @@ describe("resolveStoryTargets", () => {
       [
         "packages/core/styles/src/packages/composite/time-picker/nimbus-time-picker.css.ts",
       ],
-      index
+      index,
+      config
     );
 
     expect(targets.map(({ title }) => title)).toEqual(["Composite/TimePicker"]);
@@ -179,7 +195,8 @@ describe("resolveStoryTargets", () => {
   it("skips style changes that belong to no single component", () => {
     const targets = resolveStoryTargets(
       ["packages/core/styles/src/properties/typography.ts"],
-      index
+      index,
+      config
     );
 
     expect(targets).toEqual([]);
@@ -188,7 +205,8 @@ describe("resolveStoryTargets", () => {
   it("skips files that belong to no component", () => {
     const targets = resolveStoryTargets(
       ["packages/icons/src/assets/double-tag.svg", ".github/workflows/ci.yml"],
-      index
+      index,
+      config
     );
 
     expect(targets).toEqual([]);
@@ -197,7 +215,8 @@ describe("resolveStoryTargets", () => {
   it("skips generated documentation files", () => {
     const targets = resolveStoryTargets(
       ["packages/react/src/atomic/Input/src/input.docs.json"],
-      index
+      index,
+      config
     );
 
     expect(targets).toEqual([]);
@@ -218,7 +237,8 @@ describe("resolveStoryTargets", () => {
 
     const targets = resolveStoryTargets(
       ["packages/react/src/atomic/Input/src/input.tsx"],
-      malformed
+      malformed,
+      config
     );
 
     expect(targets.map(({ title }) => title)).toEqual(["Atomic/Input"]);
@@ -239,7 +259,8 @@ describe("resolveStoryTargets", () => {
 
     const targets = resolveStoryTargets(
       ["packages/react/src/atomic/Input/src/input.tsx"],
-      malformed
+      malformed,
+      config
     );
 
     expect(targets.map(({ title }) => title)).toEqual(["Atomic/Input"]);
@@ -263,7 +284,8 @@ describe("resolveStoryTargets", () => {
         "packages/react/src/atomic/Badge/src/badge.tsx",
         "packages/react/src/atomic/Input/src/input.tsx",
       ],
-      malformed
+      malformed,
+      config
     );
 
     expect(targets.map(({ title }) => title)).toEqual(["Atomic/Input"]);
@@ -272,7 +294,8 @@ describe("resolveStoryTargets", () => {
   it("skips components whose stories are absent from the index", () => {
     const targets = resolveStoryTargets(
       ["packages/react/src/atomic/Badge/src/badge.tsx"],
-      index
+      index,
+      config
     );
 
     expect(targets).toEqual([]);
@@ -283,7 +306,8 @@ describe("previewUrl", () => {
   it("points at the docs page when the component has one", () => {
     const [target] = resolveStoryTargets(
       ["packages/react/src/atomic/Input/src/input.tsx"],
-      index
+      index,
+      config
     );
 
     expect(previewUrl(BASE_URL, target)).toBe(
@@ -294,7 +318,8 @@ describe("previewUrl", () => {
   it("points at a story when the component has no docs page", () => {
     const [target] = resolveStoryTargets(
       ["packages/react/src/atomic/ProgressBar/src/progressBar.tsx"],
-      index
+      index,
+      config
     );
 
     expect(previewUrl(BASE_URL, target)).toBe(
@@ -308,7 +333,8 @@ describe("previewUrl", () => {
   it("picks the baseline story of a docs-less component, not the index order", () => {
     const [target] = resolveStoryTargets(
       ["packages/react/src/atomic/Slider/src/slider.tsx"],
-      manyStoriesIndex
+      manyStoriesIndex,
+      config
     );
 
     expect(previewUrl(BASE_URL, target)).toBe(
@@ -319,7 +345,8 @@ describe("previewUrl", () => {
   it("keeps the index order when no story carries a baseline name", () => {
     const [target] = resolveStoryTargets(
       ["packages/react/src/atomic/Divider/src/divider.tsx"],
-      manyStoriesIndex
+      manyStoriesIndex,
+      config
     );
 
     expect(previewUrl(BASE_URL, target)).toBe(
@@ -335,7 +362,8 @@ describe("buildCommentBody", () => {
         "packages/react/src/atomic/Input/src/input.tsx",
         "packages/react/src/atomic/Input/src/components/InputPassword/inputPassword.tsx",
       ],
-      index
+      index,
+      config
     );
 
     const body = buildCommentBody(BASE_URL, targets);
@@ -432,7 +460,8 @@ describe("buildCommentBody", () => {
   it("explains where the per-component links come from", () => {
     const targets = resolveStoryTargets(
       ["packages/react/src/atomic/Input/src/input.tsx"],
-      index
+      index,
+      config
     );
 
     const body = buildCommentBody(BASE_URL, targets, {

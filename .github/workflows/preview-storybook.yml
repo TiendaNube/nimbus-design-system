@@ -21,6 +21,11 @@ jobs:
       github.event.action != 'labeled' ||
       github.event.label.name == 'storybook-preview'
 
+    # Narrowed from the default (which grants far more): this job only reads
+    # the PR's changed-file list via `gh api`.
+    permissions:
+      pull-requests: read
+
     outputs:
       should_build: ${{ steps.preview_scope.outputs.should_build }}
       trigger: ${{ steps.preview_scope.outputs.trigger }}
