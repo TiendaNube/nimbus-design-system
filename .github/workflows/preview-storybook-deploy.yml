@@ -1,10 +1,14 @@
 name: "preview-storybook-deploy"
 
 # Generic build → deploy → comment mechanics for a Storybook PR preview,
-# shared by any Nimbus repo. What is repo-specific — deciding *whether* to
-# build (the diff gate) and *what to link to* (per-component deep links) —
+# shared by any Nimbus repo. Deciding *whether* to build (the diff gate)
 # stays local to each repo's own preview-storybook.yml, which calls this
-# after making that decision.
+# after making that decision and hands over the file lists it already
+# computed. *What to link to* is resolved here, by running that same
+# caller repo's own `yarn preview:links` script (checked out below) against
+# the Storybook this job just built — the mapping from a changed file to a
+# story id is specific enough per repo that it cannot live in this shared
+# workflow, but running it does not need to.
 on:
   workflow_call:
     inputs:
@@ -24,6 +28,32 @@ on:
         required: false
         type: boolean
         default: false
+      changed-files:
+        description: >-
+          Newline-separated list of every file the pull request touches, as
+          computed by the caller's own gate step. Fed to the caller's
+          `yarn preview:links` script so it can deep-link each touched
+          component instead of pointing at the Storybook homepage.
+        required: true
+        type: string
+      matched-files:
+        description: >-
+          Newline-separated subset of changed-files that triggered the build,
+          per the caller's own diff gate. Purely informational — folded into
+          the PR comment so the build decision can be audited from the pull
+          request. Empty when the build was triggered by label or by a
+          missing diff (the caller's gate reports that through
+          preview-trigger, not through this list).
+        required: false
+        type: string
+        default: ""
+      preview-trigger:
+        description: >-
+          Why the caller's gate decided to build: "build-inputs", "label", or
+          "unavailable-diff". Read by `yarn preview:links` to phrase the
+          comment accordingly.
+        required: true
+        type: string
     secrets:
       AWS_ACCOUNT_ID:
         required: true
@@ -67,6 +97,21 @@ jobs:
       - name: Build Storybook
         run: yarn build:storybook
 
+      - name: Compute preview links
+        env:
+          CHANGED_FILES: ${{ inputs.changed-files }}
+          MATCHED_FILES: ${{ inputs.matched-files }}
+          PREVIEW_TRIGGER: ${{ inputs.preview-trigger }}
+          STORYBOOK_URL: https://ns-ec-dms-bs3-nimbus-preview.s3.us-west-2.amazonaws.com/${{ inputs.s3-prefix }}/pull/${{ github.event.pull_request.number }}/index.html
+        run: |
+          printf '%s\n' "$CHANGED_FILES" > "$RUNNER_TEMP/changed-files.txt"
+          printf '%s\n' "$MATCHED_FILES" > "$RUNNER_TEMP/matched-files.txt"
+
+          PREVIEW_MATCHED_FILES="$RUNNER_TEMP/matched-files.txt" \
+            yarn preview:links "$RUNNER_TEMP/changed-files.txt" \
+            > "$RUNNER_TEMP/preview-comment.md"
+          cat "$RUNNER_TEMP/preview-comment.md"
+
       - name: 🔐 Configure AWS credentials using OIDC
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -97,17 +142,9 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
           REPO: ${{ github.repository }}
-          STORYBOOK_URL: https://ns-ec-dms-bs3-nimbus-preview.s3.us-west-2.amazonaws.com/${{ inputs.s3-prefix }}/pull/${{ github.event.pull_request.number }}/index.html
         run: |
-          cat > "$RUNNER_TEMP/preview-comment.md" <<EOF
-          <!-- nimbus-storybook-preview -->
-          🚀✨ Your Storybook preview is ready!
-
-          🔗 [View Storybook]($STORYBOOK_URL)
-
-          Happy reviewing! 🎉
-          EOF
-
+          # "Compute preview links" already wrote the comment body — running
+          # `yarn preview:links` against the Storybook this job just built.
           echo "Checking for existing Storybook comment..."
 
           # The marker identifies comments written by this workflow; the legacy

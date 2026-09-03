@@ -13,7 +13,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build-and-deploy:
+  gate:
     runs-on: ubuntu-latest
 
     # Every label fires `labeled`, but only one of them means "build this".
@@ -21,14 +21,13 @@ jobs:
       github.event.action != 'labeled' ||
       github.event.label.name == 'storybook-preview'
 
-    permissions:
-      id-token: write
-      pull-requests: write
+    outputs:
+      should_build: ${{ steps.preview_scope.outputs.should_build }}
+      trigger: ${{ steps.preview_scope.outputs.trigger }}
+      changed_files: ${{ steps.preview_scope.outputs.changed_files }}
+      matched_files: ${{ steps.preview_scope.outputs.matched_files }}
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-
       # The preview used to be gated on a `.yarn/versions/*.yml` carrying a
       # `releases:` entry. That is the wrong signal: the release strategy is
       # decided at the end of the work, while the preview is what you need in the
@@ -67,10 +66,25 @@ jobs:
           # their own: tests, the generated *.docs.json, and documentation.
           NON_VISUAL='\.spec\.(ts|tsx)$|\.docs\.json$|\.md$'
 
-          # Reused by the comment step to deep-link every touched component.
-          # Written aside and moved on success: the redirection truncates its
-          # target before gh runs, so a failure midway through the pages would
-          # otherwise leave a partial list that reads as a complete one.
+          # Handed to the reusable preview-storybook-deploy workflow as-is, so
+          # it can deep-link every touched component without this workflow
+          # needing to know how that mapping works.
+          emit_file_lists() {
+            {
+              echo "changed_files<<PREVIEW_FILES_EOF"
+              cat "$RUNNER_TEMP/changed-files.txt"
+              echo "PREVIEW_FILES_EOF"
+              echo "matched_files<<PREVIEW_FILES_EOF"
+              cat "$RUNNER_TEMP/matched-files.txt" 2>/dev/null || true
+              echo "PREVIEW_FILES_EOF"
+            } >> "$GITHUB_OUTPUT"
+          }
+
+          # Reused by the reusable workflow's "Compute preview links" step to
+          # deep-link every touched component. Written aside and moved on
+          # success: the redirection truncates its target before gh runs, so a
+          # failure midway through the pages would otherwise leave a partial
+          # list that reads as a complete one.
           if gh api --paginate "repos/$REPO/pulls/$PR_NUMBER/files" \
             --jq '.[].filename' > "$RUNNER_TEMP/changed-files.partial"; then
             mv "$RUNNER_TEMP/changed-files.partial" "$RUNNER_TEMP/changed-files.txt"
@@ -78,15 +92,19 @@ jobs:
             echo "Could not list the changed files — building the preview anyway."
             rm -f "$RUNNER_TEMP/changed-files.partial"
             : > "$RUNNER_TEMP/changed-files.txt"
+            : > "$RUNNER_TEMP/matched-files.txt"
             echo "should_build=true" >> "$GITHUB_OUTPUT"
             echo "trigger=unavailable-diff" >> "$GITHUB_OUTPUT"
+            emit_file_lists
             exit 0
           fi
 
           if [ "$FORCED" = "true" ]; then
             echo "Forced by the storybook-preview label."
+            : > "$RUNNER_TEMP/matched-files.txt"
             echo "should_build=true" >> "$GITHUB_OUTPUT"
             echo "trigger=label" >> "$GITHUB_OUTPUT"
+            emit_file_lists
             exit 0
           fi
 
@@ -111,81 +129,29 @@ jobs:
             } >> "$GITHUB_STEP_SUMMARY"
           fi
 
-      - uses: ./.github/actions/setup-node-deps
-        if: steps.preview_scope.outputs.should_build == 'true'
+          emit_file_lists
 
-      - name: Run build tokens
-        if: steps.preview_scope.outputs.should_build == 'true'
-        run: npm run build:tokens
+  build-and-deploy:
+    needs: gate
+    if: needs.gate.outputs.should_build == 'true'
 
-      - name: Run build icons
-        if: steps.preview_scope.outputs.should_build == 'true'
-        run: yarn build:icons
+    # A called workflow can never get more than the caller grants: this must
+    # match the permissions declared on the called job itself. id-token:write
+    # in particular is never part of the default GITHUB_TOKEN permissions —
+    # without it, the AWS OIDC step in the called workflow fails to mint a
+    # token and the preview deploy breaks for every PR.
+    permissions:
+      contents: read
+      id-token: write
+      pull-requests: write
 
-      - name: Build Storybook
-        if: steps.preview_scope.outputs.should_build == 'true'
-        run: yarn build:storybook
-
-      - name: 🔐 Configure AWS credentials using OIDC
-        if: steps.preview_scope.outputs.should_build == 'true'
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/${{ secrets.AWS_DEPLOY_ROLE }}
-          aws-region: us-west-2
-          audience: sts.amazonaws.com
-
-      - name: Upload Storybook to S3
-        if: steps.preview_scope.outputs.should_build == 'true'
-        run: |
-          aws s3 sync ./.build-storybook s3://ns-ec-dms-bs3-nimbus-preview/components/pull/${{ github.event.pull_request.number }} --delete
-
-      - name: Comment Storybook preview URL on PR and Check summary
-        if: steps.preview_scope.outputs.should_build == 'true'
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_NUMBER: ${{ github.event.pull_request.number }}
-          REPO: ${{ github.repository }}
-          STORYBOOK_URL: https://ns-ec-dms-bs3-nimbus-preview.s3.us-west-2.amazonaws.com/components/pull/${{ github.event.pull_request.number }}/index.html
-          PREVIEW_TRIGGER: ${{ steps.preview_scope.outputs.trigger }}
-          PREVIEW_MATCHED_FILES: ${{ runner.temp }}/matched-files.txt
-        run: |
-          # The file list comes from the preview_scope step, which already paged
-          # through it — the default page size hides files on large pull requests.
-          yarn preview:links "$RUNNER_TEMP/changed-files.txt" \
-            > "$RUNNER_TEMP/preview-comment.md"
-          cat "$RUNNER_TEMP/preview-comment.md"
-
-          echo "Checking for existing Storybook comment..."
-
-          # The marker identifies comments written by this workflow; the legacy
-          # pattern keeps pull requests commented before the marker existed from
-          # collecting a duplicate. Restricted to bot authors because reviewers
-          # quote the preview link routinely, and a PATCH against someone else's
-          # comment answers 403 and takes the rest of the step with it.
-          # --jq runs per page under --paginate, so the filter emits ids across
-          # pages and the pick has to happen afterwards. Assigned without a pipe
-          # so the exit status is the one gh returned, not head's; failing to
-          # read the comments posts a new one, because a duplicate is
-          # recoverable and a missing preview link is not.
-          if ! comment_ids=$(gh api --paginate "repos/$REPO/issues/$PR_NUMBER/comments" \
-            --jq '.[]
-                  | select(.user.type == "Bot")
-                  | select((.body // "") | test("<!-- nimbus-storybook-preview -->")
-                                           or test("View Storybook.*pull/'"$PR_NUMBER"'"))
-                  | .id'); then
-            echo "Could not read the existing comments — posting a new one."
-            comment_ids=""
-          fi
-
-          comment_id=$(printf '%s\n' "$comment_ids" | head -1)
-
-          if [ -n "$comment_id" ]; then
-            gh api -X PATCH "repos/$REPO/issues/comments/$comment_id" \
-              -F "body=@$RUNNER_TEMP/preview-comment.md"
-          else
-            gh api -X POST "repos/$REPO/issues/$PR_NUMBER/comments" \
-              -F "body=@$RUNNER_TEMP/preview-comment.md"
-          fi
-
-          echo "## 🚀 Storybook Preview Ready" >> "$GITHUB_STEP_SUMMARY"
-          cat "$RUNNER_TEMP/preview-comment.md" >> "$GITHUB_STEP_SUMMARY"
+    uses: ./.github/workflows/preview-storybook-deploy.yml
+    with:
+      s3-prefix: components
+      build-tokens-icons: true
+      changed-files: ${{ needs.gate.outputs.changed_files }}
+      matched-files: ${{ needs.gate.outputs.matched_files }}
+      preview-trigger: ${{ needs.gate.outputs.trigger }}
+    secrets:
+      AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+      AWS_DEPLOY_ROLE: ${{ secrets.AWS_DEPLOY_ROLE }}
