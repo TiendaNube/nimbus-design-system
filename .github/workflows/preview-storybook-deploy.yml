@@ -1,0 +1,176 @@
+name: "preview-storybook-deploy"
+
+# Generic build → deploy → comment mechanics for a Storybook PR preview,
+# shared by any Nimbus repo. Deciding *whether* to build (the diff gate)
+# stays local to each repo's own preview-storybook.yml, which calls this
+# after making that decision and hands over the file lists it already
+# computed. *What to link to* is resolved here, by running that same
+# caller repo's own `yarn preview:links` script (checked out below) against
+# the Storybook this job just built — the mapping from a changed file to a
+# story id is specific enough per repo that it cannot live in this shared
+# workflow, but running it does not need to.
+on:
+  workflow_call:
+    inputs:
+      s3-prefix:
+        description: >-
+          S3 path segment that namespaces this repo's previews under the
+          shared bucket (e.g. "components" for nimbus-design-system,
+          "patterns" for nimbus-patterns).
+        required: true
+        type: string
+      build-tokens-icons:
+        description: >-
+          Whether to run "build:tokens" and "build:icons" before building
+          Storybook. Only nimbus-design-system needs this — its Storybook
+          renders the tokens/icons packages it owns; nimbus-patterns
+          consumes them as published dependencies instead.
+        required: false
+        type: boolean
+        default: false
+      changed-files:
+        description: >-
+          Newline-separated list of every file the pull request touches, as
+          computed by the caller's own gate step. Fed to the caller's
+          `yarn preview:links` script so it can deep-link each touched
+          component instead of pointing at the Storybook homepage.
+        required: true
+        type: string
+      matched-files:
+        description: >-
+          Newline-separated subset of changed-files that triggered the build,
+          per the caller's own diff gate. Purely informational — folded into
+          the PR comment so the build decision can be audited from the pull
+          request. Empty when the build was triggered by label or by a
+          missing diff (the caller's gate reports that through
+          preview-trigger, not through this list).
+        required: false
+        type: string
+        default: ""
+      preview-trigger:
+        description: >-
+          Why the caller's gate decided to build: "build-inputs", "label", or
+          "unavailable-diff". Read by `yarn preview:links` to phrase the
+          comment accordingly.
+        required: true
+        type: string
+    secrets:
+      AWS_ACCOUNT_ID:
+        required: true
+      AWS_DEPLOY_ROLE:
+        required: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    # Two runs on the same PR would race `aws s3 sync --delete` over one
+    # prefix, and could both miss the marker comment and create duplicates.
+    concurrency:
+      group: preview-storybook-deploy-${{ github.repository }}-${{ inputs.s3-prefix }}-${{ github.event.pull_request.number }}
+      cancel-in-progress: false
+
+    # A called workflow can never get more than the caller grants (permissions
+    # only narrow, never widen), so this is also what each caller's job needs
+    # to declare. contents:read is for the checkout step below; id-token:write
+    # is required for the AWS OIDC step and is never part of the default
+    # GITHUB_TOKEN permissions.
+    permissions:
+      contents: read
+      id-token: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - uses: ./.github/actions/setup-node-deps
+
+      - name: Run build tokens
+        if: inputs.build-tokens-icons
+        run: yarn build:tokens
+
+      - name: Run build icons
+        if: inputs.build-tokens-icons
+        run: yarn build:icons
+
+      - name: Build Storybook
+        run: yarn build:storybook
+
+      - name: Compute preview links
+        env:
+          CHANGED_FILES: ${{ inputs.changed-files }}
+          MATCHED_FILES: ${{ inputs.matched-files }}
+          PREVIEW_TRIGGER: ${{ inputs.preview-trigger }}
+          STORYBOOK_URL: https://ns-ec-dms-bs3-nimbus-preview.s3.us-west-2.amazonaws.com/${{ inputs.s3-prefix }}/pull/${{ github.event.pull_request.number }}/index.html
+        run: |
+          printf '%s\n' "$CHANGED_FILES" > "$RUNNER_TEMP/changed-files.txt"
+          printf '%s\n' "$MATCHED_FILES" > "$RUNNER_TEMP/matched-files.txt"
+
+          PREVIEW_MATCHED_FILES="$RUNNER_TEMP/matched-files.txt" \
+            yarn preview:links "$RUNNER_TEMP/changed-files.txt" \
+            > "$RUNNER_TEMP/preview-comment.md"
+          cat "$RUNNER_TEMP/preview-comment.md"
+
+      - name: 🔐 Configure AWS credentials using OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/${{ secrets.AWS_DEPLOY_ROLE }}
+          aws-region: us-west-2
+          audience: sts.amazonaws.com
+
+      - name: Upload Storybook to S3
+        env:
+          # Routed through env (not interpolated directly into the script)
+          # so a caller-controlled input can never expand into shell syntax.
+          S3_PREFIX: ${{ inputs.s3-prefix }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          # Allowlist, not a blacklist: S3_PREFIX ends up both in the S3 key
+          # and in the HTTPS preview URL, where "." or "#" or "?" carry their
+          # own meaning. Only plain path-segment characters are safe in both.
+          case "$S3_PREFIX" in
+            *[!A-Za-z0-9-]*|"")
+              echo "s3-prefix must be a non-empty path segment of [A-Za-z0-9-], got: '$S3_PREFIX'" >&2
+              exit 1
+              ;;
+          esac
+          aws s3 sync ./.build-storybook "s3://ns-ec-dms-bs3-nimbus-preview/$S3_PREFIX/pull/$PR_NUMBER" --delete
+
+      - name: Comment Storybook preview URL on PR and Check summary
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          REPO: ${{ github.repository }}
+        run: |
+          # "Compute preview links" already wrote the comment body — running
+          # `yarn preview:links` against the Storybook this job just built.
+          echo "Checking for existing Storybook comment..."
+
+          # The marker identifies comments written by this workflow; the legacy
+          # "View Storybook...pull/<n>" pattern keeps pull requests commented
+          # before the marker existed from collecting a duplicate. Restricted
+          # to bot authors so a reviewer quoting the preview link can't be
+          # mistaken for the workflow's own comment.
+          if ! comment_ids=$(gh api --paginate "repos/$REPO/issues/$PR_NUMBER/comments" \
+            --jq '.[]
+                  | select(.user.type == "Bot")
+                  | select((.body // "") | test("<!-- nimbus-storybook-preview -->")
+                                           or test("View Storybook.*pull/'"$PR_NUMBER"'"))
+                  | .id'); then
+            echo "Could not read the existing comments — posting a new one."
+            comment_ids=""
+          fi
+
+          comment_id=$(printf '%s\n' "$comment_ids" | head -1)
+
+          if [ -n "$comment_id" ]; then
+            gh api -X PATCH "repos/$REPO/issues/comments/$comment_id" \
+              -F "body=@$RUNNER_TEMP/preview-comment.md"
+          else
+            gh api -X POST "repos/$REPO/issues/$PR_NUMBER/comments" \
+              -F "body=@$RUNNER_TEMP/preview-comment.md"
+          fi
+
+          echo "## 🚀 Storybook Preview Ready" >> "$GITHUB_STEP_SUMMARY"
+          cat "$RUNNER_TEMP/preview-comment.md" >> "$GITHUB_STEP_SUMMARY"

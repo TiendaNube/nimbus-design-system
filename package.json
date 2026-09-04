@@ -28,6 +28,7 @@
     "lint": "eslint packages --ext .jsx,.js,.ts,.tsx --quiet --cache --cache-location .cache/eslint/.eslintcache",
     "lint:fix": "yarn lint --fix",
     "pre-commit": "lint-staged",
+    "preview:links": "babel-node -x .ts ./.scripts/storybook-preview-links",
     "pre-push": "yarn lint && yarn types:check && yarn types:collisions && yarn bump:check",
     "prepare-husky": "husky install",
     "publish:next": "yarn bump:check && yarn bump:next && npm run build && yarn publish:npm:next",

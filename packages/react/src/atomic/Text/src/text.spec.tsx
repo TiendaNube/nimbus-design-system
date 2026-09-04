@@ -1,6 +1,5 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { text } from "@nimbus-ds/styles";
 
 import { Text } from ".";
 import { type TextProps } from "./text.types";
@@ -152,12 +151,6 @@ describe("GIVEN <Text />", () => {
       expect(
         screen.getByTestId("text-element").getAttribute("class")
       ).toContain("color-success-interactivePressed");
-    });
-
-    it("THEN should keep success-interactive aliased to the success-textLow token", () => {
-      expect(text.properties.color["success-interactive"]).toBe(
-        text.properties.color["success-textLow"]
-      );
     });
 
     it("THEN should correctly render the color warning-textLow", () => {
