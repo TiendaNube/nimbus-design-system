@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2026-08-31 `9.69.0`
+
+#### 🎉 New features
+
+- Select: Adds a `small` size style variant. ([#530](https://github.com/TiendaNube/nimbus-design-system/pull/530) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-08-12 `9.68.0`
 
 #### 🛠 Reverted changes

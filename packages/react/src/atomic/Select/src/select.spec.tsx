@@ -81,6 +81,29 @@ describe("GIVEN <Select />", () => {
       ).not.toContain("appearance_danger");
     });
 
+    it("THEN should correctly render the size medium by default", () => {
+      makeSut();
+      expect(
+        screen.getByTestId("select-element").getAttribute("class")
+      ).toContain("size_medium");
+    });
+
+    it("THEN should correctly render the size small", () => {
+      makeSut({ size: "small" });
+      const select = screen.getByTestId("select-element");
+
+      expect(select.getAttribute("class")).toContain("size_small");
+      expect(select.getAttribute("size")).toBeNull();
+    });
+
+    it("THEN should preserve the native numeric size attribute", () => {
+      makeSut({ size: 5 });
+      const select = screen.getByTestId("select-element");
+
+      expect(select.getAttribute("size")).toBe("5");
+      expect(select.getAttribute("class")).toContain("size_medium");
+    });
+
     it("THEN should render the name", () => {
       makeSut();
       expect(screen.getByRole<HTMLSelectElement>("combobox").name).toContain(
