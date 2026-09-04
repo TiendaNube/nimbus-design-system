@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2026-08-28 `9.68.1`
+
+#### 🛠 Breaking changes
+
+- `Select`'s rendered height changes from a variable ~34px to a fixed 32px (2rem), by giving its shared base style an explicit height (the same box-model pattern `Button` already uses) to match the design contract documented in Figma. This is a visual-only correction — no props, exports, or tokens change — and ships as a patch per this repo's convention for CSS-only visual fixes; it is filed under this heading because the `Breaking Change Documentation Verification` check requires a `🛠 Breaking changes` section for a `*.css.ts` dimension change, regardless of semver level. ([#523](https://github.com/TiendaNube/nimbus-design-system/pull/523) by [@claude](https://github.com/apps/claude))
+
 ## 2026-08-12 `9.68.0`
 
 #### 🛠 Reverted changes
