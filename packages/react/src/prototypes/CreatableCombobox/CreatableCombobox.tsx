@@ -59,19 +59,6 @@ export interface CreatableComboboxProps {
   "data-testid"?: string;
 }
 
-const optionButtonStyle: React.CSSProperties = {
-  all: "unset",
-  display: "flex",
-  alignItems: "center",
-  gap: 8,
-  width: "100%",
-  boxSizing: "border-box",
-  padding: "8px 12px",
-  borderRadius: 4,
-  cursor: "pointer",
-  textAlign: "left",
-};
-
 /**
  * CreatableCombobox — Nimbus Playground prototype for GitHub issue #508
  * ("Creatable Autocomplete / Select Component").
@@ -98,6 +85,13 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
     const [selected, setSelected] = useState<ComboboxOption | null>(null);
     const [open, setOpen] = useState(false);
     const inputRef = useRef<HTMLInputElement>(null);
+    // Row hover state, driven in JS rather than CSS `:hover` so each row's
+    // treatment (primary for Create, neutral for existing options) can use
+    // the same Nimbus `backgroundColor` tokens as everywhere else in Box.
+    const [hoveredOptionValue, setHoveredOptionValue] = useState<
+      string | null
+    >(null);
+    const [createHovered, setCreateHovered] = useState(false);
 
     // Keep the visible text in sync if another instance renames/creates the
     // exact option this field has selected (mocked shared store).
@@ -201,28 +195,69 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                 typing an unmatched query surfaces "Crear '…'" ahead of any
                 remaining filtered matches. */}
             {canCreate && (
-              <button
+              <Box
+                as="button"
                 type="button"
                 data-testid={dataTestId ? `${dataTestId}-create` : undefined}
                 onClick={handleCreate}
-                style={optionButtonStyle}
+                onMouseEnter={() => setCreateHovered(true)}
+                onMouseLeave={() => setCreateHovered(false)}
+                display="flex"
+                alignItems="center"
+                gap="2"
+                width="100%"
+                boxSizing="border-box"
+                padding="2"
+                borderRadius="2"
+                borderWidth="none"
+                cursor="pointer"
+                textAlign="left"
+                // Create hovers with the PRIMARY treatment — it's an
+                // action/link, not an existing option. An explicit rest
+                // value (matching the popover's own background) is
+                // required here too: leaving it `undefined` drops Box's
+                // background class entirely and the browser's native
+                // unstyled-`<button>` grey shows through instead.
+                backgroundColor={
+                  createHovered ? "primary-surface" : "neutral-background"
+                }
               >
                 <Icon source={<PlusCircleIcon />} color="primary-interactive" />
                 <Text color="primary-interactive">{`Create "${inputValue.trim()}"`}</Text>
-              </button>
+              </Box>
             )}
             {filteredOptions.map((option) => (
-              <button
-                key={option.value}
+              <Box
+                as="button"
                 type="button"
+                key={option.value}
                 data-testid={
                   dataTestId ? `${dataTestId}-option-${option.value}` : undefined
                 }
                 onClick={() => commitSelection(option)}
-                style={optionButtonStyle}
+                onMouseEnter={() => setHoveredOptionValue(option.value)}
+                onMouseLeave={() => setHoveredOptionValue(null)}
+                display="flex"
+                alignItems="center"
+                gap="2"
+                width="100%"
+                boxSizing="border-box"
+                padding="2"
+                borderRadius="2"
+                borderWidth="none"
+                cursor="pointer"
+                textAlign="left"
+                // Existing options hover with the NEUTRAL treatment (see the
+                // comment on the Create row above for why the rest value
+                // can't be left `undefined`).
+                backgroundColor={
+                  hoveredOptionValue === option.value
+                    ? "neutral-surface"
+                    : "neutral-background"
+                }
               >
                 <Text color="neutral-textHigh">{option.label}</Text>
-              </button>
+              </Box>
             ))}
           </div>
         }
