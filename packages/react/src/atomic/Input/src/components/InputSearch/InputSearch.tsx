@@ -1,4 +1,9 @@
-import React, { type ComponentPropsWithRef, forwardRef, useRef } from "react";
+import React, {
+  type ComponentPropsWithRef,
+  type ForwardRefExoticComponent,
+  forwardRef,
+  useRef,
+} from "react";
 import { useRefObjectAsForwardedRef } from "@nimbus-ds/typings";
 import { SearchIcon } from "@nimbus-ds/icons";
 import { input } from "@nimbus-ds/styles";
@@ -49,7 +54,11 @@ const InputSearch = forwardRef<HTMLInputElement, InputSearchBaseProps>(
       </div>
     );
   }
-);
+) as ForwardRefExoticComponent<
+  InputSearchBaseProps &
+    React.InputHTMLAttributes<HTMLInputElement> &
+    React.RefAttributes<HTMLInputElement>
+>;
 
 export type InputSearchProps = ComponentPropsWithRef<typeof InputSearch>;
 export { InputSearch };
