@@ -2,86 +2,161 @@ name: "preview-storybook"
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened]
+    # `labeled` lets the storybook-preview label force a build on a pull request
+    # whose diff would not have triggered one.
+    types: [opened, synchronize, reopened, labeled]
+
+# Two runs on the same pull request would race `aws s3 sync --delete` over one
+# prefix, and the slower one would publish the older build under the same link.
+concurrency:
+  group: storybook-preview-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
 
 jobs:
-  build-and-deploy:
+  gate:
     runs-on: ubuntu-latest
 
+    # Every label fires `labeled`, but only one of them means "build this".
+    if: >-
+      github.event.action != 'labeled' ||
+      github.event.label.name == 'storybook-preview'
+
+    # Narrowed from the default (which grants far more): this job only reads
+    # the PR's changed-file list via `gh api`.
     permissions:
-      id-token: write
-      pull-requests: write
+      pull-requests: read
+
+    outputs:
+      should_build: ${{ steps.preview_scope.outputs.should_build }}
+      trigger: ${{ steps.preview_scope.outputs.trigger }}
+      changed_files: ${{ steps.preview_scope.outputs.changed_files }}
+      matched_files: ${{ steps.preview_scope.outputs.matched_files }}
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-
-      - name: Check for release files in ./yarn/versions
-        id: check_release
-        run: |
-          if grep -q "^releases:" .yarn/versions/* 2>/dev/null; then
-            echo "should_skip=false" >> "$GITHUB_OUTPUT"
-          else
-            echo "should_skip=true" >> "$GITHUB_OUTPUT"
-            echo "## ⚠️ Storybook preview not available" >> "$GITHUB_STEP_SUMMARY"
-            echo "Storybook preview is not available for this PR because there are no changes available for a new release." >> "$GITHUB_STEP_SUMMARY"
-          fi
-
-      - uses: ./.github/actions/setup-node-deps
-        if: steps.check_release.outputs.should_skip == 'false'
-
-      - name: Run build tokens
-        if: steps.check_release.outputs.should_skip == 'false'
-        run: npm run build:tokens
-
-      - name: Run build icons
-        if: steps.check_release.outputs.should_skip == 'false'
-        run: yarn build:icons
-
-      - name: Build Storybook
-        if: steps.check_release.outputs.should_skip == 'false'
-        run: yarn build:storybook
-
-      - name: 🔐 Configure AWS credentials using OIDC
-        if: steps.check_release.outputs.should_skip == 'false'
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/${{ secrets.AWS_DEPLOY_ROLE }}
-          aws-region: us-west-2
-          audience: sts.amazonaws.com
-
-      - name: Upload Storybook to S3
-        if: steps.check_release.outputs.should_skip == 'false'
-        run: |
-          aws s3 sync ./.build-storybook s3://ns-ec-dms-bs3-nimbus-preview/components/pull/${{ github.event.pull_request.number }} --delete
-
-      - name: Comment Storybook preview URL on PR and Check summary
-        if: steps.check_release.outputs.should_skip == 'false'
+      # The preview used to be gated on a `.yarn/versions/*.yml` carrying a
+      # `releases:` entry. That is the wrong signal: the release strategy is
+      # decided at the end of the work, while the preview is what you need in the
+      # middle of it, so the component under construction had no preview exactly
+      # when it was most useful. The gate is now the diff itself.
+      - name: Decide whether the preview would show anything new
+        id: preview_scope
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
           REPO: ${{ github.repository }}
-          STORYBOOK_URL: https://ns-ec-dms-bs3-nimbus-preview.s3.us-west-2.amazonaws.com/components/pull/${{ github.event.pull_request.number }}/index.html
+          FORCED: ${{ contains(github.event.pull_request.labels.*.name, 'storybook-preview') }}
         run: |
-          echo "Checking for existing Storybook comment..."
+          # Everything that can change a pixel of the built Storybook. Kept
+          # generous on purpose: an unnecessary preview costs ~90s of runner
+          # time, a missing one costs a review round trip.
+          #
+          # `packages/core/typings` is included because react-docgen resolves
+          # prop types when it generates the autodocs tables. `core/scripts`,
+          # `core/webpack` and `packages/helper` are not: they build the npm
+          # packages, while Storybook bundles the sources through .storybook.
+          #
+          # The root `package.json` is deliberately absent: dependency changes
+          # always land in `yarn.lock` too, so listing the manifest only added
+          # false positives from script and metadata edits, which cannot move a
+          # pixel. The uncovered case is an edit to the `build:storybook` flags
+          # themselves — rare, and the label covers it.
+          #
+          # The last two entries are not bundle inputs but preview inputs: they
+          # decide what the comment says, and their whole job is to be checked
+          # against a real index.json, so a change to them has to produce a
+          # preview to be verified against.
+          BUILD_INPUTS='^packages/react/|^packages/core/(styles|tokens|typings)/|^packages/icons/|^\.storybook/|^(yarn\.lock|babel\.config\.js|tsconfig\.json)$|^\.scripts/storybook-preview-links\.ts$|^\.github/workflows/preview-storybook\.yml$'
 
-          comments=$(curl -s -H "Authorization: token $GH_TOKEN" \
-            https://api.github.com/repos/$REPO/issues/$PR_NUMBER/comments)
+          # Files that never reach the bundle, so never a reason to rebuild on
+          # their own: tests, the generated *.docs.json, and documentation.
+          NON_VISUAL='\.spec\.(ts|tsx)$|\.docs\.json$|\.md$'
 
-          comment_id=$(echo "$comments" | jq -r '.[] | select(.body | test("View Storybook.*pull/'"$PR_NUMBER"'")) | .id')
-          
-          if [ ! -z "$comment_id" ]; then
-            curl -s -H "Authorization: token $GH_TOKEN" \
-              -X DELETE \
-              https://api.github.com/repos/$REPO/issues/comments/$comment_id
+          # Handed to the reusable preview-storybook-deploy workflow as-is, so
+          # it can deep-link every touched component without this workflow
+          # needing to know how that mapping works.
+          emit_file_lists() {
+            {
+              echo "changed_files<<PREVIEW_FILES_EOF"
+              cat "$RUNNER_TEMP/changed-files.txt"
+              echo "PREVIEW_FILES_EOF"
+              echo "matched_files<<PREVIEW_FILES_EOF"
+              cat "$RUNNER_TEMP/matched-files.txt" 2>/dev/null || true
+              echo "PREVIEW_FILES_EOF"
+            } >> "$GITHUB_OUTPUT"
+          }
+
+          # Reused by the reusable workflow's "Compute preview links" step to
+          # deep-link every touched component. Written aside and moved on
+          # success: the redirection truncates its target before gh runs, so a
+          # failure midway through the pages would otherwise leave a partial
+          # list that reads as a complete one.
+          if gh api --paginate "repos/$REPO/pulls/$PR_NUMBER/files" \
+            --jq '.[].filename' > "$RUNNER_TEMP/changed-files.partial"; then
+            mv "$RUNNER_TEMP/changed-files.partial" "$RUNNER_TEMP/changed-files.txt"
+          else
+            echo "Could not list the changed files — building the preview anyway."
+            rm -f "$RUNNER_TEMP/changed-files.partial"
+            : > "$RUNNER_TEMP/changed-files.txt"
+            : > "$RUNNER_TEMP/matched-files.txt"
+            echo "should_build=true" >> "$GITHUB_OUTPUT"
+            echo "trigger=unavailable-diff" >> "$GITHUB_OUTPUT"
+            emit_file_lists
+            exit 0
           fi
 
-          curl -s -H "Authorization: token $GH_TOKEN" \
-            -H "Content-Type: application/json" \
-            -X POST -d "{
-              \"body\": \"🚀✨ Your Storybook preview is ready!\n\n🔗 [View Storybook]($STORYBOOK_URL)\n\nHappy reviewing! 🎉\"
-            }" \
-            https://api.github.com/repos/$REPO/issues/$PR_NUMBER/comments
+          if [ "$FORCED" = "true" ]; then
+            echo "Forced by the storybook-preview label."
+            : > "$RUNNER_TEMP/matched-files.txt"
+            echo "should_build=true" >> "$GITHUB_OUTPUT"
+            echo "trigger=label" >> "$GITHUB_OUTPUT"
+            emit_file_lists
+            exit 0
+          fi
 
-          echo "## 🚀 Storybook Preview Ready" >> $GITHUB_STEP_SUMMARY
-          echo "[👉 View Storybook Preview]($STORYBOOK_URL)" >> $GITHUB_STEP_SUMMARY
+          relevant=$(grep -vE "$NON_VISUAL" "$RUNNER_TEMP/changed-files.txt" || true)
+
+          # The matched files are the evidence the comment folds away behind its
+          # <summary>, so the decision can be audited from the pull request.
+          printf '%s\n' "$relevant" | grep -E "$BUILD_INPUTS" \
+            > "$RUNNER_TEMP/matched-files.txt" || true
+
+          if [ -s "$RUNNER_TEMP/matched-files.txt" ]; then
+            echo "should_build=true" >> "$GITHUB_OUTPUT"
+            echo "trigger=build-inputs" >> "$GITHUB_OUTPUT"
+            echo "Building because these files feed the Storybook bundle:"
+            cat "$RUNNER_TEMP/matched-files.txt"
+          else
+            echo "should_build=false" >> "$GITHUB_OUTPUT"
+            {
+              echo "## ⚠️ Storybook preview not built"
+              echo "Nothing in this pull request changes what Storybook renders."
+              echo "Add the \`storybook-preview\` label to build it anyway."
+            } >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+          emit_file_lists
+
+  build-and-deploy:
+    needs: gate
+    if: needs.gate.outputs.should_build == 'true'
+
+    # A called workflow can never get more than the caller grants: this must
+    # match the permissions declared on the called job itself. id-token:write
+    # in particular is never part of the default GITHUB_TOKEN permissions —
+    # without it, the AWS OIDC step in the called workflow fails to mint a
+    # token and the preview deploy breaks for every PR.
+    permissions:
+      contents: read
+      id-token: write
+      pull-requests: write
+
+    uses: ./.github/workflows/preview-storybook-deploy.yml
+    with:
+      s3-prefix: components
+      build-tokens-icons: true
+      changed-files: ${{ needs.gate.outputs.changed_files }}
+      matched-files: ${{ needs.gate.outputs.matched_files }}
+      preview-trigger: ${{ needs.gate.outputs.trigger }}
+    secrets:
+      AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+      AWS_DEPLOY_ROLE: ${{ secrets.AWS_DEPLOY_ROLE }}

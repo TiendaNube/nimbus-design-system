@@ -2,6 +2,12 @@
 
 This package is intended for internal use in generating custom script builds at design system build time.
 
+## 2026-09-03 `1.9.0`
+
+#### 🎉 New features
+
+- Added `runPreviewLinksCli`/`resolveStoryTargets`/`buildCommentBody` — the Storybook preview deep-link resolver shared between nimbus-design-system and nimbus-patterns, so both repos' `preview-storybook.yml` can consume it instead of each carrying its own copy. ([#518](https://github.com/TiendaNube/nimbus-design-system/pull/518) by [@EzeNube](https://github.com/EzeNube))
+
 ## 2026-01-13 `1.8.1`
 
 #### 🐛 Bug fixes
