@@ -10,6 +10,10 @@ on:
       - ".yarn/versions/**"
       - "**/*.docs.json"
 
+concurrency:
+  group: publish-release-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   publish-packages-npm:
     runs-on: ubuntu-latest
@@ -72,7 +76,7 @@ jobs:
             packages/**/package.json
             **/*.docs.json
             .yarn/versions/**
-          branch: release/publish-${{ github.run_id }}
+          branch: release/publish
           base: master
           
 
