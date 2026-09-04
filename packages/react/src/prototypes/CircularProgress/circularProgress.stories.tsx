@@ -44,6 +44,20 @@ const THICKNESS_NAMES = Object.keys(
 /** Diameters below the named scale, to find where a centre label gives up. */
 const SMALL_DIAMETERS = [20, 24, 28, 32, 40, 48];
 
+/**
+ * `SegmentedControl` is a multi-select toggle. In controlled mode it hands back
+ * the current selection with the clicked id *added* to it — or removed, when the
+ * already-active segment is clicked again. The controls below are single-select,
+ * so take the id that is not the current value, and keep the current value when
+ * the active segment was merely deselected.
+ *
+ * Reading `ids[0]` instead is what made every control except the value slider
+ * look inert: clicking a new segment returns `[current, clicked]`, so `ids[0]`
+ * handed the setter the value it already held and nothing re-rendered.
+ */
+const pickSingle = <T extends string>(ids: string[], current: T): T =>
+  (ids.find((id) => id !== current) as T | undefined) ?? current;
+
 const Caption: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <Text fontSize="caption" color="neutral-textLow">
     {children}
@@ -464,7 +478,7 @@ export const FullScreen: StoryObj<typeof CircularProgress> = {
                   <SegmentedControl
                     selectedSegments={[size]}
                     onSegmentsSelect={(ids: string[]) =>
-                      setSize(ids[0] as CircularProgressSize)
+                      setSize(pickSingle(ids, size))
                     }
                   >
                     {SIZE_NAMES.map((name) => (
@@ -480,7 +494,7 @@ export const FullScreen: StoryObj<typeof CircularProgress> = {
                   <SegmentedControl
                     selectedSegments={[thickness]}
                     onSegmentsSelect={(ids: string[]) =>
-                      setThickness(ids[0] as CircularProgressThickness)
+                      setThickness(pickSingle(ids, thickness))
                     }
                   >
                     {THICKNESS_NAMES.map((name) => (
@@ -496,7 +510,7 @@ export const FullScreen: StoryObj<typeof CircularProgress> = {
                   <SegmentedControl
                     selectedSegments={[placement]}
                     onSegmentsSelect={(ids: string[]) =>
-                      setPlacement(ids[0] as CircularProgressLabelPlacement)
+                      setPlacement(pickSingle(ids, placement))
                     }
                   >
                     {(
@@ -514,7 +528,7 @@ export const FullScreen: StoryObj<typeof CircularProgress> = {
                   <SegmentedControl
                     selectedSegments={[appearance]}
                     onSegmentsSelect={(ids: string[]) =>
-                      setAppearance(ids[0] as CircularProgressAppearance)
+                      setAppearance(pickSingle(ids, appearance))
                     }
                   >
                     {APPEARANCES.map((name) => (
