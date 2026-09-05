@@ -1,0 +1,24 @@
+{
+  "name": "Button",
+  "type": "component",
+  "registry": "nimbus",
+  "files": [
+    {
+      "path": "templates/Button.tsx",
+      "contentType": "text",
+      "target": "components/ui/button.tsx"
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "@nimbus-ds/components",
+      "version": "*"
+    },
+    {
+      "name": "@nimbus-ds/icons",
+      "version": "*"
+    }
+  ]
+}
+
+
