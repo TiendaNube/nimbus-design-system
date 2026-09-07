@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Box } from "@nimbus-ds/box";
 import { Text } from "@nimbus-ds/text";
@@ -6,7 +6,6 @@ import { Title } from "@nimbus-ds/title";
 import { Button } from "@nimbus-ds/button";
 
 import { CreatableCombobox } from "./CreatableCombobox";
-import type { ComboboxOption } from "./useSharedOptions";
 
 const STORAGE_KEY = "nimbus-prototype:creatable-combobox:options";
 
@@ -27,7 +26,13 @@ const meta: Meta<typeof CreatableCombobox> = {
 export default meta;
 type Story = StoryObj<typeof CreatableCombobox>;
 
-/** Internal working view — use the controls to explore props and states. */
+/**
+ * Internal working view — use the controls to explore props and states.
+ * Deliberately has no "Selected: …" readout: an earlier iteration had one
+ * here, and it read as the field's helper text changing on selection —
+ * exactly the thing `helperText` is supposed to never do. The selected
+ * value is already visible in the field itself.
+ */
 export const Playground: Story = {
   args: {
     placeholder: "Search or create a tag",
@@ -38,23 +43,9 @@ export const Playground: Story = {
     helperText: "Existing tags only — new ones need approval.",
   },
   render: (args) => {
-    const [selected, setSelected] = useState<ComboboxOption | null>(null);
-
     return (
       <Box display="flex" flexDirection="column" gap="4" width="320px">
-        <CreatableCombobox
-          {...args}
-          data-testid="playground-combobox"
-          onChange={setSelected}
-        />
-        {/* A debug readout for exploring the story, not the field's own
-            helper text (see the `helperText` control above) — kept
-            visually separate on purpose. */}
-        <Box padding="2" backgroundColor="neutral-surface" borderRadius="2">
-          <Text fontSize="caption" color="neutral-textLow">
-            Debug — selected: <strong>{selected ? selected.label : "None"}</strong>
-          </Text>
-        </Box>
+        <CreatableCombobox {...args} data-testid="playground-combobox" />
         <Button
           appearance="neutral"
           onClick={() => {
