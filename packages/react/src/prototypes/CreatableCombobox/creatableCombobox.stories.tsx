@@ -16,6 +16,7 @@ const meta: Meta<typeof CreatableCombobox> = {
   argTypes: {
     placeholder: { control: "text" },
     disabled: { control: "boolean" },
+    helperText: { control: "text" },
   },
   parameters: {
     layout: "padded",
@@ -31,6 +32,10 @@ export const Playground: Story = {
   args: {
     placeholder: "Search or create a tag",
     disabled: false,
+    // Deliberately unrelated to any selection — helperText is an
+    // independent, optional caption. Try changing it in the controls, then
+    // select or create a tag: it stays exactly as you left it.
+    helperText: "Existing tags only — new ones need approval.",
   },
   render: (args) => {
     const [selected, setSelected] = useState<ComboboxOption | null>(null);
@@ -42,9 +47,12 @@ export const Playground: Story = {
           data-testid="playground-combobox"
           onChange={setSelected}
         />
+        {/* A debug readout for exploring the story, not the field's own
+            helper text (see the `helperText` control above) — kept
+            visually separate on purpose. */}
         <Box padding="2" backgroundColor="neutral-surface" borderRadius="2">
           <Text fontSize="caption" color="neutral-textLow">
-            Selected: <strong>{selected ? selected.label : "None"}</strong>
+            Debug — selected: <strong>{selected ? selected.label : "None"}</strong>
           </Text>
         </Box>
         <Button
@@ -76,9 +84,6 @@ export const FullScreen: Story = {
     controls: { disable: true },
   },
   render: () => {
-    const [first, setFirst] = useState<ComboboxOption | null>(null);
-    const [second, setSecond] = useState<ComboboxOption | null>(null);
-
     return (
       <Box padding="8" display="flex" flexDirection="column" gap="8">
         <Box display="flex" flexDirection="column" gap="2">
@@ -86,7 +91,9 @@ export const FullScreen: Story = {
           <Text color="neutral-textLow">
             Type to filter existing tags. If nothing matches, choose
             &quot;Create&quot; to add and select a brand-new one. Once a tag
-            is selected, use the × button to clear it and search again.
+            is selected, use the × button to clear it and search again. The
+            selected value shows in the field itself — the caption below
+            each field is independent helper text, not an echo of it.
           </Text>
         </Box>
 
@@ -95,11 +102,8 @@ export const FullScreen: Story = {
           <CreatableCombobox
             data-testid="field-a"
             placeholder="Search or create a tag"
-            onChange={setFirst}
+            helperText="Existing tags are shared with Field B."
           />
-          <Text fontSize="caption" color="neutral-textLow">
-            Selected: {first ? first.label : "None"}
-          </Text>
         </Box>
 
         <Box display="flex" flexDirection="column" gap="2" width="360px">
@@ -107,11 +111,8 @@ export const FullScreen: Story = {
           <CreatableCombobox
             data-testid="field-b"
             placeholder="Search or create a tag"
-            onChange={setSecond}
+            helperText="A tag created here appears in Field A too."
           />
-          <Text fontSize="caption" color="neutral-textLow">
-            Selected: {second ? second.label : "None"}
-          </Text>
         </Box>
 
         <Text fontSize="caption" color="neutral-textLow">

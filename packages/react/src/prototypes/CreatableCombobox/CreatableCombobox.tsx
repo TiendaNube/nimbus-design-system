@@ -57,6 +57,13 @@ export interface CreatableComboboxProps {
   id?: string;
   /** Namespaces the mocked shared store — see the "Two independent fields" story. */
   "data-testid"?: string;
+  /**
+   * Optional caption shown below the field. Entirely independent of the
+   * current selection — this never auto-fills with it, and is free to hold
+   * any other guidance (e.g. an instruction or an error message). Omit to
+   * show nothing.
+   */
+  helperText?: React.ReactNode;
 }
 
 /**
@@ -77,6 +84,7 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
       onChange,
       id,
       "data-testid": dataTestId,
+      helperText,
     },
     ref
   ) => {
@@ -161,164 +169,182 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
     );
 
     return (
-      <Popover
-        visible={open && !disabled}
-        onVisibility={(visible) => setOpen(visible && !disabled)}
-        enabledClick={false}
-        matchReferenceWidth
-        arrow={false}
-        padding="none"
-        overflow="hidden"
-        offset={4}
-        content={
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              width: "100%",
-              boxSizing: "border-box",
-              padding: 4,
-              gap: 4,
-              maxHeight: 220,
-              overflowY: "auto",
-            }}
-          >
-            {filteredOptions.length === 0 && !canCreate && (
-              <Box padding="2">
-                <Text fontSize="caption" color="neutral-textLow">
-                  No matching tags
-                </Text>
-              </Box>
-            )}
-            {/* The create affordance comes first, styled as a link/action
-                (not a plain option) — matching the Figma proposal, where
-                typing an unmatched query surfaces "Crear '…'" ahead of any
-                remaining filtered matches. */}
-            {canCreate && (
-              <Box
-                as="button"
-                type="button"
-                data-testid={dataTestId ? `${dataTestId}-create` : undefined}
-                onClick={handleCreate}
-                onMouseEnter={() => setCreateHovered(true)}
-                onMouseLeave={() => setCreateHovered(false)}
-                display="flex"
-                alignItems="center"
-                gap="2"
-                width="100%"
-                boxSizing="border-box"
-                padding="2"
-                borderRadius="2"
-                borderWidth="none"
-                cursor="pointer"
-                textAlign="left"
-                // Create hovers with the PRIMARY treatment — it's an
-                // action/link, not an existing option. An explicit rest
-                // value (matching the popover's own background) is
-                // required here too: leaving it `undefined` drops Box's
-                // background class entirely and the browser's native
-                // unstyled-`<button>` grey shows through instead.
-                backgroundColor={
-                  createHovered ? "primary-surface" : "neutral-background"
-                }
-              >
-                <Icon source={<PlusCircleIcon />} color="primary-interactive" />
-                <Text color="primary-interactive">{`Create "${inputValue.trim()}"`}</Text>
-              </Box>
-            )}
-            {filteredOptions.map((option) => (
-              <Box
-                as="button"
-                type="button"
-                key={option.value}
-                data-testid={
-                  dataTestId ? `${dataTestId}-option-${option.value}` : undefined
-                }
-                onClick={() => commitSelection(option)}
-                onMouseEnter={() => setHoveredOptionValue(option.value)}
-                onMouseLeave={() => setHoveredOptionValue(null)}
-                display="flex"
-                alignItems="center"
-                gap="2"
-                width="100%"
-                boxSizing="border-box"
-                padding="2"
-                borderRadius="2"
-                borderWidth="none"
-                cursor="pointer"
-                textAlign="left"
-                // Existing options hover with the NEUTRAL treatment (see the
-                // comment on the Create row above for why the rest value
-                // can't be left `undefined`).
-                backgroundColor={
-                  hoveredOptionValue === option.value
-                    ? "neutral-surface"
-                    : "neutral-background"
-                }
-              >
-                <Text color="neutral-textHigh">{option.label}</Text>
-              </Box>
-            ))}
-          </div>
-        }
-      >
-        <Box ref={ref} display="flex" alignItems="center" gap="1" width="100%">
-          <div style={{ flex: "1 1 auto", minWidth: 0 }}>
-            <div className={inputStyles.classnames.appearance.neutral}>
-              <input
-                ref={inputRef}
-                id={id}
-                data-testid={dataTestId}
-                className={inputStyles.classnames.input}
-                value={inputValue}
-                placeholder={placeholder}
-                disabled={disabled}
-                role="combobox"
-                aria-expanded={open}
-                aria-haspopup="listbox"
-                onFocus={() => !disabled && setOpen(true)}
-                onChange={(event) => {
-                  setInputValue(event.target.value);
-                  if (selected) setSelected(null);
-                  setOpen(true);
-                }}
-                onKeyDown={handleKeyDown}
-              />
-              {/* One trailing affordance that swaps role with selection
-                  state, matching the Figma proposal: a closed field shows a
-                  chevron (click focuses/opens it); once a value is selected
-                  or created, the same slot becomes the × that clears it. */}
-              {selected && !disabled ? (
-                <button
-                  type="button"
-                  aria-label="Clear selection"
-                  data-testid={dataTestId ? `${dataTestId}-clear` : undefined}
-                  onClick={handleClear}
-                  className={[
-                    inputStyles.classnames.container__icon,
-                    inputStyles.classnames.container__icon_append.end,
-                  ].join(" ")}
-                >
-                  <Icon source={<CloseIcon />} color="neutral-textLow" />
-                </button>
-              ) : (
-                <button
-                  type="button"
-                  tabIndex={-1}
-                  aria-hidden="true"
-                  onClick={() => inputRef.current?.focus()}
-                  className={[
-                    inputStyles.classnames.container__icon,
-                    inputStyles.classnames.container__icon_append.end,
-                  ].join(" ")}
-                >
-                  <Icon source={<ChevronDownIcon />} color="neutral-textLow" />
-                </button>
+      <Box ref={ref} display="flex" flexDirection="column" gap="1" width="100%">
+        <Popover
+          visible={open && !disabled}
+          onVisibility={(visible) => setOpen(visible && !disabled)}
+          enabledClick={false}
+          matchReferenceWidth
+          arrow={false}
+          padding="none"
+          overflow="hidden"
+          offset={4}
+          content={
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                width: "100%",
+                boxSizing: "border-box",
+                padding: 4,
+                gap: 4,
+                maxHeight: 220,
+                overflowY: "auto",
+              }}
+            >
+              {filteredOptions.length === 0 && !canCreate && (
+                <Box padding="2">
+                  <Text fontSize="caption" color="neutral-textLow">
+                    No matching tags
+                  </Text>
+                </Box>
               )}
+              {/* The create affordance comes first, styled as a link/action
+                  (not a plain option) — matching the Figma proposal, where
+                  typing an unmatched query surfaces "Crear '…'" ahead of any
+                  remaining filtered matches. */}
+              {canCreate && (
+                <Box
+                  as="button"
+                  type="button"
+                  data-testid={dataTestId ? `${dataTestId}-create` : undefined}
+                  onClick={handleCreate}
+                  onMouseEnter={() => setCreateHovered(true)}
+                  onMouseLeave={() => setCreateHovered(false)}
+                  display="flex"
+                  alignItems="center"
+                  gap="2"
+                  width="100%"
+                  boxSizing="border-box"
+                  padding="2"
+                  borderRadius="2"
+                  borderWidth="none"
+                  cursor="pointer"
+                  textAlign="left"
+                  // Create hovers with the PRIMARY treatment — it's an
+                  // action/link, not an existing option. An explicit rest
+                  // value (matching the popover's own background) is
+                  // required here too: leaving it `undefined` drops Box's
+                  // background class entirely and the browser's native
+                  // unstyled-`<button>` grey shows through instead.
+                  backgroundColor={
+                    createHovered ? "primary-surface" : "neutral-background"
+                  }
+                >
+                  <Icon
+                    source={<PlusCircleIcon />}
+                    color="primary-interactive"
+                  />
+                  <Text color="primary-interactive">{`Create "${inputValue.trim()}"`}</Text>
+                </Box>
+              )}
+              {filteredOptions.map((option) => (
+                <Box
+                  as="button"
+                  type="button"
+                  key={option.value}
+                  data-testid={
+                    dataTestId
+                      ? `${dataTestId}-option-${option.value}`
+                      : undefined
+                  }
+                  onClick={() => commitSelection(option)}
+                  onMouseEnter={() => setHoveredOptionValue(option.value)}
+                  onMouseLeave={() => setHoveredOptionValue(null)}
+                  display="flex"
+                  alignItems="center"
+                  gap="2"
+                  width="100%"
+                  boxSizing="border-box"
+                  padding="2"
+                  borderRadius="2"
+                  borderWidth="none"
+                  cursor="pointer"
+                  textAlign="left"
+                  // Existing options hover with the NEUTRAL treatment (see
+                  // the comment on the Create row above for why the rest
+                  // value can't be left `undefined`).
+                  backgroundColor={
+                    hoveredOptionValue === option.value
+                      ? "neutral-surface"
+                      : "neutral-background"
+                  }
+                >
+                  <Text color="neutral-textHigh">{option.label}</Text>
+                </Box>
+              ))}
             </div>
-          </div>
-        </Box>
-      </Popover>
+          }
+        >
+          <Box display="flex" alignItems="center" gap="1" width="100%">
+            <div style={{ flex: "1 1 auto", minWidth: 0 }}>
+              <div className={inputStyles.classnames.appearance.neutral}>
+                <input
+                  ref={inputRef}
+                  id={id}
+                  data-testid={dataTestId}
+                  className={inputStyles.classnames.input}
+                  value={inputValue}
+                  placeholder={placeholder}
+                  disabled={disabled}
+                  role="combobox"
+                  aria-expanded={open}
+                  aria-haspopup="listbox"
+                  onFocus={() => !disabled && setOpen(true)}
+                  onChange={(event) => {
+                    setInputValue(event.target.value);
+                    if (selected) setSelected(null);
+                    setOpen(true);
+                  }}
+                  onKeyDown={handleKeyDown}
+                />
+                {/* One trailing affordance that swaps role with selection
+                    state, matching the Figma proposal: a closed field shows
+                    a chevron (click focuses/opens it); once a value is
+                    selected or created, the same slot becomes the × that
+                    clears it. */}
+                {selected && !disabled ? (
+                  <button
+                    type="button"
+                    aria-label="Clear selection"
+                    data-testid={dataTestId ? `${dataTestId}-clear` : undefined}
+                    onClick={handleClear}
+                    className={[
+                      inputStyles.classnames.container__icon,
+                      inputStyles.classnames.container__icon_append.end,
+                    ].join(" ")}
+                  >
+                    <Icon source={<CloseIcon />} color="neutral-textLow" />
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    tabIndex={-1}
+                    aria-hidden="true"
+                    onClick={() => inputRef.current?.focus()}
+                    className={[
+                      inputStyles.classnames.container__icon,
+                      inputStyles.classnames.container__icon_append.end,
+                    ].join(" ")}
+                  >
+                    <Icon source={<ChevronDownIcon />} color="neutral-textLow" />
+                  </button>
+                )}
+              </div>
+            </div>
+          </Box>
+        </Popover>
+        {/* Independent of `selected` on purpose — see the prop doc above
+            and the pull request: an earlier iteration echoed the current
+            selection here, which the design review flagged since a field's
+            helper text should be free-standing, optional caption content,
+            not a mirror of the value already visible in the input. */}
+        {helperText && (
+          <Text fontSize="caption" color="neutral-textLow">
+            {helperText}
+          </Text>
+        )}
+      </Box>
     );
   }
 );
