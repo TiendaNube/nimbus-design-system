@@ -1,10 +1,19 @@
 name: "generate-documentation"
 
-on: workflow_dispatch
+# Runs on manual dispatch inside nimbus-design-system, and is also callable
+# as a reusable workflow — publish.yml chains into it directly instead of
+# dispatching it by workflow ID over the API with a PAT.
+on:
+  workflow_dispatch:
+  workflow_call:
 
 jobs:
   generate-documents:
     runs-on: ubuntu-latest
+    # Needed for create-pull-request to push the docs branch and open the PR.
+    permissions:
+      contents: write
+      pull-requests: write
     env:
       TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
       TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
@@ -23,22 +32,16 @@ jobs:
       - name: Generate documents
         run: yarn build:docs
 
-      - name: Branch protection OFF
-        run: |
-          curl --request PUT \
-          --url 'https://api.github.com/repos/tiendanube/nimbus-design-system/branches/master/protection' \
-          --header 'Authorization: token ${{ secrets.PAT_CHANGE_BRANCH_PROTECTION_RULES_FROM_USER_NIMBUS }}' \
-          --data '{"enforce_admins":false,"required_pull_request_reviews":null,"required_status_checks":null,"required_conversation_resolution":false,"restrictions":null,"required_linear_history":false}'
-
-      - name: Commit documents
-        uses: stefanzweifel/git-auto-commit-action@v4
+      - name: Create documentation PR
+        uses: peter-evans/create-pull-request@v7
         with:
-          commit_message: "chore: updated documentation for components and subcomponents"
-
-      - name: Branch protection ON
-        run: |
-          curl --request PUT \
-          --url 'https://api.github.com/repos/tiendanube/nimbus-design-system/branches/master/protection' \
-          --header 'Authorization: token ${{ secrets.PAT_CHANGE_BRANCH_PROTECTION_RULES_FROM_USER_NIMBUS }}' \
-          --header 'Accept: application/vnd.github.luke-cage-preview+json' \
-          --data '{"enforce_admins":true,"required_pull_request_reviews":{"dismiss_stale_reviews":true,"require_code_owner_reviews":true,"required_approving_review_count":1},"required_conversation_resolution":true,"required_status_checks":null,"restrictions":null,"required_linear_history":true}'
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore: updated documentation for components and subcomponents [skip ci]"
+          title: "chore: update component documentation"
+          body: |
+            Automated documentation update — regenerates component and subcomponent docs.
+          add-paths: |
+            **/*.docs.json
+          branch: docs/update-${{ github.run_id }}
+          base: master
+          delete-branch: true

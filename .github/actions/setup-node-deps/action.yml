@@ -11,13 +11,13 @@ runs:
   using: "composite"
   steps:
     - name: Set Node version
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610 # v3.9.1
       with:
         node-version-file: ".nvmrc"
 
     - name: Cache yarn & dependencies
       if: inputs.cache-mode == 'node-modules'
-      uses: actions/cache@v3
+      uses: actions/cache@f4b3439a656ba812b8cb417d2d49f9c810103092 # v3.4.0
       id: yarn-cache
       with:
         path: |
@@ -34,7 +34,7 @@ runs:
 
     - name: Cache Yarn packages
       if: inputs.cache-mode == 'yarn-cache'
-      uses: actions/cache@v4
+      uses: actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809 # v4.2.4
       id: yarn-package-cache
       with:
         path: .yarn/cache

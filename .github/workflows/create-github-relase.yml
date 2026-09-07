@@ -1,6 +1,10 @@
 name: "create-github-relase"
 
-on: workflow_dispatch
+# Runs on manual dispatch inside nimbus-design-system, and is also callable
+# as a reusable workflow from other Nimbus repos (nimbus-patterns).
+on:
+  workflow_dispatch:
+  workflow_call:
 
 jobs:
   create-github-relase:
