@@ -47,6 +47,10 @@ export interface StoryTarget {
   title: string;
   docsId: string | null;
   storyId: string | null;
+  prototype?: {
+    playgroundStoryId: string | null;
+    fullScreenStoryId: string | null;
+  };
 }
 
 /**
@@ -58,6 +62,8 @@ export interface StoryTarget {
 export interface PreviewLinksConfig {
   /** Every published component lives in its own directory under this root. */
   componentRootPattern: RegExp;
+  /** Optional tree containing disposable prototypes rendered by Storybook. */
+  prototypeRootPattern?: RegExp;
   /**
    * Style definitions living in their own package, in a capture group naming
    * the component. Files matching this are mapped back to their component by
@@ -101,6 +107,22 @@ const pickStoryId = (stories: StoryCandidate[]): string | null =>
     (a, b) => primaryStoryRank(a.name) - primaryStoryRank(b.name)
   )[0]?.id ?? null;
 
+const normalizeStoryName = (name: string): string =>
+  name.toLowerCase().replace(/[^a-z0-9]/g, "");
+
+const findStoryId = (
+  stories: StoryCandidate[],
+  wantedName: string
+): string | null => {
+  const normalizedWantedName = normalizeStoryName(wantedName);
+
+  return (
+    stories.find(
+      ({ name }) => normalizeStoryName(name) === normalizedWantedName
+    )?.id ?? null
+  );
+};
+
 const normalizePath = (importPath: string): string =>
   importPath.replace(/^\.\//, "");
 
@@ -119,17 +141,37 @@ const byDepthThenName = (a: string, b: string): number =>
  * every one of these is either interpolated into the comment or compared:
  * `importPath` reaches `.replace`, `title` reaches `.localeCompare`.
  */
-const isUsableEntry = (entry: StorybookIndexEntry): boolean =>
-  typeof entry?.importPath === "string" &&
-  typeof entry?.title === "string" &&
-  typeof entry?.id === "string";
+const isRecord = (value: unknown): value is Record<string, unknown> =>
+  typeof value === "object" && value !== null && !Array.isArray(value);
+
+const isUsableEntry = (entry: unknown): entry is StorybookIndexEntry =>
+  isRecord(entry) &&
+  typeof entry.importPath === "string" &&
+  typeof entry.title === "string" &&
+  typeof entry.id === "string" &&
+  typeof entry.name === "string" &&
+  typeof entry.type === "string";
+
+export const parseStorybookIndex = (value: unknown): StorybookIndex | null => {
+  if (!isRecord(value) || !isRecord(value.entries)) return null;
+
+  return {
+    entries: Object.fromEntries(
+      Object.entries(value.entries).filter(
+        (entry): entry is [string, StorybookIndexEntry] =>
+          isUsableEntry(entry[1])
+      )
+    ),
+  };
+};
 
 /**
  * Groups the flat Storybook index by the stories file each entry came from,
  * keeping the docs page and the story worth linking to.
  */
 const groupByStoriesFile = (
-  index: StorybookIndex
+  index: StorybookIndex,
+  config: PreviewLinksConfig
 ): Map<string, StoryTarget> => {
   const drafts = new Map<string, StoryTargetDraft>();
 
@@ -154,14 +196,24 @@ const groupByStoriesFile = (
   }
 
   return new Map(
-    [...drafts].map(([storiesFile, draft]) => [
-      storiesFile,
-      {
-        title: draft.title,
-        docsId: draft.docsId,
-        storyId: pickStoryId(draft.stories),
-      },
-    ])
+    [...drafts].map(([storiesFile, draft]) => {
+      const prototype = config.prototypeRootPattern?.test(storiesFile)
+        ? {
+            playgroundStoryId: findStoryId(draft.stories, "Playground"),
+            fullScreenStoryId: findStoryId(draft.stories, "Full screen"),
+          }
+        : null;
+
+      return [
+        storiesFile,
+        {
+          title: draft.title,
+          docsId: draft.docsId,
+          storyId: pickStoryId(draft.stories),
+          ...(prototype ? { prototype } : {}),
+        },
+      ] as const;
+    })
   );
 };
 
@@ -211,6 +263,7 @@ const resolveStoriesFile = (
 
   const componentRoot =
     config.componentRootPattern.exec(changedFile)?.[0] ??
+    config.prototypeRootPattern?.exec(changedFile)?.[0] ??
     resolveStyledComponentRoot(changedFile, storiesFiles, config);
   if (!componentRoot) return null;
 
@@ -238,7 +291,7 @@ export const resolveStoryTargets = (
   index: StorybookIndex,
   config: PreviewLinksConfig
 ): StoryTarget[] => {
-  const targetsByStoriesFile = groupByStoriesFile(index);
+  const targetsByStoriesFile = groupByStoriesFile(index, config);
   const storiesFiles = [...targetsByStoriesFile.keys()];
   const resolved = new Map<string, StoryTarget>();
 
@@ -256,12 +309,28 @@ export const resolveStoryTargets = (
 };
 
 export const previewUrl = (baseUrl: string, target: StoryTarget): string => {
-  const storyPath = target.docsId
+  const storyPath = target.prototype?.playgroundStoryId
+    ? `/story/${target.prototype.playgroundStoryId}`
+    : target.docsId
     ? `/docs/${target.docsId}`
     : `/story/${target.storyId}`;
   const separator = baseUrl.includes("?") ? "&" : "?";
 
   return `${baseUrl}${separator}path=${storyPath}`;
+};
+
+export const fullScreenPreviewUrl = (
+  baseUrl: string,
+  target: StoryTarget
+): string | null => {
+  const storyId = target.prototype?.fullScreenStoryId;
+  if (!storyId) return null;
+
+  const url = new URL("iframe.html", baseUrl);
+  url.searchParams.set("id", storyId);
+  url.searchParams.set("viewMode", "story");
+
+  return url.toString();
 };
 
 /**
@@ -292,6 +361,7 @@ export interface PreviewDecision {
  */
 const buildDecisionDetails = (
   decision: PreviewDecision,
+  visibleTargetCount: number,
   linkableCount: number
 ): string[] => {
   const lines = [
@@ -318,10 +388,17 @@ const buildDecisionDetails = (
           "picking the stories file closest to each changed file — so a " +
           "change under a sub-component lands on the sub-component's page, " +
           "not on its parent's."
-      : "**No link per component** because no changed file resolved to a " +
-          "story in this build's index — either nothing under the " +
-          "component tree changed, or the matching story is missing from " +
-          "`index.json`. The root link is the whole preview."
+      : visibleTargetCount > 0
+      ? "**The warnings above** identify prototype targets whose required " +
+        "`Playground` or `Full screen` stories are missing from this build. " +
+        "The root link is still available."
+      : decision.matched.length > 0
+      ? "**No link per component** because none of the files that triggered " +
+        "this build resolved to a component or prototype story. The root " +
+        "link is the whole preview."
+      : "**No link per component** because the changed files could not be " +
+        "mapped to a story in this build's index. The root link is the whole " +
+        "preview."
   );
   lines.push("", "</details>");
 
@@ -335,15 +412,44 @@ export const buildCommentBody = (
 ): string => {
   const lines = [COMMENT_MARKER, "🚀✨ Your Storybook preview is ready!", ""];
 
-  const linkable = targets.filter((target) => target.docsId ?? target.storyId);
+  const visibleTargets = targets.filter(
+    (target) => target.prototype || target.docsId || target.storyId
+  );
+  const linkableCount = targets.filter((target) =>
+    target.prototype
+      ? target.prototype.playgroundStoryId || target.prototype.fullScreenStoryId
+      : target.docsId || target.storyId
+  ).length;
 
-  if (linkable.length > 0) {
+  if (visibleTargets.length > 0) {
     lines.push("Jump straight to what this pull request touches:", "");
-    for (const target of linkable.slice(0, MAX_LINKS)) {
-      lines.push(`- 🔗 [${target.title}](${previewUrl(baseUrl, target)})`);
+    for (const target of visibleTargets.slice(0, MAX_LINKS)) {
+      if (!target.prototype) {
+        lines.push(`- 🔗 [${target.title}](${previewUrl(baseUrl, target)})`);
+        continue;
+      }
+
+      if (target.prototype.playgroundStoryId) {
+        lines.push(
+          `- 🔗 [${target.title} — Playground](${previewUrl(baseUrl, target)})`
+        );
+      } else {
+        lines.push(
+          `- ⚠️ ${target.title} is missing its required \`Playground\` story.`
+        );
+      }
+
+      const fullScreenUrl = fullScreenPreviewUrl(baseUrl, target);
+      if (fullScreenUrl) {
+        lines.push(`- 🖥️ [${target.title} — Full screen](${fullScreenUrl})`);
+      } else {
+        lines.push(
+          `- ⚠️ ${target.title} is missing its required \`Full screen\` story.`
+        );
+      }
     }
-    if (linkable.length > MAX_LINKS) {
-      lines.push(`- …and ${linkable.length - MAX_LINKS} more`);
+    if (visibleTargets.length > MAX_LINKS) {
+      lines.push(`- …and ${visibleTargets.length - MAX_LINKS} more`);
     }
     lines.push("");
   }
@@ -351,7 +457,10 @@ export const buildCommentBody = (
   lines.push(`🔗 [View Storybook](${baseUrl}) — full preview`, "");
 
   if (decision) {
-    lines.push(...buildDecisionDetails(decision, linkable.length), "");
+    lines.push(
+      ...buildDecisionDetails(decision, visibleTargets.length, linkableCount),
+      ""
+    );
   }
 
   lines.push("Happy reviewing! 🎉");
@@ -404,7 +513,13 @@ const readIndex = (indexPath: string): StorybookIndex | null => {
   }
 
   try {
-    return JSON.parse(fs.readFileSync(indexPath, "utf8")) as StorybookIndex;
+    const parsed: unknown = JSON.parse(fs.readFileSync(indexPath, "utf8"));
+    const index = parseStorybookIndex(parsed);
+    if (!index) {
+      throw new Error("expected an object with an entries object");
+    }
+
+    return index;
   } catch (error) {
     console.error(
       `\x1b[33m Storybook index at ${indexPath} is unreadable, linking the preview root only: ${

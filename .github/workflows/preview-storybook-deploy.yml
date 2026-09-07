@@ -28,6 +28,13 @@ on:
         required: false
         type: boolean
         default: false
+      build-mode:
+        description: >-
+          Storybook scope to build. "prototype" includes only the caller's
+          prototype stories; "full" preserves the standard build.
+        required: false
+        type: string
+        default: full
       changed-files:
         description: >-
           Newline-separated list of every file the pull request touches, as
@@ -82,20 +89,53 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
 
       - uses: ./.github/actions/setup-node-deps
+        with:
+          cache-mode: yarn-cache
 
       - name: Run build tokens
         if: inputs.build-tokens-icons
         run: yarn build:tokens
 
-      - name: Run build icons
+      - name: Restore built icons
         if: inputs.build-tokens-icons
+        id: icons-cache
+        uses: actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809 # v4.2.4
+        with:
+          path: packages/icons/dist
+          key: >-
+            ${{ runner.os }}-icons-${{
+              hashFiles(
+                'packages/icons/src/**',
+                'packages/icons/package.json',
+                'packages/icons/svgo.config.js',
+                'packages/icons/tsconfig.json',
+                'packages/icons/webpack.config.ts',
+                'packages/core/webpack/src/**',
+                'yarn.lock'
+              )
+            }}
+
+      - name: Run build icons
+        if: >-
+          inputs.build-tokens-icons &&
+          steps.icons-cache.outputs.cache-hit != 'true'
         run: yarn build:icons
 
       - name: Build Storybook
-        run: yarn build:storybook
+        env:
+          PREVIEW_BUILD_MODE: ${{ inputs.build-mode }}
+        run: |
+          if [ "$PREVIEW_BUILD_MODE" = "prototype" ]; then
+            STORYBOOK_PROTOTYPE_ONLY=true \
+              yarn exec storybook build --test -o .build-storybook
+          else
+            yarn build:storybook
+          fi
 
       - name: Compute preview links
         env:
@@ -113,7 +153,7 @@ jobs:
           cat "$RUNNER_TEMP/preview-comment.md"
 
       - name: 🔐 Configure AWS credentials using OIDC
-        uses: aws-actions/configure-aws-credentials@v4
+        uses: aws-actions/configure-aws-credentials@7474bc4690e29a8392af63c5b98e7449536d5c3a # v4.3.1
         with:
           role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/${{ secrets.AWS_DEPLOY_ROLE }}
           aws-region: us-west-2

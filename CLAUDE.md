@@ -25,10 +25,11 @@ Read these when you touch the matching files, **before** editing:
 Read these when the **task** matches, regardless of which files are open (they have no
 globs — the trigger is what you are doing):
 
-| Rule file           | Read it when                                                                                                                                                                       |
-| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `components.mdc`    | Creating or modifying a React component                                                                                                                                            |
-| `icon-creation.mdc` | Creating, renaming, editing or deleting **any** SVG icon. Mandatory: icons live only in `packages/icons/src/assets`, and the flow includes updating `packages/icons/CHANGELOG.md`. |
+| Rule file                                  | Read it when                                                                                                                                                                       |
+| ------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `components.mdc`                           | Creating or modifying a React component                                                                                                                                            |
+| `icon-creation.mdc`                        | Creating, renaming, editing or deleting **any** SVG icon. Mandatory: icons live only in `packages/icons/src/assets`, and the flow includes updating `packages/icons/CHANGELOG.md`. |
+| `.claude/skills/nimbus-prototype/SKILL.md` | Creating, iterating, handing off, or closing a disposable Playground prototype.                                                                                                    |
 
 Process docs: `docs/CONTRIBUTING.md`, `docs/BUILD_PROCESS.md`, `docs/RELEASE_PROCESS.md`.
 

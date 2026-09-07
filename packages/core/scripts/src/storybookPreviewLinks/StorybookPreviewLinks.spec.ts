@@ -6,6 +6,8 @@ import type {
 import {
   COMMENT_MARKER,
   buildCommentBody,
+  fullScreenPreviewUrl,
+  parseStorybookIndex,
   previewUrl,
   resolveStoryTargets,
 } from "./StorybookPreviewLinks";
@@ -16,6 +18,7 @@ const BASE_URL = "https://preview.example.com/components/pull/42/index.html";
  * exercises the styles-package mapping that nimbus-patterns' config omits. */
 const config: PreviewLinksConfig = {
   componentRootPattern: /^packages\/react\/src\/(?:atomic|composite)\/[^/]+/,
+  prototypeRootPattern: /^packages\/react\/src\/prototypes\/[^/]+/,
   stylesComponentPattern:
     /^packages\/core\/styles\/src\/packages\/(?:atomic|composite)\/([^/]+)/,
 };
@@ -101,6 +104,54 @@ const manyStoriesIndex: StorybookIndex = {
   },
 };
 
+const PROTOTYPE_STORIES_PATH =
+  "./packages/react/src/prototypes/Checkout/checkout.stories.tsx";
+
+const prototypeIndex: StorybookIndex = {
+  entries: {
+    "prototypes-checkout--docs": {
+      id: "prototypes-checkout--docs",
+      title: "Prototypes/Checkout",
+      name: "Docs",
+      importPath: PROTOTYPE_STORIES_PATH,
+      type: "docs",
+    },
+    "prototypes-checkout--playground": storyEntry(
+      "prototypes-checkout--playground",
+      "Playground",
+      PROTOTYPE_STORIES_PATH,
+      "Prototypes/Checkout"
+    ),
+    "prototypes-checkout--full-screen": storyEntry(
+      "prototypes-checkout--full-screen",
+      "Full Screen",
+      PROTOTYPE_STORIES_PATH,
+      "Prototypes/Checkout"
+    ),
+  },
+};
+
+describe("parseStorybookIndex", () => {
+  it("rejects roots and entries that are not objects", () => {
+    expect(parseStorybookIndex(null)).toBeNull();
+    expect(parseStorybookIndex([])).toBeNull();
+    expect(parseStorybookIndex({ entries: [] })).toBeNull();
+  });
+
+  it("narrows valid entries and discards malformed ones", () => {
+    const parsed = parseStorybookIndex({
+      entries: {
+        valid: index.entries["atomic-input--docs"],
+        malformed: { id: "malformed", title: 7 },
+      },
+    });
+
+    expect(parsed).toEqual({
+      entries: { valid: index.entries["atomic-input--docs"] },
+    });
+  });
+});
+
 describe("resolveStoryTargets", () => {
   it("links the docs page of the component that owns the changed file", () => {
     const targets = resolveStoryTargets(
@@ -156,6 +207,26 @@ describe("resolveStoryTargets", () => {
     ]);
   });
 
+  it("resolves a changed prototype and its two required stories", () => {
+    const targets = resolveStoryTargets(
+      ["packages/react/src/prototypes/Checkout/Checkout.tsx"],
+      prototypeIndex,
+      config
+    );
+
+    expect(targets).toEqual([
+      {
+        title: "Prototypes/Checkout",
+        docsId: "prototypes-checkout--docs",
+        storyId: "prototypes-checkout--playground",
+        prototype: {
+          playgroundStoryId: "prototypes-checkout--playground",
+          fullScreenStoryId: "prototypes-checkout--full-screen",
+        },
+      },
+    ]);
+  });
+
   it("reports each touched component once", () => {
     const targets = resolveStoryTargets(
       [
@@ -174,6 +245,28 @@ describe("resolveStoryTargets", () => {
     const targets = resolveStoryTargets(
       ["packages/core/styles/src/packages/atomic/input/nimbus-input.css.ts"],
       index,
+      config
+    );
+
+    expect(targets.map(({ title }) => title)).toEqual(["Atomic/Input"]);
+  });
+
+  it("does not map a style change to a same-named prototype", () => {
+    const sameNamedPrototype: StorybookIndex = {
+      entries: {
+        ...index.entries,
+        "prototypes-input--playground": storyEntry(
+          "prototypes-input--playground",
+          "Playground",
+          "./packages/react/src/prototypes/Input/input.stories.tsx",
+          "Prototypes/Input"
+        ),
+      },
+    };
+
+    const targets = resolveStoryTargets(
+      ["packages/core/styles/src/packages/atomic/input/nimbus-input.css.ts"],
+      sameNamedPrototype,
       config
     );
 
@@ -353,6 +446,32 @@ describe("previewUrl", () => {
       `${BASE_URL}?path=/story/atomic-divider--horizontal`
     );
   });
+
+  it("points a prototype at Playground even when it has a docs page", () => {
+    const [target] = resolveStoryTargets(
+      ["packages/react/src/prototypes/Checkout/Checkout.tsx"],
+      prototypeIndex,
+      config
+    );
+
+    expect(previewUrl(BASE_URL, target)).toBe(
+      `${BASE_URL}?path=/story/prototypes-checkout--playground`
+    );
+  });
+});
+
+describe("fullScreenPreviewUrl", () => {
+  it("points directly at the prototype Full screen story", () => {
+    const [target] = resolveStoryTargets(
+      ["packages/react/src/prototypes/Checkout/Checkout.tsx"],
+      prototypeIndex,
+      config
+    );
+
+    expect(fullScreenPreviewUrl(BASE_URL, target)).toBe(
+      "https://preview.example.com/components/pull/42/iframe.html?id=prototypes-checkout--full-screen&viewMode=story"
+    );
+  });
 });
 
 describe("buildCommentBody", () => {
@@ -374,6 +493,50 @@ describe("buildCommentBody", () => {
     expect(body).toContain(
       `- 🔗 [Atomic/Input/Input.Password](${BASE_URL}?path=/docs/atomic-input-input-password--docs)`
     );
+  });
+
+  it("lists Playground and Full screen links for a prototype", () => {
+    const targets = resolveStoryTargets(
+      ["packages/react/src/prototypes/Checkout/Checkout.tsx"],
+      prototypeIndex,
+      config
+    );
+
+    const body = buildCommentBody(BASE_URL, targets);
+
+    expect(body).toContain(
+      `- 🔗 [Prototypes/Checkout — Playground](${BASE_URL}?path=/story/prototypes-checkout--playground)`
+    );
+    expect(body).toContain(
+      "- 🖥️ [Prototypes/Checkout — Full screen](https://preview.example.com/components/pull/42/iframe.html?id=prototypes-checkout--full-screen&viewMode=story)"
+    );
+  });
+
+  it("warns when a prototype is missing either required story", () => {
+    const incompleteIndex: StorybookIndex = {
+      entries: {
+        "prototypes-checkout--custom": storyEntry(
+          "prototypes-checkout--custom",
+          "Custom",
+          PROTOTYPE_STORIES_PATH,
+          "Prototypes/Checkout"
+        ),
+      },
+    };
+    const targets = resolveStoryTargets(
+      ["packages/react/src/prototypes/Checkout/Checkout.tsx"],
+      incompleteIndex,
+      config
+    );
+
+    const body = buildCommentBody(BASE_URL, targets, {
+      trigger: "build-inputs",
+      matched: ["packages/react/src/prototypes/Checkout/Checkout.tsx"],
+    });
+
+    expect(body).toContain("missing its required `Playground` story");
+    expect(body).toContain("missing its required `Full screen` story");
+    expect(body).toContain("**The warnings above**");
   });
 
   it("always keeps a link to the preview root", () => {
@@ -455,6 +618,16 @@ describe("buildCommentBody", () => {
     });
 
     expect(body).toContain("**No link per component**");
+    expect(body).toContain("none of the files that triggered this build");
+  });
+
+  it("states when changed files could not be mapped", () => {
+    const body = buildCommentBody(BASE_URL, [], {
+      trigger: "label",
+      matched: [],
+    });
+
+    expect(body).toContain("changed files could not be mapped");
   });
 
   it("explains where the per-component links come from", () => {

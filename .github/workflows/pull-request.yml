@@ -2,6 +2,10 @@ name: check-quality
 
 on: [pull_request]
 
+permissions:
+  contents: read
+  pull-requests: read
+
 jobs:
   pipeline-quality:
     runs-on: ubuntu-latest
@@ -18,7 +22,7 @@ jobs:
           sudo mkswap /swapfile
           sudo swapon /swapfile
           sudo swapon --show
-          
+
       - name: Checkout
         uses: actions/checkout@v3
 
@@ -29,16 +33,43 @@ jobs:
 
       - name: Build icons
         run: yarn build:icons
-      
+
       - name: Build components
         run: |
           export NODE_OPTIONS="--max_old_space_size=12288"
           yarn build:components
 
       - name: Build packages
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          REPO: ${{ github.repository }}
         run: |
           export NODE_OPTIONS="--max_old_space_size=12288"
-          yarn build:packages
+          if [[ "${GITHUB_HEAD_REF}" != prototype/* ]]; then
+            yarn build:packages
+            exit 0
+          fi
+
+          if ! changed_files=$(gh api --paginate \
+            "repos/$REPO/pulls/$PR_NUMBER/files" --jq '.[].filename'); then
+            echo "Could not inspect the pull-request diff; building packages to fail open."
+            yarn build:packages
+            exit 0
+          fi
+
+          production_files=$(printf '%s\n' "$changed_files" \
+            | grep -E '^packages/' \
+            | grep -vE '^packages/react/src/prototypes/' || true)
+          release_files=$(printf '%s\n' "$changed_files" \
+            | grep -E '^\.yarn/versions/[^/]+\.ya?ml$' || true)
+
+          if [ -n "$production_files" ] || [ -n "$release_files" ]; then
+            echo "Prototype pull request changes production packages or release declarations; building packages."
+            yarn build:packages
+          else
+            echo "Prototype-only pull request; skipping package builds."
+          fi
 
       - name: Build docs
         run: yarn build:docs

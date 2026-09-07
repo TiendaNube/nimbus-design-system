@@ -69,11 +69,16 @@ const config: Config.InitialOptions = {
     "^.+\\.css\\.ts$": "babel-jest",
     ".+\\.(ts|tsx)$": "ts-jest",
   },
+  testPathIgnorePatterns: [
+    "/node_modules/",
+    "<rootDir>/packages/react/src/prototypes/",
+  ],
   coveragePathIgnorePatterns: [
     "dist",
     ".scripts",
     "packages/helper",
     "packages/core/typings",
+    "packages/react/src/prototypes",
   ],
   clearMocks: true,
 };

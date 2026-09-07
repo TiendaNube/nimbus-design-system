@@ -11,6 +11,7 @@ import { runPreviewLinksCli } from "@nimbus-ds/scripts/src";
  */
 runPreviewLinksCli({
   componentRootPattern: /^packages\/react\/src\/(?:atomic|composite)\/[^/]+/,
+  prototypeRootPattern: /^packages\/react\/src\/prototypes\/[^/]+/,
   stylesComponentPattern:
     /^packages\/core\/styles\/src\/packages\/(?:atomic|composite)\/([^/]+)/,
 });

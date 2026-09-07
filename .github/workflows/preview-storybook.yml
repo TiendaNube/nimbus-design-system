@@ -29,6 +29,7 @@ jobs:
     outputs:
       should_build: ${{ steps.preview_scope.outputs.should_build }}
       trigger: ${{ steps.preview_scope.outputs.trigger }}
+      build_mode: ${{ steps.preview_scope.outputs.build_mode }}
       changed_files: ${{ steps.preview_scope.outputs.changed_files }}
       matched_files: ${{ steps.preview_scope.outputs.matched_files }}
 
@@ -100,6 +101,7 @@ jobs:
             : > "$RUNNER_TEMP/matched-files.txt"
             echo "should_build=true" >> "$GITHUB_OUTPUT"
             echo "trigger=unavailable-diff" >> "$GITHUB_OUTPUT"
+            echo "build_mode=full" >> "$GITHUB_OUTPUT"
             emit_file_lists
             exit 0
           fi
@@ -109,6 +111,7 @@ jobs:
             : > "$RUNNER_TEMP/matched-files.txt"
             echo "should_build=true" >> "$GITHUB_OUTPUT"
             echo "trigger=label" >> "$GITHUB_OUTPUT"
+            echo "build_mode=full" >> "$GITHUB_OUTPUT"
             emit_file_lists
             exit 0
           fi
@@ -125,6 +128,15 @@ jobs:
             echo "trigger=build-inputs" >> "$GITHUB_OUTPUT"
             echo "Building because these files feed the Storybook bundle:"
             cat "$RUNNER_TEMP/matched-files.txt"
+
+            if grep -qvE '^packages/react/src/prototypes/' \
+              "$RUNNER_TEMP/matched-files.txt"; then
+              echo "build_mode=full" >> "$GITHUB_OUTPUT"
+              echo "Using the full Storybook build because the diff reaches beyond prototypes."
+            else
+              echo "build_mode=prototype" >> "$GITHUB_OUTPUT"
+              echo "Using the focused prototype Storybook build."
+            fi
           else
             echo "should_build=false" >> "$GITHUB_OUTPUT"
             {
@@ -154,6 +166,7 @@ jobs:
     with:
       s3-prefix: components
       build-tokens-icons: true
+      build-mode: ${{ needs.gate.outputs.build_mode }}
       changed-files: ${{ needs.gate.outputs.changed_files }}
       matched-files: ${{ needs.gate.outputs.matched_files }}
       preview-trigger: ${{ needs.gate.outputs.trigger }}
