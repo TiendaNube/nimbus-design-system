@@ -15,19 +15,35 @@ const meta: Meta<typeof Select> = {
 export default meta;
 type Story = StoryObj<typeof Select>;
 
+const basicOptions = (
+  <>
+    <Select.Option label="Option 1" value="Option 1" />
+    <Select.Option label="Option 2" value="Option 2" />
+    <Select.Option label="Option 3" value="Option 3" />
+  </>
+);
+
 export const basic: Story = {
   args: {
     name: "Name",
     id: "Id",
     appearance: "neutral",
     disabled: false,
-    children: (
-      <>
-        <Select.Option label="Option 1" value="Option 1" />
-        <Select.Option label="Option 2" value="Option 2" />
-        <Select.Option label="Option 3" value="Option 3" />
-      </>
-    ),
+    children: basicOptions,
+  },
+};
+
+export const medium: Story = {
+  args: {
+    ...basic.args,
+    size: "medium",
+  },
+};
+
+export const small: Story = {
+  args: {
+    ...basic.args,
+    size: "small",
   },
 };
 
