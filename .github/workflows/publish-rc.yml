@@ -22,6 +22,10 @@ on:
           - minor
           - major
 
+# The publishing job only needs repository read access from GITHUB_TOKEN.
+permissions:
+  contents: read
+
 jobs:
   publish-rc-packages:
     runs-on: ubuntu-latest
@@ -120,10 +124,13 @@ jobs:
     needs: publish-rc-packages
     if: always()
     runs-on: ubuntu-latest
+    # The reporting job needs write access to post the publication result on a PR.
     permissions:
       contents: read
       pull-requests: write
     env:
+      GH_REPO: ${{ github.repository }}
+      GH_TOKEN: ${{ github.token }}
       PUBLISHED_PACKAGES: ${{ needs.publish-rc-packages.outputs.published_packages }}
     steps:
       - name: Add publication summary
@@ -142,16 +149,13 @@ jobs:
 
       - name: Find associated pull request
         id: pull-request
-        env:
-          GH_TOKEN: ${{ github.token }}
         run: |
-          pull_request_number=$(gh pr list --head "$GITHUB_REF_NAME" --state open --json number --jq '.[0].number')
+          pull_request_number=$(gh pr list --head "$GITHUB_REF_NAME" --state open --json number --jq '.[0].number // empty')
           echo "number=$pull_request_number" >> "$GITHUB_OUTPUT"
 
       - name: Comment on associated pull request
         if: steps.pull-request.outputs.number != '' && env.PUBLISHED_PACKAGES != ''
         env:
-          GH_TOKEN: ${{ github.token }}
           PULL_REQUEST_NUMBER: ${{ steps.pull-request.outputs.number }}
         run: |
           comment_file="$RUNNER_TEMP/rc-publication-comment.md"
