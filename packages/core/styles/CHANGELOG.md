@@ -6,7 +6,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 #### 🐛 Bug fixes
 
-- Adds `-webkit-font-smoothing: antialiased` and `-moz-osx-font-smoothing: grayscale` globally, so Geist renders at the same visual weight in the browser as it does in Figma on macOS. ([#PLACEHOLDER](PLACEHOLDER_PR_URL) by [@PLACEHOLDER](PLACEHOLDER_AUTHOR_URL))
+- Adds `-webkit-font-smoothing: antialiased` and `-moz-osx-font-smoothing: grayscale` globally, so Geist renders at the same visual weight in the browser as it does in Figma on macOS. ([#556](https://github.com/TiendaNube/nimbus-design-system/pull/556) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
 
 ## 2026-08-12 `9.68.0`
 
