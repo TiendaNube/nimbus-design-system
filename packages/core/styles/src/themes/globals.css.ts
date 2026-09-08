@@ -1,5 +1,5 @@
 import tokens from "@nimbus-ds/tokens/dist/js/tokens";
-import { createGlobalTheme } from "@vanilla-extract/css";
+import { createGlobalTheme, globalStyle } from "@vanilla-extract/css";
 import { vars } from "./contract.css";
 
 const colors = tokens.color.light;
@@ -213,5 +213,12 @@ export const globalTheme = {
 };
 
 createGlobalTheme(":root", vars, globalTheme);
+
+// Matches Figma's text rendering on macOS: without this, WebKit/Blink/Gecko
+// rasterize the same Geist weight visibly heavier than the design tool does.
+globalStyle("html", {
+  WebkitFontSmoothing: "antialiased",
+  MozOsxFontSmoothing: "grayscale",
+});
 
 export const varsThemeBase = vars;
