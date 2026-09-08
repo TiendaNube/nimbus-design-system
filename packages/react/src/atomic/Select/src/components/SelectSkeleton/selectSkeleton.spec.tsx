@@ -17,7 +17,7 @@ describe("GIVEN <Select.Skeleton />", () => {
         /--width__\w{0,9}: 15rem;/
       );
       expect(skeleton.getAttribute("style")).toMatch(
-        /--height__\w{0,9}: 2.25rem;/
+        /--height__\w{0,9}: 2rem;/
       );
       expect(skeleton.getAttribute("style")).toMatch(
         /--borderRadius__\w{0,9}: 0.5rem;/
