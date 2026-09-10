@@ -106,6 +106,10 @@
       "import": "./dist/ProgressBar/index.js",
       "require": "./dist/ProgressBar/index.js"
     },
+    "./ProgressRing": {
+      "import": "./dist/ProgressRing/index.js",
+      "require": "./dist/ProgressRing/index.js"
+    },
     "./Radio": {
       "import": "./dist/Radio/index.js",
       "require": "./dist/Radio/index.js"
