@@ -19,6 +19,7 @@ const meta: Meta<typeof CreatableCombobox> = {
     allowCreate: { control: "boolean" },
     name: { control: "text" },
     required: { control: "boolean" },
+    multiple: { control: "boolean" },
   },
   parameters: {
     layout: "padded",
@@ -52,6 +53,7 @@ export const Playground: Story = {
     allowCreate: true,
     name: "",
     required: false,
+    multiple: false,
   },
   render: (args) => {
     return (
@@ -86,9 +88,10 @@ export const FullScreen: Story = {
     controls: { disable: true },
   },
   render: () => {
-    const [submitted, setSubmitted] = useState<Record<string, string> | null>(
-      null
-    );
+    const [submitted, setSubmitted] = useState<Record<
+      string,
+      string | string[]
+    > | null>(null);
 
     return (
       <Box padding="8" display="flex" flexDirection="column" gap="8">
@@ -120,10 +123,15 @@ export const FullScreen: Story = {
           onSubmit={(event: React.FormEvent<HTMLFormElement>) => {
             event.preventDefault();
             const data = new FormData(event.currentTarget);
-            setSubmitted(Object.fromEntries(data.entries()) as Record<
-              string,
-              string
-            >);
+            // tagsD (multiselect) contributes one entry per selected chip,
+            // all sharing the same `name` — getAll collects every value,
+            // where a plain entries() would silently keep only the last one.
+            const result: Record<string, string | string[]> = {};
+            for (const key of new Set(data.keys())) {
+              const values = data.getAll(key) as string[];
+              result[key] = values.length > 1 ? values : values[0];
+            }
+            setSubmitted(result);
           }}
         >
           <Box display="flex" flexDirection="column" gap="2" width="360px">
@@ -157,6 +165,17 @@ export const FullScreen: Story = {
               helperText="This field can't create new tags — allowCreate is false."
               allowCreate={false}
               name="tagC"
+            />
+          </Box>
+
+          <Box display="flex" flexDirection="column" gap="2" width="360px">
+            <Text fontWeight="bold">Field D (multiselect)</Text>
+            <CreatableCombobox
+              data-testid="field-d"
+              placeholder="Search or create tags"
+              helperText="Pick as many as you like — the list stays open, and Backspace on an empty query drops the last tag."
+              name="tagsD"
+              multiple
             />
           </Box>
 

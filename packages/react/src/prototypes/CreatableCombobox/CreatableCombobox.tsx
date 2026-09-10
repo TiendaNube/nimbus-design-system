@@ -11,40 +11,55 @@ import { Popover } from "@nimbus-ds/popover";
 import { Icon } from "@nimbus-ds/icon";
 import { Box } from "@nimbus-ds/box";
 import { Text } from "@nimbus-ds/text";
+import { Tag } from "@nimbus-ds/tag";
 import { input as inputStyles } from "@nimbus-ds/styles";
 
 import { useSharedOptions, type ComboboxOption } from "./useSharedOptions";
 
-// Not `Input` from `@nimbus-ds/input`: that component's own file statically
-// imports its `Input.Search` subcomponent, which in turn imports
-// `@nimbus-ds/icons` — and the Playground's prototype-only Storybook build
-// never runs `yarn build:icons` (see the `preview-storybook` workflow), so
-// that package has no resolvable build output at CI time, and the whole
-// bundle fails even though this prototype never renders `Input.Search`.
-// Using the same `input` vanilla-extract classnames `Input` itself is built
-// on (from `@nimbus-ds/styles`, which has no icon dependency) keeps the exact
-// visual result while side-stepping that transitive import.
+// Not `Input` from `@nimbus-ds/input`, and not `Chip` from `@nimbus-ds/chip`
+// for the chip-like multiselect tags below: both statically import from
+// `@nimbus-ds/icons` (`Input` via its `Input.Search` subcomponent; `Chip`
+// directly, for its own dismiss icon), and the Playground's prototype-only
+// Storybook build never runs `yarn build:icons` (see the `preview-storybook`
+// workflow), so that package has no resolvable build output at CI time —
+// the whole bundle fails even though this prototype never renders
+// `Input.Search` or asks `Chip` for anything icon-related.
+//
+// `Tag` (from `@nimbus-ds/tag`) has no such dependency — it's a plain
+// styled wrapper with no built-in dismiss affordance — so multiselect
+// tags below are built from `Tag` plus one of the inlined icons already
+// used elsewhere in this file, rather than `Chip`. Using the same `input`
+// vanilla-extract classnames `Input` itself is built on (also no icon
+// dependency) keeps the single-select field's exact visual result while
+// side-stepping the same transitive import.
 //
 // For the same reason, the icons below are inlined instead of imported from
 // `@nimbus-ds/icons` — these are the same paths as the design system's own
-// `close`, `chevron-down` and `plus-circle` icons, kept local to this
-// disposable prototype.
-const CloseIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+// `close`, `chevron-down`, `plus-circle` and `check` icons, kept local to
+// this disposable prototype. Each accepts the usual SVG props so a caller
+// can override size (e.g. a smaller dismiss icon inside a tag).
+const CloseIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" {...props}>
     <path d="m14.41 3.27-.82-.94L8 7.17 2.41 2.33l-.82.94L7.05 8l-5.46 4.73.82.94L8 8.83l5.59 4.84.82-.94L8.95 8z" />
   </svg>
 );
 
-const ChevronDownIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+const ChevronDownIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" {...props}>
     <path d="M8 10.18 2.39 4.52l-.89.87 5.59 5.71a1.18 1.18 0 0 0 .86.39 1.13 1.13 0 0 0 .85-.39l5.7-5.7-.88-.89z" />
   </svg>
 );
 
-const PlusCircleIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+const PlusCircleIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" {...props}>
     <path d="M8.64 4.33H7.39v3.05H4.34v1.25h3.05v3.05h1.25V8.63h3.05V7.38H8.64z" />
     <path d="M8 .5A7.77 7.77 0 0 0 0 8a7.77 7.77 0 0 0 8 7.5A7.77 7.77 0 0 0 16 8 7.77 7.77 0 0 0 8 .5m0 13.75A6.52 6.52 0 0 1 1.25 8 6.52 6.52 0 0 1 8 1.75 6.52 6.52 0 0 1 14.75 8 6.52 6.52 0 0 1 8 14.25" />
+  </svg>
+);
+
+const CheckIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" {...props}>
+    <path d="m15.12 2.23-9.79 9.78L.88 7.56 0 8.44l5.33 5.34L16 3.11z" />
   </svg>
 );
 
@@ -53,8 +68,22 @@ export interface CreatableComboboxProps {
   placeholder?: string;
   /** Disables the whole control. */
   disabled?: boolean;
-  /** Fired whenever the selection changes — including clearing (`null`). */
-  onChange?: (option: ComboboxOption | null) => void;
+  /**
+   * Fired whenever the selection changes. Single-select (`multiple` unset
+   * or `false`) fires with the option or `null` when cleared. Multiselect
+   * fires with the full current array (never `null` — an empty selection
+   * is `[]`), on every pick, create, or per-chip removal.
+   */
+  onChange?: (option: ComboboxOption | ComboboxOption[] | null) => void;
+  /**
+   * Enables multiselect: selections render as removable tags inside the
+   * field instead of filling the input, picking an option checks it
+   * in-place rather than replacing the field's value, and the popover
+   * stays open after each pick (single-select's own popover-closes-on-pick
+   * behavior is unchanged below).
+   * @default false
+   */
+  multiple?: boolean;
   /** An id, useful when a label needs to point at the input. */
   id?: string;
   /** Namespaces the mocked shared store — see the "Two independent fields" story. */
@@ -72,11 +101,12 @@ export interface CreatableComboboxProps {
    */
   allowCreate?: boolean;
   /**
-   * Name for the hidden native input this component keeps in sync with the
-   * current selection, so it participates in a surrounding form's
-   * `FormData` on submit. Single-select only for now — a multi-select
-   * equivalent (likely several hidden inputs, or a JSON-encoded one) is
-   * planned alongside the upcoming multiselect iteration, not here.
+   * Name for the hidden native input(s) this component keeps in sync with
+   * the current selection, so it participates in a surrounding form's
+   * `FormData` on submit. Single-select renders one hidden input holding
+   * the selected option's value; multiselect renders one per selected
+   * option, all sharing this `name` — the standard HTML way to get every
+   * value back from `FormData.getAll(name)`.
    */
   name?: string;
   /**
@@ -105,6 +135,7 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
       placeholder = "Search or create a tag",
       disabled = false,
       onChange,
+      multiple = false,
       id,
       "data-testid": dataTestId,
       helperText,
@@ -116,7 +147,11 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
   ) => {
     const { options, createOption } = useSharedOptions();
     const [inputValue, setInputValue] = useState("");
+    // Single-select's own selection — untouched by multiselect, and vice
+    // versa, so switching `multiple` on an existing field can't leave a
+    // stale value from the other mode's state around.
     const [selected, setSelected] = useState<ComboboxOption | null>(null);
+    const [selectedMulti, setSelectedMulti] = useState<ComboboxOption[]>([]);
     const [open, setOpen] = useState(false);
     const inputRef = useRef<HTMLInputElement>(null);
     // Row hover state, driven in JS rather than CSS `:hover` so each row's
@@ -179,37 +214,86 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
       return items;
     }, [canCreate, filteredOptions]);
 
-    const commitSelection = useCallback(
+    const isOptionSelected = useCallback(
+      (option: ComboboxOption) =>
+        multiple
+          ? selectedMulti.some((o) => o.value === option.value)
+          : selected?.value === option.value,
+      [multiple, selectedMulti, selected]
+    );
+
+    // Single-select: picking an option replaces the value, fills the
+    // input with its label, and closes the popover (unchanged from
+    // before this iteration). Multiselect: picking an option just checks
+    // or unchecks it in place — the popover stays open (this is the exact
+    // bug found in the existing `MultiSelect`, which closes after every
+    // pick) and the input keeps whatever the user typed, since the value
+    // now lives in the chips, not the input.
+    const selectOption = useCallback(
       (option: ComboboxOption) => {
-        setSelected(option);
-        setInputValue(option.label);
-        setOpen(false);
-        setActiveIndex(-1);
-        onChange?.(option);
+        if (!multiple) {
+          setSelected(option);
+          setInputValue(option.label);
+          setOpen(false);
+          setActiveIndex(-1);
+          onChange?.(option);
+          return;
+        }
+        const alreadySelected = selectedMulti.some(
+          (o) => o.value === option.value
+        );
+        const next = alreadySelected
+          ? selectedMulti.filter((o) => o.value !== option.value)
+          : [...selectedMulti, option];
+        setSelectedMulti(next);
+        onChange?.(next);
       },
-      [onChange]
+      [multiple, selectedMulti, onChange]
     );
 
     const handleCreate = useCallback(() => {
       if (!canCreate) return;
       const created = createOption(inputValue);
-      commitSelection(created);
-    }, [canCreate, createOption, inputValue, commitSelection]);
+      // "Creating = selecting", no extra confirmation step, in both modes.
+      // Multiselect always ADDS (never toggles off) — the option didn't
+      // exist a moment ago, so there's nothing to remove.
+      if (multiple) {
+        const next = [...selectedMulti, created];
+        setSelectedMulti(next);
+        onChange?.(next);
+        return;
+      }
+      setSelected(created);
+      setInputValue(created.label);
+      setOpen(false);
+      setActiveIndex(-1);
+      onChange?.(created);
+    }, [canCreate, createOption, inputValue, multiple, selectedMulti, onChange]);
 
     const activateNavItem = useCallback(
       (item: NavItem) => {
         if (item.type === "create") {
           handleCreate();
         } else {
-          commitSelection(item.option);
+          selectOption(item.option);
         }
       },
-      [handleCreate, commitSelection]
+      [handleCreate, selectOption]
+    );
+
+    const removeChip = useCallback(
+      (option: ComboboxOption) => {
+        const next = selectedMulti.filter((o) => o.value !== option.value);
+        setSelectedMulti(next);
+        onChange?.(next);
+      },
+      [selectedMulti, onChange]
     );
 
     // Matches the Figma proposal: clearing resets the field to empty AND
     // closed (not back to an open, empty-query list) — the user re-opens it
-    // explicitly by clicking or typing again.
+    // explicitly by clicking or typing again. Single-select only; a chip's
+    // own × (see `removeChip`) is multiselect's equivalent per-item.
     const handleClear = useCallback(
       (event?: React.SyntheticEvent) => {
         event?.stopPropagation();
@@ -282,11 +366,31 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
             if (active) activateNavItem(active);
             return;
           }
+          case "Backspace": {
+            // Multiselect only, and only once the query is already empty —
+            // otherwise this is just normal text editing.
+            if (!multiple || inputValue !== "" || selectedMulti.length === 0) {
+              return;
+            }
+            const next = selectedMulti.slice(0, -1);
+            setSelectedMulti(next);
+            onChange?.(next);
+            return;
+          }
           default:
             return;
         }
       },
-      [open, navItems, activeIndex, activateNavItem]
+      [
+        open,
+        navItems,
+        activeIndex,
+        activateNavItem,
+        multiple,
+        inputValue,
+        selectedMulti,
+        onChange,
+      ]
     );
 
     return (
@@ -336,6 +440,13 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                   role="option"
                   aria-selected={false}
                   data-testid={dataTestId ? `${dataTestId}-create` : undefined}
+                  // These rows are real `<button>`s (native click/Enter/Space
+                  // support), so a mouse click would otherwise move DOM focus
+                  // onto the row itself and off the input — breaking the
+                  // input's own onKeyDown (Backspace-removes-last-chip,
+                  // arrow nav) right after a pick. preventDefault on
+                  // mousedown stops that focus shift; the click still fires.
+                  onMouseDown={(event) => event.preventDefault()}
                   onClick={handleCreate}
                   onMouseEnter={() => setCreateHovered(true)}
                   onMouseLeave={() => setCreateHovered(false)}
@@ -375,6 +486,7 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                 const navIndex = (canCreate ? 1 : 0) + index;
                 const isActive = activeIndex === navIndex;
                 const isHovered = hoveredOptionValue === option.value;
+                const isChecked = isOptionSelected(option);
                 return (
                   <Box
                     as="button"
@@ -382,17 +494,22 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                     key={option.value}
                     id={getOptionId(navIndex)}
                     role="option"
-                    aria-selected={selected?.value === option.value}
+                    aria-selected={isChecked}
                     data-testid={
                       dataTestId
                         ? `${dataTestId}-option-${option.value}`
                         : undefined
                     }
-                    onClick={() => commitSelection(option)}
+                    // Same focus-preserving guard as the Create row above —
+                    // matters even more here, since multiselect keeps the
+                    // popover open across several picks in a row.
+                    onMouseDown={(event) => event.preventDefault()}
+                    onClick={() => selectOption(option)}
                     onMouseEnter={() => setHoveredOptionValue(option.value)}
                     onMouseLeave={() => setHoveredOptionValue(null)}
                     display="flex"
                     alignItems="center"
+                    justifyContent={multiple ? "space-between" : undefined}
                     gap="2"
                     width="100%"
                     boxSizing="border-box"
@@ -415,22 +532,93 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                     }
                   >
                     <Text color="neutral-textHigh">{option.label}</Text>
+                    {/* Multiselect only, per the design decision: a picked
+                        option gets a checkmark and STAYS in the list — it
+                        never disappears the way single-select's implicit
+                        "already the value" does. */}
+                    {multiple && isChecked && (
+                      <Icon source={<CheckIcon />} color="primary-interactive" />
+                    )}
                   </Box>
                 );
               })}
             </div>
           }
         >
-          <Box display="flex" alignItems="center" gap="1" width="100%">
+          <Box
+            display="flex"
+            alignItems={multiple ? "flex-start" : "center"}
+            gap="1"
+            width="100%"
+          >
             <div style={{ flex: "1 1 auto", minWidth: 0 }}>
-              <div className={inputStyles.classnames.appearance.neutral}>
+              <div
+                className={inputStyles.classnames.appearance.neutral}
+                style={
+                  multiple
+                    ? {
+                        flexWrap: "wrap",
+                        alignItems: "center",
+                        rowGap: 4,
+                        paddingBlock: 4,
+                      }
+                    : undefined
+                }
+              >
+                {/* Multiselect's picks render as removable tags INSIDE the
+                    field, ahead of the text input — built from `Tag`, not
+                    `Chip` (see the import comment up top for why), plus one
+                    of this file's own inlined icons for the dismiss ×. */}
+                {multiple &&
+                  selectedMulti.map((option) => (
+                    <Tag key={option.value} appearance="neutral">
+                      <Text
+                        fontSize="caption"
+                        color="neutral-textHigh"
+                        lineClamp={1}
+                      >
+                        {option.label}
+                      </Text>
+                      <button
+                        type="button"
+                        aria-label={`Remove ${option.label}`}
+                        data-testid={
+                          dataTestId
+                            ? `${dataTestId}-chip-remove-${option.value}`
+                            : undefined
+                        }
+                        onMouseDown={(event) => event.preventDefault()}
+                        onClick={(event) => {
+                          event.stopPropagation();
+                          removeChip(option);
+                        }}
+                        style={{
+                          all: "unset",
+                          display: "flex",
+                          cursor: "pointer",
+                        }}
+                      >
+                        <Icon
+                          source={<CloseIcon width={10} height={10} />}
+                          color="neutral-textLow"
+                        />
+                      </button>
+                    </Tag>
+                  ))}
                 <input
                   ref={inputRef}
                   id={id}
                   data-testid={dataTestId}
                   className={inputStyles.classnames.input}
+                  style={
+                    multiple
+                      ? { width: "auto", flex: "1 1 100px", minWidth: 60 }
+                      : undefined
+                  }
                   value={inputValue}
-                  placeholder={placeholder}
+                  placeholder={
+                    multiple && selectedMulti.length > 0 ? "" : placeholder
+                  }
                   disabled={disabled}
                   required={required}
                   role="combobox"
@@ -445,18 +633,20 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                   onFocus={() => !disabled && setOpen(true)}
                   onChange={(event) => {
                     setInputValue(event.target.value);
-                    if (selected) setSelected(null);
+                    if (!multiple && selected) setSelected(null);
                     setOpen(true);
                     setActiveIndex(-1);
                   }}
                   onKeyDown={handleKeyDown}
                 />
-                {/* One trailing affordance that swaps role with selection
-                    state, matching the Figma proposal: a closed field shows
-                    a chevron (click focuses/opens it); once a value is
-                    selected or created, the same slot becomes the × that
-                    clears it. */}
-                {selected && !disabled ? (
+                {/* Single-select: one trailing affordance that swaps role
+                    with selection state, matching the Figma proposal — a
+                    closed field shows a chevron (click focuses/opens it);
+                    once a value is selected or created, the same slot
+                    becomes the × that clears it. Multiselect clears
+                    per-chip instead (see above), so this slot is always
+                    just the decorative chevron there. */}
+                {!multiple && selected && !disabled ? (
                   <button
                     type="button"
                     aria-label="Clear selection"
@@ -487,13 +677,24 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
             </div>
           </Box>
         </Popover>
-        {/* Keeps this field visible to a native <form>: not rendered when
-            there's no `name`, since an unnamed hidden input contributes
-            nothing to FormData and would just be dead weight. Single-select
-            only — see the `name` prop doc for the multiselect plan. */}
-        {name && (
-          <input type="hidden" name={name} value={selected?.value ?? ""} />
-        )}
+        {/* Keeps this field visible to a native <form>: nothing renders
+            when there's no `name` (an unnamed hidden input contributes
+            nothing to FormData). Multiselect renders one hidden input per
+            selected option, all sharing `name` — `FormData.getAll(name)`
+            is the standard way to read every value back on submit. */}
+        {name &&
+          (multiple ? (
+            selectedMulti.map((option) => (
+              <input
+                key={option.value}
+                type="hidden"
+                name={name}
+                value={option.value}
+              />
+            ))
+          ) : (
+            <input type="hidden" name={name} value={selected?.value ?? ""} />
+          ))}
         {/* Independent of `selected` on purpose — see the prop doc above
             and the pull request: an earlier iteration echoed the current
             selection here, which the design review flagged since a field's
