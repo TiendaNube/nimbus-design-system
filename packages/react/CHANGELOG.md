@@ -25,6 +25,12 @@ every day, with simplicity, accessibility, consistency and performance.
 
 - Text: Fixes `color="success-interactive"`, which resolved to the `success-textLow` token since [#110](https://github.com/TiendaNube/nimbus-design-system/pull/110). ([#496](https://github.com/TiendaNube/nimbus-design-system/pull/496) by [@lichademarchi](https://github.com/lichademarchi))
 
+## 2026-08-07 `5.60.1`
+
+#### 🐛 Bug fixes
+
+- `Input.Password` / `Input.Search`: Fixed the Storybook Controls table showing no props by giving both components an explicit, statically resolvable prop type. ([#488](https://github.com/TiendaNube/nimbus-design-system/pull/488) by [@claude[bot]](https://github.com/apps/claude))
+
 ## 2026-05-04 `5.59.0`
 
 #### 🎉 New features
