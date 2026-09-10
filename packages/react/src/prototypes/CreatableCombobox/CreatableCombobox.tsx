@@ -2,9 +2,11 @@ import React, {
   forwardRef,
   useCallback,
   useEffect,
+  useMemo,
   useRef,
   useState,
 } from "react";
+import { useId } from "@floating-ui/react";
 import { Popover } from "@nimbus-ds/popover";
 import { Icon } from "@nimbus-ds/icon";
 import { Box } from "@nimbus-ds/box";
@@ -64,6 +66,27 @@ export interface CreatableComboboxProps {
    * show nothing.
    */
   helperText?: React.ReactNode;
+  /**
+   * Whether typing an unmatched query offers a "Create '…'" affordance.
+   * @default true
+   */
+  allowCreate?: boolean;
+  /**
+   * Name for the hidden native input this component keeps in sync with the
+   * current selection, so it participates in a surrounding form's
+   * `FormData` on submit. Single-select only for now — a multi-select
+   * equivalent (likely several hidden inputs, or a JSON-encoded one) is
+   * planned alongside the upcoming multiselect iteration, not here.
+   */
+  name?: string;
+  /**
+   * Marks the field as required for native browser form validation.
+   * Applied to the visible text input (not the hidden one): a `type="hidden"`
+   * input is exempt from constraint validation per the HTML spec, so the
+   * visible field carries `required` instead — it reports empty/non-empty
+   * exactly when the hidden field would.
+   */
+  required?: boolean;
 }
 
 /**
@@ -85,6 +108,9 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
       id,
       "data-testid": dataTestId,
       helperText,
+      allowCreate = true,
+      name,
+      required = false,
     },
     ref
   ) => {
@@ -100,6 +126,17 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
       string | null
     >(null);
     const [createHovered, setCreateHovered] = useState(false);
+    // Keyboard-driven "active" descendant, per the WAI-ARIA 1.2 combobox
+    // pattern — deliberately a separate track from hover above: the two
+    // must stay visually distinct (see the row rendering below) since a
+    // mouse can hover one row while the keyboard has activated another.
+    // -1 means "nothing active yet".
+    const [activeIndex, setActiveIndex] = useState(-1);
+
+    const generatedId = useId();
+    const baseId = id ?? generatedId;
+    const listboxId = `${baseId}-listbox`;
+    const getOptionId = (navIndex: number) => `${baseId}-option-${navIndex}`;
 
     // Keep the visible text in sync if another instance renames/creates the
     // exact option this field has selected (mocked shared store).
@@ -111,6 +148,8 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
       }
     }, [options, selected, inputValue]);
 
+    // Filtering is label-only, on purpose — no metadata/description search
+    // yet. Keep it this way until that's explicitly scoped in.
     const query = inputValue.trim().toLowerCase();
     const filteredOptions = query
       ? options.filter((option) => option.label.toLowerCase().includes(query))
@@ -118,13 +157,34 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
     const hasExactMatch = options.some(
       (option) => option.label.toLowerCase() === query
     );
-    const canCreate = query.length > 0 && !hasExactMatch;
+    // `allowCreate={false}` hides the affordance outright, regardless of
+    // query — the client decides whether creating new options is on the
+    // table at all, not just this field's current input.
+    const canCreate = allowCreate && query.length > 0 && !hasExactMatch;
+
+    // The single list the keyboard (and `aria-activedescendant`) navigates,
+    // in the same order they're rendered: Create first (when present), then
+    // the filtered options. Recomputed on every render from the same
+    // `filteredOptions`/`canCreate` the popover content below renders from,
+    // so the two can never disagree about what item N is.
+    type NavItem =
+      | { type: "create" }
+      | { type: "option"; option: ComboboxOption };
+    const navItems: NavItem[] = useMemo(() => {
+      const items: NavItem[] = [];
+      if (canCreate) items.push({ type: "create" });
+      for (const option of filteredOptions) {
+        items.push({ type: "option", option });
+      }
+      return items;
+    }, [canCreate, filteredOptions]);
 
     const commitSelection = useCallback(
       (option: ComboboxOption) => {
         setSelected(option);
         setInputValue(option.label);
         setOpen(false);
+        setActiveIndex(-1);
         onChange?.(option);
       },
       [onChange]
@@ -136,6 +196,17 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
       commitSelection(created);
     }, [canCreate, createOption, inputValue, commitSelection]);
 
+    const activateNavItem = useCallback(
+      (item: NavItem) => {
+        if (item.type === "create") {
+          handleCreate();
+        } else {
+          commitSelection(item.option);
+        }
+      },
+      [handleCreate, commitSelection]
+    );
+
     // Matches the Figma proposal: clearing resets the field to empty AND
     // closed (not back to an open, empty-query list) — the user re-opens it
     // explicitly by clicking or typing again.
@@ -145,27 +216,77 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
         setSelected(null);
         setInputValue("");
         setOpen(false);
+        setActiveIndex(-1);
         onChange?.(null);
       },
       [onChange]
     );
 
+    // WAI-ARIA 1.2 combobox authoring practice: arrow keys move a roving
+    // `aria-activedescendant` rather than moving focus, Enter activates
+    // whatever is currently active (never "just the first match" — that was
+    // last iteration's shortcut, and broke as soon as the active item
+    // wasn't index 0), Escape closes, Home/End jump to the ends.
     const handleKeyDown = useCallback(
       (event: React.KeyboardEvent<HTMLInputElement>) => {
-        if (event.key === "Escape") {
-          setOpen(false);
-          return;
-        }
-        if (event.key === "Enter") {
-          event.preventDefault();
-          if (filteredOptions[0]) {
-            commitSelection(filteredOptions[0]);
-          } else if (canCreate) {
-            handleCreate();
+        switch (event.key) {
+          case "Escape": {
+            setOpen(false);
+            setActiveIndex(-1);
+            return;
           }
+          case "ArrowDown": {
+            event.preventDefault();
+            if (!open) {
+              setOpen(true);
+              setActiveIndex(navItems.length ? 0 : -1);
+              return;
+            }
+            setActiveIndex((current) => {
+              if (navItems.length === 0) return -1;
+              if (current === -1) return 0;
+              return Math.min(current + 1, navItems.length - 1);
+            });
+            return;
+          }
+          case "ArrowUp": {
+            event.preventDefault();
+            if (!open) {
+              setOpen(true);
+              setActiveIndex(navItems.length ? navItems.length - 1 : -1);
+              return;
+            }
+            setActiveIndex((current) => {
+              if (navItems.length === 0) return -1;
+              if (current === -1) return navItems.length - 1;
+              return Math.max(current - 1, 0);
+            });
+            return;
+          }
+          case "Home": {
+            if (!open || navItems.length === 0) return;
+            event.preventDefault();
+            setActiveIndex(0);
+            return;
+          }
+          case "End": {
+            if (!open || navItems.length === 0) return;
+            event.preventDefault();
+            setActiveIndex(navItems.length - 1);
+            return;
+          }
+          case "Enter": {
+            event.preventDefault();
+            if (!open) return;
+            const active = navItems[activeIndex];
+            if (active) activateNavItem(active);
+            return;
+          }
+          default:
+            return;
         }
       },
-      [filteredOptions, canCreate, commitSelection, handleCreate]
+      [open, navItems, activeIndex, activateNavItem]
     );
 
     return (
@@ -181,6 +302,8 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
           offset={4}
           content={
             <div
+              role="listbox"
+              id={listboxId}
               style={{
                 display: "flex",
                 flexDirection: "column",
@@ -202,11 +325,16 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
               {/* The create affordance comes first, styled as a link/action
                   (not a plain option) — matching the Figma proposal, where
                   typing an unmatched query surfaces "Crear '…'" ahead of any
-                  remaining filtered matches. */}
+                  remaining filtered matches. It's still part of the same
+                  roving-focus listbox as the options below (nav index 0),
+                  just visually distinct. */}
               {canCreate && (
                 <Box
                   as="button"
                   type="button"
+                  id={getOptionId(0)}
+                  role="option"
+                  aria-selected={false}
                   data-testid={dataTestId ? `${dataTestId}-create` : undefined}
                   onClick={handleCreate}
                   onMouseEnter={() => setCreateHovered(true)}
@@ -221,14 +349,19 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                   borderWidth="none"
                   cursor="pointer"
                   textAlign="left"
-                  // Create hovers with the PRIMARY treatment — it's an
-                  // action/link, not an existing option. An explicit rest
+                  // Create hovers with the PRIMARY treatment (mouse), and
+                  // gets the PRIMARY highlight tint — one shade stronger —
+                  // when it's the keyboard-active item. An explicit rest
                   // value (matching the popover's own background) is
                   // required here too: leaving it `undefined` drops Box's
                   // background class entirely and the browser's native
                   // unstyled-`<button>` grey shows through instead.
                   backgroundColor={
-                    createHovered ? "primary-surface" : "neutral-background"
+                    activeIndex === 0
+                      ? "primary-surfaceHighlight"
+                      : createHovered
+                        ? "primary-surface"
+                        : "neutral-background"
                   }
                 >
                   <Icon
@@ -238,41 +371,53 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                   <Text color="primary-interactive">{`Create "${inputValue.trim()}"`}</Text>
                 </Box>
               )}
-              {filteredOptions.map((option) => (
-                <Box
-                  as="button"
-                  type="button"
-                  key={option.value}
-                  data-testid={
-                    dataTestId
-                      ? `${dataTestId}-option-${option.value}`
-                      : undefined
-                  }
-                  onClick={() => commitSelection(option)}
-                  onMouseEnter={() => setHoveredOptionValue(option.value)}
-                  onMouseLeave={() => setHoveredOptionValue(null)}
-                  display="flex"
-                  alignItems="center"
-                  gap="2"
-                  width="100%"
-                  boxSizing="border-box"
-                  padding="2"
-                  borderRadius="2"
-                  borderWidth="none"
-                  cursor="pointer"
-                  textAlign="left"
-                  // Existing options hover with the NEUTRAL treatment (see
-                  // the comment on the Create row above for why the rest
-                  // value can't be left `undefined`).
-                  backgroundColor={
-                    hoveredOptionValue === option.value
-                      ? "neutral-surface"
-                      : "neutral-background"
-                  }
-                >
-                  <Text color="neutral-textHigh">{option.label}</Text>
-                </Box>
-              ))}
+              {filteredOptions.map((option, index) => {
+                const navIndex = (canCreate ? 1 : 0) + index;
+                const isActive = activeIndex === navIndex;
+                const isHovered = hoveredOptionValue === option.value;
+                return (
+                  <Box
+                    as="button"
+                    type="button"
+                    key={option.value}
+                    id={getOptionId(navIndex)}
+                    role="option"
+                    aria-selected={selected?.value === option.value}
+                    data-testid={
+                      dataTestId
+                        ? `${dataTestId}-option-${option.value}`
+                        : undefined
+                    }
+                    onClick={() => commitSelection(option)}
+                    onMouseEnter={() => setHoveredOptionValue(option.value)}
+                    onMouseLeave={() => setHoveredOptionValue(null)}
+                    display="flex"
+                    alignItems="center"
+                    gap="2"
+                    width="100%"
+                    boxSizing="border-box"
+                    padding="2"
+                    borderRadius="2"
+                    borderWidth="none"
+                    cursor="pointer"
+                    textAlign="left"
+                    // Existing options hover with the NEUTRAL treatment
+                    // (mouse), and get the NEUTRAL highlight tint — one
+                    // shade stronger — when active via keyboard. See the
+                    // comment on the Create row above for why the rest
+                    // value can't be left `undefined`.
+                    backgroundColor={
+                      isActive
+                        ? "neutral-surfaceHighlight"
+                        : isHovered
+                          ? "neutral-surface"
+                          : "neutral-background"
+                    }
+                  >
+                    <Text color="neutral-textHigh">{option.label}</Text>
+                  </Box>
+                );
+              })}
             </div>
           }
         >
@@ -287,14 +432,22 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                   value={inputValue}
                   placeholder={placeholder}
                   disabled={disabled}
+                  required={required}
                   role="combobox"
                   aria-expanded={open}
                   aria-haspopup="listbox"
+                  aria-controls={listboxId}
+                  aria-activedescendant={
+                    open && activeIndex >= 0
+                      ? getOptionId(activeIndex)
+                      : undefined
+                  }
                   onFocus={() => !disabled && setOpen(true)}
                   onChange={(event) => {
                     setInputValue(event.target.value);
                     if (selected) setSelected(null);
                     setOpen(true);
+                    setActiveIndex(-1);
                   }}
                   onKeyDown={handleKeyDown}
                 />
@@ -334,6 +487,13 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
             </div>
           </Box>
         </Popover>
+        {/* Keeps this field visible to a native <form>: not rendered when
+            there's no `name`, since an unnamed hidden input contributes
+            nothing to FormData and would just be dead weight. Single-select
+            only — see the `name` prop doc for the multiselect plan. */}
+        {name && (
+          <input type="hidden" name={name} value={selected?.value ?? ""} />
+        )}
         {/* Independent of `selected` on purpose — see the prop doc above
             and the pull request: an earlier iteration echoed the current
             selection here, which the design review flagged since a field's
