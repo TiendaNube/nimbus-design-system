@@ -11,27 +11,31 @@ import { Popover } from "@nimbus-ds/popover";
 import { Icon } from "@nimbus-ds/icon";
 import { Box } from "@nimbus-ds/box";
 import { Text } from "@nimbus-ds/text";
-import { Tag } from "@nimbus-ds/tag";
-import { input as inputStyles } from "@nimbus-ds/styles";
+import { input as inputStyles, chip } from "@nimbus-ds/styles";
 
 import { useSharedOptions, type ComboboxOption } from "./useSharedOptions";
 
 // Not `Input` from `@nimbus-ds/input`, and not `Chip` from `@nimbus-ds/chip`
-// for the chip-like multiselect tags below: both statically import from
+// for the removable selections below: both statically import from
 // `@nimbus-ds/icons` (`Input` via its `Input.Search` subcomponent; `Chip`
 // directly, for its own dismiss icon), and the Playground's prototype-only
 // Storybook build never runs `yarn build:icons` (see the `preview-storybook`
 // workflow), so that package has no resolvable build output at CI time —
 // the whole bundle fails even though this prototype never renders
-// `Input.Search` or asks `Chip` for anything icon-related.
+// `Input.Search` or asks `Chip` for anything icon-related. This was
+// re-verified directly rather than assumed: temporarily rendering the real
+// `Chip` here reproduces the exact same failure Input's `Search` variant
+// did — `Module not found: Can't resolve '@nimbus-ds/icons' in
+// '.../atomic/Chip/src'`.
 //
-// `Tag` (from `@nimbus-ds/tag`) has no such dependency — it's a plain
-// styled wrapper with no built-in dismiss affordance — so multiselect
-// tags below are built from `Tag` plus one of the inlined icons already
-// used elsewhere in this file, rather than `Chip`. Using the same `input`
-// vanilla-extract classnames `Input` itself is built on (also no icon
-// dependency) keeps the single-select field's exact visual result while
-// side-stepping the same transitive import.
+// The fix is the same one used for the field itself: `@nimbus-ds/styles`
+// exports the *vanilla-extract classnames* `Chip`/`Input` are themselves
+// built from (`chip`/`input`), with zero icon dependency, since they're
+// pure CSS. The removable "chip" markup below is Chip.tsx's own JSX
+// structure (`chip.classnames.base` + `chip.classnames.chip_close_icon_container`,
+// same `Text`/`Icon` props) copied over verbatim, just swapping the real
+// `CloseIcon` import for one of this file's own inlined icons — so it is
+// pixel-for-pixel the real removable Chip, without importing the component.
 //
 // For the same reason, the icons below are inlined instead of imported from
 // `@nimbus-ds/icons` — these are the same paths as the design system's own
@@ -261,6 +265,16 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
         const next = [...selectedMulti, created];
         setSelectedMulti(next);
         onChange?.(next);
+        // Unlike picking an *existing* option in multiselect (which
+        // deliberately leaves the popover open for more picks), creating
+        // clears the query and closes it — same as single-select's own
+        // create-and-close below. Leaving the just-typed text sitting next
+        // to the brand-new chip, with the popover still open and now also
+        // showing that same option — freshly created — as a checked match
+        // for its own leftover query, read as a confusing near-duplicate.
+        setInputValue("");
+        setOpen(false);
+        setActiveIndex(-1);
         return;
       }
       setSelected(created);
@@ -553,7 +567,24 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
           >
             <div style={{ flex: "1 1 auto", minWidth: 0 }}>
               <div
-                className={inputStyles.classnames.appearance.neutral}
+                // Single-select's left inset comes from `classnames.input`'s
+                // own padding, since the `<input>` is the container's only
+                // child there. Multiselect puts chips ahead of it as
+                // siblings in the same flex row, and the container itself
+                // carries no padding of its own — so without this, the
+                // first chip sits flush against the border. Reusing
+                // `container__icon_append.start` (`paddingLeft:
+                // spacing[2]`) matches both Input's own icon-prepend
+                // convention and MultiSelect's own field padding, rather
+                // than a one-off pixel value.
+                className={[
+                  inputStyles.classnames.appearance.neutral,
+                  multiple
+                    ? inputStyles.classnames.container__icon_append.start
+                    : null,
+                ]
+                  .filter(Boolean)
+                  .join(" ")}
                 style={
                   multiple
                     ? {
@@ -565,45 +596,48 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                     : undefined
                 }
               >
-                {/* Multiselect's picks render as removable tags INSIDE the
-                    field, ahead of the text input — built from `Tag`, not
-                    `Chip` (see the import comment up top for why), plus one
-                    of this file's own inlined icons for the dismiss ×. */}
+                {/* Multiselect's picks render as removable chips INSIDE the
+                    field, ahead of the text input — Chip's own markup and
+                    classnames (see the import comment up top for why this
+                    isn't literally the `Chip` component). */}
                 {multiple &&
                   selectedMulti.map((option) => (
-                    <Tag key={option.value} appearance="neutral">
+                    <div key={option.value} className={chip.classnames.base}>
                       <Text
-                        fontSize="caption"
                         color="neutral-textHigh"
+                        fontSize="caption"
+                        lineHeight="caption"
                         lineClamp={1}
+                        wordBreak="break-all"
                       >
                         {option.label}
                       </Text>
                       <button
-                        type="button"
                         aria-label={`Remove ${option.label}`}
                         data-testid={
                           dataTestId
                             ? `${dataTestId}-chip-remove-${option.value}`
                             : undefined
                         }
+                        type="button"
                         onMouseDown={(event) => event.preventDefault()}
                         onClick={(event) => {
                           event.stopPropagation();
                           removeChip(option);
                         }}
-                        style={{
-                          all: "unset",
-                          display: "flex",
-                          cursor: "pointer",
-                        }}
+                        className={chip.classnames.chip_close_icon_container}
                       >
                         <Icon
-                          source={<CloseIcon width={10} height={10} />}
-                          color="neutral-textLow"
+                          data-testid={
+                            dataTestId
+                              ? `${dataTestId}-chip-close-${option.value}`
+                              : undefined
+                          }
+                          source={<CloseIcon width={12} height={12} />}
+                          color="neutral-textHigh"
                         />
                       </button>
-                    </Tag>
+                    </div>
                   ))}
                 <input
                   ref={inputRef}
