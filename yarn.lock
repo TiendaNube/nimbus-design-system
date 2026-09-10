@@ -3227,6 +3227,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@nimbus-ds/progress-ring@workspace:packages/react/src/atomic/ProgressRing":
+  version: 0.0.0-use.local
+  resolution: "@nimbus-ds/progress-ring@workspace:packages/react/src/atomic/ProgressRing"
+  dependencies:
+    "@nimbus-ds/webpack": "workspace:^"
+  peerDependencies:
+    react: ^16.8 || ^17.0 || ^18.0 || ^19.0
+    react-dom: ^16.8 || ^17.0 || ^18.0 || ^19.0
+  languageName: unknown
+  linkType: soft
+
 "@nimbus-ds/radio@workspace:^, @nimbus-ds/radio@workspace:packages/react/src/atomic/Radio":
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/radio@workspace:packages/react/src/atomic/Radio"

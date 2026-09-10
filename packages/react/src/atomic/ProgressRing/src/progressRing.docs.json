@@ -1,0 +1,38 @@
+{
+  "id": "progress-ring",
+  "name": "ProgressRing",
+  "totalProps": 3,
+  "packageName": "@nimbus-ds/progress-ring",
+  "version": "1.0.0",
+  "docLink": "https://nimbus.nuvemshop.com.br/documentation/atomic-components/progress-ring",
+  "props": [
+    {
+      "description": "The progress value, from 0 to 100. Values outside that range are clamped.",
+      "type": "number",
+      "title": "value",
+      "required": true
+    },
+    {
+      "description": "Sets the width and height of the ring.",
+      "default": "large",
+      "anyOf": [
+        {
+          "enum": ["large", "medium", "small"],
+          "type": "string"
+        },
+        {
+          "type": "number"
+        }
+      ],
+      "title": "size",
+      "required": false
+    },
+    {
+      "description": "Accessible name for the progress indicator. Required: this component has no visible label of its own.",
+      "type": "string",
+      "title": "aria-label",
+      "required": true
+    }
+  ],
+  "subComponents": []
+}
