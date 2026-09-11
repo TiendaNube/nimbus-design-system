@@ -501,6 +501,14 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                 const isActive = activeIndex === navIndex;
                 const isHovered = hoveredOptionValue === option.value;
                 const isChecked = isOptionSelected(option);
+                // Once picked, a multiselect option goes disabled in the
+                // list — matching the Figma reference's disabled=true
+                // state (see rest/active/disabled row states below) —
+                // since removing it is the chip's own × now, not a second
+                // click on the same row. Single-select has no such state:
+                // picking there always closes the popover, so there's
+                // nothing left to visually disable afterwards.
+                const isDisabledRow = multiple && isChecked;
                 return (
                   <Box
                     as="button"
@@ -509,6 +517,8 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                     id={getOptionId(navIndex)}
                     role="option"
                     aria-selected={isChecked}
+                    aria-disabled={isDisabledRow || undefined}
+                    disabled={isDisabledRow}
                     data-testid={
                       dataTestId
                         ? `${dataTestId}-option-${option.value}`
@@ -516,9 +526,14 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                     }
                     // Same focus-preserving guard as the Create row above —
                     // matters even more here, since multiselect keeps the
-                    // popover open across several picks in a row.
-                    onMouseDown={(event) => event.preventDefault()}
-                    onClick={() => selectOption(option)}
+                    // popover open across several picks in a row. Skipped
+                    // once disabled: there both would be no-ops anyway.
+                    onMouseDown={
+                      isDisabledRow
+                        ? undefined
+                        : (event) => event.preventDefault()
+                    }
+                    onClick={isDisabledRow ? undefined : () => selectOption(option)}
                     onMouseEnter={() => setHoveredOptionValue(option.value)}
                     onMouseLeave={() => setHoveredOptionValue(null)}
                     display="flex"
@@ -530,28 +545,47 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                     padding="2"
                     borderRadius="2"
                     borderWidth="none"
-                    cursor="pointer"
+                    cursor={isDisabledRow ? "not-allowed" : "pointer"}
                     textAlign="left"
-                    // Existing options hover with the NEUTRAL treatment
-                    // (mouse), and get the NEUTRAL highlight tint — one
-                    // shade stronger — when active via keyboard. See the
-                    // comment on the Create row above for why the rest
-                    // value can't be left `undefined`.
+                    // Per the Figma "Select" reference (node 42:11565):
+                    // available options hover/keyboard-active with the
+                    // PRIMARY treatment (primary-surface on hover,
+                    // primary-surfaceHighlight — one shade stronger — when
+                    // active via keyboard; same convention as the Create
+                    // row above), and an already-picked multiselect option
+                    // gets the flat NEUTRAL "disabled" fill regardless of
+                    // hover/active — Figma's own disabled+hover variant
+                    // still renders the plain disabled grey, not a hover
+                    // tint. See the comment on the Create row above for
+                    // why the rest value can't be left `undefined`.
                     backgroundColor={
-                      isActive
-                        ? "neutral-surfaceHighlight"
-                        : isHovered
-                          ? "neutral-surface"
-                          : "neutral-background"
+                      isDisabledRow
+                        ? "neutral-surfaceDisabled"
+                        : isActive
+                          ? "primary-surfaceHighlight"
+                          : isHovered
+                            ? "primary-surface"
+                            : "neutral-background"
                     }
                   >
-                    <Text color="neutral-textHigh">{option.label}</Text>
+                    <Text
+                      color={
+                        isDisabledRow ? "neutral-textDisabled" : "neutral-textHigh"
+                      }
+                    >
+                      {option.label}
+                    </Text>
                     {/* Multiselect only, per the design decision: a picked
                         option gets a checkmark and STAYS in the list — it
                         never disappears the way single-select's implicit
-                        "already the value" does. */}
+                        "already the value" does. Kept at full
+                        `neutral-textHigh` contrast even when the row is
+                        disabled — matching the Figma reference, where the
+                        trailing state icon stays dark while the row's own
+                        label/leading icon mute — so "this one is picked"
+                        stays unambiguous. */}
                     {multiple && isChecked && (
-                      <Icon source={<CheckIcon />} color="primary-interactive" />
+                      <Icon source={<CheckIcon />} color="neutral-textHigh" />
                     )}
                   </Box>
                 );
@@ -590,8 +624,19 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                     ? {
                         flexWrap: "wrap",
                         alignItems: "center",
-                        rowGap: 4,
-                        paddingBlock: 4,
+                        // 8px between every chip, and between the last chip
+                        // and the input — `gap` covers both axes, so
+                        // wrapped chip rows get the same breathing room.
+                        // No padding-block here (unlike an earlier version
+                        // of this): single-select's own height comes
+                        // entirely from `classnames.input`'s built-in
+                        // padding, since its `<input>` is the container's
+                        // only child. This container itself carries none
+                        // of its own — adding some just for multiselect
+                        // was what made Field D taller than Fields A/B/C;
+                        // removing it lets the same 32px `.input` height
+                        // govern a single-row field either way.
+                        gap: 8,
                       }
                     : undefined
                 }
@@ -646,7 +691,14 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                   className={inputStyles.classnames.input}
                   style={
                     multiple
-                      ? { width: "auto", flex: "1 1 100px", minWidth: 60 }
+                      // A smaller basis than before: the new 8px gaps and
+                      // left padding (added alongside this) eat into the
+                      // same fixed field width, and a 100px reservation
+                      // was tipping a 2-3 chip row into an unwanted wrap
+                      // that didn't happen before those were added. 48px
+                      // still fits a few characters before the field
+                      // itself needs to wrap.
+                      ? { width: "auto", flex: "1 1 48px", minWidth: 32 }
                       : undefined
                   }
                   value={inputValue}
