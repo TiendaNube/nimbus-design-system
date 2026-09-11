@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { useArgs } from "@storybook/preview-api";
 import { Box } from "@nimbus-ds/box";
@@ -17,10 +17,10 @@ import { PaginationGoToPage } from "./PaginationGoToPage";
  * usable without disrupting the existing arrow/number navigation?
  *
  * Simulated/limited parts (see the pull request for the full list):
- * - The "Go" button and Enter-to-confirm are a prototype affordance; the
- *   Figma reference's input icon slots (search / eye) look like unswapped
- *   defaults from the base Input component, not intentional for this
- *   feature, so they were not reproduced literally.
+ * - Submitting the page number is Enter or blur only, no confirm button;
+ *   the Figma reference's input icon slots (search / eye) look like
+ *   unswapped defaults from the base Input component, not intentional for
+ *   this feature, so they were not reproduced literally.
  * - The two new "first/last page" icons are prototype-only traces of the
  *   Figma vectors, not production `@nimbus-ds/icons` assets.
  */
@@ -46,9 +46,9 @@ export const Playground: Story = {
     return (
       <Box display="flex" flexDirection="column" gap="4">
         <Text fontSize="caption" color="neutral-textLow">
-          Try: type a page number and press Enter or click Go. On
-          `device=mobile` with `pageCount` at 20, use the compact first
-          /prev/input/next/last row instead.
+          Try: type a page number and press Enter, or click outside the
+          input. On `device=mobile` with `pageCount` at 20, use the compact
+          first/prev/input/next/last row instead.
         </Text>
         <PaginationGoToPage
           {...args}
@@ -73,9 +73,11 @@ export const FullScreen: Story = {
     controls: { disable: true },
   },
   render: () => {
-    const [args, updateArgs] = useArgs();
-    const activePage = args.activePage ?? 3;
-    const onPageChange = (page: number) => updateArgs({ activePage: page });
+    // Desktop and mobile are two independent, self-contained examples on
+    // this page — each keeps its own `activePage` state so interacting
+    // with one never moves the other.
+    const [desktopActivePage, setDesktopActivePage] = useState(3);
+    const [mobileActivePage, setMobileActivePage] = useState(3);
 
     return (
       <Box
@@ -96,8 +98,8 @@ export const FullScreen: Story = {
         </Box>
         <PaginationGoToPage
           pageCount={20}
-          activePage={activePage}
-          onPageChange={onPageChange}
+          activePage={desktopActivePage}
+          onPageChange={setDesktopActivePage}
           showGoToPage
           device="desktop"
         />
@@ -113,8 +115,8 @@ export const FullScreen: Story = {
         <Box maxWidth="20rem">
           <PaginationGoToPage
             pageCount={20}
-            activePage={activePage}
-            onPageChange={onPageChange}
+            activePage={mobileActivePage}
+            onPageChange={setMobileActivePage}
             device="mobile"
           />
         </Box>

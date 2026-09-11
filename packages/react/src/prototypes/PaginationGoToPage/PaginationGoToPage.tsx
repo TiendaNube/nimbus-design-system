@@ -103,7 +103,7 @@ const GoToPageField: React.FC<{
   onPageChange: (page: number) => void;
   label: string;
   width?: string;
-}> = ({ activePage, pageCount, onPageChange, label, width = "4.5rem" }) => {
+}> = ({ activePage, pageCount, onPageChange, label, width = "3rem" }) => {
   const { value, error, onChange, onKeyDown, submit } = useGoToPage(
     activePage,
     pageCount,
@@ -113,7 +113,7 @@ const GoToPageField: React.FC<{
   return (
     <Box display="flex" flexDirection="column" gap="1">
       <Box display="flex" gap="2" alignItems="center">
-        <Text fontSize="caption" lineHeight="caption" color="neutral-textLow">
+        <Text fontSize="base" lineHeight="base" color="neutral-textLow">
           {label}
         </Text>
         <Box width={width}>
@@ -125,17 +125,14 @@ const GoToPageField: React.FC<{
             appearance={error ? "danger" : "neutral"}
             onChange={onChange}
             onKeyDown={onKeyDown}
+            onBlur={submit}
             data-testid="input-pagination-go-to-page"
             aria-label="Go to page"
           />
         </Box>
-        <Button
-          appearance="neutral"
-          data-testid="button-pagination-go-to-page-confirm"
-          onClick={submit}
-        >
-          Go
-        </Button>
+        <Text fontSize="base" lineHeight="base" color="neutral-textLow">
+          of {pageCount}
+        </Text>
       </Box>
       {error && (
         <Text fontSize="caption" lineHeight="caption" color="danger-textHigh">
