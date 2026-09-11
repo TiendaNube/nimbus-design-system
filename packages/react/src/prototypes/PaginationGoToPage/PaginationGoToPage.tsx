@@ -120,11 +120,19 @@ const GoToPageField: React.FC<{
   label: string;
   width?: string;
 }> = ({ activePage, pageCount, onPageChange, label, width = "3rem" }) => {
-  const { value, error, onChange, onKeyDown, submit } = useGoToPage(
+  const { value, setValue, error, onChange, onKeyDown, submit } = useGoToPage(
     activePage,
     pageCount,
     onPageChange
   );
+
+  // Keep the input in sync when `activePage` changes from outside typing —
+  // i.e. via the existing Pagination component's number buttons rendered
+  // alongside this field, which call `onPageChange` directly rather than
+  // through `submit`.
+  useEffect(() => {
+    setValue(String(activePage));
+  }, [activePage, setValue]);
 
   return (
     <Box display="flex" flexDirection="column" gap="1">
