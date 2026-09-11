@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box } from "@nimbus-ds/box";
 import { Button } from "@nimbus-ds/button";
 import { Icon } from "@nimbus-ds/icon";
@@ -94,7 +94,23 @@ const useGoToPage = (
     }
   };
 
-  return { value, error, onChange, onKeyDown, submit };
+  return { value, setValue, error, onChange, onKeyDown, submit };
+};
+
+/**
+ * Minimum width for the go-to-page input, and how much extra width to add
+ * per digit `pageCount` can require, so the input stays legible for
+ * multi-digit page counts (e.g. 100+) instead of clipping the typed value.
+ */
+const GO_TO_PAGE_INPUT_MIN_WIDTH_REM = 3;
+const GO_TO_PAGE_INPUT_CHAR_WIDTH_REM = 0.75;
+const GO_TO_PAGE_INPUT_PADDING_REM = 1.5;
+
+const getGoToPageInputWidth = (pageCount: number): string => {
+  const digits = String(pageCount).length;
+  const needed =
+    digits * GO_TO_PAGE_INPUT_CHAR_WIDTH_REM + GO_TO_PAGE_INPUT_PADDING_REM;
+  return `${Math.max(GO_TO_PAGE_INPUT_MIN_WIDTH_REM, needed)}rem`;
 };
 
 const GoToPageField: React.FC<{
@@ -166,14 +182,22 @@ const CompactMobilePagination: React.FC<{
   pageCount: number;
   onPageChange: (page: number) => void;
 }> = ({ activePage, pageCount, onPageChange }) => {
-  const { value, error, onChange, onKeyDown, submit } = useGoToPage(
+  const { value, setValue, error, onChange, onKeyDown, submit } = useGoToPage(
     activePage,
     pageCount,
     onPageChange
   );
 
+  // Keep the input in sync when `activePage` changes from outside typing —
+  // i.e. via the first/prev/next/last arrow controls below, which call
+  // `onPageChange` directly rather than through `submit`.
+  useEffect(() => {
+    setValue(String(activePage));
+  }, [activePage, setValue]);
+
   const isFirst = activePage === 1;
   const isLast = activePage >= pageCount;
+  const inputWidth = getGoToPageInputWidth(pageCount);
 
   return (
     <Box display="flex" flexDirection="column" gap="1">
@@ -192,7 +216,7 @@ const CompactMobilePagination: React.FC<{
           onClick={() => onPageChange(activePage - 1)}
           icon={<ChevronLeftIcon />}
         />
-        <Box width="3rem">
+        <Box width={inputWidth} minWidth="3rem">
           <Input
             type="number"
             min={1}
