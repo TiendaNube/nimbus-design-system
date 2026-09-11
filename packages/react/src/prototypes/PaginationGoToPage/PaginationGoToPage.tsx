@@ -146,9 +146,6 @@ const GoToPageField: React.FC<{
             aria-label="Go to page"
           />
         </Box>
-        <Text fontSize="base" lineHeight="base" color="neutral-textLow">
-          of {pageCount}
-        </Text>
       </Box>
       {error && (
         <Text fontSize="caption" lineHeight="caption" color="danger-textHigh">
@@ -216,23 +213,25 @@ const CompactMobilePagination: React.FC<{
           onClick={() => onPageChange(activePage - 1)}
           icon={<ChevronLeftIcon />}
         />
-        <Box width={inputWidth} minWidth="3rem">
-          <Input
-            type="number"
-            min={1}
-            max={pageCount}
-            value={value}
-            appearance={error ? "danger" : "neutral"}
-            onChange={onChange}
-            onKeyDown={onKeyDown}
-            onBlur={submit}
-            data-testid="input-pagination-go-to-page"
-            aria-label="Go to page"
-          />
+        <Box display="flex" gap="2" alignItems="center">
+          <Box width={inputWidth} minWidth="3rem">
+            <Input
+              type="number"
+              min={1}
+              max={pageCount}
+              value={value}
+              appearance={error ? "danger" : "neutral"}
+              onChange={onChange}
+              onKeyDown={onKeyDown}
+              onBlur={submit}
+              data-testid="input-pagination-go-to-page"
+              aria-label="Go to page"
+            />
+          </Box>
+          <Text fontSize="base" lineHeight="base" color="neutral-textLow">
+            of {pageCount}
+          </Text>
         </Box>
-        <Text fontSize="caption" lineHeight="caption" color="neutral-textLow">
-          of {pageCount}
-        </Text>
         <CompactChevronButton
           testId="button-pagination-next"
           ariaLabel="Next page"
