@@ -74,6 +74,9 @@ jobs:
       - name: Build docs
         run: yarn build:docs
 
+      - name: Check nimbus-source-map.yml is up to date
+        run: yarn source-map:check
+
       - name: Run lint
         run: yarn lint
 
