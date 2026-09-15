@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { execSync } from "child_process";
-import {
+import type {
   ComponentEntry,
   SourceMapConfig,
   SourceMapDocument,
@@ -52,6 +52,15 @@ const IGNORED_TOP_LEVEL = new Set([
   "node_modules",
 ]);
 
+function isYarnWorkspace(value: unknown): value is YarnWorkspace {
+  return (
+    typeof value === "object" &&
+    value !== null &&
+    typeof (value as { name?: unknown }).name === "string" &&
+    typeof (value as { location?: unknown }).location === "string"
+  );
+}
+
 function getYarnWorkspaces(cwd: string): YarnWorkspace[] {
   const output = execSync("yarn workspaces list --json", {
     encoding: "utf8",
@@ -61,7 +70,8 @@ function getYarnWorkspaces(cwd: string): YarnWorkspace[] {
   return output
     .split("\n")
     .filter((line) => line.trim())
-    .map((line) => JSON.parse(line));
+    .map((line): unknown => JSON.parse(line))
+    .filter(isYarnWorkspace);
 }
 
 /**
@@ -206,22 +216,46 @@ interface StorybookIndexEntry {
   importPath?: string;
 }
 
+function isStorybookIndexEntry(value: unknown): value is StorybookIndexEntry {
+  return (
+    typeof value === "object" &&
+    value !== null &&
+    typeof (value as { id?: unknown }).id === "string"
+  );
+}
+
 /**
  * Groups a Storybook `index.json` by the stories file each entry came from,
  * preferring a docs-page id over a story id — same precedence
  * `storybookPreviewLinks` uses, so the two never disagree about which link
- * represents a component.
+ * represents a component. `story` is optional in the schema, so a malformed
+ * or unreadable index is treated as absent rather than failing the run.
  */
 function loadStoryIndex(indexPath: string): Map<string, string> {
-  const raw = JSON.parse(fs.readFileSync(indexPath, "utf8"));
-  const entries: Record<string, StorybookIndexEntry> = raw.entries ?? {};
+  const result = new Map<string, string>();
+
+  let raw: unknown;
+  try {
+    raw = JSON.parse(fs.readFileSync(indexPath, "utf8"));
+  } catch {
+    return result;
+  }
+
+  const entries =
+    typeof raw === "object" && raw !== null
+      ? (raw as { entries?: unknown }).entries
+      : undefined;
+  if (typeof entries !== "object" || entries === null) return result;
+
   const byStoriesFile = new Map<
     string,
     { docsId?: string; storyId?: string }
   >();
 
   for (const entry of Object.values(entries)) {
-    if (!entry.importPath) continue;
+    if (!isStorybookIndexEntry(entry) || typeof entry.importPath !== "string") {
+      continue;
+    }
     const storiesFile = entry.importPath.replace(/^\.\//, "");
     const existing = byStoriesFile.get(storiesFile) ?? {};
     if (entry.type === "docs" && !existing.docsId) existing.docsId = entry.id;
@@ -230,7 +264,6 @@ function loadStoryIndex(indexPath: string): Map<string, string> {
     byStoriesFile.set(storiesFile, existing);
   }
 
-  const result = new Map<string, string>();
   for (const [storiesFile, ids] of byStoriesFile) {
     const chosen = ids.docsId ?? ids.storyId;
     if (chosen) result.set(storiesFile, chosen);
@@ -269,7 +302,11 @@ export function generateSourceMap(config: SourceMapConfig): SourceMapDocument {
   }
 
   // Stable regardless of filesystem enumeration order or `groups` key order.
-  components.sort((a, b) => (a.group + a.name).localeCompare(b.group + b.name));
+  // Compared field by field, not concatenated: group "a"+name "bc" and group
+  // "ab"+name "c" must not collide into the same sort key.
+  components.sort(
+    (a, b) => a.group.localeCompare(b.group) || a.name.localeCompare(b.name)
+  );
 
   return {
     schema: 1,

@@ -4,7 +4,7 @@ import path from "path";
 import { execSync } from "child_process";
 import { generateSourceMap } from "./SourceMap";
 import { writeYaml } from "./writeYaml";
-import { SourceMapConfig } from "./SourceMap.types";
+import type { SourceMapConfig } from "./SourceMap.types";
 
 jest.mock("child_process");
 
@@ -154,6 +154,20 @@ describe("generateSourceMap", () => {
     const second = writeYaml(generateSourceMap(baseConfig(cwd)));
 
     expect(first).toBe(second);
+  });
+
+  it("quotes scoped package names — @ may not start a plain YAML scalar", () => {
+    const yaml = writeYaml(generateSourceMap(baseConfig(cwd)));
+
+    expect(yaml).toContain('package: "@nimbus-ds/box"');
+    expect(yaml).not.toMatch(/package: @/);
+  });
+
+  it("sorts by group then name, never by a concatenation that can collide", () => {
+    const doc = generateSourceMap(baseConfig(cwd));
+    const order = doc.components.map((c) => `${c.group}/${c.name}`);
+
+    expect(order).toEqual([...order].sort());
   });
 
   it("carries no volatile field (timestamp, generator version, source sha)", () => {

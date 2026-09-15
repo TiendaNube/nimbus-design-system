@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import { generateSourceMap } from "./SourceMap";
 import { writeYaml } from "./writeYaml";
-import { SourceMapConfig } from "./SourceMap.types";
+import type { SourceMapConfig } from "./SourceMap.types";
 
 /**
  * Thin CLI shared by both repos' `.scripts/build-source-map.ts` wrapper —

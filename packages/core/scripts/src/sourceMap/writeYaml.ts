@@ -1,4 +1,4 @@
-import {
+import type {
   ComponentEntry,
   SourceMapCommands,
   SourceMapDocument,
@@ -41,9 +41,12 @@ function toYamlCommands(commands: SourceMapCommands): Record<string, string> {
 
 function quoteIfNeeded(value: string): string {
   if (value === "") return '""';
-  // Only quote when the value contains a character YAML would otherwise
-  // treat specially, so most paths and commands stay unquoted and readable.
-  if (/^[A-Za-z0-9_./@{}^-]+$/.test(value)) return value;
+  // `@` and `` ` `` are YAML reserved indicators and may never start a plain
+  // scalar (a scoped package name like `@nimbus-ds/box` must be quoted).
+  // Otherwise only quote when the value has a character YAML would treat
+  // specially, so most paths and commands stay unquoted and readable.
+  if (/^[@`]/.test(value)) return JSON.stringify(value);
+  if (/^[A-Za-z0-9_./{}^-]+$/.test(value)) return value;
 
   return JSON.stringify(value);
 }
