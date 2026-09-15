@@ -39,15 +39,12 @@ function toYamlCommands(commands: SourceMapCommands): Record<string, string> {
   return result;
 }
 
+/**
+ * Always quoted, never a plain-scalar allowlist: a plain `true`, `null`,
+ * `123` or `2026-09-15` would otherwise be coerced by a YAML parser to a
+ * boolean, null, number or timestamp instead of staying the string it is.
+ */
 function quoteIfNeeded(value: string): string {
-  if (value === "") return '""';
-  // `@` and `` ` `` are YAML reserved indicators and may never start a plain
-  // scalar (a scoped package name like `@nimbus-ds/box` must be quoted).
-  // Otherwise only quote when the value has a character YAML would treat
-  // specially, so most paths and commands stay unquoted and readable.
-  if (/^[@`]/.test(value)) return JSON.stringify(value);
-  if (/^[A-Za-z0-9_./{}^-]+$/.test(value)) return value;
-
   return JSON.stringify(value);
 }
 

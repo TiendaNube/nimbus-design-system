@@ -52,6 +52,7 @@ const IGNORED_TOP_LEVEL = new Set([
   "node_modules",
 ]);
 
+/** True when `value` has string `name` and `location` fields, narrowing it to `YarnWorkspace`. */
 function isYarnWorkspace(value: unknown): value is YarnWorkspace {
   return (
     typeof value === "object" &&
@@ -216,6 +217,7 @@ interface StorybookIndexEntry {
   importPath?: string;
 }
 
+/** True when `value` has a string `id` field, narrowing it to `StorybookIndexEntry`. */
 function isStorybookIndexEntry(value: unknown): value is StorybookIndexEntry {
   return (
     typeof value === "object" &&

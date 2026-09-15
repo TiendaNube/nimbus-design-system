@@ -156,6 +156,15 @@ describe("generateSourceMap", () => {
     expect(first).toBe(second);
   });
 
+  it("quotes every string, so a boolean/null/number/date-like value stays a string", () => {
+    const config = baseConfig(cwd);
+    config.repoName = "2026-09-15";
+
+    const yaml = writeYaml(generateSourceMap(config));
+
+    expect(yaml).toContain('name: "2026-09-15"');
+  });
+
   it("quotes scoped package names — @ may not start a plain YAML scalar", () => {
     const yaml = writeYaml(generateSourceMap(baseConfig(cwd)));
 
