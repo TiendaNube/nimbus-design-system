@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { execSync } from "child_process";
+import { compareStrings } from "./compareStrings";
 import type {
   ComponentEntry,
   SourceMapConfig,
@@ -76,7 +77,9 @@ function sanitizedPath(): string {
 }
 
 function getYarnWorkspaces(cwd: string): YarnWorkspace[] {
+  // PATH is sanitized to absolute-only entries by sanitizedPath() below.
   const output = execSync("yarn workspaces list --json", {
+    // NOSONAR
     encoding: "utf8",
     cwd,
     env: { ...process.env, PATH: sanitizedPath() },
@@ -134,7 +137,7 @@ function listFiles(dir: string): string[] {
     .readdirSync(dir, { withFileTypes: true })
     .filter((entry) => entry.isFile())
     .map((entry) => entry.name)
-    .sort((a, b) => a.localeCompare(b));
+    .sort(compareStrings);
 }
 
 function listDirs(dir: string): string[] {
@@ -144,7 +147,7 @@ function listDirs(dir: string): string[] {
     .readdirSync(dir, { withFileTypes: true })
     .filter((entry) => entry.isDirectory())
     .map((entry) => entry.name)
-    .sort((a, b) => a.localeCompare(b));
+    .sort(compareStrings);
 }
 
 function collectExtras(
@@ -167,8 +170,8 @@ function collectExtras(
     (name) => path.posix.join("src", name) + "/"
   );
 
-  return [...topLevelExtras, ...srcFileExtras, ...srcDirExtras].sort((a, b) =>
-    a.localeCompare(b)
+  return [...topLevelExtras, ...srcFileExtras, ...srcDirExtras].sort(
+    compareStrings
   );
 }
 
@@ -323,7 +326,7 @@ export function generateSourceMap(config: SourceMapConfig): SourceMapDocument {
   // Compared field by field, not concatenated: group "a"+name "bc" and group
   // "ab"+name "c" must not collide into the same sort key.
   components.sort(
-    (a, b) => a.group.localeCompare(b.group) || a.name.localeCompare(b.name)
+    (a, b) => compareStrings(a.group, b.group) || compareStrings(a.name, b.name)
   );
 
   return {

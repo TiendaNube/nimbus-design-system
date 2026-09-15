@@ -39,7 +39,7 @@ components:
   - { name: "Checkbox", group: "atomic", package: "@nimbus-ds/checkbox", nested: ["CheckboxSkeleton"], extras: ["index.d.ts", "src/checkbox-check.svg", "src/checkbox-indeterminate.svg", "src/checkbox.definitions.ts"] }
   - { name: "Chip", group: "atomic", package: "@nimbus-ds/chip", nested: ["ChipSkeleton"] }
   - { name: "Divider", group: "atomic", package: "@nimbus-ds/divider" }
-  - { name: "FileUploader", group: "atomic", package: "@nimbus-ds/file-uploader", nested: ["FileUploaderOverlay", "FileUploaderSkeleton"], extras: ["src/fileUploader.definitions.spec.ts", "src/FileUploader.definitions.ts"] }
+  - { name: "FileUploader", group: "atomic", package: "@nimbus-ds/file-uploader", nested: ["FileUploaderOverlay", "FileUploaderSkeleton"], extras: ["src/FileUploader.definitions.ts", "src/fileUploader.definitions.spec.ts"] }
   - { name: "Icon", group: "atomic", package: "@nimbus-ds/icon", nested: ["IconSkeleton"], extras: ["src/demo/", "src/utils/"] }
   - { name: "IconButton", group: "atomic", package: "@nimbus-ds/icon-button", nested: ["IconButtonSkeleton"] }
   - { name: "Input", group: "atomic", package: "@nimbus-ds/input", nested: ["InputIcon", "InputPassword", "InputSearch", "InputSkeleton", "InputText"] }
@@ -52,7 +52,7 @@ components:
   - { name: "Radio", group: "atomic", package: "@nimbus-ds/radio", nested: ["RadioSkeleton"] }
   - { name: "Select", group: "atomic", package: "@nimbus-ds/select", nested: ["SelectGroup", "SelectOption", "SelectSkeleton"] }
   - { name: "Skeleton", group: "atomic", package: "@nimbus-ds/skeleton" }
-  - { name: "Slider", group: "atomic", package: "@nimbus-ds/slider", nested: ["SliderThumb", "SliderTrack"], extras: ["src/hooks/", "src/slider.definitions.ts", "src/sliderRange.stories.tsx", "src/SliderRange.tsx"] }
+  - { name: "Slider", group: "atomic", package: "@nimbus-ds/slider", nested: ["SliderThumb", "SliderTrack"], extras: ["src/SliderRange.tsx", "src/hooks/", "src/slider.definitions.ts", "src/sliderRange.stories.tsx"] }
   - { name: "Spinner", group: "atomic", package: "@nimbus-ds/spinner", extras: ["src/spinner.definitions.ts"] }
   - { name: "Tag", group: "atomic", package: "@nimbus-ds/tag", nested: ["TagSkeleton"] }
   - { name: "Text", group: "atomic", package: "@nimbus-ds/text", nested: ["TextSkeleton"] }

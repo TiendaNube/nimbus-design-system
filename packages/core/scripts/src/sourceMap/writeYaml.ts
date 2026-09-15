@@ -1,3 +1,4 @@
+import { compareStrings } from "./compareStrings";
 import type {
   ComponentEntry,
   SourceMapCommands,
@@ -54,7 +55,7 @@ function scalarLine(value: string): string {
 
 function flatMap(map: Record<string, string>, indent: string): string[] {
   return Object.keys(map)
-    .sort((a, b) => a.localeCompare(b))
+    .sort(compareStrings)
     .map((key) => `${indent}${key}: ${scalarLine(map[key])}`);
 }
 
@@ -104,9 +105,7 @@ export function writeYaml(doc: SourceMapDocument): string {
   lines.push("");
 
   lines.push("shared:");
-  for (const key of Object.keys(doc.shared).sort((a, b) =>
-    a.localeCompare(b)
-  )) {
+  for (const key of Object.keys(doc.shared).sort(compareStrings)) {
     const value = doc.shared[key];
     const fields = [`path: ${scalarLine(value.path)}`];
     if (value.package) fields.push(`package: ${scalarLine(value.package)}`);

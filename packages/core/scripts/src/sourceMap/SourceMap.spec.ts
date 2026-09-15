@@ -132,9 +132,9 @@ describe("generateSourceMap", () => {
     const slider = doc.components.find((c) => c.name === "Slider");
 
     expect(slider?.extras).toEqual([
+      "src/SliderRange.tsx",
       "src/hooks/",
       "src/sliderRange.stories.tsx",
-      "src/SliderRange.tsx",
     ]);
   });
 
