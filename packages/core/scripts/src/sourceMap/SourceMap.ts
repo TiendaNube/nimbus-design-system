@@ -62,10 +62,24 @@ function isYarnWorkspace(value: unknown): value is YarnWorkspace {
   );
 }
 
+/**
+ * Drops every relative/empty PATH entry (".", "", "node_modules/.bin", …)
+ * before resolving `yarn` — those are the writable-directory entries an
+ * attacker could plant a fake binary in. Only fixed, absolute directories
+ * stay, so `execSync` below can't be shadowed by a rogue PATH entry.
+ */
+function sanitizedPath(): string {
+  return (process.env.PATH ?? "")
+    .split(path.delimiter)
+    .filter((entry) => path.isAbsolute(entry))
+    .join(path.delimiter);
+}
+
 function getYarnWorkspaces(cwd: string): YarnWorkspace[] {
   const output = execSync("yarn workspaces list --json", {
     encoding: "utf8",
     cwd,
+    env: { ...process.env, PATH: sanitizedPath() },
   });
 
   return output

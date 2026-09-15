@@ -104,7 +104,9 @@ export function writeYaml(doc: SourceMapDocument): string {
   lines.push("");
 
   lines.push("shared:");
-  for (const key of Object.keys(doc.shared).sort()) {
+  for (const key of Object.keys(doc.shared).sort((a, b) =>
+    a.localeCompare(b)
+  )) {
     const value = doc.shared[key];
     const fields = [`path: ${scalarLine(value.path)}`];
     if (value.package) fields.push(`package: ${scalarLine(value.package)}`);
