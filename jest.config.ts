@@ -71,6 +71,7 @@ const config: Config.InitialOptions = {
   },
   testPathIgnorePatterns: [
     "/node_modules/",
+    "/dist/",
     "<rootDir>/packages/react/src/prototypes/",
   ],
   coveragePathIgnorePatterns: [

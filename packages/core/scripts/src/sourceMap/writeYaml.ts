@@ -54,7 +54,7 @@ function scalarLine(value: string): string {
 
 function flatMap(map: Record<string, string>, indent: string): string[] {
   return Object.keys(map)
-    .sort()
+    .sort((a, b) => a.localeCompare(b))
     .map((key) => `${indent}${key}: ${scalarLine(map[key])}`);
 }
 

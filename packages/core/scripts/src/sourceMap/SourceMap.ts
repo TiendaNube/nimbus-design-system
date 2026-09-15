@@ -120,7 +120,7 @@ function listFiles(dir: string): string[] {
     .readdirSync(dir, { withFileTypes: true })
     .filter((entry) => entry.isFile())
     .map((entry) => entry.name)
-    .sort();
+    .sort((a, b) => a.localeCompare(b));
 }
 
 function listDirs(dir: string): string[] {
@@ -130,7 +130,7 @@ function listDirs(dir: string): string[] {
     .readdirSync(dir, { withFileTypes: true })
     .filter((entry) => entry.isDirectory())
     .map((entry) => entry.name)
-    .sort();
+    .sort((a, b) => a.localeCompare(b));
 }
 
 function collectExtras(
@@ -153,7 +153,9 @@ function collectExtras(
     (name) => path.posix.join("src", name) + "/"
   );
 
-  return [...topLevelExtras, ...srcFileExtras, ...srcDirExtras].sort();
+  return [...topLevelExtras, ...srcFileExtras, ...srcDirExtras].sort((a, b) =>
+    a.localeCompare(b)
+  );
 }
 
 function buildComponentEntry(
