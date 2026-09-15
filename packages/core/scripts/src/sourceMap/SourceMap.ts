@@ -77,13 +77,13 @@ function sanitizedPath(): string {
 }
 
 function getYarnWorkspaces(cwd: string): YarnWorkspace[] {
-  // PATH is sanitized to absolute-only entries by sanitizedPath() below.
-  const output = execSync("yarn workspaces list --json", {
-    // NOSONAR
-    encoding: "utf8",
+  // PATH is sanitized to absolute-only entries by sanitizedPath() above.
+  const execOptions = {
+    encoding: "utf8" as const,
     cwd,
     env: { ...process.env, PATH: sanitizedPath() },
-  });
+  };
+  const output = execSync("yarn workspaces list --json", execOptions); // NOSONAR
 
   return output
     .split("\n")
