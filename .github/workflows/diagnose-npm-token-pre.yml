@@ -1,0 +1,24 @@
+name: diagnose-npm-token-pre
+
+# Same whoami-only diagnostic as PR #568, but branched off the commit
+# right before ONB-1277's changes (d5001df8), to rule out that our own
+# code/config touched anything relevant to the npm auth failure.
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  whoami:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - uses: ./.github/actions/setup-node-deps
+
+      - name: yarn npm whoami
+        run: yarn npm whoami --publish
+        env:
+          YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTOMATION_PUBLISH }}
