@@ -8,7 +8,9 @@ name: diagnose-npm-token
 # read from a job log. Delete this file once the token is confirmed
 # fixed or replaced.
 on:
-  workflow_dispatch: {}
+  pull_request:
+    branches:
+      - master
 
 jobs:
   whoami:
