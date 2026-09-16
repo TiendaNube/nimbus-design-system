@@ -1,0 +1,26 @@
+name: diagnose-npm-token
+
+# Temporary, manual-only diagnostic for ONB-1279: publish-release started
+# 404ing on `yarn npm publish` for @nimbus-ds/scripts against BOTH
+# registry.yarnpkg.com and registry.npmjs.org, which points at the auth
+# token rather than the registry host. `whoami` never echoes the token
+# itself, only who it resolves to (or the auth error), so it's safe to
+# read from a job log. Delete this file once the token is confirmed
+# fixed or replaced.
+on:
+  workflow_dispatch: {}
+
+jobs:
+  whoami:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - uses: ./.github/actions/setup-node-deps
+
+      - name: yarn npm whoami
+        run: yarn npm whoami --publish
+        env:
+          YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTOMATION_PUBLISH }}
