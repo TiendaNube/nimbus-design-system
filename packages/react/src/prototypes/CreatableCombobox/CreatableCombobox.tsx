@@ -189,7 +189,20 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
 
     // Filtering is label-only, on purpose — no metadata/description search
     // yet. Keep it this way until that's explicitly scoped in.
-    const query = inputValue.trim().toLowerCase();
+    //
+    // Reopening a single-select field with an existing value must show
+    // every option (native `<select>` behavior — see the reopened-row
+    // treatment below), not just whatever happens to match the selected
+    // label still sitting in the input. `inputValue` doubles as both "the
+    // field's visible text" and "the search query," so while it's still
+    // exactly the selected option's own label — nothing typed since
+    // picking it — the effective query is empty. The moment the user
+    // types anything else, `onChange` below already clears `selected`,
+    // and normal query filtering takes over from there.
+    const query =
+      !multiple && selected && inputValue === selected.label
+        ? ""
+        : inputValue.trim().toLowerCase();
     const filteredOptions = query
       ? options.filter((option) => option.label.toLowerCase().includes(query))
       : options;
@@ -201,22 +214,56 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
     // table at all, not just this field's current input.
     const canCreate = allowCreate && query.length > 0 && !hasExactMatch;
 
+    // What actually renders in the list. Multiselect drops an option the
+    // moment it's picked — it only lives on as its own chip in the field
+    // from then on, removable from there — matching the same list-doesn't-
+    // repeat-itself pattern the existing `MultiSelect` already uses.
+    // Single-select does NOT do this: its current value stays in the list,
+    // shown with the persistent "selected" highlight below, so reopening
+    // the popover shows which option is the current one (matching native
+    // `<select>`).
+    const visibleOptions = multiple
+      ? filteredOptions.filter(
+          (option) => !selectedMulti.some((o) => o.value === option.value)
+        )
+      : filteredOptions;
+
+    // A `disabled` option (business rule, independent of selection — see
+    // `ComboboxOption`) still renders, so the client can show *why* it
+    // can't be picked, but never gets a nav slot: keyboard nav skips over
+    // it entirely, same as it's never reachable by click.
+    const enabledVisibleOptions = visibleOptions.filter(
+      (option) => !option.disabled
+    );
+
     // The single list the keyboard (and `aria-activedescendant`) navigates,
     // in the same order they're rendered: Create first (when present), then
-    // the filtered options. Recomputed on every render from the same
-    // `filteredOptions`/`canCreate` the popover content below renders from,
-    // so the two can never disagree about what item N is.
+    // the enabled options. Recomputed on every render from the same
+    // `enabledVisibleOptions`/`canCreate` the popover content below renders
+    // from, so the two can never disagree about what item N is.
     type NavItem =
       | { type: "create" }
       | { type: "option"; option: ComboboxOption };
     const navItems: NavItem[] = useMemo(() => {
       const items: NavItem[] = [];
       if (canCreate) items.push({ type: "create" });
-      for (const option of filteredOptions) {
+      for (const option of enabledVisibleOptions) {
         items.push({ type: "option", option });
       }
       return items;
-    }, [canCreate, filteredOptions]);
+    }, [canCreate, enabledVisibleOptions]);
+
+    // Looked up by the row renderer below to know each *visible* option's
+    // nav index (a disabled option has none — it's absent from this map —
+    // so it never receives `id`/`aria-activedescendant` wiring and can
+    // never become the keyboard-active item).
+    const navIndexByValue = useMemo(() => {
+      const map = new Map<string, number>();
+      enabledVisibleOptions.forEach((option, i) => {
+        map.set(option.value, (canCreate ? 1 : 0) + i);
+      });
+      return map;
+    }, [enabledVisibleOptions, canCreate]);
 
     const isOptionSelected = useCallback(
       (option: ComboboxOption) =>
@@ -433,7 +480,7 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                 overflowY: "auto",
               }}
             >
-              {filteredOptions.length === 0 && !canCreate && (
+              {visibleOptions.length === 0 && !canCreate && (
                 <Box padding="2">
                   <Text fontSize="caption" color="neutral-textLow">
                     No matching tags
@@ -496,29 +543,33 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                   <Text color="primary-interactive">{`Create "${inputValue.trim()}"`}</Text>
                 </Box>
               )}
-              {filteredOptions.map((option, index) => {
-                const navIndex = (canCreate ? 1 : 0) + index;
-                const isActive = activeIndex === navIndex;
+              {visibleOptions.map((option) => {
+                // `undefined` for a `disabled` option — it has no nav slot
+                // (see `navIndexByValue` above), so it can never become the
+                // keyboard-active item.
+                const navIndex = navIndexByValue.get(option.value);
+                const isActive = navIndex !== undefined && activeIndex === navIndex;
                 const isHovered = hoveredOptionValue === option.value;
+                // In practice this is only ever true for single-select's
+                // current value: a multiselect pick is excluded from
+                // `visibleOptions` entirely the moment it's selected (see
+                // above), so this row never renders for one.
                 const isChecked = isOptionSelected(option);
-                // Once picked, a multiselect option goes disabled in the
-                // list — matching the Figma reference's disabled=true
-                // state (see rest/active/disabled row states below) —
-                // since removing it is the chip's own × now, not a second
-                // click on the same row. Single-select has no such state:
-                // picking there always closes the popover, so there's
-                // nothing left to visually disable afterwards.
-                const isDisabledRow = multiple && isChecked;
+                // Independent of selection — a client-set business rule
+                // (see `ComboboxOption.disabled`), not "already picked".
+                const isBusinessDisabled = !!option.disabled;
                 return (
                   <Box
                     as="button"
                     type="button"
                     key={option.value}
-                    id={getOptionId(navIndex)}
+                    id={
+                      navIndex !== undefined ? getOptionId(navIndex) : undefined
+                    }
                     role="option"
                     aria-selected={isChecked}
-                    aria-disabled={isDisabledRow || undefined}
-                    disabled={isDisabledRow}
+                    aria-disabled={isBusinessDisabled || undefined}
+                    disabled={isBusinessDisabled}
                     data-testid={
                       dataTestId
                         ? `${dataTestId}-option-${option.value}`
@@ -528,12 +579,18 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                     // matters even more here, since multiselect keeps the
                     // popover open across several picks in a row. Skipped
                     // once disabled: there both would be no-ops anyway.
+                    // A *checked* row (single-select's current value)
+                    // keeps this guard and its onClick — it must stay
+                    // clickable/keyboard-selectable, re-picking it is a
+                    // harmless no-op.
                     onMouseDown={
-                      isDisabledRow
+                      isBusinessDisabled
                         ? undefined
                         : (event) => event.preventDefault()
                     }
-                    onClick={isDisabledRow ? undefined : () => selectOption(option)}
+                    onClick={
+                      isBusinessDisabled ? undefined : () => selectOption(option)
+                    }
                     onMouseEnter={() => setHoveredOptionValue(option.value)}
                     onMouseLeave={() => setHoveredOptionValue(null)}
                     display="flex"
@@ -545,47 +602,57 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                     padding="2"
                     borderRadius="2"
                     borderWidth="none"
-                    cursor={isDisabledRow ? "not-allowed" : "pointer"}
+                    cursor={isBusinessDisabled ? "not-allowed" : "pointer"}
                     textAlign="left"
-                    // Per the Figma "Select" reference (node 42:11565):
+                    // Per the Figma "Select" states matrix (node 72:8987):
                     // available options hover/keyboard-active with the
                     // PRIMARY treatment (primary-surface on hover,
                     // primary-surfaceHighlight — one shade stronger — when
                     // active via keyboard; same convention as the Create
-                    // row above), and an already-picked multiselect option
+                    // row above); the CURRENT value (single-select,
+                    // reopened) gets that same primary-surface tint too,
+                    // persistently — not just on hover, matching the
+                    // native `<select>` behavior of showing which option
+                    // is already chosen; and a business-`disabled` option
                     // gets the flat NEUTRAL "disabled" fill regardless of
-                    // hover/active — Figma's own disabled+hover variant
-                    // still renders the plain disabled grey, not a hover
-                    // tint. See the comment on the Create row above for
-                    // why the rest value can't be left `undefined`.
+                    // hover/active/checked — Figma's own disabled+hover
+                    // variant still renders the plain disabled grey, not a
+                    // hover tint. See the comment on the Create row above
+                    // for why the rest value can't be left `undefined`.
                     backgroundColor={
-                      isDisabledRow
+                      isBusinessDisabled
                         ? "neutral-surfaceDisabled"
                         : isActive
                           ? "primary-surfaceHighlight"
-                          : isHovered
+                          : isChecked || isHovered
                             ? "primary-surface"
                             : "neutral-background"
                     }
                   >
                     <Text
                       color={
-                        isDisabledRow ? "neutral-textDisabled" : "neutral-textHigh"
+                        isBusinessDisabled
+                          ? "neutral-textDisabled"
+                          : isChecked
+                            ? "primary-interactive"
+                            : "neutral-textHigh"
                       }
                     >
                       {option.label}
                     </Text>
-                    {/* Multiselect only, per the design decision: a picked
-                        option gets a checkmark and STAYS in the list — it
-                        never disappears the way single-select's implicit
-                        "already the value" does. Kept at full
-                        `neutral-textHigh` contrast even when the row is
-                        disabled — matching the Figma reference, where the
-                        trailing state icon stays dark while the row's own
-                        label/leading icon mute — so "this one is picked"
-                        stays unambiguous. */}
-                    {multiple && isChecked && (
-                      <Icon source={<CheckIcon />} color="neutral-textHigh" />
+                    {/* The checkmark marks "this is the current value" —
+                        per the Figma matrix, still shown (muted) even on a
+                        business-disabled option that happens to already be
+                        selected, so it doesn't stop looking picked just
+                        because it's now also blocked from being picked
+                        again. */}
+                    {isChecked && (
+                      <Icon
+                        source={<CheckIcon />}
+                        color={
+                          isBusinessDisabled ? "neutral-textDisabled" : "primary-interactive"
+                        }
+                      />
                     )}
                   </Box>
                 );
@@ -601,42 +668,32 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
           >
             <div style={{ flex: "1 1 auto", minWidth: 0 }}>
               <div
-                // Single-select's left inset comes from `classnames.input`'s
-                // own padding, since the `<input>` is the container's only
-                // child there. Multiselect puts chips ahead of it as
-                // siblings in the same flex row, and the container itself
-                // carries no padding of its own — so without this, the
-                // first chip sits flush against the border. Reusing
-                // `container__icon_append.start` (`paddingLeft:
-                // spacing[2]`) matches both Input's own icon-prepend
-                // convention and MultiSelect's own field padding, rather
-                // than a one-off pixel value.
-                className={[
-                  inputStyles.classnames.appearance.neutral,
-                  multiple
-                    ? inputStyles.classnames.container__icon_append.start
-                    : null,
-                ]
-                  .filter(Boolean)
-                  .join(" ")}
+                // Single-select's own inset comes entirely from
+                // `classnames.input`'s built-in padding/height, since the
+                // `<input>` is the container's only child there — this div
+                // itself carries none of its own. Multiselect measured
+                // against the Figma padding reference (node 74:9011) gets
+                // an explicit, uniform 4px padding of its own instead
+                // (`padding: 4` below) — a flat spacing[1], not spacing[2]:
+                // an earlier version of this used 8px on the (mistaken)
+                // assumption it should match Input's/MultiSelect's own
+                // icon-prepend convention, which this Figma reference
+                // shows is NOT what the multiselect field itself uses.
+                className={inputStyles.classnames.appearance.neutral}
                 style={
                   multiple
                     ? {
                         flexWrap: "wrap",
                         alignItems: "center",
-                        // 8px between every chip, and between the last chip
-                        // and the input — `gap` covers both axes, so
-                        // wrapped chip rows get the same breathing room.
-                        // No padding-block here (unlike an earlier version
-                        // of this): single-select's own height comes
-                        // entirely from `classnames.input`'s built-in
-                        // padding, since its `<input>` is the container's
-                        // only child. This container itself carries none
-                        // of its own — adding some just for multiselect
-                        // was what made Field D taller than Fields A/B/C;
-                        // removing it lets the same 32px `.input` height
-                        // govern a single-row field either way.
-                        gap: 8,
+                        padding: 4,
+                        // 4px between every chip, and between the last
+                        // chip and the input, on both axes — so wrapped
+                        // chip rows get the same 4px breathing room too.
+                        // Confirmed against the Figma reference by
+                        // measuring both its single-row and wrapped
+                        // examples: every gap and every edge padding
+                        // there is 4px, uniformly.
+                        gap: 4,
                       }
                     : undefined
                 }
@@ -691,14 +748,22 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                   className={inputStyles.classnames.input}
                   style={
                     multiple
-                      // A smaller basis than before: the new 8px gaps and
-                      // left padding (added alongside this) eat into the
-                      // same fixed field width, and a 100px reservation
-                      // was tipping a 2-3 chip row into an unwanted wrap
-                      // that didn't happen before those were added. 48px
-                      // still fits a few characters before the field
-                      // itself needs to wrap.
-                      ? { width: "auto", flex: "1 1 48px", minWidth: 32 }
+                      ? {
+                          width: "auto",
+                          flex: "1 1 48px",
+                          minWidth: 32,
+                          // `classnames.input` bakes in a 32px height and
+                          // its own 8px padding on every side — sized for
+                          // being the container's only child, as it is in
+                          // single-select. Here the *container* now carries
+                          // the Figma-measured 4px padding instead (see
+                          // above), sized around the 24px chip row, so the
+                          // input needs to give up its own height/padding
+                          // to match that same 24px rather than forcing the
+                          // row (and the field) taller than Figma's spec.
+                          height: 24,
+                          padding: 0,
+                        }
                       : undefined
                   }
                   value={inputValue}
@@ -717,6 +782,13 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                       : undefined
                   }
                   onFocus={() => !disabled && setOpen(true)}
+                  // `onFocus` alone misses one real case: Escape closes the
+                  // popover but leaves the input focused (by design — see
+                  // the "Escape" case below), so a plain click right after
+                  // doesn't re-fire focus and the list silently fails to
+                  // reopen. Explicit `onClick` covers that; redundant with
+                  // `onFocus` the rest of the time, which is harmless.
+                  onClick={() => !disabled && setOpen(true)}
                   onChange={(event) => {
                     setInputValue(event.target.value);
                     if (!multiple && selected) setSelected(null);
@@ -750,11 +822,28 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                     type="button"
                     tabIndex={-1}
                     aria-hidden="true"
-                    onClick={() => inputRef.current?.focus()}
+                    // Same reopen fix as the input's own onClick above:
+                    // `.focus()` on an already-focused input is a no-op
+                    // that never re-fires `onFocus`, so this needs its own
+                    // explicit `setOpen`.
+                    onClick={() => {
+                      inputRef.current?.focus();
+                      if (!disabled) setOpen(true);
+                    }}
                     className={[
                       inputStyles.classnames.container__icon,
-                      inputStyles.classnames.container__icon_append.end,
-                    ].join(" ")}
+                      // Multiselect's own container now carries its
+                      // Figma-measured 4px padding on every side (see
+                      // above), which already insets this trailing button
+                      // — adding this classname's own end-padding on top
+                      // would double it to 12px against the Figma spec's
+                      // 4px. Single-select's container has no padding of
+                      // its own, so it still needs this class to get any
+                      // inset at all.
+                      !multiple ? inputStyles.classnames.container__icon_append.end : null,
+                    ]
+                      .filter(Boolean)
+                      .join(" ")}
                   >
                     <Icon source={<ChevronDownIcon />} color="neutral-textLow" />
                   </button>

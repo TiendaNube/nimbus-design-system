@@ -27,17 +27,28 @@ import { useCallback, useEffect, useState } from "react";
 export interface ComboboxOption {
   value: string;
   label: string;
+  /**
+   * Independent of selection: an option a client marks as unpickable for
+   * its own reason (e.g. "blocked by business rule X"), not because it's
+   * already chosen. Never set by this mocked store itself — `createOption`
+   * always returns a plain enabled option — only seed data below turns it
+   * on, so a client of this component would set it from its own data.
+   * @default false
+   */
+  disabled?: boolean;
 }
 
 const STORAGE_KEY = "nimbus-prototype:creatable-combobox:options";
 const CHANGE_EVENT = "nimbus-prototype:creatable-combobox:options-changed";
 
 // Obviously-fake sample data — generic product tags, nothing customer- or
-// business-specific.
+// business-specific. "Limited edition" is seeded `disabled: true` purely to
+// keep the business-rule-disabled state demonstrable in the stories — pick
+// any other option to see the normal flow.
 const SEED_OPTIONS: ComboboxOption[] = [
   { value: "eco-friendly", label: "Eco-friendly" },
   { value: "handmade", label: "Handmade" },
-  { value: "limited-edition", label: "Limited edition" },
+  { value: "limited-edition", label: "Limited edition", disabled: true },
   { value: "vegan", label: "Vegan" },
   { value: "waterproof", label: "Waterproof" },
 ];
