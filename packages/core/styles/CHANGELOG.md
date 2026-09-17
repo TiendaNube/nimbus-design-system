@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2026-09-17 `9.69.0`
+
+#### 🎉 New features
+
+- Box: exposes `ai-generative-interactivePressed` (the violet `#4629BA` accent) and `ai-generative-interactive` on the `backgroundColor` sprinkle. ([#573](https://github.com/TiendaNube/nimbus-design-system/pull/573) by [@jffs](https://github.com/jffs))
+
 ## 2026-09-08 `9.68.1`
 
 #### 🐛 Bug fixes
