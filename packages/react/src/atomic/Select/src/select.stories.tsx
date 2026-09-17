@@ -7,7 +7,48 @@ const meta: Meta<typeof Select> = {
   title: "Atomic/Select",
   component: Select,
   argTypes: {
-    children: { control: { disable: true } },
+    name: {
+      control: { type: "text" },
+      description: "Name of the native select element.",
+      table: { type: { summary: "string" } },
+    },
+    id: {
+      control: { type: "text" },
+      description: "Unique identifier of the native select element.",
+      table: { type: { summary: "string" } },
+    },
+    children: {
+      control: { disable: true },
+      description: "Options or option groups rendered inside the select.",
+      table: { type: { summary: "React.ReactNode" } },
+    },
+    appearance: {
+      control: { type: "select" },
+      options: [
+        "neutral",
+        "success",
+        "warning",
+        "danger",
+        "ai-generative",
+      ],
+      description: "Controls the visual appearance of the select.",
+      table: {
+        type: {
+          summary:
+            '"neutral" | "success" | "warning" | "danger" | "ai-generative"',
+        },
+        defaultValue: { summary: '"neutral"' },
+      },
+    },
+    aiGenerated: {
+      control: { type: "boolean" },
+      description:
+        "Applies the AI-generated appearance and active AI focus shadow, taking precedence over `appearance`.",
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: "false" },
+      },
+    },
     size: {
       control: { type: "select" },
       options: ["medium", "small"],
@@ -16,6 +57,14 @@ const meta: Meta<typeof Select> = {
       table: {
         type: { summary: '"medium" | "small" | number' },
         defaultValue: { summary: '"medium"' },
+      },
+    },
+    disabled: {
+      control: { type: "boolean" },
+      description: "Disables the select and prevents user interaction.",
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: "false" },
       },
     },
   },
