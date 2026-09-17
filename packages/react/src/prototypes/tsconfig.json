@@ -1,0 +1,11 @@
+{
+  "extends": "../../../../tsconfig.json",
+  "include": ["./**/*.ts", "./**/*.tsx"],
+  "exclude": ["./**/*.spec.ts", "./**/*.spec.tsx"],
+  "compilerOptions": {
+    "strict": false,
+    "noImplicitAny": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false
+  }
+}

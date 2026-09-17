@@ -8,6 +8,7 @@ on:
 
 jobs:
   checklist-comment:
+    if: ${{ !startsWith(github.head_ref, 'prototype/') }}
     runs-on: ubuntu-latest
     # A called workflow can never get more than the caller grants (permissions
     # only narrow, never widen), so this is also what nimbus-patterns' calling

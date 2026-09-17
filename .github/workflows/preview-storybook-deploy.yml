@@ -1,10 +1,14 @@
 name: "preview-storybook-deploy"
 
 # Generic build → deploy → comment mechanics for a Storybook PR preview,
-# shared by any Nimbus repo. What is repo-specific — deciding *whether* to
-# build (the diff gate) and *what to link to* (per-component deep links) —
+# shared by any Nimbus repo. Deciding *whether* to build (the diff gate)
 # stays local to each repo's own preview-storybook.yml, which calls this
-# after making that decision.
+# after making that decision and hands over the file lists it already
+# computed. *What to link to* is resolved here, by running that same
+# caller repo's own `yarn preview:links` script (checked out below) against
+# the Storybook this job just built — the mapping from a changed file to a
+# story id is specific enough per repo that it cannot live in this shared
+# workflow, but running it does not need to.
 on:
   workflow_call:
     inputs:
@@ -24,6 +28,39 @@ on:
         required: false
         type: boolean
         default: false
+      build-mode:
+        description: >-
+          Storybook scope to build. "prototype" includes only the caller's
+          prototype stories; "full" preserves the standard build.
+        required: false
+        type: string
+        default: full
+      changed-files:
+        description: >-
+          Newline-separated list of every file the pull request touches, as
+          computed by the caller's own gate step. Fed to the caller's
+          `yarn preview:links` script so it can deep-link each touched
+          component instead of pointing at the Storybook homepage.
+        required: true
+        type: string
+      matched-files:
+        description: >-
+          Newline-separated subset of changed-files that triggered the build,
+          per the caller's own diff gate. Purely informational — folded into
+          the PR comment so the build decision can be audited from the pull
+          request. Empty when the build was triggered by label or by a
+          missing diff (the caller's gate reports that through
+          preview-trigger, not through this list).
+        required: false
+        type: string
+        default: ""
+      preview-trigger:
+        description: >-
+          Why the caller's gate decided to build: "build-inputs", "label", or
+          "unavailable-diff". Read by `yarn preview:links` to phrase the
+          comment accordingly.
+        required: true
+        type: string
     secrets:
       AWS_ACCOUNT_ID:
         required: true
@@ -52,23 +89,71 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
 
       - uses: ./.github/actions/setup-node-deps
+        with:
+          cache-mode: yarn-cache
 
       - name: Run build tokens
         if: inputs.build-tokens-icons
         run: yarn build:tokens
 
-      - name: Run build icons
+      - name: Restore built icons
         if: inputs.build-tokens-icons
+        id: icons-cache
+        uses: actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809 # v4.2.4
+        with:
+          path: packages/icons/dist
+          key: >-
+            ${{ runner.os }}-icons-${{
+              hashFiles(
+                'packages/icons/src/**',
+                'packages/icons/package.json',
+                'packages/icons/svgo.config.js',
+                'packages/icons/tsconfig.json',
+                'packages/icons/webpack.config.ts',
+                'packages/core/webpack/src/**',
+                'yarn.lock'
+              )
+            }}
+
+      - name: Run build icons
+        if: >-
+          inputs.build-tokens-icons &&
+          steps.icons-cache.outputs.cache-hit != 'true'
         run: yarn build:icons
 
       - name: Build Storybook
-        run: yarn build:storybook
+        env:
+          PREVIEW_BUILD_MODE: ${{ inputs.build-mode }}
+        run: |
+          if [ "$PREVIEW_BUILD_MODE" = "prototype" ]; then
+            STORYBOOK_PROTOTYPE_ONLY=true \
+              yarn exec storybook build --test -o .build-storybook
+          else
+            yarn build:storybook
+          fi
+
+      - name: Compute preview links
+        env:
+          CHANGED_FILES: ${{ inputs.changed-files }}
+          MATCHED_FILES: ${{ inputs.matched-files }}
+          PREVIEW_TRIGGER: ${{ inputs.preview-trigger }}
+          STORYBOOK_URL: https://ns-ec-dms-bs3-nimbus-preview.s3.us-west-2.amazonaws.com/${{ inputs.s3-prefix }}/pull/${{ github.event.pull_request.number }}/index.html
+        run: |
+          printf '%s\n' "$CHANGED_FILES" > "$RUNNER_TEMP/changed-files.txt"
+          printf '%s\n' "$MATCHED_FILES" > "$RUNNER_TEMP/matched-files.txt"
+
+          PREVIEW_MATCHED_FILES="$RUNNER_TEMP/matched-files.txt" \
+            yarn preview:links "$RUNNER_TEMP/changed-files.txt" \
+            > "$RUNNER_TEMP/preview-comment.md"
+          cat "$RUNNER_TEMP/preview-comment.md"
 
       - name: 🔐 Configure AWS credentials using OIDC
-        uses: aws-actions/configure-aws-credentials@v4
+        uses: aws-actions/configure-aws-credentials@7474bc4690e29a8392af63c5b98e7449536d5c3a # v4.3.1
         with:
           role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/${{ secrets.AWS_DEPLOY_ROLE }}
           aws-region: us-west-2
@@ -97,17 +182,9 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
           REPO: ${{ github.repository }}
-          STORYBOOK_URL: https://ns-ec-dms-bs3-nimbus-preview.s3.us-west-2.amazonaws.com/${{ inputs.s3-prefix }}/pull/${{ github.event.pull_request.number }}/index.html
         run: |
-          cat > "$RUNNER_TEMP/preview-comment.md" <<EOF
-          <!-- nimbus-storybook-preview -->
-          🚀✨ Your Storybook preview is ready!
-
-          🔗 [View Storybook]($STORYBOOK_URL)
-
-          Happy reviewing! 🎉
-          EOF
-
+          # "Compute preview links" already wrote the comment body — running
+          # `yarn preview:links` against the Storybook this job just built.
           echo "Checking for existing Storybook comment..."
 
           # The marker identifies comments written by this workflow; the legacy
