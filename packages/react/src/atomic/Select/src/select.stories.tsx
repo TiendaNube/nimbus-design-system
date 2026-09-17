@@ -6,6 +6,9 @@ import { Select } from "./Select";
 const meta: Meta<typeof Select> = {
   title: "Atomic/Select",
   component: Select,
+  args: {
+    aiGenerated: false,
+  },
   argTypes: {
     name: {
       control: { type: "text" },
