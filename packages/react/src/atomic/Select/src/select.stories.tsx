@@ -8,6 +8,16 @@ const meta: Meta<typeof Select> = {
   component: Select,
   argTypes: {
     children: { control: { disable: true } },
+    size: {
+      control: { type: "select" },
+      options: ["medium", "small"],
+      description:
+        "Controls the visual size with `medium` or `small`. Numeric values are forwarded to the native `size` attribute and keep the medium visual style.",
+      table: {
+        type: { summary: '"medium" | "small" | number' },
+        defaultValue: { summary: '"medium"' },
+      },
+    },
   },
   tags: ["autodocs"],
 };
