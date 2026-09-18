@@ -1,5 +1,6 @@
 import React, {
   type ComponentPropsWithRef,
+  type ForwardRefExoticComponent,
   forwardRef,
   useRef,
   useState,
@@ -78,7 +79,11 @@ const InputPassword = forwardRef<HTMLInputElement, InputPasswordBaseProps>(
       </div>
     );
   }
-);
+) as ForwardRefExoticComponent<
+  InputPasswordBaseProps &
+    React.InputHTMLAttributes<HTMLInputElement> &
+    React.RefAttributes<HTMLInputElement>
+>;
 
 export type InputPasswordProps = ComponentPropsWithRef<typeof InputPassword>;
 export { InputPassword };
