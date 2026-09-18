@@ -6,8 +6,70 @@ import { Select } from "./Select";
 const meta: Meta<typeof Select> = {
   title: "Atomic/Select",
   component: Select,
+  args: {
+    aiGenerated: false,
+  },
   argTypes: {
-    children: { control: { disable: true } },
+    name: {
+      control: { type: "text" },
+      description: "Name of the native select element.",
+      table: { type: { summary: "string" } },
+    },
+    id: {
+      control: { type: "text" },
+      description: "Unique identifier of the native select element.",
+      table: { type: { summary: "string" } },
+    },
+    children: {
+      control: { disable: true },
+      description: "Options or option groups rendered inside the select.",
+      table: { type: { summary: "React.ReactNode" } },
+    },
+    appearance: {
+      control: { type: "select" },
+      options: [
+        "neutral",
+        "success",
+        "warning",
+        "danger",
+        "ai-generative",
+      ],
+      description: "Controls the visual appearance of the select.",
+      table: {
+        type: {
+          summary:
+            '"neutral" | "success" | "warning" | "danger" | "ai-generative"',
+        },
+        defaultValue: { summary: '"neutral"' },
+      },
+    },
+    aiGenerated: {
+      control: { type: "boolean" },
+      description:
+        "Applies the AI-generated appearance and active AI focus shadow, taking precedence over `appearance`.",
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: "false" },
+      },
+    },
+    size: {
+      control: { type: "select" },
+      options: ["medium", "small"],
+      description:
+        "Controls the visual size with `medium` or `small`. Numeric values are forwarded to the native `size` attribute and keep the medium visual style.",
+      table: {
+        type: { summary: '"medium" | "small" | number' },
+        defaultValue: { summary: '"medium"' },
+      },
+    },
+    disabled: {
+      control: { type: "boolean" },
+      description: "Disables the select and prevents user interaction.",
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: "false" },
+      },
+    },
   },
   tags: ["autodocs"],
 };
@@ -15,19 +77,35 @@ const meta: Meta<typeof Select> = {
 export default meta;
 type Story = StoryObj<typeof Select>;
 
+const basicOptions = (
+  <>
+    <Select.Option label="Option 1" value="Option 1" />
+    <Select.Option label="Option 2" value="Option 2" />
+    <Select.Option label="Option 3" value="Option 3" />
+  </>
+);
+
 export const basic: Story = {
   args: {
     name: "Name",
     id: "Id",
     appearance: "neutral",
     disabled: false,
-    children: (
-      <>
-        <Select.Option label="Option 1" value="Option 1" />
-        <Select.Option label="Option 2" value="Option 2" />
-        <Select.Option label="Option 3" value="Option 3" />
-      </>
-    ),
+    children: basicOptions,
+  },
+};
+
+export const medium: Story = {
+  args: {
+    ...basic.args,
+    size: "medium",
+  },
+};
+
+export const small: Story = {
+  args: {
+    ...basic.args,
+    size: "small",
   },
 };
 
