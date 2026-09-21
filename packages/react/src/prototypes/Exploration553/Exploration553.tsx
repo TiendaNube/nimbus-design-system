@@ -3,108 +3,93 @@ import { Box } from "@nimbus-ds/box";
 import { Link } from "@nimbus-ds/link";
 import { Text } from "@nimbus-ds/text";
 import { Icon } from "@nimbus-ds/icon";
-import { IconButton } from "@nimbus-ds/icon-button";
-import { ChevronRightIcon, EllipsisIcon } from "@nimbus-ds/icons";
+import { ChevronRightIcon } from "@nimbus-ds/icons";
 
-export interface BreadcrumbItem {
+export interface Exploration553Item {
   label: string;
   href?: string;
+  onClick?: () => void;
 }
 
-export interface BreadcrumbProps {
-  items: BreadcrumbItem[];
-  /**
-   * Number of items to keep visible (including the current page) before
-   * collapsing the middle of the trail behind an expand control.
-   * Simulated behavior: Nimbus has no shipped collapse pattern for
-   * breadcrumbs today, this is the gap the prototype explores.
-   */
-  maxVisible?: number;
+export interface Exploration553Props {
+  items: Exploration553Item[];
+  maxVisibleItems?: number;
 }
 
-function Separator() {
-  return (
-    <Icon
-      source={<ChevronRightIcon size="small" />}
-      color="neutral-textDisabled"
-    />
-  );
-}
+type Slot = Exploration553Item | null;
 
-function Crumb({
-  item,
-  isCurrent,
-}: {
-  item: BreadcrumbItem;
-  isCurrent: boolean;
-}) {
-  if (isCurrent || !item.href) {
-    return (
-      <Text
-        as="span"
-        color={isCurrent ? "neutral-textHigh" : "neutral-textDisabled"}
-        aria-current={isCurrent ? "page" : undefined}
-      >
-        {item.label}
-      </Text>
-    );
-  }
+const Separator = () => (
+  <Icon color="neutral-textLow" source={<ChevronRightIcon />} />
+);
 
-  return (
-    <Link as="a" href={item.href} textDecoration="none" appearance="primary">
-      {item.label}
-    </Link>
-  );
-}
-
-export function Breadcrumb({ items, maxVisible = 3 }: BreadcrumbProps) {
+export function Exploration553({
+  items,
+  maxVisibleItems = 4,
+}: Exploration553Props) {
   const [expanded, setExpanded] = useState(false);
-  const currentItem = items[items.length - 1];
 
-  const shouldCollapse = !expanded && items.length > maxVisible;
-  const visibleItems = shouldCollapse
-    ? [items[0], ...items.slice(items.length - (maxVisible - 1))]
+  const collapsible = maxVisibleItems >= 2 && items.length > maxVisibleItems;
+  const shouldCollapse = collapsible && !expanded;
+
+  const slots: Slot[] = shouldCollapse
+    ? [items[0], null, ...items.slice(items.length - (maxVisibleItems - 1))]
     : items;
-  const collapsedCount = items.length - visibleItems.length;
 
   return (
     <Box as="nav" aria-label="Breadcrumb">
       <Box
-        as="ol"
+        role="list"
         display="flex"
         alignItems="center"
         flexWrap="wrap"
         gap="1"
-        padding="none"
-        margin="none"
       >
-        {visibleItems.map((item, index) => {
-          const isLast = index === visibleItems.length - 1;
-          const isFirst = index === 0;
-          const showEllipsisAfterThis = shouldCollapse && isFirst;
+        {slots.map((item, index) => {
+          const isLast = index === slots.length - 1;
+          const key = item ? `${item.label}-${index}` : `ellipsis-${index}`;
 
           return (
-            <React.Fragment key={`${item.label}-${index}`}>
-              <Box as="li" display="flex" alignItems="center" gap="1">
-                <Crumb item={item} isCurrent={item === currentItem} />
-              </Box>
-              {!isLast && <Separator />}
-              {showEllipsisAfterThis && (
-                <>
-                  <Box as="li" display="flex" alignItems="center">
-                    <IconButton
-                      source={<EllipsisIcon size="small" />}
-                      color="neutral-textLow"
-                      aria-label={`Show ${collapsedCount} hidden breadcrumb item${
-                        collapsedCount === 1 ? "" : "s"
-                      }`}
-                      onClick={() => setExpanded(true)}
-                    />
-                  </Box>
-                  <Separator />
-                </>
+            <Box
+              key={key}
+              role="listitem"
+              display="flex"
+              alignItems="center"
+              gap="1"
+            >
+              {item === null ? (
+                <Link
+                  as="button"
+                  type="button"
+                  appearance="neutral"
+                  textDecoration="none"
+                  aria-label="Show hidden breadcrumb levels"
+                  onClick={() => setExpanded(true)}
+                >
+                  …
+                </Link>
+              ) : isLast ? (
+                <Text
+                  as="span"
+                  color="neutral-textHigh"
+                  fontWeight="medium"
+                  aria-current="page"
+                >
+                  {item.label}
+                </Text>
+              ) : (
+                <Link
+                  as={item.href ? "a" : "button"}
+                  type={item.href ? undefined : "button"}
+                  href={item.href}
+                  appearance="neutral"
+                  textDecoration="none"
+                  onClick={item.onClick}
+                >
+                  {item.label}
+                </Link>
               )}
-            </React.Fragment>
+              {!isLast && <Separator />}
+            </Box>
           );
         })}
       </Box>

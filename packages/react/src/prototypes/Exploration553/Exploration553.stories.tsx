@@ -1,51 +1,83 @@
 import React from "react";
+import type { Meta, StoryObj } from "@storybook/react";
 import { Box } from "@nimbus-ds/box";
-import { Breadcrumb } from "./Exploration553";
+import { Text } from "@nimbus-ds/text";
 
-const shortTrail = [
-  { label: "Home", href: "/" },
-  { label: "Settings", href: "/settings" },
-  { label: "Shipping" },
+import { Exploration553, type Exploration553Item } from "./Exploration553";
+
+const SAMPLE_HIERARCHY: Exploration553Item[] = [
+  { label: "Home", href: "#home" },
+  { label: "Settings", href: "#settings" },
+  { label: "Shipping", href: "#settings/shipping" },
+  { label: "Zones", href: "#settings/shipping/zones" },
+  { label: "Argentina", href: "#settings/shipping/zones/argentina" },
+  { label: "Buenos Aires" },
 ];
 
-const longTrail = [
-  { label: "Home", href: "/" },
-  { label: "Catalog", href: "/catalog" },
-  { label: "Categories", href: "/catalog/categories" },
-  { label: "Footwear", href: "/catalog/categories/footwear" },
-  { label: "Running shoes", href: "/catalog/categories/footwear/running" },
-  { label: "Nimbus Runner 3" },
-];
+const buildItems = (depth: number): Exploration553Item[] =>
+  SAMPLE_HIERARCHY.slice(0, Math.max(1, Math.min(depth, SAMPLE_HIERARCHY.length)));
 
-export default {
+interface PlaygroundArgs {
+  depth: number;
+  maxVisibleItems: number;
+}
+
+const PlaygroundRender = ({ depth, maxVisibleItems }: PlaygroundArgs) => (
+  <Box padding="4">
+    <Exploration553 items={buildItems(depth)} maxVisibleItems={maxVisibleItems} />
+  </Box>
+);
+
+const meta: Meta<PlaygroundArgs> = {
   title: "Prototypes/Exploration553",
-  component: Breadcrumb,
+  parameters: {
+    layout: "padded",
+  },
 };
 
-export const Playground = {
-  render: () => (
-    <Box display="flex" flexDirection="column" gap="8" padding="4">
-      <Box display="flex" flexDirection="column" gap="2">
-        <Box as="p">Short trail (fits, no collapse)</Box>
-        <Breadcrumb items={shortTrail} />
-      </Box>
-      <Box display="flex" flexDirection="column" gap="2">
-        <Box as="p">Long trail (collapses middle segments behind "...")</Box>
-        <Breadcrumb items={longTrail} maxVisible={3} />
-      </Box>
-    </Box>
-  ),
+export default meta;
+
+type Story = StoryObj<PlaygroundArgs>;
+
+export const Playground: Story = {
+  render: (args) => <PlaygroundRender {...args} />,
+  args: {
+    depth: 6,
+    maxVisibleItems: 4,
+  },
+  argTypes: {
+    depth: {
+      control: { type: "range", min: 1, max: SAMPLE_HIERARCHY.length, step: 1 },
+      description: "How many levels of the sample hierarchy to render.",
+    },
+    maxVisibleItems: {
+      control: { type: "range", min: 2, max: SAMPLE_HIERARCHY.length, step: 1 },
+      description:
+        "Crumbs shown before collapsing the middle levels behind an ellipsis.",
+    },
+  },
 };
 
-export const FullScreen = {
+export const FullScreen: Story = {
   name: "Full screen",
   parameters: {
     layout: "fullscreen",
     controls: { disable: true },
   },
   render: () => (
-    <Box padding="8">
-      <Breadcrumb items={longTrail} maxVisible={3} />
+    <Box padding="8" display="flex" gap="6">
+      <Box display="flex" flexDirection="column" gap="2">
+        <Text as="span" fontSize="caption" color="neutral-textLow">
+          Deep hierarchy, collapsed by default — try the "…" to expand
+        </Text>
+        <Exploration553 items={SAMPLE_HIERARCHY} maxVisibleItems={4} />
+      </Box>
+      <Box display="flex" flexDirection="column" gap="2">
+        <Text as="span" fontSize="caption" color="neutral-textLow">
+          Shallow hierarchy, no collapse needed
+        </Text>
+        <Exploration553 items={SAMPLE_HIERARCHY.slice(0, 3)} maxVisibleItems={4} />
+      </Box>
     </Box>
   ),
 };
