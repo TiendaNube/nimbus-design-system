@@ -1,111 +1,109 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box } from "@nimbus-ds/box";
 import { Link } from "@nimbus-ds/link";
 import { Text } from "@nimbus-ds/text";
 import { Icon } from "@nimbus-ds/icon";
-import { ChevronRightIcon } from "@nimbus-ds/icons";
+import { IconButton } from "@nimbus-ds/icon-button";
+import { ChevronRightIcon, EllipsisIcon } from "@nimbus-ds/icons";
 
-/**
- * Gap: Box has no `listStyle` sprinkle property, so the default <ol> markers
- * cannot be removed through Box props alone. This scoped class is the
- * declared custom-CSS exception for that single rule; everything else
- * (spacing, layout, color) uses Box/Text/Link/Icon props and tokens.
- */
-const LIST_RESET_CLASS = "nimbus-exploration553-list";
-
-export interface Exploration553Item {
+export interface BreadcrumbItem {
   label: string;
   href?: string;
 }
 
-export interface Exploration553Props {
-  items: Exploration553Item[];
+export interface BreadcrumbProps {
+  items: BreadcrumbItem[];
   /**
-   * true (default): hides the middle ancestors below the `md` breakpoint and
-   * shows an ellipsis instead, keeping the first level and the last two
-   * always visible. false: keeps every level and wraps onto multiple lines.
-   * The two values are the two collapse strategies this prototype compares.
+   * Number of items to keep visible (including the current page) before
+   * collapsing the middle of the trail behind an expand control.
+   * Simulated behavior: Nimbus has no shipped collapse pattern for
+   * breadcrumbs today, this is the gap the prototype explores.
    */
-  collapseOnMobile?: boolean;
+  maxVisible?: number;
 }
 
 function Separator() {
   return (
     <Icon
-      source={<ChevronRightIcon />}
+      source={<ChevronRightIcon size="small" />}
       color="neutral-textDisabled"
-      aria-hidden="true"
     />
   );
 }
 
-export function Exploration553({
-  items,
-  collapseOnMobile = true,
-}: Exploration553Props) {
-  const lastIndex = items.length - 1;
-  const canCollapse = collapseOnMobile && items.length > 3;
-  const hiddenStart = 1;
-  const hiddenEnd = lastIndex - 2;
+function Crumb({
+  item,
+  isCurrent,
+}: {
+  item: BreadcrumbItem;
+  isCurrent: boolean;
+}) {
+  if (isCurrent || !item.href) {
+    return (
+      <Text
+        as="span"
+        color={isCurrent ? "neutral-textHigh" : "neutral-textDisabled"}
+        aria-current={isCurrent ? "page" : undefined}
+      >
+        {item.label}
+      </Text>
+    );
+  }
+
+  return (
+    <Link as="a" href={item.href} textDecoration="none" appearance="primary">
+      {item.label}
+    </Link>
+  );
+}
+
+export function Breadcrumb({ items, maxVisible = 3 }: BreadcrumbProps) {
+  const [expanded, setExpanded] = useState(false);
+  const currentItem = items[items.length - 1];
+
+  const shouldCollapse = !expanded && items.length > maxVisible;
+  const visibleItems = shouldCollapse
+    ? [items[0], ...items.slice(items.length - (maxVisible - 1))]
+    : items;
+  const collapsedCount = items.length - visibleItems.length;
 
   return (
     <Box as="nav" aria-label="Breadcrumb">
-      <style>{`.${LIST_RESET_CLASS} { list-style: none; }`}</style>
       <Box
         as="ol"
-        role="list"
-        className={LIST_RESET_CLASS}
         display="flex"
         alignItems="center"
-        flexWrap={collapseOnMobile ? "nowrap" : "wrap"}
+        flexWrap="wrap"
         gap="1"
         padding="none"
         margin="none"
       >
-        {items.map((item, index) => {
-          const isCurrent = index === lastIndex;
-          const isHiddenOnMobile =
-            canCollapse && index >= hiddenStart && index <= hiddenEnd;
+        {visibleItems.map((item, index) => {
+          const isLast = index === visibleItems.length - 1;
+          const isFirst = index === 0;
+          const showEllipsisAfterThis = shouldCollapse && isFirst;
 
           return (
             <React.Fragment key={`${item.label}-${index}`}>
-              {isHiddenOnMobile && index === hiddenStart && (
-                <Box
-                  as="li"
-                  display={{ xs: "flex", md: "none" }}
-                  alignItems="center"
-                  gap="1"
-                >
-                  <Text as="span" color="neutral-textDisabled" fontSize="base">
-                    …
-                  </Text>
-                  <Separator />
-                </Box>
-              )}
-              <Box
-                as="li"
-                display={
-                  isHiddenOnMobile ? { xs: "none", md: "flex" } : "flex"
-                }
-                alignItems="center"
-                gap="1"
-              >
-                {isCurrent ? (
-                  <Text
-                    as="span"
-                    color="neutral-textHigh"
-                    fontWeight="medium"
-                    aria-current="page"
-                  >
-                    {item.label}
-                  </Text>
-                ) : (
-                  <Link href={item.href} appearance="neutral">
-                    {item.label}
-                  </Link>
-                )}
-                {!isCurrent && <Separator />}
+              <Box as="li" display="flex" alignItems="center" gap="1">
+                <Crumb item={item} isCurrent={item === currentItem} />
               </Box>
+              {!isLast && <Separator />}
+              {showEllipsisAfterThis && (
+                <>
+                  <Box as="li" display="flex" alignItems="center">
+                    <IconButton
+                      source={<EllipsisIcon size="small" />}
+                      color="neutral-textLow"
+                      aria-label={`Show ${collapsedCount} hidden breadcrumb item${
+                        collapsedCount === 1 ? "" : "s"
+                      }`}
+                      onClick={() => setExpanded(true)}
+                    />
+                  </Box>
+                  <Separator />
+                </>
+              )}
             </React.Fragment>
           );
         })}
