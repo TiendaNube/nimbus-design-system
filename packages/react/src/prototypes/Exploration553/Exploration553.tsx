@@ -1,144 +1,112 @@
-import React, { useState, type ReactNode } from "react";
+import React from "react";
 import { Box } from "@nimbus-ds/box";
 import { Link } from "@nimbus-ds/link";
 import { Text } from "@nimbus-ds/text";
 import { Icon } from "@nimbus-ds/icon";
 import { ChevronRightIcon } from "@nimbus-ds/icons";
 
-export interface BreadcrumbItem {
-  /** Visible label for this level of the hierarchy. */
+/**
+ * Gap: Box has no `listStyle` sprinkle property, so the default <ol> markers
+ * cannot be removed through Box props alone. This scoped class is the
+ * declared custom-CSS exception for that single rule; everything else
+ * (spacing, layout, color) uses Box/Text/Link/Icon props and tokens.
+ */
+const LIST_RESET_CLASS = "nimbus-exploration553-list";
+
+export interface Exploration553Item {
   label: string;
-  /** Destination for this level. Omit for the current page (last item). */
   href?: string;
-  /** Called instead of following `href`, e.g. for a client-side router. */
-  onClick?: () => void;
 }
 
-export interface BreadcrumbProps {
-  /** Ancestor levels first, current page last. */
-  items: BreadcrumbItem[];
+export interface Exploration553Props {
+  items: Exploration553Item[];
   /**
-   * Once there are more than this many items, collapse the middle of the
-   * trail behind an expandable "…". The first item and the last
-   * `maxVisible - 1` items stay visible; clicking "…" reveals the rest
-   * inline. Omit to always show the full trail.
+   * true (default): hides the middle ancestors below the `md` breakpoint and
+   * shows an ellipsis instead, keeping the first level and the last two
+   * always visible. false: keeps every level and wraps onto multiple lines.
+   * The two values are the two collapse strategies this prototype compares.
    */
-  maxVisible?: number;
-  /** Visual separator rendered between levels. Defaults to a chevron icon. */
-  separator?: ReactNode;
+  collapseOnMobile?: boolean;
 }
 
-const LIST_RESET_CLASS = "nimbus-playground-breadcrumb-list";
-
-type BreadcrumbNode =
-  | { kind: "item"; item: BreadcrumbItem; originalIndex: number }
-  | { kind: "ellipsis"; hiddenCount: number };
-
-function buildNodes(
-  items: BreadcrumbItem[],
-  maxVisible: number | undefined,
-  expanded: boolean
-): BreadcrumbNode[] {
-  const asItemNodes: BreadcrumbNode[] = items.map((item, originalIndex) => ({
-    kind: "item",
-    item,
-    originalIndex,
-  }));
-
-  const shouldCollapse =
-    !expanded &&
-    typeof maxVisible === "number" &&
-    maxVisible >= 2 &&
-    items.length > maxVisible;
-
-  if (!shouldCollapse) {
-    return asItemNodes;
-  }
-
-  // maxVisible is defined and >= 2 here, guarded by shouldCollapse above.
-  const tailCount = (maxVisible as number) - 1;
-  const hiddenCount = items.length - 1 - tailCount;
-
-  return [
-    asItemNodes[0],
-    { kind: "ellipsis", hiddenCount },
-    ...asItemNodes.slice(asItemNodes.length - tailCount),
-  ];
-}
-
-function DefaultSeparator() {
+function Separator() {
   return (
     <Icon
-      source={<ChevronRightIcon size="small" />}
+      source={<ChevronRightIcon />}
       color="neutral-textDisabled"
+      aria-hidden="true"
     />
   );
 }
 
-export function Breadcrumb({ items, maxVisible, separator }: BreadcrumbProps) {
-  const [expanded, setExpanded] = useState(false);
-  const nodes = buildNodes(items, maxVisible, expanded);
-  const lastOriginalIndex = items.length - 1;
-  const separatorNode = separator ?? <DefaultSeparator />;
+export function Exploration553({
+  items,
+  collapseOnMobile = true,
+}: Exploration553Props) {
+  const lastIndex = items.length - 1;
+  const canCollapse = collapseOnMobile && items.length > 3;
+  const hiddenStart = 1;
+  const hiddenEnd = lastIndex - 2;
 
   return (
     <Box as="nav" aria-label="Breadcrumb">
-      {/*
-        Box intentionally drops an inline `style` prop (see Box.tsx) and its
-        style-prop surface has no `listStyleType`/`listStyle` token, so a
-        native <ol> rendered through Box still shows default list markers.
-        This scoped reset is the declared custom-CSS exception for that gap.
-      */}
-      <style>{`.${LIST_RESET_CLASS} { list-style: none; margin: 0; padding: 0; }`}</style>
+      <style>{`.${LIST_RESET_CLASS} { list-style: none; }`}</style>
       <Box
         as="ol"
+        role="list"
         className={LIST_RESET_CLASS}
         display="flex"
-        flexWrap="wrap"
         alignItems="center"
-        gap="2"
+        flexWrap={collapseOnMobile ? "nowrap" : "wrap"}
+        gap="1"
+        padding="none"
+        margin="none"
       >
-        {nodes.map((node, index) => {
-          const isLastNode = index === nodes.length - 1;
-          const key = node.kind === "item" ? `item-${node.originalIndex}` : "ellipsis";
+        {items.map((item, index) => {
+          const isCurrent = index === lastIndex;
+          const isHiddenOnMobile =
+            canCollapse && index >= hiddenStart && index <= hiddenEnd;
 
           return (
-            <Box as="li" key={key} display="flex" alignItems="center" gap="2">
-              {node.kind === "ellipsis" ? (
-                <Link
-                  as="button"
-                  type="button"
-                  appearance="neutral"
-                  textDecoration="none"
-                  onClick={() => setExpanded(true)}
-                  aria-label={`Show ${node.hiddenCount} hidden level${
-                    node.hiddenCount === 1 ? "" : "s"
-                  }`}
+            <React.Fragment key={`${item.label}-${index}`}>
+              {isHiddenOnMobile && index === hiddenStart && (
+                <Box
+                  as="li"
+                  display={{ xs: "flex", md: "none" }}
+                  alignItems="center"
+                  gap="1"
                 >
-                  …
-                </Link>
-              ) : node.originalIndex === lastOriginalIndex ? (
-                <Text
-                  as="span"
-                  fontWeight="medium"
-                  color="neutral-textHigh"
-                  aria-current="page"
-                >
-                  {node.item.label}
-                </Text>
-              ) : (
-                <Link
-                  as="a"
-                  href={node.item.href ?? "#"}
-                  appearance="neutral"
-                  textDecoration="none"
-                  onClick={node.item.onClick}
-                >
-                  {node.item.label}
-                </Link>
+                  <Text as="span" color="neutral-textDisabled" fontSize="base">
+                    …
+                  </Text>
+                  <Separator />
+                </Box>
               )}
-              {!isLastNode ? separatorNode : null}
-            </Box>
+              <Box
+                as="li"
+                display={
+                  isHiddenOnMobile ? { xs: "none", md: "flex" } : "flex"
+                }
+                alignItems="center"
+                gap="1"
+              >
+                {isCurrent ? (
+                  <Text
+                    as="span"
+                    color="neutral-textHigh"
+                    fontWeight="medium"
+                    aria-current="page"
+                  >
+                    {item.label}
+                  </Text>
+                ) : (
+                  <Link href={item.href} appearance="neutral">
+                    {item.label}
+                  </Link>
+                )}
+                {!isCurrent && <Separator />}
+              </Box>
+            </React.Fragment>
           );
         })}
       </Box>
