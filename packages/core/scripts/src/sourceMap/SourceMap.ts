@@ -919,14 +919,19 @@ interface StorybookIndexEntry {
 function isStorybookIndexEntry(
   value: unknown
 ): value is StorybookIndexEntry {
+  if (
+    typeof value !== "object" ||
+    value === null ||
+    !("id" in value)
+  ) {
+    return false;
+  }
+
   return (
-    typeof value === "object" &&
-    value !== null &&
-    typeof (
-      value as {
-        id?: unknown;
-      }
-    ).id === "string"
+    typeof Reflect.get(
+      value,
+      "id"
+    ) === "string"
   );
 }
 
@@ -952,15 +957,19 @@ function loadStoryIndex(
     return result;
   }
 
+  if (
+    typeof raw !== "object" ||
+    raw === null ||
+    !("entries" in raw)
+  ) {
+    return result;
+  }
+
   const entries =
-    typeof raw === "object" &&
-    raw !== null
-      ? (
-          raw as {
-            entries?: unknown;
-          }
-        ).entries
-      : undefined;
+    Reflect.get(
+      raw,
+      "entries"
+    );
 
   if (
     typeof entries !== "object" ||
@@ -1110,7 +1119,22 @@ function enrichSharedEntries(
 }
 
 /**
- * Generates the deterministic source-map document for a configured repo.
+ * Generates a deterministic source-map document from a repository
+ * configuration.
+ *
+ * Component manifests are read directly from the repository and normalized
+ * into component metadata. The generator resolves matching style paths,
+ * public TypeScript entrypoint exports, Nimbus source dependencies, optional
+ * Storybook entries and configured shared asset metadata.
+ *
+ * Missing or invalid component manifests and ambiguous implementation or style
+ * matches are treated as errors rather than guessed. Optional Storybook data
+ * is ignored when its index cannot be read or does not have the expected
+ * structure.
+ *
+ * @param config Repository layout, commands and shared metadata configuration.
+ * @returns The generated source-map document.
+ * @throws When required component metadata is missing, invalid or ambiguous.
  */
 export function generateSourceMap(
   config: SourceMapConfig

@@ -261,6 +261,23 @@ export type TsxEntryProps = {};
 `
   );
 
+  // Component using Nimbus re-exports
+  write(
+    "packages/react/src/atomic/Reexporter/package.json",
+    JSON.stringify({
+      name:
+        "@nimbus-ds/reexporter",
+    })
+  );
+
+  write(
+    "packages/react/src/atomic/Reexporter/src/index.ts",
+    `
+export { Button } from "@nimbus-ds/button";
+export * from "@nimbus-ds/typings";
+`
+  );
+
   // Icons
   write(
     "packages/icons/src/assets/arrow-left.svg"
@@ -497,6 +514,30 @@ describe(
         ).not.toContain(
           "@nimbus-ds/text"
         );
+      }
+    );
+
+    it(
+      "includes Nimbus named and wildcard re-exports in dependencies",
+      () => {
+        const doc =
+          generateSourceMap(
+            baseConfig(cwd)
+          );
+
+        const reexporter =
+          doc.components.find(
+            (component) =>
+              component.name ===
+              "Reexporter"
+          );
+
+        expect(
+          reexporter?.dependencies
+        ).toEqual([
+          "@nimbus-ds/button",
+          "@nimbus-ds/typings",
+        ]);
       }
     );
 
