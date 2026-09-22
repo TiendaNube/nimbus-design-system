@@ -17,6 +17,29 @@ export interface SourceMapCommands {
   testOne: string;
 }
 
+export interface SharedEntry {
+  path: string;
+  package?: string;
+
+  /**
+   * Optional path containing assets exported by the shared package.
+   * Currently used by @nimbus-ds/icons.
+   */
+  assets?: string;
+
+  /**
+   * Human-readable convention describing how asset names map to exports.
+   * Example: `arrow-left.svg -> ArrowLeftIcon`.
+   */
+  exportNaming?: string;
+
+  /**
+   * Concrete exports available from the package, generated from the source
+   * tree so agents can validate a name without browsing the entire directory.
+   */
+  available?: string[];
+}
+
 /**
  * Where a repo's components live and how its workspaces are shaped. Both
  * repos share the same file-level conventions (resolved by glob in
@@ -32,7 +55,7 @@ export interface SourceMapConfig {
    * relative to `cwd`. E.g. `{ atomic: "packages/react/src/atomic" }`.
    */
   groups: Record<string, string>;
-  shared: Record<string, { path: string; package?: string }>;
+  shared: Record<string, SharedEntry>;
   /** A real, representative component directory other repos can point new ones at. */
   newComponentReference: string;
   /**
@@ -74,7 +97,7 @@ export interface SourceMapDocument {
   conventions: Record<string, string>;
   groups: Record<string, string>;
   components: ComponentEntry[];
-  shared: Record<string, { path: string; package?: string }>;
+  shared: Record<string, SharedEntry>;
   newComponent: {
     reference: string;
   };

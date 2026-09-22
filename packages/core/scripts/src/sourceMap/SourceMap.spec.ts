@@ -26,10 +26,17 @@ const BASE_COMMANDS: SourceMapConfig["commands"] = {
  * reading a real tree, so a fixture tree is what actually exercises it.
  */
 function makeFixtureRepo(): string {
-  const cwd = fs.mkdtempSync(path.join(os.tmpdir(), "source-map-fixture-"));
+  const cwd = fs.mkdtempSync(
+    path.join(os.tmpdir(), "source-map-fixture-")
+  );
+
   const write = (relPath: string, content = "") => {
     const full = path.join(cwd, relPath);
-    fs.mkdirSync(path.dirname(full), { recursive: true });
+
+    fs.mkdirSync(path.dirname(full), {
+      recursive: true,
+    });
+
     fs.writeFileSync(full, content);
   };
 
@@ -47,7 +54,9 @@ function makeFixtureRepo(): string {
   write("packages/react/src/composite/Table/src/index.ts");
   write("packages/react/src/composite/Table/src/Table.tsx");
   write("packages/react/src/composite/Table/src/table.types.ts");
-  write("packages/react/src/composite/Table/src/Table.definitions.ts");
+  write(
+    "packages/react/src/composite/Table/src/Table.definitions.ts"
+  );
   write(
     "packages/react/src/composite/Table/src/components/TableRow/TableRow.tsx"
   );
@@ -61,8 +70,17 @@ function makeFixtureRepo(): string {
   write("packages/react/src/atomic/Slider/src/Slider.tsx");
   write("packages/react/src/atomic/Slider/src/slider.stories.tsx");
   write("packages/react/src/atomic/Slider/src/SliderRange.tsx");
-  write("packages/react/src/atomic/Slider/src/sliderRange.stories.tsx");
-  write("packages/react/src/atomic/Slider/src/hooks/useSliderDrag.ts");
+  write(
+    "packages/react/src/atomic/Slider/src/sliderRange.stories.tsx"
+  );
+  write(
+    "packages/react/src/atomic/Slider/src/hooks/useSliderDrag.ts"
+  );
+
+  // Shared icon assets used to verify generated exports.
+  write("packages/icons/src/assets/arrow-left.svg");
+  write("packages/icons/src/assets/user-circle.svg");
+  write("packages/icons/src/assets/Infinite.svg");
 
   return cwd;
 }
@@ -70,14 +88,25 @@ function makeFixtureRepo(): string {
 function baseConfig(cwd: string): SourceMapConfig {
   return {
     repoName: "fixture-repo",
+
     cwd,
+
     groups: {
       atomic: "packages/react/src/atomic",
       composite: "packages/react/src/composite",
     },
+
     commands: BASE_COMMANDS,
-    shared: {},
-    newComponentReference: "packages/react/src/atomic/Box",
+
+    shared: {
+      icons: {
+        path: "packages/icons",
+        package: "@nimbus-ds/icons",
+      },
+    },
+
+    newComponentReference:
+      "packages/react/src/atomic/Box",
   };
 }
 
@@ -86,9 +115,13 @@ describe("generateSourceMap", () => {
 
   beforeEach(() => {
     cwd = makeFixtureRepo();
+
     (execSync as jest.Mock).mockReturnValue(
       [
-        { name: "@nimbus-ds/box", location: "packages/react/src/atomic/Box" },
+        {
+          name: "@nimbus-ds/box",
+          location: "packages/react/src/atomic/Box",
+        },
         {
           name: "@nimbus-ds/table",
           location: "packages/react/src/composite/Table",
@@ -98,18 +131,24 @@ describe("generateSourceMap", () => {
           location: "packages/react/src/atomic/Slider",
         },
       ]
-        .map((w) => JSON.stringify(w))
+        .map((workspace) => JSON.stringify(workspace))
         .join("\n")
     );
   });
 
   afterEach(() => {
-    fs.rmSync(cwd, { recursive: true, force: true });
+    fs.rmSync(cwd, {
+      recursive: true,
+      force: true,
+    });
   });
 
   it("resolves a plain component with no extras", () => {
     const doc = generateSourceMap(baseConfig(cwd));
-    const box = doc.components.find((c) => c.name === "Box");
+
+    const box = doc.components.find(
+      (component) => component.name === "Box"
+    );
 
     expect(box).toEqual({
       name: "Box",
@@ -120,16 +159,24 @@ describe("generateSourceMap", () => {
 
   it("resolves nested subcomponents/contexts, puts an off-convention file in extras", () => {
     const doc = generateSourceMap(baseConfig(cwd));
-    const table = doc.components.find((c) => c.name === "Table");
+
+    const table = doc.components.find(
+      (component) => component.name === "Table"
+    );
 
     expect(table?.nested).toEqual(["TableRow"]);
     expect(table?.contexts).toEqual(["TableContext"]);
-    expect(table?.extras).toEqual(["src/Table.definitions.ts"]);
+    expect(table?.extras).toEqual([
+      "src/Table.definitions.ts",
+    ]);
   });
 
   it("puts a sibling top-level export and an unrelated directory in extras", () => {
     const doc = generateSourceMap(baseConfig(cwd));
-    const slider = doc.components.find((c) => c.name === "Slider");
+
+    const slider = doc.components.find(
+      (component) => component.name === "Slider"
+    );
 
     expect(slider?.extras).toEqual([
       "src/SliderRange.tsx",
@@ -139,50 +186,126 @@ describe("generateSourceMap", () => {
   });
 
   it("throws on a genuine ambiguity instead of picking a file silently", () => {
-    const componentDir = path.join(cwd, "packages/react/src/atomic/Box/src");
-    // A second spelling (not just a different case — the filesystem under
-    // test may be case-insensitive) whose stem still normalizes to "box".
-    fs.writeFileSync(path.join(componentDir, "box_.tsx"), "");
+    const componentDir = path.join(
+      cwd,
+      "packages/react/src/atomic/Box/src"
+    );
 
-    expect(() => generateSourceMap(baseConfig(cwd))).toThrow(
-      /Ambiguous implementation/
+    // A second spelling whose stem still normalizes to "box".
+    fs.writeFileSync(
+      path.join(componentDir, "box_.tsx"),
+      ""
+    );
+
+    expect(() =>
+      generateSourceMap(baseConfig(cwd))
+    ).toThrow(/Ambiguous implementation/);
+  });
+
+  it("documents the mixed filename casing convention", () => {
+    const doc = generateSourceMap(baseConfig(cwd));
+
+    expect(doc.conventions.implementationNaming).toBe(
+      "Implementation keeps the component casing, e.g. Link.tsx"
+    );
+
+    expect(doc.conventions.typesNaming).toBe(
+      "Types usually use lower camel case, e.g. link.types.ts"
+    );
+  });
+
+  it("exposes icon assets and their generated export names", () => {
+    const doc = generateSourceMap(baseConfig(cwd));
+
+    expect(doc.shared.icons).toEqual({
+      path: "packages/icons",
+      package: "@nimbus-ds/icons",
+      assets: "packages/icons/src/assets",
+      exportNaming: "arrow-left.svg -> ArrowLeftIcon",
+      available: [
+        "ArrowLeftIcon",
+        "InfiniteIcon",
+        "UserCircleIcon",
+      ],
+    });
+  });
+
+  it("writes icon metadata to YAML", () => {
+    const yaml = writeYaml(
+      generateSourceMap(baseConfig(cwd))
+    );
+
+    expect(yaml).toContain(
+      'assets: "packages/icons/src/assets"'
+    );
+
+    expect(yaml).toContain(
+      'export_naming: "arrow-left.svg -> ArrowLeftIcon"'
+    );
+
+    expect(yaml).toContain(
+      '- "ArrowLeftIcon"'
     );
   });
 
   it("is byte-for-byte reproducible across two runs on the same tree", () => {
-    const first = writeYaml(generateSourceMap(baseConfig(cwd)));
-    const second = writeYaml(generateSourceMap(baseConfig(cwd)));
+    const first = writeYaml(
+      generateSourceMap(baseConfig(cwd))
+    );
+
+    const second = writeYaml(
+      generateSourceMap(baseConfig(cwd))
+    );
 
     expect(first).toBe(second);
   });
 
   it("quotes every string, so a boolean/null/number/date-like value stays a string", () => {
     const config = baseConfig(cwd);
+
     config.repoName = "2026-09-15";
 
-    const yaml = writeYaml(generateSourceMap(config));
+    const yaml = writeYaml(
+      generateSourceMap(config)
+    );
 
-    expect(yaml).toContain('name: "2026-09-15"');
+    expect(yaml).toContain(
+      'name: "2026-09-15"'
+    );
   });
 
   it("quotes scoped package names — @ may not start a plain YAML scalar", () => {
-    const yaml = writeYaml(generateSourceMap(baseConfig(cwd)));
+    const yaml = writeYaml(
+      generateSourceMap(baseConfig(cwd))
+    );
 
-    expect(yaml).toContain('package: "@nimbus-ds/box"');
+    expect(yaml).toContain(
+      'package: "@nimbus-ds/box"'
+    );
+
     expect(yaml).not.toMatch(/package: @/);
   });
 
   it("sorts by group then name, never by a concatenation that can collide", () => {
     const doc = generateSourceMap(baseConfig(cwd));
-    const order = doc.components.map((c) => `${c.group}/${c.name}`);
+
+    const order = doc.components.map(
+      (component) =>
+        `${component.group}/${component.name}`
+    );
 
     expect(order).toEqual([...order].sort());
   });
 
   it("carries no volatile field (timestamp, generator version, source sha)", () => {
-    const yaml = writeYaml(generateSourceMap(baseConfig(cwd)));
+    const yaml = writeYaml(
+      generateSourceMap(baseConfig(cwd))
+    );
 
-    expect(yaml).not.toMatch(/\b\d{4}-\d{2}-\d{2}T/); // no ISO timestamp
+    expect(yaml).not.toMatch(
+      /\b\d{4}-\d{2}-\d{2}T/
+    );
+
     expect(yaml.toLowerCase()).not.toMatch(
       /generated[_-]?at|generator[_-]?version|source[_-]?sha/
     );

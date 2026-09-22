@@ -1,6 +1,7 @@
 import { compareStrings } from "./compareStrings";
 import type {
   ComponentEntry,
+  SharedEntry,
   SourceMapCommands,
   SourceMapDocument,
 } from "./SourceMap.types";
@@ -32,11 +33,15 @@ const COMMAND_KEYS: Record<keyof SourceMapCommands, string> = {
   testOne: "test_one",
 };
 
-function toYamlCommands(commands: SourceMapCommands): Record<string, string> {
+function toYamlCommands(
+  commands: SourceMapCommands
+): Record<string, string> {
   const result: Record<string, string> = {};
+
   for (const [field, yamlKey] of Object.entries(COMMAND_KEYS)) {
     result[yamlKey] = commands[field as keyof SourceMapCommands];
   }
+
   return result;
 }
 
@@ -53,7 +58,10 @@ function scalarLine(value: string): string {
   return quoteIfNeeded(value);
 }
 
-function flatMap(map: Record<string, string>, indent: string): string[] {
+function flatMap(
+  map: Record<string, string>,
+  indent: string
+): string[] {
   return Object.keys(map)
     .sort(compareStrings)
     .map((key) => `${indent}${key}: ${scalarLine(map[key])}`);
@@ -69,13 +77,73 @@ function componentLine(entry: ComponentEntry): string {
     `group: ${scalarLine(entry.group)}`,
     `package: ${scalarLine(entry.package)}`,
   ];
-  if (entry.story) fields.push(`story: ${scalarLine(entry.story)}`);
-  if (entry.nested?.length) fields.push(`nested: ${inlineArray(entry.nested)}`);
-  if (entry.contexts?.length)
+
+  if (entry.story) {
+    fields.push(`story: ${scalarLine(entry.story)}`);
+  }
+
+  if (entry.nested?.length) {
+    fields.push(`nested: ${inlineArray(entry.nested)}`);
+  }
+
+  if (entry.contexts?.length) {
     fields.push(`contexts: ${inlineArray(entry.contexts)}`);
-  if (entry.extras?.length) fields.push(`extras: ${inlineArray(entry.extras)}`);
+  }
+
+  if (entry.extras?.length) {
+    fields.push(`extras: ${inlineArray(entry.extras)}`);
+  }
 
   return `  - { ${fields.join(", ")} }`;
+}
+
+function sharedEntryLines(
+  key: string,
+  value: SharedEntry
+): string[] {
+  const hasExtendedMetadata =
+    value.assets !== undefined ||
+    value.exportNaming !== undefined ||
+    Boolean(value.available?.length);
+
+  if (!hasExtendedMetadata) {
+    const fields = [`path: ${scalarLine(value.path)}`];
+
+    if (value.package) {
+      fields.push(`package: ${scalarLine(value.package)}`);
+    }
+
+    return [`  ${key}: { ${fields.join(", ")} }`];
+  }
+
+  const lines = [
+    `  ${key}:`,
+    `    path: ${scalarLine(value.path)}`,
+  ];
+
+  if (value.package) {
+    lines.push(`    package: ${scalarLine(value.package)}`);
+  }
+
+  if (value.assets) {
+    lines.push(`    assets: ${scalarLine(value.assets)}`);
+  }
+
+  if (value.exportNaming) {
+    lines.push(
+      `    export_naming: ${scalarLine(value.exportNaming)}`
+    );
+  }
+
+  if (value.available?.length) {
+    lines.push("    available:");
+
+    for (const item of value.available) {
+      lines.push(`      - ${scalarLine(item)}`);
+    }
+  }
+
+  return lines;
 }
 
 export function writeYaml(doc: SourceMapDocument): string {
@@ -85,7 +153,9 @@ export function writeYaml(doc: SourceMapDocument): string {
 
   lines.push("repo:");
   lines.push(`  name: ${scalarLine(doc.repo.name)}`);
-  lines.push(`  package_manager: ${scalarLine(doc.repo.packageManager)}`);
+  lines.push(
+    `  package_manager: ${scalarLine(doc.repo.packageManager)}`
+  );
   lines.push("");
 
   lines.push("commands:");
@@ -101,20 +171,25 @@ export function writeYaml(doc: SourceMapDocument): string {
   lines.push("");
 
   lines.push("components:");
-  for (const entry of doc.components) lines.push(componentLine(entry));
+
+  for (const entry of doc.components) {
+    lines.push(componentLine(entry));
+  }
+
   lines.push("");
 
   lines.push("shared:");
+
   for (const key of Object.keys(doc.shared).sort(compareStrings)) {
-    const value = doc.shared[key];
-    const fields = [`path: ${scalarLine(value.path)}`];
-    if (value.package) fields.push(`package: ${scalarLine(value.package)}`);
-    lines.push(`  ${key}: { ${fields.join(", ")} }`);
+    lines.push(...sharedEntryLines(key, doc.shared[key]));
   }
+
   lines.push("");
 
   lines.push("new_component:");
-  lines.push(`  reference: ${scalarLine(doc.newComponent.reference)}`);
+  lines.push(
+    `  reference: ${scalarLine(doc.newComponent.reference)}`
+  );
   lines.push("");
 
   return lines.join("\n");
