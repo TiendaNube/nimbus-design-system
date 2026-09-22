@@ -292,6 +292,20 @@ function baseConfig(
   };
 }
 
+/**
+ * Asserts that source-map generation fails with the expected error.
+ */
+function expectGenerationToThrow(
+  cwd: string,
+  expected: RegExp
+): void {
+  expect(() =>
+    generateSourceMap(
+      baseConfig(cwd)
+    )
+  ).toThrow(expected);
+}
+
 describe(
   "generateSourceMap",
   () => {
@@ -395,11 +409,8 @@ describe(
           "{}"
         );
 
-        expect(() =>
-          generateSourceMap(
-            baseConfig(cwd)
-          )
-        ).toThrow(
+        expectGenerationToThrow(
+          cwd,
           /Missing package name/
         );
       }
@@ -541,11 +552,8 @@ describe(
           ""
         );
 
-        expect(() =>
-          generateSourceMap(
-            baseConfig(cwd)
-          )
-        ).toThrow(
+        expectGenerationToThrow(
+          cwd,
           /Ambiguous implementation/
         );
       }
