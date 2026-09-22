@@ -21,10 +21,10 @@ commands:
 conventions:
   componentRoot: "Use components[].path; fallback is {groups[group]}/{ComponentName}"
   contexts: "src/contexts/*/"
-  dependencies: "Nimbus package imports under src; specs, stories and demo are excluded"
+  dependencies: "Nimbus package imports under src; specs, tests, stories and demo are excluded"
   docs: "src/*.docs.json"
   entry: "src/index.ts"
-  exports: "Public exports resolved from src/index.ts and src/components/index.ts"
+  exports: "Public exports resolved from src/index.ts(x) and src/components/index.ts(x)"
   implementation: "src/*.tsx"
   implementationNaming: "Implementation keeps the component casing, e.g. Link.tsx"
   nested: "src/components/*/"

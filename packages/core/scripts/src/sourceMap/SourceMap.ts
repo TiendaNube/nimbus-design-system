@@ -109,23 +109,28 @@ function readPackageName(
   if (
     typeof manifest !== "object" ||
     manifest === null ||
-    typeof (
-      manifest as {
-        name?: unknown;
-      }
-    ).name !== "string" ||
-    !(manifest as { name: string }).name.trim()
+    !("name" in manifest)
   ) {
     throw new Error(
       `Missing package name at ${relativeComponentRoot}/package.json`
     );
   }
 
-  return (
-    manifest as {
-      name: string;
-    }
-  ).name;
+  const name = Reflect.get(
+    manifest,
+    "name"
+  );
+
+  if (
+    typeof name !== "string" ||
+    !name.trim()
+  ) {
+    throw new Error(
+      `Missing package name at ${relativeComponentRoot}/package.json`
+    );
+  }
+
+  return name;
 }
 
 /**
@@ -256,7 +261,7 @@ function listRuntimeSourceFiles(
     }
 
     if (
-      /\.(spec|stories)\.tsx?$/.test(
+      /\.(spec|test|stories)\.tsx?$/.test(
         entry.name
       )
     ) {
@@ -634,8 +639,19 @@ function collectPublicExports(
     path.join(
       componentRoot,
       "src",
+      "index.tsx"
+    ),
+    path.join(
+      componentRoot,
+      "src",
       "components",
       "index.ts"
+    ),
+    path.join(
+      componentRoot,
+      "src",
+      "components",
+      "index.tsx"
     ),
   ];
 
@@ -669,8 +685,8 @@ function collectPublicExports(
 /**
  * Finds Nimbus packages referenced by the component source.
  *
- * Specs, stories and demo directories are intentionally ignored so this
- * field describes implementation dependencies rather than test/example
+ * Specs, tests, stories and demo directories are intentionally ignored so
+ * this field describes implementation dependencies rather than test/example
  * dependencies.
  */
 function collectNimbusDependencies(
@@ -1216,10 +1232,10 @@ export function generateSourceMap(
         "Use components[].styles when present",
 
       exports:
-        "Public exports resolved from src/index.ts and src/components/index.ts",
+        "Public exports resolved from src/index.ts(x) and src/components/index.ts(x)",
 
       dependencies:
-        "Nimbus package imports under src; specs, stories and demo are excluded",
+        "Nimbus package imports under src; specs, tests, stories and demo are excluded",
     },
 
     groups:

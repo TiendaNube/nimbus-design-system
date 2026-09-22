@@ -99,6 +99,13 @@ import { Button } from "@nimbus-ds/button";
   );
 
   write(
+    "packages/react/src/atomic/Box/src/box.test.tsx",
+    `
+import { Tooltip } from "@nimbus-ds/tooltip";
+`
+  );
+
+  write(
     "packages/react/src/atomic/Box/src/box.stories.tsx",
     `
 import { Icon } from "@nimbus-ds/icon";
@@ -224,6 +231,34 @@ export const Slider = () => null;
 
   write(
     "packages/core/styles/src/packages/atomic/slider/index.ts"
+  );
+
+  // Component using a TSX package entrypoint
+  write(
+    "packages/react/src/atomic/TsxEntry/package.json",
+    JSON.stringify({
+      name:
+        "@nimbus-ds/tsx-entry",
+    })
+  );
+
+  write(
+    "packages/react/src/atomic/TsxEntry/src/index.tsx",
+    `
+import { TsxEntry } from "./TsxEntry";
+
+export { TsxEntry } from "./TsxEntry";
+export type { TsxEntryProps } from "./TsxEntry";
+export default TsxEntry;
+`
+  );
+
+  write(
+    "packages/react/src/atomic/TsxEntry/src/TsxEntry.tsx",
+    `
+export const TsxEntry = () => null;
+export type TsxEntryProps = {};
+`
   );
 
   // Icons
@@ -362,6 +397,7 @@ describe(
           ],
 
           extras: [
+            "src/box.test.tsx",
             "src/demo/",
           ],
         });
@@ -417,7 +453,7 @@ describe(
     );
 
     it(
-      "ignores spec, story and demo imports when collecting runtime dependencies",
+      "ignores spec, test, story and demo imports when collecting dependencies",
       () => {
         const doc =
           generateSourceMap(
@@ -447,6 +483,12 @@ describe(
         expect(
           box?.dependencies
         ).not.toContain(
+          "@nimbus-ds/tooltip"
+        );
+
+        expect(
+          box?.dependencies
+        ).not.toContain(
           "@nimbus-ds/icon"
         );
 
@@ -455,6 +497,31 @@ describe(
         ).not.toContain(
           "@nimbus-ds/text"
         );
+      }
+    );
+
+    it(
+      "resolves public exports from a TSX package entrypoint",
+      () => {
+        const doc =
+          generateSourceMap(
+            baseConfig(cwd)
+          );
+
+        const component =
+          doc.components.find(
+            (entry) =>
+              entry.name ===
+              "TsxEntry"
+          );
+
+        expect(
+          component?.exports
+        ).toEqual([
+          "TsxEntry",
+          "TsxEntryProps",
+          "default",
+        ]);
       }
     );
 

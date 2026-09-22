@@ -17,7 +17,10 @@ export interface SourceMapCommands {
   testOne: string;
 }
 
-export interface SharedEntry {
+/**
+ * Describes a shared package entry and its optional generated metadata.
+ */
+export type SharedEntry = {
   path: string;
   package?: string;
 
@@ -36,7 +39,7 @@ export interface SharedEntry {
    * tree so agents can validate a name without browsing the entire directory.
    */
   available?: string[];
-}
+};
 
 /**
  * Where a repo's components live and how its workspaces are shaped.
