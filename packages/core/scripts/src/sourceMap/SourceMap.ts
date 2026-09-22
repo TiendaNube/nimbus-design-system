@@ -1,6 +1,5 @@
 import fs from "fs";
 import path from "path";
-import { execSync } from "child_process";
 import { compareStrings } from "./compareStrings";
 
 import type {
@@ -8,7 +7,6 @@ import type {
   SharedEntry,
   SourceMapConfig,
   SourceMapDocument,
-  YarnWorkspace,
 } from "./SourceMap.types";
 
 /**
@@ -33,18 +31,16 @@ function normalize(value: string): string {
   return value.toLowerCase().replace(/[-_]/g, "");
 }
 
+/**
+ * Normalizes a filesystem path to POSIX separators for deterministic output.
+ */
 function toPosix(value: string): string {
   return value.split(path.sep).join("/");
 }
 
 /**
  * A file belongs to the component's conventional set when its stem is the
- * component's own name - never by concatenating the name with a fixed
- * suffix, because casing is mixed within a single repo (`Box.tsx` next to
- * `box.types.ts`; `Sortable.types.ts` next to `appShell.types.ts`).
- *
- * Anything whose stem does not match is generic, unclassified overflow and
- * belongs in `extras`.
+ * component's own name.
  */
 function isConventional(
   file: string,
@@ -73,49 +69,63 @@ const IGNORED_RUNTIME_DIRS = new Set([
   "__tests__",
 ]);
 
-function isYarnWorkspace(
-  value: unknown
-): value is YarnWorkspace {
-  return (
-    typeof value === "object" &&
-    value !== null &&
-    typeof (value as { name?: unknown }).name === "string" &&
-    typeof (value as { location?: unknown }).location === "string"
-  );
-}
-
 /**
- * Drops relative/empty PATH entries before resolving `yarn`.
+ * Reads the package name directly from a component's manifest.
+ *
+ * Component roots are already discovered from configured source groups, so
+ * invoking Yarn only to rediscover the same workspace and its package name is
+ * unnecessary.
  */
-function sanitizedPath(): string {
-  return (process.env.PATH ?? "")
-    .split(path.delimiter)
-    .filter((entry) => path.isAbsolute(entry))
-    .join(path.delimiter);
-}
+function readPackageName(
+  componentRoot: string,
+  relativeComponentRoot: string
+): string {
+  const packageJsonPath = path.join(
+    componentRoot,
+    "package.json"
+  );
 
-function getYarnWorkspaces(
-  cwd: string
-): YarnWorkspace[] {
-  const execOptions = {
-    encoding: "utf8" as const,
-    cwd,
-    env: {
-      ...process.env,
-      PATH: sanitizedPath(),
-    },
-  };
+  if (!fs.existsSync(packageJsonPath)) {
+    throw new Error(
+      `Missing package.json at ${relativeComponentRoot}`
+    );
+  }
 
-  const output = execSync(
-    "yarn workspaces list --json",
-    execOptions
-  ); // NOSONAR
+  let manifest: unknown;
 
-  return output
-    .split("\n")
-    .filter((line) => line.trim())
-    .map((line): unknown => JSON.parse(line))
-    .filter(isYarnWorkspace);
+  try {
+    manifest = JSON.parse(
+      fs.readFileSync(
+        packageJsonPath,
+        "utf8"
+      )
+    );
+  } catch {
+    throw new Error(
+      `Invalid package.json at ${relativeComponentRoot}`
+    );
+  }
+
+  if (
+    typeof manifest !== "object" ||
+    manifest === null ||
+    typeof (
+      manifest as {
+        name?: unknown;
+      }
+    ).name !== "string" ||
+    !(manifest as { name: string }).name.trim()
+  ) {
+    throw new Error(
+      `Missing package name at ${relativeComponentRoot}/package.json`
+    );
+  }
+
+  return (
+    manifest as {
+      name: string;
+    }
+  ).name;
 }
 
 /**
@@ -165,7 +175,7 @@ function classifySrcFiles(
   };
 }
 
-/** Direct children only. */
+/** Returns direct file children of a directory. */
 function listFiles(
   dir: string
 ): string[] {
@@ -182,6 +192,7 @@ function listFiles(
     .sort(compareStrings);
 }
 
+/** Returns direct directory children of a directory. */
 function listDirs(
   dir: string
 ): string[] {
@@ -198,6 +209,9 @@ function listDirs(
     .sort(compareStrings);
 }
 
+/**
+ * Recursively lists source files that contribute to the implementation.
+ */
 function listRuntimeSourceFiles(
   dir: string
 ): string[] {
@@ -311,6 +325,10 @@ function collectIconExports(
     .sort(compareStrings);
 }
 
+/**
+ * Collects files and directories that are not represented by standard source
+ * map conventions.
+ */
 function collectExtras(
   componentRoot: string,
   unclaimedSrcFiles: string[],
@@ -362,6 +380,9 @@ function collectExtras(
   ].sort(compareStrings);
 }
 
+/**
+ * Resolves a component's matching style directory when one exists.
+ */
 function resolveStylePath(
   cwd: string,
   stylesRoot: string | undefined,
@@ -416,6 +437,10 @@ function resolveStylePath(
   );
 }
 
+/**
+ * Resolves a relative TypeScript module to the concrete file used by an
+ * export statement.
+ */
 function resolveRelativeModule(
   fromFile: string,
   request: string
@@ -449,6 +474,9 @@ function resolveRelativeModule(
   return null;
 }
 
+/**
+ * Returns the exported name represented by one named export specifier.
+ */
 function parseExportSpecifier(
   specifier: string
 ): string | null {
@@ -582,7 +610,6 @@ function collectExportsFromFile(
         visited
       )
     ) {
-      // `export * from` never re-exports the target module's default export.
       if (exported !== "default") {
         exports.add(exported);
       }
@@ -593,9 +620,7 @@ function collectExportsFromFile(
 }
 
 /**
- * Nimbus component packages expose their main `src/index.ts`. The build also
- * exposes `src/components/index.ts` when subcomponents exist, so both are
- * treated as public entrypoints.
+ * Resolves the public API exposed by the component package entrypoints.
  */
 function collectPublicExports(
   componentRoot: string
@@ -695,14 +720,13 @@ function collectNimbusDependencies(
   );
 }
 
+/**
+ * Builds the source-map record for one component directory.
+ */
 function buildComponentEntry(
   group: string,
   groupDir: string,
   name: string,
-  workspaceByLocation: Map<
-    string,
-    string
-  >,
   cwd: string,
   stylesRoot: string | undefined,
   storyIndex: Map<
@@ -760,15 +784,10 @@ function buildComponentEntry(
     );
 
   const packageName =
-    workspaceByLocation.get(
+    readPackageName(
+      componentRoot,
       relComponentRoot
     );
-
-  if (!packageName) {
-    throw new Error(
-      `No yarn workspace found at ${relComponentRoot} - is ${name} missing its own package.json?`
-    );
-  }
 
   const nested = listDirs(
     path.join(
@@ -878,6 +897,9 @@ interface StorybookIndexEntry {
   importPath?: string;
 }
 
+/**
+ * Checks whether an unknown Storybook index value has the required shape.
+ */
 function isStorybookIndexEntry(
   value: unknown
 ): value is StorybookIndexEntry {
@@ -892,6 +914,9 @@ function isStorybookIndexEntry(
   );
 }
 
+/**
+ * Loads Storybook entry IDs grouped by their originating stories files.
+ */
 function loadStoryIndex(
   indexPath: string
 ): Map<string, string> {
@@ -1068,26 +1093,12 @@ function enrichSharedEntries(
   return shared;
 }
 
+/**
+ * Generates the deterministic source-map document for a configured repo.
+ */
 export function generateSourceMap(
   config: SourceMapConfig
 ): SourceMapDocument {
-  const workspaces =
-    getYarnWorkspaces(
-      config.cwd
-    );
-
-  const workspaceByLocation =
-    new Map(
-      workspaces.map(
-        (workspace) => [
-          toPosix(
-            workspace.location
-          ),
-          workspace.name,
-        ]
-      )
-    );
-
   const storyIndex =
     config.storybookIndexPath &&
     fs.existsSync(
@@ -1130,7 +1141,6 @@ export function generateSourceMap(
           group,
           groupDir,
           name,
-          workspaceByLocation,
           config.cwd,
           config.stylesRoot,
           storyIndex

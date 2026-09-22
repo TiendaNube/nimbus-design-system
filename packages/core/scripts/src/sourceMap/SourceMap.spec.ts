@@ -1,14 +1,11 @@
 import fs from "fs";
 import os from "os";
 import path from "path";
-import { execSync } from "child_process";
 
 import { generateSourceMap } from "./SourceMap";
 import { writeYaml } from "./writeYaml";
 
 import type { SourceMapConfig } from "./SourceMap.types";
-
-jest.mock("child_process");
 
 const BASE_COMMANDS: SourceMapConfig["commands"] = {
   install:
@@ -62,7 +59,10 @@ function makeFixtureRepo(): string {
   // Box
   write(
     "packages/react/src/atomic/Box/package.json",
-    "{}"
+    JSON.stringify({
+      name:
+        "@nimbus-ds/box",
+    })
   );
 
   write(
@@ -116,7 +116,6 @@ import { Text } from "@nimbus-ds/text";
 `
   );
 
-  // Box styles
   write(
     "packages/core/styles/src/packages/atomic/box/index.ts"
   );
@@ -124,7 +123,10 @@ import { Text } from "@nimbus-ds/text";
   // Table
   write(
     "packages/react/src/composite/Table/package.json",
-    "{}"
+    JSON.stringify({
+      name:
+        "@nimbus-ds/table",
+    })
   );
 
   write(
@@ -177,7 +179,6 @@ export type TableRowProps = {};
     "packages/react/src/composite/Table/src/contexts/TableContext/TableContext.tsx"
   );
 
-  // Table styles
   write(
     "packages/core/styles/src/packages/composite/table/index.ts"
   );
@@ -185,7 +186,10 @@ export type TableRowProps = {};
   // Slider
   write(
     "packages/react/src/atomic/Slider/package.json",
-    "{}"
+    JSON.stringify({
+      name:
+        "@nimbus-ds/slider",
+    })
   );
 
   write(
@@ -218,7 +222,6 @@ export const Slider = () => null;
     "packages/react/src/atomic/Slider/src/hooks/useSliderDrag.ts"
   );
 
-  // Slider styles
   write(
     "packages/core/styles/src/packages/atomic/slider/index.ts"
   );
@@ -297,37 +300,6 @@ describe(
     beforeEach(() => {
       cwd =
         makeFixtureRepo();
-
-      (
-        execSync as jest.Mock
-      ).mockReturnValue(
-        [
-          {
-            name:
-              "@nimbus-ds/box",
-            location:
-              "packages/react/src/atomic/Box",
-          },
-          {
-            name:
-              "@nimbus-ds/table",
-            location:
-              "packages/react/src/composite/Table",
-          },
-          {
-            name:
-              "@nimbus-ds/slider",
-            location:
-              "packages/react/src/atomic/Slider",
-          },
-        ]
-          .map((workspace) =>
-            JSON.stringify(
-              workspace
-            )
-          )
-          .join("\n")
-      );
     });
 
     afterEach(() => {
@@ -379,6 +351,57 @@ describe(
             "src/demo/",
           ],
         });
+      }
+    );
+
+    it(
+      "reads package names directly from component manifests",
+      () => {
+        const doc =
+          generateSourceMap(
+            baseConfig(cwd)
+          );
+
+        expect(
+          doc.components.find(
+            (component) =>
+              component.name ===
+              "Box"
+          )?.package
+        ).toBe(
+          "@nimbus-ds/box"
+        );
+
+        expect(
+          doc.components.find(
+            (component) =>
+              component.name ===
+              "Table"
+          )?.package
+        ).toBe(
+          "@nimbus-ds/table"
+        );
+      }
+    );
+
+    it(
+      "throws when a component manifest has no package name",
+      () => {
+        fs.writeFileSync(
+          path.join(
+            cwd,
+            "packages/react/src/atomic/Box/package.json"
+          ),
+          "{}"
+        );
+
+        expect(() =>
+          generateSourceMap(
+            baseConfig(cwd)
+          )
+        ).toThrow(
+          /Missing package name/
+        );
       }
     );
 

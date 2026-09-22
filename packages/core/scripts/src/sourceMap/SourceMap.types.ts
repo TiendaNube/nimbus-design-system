@@ -1,6 +1,6 @@
 /**
  * Field names are camelCase in code and mapped to the schema's snake_case
- * YAML keys (`build_all`, `test_one`, ...) only in `writeYaml.ts` — the repo's
+ * YAML keys (`build_all`, `test_one`, ...) only in `writeYaml.ts` - the repo's
  * lint rules require camelCase identifiers, and the YAML schema is fixed
  * independently of that.
  */
@@ -23,13 +23,11 @@ export interface SharedEntry {
 
   /**
    * Optional path containing assets exported by the shared package.
-   * Currently used by @nimbus-ds/icons.
    */
   assets?: string;
 
   /**
    * Human-readable convention describing how asset names map to exports.
-   * Example: `arrow-left.svg -> ArrowLeftIcon`.
    */
   exportNaming?: string;
 
@@ -53,18 +51,15 @@ export interface SourceMapConfig {
 
   /**
    * Group name -> directory holding one subdirectory per component,
-   * relative to `cwd`. E.g. `{ atomic: "packages/react/src/atomic" }`.
+   * relative to `cwd`.
    */
   groups: Record<string, string>;
 
   shared: Record<string, SharedEntry>;
 
   /**
-   * Optional root containing the style packages grouped by the same group
-   * names used by `groups`.
-   *
-   * Example:
-   * packages/core/styles/src/packages/atomic/link
+   * Optional root containing style packages grouped by the same group names
+   * used by `groups`.
    */
   stylesRoot?: string;
 
@@ -72,16 +67,9 @@ export interface SourceMapConfig {
   newComponentReference: string;
 
   /**
-   * Path (relative to `cwd`) to a Storybook `index.json` (from
-   * `storybook build`). When present, each component's `story` field is
-   * resolved from it; when absent, `story` is omitted rather than guessed.
+   * Path relative to `cwd` to a Storybook `index.json`.
    */
   storybookIndexPath?: string;
-}
-
-export interface YarnWorkspace {
-  name: string;
-  location: string;
 }
 
 export interface ComponentEntry {
@@ -106,7 +94,7 @@ export interface ComponentEntry {
   exports?: string[];
 
   /**
-   * Nimbus packages imported by runtime source files.
+   * Nimbus packages imported by component source files.
    */
   dependencies?: string[];
 
@@ -116,8 +104,7 @@ export interface ComponentEntry {
 
   /**
    * Files under the component that the shared conventions do not account
-   * for (loose assets, a `*.definitions.ts`, a stray root `index.d.ts`).
-   * Generic by construction: nothing here is keyed by component name.
+   * for.
    */
   extras?: string[];
 }
