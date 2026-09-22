@@ -1006,8 +1006,8 @@ function loadStoryIndex(
 }
 
 /**
- * Adds repository-specific metadata for shared packages when that information
- * can be derived deterministically from the source tree.
+ * Adds generated metadata to shared entries when an asset directory is
+ * explicitly configured by the repository wrapper.
  */
 function enrichSharedEntries(
   sharedEntries: Record<
@@ -1031,27 +1031,33 @@ function enrichSharedEntries(
       )
     );
 
-  const icons =
-    shared.icons;
-
-  if (icons) {
-    const assets =
-      path.posix.join(
-        icons.path,
-        "src/assets"
-      );
+  for (
+    const [key, entry] of
+    Object.entries(shared)
+  ) {
+    if (!entry.assets) {
+      continue;
+    }
 
     const absoluteAssetsPath =
-      path.join(
+      path.resolve(
         cwd,
-        ...assets.split("/")
+        entry.assets
       );
 
-    shared.icons = {
-      ...icons,
-      assets,
-      exportNaming:
-        "arrow-left.svg -> ArrowLeftIcon",
+    if (
+      !fs.existsSync(
+        absoluteAssetsPath
+      )
+    ) {
+      delete shared[key].assets;
+      delete shared[key].available;
+      continue;
+    }
+
+    shared[key] = {
+      ...entry,
+
       available:
         collectIconExports(
           absoluteAssetsPath

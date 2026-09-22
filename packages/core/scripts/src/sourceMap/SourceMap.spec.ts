@@ -265,8 +265,15 @@ function baseConfig(
       icons: {
         path:
           "packages/icons",
+
         package:
           "@nimbus-ds/icons",
+
+        assets:
+          "packages/icons/src/assets",
+
+        exportNaming:
+          "arrow-left.svg -> ArrowLeftIcon",
       },
 
       styles: {
@@ -546,7 +553,7 @@ describe(
     );
 
     it(
-      "exposes icon assets and generated export names",
+      "exposes configured icon assets and generated export names",
       () => {
         const doc =
           generateSourceMap(
@@ -574,6 +581,36 @@ describe(
             "UserCircleIcon",
           ],
         });
+      }
+    );
+
+    it(
+      "does not emit a configured asset path when the directory does not exist",
+      () => {
+        const config =
+          baseConfig(cwd);
+
+        config.shared.icons.assets =
+          "packages/icons/src/missing-assets";
+
+        const doc =
+          generateSourceMap(
+            config
+          );
+
+        expect(
+          doc.shared.icons.assets
+        ).toBeUndefined();
+
+        expect(
+          doc.shared.icons.available
+        ).toBeUndefined();
+
+        expect(
+          doc.shared.icons.exportNaming
+        ).toBe(
+          "arrow-left.svg -> ArrowLeftIcon"
+        );
       }
     );
 

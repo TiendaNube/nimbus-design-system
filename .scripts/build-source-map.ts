@@ -79,6 +79,10 @@ runSourceMapCli({
         "packages/icons",
       package:
         "@nimbus-ds/icons",
+      assets:
+        "packages/icons/src/assets",
+      exportNaming:
+        "arrow-left.svg -> ArrowLeftIcon",
     },
 
     helper: {
