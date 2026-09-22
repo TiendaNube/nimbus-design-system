@@ -1,190 +1,925 @@
 import fs from "fs";
 import os from "os";
 import path from "path";
-import { execSync } from "child_process";
+
 import { generateSourceMap } from "./SourceMap";
 import { writeYaml } from "./writeYaml";
+
 import type { SourceMapConfig } from "./SourceMap.types";
 
-jest.mock("child_process");
-
 const BASE_COMMANDS: SourceMapConfig["commands"] = {
-  install: "yarn install --immutable",
+  install:
+    "yarn install --immutable",
   buildAll: "yarn build",
   testAll: "yarn test",
   lint: "yarn lint",
-  typesCheck: "yarn types:check",
+  typesCheck:
+    "yarn types:check",
   storybook: "yarn storybook",
-  buildStorybook: "yarn build:storybook",
-  buildOne: "yarn workspace {package} build",
-  testOne: "yarn jest {path}",
+  buildStorybook:
+    "yarn build:storybook",
+  buildOne:
+    "yarn workspace {package} build",
+  testOne:
+    "yarn jest {path}",
 };
 
-/**
- * Builds a throwaway repo tree so `generateSourceMap` can run against real
- * files instead of a mocked filesystem — the generator's whole job is
- * reading a real tree, so a fixture tree is what actually exercises it.
- */
 function makeFixtureRepo(): string {
-  const cwd = fs.mkdtempSync(path.join(os.tmpdir(), "source-map-fixture-"));
-  const write = (relPath: string, content = "") => {
-    const full = path.join(cwd, relPath);
-    fs.mkdirSync(path.dirname(full), { recursive: true });
-    fs.writeFileSync(full, content);
+  const cwd =
+    fs.mkdtempSync(
+      path.join(
+        os.tmpdir(),
+        "source-map-fixture-"
+      )
+    );
+
+  const write = (
+    relPath: string,
+    content = ""
+  ) => {
+    const full =
+      path.join(
+        cwd,
+        relPath
+      );
+
+    fs.mkdirSync(
+      path.dirname(full),
+      {
+        recursive: true,
+      }
+    );
+
+    fs.writeFileSync(
+      full,
+      content
+    );
   };
 
-  // A plain component: entry, impl, types, test, stories, generated docs.
-  write("packages/react/src/atomic/Box/package.json", "{}");
-  write("packages/react/src/atomic/Box/src/index.ts");
-  write("packages/react/src/atomic/Box/src/Box.tsx");
-  write("packages/react/src/atomic/Box/src/box.types.ts");
-  write("packages/react/src/atomic/Box/src/box.spec.tsx");
-  write("packages/react/src/atomic/Box/src/box.stories.tsx");
-  write("packages/react/src/atomic/Box/src/box.docs.json");
-
-  // Nested subcomponents + a context, mixed casing on the sub files.
-  write("packages/react/src/composite/Table/package.json", "{}");
-  write("packages/react/src/composite/Table/src/index.ts");
-  write("packages/react/src/composite/Table/src/Table.tsx");
-  write("packages/react/src/composite/Table/src/table.types.ts");
-  write("packages/react/src/composite/Table/src/Table.definitions.ts");
+  // Box
   write(
-    "packages/react/src/composite/Table/src/components/TableRow/TableRow.tsx"
+    "packages/react/src/atomic/Box/package.json",
+    JSON.stringify({
+      name:
+        "@nimbus-ds/box",
+    })
   );
+
+  write(
+    "packages/react/src/atomic/Box/src/index.ts",
+    `
+import { Box } from "./Box";
+
+export { Box } from "./Box";
+export type { BoxProps } from "./Box";
+export default Box;
+`
+  );
+
+  write(
+    "packages/react/src/atomic/Box/src/Box.tsx",
+    `
+import { box } from "@nimbus-ds/styles";
+import { Skeleton } from "@nimbus-ds/skeleton";
+
+export const Box = () => null;
+export type BoxProps = {};
+`
+  );
+
+  write(
+    "packages/react/src/atomic/Box/src/box.types.ts"
+  );
+
+  write(
+    "packages/react/src/atomic/Box/src/box.spec.tsx",
+    `
+import { Button } from "@nimbus-ds/button";
+`
+  );
+
+  write(
+    "packages/react/src/atomic/Box/src/box.test.tsx",
+    `
+import { Tooltip } from "@nimbus-ds/tooltip";
+`
+  );
+
+  write(
+    "packages/react/src/atomic/Box/src/box.stories.tsx",
+    `
+import { Icon } from "@nimbus-ds/icon";
+`
+  );
+
+  write(
+    "packages/react/src/atomic/Box/src/box.docs.json"
+  );
+
+  write(
+    "packages/react/src/atomic/Box/src/demo/example.tsx",
+    `
+import { Text } from "@nimbus-ds/text";
+`
+  );
+
+  write(
+    "packages/core/styles/src/packages/atomic/box/index.ts"
+  );
+
+  // Table
+  write(
+    "packages/react/src/composite/Table/package.json",
+    JSON.stringify({
+      name:
+        "@nimbus-ds/table",
+    })
+  );
+
+  write(
+    "packages/react/src/composite/Table/src/index.ts",
+    `
+import { Table } from "./Table";
+
+export { Table } from "./Table";
+export type { TableProps, TableColumnLayout } from "./table.types";
+export default Table;
+`
+  );
+
+  write(
+    "packages/react/src/composite/Table/src/Table.tsx"
+  );
+
+  write(
+    "packages/react/src/composite/Table/src/table.types.ts"
+  );
+
+  write(
+    "packages/react/src/composite/Table/src/Table.definitions.ts"
+  );
+
+  write(
+    "packages/react/src/composite/Table/src/components/index.ts",
+    `
+export * from "./TableRow";
+`
+  );
+
+  write(
+    "packages/react/src/composite/Table/src/components/TableRow/index.ts",
+    `
+export { TableRow } from "./TableRow";
+export type { TableRowProps } from "./TableRow";
+`
+  );
+
+  write(
+    "packages/react/src/composite/Table/src/components/TableRow/TableRow.tsx",
+    `
+export const TableRow = () => null;
+export type TableRowProps = {};
+`
+  );
+
   write(
     "packages/react/src/composite/Table/src/contexts/TableContext/TableContext.tsx"
   );
 
-  // A sibling top-level export (Slider/SliderRange) plus an unrelated dir.
-  write("packages/react/src/atomic/Slider/package.json", "{}");
-  write("packages/react/src/atomic/Slider/src/index.ts");
-  write("packages/react/src/atomic/Slider/src/Slider.tsx");
-  write("packages/react/src/atomic/Slider/src/slider.stories.tsx");
-  write("packages/react/src/atomic/Slider/src/SliderRange.tsx");
-  write("packages/react/src/atomic/Slider/src/sliderRange.stories.tsx");
-  write("packages/react/src/atomic/Slider/src/hooks/useSliderDrag.ts");
+  write(
+    "packages/core/styles/src/packages/composite/table/index.ts"
+  );
+
+  // Slider
+  write(
+    "packages/react/src/atomic/Slider/package.json",
+    JSON.stringify({
+      name:
+        "@nimbus-ds/slider",
+    })
+  );
+
+  write(
+    "packages/react/src/atomic/Slider/src/index.ts",
+    `
+export { Slider } from "./Slider";
+`
+  );
+
+  write(
+    "packages/react/src/atomic/Slider/src/Slider.tsx",
+    `
+export const Slider = () => null;
+`
+  );
+
+  write(
+    "packages/react/src/atomic/Slider/src/slider.stories.tsx"
+  );
+
+  write(
+    "packages/react/src/atomic/Slider/src/SliderRange.tsx"
+  );
+
+  write(
+    "packages/react/src/atomic/Slider/src/sliderRange.stories.tsx"
+  );
+
+  write(
+    "packages/react/src/atomic/Slider/src/hooks/useSliderDrag.ts"
+  );
+
+  write(
+    "packages/core/styles/src/packages/atomic/slider/index.ts"
+  );
+
+  // Component using a TSX package entrypoint
+  write(
+    "packages/react/src/atomic/TsxEntry/package.json",
+    JSON.stringify({
+      name:
+        "@nimbus-ds/tsx-entry",
+    })
+  );
+
+  write(
+    "packages/react/src/atomic/TsxEntry/src/index.tsx",
+    `
+import { TsxEntry } from "./TsxEntry";
+
+export { TsxEntry } from "./TsxEntry";
+export type { TsxEntryProps } from "./TsxEntry";
+export default TsxEntry;
+`
+  );
+
+  write(
+    "packages/react/src/atomic/TsxEntry/src/TsxEntry.tsx",
+    `
+export const TsxEntry = () => null;
+export type TsxEntryProps = {};
+`
+  );
+
+  // Component using Nimbus re-exports
+  write(
+    "packages/react/src/atomic/Reexporter/package.json",
+    JSON.stringify({
+      name:
+        "@nimbus-ds/reexporter",
+    })
+  );
+
+  write(
+    "packages/react/src/atomic/Reexporter/src/index.ts",
+    `
+export { Button } from "@nimbus-ds/button";
+export * from "@nimbus-ds/typings";
+`
+  );
+
+  // Icons
+  write(
+    "packages/icons/src/assets/arrow-left.svg"
+  );
+
+  write(
+    "packages/icons/src/assets/user-circle.svg"
+  );
+
+  write(
+    "packages/icons/src/assets/Infinite.svg"
+  );
 
   return cwd;
 }
 
-function baseConfig(cwd: string): SourceMapConfig {
+function baseConfig(
+  cwd: string
+): SourceMapConfig {
   return {
-    repoName: "fixture-repo",
+    repoName:
+      "fixture-repo",
+
     cwd,
+
     groups: {
-      atomic: "packages/react/src/atomic",
-      composite: "packages/react/src/composite",
+      atomic:
+        "packages/react/src/atomic",
+      composite:
+        "packages/react/src/composite",
     },
-    commands: BASE_COMMANDS,
-    shared: {},
-    newComponentReference: "packages/react/src/atomic/Box",
+
+    commands:
+      BASE_COMMANDS,
+
+    stylesRoot:
+      "packages/core/styles/src/packages",
+
+    shared: {
+      icons: {
+        path:
+          "packages/icons",
+
+        package:
+          "@nimbus-ds/icons",
+
+        assets:
+          "packages/icons/src/assets",
+
+        exportNaming:
+          "arrow-left.svg -> ArrowLeftIcon",
+      },
+
+      styles: {
+        path:
+          "packages/core/styles/src/packages",
+        package:
+          "@nimbus-ds/styles",
+      },
+    },
+
+    newComponentReference:
+      "packages/react/src/atomic/Box",
   };
 }
 
-describe("generateSourceMap", () => {
-  let cwd: string;
+/**
+ * Asserts that source-map generation fails with the expected error.
+ */
+function expectGenerationToThrow(
+  cwd: string,
+  expected: RegExp
+): void {
+  expect(() =>
+    generateSourceMap(
+      baseConfig(cwd)
+    )
+  ).toThrow(expected);
+}
 
-  beforeEach(() => {
-    cwd = makeFixtureRepo();
-    (execSync as jest.Mock).mockReturnValue(
-      [
-        { name: "@nimbus-ds/box", location: "packages/react/src/atomic/Box" },
-        {
-          name: "@nimbus-ds/table",
-          location: "packages/react/src/composite/Table",
-        },
-        {
-          name: "@nimbus-ds/slider",
-          location: "packages/react/src/atomic/Slider",
-        },
-      ]
-        .map((w) => JSON.stringify(w))
-        .join("\n")
-    );
-  });
+describe(
+  "generateSourceMap",
+  () => {
+    let cwd: string;
 
-  afterEach(() => {
-    fs.rmSync(cwd, { recursive: true, force: true });
-  });
-
-  it("resolves a plain component with no extras", () => {
-    const doc = generateSourceMap(baseConfig(cwd));
-    const box = doc.components.find((c) => c.name === "Box");
-
-    expect(box).toEqual({
-      name: "Box",
-      group: "atomic",
-      package: "@nimbus-ds/box",
+    beforeEach(() => {
+      cwd =
+        makeFixtureRepo();
     });
-  });
 
-  it("resolves nested subcomponents/contexts, puts an off-convention file in extras", () => {
-    const doc = generateSourceMap(baseConfig(cwd));
-    const table = doc.components.find((c) => c.name === "Table");
+    afterEach(() => {
+      fs.rmSync(cwd, {
+        recursive: true,
+        force: true,
+      });
+    });
 
-    expect(table?.nested).toEqual(["TableRow"]);
-    expect(table?.contexts).toEqual(["TableContext"]);
-    expect(table?.extras).toEqual(["src/Table.definitions.ts"]);
-  });
+    it(
+      "resolves a plain component with navigation metadata",
+      () => {
+        const doc =
+          generateSourceMap(
+            baseConfig(cwd)
+          );
 
-  it("puts a sibling top-level export and an unrelated directory in extras", () => {
-    const doc = generateSourceMap(baseConfig(cwd));
-    const slider = doc.components.find((c) => c.name === "Slider");
+        const box =
+          doc.components.find(
+            (component) =>
+              component.name ===
+              "Box"
+          );
 
-    expect(slider?.extras).toEqual([
-      "src/SliderRange.tsx",
-      "src/hooks/",
-      "src/sliderRange.stories.tsx",
-    ]);
-  });
+        expect(box).toEqual({
+          name: "Box",
+          group: "atomic",
+          package:
+            "@nimbus-ds/box",
 
-  it("throws on a genuine ambiguity instead of picking a file silently", () => {
-    const componentDir = path.join(cwd, "packages/react/src/atomic/Box/src");
-    // A second spelling (not just a different case — the filesystem under
-    // test may be case-insensitive) whose stem still normalizes to "box".
-    fs.writeFileSync(path.join(componentDir, "box_.tsx"), "");
+          path:
+            "packages/react/src/atomic/Box",
 
-    expect(() => generateSourceMap(baseConfig(cwd))).toThrow(
-      /Ambiguous implementation/
+          styles:
+            "packages/core/styles/src/packages/atomic/box",
+
+          exports: [
+            "Box",
+            "BoxProps",
+            "default",
+          ],
+
+          dependencies: [
+            "@nimbus-ds/skeleton",
+            "@nimbus-ds/styles",
+          ],
+
+          extras: [
+            "src/box.test.tsx",
+            "src/demo/",
+          ],
+        });
+      }
     );
-  });
 
-  it("is byte-for-byte reproducible across two runs on the same tree", () => {
-    const first = writeYaml(generateSourceMap(baseConfig(cwd)));
-    const second = writeYaml(generateSourceMap(baseConfig(cwd)));
+    it(
+      "reads package names directly from component manifests",
+      () => {
+        const doc =
+          generateSourceMap(
+            baseConfig(cwd)
+          );
 
-    expect(first).toBe(second);
-  });
+        expect(
+          doc.components.find(
+            (component) =>
+              component.name ===
+              "Box"
+          )?.package
+        ).toBe(
+          "@nimbus-ds/box"
+        );
 
-  it("quotes every string, so a boolean/null/number/date-like value stays a string", () => {
-    const config = baseConfig(cwd);
-    config.repoName = "2026-09-15";
-
-    const yaml = writeYaml(generateSourceMap(config));
-
-    expect(yaml).toContain('name: "2026-09-15"');
-  });
-
-  it("quotes scoped package names — @ may not start a plain YAML scalar", () => {
-    const yaml = writeYaml(generateSourceMap(baseConfig(cwd)));
-
-    expect(yaml).toContain('package: "@nimbus-ds/box"');
-    expect(yaml).not.toMatch(/package: @/);
-  });
-
-  it("sorts by group then name, never by a concatenation that can collide", () => {
-    const doc = generateSourceMap(baseConfig(cwd));
-    const order = doc.components.map((c) => `${c.group}/${c.name}`);
-
-    expect(order).toEqual([...order].sort());
-  });
-
-  it("carries no volatile field (timestamp, generator version, source sha)", () => {
-    const yaml = writeYaml(generateSourceMap(baseConfig(cwd)));
-
-    expect(yaml).not.toMatch(/\b\d{4}-\d{2}-\d{2}T/); // no ISO timestamp
-    expect(yaml.toLowerCase()).not.toMatch(
-      /generated[_-]?at|generator[_-]?version|source[_-]?sha/
+        expect(
+          doc.components.find(
+            (component) =>
+              component.name ===
+              "Table"
+          )?.package
+        ).toBe(
+          "@nimbus-ds/table"
+        );
+      }
     );
-  });
-});
+
+    it(
+      "throws when a component manifest has no package name",
+      () => {
+        fs.writeFileSync(
+          path.join(
+            cwd,
+            "packages/react/src/atomic/Box/package.json"
+          ),
+          "{}"
+        );
+
+        expectGenerationToThrow(
+          cwd,
+          /Missing package name/
+        );
+      }
+    );
+
+    it(
+      "ignores spec, test, story and demo imports when collecting dependencies",
+      () => {
+        const doc =
+          generateSourceMap(
+            baseConfig(cwd)
+          );
+
+        const box =
+          doc.components.find(
+            (component) =>
+              component.name ===
+              "Box"
+          );
+
+        expect(
+          box?.dependencies
+        ).toEqual([
+          "@nimbus-ds/skeleton",
+          "@nimbus-ds/styles",
+        ]);
+
+        expect(
+          box?.dependencies
+        ).not.toContain(
+          "@nimbus-ds/button"
+        );
+
+        expect(
+          box?.dependencies
+        ).not.toContain(
+          "@nimbus-ds/tooltip"
+        );
+
+        expect(
+          box?.dependencies
+        ).not.toContain(
+          "@nimbus-ds/icon"
+        );
+
+        expect(
+          box?.dependencies
+        ).not.toContain(
+          "@nimbus-ds/text"
+        );
+      }
+    );
+
+    it(
+      "includes Nimbus named and wildcard re-exports in dependencies",
+      () => {
+        const doc =
+          generateSourceMap(
+            baseConfig(cwd)
+          );
+
+        const reexporter =
+          doc.components.find(
+            (component) =>
+              component.name ===
+              "Reexporter"
+          );
+
+        expect(
+          reexporter?.dependencies
+        ).toEqual([
+          "@nimbus-ds/button",
+          "@nimbus-ds/typings",
+        ]);
+      }
+    );
+
+    it(
+      "resolves public exports from a TSX package entrypoint",
+      () => {
+        const doc =
+          generateSourceMap(
+            baseConfig(cwd)
+          );
+
+        expect(
+          doc.conventions.entry
+        ).toBe(
+          "src/index.ts(x)"
+        );
+
+        const component =
+          doc.components.find(
+            (entry) =>
+              entry.name ===
+              "TsxEntry"
+          );
+
+        expect(
+          component?.exports
+        ).toEqual([
+          "TsxEntry",
+          "TsxEntryProps",
+          "default",
+        ]);
+      }
+    );
+
+    it(
+      "resolves nested subcomponents and public subcomponent exports",
+      () => {
+        const doc =
+          generateSourceMap(
+            baseConfig(cwd)
+          );
+
+        const table =
+          doc.components.find(
+            (component) =>
+              component.name ===
+              "Table"
+          );
+
+        expect(
+          table?.nested
+        ).toEqual([
+          "TableRow",
+        ]);
+
+        expect(
+          table?.contexts
+        ).toEqual([
+          "TableContext",
+        ]);
+
+        expect(
+          table?.exports
+        ).toEqual([
+          "Table",
+          "TableColumnLayout",
+          "TableProps",
+          "TableRow",
+          "TableRowProps",
+          "default",
+        ]);
+
+        expect(
+          table?.styles
+        ).toBe(
+          "packages/core/styles/src/packages/composite/table"
+        );
+
+        expect(
+          table?.extras
+        ).toEqual([
+          "src/Table.definitions.ts",
+        ]);
+      }
+    );
+
+    it(
+      "puts a sibling top-level export and an unrelated directory in extras",
+      () => {
+        const doc =
+          generateSourceMap(
+            baseConfig(cwd)
+          );
+
+        const slider =
+          doc.components.find(
+            (component) =>
+              component.name ===
+              "Slider"
+          );
+
+        expect(
+          slider?.extras
+        ).toEqual([
+          "src/SliderRange.tsx",
+          "src/hooks/",
+          "src/sliderRange.stories.tsx",
+        ]);
+      }
+    );
+
+    it(
+      "throws on a genuine implementation ambiguity",
+      () => {
+        const componentDir =
+          path.join(
+            cwd,
+            "packages/react/src/atomic/Box/src"
+          );
+
+        fs.writeFileSync(
+          path.join(
+            componentDir,
+            "box_.tsx"
+          ),
+          ""
+        );
+
+        expectGenerationToThrow(
+          cwd,
+          /Ambiguous implementation/
+        );
+      }
+    );
+
+    it(
+      "documents mixed filename casing conventions",
+      () => {
+        const doc =
+          generateSourceMap(
+            baseConfig(cwd)
+          );
+
+        expect(
+          doc.conventions
+            .implementationNaming
+        ).toBe(
+          "Implementation keeps the component casing, e.g. Link.tsx"
+        );
+
+        expect(
+          doc.conventions
+            .typesNaming
+        ).toBe(
+          "Types usually use lower camel case, e.g. link.types.ts"
+        );
+      }
+    );
+
+    it(
+      "exposes configured icon assets and generated export names",
+      () => {
+        const doc =
+          generateSourceMap(
+            baseConfig(cwd)
+          );
+
+        expect(
+          doc.shared.icons
+        ).toEqual({
+          path:
+            "packages/icons",
+
+          package:
+            "@nimbus-ds/icons",
+
+          assets:
+            "packages/icons/src/assets",
+
+          exportNaming:
+            "arrow-left.svg -> ArrowLeftIcon",
+
+          available: [
+            "ArrowLeftIcon",
+            "InfiniteIcon",
+            "UserCircleIcon",
+          ],
+        });
+      }
+    );
+
+    it(
+      "does not emit a configured asset path when the directory does not exist",
+      () => {
+        const config =
+          baseConfig(cwd);
+
+        config.shared.icons.assets =
+          "packages/icons/src/missing-assets";
+
+        const doc =
+          generateSourceMap(
+            config
+          );
+
+        expect(
+          doc.shared.icons.assets
+        ).toBeUndefined();
+
+        expect(
+          doc.shared.icons.available
+        ).toBeUndefined();
+
+        expect(
+          doc.shared.icons.exportNaming
+        ).toBe(
+          "arrow-left.svg -> ArrowLeftIcon"
+        );
+      }
+    );
+
+    it(
+      "writes navigation metadata to YAML",
+      () => {
+        const yaml =
+          writeYaml(
+            generateSourceMap(
+              baseConfig(cwd)
+            )
+          );
+
+        expect(yaml).toContain(
+          'path: "packages/react/src/atomic/Box"'
+        );
+
+        expect(yaml).toContain(
+          'styles: "packages/core/styles/src/packages/atomic/box"'
+        );
+
+        expect(yaml).toContain(
+          'exports: ["Box", "BoxProps", "default"]'
+        );
+
+        expect(yaml).toContain(
+          'dependencies: ["@nimbus-ds/skeleton", "@nimbus-ds/styles"]'
+        );
+      }
+    );
+
+    it(
+      "writes icon metadata to YAML",
+      () => {
+        const yaml =
+          writeYaml(
+            generateSourceMap(
+              baseConfig(cwd)
+            )
+          );
+
+        expect(yaml).toContain(
+          'assets: "packages/icons/src/assets"'
+        );
+
+        expect(yaml).toContain(
+          'export_naming: "arrow-left.svg -> ArrowLeftIcon"'
+        );
+
+        expect(yaml).toContain(
+          '- "ArrowLeftIcon"'
+        );
+      }
+    );
+
+    it(
+      "is byte-for-byte reproducible across two runs on the same tree",
+      () => {
+        const first =
+          writeYaml(
+            generateSourceMap(
+              baseConfig(cwd)
+            )
+          );
+
+        const second =
+          writeYaml(
+            generateSourceMap(
+              baseConfig(cwd)
+            )
+          );
+
+        expect(first).toBe(
+          second
+        );
+      }
+    );
+
+    it(
+      "quotes every string so YAML-like values stay strings",
+      () => {
+        const config =
+          baseConfig(cwd);
+
+        config.repoName =
+          "2026-09-15";
+
+        const yaml =
+          writeYaml(
+            generateSourceMap(
+              config
+            )
+          );
+
+        expect(yaml).toContain(
+          'name: "2026-09-15"'
+        );
+      }
+    );
+
+    it(
+      "quotes scoped package names",
+      () => {
+        const yaml =
+          writeYaml(
+            generateSourceMap(
+              baseConfig(cwd)
+            )
+          );
+
+        expect(yaml).toContain(
+          'package: "@nimbus-ds/box"'
+        );
+
+        expect(
+          yaml
+        ).not.toMatch(
+          /package: @/
+        );
+      }
+    );
+
+    it(
+      "sorts by group then name",
+      () => {
+        const doc =
+          generateSourceMap(
+            baseConfig(cwd)
+          );
+
+        const order =
+          doc.components.map(
+            (component) =>
+              `${component.group}/${component.name}`
+          );
+
+        expect(order).toEqual(
+          [...order].sort()
+        );
+      }
+    );
+
+    it(
+      "carries no volatile field",
+      () => {
+        const yaml =
+          writeYaml(
+            generateSourceMap(
+              baseConfig(cwd)
+            )
+          );
+
+        expect(
+          yaml
+        ).not.toMatch(
+          /\b\d{4}-\d{2}-\d{2}T/
+        );
+
+        expect(
+          yaml.toLowerCase()
+        ).not.toMatch(
+          /generated[_-]?at|generator[_-]?version|source[_-]?sha/
+        );
+      }
+    );
+  }
+);
