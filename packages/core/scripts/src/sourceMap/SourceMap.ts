@@ -1193,7 +1193,7 @@ export function generateSourceMap(
         "Use components[].path; fallback is {groups[group]}/{ComponentName}",
 
       entry:
-        "src/index.ts",
+        "src/index.ts(x)",
 
       implementation:
         "src/*.tsx",

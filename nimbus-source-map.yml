@@ -23,7 +23,7 @@ conventions:
   contexts: "src/contexts/*/"
   dependencies: "Nimbus package imports under src; specs, tests, stories and demo are excluded"
   docs: "src/*.docs.json"
-  entry: "src/index.ts"
+  entry: "src/index.ts(x)"
   exports: "Public exports resolved from src/index.ts(x) and src/components/index.ts(x)"
   implementation: "src/*.tsx"
   implementationNaming: "Implementation keeps the component casing, e.g. Link.tsx"

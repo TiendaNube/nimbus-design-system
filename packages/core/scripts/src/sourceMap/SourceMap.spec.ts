@@ -508,6 +508,12 @@ describe(
             baseConfig(cwd)
           );
 
+        expect(
+          doc.conventions.entry
+        ).toBe(
+          "src/index.ts(x)"
+        );
+
         const component =
           doc.components.find(
             (entry) =>
