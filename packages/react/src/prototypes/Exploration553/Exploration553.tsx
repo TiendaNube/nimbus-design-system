@@ -1,146 +1,127 @@
-import React, { useMemo, useState } from "react";
+import React from "react";
 import { Box } from "@nimbus-ds/box";
-import { Link } from "@nimbus-ds/link";
 import { Text } from "@nimbus-ds/text";
+import { Link } from "@nimbus-ds/link";
 import { Icon } from "@nimbus-ds/icon";
+import { Popover } from "@nimbus-ds/popover";
 import { ChevronRightIcon } from "@nimbus-ds/icons";
 
-/**
- * Exploration-only types and component for Nimbus request #553 (Breadcrumb).
- * Not a proposed public API: props, names and behavior are simulated for this
- * Playground and are expected to change if a contract is drafted.
- */
-export interface BreadcrumbItemData {
+export interface BreadcrumbItem {
   id: string;
   label: string;
+  onNavigate?: () => void;
 }
 
 export interface BreadcrumbProps {
-  /** Full path from the root to the current position. The last item is the current page. */
-  items: BreadcrumbItemData[];
-  /** Called when the person activates a non-current item to go back to that level. */
-  onNavigate: (id: string) => void;
-  /** Simulated "how many crumbs fit" budget — stands in for a real container-width measurement. */
-  maxVisible?: number;
-  /** Simulated small-viewport mode: this prototype cannot read real breakpoints, so a story toggle sets it. */
-  compact?: boolean;
+  /** Full path from root to the current location, root first. */
+  items: BreadcrumbItem[];
+  /** Ancestors + current shown before the path collapses behind an ellipsis. */
+  maxVisibleItems?: number;
 }
 
-type VisibleEntry =
-  | { kind: "item"; item: BreadcrumbItemData; isCurrent: boolean }
-  | { kind: "ellipsis" };
-
-function buildVisibleEntries(
-  items: BreadcrumbItemData[],
-  effectiveMax: number,
-  expanded: boolean
-): VisibleEntry[] {
-  const lastIndex = items.length - 1;
-
-  if (expanded || items.length <= effectiveMax) {
-    return items.map((item, index) => ({
-      kind: "item",
-      item,
-      isCurrent: index === lastIndex,
-    }));
-  }
-
-  // Collapse every level between the root and the visible tail behind one
-  // ellipsis. How many levels stay visible at the tail is a guess, not a
-  // measured fit — recorded as a simulation.
-  const tailCount = Math.max(effectiveMax - 1, 1);
-  const tailStart = Math.max(items.length - tailCount, 1);
-
-  const head: VisibleEntry = {
-    kind: "item",
-    item: items[0],
-    isCurrent: 0 === lastIndex,
-  };
-  const tail: VisibleEntry[] = items.slice(tailStart).map((item, i) => ({
-    kind: "item",
-    item,
-    isCurrent: tailStart + i === lastIndex,
-  }));
-
-  return [head, { kind: "ellipsis" }, ...tail];
-}
-
-const Separator: React.FC = () => (
-  <Icon
-    aria-hidden="true"
-    color="neutral-textDisabled"
-    source={<ChevronRightIcon />}
-  />
+const Crumb: React.FC<{ item: BreadcrumbItem }> = ({ item }) => (
+  <Link
+    as="button"
+    type="button"
+    appearance="neutral"
+    textDecoration="none"
+    onClick={item.onNavigate}
+  >
+    {item.label}
+  </Link>
 );
 
-export const Breadcrumb: React.FC<BreadcrumbProps> = ({
+const Separator: React.FC = () => <Icon source={<ChevronRightIcon />} />;
+
+const Breadcrumb: React.FC<BreadcrumbProps> = ({
   items,
-  onNavigate,
-  maxVisible = 4,
-  compact = false,
+  maxVisibleItems = 4,
 }) => {
-  const [expanded, setExpanded] = useState(false);
+  if (items.length === 0) return null;
 
-  // Simulated mobile treatment: shrink the budget instead of reading a real
-  // media query. A production component would need an actual answer here.
-  const effectiveMax = compact ? Math.min(maxVisible, 2) : maxVisible;
+  const current = items[items.length - 1];
+  const ancestors = items.slice(0, -1);
+  const collapse = ancestors.length > maxVisibleItems - 1;
+  const tailCount = Math.max(maxVisibleItems - 2, 1);
+  const hiddenAncestors = collapse
+    ? ancestors.slice(1, ancestors.length - tailCount)
+    : [];
+  const leadingAncestors = collapse ? [ancestors[0]] : ancestors;
+  const trailingAncestors = collapse
+    ? ancestors.slice(ancestors.length - tailCount)
+    : [];
 
-  const entries = useMemo(
-    () => buildVisibleEntries(items, effectiveMax, expanded),
-    [items, effectiveMax, expanded]
+  const renderAncestor = (item: BreadcrumbItem) => (
+    <React.Fragment key={item.id}>
+      <Box display="flex" alignItems="center" gap="1" role="listitem">
+        <Crumb item={item} />
+      </Box>
+      <Separator />
+    </React.Fragment>
   );
 
   return (
-    <Box
-      as="nav"
-      aria-label="Breadcrumb"
-      display="flex"
-      alignItems="center"
-      flexWrap="wrap"
-      gap="1"
-    >
-      {entries.map((entry, position) => {
-        const isLast = position === entries.length - 1;
-        const key =
-          entry.kind === "ellipsis" ? "ellipsis" : entry.item.id;
-
-        return (
-          <Box key={key} display="flex" alignItems="center" gap="1">
-            {entry.kind === "ellipsis" ? (
-              <Link
-                as="button"
-                appearance="neutral"
-                textDecoration="none"
-                onClick={() => setExpanded(true)}
-                aria-label="Show hidden levels of this path"
+    <Box as="nav" aria-label="Breadcrumb">
+      <Box
+        display="flex"
+        alignItems="center"
+        flexWrap="wrap"
+        gap="1"
+        role="list"
+      >
+        {leadingAncestors.map(renderAncestor)}
+        {collapse && (
+          <React.Fragment>
+            <Box display="flex" alignItems="center" gap="1" role="listitem">
+              <Popover
+                position="bottom-start"
+                content={
+                  <Box display="flex" flexDirection="column" gap="1">
+                    {hiddenAncestors.map((item) => (
+                      <Link
+                        key={item.id}
+                        as="button"
+                        type="button"
+                        appearance="neutral"
+                        textDecoration="none"
+                        onClick={item.onNavigate}
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </Box>
+                }
               >
-                …
-              </Link>
-            ) : entry.isCurrent ? (
-              <Text
-                as="span"
-                fontWeight="bold"
-                color="neutral-textHigh"
-                aria-current="page"
-              >
-                {entry.item.label}
-              </Text>
-            ) : (
-              <Link
-                as="button"
-                appearance="neutral"
-                textDecoration="none"
-                onClick={() => onNavigate(entry.item.id)}
-              >
-                {entry.item.label}
-              </Link>
-            )}
-            {!isLast && <Separator />}
-          </Box>
-        );
-      })}
+                <Link
+                  as="button"
+                  type="button"
+                  appearance="neutral"
+                  textDecoration="none"
+                  aria-label={`Show ${hiddenAncestors.length} hidden path levels`}
+                >
+                  …
+                </Link>
+              </Popover>
+            </Box>
+            <Separator />
+          </React.Fragment>
+        )}
+        {trailingAncestors.map(renderAncestor)}
+        <Box display="flex" alignItems="center" role="listitem">
+          <Text
+            as="span"
+            fontWeight="bold"
+            color="neutral-textHigh"
+            aria-current="page"
+          >
+            {current.label}
+          </Text>
+        </Box>
+      </Box>
     </Box>
   );
 };
 
 Breadcrumb.displayName = "Breadcrumb";
+
+export { Breadcrumb };

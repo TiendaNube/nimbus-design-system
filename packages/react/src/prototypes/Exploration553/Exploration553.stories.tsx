@@ -1,123 +1,176 @@
-import React, { useEffect, useState } from "react";
+import React, { useMemo, useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Box } from "@nimbus-ds/box";
-import { Card } from "@nimbus-ds/card";
-import { Text } from "@nimbus-ds/text";
 import { Title } from "@nimbus-ds/title";
+import { Text } from "@nimbus-ds/text";
+import { Link } from "@nimbus-ds/link";
 
-import { Breadcrumb, type BreadcrumbItemData } from "./Exploration553";
+import { Breadcrumb, type BreadcrumbItem } from "./Exploration553";
 
-/**
- * Fixed 5-level mock hierarchy standing in for a real admin navigation tree.
- * Public-safe sample data only; no real store or customer content.
- */
-const FULL_PATH: BreadcrumbItemData[] = [
-  { id: "home", label: "Panel de administración" },
-  { id: "catalog", label: "Catálogo" },
-  { id: "products", label: "Productos" },
-  { id: "product", label: "Zapatillas urbanas" },
-  { id: "edit", label: "Editar producto" },
-];
-
-interface NavigationDemoProps {
-  /** How many levels deep the person starts at (0 = home, 4 = deepest mock page). */
-  startDepth: number;
-  /** Simulated "how many crumbs fit" budget for the collapsing experiment. */
-  maxVisible: number;
-  /** Simulated small-viewport mode — this prototype cannot read a real breakpoint. */
-  compact: boolean;
+interface TreeNode {
+  id: string;
+  label: string;
+  children?: TreeNode[];
 }
 
-const NavigationDemo: React.FC<NavigationDemoProps> = ({
-  startDepth,
-  maxVisible,
-  compact,
-}) => {
-  const [depth, setDepth] = useState(startDepth);
+const tree: TreeNode = {
+  id: "root",
+  label: "Store",
+  children: [
+    {
+      id: "settings",
+      label: "Settings",
+      children: [
+        {
+          id: "shipping",
+          label: "Shipping",
+          children: [
+            {
+              id: "carriers",
+              label: "Carriers",
+              children: [
+                {
+                  id: "correo-ar",
+                  label: "Correo Argentino",
+                  children: [
+                    { id: "zones", label: "Delivery zones" },
+                    { id: "rates", label: "Rates" },
+                  ],
+                },
+                { id: "oca", label: "OCA" },
+              ],
+            },
+            { id: "pickup", label: "Pickup points" },
+          ],
+        },
+        { id: "payments", label: "Payments" },
+      ],
+    },
+    {
+      id: "catalog",
+      label: "Catalog",
+      children: [
+        { id: "products", label: "Products" },
+        { id: "categories", label: "Categories" },
+      ],
+    },
+  ],
+};
 
-  // Re-sync when a Storybook control changes so each control combination
-  // starts from its own requested depth.
-  useEffect(() => {
-    setDepth(startDepth);
-  }, [startDepth]);
+interface FlatNode {
+  id: string;
+  label: string;
+  parentId: string | null;
+  children: TreeNode[];
+}
 
-  const items = FULL_PATH.slice(0, depth + 1);
-  const current = FULL_PATH[depth];
-
-  const handleNavigate = (id: string) => {
-    const index = FULL_PATH.findIndex((item) => item.id === id);
-    if (index >= 0) setDepth(index);
+function flatten(
+  node: TreeNode,
+  parentId: string | null,
+  acc: Record<string, FlatNode>
+): Record<string, FlatNode> {
+  acc[node.id] = {
+    id: node.id,
+    label: node.label,
+    parentId,
+    children: node.children ?? [],
   };
+  (node.children ?? []).forEach((child) => flatten(child, node.id, acc));
+  return acc;
+}
+
+const flatTree = flatten(tree, null, {});
+
+function ancestryOf(id: string): FlatNode[] {
+  const chain: FlatNode[] = [];
+  let cursor: string | null = id;
+  while (cursor) {
+    const node: FlatNode = flatTree[cursor];
+    chain.unshift(node);
+    cursor = node.parentId;
+  }
+  return chain;
+}
+
+interface BreadcrumbDemoProps {
+  maxVisibleItems?: number;
+  fullScreen?: boolean;
+}
+
+const BreadcrumbDemo: React.FC<BreadcrumbDemoProps> = ({
+  maxVisibleItems = 4,
+  fullScreen = false,
+}) => {
+  const [currentId, setCurrentId] = useState("zones");
+
+  const ancestry = useMemo(() => ancestryOf(currentId), [currentId]);
+  const current = flatTree[currentId];
+
+  const items: BreadcrumbItem[] = ancestry.map((node) => ({
+    id: node.id,
+    label: node.label,
+    onNavigate: () => setCurrentId(node.id),
+  }));
 
   return (
-    <Box display="flex" flexDirection="column" gap="4" padding="6">
-      <Breadcrumb
-        items={items}
-        onNavigate={handleNavigate}
-        maxVisible={maxVisible}
-        compact={compact}
-      />
-      <Card>
-        <Card.Header>
-          <Title as="h3">{current.label}</Title>
-        </Card.Header>
-        <Card.Body>
-          <Text>
-            Mock page content for “{current.label}”. Clicking an earlier
-            crumb above simulates returning to that level; this card updates
-            to show the resulting position.
-          </Text>
-        </Card.Body>
-      </Card>
+    <Box
+      padding={fullScreen ? "6" : "4"}
+      display="flex"
+      flexDirection="column"
+      gap="4"
+    >
+      <Breadcrumb items={items} maxVisibleItems={maxVisibleItems} />
+      <Title as="h3">{current.label}</Title>
+      {current.children.length > 0 ? (
+        <Box display="flex" flexDirection="column" gap="2" role="list">
+          {current.children.map((child) => (
+            <Box key={child.id} role="listitem">
+              <Link
+                as="button"
+                type="button"
+                appearance="primary"
+                textDecoration="none"
+                onClick={() => setCurrentId(child.id)}
+              >
+                {child.label}
+              </Link>
+            </Box>
+          ))}
+        </Box>
+      ) : (
+        <Text color="neutral-textLow">
+          This level has no further pages. Use the breadcrumb above to go
+          back.
+        </Text>
+      )}
     </Box>
   );
 };
 
-NavigationDemo.displayName = "Exploration553NavigationDemo";
-
-const meta: Meta<typeof NavigationDemo> = {
+const meta: Meta<typeof BreadcrumbDemo> = {
   title: "Prototypes/Exploration553",
-  component: NavigationDemo,
-  argTypes: {
-    startDepth: {
-      control: { type: "range", min: 0, max: FULL_PATH.length - 1, step: 1 },
-      description:
-        "Simulated starting depth in the mock hierarchy (0 = home, 4 = deepest page). Not a real prop of the experiment — a story-only way to explore path length.",
-    },
-    maxVisible: {
-      control: { type: "range", min: 2, max: FULL_PATH.length, step: 1 },
-      description:
-        "Simulated 'how many crumbs fit' budget. A real component would measure this from container width; here it is a manual stand-in so the collapsing behavior can be tried at every length.",
-    },
-    compact: {
-      control: { type: "boolean" },
-      description:
-        "Simulated small-viewport mode. This prototype cannot read a real CSS breakpoint, so a toggle stands in for 'on mobile'.",
-    },
+  component: BreadcrumbDemo,
+  args: {
+    maxVisibleItems: 4,
   },
-  tags: ["autodocs"],
+  argTypes: {
+    maxVisibleItems: { control: { type: "number", min: 2, max: 8 } },
+    fullScreen: { table: { disable: true } },
+  },
 };
 
 export default meta;
-type Story = StoryObj<typeof NavigationDemo>;
+type Story = StoryObj<typeof BreadcrumbDemo>;
 
-export const Playground: Story = {
-  args: {
-    startDepth: FULL_PATH.length - 1,
-    maxVisible: 4,
-    compact: false,
-  },
-};
+export const Playground: Story = {};
 
 export const FullScreen: Story = {
   name: "Full screen",
+  args: {
+    fullScreen: true,
+  },
   parameters: {
     layout: "fullscreen",
     controls: { disable: true },
-  },
-  args: {
-    startDepth: FULL_PATH.length - 1,
-    maxVisible: 4,
-    compact: false,
   },
 };
