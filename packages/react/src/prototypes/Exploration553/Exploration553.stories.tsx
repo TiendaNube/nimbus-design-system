@@ -1,89 +1,111 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Box } from "@nimbus-ds/box";
-import { Text } from "@nimbus-ds/text";
 import { Card } from "@nimbus-ds/card";
+import { Text } from "@nimbus-ds/text";
+import { Title } from "@nimbus-ds/title";
 
-import { Exploration553 } from "./Exploration553";
-import type { Exploration553Item } from "./Exploration553";
+import { Breadcrumb, type BreadcrumbItemData } from "./Exploration553";
 
-const longPath: Exploration553Item[] = [
-  { label: "Home", href: "#home" },
-  { label: "Products", href: "#products" },
-  { label: "Clothing", href: "#clothing" },
-  { label: "Women", href: "#women" },
-  { label: "Dresses", href: "#dresses" },
-  { label: "Summer collection" },
+/**
+ * Fixed 5-level mock hierarchy standing in for a real admin navigation tree.
+ * Public-safe sample data only; no real store or customer content.
+ */
+const FULL_PATH: BreadcrumbItemData[] = [
+  { id: "home", label: "Panel de administración" },
+  { id: "catalog", label: "Catálogo" },
+  { id: "products", label: "Productos" },
+  { id: "product", label: "Zapatillas urbanas" },
+  { id: "edit", label: "Editar producto" },
 ];
 
-const shortPath: Exploration553Item[] = [
-  { label: "Home", href: "#home" },
-  { label: "Settings", href: "#settings" },
-  { label: "Shipping methods" },
-];
+interface NavigationDemoProps {
+  /** How many levels deep the person starts at (0 = home, 4 = deepest mock page). */
+  startDepth: number;
+  /** Simulated "how many crumbs fit" budget for the collapsing experiment. */
+  maxVisible: number;
+  /** Simulated small-viewport mode — this prototype cannot read a real breakpoint. */
+  compact: boolean;
+}
 
-const meta: Meta<typeof Exploration553> = {
+const NavigationDemo: React.FC<NavigationDemoProps> = ({
+  startDepth,
+  maxVisible,
+  compact,
+}) => {
+  const [depth, setDepth] = useState(startDepth);
+
+  // Re-sync when a Storybook control changes so each control combination
+  // starts from its own requested depth.
+  useEffect(() => {
+    setDepth(startDepth);
+  }, [startDepth]);
+
+  const items = FULL_PATH.slice(0, depth + 1);
+  const current = FULL_PATH[depth];
+
+  const handleNavigate = (id: string) => {
+    const index = FULL_PATH.findIndex((item) => item.id === id);
+    if (index >= 0) setDepth(index);
+  };
+
+  return (
+    <Box display="flex" flexDirection="column" gap="4" padding="6">
+      <Breadcrumb
+        items={items}
+        onNavigate={handleNavigate}
+        maxVisible={maxVisible}
+        compact={compact}
+      />
+      <Card>
+        <Card.Header>
+          <Title as="h3">{current.label}</Title>
+        </Card.Header>
+        <Card.Body>
+          <Text>
+            Mock page content for “{current.label}”. Clicking an earlier
+            crumb above simulates returning to that level; this card updates
+            to show the resulting position.
+          </Text>
+        </Card.Body>
+      </Card>
+    </Box>
+  );
+};
+
+NavigationDemo.displayName = "Exploration553NavigationDemo";
+
+const meta: Meta<typeof NavigationDemo> = {
   title: "Prototypes/Exploration553",
-  component: Exploration553,
-  args: {
-    items: shortPath,
-    maxVisible: 4,
-    compact: false,
-  },
+  component: NavigationDemo,
   argTypes: {
-    items: { control: { disable: true } },
+    startDepth: {
+      control: { type: "range", min: 0, max: FULL_PATH.length - 1, step: 1 },
+      description:
+        "Simulated starting depth in the mock hierarchy (0 = home, 4 = deepest page). Not a real prop of the experiment — a story-only way to explore path length.",
+    },
+    maxVisible: {
+      control: { type: "range", min: 2, max: FULL_PATH.length, step: 1 },
+      description:
+        "Simulated 'how many crumbs fit' budget. A real component would measure this from container width; here it is a manual stand-in so the collapsing behavior can be tried at every length.",
+    },
+    compact: {
+      control: { type: "boolean" },
+      description:
+        "Simulated small-viewport mode. This prototype cannot read a real CSS breakpoint, so a toggle stands in for 'on mobile'.",
+    },
   },
   tags: ["autodocs"],
 };
 
 export default meta;
-
-type Story = StoryObj<typeof Exploration553>;
+type Story = StoryObj<typeof NavigationDemo>;
 
 export const Playground: Story = {
-  render: (args) => {
-    const [navigated, setNavigated] = useState<string | null>(null);
-    const itemsWithHandlers = args.items.map((item) => ({
-      ...item,
-      onNavigate: (navigatedItem: Exploration553Item) =>
-        setNavigated(navigatedItem.label),
-    }));
-
-    return (
-      <Box display="flex" flexDirection="column" gap="4">
-        <Card padding="base">
-          <Box display="flex" flexDirection="column" gap="4">
-            <Text fontWeight="bold">Short path (3 levels)</Text>
-            <Exploration553
-              items={shortPath.map((item) => ({
-                ...item,
-                onNavigate: (navigatedItem) =>
-                  setNavigated(navigatedItem.label),
-              }))}
-              maxVisible={args.maxVisible}
-              compact={args.compact}
-            />
-          </Box>
-        </Card>
-
-        <Card padding="base">
-          <Box display="flex" flexDirection="column" gap="4">
-            <Text fontWeight="bold">Long path (6 levels, collapsing)</Text>
-            <Exploration553
-              items={itemsWithHandlers}
-              maxVisible={args.maxVisible}
-              compact={args.compact}
-            />
-          </Box>
-        </Card>
-
-        {navigated && (
-          <Text fontSize="caption" color="neutral-textLow">
-            Simulated navigation to: {navigated}
-          </Text>
-        )}
-      </Box>
-    );
+  args: {
+    startDepth: FULL_PATH.length - 1,
+    maxVisible: 4,
+    compact: false,
   },
 };
 
@@ -93,68 +115,9 @@ export const FullScreen: Story = {
     layout: "fullscreen",
     controls: { disable: true },
   },
-  render: () => {
-    const [navigated, setNavigated] = useState<string | null>(null);
-
-    const withHandlers = (path: Exploration553Item[]) =>
-      path.map((item) => ({
-        ...item,
-        onNavigate: (navigatedItem: Exploration553Item) =>
-          setNavigated(navigatedItem.label),
-      }));
-
-    return (
-      <Box padding="6" display="flex" flexDirection="column" gap="8">
-        <Box display="flex" flexDirection="column" gap="2">
-          <Text fontSize="highlight" fontWeight="bold">
-            Breadcrumb exploration — issue #553
-          </Text>
-          <Text color="neutral-textLow">
-            Try the collapsed middle levels on the long path, and compare the
-            compact (mobile-style) treatment against the full path.
-          </Text>
-        </Box>
-
-        <Box display="flex" flexDirection="column" gap="6">
-          <Card padding="base">
-            <Box display="flex" flexDirection="column" gap="4">
-              <Text fontWeight="bold">Desktop — short path</Text>
-              <Exploration553 items={withHandlers(shortPath)} />
-            </Box>
-          </Card>
-
-          <Card padding="base">
-            <Box display="flex" flexDirection="column" gap="4">
-              <Text fontWeight="bold">
-                Desktop — long path, collapsed to 4 visible levels
-              </Text>
-              <Exploration553 items={withHandlers(longPath)} maxVisible={4} />
-            </Box>
-          </Card>
-
-          <Card padding="base">
-            <Box display="flex" flexDirection="column" gap="4">
-              <Text fontWeight="bold">Desktop — long path, all 6 levels</Text>
-              <Exploration553 items={withHandlers(longPath)} maxVisible={99} />
-            </Box>
-          </Card>
-
-          <Card padding="base">
-            <Box display="flex" flexDirection="column" gap="4">
-              <Text fontWeight="bold">
-                Compact (simulated mobile) — back-to-parent only
-              </Text>
-              <Exploration553 items={withHandlers(longPath)} compact />
-            </Box>
-          </Card>
-        </Box>
-
-        {navigated && (
-          <Text fontSize="caption" color="neutral-textLow">
-            Simulated navigation to: {navigated}
-          </Text>
-        )}
-      </Box>
-    );
+  args: {
+    startDepth: FULL_PATH.length - 1,
+    maxVisible: 4,
+    compact: false,
   },
 };
