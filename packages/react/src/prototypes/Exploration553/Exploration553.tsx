@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useLayoutEffect, useEffect, useRef, useState } from "react";
 import { Box } from "@nimbus-ds/box";
 import { Text } from "@nimbus-ds/text";
 import { Link } from "@nimbus-ds/link";
@@ -15,8 +15,6 @@ export interface BreadcrumbItem {
 export interface BreadcrumbProps {
   /** Full path from root to the current location, root first. */
   items: BreadcrumbItem[];
-  /** Ancestors + current shown before the path collapses behind an ellipsis. */
-  maxVisibleItems?: number;
 }
 
 const Crumb: React.FC<{ item: BreadcrumbItem }> = ({ item }) => (
@@ -31,29 +29,70 @@ const Crumb: React.FC<{ item: BreadcrumbItem }> = ({ item }) => (
   </Link>
 );
 
-const Separator: React.FC = () => <Icon source={<ChevronRightIcon />} />;
+const Separator: React.FC = () => (
+  <Box flexShrink="0" display="flex" alignItems="center">
+    <Icon source={<ChevronRightIcon />} />
+  </Box>
+);
 
-const Breadcrumb: React.FC<BreadcrumbProps> = ({
-  items,
-  maxVisibleItems = 4,
-}) => {
-  if (items.length === 0) return null;
+const Breadcrumb: React.FC<BreadcrumbProps> = ({ items }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  const current = items[items.length - 1];
-  const ancestors = items.slice(0, -1);
-  const collapse = ancestors.length > maxVisibleItems - 1;
-  const tailCount = Math.max(maxVisibleItems - 2, 1);
-  const hiddenAncestors = collapse
-    ? ancestors.slice(1, ancestors.length - tailCount)
-    : [];
-  const leadingAncestors = collapse ? [ancestors[0]] : ancestors;
-  const trailingAncestors = collapse
-    ? ancestors.slice(ancestors.length - tailCount)
-    : [];
+  const current = items.length > 0 ? items[items.length - 1] : undefined;
+  const ancestors = items.length > 0 ? items.slice(0, -1) : [];
+  const pathKey = items.map((item) => item.id).join("/");
+
+  // Number of ancestors (closest to the current item) kept visible before
+  // the rest collapse behind the overflow trigger. Starts optimistic
+  // (everything visible) and the shrink pass below trims it down.
+  const [tailCount, setTailCount] = useState(ancestors.length);
+
+  useLayoutEffect(() => {
+    setTailCount(ancestors.length);
+    // Re-measure from scratch whenever the path itself changes (navigation).
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathKey]);
+
+  // Single-line constraint: if the row overflows its container, hide one
+  // more ancestor (from the root side) and try again. The current item is
+  // never part of this count, so it is never removed.
+  useLayoutEffect(() => {
+    const node = containerRef.current;
+    if (!node) return;
+    if (node.scrollWidth > node.clientWidth && tailCount > 0) {
+      setTailCount((count) => Math.max(count - 1, 0));
+    }
+  }, [tailCount, pathKey]);
+
+  // A container/viewport resize can free up space again: re-expand
+  // optimistically and let the effect above shrink it back if it still
+  // doesn't fit.
+  useEffect(() => {
+    const node = containerRef.current;
+    if (!node || typeof ResizeObserver === "undefined") return undefined;
+    const observer = new ResizeObserver(() => {
+      setTailCount(ancestors.length);
+    });
+    observer.observe(node);
+    return () => observer.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ancestors.length]);
+
+  if (!current) return null;
+
+  const hiddenAncestors = ancestors.slice(0, ancestors.length - tailCount);
+  const visibleAncestors = ancestors.slice(ancestors.length - tailCount);
+  const collapsed = hiddenAncestors.length > 0;
 
   const renderAncestor = (item: BreadcrumbItem) => (
     <React.Fragment key={item.id}>
-      <Box display="flex" alignItems="center" gap="1" role="listitem">
+      <Box
+        flexShrink="0"
+        display="flex"
+        alignItems="center"
+        gap="1"
+        role="listitem"
+      >
         <Crumb item={item} />
       </Box>
       <Separator />
@@ -63,16 +102,23 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({
   return (
     <Box as="nav" aria-label="Breadcrumb">
       <Box
+        ref={containerRef}
         display="flex"
         alignItems="center"
-        flexWrap="wrap"
+        flexWrap="nowrap"
+        overflow="hidden"
         gap="1"
         role="list"
       >
-        {leadingAncestors.map(renderAncestor)}
-        {collapse && (
+        {collapsed && (
           <React.Fragment>
-            <Box display="flex" alignItems="center" gap="1" role="listitem">
+            <Box
+              flexShrink="0"
+              display="flex"
+              alignItems="center"
+              gap="1"
+              role="listitem"
+            >
               <Popover
                 position="bottom-start"
                 content={
@@ -106,8 +152,8 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({
             <Separator />
           </React.Fragment>
         )}
-        {trailingAncestors.map(renderAncestor)}
-        <Box display="flex" alignItems="center" role="listitem">
+        {visibleAncestors.map(renderAncestor)}
+        <Box flexShrink="0" display="flex" alignItems="center" role="listitem">
           <Text
             as="span"
             fontWeight="bold"

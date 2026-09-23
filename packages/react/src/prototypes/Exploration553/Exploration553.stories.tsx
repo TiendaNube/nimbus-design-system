@@ -93,12 +93,12 @@ function ancestryOf(id: string): FlatNode[] {
 }
 
 interface BreadcrumbDemoProps {
-  maxVisibleItems?: number;
+  containerWidth?: number;
   fullScreen?: boolean;
 }
 
 const BreadcrumbDemo: React.FC<BreadcrumbDemoProps> = ({
-  maxVisibleItems = 4,
+  containerWidth = 360,
   fullScreen = false,
 }) => {
   const [currentId, setCurrentId] = useState("zones");
@@ -119,7 +119,20 @@ const BreadcrumbDemo: React.FC<BreadcrumbDemoProps> = ({
       flexDirection="column"
       gap="4"
     >
-      <Breadcrumb items={items} maxVisibleItems={maxVisibleItems} />
+      {!fullScreen && (
+        <Text as="p" fontSize="caption" color="neutral-textLow">
+          Simulated available width: {containerWidth}px. Use the
+          "containerWidth" control to shrink it, like a narrow mobile
+          viewport, and watch the path collapse to keep the breadcrumb on a
+          single line with the current level always visible.
+        </Text>
+      )}
+      <Box
+        width={fullScreen ? "100%" : `${containerWidth}px`}
+        maxWidth="100%"
+      >
+        <Breadcrumb items={items} />
+      </Box>
       <Title as="h3">{current.label}</Title>
       {current.children.length > 0 ? (
         <Box display="flex" flexDirection="column" gap="2" role="list">
@@ -151,10 +164,12 @@ const meta: Meta<typeof BreadcrumbDemo> = {
   title: "Prototypes/Exploration553",
   component: BreadcrumbDemo,
   args: {
-    maxVisibleItems: 4,
+    containerWidth: 360,
   },
   argTypes: {
-    maxVisibleItems: { control: { type: "number", min: 2, max: 8 } },
+    containerWidth: {
+      control: { type: "range", min: 200, max: 900, step: 20 },
+    },
     fullScreen: { table: { disable: true } },
   },
 };
