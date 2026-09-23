@@ -1,60 +1,89 @@
-import React from "react";
+import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Box } from "@nimbus-ds/box";
 import { Text } from "@nimbus-ds/text";
+import { Card } from "@nimbus-ds/card";
 
-import { Exploration553, type Exploration553Item } from "./Exploration553";
+import { Exploration553 } from "./Exploration553";
+import type { Exploration553Item } from "./Exploration553";
 
-const SAMPLE_HIERARCHY: Exploration553Item[] = [
+const longPath: Exploration553Item[] = [
   { label: "Home", href: "#home" },
-  { label: "Settings", href: "#settings" },
-  { label: "Shipping", href: "#settings/shipping" },
-  { label: "Zones", href: "#settings/shipping/zones" },
-  { label: "Argentina", href: "#settings/shipping/zones/argentina" },
-  { label: "Buenos Aires" },
+  { label: "Products", href: "#products" },
+  { label: "Clothing", href: "#clothing" },
+  { label: "Women", href: "#women" },
+  { label: "Dresses", href: "#dresses" },
+  { label: "Summer collection" },
 ];
 
-const buildItems = (depth: number): Exploration553Item[] =>
-  SAMPLE_HIERARCHY.slice(0, Math.max(1, Math.min(depth, SAMPLE_HIERARCHY.length)));
+const shortPath: Exploration553Item[] = [
+  { label: "Home", href: "#home" },
+  { label: "Settings", href: "#settings" },
+  { label: "Shipping methods" },
+];
 
-interface PlaygroundArgs {
-  depth: number;
-  maxVisibleItems: number;
-}
-
-const PlaygroundRender = ({ depth, maxVisibleItems }: PlaygroundArgs) => (
-  <Box padding="4">
-    <Exploration553 items={buildItems(depth)} maxVisibleItems={maxVisibleItems} />
-  </Box>
-);
-
-const meta: Meta<PlaygroundArgs> = {
+const meta: Meta<typeof Exploration553> = {
   title: "Prototypes/Exploration553",
-  parameters: {
-    layout: "padded",
+  component: Exploration553,
+  args: {
+    items: shortPath,
+    maxVisible: 4,
+    compact: false,
   },
+  argTypes: {
+    items: { control: { disable: true } },
+  },
+  tags: ["autodocs"],
 };
 
 export default meta;
 
-type Story = StoryObj<PlaygroundArgs>;
+type Story = StoryObj<typeof Exploration553>;
 
 export const Playground: Story = {
-  render: (args) => <PlaygroundRender {...args} />,
-  args: {
-    depth: 6,
-    maxVisibleItems: 4,
-  },
-  argTypes: {
-    depth: {
-      control: { type: "range", min: 1, max: SAMPLE_HIERARCHY.length, step: 1 },
-      description: "How many levels of the sample hierarchy to render.",
-    },
-    maxVisibleItems: {
-      control: { type: "range", min: 2, max: SAMPLE_HIERARCHY.length, step: 1 },
-      description:
-        "Crumbs shown before collapsing the middle levels behind an ellipsis.",
-    },
+  render: (args) => {
+    const [navigated, setNavigated] = useState<string | null>(null);
+    const itemsWithHandlers = args.items.map((item) => ({
+      ...item,
+      onNavigate: (navigatedItem: Exploration553Item) =>
+        setNavigated(navigatedItem.label),
+    }));
+
+    return (
+      <Box display="flex" flexDirection="column" gap="4">
+        <Card padding="base">
+          <Box display="flex" flexDirection="column" gap="4">
+            <Text fontWeight="bold">Short path (3 levels)</Text>
+            <Exploration553
+              items={shortPath.map((item) => ({
+                ...item,
+                onNavigate: (navigatedItem) =>
+                  setNavigated(navigatedItem.label),
+              }))}
+              maxVisible={args.maxVisible}
+              compact={args.compact}
+            />
+          </Box>
+        </Card>
+
+        <Card padding="base">
+          <Box display="flex" flexDirection="column" gap="4">
+            <Text fontWeight="bold">Long path (6 levels, collapsing)</Text>
+            <Exploration553
+              items={itemsWithHandlers}
+              maxVisible={args.maxVisible}
+              compact={args.compact}
+            />
+          </Box>
+        </Card>
+
+        {navigated && (
+          <Text fontSize="caption" color="neutral-textLow">
+            Simulated navigation to: {navigated}
+          </Text>
+        )}
+      </Box>
+    );
   },
 };
 
@@ -64,20 +93,68 @@ export const FullScreen: Story = {
     layout: "fullscreen",
     controls: { disable: true },
   },
-  render: () => (
-    <Box padding="8" display="flex" gap="6">
-      <Box display="flex" flexDirection="column" gap="2">
-        <Text as="span" fontSize="caption" color="neutral-textLow">
-          Deep hierarchy, collapsed by default — try the "…" to expand
-        </Text>
-        <Exploration553 items={SAMPLE_HIERARCHY} maxVisibleItems={4} />
+  render: () => {
+    const [navigated, setNavigated] = useState<string | null>(null);
+
+    const withHandlers = (path: Exploration553Item[]) =>
+      path.map((item) => ({
+        ...item,
+        onNavigate: (navigatedItem: Exploration553Item) =>
+          setNavigated(navigatedItem.label),
+      }));
+
+    return (
+      <Box padding="6" display="flex" flexDirection="column" gap="8">
+        <Box display="flex" flexDirection="column" gap="2">
+          <Text fontSize="highlight" fontWeight="bold">
+            Breadcrumb exploration — issue #553
+          </Text>
+          <Text color="neutral-textLow">
+            Try the collapsed middle levels on the long path, and compare the
+            compact (mobile-style) treatment against the full path.
+          </Text>
+        </Box>
+
+        <Box display="flex" flexDirection="column" gap="6">
+          <Card padding="base">
+            <Box display="flex" flexDirection="column" gap="4">
+              <Text fontWeight="bold">Desktop — short path</Text>
+              <Exploration553 items={withHandlers(shortPath)} />
+            </Box>
+          </Card>
+
+          <Card padding="base">
+            <Box display="flex" flexDirection="column" gap="4">
+              <Text fontWeight="bold">
+                Desktop — long path, collapsed to 4 visible levels
+              </Text>
+              <Exploration553 items={withHandlers(longPath)} maxVisible={4} />
+            </Box>
+          </Card>
+
+          <Card padding="base">
+            <Box display="flex" flexDirection="column" gap="4">
+              <Text fontWeight="bold">Desktop — long path, all 6 levels</Text>
+              <Exploration553 items={withHandlers(longPath)} maxVisible={99} />
+            </Box>
+          </Card>
+
+          <Card padding="base">
+            <Box display="flex" flexDirection="column" gap="4">
+              <Text fontWeight="bold">
+                Compact (simulated mobile) — back-to-parent only
+              </Text>
+              <Exploration553 items={withHandlers(longPath)} compact />
+            </Box>
+          </Card>
+        </Box>
+
+        {navigated && (
+          <Text fontSize="caption" color="neutral-textLow">
+            Simulated navigation to: {navigated}
+          </Text>
+        )}
       </Box>
-      <Box display="flex" flexDirection="column" gap="2">
-        <Text as="span" fontSize="caption" color="neutral-textLow">
-          Shallow hierarchy, no collapse needed
-        </Text>
-        <Exploration553 items={SAMPLE_HIERARCHY.slice(0, 3)} maxVisibleItems={4} />
-      </Box>
-    </Box>
-  ),
+    );
+  },
 };
