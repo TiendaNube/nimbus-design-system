@@ -47,10 +47,23 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ items }) => {
   // (everything visible) and the shrink pass below trims it down.
   const [tailCount, setTailCount] = useState(ancestors.length);
 
+  // Controlled so the trigger button can expose aria-expanded, and so a
+  // selection inside the menu can close it explicitly (same pattern as
+  // SplitButton.Secondary's Popover: visible/onVisibility, not the
+  // uncontrolled default).
+  const [menuOpen, setMenuOpen] = useState(false);
+
   useLayoutEffect(() => {
     setTailCount(ancestors.length);
     // Re-measure from scratch whenever the path itself changes (navigation).
     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathKey]);
+
+  // A path change means the previous menu content (the old hidden
+  // ancestors) no longer applies to the current page; close it rather than
+  // leaving a stale menu open after navigation.
+  useEffect(() => {
+    setMenuOpen(false);
   }, [pathKey]);
 
   // Single-line constraint: if the row overflows its container, hide one
@@ -121,6 +134,8 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ items }) => {
             >
               <Popover
                 position="bottom-start"
+                visible={menuOpen}
+                onVisibility={setMenuOpen}
                 content={
                   <Box display="flex" flexDirection="column" gap="1">
                     {hiddenAncestors.map((item) => (
@@ -130,7 +145,12 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ items }) => {
                         type="button"
                         appearance="neutral"
                         textDecoration="none"
-                        onClick={item.onNavigate}
+                        onClick={() => {
+                          // Close first: navigation replaces the whole
+                          // hidden-ancestor list this menu was built from.
+                          setMenuOpen(false);
+                          item.onNavigate?.();
+                        }}
                       >
                         {item.label}
                       </Link>
@@ -143,6 +163,8 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ items }) => {
                   type="button"
                   appearance="neutral"
                   textDecoration="none"
+                  aria-haspopup="true"
+                  aria-expanded={menuOpen}
                   aria-label={`Show ${hiddenAncestors.length} hidden path levels`}
                 >
                   …

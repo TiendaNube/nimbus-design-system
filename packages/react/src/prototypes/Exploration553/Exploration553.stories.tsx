@@ -124,7 +124,9 @@ const BreadcrumbDemo: React.FC<BreadcrumbDemoProps> = ({
           Simulated available width: {containerWidth}px. Use the
           "containerWidth" control to shrink it, like a narrow mobile
           viewport, and watch the path collapse to keep the breadcrumb on a
-          single line with the current level always visible.
+          single line with the current level always visible. Try tabbing to
+          the "…" trigger and pressing Enter/Space to open the hidden-levels
+          menu, then Escape to close it.
         </Text>
       )}
       <Box
