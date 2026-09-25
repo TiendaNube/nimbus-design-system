@@ -1,193 +1,145 @@
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Box } from "@nimbus-ds/box";
-import { Title } from "@nimbus-ds/title";
 import { Text } from "@nimbus-ds/text";
 import { Link } from "@nimbus-ds/link";
+import { Tabs } from "@nimbus-ds/tabs";
 
 import { Breadcrumb, type BreadcrumbItem } from "./Exploration553";
 
-interface TreeNode {
-  id: string;
-  label: string;
-  children?: TreeNode[];
+const SAMPLE_LEVELS = [
+  "Home",
+  "Settings",
+  "Payments",
+  "Payment methods",
+  "Mercado Pago",
+  "Installments configuration",
+  "Advanced rules",
+];
+
+function buildItems(count: number, longLabels: boolean): BreadcrumbItem[] {
+  const labels = longLabels
+    ? SAMPLE_LEVELS.map((label) => `${label} for the whole store configuration`)
+    : SAMPLE_LEVELS;
+
+  return labels.slice(0, Math.max(count, 1)).map((label, index) => ({
+    id: `level-${index}`,
+    label,
+    href: `#level-${index}`,
+  }));
 }
 
-const tree: TreeNode = {
-  id: "root",
-  label: "Store",
-  children: [
-    {
-      id: "settings",
-      label: "Settings",
-      children: [
-        {
-          id: "shipping",
-          label: "Shipping",
-          children: [
-            {
-              id: "carriers",
-              label: "Carriers",
-              children: [
-                {
-                  id: "correo-ar",
-                  label: "Correo Argentino",
-                  children: [
-                    { id: "zones", label: "Delivery zones" },
-                    { id: "rates", label: "Rates" },
-                  ],
-                },
-                { id: "oca", label: "OCA" },
-              ],
-            },
-            { id: "pickup", label: "Pickup points" },
-          ],
-        },
-        { id: "payments", label: "Payments" },
-      ],
-    },
-    {
-      id: "catalog",
-      label: "Catalog",
-      children: [
-        { id: "products", label: "Products" },
-        { id: "categories", label: "Categories" },
-      ],
-    },
-  ],
-};
+function InteractiveDemo({
+  totalItems,
+  maxVisible,
+  longLabels,
+}: {
+  totalItems: number;
+  maxVisible: number;
+  longLabels: boolean;
+}) {
+  const allItems = buildItems(totalItems, longLabels);
+  const [depth, setDepth] = useState(allItems.length);
 
-interface FlatNode {
-  id: string;
-  label: string;
-  parentId: string | null;
-  children: TreeNode[];
-}
-
-function flatten(
-  node: TreeNode,
-  parentId: string | null,
-  acc: Record<string, FlatNode>
-): Record<string, FlatNode> {
-  acc[node.id] = {
-    id: node.id,
-    label: node.label,
-    parentId,
-    children: node.children ?? [],
-  };
-  (node.children ?? []).forEach((child) => flatten(child, node.id, acc));
-  return acc;
-}
-
-const flatTree = flatten(tree, null, {});
-
-function ancestryOf(id: string): FlatNode[] {
-  const chain: FlatNode[] = [];
-  let cursor: string | null = id;
-  while (cursor) {
-    const node: FlatNode = flatTree[cursor];
-    chain.unshift(node);
-    cursor = node.parentId;
-  }
-  return chain;
-}
-
-interface BreadcrumbDemoProps {
-  containerWidth?: number;
-  fullScreen?: boolean;
-}
-
-const BreadcrumbDemo: React.FC<BreadcrumbDemoProps> = ({
-  containerWidth = 360,
-  fullScreen = false,
-}) => {
-  const [currentId, setCurrentId] = useState("zones");
-
-  const ancestry = useMemo(() => ancestryOf(currentId), [currentId]);
-  const current = flatTree[currentId];
-
-  const items: BreadcrumbItem[] = ancestry.map((node) => ({
-    id: node.id,
-    label: node.label,
-    onNavigate: () => setCurrentId(node.id),
+  const visibleDepth = Math.min(depth, allItems.length);
+  const items = allItems.slice(0, visibleDepth).map((item, index, arr) => ({
+    ...item,
+    onNavigate:
+      index === arr.length - 1 ? undefined : () => setDepth(index + 1),
   }));
 
   return (
-    <Box
-      padding={fullScreen ? "6" : "4"}
-      display="flex"
-      flexDirection="column"
-      gap="4"
-    >
-      {!fullScreen && (
-        <Text as="p" fontSize="caption" color="neutral-textLow">
-          Simulated available width: {containerWidth}px. Use the
-          "containerWidth" control to shrink it, like a narrow mobile
-          viewport, and watch the path collapse to keep the breadcrumb on a
-          single line with the current level always visible. Try tabbing to
-          the "…" trigger and pressing Enter/Space to open the hidden-levels
-          menu, then Escape to close it.
-        </Text>
-      )}
-      <Box
-        width={fullScreen ? "100%" : `${containerWidth}px`}
-        maxWidth="100%"
-      >
-        <Breadcrumb items={items} />
-      </Box>
-      <Title as="h3">{current.label}</Title>
-      {current.children.length > 0 ? (
-        <Box display="flex" flexDirection="column" gap="2" role="list">
-          {current.children.map((child) => (
-            <Box key={child.id} role="listitem">
-              <Link
-                as="button"
-                type="button"
-                appearance="primary"
-                textDecoration="none"
-                onClick={() => setCurrentId(child.id)}
-              >
-                {child.label}
-              </Link>
-            </Box>
-          ))}
+    <Box display="flex" flexDirection="column" gap="4" padding="4" maxWidth="480px">
+      <Breadcrumb items={items} maxVisible={maxVisible} />
+      <Text fontSize="caption" color="neutral-textLow">
+        Showing level {visibleDepth} of {allItems.length}. Click any ancestor
+        level in the trail to navigate back to it.
+      </Text>
+      {visibleDepth < allItems.length && (
+        <Box>
+          <Link
+            as="button"
+            appearance="primary"
+            onClick={() => setDepth(allItems.length)}
+          >
+            Go back to the deepest level
+          </Link>
         </Box>
-      ) : (
-        <Text color="neutral-textLow">
-          This level has no further pages. Use the breadcrumb above to go
-          back.
-        </Text>
       )}
     </Box>
   );
-};
+}
 
-const meta: Meta<typeof BreadcrumbDemo> = {
+const meta: Meta = {
   title: "Prototypes/Exploration553",
-  component: BreadcrumbDemo,
-  args: {
-    containerWidth: 360,
-  },
-  argTypes: {
-    containerWidth: {
-      control: { type: "range", min: 200, max: 900, step: 20 },
-    },
-    fullScreen: { table: { disable: true } },
-  },
+  tags: ["autodocs"],
 };
 
 export default meta;
-type Story = StoryObj<typeof BreadcrumbDemo>;
 
-export const Playground: Story = {};
+type Story = StoryObj;
+
+export const Playground: Story = {
+  args: {
+    totalItems: 6,
+    maxVisible: 4,
+    longLabels: false,
+  },
+  argTypes: {
+    totalItems: { control: { type: "range", min: 1, max: 7, step: 1 } },
+    maxVisible: { control: { type: "range", min: 2, max: 6, step: 1 } },
+    longLabels: { control: "boolean" },
+  },
+  render: (args) => (
+    <InteractiveDemo
+      totalItems={args.totalItems as number}
+      maxVisible={args.maxVisible as number}
+      longLabels={args.longLabels as boolean}
+    />
+  ),
+};
 
 export const FullScreen: Story = {
   name: "Full screen",
-  args: {
-    fullScreen: true,
+  parameters: { layout: "fullscreen" },
+  argTypes: {
+    totalItems: { control: false },
+    maxVisible: { control: false },
+    longLabels: { control: false },
   },
-  parameters: {
-    layout: "fullscreen",
-    controls: { disable: true },
+  render: () => {
+    const items = buildItems(6, false).map((item, index, arr) => ({
+      ...item,
+      onNavigate: index === arr.length - 1 ? undefined : () => {},
+    }));
+
+    return (
+      <Box display="flex" flexDirection="column" gap="4" padding="6">
+        <Breadcrumb items={items} maxVisible={4} />
+
+        <Text fontSize="caption" color="neutral-textLow">
+          Below: an existing Nimbus Tabs pattern for switching between
+          same-level views, to check the two navigation patterns do not
+          visually or semantically compete.
+        </Text>
+
+        <Tabs preSelectedTab={0}>
+          <Tabs.Item label="General">
+            <Box borderColor="neutral-interactive" borderStyle="dashed" borderWidth="1" padding="4">
+              <Text fontSize="base" textAlign="center">
+                Page content for the current breadcrumb level.
+              </Text>
+            </Box>
+          </Tabs.Item>
+          <Tabs.Item label="Advanced">
+            <Box borderColor="neutral-interactive" borderStyle="dashed" borderWidth="1" padding="4">
+              <Text fontSize="base" textAlign="center">
+                An alternate view at the same hierarchy level.
+              </Text>
+            </Box>
+          </Tabs.Item>
+        </Tabs>
+      </Box>
+    );
   },
 };

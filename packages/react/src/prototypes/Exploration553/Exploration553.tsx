@@ -1,195 +1,188 @@
-import React, { useLayoutEffect, useEffect, useRef, useState } from "react";
+import React from "react";
 import { Box } from "@nimbus-ds/box";
 import { Text } from "@nimbus-ds/text";
 import { Link } from "@nimbus-ds/link";
 import { Icon } from "@nimbus-ds/icon";
+import { IconButton } from "@nimbus-ds/icon-button";
 import { Popover } from "@nimbus-ds/popover";
-import { ChevronRightIcon } from "@nimbus-ds/icons";
+import { ChevronRightIcon, EllipsisIcon } from "@nimbus-ds/icons";
+
+/**
+ * Exploration for issue #553 (Breadcrumb component request).
+ * Composed entirely from existing Nimbus atomic/composite components; no
+ * production export, no new package. See stories.tsx for scenarios.
+ */
 
 export interface BreadcrumbItem {
   id: string;
   label: string;
-  onNavigate?: () => void;
+  href?: string;
+  onNavigate?: (item: BreadcrumbItem) => void;
 }
 
 export interface BreadcrumbProps {
-  /** Full path from root to the current location, root first. */
   items: BreadcrumbItem[];
+  /**
+   * Number of levels shown before the middle of the trail collapses behind
+   * an overflow menu. The first level and the trailing levels (up to this
+   * count) always stay visible.
+   */
+  maxVisible?: number;
 }
 
-const Crumb: React.FC<{ item: BreadcrumbItem }> = ({ item }) => (
-  <Link
-    as="button"
-    type="button"
-    appearance="neutral"
-    textDecoration="none"
-    onClick={item.onNavigate}
-  >
-    {item.label}
-  </Link>
-);
+const TRUNCATE_WIDTH = "160px";
 
-const Separator: React.FC = () => (
-  <Box flexShrink="0" display="flex" alignItems="center">
-    <Icon source={<ChevronRightIcon />} />
-  </Box>
-);
-
-const Breadcrumb: React.FC<BreadcrumbProps> = ({ items }) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  const current = items.length > 0 ? items[items.length - 1] : undefined;
-  const ancestors = items.length > 0 ? items.slice(0, -1) : [];
-  const pathKey = items.map((item) => item.id).join("/");
-
-  // Number of ancestors (closest to the current item) kept visible before
-  // the rest collapse behind the overflow trigger. Starts optimistic
-  // (everything visible) and the shrink pass below trims it down.
-  const [tailCount, setTailCount] = useState(ancestors.length);
-
-  // Controlled so the trigger button can expose aria-expanded, and so a
-  // selection inside the menu can close it explicitly (same pattern as
-  // SplitButton.Secondary's Popover: visible/onVisibility, not the
-  // uncontrolled default).
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  useLayoutEffect(() => {
-    setTailCount(ancestors.length);
-    // Re-measure from scratch whenever the path itself changes (navigation).
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pathKey]);
-
-  // A path change means the previous menu content (the old hidden
-  // ancestors) no longer applies to the current page; close it rather than
-  // leaving a stale menu open after navigation.
-  useEffect(() => {
-    setMenuOpen(false);
-  }, [pathKey]);
-
-  // Single-line constraint: if the row overflows its container, hide one
-  // more ancestor (from the root side) and try again. The current item is
-  // never part of this count, so it is never removed.
-  useLayoutEffect(() => {
-    const node = containerRef.current;
-    if (!node) return;
-    if (node.scrollWidth > node.clientWidth && tailCount > 0) {
-      setTailCount((count) => Math.max(count - 1, 0));
-    }
-  }, [tailCount, pathKey]);
-
-  // A container/viewport resize can free up space again: re-expand
-  // optimistically and let the effect above shrink it back if it still
-  // doesn't fit.
-  useEffect(() => {
-    const node = containerRef.current;
-    if (!node || typeof ResizeObserver === "undefined") return undefined;
-    const observer = new ResizeObserver(() => {
-      setTailCount(ancestors.length);
-    });
-    observer.observe(node);
-    return () => observer.disconnect();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ancestors.length]);
-
-  if (!current) return null;
-
-  const hiddenAncestors = ancestors.slice(0, ancestors.length - tailCount);
-  const visibleAncestors = ancestors.slice(ancestors.length - tailCount);
-  const collapsed = hiddenAncestors.length > 0;
-
-  const renderAncestor = (item: BreadcrumbItem) => (
-    <React.Fragment key={item.id}>
-      <Box
-        flexShrink="0"
-        display="flex"
-        alignItems="center"
-        gap="1"
-        role="listitem"
+function TruncatedLabel({
+  label,
+  isCurrent,
+}: {
+  label: string;
+  isCurrent: boolean;
+}) {
+  return (
+    <Box minWidth="0" maxWidth={TRUNCATE_WIDTH} overflow="hidden">
+      <Text
+        as="p"
+        title={label}
+        fontSize="caption"
+        fontWeight={isCurrent ? "bold" : "regular"}
+        color={isCurrent ? "neutral-textHigh" : "neutral-textLow"}
+        overflow="hidden"
+        textOverflow="ellipsis"
+        whiteSpace="nowrap"
       >
-        <Crumb item={item} />
-      </Box>
-      <Separator />
-    </React.Fragment>
+        {label}
+      </Text>
+    </Box>
   );
+}
+
+function BreadcrumbSeparator() {
+  return (
+    <Box display="flex" alignItems="center" flexShrink="0" aria-hidden="true">
+      <Icon source={<ChevronRightIcon />} color="neutral-textLow" />
+    </Box>
+  );
+}
+
+function BreadcrumbLink({ item }: { item: BreadcrumbItem }) {
+  return (
+    <Link
+      as="a"
+      href={item.href ?? "#"}
+      appearance="neutral"
+      fontSize="caption"
+      onClick={(event: React.MouseEvent<HTMLAnchorElement>) => {
+        if (item.onNavigate) {
+          event.preventDefault();
+          item.onNavigate(item);
+        }
+      }}
+    >
+      <TruncatedLabel label={item.label} isCurrent={false} />
+    </Link>
+  );
+}
+
+function CurrentBreadcrumbItem({ item }: { item: BreadcrumbItem }) {
+  return (
+    <Box aria-current="page">
+      <TruncatedLabel label={item.label} isCurrent />
+    </Box>
+  );
+}
+
+function HiddenLevelsMenu({ items }: { items: BreadcrumbItem[] }) {
+  return (
+    <Popover
+      position="bottom-start"
+      content={
+        <Box display="flex" flexDirection="column" gap="1" minWidth="180px">
+          {items.map((item) => (
+            <BreadcrumbLink key={item.id} item={item} />
+          ))}
+        </Box>
+      }
+    >
+      <IconButton
+        source={<EllipsisIcon />}
+        aria-label={`Show ${items.length} hidden breadcrumb ${
+          items.length === 1 ? "level" : "levels"
+        }`}
+      />
+    </Popover>
+  );
+}
+
+export function Breadcrumb({ items, maxVisible = 4 }: BreadcrumbProps) {
+  if (items.length === 0) {
+    return null;
+  }
+
+  const lastItem = items[items.length - 1];
+  const firstItem = items[0];
+  const shouldCollapse = items.length > maxVisible;
+  const tailCount = Math.max(maxVisible - 1, 1);
+  const tailItems = shouldCollapse ? items.slice(-tailCount) : items.slice(1);
+  const hiddenItems = shouldCollapse
+    ? items.slice(1, items.length - tailCount)
+    : [];
 
   return (
     <Box as="nav" aria-label="Breadcrumb">
       <Box
-        ref={containerRef}
         display="flex"
         alignItems="center"
         flexWrap="nowrap"
-        overflow="hidden"
         gap="1"
+        overflow="hidden"
+        minWidth="0"
         role="list"
       >
-        {collapsed && (
-          <React.Fragment>
+        <Box
+          display="flex"
+          alignItems="center"
+          minWidth="0"
+          role="listitem"
+        >
+          {firstItem === lastItem ? (
+            <CurrentBreadcrumbItem item={firstItem} />
+          ) : (
+            <BreadcrumbLink item={firstItem} />
+          )}
+        </Box>
+
+        {hiddenItems.length > 0 && (
+          <>
+            <BreadcrumbSeparator />
+            <Box display="flex" alignItems="center" flexShrink="0" role="listitem">
+              <HiddenLevelsMenu items={hiddenItems} />
+            </Box>
+          </>
+        )}
+
+        {tailItems.map((item) => {
+          const isCurrent = item === lastItem;
+          return (
             <Box
-              flexShrink="0"
+              key={item.id}
               display="flex"
               alignItems="center"
+              minWidth="0"
               gap="1"
-              role="listitem"
             >
-              <Popover
-                position="bottom-start"
-                visible={menuOpen}
-                onVisibility={setMenuOpen}
-                content={
-                  <Box display="flex" flexDirection="column" gap="1">
-                    {hiddenAncestors.map((item) => (
-                      <Link
-                        key={item.id}
-                        as="button"
-                        type="button"
-                        appearance="neutral"
-                        textDecoration="none"
-                        onClick={() => {
-                          // Close first: navigation replaces the whole
-                          // hidden-ancestor list this menu was built from.
-                          setMenuOpen(false);
-                          item.onNavigate?.();
-                        }}
-                      >
-                        {item.label}
-                      </Link>
-                    ))}
-                  </Box>
-                }
-              >
-                <Link
-                  as="button"
-                  type="button"
-                  appearance="neutral"
-                  textDecoration="none"
-                  aria-haspopup="true"
-                  aria-expanded={menuOpen}
-                  aria-label={`Show ${hiddenAncestors.length} hidden path levels`}
-                >
-                  …
-                </Link>
-              </Popover>
+              <BreadcrumbSeparator />
+              <Box display="flex" alignItems="center" minWidth="0" role="listitem">
+                {isCurrent ? (
+                  <CurrentBreadcrumbItem item={item} />
+                ) : (
+                  <BreadcrumbLink item={item} />
+                )}
+              </Box>
             </Box>
-            <Separator />
-          </React.Fragment>
-        )}
-        {visibleAncestors.map(renderAncestor)}
-        <Box flexShrink="0" display="flex" alignItems="center" role="listitem">
-          <Text
-            as="span"
-            fontWeight="bold"
-            color="neutral-textHigh"
-            aria-current="page"
-          >
-            {current.label}
-          </Text>
-        </Box>
+          );
+        })}
       </Box>
     </Box>
   );
-};
-
-Breadcrumb.displayName = "Breadcrumb";
-
-export { Breadcrumb };
+}
