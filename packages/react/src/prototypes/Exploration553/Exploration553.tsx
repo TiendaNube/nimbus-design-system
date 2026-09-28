@@ -35,6 +35,40 @@ interface RenderEntry {
   index?: number;
 }
 
+/**
+ * Bare "…" disclosure trigger for hidden levels. A raw <button> with an
+ * explicit reset is used here (not Box/Link) because neither exposes a way
+ * to strip the browser's native button chrome (background, border,
+ * border-radius) that made this control read as a circular pill; the
+ * default focus outline is left untouched so keyboard focus stays visible.
+ */
+const EllipsisTrigger: React.FC<{ onExpand: () => void }> = ({
+  onExpand,
+}) => (
+  <button
+    type="button"
+    aria-label="Show hidden levels"
+    onClick={onExpand}
+    style={{
+      WebkitAppearance: "none",
+      appearance: "none",
+      background: "transparent",
+      border: "none",
+      borderRadius: 0,
+      margin: 0,
+      padding: "4px 6px",
+      font: "inherit",
+      color: "inherit",
+      lineHeight: 1,
+      cursor: "pointer",
+    }}
+  >
+    <Text as="span" fontWeight="medium">
+      …
+    </Text>
+  </button>
+);
+
 const Breadcrumb: React.FC<BreadcrumbProps> = ({
   items,
   maxVisible = 4,
@@ -80,16 +114,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({
             <React.Fragment key={entry.key}>
               <Box as="div" role="listitem" display="flex" alignItems="center">
                 {entry.kind === "ellipsis" ? (
-                  <Link
-                    as="button"
-                    type="button"
-                    appearance="neutral"
-                    textDecoration="none"
-                    aria-label="Show hidden levels"
-                    onClick={() => setExpanded(true)}
-                  >
-                    …
-                  </Link>
+                  <EllipsisTrigger onExpand={() => setExpanded(true)} />
                 ) : isLast ? (
                   <Text as="span" fontWeight="medium" aria-current="page">
                     {entry.item!.label}
