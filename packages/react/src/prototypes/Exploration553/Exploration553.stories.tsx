@@ -5,8 +5,13 @@ import { Card } from "@nimbus-ds/card";
 import { Title } from "@nimbus-ds/title";
 import { Text } from "@nimbus-ds/text";
 import { Tabs } from "@nimbus-ds/tabs";
+import { Link } from "@nimbus-ds/link";
 
-import { Breadcrumb, type BreadcrumbItem } from "./Exploration553";
+import {
+  Breadcrumb,
+  type BreadcrumbItem,
+  type BreadcrumbLinkRenderProps,
+} from "./Exploration553";
 
 const DEEP_HIERARCHY: BreadcrumbItem[] = [
   { label: "Store", href: "#store" },
@@ -47,6 +52,8 @@ const PageDemo: React.FC<PageDemoProps> = ({ initialItems, maxVisible }) => {
             Current position: &quot;
             {path.map((item) => item.label).join(" / ")}&quot;. Activate any
             ancestor level in the breadcrumb above to navigate back to it.
+            When the path collapses, use the "…" control to see the hidden
+            levels in a dropdown.
           </Text>
         </Card.Body>
       </Card>
@@ -122,6 +129,64 @@ const WithNavTabsDemo: React.FC = () => {
   );
 };
 
+/**
+ * Stand-in for a router-aware link (e.g. wrapping React Router's `Link` or
+ * Next.js' `Link`). Breadcrumb has no router dependency: it only calls
+ * `renderLink` with the href, label and click handler it would otherwise
+ * give a plain anchor, and this function decides how the element is built.
+ * The `data-router-link` attribute exists only so this story can show which
+ * renderer produced each ancestor link.
+ */
+const RouterAwareLink = ({ href, children, onClick }: BreadcrumbLinkRenderProps) => (
+  <Link
+    href={href}
+    appearance="primary"
+    textDecoration="none"
+    onClick={onClick}
+    data-router-link="true"
+  >
+    {children}
+  </Link>
+);
+
+const WithRouterLinkDemo: React.FC = () => {
+  const [path, setPath] = useState(DEEP_HIERARCHY);
+
+  return (
+    <Box
+      padding="4"
+      display="flex"
+      flexDirection="column"
+      gap="4"
+      maxWidth="480px"
+    >
+      <Text fontSize="caption" color="neutral-textLow">
+        Ancestor links below (including the ones inside the "…" dropdown) are
+        rendered through a custom `renderLink`, standing in for a router
+        component. They still support opening in a new tab or a
+        modifier-click, because Breadcrumb only calls `preventDefault` for an
+        unmodified primary click.
+      </Text>
+      <Breadcrumb
+        items={path}
+        renderLink={RouterAwareLink}
+        onNavigate={(_item, index) => setPath(DEEP_HIERARCHY.slice(0, index + 1))}
+      />
+      <Card>
+        <Card.Header>
+          <Title as="h3">{path[path.length - 1].label}</Title>
+        </Card.Header>
+        <Card.Body>
+          <Text>
+            Current position: &quot;
+            {path.map((item) => item.label).join(" / ")}&quot;.
+          </Text>
+        </Card.Body>
+      </Card>
+    </Box>
+  );
+};
+
 const meta: Meta<typeof PageDemo> = {
   title: "Prototypes/Exploration553",
   component: PageDemo,
@@ -162,4 +227,15 @@ export const WithNavTabs: Story = {
     maxVisible: { control: false },
   },
   render: () => <WithNavTabsDemo />,
+};
+
+export const WithRouterLink: Story = {
+  name: "With router-aware links",
+  args: {
+    initialItems: DEEP_HIERARCHY,
+  },
+  argTypes: {
+    maxVisible: { control: false },
+  },
+  render: () => <WithRouterLinkDemo />,
 };
