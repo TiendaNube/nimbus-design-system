@@ -19,68 +19,296 @@ commands:
   types_check: "yarn types:check"
 
 conventions:
+  componentRoot: "Use components[].path; fallback is {groups[group]}/{ComponentName}"
   contexts: "src/contexts/*/"
+  dependencies: "Nimbus package imports under src; specs, tests, stories and demo are excluded"
   docs: "src/*.docs.json"
-  entry: "src/index.ts"
+  entry: "src/index.ts(x)"
+  exports: "Public exports resolved from src/index.ts(x) and src/components/index.ts(x)"
   implementation: "src/*.tsx"
+  implementationNaming: "Implementation keeps the component casing, e.g. Link.tsx"
   nested: "src/components/*/"
   stories: "src/*.stories.tsx"
+  storiesNaming: "Stories usually use lower camel case, e.g. link.stories.tsx"
+  styles: "Use components[].styles when present"
   test: "src/*.spec.tsx"
+  testNaming: "Tests usually use lower camel case, e.g. link.spec.tsx"
   types: "src/*.types.ts"
+  typesNaming: "Types usually use lower camel case, e.g. link.types.ts"
 
 groups:
   atomic: "packages/react/src/atomic"
   composite: "packages/react/src/composite"
 
 components:
-  - { name: "Badge", group: "atomic", package: "@nimbus-ds/badge", nested: ["BadgeSkeleton"] }
-  - { name: "Box", group: "atomic", package: "@nimbus-ds/box" }
-  - { name: "Button", group: "atomic", package: "@nimbus-ds/button", nested: ["ButtonSkeleton"] }
-  - { name: "Checkbox", group: "atomic", package: "@nimbus-ds/checkbox", nested: ["CheckboxSkeleton"], extras: ["index.d.ts", "src/checkbox-check.svg", "src/checkbox-indeterminate.svg", "src/checkbox.definitions.ts"] }
-  - { name: "Chip", group: "atomic", package: "@nimbus-ds/chip", nested: ["ChipSkeleton"] }
-  - { name: "Divider", group: "atomic", package: "@nimbus-ds/divider" }
-  - { name: "FileUploader", group: "atomic", package: "@nimbus-ds/file-uploader", nested: ["FileUploaderOverlay", "FileUploaderSkeleton"], extras: ["src/FileUploader.definitions.ts", "src/fileUploader.definitions.spec.ts"] }
-  - { name: "Icon", group: "atomic", package: "@nimbus-ds/icon", nested: ["IconSkeleton"], extras: ["src/demo/", "src/utils/"] }
-  - { name: "IconButton", group: "atomic", package: "@nimbus-ds/icon-button", nested: ["IconButtonSkeleton"] }
-  - { name: "Input", group: "atomic", package: "@nimbus-ds/input", nested: ["InputIcon", "InputPassword", "InputSearch", "InputSkeleton", "InputText"] }
-  - { name: "Label", group: "atomic", package: "@nimbus-ds/label", nested: ["LabelSkeleton"] }
-  - { name: "Link", group: "atomic", package: "@nimbus-ds/link", nested: ["LinkSkeleton"] }
-  - { name: "List", group: "atomic", package: "@nimbus-ds/list", nested: ["ListItem", "ListSkeleton", "ListSkeletonItem"] }
-  - { name: "MultiSelect", group: "atomic", package: "@nimbus-ds/multi-select", nested: ["MultiSelectSkeleton"] }
-  - { name: "Popover", group: "atomic", package: "@nimbus-ds/popover" }
-  - { name: "ProgressBar", group: "atomic", package: "@nimbus-ds/progress-bar", nested: ["ProgressBarSkeleton"] }
-  - { name: "Radio", group: "atomic", package: "@nimbus-ds/radio", nested: ["RadioSkeleton"] }
-  - { name: "Select", group: "atomic", package: "@nimbus-ds/select", nested: ["SelectGroup", "SelectOption", "SelectSkeleton"] }
-  - { name: "Skeleton", group: "atomic", package: "@nimbus-ds/skeleton" }
-  - { name: "Slider", group: "atomic", package: "@nimbus-ds/slider", nested: ["SliderThumb", "SliderTrack"], extras: ["src/SliderRange.tsx", "src/hooks/", "src/slider.definitions.ts", "src/sliderRange.stories.tsx"] }
-  - { name: "Spinner", group: "atomic", package: "@nimbus-ds/spinner", extras: ["src/spinner.definitions.ts"] }
-  - { name: "Tag", group: "atomic", package: "@nimbus-ds/tag", nested: ["TagSkeleton"] }
-  - { name: "Text", group: "atomic", package: "@nimbus-ds/text", nested: ["TextSkeleton"] }
-  - { name: "Textarea", group: "atomic", package: "@nimbus-ds/textarea", nested: ["TextareaSkeleton"], extras: ["src/Textarea.definitions.ts"] }
-  - { name: "Thumbnail", group: "atomic", package: "@nimbus-ds/thumbnail", nested: ["ThumbnailSkeleton"] }
-  - { name: "Title", group: "atomic", package: "@nimbus-ds/title", nested: ["TitleSkeleton"] }
-  - { name: "Toast", group: "atomic", package: "@nimbus-ds/toast", nested: ["ToastProvider"], contexts: ["ToastContext"], extras: ["src/hooks/"] }
-  - { name: "Toggle", group: "atomic", package: "@nimbus-ds/toggle", nested: ["ToggleSkeleton"] }
-  - { name: "Tooltip", group: "atomic", package: "@nimbus-ds/tooltip" }
-  - { name: "Accordion", group: "composite", package: "@nimbus-ds/accordion", nested: ["AccordionBody", "AccordionHeader", "AccordionItem"], contexts: ["AccordionContext", "AccordionItemContext"], extras: ["src/accordion.definitions.ts", "src/hooks/"] }
-  - { name: "Alert", group: "composite", package: "@nimbus-ds/alert", nested: ["AlertSkeleton"], extras: ["src/alert.definitions.ts"] }
-  - { name: "Card", group: "composite", package: "@nimbus-ds/card", nested: ["CardBody", "CardFooter", "CardHeader"] }
-  - { name: "Collapsible", group: "composite", package: "@nimbus-ds/collapsible", nested: ["CollapsibleBody", "CollapsibleItem"], contexts: ["CollapsibleContext"], extras: ["src/hooks/"] }
-  - { name: "Modal", group: "composite", package: "@nimbus-ds/modal", nested: ["ModalBody", "ModalFooter", "ModalHeader"] }
-  - { name: "Pagination", group: "composite", package: "@nimbus-ds/pagination", extras: ["src/hooks/", "src/pagination.definitions.ts"] }
-  - { name: "ScrollPane", group: "composite", package: "@nimbus-ds/scroll-pane", nested: ["ScrollPaneArrow", "ScrollPaneItem"], contexts: ["ScrollPaneContext"], extras: ["src/ScrollPane.definitions.ts"] }
-  - { name: "SegmentedControl", group: "composite", package: "@nimbus-ds/segmented-control", nested: ["SegmentedControlButton"], contexts: ["SegmentedControlContext"], extras: ["src/segmentedControl.definitions.ts"] }
-  - { name: "Sidebar", group: "composite", package: "@nimbus-ds/sidebar", nested: ["SidebarBody", "SidebarFooter", "SidebarHeader"] }
-  - { name: "SplitButton", group: "composite", package: "@nimbus-ds/split-button", nested: ["SplitButtonAction", "SplitButtonPrimary", "SplitButtonSecondary"] }
-  - { name: "Stepper", group: "composite", package: "@nimbus-ds/stepper", nested: ["StepperCard", "StepperContext", "StepperItem"], extras: ["src/stepper.definitions.ts"] }
-  - { name: "Table", group: "composite", package: "@nimbus-ds/table", nested: ["TableBody", "TableCell", "TableHead", "TableRow"], contexts: ["TableContext"], extras: ["src/Table.definitions.spec.ts", "src/Table.definitions.ts"] }
-  - { name: "Tabs", group: "composite", package: "@nimbus-ds/tabs", nested: ["TabsButton", "TabsItem"], extras: ["src/tabs.definitions.ts"] }
-  - { name: "TimePicker", group: "composite", package: "@nimbus-ds/time-picker", nested: ["TimePickerAmPm", "TimePickerColumn", "TimePickerDropdown", "TimePickerOption", "TimePickerScroll"], extras: ["src/hooks/", "src/utils/"] }
+  - { name: "Badge", group: "atomic", package: "@nimbus-ds/badge", path: "packages/react/src/atomic/Badge", styles: "packages/core/styles/src/packages/atomic/badge", exports: ["Badge", "BadgeProps", "BadgeSkeleton", "default"], dependencies: ["@nimbus-ds/skeleton", "@nimbus-ds/styles", "@nimbus-ds/text"], nested: ["BadgeSkeleton"] }
+  - { name: "Box", group: "atomic", package: "@nimbus-ds/box", path: "packages/react/src/atomic/Box", styles: "packages/core/styles/src/packages/atomic/box", exports: ["Box", "BoxProps", "default"], dependencies: ["@nimbus-ds/styles", "@nimbus-ds/typings"] }
+  - { name: "Button", group: "atomic", package: "@nimbus-ds/button", path: "packages/react/src/atomic/Button", styles: "packages/core/styles/src/packages/atomic/button", exports: ["Button", "ButtonProps", "ButtonSkeleton", "default"], dependencies: ["@nimbus-ds/skeleton", "@nimbus-ds/styles", "@nimbus-ds/typings"], nested: ["ButtonSkeleton"] }
+  - { name: "Checkbox", group: "atomic", package: "@nimbus-ds/checkbox", path: "packages/react/src/atomic/Checkbox", styles: "packages/core/styles/src/packages/atomic/checkbox", exports: ["Checkbox", "CheckboxProps", "CheckboxSkeleton", "default"], dependencies: ["@nimbus-ds/icon", "@nimbus-ds/skeleton", "@nimbus-ds/styles", "@nimbus-ds/text"], nested: ["CheckboxSkeleton"], extras: ["index.d.ts", "src/checkbox-check.svg", "src/checkbox-indeterminate.svg", "src/checkbox.definitions.ts"] }
+  - { name: "Chip", group: "atomic", package: "@nimbus-ds/chip", path: "packages/react/src/atomic/Chip", styles: "packages/core/styles/src/packages/atomic/chip", exports: ["Chip", "ChipProps", "ChipSkeleton", "default"], dependencies: ["@nimbus-ds/icon", "@nimbus-ds/icons", "@nimbus-ds/skeleton", "@nimbus-ds/styles", "@nimbus-ds/text"], nested: ["ChipSkeleton"] }
+  - { name: "Divider", group: "atomic", package: "@nimbus-ds/divider", path: "packages/react/src/atomic/Divider", styles: "packages/core/styles/src/packages/atomic/divider", exports: ["Divider", "DividerProps", "default"], dependencies: ["@nimbus-ds/styles"] }
+  - { name: "FileUploader", group: "atomic", package: "@nimbus-ds/file-uploader", path: "packages/react/src/atomic/FileUploader", styles: "packages/core/styles/src/packages/atomic/fileUploader", exports: ["FileUploader", "FileUploaderOverlay", "FileUploaderOverlayProps", "FileUploaderProps", "FileUploaderSkeleton", "default"], dependencies: ["@nimbus-ds/icon", "@nimbus-ds/icons", "@nimbus-ds/skeleton", "@nimbus-ds/styles", "@nimbus-ds/text"], nested: ["FileUploaderOverlay", "FileUploaderSkeleton"], extras: ["src/FileUploader.definitions.ts", "src/fileUploader.definitions.spec.ts"] }
+  - { name: "Icon", group: "atomic", package: "@nimbus-ds/icon", path: "packages/react/src/atomic/Icon", styles: "packages/core/styles/src/packages/atomic/icon", exports: ["GRADIENT_COLORS", "Icon", "IconProps", "IconSkeleton", "canUseGradient", "default", "isGradient", "isValidColorValue"], dependencies: ["@nimbus-ds/skeleton", "@nimbus-ds/styles", "@nimbus-ds/typings"], nested: ["IconSkeleton"], extras: ["src/demo/", "src/utils/"] }
+  - { name: "IconButton", group: "atomic", package: "@nimbus-ds/icon-button", path: "packages/react/src/atomic/IconButton", styles: "packages/core/styles/src/packages/atomic/iconButton", exports: ["IconButton", "IconButtonProps", "IconButtonSkeleton", "default"], dependencies: ["@nimbus-ds/icon", "@nimbus-ds/skeleton", "@nimbus-ds/styles"], nested: ["IconButtonSkeleton"] }
+  - { name: "Input", group: "atomic", package: "@nimbus-ds/input", path: "packages/react/src/atomic/Input", styles: "packages/core/styles/src/packages/atomic/input", exports: ["Input", "InputIcon", "InputPassword", "InputPasswordProps", "InputProps", "InputSearch", "InputSearchProps", "InputSkeleton", "InputText", "default"], dependencies: ["@nimbus-ds/icon", "@nimbus-ds/icons", "@nimbus-ds/skeleton", "@nimbus-ds/styles", "@nimbus-ds/typings"], nested: ["InputIcon", "InputPassword", "InputSearch", "InputSkeleton", "InputText"] }
+  - { name: "Label", group: "atomic", package: "@nimbus-ds/label", path: "packages/react/src/atomic/Label", styles: "packages/core/styles/src/packages/atomic/label", exports: ["Label", "LabelProps", "LabelSkeleton", "default"], dependencies: ["@nimbus-ds/skeleton", "@nimbus-ds/styles"], nested: ["LabelSkeleton"] }
+  - { name: "Link", group: "atomic", package: "@nimbus-ds/link", path: "packages/react/src/atomic/Link", styles: "packages/core/styles/src/packages/atomic/link", exports: ["Link", "LinkProps", "LinkSkeleton", "default"], dependencies: ["@nimbus-ds/skeleton", "@nimbus-ds/styles", "@nimbus-ds/typings"], nested: ["LinkSkeleton"] }
+  - { name: "List", group: "atomic", package: "@nimbus-ds/list", path: "packages/react/src/atomic/List", styles: "packages/core/styles/src/packages/atomic/list", exports: ["List", "ListItem", "ListProps", "ListSkeleton", "ListSkeletonItem", "default"], dependencies: ["@nimbus-ds/skeleton", "@nimbus-ds/styles"], nested: ["ListItem", "ListSkeleton", "ListSkeletonItem"] }
+  - { name: "MultiSelect", group: "atomic", package: "@nimbus-ds/multi-select", path: "packages/react/src/atomic/MultiSelect", styles: "packages/core/styles/src/packages/atomic/multiSelect", exports: ["MultiSelect", "MultiSelectProps", "MultiSelectSkeleton", "default"], dependencies: ["@nimbus-ds/box", "@nimbus-ds/chip", "@nimbus-ds/icon", "@nimbus-ds/icons", "@nimbus-ds/popover", "@nimbus-ds/skeleton", "@nimbus-ds/styles", "@nimbus-ds/text"], nested: ["MultiSelectSkeleton"] }
+  - { name: "Popover", group: "atomic", package: "@nimbus-ds/popover", path: "packages/react/src/atomic/Popover", styles: "packages/core/styles/src/packages/atomic/popover", exports: ["Popover", "PopoverProps", "default"], dependencies: ["@nimbus-ds/styles"] }
+  - { name: "ProgressBar", group: "atomic", package: "@nimbus-ds/progress-bar", path: "packages/react/src/atomic/ProgressBar", styles: "packages/core/styles/src/packages/atomic/progressBar", exports: ["ProgressBar", "ProgressBarProps", "ProgressBarSkeleton", "default"], dependencies: ["@nimbus-ds/skeleton", "@nimbus-ds/styles"], nested: ["ProgressBarSkeleton"] }
+  - { name: "Radio", group: "atomic", package: "@nimbus-ds/radio", path: "packages/react/src/atomic/Radio", styles: "packages/core/styles/src/packages/atomic/radio", exports: ["Radio", "RadioProps", "RadioSkeleton", "default"], dependencies: ["@nimbus-ds/skeleton", "@nimbus-ds/styles", "@nimbus-ds/text"], nested: ["RadioSkeleton"] }
+  - { name: "Select", group: "atomic", package: "@nimbus-ds/select", path: "packages/react/src/atomic/Select", styles: "packages/core/styles/src/packages/atomic/select", exports: ["Select", "SelectGroup", "SelectOption", "SelectProps", "SelectSkeleton", "default"], dependencies: ["@nimbus-ds/icon", "@nimbus-ds/icons", "@nimbus-ds/skeleton", "@nimbus-ds/styles"], nested: ["SelectGroup", "SelectOption", "SelectSkeleton"] }
+  - { name: "Skeleton", group: "atomic", package: "@nimbus-ds/skeleton", path: "packages/react/src/atomic/Skeleton", styles: "packages/core/styles/src/packages/atomic/skeleton", exports: ["Skeleton", "SkeletonProps", "default"], dependencies: ["@nimbus-ds/styles"] }
+  - { name: "Slider", group: "atomic", package: "@nimbus-ds/slider", path: "packages/react/src/atomic/Slider", styles: "packages/core/styles/src/packages/atomic/slider", exports: ["Slider", "SliderAppearance", "SliderBaseProps", "SliderProperties", "SliderProps", "SliderRangeBaseProps", "SliderRangeProperties", "SliderRangeProps", "SliderThumb", "SliderTrack", "default"], dependencies: ["@nimbus-ds/styles"], nested: ["SliderThumb", "SliderTrack"], extras: ["src/SliderRange.tsx", "src/hooks/", "src/slider.definitions.ts", "src/sliderRange.stories.tsx"] }
+  - { name: "Spinner", group: "atomic", package: "@nimbus-ds/spinner", path: "packages/react/src/atomic/Spinner", styles: "packages/core/styles/src/packages/atomic/spinner", exports: ["Spinner", "SpinnerProps", "default"], dependencies: ["@nimbus-ds/styles"], extras: ["src/spinner.definitions.ts"] }
+  - { name: "Tag", group: "atomic", package: "@nimbus-ds/tag", path: "packages/react/src/atomic/Tag", styles: "packages/core/styles/src/packages/atomic/tag", exports: ["Tag", "TagProps", "TagSkeleton", "default"], dependencies: ["@nimbus-ds/skeleton", "@nimbus-ds/styles"], nested: ["TagSkeleton"] }
+  - { name: "Text", group: "atomic", package: "@nimbus-ds/text", path: "packages/react/src/atomic/Text", styles: "packages/core/styles/src/packages/atomic/text", exports: ["Text", "TextProps", "TextSkeleton", "default"], dependencies: ["@nimbus-ds/skeleton", "@nimbus-ds/styles"], nested: ["TextSkeleton"] }
+  - { name: "Textarea", group: "atomic", package: "@nimbus-ds/textarea", path: "packages/react/src/atomic/Textarea", styles: "packages/core/styles/src/packages/atomic/textarea", exports: ["Textarea", "TextareaProps", "TextareaSkeleton", "default"], dependencies: ["@nimbus-ds/skeleton", "@nimbus-ds/styles"], nested: ["TextareaSkeleton"], extras: ["src/Textarea.definitions.ts"] }
+  - { name: "Thumbnail", group: "atomic", package: "@nimbus-ds/thumbnail", path: "packages/react/src/atomic/Thumbnail", styles: "packages/core/styles/src/packages/atomic/thumbnail", exports: ["Thumbnail", "ThumbnailProps", "ThumbnailSkeleton", "default"], dependencies: ["@nimbus-ds/icon", "@nimbus-ds/icons", "@nimbus-ds/skeleton", "@nimbus-ds/styles"], nested: ["ThumbnailSkeleton"] }
+  - { name: "Title", group: "atomic", package: "@nimbus-ds/title", path: "packages/react/src/atomic/Title", styles: "packages/core/styles/src/packages/atomic/title", exports: ["Title", "TitleProps", "TitleSkeleton", "default"], dependencies: ["@nimbus-ds/skeleton", "@nimbus-ds/styles"], nested: ["TitleSkeleton"] }
+  - { name: "Toast", group: "atomic", package: "@nimbus-ds/toast", path: "packages/react/src/atomic/Toast", styles: "packages/core/styles/src/packages/atomic/toast", exports: ["Toast", "ToastOffset", "ToastProps", "ToastProvider", "ToastProviderProps", "default", "useToast"], dependencies: ["@nimbus-ds/icon", "@nimbus-ds/icons", "@nimbus-ds/spinner", "@nimbus-ds/styles", "@nimbus-ds/text"], nested: ["ToastProvider"], contexts: ["ToastContext"], extras: ["src/hooks/"] }
+  - { name: "Toggle", group: "atomic", package: "@nimbus-ds/toggle", path: "packages/react/src/atomic/Toggle", styles: "packages/core/styles/src/packages/atomic/toggle", exports: ["Toggle", "ToggleProps", "ToggleSkeleton", "default"], dependencies: ["@nimbus-ds/box", "@nimbus-ds/skeleton", "@nimbus-ds/styles", "@nimbus-ds/text"], nested: ["ToggleSkeleton"] }
+  - { name: "Tooltip", group: "atomic", package: "@nimbus-ds/tooltip", path: "packages/react/src/atomic/Tooltip", styles: "packages/core/styles/src/packages/atomic/tooltip", exports: ["Tooltip", "TooltipProps", "default"], dependencies: ["@nimbus-ds/box", "@nimbus-ds/styles", "@nimbus-ds/text"] }
+  - { name: "Accordion", group: "composite", package: "@nimbus-ds/accordion", path: "packages/react/src/composite/Accordion", styles: "packages/core/styles/src/packages/composite/accordion", exports: ["Accordion", "AccordionBody", "AccordionHeader", "AccordionItem", "AccordionProperties", "AccordionProps", "ControlledAccordionProperties", "UncontrolledAccordionProperties", "default"], dependencies: ["@nimbus-ds/icon", "@nimbus-ds/icons", "@nimbus-ds/styles", "@nimbus-ds/text", "@nimbus-ds/title"], nested: ["AccordionBody", "AccordionHeader", "AccordionItem"], contexts: ["AccordionContext", "AccordionItemContext"], extras: ["src/accordion.definitions.ts", "src/hooks/"] }
+  - { name: "Alert", group: "composite", package: "@nimbus-ds/alert", path: "packages/react/src/composite/Alert", styles: "packages/core/styles/src/packages/composite/alert", exports: ["Alert", "AlertProps", "AlertSkeleton", "default"], dependencies: ["@nimbus-ds/icon", "@nimbus-ds/icons", "@nimbus-ds/skeleton", "@nimbus-ds/styles", "@nimbus-ds/title"], nested: ["AlertSkeleton"], extras: ["src/alert.definitions.ts"] }
+  - { name: "Card", group: "composite", package: "@nimbus-ds/card", path: "packages/react/src/composite/Card", styles: "packages/core/styles/src/packages/composite/card", exports: ["Card", "CardBody", "CardFooter", "CardHeader", "CardProps", "default"], dependencies: ["@nimbus-ds/styles", "@nimbus-ds/title"], nested: ["CardBody", "CardFooter", "CardHeader"] }
+  - { name: "Collapsible", group: "composite", package: "@nimbus-ds/collapsible", path: "packages/react/src/composite/Collapsible", styles: "packages/core/styles/src/packages/composite/collapsible", exports: ["Collapsible", "CollapsibleBaseProps", "CollapsibleBody", "CollapsibleItem", "default"], dependencies: ["@nimbus-ds/styles"], nested: ["CollapsibleBody", "CollapsibleItem"], contexts: ["CollapsibleContext"], extras: ["src/hooks/"] }
+  - { name: "Modal", group: "composite", package: "@nimbus-ds/modal", path: "packages/react/src/composite/Modal", styles: "packages/core/styles/src/packages/composite/modal", exports: ["Modal", "ModalBody", "ModalFooter", "ModalHeader", "ModalProps", "default"], dependencies: ["@nimbus-ds/icon", "@nimbus-ds/icons", "@nimbus-ds/styles", "@nimbus-ds/title"], nested: ["ModalBody", "ModalFooter", "ModalHeader"] }
+  - { name: "Pagination", group: "composite", package: "@nimbus-ds/pagination", path: "packages/react/src/composite/Pagination", styles: "packages/core/styles/src/packages/composite/pagination", exports: ["Pagination", "PaginationProps", "default"], dependencies: ["@nimbus-ds/button", "@nimbus-ds/icons", "@nimbus-ds/styles"], extras: ["src/hooks/", "src/pagination.definitions.ts"] }
+  - { name: "ScrollPane", group: "composite", package: "@nimbus-ds/scroll-pane", path: "packages/react/src/composite/ScrollPane", styles: "packages/core/styles/src/packages/composite/scroll-pane", exports: ["ScrollPane", "ScrollPaneArrowHorizontalEnd", "ScrollPaneArrowHorizontalEndProperties", "ScrollPaneArrowHorizontalStart", "ScrollPaneArrowHorizontalStartProperties", "ScrollPaneArrowVerticalEnd", "ScrollPaneArrowVerticalEndProperties", "ScrollPaneArrowVerticalStart", "ScrollPaneArrowVerticalStartProperties", "ScrollPaneContext", "ScrollPaneContextValue", "ScrollPaneItem", "ScrollPaneItemProps", "ScrollPaneProperties"], dependencies: ["@nimbus-ds/box", "@nimbus-ds/styles"], nested: ["ScrollPaneArrow", "ScrollPaneItem"], contexts: ["ScrollPaneContext"], extras: ["src/ScrollPane.definitions.ts"] }
+  - { name: "SegmentedControl", group: "composite", package: "@nimbus-ds/segmented-control", path: "packages/react/src/composite/SegmentedControl", styles: "packages/core/styles/src/packages/composite/segmented-control", exports: ["SegmentedControl", "SegmentedControlButton", "SegmentedControlButtonProps", "SegmentedControlButtonSkeleton", "SegmentedControlButtonSkeletonProps", "SegmentedControlProps", "default", "useSegmentedControlContext"], dependencies: ["@nimbus-ds/box", "@nimbus-ds/skeleton", "@nimbus-ds/styles", "@nimbus-ds/typings"], nested: ["SegmentedControlButton"], contexts: ["SegmentedControlContext"], extras: ["src/segmentedControl.definitions.ts"] }
+  - { name: "Sidebar", group: "composite", package: "@nimbus-ds/sidebar", path: "packages/react/src/composite/Sidebar", styles: "packages/core/styles/src/packages/composite/sidebar", exports: ["Sidebar", "SidebarBody", "SidebarFooter", "SidebarHeader", "SidebarProps", "default"], dependencies: ["@nimbus-ds/styles", "@nimbus-ds/title"], nested: ["SidebarBody", "SidebarFooter", "SidebarHeader"] }
+  - { name: "SplitButton", group: "composite", package: "@nimbus-ds/split-button", path: "packages/react/src/composite/SplitButton", styles: "packages/core/styles/src/packages/composite/split-button", exports: ["SplitButton", "SplitButtonAction", "SplitButtonPrimary", "SplitButtonProperties", "SplitButtonProps", "SplitButtonSecondary", "default"], dependencies: ["@nimbus-ds/box", "@nimbus-ds/icon", "@nimbus-ds/icons", "@nimbus-ds/popover", "@nimbus-ds/styles", "@nimbus-ds/text"], nested: ["SplitButtonAction", "SplitButtonPrimary", "SplitButtonSecondary"] }
+  - { name: "Stepper", group: "composite", package: "@nimbus-ds/stepper", path: "packages/react/src/composite/Stepper", styles: "packages/core/styles/src/packages/composite/stepper", exports: ["BaseStepperProperties", "ControlledStepperProperties", "StepState", "Stepper", "StepperCard", "StepperCardProps", "StepperComponents", "StepperContext", "StepperContextValue", "StepperItem", "StepperItemProperties", "StepperItemProps", "StepperProperties", "StepperProps", "isControlled"], dependencies: ["@nimbus-ds/box", "@nimbus-ds/card", "@nimbus-ds/icon", "@nimbus-ds/icons", "@nimbus-ds/styles", "@nimbus-ds/text"], nested: ["StepperCard", "StepperContext", "StepperItem"], extras: ["src/stepper.definitions.ts"] }
+  - { name: "Table", group: "composite", package: "@nimbus-ds/table", path: "packages/react/src/composite/Table", styles: "packages/core/styles/src/packages/composite/table", exports: ["Table", "TableBody", "TableCell", "TableColumnLayout", "TableHead", "TableProps", "TableRow", "default"], dependencies: ["@nimbus-ds/styles"], nested: ["TableBody", "TableCell", "TableHead", "TableRow"], contexts: ["TableContext"], extras: ["src/Table.definitions.spec.ts", "src/Table.definitions.ts"] }
+  - { name: "Tabs", group: "composite", package: "@nimbus-ds/tabs", path: "packages/react/src/composite/Tabs", styles: "packages/core/styles/src/packages/composite/tabs", exports: ["Tabs", "TabsButton", "TabsItem", "TabsProps", "default"], dependencies: ["@nimbus-ds/styles"], nested: ["TabsButton", "TabsItem"], extras: ["src/tabs.definitions.ts"] }
+  - { name: "TimePicker", group: "composite", package: "@nimbus-ds/time-picker", path: "packages/react/src/composite/TimePicker", styles: "packages/core/styles/src/packages/composite/time-picker", exports: ["AmPm", "TimeFormat", "TimePicker", "TimePickerAmPm", "TimePickerColumn", "TimePickerDropdown", "TimePickerLabels", "TimePickerMode", "TimePickerOption", "TimePickerProperties", "TimePickerProps", "TimePickerScroll", "TimeValue"], dependencies: ["@nimbus-ds/icon", "@nimbus-ds/icons", "@nimbus-ds/input", "@nimbus-ds/scroll-pane", "@nimbus-ds/styles"], nested: ["TimePickerAmPm", "TimePickerColumn", "TimePickerDropdown", "TimePickerOption", "TimePickerScroll"], extras: ["src/hooks/", "src/utils/"] }
 
 shared:
   helper: { path: "packages/helper", package: "@nimbus-ds/helper" }
   hooks: { path: "packages/react/src/common/hooks" }
-  icons: { path: "packages/icons", package: "@nimbus-ds/icons" }
+  icons:
+    path: "packages/icons"
+    package: "@nimbus-ds/icons"
+    assets: "packages/icons/src/assets"
+    export_naming: "arrow-left.svg -> ArrowLeftIcon"
+    available:
+      - "AccordionIcon"
+      - "AlignCenterIcon"
+      - "AlignLeftIcon"
+      - "AlignRightIcon"
+      - "AllCapsIcon"
+      - "AnimationIcon"
+      - "AppsIcon"
+      - "AppsListIcon"
+      - "ArchiveIcon"
+      - "ArrowDownIcon"
+      - "ArrowLeftIcon"
+      - "ArrowRightIcon"
+      - "ArrowsCollapseIcon"
+      - "ArrowsDiagonalInIcon"
+      - "ArrowsDiagonalOutIcon"
+      - "ArrowsExpandIcon"
+      - "ArrowsHorizontalIcon"
+      - "ArrowsVerticalIcon"
+      - "ArrowupIcon"
+      - "BackspaceIcon"
+      - "BagIcon"
+      - "BarcodeIcon"
+      - "BoldIcon"
+      - "BottomAlignmentIcon"
+      - "BoxDeliveredIcon"
+      - "BoxPackedIcon"
+      - "BoxUnpackedIcon"
+      - "BriefcaseIcon"
+      - "BrowserIcon"
+      - "BrowserSearchIcon"
+      - "ButtonsIcon"
+      - "CalculatorIcon"
+      - "CalendarDaysIcon"
+      - "CalendarIcon"
+      - "CameraIcon"
+      - "CarouselIcon"
+      - "CashIcon"
+      - "CashierIcon"
+      - "ChatDotsIcon"
+      - "ChatUnreadIcon"
+      - "CheckCircleIcon"
+      - "CheckIcon"
+      - "ChecklistIcon"
+      - "ChevronDownIcon"
+      - "ChevronLeftIcon"
+      - "ChevronRightIcon"
+      - "ChevronUpIcon"
+      - "ChristIcon"
+      - "ClockIcon"
+      - "CloseIcon"
+      - "CodeIcon"
+      - "CogIcon"
+      - "ColorPaletteIcon"
+      - "ColorPickerIcon"
+      - "CopyIcon"
+      - "CreditCardIcon"
+      - "CropIcon"
+      - "DatabaseIcon"
+      - "DesktopIcon"
+      - "DiscountCircleIcon"
+      - "DisketteIcon"
+      - "DoubleCheckIcon"
+      - "DoubleTagIcon"
+      - "DownloadIcon"
+      - "DragDotsIcon"
+      - "DragIcon"
+      - "DrinkIcon"
+      - "DropIcon"
+      - "DrumsIcon"
+      - "DuplicateIcon"
+      - "EcosystemIcon"
+      - "EditIcon"
+      - "EditingColumnsIcon"
+      - "EllipsisIcon"
+      - "ExclamationCircleIcon"
+      - "ExclamationTriangleIcon"
+      - "ExternalLinkIcon"
+      - "EyeIcon"
+      - "EyeOffIcon"
+      - "FileAltIcon"
+      - "FileIcon"
+      - "FingerprintIcon"
+      - "FireIcon"
+      - "FlagIcon"
+      - "FolderIcon"
+      - "FontColorIcon"
+      - "FontIcon"
+      - "FooterIcon"
+      - "ForbiddenIcon"
+      - "GenerativePencilIcon"
+      - "GenerativeStarsIcon"
+      - "GiftBoxIcon"
+      - "GiftCardIcon"
+      - "GlassesIcon"
+      - "GlobeIcon"
+      - "GoogleIcon"
+      - "GuitarIcon"
+      - "HeaderIcon"
+      - "HeartIcon"
+      - "HistoryIcon"
+      - "HomeIcon"
+      - "HorizontalPaddingIcon"
+      - "HorizontalSpacingIcon"
+      - "IaCoinIcon"
+      - "IdCardIcon"
+      - "ImageTextIcon"
+      - "InfiniteIcon"
+      - "InfoCircleIcon"
+      - "InstagramIcon"
+      - "InvoiceIcon"
+      - "ItalicIcon"
+      - "LayoutIcon"
+      - "LetterSpacingIcon"
+      - "LifeRingIcon"
+      - "LightbulbIcon"
+      - "LightningBoltIcon"
+      - "LinkIcon"
+      - "LinkOffIcon"
+      - "ListIcon"
+      - "LocationIcon"
+      - "LockIcon"
+      - "LockOpenIcon"
+      - "LogOutIcon"
+      - "MagicWandIcon"
+      - "MailIcon"
+      - "MarginIcon"
+      - "MarketingIcon"
+      - "MateIcon"
+      - "MaxHeightIcon"
+      - "MenuIcon"
+      - "MetaIcon"
+      - "MetafieldIcon"
+      - "MicrophoneIcon"
+      - "MiddleAlignmentIcon"
+      - "MobileIcon"
+      - "MoneyIcon"
+      - "MoonIcon"
+      - "NotificationIcon"
+      - "ObeliskIcon"
+      - "OnlineStoreIcon"
+      - "OpenaiIcon"
+      - "OrderedListIcon"
+      - "PaperPlaneIcon"
+      - "PencilIcon"
+      - "PesoIcon"
+      - "PictureIcon"
+      - "PinterestIcon"
+      - "PixIcon"
+      - "PlanetIcon"
+      - "PlayIcon"
+      - "PlusCircleIcon"
+      - "PlusIcon"
+      - "PrinterIcon"
+      - "PyramidIcon"
+      - "QrCodeIcon"
+      - "QuestionCircleIcon"
+      - "QuoteIcon"
+      - "RealIcon"
+      - "RedoIcon"
+      - "RemoveFormatIcon"
+      - "RepeatIcon"
+      - "RocketIcon"
+      - "RoundedCornersIcon"
+      - "ScooterIcon"
+      - "SearchIcon"
+      - "ShareIcon"
+      - "ShoppingCartIcon"
+      - "ShotIcon"
+      - "SidebarIcon"
+      - "SizeHeightIcon"
+      - "SizeWidthIcon"
+      - "SlidersIcon"
+      - "SlideshowIcon"
+      - "SpacingIcon"
+      - "StarIcon"
+      - "StatsIcon"
+      - "StepsIcon"
+      - "StickyNoteIcon"
+      - "StopFilledIcon"
+      - "StopIcon"
+      - "StoreIcon"
+      - "SubcategoryIcon"
+      - "SunIcon"
+      - "TagIcon"
+      - "TelephoneIcon"
+      - "TextSizeIcon"
+      - "ThumbnailIcon"
+      - "ThumbsDownIcon"
+      - "ThumbsUpIcon"
+      - "TicketIcon"
+      - "TiendanubeIcon"
+      - "TiktokIcon"
+      - "ToolsIcon"
+      - "TopAlignmentIcon"
+      - "TransferPesoIcon"
+      - "TransferRealIcon"
+      - "TrashIcon"
+      - "TruckIcon"
+      - "UnderlineIcon"
+      - "UndoIcon"
+      - "UniversityIcon"
+      - "UploadIcon"
+      - "UserCircleIcon"
+      - "UserGroupIcon"
+      - "UserIcon"
+      - "VerticalPaddingIcon"
+      - "VerticalSpacingIcon"
+      - "VerticalStacksIcon"
+      - "VideoIcon"
+      - "VideoTextIcon"
+      - "VoiceIcon"
+      - "VolumeIcon"
+      - "WalletIcon"
+      - "WhatsappIcon"
+  styles: { path: "packages/core/styles/src/packages", package: "@nimbus-ds/styles" }
   tokens: { path: "packages/core/tokens/src", package: "@nimbus-ds/tokens" }
   utils: { path: "packages/react/src/common/event-handling" }
 

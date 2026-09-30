@@ -1,6 +1,7 @@
 import { compareStrings } from "./compareStrings";
 import type {
   ComponentEntry,
+  SharedEntry,
   SourceMapCommands,
   SourceMapDocument,
 } from "./SourceMap.types";
@@ -68,7 +69,13 @@ function componentLine(entry: ComponentEntry): string {
     `name: ${scalarLine(entry.name)}`,
     `group: ${scalarLine(entry.group)}`,
     `package: ${scalarLine(entry.package)}`,
+    `path: ${scalarLine(entry.path)}`,
   ];
+  if (entry.styles) fields.push(`styles: ${scalarLine(entry.styles)}`);
+  if (entry.exports?.length)
+    fields.push(`exports: ${inlineArray(entry.exports)}`);
+  if (entry.dependencies?.length)
+    fields.push(`dependencies: ${inlineArray(entry.dependencies)}`);
   if (entry.story) fields.push(`story: ${scalarLine(entry.story)}`);
   if (entry.nested?.length) fields.push(`nested: ${inlineArray(entry.nested)}`);
   if (entry.contexts?.length)
@@ -76,6 +83,47 @@ function componentLine(entry: ComponentEntry): string {
   if (entry.extras?.length) fields.push(`extras: ${inlineArray(entry.extras)}`);
 
   return `  - { ${fields.join(", ")} }`;
+}
+
+function sharedEntryLines(key: string, value: SharedEntry): string[] {
+  const hasExtendedMetadata =
+    value.assets !== undefined ||
+    value.exportNaming !== undefined ||
+    Boolean(value.available?.length);
+
+  if (!hasExtendedMetadata) {
+    const fields = [`path: ${scalarLine(value.path)}`];
+
+    if (value.package) {
+      fields.push(`package: ${scalarLine(value.package)}`);
+    }
+
+    return [`  ${key}: { ${fields.join(", ")} }`];
+  }
+
+  const lines = [`  ${key}:`, `    path: ${scalarLine(value.path)}`];
+
+  if (value.package) {
+    lines.push(`    package: ${scalarLine(value.package)}`);
+  }
+
+  if (value.assets) {
+    lines.push(`    assets: ${scalarLine(value.assets)}`);
+  }
+
+  if (value.exportNaming) {
+    lines.push(`    export_naming: ${scalarLine(value.exportNaming)}`);
+  }
+
+  if (value.available?.length) {
+    lines.push("    available:");
+
+    for (const item of value.available) {
+      lines.push(`      - ${scalarLine(item)}`);
+    }
+  }
+
+  return lines;
 }
 
 export function writeYaml(doc: SourceMapDocument): string {
@@ -106,10 +154,7 @@ export function writeYaml(doc: SourceMapDocument): string {
 
   lines.push("shared:");
   for (const key of Object.keys(doc.shared).sort(compareStrings)) {
-    const value = doc.shared[key];
-    const fields = [`path: ${scalarLine(value.path)}`];
-    if (value.package) fields.push(`package: ${scalarLine(value.package)}`);
-    lines.push(`  ${key}: { ${fields.join(", ")} }`);
+    lines.push(...sharedEntryLines(key, doc.shared[key]));
   }
   lines.push("");
 

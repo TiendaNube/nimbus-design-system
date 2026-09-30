@@ -2,6 +2,12 @@
 
 This package is intended for internal use in generating custom script builds at design system build time.
 
+## 2026-09-30 `1.11.0`
+
+#### 🎉 New features
+
+- Enriched the source map with exact component and style paths, public exports, Nimbus dependencies and available icon exports. Component package names are read directly from manifests. ([#578](https://github.com/TiendaNube/nimbus-design-system/pull/578) by [@prescillahurbin-tiendanube](https://github.com/prescillahurbin-tiendanube))
+
 ## 2026-09-03 `1.9.0`
 
 #### 🎉 New features

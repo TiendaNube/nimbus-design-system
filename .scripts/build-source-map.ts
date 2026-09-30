@@ -17,6 +17,7 @@ runSourceMapCli({
     atomic: "packages/react/src/atomic",
     composite: "packages/react/src/composite",
   },
+  stylesRoot: "packages/core/styles/src/packages",
   commands: {
     install: "yarn install --immutable",
     buildAll: "yarn build",
@@ -30,7 +31,16 @@ runSourceMapCli({
   },
   shared: {
     tokens: { path: "packages/core/tokens/src", package: "@nimbus-ds/tokens" },
-    icons: { path: "packages/icons", package: "@nimbus-ds/icons" },
+    styles: {
+      path: "packages/core/styles/src/packages",
+      package: "@nimbus-ds/styles",
+    },
+    icons: {
+      path: "packages/icons",
+      package: "@nimbus-ds/icons",
+      assets: "packages/icons/src/assets",
+      exportNaming: "arrow-left.svg -> ArrowLeftIcon",
+    },
     helper: { path: "packages/helper", package: "@nimbus-ds/helper" },
     hooks: { path: "packages/react/src/common/hooks" },
     utils: { path: "packages/react/src/common/event-handling" },

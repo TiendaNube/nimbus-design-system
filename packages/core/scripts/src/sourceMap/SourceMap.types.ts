@@ -18,9 +18,30 @@ export interface SourceMapCommands {
 }
 
 /**
- * Where a repo's components live and how its workspaces are shaped. Both
- * repos share the same file-level conventions (resolved by glob in
- * `SourceMap.ts`); this is the only part that differs between them.
+ * Describes a shared package entry and its optional generated metadata.
+ */
+export type SharedEntry = {
+  path: string;
+  package?: string;
+  /**
+   * Optional path containing assets exported by the shared package.
+   */
+  assets?: string;
+  /**
+   * Human-readable convention describing how asset names map to exports.
+   */
+  exportNaming?: string;
+  /**
+   * Concrete exports available from the package, generated from the source
+   * tree so agents can validate a name without browsing the entire directory.
+   */
+  available?: string[];
+};
+
+/**
+ * Where a repo's components live and how its workspaces are shaped. Repos
+ * share file-level conventions resolved by componentDiscovery.ts; group
+ * directories and optional metadata roots describe their different layouts.
  */
 export interface SourceMapConfig {
   repoName: string;
@@ -29,30 +50,46 @@ export interface SourceMapConfig {
   commands: SourceMapCommands;
   /**
    * Group name -> directory holding one subdirectory per component,
-   * relative to `cwd`. E.g. `{ atomic: "packages/react/src/atomic" }`.
+   * relative to `cwd`, e.g. `{ atomic: "packages/react/src/atomic" }`.
    */
   groups: Record<string, string>;
-  shared: Record<string, { path: string; package?: string }>;
+  shared: Record<string, SharedEntry>;
+  /**
+   * Optional root containing style packages grouped by the same group names
+   * used by `groups`.
+   */
+  stylesRoot?: string;
   /** A real, representative component directory other repos can point new ones at. */
   newComponentReference: string;
   /**
-   * Path (relative to `cwd`) to a Storybook `index.json` (from
-   * `storybook build`). When present, each component's `story` field is
-   * resolved from it; when absent, `story` is omitted rather than guessed —
-   * Storybook's own id sanitizer cannot be reproduced by hand reliably.
+   * Path relative to `cwd` to a Storybook build `index.json`. The component
+   * story ID is resolved from this index, or omitted when unavailable rather
+   * than guessed: Storybook's ID sanitizer cannot be reliably reproduced.
    */
   storybookIndexPath?: string;
-}
-
-export interface YarnWorkspace {
-  name: string;
-  location: string;
 }
 
 export interface ComponentEntry {
   name: string;
   group: string;
   package: string;
+  /**
+   * Concrete path to the component root.
+   */
+  path: string;
+  /**
+   * Concrete path to the component's styles when a matching style package
+   * exists.
+   */
+  styles?: string;
+  /**
+   * Public exports exposed by the package entrypoints.
+   */
+  exports?: string[];
+  /**
+   * Nimbus packages imported by component source files.
+   */
+  dependencies?: string[];
   story?: string;
   nested?: string[];
   contexts?: string[];
@@ -74,7 +111,7 @@ export interface SourceMapDocument {
   conventions: Record<string, string>;
   groups: Record<string, string>;
   components: ComponentEntry[];
-  shared: Record<string, { path: string; package?: string }>;
+  shared: Record<string, SharedEntry>;
   newComponent: {
     reference: string;
   };
