@@ -60,7 +60,6 @@ export function resolveStylePath(
   }
 
   const normalizedName = normalize(componentName);
-
   const matches = listDirs(groupDir).filter(
     (directory) => normalize(directory) === normalizedName
   );
@@ -107,7 +106,6 @@ export function enrichSharedEntries(
 
     shared[key] = {
       ...entry,
-
       available: collectIconExports(absoluteAssetsPath),
     };
   }

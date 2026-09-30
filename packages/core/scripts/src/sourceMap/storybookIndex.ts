@@ -22,7 +22,6 @@ function isStorybookIndexEntry(value: unknown): value is StorybookIndexEntry {
  */
 export function loadStoryIndex(indexPath: string): Map<string, string> {
   const result = new Map<string, string>();
-
   let raw: unknown;
 
   try {
@@ -55,7 +54,6 @@ export function loadStoryIndex(indexPath: string): Map<string, string> {
     }
 
     const storiesFile = entry.importPath.replace(/^\.\//, "");
-
     const existing = byStoriesFile.get(storiesFile) ?? {};
 
     if (entry.type === "docs" && !existing.docsId) {

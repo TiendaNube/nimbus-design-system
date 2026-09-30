@@ -35,7 +35,6 @@ export function generateSourceMap(config: SourceMapConfig): SourceMapDocument {
     fs.existsSync(path.join(config.cwd, config.storybookIndexPath))
       ? loadStoryIndex(path.join(config.cwd, config.storybookIndexPath))
       : null;
-
   const components: ComponentEntry[] = [];
 
   for (const [group, groupDirRel] of Object.entries(config.groups)) {
@@ -61,59 +60,37 @@ export function generateSourceMap(config: SourceMapConfig): SourceMapDocument {
 
   return {
     schema: 1,
-
     repo: {
       name: config.repoName,
       packageManager: "yarn",
     },
-
     commands: config.commands,
-
     conventions: {
       componentRoot:
         "Use components[].path; fallback is {groups[group]}/{ComponentName}",
-
       entry: "src/index.ts(x)",
-
       implementation: "src/*.tsx",
-
       implementationNaming:
         "Implementation keeps the component casing, e.g. Link.tsx",
-
       types: "src/*.types.ts",
-
       typesNaming: "Types usually use lower camel case, e.g. link.types.ts",
-
       test: "src/*.spec.tsx",
-
       testNaming: "Tests usually use lower camel case, e.g. link.spec.tsx",
-
       stories: "src/*.stories.tsx",
-
       storiesNaming:
         "Stories usually use lower camel case, e.g. link.stories.tsx",
-
       docs: "src/*.docs.json",
-
       nested: "src/components/*/",
-
       contexts: "src/contexts/*/",
-
       styles: "Use components[].styles when present",
-
       exports:
         "Public exports resolved from src/index.ts(x) and src/components/index.ts(x)",
-
       dependencies:
         "Nimbus package imports under src; specs, tests, stories and demo are excluded",
     },
-
     groups: config.groups,
-
     components,
-
     shared: enrichSharedEntries(config.shared, config.cwd),
-
     newComponent: {
       reference: config.newComponentReference,
     },

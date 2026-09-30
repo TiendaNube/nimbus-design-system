@@ -10,7 +10,6 @@ describe("publicExports", () => {
   afterEach(() => {
     fs.rmSync(cwd, { recursive: true, force: true });
   });
-
   it("resolves public exports from a TSX package entrypoint", () => {
     const doc = generateSourceMap(baseConfig(cwd));
 

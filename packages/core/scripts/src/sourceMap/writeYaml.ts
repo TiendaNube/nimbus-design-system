@@ -1,5 +1,4 @@
 import { compareStrings } from "./compareStrings";
-
 import type {
   ComponentEntry,
   SharedEntry,
@@ -8,7 +7,11 @@ import type {
 } from "./SourceMap.types";
 
 /**
- * A minimal, deterministic YAML emitter for exactly this document's shape.
+ * A minimal, deterministic YAML emitter for exactly this document's shape —
+ * not a general-purpose serializer. The schema is fixed and known, so a
+ * dependency-free emitter that never has to guess how to represent an
+ * arbitrary value is safer than pulling in a YAML library for a handful of
+ * scalars, flat maps and one array of small objects.
  */
 
 const HEADER = [
@@ -32,17 +35,16 @@ const COMMAND_KEYS: Record<keyof SourceMapCommands, string> = {
 
 function toYamlCommands(commands: SourceMapCommands): Record<string, string> {
   const result: Record<string, string> = {};
-
   for (const [field, yamlKey] of Object.entries(COMMAND_KEYS)) {
     result[yamlKey] = commands[field as keyof SourceMapCommands];
   }
-
   return result;
 }
 
 /**
- * Always quoted so values such as `true`, `null`, numbers and date-like
- * strings are never coerced by a YAML parser.
+ * Always quoted, never a plain-scalar allowlist: a plain `true`, `null`,
+ * `123` or `2026-09-15` would otherwise be coerced by a YAML parser to a
+ * boolean, null, number or timestamp instead of staying the string it is.
  */
 function quoteIfNeeded(value: string): string {
   return JSON.stringify(value);
@@ -69,34 +71,16 @@ function componentLine(entry: ComponentEntry): string {
     `package: ${scalarLine(entry.package)}`,
     `path: ${scalarLine(entry.path)}`,
   ];
-
-  if (entry.styles) {
-    fields.push(`styles: ${scalarLine(entry.styles)}`);
-  }
-
-  if (entry.exports?.length) {
+  if (entry.styles) fields.push(`styles: ${scalarLine(entry.styles)}`);
+  if (entry.exports?.length)
     fields.push(`exports: ${inlineArray(entry.exports)}`);
-  }
-
-  if (entry.dependencies?.length) {
+  if (entry.dependencies?.length)
     fields.push(`dependencies: ${inlineArray(entry.dependencies)}`);
-  }
-
-  if (entry.story) {
-    fields.push(`story: ${scalarLine(entry.story)}`);
-  }
-
-  if (entry.nested?.length) {
-    fields.push(`nested: ${inlineArray(entry.nested)}`);
-  }
-
-  if (entry.contexts?.length) {
+  if (entry.story) fields.push(`story: ${scalarLine(entry.story)}`);
+  if (entry.nested?.length) fields.push(`nested: ${inlineArray(entry.nested)}`);
+  if (entry.contexts?.length)
     fields.push(`contexts: ${inlineArray(entry.contexts)}`);
-  }
-
-  if (entry.extras?.length) {
-    fields.push(`extras: ${inlineArray(entry.extras)}`);
-  }
+  if (entry.extras?.length) fields.push(`extras: ${inlineArray(entry.extras)}`);
 
   return `  - { ${fields.join(", ")} }`;
 }
@@ -148,51 +132,34 @@ export function writeYaml(doc: SourceMapDocument): string {
   lines.push(`schema: ${doc.schema}`, "");
 
   lines.push("repo:");
-
   lines.push(`  name: ${scalarLine(doc.repo.name)}`);
-
   lines.push(`  package_manager: ${scalarLine(doc.repo.packageManager)}`);
-
   lines.push("");
 
   lines.push("commands:");
-
   lines.push(...flatMap(toYamlCommands(doc.commands), "  "));
-
   lines.push("");
 
   lines.push("conventions:");
-
   lines.push(...flatMap(doc.conventions, "  "));
-
   lines.push("");
 
   lines.push("groups:");
-
   lines.push(...flatMap(doc.groups, "  "));
-
   lines.push("");
 
   lines.push("components:");
-
-  for (const entry of doc.components) {
-    lines.push(componentLine(entry));
-  }
-
+  for (const entry of doc.components) lines.push(componentLine(entry));
   lines.push("");
 
   lines.push("shared:");
-
   for (const key of Object.keys(doc.shared).sort(compareStrings)) {
     lines.push(...sharedEntryLines(key, doc.shared[key]));
   }
-
   lines.push("");
 
   lines.push("new_component:");
-
   lines.push(`  reference: ${scalarLine(doc.newComponent.reference)}`);
-
   lines.push("");
 
   return lines.join("\n");

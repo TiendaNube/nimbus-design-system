@@ -14,7 +14,6 @@ export function collectNimbusDependencies(
   ownPackage: string
 ): string[] {
   const dependencies = new Set<string>();
-
   const importRegex =
     /(?:from\s+|import\s*\(\s*|import\s+|require\s*\(\s*)["'](@nimbus-ds\/[^"']+)["']/g;
 

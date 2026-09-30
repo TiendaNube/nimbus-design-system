@@ -15,7 +15,6 @@ function resolveRelativeModule(
   }
 
   const base = path.resolve(path.dirname(fromFile), request);
-
   const candidates = [
     base,
     `${base}.ts`,
@@ -44,7 +43,6 @@ function parseExportSpecifier(specifier: string): string | null {
   }
 
   const parts = cleaned.split(/\s+as\s+/);
-
   const exported = parts.length > 1 ? parts[parts.length - 1] : parts[0];
 
   return exported.trim() || null;
@@ -149,9 +147,7 @@ export function collectPublicExports(componentRoot: string): string[] {
     path.join(componentRoot, "src", "components", "index.ts"),
     path.join(componentRoot, "src", "components", "index.tsx"),
   ];
-
   const exports = new Set<string>();
-
   const visited = new Set<string>();
 
   for (const entrypoint of entrypoints) {

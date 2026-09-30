@@ -124,11 +124,9 @@ function collectExtras(
         .map((entry) => entry.name)
         .filter((name) => name !== "src" && !IGNORED_TOP_LEVEL.has(name))
     : [];
-
   const srcFileExtras = unclaimedSrcFiles.map((name) =>
     path.posix.join("src", name)
   );
-
   const srcDirExtras = unclaimedSrcDirs.map(
     (name) => `${path.posix.join("src", name)}/`
   );
@@ -150,39 +148,23 @@ export function buildComponentEntry(
   storyIndex: Map<string, string> | null
 ): ComponentEntry {
   const componentRoot = path.join(groupDir, name);
-
   const srcDir = path.join(componentRoot, "src");
-
   const relComponentRoot = toPosix(path.relative(cwd, componentRoot));
-
   const normalizedName = normalize(name);
-
   const allSrcDirs = listDirs(srcDir);
-
   const knownSrcDirs = new Set(["components", "contexts"]);
-
   const unclaimedSrcDirs = allSrcDirs.filter(
     (directory) => !knownSrcDirs.has(directory)
   );
-
   const srcFiles = listFiles(srcDir);
-
   const { unclaimed } = classifySrcFiles(srcDir, srcFiles, normalizedName);
-
   const packageName = readPackageName(componentRoot, relComponentRoot);
-
   const nested = listDirs(path.join(srcDir, "components"));
-
   const contexts = listDirs(path.join(srcDir, "contexts"));
-
   const extras = collectExtras(componentRoot, unclaimed, unclaimedSrcDirs);
-
   const styles = resolveStylePath(cwd, stylesRoot, group, name);
-
   const publicExports = collectPublicExports(componentRoot);
-
   const dependencies = collectNimbusDependencies(srcDir, packageName);
-
   const entry: ComponentEntry = {
     name,
     group,
@@ -207,9 +189,7 @@ export function buildComponentEntry(
       (file) =>
         /\.stories\.tsx?$/.test(file) && isConventional(file, normalizedName)
     );
-
     const key = storiesFile ? `${relComponentRoot}/src/${storiesFile}` : null;
-
     const story = key ? storyIndex.get(key) : undefined;
 
     if (story) {
