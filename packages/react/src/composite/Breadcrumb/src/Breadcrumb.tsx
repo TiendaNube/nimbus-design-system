@@ -128,7 +128,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({
   const hiddenKeysRef = useRef<Set<string>>(new Set());
   const hidden = useMemo(() => {
     if (count < 2) return [];
-    if (metrics && metrics.levels.length === count) {
+    if (metrics?.levels.length === count) {
       return computeHiddenLevels(metrics);
     }
     return levelKeys
@@ -225,13 +225,10 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({
       if (isOpen) panelRef.current?.querySelector<HTMLElement>("a")?.focus();
       return;
     }
-    if (last.part === "strip" && last.key) {
-      const index = levelKeys.indexOf(last.key);
-      if (index >= 0 && index < count - 1 && hidden.includes(index)) {
-        if (open) find("panel", index)?.focus();
-        else triggerRef.current?.focus();
-      }
-    }
+    const index = last.key ? levelKeys.indexOf(last.key) : -1;
+    if (index < 0 || index >= count - 1 || !hidden.includes(index)) return;
+    const target = open ? find("panel", index) : triggerRef.current;
+    target?.focus();
   });
 
   const handleFocus = (event: FocusEvent<HTMLElement>) => {
@@ -259,7 +256,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({
     const links = Array.from(
       panelRef.current?.querySelectorAll<HTMLElement>("a") ?? []
     );
-    const boundary = event.shiftKey ? links[0] : links[links.length - 1];
+    const boundary = event.shiftKey ? links[0] : links.at(-1);
     if (event.target === boundary) {
       tabOutRef.current = true;
       setTimeout(() => {
@@ -456,7 +453,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({
             {currentLevel()}
           </Box>
         ) : (
-          parts.map(renderPart)
+          parts.map((part, position) => renderPart(part, position))
         )}
       </Box>
       {count >= 2 && (

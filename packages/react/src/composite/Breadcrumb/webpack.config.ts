@@ -1,4 +1,4 @@
-import path from "path";
+import path from "node:path";
 import { configuration } from "@nimbus-ds/webpack/src";
 
 const config = {
@@ -8,4 +8,6 @@ const config = {
   },
 };
 
-export default () => configuration.getConfiguration(config);
+const getConfig = () => configuration.getConfiguration(config);
+
+export default getConfig;

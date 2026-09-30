@@ -4,7 +4,7 @@ import {
   fireEvent,
   render,
   screen,
-  waitFor
+  waitFor,
 } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
@@ -18,7 +18,7 @@ jest.mock("@nimbus-ds/icons", () => ({
   __esModule: true,
   ...jest.requireActual("@nimbus-ds/icons"),
   ChevronRightIcon: () => <svg />,
-  EllipsisIcon: () => <svg />
+  EllipsisIcon: () => <svg />,
 }));
 
 const SEPARATOR = 2;
@@ -28,7 +28,7 @@ const TRIGGER = 3;
 const name = (letter: string) => letter.repeat(10);
 const ITEMS: BreadcrumbItem[] = ["A", "B", "C", "D"].map((letter) => ({
   label: name(letter),
-  href: `/${letter}`
+  href: `/${letter}`,
 }));
 
 let containerWidth = 1000;
@@ -81,7 +81,7 @@ describe("GIVEN computeHiddenLevels", () => {
       container,
       levels: widths,
       separator: SEPARATOR,
-      trigger: TRIGGER
+      trigger: TRIGGER,
     });
 
   it.each([
@@ -92,7 +92,7 @@ describe("GIVEN computeHiddenLevels", () => {
     [27, [1, 2]],
     [26, [0, 1, 2]],
     [15, [0, 1, 2]],
-    [12, [0, 1, 2]]
+    [12, [0, 1, 2]],
   ])("THEN at width %s hides %j", (container, expected) => {
     expect(hiddenAt(container)).toEqual(expected);
   });
@@ -130,7 +130,7 @@ describe("GIVEN <Breadcrumb />", () => {
       expect(screen.getAllByRole("link")).toHaveLength(2);
       expect(screen.queryByRole("button")).toBeNull();
       const current = screen.getByText(name("C"), {
-        selector: "[aria-current]"
+        selector: "[aria-current]",
       });
       expect(current).toHaveAttribute("aria-current", "page");
       expect(nav.querySelectorAll("[aria-current]")).toHaveLength(1);
@@ -155,8 +155,8 @@ describe("GIVEN <Breadcrumb />", () => {
       makeSut({
         items: [
           ITEMS[0],
-          { label: "Now", href: "/now", linkProps: { "data-x": "1" } }
-        ]
+          { label: "Now", href: "/now", linkProps: { "data-x": "1" } },
+        ],
       });
       expect(screen.getAllByRole("link")).toHaveLength(1);
       expect(
@@ -195,14 +195,14 @@ describe("GIVEN <Breadcrumb />", () => {
     it("THEN collapses hidden ancestors behind a named trigger", () => {
       makeSut({}, 40);
       const trigger = screen.getByRole("button", {
-        name: "Show hidden levels"
+        name: "Show hidden levels",
       });
       expect(trigger).toHaveAttribute("type", "button");
       expect(trigger).toHaveAttribute("aria-expanded", "false");
       expect(trigger).toHaveTextContent("");
       expect(screen.getAllByRole("link").map((l) => l.textContent)).toEqual([
         name("A"),
-        name("C")
+        name("C"),
       ]);
     });
 
@@ -210,7 +210,7 @@ describe("GIVEN <Breadcrumb />", () => {
       [46, [name("A"), name("B"), name("C")], false],
       [39, [name("A"), name("C")], true],
       [27, [name("A")], true],
-      [15, [], true]
+      [15, [], true],
     ])("AND at width %s shows links %j", (width, links, trigger) => {
       makeSut({}, width);
       expect(screen.queryAllByRole("link").map((l) => l.textContent)).toEqual(
@@ -222,7 +222,7 @@ describe("GIVEN <Breadcrumb />", () => {
       ).toBeInTheDocument();
     });
 
-    it("AND never submits an enclosing form", () => {
+    it("AND never submits an enclosing form", async () => {
       const onSubmit = jest.fn((event) => event.preventDefault());
       containerWidth = 40;
       render(
@@ -234,7 +234,9 @@ describe("GIVEN <Breadcrumb />", () => {
           />
         </form>
       );
-      userEvent.click(screen.getByRole("button", { name: "More" }));
+      await userEvent
+        .setup()
+        .click(screen.getByRole("button", { name: "More" }));
       expect(onSubmit).not.toHaveBeenCalled();
     });
   });
@@ -244,7 +246,7 @@ describe("GIVEN <Breadcrumb />", () => {
       makeSut({}, 30);
       const user = userEvent.setup();
       const trigger = screen.getByRole("button", {
-        name: "Show hidden levels"
+        name: "Show hidden levels",
       });
       await user.click(trigger);
       expect(trigger).toHaveAttribute("aria-expanded", "true");
@@ -260,7 +262,7 @@ describe("GIVEN <Breadcrumb />", () => {
       makeSut({}, 30);
       const user = userEvent.setup();
       const trigger = screen.getByRole("button", {
-        name: "Show hidden levels"
+        name: "Show hidden levels",
       });
       trigger.focus();
       await user.keyboard("{Enter}");
@@ -275,7 +277,7 @@ describe("GIVEN <Breadcrumb />", () => {
       makeSut({}, 30);
       const user = userEvent.setup();
       const trigger = screen.getByRole("button", {
-        name: "Show hidden levels"
+        name: "Show hidden levels",
       });
       await user.click(trigger);
       fireEvent.click(trigger);
@@ -342,7 +344,7 @@ describe("GIVEN <Breadcrumb />", () => {
       makeSut({}, 30);
       const user = userEvent.setup();
       const trigger = screen.getByRole("button", {
-        name: "Show hidden levels"
+        name: "Show hidden levels",
       });
       await user.click(trigger);
       const link = screen.getByRole("link", { name: name("B") });
@@ -410,8 +412,8 @@ describe("GIVEN <Breadcrumb />", () => {
           as: RouterLink,
           items: ITEMS.map((item) => ({
             ...item,
-            linkProps: { to: `/router${item.href}` }
-          }))
+            linkProps: { to: `/router${item.href}` },
+          })),
         },
         40
       );
@@ -437,12 +439,12 @@ describe("GIVEN <Breadcrumb />", () => {
     it("AND keeps the same Nimbus classes as the default rendering", () => {
       const { unmount } = makeSut();
       const defaultClass = screen.getByRole("link", {
-        name: name("A")
+        name: name("A"),
       }).className;
       unmount();
       makeSut({ as: RouterLink });
       const routerClass = screen.getByRole("link", {
-        name: name("A")
+        name: name("A"),
       }).className;
       expect(routerClass).toBe(defaultClass);
     });
@@ -501,7 +503,7 @@ describe("GIVEN <Breadcrumb />", () => {
           items={[
             ...ITEMS.slice(0, 3),
             { label: name("E"), href: "/E" },
-            ITEMS[3]
+            ITEMS[3],
           ]}
           label="Breadcrumb"
           hiddenLevelsLabel="Show hidden levels"
