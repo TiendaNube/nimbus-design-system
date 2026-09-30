@@ -8,6 +8,7 @@ every day, with simplicity, accessibility, consistency and performance.
 #### 🎉 New features
 
 - Select: Adds a `small` size variant. ([#530](https://github.com/TiendaNube/nimbus-design-system/pull/530) by [@noecondoleo](https://github.com/noecondoleo))
+- Breadcrumb: Adds the `Breadcrumb` component with width-driven collapse, an overflow panel for hidden ancestors, router-aware links through `as` and `linkProps`, and keyboard focus management. ([#553](https://github.com/TiendaNube/nimbus-design-system/issues/553) by [@prescillahurbin-tiendanube](https://github.com/prescillahurbin-tiendanube))
 
 ## 2026-08-12 `5.62.0`
 
