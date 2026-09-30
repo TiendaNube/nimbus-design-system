@@ -11,101 +11,71 @@ import { runSourceMapCli } from "@nimbus-ds/scripts/src";
  *   yarn source-map --check  # fail if the committed file is stale (CI)
  */
 runSourceMapCli({
-  repoName:
-    "nimbus-design-system",
+  repoName: "nimbus-design-system",
 
-  cwd: path.resolve(
-    __dirname,
-    ".."
-  ),
+  cwd: path.resolve(__dirname, ".."),
 
   groups: {
-    atomic:
-      "packages/react/src/atomic",
+    atomic: "packages/react/src/atomic",
 
-    composite:
-      "packages/react/src/composite",
+    composite: "packages/react/src/composite",
   },
 
-  stylesRoot:
-    "packages/core/styles/src/packages",
+  stylesRoot: "packages/core/styles/src/packages",
 
   commands: {
-    install:
-      "yarn install --immutable",
+    install: "yarn install --immutable",
 
-    buildAll:
-      "yarn build",
+    buildAll: "yarn build",
 
-    testAll:
-      "yarn test",
+    testAll: "yarn test",
 
-    lint:
-      "yarn lint",
+    lint: "yarn lint",
 
-    typesCheck:
-      "yarn types:check",
+    typesCheck: "yarn types:check",
 
-    storybook:
-      "yarn storybook",
+    storybook: "yarn storybook",
 
-    buildStorybook:
-      "yarn build:storybook",
+    buildStorybook: "yarn build:storybook",
 
-    buildOne:
-      "yarn workspace {package} build",
+    buildOne: "yarn workspace {package} build",
 
-    testOne:
-      "yarn jest {path}",
+    testOne: "yarn jest {path}",
   },
 
   shared: {
     tokens: {
-      path:
-        "packages/core/tokens/src",
-      package:
-        "@nimbus-ds/tokens",
+      path: "packages/core/tokens/src",
+      package: "@nimbus-ds/tokens",
     },
 
     styles: {
-      path:
-        "packages/core/styles/src/packages",
-      package:
-        "@nimbus-ds/styles",
+      path: "packages/core/styles/src/packages",
+      package: "@nimbus-ds/styles",
     },
 
     icons: {
-      path:
-        "packages/icons",
-      package:
-        "@nimbus-ds/icons",
-      assets:
-        "packages/icons/src/assets",
-      exportNaming:
-        "arrow-left.svg -> ArrowLeftIcon",
+      path: "packages/icons",
+      package: "@nimbus-ds/icons",
+      assets: "packages/icons/src/assets",
+      exportNaming: "arrow-left.svg -> ArrowLeftIcon",
     },
 
     helper: {
-      path:
-        "packages/helper",
-      package:
-        "@nimbus-ds/helper",
+      path: "packages/helper",
+      package: "@nimbus-ds/helper",
     },
 
     hooks: {
-      path:
-        "packages/react/src/common/hooks",
+      path: "packages/react/src/common/hooks",
     },
 
     utils: {
-      path:
-        "packages/react/src/common/event-handling",
+      path: "packages/react/src/common/event-handling",
     },
   },
 
-  newComponentReference:
-    "packages/react/src/atomic/Box",
+  newComponentReference: "packages/react/src/atomic/Box",
 
-  storybookIndexPath:
-    ".build-storybook/index.json",
+  storybookIndexPath: ".build-storybook/index.json",
 });

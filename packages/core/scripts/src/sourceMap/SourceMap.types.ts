@@ -42,7 +42,9 @@ export type SharedEntry = {
 };
 
 /**
- * Where a repo's components live and how its workspaces are shaped.
+ * Where a repo's components live and how its workspaces are shaped. Repos
+ * share file-level conventions resolved by componentDiscovery.ts; group
+ * directories and optional metadata roots describe their different layouts.
  */
 export interface SourceMapConfig {
   repoName: string;
@@ -54,7 +56,7 @@ export interface SourceMapConfig {
 
   /**
    * Group name -> directory holding one subdirectory per component,
-   * relative to `cwd`.
+   * relative to `cwd`, e.g. `{ atomic: "packages/react/src/atomic" }`.
    */
   groups: Record<string, string>;
 
@@ -70,7 +72,9 @@ export interface SourceMapConfig {
   newComponentReference: string;
 
   /**
-   * Path relative to `cwd` to a Storybook `index.json`.
+   * Path relative to `cwd` to a Storybook build `index.json`. The component
+   * story ID is resolved from this index, or omitted when unavailable rather
+   * than guessed: Storybook's ID sanitizer cannot be reliably reproduced.
    */
   storybookIndexPath?: string;
 }
@@ -107,7 +111,8 @@ export interface ComponentEntry {
 
   /**
    * Files under the component that the shared conventions do not account
-   * for.
+   * for (loose assets, a `*.definitions.ts`, a stray root `index.d.ts`).
+   * Generic by construction: nothing here is keyed by component name.
    */
   extras?: string[];
 }
