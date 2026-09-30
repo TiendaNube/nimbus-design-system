@@ -3,6 +3,12 @@
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories
 every day, with simplicity, accessibility, consistency and performance.
 
+## 2026-09-30 `5.64.0`
+
+#### 🎉 New features
+
+- Breadcrumb: Adds the `Breadcrumb` component with width-driven collapse, an overflow panel for hidden ancestors, router-aware links through `as` and `linkProps`, and keyboard focus management. ([#553](https://github.com/TiendaNube/nimbus-design-system/issues/553) by [@prescillahurbin-tiendanube](https://github.com/prescillahurbin-tiendanube))
+
 ## 2026-08-31 `5.63.0`
 
 #### 🎉 New features
