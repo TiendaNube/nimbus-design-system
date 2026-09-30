@@ -1,6 +1,0 @@
-releases:
-  "@nimbus-ds/breadcrumb": major
-  "@nimbus-ds/components": minor
-
-declined:
-  - nimbus-design-system
