@@ -12,6 +12,15 @@ import { Breadcrumb } from "./Breadcrumb";
 import { computeHiddenLevels } from "./breadcrumb.definitions";
 import { type BreadcrumbItem, type BreadcrumbProps } from "./breadcrumb.types";
 
+// The `@nimbus-ds/icon` Jest alias also captures `@nimbus-ds/icons`, so the
+// glyphs this component renders are mocked here, as in `jest.setup.tsx`.
+jest.mock("@nimbus-ds/icons", () => ({
+  __esModule: true,
+  ...jest.requireActual("@nimbus-ds/icons"),
+  ChevronRightIcon: () => <svg />,
+  EllipsisIcon: () => <svg />
+}));
+
 const SEPARATOR = 2;
 const TRIGGER = 3;
 
