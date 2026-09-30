@@ -38,6 +38,7 @@ export * from "@nimbus-ds/divider";
 // composite
 export * from "@nimbus-ds/accordion";
 export * from "@nimbus-ds/alert";
+export * from "@nimbus-ds/breadcrumb";
 export * from "@nimbus-ds/card";
 export * from "@nimbus-ds/collapsible";
 export * from "@nimbus-ds/modal";
