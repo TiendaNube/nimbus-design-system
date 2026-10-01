@@ -9,6 +9,10 @@ every day, with simplicity, accessibility, consistency and performance.
 
 - Select: Adds a `small` size variant. ([#530](https://github.com/TiendaNube/nimbus-design-system/pull/530) by [@noecondoleo](https://github.com/noecondoleo))
 
+#### 🐛 Bug fixes
+
+- Tooltip, Popover, Modal, Sidebar: Render on `body` with the theme class, so they are no longer drawn inside the first `ThemeProvider` that portaled one (e.g. tooltips hidden behind modals). ([#580](https://github.com/TiendaNube/nimbus-design-system/pull/580) by [@alexisarias-tiendanube](https://github.com/alexisarias-tiendanube))
+
 ## 2026-08-12 `5.62.0`
 
 #### 🛠 Reverted changes

@@ -2,6 +2,12 @@
 
 The Tooltip component allows us to display additional information in a non-intrusive way.
 
+## 2026-10-01 `2.7.1`
+
+#### 🐛 Bug fixes
+
+- Render the tooltip on `body` with the theme class, so it is no longer drawn inside the stacking context of the first `ThemeProvider` that portaled a tooltip (e.g. hidden behind modals). ([#580](https://github.com/TiendaNube/nimbus-design-system/pull/580) by [@alexisarias-tiendanube](https://github.com/alexisarias-tiendanube))
+
 ## 2026-02-12 `2.7.0`
 
 #### 🎉 New features

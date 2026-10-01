@@ -1,0 +1,15 @@
+releases:
+  "@nimbus-ds/styles": minor
+  "@nimbus-ds/tooltip": patch
+  "@nimbus-ds/popover": patch
+  "@nimbus-ds/modal": patch
+  "@nimbus-ds/sidebar": patch
+  "@nimbus-ds/components": patch
+
+declined:
+  - nimbus-design-system
+  - "@nimbus-ds/icon"
+  - "@nimbus-ds/segmented-control"
+  - "@nimbus-ds/split-button"
+  - "@nimbus-ds/stepper"
+  - "@nimbus-ds/time-picker"
