@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { tooltip as tooltipStyles } from "@nimbus-ds/styles";
+import { tooltip as tooltipStyles, ThemeProvider } from "@nimbus-ds/styles";
 
 import { Tooltip } from "./Tooltip";
 import { type TooltipProps } from "./tooltip.types";
@@ -148,6 +148,68 @@ describe("GIVEN <Tooltip />", () => {
       expect(tooltip.style.maxWidth).toEqual(maxWidth);
 
       sprinkleSpy.mockRestore();
+    });
+  });
+
+  describe("WHEN another tooltip was first mounted inside a ThemeProvider", () => {
+    // Portal nodes outlive each test's container; a leftover one on body would hide the bug.
+    beforeEach(() => {
+      document
+        .querySelectorAll("#nimbus-tooltip-floating")
+        .forEach((node) => node.remove());
+    });
+
+    it("THEN it still renders outside that provider's node", async () => {
+      const user = userEvent.setup();
+      const makeTree = (withSecondTooltip: boolean) => (
+        <>
+          <ThemeProvider theme="next" data-testid="theme-provider">
+            <Tooltip content="themed">
+              <p>themed anchor</p>
+            </Tooltip>
+          </ThemeProvider>
+          {withSecondTooltip && (
+            <Tooltip content="string" data-testid="tooltip-element">
+              <p data-testid="anchor-element">hover</p>
+            </Tooltip>
+          )}
+        </>
+      );
+      const { rerender } = render(makeTree(false));
+      rerender(makeTree(true));
+      await user.hover(screen.getByTestId("anchor-element"));
+      await waitFor(() => {
+        expect(screen.getByTestId("tooltip-element")).toBeDefined();
+      });
+
+      expect(
+        screen
+          .getByTestId("theme-provider")
+          .contains(screen.getByTestId("tooltip-element"))
+      ).toBe(false);
+    });
+  });
+
+  describe("WHEN rendered inside a ThemeProvider", () => {
+    it("THEN the floating element carries the theme class", async () => {
+      const user = userEvent.setup();
+      render(
+        <ThemeProvider theme="next" data-testid="theme-provider">
+          <Tooltip content="string" data-testid="tooltip-element">
+            <p data-testid="anchor-element">hover</p>
+          </Tooltip>
+        </ThemeProvider>
+      );
+      await user.hover(screen.getByTestId("anchor-element"));
+      await waitFor(() => {
+        expect(screen.getByTestId("tooltip-element")).toBeDefined();
+      });
+
+      const themeClassName = screen.getByTestId("theme-provider").className;
+      expect(themeClassName).not.toEqual("");
+      expect(screen.getByTestId("tooltip-element").className).toContain(
+        themeClassName
+      );
     });
   });
 });

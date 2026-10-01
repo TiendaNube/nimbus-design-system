@@ -11,13 +11,15 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({
 }) => {
   const refThemeProvider = React.useRef(null);
 
+  const themeClassName = themes[theme];
+
   const context = useMemo(
-    () => ({ refThemeProvider, currentTheme: theme }),
-    [refThemeProvider, theme]
+    () => ({ refThemeProvider, currentTheme: theme, themeClassName }),
+    [refThemeProvider, theme, themeClassName]
   );
 
   return (
-    <div className={themes[theme]} {...rest} ref={refThemeProvider}>
+    <div className={themeClassName} {...rest} ref={refThemeProvider}>
       <ThemeProviderContext.Provider value={context}>
         {children}
       </ThemeProviderContext.Provider>

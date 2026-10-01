@@ -48,7 +48,7 @@ const Modal: React.FC<ModalProps> & ModalComponents = ({
     padding,
   });
 
-  const { refThemeProvider } = useTheme();
+  const { themeClassName } = useTheme();
 
   const { context } = useFloating({
     open,
@@ -140,15 +140,15 @@ const Modal: React.FC<ModalProps> & ModalComponents = ({
   }
 
   return (
-    <FloatingPortal
-      id={portalId ?? "nimbus-modal-floating"}
-      root={refThemeProvider?.current}
-    >
+    <FloatingPortal id={portalId ?? "nimbus-modal-floating"}>
       <FloatingOverlay
         className={[
+          themeClassName,
           modal.classnames.overlay,
           modal.classnames.overlayZIndex[zIndex],
-        ].join(" ")}
+        ]
+          .filter(Boolean)
+          .join(" ")}
         lockScroll
       >
         {content}
