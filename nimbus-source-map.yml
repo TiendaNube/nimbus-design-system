@@ -50,7 +50,7 @@ components:
   - { name: "Popover", group: "atomic", package: "@nimbus-ds/popover" }
   - { name: "ProgressBar", group: "atomic", package: "@nimbus-ds/progress-bar", nested: ["ProgressBarSkeleton"] }
   - { name: "Radio", group: "atomic", package: "@nimbus-ds/radio", nested: ["RadioSkeleton"] }
-  - { name: "Select", group: "atomic", package: "@nimbus-ds/select", nested: ["SelectGroup", "SelectOption", "SelectSkeleton"] }
+  - { name: "Select", group: "atomic", package: "@nimbus-ds/select", nested: ["SelectGroup", "SelectOption", "SelectSkeleton"], extras: ["src/select.spec.md"] }
   - { name: "Skeleton", group: "atomic", package: "@nimbus-ds/skeleton" }
   - { name: "Slider", group: "atomic", package: "@nimbus-ds/slider", nested: ["SliderThumb", "SliderTrack"], extras: ["src/SliderRange.tsx", "src/hooks/", "src/slider.definitions.ts", "src/sliderRange.stories.tsx"] }
   - { name: "Spinner", group: "atomic", package: "@nimbus-ds/spinner", extras: ["src/spinner.definitions.ts"] }
