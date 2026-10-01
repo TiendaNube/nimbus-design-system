@@ -1,5 +1,6 @@
 {
   "include": ["packages", ".scripts", "index.d.ts", "jest.setup.tsx"],
+  "exclude": ["packages/react/src/prototypes"],
   "compilerOptions": {
     "target": "esnext",
     "module": "commonjs",

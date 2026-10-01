@@ -1,0 +1,88 @@
+# GENERATED FILE — do not edit by hand.
+# Regenerate with: yarn source-map
+
+schema: 1
+
+repo:
+  name: "nimbus-design-system"
+  package_manager: "yarn"
+
+commands:
+  build_all: "yarn build"
+  build_one: "yarn workspace {package} build"
+  build_storybook: "yarn build:storybook"
+  install: "yarn install --immutable"
+  lint: "yarn lint"
+  storybook: "yarn storybook"
+  test_all: "yarn test"
+  test_one: "yarn jest {path}"
+  types_check: "yarn types:check"
+
+conventions:
+  contexts: "src/contexts/*/"
+  docs: "src/*.docs.json"
+  entry: "src/index.ts"
+  implementation: "src/*.tsx"
+  nested: "src/components/*/"
+  stories: "src/*.stories.tsx"
+  test: "src/*.spec.tsx"
+  types: "src/*.types.ts"
+
+groups:
+  atomic: "packages/react/src/atomic"
+  composite: "packages/react/src/composite"
+
+components:
+  - { name: "Badge", group: "atomic", package: "@nimbus-ds/badge", nested: ["BadgeSkeleton"] }
+  - { name: "Box", group: "atomic", package: "@nimbus-ds/box" }
+  - { name: "Button", group: "atomic", package: "@nimbus-ds/button", nested: ["ButtonSkeleton"] }
+  - { name: "Checkbox", group: "atomic", package: "@nimbus-ds/checkbox", nested: ["CheckboxSkeleton"], extras: ["index.d.ts", "src/checkbox-check.svg", "src/checkbox-indeterminate.svg", "src/checkbox.definitions.ts"] }
+  - { name: "Chip", group: "atomic", package: "@nimbus-ds/chip", nested: ["ChipSkeleton"] }
+  - { name: "Divider", group: "atomic", package: "@nimbus-ds/divider" }
+  - { name: "FileUploader", group: "atomic", package: "@nimbus-ds/file-uploader", nested: ["FileUploaderOverlay", "FileUploaderSkeleton"], extras: ["src/FileUploader.definitions.ts", "src/fileUploader.definitions.spec.ts"] }
+  - { name: "Icon", group: "atomic", package: "@nimbus-ds/icon", nested: ["IconSkeleton"], extras: ["src/demo/", "src/utils/"] }
+  - { name: "IconButton", group: "atomic", package: "@nimbus-ds/icon-button", nested: ["IconButtonSkeleton"] }
+  - { name: "Input", group: "atomic", package: "@nimbus-ds/input", nested: ["InputIcon", "InputPassword", "InputSearch", "InputSkeleton", "InputText"] }
+  - { name: "Label", group: "atomic", package: "@nimbus-ds/label", nested: ["LabelSkeleton"] }
+  - { name: "Link", group: "atomic", package: "@nimbus-ds/link", nested: ["LinkSkeleton"] }
+  - { name: "List", group: "atomic", package: "@nimbus-ds/list", nested: ["ListItem", "ListSkeleton", "ListSkeletonItem"] }
+  - { name: "MultiSelect", group: "atomic", package: "@nimbus-ds/multi-select", nested: ["MultiSelectSkeleton"] }
+  - { name: "Popover", group: "atomic", package: "@nimbus-ds/popover" }
+  - { name: "ProgressBar", group: "atomic", package: "@nimbus-ds/progress-bar", nested: ["ProgressBarSkeleton"] }
+  - { name: "Radio", group: "atomic", package: "@nimbus-ds/radio", nested: ["RadioSkeleton"] }
+  - { name: "Select", group: "atomic", package: "@nimbus-ds/select", nested: ["SelectGroup", "SelectOption", "SelectSkeleton"] }
+  - { name: "Skeleton", group: "atomic", package: "@nimbus-ds/skeleton" }
+  - { name: "Slider", group: "atomic", package: "@nimbus-ds/slider", nested: ["SliderThumb", "SliderTrack"], extras: ["src/SliderRange.tsx", "src/hooks/", "src/slider.definitions.ts", "src/sliderRange.stories.tsx"] }
+  - { name: "Spinner", group: "atomic", package: "@nimbus-ds/spinner", extras: ["src/spinner.definitions.ts"] }
+  - { name: "Tag", group: "atomic", package: "@nimbus-ds/tag", nested: ["TagSkeleton"] }
+  - { name: "Text", group: "atomic", package: "@nimbus-ds/text", nested: ["TextSkeleton"] }
+  - { name: "Textarea", group: "atomic", package: "@nimbus-ds/textarea", nested: ["TextareaSkeleton"], extras: ["src/Textarea.definitions.ts"] }
+  - { name: "Thumbnail", group: "atomic", package: "@nimbus-ds/thumbnail", nested: ["ThumbnailSkeleton"] }
+  - { name: "Title", group: "atomic", package: "@nimbus-ds/title", nested: ["TitleSkeleton"] }
+  - { name: "Toast", group: "atomic", package: "@nimbus-ds/toast", nested: ["ToastProvider"], contexts: ["ToastContext"], extras: ["src/hooks/"] }
+  - { name: "Toggle", group: "atomic", package: "@nimbus-ds/toggle", nested: ["ToggleSkeleton"] }
+  - { name: "Tooltip", group: "atomic", package: "@nimbus-ds/tooltip" }
+  - { name: "Accordion", group: "composite", package: "@nimbus-ds/accordion", nested: ["AccordionBody", "AccordionHeader", "AccordionItem"], contexts: ["AccordionContext", "AccordionItemContext"], extras: ["src/accordion.definitions.ts", "src/hooks/"] }
+  - { name: "Alert", group: "composite", package: "@nimbus-ds/alert", nested: ["AlertSkeleton"], extras: ["src/alert.definitions.ts"] }
+  - { name: "Card", group: "composite", package: "@nimbus-ds/card", nested: ["CardBody", "CardFooter", "CardHeader"] }
+  - { name: "Collapsible", group: "composite", package: "@nimbus-ds/collapsible", nested: ["CollapsibleBody", "CollapsibleItem"], contexts: ["CollapsibleContext"], extras: ["src/hooks/"] }
+  - { name: "Modal", group: "composite", package: "@nimbus-ds/modal", nested: ["ModalBody", "ModalFooter", "ModalHeader"] }
+  - { name: "Pagination", group: "composite", package: "@nimbus-ds/pagination", extras: ["src/hooks/", "src/pagination.definitions.ts"] }
+  - { name: "ScrollPane", group: "composite", package: "@nimbus-ds/scroll-pane", nested: ["ScrollPaneArrow", "ScrollPaneItem"], contexts: ["ScrollPaneContext"], extras: ["src/ScrollPane.definitions.ts"] }
+  - { name: "SegmentedControl", group: "composite", package: "@nimbus-ds/segmented-control", nested: ["SegmentedControlButton"], contexts: ["SegmentedControlContext"], extras: ["src/segmentedControl.definitions.ts"] }
+  - { name: "Sidebar", group: "composite", package: "@nimbus-ds/sidebar", nested: ["SidebarBody", "SidebarFooter", "SidebarHeader"] }
+  - { name: "SplitButton", group: "composite", package: "@nimbus-ds/split-button", nested: ["SplitButtonAction", "SplitButtonPrimary", "SplitButtonSecondary"] }
+  - { name: "Stepper", group: "composite", package: "@nimbus-ds/stepper", nested: ["StepperCard", "StepperContext", "StepperItem"], extras: ["src/stepper.definitions.ts"] }
+  - { name: "Table", group: "composite", package: "@nimbus-ds/table", nested: ["TableBody", "TableCell", "TableHead", "TableRow"], contexts: ["TableContext"], extras: ["src/Table.definitions.spec.ts", "src/Table.definitions.ts"] }
+  - { name: "Tabs", group: "composite", package: "@nimbus-ds/tabs", nested: ["TabsButton", "TabsItem"], extras: ["src/tabs.definitions.ts"] }
+  - { name: "TimePicker", group: "composite", package: "@nimbus-ds/time-picker", nested: ["TimePickerAmPm", "TimePickerColumn", "TimePickerDropdown", "TimePickerOption", "TimePickerScroll"], extras: ["src/hooks/", "src/utils/"] }
+
+shared:
+  helper: { path: "packages/helper", package: "@nimbus-ds/helper" }
+  hooks: { path: "packages/react/src/common/hooks" }
+  icons: { path: "packages/icons", package: "@nimbus-ds/icons" }
+  tokens: { path: "packages/core/tokens/src", package: "@nimbus-ds/tokens" }
+  utils: { path: "packages/react/src/common/event-handling" }
+
+new_component:
+  reference: "packages/react/src/atomic/Box"

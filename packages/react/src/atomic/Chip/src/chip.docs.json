@@ -43,14 +43,14 @@
           "required": false
         },
         {
-          "type": "string",
-          "title": "className",
-          "required": false
-        },
-        {
           "description": "Height of the skeleton. Useful when you don't want to adapt the skeleton to a text element but for instance a card.",
           "type": "string",
           "title": "height",
+          "required": false
+        },
+        {
+          "type": "string",
+          "title": "className",
           "required": false
         },
         {

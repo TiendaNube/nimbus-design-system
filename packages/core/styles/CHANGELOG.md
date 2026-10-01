@@ -2,11 +2,23 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
-## 2026-08-28 `9.68.1`
+## 2026-08-28 `9.69.1`
 
 #### 🛠 Breaking changes
 
 - `Select`'s rendered height changes from a variable ~34px to a fixed 32px (2rem), by giving its shared base style an explicit height (the same box-model pattern `Button` already uses) to match the design contract documented in Figma. This is a visual-only correction — no props, exports, or tokens change — and ships as a patch per this repo's convention for CSS-only visual fixes; it is filed under this heading because the `Breaking Change Documentation Verification` check requires a `🛠 Breaking changes` section for a `*.css.ts` dimension change, regardless of semver level. ([#523](https://github.com/TiendaNube/nimbus-design-system/pull/523) by [@claude](https://github.com/apps/claude))
+
+## 2026-08-31 `9.69.0`
+
+#### 🎉 New features
+
+- Select: Adds a `small` size style variant. ([#530](https://github.com/TiendaNube/nimbus-design-system/pull/530) by [@noecondoleo](https://github.com/noecondoleo))
+
+## 2026-09-08 `9.68.1`
+
+#### 🐛 Bug fixes
+
+- Adds `-webkit-font-smoothing: antialiased` and `-moz-osx-font-smoothing: grayscale` globally, so Geist renders at the same visual weight in the browser as it does in Figma on macOS. ([#556](https://github.com/TiendaNube/nimbus-design-system/pull/556) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
 
 ## 2026-08-12 `9.68.0`
 

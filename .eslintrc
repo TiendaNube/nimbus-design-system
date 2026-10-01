@@ -84,6 +84,17 @@
     "import/prefer-default-export": "off",
     "import/no-extraneous-dependencies": "off",
     "import/no-unresolved": "off",
+    "no-restricted-imports": [
+      "error",
+      {
+        "patterns": [
+          {
+            "group": ["**/prototypes/**"],
+            "message": "Production code must not import disposable Playground prototypes."
+          }
+        ]
+      }
+    ],
     "@typescript-eslint/interface-name-prefix": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/triple-slash-reference": "off",

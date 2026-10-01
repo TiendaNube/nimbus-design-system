@@ -1,10 +1,25 @@
 name: "send-slack-notification"
 
-on: workflow_dispatch
+# Runs on manual dispatch inside nimbus-design-system, and is also callable
+# as a reusable workflow from other Nimbus repos (nimbus-patterns).
+on:
+  workflow_dispatch:
+  workflow_call:
+    secrets:
+      SLACK_WEBHOOK_URL_NIMBUS_UPDATES:
+        required: true
+      SLACK_WEBHOOK_URL_DEPLOYING:
+        required: true
+      SLACK_WEBHOOK_URL_TECH_PRODUCT_UPDATES:
+        required: true
 
 jobs:
   send-slack-notification:
     runs-on: ubuntu-latest
+    # Only needed for the checkout step below; a called workflow can never
+    # get more than the caller grants.
+    permissions:
+      contents: read
     steps:
       - name: Checkout
         uses: actions/checkout@v3

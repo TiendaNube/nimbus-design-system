@@ -1,0 +1,44 @@
+name: "retag-reusable-workflows"
+
+# Moves the `workflows-v1` tag to master's new HEAD whenever a push touches one
+# of the reusable workflows other Nimbus repos call via `@workflows-v1`. Keeps
+# that tag floating like `actions/checkout@v4` does: consumers get the change
+# on their next run, with no PR to bump a pinned ref. The tradeoff is real — a
+# broken reusable workflow reaches every consumer immediately, with no review
+# gate on their side — so anyone editing these files should treat master as the
+# release, not a staging step before one.
+#
+# Add a file here whenever a new reusable workflow is meant to be consumed
+# cross-repo under this same tag.
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - ".github/workflows/checklist-comment.yml"
+      - ".github/workflows/create-github-relase.yml"
+      - ".github/workflows/preview-storybook-deploy.yml"
+      - ".github/workflows/send-slack-notification.yml"
+      - ".github/workflows/retag-reusable-workflows.yml"
+
+# Pushes to master land one at a time in practice, but a queued second run
+# retagging behind a first one would move workflows-v1 backwards to a commit
+# that is no longer HEAD.
+concurrency:
+  group: retag-reusable-workflows
+  cancel-in-progress: false
+
+jobs:
+  retag:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Move workflows-v1 to this commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag -f workflows-v1
+          git push origin refs/tags/workflows-v1 --force
