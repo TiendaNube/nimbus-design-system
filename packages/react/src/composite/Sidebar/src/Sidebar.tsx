@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { createPortal } from "react-dom";
 import { RemoveScroll } from "react-remove-scroll";
 import {
@@ -42,6 +42,24 @@ const Sidebar: React.FC<SidebarProps> & SidebarComponents = ({
   });
 
   const { refThemeProvider } = useTheme();
+  const [portalHost, setPortalHost] = useState<HTMLElement | null>(null);
+  const portalHostId = "nimbus-sidebar";
+
+  useEffect(() => {
+    const provider = refThemeProvider?.current;
+    if (!open || root || !provider) return;
+    // Resolve the identified host among the children of the nearest provider
+    // element, never by a global lookup, so no other provider can capture it.
+    let host = Array.from(provider.children).find(
+      (child): child is HTMLElement => child.id === portalHostId
+    );
+    if (!host) {
+      host = document.createElement("div");
+      host.id = portalHostId;
+      provider.appendChild(host);
+    }
+    setPortalHost(host);
+  }, [refThemeProvider, open, root, portalHostId]);
 
   const { context } = useFloating({
     open,
@@ -121,7 +139,10 @@ const Sidebar: React.FC<SidebarProps> & SidebarComponents = ({
   }
 
   return (
-    <FloatingPortal id="nimbus-sidebar" root={refThemeProvider?.current}>
+    <FloatingPortal
+      id={refThemeProvider ? undefined : portalHostId}
+      root={refThemeProvider ? portalHost : undefined}
+    >
       <FloatingOverlay
         className={sidebar.classnames.overlay}
         data-testid="overlay-sidebar-button"

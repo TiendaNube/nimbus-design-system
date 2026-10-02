@@ -7,6 +7,7 @@ import {
   waitFor,
 } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { ThemeProvider } from "@nimbus-ds/styles";
 
 import { Popover } from "./Popover";
 import { type PopoverProps } from "./popover.types";
@@ -403,6 +404,131 @@ describe("GIVEN <Popover />", () => {
           screen.getByTestId("popover-element").getAttribute("class")
         ).toContain("padding-small");
       });
+    });
+  });
+});
+
+type Layout = "nested-after-anchor" | "nested-before-anchor" | "sibling-before";
+type Name = "inner" | "outer";
+
+const PROVIDER_P = "provider-p";
+const PROVIDER_Q = "provider-q";
+const WRAPPER_ID = "nimbus-popover-floating";
+
+const makePopover = (name: Name) => (
+  <Popover content={<p>{`${name} content`}</p>} data-testid={`${name}-popover`}>
+    <p>{`${name} anchor`}</p>
+  </Popover>
+);
+
+/**
+ * P (base) is the origin of the "outer" popover, Q (dark) holds the "inner"
+ * popover (a themed side area). `layout` places Q relative to the outer anchor.
+ * A popover is mounted only while its name is in `mounted`, so the second one
+ * can be mounted after the first has already created its floating wrapper.
+ */
+const makeScene = (layout: Layout, mounted: Name[]) => {
+  const inner = (
+    <ThemeProvider theme="dark" data-testid={PROVIDER_Q}>
+      {mounted.includes("inner") && makePopover("inner")}
+    </ThemeProvider>
+  );
+  const outer = mounted.includes("outer") && makePopover("outer");
+
+  if (layout === "sibling-before") {
+    return (
+      <>
+        {inner}
+        <ThemeProvider theme="base" data-testid={PROVIDER_P}>
+          {outer}
+        </ThemeProvider>
+      </>
+    );
+  }
+
+  return (
+    <ThemeProvider theme="base" data-testid={PROVIDER_P}>
+      {layout === "nested-before-anchor" && inner}
+      {outer}
+      {layout === "nested-after-anchor" && inner}
+    </ThemeProvider>
+  );
+};
+
+const openPopover = async (
+  user: ReturnType<typeof userEvent.setup>,
+  name: Name
+) => {
+  const anchor = screen.getByText(`${name} anchor`).closest("div");
+  await user.click(anchor as HTMLElement);
+  return waitFor(() => screen.getByTestId(`${name}-popover`));
+};
+
+describe("GIVEN <Popover /> inside theme providers", () => {
+  beforeEach(() => {
+    // Popovers rendered outside any provider leave their identified wrapper in
+    // the body after unmount; remove it so each scenario starts from a clean document.
+    document
+      .querySelectorAll(`#${WRAPPER_ID}`)
+      .forEach((element) => element.remove());
+  });
+
+  describe("WHEN it is displayed inside a single theme provider", () => {
+    it("THEN should render its content inside the provider element", async () => {
+      const user = userEvent.setup();
+      render(
+        <ThemeProvider theme="dark" data-testid={PROVIDER_Q}>
+          {makePopover("inner")}
+        </ThemeProvider>
+      );
+      const content = await openPopover(user, "inner");
+      expect(screen.getByTestId(PROVIDER_Q).contains(content)).toBe(true);
+    });
+  });
+
+  describe("WHEN it is displayed outside any theme provider", () => {
+    it("THEN should still display its content, without a theme scope", async () => {
+      const user = userEvent.setup();
+      render(makePopover("outer"));
+      const content = await openPopover(user, "outer");
+      expect(content.closest(`[data-testid="${PROVIDER_P}"]`)).toBeNull();
+      expect(document.body.contains(content)).toBe(true);
+    });
+  });
+
+  describe.each<Layout>([
+    "nested-after-anchor",
+    "nested-before-anchor",
+    "sibling-before",
+  ])("AND the dark provider Q is placed as %s", (layout) => {
+    it("THEN the popover of P mounted after Q displayed its own is inside P and not inside Q", async () => {
+      const user = userEvent.setup();
+      const { rerender } = render(makeScene(layout, ["inner"]));
+      const p = screen.getByTestId(PROVIDER_P);
+      const q = screen.getByTestId(PROVIDER_Q);
+
+      const innerContent = await openPopover(user, "inner");
+      expect(q.contains(innerContent)).toBe(true);
+
+      rerender(makeScene(layout, ["inner", "outer"]));
+      const outerContent = await openPopover(user, "outer");
+      expect(p.contains(outerContent)).toBe(true);
+      expect(q.contains(outerContent)).toBe(false);
+    });
+
+    it("THEN the popover of Q mounted after P displayed its own is inside Q", async () => {
+      const user = userEvent.setup();
+      const { rerender } = render(makeScene(layout, ["outer"]));
+      const p = screen.getByTestId(PROVIDER_P);
+      const q = screen.getByTestId(PROVIDER_Q);
+
+      const outerContent = await openPopover(user, "outer");
+      expect(p.contains(outerContent)).toBe(true);
+
+      rerender(makeScene(layout, ["outer", "inner"]));
+      const innerContent = await openPopover(user, "inner");
+      expect(q.contains(innerContent)).toBe(true);
+      expect(innerContent.closest(`#${WRAPPER_ID}`)?.parentElement).toBe(q);
     });
   });
 });

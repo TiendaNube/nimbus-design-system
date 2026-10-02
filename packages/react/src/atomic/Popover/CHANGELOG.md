@@ -2,6 +2,12 @@
 
 Use Popovers to bring attention to specific user interface elements and suggest an action or to guide users through a new experience
 
+## 2026-10-02 `4.4.2`
+
+#### 🐛 Bug fixes
+
+- Popover: Fixes the floating content being rendered inside another theme provider's element when several or nested theme providers exist. It is now rendered inside the element of its nearest enclosing theme provider, keeping the theme and layering of the place where it is used, whatever the order in which providers or other floating elements were mounted. ([Nimbus request #581](https://github.com/TiendaNube/nimbus-process/issues/581))
+
 ## 2026-03-02 `4.4.1`
 
 #### 🐛 Bug fixes

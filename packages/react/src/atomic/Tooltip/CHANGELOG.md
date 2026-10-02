@@ -2,6 +2,12 @@
 
 The Tooltip component allows us to display additional information in a non-intrusive way.
 
+## 2026-10-02 `2.7.1`
+
+#### 🐛 Bug fixes
+
+- Tooltip: Fixes the floating content being rendered inside another theme provider's element when several or nested theme providers exist. It is now rendered inside the element of its nearest enclosing theme provider, keeping the theme and layering of the place where it is used, whatever the order in which providers or other floating elements were mounted. ([Nimbus request #581](https://github.com/TiendaNube/nimbus-process/issues/581))
+
 ## 2026-02-12 `2.7.0`
 
 #### 🎉 New features

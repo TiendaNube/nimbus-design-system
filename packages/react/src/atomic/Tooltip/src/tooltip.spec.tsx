@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { tooltip as tooltipStyles } from "@nimbus-ds/styles";
+import { tooltip as tooltipStyles, ThemeProvider } from "@nimbus-ds/styles";
 
 import { Tooltip } from "./Tooltip";
 import { type TooltipProps } from "./tooltip.types";
@@ -148,6 +148,131 @@ describe("GIVEN <Tooltip />", () => {
       expect(tooltip.style.maxWidth).toEqual(maxWidth);
 
       sprinkleSpy.mockRestore();
+    });
+  });
+});
+
+type Layout = "nested-after-anchor" | "nested-before-anchor" | "sibling-before";
+type Name = "inner" | "outer";
+
+const PROVIDER_P = "provider-p";
+const PROVIDER_Q = "provider-q";
+const WRAPPER_ID = "nimbus-tooltip-floating";
+
+const makeTooltip = (name: Name) => (
+  <Tooltip content={`${name} content`} data-testid={`${name}-tooltip`}>
+    <p>{`${name} anchor`}</p>
+  </Tooltip>
+);
+
+/**
+ * P (base) is the origin of the "outer" tooltip, Q (dark) holds the "inner"
+ * tooltip (a themed side area). `layout` places Q relative to the outer anchor.
+ * A tooltip is mounted only while its name is in `mounted`, so the second one
+ * can be mounted after the first has already created its floating wrapper.
+ */
+const makeScene = (layout: Layout, mounted: Name[]) => {
+  const inner = (
+    <ThemeProvider theme="dark" data-testid={PROVIDER_Q}>
+      {mounted.includes("inner") && makeTooltip("inner")}
+    </ThemeProvider>
+  );
+  const outer = mounted.includes("outer") && makeTooltip("outer");
+
+  if (layout === "sibling-before") {
+    return (
+      <>
+        {inner}
+        <ThemeProvider theme="base" data-testid={PROVIDER_P}>
+          {outer}
+        </ThemeProvider>
+      </>
+    );
+  }
+
+  return (
+    <ThemeProvider theme="base" data-testid={PROVIDER_P}>
+      {layout === "nested-before-anchor" && inner}
+      {outer}
+      {layout === "nested-after-anchor" && inner}
+    </ThemeProvider>
+  );
+};
+
+const hoverAnchor = async (
+  user: ReturnType<typeof userEvent.setup>,
+  name: Name
+) => {
+  const anchor = screen.getByText(`${name} anchor`).closest("div");
+  await user.hover(anchor as HTMLElement);
+  return waitFor(() => screen.getByTestId(`${name}-tooltip`));
+};
+
+describe("GIVEN <Tooltip /> inside theme providers", () => {
+  beforeEach(() => {
+    // Tooltips rendered outside any provider leave their identified wrapper in
+    // the body after unmount; remove it so each scenario starts from a clean document.
+    document
+      .querySelectorAll(`#${WRAPPER_ID}`)
+      .forEach((element) => element.remove());
+  });
+
+  describe("WHEN it is displayed inside a single theme provider", () => {
+    it("THEN should render its content inside the provider element", async () => {
+      const user = userEvent.setup();
+      render(
+        <ThemeProvider theme="dark" data-testid={PROVIDER_Q}>
+          {makeTooltip("inner")}
+        </ThemeProvider>
+      );
+      const content = await hoverAnchor(user, "inner");
+      expect(screen.getByTestId(PROVIDER_Q).contains(content)).toBe(true);
+    });
+  });
+
+  describe("WHEN it is displayed outside any theme provider", () => {
+    it("THEN should still display its content, without a theme scope", async () => {
+      const user = userEvent.setup();
+      render(makeTooltip("outer"));
+      const content = await hoverAnchor(user, "outer");
+      expect(content.closest(`[data-testid="${PROVIDER_P}"]`)).toBeNull();
+      expect(document.body.contains(content)).toBe(true);
+    });
+  });
+
+  describe.each<Layout>([
+    "nested-after-anchor",
+    "nested-before-anchor",
+    "sibling-before",
+  ])("AND the dark provider Q is placed as %s", (layout) => {
+    it("THEN the tooltip of P mounted after Q displayed its own is inside P and not inside Q", async () => {
+      const user = userEvent.setup();
+      const { rerender } = render(makeScene(layout, ["inner"]));
+      const p = screen.getByTestId(PROVIDER_P);
+      const q = screen.getByTestId(PROVIDER_Q);
+
+      const innerContent = await hoverAnchor(user, "inner");
+      expect(q.contains(innerContent)).toBe(true);
+
+      rerender(makeScene(layout, ["inner", "outer"]));
+      const outerContent = await hoverAnchor(user, "outer");
+      expect(p.contains(outerContent)).toBe(true);
+      expect(q.contains(outerContent)).toBe(false);
+    });
+
+    it("THEN the tooltip of Q mounted after P displayed its own is inside Q", async () => {
+      const user = userEvent.setup();
+      const { rerender } = render(makeScene(layout, ["outer"]));
+      const p = screen.getByTestId(PROVIDER_P);
+      const q = screen.getByTestId(PROVIDER_Q);
+
+      const outerContent = await hoverAnchor(user, "outer");
+      expect(p.contains(outerContent)).toBe(true);
+
+      rerender(makeScene(layout, ["outer", "inner"]));
+      const innerContent = await hoverAnchor(user, "inner");
+      expect(q.contains(innerContent)).toBe(true);
+      expect(innerContent.closest(`#${WRAPPER_ID}`)?.parentElement).toBe(q);
     });
   });
 });

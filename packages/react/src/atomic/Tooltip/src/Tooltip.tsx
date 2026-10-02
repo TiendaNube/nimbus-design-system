@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   useFloating,
   useInteractions,
@@ -17,6 +17,8 @@ import { Text } from "@nimbus-ds/text";
 import { Box } from "@nimbus-ds/box";
 import { type TooltipProps } from "./tooltip.types";
 
+const PORTAL_ID = "nimbus-tooltip-floating";
+
 const Tooltip: React.FC<TooltipProps> = ({
   className,
   style: _style,
@@ -30,6 +32,24 @@ const Tooltip: React.FC<TooltipProps> = ({
   const arrowRef = useRef(null);
   const [isVisible, setVisibility] = useState(false);
   const { refThemeProvider } = useTheme();
+  const [portalHost, setPortalHost] = useState<HTMLElement | null>(null);
+
+  useEffect(() => {
+    const provider = refThemeProvider?.current;
+    if (!provider) return;
+
+    // Resolve the identified host among the children of the nearest provider
+    // element, never by a global lookup, so no other provider can capture it.
+    let host = Array.from(provider.children).find(
+      (child): child is HTMLElement => child.id === PORTAL_ID
+    );
+    if (!host) {
+      host = document.createElement("div");
+      host.id = PORTAL_ID;
+      provider.appendChild(host);
+    }
+    setPortalHost(host);
+  }, [refThemeProvider]);
   const { context, strategy, floatingStyles } = useFloating({
     open: isVisible,
     placement: position,
@@ -83,8 +103,8 @@ const Tooltip: React.FC<TooltipProps> = ({
         {children}
       </div>
       <FloatingPortal
-        id="nimbus-tooltip-floating"
-        root={refThemeProvider?.current}
+        id={refThemeProvider ? undefined : PORTAL_ID}
+        root={refThemeProvider ? portalHost : undefined}
       >
         {isVisible && (
           <div

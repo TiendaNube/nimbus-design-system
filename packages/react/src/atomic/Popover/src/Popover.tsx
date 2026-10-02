@@ -1,4 +1,4 @@
-import React, { useRef, useState, useMemo } from "react";
+import React, { useEffect, useRef, useState, useMemo } from "react";
 import {
   FloatingPortal,
   FloatingArrow,
@@ -18,6 +18,8 @@ import {
 import { popover, useTheme } from "@nimbus-ds/styles";
 
 import { type PopoverProps } from "./popover.types";
+
+const PORTAL_ID = "nimbus-popover-floating";
 
 const Popover: React.FC<PopoverProps> = ({
   className,
@@ -86,6 +88,24 @@ const Popover: React.FC<PopoverProps> = ({
   ].filter((middleware) => middleware !== false);
 
   const { refThemeProvider } = useTheme();
+  const [portalHost, setPortalHost] = useState<HTMLElement | null>(null);
+
+  useEffect(() => {
+    const provider = refThemeProvider?.current;
+    if (!provider) return;
+
+    // Resolve the identified host among the children of the nearest provider
+    // element, never by a global lookup, so no other provider can capture it.
+    let host = Array.from(provider.children).find(
+      (child): child is HTMLElement => child.id === PORTAL_ID
+    );
+    if (!host) {
+      host = document.createElement("div");
+      host.id = PORTAL_ID;
+      provider.appendChild(host);
+    }
+    setPortalHost(host);
+  }, [refThemeProvider]);
 
   const { context, floatingStyles } = useFloating({
     open,
@@ -157,8 +177,8 @@ const Popover: React.FC<PopoverProps> = ({
           : children}
       </div>
       <FloatingPortal
-        id="nimbus-popover-floating"
-        root={refThemeProvider?.current}
+        id={refThemeProvider ? undefined : PORTAL_ID}
+        root={refThemeProvider ? portalHost : undefined}
       >
         {open && (
           <>
