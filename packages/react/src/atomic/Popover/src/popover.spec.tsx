@@ -532,3 +532,96 @@ describe("GIVEN <Popover /> inside theme providers", () => {
     });
   });
 });
+
+describe("GIVEN the floating host lifecycle of <Popover />", () => {
+  const hosts = () => document.querySelectorAll(`#${WRAPPER_ID}`);
+
+  beforeEach(() => {
+    hosts().forEach((element) => element.remove());
+  });
+
+  const makeControlled = (names: Name[], visible: Name[]) => (
+    <ThemeProvider theme="dark" data-testid={PROVIDER_Q}>
+      {names.map((name) => (
+        <Popover
+          key={name}
+          visible={visible.includes(name)}
+          content={<p>{`${name} content`}</p>}
+          data-testid={`${name}-popover`}
+        >
+          <p>{`${name} anchor`}</p>
+        </Popover>
+      ))}
+    </ThemeProvider>
+  );
+
+  it("THEN should not create a host while it is closed", () => {
+    render(makeControlled(["inner"], []));
+    expect(hosts()).toHaveLength(0);
+  });
+
+  it("THEN should host content outside any provider as a direct child of the body", async () => {
+    const user = userEvent.setup();
+    render(makePopover("outer"));
+    const content = await openPopover(user, "outer");
+    expect(content.closest(`#${WRAPPER_ID}`)?.parentElement).toBe(
+      document.body
+    );
+  });
+
+  it("THEN two displayed popovers share one host per provider and closing one keeps the other", () => {
+    const { rerender } = render(
+      makeControlled(["inner", "outer"], ["inner", "outer"])
+    );
+    const q = screen.getByTestId(PROVIDER_Q);
+    expect(q.querySelectorAll(`#${WRAPPER_ID}`)).toHaveLength(1);
+    expect(screen.getByTestId("inner-popover")).toBeTruthy();
+    expect(screen.getByTestId("outer-popover")).toBeTruthy();
+
+    rerender(makeControlled(["inner", "outer"], ["outer"]));
+    expect(screen.queryByTestId("inner-popover")).toBeNull();
+    expect(screen.getByTestId("outer-popover")).toBeTruthy();
+    expect(q.querySelectorAll(`#${WRAPPER_ID}`)).toHaveLength(1);
+  });
+
+  it("THEN should remove its owned host once closed or unmounted", () => {
+    const { rerender } = render(makeControlled(["inner"], ["inner"]));
+    expect(hosts()).toHaveLength(1);
+
+    rerender(makeControlled(["inner"], []));
+    expect(hosts()).toHaveLength(0);
+
+    rerender(makeControlled(["inner"], ["inner"]));
+    expect(hosts()).toHaveLength(1);
+    rerender(makeControlled([], []));
+    expect(hosts()).toHaveLength(0);
+  });
+
+  it("THEN should reuse a host placed by the consumer inside the provider and never remove it", () => {
+    const { rerender } = render(makeControlled(["inner"], []));
+    const q = screen.getByTestId(PROVIDER_Q);
+    const own = document.createElement("div");
+    own.id = WRAPPER_ID;
+    q.appendChild(own);
+
+    rerender(makeControlled(["inner"], ["inner"]));
+    expect(own.contains(screen.getByTestId("inner-popover"))).toBe(true);
+    expect(hosts()).toHaveLength(1);
+
+    rerender(makeControlled(["inner"], []));
+    expect(q.contains(own)).toBe(true);
+  });
+
+  it("THEN should render its content once, in the provider host, under StrictMode", () => {
+    render(
+      <React.StrictMode>
+        {makeControlled(["inner"], ["inner"])}
+      </React.StrictMode>
+    );
+    expect(screen.getAllByTestId("inner-popover")).toHaveLength(1);
+    expect(
+      screen.getByTestId("inner-popover").closest(`#${WRAPPER_ID}`)
+        ?.parentElement
+    ).toBe(screen.getByTestId(PROVIDER_Q));
+  });
+});

@@ -251,3 +251,94 @@ describe("GIVEN <Sidebar /> inside theme providers", () => {
     });
   });
 });
+
+describe("GIVEN the floating host lifecycle of <Sidebar />", () => {
+  const hosts = () => document.querySelectorAll(`#${WRAPPER_ID}`);
+
+  beforeEach(() => {
+    hosts().forEach((element) => element.remove());
+  });
+
+  const makeTwo = (opened: Name[]) => (
+    <ThemeProvider theme="dark" data-testid={PROVIDER_Q}>
+      {makeSidebar("inner", opened.includes("inner"))}
+      {makeSidebar("outer", opened.includes("outer"))}
+    </ThemeProvider>
+  );
+
+  it("THEN should not create a host while it is closed", () => {
+    render(makeScene("nested-after-origin", []));
+    expect(hosts()).toHaveLength(0);
+  });
+
+  it("THEN should host content outside any provider as a direct child of the body", () => {
+    render(makeSidebar("outer", true));
+    expect(
+      screen.getByTestId("outer-sidebar").closest(`#${WRAPPER_ID}`)
+        ?.parentElement
+    ).toBe(document.body);
+  });
+
+  it("THEN two open Sidebars share one host per provider and closing one keeps the other", () => {
+    const { rerender } = render(makeTwo(["inner", "outer"]));
+    const q = screen.getByTestId(PROVIDER_Q);
+    expect(q.querySelectorAll(`#${WRAPPER_ID}`)).toHaveLength(1);
+
+    rerender(makeTwo(["outer"]));
+    expect(screen.queryByTestId("inner-sidebar")).toBeNull();
+    expect(screen.getByTestId("outer-sidebar")).toBeTruthy();
+    expect(q.querySelectorAll(`#${WRAPPER_ID}`)).toHaveLength(1);
+  });
+
+  it("THEN should remove its owned host once closed or unmounted", () => {
+    const { rerender } = render(makeTwo(["inner"]));
+    expect(hosts()).toHaveLength(1);
+
+    rerender(makeTwo([]));
+    expect(hosts()).toHaveLength(0);
+
+    rerender(makeTwo(["inner"]));
+    expect(hosts()).toHaveLength(1);
+    rerender(<ThemeProvider theme="dark" data-testid={PROVIDER_Q} />);
+    expect(hosts()).toHaveLength(0);
+  });
+
+  it("THEN should reuse a host placed by the consumer inside the provider and never remove it", () => {
+    const { rerender } = render(makeTwo([]));
+    const q = screen.getByTestId(PROVIDER_Q);
+    const own = document.createElement("div");
+    own.id = WRAPPER_ID;
+    q.appendChild(own);
+
+    rerender(makeTwo(["inner"]));
+    expect(own.contains(screen.getByTestId("inner-sidebar"))).toBe(true);
+    expect(hosts()).toHaveLength(1);
+
+    rerender(makeTwo([]));
+    expect(q.contains(own)).toBe(true);
+  });
+
+  it("THEN should render its content once, in the provider host, under StrictMode", () => {
+    render(<React.StrictMode>{makeTwo(["inner"])}</React.StrictMode>);
+    expect(screen.getAllByTestId("inner-sidebar")).toHaveLength(1);
+    expect(
+      screen.getByTestId("inner-sidebar").closest(`#${WRAPPER_ID}`)
+        ?.parentElement
+    ).toBe(screen.getByTestId(PROVIDER_Q));
+  });
+
+  it("THEN should keep the root path inside root without creating a host", () => {
+    const root = document.createElement("div");
+    document.body.appendChild(root);
+    render(
+      <ThemeProvider theme="dark" data-testid={PROVIDER_Q}>
+        <Sidebar open root={root} data-testid="root-sidebar">
+          <div>root sidebar</div>
+        </Sidebar>
+      </ThemeProvider>
+    );
+    expect(root.contains(screen.getByTestId("root-sidebar"))).toBe(true);
+    expect(hosts()).toHaveLength(0);
+    root.remove();
+  });
+});

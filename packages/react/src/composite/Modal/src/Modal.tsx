@@ -22,6 +22,15 @@ import {
 import { type ModalProps, type ModalComponents } from "./modal.types";
 import { ModalBody, ModalFooter, ModalHeader } from "./components";
 
+const DEFAULT_PORTAL_ID = "nimbus-modal-floating";
+const HOST_USERS = Symbol.for("nimbus-ds.portalHost.users");
+const HOST_OWNED = Symbol.for("nimbus-ds.portalHost.owned");
+
+type PortalHost = HTMLElement & {
+  [HOST_USERS]?: number;
+  [HOST_OWNED]?: boolean;
+};
+
 const Modal: React.FC<ModalProps> & ModalComponents = ({
   className,
   style: _style,
@@ -50,23 +59,35 @@ const Modal: React.FC<ModalProps> & ModalComponents = ({
 
   const { refThemeProvider } = useTheme();
   const [portalHost, setPortalHost] = useState<HTMLElement | null>(null);
-  const portalHostId = portalId ?? "nimbus-modal-floating";
+  const portalHostId = portalId ?? DEFAULT_PORTAL_ID;
+
+  const active = open && !root;
 
   useEffect(() => {
-    const provider = refThemeProvider?.current;
-    if (!open || root || !provider) return;
-    // Resolve the identified host among the children of the nearest provider
-    // element, never by a global lookup, so no other provider can capture it.
-    let host = Array.from(provider.children).find(
-      (child): child is HTMLElement => child.id === portalHostId
+    if (!active) return undefined;
+
+    // Resolve the identified host only among the direct children of this
+    // component's own container (its nearest provider, or the body when there
+    // is none), never by a global id lookup, so no other provider can capture it.
+    const container: HTMLElement = refThemeProvider?.current ?? document.body;
+    const existing = Array.from(container.children).find(
+      (child): child is PortalHost => child.id === portalHostId
     );
-    if (!host) {
-      host = document.createElement("div");
+    const host: PortalHost = existing ?? document.createElement("div");
+    if (!existing) {
       host.id = portalHostId;
-      provider.appendChild(host);
+      host[HOST_OWNED] = true;
+      container.appendChild(host);
     }
+    host[HOST_USERS] = (host[HOST_USERS] ?? 0) + 1;
     setPortalHost(host);
-  }, [refThemeProvider, open, root, portalHostId]);
+
+    return () => {
+      host[HOST_USERS] = (host[HOST_USERS] ?? 1) - 1;
+      if (host[HOST_USERS] === 0 && host[HOST_OWNED]) host.remove();
+      setPortalHost(null);
+    };
+  }, [active, refThemeProvider, portalHostId]);
 
   const { context } = useFloating({
     open,
@@ -158,10 +179,7 @@ const Modal: React.FC<ModalProps> & ModalComponents = ({
   }
 
   return (
-    <FloatingPortal
-      id={refThemeProvider ? undefined : portalHostId}
-      root={refThemeProvider ? portalHost : undefined}
-    >
+    <FloatingPortal root={portalHost}>
       <FloatingOverlay
         className={[
           modal.classnames.overlay,

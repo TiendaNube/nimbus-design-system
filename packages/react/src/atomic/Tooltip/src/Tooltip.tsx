@@ -18,6 +18,13 @@ import { Box } from "@nimbus-ds/box";
 import { type TooltipProps } from "./tooltip.types";
 
 const PORTAL_ID = "nimbus-tooltip-floating";
+const HOST_USERS = Symbol.for("nimbus-ds.portalHost.users");
+const HOST_OWNED = Symbol.for("nimbus-ds.portalHost.owned");
+
+type PortalHost = HTMLElement & {
+  [HOST_USERS]?: number;
+  [HOST_OWNED]?: boolean;
+};
 
 const Tooltip: React.FC<TooltipProps> = ({
   className,
@@ -35,21 +42,31 @@ const Tooltip: React.FC<TooltipProps> = ({
   const [portalHost, setPortalHost] = useState<HTMLElement | null>(null);
 
   useEffect(() => {
-    const provider = refThemeProvider?.current;
-    if (!provider) return;
+    if (!isVisible) return undefined;
 
-    // Resolve the identified host among the children of the nearest provider
-    // element, never by a global lookup, so no other provider can capture it.
-    let host = Array.from(provider.children).find(
-      (child): child is HTMLElement => child.id === PORTAL_ID
+    // Resolve the identified host only among the direct children of this
+    // component's own container (its nearest provider, or the body when there
+    // is none), never by a global id lookup, so no other provider can capture it.
+    const container: HTMLElement = refThemeProvider?.current ?? document.body;
+    const existing = Array.from(container.children).find(
+      (child): child is PortalHost => child.id === PORTAL_ID
     );
-    if (!host) {
-      host = document.createElement("div");
+    const host: PortalHost = existing ?? document.createElement("div");
+    if (!existing) {
       host.id = PORTAL_ID;
-      provider.appendChild(host);
+      host[HOST_OWNED] = true;
+      container.appendChild(host);
     }
+    host[HOST_USERS] = (host[HOST_USERS] ?? 0) + 1;
     setPortalHost(host);
-  }, [refThemeProvider]);
+
+    return () => {
+      host[HOST_USERS] = (host[HOST_USERS] ?? 1) - 1;
+      if (host[HOST_USERS] === 0 && host[HOST_OWNED]) host.remove();
+      setPortalHost(null);
+    };
+  }, [isVisible, refThemeProvider]);
+
   const { context, strategy, floatingStyles } = useFloating({
     open: isVisible,
     placement: position,
@@ -102,10 +119,7 @@ const Tooltip: React.FC<TooltipProps> = ({
       >
         {children}
       </div>
-      <FloatingPortal
-        id={refThemeProvider ? undefined : PORTAL_ID}
-        root={refThemeProvider ? portalHost : undefined}
-      >
+      <FloatingPortal root={portalHost}>
         {isVisible && (
           <div
             {...rest}

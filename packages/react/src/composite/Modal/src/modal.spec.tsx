@@ -441,3 +441,96 @@ describe("GIVEN a base-layer <Modal /> opened in P with a themed side area Q", (
     expect(q.contains(modalPopover)).toBe(false);
   });
 });
+
+describe("GIVEN the floating host lifecycle of <Modal />", () => {
+  const hosts = (id = DEFAULT_WRAPPER_ID) =>
+    document.querySelectorAll(`#${id}`);
+
+  beforeEach(() => {
+    hosts().forEach((element) => element.remove());
+    hosts("custom").forEach((element) => element.remove());
+  });
+
+  const makeTwo = (opened: Name[]) => (
+    <ThemeProvider theme="dark" data-testid={PROVIDER_Q}>
+      {makeModal("inner", opened.includes("inner"))}
+      {makeModal("outer", opened.includes("outer"))}
+    </ThemeProvider>
+  );
+
+  it("THEN should not create a host while it is closed", () => {
+    render(makeScene("nested-after-origin", []));
+    expect(hosts()).toHaveLength(0);
+  });
+
+  it("THEN should host content outside any provider as a direct child of the body", () => {
+    render(makeModal("outer", true));
+    expect(
+      screen.getByTestId("outer-modal").closest(`#${DEFAULT_WRAPPER_ID}`)
+        ?.parentElement
+    ).toBe(document.body);
+  });
+
+  it("THEN two open Modals share one host per provider and closing one keeps the other", () => {
+    const { rerender } = render(makeTwo(["inner", "outer"]));
+    const q = screen.getByTestId(PROVIDER_Q);
+    expect(q.querySelectorAll(`#${DEFAULT_WRAPPER_ID}`)).toHaveLength(1);
+
+    rerender(makeTwo(["outer"]));
+    expect(screen.queryByTestId("inner-modal")).toBeNull();
+    expect(screen.getByTestId("outer-modal")).toBeTruthy();
+    expect(q.querySelectorAll(`#${DEFAULT_WRAPPER_ID}`)).toHaveLength(1);
+  });
+
+  it("THEN should remove its owned host once closed or unmounted", () => {
+    const { rerender } = render(makeTwo(["inner"]));
+    expect(hosts()).toHaveLength(1);
+
+    rerender(makeTwo([]));
+    expect(hosts()).toHaveLength(0);
+
+    rerender(makeTwo(["inner"]));
+    expect(hosts()).toHaveLength(1);
+    rerender(<ThemeProvider theme="dark" data-testid={PROVIDER_Q} />);
+    expect(hosts()).toHaveLength(0);
+  });
+
+  it("THEN should reuse a host placed by the consumer inside the provider and never remove it", () => {
+    const { rerender } = render(makeTwo([]));
+    const q = screen.getByTestId(PROVIDER_Q);
+    const own = document.createElement("div");
+    own.id = DEFAULT_WRAPPER_ID;
+    q.appendChild(own);
+
+    rerender(makeTwo(["inner"]));
+    expect(own.contains(screen.getByTestId("inner-modal"))).toBe(true);
+    expect(hosts()).toHaveLength(1);
+
+    rerender(makeTwo([]));
+    expect(q.contains(own)).toBe(true);
+  });
+
+  it("THEN should render its content once, in the provider host, under StrictMode", () => {
+    render(<React.StrictMode>{makeTwo(["inner"])}</React.StrictMode>);
+    expect(screen.getAllByTestId("inner-modal")).toHaveLength(1);
+    expect(
+      screen.getByTestId("inner-modal").closest(`#${DEFAULT_WRAPPER_ID}`)
+        ?.parentElement
+    ).toBe(screen.getByTestId(PROVIDER_Q));
+  });
+
+  it("THEN should keep the root path inside root without creating a host", () => {
+    const root = document.createElement("div");
+    document.body.appendChild(root);
+    render(
+      <ThemeProvider theme="dark" data-testid={PROVIDER_Q}>
+        <Modal open root={root} data-testid="root-modal">
+          <div>root modal</div>
+        </Modal>
+      </ThemeProvider>
+    );
+    expect(root.contains(screen.getByTestId("root-modal"))).toBe(true);
+    expect(hosts()).toHaveLength(0);
+    root.remove();
+  });
+});

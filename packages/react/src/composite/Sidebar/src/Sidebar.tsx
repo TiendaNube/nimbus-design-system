@@ -18,6 +18,15 @@ import {
 import { SidebarBody, SidebarFooter, SidebarHeader } from "./components";
 import { type SidebarComponents, type SidebarProps } from "./sidebar.types";
 
+const PORTAL_ID = "nimbus-sidebar";
+const HOST_USERS = Symbol.for("nimbus-ds.portalHost.users");
+const HOST_OWNED = Symbol.for("nimbus-ds.portalHost.owned");
+
+type PortalHost = HTMLElement & {
+  [HOST_USERS]?: number;
+  [HOST_OWNED]?: boolean;
+};
+
 const Sidebar: React.FC<SidebarProps> & SidebarComponents = ({
   className,
   style: _style,
@@ -43,23 +52,34 @@ const Sidebar: React.FC<SidebarProps> & SidebarComponents = ({
 
   const { refThemeProvider } = useTheme();
   const [portalHost, setPortalHost] = useState<HTMLElement | null>(null);
-  const portalHostId = "nimbus-sidebar";
+
+  const active = open && !root;
 
   useEffect(() => {
-    const provider = refThemeProvider?.current;
-    if (!open || root || !provider) return;
-    // Resolve the identified host among the children of the nearest provider
-    // element, never by a global lookup, so no other provider can capture it.
-    let host = Array.from(provider.children).find(
-      (child): child is HTMLElement => child.id === portalHostId
+    if (!active) return undefined;
+
+    // Resolve the identified host only among the direct children of this
+    // component's own container (its nearest provider, or the body when there
+    // is none), never by a global id lookup, so no other provider can capture it.
+    const container: HTMLElement = refThemeProvider?.current ?? document.body;
+    const existing = Array.from(container.children).find(
+      (child): child is PortalHost => child.id === PORTAL_ID
     );
-    if (!host) {
-      host = document.createElement("div");
-      host.id = portalHostId;
-      provider.appendChild(host);
+    const host: PortalHost = existing ?? document.createElement("div");
+    if (!existing) {
+      host.id = PORTAL_ID;
+      host[HOST_OWNED] = true;
+      container.appendChild(host);
     }
+    host[HOST_USERS] = (host[HOST_USERS] ?? 0) + 1;
     setPortalHost(host);
-  }, [refThemeProvider, open, root, portalHostId]);
+
+    return () => {
+      host[HOST_USERS] = (host[HOST_USERS] ?? 1) - 1;
+      if (host[HOST_USERS] === 0 && host[HOST_OWNED]) host.remove();
+      setPortalHost(null);
+    };
+  }, [active, refThemeProvider]);
 
   const { context } = useFloating({
     open,
@@ -139,10 +159,7 @@ const Sidebar: React.FC<SidebarProps> & SidebarComponents = ({
   }
 
   return (
-    <FloatingPortal
-      id={refThemeProvider ? undefined : portalHostId}
-      root={refThemeProvider ? portalHost : undefined}
-    >
+    <FloatingPortal root={portalHost}>
       <FloatingOverlay
         className={sidebar.classnames.overlay}
         data-testid="overlay-sidebar-button"
