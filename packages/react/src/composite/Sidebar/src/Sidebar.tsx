@@ -10,7 +10,7 @@ import {
   useInteractions,
 } from "@floating-ui/react";
 import { sidebar } from "@nimbus-ds/styles";
-import { useThemePortalRoot } from "@common/hooks";
+import { usePortalHost } from "@common/hooks";
 import {
   eventHasNodeWithAttribute,
   DEFAULT_OUTSIDE_PRESS_IGNORE_ATTRIBUTE,
@@ -18,8 +18,6 @@ import {
 
 import { SidebarBody, SidebarFooter, SidebarHeader } from "./components";
 import { type SidebarComponents, type SidebarProps } from "./sidebar.types";
-
-const PORTAL_ID = "nimbus-sidebar";
 
 const Sidebar: React.FC<SidebarProps> & SidebarComponents = ({
   className,
@@ -44,7 +42,7 @@ const Sidebar: React.FC<SidebarProps> & SidebarComponents = ({
     maxWidth,
   });
 
-  const portalRoot = useThemePortalRoot(PORTAL_ID, open && !root);
+  const host = usePortalHost({ id: "nimbus-sidebar", enabled: open && !root });
 
   const { context } = useFloating({
     open,
@@ -123,10 +121,8 @@ const Sidebar: React.FC<SidebarProps> & SidebarComponents = ({
     );
   }
 
-  if (!portalRoot) return null;
-
   return (
-    <FloatingPortal key={PORTAL_ID} root={portalRoot}>
+    <FloatingPortal root={host}>
       <FloatingOverlay
         className={sidebar.classnames.overlay}
         data-testid="overlay-sidebar-button"

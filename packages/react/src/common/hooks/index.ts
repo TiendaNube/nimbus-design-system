@@ -1,2 +1,2 @@
 export * from "./useCanScroll";
-export * from "./useThemePortalRoot";
+export * from "./usePortalHost";

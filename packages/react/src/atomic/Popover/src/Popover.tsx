@@ -16,11 +16,9 @@ import {
   offset as offsetUI,
 } from "@floating-ui/react";
 import { popover } from "@nimbus-ds/styles";
-import { useThemePortalRoot } from "@common/hooks";
+import { usePortalHost } from "@common/hooks";
 
 import { type PopoverProps } from "./popover.types";
-
-const PORTAL_ID = "nimbus-popover-floating";
 
 const Popover: React.FC<PopoverProps> = ({
   className,
@@ -88,7 +86,7 @@ const Popover: React.FC<PopoverProps> = ({
       }),
   ].filter((middleware) => middleware !== false);
 
-  const portalRoot = useThemePortalRoot(PORTAL_ID, open);
+  const host = usePortalHost({ id: "nimbus-popover-floating", enabled: open });
 
   const { context, floatingStyles } = useFloating({
     open,
@@ -159,21 +157,19 @@ const Popover: React.FC<PopoverProps> = ({
             })
           : children}
       </div>
-      {portalRoot && (
-        <FloatingPortal key={PORTAL_ID} root={portalRoot}>
-          {open && (
-            <>
-              {renderOverlay && (
-                <div
-                  className={popover.classnames.overlay}
-                  data-testid="popover-overlay"
-                />
-              )}
-              {popoverContent}
-            </>
-          )}
-        </FloatingPortal>
-      )}
+      <FloatingPortal root={host}>
+        {open && (
+          <>
+            {renderOverlay && (
+              <div
+                className={popover.classnames.overlay}
+                data-testid="popover-overlay"
+              />
+            )}
+            {popoverContent}
+          </>
+        )}
+      </FloatingPortal>
     </>
   );
 };

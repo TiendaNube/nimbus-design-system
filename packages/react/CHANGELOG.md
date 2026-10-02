@@ -11,7 +11,7 @@ every day, with simplicity, accessibility, consistency and performance.
 
 #### 🐛 Bug fixes
 
-- Tooltip, Popover, Modal and Sidebar: Fixes the floating content being rendered inside another theme provider's element when several or nested theme providers exist; it is now rendered inside its nearest enclosing theme provider. ([#581](https://github.com/TiendaNube/nimbus-design-system/issues/581))
+- Tooltip, Popover, Modal and Sidebar: Fixes the floating content being rendered inside another theme provider's element when several or nested theme providers exist; it is now rendered inside its nearest enclosing theme provider. ([#583](https://github.com/TiendaNube/nimbus-design-system/pull/583))
 
 ## 2026-08-12 `5.62.0`
 

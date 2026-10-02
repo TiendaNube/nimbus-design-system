@@ -15,10 +15,8 @@ import {
 import { tooltip } from "@nimbus-ds/styles";
 import { Text } from "@nimbus-ds/text";
 import { Box } from "@nimbus-ds/box";
-import { useThemePortalRoot } from "@common/hooks";
+import { usePortalHost } from "@common/hooks";
 import { type TooltipProps } from "./tooltip.types";
-
-const PORTAL_ID = "nimbus-tooltip-floating";
 
 const Tooltip: React.FC<TooltipProps> = ({
   className,
@@ -32,7 +30,10 @@ const Tooltip: React.FC<TooltipProps> = ({
 }) => {
   const arrowRef = useRef(null);
   const [isVisible, setVisibility] = useState(false);
-  const portalRoot = useThemePortalRoot(PORTAL_ID, isVisible);
+  const host = usePortalHost({
+    id: "nimbus-tooltip-floating",
+    enabled: isVisible,
+  });
   const { context, strategy, floatingStyles } = useFloating({
     open: isVisible,
     placement: position,
@@ -85,46 +86,44 @@ const Tooltip: React.FC<TooltipProps> = ({
       >
         {children}
       </div>
-      {portalRoot && (
-        <FloatingPortal key={PORTAL_ID} root={portalRoot}>
-          {isVisible && (
-            <div
-              {...rest}
-              {...otherProps}
-              ref={context.refs.setFloating}
-              className={[
-                className,
-                tooltip.classnames.content,
-                classNameStyles,
-              ].join(" ")}
-              style={{
-                ...style,
-                ...floatingStyles,
-                position: strategy,
-              }}
-              {...getFloatingProps()}
+      <FloatingPortal root={host}>
+        {isVisible && (
+          <div
+            {...rest}
+            {...otherProps}
+            ref={context.refs.setFloating}
+            className={[
+              className,
+              tooltip.classnames.content,
+              classNameStyles,
+            ].join(" ")}
+            style={{
+              ...style,
+              ...floatingStyles,
+              position: strategy,
+            }}
+            {...getFloatingProps()}
+          >
+            <Text
+              color="neutral-background"
+              fontSize="caption"
+              lineHeight="caption"
             >
-              <Text
-                color="neutral-background"
-                fontSize="caption"
-                lineHeight="caption"
-              >
-                {content}
-              </Text>
-              {arrow && (
-                <Box
-                  as={FloatingArrow}
-                  data-testid="arrow-element"
-                  ref={arrowRef}
-                  context={context}
-                  color="neutral-textHigh"
-                  fill="currentColor"
-                />
-              )}
-            </div>
-          )}
-        </FloatingPortal>
-      )}
+              {content}
+            </Text>
+            {arrow && (
+              <Box
+                as={FloatingArrow}
+                data-testid="arrow-element"
+                ref={arrowRef}
+                context={context}
+                color="neutral-textHigh"
+                fill="currentColor"
+              />
+            )}
+          </div>
+        )}
+      </FloatingPortal>
     </>
   );
 };

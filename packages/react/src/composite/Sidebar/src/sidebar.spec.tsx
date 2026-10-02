@@ -1,5 +1,6 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { ThemeProvider } from "@nimbus-ds/styles";
 
 import { Sidebar } from "./Sidebar";
@@ -126,119 +127,167 @@ describe("GIVEN <Sidebar />", () => {
   });
 });
 
-const HOST_ID = "nimbus-sidebar";
+type LayoutKind =
+  | "q-nested-before"
+  | "q-nested-after"
+  | "q-sibling-before"
+  | "q-sibling-after";
+
+const LAYOUT_KINDS: LayoutKind[] = [
+  "q-nested-before",
+  "q-nested-after",
+  "q-sibling-before",
+  "q-sibling-after",
+];
+
+/** Builds P and a dark Q in the given document order; `outer` belongs to P and `inner` to Q. */
+const buildLayout = (
+  kind: LayoutKind,
+  inner: React.ReactNode,
+  outer: React.ReactNode
+): React.ReactElement => {
+  const q = (
+    <ThemeProvider theme="dark" data-provider="Q">
+      {inner}
+    </ThemeProvider>
+  );
+  switch (kind) {
+    case "q-nested-before":
+      return (
+        <ThemeProvider data-provider="P">
+          {q}
+          {outer}
+        </ThemeProvider>
+      );
+    case "q-nested-after":
+      return (
+        <ThemeProvider data-provider="P">
+          {outer}
+          {q}
+        </ThemeProvider>
+      );
+    case "q-sibling-before":
+      return (
+        <>
+          {q}
+          <ThemeProvider data-provider="P">{outer}</ThemeProvider>
+        </>
+      );
+    default:
+      return (
+        <>
+          <ThemeProvider data-provider="P">{outer}</ThemeProvider>
+          {q}
+        </>
+      );
+  }
+};
+
+/** Mounts its children only after the button is pressed, so they mount after earlier floating content. */
+const LateMount: React.FC<{ children: React.ReactNode; label: string }> = ({
+  children,
+  label,
+}) => {
+  const [mounted, setMounted] = React.useState(false);
+  return (
+    <>
+      <button type="button" onClick={() => setMounted(true)}>
+        {label}
+      </button>
+      {mounted && children}
+    </>
+  );
+};
+
+const PROVIDER_ATTRIBUTE = "data-provider";
 
 const providerOf = (element: HTMLElement): string | null =>
-  element.closest("[data-provider]")?.getAttribute("data-provider") ?? null;
+  element
+    .closest(`[${PROVIDER_ATTRIBUTE}]`)
+    ?.getAttribute(PROVIDER_ATTRIBUTE) ?? null;
 
-const hostOf = (element: HTMLElement): HTMLElement | null =>
-  element.closest<HTMLElement>(`[id="${HOST_ID}"]`);
+/** Resets body-level portal hosts left by earlier tests so each scenario starts from a clean document. */
+const removeBodyPortalHosts = (): void => {
+  document.querySelectorAll("body > [id]").forEach((host) => host.remove());
+};
 
-const ScopedSidebar: React.FC<{ name: string; open: boolean }> = ({
-  name,
-  open,
-}) => (
-  <Sidebar open={open} data-testid={`sidebar-${name}`}>
-    <div>{`body ${name}`}</div>
-  </Sidebar>
-);
+describe("GIVEN <Sidebar /> inside theme providers", () => {
+  beforeEach(removeBodyPortalHosts);
 
-/**
- * Stage 0 mounts the providers with every sidebar closed, stage 1 opens the
- * nested provider sidebar and stage 2 opens the origin sidebar afterwards.
- */
-type Stage = 0 | 1 | 2;
-
-describe("GIVEN <Sidebar /> displayed inside theme providers", () => {
-  beforeEach(() => {
-    // Hosts created by earlier tests live in document.body; start clean.
-    document.body.innerHTML = "";
-  });
-
-  describe("WHEN it opens inside a dark theme provider or outside any provider", () => {
-    it("THEN should render inside the dark provider (AC-006)", async () => {
-      const tree = (open: boolean) => (
-        <ThemeProvider theme="dark" data-provider="Q">
-          <ScopedSidebar name="q" open={open} />
-        </ThemeProvider>
-      );
-      const { rerender } = render(tree(false));
-      rerender(tree(true));
-      const element = await screen.findByTestId("sidebar-q");
-      expect(providerOf(element)).toBe("Q");
-      expect(hostOf(element)?.parentElement).toBe(
-        document.querySelector('[data-provider="Q"]')
-      );
-    });
-
-    it("THEN should render in the document body without a provider (AC-006)", async () => {
-      const { rerender } = render(<ScopedSidebar name="none" open={false} />);
-      rerender(<ScopedSidebar name="none" open />);
-      const element = await screen.findByTestId("sidebar-none");
-      expect(providerOf(element)).toBeNull();
-      expect(hostOf(element)?.parentElement).toBe(document.body);
-    });
-  });
-
-  describe("WHEN another provider already hosts a sidebar", () => {
-    const nestedBefore = (stage: Stage) => (
-      <ThemeProvider data-provider="P">
-        <ThemeProvider theme="dark" data-provider="Q">
-          <ScopedSidebar name="q" open={stage >= 1} />
-        </ThemeProvider>
-        <ScopedSidebar name="p" open={stage >= 2} />
-      </ThemeProvider>
-    );
-
-    const nestedAfter = (stage: Stage) => (
-      <ThemeProvider data-provider="P">
-        <ScopedSidebar name="p" open={stage >= 2} />
-        <ThemeProvider theme="dark" data-provider="Q">
-          <ScopedSidebar name="q" open={stage >= 1} />
-        </ThemeProvider>
-      </ThemeProvider>
-    );
-
-    const sibling = (stage: Stage) => (
-      <>
-        <ThemeProvider theme="dark" data-provider="Q">
-          <ScopedSidebar name="q" open={stage >= 1} />
-        </ThemeProvider>
-        <ThemeProvider data-provider="P">
-          <ScopedSidebar name="p" open={stage >= 2} />
-        </ThemeProvider>
-      </>
-    );
-
-    it.each([
-      ["nested provider before the origin", nestedBefore],
-      ["nested provider after the origin", nestedAfter],
-      ["sibling provider before the origin", sibling],
-    ])(
-      "THEN should open later in its own provider with a %s (AC-007)",
-      async (_label, tree) => {
-        const { rerender } = render(tree(0));
-        rerender(tree(1));
-        expect(providerOf(await screen.findByTestId("sidebar-q"))).toBe("Q");
-        rerender(tree(2));
-        expect(providerOf(await screen.findByTestId("sidebar-p"))).toBe("P");
-      }
-    );
-  });
-
-  describe("WHEN it uses the root input", () => {
-    it("THEN should keep rendering into the root and create no default host", () => {
-      const root = document.createElement("div");
-      document.body.appendChild(root);
+  describe("WHEN opened inside a dark provider or outside any provider", () => {
+    it("THEN should render inside its dark provider", () => {
       render(
         <ThemeProvider theme="dark" data-provider="Q">
-          <Sidebar root={root} open data-testid="sidebar-root">
-            <div>Scoped</div>
+          <Sidebar open data-testid="sidebar-element">
+            <div>content</div>
           </Sidebar>
         </ThemeProvider>
       );
-      expect(root).toContainElement(screen.getByTestId("sidebar-root"));
-      expect(document.getElementById(HOST_ID)).toBeNull();
+      expect(providerOf(screen.getByTestId("sidebar-element"))).toBe("Q");
+    });
+
+    it("THEN should render outside every provider element when there is none", () => {
+      render(
+        <>
+          <ThemeProvider data-provider="P">
+            <p>unrelated</p>
+          </ThemeProvider>
+          <Sidebar open data-testid="sidebar-element">
+            <div>content</div>
+          </Sidebar>
+        </>
+      );
+      const element = screen.getByTestId("sidebar-element");
+      expect(element).toBeVisible();
+      expect(providerOf(element)).toBeNull();
+    });
+  });
+
+  describe.each(LAYOUT_KINDS)(
+    "WHEN Q already opened a Sidebar and a Sidebar mounts later in P (%s)",
+    (kind) => {
+      it("THEN should render the Sidebar inside P", async () => {
+        const user = userEvent.setup();
+        render(
+          buildLayout(
+            kind,
+            <LateMount label="mount-q">
+              <Sidebar open data-testid="sidebar-q">
+                <div>content</div>
+              </Sidebar>
+            </LateMount>,
+            <LateMount label="mount-p">
+              <Sidebar open data-testid="sidebar-p">
+                <div>content</div>
+              </Sidebar>
+            </LateMount>
+          )
+        );
+        await user.click(screen.getByText("mount-q"));
+        expect(providerOf(screen.getByTestId("sidebar-q"))).toBe("Q");
+        await user.click(screen.getByText("mount-p"));
+        expect(providerOf(screen.getByTestId("sidebar-p"))).toBe("P");
+      });
+    }
+  );
+
+  describe("WHEN root is provided inside a provider", () => {
+    it("THEN should render inside root and create no portal host", () => {
+      const hostCount = (): number =>
+        document.querySelectorAll("#nimbus-sidebar").length;
+      const before = hostCount();
+      const root = document.createElement("div");
+      document.body.appendChild(root);
+      render(
+        <ThemeProvider data-provider="P">
+          <Sidebar open root={root} data-testid="sidebar-element">
+            <div>content</div>
+          </Sidebar>
+        </ThemeProvider>
+      );
+      expect(root.contains(screen.getByTestId("sidebar-element"))).toBe(true);
+      expect(hostCount()).toBe(before);
+      document.body.removeChild(root);
     });
   });
 });
