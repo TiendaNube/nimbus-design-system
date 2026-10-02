@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   useFloating,
   useInteractions,
@@ -12,19 +12,13 @@ import {
   autoUpdate,
   flip,
 } from "@floating-ui/react";
-import { tooltip, useTheme } from "@nimbus-ds/styles";
+import { tooltip } from "@nimbus-ds/styles";
 import { Text } from "@nimbus-ds/text";
 import { Box } from "@nimbus-ds/box";
+import { useThemeScopedPortalHost } from "@common/hooks";
 import { type TooltipProps } from "./tooltip.types";
 
 const PORTAL_ID = "nimbus-tooltip-floating";
-const HOST_USERS = Symbol.for("nimbus-ds.portalHost.users");
-const HOST_OWNED = Symbol.for("nimbus-ds.portalHost.owned");
-
-type PortalHost = HTMLElement & {
-  [HOST_USERS]?: number;
-  [HOST_OWNED]?: boolean;
-};
 
 const Tooltip: React.FC<TooltipProps> = ({
   className,
@@ -38,34 +32,10 @@ const Tooltip: React.FC<TooltipProps> = ({
 }) => {
   const arrowRef = useRef(null);
   const [isVisible, setVisibility] = useState(false);
-  const { refThemeProvider } = useTheme();
-  const [portalHost, setPortalHost] = useState<HTMLElement | null>(null);
-
-  useEffect(() => {
-    if (!isVisible) return undefined;
-
-    // Resolve the identified host only among the direct children of this
-    // component's own container (its nearest provider, or the body when there
-    // is none), never by a global id lookup, so no other provider can capture it.
-    const container: HTMLElement = refThemeProvider?.current ?? document.body;
-    const existing = Array.from(container.children).find(
-      (child): child is PortalHost => child.id === PORTAL_ID
-    );
-    const host: PortalHost = existing ?? document.createElement("div");
-    if (!existing) {
-      host.id = PORTAL_ID;
-      host[HOST_OWNED] = true;
-      container.appendChild(host);
-    }
-    host[HOST_USERS] = (host[HOST_USERS] ?? 0) + 1;
-    setPortalHost(host);
-
-    return () => {
-      host[HOST_USERS] = (host[HOST_USERS] ?? 1) - 1;
-      if (host[HOST_USERS] === 0 && host[HOST_OWNED]) host.remove();
-      setPortalHost(null);
-    };
-  }, [isVisible, refThemeProvider]);
+  const portalHost = useThemeScopedPortalHost({
+    id: PORTAL_ID,
+    active: isVisible,
+  });
 
   const { context, strategy, floatingStyles } = useFloating({
     open: isVisible,
@@ -119,8 +89,8 @@ const Tooltip: React.FC<TooltipProps> = ({
       >
         {children}
       </div>
-      <FloatingPortal root={portalHost}>
-        {isVisible && (
+      {portalHost ? (
+        <FloatingPortal root={portalHost}>
           <div
             {...rest}
             {...otherProps}
@@ -155,8 +125,8 @@ const Tooltip: React.FC<TooltipProps> = ({
               />
             )}
           </div>
-        )}
-      </FloatingPortal>
+        </FloatingPortal>
+      ) : null}
     </>
   );
 };

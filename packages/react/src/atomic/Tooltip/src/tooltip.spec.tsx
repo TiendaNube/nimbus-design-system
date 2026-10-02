@@ -364,6 +364,30 @@ describe("GIVEN the floating host lifecycle of <Tooltip />", () => {
     expect(q.contains(own)).toBe(true);
   });
 
+  it("THEN should display its content again inside an attached provider host after being closed and reopened", async () => {
+    const user = userEvent.setup();
+    render(
+      <ThemeProvider theme="dark" data-testid={PROVIDER_Q}>
+        {makeTooltip("inner")}
+      </ThemeProvider>
+    );
+    const q = screen.getByTestId(PROVIDER_Q);
+    await hoverAnchor(user, "inner");
+
+    await user.unhover(
+      screen.getByText("inner anchor").closest("div") as HTMLElement
+    );
+    await waitFor(() =>
+      expect(screen.queryByTestId("inner-tooltip")).toBeNull()
+    );
+
+    const content = await hoverAnchor(user, "inner");
+    const host = content.closest(`#${WRAPPER_ID}`);
+    expect(host?.parentElement).toBe(q);
+    expect(document.body.contains(content)).toBe(true);
+    expect(hosts()).toHaveLength(1);
+  });
+
   it("THEN should render its content once, in the provider host, under StrictMode", async () => {
     const user = userEvent.setup();
     render(

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import { createPortal } from "react-dom";
 import { RemoveScroll } from "react-remove-scroll";
 import {
@@ -9,23 +9,17 @@ import {
   useDismiss,
   useInteractions,
 } from "@floating-ui/react";
-import { sidebar, useTheme } from "@nimbus-ds/styles";
+import { sidebar } from "@nimbus-ds/styles";
 import {
   eventHasNodeWithAttribute,
   DEFAULT_OUTSIDE_PRESS_IGNORE_ATTRIBUTE,
 } from "@common/event-handling";
+import { useThemeScopedPortalHost } from "@common/hooks";
 
 import { SidebarBody, SidebarFooter, SidebarHeader } from "./components";
 import { type SidebarComponents, type SidebarProps } from "./sidebar.types";
 
 const PORTAL_ID = "nimbus-sidebar";
-const HOST_USERS = Symbol.for("nimbus-ds.portalHost.users");
-const HOST_OWNED = Symbol.for("nimbus-ds.portalHost.owned");
-
-type PortalHost = HTMLElement & {
-  [HOST_USERS]?: number;
-  [HOST_OWNED]?: boolean;
-};
 
 const Sidebar: React.FC<SidebarProps> & SidebarComponents = ({
   className,
@@ -50,36 +44,10 @@ const Sidebar: React.FC<SidebarProps> & SidebarComponents = ({
     maxWidth,
   });
 
-  const { refThemeProvider } = useTheme();
-  const [portalHost, setPortalHost] = useState<HTMLElement | null>(null);
-
-  const active = open && !root;
-
-  useEffect(() => {
-    if (!active) return undefined;
-
-    // Resolve the identified host only among the direct children of this
-    // component's own container (its nearest provider, or the body when there
-    // is none), never by a global id lookup, so no other provider can capture it.
-    const container: HTMLElement = refThemeProvider?.current ?? document.body;
-    const existing = Array.from(container.children).find(
-      (child): child is PortalHost => child.id === PORTAL_ID
-    );
-    const host: PortalHost = existing ?? document.createElement("div");
-    if (!existing) {
-      host.id = PORTAL_ID;
-      host[HOST_OWNED] = true;
-      container.appendChild(host);
-    }
-    host[HOST_USERS] = (host[HOST_USERS] ?? 0) + 1;
-    setPortalHost(host);
-
-    return () => {
-      host[HOST_USERS] = (host[HOST_USERS] ?? 1) - 1;
-      if (host[HOST_USERS] === 0 && host[HOST_OWNED]) host.remove();
-      setPortalHost(null);
-    };
-  }, [active, refThemeProvider]);
+  const portalHost = useThemeScopedPortalHost({
+    id: PORTAL_ID,
+    active: open && !root,
+  });
 
   const { context } = useFloating({
     open,
@@ -157,6 +125,8 @@ const Sidebar: React.FC<SidebarProps> & SidebarComponents = ({
       root
     );
   }
+
+  if (!portalHost) return null;
 
   return (
     <FloatingPortal root={portalHost}>

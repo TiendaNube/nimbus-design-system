@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useMemo } from "react";
+import React, { useRef, useState, useMemo } from "react";
 import {
   FloatingPortal,
   FloatingArrow,
@@ -15,18 +15,12 @@ import {
   arrow as arrowUI,
   offset as offsetUI,
 } from "@floating-ui/react";
-import { popover, useTheme } from "@nimbus-ds/styles";
+import { popover } from "@nimbus-ds/styles";
+import { useThemeScopedPortalHost } from "@common/hooks";
 
 import { type PopoverProps } from "./popover.types";
 
 const PORTAL_ID = "nimbus-popover-floating";
-const HOST_USERS = Symbol.for("nimbus-ds.portalHost.users");
-const HOST_OWNED = Symbol.for("nimbus-ds.portalHost.owned");
-
-type PortalHost = HTMLElement & {
-  [HOST_USERS]?: number;
-  [HOST_OWNED]?: boolean;
-};
 
 const Popover: React.FC<PopoverProps> = ({
   className,
@@ -94,34 +88,7 @@ const Popover: React.FC<PopoverProps> = ({
       }),
   ].filter((middleware) => middleware !== false);
 
-  const { refThemeProvider } = useTheme();
-  const [portalHost, setPortalHost] = useState<HTMLElement | null>(null);
-
-  useEffect(() => {
-    if (!open) return undefined;
-
-    // Resolve the identified host only among the direct children of this
-    // component's own container (its nearest provider, or the body when there
-    // is none), never by a global id lookup, so no other provider can capture it.
-    const container: HTMLElement = refThemeProvider?.current ?? document.body;
-    const existing = Array.from(container.children).find(
-      (child): child is PortalHost => child.id === PORTAL_ID
-    );
-    const host: PortalHost = existing ?? document.createElement("div");
-    if (!existing) {
-      host.id = PORTAL_ID;
-      host[HOST_OWNED] = true;
-      container.appendChild(host);
-    }
-    host[HOST_USERS] = (host[HOST_USERS] ?? 0) + 1;
-    setPortalHost(host);
-
-    return () => {
-      host[HOST_USERS] = (host[HOST_USERS] ?? 1) - 1;
-      if (host[HOST_USERS] === 0 && host[HOST_OWNED]) host.remove();
-      setPortalHost(null);
-    };
-  }, [open, refThemeProvider]);
+  const portalHost = useThemeScopedPortalHost({ id: PORTAL_ID, active: open });
 
   const { context, floatingStyles } = useFloating({
     open,
@@ -192,19 +159,17 @@ const Popover: React.FC<PopoverProps> = ({
             })
           : children}
       </div>
-      <FloatingPortal root={portalHost}>
-        {open && (
-          <>
-            {renderOverlay && (
-              <div
-                className={popover.classnames.overlay}
-                data-testid="popover-overlay"
-              />
-            )}
-            {popoverContent}
-          </>
-        )}
-      </FloatingPortal>
+      {portalHost ? (
+        <FloatingPortal root={portalHost}>
+          {renderOverlay && (
+            <div
+              className={popover.classnames.overlay}
+              data-testid="popover-overlay"
+            />
+          )}
+          {popoverContent}
+        </FloatingPortal>
+      ) : null}
     </>
   );
 };

@@ -510,6 +510,40 @@ describe("GIVEN the floating host lifecycle of <Modal />", () => {
     expect(q.contains(own)).toBe(true);
   });
 
+  it("THEN should display its content again inside an attached provider host after being closed and reopened", () => {
+    const { rerender } = render(makeTwo(["inner"]));
+    const q = screen.getByTestId(PROVIDER_Q);
+
+    rerender(makeTwo([]));
+    expect(screen.queryByTestId("inner-modal")).toBeNull();
+
+    rerender(makeTwo(["inner"]));
+    const content = screen.getByTestId("inner-modal");
+    expect(content.closest(`#${DEFAULT_WRAPPER_ID}`)?.parentElement).toBe(q);
+    expect(document.body.contains(content)).toBe(true);
+    expect(hosts()).toHaveLength(1);
+  });
+
+  it("THEN should move its content to a host with the new identifier when portalId changes while open", () => {
+    const makeWithPortalId = (portalId: string) => (
+      <ThemeProvider theme="dark" data-testid={PROVIDER_Q}>
+        {makeModal("inner", true, portalId)}
+      </ThemeProvider>
+    );
+    const { rerender } = render(makeWithPortalId("custom"));
+    const q = screen.getByTestId(PROVIDER_Q);
+    expect(
+      screen.getByTestId("inner-modal").closest("#custom")?.parentElement
+    ).toBe(q);
+
+    rerender(makeWithPortalId("other"));
+    const content = screen.getByTestId("inner-modal");
+    expect(content.closest("#other")?.parentElement).toBe(q);
+    expect(document.body.contains(content)).toBe(true);
+    expect(hosts("custom")).toHaveLength(0);
+    hosts("other").forEach((element) => element.remove());
+  });
+
   it("THEN should render its content once, in the provider host, under StrictMode", () => {
     render(<React.StrictMode>{makeTwo(["inner"])}</React.StrictMode>);
     expect(screen.getAllByTestId("inner-modal")).toHaveLength(1);

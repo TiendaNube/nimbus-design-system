@@ -612,6 +612,41 @@ describe("GIVEN the floating host lifecycle of <Popover />", () => {
     expect(q.contains(own)).toBe(true);
   });
 
+  it("THEN should display its content again inside an attached provider host after being closed and reopened", () => {
+    const { rerender } = render(makeControlled(["inner"], ["inner"]));
+    const q = screen.getByTestId(PROVIDER_Q);
+
+    rerender(makeControlled(["inner"], []));
+    expect(screen.queryByTestId("inner-popover")).toBeNull();
+
+    rerender(makeControlled(["inner"], ["inner"]));
+    const content = screen.getByTestId("inner-popover");
+    expect(content.closest(`#${WRAPPER_ID}`)?.parentElement).toBe(q);
+    expect(document.body.contains(content)).toBe(true);
+    expect(hosts()).toHaveLength(1);
+  });
+
+  it("THEN should display its content again inside an attached provider host after a click closes and reopens it", async () => {
+    const user = userEvent.setup();
+    render(
+      <ThemeProvider theme="dark" data-testid={PROVIDER_Q}>
+        {makePopover("inner")}
+      </ThemeProvider>
+    );
+    const q = screen.getByTestId(PROVIDER_Q);
+    const anchor = screen.getByText("inner anchor").closest("div");
+
+    await openPopover(user, "inner");
+    await user.click(anchor as HTMLElement);
+    await waitFor(() =>
+      expect(screen.queryByTestId("inner-popover")).toBeNull()
+    );
+
+    const content = await openPopover(user, "inner");
+    expect(content.closest(`#${WRAPPER_ID}`)?.parentElement).toBe(q);
+    expect(document.body.contains(content)).toBe(true);
+  });
+
   it("THEN should render its content once, in the provider host, under StrictMode", () => {
     render(
       <React.StrictMode>
