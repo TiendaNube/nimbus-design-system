@@ -17,6 +17,7 @@ import {
 
 import { SidebarBody, SidebarFooter, SidebarHeader } from "./components";
 import { type SidebarComponents, type SidebarProps } from "./sidebar.types";
+import { useScopedPortalRoot } from "./useScopedPortalRoot";
 
 const Sidebar: React.FC<SidebarProps> & SidebarComponents = ({
   className,
@@ -42,6 +43,7 @@ const Sidebar: React.FC<SidebarProps> & SidebarComponents = ({
   });
 
   const { refThemeProvider } = useTheme();
+  const portalRoot = useScopedPortalRoot("nimbus-sidebar", refThemeProvider);
 
   const { context } = useFloating({
     open,
@@ -121,7 +123,10 @@ const Sidebar: React.FC<SidebarProps> & SidebarComponents = ({
   }
 
   return (
-    <FloatingPortal id="nimbus-sidebar" root={refThemeProvider?.current}>
+    <FloatingPortal
+      id={refThemeProvider ? undefined : "nimbus-sidebar"}
+      root={refThemeProvider ? portalRoot : undefined}
+    >
       <FloatingOverlay
         className={sidebar.classnames.overlay}
         data-testid="overlay-sidebar-button"

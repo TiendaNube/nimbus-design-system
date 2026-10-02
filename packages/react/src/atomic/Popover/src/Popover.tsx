@@ -18,6 +18,7 @@ import {
 import { popover, useTheme } from "@nimbus-ds/styles";
 
 import { type PopoverProps } from "./popover.types";
+import { useScopedPortalRoot } from "./useScopedPortalRoot";
 
 const Popover: React.FC<PopoverProps> = ({
   className,
@@ -86,6 +87,10 @@ const Popover: React.FC<PopoverProps> = ({
   ].filter((middleware) => middleware !== false);
 
   const { refThemeProvider } = useTheme();
+  const portalRoot = useScopedPortalRoot(
+    "nimbus-popover-floating",
+    refThemeProvider
+  );
 
   const { context, floatingStyles } = useFloating({
     open,
@@ -157,8 +162,8 @@ const Popover: React.FC<PopoverProps> = ({
           : children}
       </div>
       <FloatingPortal
-        id="nimbus-popover-floating"
-        root={refThemeProvider?.current}
+        id={refThemeProvider ? undefined : "nimbus-popover-floating"}
+        root={refThemeProvider ? portalRoot : undefined}
       >
         {open && (
           <>

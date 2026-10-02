@@ -3,6 +3,12 @@
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories
 every day, with simplicity, accessibility, consistency and performance.
 
+## 2026-10-02 `5.63.1`
+
+#### 🐛 Bug fixes
+
+- Tooltip, Popover, Modal and Sidebar: Each default-path floating element now renders inside the `ThemeProvider` that contains it, instead of joining a same-id container owned by another nested `ThemeProvider`, so it keeps its origin theme and the documented layer order. The `nimbus-tooltip-floating`, `nimbus-popover-floating`, `nimbus-modal-floating`/`portalId` and `nimbus-sidebar` ids and the public API are unchanged. ([#581](https://github.com/TiendaNube/nimbus-design-system/issues/581))
+
 ## 2026-08-31 `5.63.0`
 
 #### 🎉 New features

@@ -16,6 +16,7 @@ import { tooltip, useTheme } from "@nimbus-ds/styles";
 import { Text } from "@nimbus-ds/text";
 import { Box } from "@nimbus-ds/box";
 import { type TooltipProps } from "./tooltip.types";
+import { useScopedPortalRoot } from "./useScopedPortalRoot";
 
 const Tooltip: React.FC<TooltipProps> = ({
   className,
@@ -30,6 +31,10 @@ const Tooltip: React.FC<TooltipProps> = ({
   const arrowRef = useRef(null);
   const [isVisible, setVisibility] = useState(false);
   const { refThemeProvider } = useTheme();
+  const portalRoot = useScopedPortalRoot(
+    "nimbus-tooltip-floating",
+    refThemeProvider
+  );
   const { context, strategy, floatingStyles } = useFloating({
     open: isVisible,
     placement: position,
@@ -83,8 +88,8 @@ const Tooltip: React.FC<TooltipProps> = ({
         {children}
       </div>
       <FloatingPortal
-        id="nimbus-tooltip-floating"
-        root={refThemeProvider?.current}
+        id={refThemeProvider ? undefined : "nimbus-tooltip-floating"}
+        root={refThemeProvider ? portalRoot : undefined}
       >
         {isVisible && (
           <div
