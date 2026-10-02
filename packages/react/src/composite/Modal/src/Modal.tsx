@@ -15,11 +15,11 @@ import { CloseIcon } from "@nimbus-ds/icons";
 import { Icon } from "@nimbus-ds/icon";
 import { modal } from "@nimbus-ds/styles";
 
+import { useThemePortalRoot } from "@common/hooks";
 import {
   eventHasNodeWithAttribute,
   DEFAULT_OUTSIDE_PRESS_IGNORE_ATTRIBUTE,
 } from "@common/event-handling";
-import { useThemeScopedPortalHost } from "@common/hooks";
 import { type ModalProps, type ModalComponents } from "./modal.types";
 import { ModalBody, ModalFooter, ModalHeader } from "./components";
 
@@ -51,10 +51,8 @@ const Modal: React.FC<ModalProps> & ModalComponents = ({
     padding,
   });
 
-  const portalHost = useThemeScopedPortalHost({
-    id: portalId ?? DEFAULT_PORTAL_ID,
-    active: open && !root,
-  });
+  const portalHostId = portalId ?? DEFAULT_PORTAL_ID;
+  const portalRoot = useThemePortalRoot(portalHostId, open && !root);
 
   const { context } = useFloating({
     open,
@@ -145,10 +143,10 @@ const Modal: React.FC<ModalProps> & ModalComponents = ({
     );
   }
 
-  if (!portalHost) return null;
+  if (!portalRoot) return null;
 
   return (
-    <FloatingPortal root={portalHost}>
+    <FloatingPortal key={portalHostId} root={portalRoot}>
       <FloatingOverlay
         className={[
           modal.classnames.overlay,

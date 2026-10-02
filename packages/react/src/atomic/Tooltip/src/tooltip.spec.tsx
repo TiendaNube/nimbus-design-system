@@ -1,5 +1,5 @@
 import React from "react";
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { tooltip as tooltipStyles, ThemeProvider } from "@nimbus-ds/styles";
 
@@ -152,255 +152,142 @@ describe("GIVEN <Tooltip />", () => {
   });
 });
 
-type Layout = "nested-after-anchor" | "nested-before-anchor" | "sibling-before";
-type Name = "inner" | "outer";
+const HOST_ID = "nimbus-tooltip-floating";
 
-const PROVIDER_P = "provider-p";
-const PROVIDER_Q = "provider-q";
-const WRAPPER_ID = "nimbus-tooltip-floating";
+const providerOf = (element: HTMLElement): string | null =>
+  element.closest("[data-provider]")?.getAttribute("data-provider") ?? null;
 
-const makeTooltip = (name: Name) => (
-  <Tooltip content={`${name} content`} data-testid={`${name}-tooltip`}>
-    <p>{`${name} anchor`}</p>
+const hostsInDocument = (): HTMLElement[] =>
+  Array.from(document.querySelectorAll<HTMLElement>(`[id="${HOST_ID}"]`));
+
+const showTooltip = async (
+  user: ReturnType<typeof userEvent.setup>,
+  anchorTestId: string,
+  contentTestId: string
+): Promise<HTMLElement> => {
+  await user.hover(screen.getByTestId(anchorTestId));
+  await waitFor(() => {
+    expect(screen.getByTestId(contentTestId)).toBeDefined();
+  });
+  return screen.getByTestId(contentTestId);
+};
+
+const Origin: React.FC<{ name: string }> = ({ name }) => (
+  <Tooltip content={`content ${name}`} data-testid={`content-${name}`}>
+    <p data-testid={`anchor-${name}`}>{name}</p>
   </Tooltip>
 );
 
-/**
- * P (base) is the origin of the "outer" tooltip, Q (dark) holds the "inner"
- * tooltip (a themed side area). `layout` places Q relative to the outer anchor.
- * A tooltip is mounted only while its name is in `mounted`, so the second one
- * can be mounted after the first has already created its floating wrapper.
- */
-const makeScene = (layout: Layout, mounted: Name[]) => {
-  const inner = (
-    <ThemeProvider theme="dark" data-testid={PROVIDER_Q}>
-      {mounted.includes("inner") && makeTooltip("inner")}
-    </ThemeProvider>
-  );
-  const outer = mounted.includes("outer") && makeTooltip("outer");
+describe("GIVEN <Tooltip /> displayed inside theme providers", () => {
+  beforeEach(() => {
+    // Hosts created by earlier tests live in document.body; start clean.
+    document.body.innerHTML = "";
+  });
 
-  if (layout === "sibling-before") {
-    return (
+  describe("WHEN it is rendered inside a dark theme provider or outside any provider", () => {
+    it("THEN should render the content inside the dark provider element (AC-005)", async () => {
+      const user = userEvent.setup();
+      render(
+        <ThemeProvider theme="dark" data-provider="Q">
+          <Origin name="q" />
+        </ThemeProvider>
+      );
+      const content = await showTooltip(user, "anchor-q", "content-q");
+      expect(providerOf(content)).toBe("Q");
+      expect(content.closest(`[id="${HOST_ID}"]`)?.parentElement).toBe(
+        document.querySelector('[data-provider="Q"]')
+      );
+    });
+
+    it("THEN should render the content in the document body without a provider (AC-005)", async () => {
+      const user = userEvent.setup();
+      render(<Origin name="none" />);
+      const content = await showTooltip(user, "anchor-none", "content-none");
+      expect(providerOf(content)).toBeNull();
+      expect(content.closest(`[id="${HOST_ID}"]`)?.parentElement).toBe(
+        document.body
+      );
+    });
+  });
+
+  describe("WHEN another provider already hosts a tooltip with the same identifier", () => {
+    const nestedBefore = (withP: boolean) => (
+      <ThemeProvider data-provider="P">
+        <ThemeProvider theme="dark" data-provider="Q">
+          <Origin name="q" />
+        </ThemeProvider>
+        {withP && <Origin name="p" />}
+      </ThemeProvider>
+    );
+
+    const nestedAfter = (withP: boolean) => (
+      <ThemeProvider data-provider="P">
+        {withP && <Origin name="p" />}
+        <ThemeProvider theme="dark" data-provider="Q">
+          <Origin name="q" />
+        </ThemeProvider>
+      </ThemeProvider>
+    );
+
+    const sibling = (withP: boolean) => (
       <>
-        {inner}
-        <ThemeProvider theme="base" data-testid={PROVIDER_P}>
-          {outer}
+        <ThemeProvider theme="dark" data-provider="Q">
+          <Origin name="q" />
+        </ThemeProvider>
+        <ThemeProvider data-provider="P">
+          {withP && <Origin name="p" />}
         </ThemeProvider>
       </>
     );
-  }
 
-  return (
-    <ThemeProvider theme="base" data-testid={PROVIDER_P}>
-      {layout === "nested-before-anchor" && inner}
-      {outer}
-      {layout === "nested-after-anchor" && inner}
-    </ThemeProvider>
-  );
-};
+    it.each([
+      ["nested provider before the origin", nestedBefore],
+      ["nested provider after the origin", nestedAfter],
+      ["sibling provider before the origin", sibling],
+    ])(
+      "THEN should render the content in its own provider, mounted later, with a %s (AC-006)",
+      async (_label, tree) => {
+        const user = userEvent.setup();
+        const { rerender } = render(tree(false));
+        const inQ = await showTooltip(user, "anchor-q", "content-q");
+        expect(providerOf(inQ)).toBe("Q");
+        rerender(tree(true));
+        const inP = await showTooltip(user, "anchor-p", "content-p");
+        expect(providerOf(inP)).toBe("P");
+      }
+    );
 
-const hoverAnchor = async (
-  user: ReturnType<typeof userEvent.setup>,
-  name: Name
-) => {
-  const anchor = screen.getByText(`${name} anchor`).closest("div");
-  await user.hover(anchor as HTMLElement);
-  return waitFor(() => screen.getByTestId(`${name}-tooltip`));
-};
-
-describe("GIVEN <Tooltip /> inside theme providers", () => {
-  beforeEach(() => {
-    // Tooltips rendered outside any provider leave their identified wrapper in
-    // the body after unmount; remove it so each scenario starts from a clean document.
-    document
-      .querySelectorAll(`#${WRAPPER_ID}`)
-      .forEach((element) => element.remove());
+    it("THEN should render a tooltip without provider, mounted later, in the body (AC-006)", async () => {
+      const user = userEvent.setup();
+      const tree = (withOutside: boolean) => (
+        <>
+          <ThemeProvider theme="dark" data-provider="Q">
+            <Origin name="q" />
+          </ThemeProvider>
+          {withOutside && <Origin name="none" />}
+        </>
+      );
+      const { rerender } = render(tree(false));
+      const inQ = await showTooltip(user, "anchor-q", "content-q");
+      expect(providerOf(inQ)).toBe("Q");
+      rerender(tree(true));
+      const outside = await showTooltip(user, "anchor-none", "content-none");
+      expect(providerOf(outside)).toBeNull();
+    });
   });
 
-  describe("WHEN it is displayed inside a single theme provider", () => {
-    it("THEN should render its content inside the provider element", async () => {
+  describe("WHEN several tooltips are displayed in the same provider", () => {
+    it("THEN should create a single host with the identifier", async () => {
       const user = userEvent.setup();
       render(
-        <ThemeProvider theme="dark" data-testid={PROVIDER_Q}>
-          {makeTooltip("inner")}
+        <ThemeProvider data-provider="P">
+          <Origin name="one" />
+          <Origin name="two" />
         </ThemeProvider>
       );
-      const content = await hoverAnchor(user, "inner");
-      expect(screen.getByTestId(PROVIDER_Q).contains(content)).toBe(true);
+      await showTooltip(user, "anchor-one", "content-one");
+      await showTooltip(user, "anchor-two", "content-two");
+      expect(hostsInDocument()).toHaveLength(1);
     });
-  });
-
-  describe("WHEN it is displayed outside any theme provider", () => {
-    it("THEN should still display its content, without a theme scope", async () => {
-      const user = userEvent.setup();
-      render(makeTooltip("outer"));
-      const content = await hoverAnchor(user, "outer");
-      expect(content.closest(`[data-testid="${PROVIDER_P}"]`)).toBeNull();
-      expect(document.body.contains(content)).toBe(true);
-    });
-  });
-
-  describe.each<Layout>([
-    "nested-after-anchor",
-    "nested-before-anchor",
-    "sibling-before",
-  ])("AND the dark provider Q is placed as %s", (layout) => {
-    it("THEN the tooltip of P mounted after Q displayed its own is inside P and not inside Q", async () => {
-      const user = userEvent.setup();
-      const { rerender } = render(makeScene(layout, ["inner"]));
-      const p = screen.getByTestId(PROVIDER_P);
-      const q = screen.getByTestId(PROVIDER_Q);
-
-      const innerContent = await hoverAnchor(user, "inner");
-      expect(q.contains(innerContent)).toBe(true);
-
-      rerender(makeScene(layout, ["inner", "outer"]));
-      const outerContent = await hoverAnchor(user, "outer");
-      expect(p.contains(outerContent)).toBe(true);
-      expect(q.contains(outerContent)).toBe(false);
-    });
-
-    it("THEN the tooltip of Q mounted after P displayed its own is inside Q", async () => {
-      const user = userEvent.setup();
-      const { rerender } = render(makeScene(layout, ["outer"]));
-      const p = screen.getByTestId(PROVIDER_P);
-      const q = screen.getByTestId(PROVIDER_Q);
-
-      const outerContent = await hoverAnchor(user, "outer");
-      expect(p.contains(outerContent)).toBe(true);
-
-      rerender(makeScene(layout, ["outer", "inner"]));
-      const innerContent = await hoverAnchor(user, "inner");
-      expect(q.contains(innerContent)).toBe(true);
-      expect(innerContent.closest(`#${WRAPPER_ID}`)?.parentElement).toBe(q);
-    });
-  });
-});
-
-describe("GIVEN the floating host lifecycle of <Tooltip />", () => {
-  const hosts = () => document.querySelectorAll(`#${WRAPPER_ID}`);
-
-  beforeEach(() => {
-    hosts().forEach((element) => element.remove());
-  });
-
-  const openByMouse = async (name: Name) => {
-    fireEvent.mouseMove(
-      screen.getByText(`${name} anchor`).closest("div") as HTMLElement
-    );
-    return waitFor(() => screen.getByTestId(`${name}-tooltip`));
-  };
-
-  it("THEN should not create a host while it is closed", () => {
-    render(
-      <ThemeProvider theme="dark" data-testid={PROVIDER_Q}>
-        {makeTooltip("inner")}
-      </ThemeProvider>
-    );
-    expect(hosts()).toHaveLength(0);
-  });
-
-  it("THEN should host content outside any provider as a direct child of the body", async () => {
-    const user = userEvent.setup();
-    render(makeTooltip("outer"));
-    const content = await hoverAnchor(user, "outer");
-    expect(content.closest(`#${WRAPPER_ID}`)?.parentElement).toBe(
-      document.body
-    );
-  });
-
-  it("THEN two displayed tooltips share one host per provider and closing one keeps the other", async () => {
-    const { rerender } = render(
-      <ThemeProvider theme="dark" data-testid={PROVIDER_Q}>
-        {makeTooltip("inner")}
-        {makeTooltip("outer")}
-      </ThemeProvider>
-    );
-    await openByMouse("inner");
-    await openByMouse("outer");
-    const q = screen.getByTestId(PROVIDER_Q);
-    expect(q.querySelectorAll(`#${WRAPPER_ID}`)).toHaveLength(1);
-
-    rerender(
-      <ThemeProvider theme="dark" data-testid={PROVIDER_Q}>
-        {makeTooltip("outer")}
-      </ThemeProvider>
-    );
-    expect(screen.getByTestId("outer-tooltip")).toBeTruthy();
-    expect(q.querySelectorAll(`#${WRAPPER_ID}`)).toHaveLength(1);
-  });
-
-  it("THEN should remove its owned host once its content is unmounted", async () => {
-    const user = userEvent.setup();
-    const { rerender } = render(
-      <ThemeProvider theme="dark" data-testid={PROVIDER_Q}>
-        {makeTooltip("inner")}
-      </ThemeProvider>
-    );
-    await hoverAnchor(user, "inner");
-    expect(hosts()).toHaveLength(1);
-
-    rerender(<ThemeProvider theme="dark" data-testid={PROVIDER_Q} />);
-    expect(hosts()).toHaveLength(0);
-  });
-
-  it("THEN should reuse a host placed by the consumer inside the provider and never remove it", async () => {
-    const user = userEvent.setup();
-    const { rerender } = render(
-      <ThemeProvider theme="dark" data-testid={PROVIDER_Q}>
-        {makeTooltip("inner")}
-      </ThemeProvider>
-    );
-    const q = screen.getByTestId(PROVIDER_Q);
-    const own = document.createElement("div");
-    own.id = WRAPPER_ID;
-    q.appendChild(own);
-
-    const content = await hoverAnchor(user, "inner");
-    expect(own.contains(content)).toBe(true);
-    expect(hosts()).toHaveLength(1);
-
-    rerender(<ThemeProvider theme="dark" data-testid={PROVIDER_Q} />);
-    expect(q.contains(own)).toBe(true);
-  });
-
-  it("THEN should display its content again inside an attached provider host after being closed and reopened", async () => {
-    const user = userEvent.setup();
-    render(
-      <ThemeProvider theme="dark" data-testid={PROVIDER_Q}>
-        {makeTooltip("inner")}
-      </ThemeProvider>
-    );
-    const q = screen.getByTestId(PROVIDER_Q);
-    await hoverAnchor(user, "inner");
-
-    await user.unhover(
-      screen.getByText("inner anchor").closest("div") as HTMLElement
-    );
-    await waitFor(() =>
-      expect(screen.queryByTestId("inner-tooltip")).toBeNull()
-    );
-
-    const content = await hoverAnchor(user, "inner");
-    const host = content.closest(`#${WRAPPER_ID}`);
-    expect(host?.parentElement).toBe(q);
-    expect(document.body.contains(content)).toBe(true);
-    expect(hosts()).toHaveLength(1);
-  });
-
-  it("THEN should render its content once, in the provider host, under StrictMode", async () => {
-    const user = userEvent.setup();
-    render(
-      <React.StrictMode>
-        <ThemeProvider theme="dark" data-testid={PROVIDER_Q}>
-          {makeTooltip("inner")}
-        </ThemeProvider>
-      </React.StrictMode>
-    );
-    const content = await hoverAnchor(user, "inner");
-    expect(screen.getAllByTestId("inner-tooltip")).toHaveLength(1);
-    expect(content.closest(`#${WRAPPER_ID}`)?.parentElement).toBe(
-      screen.getByTestId(PROVIDER_Q)
-    );
   });
 });

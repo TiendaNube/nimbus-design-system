@@ -3162,10 +3162,8 @@ __metadata:
     "@nimbus-ds/button": "workspace:^"
     "@nimbus-ds/icon": "workspace:^"
     "@nimbus-ds/icons": "workspace:^"
-    "@nimbus-ds/popover": "workspace:^"
     "@nimbus-ds/text": "workspace:^"
     "@nimbus-ds/title": "workspace:^"
-    "@nimbus-ds/tooltip": "workspace:^"
     "@nimbus-ds/webpack": "workspace:^"
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0 || ^19.0

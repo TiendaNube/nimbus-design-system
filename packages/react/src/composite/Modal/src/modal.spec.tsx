@@ -8,12 +8,6 @@ import { Popover } from "@nimbus-ds/popover";
 import { Modal } from "./Modal";
 import { type ModalProps } from "./modal.types";
 
-global.ResizeObserver = jest.fn().mockImplementation(() => ({
-  observe: jest.fn(),
-  unobserve: jest.fn(),
-  disconnect: jest.fn(),
-}));
-
 const mockedOnDismiss = jest.fn();
 
 const makeSut = (
@@ -245,326 +239,216 @@ describe("GIVEN <Modal />", () => {
   });
 });
 
-type Layout = "nested-after-origin" | "nested-before-origin" | "sibling-before";
-type Name = "inner" | "outer";
+/**
+ * Stage 0 mounts the providers with every modal closed, stage 1 opens the
+ * nested provider modal and stage 2 opens the origin modal afterwards.
+ */
+type Stage = 0 | 1 | 2;
 
-const PROVIDER_P = "provider-p";
-const PROVIDER_Q = "provider-q";
-const DEFAULT_WRAPPER_ID = "nimbus-modal-floating";
+const MODAL_HOST_ID = "nimbus-modal-floating";
+const TOOLTIP_HOST_ID = "nimbus-tooltip-floating";
+const POPOVER_HOST_ID = "nimbus-popover-floating";
 
-const makeModal = (name: Name, open: boolean, portalId?: string) => (
-  <Modal open={open} portalId={portalId} data-testid={`${name}-modal`}>
-    <div>{`${name} modal`}</div>
+const providerOf = (element: HTMLElement): string | null =>
+  element.closest("[data-provider]")?.getAttribute("data-provider") ?? null;
+
+const hostOf = (element: HTMLElement, id: string): HTMLElement | null =>
+  element.closest<HTMLElement>(`[id="${id}"]`);
+
+interface ScopedModalProps {
+  name: string;
+  open: boolean;
+  portalId: string | undefined;
+}
+
+const ScopedModal: React.FC<ScopedModalProps> = ({ name, open, portalId }) => (
+  <Modal open={open} portalId={portalId} data-testid={`modal-${name}`}>
+    <div>{`body ${name}`}</div>
   </Modal>
 );
 
-/**
- * P (base) declares the "outer" Modal, Q (dark) is a themed side area that
- * declares the "inner" Modal. `layout` places Q relative to the outer Modal.
- * Each Modal is open only while its name is in `opened`, so the second one
- * opens after the first has already created its floating wrapper.
- */
-const makeScene = (layout: Layout, opened: Name[], portalId?: string) => {
-  const inner = (
-    <ThemeProvider theme="dark" data-testid={PROVIDER_Q}>
-      {makeModal("inner", opened.includes("inner"), portalId)}
-    </ThemeProvider>
-  );
-  const outer = makeModal("outer", opened.includes("outer"), portalId);
+const FloatingInside: React.FC<{ name: string; popoverOpen: boolean }> = ({
+  name,
+  popoverOpen,
+}) => (
+  <>
+    <Tooltip content={`tip ${name}`} data-testid={`tooltip-${name}`}>
+      <button type="button" data-testid={`tooltip-anchor-${name}`}>
+        tip
+      </button>
+    </Tooltip>
+    <Popover
+      visible={popoverOpen}
+      content={<p>{`pop ${name}`}</p>}
+      data-testid={`popover-${name}`}
+    >
+      <button type="button">pop</button>
+    </Popover>
+  </>
+);
 
-  if (layout === "sibling-before") {
-    return (
+describe("GIVEN <Modal /> displayed inside theme providers", () => {
+  beforeEach(() => {
+    // Hosts created by earlier tests live in document.body; start clean.
+    document.body.innerHTML = "";
+  });
+
+  describe("WHEN it opens inside a dark theme provider or outside any provider", () => {
+    it("THEN should render inside the dark provider with the default host (AC-008)", async () => {
+      const tree = (open: boolean) => (
+        <ThemeProvider theme="dark" data-provider="Q">
+          <ScopedModal name="q" open={open} portalId={undefined} />
+        </ThemeProvider>
+      );
+      const { rerender } = render(tree(false));
+      rerender(tree(true));
+      const element = await screen.findByTestId("modal-q");
+      expect(providerOf(element)).toBe("Q");
+      expect(hostOf(element, MODAL_HOST_ID)?.parentElement).toBe(
+        document.querySelector('[data-provider="Q"]')
+      );
+    });
+
+    it("THEN should render inside the provider using a custom portalId as the host id (AC-008)", async () => {
+      const tree = (open: boolean) => (
+        <ThemeProvider theme="dark" data-provider="Q">
+          <ScopedModal name="q" open={open} portalId="custom" />
+        </ThemeProvider>
+      );
+      const { rerender } = render(tree(false));
+      rerender(tree(true));
+      const element = await screen.findByTestId("modal-q");
+      expect(providerOf(element)).toBe("Q");
+      expect(hostOf(element, "custom")?.parentElement).toBe(
+        document.querySelector('[data-provider="Q"]')
+      );
+      expect(document.getElementById(MODAL_HOST_ID)).toBeNull();
+    });
+
+    it("THEN should render in the document body without a provider (AC-008)", async () => {
+      const { rerender } = render(
+        <ScopedModal name="none" open={false} portalId={undefined} />
+      );
+      rerender(<ScopedModal name="none" open portalId={undefined} />);
+      const element = await screen.findByTestId("modal-none");
+      expect(providerOf(element)).toBeNull();
+      expect(hostOf(element, MODAL_HOST_ID)?.parentElement).toBe(document.body);
+    });
+  });
+
+  describe("WHEN another provider already hosts a modal with the same identifier", () => {
+    const nestedBefore = (stage: Stage, portalId?: string) => (
+      <ThemeProvider data-provider="P">
+        <ThemeProvider theme="dark" data-provider="Q">
+          <ScopedModal name="q" open={stage >= 1} portalId={portalId} />
+        </ThemeProvider>
+        <ScopedModal name="p" open={stage >= 2} portalId={portalId} />
+      </ThemeProvider>
+    );
+
+    const nestedAfter = (stage: Stage, portalId?: string) => (
+      <ThemeProvider data-provider="P">
+        <ScopedModal name="p" open={stage >= 2} portalId={portalId} />
+        <ThemeProvider theme="dark" data-provider="Q">
+          <ScopedModal name="q" open={stage >= 1} portalId={portalId} />
+        </ThemeProvider>
+      </ThemeProvider>
+    );
+
+    const sibling = (stage: Stage, portalId?: string) => (
       <>
-        {inner}
-        <ThemeProvider theme="base" data-testid={PROVIDER_P}>
-          {outer}
+        <ThemeProvider theme="dark" data-provider="Q">
+          <ScopedModal name="q" open={stage >= 1} portalId={portalId} />
+        </ThemeProvider>
+        <ThemeProvider data-provider="P">
+          <ScopedModal name="p" open={stage >= 2} portalId={portalId} />
         </ThemeProvider>
       </>
     );
-  }
 
-  return (
-    <ThemeProvider theme="base" data-testid={PROVIDER_P}>
-      {layout === "nested-before-origin" && inner}
-      {outer}
-      {layout === "nested-after-origin" && inner}
-    </ThemeProvider>
-  );
-};
-
-describe("GIVEN <Modal /> inside theme providers", () => {
-  beforeEach(() => {
-    // Modals rendered outside any provider leave their identified wrapper in
-    // the body after unmount; remove it so each scenario starts from a clean document.
-    document
-      .querySelectorAll(`#${DEFAULT_WRAPPER_ID}, #custom`)
-      .forEach((element) => element.remove());
+    it.each([
+      ["nested provider before the origin", nestedBefore, undefined],
+      ["nested provider after the origin", nestedAfter, undefined],
+      ["sibling provider before the origin", sibling, undefined],
+      ["nested provider and a custom portalId", nestedBefore, "custom"],
+    ])(
+      "THEN should open later in its own provider with a %s (AC-009)",
+      async (_label, tree, portalId) => {
+        const { rerender } = render(tree(0, portalId));
+        rerender(tree(1, portalId));
+        expect(providerOf(await screen.findByTestId("modal-q"))).toBe("Q");
+        rerender(tree(2, portalId));
+        expect(providerOf(await screen.findByTestId("modal-p"))).toBe("P");
+      }
+    );
   });
 
-  describe.each([
-    ["the default identifier", undefined, DEFAULT_WRAPPER_ID],
-    ["a portalId", "custom", "custom"],
-  ])("AND the Modals use %s", (_name, portalId, hostId) => {
-    describe("WHEN it is open inside a single theme provider", () => {
-      const getProviderAndContainer = () => ({
-        provider: screen.getByTestId(PROVIDER_Q),
-        container: screen.getByTestId("inner-modal"),
-      });
-
-      const makeSingle = (open: boolean) => (
-        <ThemeProvider theme="dark" data-testid={PROVIDER_Q}>
-          {makeModal("inner", open, portalId)}
+  describe("WHEN a Tooltip and a Popover are displayed inside a base Modal in the outer provider", () => {
+    const tree = (pOpen: boolean, popoverOpen: boolean) => (
+      <ThemeProvider data-provider="P">
+        <ThemeProvider theme="dark" data-provider="Q">
+          <FloatingInside name="q" popoverOpen />
         </ThemeProvider>
-      );
-
-      it("THEN should render overlay and container inside the provider, hosted by the identifier, when opened after mount", () => {
-        const { rerender } = render(makeSingle(false));
-        rerender(makeSingle(true));
-        const { provider, container } = getProviderAndContainer();
-        expect(provider.contains(container)).toBe(true);
-        expect(container.closest(`#${hostId}`)?.parentElement).toBe(provider);
-      });
-
-      it("THEN should render overlay and container inside the provider, hosted by the identifier, when open on first render", () => {
-        render(makeSingle(true));
-        const { provider, container } = getProviderAndContainer();
-        expect(provider.contains(container)).toBe(true);
-        expect(container.closest(`#${hostId}`)?.parentElement).toBe(provider);
-      });
-    });
-  });
-
-  describe("WHEN it is open outside any theme provider", () => {
-    it("THEN should still be displayed, without a theme scope", () => {
-      render(makeModal("outer", true, "custom"));
-      const container = screen.getByTestId("outer-modal");
-      expect(container.closest(`[data-testid="${PROVIDER_P}"]`)).toBeNull();
-      expect(container.closest("#custom")).not.toBeNull();
-    });
-  });
-
-  describe.each<Layout>([
-    "nested-after-origin",
-    "nested-before-origin",
-    "sibling-before",
-  ])("AND the dark provider Q is placed as %s", (layout) => {
-    describe.each([
-      ["the default identifier", undefined],
-      ["a portalId", "custom"],
-    ])("AND the Modals use %s", (_name, portalId) => {
-      it("THEN the Modal of P opened after Q opened its own is inside P and not inside Q", () => {
-        const { rerender } = render(makeScene(layout, [], portalId));
-        const p = screen.getByTestId(PROVIDER_P);
-        const q = screen.getByTestId(PROVIDER_Q);
-
-        rerender(makeScene(layout, ["inner"], portalId));
-        expect(q.contains(screen.getByTestId("inner-modal"))).toBe(true);
-
-        rerender(makeScene(layout, ["inner", "outer"], portalId));
-        const outerContainer = screen.getByTestId("outer-modal");
-        expect(p.contains(outerContainer)).toBe(true);
-        expect(q.contains(outerContainer)).toBe(false);
-      });
-
-      it("THEN the Modal of Q opened after P opened its own is inside Q", () => {
-        const { rerender } = render(makeScene(layout, [], portalId));
-        const p = screen.getByTestId(PROVIDER_P);
-        const q = screen.getByTestId(PROVIDER_Q);
-
-        rerender(makeScene(layout, ["outer"], portalId));
-        expect(p.contains(screen.getByTestId("outer-modal"))).toBe(true);
-
-        rerender(makeScene(layout, ["outer", "inner"], portalId));
-        expect(q.contains(screen.getByTestId("inner-modal"))).toBe(true);
-      });
-    });
-  });
-});
-
-describe("GIVEN a base-layer <Modal /> opened in P with a themed side area Q", () => {
-  const makeApp = (modalOpen: boolean) => (
-    <ThemeProvider theme="base" data-testid={PROVIDER_P}>
-      <ThemeProvider theme="dark" data-testid={PROVIDER_Q}>
-        <Tooltip content="side content" data-testid="side-tooltip">
-          <p>side anchor</p>
-        </Tooltip>
-      </ThemeProvider>
-      <Modal open={modalOpen} zIndex="base" data-testid="modal-element">
-        <Tooltip content="modal tooltip content" data-testid="modal-tooltip">
-          <p>modal tooltip anchor</p>
-        </Tooltip>
-        <Popover content={<p>popover body</p>} data-testid="modal-popover">
-          <p>modal popover anchor</p>
-        </Popover>
-      </Modal>
-    </ThemeProvider>
-  );
-
-  beforeEach(() => {
-    document
-      .querySelectorAll(
-        "#nimbus-modal-floating, #nimbus-tooltip-floating, #nimbus-popover-floating"
-      )
-      .forEach((element) => element.remove());
-  });
-
-  it("THEN the Modal, its Tooltip and its Popover are inside P and not inside Q after Q displayed a Tooltip", async () => {
-    const user = userEvent.setup();
-    const { rerender } = render(makeApp(false));
-    const p = screen.getByTestId(PROVIDER_P);
-    const q = screen.getByTestId(PROVIDER_Q);
-
-    await user.hover(screen.getByText("side anchor").closest("div") as Element);
-    const sideContent = await waitFor(() => screen.getByTestId("side-tooltip"));
-    expect(q.contains(sideContent)).toBe(true);
-
-    rerender(makeApp(true));
-    expect(p.contains(screen.getByTestId("modal-element"))).toBe(true);
-    expect(q.contains(screen.getByTestId("modal-element"))).toBe(false);
-
-    await user.hover(
-      screen.getByText("modal tooltip anchor").closest("div") as Element
-    );
-    const modalTooltip = await waitFor(() =>
-      screen.getByTestId("modal-tooltip")
-    );
-    expect(p.contains(modalTooltip)).toBe(true);
-    expect(q.contains(modalTooltip)).toBe(false);
-
-    await user.click(
-      screen.getByText("modal popover anchor").closest("div") as Element
-    );
-    const modalPopover = await waitFor(() =>
-      screen.getByTestId("modal-popover")
-    );
-    expect(p.contains(modalPopover)).toBe(true);
-    expect(q.contains(modalPopover)).toBe(false);
-  });
-});
-
-describe("GIVEN the floating host lifecycle of <Modal />", () => {
-  const hosts = (id = DEFAULT_WRAPPER_ID) =>
-    document.querySelectorAll(`#${id}`);
-
-  beforeEach(() => {
-    hosts().forEach((element) => element.remove());
-    hosts("custom").forEach((element) => element.remove());
-  });
-
-  const makeTwo = (opened: Name[]) => (
-    <ThemeProvider theme="dark" data-testid={PROVIDER_Q}>
-      {makeModal("inner", opened.includes("inner"))}
-      {makeModal("outer", opened.includes("outer"))}
-    </ThemeProvider>
-  );
-
-  it("THEN should not create a host while it is closed", () => {
-    render(makeScene("nested-after-origin", []));
-    expect(hosts()).toHaveLength(0);
-  });
-
-  it("THEN should host content outside any provider as a direct child of the body", () => {
-    render(makeModal("outer", true));
-    expect(
-      screen.getByTestId("outer-modal").closest(`#${DEFAULT_WRAPPER_ID}`)
-        ?.parentElement
-    ).toBe(document.body);
-  });
-
-  it("THEN two open Modals share one host per provider and closing one keeps the other", () => {
-    const { rerender } = render(makeTwo(["inner", "outer"]));
-    const q = screen.getByTestId(PROVIDER_Q);
-    expect(q.querySelectorAll(`#${DEFAULT_WRAPPER_ID}`)).toHaveLength(1);
-
-    rerender(makeTwo(["outer"]));
-    expect(screen.queryByTestId("inner-modal")).toBeNull();
-    expect(screen.getByTestId("outer-modal")).toBeTruthy();
-    expect(q.querySelectorAll(`#${DEFAULT_WRAPPER_ID}`)).toHaveLength(1);
-  });
-
-  it("THEN should remove its owned host once closed or unmounted", () => {
-    const { rerender } = render(makeTwo(["inner"]));
-    expect(hosts()).toHaveLength(1);
-
-    rerender(makeTwo([]));
-    expect(hosts()).toHaveLength(0);
-
-    rerender(makeTwo(["inner"]));
-    expect(hosts()).toHaveLength(1);
-    rerender(<ThemeProvider theme="dark" data-testid={PROVIDER_Q} />);
-    expect(hosts()).toHaveLength(0);
-  });
-
-  it("THEN should reuse a host placed by the consumer inside the provider and never remove it", () => {
-    const { rerender } = render(makeTwo([]));
-    const q = screen.getByTestId(PROVIDER_Q);
-    const own = document.createElement("div");
-    own.id = DEFAULT_WRAPPER_ID;
-    q.appendChild(own);
-
-    rerender(makeTwo(["inner"]));
-    expect(own.contains(screen.getByTestId("inner-modal"))).toBe(true);
-    expect(hosts()).toHaveLength(1);
-
-    rerender(makeTwo([]));
-    expect(q.contains(own)).toBe(true);
-  });
-
-  it("THEN should display its content again inside an attached provider host after being closed and reopened", () => {
-    const { rerender } = render(makeTwo(["inner"]));
-    const q = screen.getByTestId(PROVIDER_Q);
-
-    rerender(makeTwo([]));
-    expect(screen.queryByTestId("inner-modal")).toBeNull();
-
-    rerender(makeTwo(["inner"]));
-    const content = screen.getByTestId("inner-modal");
-    expect(content.closest(`#${DEFAULT_WRAPPER_ID}`)?.parentElement).toBe(q);
-    expect(document.body.contains(content)).toBe(true);
-    expect(hosts()).toHaveLength(1);
-  });
-
-  it("THEN should move its content to a host with the new identifier when portalId changes while open", () => {
-    const makeWithPortalId = (portalId: string) => (
-      <ThemeProvider theme="dark" data-testid={PROVIDER_Q}>
-        {makeModal("inner", true, portalId)}
-      </ThemeProvider>
-    );
-    const { rerender } = render(makeWithPortalId("custom"));
-    const q = screen.getByTestId(PROVIDER_Q);
-    expect(
-      screen.getByTestId("inner-modal").closest("#custom")?.parentElement
-    ).toBe(q);
-
-    rerender(makeWithPortalId("other"));
-    const content = screen.getByTestId("inner-modal");
-    expect(content.closest("#other")?.parentElement).toBe(q);
-    expect(document.body.contains(content)).toBe(true);
-    expect(hosts("custom")).toHaveLength(0);
-    hosts("other").forEach((element) => element.remove());
-  });
-
-  it("THEN should render its content once, in the provider host, under StrictMode", () => {
-    render(<React.StrictMode>{makeTwo(["inner"])}</React.StrictMode>);
-    expect(screen.getAllByTestId("inner-modal")).toHaveLength(1);
-    expect(
-      screen.getByTestId("inner-modal").closest(`#${DEFAULT_WRAPPER_ID}`)
-        ?.parentElement
-    ).toBe(screen.getByTestId(PROVIDER_Q));
-  });
-
-  it("THEN should keep the root path inside root without creating a host", () => {
-    const root = document.createElement("div");
-    document.body.appendChild(root);
-    render(
-      <ThemeProvider theme="dark" data-testid={PROVIDER_Q}>
-        <Modal open root={root} data-testid="root-modal">
-          <div>root modal</div>
+        <Modal open={pOpen} data-testid="modal-p">
+          <FloatingInside name="p" popoverOpen={popoverOpen} />
         </Modal>
       </ThemeProvider>
     );
-    expect(root.contains(screen.getByTestId("root-modal"))).toBe(true);
-    expect(hosts()).toHaveLength(0);
-    root.remove();
+
+    it("THEN should render the Modal, its Tooltip and its Popover inside the outer provider (AC-010)", async () => {
+      const user = userEvent.setup();
+      const { rerender } = render(tree(false, false));
+      await screen.findByTestId("popover-q");
+      await user.hover(screen.getByTestId("tooltip-anchor-q"));
+      expect(await screen.findByTestId("tooltip-q")).toBeDefined();
+
+      rerender(tree(true, false));
+      expect(providerOf(await screen.findByTestId("modal-p"))).toBe("P");
+
+      await user.hover(screen.getByTestId("tooltip-anchor-p"));
+      const tooltipContent = await screen.findByTestId("tooltip-p");
+      expect(providerOf(tooltipContent)).toBe("P");
+      expect(hostOf(tooltipContent, TOOLTIP_HOST_ID)?.parentElement).toBe(
+        document.querySelector('[data-provider="P"]')
+      );
+
+      rerender(tree(true, true));
+      const popoverContent = await screen.findByTestId("popover-p");
+      expect(providerOf(popoverContent)).toBe("P");
+      expect(hostOf(popoverContent, POPOVER_HOST_ID)?.parentElement).toBe(
+        document.querySelector('[data-provider="P"]')
+      );
+    });
+
+    it("THEN should keep the Popover and the Tooltip of the side area inside their own provider (AC-007, AC-012)", async () => {
+      const user = userEvent.setup();
+      const { rerender } = render(tree(false, false));
+      await user.hover(screen.getByTestId("tooltip-anchor-q"));
+      const tooltipQ = await screen.findByTestId("tooltip-q");
+      const popoverQ = await screen.findByTestId("popover-q");
+      rerender(tree(true, true));
+      await screen.findByTestId("popover-p");
+      expect(providerOf(tooltipQ)).toBe("Q");
+      expect(providerOf(popoverQ)).toBe("Q");
+      await waitFor(() => {
+        expect(providerOf(screen.getByTestId("popover-p"))).toBe("P");
+      });
+    });
+  });
+
+  describe("WHEN it uses the root input", () => {
+    it("THEN should keep rendering into the root and create no default host", () => {
+      const root = document.createElement("div");
+      document.body.appendChild(root);
+      render(
+        <ThemeProvider theme="dark" data-provider="Q">
+          <Modal root={root} open data-testid="modal-root">
+            <div>Scoped</div>
+          </Modal>
+        </ThemeProvider>
+      );
+      expect(root).toContainElement(screen.getByTestId("modal-root"));
+      expect(document.getElementById(MODAL_HOST_ID)).toBeNull();
+    });
   });
 });

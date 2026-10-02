@@ -7,6 +7,9 @@ import { Box } from "@nimbus-ds/box";
 import { Title } from "@nimbus-ds/title";
 import { Tag } from "@nimbus-ds/tag";
 import { Sidebar } from "@nimbus-ds/sidebar";
+import { Tooltip } from "@nimbus-ds/tooltip";
+import { Popover } from "@nimbus-ds/popover";
+import { ThemeProvider } from "@nimbus-ds/styles";
 import { Modal } from "./Modal";
 import { type ModalProps } from "./modal.types";
 
@@ -365,6 +368,72 @@ export const withIgnoreAttribute: Story = {
             This Modal should remain open when clicking the chat panel marked
             with the ignore attribute.
           </Text>
+        </Modal.Body>
+      </>
+    ),
+  },
+};
+
+export const themedSideArea: Story = {
+  render: (args) => {
+    const [open, setOpen] = useState(false);
+    const handleToggle = () => setOpen((prevState) => !prevState);
+    return (
+      <Box display="flex" gap="4" padding="4">
+        <Box position="relative" zIndex="100">
+          <ThemeProvider theme="dark">
+            <Box
+              data-testid="side-area"
+              backgroundColor="neutral-background"
+              padding="4"
+              display="flex"
+              flexDirection="column"
+              gap="2"
+            >
+              <Text color="neutral-textHigh">Side area (dark theme)</Text>
+              <Tooltip content="Side area tooltip" arrow>
+                <Button data-testid="side-tooltip-anchor">Tooltip</Button>
+              </Tooltip>
+              <Popover
+                content={
+                  <Text color="neutral-textHigh">Side area popover</Text>
+                }
+                backgroundColor="neutral-background"
+              >
+                <Button data-testid="side-popover-anchor">Popover</Button>
+              </Popover>
+            </Box>
+          </ThemeProvider>
+        </Box>
+        <Box display="flex" flexDirection="column" gap="2">
+          <Text>
+            Floating content is rendered inside the theme provider of its own
+            origin: the Modal, and the Tooltip and Popover displayed from inside
+            it, use the outer theme, while the side area keeps the dark one.
+          </Text>
+          <Box>
+            <Button data-testid="open-modal" onClick={handleToggle}>
+              Open modal
+            </Button>
+          </Box>
+        </Box>
+        <Modal {...args} open={open} onDismiss={handleToggle} />
+      </Box>
+    );
+  },
+  args: {
+    children: (
+      <>
+        <Modal.Header title="Modal in the outer theme" />
+        <Modal.Body padding="none">
+          <Box display="flex" gap="2">
+            <Tooltip content="Modal tooltip" arrow>
+              <Button data-testid="modal-tooltip-anchor">Tooltip</Button>
+            </Tooltip>
+            <Popover content={<Text>Modal popover</Text>}>
+              <Button data-testid="modal-popover-anchor">Popover</Button>
+            </Popover>
+          </Box>
         </Modal.Body>
       </>
     ),

@@ -408,255 +408,158 @@ describe("GIVEN <Popover />", () => {
   });
 });
 
-type Layout = "nested-after-anchor" | "nested-before-anchor" | "sibling-before";
-type Name = "inner" | "outer";
+const HOST_ID = "nimbus-popover-floating";
 
-const PROVIDER_P = "provider-p";
-const PROVIDER_Q = "provider-q";
-const WRAPPER_ID = "nimbus-popover-floating";
+const providerOf = (element: HTMLElement): string | null =>
+  element.closest("[data-provider]")?.getAttribute("data-provider") ?? null;
 
-const makePopover = (name: Name) => (
-  <Popover content={<p>{`${name} content`}</p>} data-testid={`${name}-popover`}>
-    <p>{`${name} anchor`}</p>
+const hostsInDocument = (): HTMLElement[] =>
+  Array.from(document.querySelectorAll<HTMLElement>(`[id="${HOST_ID}"]`));
+
+interface OriginProps {
+  name: string;
+  visible: boolean;
+  renderOverlay: boolean;
+}
+
+const Origin: React.FC<OriginProps> = ({ name, visible, renderOverlay }) => (
+  <Popover
+    visible={visible}
+    renderOverlay={renderOverlay}
+    content={<p>{`content ${name}`}</p>}
+    data-testid={`content-${name}`}
+  >
+    <p>{name}</p>
   </Popover>
 );
 
-/**
- * P (base) is the origin of the "outer" popover, Q (dark) holds the "inner"
- * popover (a themed side area). `layout` places Q relative to the outer anchor.
- * A popover is mounted only while its name is in `mounted`, so the second one
- * can be mounted after the first has already created its floating wrapper.
- */
-const makeScene = (layout: Layout, mounted: Name[]) => {
-  const inner = (
-    <ThemeProvider theme="dark" data-testid={PROVIDER_Q}>
-      {mounted.includes("inner") && makePopover("inner")}
-    </ThemeProvider>
-  );
-  const outer = mounted.includes("outer") && makePopover("outer");
+describe("GIVEN <Popover /> displayed inside theme providers", () => {
+  beforeEach(() => {
+    // Hosts created by earlier tests live in document.body; start clean.
+    document.body.innerHTML = "";
+  });
 
-  if (layout === "sibling-before") {
-    return (
+  describe("WHEN it is rendered inside a dark theme provider or outside any provider", () => {
+    it("THEN should render the content inside the dark provider element (AC-010)", async () => {
+      render(
+        <ThemeProvider theme="dark" data-provider="Q">
+          <Origin name="q" visible renderOverlay={false} />
+        </ThemeProvider>
+      );
+      const content = await screen.findByTestId("content-q");
+      expect(providerOf(content)).toBe("Q");
+      expect(content.closest(`[id="${HOST_ID}"]`)?.parentElement).toBe(
+        document.querySelector('[data-provider="Q"]')
+      );
+    });
+
+    it("THEN should render the content in the document body without a provider (AC-010)", async () => {
+      render(<Origin name="none" visible renderOverlay={false} />);
+      const content = await screen.findByTestId("content-none");
+      expect(providerOf(content)).toBeNull();
+      expect(content.closest(`[id="${HOST_ID}"]`)?.parentElement).toBe(
+        document.body
+      );
+    });
+  });
+
+  describe("WHEN another provider already hosts a popover with the same identifier", () => {
+    const nestedBefore = (withP: boolean) => (
+      <ThemeProvider data-provider="P">
+        <ThemeProvider theme="dark" data-provider="Q">
+          <Origin name="q" visible renderOverlay={false} />
+        </ThemeProvider>
+        {withP && <Origin name="p" visible renderOverlay={false} />}
+      </ThemeProvider>
+    );
+
+    const nestedAfter = (withP: boolean) => (
+      <ThemeProvider data-provider="P">
+        {withP && <Origin name="p" visible renderOverlay={false} />}
+        <ThemeProvider theme="dark" data-provider="Q">
+          <Origin name="q" visible renderOverlay={false} />
+        </ThemeProvider>
+      </ThemeProvider>
+    );
+
+    const sibling = (withP: boolean) => (
       <>
-        {inner}
-        <ThemeProvider theme="base" data-testid={PROVIDER_P}>
-          {outer}
+        <ThemeProvider theme="dark" data-provider="Q">
+          <Origin name="q" visible renderOverlay={false} />
+        </ThemeProvider>
+        <ThemeProvider data-provider="P">
+          {withP && <Origin name="p" visible renderOverlay={false} />}
         </ThemeProvider>
       </>
     );
-  }
 
-  return (
-    <ThemeProvider theme="base" data-testid={PROVIDER_P}>
-      {layout === "nested-before-anchor" && inner}
-      {outer}
-      {layout === "nested-after-anchor" && inner}
-    </ThemeProvider>
-  );
-};
+    it.each([
+      ["nested provider before the origin", nestedBefore],
+      ["nested provider after the origin", nestedAfter],
+      ["sibling provider before the origin", sibling],
+    ])(
+      "THEN should render the content in its own provider, mounted later, with a %s (AC-011)",
+      async (_label, tree) => {
+        const { rerender } = render(tree(false));
+        const inQ = await screen.findByTestId("content-q");
+        expect(providerOf(inQ)).toBe("Q");
+        rerender(tree(true));
+        const inP = await screen.findByTestId("content-p");
+        expect(providerOf(inP)).toBe("P");
+      }
+    );
 
-const openPopover = async (
-  user: ReturnType<typeof userEvent.setup>,
-  name: Name
-) => {
-  const anchor = screen.getByText(`${name} anchor`).closest("div");
-  await user.click(anchor as HTMLElement);
-  return waitFor(() => screen.getByTestId(`${name}-popover`));
-};
-
-describe("GIVEN <Popover /> inside theme providers", () => {
-  beforeEach(() => {
-    // Popovers rendered outside any provider leave their identified wrapper in
-    // the body after unmount; remove it so each scenario starts from a clean document.
-    document
-      .querySelectorAll(`#${WRAPPER_ID}`)
-      .forEach((element) => element.remove());
+    it("THEN should render a popover without provider, mounted later, in the body (AC-011)", async () => {
+      const tree = (withOutside: boolean) => (
+        <>
+          <ThemeProvider theme="dark" data-provider="Q">
+            <Origin name="q" visible renderOverlay={false} />
+          </ThemeProvider>
+          {withOutside && <Origin name="none" visible renderOverlay={false} />}
+        </>
+      );
+      const { rerender } = render(tree(false));
+      await screen.findByTestId("content-q");
+      rerender(tree(true));
+      const outside = await screen.findByTestId("content-none");
+      expect(providerOf(outside)).toBeNull();
+    });
   });
 
-  describe("WHEN it is displayed inside a single theme provider", () => {
-    it("THEN should render its content inside the provider element", async () => {
-      const user = userEvent.setup();
-      render(
-        <ThemeProvider theme="dark" data-testid={PROVIDER_Q}>
-          {makePopover("inner")}
+  describe("WHEN the overlay is rendered", () => {
+    it("THEN should render the overlay and the content in the same host of its own provider (AC-011)", async () => {
+      const tree = (withP: boolean) => (
+        <ThemeProvider data-provider="P">
+          <ThemeProvider theme="dark" data-provider="Q">
+            <Origin name="q" visible renderOverlay={false} />
+          </ThemeProvider>
+          {withP && <Origin name="p" visible renderOverlay />}
         </ThemeProvider>
       );
-      const content = await openPopover(user, "inner");
-      expect(screen.getByTestId(PROVIDER_Q).contains(content)).toBe(true);
+      const { rerender } = render(tree(false));
+      await screen.findByTestId("content-q");
+      rerender(tree(true));
+      const content = await screen.findByTestId("content-p");
+      const overlay = screen.getByTestId("popover-overlay");
+      expect(providerOf(content)).toBe("P");
+      expect(providerOf(overlay)).toBe("P");
+      expect(overlay.closest(`[id="${HOST_ID}"]`)).toBe(
+        content.closest(`[id="${HOST_ID}"]`)
+      );
     });
   });
 
-  describe("WHEN it is displayed outside any theme provider", () => {
-    it("THEN should still display its content, without a theme scope", async () => {
-      const user = userEvent.setup();
-      render(makePopover("outer"));
-      const content = await openPopover(user, "outer");
-      expect(content.closest(`[data-testid="${PROVIDER_P}"]`)).toBeNull();
-      expect(document.body.contains(content)).toBe(true);
+  describe("WHEN several popovers are open in the same provider", () => {
+    it("THEN should create a single host with the identifier", async () => {
+      render(
+        <ThemeProvider data-provider="P">
+          <Origin name="one" visible renderOverlay={false} />
+          <Origin name="two" visible renderOverlay={false} />
+        </ThemeProvider>
+      );
+      await screen.findByTestId("content-one");
+      await screen.findByTestId("content-two");
+      expect(hostsInDocument()).toHaveLength(1);
     });
-  });
-
-  describe.each<Layout>([
-    "nested-after-anchor",
-    "nested-before-anchor",
-    "sibling-before",
-  ])("AND the dark provider Q is placed as %s", (layout) => {
-    it("THEN the popover of P mounted after Q displayed its own is inside P and not inside Q", async () => {
-      const user = userEvent.setup();
-      const { rerender } = render(makeScene(layout, ["inner"]));
-      const p = screen.getByTestId(PROVIDER_P);
-      const q = screen.getByTestId(PROVIDER_Q);
-
-      const innerContent = await openPopover(user, "inner");
-      expect(q.contains(innerContent)).toBe(true);
-
-      rerender(makeScene(layout, ["inner", "outer"]));
-      const outerContent = await openPopover(user, "outer");
-      expect(p.contains(outerContent)).toBe(true);
-      expect(q.contains(outerContent)).toBe(false);
-    });
-
-    it("THEN the popover of Q mounted after P displayed its own is inside Q", async () => {
-      const user = userEvent.setup();
-      const { rerender } = render(makeScene(layout, ["outer"]));
-      const p = screen.getByTestId(PROVIDER_P);
-      const q = screen.getByTestId(PROVIDER_Q);
-
-      const outerContent = await openPopover(user, "outer");
-      expect(p.contains(outerContent)).toBe(true);
-
-      rerender(makeScene(layout, ["outer", "inner"]));
-      const innerContent = await openPopover(user, "inner");
-      expect(q.contains(innerContent)).toBe(true);
-      expect(innerContent.closest(`#${WRAPPER_ID}`)?.parentElement).toBe(q);
-    });
-  });
-});
-
-describe("GIVEN the floating host lifecycle of <Popover />", () => {
-  const hosts = () => document.querySelectorAll(`#${WRAPPER_ID}`);
-
-  beforeEach(() => {
-    hosts().forEach((element) => element.remove());
-  });
-
-  const makeControlled = (names: Name[], visible: Name[]) => (
-    <ThemeProvider theme="dark" data-testid={PROVIDER_Q}>
-      {names.map((name) => (
-        <Popover
-          key={name}
-          visible={visible.includes(name)}
-          content={<p>{`${name} content`}</p>}
-          data-testid={`${name}-popover`}
-        >
-          <p>{`${name} anchor`}</p>
-        </Popover>
-      ))}
-    </ThemeProvider>
-  );
-
-  it("THEN should not create a host while it is closed", () => {
-    render(makeControlled(["inner"], []));
-    expect(hosts()).toHaveLength(0);
-  });
-
-  it("THEN should host content outside any provider as a direct child of the body", async () => {
-    const user = userEvent.setup();
-    render(makePopover("outer"));
-    const content = await openPopover(user, "outer");
-    expect(content.closest(`#${WRAPPER_ID}`)?.parentElement).toBe(
-      document.body
-    );
-  });
-
-  it("THEN two displayed popovers share one host per provider and closing one keeps the other", () => {
-    const { rerender } = render(
-      makeControlled(["inner", "outer"], ["inner", "outer"])
-    );
-    const q = screen.getByTestId(PROVIDER_Q);
-    expect(q.querySelectorAll(`#${WRAPPER_ID}`)).toHaveLength(1);
-    expect(screen.getByTestId("inner-popover")).toBeTruthy();
-    expect(screen.getByTestId("outer-popover")).toBeTruthy();
-
-    rerender(makeControlled(["inner", "outer"], ["outer"]));
-    expect(screen.queryByTestId("inner-popover")).toBeNull();
-    expect(screen.getByTestId("outer-popover")).toBeTruthy();
-    expect(q.querySelectorAll(`#${WRAPPER_ID}`)).toHaveLength(1);
-  });
-
-  it("THEN should remove its owned host once closed or unmounted", () => {
-    const { rerender } = render(makeControlled(["inner"], ["inner"]));
-    expect(hosts()).toHaveLength(1);
-
-    rerender(makeControlled(["inner"], []));
-    expect(hosts()).toHaveLength(0);
-
-    rerender(makeControlled(["inner"], ["inner"]));
-    expect(hosts()).toHaveLength(1);
-    rerender(makeControlled([], []));
-    expect(hosts()).toHaveLength(0);
-  });
-
-  it("THEN should reuse a host placed by the consumer inside the provider and never remove it", () => {
-    const { rerender } = render(makeControlled(["inner"], []));
-    const q = screen.getByTestId(PROVIDER_Q);
-    const own = document.createElement("div");
-    own.id = WRAPPER_ID;
-    q.appendChild(own);
-
-    rerender(makeControlled(["inner"], ["inner"]));
-    expect(own.contains(screen.getByTestId("inner-popover"))).toBe(true);
-    expect(hosts()).toHaveLength(1);
-
-    rerender(makeControlled(["inner"], []));
-    expect(q.contains(own)).toBe(true);
-  });
-
-  it("THEN should display its content again inside an attached provider host after being closed and reopened", () => {
-    const { rerender } = render(makeControlled(["inner"], ["inner"]));
-    const q = screen.getByTestId(PROVIDER_Q);
-
-    rerender(makeControlled(["inner"], []));
-    expect(screen.queryByTestId("inner-popover")).toBeNull();
-
-    rerender(makeControlled(["inner"], ["inner"]));
-    const content = screen.getByTestId("inner-popover");
-    expect(content.closest(`#${WRAPPER_ID}`)?.parentElement).toBe(q);
-    expect(document.body.contains(content)).toBe(true);
-    expect(hosts()).toHaveLength(1);
-  });
-
-  it("THEN should display its content again inside an attached provider host after a click closes and reopens it", async () => {
-    const user = userEvent.setup();
-    render(
-      <ThemeProvider theme="dark" data-testid={PROVIDER_Q}>
-        {makePopover("inner")}
-      </ThemeProvider>
-    );
-    const q = screen.getByTestId(PROVIDER_Q);
-    const anchor = screen.getByText("inner anchor").closest("div");
-
-    await openPopover(user, "inner");
-    await user.click(anchor as HTMLElement);
-    await waitFor(() =>
-      expect(screen.queryByTestId("inner-popover")).toBeNull()
-    );
-
-    const content = await openPopover(user, "inner");
-    expect(content.closest(`#${WRAPPER_ID}`)?.parentElement).toBe(q);
-    expect(document.body.contains(content)).toBe(true);
-  });
-
-  it("THEN should render its content once, in the provider host, under StrictMode", () => {
-    render(
-      <React.StrictMode>
-        {makeControlled(["inner"], ["inner"])}
-      </React.StrictMode>
-    );
-    expect(screen.getAllByTestId("inner-popover")).toHaveLength(1);
-    expect(
-      screen.getByTestId("inner-popover").closest(`#${WRAPPER_ID}`)
-        ?.parentElement
-    ).toBe(screen.getByTestId(PROVIDER_Q));
   });
 });

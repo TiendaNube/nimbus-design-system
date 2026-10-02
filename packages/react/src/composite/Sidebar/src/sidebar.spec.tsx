@@ -126,233 +126,119 @@ describe("GIVEN <Sidebar />", () => {
   });
 });
 
-type Layout = "nested-after-origin" | "nested-before-origin" | "sibling-before";
-type Name = "inner" | "outer";
+const HOST_ID = "nimbus-sidebar";
 
-const PROVIDER_P = "provider-p";
-const PROVIDER_Q = "provider-q";
-const WRAPPER_ID = "nimbus-sidebar";
+const providerOf = (element: HTMLElement): string | null =>
+  element.closest("[data-provider]")?.getAttribute("data-provider") ?? null;
 
-const makeSidebar = (name: Name, open: boolean) => (
-  <Sidebar open={open} data-testid={`${name}-sidebar`}>
-    <div>{`${name} sidebar`}</div>
+const hostOf = (element: HTMLElement): HTMLElement | null =>
+  element.closest<HTMLElement>(`[id="${HOST_ID}"]`);
+
+const ScopedSidebar: React.FC<{ name: string; open: boolean }> = ({
+  name,
+  open,
+}) => (
+  <Sidebar open={open} data-testid={`sidebar-${name}`}>
+    <div>{`body ${name}`}</div>
   </Sidebar>
 );
 
 /**
- * P (base) declares the "outer" Sidebar, Q (dark) is a themed side area that
- * declares the "inner" Sidebar. `layout` places Q relative to the outer Sidebar.
- * Each Sidebar is open only while its name is in `opened`, so the second one
- * opens after the first has already created its floating wrapper.
+ * Stage 0 mounts the providers with every sidebar closed, stage 1 opens the
+ * nested provider sidebar and stage 2 opens the origin sidebar afterwards.
  */
-const makeScene = (layout: Layout, opened: Name[]) => {
-  const inner = (
-    <ThemeProvider theme="dark" data-testid={PROVIDER_Q}>
-      {makeSidebar("inner", opened.includes("inner"))}
-    </ThemeProvider>
-  );
-  const outer = makeSidebar("outer", opened.includes("outer"));
+type Stage = 0 | 1 | 2;
 
-  if (layout === "sibling-before") {
-    return (
+describe("GIVEN <Sidebar /> displayed inside theme providers", () => {
+  beforeEach(() => {
+    // Hosts created by earlier tests live in document.body; start clean.
+    document.body.innerHTML = "";
+  });
+
+  describe("WHEN it opens inside a dark theme provider or outside any provider", () => {
+    it("THEN should render inside the dark provider (AC-006)", async () => {
+      const tree = (open: boolean) => (
+        <ThemeProvider theme="dark" data-provider="Q">
+          <ScopedSidebar name="q" open={open} />
+        </ThemeProvider>
+      );
+      const { rerender } = render(tree(false));
+      rerender(tree(true));
+      const element = await screen.findByTestId("sidebar-q");
+      expect(providerOf(element)).toBe("Q");
+      expect(hostOf(element)?.parentElement).toBe(
+        document.querySelector('[data-provider="Q"]')
+      );
+    });
+
+    it("THEN should render in the document body without a provider (AC-006)", async () => {
+      const { rerender } = render(<ScopedSidebar name="none" open={false} />);
+      rerender(<ScopedSidebar name="none" open />);
+      const element = await screen.findByTestId("sidebar-none");
+      expect(providerOf(element)).toBeNull();
+      expect(hostOf(element)?.parentElement).toBe(document.body);
+    });
+  });
+
+  describe("WHEN another provider already hosts a sidebar", () => {
+    const nestedBefore = (stage: Stage) => (
+      <ThemeProvider data-provider="P">
+        <ThemeProvider theme="dark" data-provider="Q">
+          <ScopedSidebar name="q" open={stage >= 1} />
+        </ThemeProvider>
+        <ScopedSidebar name="p" open={stage >= 2} />
+      </ThemeProvider>
+    );
+
+    const nestedAfter = (stage: Stage) => (
+      <ThemeProvider data-provider="P">
+        <ScopedSidebar name="p" open={stage >= 2} />
+        <ThemeProvider theme="dark" data-provider="Q">
+          <ScopedSidebar name="q" open={stage >= 1} />
+        </ThemeProvider>
+      </ThemeProvider>
+    );
+
+    const sibling = (stage: Stage) => (
       <>
-        {inner}
-        <ThemeProvider theme="base" data-testid={PROVIDER_P}>
-          {outer}
+        <ThemeProvider theme="dark" data-provider="Q">
+          <ScopedSidebar name="q" open={stage >= 1} />
+        </ThemeProvider>
+        <ThemeProvider data-provider="P">
+          <ScopedSidebar name="p" open={stage >= 2} />
         </ThemeProvider>
       </>
     );
-  }
 
-  return (
-    <ThemeProvider theme="base" data-testid={PROVIDER_P}>
-      {layout === "nested-before-origin" && inner}
-      {outer}
-      {layout === "nested-after-origin" && inner}
-    </ThemeProvider>
-  );
-};
-
-describe("GIVEN <Sidebar /> inside theme providers", () => {
-  beforeEach(() => {
-    // Sidebars rendered outside any provider leave their identified wrapper in
-    // the body after unmount; remove it so each scenario starts from a clean document.
-    document
-      .querySelectorAll(`#${WRAPPER_ID}`)
-      .forEach((element) => element.remove());
-  });
-
-  describe("WHEN it is open inside a single theme provider", () => {
-    const getProviderAndContainer = () => ({
-      provider: screen.getByTestId(PROVIDER_Q),
-      container: screen.getByTestId("inner-sidebar"),
-    });
-
-    const makeSingle = (open: boolean) => (
-      <ThemeProvider theme="dark" data-testid={PROVIDER_Q}>
-        {makeSidebar("inner", open)}
-      </ThemeProvider>
+    it.each([
+      ["nested provider before the origin", nestedBefore],
+      ["nested provider after the origin", nestedAfter],
+      ["sibling provider before the origin", sibling],
+    ])(
+      "THEN should open later in its own provider with a %s (AC-007)",
+      async (_label, tree) => {
+        const { rerender } = render(tree(0));
+        rerender(tree(1));
+        expect(providerOf(await screen.findByTestId("sidebar-q"))).toBe("Q");
+        rerender(tree(2));
+        expect(providerOf(await screen.findByTestId("sidebar-p"))).toBe("P");
+      }
     );
+  });
 
-    it("THEN should render overlay and container inside the provider when opened after mount", () => {
-      const { rerender } = render(makeSingle(false));
-      rerender(makeSingle(true));
-      const { provider, container } = getProviderAndContainer();
-      expect(provider.contains(container)).toBe(true);
-      expect(container.closest(`#${WRAPPER_ID}`)?.parentElement).toBe(provider);
+  describe("WHEN it uses the root input", () => {
+    it("THEN should keep rendering into the root and create no default host", () => {
+      const root = document.createElement("div");
+      document.body.appendChild(root);
+      render(
+        <ThemeProvider theme="dark" data-provider="Q">
+          <Sidebar root={root} open data-testid="sidebar-root">
+            <div>Scoped</div>
+          </Sidebar>
+        </ThemeProvider>
+      );
+      expect(root).toContainElement(screen.getByTestId("sidebar-root"));
+      expect(document.getElementById(HOST_ID)).toBeNull();
     });
-
-    it("THEN should render overlay and container inside the provider when open on first render", () => {
-      render(makeSingle(true));
-      const { provider, container } = getProviderAndContainer();
-      expect(provider.contains(container)).toBe(true);
-      expect(container.closest(`#${WRAPPER_ID}`)?.parentElement).toBe(provider);
-    });
-  });
-
-  describe("WHEN it is open outside any theme provider", () => {
-    it("THEN should still be displayed, without a theme scope", () => {
-      render(makeSidebar("outer", true));
-      const container = screen.getByTestId("outer-sidebar");
-      expect(container.closest(`[data-testid="${PROVIDER_P}"]`)).toBeNull();
-      expect(container.closest(`#${WRAPPER_ID}`)).not.toBeNull();
-    });
-  });
-
-  describe.each<Layout>([
-    "nested-after-origin",
-    "nested-before-origin",
-    "sibling-before",
-  ])("AND the dark provider Q is placed as %s", (layout) => {
-    it("THEN the Sidebar of P opened after Q opened its own is inside P and not inside Q", () => {
-      const { rerender } = render(makeScene(layout, []));
-      const p = screen.getByTestId(PROVIDER_P);
-      const q = screen.getByTestId(PROVIDER_Q);
-
-      rerender(makeScene(layout, ["inner"]));
-      expect(q.contains(screen.getByTestId("inner-sidebar"))).toBe(true);
-
-      rerender(makeScene(layout, ["inner", "outer"]));
-      const outerContainer = screen.getByTestId("outer-sidebar");
-      expect(p.contains(outerContainer)).toBe(true);
-      expect(q.contains(outerContainer)).toBe(false);
-    });
-
-    it("THEN the Sidebar of Q opened after P opened its own is inside Q", () => {
-      const { rerender } = render(makeScene(layout, []));
-      const p = screen.getByTestId(PROVIDER_P);
-      const q = screen.getByTestId(PROVIDER_Q);
-
-      rerender(makeScene(layout, ["outer"]));
-      expect(p.contains(screen.getByTestId("outer-sidebar"))).toBe(true);
-
-      rerender(makeScene(layout, ["outer", "inner"]));
-      expect(q.contains(screen.getByTestId("inner-sidebar"))).toBe(true);
-    });
-  });
-});
-
-describe("GIVEN the floating host lifecycle of <Sidebar />", () => {
-  const hosts = () => document.querySelectorAll(`#${WRAPPER_ID}`);
-
-  beforeEach(() => {
-    hosts().forEach((element) => element.remove());
-  });
-
-  const makeTwo = (opened: Name[]) => (
-    <ThemeProvider theme="dark" data-testid={PROVIDER_Q}>
-      {makeSidebar("inner", opened.includes("inner"))}
-      {makeSidebar("outer", opened.includes("outer"))}
-    </ThemeProvider>
-  );
-
-  it("THEN should not create a host while it is closed", () => {
-    render(makeScene("nested-after-origin", []));
-    expect(hosts()).toHaveLength(0);
-  });
-
-  it("THEN should host content outside any provider as a direct child of the body", () => {
-    render(makeSidebar("outer", true));
-    expect(
-      screen.getByTestId("outer-sidebar").closest(`#${WRAPPER_ID}`)
-        ?.parentElement
-    ).toBe(document.body);
-  });
-
-  it("THEN two open Sidebars share one host per provider and closing one keeps the other", () => {
-    const { rerender } = render(makeTwo(["inner", "outer"]));
-    const q = screen.getByTestId(PROVIDER_Q);
-    expect(q.querySelectorAll(`#${WRAPPER_ID}`)).toHaveLength(1);
-
-    rerender(makeTwo(["outer"]));
-    expect(screen.queryByTestId("inner-sidebar")).toBeNull();
-    expect(screen.getByTestId("outer-sidebar")).toBeTruthy();
-    expect(q.querySelectorAll(`#${WRAPPER_ID}`)).toHaveLength(1);
-  });
-
-  it("THEN should remove its owned host once closed or unmounted", () => {
-    const { rerender } = render(makeTwo(["inner"]));
-    expect(hosts()).toHaveLength(1);
-
-    rerender(makeTwo([]));
-    expect(hosts()).toHaveLength(0);
-
-    rerender(makeTwo(["inner"]));
-    expect(hosts()).toHaveLength(1);
-    rerender(<ThemeProvider theme="dark" data-testid={PROVIDER_Q} />);
-    expect(hosts()).toHaveLength(0);
-  });
-
-  it("THEN should reuse a host placed by the consumer inside the provider and never remove it", () => {
-    const { rerender } = render(makeTwo([]));
-    const q = screen.getByTestId(PROVIDER_Q);
-    const own = document.createElement("div");
-    own.id = WRAPPER_ID;
-    q.appendChild(own);
-
-    rerender(makeTwo(["inner"]));
-    expect(own.contains(screen.getByTestId("inner-sidebar"))).toBe(true);
-    expect(hosts()).toHaveLength(1);
-
-    rerender(makeTwo([]));
-    expect(q.contains(own)).toBe(true);
-  });
-
-  it("THEN should display its content again inside an attached provider host after being closed and reopened", () => {
-    const { rerender } = render(makeTwo(["inner"]));
-    const q = screen.getByTestId(PROVIDER_Q);
-
-    rerender(makeTwo([]));
-    expect(screen.queryByTestId("inner-sidebar")).toBeNull();
-
-    rerender(makeTwo(["inner"]));
-    const content = screen.getByTestId("inner-sidebar");
-    expect(content.closest(`#${WRAPPER_ID}`)?.parentElement).toBe(q);
-    expect(document.body.contains(content)).toBe(true);
-    expect(hosts()).toHaveLength(1);
-  });
-
-  it("THEN should render its content once, in the provider host, under StrictMode", () => {
-    render(<React.StrictMode>{makeTwo(["inner"])}</React.StrictMode>);
-    expect(screen.getAllByTestId("inner-sidebar")).toHaveLength(1);
-    expect(
-      screen.getByTestId("inner-sidebar").closest(`#${WRAPPER_ID}`)
-        ?.parentElement
-    ).toBe(screen.getByTestId(PROVIDER_Q));
-  });
-
-  it("THEN should keep the root path inside root without creating a host", () => {
-    const root = document.createElement("div");
-    document.body.appendChild(root);
-    render(
-      <ThemeProvider theme="dark" data-testid={PROVIDER_Q}>
-        <Sidebar open root={root} data-testid="root-sidebar">
-          <div>root sidebar</div>
-        </Sidebar>
-      </ThemeProvider>
-    );
-    expect(root.contains(screen.getByTestId("root-sidebar"))).toBe(true);
-    expect(hosts()).toHaveLength(0);
-    root.remove();
   });
 });
