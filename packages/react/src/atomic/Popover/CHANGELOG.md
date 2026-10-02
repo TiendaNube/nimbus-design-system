@@ -2,6 +2,12 @@
 
 Use Popovers to bring attention to specific user interface elements and suggest an action or to guide users through a new experience
 
+## 2026-10-02 `4.4.2`
+
+#### 🐛 Bug fixes
+
+- Popover content now mounts inside its nearest `ThemeProvider` regardless of render order, instead of being captured by the `nimbus-popover-floating` container of another provider or of the document body.
+
 ## 2026-03-02 `4.4.1`
 
 #### 🐛 Bug fixes

@@ -9,6 +9,10 @@ every day, with simplicity, accessibility, consistency and performance.
 
 - Select: Adds a `small` size variant. ([#530](https://github.com/TiendaNube/nimbus-design-system/pull/530) by [@noecondoleo](https://github.com/noecondoleo))
 
+#### 🐛 Bug fixes
+
+- Tooltip, Popover, Modal and Sidebar: Floating content now mounts inside its nearest `ThemeProvider` regardless of render order, instead of being captured by the first provider's or the document body's floating container. Modal and Sidebar keep their explicit `root` behavior.
+
 ## 2026-08-12 `5.62.0`
 
 #### 🛠 Reverted changes

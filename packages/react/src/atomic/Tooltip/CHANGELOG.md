@@ -2,6 +2,12 @@
 
 The Tooltip component allows us to display additional information in a non-intrusive way.
 
+## 2026-10-02 `2.7.1`
+
+#### 🐛 Bug fixes
+
+- Tooltip content now mounts inside its nearest `ThemeProvider` regardless of render order, instead of being captured by the `nimbus-tooltip-floating` container of another provider or of the document body.
+
 ## 2026-02-12 `2.7.0`
 
 #### 🎉 New features
