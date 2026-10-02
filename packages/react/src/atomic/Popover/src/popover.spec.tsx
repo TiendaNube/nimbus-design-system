@@ -7,6 +7,7 @@ import {
   waitFor,
 } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { ThemeProvider } from "@nimbus-ds/styles";
 
 import { Popover } from "./Popover";
 import { type PopoverProps } from "./popover.types";
@@ -16,6 +17,33 @@ global.ResizeObserver = jest.fn().mockImplementation(() => ({
   unobserve: jest.fn(),
   disconnect: jest.fn(),
 }));
+
+type ProviderSlots = { base?: React.ReactNode; dark?: React.ReactNode };
+
+const renderProviders = ({ base, dark }: ProviderSlots) => (
+  <>
+    <ThemeProvider theme="base" data-testid="provider-base">
+      {base}
+    </ThemeProvider>
+    <ThemeProvider theme="next-dark" data-testid="provider-dark">
+      {dark}
+    </ThemeProvider>
+  </>
+);
+
+const namedPopover = (name: string, visible = true) => (
+  <Popover
+    content={name}
+    visible={visible}
+    onVisibility={jest.fn()}
+    data-testid={`popover-${name}`}
+  >
+    <p>{`anchor-${name}`}</p>
+  </Popover>
+);
+
+const getPortalWrapper = (content: HTMLElement) =>
+  content.closest("[data-floating-ui-portal]")?.parentElement ?? null;
 
 const makeSut = (rest: Omit<PopoverProps, "children">) => {
   render(
@@ -403,6 +431,90 @@ describe("GIVEN <Popover />", () => {
           screen.getByTestId("popover-element").getAttribute("class")
         ).toContain("padding-small");
       });
+    });
+  });
+
+  describe("WHEN rendered inside ThemeProviders", () => {
+    beforeEach(() => {
+      document.body.innerHTML = "";
+    });
+
+    it("THEN content mounts in its own provider after another provider's popover mounted first", async () => {
+      const { rerender } = render(renderProviders({}));
+      rerender(renderProviders({ dark: namedPopover("dark") }));
+      await screen.findByTestId("popover-dark");
+      rerender(
+        renderProviders({
+          dark: namedPopover("dark"),
+          base: namedPopover("base")
+        })
+      );
+
+      const wrapper = getPortalWrapper(
+        await screen.findByTestId("popover-base")
+      );
+      expect(wrapper?.id).toEqual("nimbus-popover-floating");
+      expect(wrapper?.parentElement).toBe(screen.getByTestId("provider-base"));
+    });
+
+    it("AND content mounts in its own provider when the providers are used in reverse order", async () => {
+      const { rerender } = render(renderProviders({}));
+      rerender(renderProviders({ base: namedPopover("base") }));
+      await screen.findByTestId("popover-base");
+      rerender(
+        renderProviders({
+          base: namedPopover("base"),
+          dark: namedPopover("dark")
+        })
+      );
+
+      const wrapper = getPortalWrapper(
+        await screen.findByTestId("popover-dark")
+      );
+      expect(wrapper?.id).toEqual("nimbus-popover-floating");
+      expect(wrapper?.parentElement).toBe(screen.getByTestId("provider-dark"));
+    });
+
+    it("AND content without a provider mounts in a body wrapper after a provider's popover mounted first", async () => {
+      render(renderProviders({ base: namedPopover("base") }));
+      await screen.findByTestId("popover-base");
+      render(namedPopover("plain"));
+
+      const wrapper = getPortalWrapper(
+        await screen.findByTestId("popover-plain")
+      );
+      expect(wrapper?.id).toEqual("nimbus-popover-floating");
+      expect(wrapper?.parentElement).toBe(document.body);
+    });
+
+    it("AND content in a provider mounts in that provider after a popover without provider mounted first", async () => {
+      render(namedPopover("plain"));
+      await screen.findByTestId("popover-plain");
+      render(renderProviders({ base: namedPopover("base") }));
+
+      const wrapper = getPortalWrapper(
+        await screen.findByTestId("popover-base")
+      );
+      expect(wrapper?.id).toEqual("nimbus-popover-floating");
+      expect(wrapper?.parentElement).toBe(screen.getByTestId("provider-base"));
+    });
+
+    it("AND content stays in its provider when it is closed and reopened", async () => {
+      const { rerender } = render(
+        renderProviders({ base: namedPopover("base") })
+      );
+      await screen.findByTestId("popover-base");
+      rerender(renderProviders({ base: namedPopover("base", false) }));
+      await waitFor(() =>
+        expect(screen.queryByTestId("popover-base")).toBeNull()
+      );
+      rerender(renderProviders({ base: namedPopover("base") }));
+
+      const wrapper = getPortalWrapper(
+        await screen.findByTestId("popover-base")
+      );
+      expect(wrapper?.id).toEqual("nimbus-popover-floating");
+      expect(wrapper?.parentElement).toBe(screen.getByTestId("provider-base"));
     });
   });
 });

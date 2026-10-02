@@ -12,9 +12,10 @@ import {
   autoUpdate,
   flip,
 } from "@floating-ui/react";
-import { tooltip, useTheme } from "@nimbus-ds/styles";
+import { tooltip } from "@nimbus-ds/styles";
 import { Text } from "@nimbus-ds/text";
 import { Box } from "@nimbus-ds/box";
+import { useFloatingRoot } from "@common/hooks";
 import { type TooltipProps } from "./tooltip.types";
 
 const Tooltip: React.FC<TooltipProps> = ({
@@ -29,7 +30,7 @@ const Tooltip: React.FC<TooltipProps> = ({
 }) => {
   const arrowRef = useRef(null);
   const [isVisible, setVisibility] = useState(false);
-  const { refThemeProvider } = useTheme();
+  const floatingRoot = useFloatingRoot("nimbus-tooltip-floating");
   const { context, strategy, floatingStyles } = useFloating({
     open: isVisible,
     placement: position,
@@ -82,10 +83,7 @@ const Tooltip: React.FC<TooltipProps> = ({
       >
         {children}
       </div>
-      <FloatingPortal
-        id="nimbus-tooltip-floating"
-        root={refThemeProvider?.current}
-      >
+      <FloatingPortal root={floatingRoot}>
         {isVisible && (
           <div
             {...rest}

@@ -1,5 +1,6 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
+import { ThemeProvider } from "@nimbus-ds/styles";
 
 import { Sidebar } from "./Sidebar";
 import { type SidebarProps } from "./sidebar.types";
@@ -7,6 +8,28 @@ import { type SidebarProps } from "./sidebar.types";
 const makeSut = (rest: SidebarProps) => {
   render(<Sidebar {...rest} data-testid="sidebar-element" />);
 };
+
+type ProviderSlots = { base?: React.ReactNode; dark?: React.ReactNode };
+
+const renderProviders = ({ base, dark }: ProviderSlots) => (
+  <>
+    <ThemeProvider theme="base" data-testid="provider-base">
+      {base}
+    </ThemeProvider>
+    <ThemeProvider theme="next-dark" data-testid="provider-dark">
+      {dark}
+    </ThemeProvider>
+  </>
+);
+
+const namedSidebar = (name: string, open = true) => (
+  <Sidebar data-testid={`sidebar-${name}`} open={open}>
+    {name}
+  </Sidebar>
+);
+
+const getPortalWrapper = (content: HTMLElement) =>
+  content.closest("[data-floating-ui-portal]")?.parentElement ?? null;
 
 describe("GIVEN <Sidebar />", () => {
   describe("WHEN rendered", () => {
@@ -121,6 +144,73 @@ describe("GIVEN <Sidebar />", () => {
 
       fireEvent.mouseDown(document.body);
       expect(onRemove).toHaveBeenCalled();
+    });
+  });
+
+  describe("WHEN rendered inside ThemeProviders", () => {
+    beforeEach(() => {
+      document.body.innerHTML = "";
+    });
+
+    it("THEN content mounts in its own provider after another provider's sidebar mounted first", () => {
+      const { rerender } = render(renderProviders({}));
+      rerender(renderProviders({ dark: namedSidebar("dark") }));
+      expect(screen.getByTestId("sidebar-dark")).toBeDefined();
+      rerender(
+        renderProviders({
+          dark: namedSidebar("dark"),
+          base: namedSidebar("base")
+        })
+      );
+
+      const wrapper = getPortalWrapper(screen.getByTestId("sidebar-base"));
+      expect(wrapper?.id).toEqual("nimbus-sidebar");
+      expect(wrapper?.parentElement).toBe(screen.getByTestId("provider-base"));
+    });
+
+    it("AND content mounts in its own provider when the providers are used in reverse order", () => {
+      const { rerender } = render(renderProviders({}));
+      rerender(renderProviders({ base: namedSidebar("base") }));
+      expect(screen.getByTestId("sidebar-base")).toBeDefined();
+      rerender(
+        renderProviders({
+          base: namedSidebar("base"),
+          dark: namedSidebar("dark")
+        })
+      );
+
+      const wrapper = getPortalWrapper(screen.getByTestId("sidebar-dark"));
+      expect(wrapper?.id).toEqual("nimbus-sidebar");
+      expect(wrapper?.parentElement).toBe(screen.getByTestId("provider-dark"));
+    });
+
+    it("AND content without a provider mounts in a body wrapper after a provider's sidebar mounted first", () => {
+      const { rerender } = render(renderProviders({}));
+      rerender(renderProviders({ base: namedSidebar("base") }));
+      expect(screen.getByTestId("sidebar-base")).toBeDefined();
+      render(namedSidebar("plain"));
+
+      const wrapper = getPortalWrapper(screen.getByTestId("sidebar-plain"));
+      expect(wrapper?.id).toEqual("nimbus-sidebar");
+      expect(wrapper?.parentElement).toBe(document.body);
+    });
+
+    it("AND content stays in its provider when it is closed and reopened", () => {
+      const { rerender } = render(renderProviders({}));
+      rerender(renderProviders({ base: namedSidebar("base") }));
+      rerender(renderProviders({ base: namedSidebar("base", false) }));
+      expect(screen.queryByTestId("sidebar-base")).toBeNull();
+      rerender(renderProviders({ base: namedSidebar("base") }));
+
+      const wrapper = getPortalWrapper(screen.getByTestId("sidebar-base"));
+      expect(wrapper?.id).toEqual("nimbus-sidebar");
+      expect(wrapper?.parentElement).toBe(screen.getByTestId("provider-base"));
+    });
+
+    it("AND a closed sidebar creates no portal wrapper", () => {
+      render(renderProviders({ base: namedSidebar("base", false) }));
+
+      expect(document.getElementById("nimbus-sidebar")).toBeNull();
     });
   });
 });
