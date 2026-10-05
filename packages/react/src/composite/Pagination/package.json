@@ -14,8 +14,11 @@
     "version": "yarn version"
   },
   "dependencies": {
+    "@nimbus-ds/box": "workspace:^",
     "@nimbus-ds/button": "workspace:^",
-    "@nimbus-ds/icons": "workspace:^"
+    "@nimbus-ds/icons": "workspace:^",
+    "@nimbus-ds/input": "workspace:^",
+    "@nimbus-ds/text": "workspace:^"
   },
   "peerDependencies": {
     "react": "^16.8 || ^17.0 || ^18.0 || ^19.0",

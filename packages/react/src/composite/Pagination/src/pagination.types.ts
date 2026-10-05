@@ -27,6 +27,17 @@ export interface PaginationProperties {
   showNumbers?: boolean;
 
   /**
+   * Shows the numeric "go to page" input next to the navigation, to jump
+   * straight to a page by typing its number. Submitted on Enter or on blur.
+   * It is only available when `pageCount` is 6 or more, and never replaces the
+   * arrows or page numbers. Below the `md` breakpoint (672px) the compact
+   * first / previous / go-to-page / next / last layout is used instead, with its
+   * own input, whether or not this prop is set.
+   * @default false
+   */
+  showInput?: boolean;
+
+  /**
    * Custom render function for pagination items.
    */
   renderItem?: (item: PaginationItemData) => React.ReactNode;
