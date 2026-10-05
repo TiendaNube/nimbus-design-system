@@ -202,7 +202,7 @@ const Pagination: React.FC<PaginationProps> = ({
         </li>
       )}
       {hasGoToPage && goToPage.error && (
-        <li id={errorId} className={pagination.classnames.error}>
+        <li id={errorId} role="alert" className={pagination.classnames.error}>
           <Text
             as="span"
             fontSize="caption"

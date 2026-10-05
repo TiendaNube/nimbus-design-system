@@ -454,6 +454,25 @@ describe("GIVEN <Pagination /> with the go to page input", () => {
       expect(texts).toContain("Enter a page between 1 and 20.");
     });
 
+    it("AND should announce the error as an alert", () => {
+      renderPagination({ activePage: 3, pageCount: 20, showInput: true });
+      const input = desktopInput() as HTMLInputElement;
+      type(input, "99");
+      fireEvent.blur(input);
+      expect(screen.getByRole("alert").textContent).toBe(
+        "Enter a page between 1 and 20."
+      );
+    });
+
+    it("AND should reject scientific notation", () => {
+      renderPagination({ activePage: 3, pageCount: 20, showInput: true });
+      const input = desktopInput() as HTMLInputElement;
+      type(input, "1e1");
+      fireEvent.keyDown(input, { key: "Enter" });
+      expect(mockedOnPageChange).not.toHaveBeenCalled();
+      expect(screen.getByRole("alert")).toBeDefined();
+    });
+
     it("AND should clear the error on the next keystroke", () => {
       renderPagination({ activePage: 3, pageCount: 20, showInput: true });
       const input = desktopInput() as HTMLInputElement;

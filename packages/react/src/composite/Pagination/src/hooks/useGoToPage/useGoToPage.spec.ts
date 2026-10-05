@@ -28,16 +28,27 @@ describe("GIVEN parsePage", () => {
     ["1", 1],
     [" 20 ", 20],
     ["007", 7],
+    [" 3 ", 3],
   ])("WHEN %p THEN should return %p", (text, expected) => {
     expect(parsePage(text, 20)).toBe(expected);
   });
 
-  it.each(["", "  ", "0", "21", "-1", "1.5", "abc", "1e1x"])(
-    "WHEN %p THEN should be invalid",
-    (text) => {
-      expect(parsePage(text, 20)).toBeUndefined();
-    }
-  );
+  it.each([
+    "",
+    "  ",
+    "0",
+    "21",
+    "-1",
+    "1.5",
+    "3.0",
+    "abc",
+    "1e1",
+    "1e1x",
+    "+3",
+    "0x2",
+  ])("WHEN %p THEN should be invalid", (text) => {
+    expect(parsePage(text, 20)).toBeUndefined();
+  });
 });
 
 describe("GIVEN useGoToPage", () => {
