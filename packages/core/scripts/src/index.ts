@@ -4,3 +4,4 @@ export * from "./componentsBuilder";
 export * from "./packagePublisher";
 export * from "./common";
 export * from "./storybookPreviewLinks";
+export * from "./sourceMap";

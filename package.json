@@ -29,6 +29,8 @@
     "lint:fix": "yarn lint --fix",
     "pre-commit": "lint-staged",
     "preview:links": "babel-node -x .ts ./.scripts/storybook-preview-links",
+    "source-map": "babel-node -x .ts ./.scripts/build-source-map",
+    "source-map:check": "babel-node -x .ts ./.scripts/build-source-map --check",
     "pre-push": "yarn lint && yarn types:check && yarn bump:check",
     "prepare-husky": "husky install",
     "publish:next": "yarn bump:check && yarn bump:next && npm run build && yarn publish:npm:next",

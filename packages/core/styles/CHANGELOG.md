@@ -2,10 +2,11 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
-## 2026-10-05 `9.69.0`
+## 2026-08-31 `9.69.0`
 
 #### 🎉 New features
 
+- Select: Adds a `small` size style variant. ([#530](https://github.com/TiendaNube/nimbus-design-system/pull/530) by [@noecondoleo](https://github.com/noecondoleo))
 - Pagination: Adds the styles for the "go to page" input and the compact layout shown below the `md` breakpoint when `pageCount` is 6 or more. ([#585](https://github.com/TiendaNube/nimbus-design-system/pull/585) by [@claude[bot]](https://github.com/apps/claude))
 
 ## 2026-09-08 `9.68.1`

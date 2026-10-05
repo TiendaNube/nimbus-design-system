@@ -3,10 +3,11 @@
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories
 every day, with simplicity, accessibility, consistency and performance.
 
-## 2026-10-05 `5.63.0`
+## 2026-08-31 `5.63.0`
 
 #### 🎉 New features
 
+- Select: Adds a `small` size variant. ([#530](https://github.com/TiendaNube/nimbus-design-system/pull/530) by [@noecondoleo](https://github.com/noecondoleo))
 - Pagination: Adds the `showInput` prop for a numeric "go to page" input, a compact first / previous / go-to-page / next / last layout below the `md` breakpoint when `pageCount` is 6 or more, and `aria-label`s on the navigation buttons. Fixes the input being overwritten while typing when `activePage` changes externally. ([#585](https://github.com/TiendaNube/nimbus-design-system/pull/585) by [@claude[bot]](https://github.com/apps/claude))
 - Icons: Adds the `chevron-first` and `chevron-last` icons, used by `Pagination`. ([#585](https://github.com/TiendaNube/nimbus-design-system/pull/585) by [@claude[bot]](https://github.com/apps/claude))
 
