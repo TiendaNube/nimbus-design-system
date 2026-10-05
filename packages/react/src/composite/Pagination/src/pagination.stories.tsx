@@ -31,6 +31,62 @@ export const basic: Story = {
   },
 };
 
+/**
+ * `showInput` adds a numeric "go to page" input next to the navigation. It is
+ * submitted on Enter or on blur, and is only available when `pageCount` is 6
+ * or more. Use a viewport of 672px or wider (the `md` breakpoint) to see it.
+ */
+export const withGoToPage: Story = {
+  ...basic,
+  args: {
+    pageCount: 20,
+    activePage: 3,
+    showInput: true,
+  },
+};
+
+/**
+ * An out-of-range or non-numeric entry is kept as typed with an inline error.
+ * The error clears on the next keystroke, a successful submit or when the page
+ * changes from another control. Try typing `99` and pressing Enter.
+ */
+export const goToPageValidation: Story = {
+  ...withGoToPage,
+  args: {
+    pageCount: 12,
+    activePage: 1,
+    showInput: true,
+  },
+};
+
+/**
+ * Below the `md` breakpoint (672px) and with 6 or more pages, a compact
+ * first / previous / go-to-page / next / last layout replaces the page numbers.
+ * The input is always present in this layout, whether or not `showInput` is set.
+ */
+export const compactLayout: Story = {
+  ...withGoToPage,
+  args: {
+    pageCount: 20,
+    activePage: 3,
+  },
+  parameters: {
+    viewport: { defaultViewport: "mobile1" },
+  },
+};
+
+/**
+ * With fewer than 6 pages the go-to-page input and the compact layout are not
+ * available, so `showInput` has no effect.
+ */
+export const fewPages: Story = {
+  args: {
+    pageCount: 5,
+    activePage: 2,
+    showInput: true,
+  },
+};
+
 export const noNumbers: Story = {
   args: {
     pageCount: 20,
