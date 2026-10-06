@@ -84,6 +84,9 @@
       "@nimbus-ds/divider": ["./packages/react/src/atomic/Divider/src"],
       "@nimbus-ds/accordion": ["./packages/react/src/composite/Accordion/src"],
       "@nimbus-ds/alert": ["./packages/react/src/composite/Alert/src"],
+      "@nimbus-ds/breadcrumb": [
+        "./packages/react/src/composite/Breadcrumb/src"
+      ],
       "@nimbus-ds/card": ["./packages/react/src/composite/Card/src"],
       "@nimbus-ds/collapsible": [
         "./packages/react/src/composite/Collapsible/src"

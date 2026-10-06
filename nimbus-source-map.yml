@@ -64,6 +64,7 @@ components:
   - { name: "Tooltip", group: "atomic", package: "@nimbus-ds/tooltip" }
   - { name: "Accordion", group: "composite", package: "@nimbus-ds/accordion", nested: ["AccordionBody", "AccordionHeader", "AccordionItem"], contexts: ["AccordionContext", "AccordionItemContext"], extras: ["src/accordion.definitions.ts", "src/hooks/"] }
   - { name: "Alert", group: "composite", package: "@nimbus-ds/alert", nested: ["AlertSkeleton"], extras: ["src/alert.definitions.ts"] }
+  - { name: "Breadcrumb", group: "composite", package: "@nimbus-ds/breadcrumb", extras: ["Breadcrumb.spec.md", "src/breadcrumb.definitions.ts", "src/hooks/", "src/utils/"] }
   - { name: "Card", group: "composite", package: "@nimbus-ds/card", nested: ["CardBody", "CardFooter", "CardHeader"] }
   - { name: "Collapsible", group: "composite", package: "@nimbus-ds/collapsible", nested: ["CollapsibleBody", "CollapsibleItem"], contexts: ["CollapsibleContext"], extras: ["src/hooks/"] }
   - { name: "Modal", group: "composite", package: "@nimbus-ds/modal", nested: ["ModalBody", "ModalFooter", "ModalHeader"] }

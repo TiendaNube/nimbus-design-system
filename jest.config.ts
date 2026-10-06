@@ -43,6 +43,8 @@ const config: Config.InitialOptions = {
     "@nimbus-ds/accordion":
       "<rootDir>/packages/react/src/composite/Accordion/src",
     "@nimbus-ds/alert": "<rootDir>/packages/react/src/composite/Alert/src",
+    "@nimbus-ds/breadcrumb":
+      "<rootDir>/packages/react/src/composite/Breadcrumb/src",
     "@nimbus-ds/card": "<rootDir>/packages/react/src/composite/Card/src",
     "@nimbus-ds/modal": "<rootDir>/packages/react/src/composite/Modal/src",
     "@nimbus-ds/pagination":

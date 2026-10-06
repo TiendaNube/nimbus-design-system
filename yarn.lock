@@ -2938,6 +2938,27 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@nimbus-ds/breadcrumb@workspace:packages/react/src/composite/Breadcrumb":
+  version: 0.0.0-use.local
+  resolution: "@nimbus-ds/breadcrumb@workspace:packages/react/src/composite/Breadcrumb"
+  dependencies:
+    "@floating-ui/react": ^0.27.5
+    "@nimbus-ds/box": "workspace:^"
+    "@nimbus-ds/button": "workspace:^"
+    "@nimbus-ds/icon": "workspace:^"
+    "@nimbus-ds/icons": "workspace:^"
+    "@nimbus-ds/link": "workspace:^"
+    "@nimbus-ds/modal": "workspace:^"
+    "@nimbus-ds/sidebar": "workspace:^"
+    "@nimbus-ds/styles": "workspace:^"
+    "@nimbus-ds/text": "workspace:^"
+    "@nimbus-ds/webpack": "workspace:^"
+  peerDependencies:
+    react: ^16.8 || ^17.0 || ^18.0 || ^19.0
+    react-dom: ^16.8 || ^17.0 || ^18.0 || ^19.0
+  languageName: unknown
+  linkType: soft
+
 "@nimbus-ds/button@workspace:^, @nimbus-ds/button@workspace:packages/react/src/atomic/Button":
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/button@workspace:packages/react/src/atomic/Button"
@@ -3128,7 +3149,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/link@workspace:packages/react/src/atomic/Link":
+"@nimbus-ds/link@workspace:^, @nimbus-ds/link@workspace:packages/react/src/atomic/Link":
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/link@workspace:packages/react/src/atomic/Link"
   dependencies:
@@ -3153,7 +3174,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/modal@workspace:packages/react/src/composite/Modal":
+"@nimbus-ds/modal@workspace:^, @nimbus-ds/modal@workspace:packages/react/src/composite/Modal":
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/modal@workspace:packages/react/src/composite/Modal"
   dependencies:
@@ -3303,7 +3324,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/sidebar@workspace:packages/react/src/composite/Sidebar":
+"@nimbus-ds/sidebar@workspace:^, @nimbus-ds/sidebar@workspace:packages/react/src/composite/Sidebar":
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/sidebar@workspace:packages/react/src/composite/Sidebar"
   dependencies:
