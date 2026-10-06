@@ -47,7 +47,7 @@ components:
   - { name: "Link", group: "atomic", package: "@nimbus-ds/link", nested: ["LinkSkeleton"] }
   - { name: "List", group: "atomic", package: "@nimbus-ds/list", nested: ["ListItem", "ListSkeleton", "ListSkeletonItem"] }
   - { name: "MultiSelect", group: "atomic", package: "@nimbus-ds/multi-select", nested: ["MultiSelectSkeleton"] }
-  - { name: "Popover", group: "atomic", package: "@nimbus-ds/popover" }
+  - { name: "Popover", group: "atomic", package: "@nimbus-ds/popover", extras: ["Popover.spec.md"] }
   - { name: "ProgressBar", group: "atomic", package: "@nimbus-ds/progress-bar", nested: ["ProgressBarSkeleton"] }
   - { name: "Radio", group: "atomic", package: "@nimbus-ds/radio", nested: ["RadioSkeleton"] }
   - { name: "Select", group: "atomic", package: "@nimbus-ds/select", nested: ["SelectGroup", "SelectOption", "SelectSkeleton"] }
@@ -61,16 +61,16 @@ components:
   - { name: "Title", group: "atomic", package: "@nimbus-ds/title", nested: ["TitleSkeleton"] }
   - { name: "Toast", group: "atomic", package: "@nimbus-ds/toast", nested: ["ToastProvider"], contexts: ["ToastContext"], extras: ["src/hooks/"] }
   - { name: "Toggle", group: "atomic", package: "@nimbus-ds/toggle", nested: ["ToggleSkeleton"] }
-  - { name: "Tooltip", group: "atomic", package: "@nimbus-ds/tooltip" }
+  - { name: "Tooltip", group: "atomic", package: "@nimbus-ds/tooltip", extras: ["Tooltip.spec.md"] }
   - { name: "Accordion", group: "composite", package: "@nimbus-ds/accordion", nested: ["AccordionBody", "AccordionHeader", "AccordionItem"], contexts: ["AccordionContext", "AccordionItemContext"], extras: ["src/accordion.definitions.ts", "src/hooks/"] }
   - { name: "Alert", group: "composite", package: "@nimbus-ds/alert", nested: ["AlertSkeleton"], extras: ["src/alert.definitions.ts"] }
   - { name: "Card", group: "composite", package: "@nimbus-ds/card", nested: ["CardBody", "CardFooter", "CardHeader"] }
   - { name: "Collapsible", group: "composite", package: "@nimbus-ds/collapsible", nested: ["CollapsibleBody", "CollapsibleItem"], contexts: ["CollapsibleContext"], extras: ["src/hooks/"] }
-  - { name: "Modal", group: "composite", package: "@nimbus-ds/modal", nested: ["ModalBody", "ModalFooter", "ModalHeader"] }
+  - { name: "Modal", group: "composite", package: "@nimbus-ds/modal", nested: ["ModalBody", "ModalFooter", "ModalHeader"], extras: ["Modal.spec.md"] }
   - { name: "Pagination", group: "composite", package: "@nimbus-ds/pagination", extras: ["src/hooks/", "src/pagination.definitions.ts"] }
   - { name: "ScrollPane", group: "composite", package: "@nimbus-ds/scroll-pane", nested: ["ScrollPaneArrow", "ScrollPaneItem"], contexts: ["ScrollPaneContext"], extras: ["src/ScrollPane.definitions.ts"] }
   - { name: "SegmentedControl", group: "composite", package: "@nimbus-ds/segmented-control", nested: ["SegmentedControlButton"], contexts: ["SegmentedControlContext"], extras: ["src/segmentedControl.definitions.ts"] }
-  - { name: "Sidebar", group: "composite", package: "@nimbus-ds/sidebar", nested: ["SidebarBody", "SidebarFooter", "SidebarHeader"] }
+  - { name: "Sidebar", group: "composite", package: "@nimbus-ds/sidebar", nested: ["SidebarBody", "SidebarFooter", "SidebarHeader"], extras: ["Sidebar.spec.md"] }
   - { name: "SplitButton", group: "composite", package: "@nimbus-ds/split-button", nested: ["SplitButtonAction", "SplitButtonPrimary", "SplitButtonSecondary"] }
   - { name: "Stepper", group: "composite", package: "@nimbus-ds/stepper", nested: ["StepperCard", "StepperContext", "StepperItem"], extras: ["src/stepper.definitions.ts"] }
   - { name: "Table", group: "composite", package: "@nimbus-ds/table", nested: ["TableBody", "TableCell", "TableHead", "TableRow"], contexts: ["TableContext"], extras: ["src/Table.definitions.spec.ts", "src/Table.definitions.ts"] }
