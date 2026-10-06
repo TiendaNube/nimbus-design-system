@@ -8,6 +8,7 @@ every day, with simplicity, accessibility, consistency and performance.
 #### 🎉 New features
 
 - Select: Adds a `small` size variant. ([#530](https://github.com/TiendaNube/nimbus-design-system/pull/530) by [@noecondoleo](https://github.com/noecondoleo))
+- Breadcrumb: Adds the new `Breadcrumb` composite component. ([#553](https://github.com/TiendaNube/nimbus-design-system/issues/553))
 
 ## 2026-08-12 `5.62.0`
 

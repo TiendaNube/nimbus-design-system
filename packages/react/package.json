@@ -166,6 +166,10 @@
       "import": "./dist/Alert/index.js",
       "require": "./dist/Alert/index.js"
     },
+    "./Breadcrumb": {
+      "import": "./dist/Breadcrumb/index.js",
+      "require": "./dist/Breadcrumb/index.js"
+    },
     "./Card": {
       "import": "./dist/Card/index.js",
       "require": "./dist/Card/index.js"

@@ -44,6 +44,7 @@ export { divider, dividerVars } from "./packages/atomic/divider";
 
 export { accordion } from "./packages/composite/accordion";
 export { alert } from "./packages/composite/alert";
+export { breadcrumb } from "./packages/composite/breadcrumb";
 export { card } from "./packages/composite/card";
 export { collapsible } from "./packages/composite/collapsible";
 export { modal } from "./packages/composite/modal";
