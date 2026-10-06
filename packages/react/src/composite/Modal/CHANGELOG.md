@@ -2,6 +2,12 @@
 
 The Modal component allows us to call the user's attention to a floating box that can have text, actions or forms to perform tasks by changing the focus from the background. It is an intrusive component as it interrupts the user's operation to present a message or content.
 
+## 2026-10-02 `1.10.1`
+
+#### 🐛 Bug fixes
+
+- Modal now mounts inside its nearest `ThemeProvider` regardless of render order when `root` is not provided, instead of being captured by the `nimbus-modal-floating` (or `portalId`) container of another provider or of the document body. The `portalId` container is now created inside that provider (or the body) rather than looked up across the document.
+
 ## 2026-02-12 `1.9.0`
 
 #### 🎉 New features

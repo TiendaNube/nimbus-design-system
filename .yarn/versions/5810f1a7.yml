@@ -1,0 +1,11 @@
+releases:
+  '@nimbus-ds/components': patch
+  '@nimbus-ds/modal': patch
+  '@nimbus-ds/popover': patch
+  '@nimbus-ds/sidebar': patch
+  '@nimbus-ds/tooltip': patch
+declined:
+- '@nimbus-ds/icon'
+- '@nimbus-ds/segmented-control'
+- '@nimbus-ds/split-button'
+- nimbus-design-system

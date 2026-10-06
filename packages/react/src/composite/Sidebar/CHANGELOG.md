@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-02 `3.6.2`
+
+#### 🐛 Bug fixes
+
+- Sidebar now mounts inside its nearest `ThemeProvider` regardless of render order when `root` is not provided, instead of being captured by the `nimbus-sidebar` container of another provider or of the document body.
+
 ## 2026-02-12 `3.6.0`
 
 #### 🎉 New features

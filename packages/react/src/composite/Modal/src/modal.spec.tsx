@@ -1,6 +1,8 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
-import { modal } from "@nimbus-ds/styles";
+import userEvent from "@testing-library/user-event";
+import { modal, ThemeProvider } from "@nimbus-ds/styles";
+import { Tooltip } from "@nimbus-ds/tooltip";
 
 import { Modal } from "./Modal";
 import { type ModalProps } from "./modal.types";
@@ -18,6 +20,40 @@ const makeSut = (
     | "zIndex"
   >
 ) => render(<Modal {...rest} open data-testid="modal-element" />);
+
+type ProviderSlots = { base?: React.ReactNode; dark?: React.ReactNode };
+
+const renderProviders = ({ base, dark }: ProviderSlots) => (
+  <>
+    <ThemeProvider theme="base" data-testid="provider-base">
+      {base}
+    </ThemeProvider>
+    <ThemeProvider theme="next-dark" data-testid="provider-dark">
+      {dark}
+    </ThemeProvider>
+  </>
+);
+
+const namedModal = (
+  name: string,
+  {
+    open = true,
+    portalId,
+    children
+  }: Partial<Pick<ModalProps, "open" | "portalId" | "children">> = {}
+) => (
+  <Modal
+    data-testid={`modal-${name}`}
+    onDismiss={mockedOnDismiss}
+    open={open}
+    portalId={portalId}
+  >
+    {children ?? name}
+  </Modal>
+);
+
+const getPortalWrapper = (content: HTMLElement) =>
+  content.closest("[data-floating-ui-portal]")?.parentElement ?? null;
 
 describe("GIVEN <Modal />", () => {
   describe("WHEN rendered", () => {
@@ -232,6 +268,108 @@ describe("GIVEN <Modal />", () => {
         expect.any(Object),
         "outside-press"
       );
+    });
+  });
+
+  describe("WHEN rendered inside ThemeProviders", () => {
+    beforeEach(() => {
+      document.body.innerHTML = "";
+    });
+
+    it("THEN content mounts in its own provider after another provider's modal mounted first", () => {
+      const { rerender } = render(renderProviders({}));
+      rerender(renderProviders({ dark: namedModal("dark") }));
+      expect(screen.getByTestId("modal-dark")).toBeDefined();
+      rerender(
+        renderProviders({ dark: namedModal("dark"), base: namedModal("base") })
+      );
+
+      const wrapper = getPortalWrapper(screen.getByTestId("modal-base"));
+      expect(wrapper?.id).toEqual("nimbus-modal-floating");
+      expect(wrapper?.parentElement).toBe(screen.getByTestId("provider-base"));
+    });
+
+    it("AND content mounts in its own provider when the providers are used in reverse order", () => {
+      const { rerender } = render(renderProviders({}));
+      rerender(renderProviders({ base: namedModal("base") }));
+      expect(screen.getByTestId("modal-base")).toBeDefined();
+      rerender(
+        renderProviders({ base: namedModal("base"), dark: namedModal("dark") })
+      );
+
+      const wrapper = getPortalWrapper(screen.getByTestId("modal-dark"));
+      expect(wrapper?.id).toEqual("nimbus-modal-floating");
+      expect(wrapper?.parentElement).toBe(screen.getByTestId("provider-dark"));
+    });
+
+    it("AND content without a provider mounts in a body wrapper after a provider's modal mounted first", () => {
+      const { rerender } = render(renderProviders({}));
+      rerender(renderProviders({ base: namedModal("base") }));
+      expect(screen.getByTestId("modal-base")).toBeDefined();
+      render(namedModal("plain"));
+
+      const wrapper = getPortalWrapper(screen.getByTestId("modal-plain"));
+      expect(wrapper?.id).toEqual("nimbus-modal-floating");
+      expect(wrapper?.parentElement).toBe(document.body);
+    });
+
+    it("AND a custom portalId is created inside its own provider after another provider used it", () => {
+      const { rerender } = render(renderProviders({}));
+      rerender(
+        renderProviders({
+          dark: namedModal("dark", { open: true, portalId: "custom-modal" })
+        })
+      );
+      expect(screen.getByTestId("modal-dark")).toBeDefined();
+      rerender(
+        renderProviders({
+          dark: namedModal("dark", { open: true, portalId: "custom-modal" }),
+          base: namedModal("base", { open: true, portalId: "custom-modal" })
+        })
+      );
+
+      const wrapper = getPortalWrapper(screen.getByTestId("modal-base"));
+      expect(wrapper?.id).toEqual("custom-modal");
+      expect(wrapper?.parentElement).toBe(screen.getByTestId("provider-base"));
+    });
+
+    it("AND a tooltip inside the modal mounts in the modal's provider after another provider's tooltip mounted first", async () => {
+      const user = userEvent.setup();
+      const tooltipIn = (name: string) => (
+        <Tooltip content={name} data-testid={`tooltip-${name}`}>
+          <p data-testid={`anchor-${name}`}>{name}</p>
+        </Tooltip>
+      );
+      const { rerender } = render(renderProviders({}));
+      rerender(renderProviders({ dark: tooltipIn("dark") }));
+      await user.hover(
+        screen.getByTestId("anchor-dark").parentElement as HTMLElement
+      );
+      await screen.findByTestId("tooltip-dark");
+      rerender(
+        renderProviders({
+          dark: tooltipIn("dark"),
+          base: namedModal("base", {
+            open: true,
+            children: tooltipIn("in-modal")
+          })
+        })
+      );
+      await user.hover(
+        screen.getByTestId("anchor-in-modal").parentElement as HTMLElement
+      );
+
+      const wrapper = getPortalWrapper(
+        await screen.findByTestId("tooltip-in-modal")
+      );
+      expect(wrapper?.id).toEqual("nimbus-tooltip-floating");
+      expect(wrapper?.parentElement).toBe(screen.getByTestId("provider-base"));
+    });
+
+    it("AND a closed modal creates no portal wrapper", () => {
+      render(renderProviders({ base: namedModal("base", { open: false }) }));
+
+      expect(document.getElementById("nimbus-modal-floating")).toBeNull();
     });
   });
 });

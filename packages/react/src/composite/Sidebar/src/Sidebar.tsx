@@ -9,7 +9,8 @@ import {
   useDismiss,
   useInteractions,
 } from "@floating-ui/react";
-import { sidebar, useTheme } from "@nimbus-ds/styles";
+import { sidebar } from "@nimbus-ds/styles";
+import { useFloatingRoot } from "@common/hooks";
 import {
   eventHasNodeWithAttribute,
   DEFAULT_OUTSIDE_PRESS_IGNORE_ATTRIBUTE,
@@ -41,7 +42,7 @@ const Sidebar: React.FC<SidebarProps> & SidebarComponents = ({
     maxWidth,
   });
 
-  const { refThemeProvider } = useTheme();
+  const floatingRoot = useFloatingRoot("nimbus-sidebar", open && !root);
 
   const { context } = useFloating({
     open,
@@ -121,7 +122,7 @@ const Sidebar: React.FC<SidebarProps> & SidebarComponents = ({
   }
 
   return (
-    <FloatingPortal id="nimbus-sidebar" root={refThemeProvider?.current}>
+    <FloatingPortal root={floatingRoot}>
       <FloatingOverlay
         className={sidebar.classnames.overlay}
         data-testid="overlay-sidebar-button"

@@ -1,10 +1,41 @@
 import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { tooltip as tooltipStyles } from "@nimbus-ds/styles";
+import { tooltip as tooltipStyles, ThemeProvider } from "@nimbus-ds/styles";
 
 import { Tooltip } from "./Tooltip";
 import { type TooltipProps } from "./tooltip.types";
+
+type ProviderSlots = { base?: React.ReactNode; dark?: React.ReactNode };
+
+const renderProviders = ({ base, dark }: ProviderSlots) => (
+  <>
+    <ThemeProvider theme="base" data-testid="provider-base">
+      {base}
+    </ThemeProvider>
+    <ThemeProvider theme="next-dark" data-testid="provider-dark">
+      {dark}
+    </ThemeProvider>
+  </>
+);
+
+const namedTooltip = (name: string) => (
+  <Tooltip content={name} data-testid={`tooltip-${name}`}>
+    <p data-testid={`anchor-${name}`}>{name}</p>
+  </Tooltip>
+);
+
+const hoverTooltip = async (
+  user: ReturnType<typeof userEvent.setup>,
+  name: string
+) => {
+  const anchor = screen.getByTestId(`anchor-${name}`);
+  await user.hover(anchor.parentElement as HTMLElement);
+  return screen.findByTestId(`tooltip-${name}`);
+};
+
+const getPortalWrapper = (content: HTMLElement) =>
+  content.closest("[data-floating-ui-portal]")?.parentElement ?? null;
 
 const makeSut = (rest: Omit<TooltipProps, "children">) => {
   render(
@@ -148,6 +179,88 @@ describe("GIVEN <Tooltip />", () => {
       expect(tooltip.style.maxWidth).toEqual(maxWidth);
 
       sprinkleSpy.mockRestore();
+    });
+  });
+
+  describe("WHEN rendered inside ThemeProviders", () => {
+    beforeEach(() => {
+      document.body.innerHTML = "";
+    });
+
+    it("THEN content mounts in its own provider after another provider's tooltip mounted first", async () => {
+      const user = userEvent.setup();
+      const { rerender } = render(renderProviders({}));
+      rerender(renderProviders({ dark: namedTooltip("dark") }));
+      await hoverTooltip(user, "dark");
+      rerender(
+        renderProviders({
+          dark: namedTooltip("dark"),
+          base: namedTooltip("base")
+        })
+      );
+
+      const wrapper = getPortalWrapper(await hoverTooltip(user, "base"));
+      expect(wrapper?.id).toEqual("nimbus-tooltip-floating");
+      expect(wrapper?.parentElement).toBe(screen.getByTestId("provider-base"));
+    });
+
+    it("AND content mounts in its own provider when the providers are used in reverse order", async () => {
+      const user = userEvent.setup();
+      const { rerender } = render(renderProviders({}));
+      rerender(renderProviders({ base: namedTooltip("base") }));
+      await hoverTooltip(user, "base");
+      rerender(
+        renderProviders({
+          base: namedTooltip("base"),
+          dark: namedTooltip("dark")
+        })
+      );
+
+      const wrapper = getPortalWrapper(await hoverTooltip(user, "dark"));
+      expect(wrapper?.id).toEqual("nimbus-tooltip-floating");
+      expect(wrapper?.parentElement).toBe(screen.getByTestId("provider-dark"));
+    });
+
+    it("AND content without a provider mounts in a body wrapper after a provider's tooltip mounted first", async () => {
+      const user = userEvent.setup();
+      render(renderProviders({ base: namedTooltip("base") }));
+      await hoverTooltip(user, "base");
+      render(namedTooltip("plain"));
+
+      const wrapper = getPortalWrapper(await hoverTooltip(user, "plain"));
+      expect(wrapper?.id).toEqual("nimbus-tooltip-floating");
+      expect(wrapper?.parentElement).toBe(document.body);
+    });
+
+    it("AND content in a provider mounts in that provider after a tooltip without provider mounted first", async () => {
+      const user = userEvent.setup();
+      render(namedTooltip("plain"));
+      await hoverTooltip(user, "plain");
+      render(renderProviders({ base: namedTooltip("base") }));
+
+      const wrapper = getPortalWrapper(await hoverTooltip(user, "base"));
+      expect(wrapper?.id).toEqual("nimbus-tooltip-floating");
+      expect(wrapper?.parentElement).toBe(screen.getByTestId("provider-base"));
+    });
+
+    it("AND a sibling tooltip keeps working after another tooltip of the same provider unmounts", async () => {
+      const user = userEvent.setup();
+      const { rerender } = render(
+        renderProviders({
+          base: (
+            <>
+              {namedTooltip("one")}
+              {namedTooltip("two")}
+            </>
+          )
+        })
+      );
+      await hoverTooltip(user, "one");
+      rerender(renderProviders({ base: namedTooltip("two") }));
+
+      const wrapper = getPortalWrapper(await hoverTooltip(user, "two"));
+      expect(wrapper?.id).toEqual("nimbus-tooltip-floating");
+      expect(wrapper?.parentElement).toBe(screen.getByTestId("provider-base"));
     });
   });
 });
