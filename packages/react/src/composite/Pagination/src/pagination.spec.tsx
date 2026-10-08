@@ -426,6 +426,14 @@ describe("GIVEN <Pagination /> with the go to page input", () => {
       expect(announcement()).toHaveTextContent("Page 7 of 20");
     });
 
+    it("AND should not submit on the Enter keydown of an ended composition", () => {
+      renderPagination({ activePage: 3, pageCount: 20, showInput: true });
+      const input = desktopInput() as HTMLInputElement;
+      type(input, "12");
+      fireEvent.keyDown(input, { key: "Enter", keyCode: 229 });
+      expect(mockedOnPageChange).not.toHaveBeenCalled();
+    });
+
     it("AND should not submit when Enter confirms an IME composition", () => {
       renderPagination({ activePage: 3, pageCount: 20, showInput: true });
       const input = desktopInput() as HTMLInputElement;

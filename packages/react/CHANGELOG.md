@@ -5,6 +5,10 @@ every day, with simplicity, accessibility, consistency and performance.
 
 ## 2026-08-31 `5.63.0`
 
+#### 🛠 Breaking changes
+
+- Pagination: Existing `Pagination` instances with a `pageCount` of 6 or more switch from the numbered navigation to the compact first / previous / go-to-page / next / last layout below the `md` breakpoint (672px), even without `showInput`. The numbered page buttons are hidden below that width, and the list is now wrapped in a `<nav>` element. ([#585](https://github.com/TiendaNube/nimbus-design-system/pull/585) by [@claude[bot]](https://github.com/apps/claude))
+
 #### 🎉 New features
 
 - Select: Adds a `small` size variant. ([#530](https://github.com/TiendaNube/nimbus-design-system/pull/530) by [@noecondoleo](https://github.com/noecondoleo))

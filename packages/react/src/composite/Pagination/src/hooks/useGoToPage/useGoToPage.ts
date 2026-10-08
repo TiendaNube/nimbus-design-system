@@ -123,8 +123,12 @@ export const useGoToPage = ({
   };
 
   const onKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
-    // Enter confirms a composition (IME); it must not submit the entry yet.
-    if (event.key !== "Enter" || event.nativeEvent.isComposing) return;
+    if (event.key !== "Enter") return;
+    // Enter that confirms an IME composition must not submit the entry. Some
+    // browsers end the composition before keydown, and report keyCode 229.
+    if (event.nativeEvent.isComposing || event.nativeEvent.keyCode === 229) {
+      return;
+    }
     // The input is not a form submission control.
     event.preventDefault();
     submit();

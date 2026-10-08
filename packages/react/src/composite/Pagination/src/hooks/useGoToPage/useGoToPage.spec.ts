@@ -22,10 +22,10 @@ const makeSut = (initial: Partial<UseGoToPageProps> = {}) =>
 
 const change = (value: string) =>
   ({ target: { value } } as unknown as ChangeEvent<HTMLInputElement>);
-const key = (k: string, isComposing = false) =>
+const key = (k: string, isComposing = false, keyCode = 13) =>
   ({
     key: k,
-    nativeEvent: { isComposing },
+    nativeEvent: { isComposing, keyCode },
     preventDefault: jest.fn(),
   } as unknown as KeyboardEvent<HTMLInputElement>);
 const beforeInput = (data: string | null) =>
@@ -106,6 +106,13 @@ describe("GIVEN useGoToPage", () => {
       expect(onPageChange).not.toHaveBeenCalled();
       act(() => result.current.onKeyDown(key("Enter")));
       expect(onPageChange).toHaveBeenCalledWith(9);
+    });
+
+    it("AND should not submit when the composition ended before keydown (keyCode 229)", () => {
+      const { result } = makeSut();
+      act(() => result.current.onChange(change("9")));
+      act(() => result.current.onKeyDown(key("Enter", false, 229)));
+      expect(onPageChange).not.toHaveBeenCalled();
     });
 
     it("AND should not submit on other keys", () => {
