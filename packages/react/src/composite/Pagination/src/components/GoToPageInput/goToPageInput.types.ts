@@ -5,21 +5,31 @@ import { type UseGoToPageResult } from "../../hooks";
  */
 export interface GoToPageInputProperties {
   /**
-   * The total number of pages. Sets the `max` of the native number input.
+   * Accessible name of the input.
    */
-  pageCount: number;
+  "aria-label": string;
+  /**
+   * Id of the element describing the input (the "of Y" text).
+   */
+  "aria-describedby": string;
   /**
    * `data-testid` of the native input.
    */
   "data-testid": string;
-  /**
-   * Ids of the elements describing the input ("of Y" text, error message).
-   */
-  "aria-describedby"?: string;
 }
 
 /**
  * The go-to-page input's own props plus the state and handlers returned by
- * `useGoToPage`.
+ * `useGoToPage` that the input uses.
  */
-export type GoToPageInputProps = GoToPageInputProperties & UseGoToPageResult;
+export type GoToPageInputProps = GoToPageInputProperties &
+  Pick<
+    UseGoToPageResult,
+    | "value"
+    | "onChange"
+    | "onBeforeInput"
+    | "onPaste"
+    | "onKeyDown"
+    | "onFocus"
+    | "onBlur"
+  >;

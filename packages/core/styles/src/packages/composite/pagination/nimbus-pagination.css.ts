@@ -1,4 +1,4 @@
-import { style as vanillaStyle, globalStyle } from "@vanilla-extract/css";
+import { style as vanillaStyle, createVar } from "@vanilla-extract/css";
 import { mediaQueries, varsThemeBase } from "../../../themes";
 
 export const container = vanillaStyle({
@@ -7,14 +7,6 @@ export const container = vanillaStyle({
   margin: 0,
   padding: 0,
   gap: varsThemeBase.spacing[1],
-});
-
-/**
- * Lets the validation message sit on its own row below the controls. Only
- * applied while an error is showing, so the default layout never wraps.
- */
-export const container__wrap = vanillaStyle({
-  flexWrap: "wrap",
 });
 
 /* -------------------------------------------------------------------------------------------------
@@ -63,48 +55,15 @@ export const goToPage__compact = vanillaStyle({
   gap: varsThemeBase.spacing[2],
 });
 
+/** Number of characters the go-to-page input currently displays. */
+export const goToPage__charsVar = createVar();
+
 /**
- * The input hugs its content, so its width is driven from the wrapper.
- * Native spinners are removed because they would take up the width the digits need.
+ * The input hugs its content: one `ch` per displayed character plus the horizontal
+ * padding and border of the input, never narrower than `spacing-8`.
  */
 export const goToPage__input = vanillaStyle({
   flexShrink: 0,
-});
-
-globalStyle(`${goToPage__input} input[type="number"]`, {
-  MozAppearance: "textfield",
-});
-
-globalStyle(
-  `${goToPage__input} input[type="number"]::-webkit-outer-spin-button`,
-  {
-    WebkitAppearance: "none",
-    margin: 0,
-  }
-);
-
-globalStyle(
-  `${goToPage__input} input[type="number"]::-webkit-inner-spin-button`,
-  {
-    WebkitAppearance: "none",
-    margin: 0,
-  }
-);
-
-/** Screen-reader only text. Stays available to `aria-describedby`. */
-export const visuallyHidden = vanillaStyle({
-  position: "absolute",
-  width: "1px",
-  height: "1px",
-  margin: "-1px",
-  padding: 0,
-  overflow: "hidden",
-  clip: "rect(0, 0, 0, 0)",
-  whiteSpace: "nowrap",
-  border: 0,
-});
-
-/** Validation message: spans the full row below the controls. */
-export const error = vanillaStyle({
-  flexBasis: "100%",
+  boxSizing: "border-box",
+  width: `max(${varsThemeBase.spacing[8]}, calc(${goToPage__charsVar} * 1ch + ${varsThemeBase.spacing[2]} * 2 + ${varsThemeBase.shape.border.width[1]} * 2))`,
 });
