@@ -15,6 +15,7 @@ import {
   useGoToPage,
   DOTS,
   GO_TO_PAGE_MIN_PAGE_COUNT,
+  type PageAnnouncement,
 } from "./hooks";
 import { GoToPageInput } from "./components";
 import {
@@ -54,15 +55,17 @@ const Pagination: React.FC<PaginationProps> = ({
   const compactCountId = `${id}-count-compact`;
   const desktopCountId = `${id}-count`;
 
-  // The compact layout has no numbered buttons, so page changes made with
-  // the arrow buttons are announced too. Announcing is a no-op for the rest.
+  // Arrow navigation is announced in the compact layout only (no numbered
+  // buttons there). Its announcement lives in a compact-only live region.
   const goTo = (page: number) =>
     hasGoToPage ? goToPage.navigate(page) : onPageChange(page);
-  const announcementText = goToPage.announcement
-    ? `${texts.pageAnnouncement(goToPage.announcement.page, pageCount)}${
-        goToPage.announcement.tick % 2 === 0 ? "\u00A0" : ""
-      }`
-    : "";
+
+  const getAnnouncementText = (announcement?: PageAnnouncement) => {
+    if (!announcement) return "";
+    const text = texts.pageAnnouncement(announcement.page, pageCount);
+    // Alternate a trailing space so identical text is announced again.
+    return announcement.tick % 2 === 0 ? `${text}\u00A0` : text;
+  };
 
   // Note: If this 'renderItem' function is declared, it renders the item, and if not, by default it renders the Button with the page number.
   const handleRenderItem = (item: PaginationItemData) => {
@@ -206,15 +209,29 @@ const Pagination: React.FC<PaginationProps> = ({
         )}
       </ul>
       {hasGoToPage && (
-        <span
-          role="status"
-          aria-live="polite"
-          aria-atomic="true"
-          className={label.classnames.hidden}
-          data-testid="pagination-announcement"
-        >
-          {announcementText}
-        </span>
+        <>
+          <span
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
+            className={label.classnames.hidden}
+            data-testid="pagination-announcement"
+          >
+            {getAnnouncementText(goToPage.announcement)}
+          </span>
+          <span
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
+            className={[
+              label.classnames.hidden,
+              pagination.classnames.compactOnly,
+            ].join(" ")}
+            data-testid="pagination-compact-announcement"
+          >
+            {getAnnouncementText(goToPage.arrowAnnouncement)}
+          </span>
+        </>
       )}
     </nav>
   );

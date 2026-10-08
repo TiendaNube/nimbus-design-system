@@ -22,9 +22,10 @@ const makeSut = (initial: Partial<UseGoToPageProps> = {}) =>
 
 const change = (value: string) =>
   ({ target: { value } } as unknown as ChangeEvent<HTMLInputElement>);
-const key = (k: string) =>
+const key = (k: string, isComposing = false) =>
   ({
     key: k,
+    nativeEvent: { isComposing },
     preventDefault: jest.fn(),
   } as unknown as KeyboardEvent<HTMLInputElement>);
 const beforeInput = (data: string | null) =>
@@ -96,6 +97,15 @@ describe("GIVEN useGoToPage", () => {
       expect(onPageChange).toHaveBeenCalledTimes(1);
       expect(onPageChange).toHaveBeenCalledWith(9);
       expect(result.current.announcement).toEqual({ page: 9, tick: 1 });
+    });
+
+    it("AND should not submit while an IME composition is confirmed", () => {
+      const { result } = makeSut();
+      act(() => result.current.onChange(change("9")));
+      act(() => result.current.onKeyDown(key("Enter", true)));
+      expect(onPageChange).not.toHaveBeenCalled();
+      act(() => result.current.onKeyDown(key("Enter")));
+      expect(onPageChange).toHaveBeenCalledWith(9);
     });
 
     it("AND should not submit on other keys", () => {
@@ -216,11 +226,12 @@ describe("GIVEN useGoToPage", () => {
   });
 
   describe("WHEN navigating from another control", () => {
-    it("THEN should call onPageChange and announce the page", () => {
+    it("THEN should call onPageChange and record the arrow announcement", () => {
       const { result } = makeSut();
       act(() => result.current.navigate(7));
       expect(onPageChange).toHaveBeenCalledWith(7);
-      expect(result.current.announcement).toEqual({ page: 7, tick: 1 });
+      expect(result.current.arrowAnnouncement).toEqual({ page: 7, tick: 1 });
+      expect(result.current.announcement).toBeUndefined();
     });
   });
 });

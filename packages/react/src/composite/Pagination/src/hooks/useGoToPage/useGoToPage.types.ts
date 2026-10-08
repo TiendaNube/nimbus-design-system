@@ -22,9 +22,11 @@ export interface PageAnnouncement {
 export interface UseGoToPageResult {
   /** Digits currently displayed by the go-to-page input. */
   value: string;
-  /** The last page announced to screen readers, or `undefined` before any. */
+  /** The last page reached by submitting the input, or `undefined` before any. */
   announcement: PageAnnouncement | undefined;
-  /** Navigates to a page from another control and announces it. */
+  /** The last page reached with the arrow buttons, or `undefined` before any. */
+  arrowAnnouncement: PageAnnouncement | undefined;
+  /** Navigates to a page with an arrow button and records it for announcing. */
   navigate: (page: number) => void;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   onBeforeInput: (event: FormEvent<HTMLInputElement>) => void;

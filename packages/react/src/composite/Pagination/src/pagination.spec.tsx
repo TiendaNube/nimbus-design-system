@@ -214,7 +214,9 @@ const desktopInput = () =>
   screen.queryByTestId<HTMLInputElement>("input-pagination-go-to-page");
 const compactInput = () =>
   screen.getByTestId<HTMLInputElement>("input-pagination-go-to-page-compact");
-const announcement = () => screen.getByRole("status");
+const announcement = () => screen.getByTestId("pagination-announcement");
+const compactAnnouncement = () =>
+  screen.getByTestId("pagination-compact-announcement");
 
 const type = (input: HTMLInputElement, text: string) => {
   fireEvent.focus(input);
@@ -383,10 +385,19 @@ describe("GIVEN <Pagination /> with the go to page input", () => {
       ["button-pagination-last", 20],
     ])("AND should announce the page reached with %s", (testId, page) => {
       renderPagination({ activePage: 3, pageCount: 20 });
-      expect(announcement()).toHaveTextContent("");
+      expect(compactAnnouncement()).toHaveTextContent("");
       fireEvent.click(screen.getByTestId(testId));
       expect(mockedOnPageChange).toHaveBeenCalledWith(page);
-      expect(announcement()).toHaveTextContent(`Page ${page} of 20`);
+      expect(compactAnnouncement()).toHaveTextContent(`Page ${page} of 20`);
+      expect(announcement()).toHaveTextContent("");
+    });
+
+    it("AND should keep the arrow announcements in a region hidden from the md breakpoint", () => {
+      renderPagination({ activePage: 3, pageCount: 20 });
+      expect(compactAnnouncement()).toHaveClass(
+        pagination.classnames.compactOnly
+      );
+      expect(announcement()).not.toHaveClass(pagination.classnames.compactOnly);
     });
   });
 
@@ -412,6 +423,17 @@ describe("GIVEN <Pagination /> with the go to page input", () => {
       type(compactInput(), "7");
       fireEvent.keyDown(compactInput(), { key: "Enter" });
       expect(mockedOnPageChange).toHaveBeenCalledWith(7);
+      expect(announcement()).toHaveTextContent("Page 7 of 20");
+    });
+
+    it("AND should not submit when Enter confirms an IME composition", () => {
+      renderPagination({ activePage: 3, pageCount: 20, showInput: true });
+      const input = desktopInput() as HTMLInputElement;
+      type(input, "12");
+      fireEvent.keyDown(input, { key: "Enter", isComposing: true });
+      expect(mockedOnPageChange).not.toHaveBeenCalled();
+      fireEvent.keyDown(input, { key: "Enter" });
+      expect(mockedOnPageChange).toHaveBeenCalledWith(12);
     });
 
     it("AND should not navigate or announce when blurred without typing", () => {
@@ -684,7 +706,7 @@ describe("GIVEN <Pagination /> with the go to page input", () => {
         labels: { pageAnnouncement: () => "" },
       });
       fireEvent.click(screen.getByTestId("button-pagination-next"));
-      expect(announcement()).toHaveTextContent("Page 4 of 20");
+      expect(compactAnnouncement()).toHaveTextContent("Page 4 of 20");
     });
   });
 });

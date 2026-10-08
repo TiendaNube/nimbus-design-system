@@ -35,7 +35,12 @@ export const useGoToPage = ({
   onPageChange,
 }: UseGoToPageProps): UseGoToPageResult => {
   const [value, setValue] = useState(String(activePage));
+  // Announcement of a page reached by submitting the input.
   const [announcement, setAnnouncement] = useState<
+    PageAnnouncement | undefined
+  >(undefined);
+  // Announcement of a page reached with the arrow buttons.
+  const [arrowAnnouncement, setArrowAnnouncement] = useState<
     PageAnnouncement | undefined
   >(undefined);
 
@@ -66,12 +71,16 @@ export const useGoToPage = ({
     input.setSelectionRange(position, position);
   }, [value]);
 
-  const announce = (page: number) =>
-    setAnnouncement((previous) => ({ page, tick: (previous?.tick ?? 0) + 1 }));
+  const nextAnnouncement =
+    (page: number) =>
+    (previous: PageAnnouncement | undefined): PageAnnouncement => ({
+      page,
+      tick: (previous?.tick ?? 0) + 1,
+    });
 
   const navigate = (page: number) => {
     onPageChange(page);
-    announce(page);
+    setArrowAnnouncement(nextAnnouncement(page));
   };
 
   const submit = () => {
@@ -86,7 +95,7 @@ export const useGoToPage = ({
     hasPendingEntry.current = false;
     setValue(String(page));
     if (page !== activePage) onPageChange(page);
-    announce(page);
+    setAnnouncement(nextAnnouncement(page));
   };
 
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -114,7 +123,8 @@ export const useGoToPage = ({
   };
 
   const onKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
-    if (event.key !== "Enter") return;
+    // Enter confirms a composition (IME); it must not submit the entry yet.
+    if (event.key !== "Enter" || event.nativeEvent.isComposing) return;
     // The input is not a form submission control.
     event.preventDefault();
     submit();
@@ -133,6 +143,7 @@ export const useGoToPage = ({
   return {
     value,
     announcement,
+    arrowAnnouncement,
     navigate,
     onChange,
     onBeforeInput,
