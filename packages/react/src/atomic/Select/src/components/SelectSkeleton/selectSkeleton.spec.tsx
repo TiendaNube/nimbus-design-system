@@ -41,7 +41,7 @@ describe("GIVEN <Select.Skeleton />", () => {
       makeSut({ size: "small" });
       const skeleton = screen.getByTestId("skeleton-element");
       expect(skeleton.getAttribute("style")).toMatch(
-        /--height__\w{0,9}: 1.625rem;/
+        /--height__\w{0,9}: 1.75rem;/
       );
       expect(skeleton.getAttribute("style")).toMatch(
         /--borderRadius__\w{0,9}: 0.375rem;/

@@ -49,6 +49,7 @@ const base = style({
 export const size = styleVariants({
   medium: {},
   small: {
+    height: "1.75rem",
     fontSize: varsThemeBase.fontSize.body.caption,
     paddingTop: varsThemeBase.spacing[1],
     paddingBottom: varsThemeBase.spacing[1],

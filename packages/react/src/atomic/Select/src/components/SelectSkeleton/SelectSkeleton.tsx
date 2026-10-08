@@ -5,7 +5,7 @@ import { type SelectSkeletonProps } from "./selectSkeleton.types";
 
 const dimensions = {
   medium: { height: "2.25rem", borderRadius: "0.5rem" },
-  small: { height: "1.625rem", borderRadius: "0.375rem" },
+  small: { height: "1.75rem", borderRadius: "0.375rem" },
 } as const;
 
 const SelectSkeleton: React.FC<SelectSkeletonProps> = ({
