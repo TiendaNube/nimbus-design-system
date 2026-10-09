@@ -6,6 +6,7 @@ import { Title } from "@nimbus-ds/title";
 import { Button } from "@nimbus-ds/button";
 
 import { CreatableCombobox } from "./CreatableCombobox";
+import { ENRICHED_OPTIONS } from "./useSharedOptions";
 
 const STORAGE_KEY = "nimbus-prototype:creatable-combobox:options";
 
@@ -20,6 +21,7 @@ const meta: Meta<typeof CreatableCombobox> = {
     name: { control: "text" },
     required: { control: "boolean" },
     multiple: { control: "boolean" },
+    options: { control: false },
   },
   parameters: {
     layout: "padded",
@@ -29,6 +31,12 @@ const meta: Meta<typeof CreatableCombobox> = {
 
 export default meta;
 type Story = StoryObj<typeof CreatableCombobox>;
+// The Playground adds one story-only control on top of the component props:
+// `enriched` swaps the field to a fixed list of options that carry a
+// subtitle and/or a tag (Figma node 149:11359).
+type PlaygroundStory = StoryObj<
+  React.ComponentProps<typeof CreatableCombobox> & { enriched?: boolean }
+>;
 
 /**
  * Internal working view — use the controls to explore props and states.
@@ -42,7 +50,8 @@ type Story = StoryObj<typeof CreatableCombobox>;
  * first/last option, Enter activates whatever is currently active — not
  * just the first match — and Escape closes the list.
  */
-export const Playground: Story = {
+export const Playground: PlaygroundStory = {
+  argTypes: { enriched: { control: "boolean" } },
   args: {
     placeholder: "Search or create a tag",
     disabled: false,
@@ -54,11 +63,16 @@ export const Playground: Story = {
     name: "",
     required: false,
     multiple: false,
+    enriched: false,
   },
-  render: (args) => {
+  render: ({ enriched, ...args }) => {
     return (
       <Box display="flex" flexDirection="column" gap="4" width="320px">
-        <CreatableCombobox {...args} data-testid="playground-combobox" />
+        <CreatableCombobox
+          {...args}
+          options={enriched ? ENRICHED_OPTIONS : undefined}
+          data-testid="playground-combobox"
+        />
         <Button
           appearance="neutral"
           onClick={() => {
@@ -99,15 +113,15 @@ export const FullScreen: Story = {
           <Title as="h3">Creatable tag field (prototype)</Title>
           <Text color="neutral-textLow">
             Type to filter existing tags. If nothing matches, choose
-            &quot;Create&quot; to add and select a brand-new one. Once a tag
-            is selected, use the × button to clear it and search again. The
-            selected value shows in the field itself — the caption below
-            each field is independent helper text, not an echo of it.
+            &quot;Create&quot; to add and select a brand-new one. Once a tag is
+            selected, use the × button to clear it and search again. The
+            selected value shows in the field itself — the caption below each
+            field is independent helper text, not an echo of it.
           </Text>
           <Text color="neutral-textLow">
-            Keyboard: ArrowDown/ArrowUp move the active (highlighted) option
-            — distinct from mouse hover — Home/End jump to the first/last
-            option, Enter activates whichever is active, Escape closes.
+            Keyboard: ArrowDown/ArrowUp move the active (highlighted) option —
+            distinct from mouse hover — Home/End jump to the first/last option,
+            Enter activates whichever is active, Escape closes.
           </Text>
         </Box>
 
@@ -146,9 +160,7 @@ export const FullScreen: Story = {
           </Box>
 
           <Box display="flex" flexDirection="column" gap="2" width="360px">
-            <Text fontWeight="bold">
-              Field B (shares the same option list)
-            </Text>
+            <Text fontWeight="bold">Field B (shares the same option list)</Text>
             <CreatableCombobox
               data-testid="field-b"
               placeholder="Search or create a tag"
@@ -179,6 +191,31 @@ export const FullScreen: Story = {
             />
           </Box>
 
+          <Box display="flex" flexDirection="column" gap="2" width="360px">
+            <Text fontWeight="bold">Field E (enriched options, single)</Text>
+            <CreatableCombobox
+              data-testid="field-e"
+              placeholder="Search a customer"
+              helperText="Title + subtitle + tag per row; the tag also shows in the field once picked. Filtering is by title only."
+              options={ENRICHED_OPTIONS}
+              name="customerE"
+            />
+          </Box>
+
+          <Box display="flex" flexDirection="column" gap="2" width="360px">
+            <Text fontWeight="bold">
+              Field F (enriched options, multiselect)
+            </Text>
+            <CreatableCombobox
+              data-testid="field-f"
+              placeholder="Search customers"
+              helperText="Same enriched rows; picked options become title-only chips."
+              options={ENRICHED_OPTIONS}
+              name="customersF"
+              multiple
+            />
+          </Box>
+
           <Box>
             <Button type="submit">Submit</Button>
           </Box>
@@ -193,9 +230,9 @@ export const FullScreen: Story = {
         </Box>
 
         <Text fontSize="caption" color="neutral-textLow">
-          Try creating a new tag in Field A, then open Field B — the new tag
-          is already there. This is a mocked, browser-local stand-in for a
-          real shared backend; see the pull request for details.
+          Try creating a new tag in Field A, then open Field B — the new tag is
+          already there. This is a mocked, browser-local stand-in for a real
+          shared backend; see the pull request for details.
         </Text>
       </Box>
     );

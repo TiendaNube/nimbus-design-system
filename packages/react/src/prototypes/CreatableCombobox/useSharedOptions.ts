@@ -24,9 +24,38 @@ import { useCallback, useEffect, useState } from "react";
  *   for a failed create call.
  */
 
+/** Appearances of Nimbus `Tag`, so a row's tag can use the same palette. */
+export type ComboboxOptionTagAppearance =
+  | "primary"
+  | "success"
+  | "warning"
+  | "danger"
+  | "neutral"
+  | "ai-generative";
+
+/**
+ * The status-like tag an enriched option shows at the right of its title
+ * (Figma node 149:11359). Rendered with Nimbus `Tag`.
+ */
+export interface ComboboxOptionTag {
+  label: string;
+  /** @default "neutral" */
+  appearance?: ComboboxOptionTagAppearance;
+}
+
 export interface ComboboxOption {
   value: string;
   label: string;
+  /**
+   * Optional secondary line under the title (`label`) in the dropdown row —
+   * the "enriched option" of Figma node 149:11359. Display-only: filtering
+   * stays label-only. Plain options (no `subtitle` and no `tag`) render
+   * exactly as before.
+   */
+  subtitle?: string;
+  /** Optional tag shown at the right of the title in the dropdown row, and
+   *  next to a selected single-select value inside the field. */
+  tag?: ComboboxOptionTag;
   /**
    * Independent of selection: an option a client marks as unpickable for
    * its own reason (e.g. "blocked by business rule X"), not because it's
@@ -51,6 +80,51 @@ const SEED_OPTIONS: ComboboxOption[] = [
   { value: "limited-edition", label: "Limited edition", disabled: true },
   { value: "vegan", label: "Vegan" },
   { value: "waterproof", label: "Waterproof" },
+];
+
+/**
+ * Obviously-fake sample data for the "enriched options" variant (title +
+ * subtitle + tag), used by the enriched demo fields and the Playground's
+ * `enriched` control. Kept out of the shared store on purpose: enriched
+ * fields take this fixed list through the `options` prop, so Fields A-D
+ * are unaffected. No real people or document numbers.
+ */
+export const ENRICHED_OPTIONS: ComboboxOption[] = [
+  {
+    value: "customer-alpha",
+    label: "Customer Alpha",
+    subtitle: "ID 000.000.001",
+    tag: { label: "Active", appearance: "success" },
+  },
+  {
+    value: "customer-bravo",
+    label: "Customer Bravo",
+    subtitle: "ID 000.000.002",
+    tag: { label: "Paused", appearance: "neutral" },
+  },
+  {
+    value: "customer-charlie",
+    label: "Customer Charlie",
+    subtitle: "ID 000.000.003",
+    tag: { label: "Pending", appearance: "warning" },
+  },
+  {
+    value: "customer-delta",
+    label: "Customer Delta",
+    subtitle: "ID 000.000.004",
+    tag: { label: "Blocked", appearance: "danger" },
+    disabled: true,
+  },
+  {
+    value: "customer-echo",
+    label: "Customer Echo",
+    subtitle: "ID 000.000.005",
+  },
+  {
+    value: "customer-foxtrot",
+    label: "Customer Foxtrot",
+    tag: { label: "New", appearance: "primary" },
+  },
 ];
 
 export const slugify = (label: string): string =>
