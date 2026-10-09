@@ -1,4 +1,4 @@
-import React, { useCallback, useId, useRef, useState } from "react";
+import React, { useCallback, useEffect, useId, useRef, useState } from "react";
 import { Popover } from "@nimbus-ds/popover";
 import { Box } from "@nimbus-ds/box";
 import { Button } from "@nimbus-ds/button";
@@ -77,10 +77,20 @@ export const InteractivePopover: React.FC<InteractivePopoverProps> = ({
   const contentId = `exploration544-content-${uid}`;
   const descriptionId = `exploration544-desc-${uid}`;
 
+  // "leave" after the pointer left trigger/content, "press" after a mouse press.
+  const pointer = useRef<"leave" | "press" | "">("");
+
+  const focusWithin = () =>
+    !!document.activeElement &&
+    (!!triggerRef.current?.contains(document.activeElement) ||
+      !!contentRef.current?.contains(document.activeElement));
+
   const setOpen = useCallback((next: boolean) => {
     if (!next && Date.now() - focusOpenedAt.current < FOCUS_CLICK_GUARD_MS) {
       return;
     }
+    // Hover-close must not override a focus-open while focus is still inside.
+    if (!next && pointer.current === "leave" && focusWithin()) return;
     setOpenState(next);
   }, []);
 
@@ -90,6 +100,19 @@ export const InteractivePopover: React.FC<InteractivePopoverProps> = ({
   const outside = (node: EventTarget | null) =>
     !(node instanceof Node) ||
     (!triggerRef.current?.contains(node) && !contentRef.current?.contains(node));
+
+  // aria wiring applied straight to the real trigger element, so it does not
+  // depend on the child forwarding cloned props to its DOM node.
+  useEffect(() => {
+    const el = triggerElement();
+    if (!el) return;
+    const set = (name: string, value: string | null) =>
+      value === null ? el.removeAttribute(name) : el.setAttribute(name, value);
+    set("aria-expanded", String(open));
+    set("aria-haspopup", "dialog");
+    set("aria-controls", open ? contentId : null);
+    set("aria-describedby", description ? descriptionId : null);
+  });
 
   const handleFocus = () => {
     if (!openOnFocus || open) return;
@@ -102,6 +125,11 @@ export const InteractivePopover: React.FC<InteractivePopoverProps> = ({
   };
 
   const handleTriggerKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === "Escape") {
+      pointer.current = "press";
+      setOpenState(false);
+      return;
+    }
     if (!open || event.key !== "Tab" || event.shiftKey) return;
     const first = tabbablesIn(contentRef.current)[0];
     if (first) {
@@ -139,13 +167,7 @@ export const InteractivePopover: React.FC<InteractivePopoverProps> = ({
 
   const dark = appearance === "dark";
 
-  // aria wiring on the real trigger element.
-  const trigger = React.cloneElement(children, {
-    "aria-expanded": open,
-    "aria-haspopup": "dialog",
-    "aria-controls": open ? contentId : undefined,
-    "aria-describedby": description ? descriptionId : undefined,
-  } as Record<string, unknown>);
+  const trigger = children;
 
   return (
     <>
@@ -175,6 +197,12 @@ export const InteractivePopover: React.FC<InteractivePopoverProps> = ({
             className="exploration544-content"
             onKeyDown={handleContentKeyDown}
             onBlur={handleBlur}
+            onMouseLeave={() => {
+              pointer.current = "leave";
+            }}
+            onMouseDown={() => {
+              pointer.current = "press";
+            }}
           >
             {dark ? (
               <Box
@@ -196,6 +224,12 @@ export const InteractivePopover: React.FC<InteractivePopoverProps> = ({
           onFocus={handleFocus}
           onBlur={handleBlur}
           onKeyDown={handleTriggerKeyDown}
+          onMouseLeave={() => {
+            pointer.current = "leave";
+          }}
+          onMouseDown={() => {
+            pointer.current = "press";
+          }}
         >
           {trigger}
           {description && (
