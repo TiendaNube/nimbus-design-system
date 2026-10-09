@@ -240,6 +240,9 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
     const filteredOptions = query
       ? options.filter((option) => option.label.toLowerCase().includes(query))
       : options;
+    const hasEnrichedOptions = options.some(
+      (option) => !!(option.subtitle || option.tag)
+    );
     const hasExactMatch = options.some(
       (option) => option.label.toLowerCase() === query
     );
@@ -516,7 +519,12 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                 flexDirection: "column",
                 width: "100%",
                 boxSizing: "border-box",
-                padding: 4,
+                // Plain lists keep their 4px inset. A list that carries
+                // enriched options uses the Figma popover's 8px padding
+                // (node 149:11359, `.Popover menu` pad 8, DataList gap 4).
+                // Decided from the whole list, not the filtered rows, so
+                // the inset doesn't jump while typing.
+                padding: hasEnrichedOptions ? 8 : 4,
                 gap: 4,
                 maxHeight: 220,
                 overflowY: "auto",
@@ -967,7 +975,13 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                     a click falls through to focus/open like the input. */}
                 {!multiple && selected?.tag && (
                   <span
-                    style={{ display: "inline-flex", flexShrink: 0 }}
+                    style={{
+                      display: "inline-flex",
+                      flexShrink: 0,
+                      // Figma 149:11306: the field's own 4px padding sits
+                      // between the tag and the 24px chevron/clear box.
+                      marginRight: 4,
+                    }}
                     onMouseDown={(event) => event.preventDefault()}
                     onClick={() => {
                       inputRef.current?.focus();
