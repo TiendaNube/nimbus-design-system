@@ -4,10 +4,6 @@ The Pagination component allows us to navigate between a very large list of entr
 
 ## 2026-10-05 `2.6.0`
 
-#### 🛠 Breaking changes
-
-- Pagination: Existing `Pagination` instances with a `pageCount` of 6 or more switch from the numbered navigation to the compact first / previous / go-to-page / next / last layout below the `md` breakpoint (672px), even without `showInput`. The numbered page buttons are hidden below that width, and the list is now wrapped in a `<nav>` element. ([#585](https://github.com/TiendaNube/nimbus-design-system/pull/585) by [@claude[bot]](https://github.com/apps/claude))
-
 #### 🎉 New features
 
 - Adds the `showInput` prop to show a "go to page" input next to the navigation (available when `pageCount` is 6 or more). The input only accepts digits, submits on Enter or blur, and takes a number outside the range to the nearest page (above `pageCount` to the last page, `0` to the first) without showing an error. Page changes are announced to screen readers. ([#585](https://github.com/TiendaNube/nimbus-design-system/pull/585) by [@claude[bot]](https://github.com/apps/claude))
@@ -18,6 +14,10 @@ The Pagination component allows us to navigate between a very large list of entr
 #### 🐛 Bug fixes
 
 - The "go to page" input no longer overwrites what the user is typing when `activePage` changes externally; the value resyncs when the input loses focus. ([#585](https://github.com/TiendaNube/nimbus-design-system/pull/585) by [@claude[bot]](https://github.com/apps/claude))
+
+#### 💡 Others
+
+- Behavior change: Existing `Pagination` instances with a `pageCount` of 6 or more now show the compact first / previous / go-to-page / next / last layout below the `md` breakpoint (672px) instead of the page numbers, without any code change; the list is now also wrapped in a `<nav>` element. The API is unchanged. ([#585](https://github.com/TiendaNube/nimbus-design-system/pull/585) by [@claude[bot]](https://github.com/apps/claude))
 
 ## 2026-02-12 `2.5.0`
 

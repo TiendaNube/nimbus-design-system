@@ -41,6 +41,16 @@ const Pagination: React.FC<PaginationProps> = ({
     pageCount,
   });
   const goToPage = useGoToPage({ activePage, pageCount, onPageChange });
+  // Only what the input uses: the rest of the hook state must not reach the DOM.
+  const inputProps = {
+    value: goToPage.value,
+    onChange: goToPage.onChange,
+    onBeforeInput: goToPage.onBeforeInput,
+    onPaste: goToPage.onPaste,
+    onKeyDown: goToPage.onKeyDown,
+    onFocus: goToPage.onFocus,
+    onBlur: goToPage.onBlur,
+  };
   const id = useId();
   const texts = resolveLabels(labels);
 
@@ -121,7 +131,7 @@ const Pagination: React.FC<PaginationProps> = ({
           <li className={pagination.classnames.compactOnly}>
             <div className={pagination.classnames.goToPage__compact}>
               <GoToPageInput
-                {...goToPage}
+                {...inputProps}
                 aria-label={texts.goToPage}
                 aria-describedby={compactCountId}
                 data-testid="input-pagination-go-to-page-compact"
@@ -197,7 +207,7 @@ const Pagination: React.FC<PaginationProps> = ({
               {texts.goTo}
             </Text>
             <GoToPageInput
-              {...goToPage}
+              {...inputProps}
               aria-label={texts.goToPage}
               aria-describedby={desktopCountId}
               data-testid="input-pagination-go-to-page"

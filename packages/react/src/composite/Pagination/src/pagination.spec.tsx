@@ -281,6 +281,22 @@ describe("GIVEN <Pagination /> with the go to page input", () => {
     });
   });
 
+  describe("WHEN the inputs are rendered", () => {
+    it("THEN should not leak the internal state to the DOM", () => {
+      const consoleError = jest
+        .spyOn(console, "error")
+        .mockImplementation(() => undefined);
+      renderPagination({ activePage: 3, pageCount: 20, showInput: true });
+      [desktopInput() as HTMLInputElement, compactInput()].forEach((input) => {
+        expect(input).not.toHaveAttribute("announcement");
+        expect(input).not.toHaveAttribute("arrowannouncement");
+        expect(input).not.toHaveAttribute("navigate");
+      });
+      expect(consoleError).not.toHaveBeenCalled();
+      consoleError.mockRestore();
+    });
+  });
+
   describe("WHEN the compact layout applies", () => {
     it("THEN should render first, previous, input, next and last controls without showInput", () => {
       renderPagination({ activePage: 3, pageCount: 6 });

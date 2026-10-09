@@ -56,7 +56,7 @@ export const goToPage__compact = vanillaStyle({
 });
 
 /** Number of characters the go-to-page input currently displays. */
-export const goToPage__charsVar = createVar();
+export const goToPageCharsVar = createVar();
 
 /**
  * The input hugs its content: one `ch` per displayed character plus the horizontal
@@ -65,5 +65,5 @@ export const goToPage__charsVar = createVar();
 export const goToPage__input = vanillaStyle({
   flexShrink: 0,
   boxSizing: "border-box",
-  width: `max(${varsThemeBase.spacing[8]}, calc(${goToPage__charsVar} * 1ch + ${varsThemeBase.spacing[2]} * 2 + ${varsThemeBase.shape.border.width[1]} * 2))`,
+  width: `max(${varsThemeBase.spacing[8]}, calc(${goToPageCharsVar} * 1ch + ${varsThemeBase.spacing[2]} * 2 + ${varsThemeBase.shape.border.width[1]} * 2))`,
 });

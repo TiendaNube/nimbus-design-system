@@ -4,14 +4,14 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 ## 2026-08-31 `9.69.0`
 
-#### 🛠 Breaking changes
-
-- Pagination: Existing `Pagination` instances with a `pageCount` of 6 or more switch from the numbered navigation to the compact first / previous / go-to-page / next / last layout below the `md` breakpoint (672px), even without `showInput`. The numbered page buttons are hidden below that width, and the list is now wrapped in a `<nav>` element. ([#585](https://github.com/TiendaNube/nimbus-design-system/pull/585) by [@claude[bot]](https://github.com/apps/claude))
-
 #### 🎉 New features
 
 - Select: Adds a `small` size style variant. ([#530](https://github.com/TiendaNube/nimbus-design-system/pull/530) by [@noecondoleo](https://github.com/noecondoleo))
 - Pagination: Adds the styles for the "go to page" input and the compact layout shown below the `md` breakpoint when `pageCount` is 6 or more; the input width follows its content. ([#585](https://github.com/TiendaNube/nimbus-design-system/pull/585) by [@claude[bot]](https://github.com/apps/claude))
+
+#### 💡 Others
+
+- Behavior change: Existing `Pagination` instances with a `pageCount` of 6 or more now show the compact first / previous / go-to-page / next / last layout below the `md` breakpoint (672px) instead of the page numbers, without any code change; the list is now also wrapped in a `<nav>` element. The API is unchanged. ([#585](https://github.com/TiendaNube/nimbus-design-system/pull/585) by [@claude[bot]](https://github.com/apps/claude))
 
 ## 2026-09-08 `9.68.1`
 
