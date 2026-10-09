@@ -212,11 +212,14 @@ export const InteractivePopover: React.FC<InteractivePopoverProps> = ({
 /**
  * Simulated disabled-but-focusable trigger: aria-disabled instead of the native
  * `disabled` attribute, which removes the element from the tab order.
+ * Forwards the props injected by InteractivePopover (aria-expanded,
+ * aria-describedby, ...): the previous version dropped them.
  */
-export const DisabledLookingButton: React.FC<{ label: string }> = ({
-  label,
-}) => (
+export const DisabledLookingButton: React.FC<
+  { label: string } & Record<string, unknown>
+> = ({ label, ...rest }) => (
   <Button
+    {...rest}
     appearance="neutral"
     aria-disabled="true"
     className="exploration544-disabled"
