@@ -43,26 +43,50 @@ import { useSharedOptions, type ComboboxOption } from "./useSharedOptions";
 // this disposable prototype. Each accepts the usual SVG props so a caller
 // can override size (e.g. a smaller dismiss icon inside a tag).
 const CloseIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" {...props}>
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 16 16"
+    fill="currentColor"
+    {...props}
+  >
     <path d="m14.41 3.27-.82-.94L8 7.17 2.41 2.33l-.82.94L7.05 8l-5.46 4.73.82.94L8 8.83l5.59 4.84.82-.94L8.95 8z" />
   </svg>
 );
 
 const ChevronDownIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" {...props}>
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 16 16"
+    fill="currentColor"
+    {...props}
+  >
     <path d="M8 10.18 2.39 4.52l-.89.87 5.59 5.71a1.18 1.18 0 0 0 .86.39 1.13 1.13 0 0 0 .85-.39l5.7-5.7-.88-.89z" />
   </svg>
 );
 
 const PlusCircleIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" {...props}>
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 16 16"
+    fill="currentColor"
+    {...props}
+  >
     <path d="M8.64 4.33H7.39v3.05H4.34v1.25h3.05v3.05h1.25V8.63h3.05V7.38H8.64z" />
     <path d="M8 .5A7.77 7.77 0 0 0 0 8a7.77 7.77 0 0 0 8 7.5A7.77 7.77 0 0 0 16 8 7.77 7.77 0 0 0 8 .5m0 13.75A6.52 6.52 0 0 1 1.25 8 6.52 6.52 0 0 1 8 1.75 6.52 6.52 0 0 1 14.75 8 6.52 6.52 0 0 1 8 14.25" />
   </svg>
 );
 
 const CheckIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" {...props}>
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 16 16"
+    fill="currentColor"
+    {...props}
+  >
     <path d="m15.12 2.23-9.79 9.78L.88 7.56 0 8.44l5.33 5.34L16 3.11z" />
   </svg>
 );
@@ -161,9 +185,9 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
     // Row hover state, driven in JS rather than CSS `:hover` so each row's
     // treatment (primary for Create, neutral for existing options) can use
     // the same Nimbus `backgroundColor` tokens as everywhere else in Box.
-    const [hoveredOptionValue, setHoveredOptionValue] = useState<
-      string | null
-    >(null);
+    const [hoveredOptionValue, setHoveredOptionValue] = useState<string | null>(
+      null
+    );
     const [createHovered, setCreateHovered] = useState(false);
     // Keyboard-driven "active" descendant, per the WAI-ARIA 1.2 combobox
     // pattern — deliberately a separate track from hover above: the two
@@ -329,7 +353,14 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
       setOpen(false);
       setActiveIndex(-1);
       onChange?.(created);
-    }, [canCreate, createOption, inputValue, multiple, selectedMulti, onChange]);
+    }, [
+      canCreate,
+      createOption,
+      inputValue,
+      multiple,
+      selectedMulti,
+      onChange,
+    ]);
 
     const activateNavItem = useCallback(
       (item: NavItem) => {
@@ -532,8 +563,8 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                     activeIndex === 0
                       ? "primary-surfaceHighlight"
                       : createHovered
-                        ? "primary-surface"
-                        : "neutral-background"
+                      ? "primary-surface"
+                      : "neutral-background"
                   }
                 >
                   <Icon
@@ -548,7 +579,8 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                 // (see `navIndexByValue` above), so it can never become the
                 // keyboard-active item.
                 const navIndex = navIndexByValue.get(option.value);
-                const isActive = navIndex !== undefined && activeIndex === navIndex;
+                const isActive =
+                  navIndex !== undefined && activeIndex === navIndex;
                 const isHovered = hoveredOptionValue === option.value;
                 // In practice this is only ever true for single-select's
                 // current value: a multiselect pick is excluded from
@@ -589,7 +621,9 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                         : (event) => event.preventDefault()
                     }
                     onClick={
-                      isBusinessDisabled ? undefined : () => selectOption(option)
+                      isBusinessDisabled
+                        ? undefined
+                        : () => selectOption(option)
                     }
                     onMouseEnter={() => setHoveredOptionValue(option.value)}
                     onMouseLeave={() => setHoveredOptionValue(null)}
@@ -623,10 +657,10 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                       isBusinessDisabled
                         ? "neutral-surfaceDisabled"
                         : isActive
-                          ? "primary-surfaceHighlight"
-                          : isChecked || isHovered
-                            ? "primary-surface"
-                            : "neutral-background"
+                        ? "primary-surfaceHighlight"
+                        : isChecked || isHovered
+                        ? "primary-surface"
+                        : "neutral-background"
                     }
                   >
                     <Text
@@ -634,8 +668,8 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                         isBusinessDisabled
                           ? "neutral-textDisabled"
                           : isChecked
-                            ? "primary-interactive"
-                            : "neutral-textHigh"
+                          ? "primary-interactive"
+                          : "neutral-textHigh"
                       }
                     >
                       {option.label}
@@ -650,7 +684,9 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                       <Icon
                         source={<CheckIcon />}
                         color={
-                          isBusinessDisabled ? "neutral-textDisabled" : "primary-interactive"
+                          isBusinessDisabled
+                            ? "neutral-textDisabled"
+                            : "primary-interactive"
                         }
                       />
                     )}
@@ -683,120 +719,143 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                 style={
                   multiple
                     ? {
-                        flexWrap: "wrap",
+                        // Figma node 103:13574: the field is two columns —
+                        // a chips/input content column that wraps, and the
+                        // chevron as its own fixed column, centered on the
+                        // cross axis, so it stays vertically centered when
+                        // chips wrap onto several lines. The wrapping lives
+                        // in the inner content div below, not here.
+                        flexWrap: "nowrap",
                         alignItems: "center",
                         padding: 4,
-                        // 4px between every chip, and between the last
-                        // chip and the input, on both axes — so wrapped
-                        // chip rows get the same 4px breathing room too.
-                        // Confirmed against the Figma reference by
-                        // measuring both its single-row and wrapped
-                        // examples: every gap and every edge padding
-                        // there is 4px, uniformly.
                         gap: 4,
                       }
                     : undefined
                 }
               >
-                {/* Multiselect's picks render as removable chips INSIDE the
-                    field, ahead of the text input — Chip's own markup and
-                    classnames (see the import comment up top for why this
-                    isn't literally the `Chip` component). */}
-                {multiple &&
-                  selectedMulti.map((option) => (
-                    <div key={option.value} className={chip.classnames.base}>
-                      <Text
-                        color="neutral-textHigh"
-                        fontSize="caption"
-                        lineHeight="caption"
-                        lineClamp={1}
-                        wordBreak="break-all"
-                      >
-                        {option.label}
-                      </Text>
-                      <button
-                        aria-label={`Remove ${option.label}`}
-                        data-testid={
-                          dataTestId
-                            ? `${dataTestId}-chip-remove-${option.value}`
-                            : undefined
-                        }
-                        type="button"
-                        onMouseDown={(event) => event.preventDefault()}
-                        onClick={(event) => {
-                          event.stopPropagation();
-                          removeChip(option);
-                        }}
-                        className={chip.classnames.chip_close_icon_container}
-                      >
-                        <Icon
-                          data-testid={
-                            dataTestId
-                              ? `${dataTestId}-chip-close-${option.value}`
-                              : undefined
-                          }
-                          source={<CloseIcon width={12} height={12} />}
-                          color="neutral-textHigh"
-                        />
-                      </button>
-                    </div>
-                  ))}
-                <input
-                  ref={inputRef}
-                  id={id}
-                  data-testid={dataTestId}
-                  className={inputStyles.classnames.input}
+                <div
                   style={
                     multiple
                       ? {
-                          width: "auto",
-                          flex: "1 1 48px",
-                          minWidth: 32,
-                          // `classnames.input` bakes in a 32px height and
-                          // its own 8px padding on every side — sized for
-                          // being the container's only child, as it is in
-                          // single-select. Here the *container* now carries
-                          // the Figma-measured 4px padding instead (see
-                          // above), sized around the 24px chip row, so the
-                          // input needs to give up its own height/padding
-                          // to match that same 24px rather than forcing the
-                          // row (and the field) taller than Figma's spec.
-                          height: 24,
-                          padding: 0,
+                          display: "flex",
+                          flexWrap: "wrap",
+                          alignItems: "center",
+                          flex: "1 1 auto",
+                          minWidth: 0,
+                          // 4px between every chip, and between the last
+                          // chip and the input, on both axes — so wrapped
+                          // chip rows get the same 4px breathing room too.
+                          // Confirmed against the Figma reference by
+                          // measuring both its single-row and wrapped
+                          // examples: every gap and every edge padding
+                          // there is 4px, uniformly.
+                          gap: 4,
                         }
-                      : undefined
+                      : // Single-select: no extra box, the input stays a
+                        // direct flex child of the container as before.
+                        { display: "contents" }
                   }
-                  value={inputValue}
-                  placeholder={
-                    multiple && selectedMulti.length > 0 ? "" : placeholder
-                  }
-                  disabled={disabled}
-                  required={required}
-                  role="combobox"
-                  aria-expanded={open}
-                  aria-haspopup="listbox"
-                  aria-controls={listboxId}
-                  aria-activedescendant={
-                    open && activeIndex >= 0
-                      ? getOptionId(activeIndex)
-                      : undefined
-                  }
-                  onFocus={() => !disabled && setOpen(true)}
-                  // `onFocus` alone misses one real case: Escape closes the
-                  // popover but leaves the input focused (by design — see
-                  // the "Escape" case below), so a plain click right after
-                  // doesn't re-fire focus and the list silently fails to
-                  // reopen. Explicit `onClick` covers that; redundant with
-                  // `onFocus` the rest of the time, which is harmless.
-                  onClick={() => !disabled && setOpen(true)}
-                  onChange={(event) => {
-                    setInputValue(event.target.value);
-                    if (!multiple && selected) setSelected(null);
-                    setOpen(true);
-                    setActiveIndex(-1);
-                  }}
-                  onKeyDown={handleKeyDown}
-                />
+                >
+                  {/* Multiselect's picks render as removable chips INSIDE the
+                    field, ahead of the text input — Chip's own markup and
+                    classnames (see the import comment up top for why this
+                    isn't literally the `Chip` component). */}
+                  {multiple &&
+                    selectedMulti.map((option) => (
+                      <div key={option.value} className={chip.classnames.base}>
+                        <Text
+                          color="neutral-textHigh"
+                          fontSize="caption"
+                          lineHeight="caption"
+                          lineClamp={1}
+                          wordBreak="break-all"
+                        >
+                          {option.label}
+                        </Text>
+                        <button
+                          aria-label={`Remove ${option.label}`}
+                          data-testid={
+                            dataTestId
+                              ? `${dataTestId}-chip-remove-${option.value}`
+                              : undefined
+                          }
+                          type="button"
+                          onMouseDown={(event) => event.preventDefault()}
+                          onClick={(event) => {
+                            event.stopPropagation();
+                            removeChip(option);
+                          }}
+                          className={chip.classnames.chip_close_icon_container}
+                        >
+                          <Icon
+                            data-testid={
+                              dataTestId
+                                ? `${dataTestId}-chip-close-${option.value}`
+                                : undefined
+                            }
+                            source={<CloseIcon width={12} height={12} />}
+                            color="neutral-textHigh"
+                          />
+                        </button>
+                      </div>
+                    ))}
+                  <input
+                    ref={inputRef}
+                    id={id}
+                    data-testid={dataTestId}
+                    className={inputStyles.classnames.input}
+                    style={
+                      multiple
+                        ? {
+                            width: "auto",
+                            flex: "1 1 48px",
+                            minWidth: 32,
+                            // `classnames.input` bakes in a 32px height and
+                            // its own 8px padding on every side — sized for
+                            // being the container's only child, as it is in
+                            // single-select. Here the *container* now carries
+                            // the Figma-measured 4px padding instead (see
+                            // above), sized around the 24px chip row, so the
+                            // input needs to give up its own height/padding
+                            // to match that same 24px rather than forcing the
+                            // row (and the field) taller than Figma's spec.
+                            height: 24,
+                            padding: 0,
+                          }
+                        : undefined
+                    }
+                    value={inputValue}
+                    placeholder={
+                      multiple && selectedMulti.length > 0 ? "" : placeholder
+                    }
+                    disabled={disabled}
+                    required={required}
+                    role="combobox"
+                    aria-expanded={open}
+                    aria-haspopup="listbox"
+                    aria-controls={listboxId}
+                    aria-activedescendant={
+                      open && activeIndex >= 0
+                        ? getOptionId(activeIndex)
+                        : undefined
+                    }
+                    onFocus={() => !disabled && setOpen(true)}
+                    // `onFocus` alone misses one real case: Escape closes the
+                    // popover but leaves the input focused (by design — see
+                    // the "Escape" case below), so a plain click right after
+                    // doesn't re-fire focus and the list silently fails to
+                    // reopen. Explicit `onClick` covers that; redundant with
+                    // `onFocus` the rest of the time, which is harmless.
+                    onClick={() => !disabled && setOpen(true)}
+                    onChange={(event) => {
+                      setInputValue(event.target.value);
+                      if (!multiple && selected) setSelected(null);
+                      setOpen(true);
+                      setActiveIndex(-1);
+                    }}
+                    onKeyDown={handleKeyDown}
+                  />
+                </div>
                 {/* Single-select: one trailing affordance that swaps role
                     with selection state, matching the Figma proposal — a
                     closed field shows a chevron (click focuses/opens it);
@@ -840,12 +899,17 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                       // 4px. Single-select's container has no padding of
                       // its own, so it still needs this class to get any
                       // inset at all.
-                      !multiple ? inputStyles.classnames.container__icon_append.end : null,
+                      !multiple
+                        ? inputStyles.classnames.container__icon_append.end
+                        : null,
                     ]
                       .filter(Boolean)
                       .join(" ")}
                   >
-                    <Icon source={<ChevronDownIcon />} color="neutral-textLow" />
+                    <Icon
+                      source={<ChevronDownIcon />}
+                      color="neutral-textLow"
+                    />
                   </button>
                 )}
               </div>
