@@ -67,7 +67,7 @@ components:
   - { name: "Card", group: "composite", package: "@nimbus-ds/card", nested: ["CardBody", "CardFooter", "CardHeader"] }
   - { name: "Collapsible", group: "composite", package: "@nimbus-ds/collapsible", nested: ["CollapsibleBody", "CollapsibleItem"], contexts: ["CollapsibleContext"], extras: ["src/hooks/"] }
   - { name: "Modal", group: "composite", package: "@nimbus-ds/modal", nested: ["ModalBody", "ModalFooter", "ModalHeader"] }
-  - { name: "Pagination", group: "composite", package: "@nimbus-ds/pagination", extras: ["src/hooks/", "src/pagination.definitions.ts"] }
+  - { name: "Pagination", group: "composite", package: "@nimbus-ds/pagination", nested: ["GoToPageInput"], extras: ["pagination.spec.md", "src/hooks/", "src/pagination.definitions.ts"] }
   - { name: "ScrollPane", group: "composite", package: "@nimbus-ds/scroll-pane", nested: ["ScrollPaneArrow", "ScrollPaneItem"], contexts: ["ScrollPaneContext"], extras: ["src/ScrollPane.definitions.ts"] }
   - { name: "SegmentedControl", group: "composite", package: "@nimbus-ds/segmented-control", nested: ["SegmentedControlButton"], contexts: ["SegmentedControlContext"], extras: ["src/segmentedControl.definitions.ts"] }
   - { name: "Sidebar", group: "composite", package: "@nimbus-ds/sidebar", nested: ["SidebarBody", "SidebarFooter", "SidebarHeader"] }

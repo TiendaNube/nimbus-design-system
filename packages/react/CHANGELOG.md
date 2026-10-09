@@ -8,6 +8,12 @@ every day, with simplicity, accessibility, consistency and performance.
 #### 🎉 New features
 
 - Select: Adds a `small` size variant. ([#530](https://github.com/TiendaNube/nimbus-design-system/pull/530) by [@noecondoleo](https://github.com/noecondoleo))
+- Pagination: Adds the `showInput` prop for a "go to page" input that only accepts digits and takes an out-of-range number to the nearest page, the `labels` prop to translate its texts, a `<nav>` landmark, `aria-current="page"` on the current page, and a compact first / previous / go-to-page / next / last layout below the `md` breakpoint when `pageCount` is 6 or more. Existing consumers with a `pageCount` of 6 or more will see the compact layout on screens narrower than 672px. Fixes the input being overwritten while typing when `activePage` changes externally. ([#585](https://github.com/TiendaNube/nimbus-design-system/pull/585) by [@claude[bot]](https://github.com/apps/claude))
+- Icons: Adds the `chevron-first` and `chevron-last` icons, used by `Pagination`. ([#585](https://github.com/TiendaNube/nimbus-design-system/pull/585) by [@claude[bot]](https://github.com/apps/claude))
+
+#### 💡 Others
+
+- Behavior change: Existing `Pagination` instances with a `pageCount` of 6 or more now show the compact first / previous / go-to-page / next / last layout below the `md` breakpoint (672px) instead of the page numbers, without any code change; the list is now also wrapped in a `<nav>` element. The API is unchanged. ([#585](https://github.com/TiendaNube/nimbus-design-system/pull/585) by [@claude[bot]](https://github.com/apps/claude))
 
 ## 2026-08-12 `5.62.0`
 

@@ -14,8 +14,11 @@
     "version": "yarn version"
   },
   "dependencies": {
+    "@floating-ui/react": "^0.27.5",
     "@nimbus-ds/button": "workspace:^",
-    "@nimbus-ds/icons": "workspace:^"
+    "@nimbus-ds/icons": "workspace:^",
+    "@nimbus-ds/input": "workspace:^",
+    "@nimbus-ds/text": "workspace:^"
   },
   "peerDependencies": {
     "react": "^16.8 || ^17.0 || ^18.0 || ^19.0",

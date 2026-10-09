@@ -2,6 +2,23 @@
 
 The Pagination component allows us to navigate between a very large list of entries.
 
+## 2026-10-05 `2.6.0`
+
+#### 🎉 New features
+
+- Adds the `showInput` prop to show a "go to page" input next to the navigation (available when `pageCount` is 6 or more). The input only accepts digits, submits on Enter or blur, and takes a number outside the range to the nearest page (above `pageCount` to the last page, `0` to the first) without showing an error. Page changes are announced to screen readers. ([#585](https://github.com/TiendaNube/nimbus-design-system/pull/585) by [@claude[bot]](https://github.com/apps/claude))
+- Adds a compact first / previous / go-to-page / next / last layout below the `md` breakpoint (672px) when `pageCount` is 6 or more. **Existing consumers with a `pageCount` of 6 or more will see this compact layout, instead of the page numbers, on screens narrower than 672px**, without any code change. ([#585](https://github.com/TiendaNube/nimbus-design-system/pull/585) by [@claude[bot]](https://github.com/apps/claude))
+- Adds the `labels` prop to translate every text the component renders (`navigation`, `previousPage`, `nextPage`, `firstPage`, `lastPage`, `goToPage`, `goTo`, `of` and `pageAnnouncement`). Omitted keys keep their English default. ([#585](https://github.com/TiendaNube/nimbus-design-system/pull/585) by [@claude[bot]](https://github.com/apps/claude))
+- Wraps the list in a `<nav>` landmark named "Pagination", names the previous, next, first and last buttons, and marks the current page with `aria-current="page"`. ([#585](https://github.com/TiendaNube/nimbus-design-system/pull/585) by [@claude[bot]](https://github.com/apps/claude))
+
+#### 🐛 Bug fixes
+
+- The "go to page" input no longer overwrites what the user is typing when `activePage` changes externally; the value resyncs when the input loses focus. ([#585](https://github.com/TiendaNube/nimbus-design-system/pull/585) by [@claude[bot]](https://github.com/apps/claude))
+
+#### 💡 Others
+
+- Behavior change: Existing `Pagination` instances with a `pageCount` of 6 or more now show the compact first / previous / go-to-page / next / last layout below the `md` breakpoint (672px) instead of the page numbers, without any code change; the list is now also wrapped in a `<nav>` element. The API is unchanged. ([#585](https://github.com/TiendaNube/nimbus-design-system/pull/585) by [@claude[bot]](https://github.com/apps/claude))
+
 ## 2026-02-12 `2.5.0`
 
 #### 🎉 New features
