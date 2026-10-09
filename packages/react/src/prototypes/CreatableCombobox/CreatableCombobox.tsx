@@ -240,9 +240,6 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
     const filteredOptions = query
       ? options.filter((option) => option.label.toLowerCase().includes(query))
       : options;
-    const hasEnrichedOptions = options.some(
-      (option) => !!(option.subtitle || option.tag)
-    );
     const hasExactMatch = options.some(
       (option) => option.label.toLowerCase() === query
     );
@@ -519,12 +516,12 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                 flexDirection: "column",
                 width: "100%",
                 boxSizing: "border-box",
-                // Plain lists keep their 4px inset. A list that carries
-                // enriched options uses the Figma popover's 8px padding
-                // (node 149:11359, `.Popover menu` pad 8, DataList gap 4).
-                // Decided from the whole list, not the filtered rows, so
-                // the inset doesn't jump while typing.
-                padding: hasEnrichedOptions ? 8 : 4,
+                // 8px inset on every side between the popover edge and
+                // the rows, per the Figma popover frames (`.Popover menu`
+                // pad 8: node 149:11359 for enriched rows, and the
+                // Combobox Open variants for plain rows). Rows keep their
+                // own padding and the 4px gap.
+                padding: 8,
                 gap: 4,
                 maxHeight: 220,
                 overflowY: "auto",
