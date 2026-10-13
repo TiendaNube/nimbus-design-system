@@ -185,7 +185,7 @@ export interface BoxSprinkle {
   /**
    * The backgroundColor property sets the background color of the box.
    * @default neutral-background
-   * @examples ["neutral-interactive", { xs: "neutral-surface", md: "neutral-interactive" }]
+   * @examples ["neutral-interactive", "ai-generative-interactivePressed", { xs: "neutral-surface", md: "neutral-interactive" }]
    */
   backgroundColor?:
     | BoxBackgroundColorProperties
