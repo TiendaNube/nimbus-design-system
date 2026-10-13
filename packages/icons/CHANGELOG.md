@@ -2,6 +2,13 @@
 
 Nimbus-icons is an open source icon system built by Nuvemshop / Tiendanube.
 
+## 2026-10-05 `1.28.0` (minor version bump)
+
+#### 🎉 New features
+
+- Adds `chevron-first` icon. ([#585](https://github.com/TiendaNube/nimbus-design-system/pull/585) by [@claude[bot]](https://github.com/apps/claude))
+- Adds `chevron-last` icon. ([#585](https://github.com/TiendaNube/nimbus-design-system/pull/585) by [@claude[bot]](https://github.com/apps/claude))
+
 ## 2026-08-10 `1.27.0` (minor version bump)
 
 #### 🎉 New features
