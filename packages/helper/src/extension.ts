@@ -23,7 +23,9 @@ export function activate(context: vscode.ExtensionContext) {
     hoverProvider
   );
 
-  nimbusDependenciesChecker.check();
+  nimbusDependenciesChecker.check().catch((error) => {
+    console.error("Failed to check Nimbus dependencies:", error);
+  });
 
   const disposable = vscode.commands.registerCommand(
     "nimbus-helper.checknimbusdependencies",

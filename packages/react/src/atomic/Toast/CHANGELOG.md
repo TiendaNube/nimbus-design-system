@@ -2,6 +2,12 @@
 
 The Toast component allows us to notify users in an informational tone, describing that something has happened or is happening, without interrupting navigation.
 
+## Unreleased
+
+#### 🐛 Bug fixes
+
+- Keeps generated IDs unique when standalone and aggregate builds are used together. ([#595](https://github.com/TiendaNube/nimbus-design-system/pull/595))
+
 ## 2026-02-24 `2.7.0`
 
 #### 🎉 New features

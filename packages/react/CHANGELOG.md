@@ -3,6 +3,12 @@
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories
 every day, with simplicity, accessibility, consistency and performance.
 
+## Unreleased
+
+#### 🐛 Bug fixes
+
+- Toast: Keeps generated IDs unique when standalone and aggregate builds are used together. ([#595](https://github.com/TiendaNube/nimbus-design-system/pull/595))
+
 ## 2026-08-31 `5.63.0`
 
 #### 🎉 New features
