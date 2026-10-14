@@ -1,41 +1,39 @@
-import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
+import type { Meta, StoryObj } from "@storybook/react";
 import { Box } from "@nimbus-ds/box";
-import { MobilePlanCarousel } from "./ExplorationPatterns202";
+import { ExplorationPatterns202 } from "./ExplorationPatterns202";
 
-const meta: Meta<typeof MobilePlanCarousel> = {
+const meta: Meta<typeof ExplorationPatterns202> = {
   title: "Prototypes/ExplorationPatterns202",
-  component: MobilePlanCarousel,
+  component: ExplorationPatterns202,
+  parameters: { layout: "centered" },
   argTypes: {
-    cardWidth: { control: { type: "text" } },
-    regionLabel: { control: { type: "text" } },
+    view: { control: "radio", options: ["auto", "mobile", "desktop"] },
+    carouselLabel: { control: "text" },
   },
-  args: { cardWidth: "82%", regionLabel: "Plans" },
 };
 
 export default meta;
-type Story = StoryObj<typeof MobilePlanCarousel>;
+
+type Story = StoryObj<typeof ExplorationPatterns202>;
 
 export const Playground: Story = {
-  decorators: [
-    (Story) => (
-      <Box maxWidth="390px" py="4" backgroundColor="neutral-surface">
-        <Story />
-      </Box>
-    ),
-  ],
+  args: { view: "mobile", carouselLabel: "Available plans" },
+  render: (args) => (
+    // 375px frame so the mobile carousel is visible regardless of the Storybook viewport.
+    <Box width={args.view === "desktop" ? "960px" : "375px"} padding="4">
+      <ExplorationPatterns202 {...args} />
+    </Box>
+  ),
 };
 
 export const FullScreen: Story = {
   name: "Full screen",
+  args: { view: "auto" },
   parameters: { layout: "fullscreen", controls: { disable: true } },
-  decorators: [
-    (Story) => (
-      <Box display="flex" justifyContent="center" py="6" backgroundColor="neutral-surface" minHeight="100vh">
-        <Box width="100%" maxWidth="430px">
-          <Story />
-        </Box>
-      </Box>
-    ),
-  ],
+  render: (args) => (
+    <Box padding="4">
+      <ExplorationPatterns202 {...args} />
+    </Box>
+  ),
 };

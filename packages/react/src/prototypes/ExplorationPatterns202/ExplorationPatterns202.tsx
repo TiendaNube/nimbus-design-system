@@ -1,325 +1,418 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Box } from "@nimbus-ds/box";
+import { Button } from "@nimbus-ds/button";
+import { Divider } from "@nimbus-ds/divider";
+import { ScrollPane } from "@nimbus-ds/scroll-pane";
+import { Tag } from "@nimbus-ds/tag";
 import { Text } from "@nimbus-ds/text";
 import { Title } from "@nimbus-ds/title";
-import { Button } from "@nimbus-ds/button";
-import { Icon } from "@nimbus-ds/icon";
-import { ScrollPane } from "@nimbus-ds/scroll-pane";
 import { CheckCircleIcon } from "@nimbus-ds/icons";
 
-/** Public-safe sample data. */
-export interface PlanSample {
+/**
+ * Exploration for TiendaNube/nimbus-patterns#202: PlanDisplay on mobile (Plans 2.0).
+ * Plan cards are recomposed here from Core components (nothing is imported from
+ * @nimbus-ds/patterns). The mobile view is a ScrollPane carousel: one card per viewport
+ * with the next one peeking, plus a dots indicator synced to scroll.
+ */
+
+export type PlanData = {
   id: string;
   name: string;
-  subtitle: string;
+  tag?: string;
+  ribbon?: string;
   price: string;
+  previousPrice?: string;
   period: string;
-  ribbonLabel?: string;
-  bullets: string[];
+  note?: string;
+  bullets: { label: string; disabled?: boolean }[];
   cta: string;
-}
+};
 
-export const SAMPLE_PLANS: PlanSample[] = [
+export const SAMPLE_PLANS: PlanData[] = [
   {
-    id: "basic",
-    name: "Basic",
-    subtitle: "For starting out",
-    price: "$ 29",
-    period: "/month",
-    bullets: ["Up to 100 products", "1 staff account", "Email support"],
-    cta: "Choose Basic",
+    id: "start",
+    name: "Start",
+    price: "$ 4.900",
+    period: "/ month",
+    note: "Billed monthly",
+    bullets: [
+      { label: "Up to 100 products" },
+      { label: "1 staff account" },
+      { label: "Basic reports" },
+      { label: "Abandoned cart recovery", disabled: true },
+    ],
+    cta: "Choose Start",
   },
   {
     id: "growth",
     name: "Growth",
-    subtitle: "For growing stores",
-    price: "$ 79",
-    period: "/month",
-    ribbonLabel: "Most popular",
-    bullets: ["Up to 1,000 products", "5 staff accounts", "Priority support"],
+    tag: "Popular",
+    ribbon: "Recommended",
+    price: "$ 9.900",
+    previousPrice: "$ 12.900",
+    period: "/ month",
+    note: "Save 20% billed annually",
+    bullets: [
+      { label: "Up to 1.000 products" },
+      { label: "5 staff accounts" },
+      { label: "Advanced reports" },
+      { label: "Abandoned cart recovery" },
+    ],
     cta: "Choose Growth",
   },
   {
     id: "scale",
     name: "Scale",
-    subtitle: "For established brands",
-    price: "$ 199",
-    period: "/month",
-    bullets: ["Unlimited products", "20 staff accounts", "Dedicated manager"],
+    price: "$ 24.900",
+    period: "/ month",
+    note: "Billed monthly",
+    bullets: [
+      { label: "Unlimited products" },
+      { label: "15 staff accounts" },
+      { label: "Advanced reports" },
+      { label: "Priority support" },
+    ],
     cta: "Choose Scale",
-  },
-  {
-    id: "enterprise",
-    name: "Enterprise",
-    subtitle: "For large operations",
-    price: "$ 499",
-    period: "/month",
-    bullets: ["Unlimited everything", "Custom integrations", "SLA"],
-    cta: "Contact sales",
   },
 ];
 
-/* ------------------------------------------------------------------ */
-/* Dots indicator: light-background, localizable, announced.           */
-/* Simulates what a standalone Core paginator could look like.         */
-/* ------------------------------------------------------------------ */
+// Native element: Box exposes neither a top-only radius nor a negative margin (same exception
+// the production PlanDisplay.Card makes).
+const RIBBON_STYLE: React.CSSProperties = {
+  borderTopLeftRadius: "var(--nimbus-shape-border-radius-2)",
+  borderTopRightRadius: "var(--nimbus-shape-border-radius-2)",
+  marginBottom: "calc(var(--nimbus-spacing-2) * -1)",
+  overflow: "hidden",
+};
 
-export interface DotsIndicatorProps {
-  total: number;
-  activeIndex: number;
-  /** Localizable label; the host app passes its own translation. */
-  getLabel?: (current: number, total: number) => string;
-  onSelect?: (index: number) => void;
-  getDotLabel?: (index: number, total: number) => string;
-}
-
-// Native span: Box drops `style`, and a visually-hidden text needs clip rules.
+// Declared exception: Box has no visually-hidden prop.
 const VISUALLY_HIDDEN: React.CSSProperties = {
   position: "absolute",
   width: 1,
   height: 1,
-  margin: -1,
-  padding: 0,
   overflow: "hidden",
   clip: "rect(0 0 0 0)",
   whiteSpace: "nowrap",
-  border: 0,
 };
 
-export const DotsIndicator: React.FC<DotsIndicatorProps> = ({
-  total,
-  activeIndex,
-  getLabel = (c, t) => `Plan ${c} of ${t}`,
-  onSelect,
-  getDotLabel = (i, t) => `Go to plan ${i + 1} of ${t}`,
-}) => (
-  <Box display="flex" justifyContent="center" alignItems="center" gap="1">
-    {/* Polite live region announces the position when it changes. */}
-    <span role="status" aria-live="polite" style={VISUALLY_HIDDEN}>
-      {getLabel(activeIndex + 1, total)}
-    </span>
-    {Array.from({ length: total }, (_, index) => {
-      const active = index === activeIndex;
-      return (
-        // Native button for a 24px touch target around the 6px dot; Box has no
-        // button-reset props, so the reset is inline (declared exception).
-        <button
-          key={`dot-${index}`}
-          type="button"
-          aria-label={getDotLabel(index, total)}
-          aria-current={active ? "true" : undefined}
-          onClick={() => onSelect?.(index)}
-          style={{
-            all: "unset",
-            cursor: "pointer",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            width: active ? 32 : 24,
-            height: 24,
-            borderRadius: "var(--nimbus-shape-border-radius-full, 999px)",
-          }}
-        >
-          <Box
-            aria-hidden="true"
-            width={active ? "24px" : "6px"}
-            height="6px"
-            borderRadius="full"
-            backgroundColor={active ? "primary-interactive" : "neutral-surfaceHighlight"}
-          />
-        </button>
-      );
-    })}
-  </Box>
-);
-
-/* ------------------------------------------------------------------ */
-/* Plan card recomposed from Core primitives (no @nimbus-ds/patterns). */
-/* ------------------------------------------------------------------ */
-
-const PlanCard: React.FC<{ plan: PlanSample }> = ({ plan }) => {
-  const hasRibbon = Boolean(plan.ribbonLabel);
-  return (
-    <Box display="flex" flexDirection="column" height="100%">
+/** Local recomposition of PlanDisplay.Card + Header + Price + Content + Bullet + Footer. */
+const PlanCard: React.FC<{ plan: PlanData }> = ({ plan }) => (
+  <Box display="flex" flexDirection="column" height="100%">
+    <div style={RIBBON_STYLE}>
       <Box
-        aria-hidden={hasRibbon ? undefined : true}
+        aria-hidden={plan.ribbon ? undefined : true}
         display="flex"
         justifyContent="center"
         alignItems="center"
         pt="0-5"
         pb="2"
-        backgroundColor={hasRibbon ? "primary-interactive" : undefined}
-        borderRadius="2"
+        backgroundColor={plan.ribbon ? "primary-interactive" : undefined}
       >
         <Text fontWeight="medium" color="neutral-background" textAlign="center">
-          {plan.ribbonLabel || " "}
+          {plan.ribbon || " "}
         </Text>
       </Box>
-      <Box
-        flex="1 1 auto"
-        display="flex"
-        flexDirection="column"
-        gap="4"
-        padding="4"
-        backgroundColor="neutral-background"
-        borderRadius="2"
-        boxShadow="2"
-        borderColor={hasRibbon ? "primary-interactive" : undefined}
-        borderStyle={hasRibbon ? "solid" : undefined}
-        borderWidth={hasRibbon ? "2" : undefined}
-      >
-        <Text fontWeight="bold" fontSize="highlight" color="neutral-textHigh">
-          {plan.name}
-        </Text>
-        <Text color="neutral-textLow">{plan.subtitle}</Text>
-        <Box display="flex" alignItems="baseline" gap="0-5">
-          <Title as="h3" color="neutral-textHigh">
-            {plan.price}
-          </Title>
-          <Text as="span" color="neutral-textHigh">
-            {plan.period}
+    </div>
+    <Box
+      flex="1 1 auto"
+      display="flex"
+      flexDirection="column"
+      padding="4"
+      backgroundColor="neutral-background"
+      borderRadius="2"
+      overflow="hidden"
+      boxShadow={plan.ribbon ? undefined : "2"}
+      borderColor={plan.ribbon ? "primary-interactive" : undefined}
+      borderStyle={plan.ribbon ? "solid" : undefined}
+      borderWidth={plan.ribbon ? "2" : undefined}
+    >
+      <Box display="flex" flexDirection="column" gap="3">
+        <Box display="flex" justifyContent="space-between" alignItems="center" gap="2">
+          <Text fontWeight="bold" fontSize="highlight" color="neutral-textHigh">
+            {plan.name}
           </Text>
+          {plan.tag && <Tag appearance="primary">{plan.tag}</Tag>}
         </Box>
-        <Box display="flex" flexDirection="column" gap="2" flex="1 1 auto">
-          {plan.bullets.map((bullet) => (
-            <Box key={bullet} display="flex" gap="2" alignItems="center">
-              <Icon
-                color="primary-interactive"
-                source={<CheckCircleIcon size="small" />}
-              />
-              <Text color="neutral-textLow">{bullet}</Text>
-            </Box>
-          ))}
+        <Box display="flex" flexDirection="column" gap="2">
+          <Box display="flex" alignItems="center" gap="0-5">
+            <Title as="h3" color="neutral-textHigh">
+              {plan.price}
+            </Title>
+            {plan.previousPrice && (
+              <Text as="span" fontSize="base" textDecoration="line-through">
+                {plan.previousPrice}
+              </Text>
+            )}
+            <Text as="span" color="neutral-textHigh">
+              {plan.period}
+            </Text>
+          </Box>
+          {plan.note && (
+            <Text as="p" fontSize="caption" color="neutral-textLow">
+              {plan.note}
+            </Text>
+          )}
         </Box>
-        <Button appearance={hasRibbon ? "primary" : "neutral"}>{plan.cta}</Button>
+      </Box>
+      <Box my="3">
+        <Divider />
+      </Box>
+      <Box display="flex" flexDirection="column" gap="3">
+        {plan.bullets.map((bullet) => (
+          <Box key={bullet.label} display="flex" gap="2" alignItems="center">
+            <Text
+              as="span"
+              color={bullet.disabled ? "neutral-interactive" : "primary-interactive"}
+            >
+              <Box as="span" display="flex" alignItems="center">
+                <CheckCircleIcon />
+              </Box>
+            </Text>
+            <Text
+              fontWeight="regular"
+              color={bullet.disabled ? "neutral-interactive" : "neutral-textLow"}
+            >
+              {bullet.label}
+            </Text>
+          </Box>
+        ))}
+      </Box>
+      <Box display="flex" flexDirection="column" mt="auto" pt="4">
+        <Button appearance={plan.ribbon ? "primary" : "neutral"}>{plan.cta}</Button>
       </Box>
     </Box>
-  );
-};
+  </Box>
+);
 
-/* ------------------------------------------------------------------ */
-/* Mobile carousel: ScrollPane + peek + scroll-synced dots.            */
-/* ------------------------------------------------------------------ */
+/** Desktop reference: the current PlanDisplay grid, recomposed. */
+const PlanGrid: React.FC<{ plans: PlanData[]; minPlanWidth?: string }> = ({
+  plans,
+  minPlanWidth = "225px",
+}) => (
+  <Box
+    display="grid"
+    gridTemplateColumns={`repeat(auto-fit, minmax(${minPlanWidth}, 1fr))`}
+    gap="6"
+    justifyContent="center"
+    alignItems="stretch"
+  >
+    {plans.map((plan) => (
+      <PlanCard key={plan.id} plan={plan} />
+    ))}
+  </Box>
+);
 
-export interface MobilePlanCarouselProps {
-  plans?: PlanSample[];
-  /** Width of each card relative to the viewport; the remainder is the peek. */
-  cardWidth?: string;
-  /** Localizable region label for the scroll area. */
-  regionLabel?: string;
-  getLabel?: (current: number, total: number) => string;
+/**
+ * Dots indicator for light backgrounds. Simulates a new component: the existing
+ * ProductUpdates.Paginator hardcodes colors for a primary background and an English label.
+ * Each dot is a real button so the position can also be changed without a pointer.
+ */
+const CarouselDots: React.FC<{
+  total: number;
+  activeIndex: number;
+  onSelect: (index: number) => void;
+  getLabel: (index: number, total: number) => string;
+}> = ({ total, activeIndex, onSelect, getLabel }) => (
+  <Box display="flex" flexDirection="row" gap="2" justifyContent="center" alignItems="center">
+    {Array.from({ length: total }, (_, index) => (
+      <button
+        key={`dot-${index}`}
+        type="button"
+        aria-label={getLabel(index, total)}
+        aria-current={index === activeIndex ? "true" : undefined}
+        onClick={() => onSelect(index)}
+        style={{
+          // Declared exception: a native button with a 24px touch target around a 6/24px dot.
+          all: "unset",
+          cursor: "pointer",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          minWidth: 24,
+          height: 24,
+        }}
+      >
+        <Box
+          width={index === activeIndex ? "24px" : "6px"}
+          height="6px"
+          borderRadius="full"
+          backgroundColor={index === activeIndex ? "primary-interactive" : "neutral-interactive"}
+          aria-hidden="true"
+        />
+      </button>
+    ))}
+  </Box>
+);
+
+/**
+ * Mobile composition: ScrollPane + local dots. ScrollPane has no snap or active-item API, so:
+ * - snap is simulated by setting scroll-snap-type on the exposed scroll container ref;
+ * - the active index is derived from a scroll listener on that same ref;
+ * - focus/keyboard/region semantics are applied to the container through the ref, because
+ *   ScrollPane forwards `rest` props to its outer Box, not to the scrolling element.
+ */
+const PlanCarousel: React.FC<{
+  plans: PlanData[];
+  carouselLabel?: string;
+  getSlideLabel?: (index: number, total: number) => string;
   getDotLabel?: (index: number, total: number) => string;
-}
-
-export const MobilePlanCarousel: React.FC<MobilePlanCarouselProps> = ({
-  plans = SAMPLE_PLANS,
-  cardWidth = "82%",
-  regionLabel = "Plans",
-  getLabel,
-  getDotLabel,
+  getPositionAnnouncement?: (index: number, total: number) => string;
+}> = ({
+  plans,
+  carouselLabel = "Available plans",
+  getSlideLabel = (i, t) => `Plan ${i + 1} of ${t}`,
+  getDotLabel = (i, t) => `Go to plan ${i + 1} of ${t}`,
+  getPositionAnnouncement = (i, t) => `Plan ${i + 1} of ${t}`,
 }) => {
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  // Simulation: ScrollPane has no snap, keyboard or active-item API. Its
-  // `scrollContainerRef` is public, so the scroll area is enhanced from outside.
-  useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return undefined;
-    el.style.scrollSnapType = "x mandatory";
-    el.style.scrollPaddingLeft = "var(--nimbus-spacing-4)";
-    el.setAttribute("tabindex", "0");
-    el.setAttribute("role", "region");
-    el.setAttribute("aria-label", regionLabel);
-    el.setAttribute("aria-roledescription", "carousel");
+  const getSlides = useCallback(
+    () =>
+      Array.from(
+        containerRef.current?.querySelectorAll<HTMLElement>("[data-plan-slide]") ?? []
+      ),
+    []
+  );
 
-    const update = () => {
-      const items = Array.from(
-        el.querySelectorAll<HTMLElement>("[data-plan-slide]")
-      );
-      if (!items.length) return;
-      const atEnd = el.scrollLeft + el.clientWidth >= el.scrollWidth - 2;
-      if (atEnd) {
-        setActiveIndex(items.length - 1);
-        return;
-      }
-      let best = 0;
-      let bestDist = Infinity;
-      items.forEach((item, i) => {
-        const dist = Math.abs(item.offsetLeft - el.offsetLeft - el.scrollLeft);
-        if (dist < bestDist) {
-          bestDist = dist;
-          best = i;
+  const scrollToIndex = useCallback(
+    (index: number) => {
+      const container = containerRef.current;
+      const slide = getSlides()[index];
+      if (!container || !slide) return;
+      const delta = slide.getBoundingClientRect().left - container.getBoundingClientRect().left;
+      container.scrollTo({ left: container.scrollLeft + delta, behavior: "smooth" });
+    },
+    [getSlides]
+  );
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return undefined;
+
+    container.style.scrollSnapType = "x mandatory";
+    container.tabIndex = 0;
+    container.setAttribute("role", "region");
+    container.setAttribute("aria-roledescription", "carousel");
+    container.setAttribute("aria-label", carouselLabel);
+
+    const updateActive = () => {
+      const slides = getSlides();
+      if (!slides.length) return;
+      const containerLeft = container.getBoundingClientRect().left;
+      const atEnd = container.scrollLeft + container.clientWidth >= container.scrollWidth - 2;
+      let nearest = 0;
+      let nearestDistance = Infinity;
+      slides.forEach((slide, index) => {
+        const distance = Math.abs(slide.getBoundingClientRect().left - containerLeft);
+        if (distance < nearestDistance) {
+          nearest = index;
+          nearestDistance = distance;
         }
       });
-      setActiveIndex(best);
+      setActiveIndex(atEnd ? slides.length - 1 : nearest);
     };
-    update();
-    el.addEventListener("scroll", update, { passive: true });
-    return () => el.removeEventListener("scroll", update);
-  }, [regionLabel]);
 
-  const scrollToIndex = useCallback((index: number) => {
-    const el = scrollRef.current;
-    const item = el?.querySelectorAll<HTMLElement>("[data-plan-slide]")[index];
-    if (!el || !item) return;
-    el.scrollTo({
-      left: item.offsetLeft - el.offsetLeft - 16,
-      behavior: "smooth",
-    });
-  }, []);
+    const onKeyDown = (event: KeyboardEvent) => {
+      const slides = getSlides();
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        scrollToIndex(Math.min(slides.length - 1, activeIndexRef.current + 1));
+      } else if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        scrollToIndex(Math.max(0, activeIndexRef.current - 1));
+      }
+    };
 
-  const onKeyDown = (event: React.KeyboardEvent) => {
-    if (event.target !== scrollRef.current) return;
-    if (event.key === "ArrowRight") {
-      event.preventDefault();
-      scrollToIndex(Math.min(plans.length - 1, activeIndex + 1));
-    } else if (event.key === "ArrowLeft") {
-      event.preventDefault();
-      scrollToIndex(Math.max(0, activeIndex - 1));
-    }
-  };
+    updateActive();
+    container.addEventListener("scroll", updateActive, { passive: true });
+    container.addEventListener("keydown", onKeyDown);
+    window.addEventListener("resize", updateActive);
+    return () => {
+      container.removeEventListener("scroll", updateActive);
+      container.removeEventListener("keydown", onKeyDown);
+      window.removeEventListener("resize", updateActive);
+    };
+  }, [carouselLabel, getSlides, scrollToIndex]);
+
+  // Keeps the keydown handler (registered once) reading the latest index.
+  const activeIndexRef = useRef(0);
+  activeIndexRef.current = activeIndex;
 
   return (
-    <Box display="flex" flexDirection="column" gap="3" onKeyDown={onKeyDown}>
+    <Box display="flex" flexDirection="column" gap="4">
       <ScrollPane
-        scrollContainerRef={scrollRef}
-        showGradients={false}
+        scrollContainerRef={containerRef}
+        showArrows={false}
         showScrollbar={false}
+        showGradients={false}
         scrollToItemOnClick={false}
-        enableGrabScroll={false}
-        contentContainerProps={{ gap: "3", margin: "0", px: "4", py: "1" }}
+        contentContainerProps={{ gap: "3", paddingBottom: "2" }}
       >
-        {plans.map((plan, i) => (
-          // Native div: needs scroll-snap-align and a fixed flex-basis for the
-          // peek, which Box (no `style`) cannot express. ScrollPane.Item is
-          // avoided: it renders role="button" and would nest the card CTA.
-          <div
+        {plans.map((plan, index) => (
+          <ScrollPane.Item
             key={plan.id}
-            data-plan-slide
+            data-plan-slide=""
             role="group"
             aria-roledescription="slide"
-            aria-label={`${i + 1} / ${plans.length}`}
-            style={{
-              flex: `0 0 ${cardWidth}`,
-              minWidth: 0,
-              scrollSnapAlign: "start",
-              display: "flex",
-            }}
+            aria-label={getSlideLabel(index, plans.length)}
+            tabIndex={undefined}
+            // 85% leaves the next card peeking; snap alignment is the simulated part.
+            style={{ flex: "0 0 85%", scrollSnapAlign: "start" }}
           >
-            <Box width="100%">
-              <PlanCard plan={plan} />
-            </Box>
-          </div>
+            <PlanCard plan={plan} />
+          </ScrollPane.Item>
         ))}
       </ScrollPane>
-      <DotsIndicator
+      <CarouselDots
         total={plans.length}
         activeIndex={activeIndex}
         onSelect={scrollToIndex}
-        getLabel={getLabel}
-        getDotLabel={getDotLabel}
+        getLabel={getDotLabel}
       />
+      <span aria-live="polite" aria-atomic="true" style={VISUALLY_HIDDEN}>
+        {getPositionAnnouncement(activeIndex, plans.length)}
+      </span>
     </Box>
   );
 };
+
+const MOBILE_QUERY = "(max-width: 767px)";
+
+const useIsMobile = (): boolean => {
+  const [isMobile, setIsMobile] = useState(
+    () => typeof window !== "undefined" && window.matchMedia(MOBILE_QUERY).matches
+  );
+  useEffect(() => {
+    const query = window.matchMedia(MOBILE_QUERY);
+    const onChange = () => setIsMobile(query.matches);
+    onChange();
+    query.addEventListener("change", onChange);
+    return () => query.removeEventListener("change", onChange);
+  }, []);
+  return isMobile;
+};
+
+export type ExplorationPatterns202Props = {
+  plans?: PlanData[];
+  /** "auto" switches at 767px with a media query (simulated breakpoint logic). */
+  view?: "auto" | "mobile" | "desktop";
+  carouselLabel?: string;
+};
+
+/** Plans 2.0 responsive composition: grid on desktop, snapping carousel with dots on mobile. */
+export const ExplorationPatterns202: React.FC<ExplorationPatterns202Props> = ({
+  plans = SAMPLE_PLANS,
+  view = "auto",
+  carouselLabel,
+}) => {
+  const isMobile = useIsMobile();
+  const showCarousel = view === "mobile" || (view === "auto" && isMobile);
+  return showCarousel ? (
+    <PlanCarousel plans={plans} carouselLabel={carouselLabel} />
+  ) : (
+    <PlanGrid plans={plans} />
+  );
+};
+
+export default ExplorationPatterns202;
