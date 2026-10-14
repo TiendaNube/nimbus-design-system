@@ -20,6 +20,7 @@ const base = style({
   fontSize: varsThemeBase.fontSize.body.base,
   lineHeight: varsThemeBase.lineWeight.body.caption,
   textAlign: "left",
+  height: "2rem",
   boxSizing: "border-box",
   color: varsThemeBase.colors.neutral.textHigh,
   borderRadius: varsThemeBase.shape.border.radius[2],

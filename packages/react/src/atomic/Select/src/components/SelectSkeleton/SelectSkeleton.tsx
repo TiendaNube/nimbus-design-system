@@ -4,7 +4,7 @@ import { Skeleton } from "@nimbus-ds/skeleton";
 import { type SelectSkeletonProps } from "./selectSkeleton.types";
 
 const dimensions = {
-  medium: { height: "2.25rem", borderRadius: "0.5rem" },
+  medium: { height: "2rem", borderRadius: "0.5rem" },
   small: { height: "1.75rem", borderRadius: "0.375rem" },
 } as const;
 
