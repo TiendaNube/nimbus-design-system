@@ -1,0 +1,1 @@
+export { GoToPageInput } from "./GoToPageInput";

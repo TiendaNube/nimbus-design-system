@@ -35,6 +35,7 @@ skeleton does not shift surrounding layout.
   deferred pending a real measurement and, if confirmed, a separate issue.
 - Standardizing the border-width literal-vs-token split (see §12).
 - `Select.Group` and `Select.Option`'s own contracts. Not touched by #517.
+- The `size="small"` variant of `Select` and `Select.Skeleton` (28px height, added after this baseline in #530 and #587). It keeps its own height and is unchanged by #517; only the `medium` (default) size is aligned to 32px.
 - Any new variant, capability, or public prop.
 
 ## 3. Acceptance criteria
