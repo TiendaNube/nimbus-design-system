@@ -235,10 +235,22 @@ const CarouselDots: React.FC<{
   </Box>
 );
 
+// Assumption: Figma opacity was not measured (node not readable here).
+const PEEK_OPACITY = 0.5;
+// Side gutter (spacing "4" = 16px) kept before the first card and after the last one.
+const GUTTER_PX = 16;
+const DRAG_THRESHOLD_PX = 4;
+
 /**
  * Mobile composition: ScrollPane + local dots. ScrollPane has no snap or active-item API, so:
- * - snap is simulated by setting scroll-snap-type on the exposed scroll container ref;
+ * - snap is simulated by setting scroll-snap-type on the exposed scroll container ref; the first
+ *   card snaps to the start, the last to the end and the ones in between to the centre, so both
+ *   ends are shown whole and the neighbours peek;
+ * - a card is dimmed only while it is cut by the viewport (the ScrollPane fade in Figma), so the
+ *   first and last cards are fully opaque at rest;
  * - the active index is derived from a scroll listener on that same ref;
+ * - mouse drag is simulated (ScrollPane's enableGrabScroll fights scroll-snap), so the carousel
+ *   can be tested with a mouse, without a trackpad;
  * - focus/keyboard/region semantics are applied to the container through the ref, because
  *   ScrollPane forwards `rest` props to its outer Box, not to the scrolling element.
  */
@@ -255,6 +267,10 @@ const PlanCarousel: React.FC<{
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  // Which slides are fully inside the viewport; the first one is whole before any scroll.
+  const [whole, setWhole] = useState<boolean[]>(() => plans.map((_, i) => i === 0));
+  const activeIndexRef = useRef(0);
+  activeIndexRef.current = activeIndex;
 
   const getSlides = useCallback(
     () =>
@@ -264,15 +280,29 @@ const PlanCarousel: React.FC<{
     []
   );
 
-  const scrollToIndex = useCallback(
+  // Scroll offset that puts slide `index` where its snap alignment says (start / centre / end).
+  const getTargetLeft = useCallback(
     (index: number) => {
       const container = containerRef.current;
       const slide = getSlides()[index];
-      if (!container || !slide) return;
-      const delta = slide.getBoundingClientRect().left - container.getBoundingClientRect().left;
-      container.scrollTo({ left: container.scrollLeft + delta, behavior: "smooth" });
+      if (!container || !slide) return 0;
+      const maxLeft = container.scrollWidth - container.clientWidth;
+      if (index <= 0) return 0;
+      if (index >= getSlides().length - 1) return maxLeft;
+      const slideRect = slide.getBoundingClientRect();
+      const absoluteLeft =
+        container.scrollLeft + slideRect.left - container.getBoundingClientRect().left;
+      const target = absoluteLeft - (container.clientWidth - slideRect.width) / 2;
+      return Math.max(0, Math.min(maxLeft, target));
     },
     [getSlides]
+  );
+
+  const scrollToIndex = useCallback(
+    (index: number) => {
+      containerRef.current?.scrollTo({ left: getTargetLeft(index), behavior: "smooth" });
+    },
+    [getTargetLeft]
   );
 
   useEffect(() => {
@@ -280,26 +310,37 @@ const PlanCarousel: React.FC<{
     if (!container) return undefined;
 
     container.style.scrollSnapType = "x mandatory";
+    container.style.scrollPaddingInline = `${GUTTER_PX}px`;
+    container.style.cursor = "grab";
     container.tabIndex = 0;
     container.setAttribute("role", "region");
     container.setAttribute("aria-roledescription", "carousel");
     container.setAttribute("aria-label", carouselLabel);
 
-    const updateActive = () => {
+    const update = () => {
       const slides = getSlides();
       if (!slides.length) return;
-      const containerLeft = container.getBoundingClientRect().left;
+      const box = container.getBoundingClientRect();
+      const atStart = container.scrollLeft <= 2;
       const atEnd = container.scrollLeft + container.clientWidth >= container.scrollWidth - 2;
+      const centre = box.left + box.width / 2;
       let nearest = 0;
       let nearestDistance = Infinity;
-      slides.forEach((slide, index) => {
-        const distance = Math.abs(slide.getBoundingClientRect().left - containerLeft);
+      const nextWhole = slides.map((slide, index) => {
+        const rect = slide.getBoundingClientRect();
+        const distance = Math.abs(rect.left + rect.width / 2 - centre);
         if (distance < nearestDistance) {
           nearest = index;
           nearestDistance = distance;
         }
+        return rect.left >= box.left - 1 && rect.right <= box.right + 1;
       });
-      setActiveIndex(atEnd ? slides.length - 1 : nearest);
+      setActiveIndex(atStart ? 0 : atEnd ? slides.length - 1 : nearest);
+      setWhole((prev) =>
+        prev.length === nextWhole.length && prev.every((v, i) => v === nextWhole[i])
+          ? prev
+          : nextWhole
+      );
     };
 
     const onKeyDown = (event: KeyboardEvent) => {
@@ -313,20 +354,72 @@ const PlanCarousel: React.FC<{
       }
     };
 
-    updateActive();
-    container.addEventListener("scroll", updateActive, { passive: true });
+    // Mouse drag: snap and smooth scrolling are paused while dragging and restored on release,
+    // when the browser (or scrollToIndex) settles on the nearest card. Touch uses native scroll.
+    let startX = 0;
+    let startLeft = 0;
+    let pressing = false;
+    let dragged = false;
+    const onPointerDown = (event: PointerEvent) => {
+      if (event.pointerType !== "mouse" || event.button !== 0) return;
+      pressing = true;
+      dragged = false;
+      startX = event.clientX;
+      startLeft = container.scrollLeft;
+    };
+    const onPointerMove = (event: PointerEvent) => {
+      if (!pressing) return;
+      const dx = event.clientX - startX;
+      if (!dragged && Math.abs(dx) < DRAG_THRESHOLD_PX) return;
+      if (!dragged) {
+        dragged = true;
+        container.style.scrollSnapType = "none";
+        container.style.scrollBehavior = "auto";
+        container.style.cursor = "grabbing";
+        container.style.userSelect = "none";
+      }
+      container.scrollLeft = startLeft - dx;
+    };
+    const onPointerUp = () => {
+      if (!pressing) return;
+      pressing = false;
+      if (!dragged) return;
+      container.style.scrollBehavior = "";
+      container.style.cursor = "grab";
+      container.style.userSelect = "";
+      container.style.scrollSnapType = "x mandatory";
+      // Land on the nearest card even if the browser does not re-snap by itself.
+      scrollToIndex(activeIndexRef.current);
+    };
+    // A drag must not activate the button under the cursor.
+    const onClickCapture = (event: MouseEvent) => {
+      if (dragged) {
+        event.preventDefault();
+        event.stopPropagation();
+        dragged = false;
+      }
+    };
+
+    update();
+    container.addEventListener("scroll", update, { passive: true });
     container.addEventListener("keydown", onKeyDown);
-    window.addEventListener("resize", updateActive);
+    container.addEventListener("pointerdown", onPointerDown);
+    container.addEventListener("click", onClickCapture, true);
+    window.addEventListener("pointermove", onPointerMove);
+    window.addEventListener("pointerup", onPointerUp);
+    window.addEventListener("resize", update);
     return () => {
-      container.removeEventListener("scroll", updateActive);
+      container.removeEventListener("scroll", update);
       container.removeEventListener("keydown", onKeyDown);
-      window.removeEventListener("resize", updateActive);
+      container.removeEventListener("pointerdown", onPointerDown);
+      container.removeEventListener("click", onClickCapture, true);
+      window.removeEventListener("pointermove", onPointerMove);
+      window.removeEventListener("pointerup", onPointerUp);
+      window.removeEventListener("resize", update);
     };
   }, [carouselLabel, getSlides, scrollToIndex]);
 
-  // Keeps the keydown handler (registered once) reading the latest index.
-  const activeIndexRef = useRef(0);
-  activeIndexRef.current = activeIndex;
+  const lastIndex = plans.length - 1;
 
   return (
     <Box display="flex" flexDirection="column" gap="4">
@@ -336,7 +429,9 @@ const PlanCarousel: React.FC<{
         showScrollbar={false}
         showGradients={false}
         scrollToItemOnClick={false}
-        contentContainerProps={{ gap: "3", paddingBottom: "2" }}
+        // The default margin (4px) plus a 12px left padding gives the first card a 16px gutter; the trailing spacer below
+        // adds the right one, which flex overflow would otherwise drop (last card flush/cut).
+        contentContainerProps={{ gap: "3", paddingLeft: "3", paddingBottom: "2" }}
       >
         {plans.map((plan, index) => (
           <ScrollPane.Item
@@ -346,19 +441,21 @@ const PlanCarousel: React.FC<{
             aria-roledescription="slide"
             aria-label={getSlideLabel(index, plans.length)}
             tabIndex={undefined}
-            // 85% leaves the next card peeking; snap alignment is the simulated part.
-            // Cards other than the active one are dimmed, like the faded edges of ScrollPane
-            // in Figma (simulated with opacity; ScrollPane gradients are a different effect).
+            // 85% leaves the next card peeking; snap alignment is the simulated part. A card is
+            // dimmed only while the viewport cuts it, like the faded edges in Figma (simulated
+            // with opacity; ScrollPane gradients are a different effect).
             style={{
               flex: "0 0 85%",
-              scrollSnapAlign: "start",
-              opacity: index === activeIndex ? 1 : PEEK_OPACITY,
+              scrollSnapAlign: index === 0 ? "start" : index === lastIndex ? "end" : "center",
+              opacity: whole[index] ? 1 : PEEK_OPACITY,
               transition: "opacity 0.2s ease",
             }}
           >
             <PlanCard plan={plan} />
           </ScrollPane.Item>
         ))}
+        {/* Spacer: the right gutter after the last card (gap 12px + 4px = 16px). */}
+        <div aria-hidden="true" style={{ flex: "0 0 4px" }} />
       </ScrollPane>
       <CarouselDots
         total={plans.length}
@@ -371,9 +468,6 @@ const PlanCarousel: React.FC<{
     </Box>
   );
 };
-
-// Assumption: Figma opacity was not measured (node not readable here).
-const PEEK_OPACITY = 0.5;
 
 const MOBILE_QUERY = "(max-width: 767px)";
 
