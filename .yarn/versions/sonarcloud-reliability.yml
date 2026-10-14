@@ -1,0 +1,6 @@
+releases:
+  nimbus-helper: patch
+  "@nimbus-ds/toast": patch
+
+declined:
+  - nimbus-design-system
