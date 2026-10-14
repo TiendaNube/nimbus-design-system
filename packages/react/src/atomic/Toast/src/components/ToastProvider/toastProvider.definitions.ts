@@ -1,1 +1,6 @@
-export const uniqueId = () => `${Math.floor(Math.random() * Date.now() + 1)}`;
+let nextToastId = 0;
+
+export const uniqueId = () => {
+  nextToastId += 1;
+  return `nimbus-toast-${nextToastId}`;
+};
