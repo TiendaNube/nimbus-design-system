@@ -6,7 +6,7 @@ import { Title } from "@nimbus-ds/title";
 import { Button } from "@nimbus-ds/button";
 
 import { CreatableCombobox } from "./CreatableCombobox";
-import { ENRICHED_OPTIONS } from "./useSharedOptions";
+import { ENRICHED_OPTIONS, TREE_OPTIONS } from "./useSharedOptions";
 
 const STORAGE_KEY = "nimbus-prototype:creatable-combobox:options";
 
@@ -32,10 +32,14 @@ const meta: Meta<typeof CreatableCombobox> = {
 export default meta;
 type Story = StoryObj<typeof CreatableCombobox>;
 // The Playground adds one story-only control on top of the component props:
-// `enriched` swaps the field to a fixed list of options that carry a
+// `hierarchical` swaps it to the 5-level drill-down tree (Figma node
+// 72:16583); `enriched` swaps the field to a fixed list of options that carry a
 // subtitle and/or a tag (Figma node 149:11359).
 type PlaygroundStory = StoryObj<
-  React.ComponentProps<typeof CreatableCombobox> & { enriched?: boolean }
+  React.ComponentProps<typeof CreatableCombobox> & {
+    enriched?: boolean;
+    hierarchical?: boolean;
+  }
 >;
 
 /**
@@ -51,7 +55,10 @@ type PlaygroundStory = StoryObj<
  * just the first match — and Escape closes the list.
  */
 export const Playground: PlaygroundStory = {
-  argTypes: { enriched: { control: "boolean" } },
+  argTypes: {
+    enriched: { control: "boolean" },
+    hierarchical: { control: "boolean" },
+  },
   args: {
     placeholder: "Search or create a tag",
     disabled: false,
@@ -64,13 +71,21 @@ export const Playground: PlaygroundStory = {
     required: false,
     multiple: false,
     enriched: false,
+    hierarchical: false,
   },
-  render: ({ enriched, ...args }) => {
+  render: ({ enriched, hierarchical, ...args }) => {
     return (
       <Box display="flex" flexDirection="column" gap="4" width="320px">
         <CreatableCombobox
           {...args}
-          options={enriched ? ENRICHED_OPTIONS : undefined}
+          options={
+            hierarchical
+              ? TREE_OPTIONS
+              : enriched
+              ? ENRICHED_OPTIONS
+              : undefined
+          }
+          labels={hierarchical ? { back: "Atrás" } : undefined}
           data-testid="playground-combobox"
         />
         <Button
@@ -213,6 +228,20 @@ export const FullScreen: Story = {
               options={ENRICHED_OPTIONS}
               name="customersF"
               multiple
+            />
+          </Box>
+
+          <Box display="flex" flexDirection="column" gap="2" width="480px">
+            <Text fontWeight="bold">
+              Field G (hierarchical, up to 5 levels)
+            </Text>
+            <CreatableCombobox
+              data-testid="field-g"
+              placeholder="Buscar categoría"
+              helperText="Esta categoría es solo visible para Google, no para tus clientes."
+              options={TREE_OPTIONS}
+              labels={{ back: "Atrás", branchHint: "tiene subcategorías" }}
+              name="categoryG"
             />
           </Box>
 

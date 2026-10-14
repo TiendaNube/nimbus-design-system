@@ -57,6 +57,15 @@ export interface ComboboxOption {
    *  next to a selected single-select value inside the field. */
   tag?: ComboboxOptionTag;
   /**
+   * Nested options, making this option a *branch* of a drill-down tree
+   * (Figma "Categorías de Google", node 72:16583). Choosing a branch opens
+   * its children inside the same popover; a back row returns one level up.
+   * Up to 5 levels are supported (root = level 1) — children of a level-5
+   * option are ignored. Only honored on a field whose fixed `options` list
+   * has at least one branch, in single-select.
+   */
+  children?: ComboboxOption[];
+  /**
    * Independent of selection: an option a client marks as unpickable for
    * its own reason (e.g. "blocked by business rule X"), not because it's
    * already chosen. Never set by this mocked store itself — `createOption`
@@ -125,6 +134,102 @@ export const ENRICHED_OPTIONS: ComboboxOption[] = [
     label: "Customer Foxtrot",
     tag: { label: "New", appearance: "primary" },
   },
+];
+
+/**
+ * Obviously-made-up category taxonomy that reaches 5 levels, for the
+ * hierarchical (drill-down) demo field. Not any real catalogue or customer
+ * data. Some roots are plain leaves, one node is `disabled`, and the first
+ * root goes all the way down so every level can be exercised.
+ */
+export const TREE_OPTIONS: ComboboxOption[] = [
+  {
+    value: "moda",
+    label: "Moda y accesorios",
+    children: [
+      {
+        value: "moda-ropa",
+        label: "Ropa",
+        children: [
+          {
+            value: "moda-ropa-camisetas",
+            label: "Camisetas y tops",
+            children: [
+              {
+                value: "moda-ropa-camisetas-manga-corta",
+                label: "Manga corta",
+                children: [
+                  { value: "moda-cuello-redondo", label: "Cuello redondo" },
+                  { value: "moda-cuello-v", label: "Cuello en V" },
+                  { value: "moda-polo", label: "Tipo polo" },
+                ],
+              },
+              {
+                value: "moda-ropa-camisetas-manga-larga",
+                label: "Manga larga",
+                children: [
+                  { value: "moda-termica", label: "Térmicas" },
+                  { value: "moda-basica", label: "Básicas" },
+                ],
+              },
+              { value: "moda-ropa-camisetas-sin-mangas", label: "Sin mangas" },
+            ],
+          },
+          { value: "moda-ropa-pantalones", label: "Pantalones" },
+          { value: "moda-ropa-abrigos", label: "Abrigos y camperas" },
+        ],
+      },
+      {
+        value: "moda-calzado",
+        label: "Calzado",
+        children: [
+          { value: "moda-zapatillas", label: "Zapatillas" },
+          { value: "moda-sandalias", label: "Sandalias", disabled: true },
+          { value: "moda-botas", label: "Botas" },
+        ],
+      },
+      { value: "moda-joyeria", label: "Joyería" },
+    ],
+  },
+  {
+    value: "hogar",
+    label: "Hogar y jardín",
+    children: [
+      {
+        value: "hogar-cocina",
+        label: "Cocina",
+        children: [
+          { value: "hogar-vajilla", label: "Vajilla" },
+          { value: "hogar-utensilios", label: "Utensilios" },
+        ],
+      },
+      { value: "hogar-jardin", label: "Jardinería" },
+    ],
+  },
+  {
+    value: "mascotas",
+    label: "Animales y mascotas",
+    children: [
+      { value: "mascotas-perros", label: "Perros" },
+      { value: "mascotas-gatos", label: "Gatos" },
+    ],
+  },
+  { value: "arte", label: "Arte y ocio" },
+  {
+    value: "electro",
+    label: "Electrónica",
+    children: [
+      { value: "electro-audio", label: "Audio" },
+      { value: "electro-camaras", label: "Cámaras y óptica" },
+    ],
+  },
+  { value: "deportes", label: "Deportes" },
+  { value: "juguetes", label: "Juguetes y juegos" },
+  { value: "oficina", label: "Material de oficina" },
+  { value: "muebles", label: "Muebles" },
+  { value: "bebes", label: "Bebés y niños pequeños" },
+  { value: "salud", label: "Salud y belleza" },
+  { value: "vehiculos", label: "Vehículos y piezas" },
 ];
 
 export const slugify = (label: string): string =>
