@@ -1,6 +1,10 @@
-let nextToastId = 0;
+/* global globalThis */
+const globalScope = globalThis as typeof globalThis & {
+  nimbusToastIdCounter?: number;
+};
 
 export const uniqueId = () => {
-  nextToastId += 1;
-  return `nimbus-toast-${nextToastId}`;
+  globalScope.nimbusToastIdCounter =
+    (globalScope.nimbusToastIdCounter ?? 0) + 1;
+  return `nimbus-toast-${globalScope.nimbusToastIdCounter}`;
 };
