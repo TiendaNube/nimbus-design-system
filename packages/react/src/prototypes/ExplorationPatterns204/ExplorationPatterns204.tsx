@@ -188,7 +188,6 @@ const ExplorationPatterns204: React.FC<ExplorationPatterns204Props> = ({
           display="flex"
           flexDirection="column"
           padding="4"
-          margin="4"
           backgroundColor="neutral-background"
         >
           {active.details}
