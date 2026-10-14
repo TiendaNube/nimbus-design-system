@@ -203,43 +203,34 @@ const PlanGrid: React.FC<{ plans: PlanData[]; minPlanWidth?: string }> = ({
 );
 
 /**
- * Dots indicator for light backgrounds. Simulates a new component: the existing
- * ProductUpdates.Paginator hardcodes colors for a primary background and an English label.
- * Each dot is a real button so the position can also be changed without a pointer.
+ * Dots indicator mirroring ProductUpdates.Paginator (same structure: gap 1-5, 6px dots, active
+ * dot elongated to 24px, role="img" with a position label, purely presentational) but with the
+ * light-background colors this prototype already used instead of the primary-background ones.
+ * Simulates a themable/localizable Paginator; the real one hardcodes colors and English text.
  */
 const CarouselDots: React.FC<{
   total: number;
   activeIndex: number;
-  onSelect: (index: number) => void;
   getLabel: (index: number, total: number) => string;
-}> = ({ total, activeIndex, onSelect, getLabel }) => (
-  <Box display="flex" flexDirection="row" gap="2" justifyContent="center" alignItems="center">
+}> = ({ total, activeIndex, getLabel }) => (
+  <Box
+    display="flex"
+    flexDirection="row"
+    gap="1-5"
+    justifyContent="center"
+    alignItems="center"
+    role="img"
+    aria-label={getLabel(activeIndex, total)}
+  >
     {Array.from({ length: total }, (_, index) => (
-      <button
-        key={`dot-${index}`}
-        type="button"
-        aria-label={getLabel(index, total)}
-        aria-current={index === activeIndex ? "true" : undefined}
-        onClick={() => onSelect(index)}
-        style={{
-          // Declared exception: a native button with a 24px touch target around a 6/24px dot.
-          all: "unset",
-          cursor: "pointer",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          minWidth: 24,
-          height: 24,
-        }}
-      >
-        <Box
-          width={index === activeIndex ? "24px" : "6px"}
-          height="6px"
-          borderRadius="full"
-          backgroundColor={index === activeIndex ? "primary-interactive" : "neutral-interactive"}
-          aria-hidden="true"
-        />
-      </button>
+      <Box
+        key={`paginator-dot-${index}`}
+        width={index === activeIndex ? "24px" : "6px"}
+        height="6px"
+        borderRadius="full"
+        backgroundColor={index === activeIndex ? "primary-interactive" : "neutral-interactive"}
+        aria-hidden="true"
+      />
     ))}
   </Box>
 );
@@ -255,13 +246,11 @@ const PlanCarousel: React.FC<{
   plans: PlanData[];
   carouselLabel?: string;
   getSlideLabel?: (index: number, total: number) => string;
-  getDotLabel?: (index: number, total: number) => string;
   getPositionAnnouncement?: (index: number, total: number) => string;
 }> = ({
   plans,
   carouselLabel = "Available plans",
   getSlideLabel = (i, t) => `Plan ${i + 1} of ${t}`,
-  getDotLabel = (i, t) => `Go to plan ${i + 1} of ${t}`,
   getPositionAnnouncement = (i, t) => `Plan ${i + 1} of ${t}`,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -358,7 +347,14 @@ const PlanCarousel: React.FC<{
             aria-label={getSlideLabel(index, plans.length)}
             tabIndex={undefined}
             // 85% leaves the next card peeking; snap alignment is the simulated part.
-            style={{ flex: "0 0 85%", scrollSnapAlign: "start" }}
+            // Cards other than the active one are dimmed, like the faded edges of ScrollPane
+            // in Figma (simulated with opacity; ScrollPane gradients are a different effect).
+            style={{
+              flex: "0 0 85%",
+              scrollSnapAlign: "start",
+              opacity: index === activeIndex ? 1 : PEEK_OPACITY,
+              transition: "opacity 0.2s ease",
+            }}
           >
             <PlanCard plan={plan} />
           </ScrollPane.Item>
@@ -367,8 +363,7 @@ const PlanCarousel: React.FC<{
       <CarouselDots
         total={plans.length}
         activeIndex={activeIndex}
-        onSelect={scrollToIndex}
-        getLabel={getDotLabel}
+        getLabel={getPositionAnnouncement}
       />
       <span aria-live="polite" aria-atomic="true" style={VISUALLY_HIDDEN}>
         {getPositionAnnouncement(activeIndex, plans.length)}
@@ -376,6 +371,9 @@ const PlanCarousel: React.FC<{
     </Box>
   );
 };
+
+// Assumption: Figma opacity was not measured (node not readable here).
+const PEEK_OPACITY = 0.5;
 
 const MOBILE_QUERY = "(max-width: 767px)";
 
