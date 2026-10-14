@@ -7,6 +7,7 @@ Use a select box when a user needs to select one option from a list.
 #### 🎉 New features
 
 - Added a `small` visual size variant to `Select` while preserving numeric `size` values for the native HTML attribute. ([#530](https://github.com/TiendaNube/nimbus-design-system/pull/530) by [@noecondoleo](https://github.com/noecondoleo))
+- Added a `size` prop (`medium` | `small`) to `Select.Skeleton`; `small` matches the height and border radius of the small `Select`. ([#530](https://github.com/TiendaNube/nimbus-design-system/pull/530) by [@noecondoleo](https://github.com/noecondoleo))
 
 ## 2026-02-12 `2.7.0`
 
