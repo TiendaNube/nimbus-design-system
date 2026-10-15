@@ -1,7 +1,7 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Box } from "@nimbus-ds/box";
-import { ExplorationPatterns202 } from "./ExplorationPatterns202";
+import { ExplorationPatterns202, SAMPLE_PLANS_FOUR } from "./ExplorationPatterns202";
 
 const meta: Meta<typeof ExplorationPatterns202> = {
   title: "Prototypes/ExplorationPatterns202",
@@ -33,6 +33,17 @@ export const FullScreen: Story = {
   parameters: { layout: "fullscreen", controls: { disable: true } },
   render: (args) => (
     <Box padding="4">
+      <ExplorationPatterns202 {...args} />
+    </Box>
+  ),
+};
+
+/** Layout above the carousel breakpoint: 4 cards side by side, no carousel, no dots. */
+export const DesktopFourPlans: Story = {
+  name: "Desktop, 4 plans",
+  args: { view: "desktop", plans: SAMPLE_PLANS_FOUR },
+  render: (args) => (
+    <Box width="1100px" padding="4">
       <ExplorationPatterns202 {...args} />
     </Box>
   ),

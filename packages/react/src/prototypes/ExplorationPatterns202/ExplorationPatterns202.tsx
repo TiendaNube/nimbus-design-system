@@ -76,6 +76,25 @@ export const SAMPLE_PLANS: PlanData[] = [
   },
 ];
 
+/** Four-plan sample used by the desktop story (layout above the carousel breakpoint). */
+export const SAMPLE_PLANS_FOUR: PlanData[] = [
+  ...SAMPLE_PLANS,
+  {
+    id: "enterprise",
+    name: "Enterprise",
+    price: "$ 49.900",
+    period: "/ month",
+    note: "Billed annually",
+    bullets: [
+      { label: "Unlimited products" },
+      { label: "Unlimited staff accounts" },
+      { label: "Custom reports" },
+      { label: "Dedicated manager" },
+    ],
+    cta: "Contact sales",
+  },
+];
+
 // Native element: Box exposes neither a top-only radius nor a negative margin (same exception
 // the production PlanDisplay.Card makes).
 const RIBBON_STYLE: React.CSSProperties = {
@@ -235,8 +254,8 @@ const CarouselDots: React.FC<{
   </Box>
 );
 
-// Assumption: Figma opacity was not measured (node not readable here).
-const PEEK_OPACITY = 0.5;
+// Edge fade width: spacing token 8 (32px). The fallback only guards a missing variable.
+const FADE_WIDTH = "var(--nimbus-spacing-8, 32px)";
 // Side gutter (spacing "4" = 16px) kept before the first card and after the last one.
 const GUTTER_PX = 16;
 const DRAG_THRESHOLD_PX = 4;
@@ -246,8 +265,9 @@ const DRAG_THRESHOLD_PX = 4;
  * - snap is simulated by setting scroll-snap-type on the exposed scroll container ref; the first
  *   card snaps to the start, the last to the end and the ones in between to the centre, so both
  *   ends are shown whole and the neighbours peek;
- * - a card is dimmed only while it is cut by the viewport (the ScrollPane fade in Figma), so the
- *   first and last cards are fully opaque at rest;
+ * - ScrollPane's own gradients are off. A 32px mask fade is applied to the scroll container
+ *   only on the edge that still has content to scroll to: none on the left at the first card,
+ *   none on the right at the last one. Everything beyond those 32px stays fully opaque;
  * - the active index is derived from a scroll listener on that same ref;
  * - mouse drag is simulated (ScrollPane's enableGrabScroll fights scroll-snap), so the carousel
  *   can be tested with a mouse, without a trackpad;
@@ -267,8 +287,6 @@ const PlanCarousel: React.FC<{
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
-  // Which slides are fully inside the viewport; the first one is whole before any scroll.
-  const [whole, setWhole] = useState<boolean[]>(() => plans.map((_, i) => i === 0));
   const activeIndexRef = useRef(0);
   activeIndexRef.current = activeIndex;
 
@@ -326,21 +344,22 @@ const PlanCarousel: React.FC<{
       const centre = box.left + box.width / 2;
       let nearest = 0;
       let nearestDistance = Infinity;
-      const nextWhole = slides.map((slide, index) => {
+      slides.forEach((slide, index) => {
         const rect = slide.getBoundingClientRect();
         const distance = Math.abs(rect.left + rect.width / 2 - centre);
         if (distance < nearestDistance) {
           nearest = index;
           nearestDistance = distance;
         }
-        return rect.left >= box.left - 1 && rect.right <= box.right + 1;
       });
       setActiveIndex(atStart ? 0 : atEnd ? slides.length - 1 : nearest);
-      setWhole((prev) =>
-        prev.length === nextWhole.length && prev.every((v, i) => v === nextWhole[i])
-          ? prev
-          : nextWhole
-      );
+
+      // Fade only the side that overflows, and only its outer 32px.
+      const left = atStart ? "#000" : "transparent";
+      const right = atEnd ? "#000" : "transparent";
+      const mask = `linear-gradient(to right, ${left} 0, #000 ${FADE_WIDTH}, #000 calc(100% - ${FADE_WIDTH}), ${right} 100%)`;
+      container.style.maskImage = mask;
+      container.style.setProperty("-webkit-mask-image", mask);
     };
 
     const onKeyDown = (event: KeyboardEvent) => {
@@ -441,14 +460,10 @@ const PlanCarousel: React.FC<{
             aria-roledescription="slide"
             aria-label={getSlideLabel(index, plans.length)}
             tabIndex={undefined}
-            // 85% leaves the next card peeking; snap alignment is the simulated part. A card is
-            // dimmed only while the viewport cuts it, like the faded edges in Figma (simulated
-            // with opacity; ScrollPane gradients are a different effect).
+            // 85% leaves the next card peeking; snap alignment is the simulated part.
             style={{
               flex: "0 0 85%",
               scrollSnapAlign: index === 0 ? "start" : index === lastIndex ? "end" : "center",
-              opacity: whole[index] ? 1 : PEEK_OPACITY,
-              transition: "opacity 0.2s ease",
             }}
           >
             <PlanCard plan={plan} />
@@ -490,6 +505,8 @@ export type ExplorationPatterns202Props = {
   /** "auto" switches at 767px with a media query (simulated breakpoint logic). */
   view?: "auto" | "mobile" | "desktop";
   carouselLabel?: string;
+  /** Localizable position text, announced by the dots and the live region (e.g. "Plan 2 of 3"). */
+  getPositionLabel?: (index: number, total: number) => string;
 };
 
 /** Plans 2.0 responsive composition: grid on desktop, snapping carousel with dots on mobile. */
@@ -497,11 +514,17 @@ export const ExplorationPatterns202: React.FC<ExplorationPatterns202Props> = ({
   plans = SAMPLE_PLANS,
   view = "auto",
   carouselLabel,
+  getPositionLabel,
 }) => {
   const isMobile = useIsMobile();
   const showCarousel = view === "mobile" || (view === "auto" && isMobile);
   return showCarousel ? (
-    <PlanCarousel plans={plans} carouselLabel={carouselLabel} />
+    <PlanCarousel
+      plans={plans}
+      carouselLabel={carouselLabel}
+      getSlideLabel={getPositionLabel}
+      getPositionAnnouncement={getPositionLabel}
+    />
   ) : (
     <PlanGrid plans={plans} />
   );
