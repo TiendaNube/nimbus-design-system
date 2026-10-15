@@ -254,8 +254,9 @@ const CarouselDots: React.FC<{
   </Box>
 );
 
-// Edge fade width: spacing token 8 (32px). The fallback only guards a missing variable.
-const FADE_WIDTH = "var(--nimbus-spacing-8, 32px)";
+// Edge fade: at most the peeking part of the neighbour card, and only down to 55% opacity.
+const FADE_MAX_PX = 32;
+const FADE_EDGE_ALPHA = 0.55;
 // Side gutter (spacing "4" = 16px) kept before the first card and after the last one.
 const GUTTER_PX = 16;
 const DRAG_THRESHOLD_PX = 4;
@@ -265,9 +266,9 @@ const DRAG_THRESHOLD_PX = 4;
  * - snap is simulated by setting scroll-snap-type on the exposed scroll container ref; the first
  *   card snaps to the start, the last to the end and the ones in between to the centre, so both
  *   ends are shown whole and the neighbours peek;
- * - ScrollPane's own gradients are off. A 32px mask fade is applied to the scroll container
+ * - ScrollPane's own gradients are off. A subtle mask fade is applied to the scroll container
  *   only on the edge that still has content to scroll to: none on the left at the first card,
- *   none on the right at the last one. Everything beyond those 32px stays fully opaque;
+ *   none on the right at the last one. The fade spans only the visible part of the neighbour card (max 32px) and dims to 55%; the rest stays opaque;
  * - the active index is derived from a scroll listener on that same ref;
  * - mouse drag is simulated (ScrollPane's enableGrabScroll fights scroll-snap), so the carousel
  *   can be tested with a mouse, without a trackpad;
@@ -354,10 +355,21 @@ const PlanCarousel: React.FC<{
       });
       setActiveIndex(atStart ? 0 : atEnd ? slides.length - 1 : nearest);
 
-      // Fade only the side that overflows, and only its outer 32px.
-      const left = atStart ? "#000" : "transparent";
-      const right = atEnd ? "#000" : "transparent";
-      const mask = `linear-gradient(to right, ${left} 0, #000 ${FADE_WIDTH}, #000 calc(100% - ${FADE_WIDTH}), ${right} 100%)`;
+      // Subtle fade, limited to the neighbouring card peeking on each side: its width is the
+      // visible part of that card (capped at FADE_MAX_PX), and it only dims to FADE_EDGE_ALPHA.
+      const index = nearest;
+      const prev = slides[index - 1];
+      const next = slides[index + 1];
+      const leftWidth =
+        atStart || !prev
+          ? 0
+          : Math.max(0, Math.min(FADE_MAX_PX, prev.getBoundingClientRect().right - box.left));
+      const rightWidth =
+        atEnd || !next
+          ? 0
+          : Math.max(0, Math.min(FADE_MAX_PX, box.right - next.getBoundingClientRect().left));
+      const edge = `rgba(0, 0, 0, ${FADE_EDGE_ALPHA})`;
+      const mask = `linear-gradient(to right, ${leftWidth ? edge : "#000"} 0, #000 ${leftWidth}px, #000 calc(100% - ${rightWidth}px), ${rightWidth ? edge : "#000"} 100%)`;
       container.style.maskImage = mask;
       container.style.setProperty("-webkit-mask-image", mask);
     };
