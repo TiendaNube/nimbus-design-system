@@ -7,6 +7,8 @@ import {
   waitFor,
 } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { ThemeProvider } from "@nimbus-ds/styles";
+import { Modal } from "@nimbus-ds/modal";
 
 import { Popover } from "./Popover";
 import { type PopoverProps } from "./popover.types";
@@ -403,6 +405,179 @@ describe("GIVEN <Popover />", () => {
           screen.getByTestId("popover-element").getAttribute("class")
         ).toContain("padding-small");
       });
+    });
+  });
+});
+
+type LayoutKind =
+  | "q-nested-before"
+  | "q-nested-after"
+  | "q-sibling-before"
+  | "q-sibling-after";
+
+const LAYOUT_KINDS: LayoutKind[] = [
+  "q-nested-before",
+  "q-nested-after",
+  "q-sibling-before",
+  "q-sibling-after",
+];
+
+/** Builds P and a dark Q in the given document order; `outer` belongs to P and `inner` to Q. */
+const buildLayout = (
+  kind: LayoutKind,
+  inner: React.ReactNode,
+  outer: React.ReactNode
+): React.ReactElement => {
+  const q = (
+    <ThemeProvider theme="dark" data-provider="Q">
+      {inner}
+    </ThemeProvider>
+  );
+  switch (kind) {
+    case "q-nested-before":
+      return (
+        <ThemeProvider data-provider="P">
+          {q}
+          {outer}
+        </ThemeProvider>
+      );
+    case "q-nested-after":
+      return (
+        <ThemeProvider data-provider="P">
+          {outer}
+          {q}
+        </ThemeProvider>
+      );
+    case "q-sibling-before":
+      return (
+        <>
+          {q}
+          <ThemeProvider data-provider="P">{outer}</ThemeProvider>
+        </>
+      );
+    default:
+      return (
+        <>
+          <ThemeProvider data-provider="P">{outer}</ThemeProvider>
+          {q}
+        </>
+      );
+  }
+};
+
+/** Mounts its children only after the button is pressed, so they mount after earlier floating content. */
+const LateMount: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [mounted, setMounted] = React.useState(false);
+  return (
+    <>
+      <button type="button" onClick={() => setMounted(true)}>
+        mount-late
+      </button>
+      {mounted && children}
+    </>
+  );
+};
+
+const PROVIDER_ATTRIBUTE = "data-provider";
+
+const providerOf = (element: HTMLElement): string | null =>
+  element
+    .closest(`[${PROVIDER_ATTRIBUTE}]`)
+    ?.getAttribute(PROVIDER_ATTRIBUTE) ?? null;
+
+/** Resets body-level portal hosts left by earlier tests so each scenario starts from a clean document. */
+const removeBodyPortalHosts = (): void => {
+  document.querySelectorAll("body > [id]").forEach((host) => host.remove());
+};
+
+type User = ReturnType<typeof userEvent.setup>;
+
+const makeTrigger = (name: string, renderOverlay = false) => (
+  <Popover content={<p>content-{name}</p>} renderOverlay={renderOverlay}>
+    <button type="button" data-testid={`trigger-${name}`}>
+      {name}
+    </button>
+  </Popover>
+);
+
+const openPopover = async (user: User, name: string): Promise<HTMLElement> => {
+  await user.click(screen.getByTestId(`trigger-${name}`));
+  return screen.findByText(`content-${name}`);
+};
+
+describe("GIVEN <Popover /> inside theme providers", () => {
+  beforeEach(removeBodyPortalHosts);
+
+  describe("WHEN opened inside a dark provider or outside any provider", () => {
+    it("THEN should render the panel inside its dark provider", async () => {
+      const user = userEvent.setup();
+      render(
+        <ThemeProvider theme="dark" data-provider="Q">
+          {makeTrigger("q")}
+        </ThemeProvider>
+      );
+      expect(providerOf(await openPopover(user, "q"))).toBe("Q");
+    });
+
+    it("THEN should render the panel outside every provider element when there is none", async () => {
+      const user = userEvent.setup();
+      render(
+        <>
+          <ThemeProvider data-provider="P">
+            <p>unrelated</p>
+          </ThemeProvider>
+          {makeTrigger("none")}
+        </>
+      );
+      const content = await openPopover(user, "none");
+      expect(content).toBeVisible();
+      expect(providerOf(content)).toBeNull();
+    });
+  });
+
+  describe.each(LAYOUT_KINDS)(
+    "WHEN Q already opened a popover and a popover mounts later in P (%s)",
+    (kind) => {
+      it("THEN should keep each panel and overlay inside its own nearest provider", async () => {
+        const user = userEvent.setup();
+        render(
+          buildLayout(
+            kind,
+            makeTrigger("q"),
+            <LateMount>{makeTrigger("p", true)}</LateMount>
+          )
+        );
+
+        expect(providerOf(await openPopover(user, "q"))).toBe("Q");
+        await user.click(screen.getByText("mount-late"));
+        expect(providerOf(await openPopover(user, "p"))).toBe("P");
+        expect(providerOf(screen.getByTestId("popover-overlay"))).toBe("P");
+      });
+    }
+  );
+
+  describe("WHEN a base Modal in P holds a popover with overlay and Q already opened a popover", () => {
+    it("THEN should keep the overlay and the panel inside P and none inside Q", async () => {
+      const user = userEvent.setup();
+      render(
+        buildLayout(
+          "q-nested-before",
+          makeTrigger("q"),
+          <LateMount>
+            <Modal open zIndex="base" data-testid="modal-container">
+              {makeTrigger("modal", true)}
+            </Modal>
+          </LateMount>
+        )
+      );
+
+      expect(providerOf(await openPopover(user, "q"))).toBe("Q");
+      await user.click(screen.getByText("mount-late"));
+
+      const panel = await openPopover(user, "modal");
+      expect(providerOf(screen.getByTestId("modal-container"))).toBe("P");
+      expect(providerOf(panel)).toBe("P");
+      expect(providerOf(screen.getByTestId("popover-overlay"))).toBe("P");
     });
   });
 });

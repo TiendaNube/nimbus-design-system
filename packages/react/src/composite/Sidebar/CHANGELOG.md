@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-02 `3.6.2`
+
+#### 🐛 Bug fixes
+
+- Sidebar: Fixes the floating content being rendered inside another theme provider's element when several or nested theme providers exist. It is now rendered inside the element of its nearest enclosing theme provider, keeping the theme and layering of the place where it is used, whatever the order in which providers or other floating elements were mounted. ([#583](https://github.com/TiendaNube/nimbus-design-system/pull/583))
+
 ## 2026-02-12 `3.6.0`
 
 #### 🎉 New features
