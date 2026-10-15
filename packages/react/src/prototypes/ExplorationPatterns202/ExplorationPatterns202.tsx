@@ -254,9 +254,14 @@ const CarouselDots: React.FC<{
   </Box>
 );
 
-// Edge fade: at most the peeking part of the neighbour card, and only down to 55% opacity.
-const FADE_MAX_PX = 32;
-const FADE_EDGE_ALPHA = 0.55;
+// Visible part of the neighbouring card on each side of the active one, and the gap between cards
+// (spacing "3" = 12px). The slide width is derived from them so the active card is always whole.
+const PEEK_PX = 28;
+const SLIDE_GAP_PX = 12;
+// Edge fade: spans the whole peeking part of the neighbour card and ends nearly transparent, so
+// it reads as a soft fade and not as a straight cut at the container edge.
+const FADE_MAX_PX = PEEK_PX;
+const FADE_EDGE_ALPHA = 0.1;
 // Side gutter (spacing "4" = 16px) kept before the first card and after the last one.
 const GUTTER_PX = 16;
 const DRAG_THRESHOLD_PX = 4;
@@ -339,6 +344,12 @@ const PlanCarousel: React.FC<{
     const update = () => {
       const slides = getSlides();
       if (!slides.length) return;
+      // Card width in px: container width minus the peek and gap on both sides, so the centred
+      // card is never cropped (a percentage resolved against the shrinking content box was).
+      container.style.setProperty(
+        "--plan-slide-width",
+        `${Math.max(200, container.clientWidth - 2 * (PEEK_PX + SLIDE_GAP_PX))}px`
+      );
       const box = container.getBoundingClientRect();
       const atStart = container.scrollLeft <= 2;
       const atEnd = container.scrollLeft + container.clientWidth >= container.scrollWidth - 2;
@@ -472,9 +483,9 @@ const PlanCarousel: React.FC<{
             aria-roledescription="slide"
             aria-label={getSlideLabel(index, plans.length)}
             tabIndex={undefined}
-            // 85% leaves the next card peeking; snap alignment is the simulated part.
+            // Width comes from --plan-slide-width (set on the container) to leave the peek; snap alignment is the simulated part.
             style={{
-              flex: "0 0 85%",
+              flex: "0 0 var(--plan-slide-width, 75%)",
               scrollSnapAlign: index === 0 ? "start" : index === lastIndex ? "end" : "center",
             }}
           >
