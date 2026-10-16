@@ -107,6 +107,46 @@ const ArrowLeftIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
+// A drill-down tree is at most this many levels deep (root = level 1);
+// children of a level-5 option are ignored.
+const MAX_LEVELS = 5;
+
+// Case- and accent-insensitive text for matching ("camara" finds "Cámaras").
+const normalizeText = (text: string): string =>
+  text
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase();
+
+/** A search hit anywhere in the tree, with the branches leading to it. */
+interface TreeResult {
+  option: ComboboxOption;
+  ancestors: ComboboxOption[];
+}
+
+// Flat, depth-first list of every node (up to MAX_LEVELS) whose label
+// matches the query; label-only, like the rest of this component.
+const searchTree = (
+  nodes: ComboboxOption[],
+  query: string,
+  maxLevels: number,
+  ancestors: ComboboxOption[] = []
+): TreeResult[] => {
+  const needle = normalizeText(query.trim());
+  const results: TreeResult[] = [];
+  nodes.forEach((option) => {
+    if (normalizeText(option.label).includes(needle)) {
+      results.push({ option, ancestors });
+    }
+    if (option.children?.length && ancestors.length + 1 < maxLevels) {
+      results.push(
+        ...searchTree(option.children, query, maxLevels, [...ancestors, option])
+      );
+    }
+  });
+  return results;
+};
+
 const CheckIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
     width="16"
@@ -178,6 +218,10 @@ export interface CreatableComboboxProps {
     back?: string;
     /** Read after a branch's name by assistive tech. @default "has subcategories" */
     branchHint?: string;
+    /** Shown when a search finds nothing. @default "No results" */
+    noResults?: string;
+    /** Accessible name of the listbox while showing search results. @default "Results" */
+    results?: string;
   };
   /**
    * Name for the hidden native input(s) this component keeps in sync with
@@ -230,6 +274,8 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
     const { options: sharedOptions, createOption } = useSharedOptions();
     const backLabel = labels?.back ?? "Back";
     const branchHint = labels?.branchHint ?? "has subcategories";
+    const noResultsLabel = labels?.noResults ?? "No results";
+    const resultsLabel = labels?.results ?? "Results";
     // Drill-down tree mode (Figma node 72:16583): a fixed list with at least
     // one branch, single-select. `levelPath` is the stack of branches the
     // popover has been drilled into (empty = the root level); `options`
@@ -247,11 +293,13 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
         : rootOptions;
     // Level N (root = 1) shows branches only while N < 5; children of a
     // level-5 option are ignored, so five levels is the maximum.
-    const MAX_LEVELS = 5;
-    const isBranch = (option: ComboboxOption) =>
+    const isBranch = (
+      option: ComboboxOption,
+      ancestorCount = levelPath.length
+    ) =>
       hierarchical &&
       !!option.children?.length &&
-      levelPath.length + 1 < MAX_LEVELS;
+      ancestorCount + 1 < MAX_LEVELS;
     const [inputValue, setInputValue] = useState("");
     // Single-select's own selection — untouched by multiselect, and vice
     // versa, so switching `multiple` on an existing field can't leave a
@@ -316,7 +364,17 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
       !multiple && selected && inputValue === selectedText
         ? ""
         : inputValue.trim().toLowerCase();
-    const filteredOptions = query
+    // A tree searches the WHOLE tree (all levels) once there is a query: the
+    // list becomes a flat set of results, each with its ancestor path, and
+    // the per-level options below are not shown at all while searching.
+    const searching = hierarchical && query !== "";
+    const treeResults = useMemo<TreeResult[]>(
+      () => (searching ? searchTree(rootOptions, query, MAX_LEVELS) : []),
+      [searching, rootOptions, query]
+    );
+    const filteredOptions = searching
+      ? []
+      : query
       ? options.filter((option) => option.label.toLowerCase().includes(query))
       : options;
     const hasExactMatch = options.some(
@@ -357,25 +415,29 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
     // from, so the two can never disagree about what item N is.
     type NavItem =
       | { type: "create" }
-      | { type: "back" }
       | { type: "heading" }
+      | { type: "result"; result: TreeResult }
       | { type: "option"; option: ComboboxOption };
-    // Tree levels below the root start with a "back" row and, when
-    // branches are pickable, the parent's own "select this level" row.
-    const showBack = hierarchical && levelPath.length > 0;
+    // Tree levels below the root get a "back" button — a navigation action
+    // outside the listbox, not an option, so it has no nav slot (it is
+    // reached by mouse, ArrowLeft or Backspace on an empty query). When
+    // branches are pickable, the parent's own "select this level" row is a
+    // real option and is the level's first nav item.
+    const showBack = hierarchical && levelPath.length > 0 && !searching;
     const showHeadingOption = showBack && selectableBranches;
-    const navOffset =
-      (canCreate ? 1 : 0) + (showBack ? 1 : 0) + (showHeadingOption ? 1 : 0);
+    const navOffset = (canCreate ? 1 : 0) + (showHeadingOption ? 1 : 0);
     const navItems: NavItem[] = useMemo(() => {
       const items: NavItem[] = [];
       if (canCreate) items.push({ type: "create" });
-      if (showBack) items.push({ type: "back" });
       if (showHeadingOption) items.push({ type: "heading" });
+      for (const result of treeResults) {
+        if (!result.option.disabled) items.push({ type: "result", result });
+      }
       for (const option of enabledVisibleOptions) {
         items.push({ type: "option", option });
       }
       return items;
-    }, [canCreate, showBack, showHeadingOption, enabledVisibleOptions]);
+    }, [canCreate, showHeadingOption, treeResults, enabledVisibleOptions]);
 
     // Looked up by the row renderer below to know each *visible* option's
     // nav index (a disabled option has none — it's absent from this map —
@@ -412,7 +474,19 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
         // drilled in, its first child (after the back row) becomes the
         // active row; a mouse drill leaves nothing highlighted.
         setInputValue("");
-        setActiveIndex(viaKeyboard ? (selectableBranches ? 2 : 1) : -1);
+        setActiveIndex(viaKeyboard ? (selectableBranches ? 1 : 0) : -1);
+        setHoveredOptionValue(null);
+      },
+      [selectableBranches]
+    );
+
+    // Opens a branch found by search: jumps to its level (all ancestors
+    // plus itself) and returns to the normal level view.
+    const drillToResult = useCallback(
+      (result: TreeResult, viaKeyboard = false) => {
+        setLevelPath([...result.ancestors, result.option]);
+        setInputValue("");
+        setActiveIndex(viaKeyboard ? (selectableBranches ? 1 : 0) : -1);
         setHoveredOptionValue(null);
       },
       [selectableBranches]
@@ -433,8 +507,7 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
       setHoveredOptionValue(null);
       // Land on the branch we just came out of, so repeated back/drill keeps
       // the keyboard's place.
-      const parentOffset =
-        levelPath.length > 1 ? (selectableBranches ? 2 : 1) : 0;
+      const parentOffset = levelPath.length > 1 && selectableBranches ? 1 : 0;
       setActiveIndex(index < 0 ? -1 : index + parentOffset);
     }, [levelPath, rootOptions, selectableBranches]);
 
@@ -513,8 +586,15 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
       (item: NavItem) => {
         if (item.type === "create") {
           handleCreate();
-        } else if (item.type === "back") {
-          goBack();
+        } else if (item.type === "result") {
+          if (isBranch(item.result.option, item.result.ancestors.length)) {
+            drillToResult(item.result, true);
+          } else {
+            selectOption(item.result.option, [
+              ...item.result.ancestors,
+              item.result.option,
+            ]);
+          }
         } else if (item.type === "heading") {
           const parent = levelPath[levelPath.length - 1];
           if (parent) selectOption(parent, levelPath);
@@ -525,7 +605,14 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
         }
       },
       // eslint-disable-next-line react-hooks/exhaustive-deps
-      [handleCreate, selectOption, goBack, drillInto, levelPath, hierarchical]
+      [
+        handleCreate,
+        selectOption,
+        drillInto,
+        drillToResult,
+        levelPath,
+        hierarchical,
+      ]
     );
 
     const removeChip = useCallback(
@@ -575,7 +662,9 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
             // Home or ArrowLeft.
             const firstIndex = hierarchical
               ? Math.max(
-                  navItems.findIndex((item) => item.type === "option"),
+                  navItems.findIndex(
+                    (item) => item.type === "option" || item.type === "result"
+                  ),
                   0
                 )
               : 0;
@@ -708,33 +797,114 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
         ? "primary-surface"
         : "neutral-background";
     const childIndent = levelPath.length > 0 ? 10 : 0;
+    const headingId = `${baseId}-level-heading`;
+    const currentParent = levelPath[levelPath.length - 1];
+    const treeRow = (opts: {
+      key: string;
+      navIndex: number | undefined;
+      option: ComboboxOption;
+      branch: boolean;
+      current: boolean;
+      /** Search results show the ancestor path under the title. */
+      path?: string;
+      onActivate: () => void;
+      label?: string;
+    }) => {
+      const { option, navIndex, branch, current, path } = opts;
+      const isDisabled = !!option.disabled;
+      return (
+        <Box
+          as="button"
+          type="button"
+          key={opts.key}
+          id={navIndex !== undefined ? getOptionId(navIndex) : undefined}
+          role="option"
+          aria-selected={!branch && selected?.value === option.value}
+          aria-disabled={isDisabled || undefined}
+          aria-label={opts.label}
+          disabled={isDisabled}
+          data-testid={
+            dataTestId ? `${dataTestId}-option-${option.value}` : undefined
+          }
+          onMouseDown={
+            isDisabled ? undefined : (event) => event.preventDefault()
+          }
+          onClick={isDisabled ? undefined : opts.onActivate}
+          onMouseEnter={() => setHoveredOptionValue(option.value)}
+          onMouseLeave={() => setHoveredOptionValue(null)}
+          display="block"
+          padding="none"
+          width="100%"
+          borderRadius="2"
+          borderWidth="none"
+          cursor={isDisabled ? "not-allowed" : "pointer"}
+          textAlign="left"
+          backgroundColor={rowFill({
+            disabled: isDisabled,
+            active: navIndex !== undefined && activeIndex === navIndex,
+            hovered: hoveredOptionValue === option.value,
+            current,
+          })}
+        >
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              gap: 8,
+              padding: path ? "4px 8px" : "3px 8px",
+              paddingLeft: 8 + (path ? 0 : childIndent),
+            }}
+          >
+            <div
+              style={{ display: "flex", flexDirection: "column", minWidth: 0 }}
+            >
+              <Text
+                color={isDisabled ? "neutral-textDisabled" : "neutral-textHigh"}
+              >
+                {option.label}
+              </Text>
+              {path && (
+                <Text
+                  fontSize="caption"
+                  lineHeight="caption"
+                  color={
+                    isDisabled ? "neutral-textDisabled" : "neutral-textLow"
+                  }
+                >
+                  {path}
+                </Text>
+              )}
+            </div>
+            {branch && (
+              <Icon
+                source={<ChevronRightIcon />}
+                color={isDisabled ? "neutral-textDisabled" : "neutral-textHigh"}
+              />
+            )}
+          </div>
+        </Box>
+      );
+    };
+    // Drill-down popover: a back BUTTON (navigation, not an option) above
+    // the listbox, then listbox > group (the level, named by its heading) >
+    // options. While searching, the listbox holds the flat result options.
     const treeContent = hierarchical ? (
       <div
-        role="listbox"
-        id={listboxId}
-        aria-label={
-          levelPath.length > 0
-            ? levelPath[levelPath.length - 1].label
-            : placeholder
-        }
         style={{
           display: "flex",
           flexDirection: "column",
           width: "100%",
           boxSizing: "border-box",
           padding: 8,
-          gap: 0,
           maxHeight: 280,
-          overflowY: "auto",
         }}
       >
         {showBack && (
           <Box
             as="button"
             type="button"
-            id={getOptionId(0)}
-            role="option"
-            aria-selected={false}
+            tabIndex={-1}
             aria-label={backLabel}
             data-testid={dataTestId ? `${dataTestId}-back` : undefined}
             onMouseDown={(event) => event.preventDefault()}
@@ -744,14 +914,12 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
             display="block"
             padding="none"
             width="100%"
+            flexShrink="0"
             borderRadius="2"
             borderWidth="none"
             cursor="pointer"
             textAlign="left"
-            backgroundColor={rowFill({
-              active: activeIndex === 0,
-              hovered: createHovered,
-            })}
+            backgroundColor={rowFill({ hovered: createHovered })}
           >
             <div
               style={{
@@ -766,135 +934,111 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
             </div>
           </Box>
         )}
-        {showBack &&
-          (selectableBranches ? (
-            (() => {
-              const parent = levelPath[levelPath.length - 1];
-              const headingChecked = selected?.value === parent.value;
-              const headingNavIndex = 1;
-              return (
-                <Box
-                  as="button"
-                  type="button"
-                  id={getOptionId(headingNavIndex)}
-                  role="option"
-                  aria-selected={headingChecked}
-                  data-testid={
-                    dataTestId
-                      ? `${dataTestId}-option-${parent.value}`
-                      : undefined
-                  }
-                  onMouseDown={(event) => event.preventDefault()}
-                  onClick={() => selectOption(parent, levelPath)}
-                  onMouseEnter={() => setHoveredOptionValue(parent.value)}
-                  onMouseLeave={() => setHoveredOptionValue(null)}
-                  display="block"
-                  padding="none"
-                  width="100%"
-                  borderRadius="2"
-                  borderWidth="none"
-                  cursor="pointer"
-                  textAlign="left"
-                  backgroundColor={rowFill({
-                    active: activeIndex === headingNavIndex,
-                    hovered: hoveredOptionValue === parent.value,
-                    current: headingChecked,
-                  })}
-                >
-                  <div style={{ padding: "3px 8px" }}>
+        <div
+          role="listbox"
+          id={listboxId}
+          aria-label={
+            searching
+              ? resultsLabel
+              : currentParent
+              ? currentParent.label
+              : placeholder
+          }
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            overflowY: "auto",
+            minHeight: 0,
+          }}
+        >
+          {searching ? (
+            <>
+              {treeResults.length === 0 && (
+                <Box padding="2">
+                  <Text fontSize="caption" color="neutral-textLow">
+                    {noResultsLabel}
+                  </Text>
+                </Box>
+              )}
+              {treeResults.map((result) => {
+                const resultNav = navItems.findIndex(
+                  (item) =>
+                    item.type === "result" &&
+                    item.result.option.value === result.option.value
+                );
+                const pathText = result.ancestors
+                  .map((a) => a.label)
+                  .join(" > ");
+                const branch = isBranch(result.option, result.ancestors.length);
+                return treeRow({
+                  key: result.option.value,
+                  navIndex: resultNav >= 0 ? resultNav : undefined,
+                  option: result.option,
+                  branch,
+                  current: selected?.value === result.option.value,
+                  path: pathText || undefined,
+                  label: [
+                    result.option.label,
+                    pathText,
+                    branch ? branchHint : "",
+                  ]
+                    .filter(Boolean)
+                    .join(", "),
+                  onActivate: () =>
+                    branch
+                      ? drillToResult(result)
+                      : selectOption(result.option, [
+                          ...result.ancestors,
+                          result.option,
+                        ]),
+                });
+              })}
+            </>
+          ) : (
+            <div
+              role={currentParent ? "group" : undefined}
+              aria-labelledby={
+                currentParent && !selectableBranches ? headingId : undefined
+              }
+              aria-label={
+                currentParent && selectableBranches
+                  ? currentParent.label
+                  : undefined
+              }
+            >
+              {currentParent &&
+                (selectableBranches ? (
+                  treeRow({
+                    key: `heading-${currentParent.value}`,
+                    navIndex: 0,
+                    option: currentParent,
+                    branch: false,
+                    current: selected?.value === currentParent.value,
+                    onActivate: () => selectOption(currentParent, levelPath),
+                  })
+                ) : (
+                  <div id={headingId} style={{ padding: "3px 8px" }}>
                     <Text fontWeight="bold" color="neutral-textHigh">
-                      {parent.label}
+                      {currentParent.label}
                     </Text>
                   </div>
-                </Box>
-              );
-            })()
-          ) : (
-            <div aria-hidden="true" style={{ padding: "3px 8px" }}>
-              <Text fontWeight="bold" color="neutral-textHigh">
-                {levelPath[levelPath.length - 1].label}
-              </Text>
-            </div>
-          ))}
-        {visibleOptions.length === 0 && (
-          <Box padding="2">
-            <Text fontSize="caption" color="neutral-textLow">
-              No matches in this level
-            </Text>
-          </Box>
-        )}
-        {visibleOptions.map((option) => {
-          const navIndex = navIndexByValue.get(option.value);
-          const branch = isBranch(option);
-          const isDisabled = !!option.disabled;
-          const isCurrent = isOnSelectedPath(option);
-          return (
-            <Box
-              as="button"
-              type="button"
-              key={option.value}
-              id={navIndex !== undefined ? getOptionId(navIndex) : undefined}
-              role="option"
-              aria-selected={!branch && selected?.value === option.value}
-              aria-disabled={isDisabled || undefined}
-              aria-label={branch ? `${option.label}, ${branchHint}` : undefined}
-              disabled={isDisabled}
-              data-testid={
-                dataTestId ? `${dataTestId}-option-${option.value}` : undefined
-              }
-              onMouseDown={
-                isDisabled ? undefined : (event) => event.preventDefault()
-              }
-              onClick={
-                isDisabled
-                  ? undefined
-                  : () => (branch ? drillInto(option) : selectOption(option))
-              }
-              onMouseEnter={() => setHoveredOptionValue(option.value)}
-              onMouseLeave={() => setHoveredOptionValue(null)}
-              display="block"
-              padding="none"
-              width="100%"
-              borderRadius="2"
-              borderWidth="none"
-              cursor={isDisabled ? "not-allowed" : "pointer"}
-              textAlign="left"
-              backgroundColor={rowFill({
-                disabled: isDisabled,
-                active: navIndex !== undefined && activeIndex === navIndex,
-                hovered: hoveredOptionValue === option.value,
-                current: isCurrent,
+                ))}
+              {visibleOptions.map((option) => {
+                const branch = isBranch(option);
+                return treeRow({
+                  key: option.value,
+                  navIndex: navIndexByValue.get(option.value),
+                  option,
+                  branch,
+                  current: isOnSelectedPath(option),
+                  label: branch ? `${option.label}, ${branchHint}` : undefined,
+                  onActivate: () =>
+                    branch ? drillInto(option) : selectOption(option),
+                });
               })}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  gap: 8,
-                  padding: "3px 8px",
-                  paddingLeft: 8 + childIndent,
-                }}
-              >
-                <Text
-                  color={
-                    isDisabled ? "neutral-textDisabled" : "neutral-textHigh"
-                  }
-                >
-                  {option.label}
-                </Text>
-                {branch && (
-                  <Icon
-                    source={<ChevronRightIcon />}
-                    color={
-                      isDisabled ? "neutral-textDisabled" : "neutral-textHigh"
-                    }
-                  />
-                )}
-              </div>
-            </Box>
-          );
-        })}
+            </div>
+          )}
+        </div>
       </div>
     ) : null;
 
@@ -1252,11 +1396,8 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                 }
               >
                 <div
-                  title={hierarchical && selected ? selectedText : undefined}
                   style={
-                    hierarchical
-                      ? { textOverflow: "ellipsis" }
-                      : multiple
+                    multiple
                       ? {
                           display: "flex",
                           flexWrap: "wrap",
@@ -1325,8 +1466,21 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                     id={id}
                     data-testid={dataTestId}
                     className={inputStyles.classnames.input}
+                    title={hierarchical && selected ? selectedText : undefined}
                     style={
-                      multiple
+                      hierarchical
+                        ? {
+                            // A long path must keep its END (the final
+                            // category) visible: while a value is picked,
+                            // the input is right-to-left so overflow is
+                            // cut — with an ellipsis — on the left. Plain
+                            // LTR again the moment the user edits it.
+                            textOverflow: "ellipsis",
+                            ...(selected && inputValue === selectedText
+                              ? { direction: "rtl", textAlign: "left" }
+                              : {}),
+                          }
+                        : multiple
                         ? {
                             width: "auto",
                             flex: "1 1 48px",

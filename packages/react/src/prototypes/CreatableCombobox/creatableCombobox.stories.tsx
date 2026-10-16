@@ -75,7 +75,13 @@ export const Playground: PlaygroundStory = {
   },
   render: ({ enriched, hierarchical, ...args }) => {
     return (
-      <Box display="flex" flexDirection="column" gap="4" width="320px">
+      <Box
+        display="flex"
+        flexDirection="column"
+        gap="4"
+        width="100%"
+        maxWidth="320px"
+      >
         <CreatableCombobox
           {...args}
           options={
@@ -163,7 +169,13 @@ export const FullScreen: Story = {
             setSubmitted(result);
           }}
         >
-          <Box display="flex" flexDirection="column" gap="2" width="360px">
+          <Box
+            display="flex"
+            flexDirection="column"
+            gap="2"
+            width="100%"
+            maxWidth="360px"
+          >
             <Text fontWeight="bold">Field A (required)</Text>
             <CreatableCombobox
               data-testid="field-a"
@@ -174,7 +186,13 @@ export const FullScreen: Story = {
             />
           </Box>
 
-          <Box display="flex" flexDirection="column" gap="2" width="360px">
+          <Box
+            display="flex"
+            flexDirection="column"
+            gap="2"
+            width="100%"
+            maxWidth="360px"
+          >
             <Text fontWeight="bold">Field B (shares the same option list)</Text>
             <CreatableCombobox
               data-testid="field-b"
@@ -184,7 +202,13 @@ export const FullScreen: Story = {
             />
           </Box>
 
-          <Box display="flex" flexDirection="column" gap="2" width="360px">
+          <Box
+            display="flex"
+            flexDirection="column"
+            gap="2"
+            width="100%"
+            maxWidth="360px"
+          >
             <Text fontWeight="bold">Field C (existing tags only)</Text>
             <CreatableCombobox
               data-testid="field-c"
@@ -195,7 +219,13 @@ export const FullScreen: Story = {
             />
           </Box>
 
-          <Box display="flex" flexDirection="column" gap="2" width="360px">
+          <Box
+            display="flex"
+            flexDirection="column"
+            gap="2"
+            width="100%"
+            maxWidth="360px"
+          >
             <Text fontWeight="bold">Field D (multiselect)</Text>
             <CreatableCombobox
               data-testid="field-d"
@@ -206,7 +236,13 @@ export const FullScreen: Story = {
             />
           </Box>
 
-          <Box display="flex" flexDirection="column" gap="2" width="360px">
+          <Box
+            display="flex"
+            flexDirection="column"
+            gap="2"
+            width="100%"
+            maxWidth="360px"
+          >
             <Text fontWeight="bold">Field E (enriched options, single)</Text>
             <CreatableCombobox
               data-testid="field-e"
@@ -217,7 +253,13 @@ export const FullScreen: Story = {
             />
           </Box>
 
-          <Box display="flex" flexDirection="column" gap="2" width="360px">
+          <Box
+            display="flex"
+            flexDirection="column"
+            gap="2"
+            width="100%"
+            maxWidth="360px"
+          >
             <Text fontWeight="bold">
               Field F (enriched options, multiselect)
             </Text>
@@ -231,7 +273,13 @@ export const FullScreen: Story = {
             />
           </Box>
 
-          <Box display="flex" flexDirection="column" gap="2" width="480px">
+          <Box
+            display="flex"
+            flexDirection="column"
+            gap="2"
+            width="100%"
+            maxWidth="480px"
+          >
             <Text fontWeight="bold">
               Field G (hierarchical, up to 5 levels)
             </Text>
