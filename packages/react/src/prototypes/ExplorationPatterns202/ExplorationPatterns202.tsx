@@ -1,108 +1,143 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Box } from "@nimbus-ds/box";
 import { Button } from "@nimbus-ds/button";
+import { Card } from "@nimbus-ds/card";
 import { Divider } from "@nimbus-ds/divider";
+import { Link } from "@nimbus-ds/link";
 import { ScrollPane } from "@nimbus-ds/scroll-pane";
 import { Tag } from "@nimbus-ds/tag";
 import { Text } from "@nimbus-ds/text";
 import { Title } from "@nimbus-ds/title";
-import { CheckCircleIcon } from "@nimbus-ds/icons";
+import {
+  CashierIcon,
+  CheckIcon,
+  CloseIcon,
+  GenerativeStarsIcon,
+} from "@nimbus-ds/icons";
 
 /**
  * Exploration for TiendaNube/nimbus-patterns#202: PlanDisplay on mobile (Plans 2.0).
- * Plan cards are recomposed here from Core components (nothing is imported from
- * @nimbus-ds/patterns). The mobile view is a ScrollPane carousel: one card per viewport
- * with the next one peeking, plus a dots indicator synced to scroll.
+ * Core Storybook cannot import @nimbus-ds/patterns, so the cards below are a faithful local
+ * recomposition of the new PlanDisplay (Card with ribbon / gradient, Header, Price, Content,
+ * Bullet, Footer, Spacing), read from nimbus-patterns at the recorded revision, using the
+ * same sample content as its Default story. The mobile view is a ScrollPane carousel: one
+ * card per viewport with the neighbours peeking, plus a dots indicator synced to scroll.
  */
+
+type PlanBullet = {
+  label: string;
+  icon: "check" | "close" | "stars";
+  disabled?: boolean;
+  badge?: string;
+};
 
 export type PlanData = {
   id: string;
-  name: string;
-  tag?: string;
-  ribbon?: string;
+  subtitle: string;
+  tag?: { label: string; appearance: "neutral" | "primary" };
+  ribbonLabel?: string;
+  gradient?: boolean;
   price: string;
   previousPrice?: string;
-  period: string;
-  note?: string;
-  bullets: { label: string; disabled?: boolean }[];
+  period?: string;
+  annualNote?: { text: string; highlight?: string };
+  description: string;
   cta: string;
+  ctaAppearance?: "primary" | "neutral";
+  bullets: PlanBullet[];
+  footer?: { before: string; link: string; after: string };
 };
 
-export const SAMPLE_PLANS: PlanData[] = [
-  {
-    id: "start",
-    name: "Start",
-    price: "$ 4.900",
-    period: "/ month",
-    note: "Billed monthly",
-    bullets: [
-      { label: "Up to 100 products" },
-      { label: "1 staff account" },
-      { label: "Basic reports" },
-      { label: "Abandoned cart recovery", disabled: true },
-    ],
-    cta: "Choose Start",
-  },
-  {
-    id: "growth",
-    name: "Growth",
-    tag: "Popular",
-    ribbon: "Recommended",
-    price: "$ 9.900",
-    previousPrice: "$ 12.900",
-    period: "/ month",
-    note: "Save 20% billed annually",
-    bullets: [
-      { label: "Up to 1.000 products" },
-      { label: "5 staff accounts" },
-      { label: "Advanced reports" },
-      { label: "Abandoned cart recovery" },
-    ],
-    cta: "Choose Growth",
-  },
-  {
-    id: "scale",
-    name: "Scale",
-    price: "$ 24.900",
-    period: "/ month",
-    note: "Billed monthly",
-    bullets: [
-      { label: "Unlimited products" },
-      { label: "15 staff accounts" },
-      { label: "Advanced reports" },
-      { label: "Priority support" },
-    ],
-    cta: "Choose Scale",
-  },
-];
+const PLAN_INICIAL: PlanData = {
+  id: "inicial",
+  subtitle: "Inicial",
+  price: "Gratis",
+  description: "Todo lo que necesitas para empezar a vender online.",
+  cta: "Comenzar gratis",
+  bullets: [
+    { label: "Tu tienda lista para empezar a vender", icon: "check" },
+    { label: "Productos y visitas sin límite", icon: "check" },
+    { label: "Medios de pago y envío de Tiendanube", icon: "check" },
+    { label: "Carga masiva de productos", icon: "close", disabled: true },
+    { label: "Dominio propio", icon: "close", disabled: true },
+  ],
+};
 
-/** Four-plan sample used by the desktop story (layout above the carousel breakpoint). */
-export const SAMPLE_PLANS_FOUR: PlanData[] = [
-  ...SAMPLE_PLANS,
-  {
-    id: "enterprise",
-    name: "Enterprise",
-    price: "$ 49.900",
-    period: "/ month",
-    note: "Billed annually",
-    bullets: [
-      { label: "Unlimited products" },
-      { label: "Unlimited staff accounts" },
-      { label: "Custom reports" },
-      { label: "Dedicated manager" },
-    ],
-    cta: "Contact sales",
-  },
-];
+const PLAN_ESENCIAL: PlanData = {
+  id: "esencial",
+  subtitle: "Esencial",
+  tag: { label: "Plan actual", appearance: "neutral" },
+  price: "$24.999",
+  previousPrice: "$29.999",
+  period: "/mes",
+  annualNote: { text: "$269.990/año.", highlight: "Ahorra $30.000." },
+  description: "Potenciá tu marca y vendé como una tienda profesional.",
+  cta: "Subir de plan",
+  bullets: [
+    { label: "Incluye todo lo del plan anterior, más:", icon: "check" },
+    { label: "Carga masiva de productos", icon: "check" },
+    { label: "Dominio propio", icon: "check" },
+    { label: "Campos personalizados en productos y órdenes", icon: "close", disabled: true },
+    { label: "Hasta 3 tablas de precios mayoristas", icon: "close", disabled: true },
+  ],
+};
 
-// Native element: Box exposes neither a top-only radius nor a negative margin (same exception
-// the production PlanDisplay.Card makes).
+const PLAN_AVANZADO: PlanData = {
+  id: "avanzado",
+  subtitle: "Avanzado",
+  ribbonLabel: "Más escogido",
+  price: "$219.999",
+  period: "/mes",
+  description: "Gestión avanzada y control total para tu negocio.",
+  cta: "Subir de plan",
+  ctaAppearance: "primary",
+  bullets: [
+    { label: "Incluye todo lo del plan anterior, más:", icon: "check" },
+    { label: "Campos personalizados en productos y órdenes", icon: "check" },
+    { label: "Hasta 3 tablas de precios mayoristas", icon: "check", badge: "Nuevo" },
+    { label: "IA ilimitada para potenciar tu gestión", icon: "stars" },
+    { label: "Soporte prioritario y ejecutivo de cuenta", icon: "close", disabled: true },
+  ],
+  footer: { before: "Obtén", link: "Punto de venta Plus", after: "extra por $149.90/mes" },
+};
+
+const PLAN_EVOLUCION: PlanData = {
+  id: "evolucion",
+  subtitle: "Evolución",
+  gradient: true,
+  price: "$439.999",
+  period: "/mes",
+  description: "La solución completa para escalar sin límites.",
+  cta: "Subir de plan",
+  bullets: [
+    { label: "Incluye todo lo del plan anterior, más:", icon: "check" },
+    { label: "Soporte prioritario y ejecutivo de cuenta", icon: "check" },
+    { label: "IA ilimitada para potenciar tu gestión", icon: "stars" },
+  ],
+};
+
+export const SAMPLE_PLANS: PlanData[] = [PLAN_INICIAL, PLAN_ESENCIAL, PLAN_AVANZADO];
+
+/** Four-plan sample (the new PlanDisplay Default story), for the 4-plan stories. */
+export const SAMPLE_PLANS_FOUR: PlanData[] = [...SAMPLE_PLANS, PLAN_EVOLUCION];
+
+const BULLET_ICONS = {
+  check: <CheckIcon />,
+  close: <CloseIcon />,
+  stars: <GenerativeStarsIcon />,
+};
+
+// Same exception as PlanDisplay.Card: Box exposes neither a top-only radius nor a negative margin.
 const RIBBON_STYLE: React.CSSProperties = {
   borderTopLeftRadius: "var(--nimbus-shape-border-radius-2)",
   borderTopRightRadius: "var(--nimbus-shape-border-radius-2)",
   marginBottom: "calc(var(--nimbus-spacing-2) * -1)",
   overflow: "hidden",
 };
+
+// Same gradient as PlanDisplay.Card (`gradient`, ignored when the card has a ribbon).
+const GRADIENT_BACKGROUND =
+  "linear-gradient(194.55deg, var(--nimbus-colors-primary-surface) 4.18%, var(--nimbus-colors-neutral-background) 45.97%)";
 
 // Declared exception: Box has no visually-hidden prop.
 const VISUALLY_HIDDEN: React.CSSProperties = {
@@ -114,99 +149,170 @@ const VISUALLY_HIDDEN: React.CSSProperties = {
   whiteSpace: "nowrap",
 };
 
-/** Local recomposition of PlanDisplay.Card + Header + Price + Content + Bullet + Footer. */
-const PlanCard: React.FC<{ plan: PlanData }> = ({ plan }) => (
-  <Box display="flex" flexDirection="column" height="100%">
-    <div style={RIBBON_STYLE}>
-      <Box
-        aria-hidden={plan.ribbon ? undefined : true}
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        pt="0-5"
-        pb="2"
-        backgroundColor={plan.ribbon ? "primary-interactive" : undefined}
-      >
-        <Text fontWeight="medium" color="neutral-background" textAlign="center">
-          {plan.ribbon || " "}
-        </Text>
-      </Box>
-    </div>
-    <Box
-      flex="1 1 auto"
-      display="flex"
-      flexDirection="column"
-      padding="4"
-      backgroundColor="neutral-background"
-      borderRadius="2"
-      overflow="hidden"
-      boxShadow={plan.ribbon ? undefined : "2"}
-      borderColor={plan.ribbon ? "primary-interactive" : undefined}
-      borderStyle={plan.ribbon ? "solid" : undefined}
-      borderWidth={plan.ribbon ? "2" : undefined}
-    >
-      <Box display="flex" flexDirection="column" gap="3">
-        <Box display="flex" justifyContent="space-between" alignItems="center" gap="2">
-          <Text fontWeight="bold" fontSize="highlight" color="neutral-textHigh">
-            {plan.name}
-          </Text>
-          {plan.tag && <Tag appearance="primary">{plan.tag}</Tag>}
-        </Box>
-        <Box display="flex" flexDirection="column" gap="2">
-          <Box display="flex" alignItems="center" gap="0-5">
-            <Title as="h3" color="neutral-textHigh">
-              {plan.price}
-            </Title>
-            {plan.previousPrice && (
-              <Text as="span" fontSize="base" textDecoration="line-through">
-                {plan.previousPrice}
-              </Text>
-            )}
-            <Text as="span" color="neutral-textHigh">
-              {plan.period}
-            </Text>
-          </Box>
-          {plan.note && (
-            <Text as="p" fontSize="caption" color="neutral-textLow">
-              {plan.note}
-            </Text>
-          )}
-        </Box>
-      </Box>
-      <Box my="3">
-        <Divider />
-      </Box>
-      <Box display="flex" flexDirection="column" gap="3">
-        {plan.bullets.map((bullet) => (
-          <Box key={bullet.label} display="flex" gap="2" alignItems="center">
-            <Text
-              as="span"
-              color={bullet.disabled ? "neutral-interactive" : "primary-interactive"}
-            >
-              <Box as="span" display="flex" alignItems="center">
-                <CheckCircleIcon />
-              </Box>
-            </Text>
-            <Text
-              fontWeight="regular"
-              color={bullet.disabled ? "neutral-interactive" : "neutral-textLow"}
-            >
-              {bullet.label}
-            </Text>
-          </Box>
-        ))}
-      </Box>
-      <Box display="flex" flexDirection="column" mt="auto" pt="4">
-        <Button appearance={plan.ribbon ? "primary" : "neutral"}>{plan.cta}</Button>
-      </Box>
-    </Box>
+/** Mirrors PlanDisplay.CardSpacing: a divider with my="3". */
+const CardSpacing: React.FC = () => (
+  <Box my="3">
+    <Divider />
   </Box>
 );
 
-/** Desktop reference: the current PlanDisplay grid, recomposed. */
+/** Local recomposition of the new PlanDisplay.Card + Header + Price + Content + Bullet + Footer. */
+const PlanCard: React.FC<{ plan: PlanData }> = ({ plan }) => {
+  const hasRibbon = Boolean(plan.ribbonLabel);
+  return (
+    <Box display="flex" flexDirection="column" height="100%">
+      <div style={RIBBON_STYLE}>
+        <Box
+          aria-hidden={hasRibbon ? undefined : true}
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          pt="0-5"
+          pb="2"
+          backgroundColor={hasRibbon ? "primary-interactive" : undefined}
+        >
+          <Text fontWeight="medium" color="neutral-background" textAlign="center">
+            {plan.ribbonLabel || " "}
+          </Text>
+        </Box>
+      </div>
+      <Box
+        flex="1 1 auto"
+        display="flex"
+        flexDirection="column"
+        padding="4"
+        backgroundColor="neutral-background"
+        backgroundImage={plan.gradient && !hasRibbon ? GRADIENT_BACKGROUND : undefined}
+        borderRadius="2"
+        overflow="hidden"
+        boxShadow={hasRibbon ? undefined : "2"}
+        borderColor={hasRibbon ? "primary-interactive" : undefined}
+        borderStyle={hasRibbon ? "solid" : undefined}
+        borderWidth={hasRibbon ? "2" : undefined}
+      >
+        {/* PlanDisplay.Header */}
+        <Box display="flex" flexDirection="column" gap="3">
+          {plan.tag ? (
+            <Box display="flex" justifyContent="space-between" alignItems="center" gap="2">
+              <Text fontWeight="bold" fontSize="highlight" color="neutral-textHigh">
+                {plan.subtitle}
+              </Text>
+              <Tag appearance={plan.tag.appearance}>{plan.tag.label}</Tag>
+            </Box>
+          ) : (
+            <Text fontWeight="bold" fontSize="highlight" color="neutral-textHigh">
+              {plan.subtitle}
+            </Text>
+          )}
+          {/* PlanDisplay.Price */}
+          <Box display="flex" flexDirection="column" gap="2">
+            <Box display="flex" alignItems="center" gap="0-5">
+              <Title as="h3" color="neutral-textHigh">
+                {plan.price}
+              </Title>
+              {plan.previousPrice && (
+                <Text as="span" fontSize="base" textDecoration="line-through">
+                  <span style={{ color: "var(--nimbus-colors-neutral-interactivePressed)" }}>
+                    {plan.previousPrice}
+                  </span>
+                </Text>
+              )}
+              {plan.period && (
+                <Text as="span" color="neutral-textHigh">
+                  {plan.period}
+                </Text>
+              )}
+            </Box>
+            {plan.annualNote && (
+              <Text as="p" fontSize="caption" color="neutral-textLow">
+                {plan.annualNote.text}{" "}
+                {plan.annualNote.highlight && (
+                  <Text as="span" color="primary-textLow" fontSize="caption">
+                    {plan.annualNote.highlight}
+                  </Text>
+                )}
+              </Text>
+            )}
+          </Box>
+        </Box>
+        {/* PlanDisplay.Content: Card.Body + spacing + gap-3 column */}
+        <Card.Body>
+          <CardSpacing />
+          <Box display="flex" flexDirection="column" gap="3">
+            <Box display="flex" flexDirection="column" gap="3" pb="2">
+              <Text>{plan.description}</Text>
+              <Button appearance={plan.ctaAppearance} fullWidth>
+                {plan.cta}
+              </Button>
+            </Box>
+            {plan.bullets.map((bullet) => (
+              // PlanDisplay.Bullet
+              <Box key={bullet.label} display="flex" gap="2" alignItems="center">
+                <Box display="flex" alignItems="center">
+                  <Text
+                    as="span"
+                    color={bullet.disabled ? "neutral-interactive" : "primary-interactive"}
+                  >
+                    <Box as="span" display="flex" alignItems="center">
+                      {BULLET_ICONS[bullet.icon]}
+                    </Box>
+                  </Text>
+                </Box>
+                <Text
+                  fontWeight="regular"
+                  color={bullet.disabled ? "neutral-interactive" : "neutral-textLow"}
+                >
+                  {bullet.label}
+                  {bullet.badge && (
+                    <>
+                      {" "}
+                      <span
+                        style={{
+                          display: "inline-flex",
+                          gap: "var(--nimbus-spacing-2)",
+                          verticalAlign: "middle",
+                        }}
+                      >
+                        <Tag appearance="primary">{bullet.badge}</Tag>
+                      </span>
+                    </>
+                  )}
+                </Text>
+              </Box>
+            ))}
+          </Box>
+        </Card.Body>
+        {/* PlanDisplay.Footer */}
+        {plan.footer && (
+          <Box display="flex" flexDirection="column" mt="auto">
+            <CardSpacing />
+            <Box display="flex" gap="2" alignItems="flex-start">
+              <Text as="span" color="primary-interactive">
+                <Box as="span" display="flex" alignItems="center">
+                  <CashierIcon />
+                </Box>
+              </Text>
+              <Box>
+                <Text>
+                  {plan.footer.before}{" "}
+                  <Link as="a" href="#" appearance="primary" textDecoration="underline">
+                    {plan.footer.link}
+                  </Link>{" "}
+                  {plan.footer.after}
+                </Text>
+              </Box>
+            </Box>
+          </Box>
+        )}
+      </Box>
+    </Box>
+  );
+};
+
+/** Desktop reference: the new PlanDisplay grid (same layout props), recomposed. */
 const PlanGrid: React.FC<{ plans: PlanData[]; minPlanWidth?: string }> = ({
   plans,
-  minPlanWidth = "225px",
+  minPlanWidth = "236px",
 }) => (
   <Box
     display="grid"

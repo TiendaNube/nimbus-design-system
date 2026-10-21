@@ -38,6 +38,17 @@ export const FullScreen: Story = {
   ),
 };
 
+/** Mobile carousel with the four plans of the new PlanDisplay Default story. */
+export const MobileFourPlans: Story = {
+  name: "Mobile, 4 plans",
+  args: { view: "mobile", plans: SAMPLE_PLANS_FOUR, carouselLabel: "Available plans" },
+  render: (args) => (
+    <Box width="375px" padding="4">
+      <ExplorationPatterns202 {...args} />
+    </Box>
+  ),
+};
+
 /** Layout above the carousel breakpoint: 4 cards side by side, no carousel, no dots. */
 export const DesktopFourPlans: Story = {
   name: "Desktop, 4 plans",
