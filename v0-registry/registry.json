@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "name": "Nimbus (v0 prototype)",
+  "dependencies": [
+    {
+      "name": "react",
+      "version": "^18.0.0"
+    },
+    {
+      "name": "react-dom",
+      "version": "^18.0.0"
+    },
+    {
+      "name": "@nimbus-ds/components",
+      "version": "workspace:^"
+    }
+  ],
+  "items": [
+    { "name": "box", "type": "component", "files": ["components/box.json"] },
+    { "name": "button", "type": "component", "files": ["components/button.json"] },
+    { "name": "input", "type": "component", "files": ["components/input.json"] }
+  ]
+}
+
+
