@@ -852,7 +852,7 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
               alignItems: "center",
               justifyContent: "space-between",
               gap: 8,
-              padding: path ? "4px 8px" : "3px 8px",
+              padding: 8,
               paddingLeft: 8 + (path ? 0 : childIndent),
             }}
           >
@@ -897,6 +897,8 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
           width: "100%",
           boxSizing: "border-box",
           padding: 8,
+          // Same 4px between rows as the plain list (Fields A-F).
+          gap: 4,
           maxHeight: 280,
         }}
       >
@@ -926,7 +928,7 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                 display: "flex",
                 alignItems: "center",
                 gap: 8,
-                padding: "3px 8px",
+                padding: 8,
               }}
             >
               <Icon source={<ArrowLeftIcon />} color="neutral-textLow" />
@@ -947,6 +949,7 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
           style={{
             display: "flex",
             flexDirection: "column",
+            gap: 4,
             overflowY: "auto",
             minHeight: 0,
           }}
@@ -996,6 +999,7 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
             </>
           ) : (
             <div
+              style={{ display: "flex", flexDirection: "column", gap: 4 }}
               role={currentParent ? "group" : undefined}
               aria-labelledby={
                 currentParent && !selectableBranches ? headingId : undefined
@@ -1017,7 +1021,7 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                     onActivate: () => selectOption(currentParent, levelPath),
                   })
                 ) : (
-                  <div id={headingId} style={{ padding: "3px 8px" }}>
+                  <div id={headingId} style={{ padding: 8 }}>
                     <Text fontWeight="bold" color="neutral-textHigh">
                       {currentParent.label}
                     </Text>
