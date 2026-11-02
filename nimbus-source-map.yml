@@ -33,49 +33,49 @@ groups:
   composite: "packages/react/src/composite"
 
 components:
-  - { name: "Badge", group: "atomic", package: "@nimbus-ds/badge", story: "atomic-badge--docs", nested: ["BadgeSkeleton"] }
-  - { name: "Box", group: "atomic", package: "@nimbus-ds/box", story: "atomic-box--docs" }
-  - { name: "Button", group: "atomic", package: "@nimbus-ds/button", story: "atomic-button--docs", nested: ["ButtonSkeleton"] }
-  - { name: "Checkbox", group: "atomic", package: "@nimbus-ds/checkbox", story: "atomic-checkbox--docs", nested: ["CheckboxSkeleton"], extras: ["index.d.ts", "src/checkbox-check.svg", "src/checkbox-indeterminate.svg", "src/checkbox.definitions.ts"] }
-  - { name: "Chip", group: "atomic", package: "@nimbus-ds/chip", story: "atomic-chip--docs", nested: ["ChipSkeleton"] }
-  - { name: "Divider", group: "atomic", package: "@nimbus-ds/divider", story: "atomic-divider--docs" }
-  - { name: "FileUploader", group: "atomic", package: "@nimbus-ds/file-uploader", story: "atomic-fileuploader--docs", nested: ["FileUploaderOverlay", "FileUploaderSkeleton"], extras: ["src/FileUploader.definitions.ts", "src/fileUploader.definitions.spec.ts"] }
-  - { name: "Icon", group: "atomic", package: "@nimbus-ds/icon", story: "atomic-icon--docs", nested: ["IconSkeleton"], extras: ["src/demo/", "src/utils/"] }
-  - { name: "IconButton", group: "atomic", package: "@nimbus-ds/icon-button", story: "atomic-iconbutton--docs", nested: ["IconButtonSkeleton"] }
-  - { name: "Input", group: "atomic", package: "@nimbus-ds/input", story: "atomic-input--docs", nested: ["InputIcon", "InputPassword", "InputSearch", "InputSkeleton", "InputText"] }
-  - { name: "Label", group: "atomic", package: "@nimbus-ds/label", story: "atomic-label--docs", nested: ["LabelSkeleton"] }
-  - { name: "Link", group: "atomic", package: "@nimbus-ds/link", story: "atomic-link--docs", nested: ["LinkSkeleton"] }
-  - { name: "List", group: "atomic", package: "@nimbus-ds/list", story: "atomic-list--docs", nested: ["ListItem", "ListSkeleton", "ListSkeletonItem"] }
-  - { name: "MultiSelect", group: "atomic", package: "@nimbus-ds/multi-select", story: "atomic-multiselect--docs", nested: ["MultiSelectSkeleton"] }
-  - { name: "Popover", group: "atomic", package: "@nimbus-ds/popover", story: "atomic-popover--docs" }
-  - { name: "ProgressBar", group: "atomic", package: "@nimbus-ds/progress-bar", story: "atomic-progressbar--default", nested: ["ProgressBarSkeleton"] }
-  - { name: "Radio", group: "atomic", package: "@nimbus-ds/radio", story: "atomic-radio--docs", nested: ["RadioSkeleton"] }
-  - { name: "Select", group: "atomic", package: "@nimbus-ds/select", story: "atomic-select--docs", nested: ["SelectGroup", "SelectOption", "SelectSkeleton"] }
-  - { name: "Skeleton", group: "atomic", package: "@nimbus-ds/skeleton", story: "atomic-skeleton--docs" }
-  - { name: "Slider", group: "atomic", package: "@nimbus-ds/slider", story: "atomic-slider--docs", nested: ["SliderThumb", "SliderTrack"], extras: ["src/SliderRange.tsx", "src/hooks/", "src/slider.definitions.ts", "src/sliderRange.stories.tsx"] }
-  - { name: "Spinner", group: "atomic", package: "@nimbus-ds/spinner", story: "atomic-spinner--docs", extras: ["src/spinner.definitions.ts"] }
-  - { name: "Tag", group: "atomic", package: "@nimbus-ds/tag", story: "atomic-tag--docs", nested: ["TagSkeleton"] }
-  - { name: "Text", group: "atomic", package: "@nimbus-ds/text", story: "atomic-text--docs", nested: ["TextSkeleton"] }
-  - { name: "Textarea", group: "atomic", package: "@nimbus-ds/textarea", story: "atomic-textarea--docs", nested: ["TextareaSkeleton"], extras: ["src/Textarea.definitions.ts"] }
-  - { name: "Thumbnail", group: "atomic", package: "@nimbus-ds/thumbnail", story: "atomic-thumbnail--docs", nested: ["ThumbnailSkeleton"] }
-  - { name: "Title", group: "atomic", package: "@nimbus-ds/title", story: "atomic-title--docs", nested: ["TitleSkeleton"] }
-  - { name: "Toast", group: "atomic", package: "@nimbus-ds/toast", story: "atomic-toast--docs", nested: ["ToastProvider"], contexts: ["ToastContext"], extras: ["src/hooks/"] }
-  - { name: "Toggle", group: "atomic", package: "@nimbus-ds/toggle", story: "atomic-toggle--docs", nested: ["ToggleSkeleton"] }
-  - { name: "Tooltip", group: "atomic", package: "@nimbus-ds/tooltip", story: "atomic-tooltip--docs" }
-  - { name: "Accordion", group: "composite", package: "@nimbus-ds/accordion", story: "composite-accordion--docs", nested: ["AccordionBody", "AccordionHeader", "AccordionItem"], contexts: ["AccordionContext", "AccordionItemContext"], extras: ["src/accordion.definitions.ts", "src/hooks/"] }
-  - { name: "Alert", group: "composite", package: "@nimbus-ds/alert", story: "composite-alert--docs", nested: ["AlertSkeleton"], extras: ["src/alert.definitions.ts"] }
-  - { name: "Card", group: "composite", package: "@nimbus-ds/card", story: "composite-card--docs", nested: ["CardBody", "CardFooter", "CardHeader"] }
-  - { name: "Collapsible", group: "composite", package: "@nimbus-ds/collapsible", story: "composite-collapsible--docs", nested: ["CollapsibleBody", "CollapsibleItem"], contexts: ["CollapsibleContext"], extras: ["src/hooks/"] }
-  - { name: "Modal", group: "composite", package: "@nimbus-ds/modal", story: "composite-modal--docs", nested: ["ModalBody", "ModalFooter", "ModalHeader"] }
-  - { name: "Pagination", group: "composite", package: "@nimbus-ds/pagination", story: "composite-pagination--docs", nested: ["GoToPageInput"], extras: ["pagination.spec.md", "src/hooks/", "src/pagination.definitions.ts"] }
-  - { name: "ScrollPane", group: "composite", package: "@nimbus-ds/scroll-pane", story: "composite-scrollpane--docs", nested: ["ScrollPaneArrow", "ScrollPaneItem"], contexts: ["ScrollPaneContext"], extras: ["src/ScrollPane.definitions.ts"] }
-  - { name: "SegmentedControl", group: "composite", package: "@nimbus-ds/segmented-control", story: "composite-segmentedcontrol--docs", nested: ["SegmentedControlButton"], contexts: ["SegmentedControlContext"], extras: ["src/segmentedControl.definitions.ts"] }
-  - { name: "Sidebar", group: "composite", package: "@nimbus-ds/sidebar", story: "composite-sidebar--docs", nested: ["SidebarBody", "SidebarFooter", "SidebarHeader"] }
-  - { name: "SplitButton", group: "composite", package: "@nimbus-ds/split-button", story: "composite-splitbutton--docs", nested: ["SplitButtonAction", "SplitButtonPrimary", "SplitButtonSecondary"] }
-  - { name: "Stepper", group: "composite", package: "@nimbus-ds/stepper", story: "composite-stepper--docs", nested: ["StepperCard", "StepperContext", "StepperItem"], extras: ["src/stepper.definitions.ts"] }
-  - { name: "Table", group: "composite", package: "@nimbus-ds/table", story: "composite-table--docs", nested: ["TableBody", "TableCell", "TableHead", "TableRow"], contexts: ["TableContext"], extras: ["src/Table.definitions.spec.ts", "src/Table.definitions.ts"] }
-  - { name: "Tabs", group: "composite", package: "@nimbus-ds/tabs", story: "composite-tabs--docs", nested: ["TabsButton", "TabsItem"], extras: ["src/tabs.definitions.ts"] }
-  - { name: "TimePicker", group: "composite", package: "@nimbus-ds/time-picker", story: "composite-timepicker--docs", nested: ["TimePickerAmPm", "TimePickerColumn", "TimePickerDropdown", "TimePickerOption", "TimePickerScroll"], extras: ["src/hooks/", "src/utils/"] }
+  - { name: "Badge", group: "atomic", package: "@nimbus-ds/badge", nested: ["BadgeSkeleton"] }
+  - { name: "Box", group: "atomic", package: "@nimbus-ds/box" }
+  - { name: "Button", group: "atomic", package: "@nimbus-ds/button", nested: ["ButtonSkeleton"] }
+  - { name: "Checkbox", group: "atomic", package: "@nimbus-ds/checkbox", nested: ["CheckboxSkeleton"], extras: ["index.d.ts", "src/checkbox-check.svg", "src/checkbox-indeterminate.svg", "src/checkbox.definitions.ts"] }
+  - { name: "Chip", group: "atomic", package: "@nimbus-ds/chip", nested: ["ChipSkeleton"] }
+  - { name: "Divider", group: "atomic", package: "@nimbus-ds/divider" }
+  - { name: "FileUploader", group: "atomic", package: "@nimbus-ds/file-uploader", nested: ["FileUploaderOverlay", "FileUploaderSkeleton"], extras: ["src/FileUploader.definitions.ts", "src/fileUploader.definitions.spec.ts"] }
+  - { name: "Icon", group: "atomic", package: "@nimbus-ds/icon", nested: ["IconSkeleton"], extras: ["src/demo/", "src/utils/"] }
+  - { name: "IconButton", group: "atomic", package: "@nimbus-ds/icon-button", nested: ["IconButtonSkeleton"] }
+  - { name: "Input", group: "atomic", package: "@nimbus-ds/input", nested: ["InputIcon", "InputPassword", "InputSearch", "InputSkeleton", "InputText"] }
+  - { name: "Label", group: "atomic", package: "@nimbus-ds/label", nested: ["LabelSkeleton"] }
+  - { name: "Link", group: "atomic", package: "@nimbus-ds/link", nested: ["LinkSkeleton"] }
+  - { name: "List", group: "atomic", package: "@nimbus-ds/list", nested: ["ListItem", "ListSkeleton", "ListSkeletonItem"] }
+  - { name: "MultiSelect", group: "atomic", package: "@nimbus-ds/multi-select", nested: ["MultiSelectSkeleton"] }
+  - { name: "Popover", group: "atomic", package: "@nimbus-ds/popover" }
+  - { name: "ProgressBar", group: "atomic", package: "@nimbus-ds/progress-bar", nested: ["ProgressBarSkeleton"] }
+  - { name: "Radio", group: "atomic", package: "@nimbus-ds/radio", nested: ["RadioSkeleton"] }
+  - { name: "Select", group: "atomic", package: "@nimbus-ds/select", nested: ["SelectGroup", "SelectOption", "SelectSkeleton"] }
+  - { name: "Skeleton", group: "atomic", package: "@nimbus-ds/skeleton" }
+  - { name: "Slider", group: "atomic", package: "@nimbus-ds/slider", nested: ["SliderThumb", "SliderTrack"], extras: ["src/SliderRange.tsx", "src/hooks/", "src/slider.definitions.ts", "src/sliderRange.stories.tsx"] }
+  - { name: "Spinner", group: "atomic", package: "@nimbus-ds/spinner", extras: ["src/spinner.definitions.ts"] }
+  - { name: "Tag", group: "atomic", package: "@nimbus-ds/tag", nested: ["TagSkeleton"] }
+  - { name: "Text", group: "atomic", package: "@nimbus-ds/text", nested: ["TextSkeleton"] }
+  - { name: "Textarea", group: "atomic", package: "@nimbus-ds/textarea", nested: ["TextareaSkeleton"], extras: ["src/Textarea.definitions.ts"] }
+  - { name: "Thumbnail", group: "atomic", package: "@nimbus-ds/thumbnail", nested: ["ThumbnailSkeleton"] }
+  - { name: "Title", group: "atomic", package: "@nimbus-ds/title", nested: ["TitleSkeleton"] }
+  - { name: "Toast", group: "atomic", package: "@nimbus-ds/toast", nested: ["ToastProvider"], contexts: ["ToastContext"], extras: ["src/hooks/"] }
+  - { name: "Toggle", group: "atomic", package: "@nimbus-ds/toggle", nested: ["ToggleSkeleton"] }
+  - { name: "Tooltip", group: "atomic", package: "@nimbus-ds/tooltip" }
+  - { name: "Accordion", group: "composite", package: "@nimbus-ds/accordion", nested: ["AccordionBody", "AccordionHeader", "AccordionItem"], contexts: ["AccordionContext", "AccordionItemContext"], extras: ["src/accordion.definitions.ts", "src/hooks/"] }
+  - { name: "Alert", group: "composite", package: "@nimbus-ds/alert", nested: ["AlertSkeleton"], extras: ["src/alert.definitions.ts"] }
+  - { name: "Card", group: "composite", package: "@nimbus-ds/card", nested: ["CardBody", "CardFooter", "CardHeader"] }
+  - { name: "Collapsible", group: "composite", package: "@nimbus-ds/collapsible", nested: ["CollapsibleBody", "CollapsibleItem"], contexts: ["CollapsibleContext"], extras: ["src/hooks/"] }
+  - { name: "Modal", group: "composite", package: "@nimbus-ds/modal", nested: ["ModalBody", "ModalFooter", "ModalHeader"] }
+  - { name: "Pagination", group: "composite", package: "@nimbus-ds/pagination", nested: ["GoToPageInput"], extras: ["pagination.spec.md", "src/hooks/", "src/pagination.definitions.ts"] }
+  - { name: "ScrollPane", group: "composite", package: "@nimbus-ds/scroll-pane", nested: ["ScrollPaneArrow", "ScrollPaneItem"], contexts: ["ScrollPaneContext"], extras: ["src/ScrollPane.definitions.ts"] }
+  - { name: "SegmentedControl", group: "composite", package: "@nimbus-ds/segmented-control", nested: ["SegmentedControlButton"], contexts: ["SegmentedControlContext"], extras: ["src/segmentedControl.definitions.ts"] }
+  - { name: "Sidebar", group: "composite", package: "@nimbus-ds/sidebar", nested: ["SidebarBody", "SidebarFooter", "SidebarHeader"] }
+  - { name: "SplitButton", group: "composite", package: "@nimbus-ds/split-button", nested: ["SplitButtonAction", "SplitButtonPrimary", "SplitButtonSecondary"] }
+  - { name: "Stepper", group: "composite", package: "@nimbus-ds/stepper", nested: ["StepperCard", "StepperContext", "StepperItem"], extras: ["src/stepper.definitions.ts"] }
+  - { name: "Table", group: "composite", package: "@nimbus-ds/table", nested: ["TableBody", "TableCell", "TableHead", "TableRow"], contexts: ["TableContext"], extras: ["src/Table.definitions.spec.ts", "src/Table.definitions.ts"] }
+  - { name: "Tabs", group: "composite", package: "@nimbus-ds/tabs", nested: ["TabsButton", "TabsItem"], extras: ["src/tabs.definitions.ts"] }
+  - { name: "TimePicker", group: "composite", package: "@nimbus-ds/time-picker", nested: ["TimePickerAmPm", "TimePickerColumn", "TimePickerDropdown", "TimePickerOption", "TimePickerScroll"], extras: ["src/hooks/", "src/utils/"] }
 
 shared:
   helper: { path: "packages/helper", package: "@nimbus-ds/helper" }

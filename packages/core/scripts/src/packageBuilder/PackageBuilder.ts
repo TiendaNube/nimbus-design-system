@@ -4,7 +4,6 @@ import { execSync } from "child_process";
 const RELEASE_SECTION_REGEX = /^releases\s*:/;
 const TOP_LEVEL_KEY_REGEX = /^[A-Za-z0-9_@-]+\s*:/;
 const RELEASE_ENTRY_REGEX = /^ {2,}"?(@[^":\s]+|[A-Za-z0-9_.-]+)"?\s*:/;
-const QUOTE_REGEX = /"/g;
 
 /* eslint no-console: "off" */
 export class PackageBuilder {
@@ -48,7 +47,7 @@ export class PackageBuilder {
         }
         const match = RELEASE_ENTRY_REGEX.exec(line);
         if (match?.[1]) {
-          packages.push(match[1].replace(QUOTE_REGEX, ""));
+          packages.push(match[1].split('"').join(""));
         }
       }
     }
@@ -61,7 +60,7 @@ export class PackageBuilder {
     return Array.from(
       new Set(
         Array.from(content.matchAll(regex), (match) =>
-          match[1].replace(QUOTE_REGEX, "")
+          match[1].split('"').join("")
         )
       )
     );

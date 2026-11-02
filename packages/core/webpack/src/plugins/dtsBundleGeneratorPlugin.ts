@@ -2,13 +2,13 @@
  * Created by: Júnior Conquista (junior.conquista@nuvemshop.com.br)
  */
 
-import { exec } from "child_process";
-import os from "os";
+import { exec } from "child_process"; // NOSONAR
+import os from "os"; // NOSONAR
 import { type Compiler, type WebpackPluginInstance } from "webpack";
 import { rootDir } from "../utils";
 
 const entry = [
-  `node ${rootDir}/node_modules/.bin/dts-bundle-generator --no-check -o ./dist/index.d.ts ./src/index.ts`,
+  `node ${rootDir}/node_modules/.bin/dts-bundle-generator --no-check -o ./dist/index.d.ts ./src/index.ts`
 ];
 
 const runShellCommand = (command: string): Promise<void> =>
@@ -69,6 +69,6 @@ export const dtsBundleGeneratorPlugin = (
           await runWithConcurrency(commands, maxConcurrency);
         }
       );
-    },
+    }
   };
 };

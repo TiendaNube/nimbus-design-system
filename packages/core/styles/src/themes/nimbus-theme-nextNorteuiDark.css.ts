@@ -4,87 +4,61 @@ import tokens from "@nimbus-ds/tokens/dist/js/tokens";
 import { vars } from "./contract.css";
 import { globalTheme } from "./globals.css";
 
-const tokenColors = tokens.color as Record<
-  string,
-  (typeof tokens.color)["next-dark"]
->;
+interface TokenLeaf {
+  value: unknown;
+}
+
+type ToneTokenMap = Record<string, TokenLeaf>;
+
+const mapToneScale = (group: ToneTokenMap) => ({
+  surface: String(group.surface.value),
+  surfaceHighlight: String(group["surface-highlight"].value),
+  interactive: String(group.interactive.value),
+  interactiveHover: String(group["interactive-hover"].value),
+  interactivePressed: String(group["interactive-pressed"].value),
+  textLow: String(group["text-low"].value),
+  textHigh: String(group["text-high"].value)
+});
+
+const colorDict = tokens.color as Record<string, Record<string, ToneTokenMap>>;
 const nextNorteuiColors =
-  tokenColors["next-norteui-dark"] ?? tokens.color["next-dark"];
-const colors = tokens.color.dark;
-const { shadow } = tokens;
+  colorDict["next-norteui-dark"] ?? colorDict["next-dark"];
+const darkColors = colorDict.dark;
+const darkShadows = tokens.shadow.dark.level;
+const readShadow = (level: "0" | "1" | "2" | "3" | "4" | "5"): string =>
+  String(darkShadows[level].value);
 
 const nextNorteuiDarkTheme = {
   ...globalTheme,
   colors: {
     ...globalTheme.colors,
-    primary: {
-      surface: nextNorteuiColors.primary.surface.value as string,
-      surfaceHighlight: nextNorteuiColors.primary["surface-highlight"]
-        .value as string,
-      interactive: nextNorteuiColors.primary.interactive.value as string,
-      interactiveHover: nextNorteuiColors.primary["interactive-hover"]
-        .value as string,
-      interactivePressed: nextNorteuiColors.primary["interactive-pressed"]
-        .value as string,
-      textLow: nextNorteuiColors.primary["text-low"].value as string,
-      textHigh: nextNorteuiColors.primary["text-high"].value as string,
-    },
-    success: {
-      surface: colors.success.surface.value as string,
-      surfaceHighlight: colors.success["surface-highlight"].value as string,
-      interactive: colors.success.interactive.value as string,
-      interactiveHover: colors.success["interactive-hover"].value as string,
-      interactivePressed: colors.success["interactive-pressed"].value as string,
-      textLow: colors.success["text-low"].value as string,
-      textHigh: colors.success["text-high"].value as string,
-    },
-    warning: {
-      surface: colors.warning.surface.value as string,
-      surfaceHighlight: colors.warning["surface-highlight"].value as string,
-      interactive: colors.warning.interactive.value as string,
-      interactiveHover: colors.warning["interactive-hover"].value as string,
-      interactivePressed: colors.warning["interactive-pressed"].value as string,
-      textLow: colors.warning["text-low"].value as string,
-      textHigh: colors.warning["text-high"].value as string,
-    },
-    danger: {
-      surface: colors.danger.surface.value as string,
-      surfaceHighlight: colors.danger["surface-highlight"].value as string,
-      interactive: colors.danger.interactive.value as string,
-      interactiveHover: colors.danger["interactive-hover"].value as string,
-      interactivePressed: colors.danger["interactive-pressed"].value as string,
-      textLow: colors.danger["text-low"].value as string,
-      textHigh: colors.danger["text-high"].value as string,
-    },
+    primary: mapToneScale(nextNorteuiColors.primary),
+    success: mapToneScale(darkColors.success),
+    warning: mapToneScale(darkColors.warning),
+    danger: mapToneScale(darkColors.danger),
     neutral: {
-      background: colors.neutral.background.value as string,
-      surface: colors.neutral.surface.value as string,
-      surfaceDisabled: colors.neutral["surface-disabled"].value as string,
-      surfaceHighlight: colors.neutral["surface-highlight"].value as string,
-      interactive: colors.neutral.interactive.value as string,
-      interactiveHover: colors.neutral["interactive-hover"].value as string,
-      interactivePressed: colors.neutral["interactive-pressed"].value as string,
-      textDisabled: colors.neutral["text-disabled"].value as string,
-      textLow: colors.neutral["text-low"].value as string,
-      textHigh: colors.neutral["text-high"].value as string,
-    },
+      ...mapToneScale(darkColors.neutral),
+      background: String(darkColors.neutral.background.value),
+      surfaceDisabled: String(darkColors.neutral["surface-disabled"].value),
+      textDisabled: String(darkColors.neutral["text-disabled"].value)
+    }
   },
   utils: {
-    focus: `0 0 0 3px ${
-      nextNorteuiColors.primary["surface-highlight"].value as string
-    }`,
-    aiFocus: `0 0 0 3px ${globalTheme.colors.aiGenerative.surfaceHighlight}`,
+    focus: `0 0 0 3px ${String(
+      nextNorteuiColors.primary["surface-highlight"].value
+    )}`,
+    aiFocus: `0 0 0 3px ${globalTheme.colors.aiGenerative.surfaceHighlight}`
   },
   shadow: {
     level: {
-      0: shadow.dark.level[0].value,
-      1: shadow.dark.level[1].value,
-      2: shadow.dark.level[2].value,
-      3: shadow.dark.level[3].value,
-      4: shadow.dark.level[4].value,
-      5: shadow.dark.level[5].value,
-    },
-  },
+      0: readShadow("0"),
+      1: readShadow("1"),
+      2: readShadow("2"),
+      3: readShadow("3"),
+      4: readShadow("4"),
+      5: readShadow("5")
+    }
+  }
 };
 
 export const variables = createTheme(vars, nextNorteuiDarkTheme);

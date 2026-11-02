@@ -4,29 +4,38 @@ import tokens from "@nimbus-ds/tokens/dist/js/tokens";
 import { vars } from "./contract.css";
 import { globalTheme } from "./globals.css";
 
-const tokenColors = tokens.color as Record<string, typeof tokens.color.next>;
-const colors = tokenColors["next-norteui"] ?? tokens.color.next;
+interface TokenLeaf {
+  value: unknown;
+}
 
-const nextNorteuiTheme = {
+type PrimaryTokenScale = Record<string, TokenLeaf>;
+
+const colorDict = tokens.color as Record<
+  string,
+  { primary: PrimaryTokenScale }
+>;
+const primaryTokens = (colorDict["next-norteui"] ?? colorDict.next).primary;
+const readPrimaryToken = (key: string): string =>
+  String(primaryTokens[key].value);
+
+export const variables = createTheme(vars, {
   ...globalTheme,
   colors: {
     ...globalTheme.colors,
     primary: {
-      surface: colors.primary.surface.value as string,
-      surfaceHighlight: colors.primary["surface-highlight"].value as string,
-      interactive: colors.primary.interactive.value as string,
-      interactiveHover: colors.primary["interactive-hover"].value as string,
-      interactivePressed: colors.primary["interactive-pressed"].value as string,
-      textLow: colors.primary["text-low"].value as string,
-      textHigh: colors.primary["text-high"].value as string,
-    },
+      surface: readPrimaryToken("surface"),
+      surfaceHighlight: readPrimaryToken("surface-highlight"),
+      interactive: readPrimaryToken("interactive"),
+      interactiveHover: readPrimaryToken("interactive-hover"),
+      interactivePressed: readPrimaryToken("interactive-pressed"),
+      textLow: readPrimaryToken("text-low"),
+      textHigh: readPrimaryToken("text-high")
+    }
   },
   utils: {
-    focus: `0 0 0 3px ${colors.primary["surface-highlight"].value as string}`,
-    aiFocus: `0 0 0 3px ${globalTheme.colors.aiGenerative.surfaceHighlight}`,
-  },
-};
-
-export const variables = createTheme(vars, nextNorteuiTheme);
+    focus: `0 0 0 3px ${readPrimaryToken("surface-highlight")}`,
+    aiFocus: `0 0 0 3px ${globalTheme.colors.aiGenerative.surfaceHighlight}`
+  }
+});
 
 export default variables;

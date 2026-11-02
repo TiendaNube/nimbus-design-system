@@ -13,7 +13,7 @@ import { Alert } from "@nimbus-ds/alert";
 import { Card } from "@nimbus-ds/card";
 import {
   ThemeNimbusProvider,
-  resolveNimbusTheme,
+  resolveNimbusTheme
 } from "../../../../.storybook/theme";
 
 const MIN_THEME_CONTRACT_LEAF_COUNT = 90;
@@ -83,7 +83,7 @@ describe("Existing Themes (base, dark, next, next-dark) Invariance Suite", () =>
       "height",
       "marginLeft",
       "marginRight",
-      "width",
+      "width"
     ]);
 
     const leafPaths = collectLeafPaths(
@@ -106,7 +106,7 @@ describe("Existing Themes (base, dark, next, next-dark) Invariance Suite", () =>
         "fontSize.body.base",
         "shape.border.radius.base",
         "spacing.2",
-        "spacing.4",
+        "spacing.4"
       ])
     );
   });
@@ -122,12 +122,12 @@ describe("Existing Themes (base, dark, next, next-dark) Invariance Suite", () =>
     const baseThemeRoot = baseResult.container.firstElementChild as HTMLElement;
     const darkThemeRoot = darkResult.container.firstElementChild as HTMLElement;
     const nextThemeRoot = nextResult.container.firstElementChild as HTMLElement;
-    const nextDarkThemeRoot =
-      nextDarkResult.container.firstElementChild as HTMLElement;
-    const nextNorteuiThemeRoot =
-      nextNorteuiResult.container.firstElementChild as HTMLElement;
-    const nextNorteuiDarkThemeRoot =
-      nextNorteuiDarkResult.container.firstElementChild as HTMLElement;
+    const nextDarkThemeRoot = nextDarkResult.container
+      .firstElementChild as HTMLElement;
+    const nextNorteuiThemeRoot = nextNorteuiResult.container
+      .firstElementChild as HTMLElement;
+    const nextNorteuiDarkThemeRoot = nextNorteuiDarkResult.container
+      .firstElementChild as HTMLElement;
 
     expect(baseThemeRoot).toBeTruthy();
     expect(darkThemeRoot).toBeTruthy();
@@ -212,14 +212,14 @@ describe("Existing Themes (base, dark, next, next-dark) Invariance Suite", () =>
       { mode: "next", expectedResolved: "next" },
       { mode: "next-dark", expectedResolved: "next-dark" },
       { mode: "next-norteui", expectedResolved: "next-norteui" },
-      { mode: "next-norteui-dark", expectedResolved: "next-norteui-dark" },
+      { mode: "next-norteui-dark", expectedResolved: "next-norteui-dark" }
     ];
     singleModes.forEach(({ mode, expectedResolved }) => {
       const { container, unmount } = render(
         <ThemeNimbusProvider
           selectedTheme={mode}
           storyParameters={{
-            fileName: "packages/react/src/atomic/Badge/src/badge.stories.tsx",
+            fileName: "packages/react/src/atomic/Badge/src/badge.stories.tsx"
           }}
         >
           <Badge appearance="neutral" count="5" />
@@ -240,8 +240,8 @@ describe("Existing Themes (base, dark, next, next-dark) Invariance Suite", () =>
       {
         mode: "side-by-side-dark",
         leftTheme: "dark",
-        rightTheme: "next-norteui-dark",
-      },
+        rightTheme: "next-norteui-dark"
+      }
     ];
     sideBySideExpectations.forEach(({ mode, leftTheme, rightTheme }) => {
       const { container, unmount } = render(
@@ -250,7 +250,7 @@ describe("Existing Themes (base, dark, next, next-dark) Invariance Suite", () =>
         </ThemeNimbusProvider>
       );
       const panels = container.querySelectorAll("[data-nimbus-theme]");
-      expect(panels.length).toBe(3);
+      expect(panels).toHaveLength(3);
       expect(panels[0]?.getAttribute("data-nimbus-theme")).toBe(mode);
       expect(panels[1]?.getAttribute("data-nimbus-theme")).toBe(leftTheme);
       expect(panels[2]?.getAttribute("data-nimbus-theme")).toBe(rightTheme);
