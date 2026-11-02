@@ -2,18 +2,26 @@ import React, { useState, useEffect } from "react";
 import { DocsContainer } from "@storybook/addon-docs";
 import { addons } from "@storybook/preview-api";
 import { DARK_MODE_EVENT_NAME } from "storybook-dark-mode";
-import { ThemeProvider, vars } from "@nimbus-ds/styles";
+import { ThemeProvider, themeVars } from "@nimbus-ds/styles";
 
 import light, { dark } from "./theme.definitions";
 
-const channel = addons.getChannel();
+const getStorybookChannel = () => {
+  try {
+    return addons.getChannel();
+  } catch {
+    return null;
+  }
+};
 
 export type NimbusThemeOption =
   | "auto"
   | "base"
   | "dark"
   | "next"
-  | "next-dark";
+  | "next-dark"
+  | "side-by-side"
+  | "side-by-side-dark";
 
 export type ResolvedNimbusTheme = "base" | "dark" | "next" | "next-dark";
 
@@ -58,6 +66,10 @@ export const resolveNimbusTheme = (
 export const ThemeDocsProvider: React.FC<any> = (props) => {
   const [isDark, setDark] = useState<boolean>(false);
   useEffect(() => {
+    const channel = getStorybookChannel();
+    if (!channel) {
+      return undefined;
+    }
     channel.on(DARK_MODE_EVENT_NAME, setDark);
     return () => channel.removeListener(DARK_MODE_EVENT_NAME, setDark);
   }, []);
@@ -65,7 +77,9 @@ export const ThemeDocsProvider: React.FC<any> = (props) => {
   const selectedTheme = props?.context?.store?.userGlobals?.globals?.nimbusTheme;
   const resolvedTheme = resolveNimbusTheme(selectedTheme, undefined, isDark);
   const isDarkSurface =
-    resolvedTheme === "dark" || resolvedTheme === "next-dark";
+    selectedTheme === "side-by-side-dark" ||
+    resolvedTheme === "dark" ||
+    resolvedTheme === "next-dark";
 
   return (
     <DocsContainer {...props} theme={isDarkSurface ? dark : light}>
@@ -93,9 +107,63 @@ export const ThemeNimbusProvider: React.FC<ThemeNimbusProviderProps> = ({
   });
 
   useEffect(() => {
+    const channel = getStorybookChannel();
+    if (!channel) {
+      return undefined;
+    }
     channel.on(DARK_MODE_EVENT_NAME, setDark);
     return () => channel.removeListener(DARK_MODE_EVENT_NAME, setDark);
   }, []);
+
+  if (
+    selectedTheme === "side-by-side" ||
+    selectedTheme === "side-by-side-dark"
+  ) {
+    const isDarkComparison =
+      selectedTheme === "side-by-side-dark" ||
+      (selectedTheme === "side-by-side" && isDark);
+    const leftTheme: ResolvedNimbusTheme = isDarkComparison ? "dark" : "base";
+    const rightTheme: ResolvedNimbusTheme = isDarkComparison
+      ? "next-dark"
+      : "next";
+
+    return (
+      <div
+        data-nimbus-theme={selectedTheme}
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gap: "16px",
+          width: "100%",
+        }}
+      >
+        <ThemeProvider
+          theme={leftTheme}
+          data-nimbus-theme={leftTheme}
+          style={{
+            backgroundColor: themeVars.colors.neutral.background,
+            color: themeVars.colors.neutral.textHigh,
+            padding: "16px",
+            borderRadius: "8px",
+          }}
+        >
+          {children}
+        </ThemeProvider>
+        <ThemeProvider
+          theme={rightTheme}
+          data-nimbus-theme={rightTheme}
+          style={{
+            backgroundColor: themeVars.colors.neutral.background,
+            color: themeVars.colors.neutral.textHigh,
+            padding: "16px",
+            borderRadius: "8px",
+          }}
+        >
+          {children}
+        </ThemeProvider>
+      </div>
+    );
+  }
 
   const resolvedTheme = resolveNimbusTheme(
     selectedTheme,
@@ -104,17 +172,8 @@ export const ThemeNimbusProvider: React.FC<ThemeNimbusProviderProps> = ({
   );
 
   return (
-    <ThemeProvider theme={resolvedTheme}>
-      <div
-        data-nimbus-theme={resolvedTheme}
-        style={{
-          backgroundColor: vars.colors.neutral.background,
-          color: vars.colors.neutral.textHigh,
-          minHeight: "100%",
-        }}
-      >
-        {children}
-      </div>
+    <ThemeProvider theme={resolvedTheme} data-nimbus-theme={resolvedTheme}>
+      {children}
     </ThemeProvider>
   );
 };

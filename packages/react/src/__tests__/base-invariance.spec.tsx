@@ -1,3 +1,4 @@
+/* eslint import/no-relative-packages: "off" */
 import React from "react";
 import { render } from "@testing-library/react";
 import { ThemeProvider, vars as utilVars, themeVars } from "@nimbus-ds/styles";
@@ -10,6 +11,10 @@ import { Title } from "@nimbus-ds/title";
 import { Tag } from "@nimbus-ds/tag";
 import { Alert } from "@nimbus-ds/alert";
 import { Card } from "@nimbus-ds/card";
+import {
+  ThemeNimbusProvider,
+  resolveNimbusTheme,
+} from "../../../../.storybook/theme";
 
 const collectLeafPaths = (
   obj: Record<string, unknown>,
@@ -126,5 +131,50 @@ describe("Base & Dark Theme Invariance Suite", () => {
       "input#search-orders"
     ) as HTMLInputElement | null;
     expect(input?.getAttribute("placeholder")).toBe("Search orders");
+  });
+
+  it("renders Storybook ThemeNimbusProvider across all single and side-by-side themes without runtime errors", () => {
+    expect(
+      resolveNimbusTheme(
+        "auto",
+        { fileName: "packages/react/src/atomic/Badge/src/badge.stories.tsx" },
+        false
+      )
+    ).toBe("base");
+    expect(
+      resolveNimbusTheme(
+        "auto",
+        { fileName: "packages/react/src/next/Badge/src/badge.stories.tsx" },
+        false
+      )
+    ).toBe("next");
+
+    const singleModes = ["auto", "base", "dark", "next", "next-dark"] as const;
+    singleModes.forEach((mode) => {
+      const { container, unmount } = render(
+        <ThemeNimbusProvider
+          selectedTheme={mode}
+          storyParameters={{
+            fileName: "packages/react/src/atomic/Badge/src/badge.stories.tsx",
+          }}
+        >
+          <Badge appearance="neutral" count="5" />
+        </ThemeNimbusProvider>
+      );
+      expect(container.textContent).toContain("5");
+      unmount();
+    });
+
+    const sideBySideModes = ["side-by-side", "side-by-side-dark"] as const;
+    sideBySideModes.forEach((mode) => {
+      const { container, unmount } = render(
+        <ThemeNimbusProvider selectedTheme={mode}>
+          <Badge appearance="neutral" count="5" />
+        </ThemeNimbusProvider>
+      );
+      const panels = container.querySelectorAll("[data-nimbus-theme]");
+      expect(panels.length).toBe(3);
+      unmount();
+    });
   });
 });

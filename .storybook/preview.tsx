@@ -47,6 +47,11 @@ const preview: Preview = {
           { value: "dark", title: "Dark (Base Dark)" },
           { value: "next", title: "Next (Norte UI Light)" },
           { value: "next-dark", title: "Next Dark (Norte UI Dark)" },
+          { value: "side-by-side", title: "Side-by-Side (Base vs Next)" },
+          {
+            value: "side-by-side-dark",
+            title: "Side-by-Side (Dark vs Next Dark)",
+          },
         ],
         dynamicTitle: true,
       },
