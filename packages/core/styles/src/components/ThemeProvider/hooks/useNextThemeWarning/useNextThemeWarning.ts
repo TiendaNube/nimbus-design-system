@@ -9,7 +9,7 @@ export const resetNextThemeWarnings = (): void => {
 
 /**
  * Emits a deduplicated development warning when a `/next` component is rendered
- * outside of `<ThemeProvider theme="next">` or `<ThemeProvider theme="next-dark">`.
+ * outside of `<ThemeProvider theme="next-norteui">` or `<ThemeProvider theme="next-norteui-dark">`.
  * Never throws or blocks rendering; `:root` (`base`) CSS variables act as fallback.
  */
 export const useNextThemeWarning = (componentName: string): void => {
@@ -20,7 +20,10 @@ export const useNextThemeWarning = (componentName: string): void => {
       return;
     }
 
-    if (currentTheme !== "next" && currentTheme !== "next-dark") {
+    if (
+      currentTheme !== "next-norteui" &&
+      currentTheme !== "next-norteui-dark"
+    ) {
       const warningKey = `${componentName}:${currentTheme ?? "base"}`;
       if (!warnedComponents.has(warningKey)) {
         warnedComponents.add(warningKey);
@@ -28,7 +31,7 @@ export const useNextThemeWarning = (componentName: string): void => {
         console.warn(
           `[@nimbus-ds/next] <${componentName} /> from "/next" was rendered under theme="${
             currentTheme ?? "base"
-          }". Wrap your application or subtree in <ThemeProvider theme="next"> or <ThemeProvider theme="next-dark"> for the intended Norte UI tokens.`
+          }". Wrap your application or subtree in <ThemeProvider theme="next-norteui"> or <ThemeProvider theme="next-norteui-dark"> for the intended Norte UI tokens.`
         );
       }
     }

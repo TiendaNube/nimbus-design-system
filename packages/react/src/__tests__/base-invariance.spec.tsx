@@ -42,7 +42,15 @@ const collectLeafPaths = (
   return paths.sort(compareAscii);
 };
 
-const renderRepresentativeTree = (themeName: "base" | "dark") =>
+const renderRepresentativeTree = (
+  themeName:
+    | "base"
+    | "dark"
+    | "next"
+    | "next-dark"
+    | "next-norteui"
+    | "next-norteui-dark"
+) =>
   render(
     <ThemeProvider theme={themeName}>
       <Box padding="4" backgroundColor="neutral-background">
@@ -65,7 +73,7 @@ const renderRepresentativeTree = (themeName: "base" | "dark") =>
     </ThemeProvider>
   );
 
-describe("Base & Dark Theme Invariance Suite", () => {
+describe("Existing Themes (base, dark, next, next-dark) Invariance Suite", () => {
   it("preserves all semantic CSS variable contract leaf paths in vars", () => {
     const utilLeafPaths = collectLeafPaths(
       utilVars as unknown as Record<string, unknown>
@@ -103,19 +111,46 @@ describe("Base & Dark Theme Invariance Suite", () => {
     );
   });
 
-  it("renders core atomic & composite components with invariant DOM structure under theme=base and theme=dark", () => {
+  it("renders core atomic & composite components with invariant DOM structure across base, dark, next, next-dark, next-norteui, and next-norteui-dark", () => {
     const baseResult = renderRepresentativeTree("base");
     const darkResult = renderRepresentativeTree("dark");
+    const nextResult = renderRepresentativeTree("next");
+    const nextDarkResult = renderRepresentativeTree("next-dark");
+    const nextNorteuiResult = renderRepresentativeTree("next-norteui");
+    const nextNorteuiDarkResult = renderRepresentativeTree("next-norteui-dark");
 
     const baseThemeRoot = baseResult.container.firstElementChild as HTMLElement;
     const darkThemeRoot = darkResult.container.firstElementChild as HTMLElement;
+    const nextThemeRoot = nextResult.container.firstElementChild as HTMLElement;
+    const nextDarkThemeRoot =
+      nextDarkResult.container.firstElementChild as HTMLElement;
+    const nextNorteuiThemeRoot =
+      nextNorteuiResult.container.firstElementChild as HTMLElement;
+    const nextNorteuiDarkThemeRoot =
+      nextNorteuiDarkResult.container.firstElementChild as HTMLElement;
+
     expect(baseThemeRoot).toBeTruthy();
     expect(darkThemeRoot).toBeTruthy();
+    expect(nextThemeRoot).toBeTruthy();
+    expect(nextDarkThemeRoot).toBeTruthy();
+    expect(nextNorteuiThemeRoot).toBeTruthy();
+    expect(nextNorteuiDarkThemeRoot).toBeTruthy();
+
     expect(baseThemeRoot.getAttribute("class")).toBe("");
     expect(darkThemeRoot.getAttribute("class")).toContain("dark");
+    expect(nextThemeRoot.getAttribute("class")).toContain("next");
+    expect(nextDarkThemeRoot.getAttribute("class")).toContain("nextDark");
+    expect(nextNorteuiThemeRoot.getAttribute("class")).toContain("nextNorteui");
+    expect(nextNorteuiDarkThemeRoot.getAttribute("class")).toContain(
+      "nextNorteuiDark"
+    );
 
-    // Inner DOM beneath the ThemeProvider wrapper must be structurally identical
+    // Inner DOM beneath the ThemeProvider wrapper must be structurally identical across all 6 themes
     expect(baseThemeRoot.innerHTML).toBe(darkThemeRoot.innerHTML);
+    expect(baseThemeRoot.innerHTML).toBe(nextThemeRoot.innerHTML);
+    expect(baseThemeRoot.innerHTML).toBe(nextDarkThemeRoot.innerHTML);
+    expect(baseThemeRoot.innerHTML).toBe(nextNorteuiThemeRoot.innerHTML);
+    expect(baseThemeRoot.innerHTML).toBe(nextNorteuiDarkThemeRoot.innerHTML);
 
     const heading = baseResult.container.querySelector("h2");
     expect(heading?.textContent).toBe("Orders");
@@ -131,9 +166,13 @@ describe("Base & Dark Theme Invariance Suite", () => {
 
     baseResult.unmount();
     darkResult.unmount();
+    nextResult.unmount();
+    nextDarkResult.unmount();
+    nextNorteuiResult.unmount();
+    nextNorteuiDarkResult.unmount();
   });
 
-  it("renders Storybook ThemeNimbusProvider across all single and side-by-side themes without runtime errors", () => {
+  it("renders Storybook ThemeNimbusProvider across all 6 single themes and side-by-side themes without runtime errors", () => {
     expect(
       resolveNimbusTheme(
         "auto",
@@ -147,10 +186,24 @@ describe("Base & Dark Theme Invariance Suite", () => {
         { fileName: "packages/react/src/next/Badge/src/badge.stories.tsx" },
         false
       )
-    ).toBe("next");
+    ).toBe("next-norteui");
+    expect(
+      resolveNimbusTheme(
+        "auto",
+        { fileName: "packages/react/src/next/Badge/src/badge.stories.tsx" },
+        true
+      )
+    ).toBe("next-norteui-dark");
 
     const singleModes: Array<{
-      mode: "auto" | "base" | "dark" | "next" | "next-dark";
+      mode:
+        | "auto"
+        | "base"
+        | "dark"
+        | "next"
+        | "next-dark"
+        | "next-norteui"
+        | "next-norteui-dark";
       expectedResolved: string;
     }> = [
       { mode: "auto", expectedResolved: "base" },
@@ -158,6 +211,8 @@ describe("Base & Dark Theme Invariance Suite", () => {
       { mode: "dark", expectedResolved: "dark" },
       { mode: "next", expectedResolved: "next" },
       { mode: "next-dark", expectedResolved: "next-dark" },
+      { mode: "next-norteui", expectedResolved: "next-norteui" },
+      { mode: "next-norteui-dark", expectedResolved: "next-norteui-dark" },
     ];
     singleModes.forEach(({ mode, expectedResolved }) => {
       const { container, unmount } = render(
@@ -181,8 +236,12 @@ describe("Base & Dark Theme Invariance Suite", () => {
       leftTheme: string;
       rightTheme: string;
     }> = [
-      { mode: "side-by-side", leftTheme: "base", rightTheme: "next" },
-      { mode: "side-by-side-dark", leftTheme: "dark", rightTheme: "next-dark" },
+      { mode: "side-by-side", leftTheme: "base", rightTheme: "next-norteui" },
+      {
+        mode: "side-by-side-dark",
+        leftTheme: "dark",
+        rightTheme: "next-norteui-dark",
+      },
     ];
     sideBySideExpectations.forEach(({ mode, leftTheme, rightTheme }) => {
       const { container, unmount } = render(

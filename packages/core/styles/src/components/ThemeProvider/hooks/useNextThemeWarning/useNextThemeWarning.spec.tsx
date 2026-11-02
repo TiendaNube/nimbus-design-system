@@ -33,6 +33,7 @@ describe("useNextThemeWarning", () => {
     expect(warnSpy).toHaveBeenCalledTimes(1);
     expect(warnSpy.mock.calls[0][0]).toContain("<NextButton />");
     expect(warnSpy.mock.calls[0][0]).toContain('theme="base"');
+    expect(warnSpy.mock.calls[0][0]).toContain('theme="next-norteui"');
 
     rerender(
       <ThemeProvider theme="base">
@@ -42,7 +43,7 @@ describe("useNextThemeWarning", () => {
     expect(warnSpy).toHaveBeenCalledTimes(1);
   });
 
-  it("does not warn when rendered under next or next-dark themes", () => {
+  it("warns when rendered under premium plan next or next-dark themes", () => {
     render(
       <ThemeProvider theme="next">
         <ProbeComponent name="NextButton" />
@@ -50,6 +51,23 @@ describe("useNextThemeWarning", () => {
     );
     render(
       <ThemeProvider theme="next-dark">
+        <ProbeComponent name="NextAlert" />
+      </ThemeProvider>
+    );
+
+    expect(warnSpy).toHaveBeenCalledTimes(2);
+    expect(warnSpy.mock.calls[0][0]).toContain('theme="next"');
+    expect(warnSpy.mock.calls[1][0]).toContain('theme="next-dark"');
+  });
+
+  it("does not warn when rendered under next-norteui or next-norteui-dark themes", () => {
+    render(
+      <ThemeProvider theme="next-norteui">
+        <ProbeComponent name="NextButton" />
+      </ThemeProvider>
+    );
+    render(
+      <ThemeProvider theme="next-norteui-dark">
         <ProbeComponent name="NextAlert" />
       </ThemeProvider>
     );

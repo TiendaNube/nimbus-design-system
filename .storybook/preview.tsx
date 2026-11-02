@@ -45,15 +45,20 @@ const preview: Preview = {
       toolbar: {
         icon: "paintbrush",
         items: [
-          { value: "auto", title: "Auto (Base / Next by story)" },
+          { value: "auto", title: "Auto (Base / Norte UI by story)" },
           { value: "base", title: "Base (Light)" },
           { value: "dark", title: "Dark (Base Dark)" },
-          { value: "next", title: "Next (Norte UI Light)" },
-          { value: "next-dark", title: "Next Dark (Norte UI Dark)" },
-          { value: "side-by-side", title: "Side-by-Side (Base vs Next)" },
+          { value: "next", title: "Next (Premium Plan Light)" },
+          { value: "next-dark", title: "Next Dark (Premium Plan Dark)" },
+          { value: "next-norteui", title: "Next Norte UI (Light)" },
+          { value: "next-norteui-dark", title: "Next Norte UI Dark" },
+          {
+            value: "side-by-side",
+            title: "Side-by-Side (Base vs Next Norte UI)",
+          },
           {
             value: "side-by-side-dark",
-            title: "Side-by-Side (Dark vs Next Dark)",
+            title: "Side-by-Side (Dark vs Next Norte UI Dark)",
           },
         ],
         dynamicTitle: true,

@@ -125,6 +125,14 @@ const verifyTokenAndThemeSourceInvariance = (baseRef: string): string[] => {
       isRecord(colorNode.dark) ? colorNode.dark : {},
       "color.dark"
     );
+    const nextColorLeaves = flattenTokenLeaves(
+      isRecord(colorNode.next) ? colorNode.next : {},
+      "color.next"
+    );
+    const nextDarkColorLeaves = flattenTokenLeaves(
+      isRecord(colorNode["next-dark"]) ? colorNode["next-dark"] : {},
+      "color.next-dark"
+    );
     const shadowLightLeaves = flattenTokenLeaves(
       isRecord(shadowNode.light) ? shadowNode.light : {},
       "shadow.light"
@@ -139,6 +147,12 @@ const verifyTokenAndThemeSourceInvariance = (baseRef: string): string[] => {
     }
     if (Object.keys(darkColorLeaves).length === 0) {
       errors.push("Missing color.dark tokens in @nimbus-ds/tokens.");
+    }
+    if (Object.keys(nextColorLeaves).length === 0) {
+      errors.push("Missing color.next tokens in @nimbus-ds/tokens.");
+    }
+    if (Object.keys(nextDarkColorLeaves).length === 0) {
+      errors.push("Missing color.next-dark tokens in @nimbus-ds/tokens.");
     }
     if (
       Object.keys(shadowLightLeaves).length === 0 ||
@@ -180,6 +194,8 @@ const verifyTokenAndThemeSourceInvariance = (baseRef: string): string[] => {
       if (
         leafKey.startsWith("color.light.") ||
         leafKey.startsWith("color.dark.") ||
+        leafKey.startsWith("color.next.") ||
+        leafKey.startsWith("color.next-dark.") ||
         leafKey.startsWith("shadow.light.") ||
         leafKey.startsWith("shadow.dark.")
       ) {
@@ -194,12 +210,14 @@ const verifyTokenAndThemeSourceInvariance = (baseRef: string): string[] => {
     }
   }
 
-  // 2. Verify all 4 theme files exist and compare globals.css.ts & nimbus-theme-dark.css.ts against baseRef
+  // 2. Verify all 6 theme files exist and compare existing 4 themes (base, dark, next, next-dark) against baseRef
   const allThemeFiles = [
     "packages/core/styles/src/themes/globals.css.ts",
     "packages/core/styles/src/themes/nimbus-theme-dark.css.ts",
     "packages/core/styles/src/themes/nimbus-theme-next.css.ts",
     "packages/core/styles/src/themes/nimbus-theme-nextDark.css.ts",
+    "packages/core/styles/src/themes/nimbus-theme-nextNorteui.css.ts",
+    "packages/core/styles/src/themes/nimbus-theme-nextNorteuiDark.css.ts",
   ];
   for (const relTheme of allThemeFiles) {
     if (!fs.existsSync(path.join(rootDir, relTheme))) {
@@ -210,6 +228,8 @@ const verifyTokenAndThemeSourceInvariance = (baseRef: string): string[] => {
   const protectedThemeFiles = [
     "packages/core/styles/src/themes/globals.css.ts",
     "packages/core/styles/src/themes/nimbus-theme-dark.css.ts",
+    "packages/core/styles/src/themes/nimbus-theme-next.css.ts",
+    "packages/core/styles/src/themes/nimbus-theme-nextDark.css.ts",
   ];
   const normalizeLine = (line: string): string =>
     line.trim().replace(/,$/, "");
@@ -238,7 +258,7 @@ const verifyTokenAndThemeSourceInvariance = (baseRef: string): string[] => {
       const rhs = match[2].trim();
       if (!rhs.endsWith("{") && !currentNormalizedLines.has(fullLine)) {
         errors.push(
-          `Base/Dark invariance violation in ${relFile}: baseline assignment "${fullLine}" was modified or removed.`
+          `Existing theme invariance violation in ${relFile}: baseline assignment "${fullLine}" was modified or removed.`
         );
       }
       match = assignmentRegex.exec(baselineContent);
@@ -251,6 +271,11 @@ const verifyTokenAndThemeSourceInvariance = (baseRef: string): string[] => {
     "packages/core/styles/dist/themes/dark.css",
     "packages/core/styles/dist/themes/next.css",
     "packages/core/styles/dist/themes/nextDark.css",
+    "packages/core/styles/dist/themes/next-dark.css",
+    "packages/core/styles/dist/themes/nextNorteui.css",
+    "packages/core/styles/dist/themes/next-norteui.css",
+    "packages/core/styles/dist/themes/nextNorteuiDark.css",
+    "packages/core/styles/dist/themes/next-norteui-dark.css",
   ];
   if (fs.existsSync(baseCssPath)) {
     const baseCss = fs.readFileSync(baseCssPath, "utf8");

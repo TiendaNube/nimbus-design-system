@@ -16,6 +16,8 @@ interface ThemeValueMap {
   dark: string;
   next: string;
   "next-dark": string;
+  "next-norteui": string;
+  "next-norteui-dark": string;
 }
 
 interface SemanticColorEntry {
@@ -77,12 +79,16 @@ const resolveStaticSemanticColorValues = (
   kebabKey: string,
   camelKey: string
 ): ThemeValueMap => {
+  const colorRecord = tokens.color as Record<string, Record<string, unknown>>;
   const lightGroup = (tokens.color.light as Record<string, unknown>)[group];
   const darkGroup = (tokens.color.dark as Record<string, unknown>)[group];
   const nextGroup = (tokens.color.next as Record<string, unknown>)[group];
   const nextDarkGroup = (tokens.color["next-dark"] as Record<string, unknown>)[
     group
   ];
+  const nextNorteuiGroup = colorRecord["next-norteui"]?.[group] ?? nextGroup;
+  const nextNorteuiDarkGroup =
+    colorRecord["next-norteui-dark"]?.[group] ?? nextDarkGroup;
 
   const lookup = (source: unknown): string => {
     if (!isRecord(source)) return "";
@@ -95,12 +101,16 @@ const resolveStaticSemanticColorValues = (
   const darkVal = lookup(darkGroup) || baseVal;
   const nextVal = lookup(nextGroup) || baseVal;
   const nextDarkVal = lookup(nextDarkGroup) || darkVal;
+  const nextNorteuiVal = lookup(nextNorteuiGroup) || nextVal;
+  const nextNorteuiDarkVal = lookup(nextNorteuiDarkGroup) || nextDarkVal;
 
   return {
     base: baseVal,
     dark: darkVal,
     next: nextVal,
     "next-dark": nextDarkVal,
+    "next-norteui": nextNorteuiVal,
+    "next-norteui-dark": nextNorteuiDarkVal,
   };
 };
 
@@ -130,8 +140,16 @@ const buildSemanticColorEntries = (
         dark: liveValues?.dark || staticValues.dark,
         next: liveValues?.next || staticValues.next,
         "next-dark": liveValues?.["next-dark"] || staticValues["next-dark"],
+        "next-norteui":
+          liveValues?.["next-norteui"] || staticValues["next-norteui"],
+        "next-norteui-dark":
+          liveValues?.["next-norteui-dark"] ||
+          staticValues["next-norteui-dark"],
       };
       const hasNextDiff =
+        values["next-norteui"].toLowerCase() !== values.base.toLowerCase() ||
+        values["next-norteui-dark"].toLowerCase() !==
+          values.dark.toLowerCase() ||
         values.next.toLowerCase() !== values.base.toLowerCase() ||
         values["next-dark"].toLowerCase() !== values.dark.toLowerCase();
 
@@ -209,7 +227,9 @@ const buildScaleEntries = (
     staticBase: string,
     staticDark = staticBase,
     staticNext = staticBase,
-    staticNextDark = staticDark
+    staticNextDark = staticDark,
+    staticNextNorteui = staticNext,
+    staticNextNorteuiDark = staticNextDark
   ) => {
     const cssVarName = extractCssVarName(cssVar);
     const live = computedMap[cssVarName];
@@ -218,8 +238,13 @@ const buildScaleEntries = (
       dark: live?.dark || staticDark,
       next: live?.next || staticNext,
       "next-dark": live?.["next-dark"] || staticNextDark,
+      "next-norteui": live?.["next-norteui"] || staticNextNorteui,
+      "next-norteui-dark":
+        live?.["next-norteui-dark"] || staticNextNorteuiDark,
     };
     const hasNextDiff =
+      values["next-norteui"].toLowerCase() !== values.base.toLowerCase() ||
+      values["next-norteui-dark"].toLowerCase() !== values.dark.toLowerCase() ||
       values.next.toLowerCase() !== values.base.toLowerCase() ||
       values["next-dark"].toLowerCase() !== values.dark.toLowerCase();
 
@@ -538,6 +563,8 @@ const TokenCatalog: React.FC<TokenCatalogProps> = ({
   const darkProbeRef = useRef<HTMLDivElement>(null);
   const nextProbeRef = useRef<HTMLDivElement>(null);
   const nextDarkProbeRef = useRef<HTMLDivElement>(null);
+  const nextNorteuiProbeRef = useRef<HTMLDivElement>(null);
+  const nextNorteuiDarkProbeRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setCategory(initialCategory);
@@ -557,7 +584,9 @@ const TokenCatalog: React.FC<TokenCatalogProps> = ({
       !baseProbeRef.current ||
       !darkProbeRef.current ||
       !nextProbeRef.current ||
-      !nextDarkProbeRef.current
+      !nextDarkProbeRef.current ||
+      !nextNorteuiProbeRef.current ||
+      !nextNorteuiDarkProbeRef.current
     ) {
       return;
     }
@@ -566,6 +595,12 @@ const TokenCatalog: React.FC<TokenCatalogProps> = ({
     const darkStyle = window.getComputedStyle(darkProbeRef.current);
     const nextStyle = window.getComputedStyle(nextProbeRef.current);
     const nextDarkStyle = window.getComputedStyle(nextDarkProbeRef.current);
+    const nextNorteuiStyle = window.getComputedStyle(
+      nextNorteuiProbeRef.current
+    );
+    const nextNorteuiDarkStyle = window.getComputedStyle(
+      nextNorteuiDarkProbeRef.current
+    );
 
     const varNames = collectAllCssVarNames(themeVars);
     const nextComputed: Record<string, ThemeValueMap> = {};
@@ -576,6 +611,10 @@ const TokenCatalog: React.FC<TokenCatalogProps> = ({
         dark: darkStyle.getPropertyValue(varName).trim(),
         next: nextStyle.getPropertyValue(varName).trim(),
         "next-dark": nextDarkStyle.getPropertyValue(varName).trim(),
+        "next-norteui": nextNorteuiStyle.getPropertyValue(varName).trim(),
+        "next-norteui-dark": nextNorteuiDarkStyle
+          .getPropertyValue(varName)
+          .trim(),
       };
     }
 
@@ -626,6 +665,8 @@ const TokenCatalog: React.FC<TokenCatalogProps> = ({
           entry.values.dark,
           entry.values.next,
           entry.values["next-dark"],
+          entry.values["next-norteui"],
+          entry.values["next-norteui-dark"],
         ]);
       }),
     [semanticColors, onlyNextDiff, normalizedQuery]
@@ -739,7 +780,7 @@ const TokenCatalog: React.FC<TokenCatalogProps> = ({
         gap: themeVars.spacing["6"],
       }}
     >
-      {/* Hidden 0x0 probes to read live CSS custom properties across all 4 themes */}
+      {/* Hidden 0x0 probes to read live CSS custom properties across all 6 themes */}
       <div
         aria-hidden="true"
         style={{
@@ -762,6 +803,12 @@ const TokenCatalog: React.FC<TokenCatalogProps> = ({
         </ThemeProvider>
         <ThemeProvider theme="next-dark">
           <div ref={nextDarkProbeRef} />
+        </ThemeProvider>
+        <ThemeProvider theme="next-norteui">
+          <div ref={nextNorteuiProbeRef} />
+        </ThemeProvider>
+        <ThemeProvider theme="next-norteui-dark">
+          <div ref={nextNorteuiDarkProbeRef} />
         </ThemeProvider>
       </div>
 
@@ -1111,7 +1158,7 @@ const TokenCatalog: React.FC<TokenCatalogProps> = ({
                           {entry.group}.{entry.tokenKey}
                         </div>
 
-                        {/* 4-Theme Value Matrix */}
+                        {/* 6-Theme Value Matrix */}
                         <div
                           style={{
                             display: "grid",
@@ -1125,7 +1172,14 @@ const TokenCatalog: React.FC<TokenCatalogProps> = ({
                           }}
                         >
                           {(
-                            ["base", "dark", "next", "next-dark"] as const
+                            [
+                              "base",
+                              "dark",
+                              "next",
+                              "next-dark",
+                              "next-norteui",
+                              "next-norteui-dark",
+                            ] as const
                           ).map((mode) => {
                             const val = entry.values[mode] || "—";
                             const isModified =
@@ -1134,6 +1188,14 @@ const TokenCatalog: React.FC<TokenCatalogProps> = ({
                                   entry.values.base.toLowerCase()) ||
                               (mode === "next-dark" &&
                                 entry.values["next-dark"].toLowerCase() !==
+                                  entry.values.dark.toLowerCase()) ||
+                              (mode === "next-norteui" &&
+                                entry.values["next-norteui"].toLowerCase() !==
+                                  entry.values.base.toLowerCase()) ||
+                              (mode === "next-norteui-dark" &&
+                                entry.values[
+                                  "next-norteui-dark"
+                                ].toLowerCase() !==
                                   entry.values.dark.toLowerCase());
                             return (
                               <div

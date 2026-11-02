@@ -20,16 +20,26 @@ export type NimbusThemeOption =
   | "dark"
   | "next"
   | "next-dark"
+  | "next-norteui"
+  | "next-norteui-dark"
   | "side-by-side"
   | "side-by-side-dark";
 
-export type ResolvedNimbusTheme = "base" | "dark" | "next" | "next-dark";
+export type ResolvedNimbusTheme =
+  | "base"
+  | "dark"
+  | "next"
+  | "next-dark"
+  | "next-norteui"
+  | "next-norteui-dark";
 
 const RESOLVED_THEMES: readonly ResolvedNimbusTheme[] = [
   "base",
   "dark",
   "next",
   "next-dark",
+  "next-norteui",
+  "next-norteui-dark",
 ];
 
 const isResolvedTheme = (value?: string): value is ResolvedNimbusTheme =>
@@ -51,7 +61,13 @@ export const resolveNimbusTheme = (
   const parameterTheme = storyParameters?.nimbusTheme;
   if (isResolvedTheme(parameterTheme)) {
     if (isDarkToggle) {
-      return parameterTheme.startsWith("next") ? "next-dark" : "dark";
+      if (parameterTheme.startsWith("next-norteui")) {
+        return "next-norteui-dark";
+      }
+      if (parameterTheme.startsWith("next")) {
+        return "next-dark";
+      }
+      return "dark";
     }
     return parameterTheme;
   }
@@ -61,7 +77,7 @@ export const resolveNimbusTheme = (
     fileName.includes("/src/next/") || fileName.includes("\\src\\next\\");
 
   if (isNextStory) {
-    return isDarkToggle ? "next-dark" : "next";
+    return isDarkToggle ? "next-norteui-dark" : "next-norteui";
   }
 
   return isDarkToggle ? "dark" : "base";
@@ -98,7 +114,8 @@ export const ThemeDocsProvider: React.FC<any> = (props) => {
   const isDarkSurface =
     selectedTheme === "side-by-side-dark" ||
     resolvedTheme === "dark" ||
-    resolvedTheme === "next-dark";
+    resolvedTheme === "next-dark" ||
+    resolvedTheme === "next-norteui-dark";
 
   return (
     <DocsContainer {...props} theme={isDarkSurface ? dark : light}>
@@ -115,7 +132,7 @@ export interface ThemeNimbusProviderProps {
 
 /**
  * Decorator wrapper that applies the selected Nimbus theme or renders a side-by-side
- * Base vs Next (or Dark vs Next Dark) comparison grid.
+ * Base vs Next Norte UI (or Dark vs Next Norte UI Dark) comparison grid.
  */
 export const ThemeNimbusProvider: React.FC<ThemeNimbusProviderProps> = ({
   children,
@@ -145,8 +162,8 @@ export const ThemeNimbusProvider: React.FC<ThemeNimbusProviderProps> = ({
     const isDarkComparison = selectedTheme === "side-by-side-dark";
     const leftTheme: ResolvedNimbusTheme = isDarkComparison ? "dark" : "base";
     const rightTheme: ResolvedNimbusTheme = isDarkComparison
-      ? "next-dark"
-      : "next";
+      ? "next-norteui-dark"
+      : "next-norteui";
 
     return (
       <div

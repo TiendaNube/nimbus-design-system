@@ -59,14 +59,14 @@ Before writing code, classify the change:
   - Optional local `packages/react/src/next/<Component>/src/<component>.css.ts`
   - `packages/react/src/next/<Component>/src/index.ts`
 
-### Step 3 — Run Barrel Generation, Base-Invariance, and 4-Theme Storybook Check
+### Step 3 — Run Barrel Generation, Base-Invariance, and 6-Theme Storybook Check
 1. If working on Path D, run `yarn generate:next-index` locally to test compilation (`packages/react/src/next/index.ts` is git-ignored and auto-generated).
 2. Run base-invariance verification:
    ```bash
    yarn check:base-invariance
    ```
-   Confirm `0` diffs on `base` and `dark`.
-3. Inspect the component in Storybook across all **4 themes** (`base`, `dark`, `next`, `next-dark`) and capture visual evidence (screenshots or Chromatic/Storybook preview links).
+   Confirm `0` diffs on `base`, `dark`, `next`, and `next-dark`.
+3. Inspect the component in Storybook across all **6 themes** (`base`, `dark`, `next`, `next-dark`, `next-norteui`, and `next-norteui-dark`) and capture visual evidence (screenshots or Chromatic/Storybook preview links).
 
 ### Step 4 — Terminal Output Rule: Push `approx/*` Branch & Record `### Approximation Reference` on the GitHub Issue
 Per Decisions `0001`, `0014`, and `0083`, `nimbus-next-component-approximation` **must never open a direct release Pull Request to `master`**.
@@ -86,7 +86,7 @@ Instead, complete the skill by performing these two actions:
 - **Commit SHA**: `<40-char-immutable-sha>`
 - **Classification Path**: `Path C` | `Path D`
 - **Target Surface**: `packages/react/src/next/<Component>`
-- **Visual Evidence**: <4-theme Storybook screenshots or links covering `base`, `dark`, `next`, `next-dark`>
+- **Visual Evidence**: <6-theme Storybook screenshots or links covering `base`, `dark`, `next`, `next-dark`, `next-norteui`, `next-norteui-dark`>
 - **Proposed Contract Delta**: <Summary of added/removed/changed props, DOM changes, and keyboard/accessibility notes>
 ```
 

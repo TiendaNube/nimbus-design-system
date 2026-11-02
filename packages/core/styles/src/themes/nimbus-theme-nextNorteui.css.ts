@@ -1,0 +1,32 @@
+import { createTheme } from "@vanilla-extract/css";
+import tokens from "@nimbus-ds/tokens/dist/js/tokens";
+
+import { vars } from "./contract.css";
+import { globalTheme } from "./globals.css";
+
+const tokenColors = tokens.color as Record<string, typeof tokens.color.next>;
+const colors = tokenColors["next-norteui"] ?? tokens.color.next;
+
+const nextNorteuiTheme = {
+  ...globalTheme,
+  colors: {
+    ...globalTheme.colors,
+    primary: {
+      surface: colors.primary.surface.value as string,
+      surfaceHighlight: colors.primary["surface-highlight"].value as string,
+      interactive: colors.primary.interactive.value as string,
+      interactiveHover: colors.primary["interactive-hover"].value as string,
+      interactivePressed: colors.primary["interactive-pressed"].value as string,
+      textLow: colors.primary["text-low"].value as string,
+      textHigh: colors.primary["text-high"].value as string,
+    },
+  },
+  utils: {
+    focus: `0 0 0 3px ${colors.primary["surface-highlight"].value as string}`,
+    aiFocus: `0 0 0 3px ${globalTheme.colors.aiGenerative.surfaceHighlight}`,
+  },
+};
+
+export const variables = createTheme(vars, nextNorteuiTheme);
+
+export default variables;
