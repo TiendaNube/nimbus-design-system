@@ -51,6 +51,9 @@ export class Docgen {
     console.log(`Bundle documentation generated successfully in ${outputPath}`);
   }
 
+  /**
+   * Generates documentation metadata for all matched base and `/next` components.
+   */
   public generate(paths: Paths): GeneratedDoc[] {
     this.paths = { ...this.paths, ...paths };
 
@@ -96,6 +99,9 @@ export class Docgen {
     return docs;
   }
 
+  /**
+   * Builds and persists the `.docs.json` artifact for a single component path.
+   */
   private createDoc(path: string): GeneratedDoc {
     console.log(`Creating documentation for ${path}...`);
 
@@ -119,7 +125,7 @@ export class Docgen {
     )}/package.json`;
     const fallbackReactPackageJsonPath = nodePath.resolve(
       this.component.path,
-      "../../../package.json"
+      "../../../../package.json"
     );
 
     this.component.sourcePackage = this.getSourceWithFallback(
@@ -198,6 +204,9 @@ export class Docgen {
     return props;
   }
 
+  /**
+   * Generates the JSON schema definition for a TypeScript type name.
+   */
   private getSchema(fullTypeName: string): TJS.Definition {
     try {
       const schema = TJS.generateSchema(
@@ -228,6 +237,9 @@ export class Docgen {
     return readFileSync(path, "utf8");
   }
 
+  /**
+   * Reads `primaryPath` when it exists, falling back to `fallbackPath` otherwise.
+   */
   private getSourceWithFallback(primaryPath: string, fallbackPath: string): string {
     if (existsSync(primaryPath)) {
       return readFileSync(primaryPath, "utf8");

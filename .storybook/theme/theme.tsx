@@ -25,27 +25,31 @@ export type NimbusThemeOption =
 
 export type ResolvedNimbusTheme = "base" | "dark" | "next" | "next-dark";
 
+const RESOLVED_THEMES: readonly ResolvedNimbusTheme[] = [
+  "base",
+  "dark",
+  "next",
+  "next-dark",
+];
+
+const isResolvedTheme = (value?: string): value is ResolvedNimbusTheme =>
+  Boolean(value && (RESOLVED_THEMES as readonly string[]).includes(value));
+
+/**
+ * Resolves the effective Nimbus theme from the Storybook toolbar selection,
+ * story-level parameters (`nimbusTheme` and `fileName`), and dark mode toggle.
+ */
 export const resolveNimbusTheme = (
   selectedTheme?: string,
   storyParameters?: { nimbusTheme?: string; fileName?: string },
   isDarkToggle?: boolean
 ): ResolvedNimbusTheme => {
-  if (
-    selectedTheme === "base" ||
-    selectedTheme === "dark" ||
-    selectedTheme === "next" ||
-    selectedTheme === "next-dark"
-  ) {
+  if (isResolvedTheme(selectedTheme)) {
     return selectedTheme;
   }
 
   const parameterTheme = storyParameters?.nimbusTheme;
-  if (
-    parameterTheme === "base" ||
-    parameterTheme === "dark" ||
-    parameterTheme === "next" ||
-    parameterTheme === "next-dark"
-  ) {
+  if (isResolvedTheme(parameterTheme)) {
     if (isDarkToggle) {
       return parameterTheme.startsWith("next") ? "next-dark" : "dark";
     }
@@ -63,6 +67,9 @@ export const resolveNimbusTheme = (
   return isDarkToggle ? "dark" : "base";
 };
 
+/**
+ * Docs container wrapper that synchronizes the active Nimbus theme with Storybook Docs.
+ */
 export const ThemeDocsProvider: React.FC<any> = (props) => {
   const [isDark, setDark] = useState<boolean>(false);
   useEffect(() => {
@@ -75,7 +82,19 @@ export const ThemeDocsProvider: React.FC<any> = (props) => {
   }, []);
 
   const selectedTheme = props?.context?.store?.userGlobals?.globals?.nimbusTheme;
-  const resolvedTheme = resolveNimbusTheme(selectedTheme, undefined, isDark);
+  let primaryStoryParameters:
+    | { nimbusTheme?: string; fileName?: string }
+    | undefined;
+  try {
+    primaryStoryParameters = props?.context?.storyById?.()?.parameters;
+  } catch {
+    primaryStoryParameters = undefined;
+  }
+  const resolvedTheme = resolveNimbusTheme(
+    selectedTheme,
+    primaryStoryParameters,
+    isDark
+  );
   const isDarkSurface =
     selectedTheme === "side-by-side-dark" ||
     resolvedTheme === "dark" ||
@@ -94,6 +113,10 @@ export interface ThemeNimbusProviderProps {
   storyParameters?: { nimbusTheme?: string; fileName?: string };
 }
 
+/**
+ * Decorator wrapper that applies the selected Nimbus theme or renders a side-by-side
+ * Base vs Next (or Dark vs Next Dark) comparison grid.
+ */
 export const ThemeNimbusProvider: React.FC<ThemeNimbusProviderProps> = ({
   children,
   selectedTheme = "auto",
@@ -119,9 +142,7 @@ export const ThemeNimbusProvider: React.FC<ThemeNimbusProviderProps> = ({
     selectedTheme === "side-by-side" ||
     selectedTheme === "side-by-side-dark"
   ) {
-    const isDarkComparison =
-      selectedTheme === "side-by-side-dark" ||
-      (selectedTheme === "side-by-side" && isDark);
+    const isDarkComparison = selectedTheme === "side-by-side-dark";
     const leftTheme: ResolvedNimbusTheme = isDarkComparison ? "dark" : "base";
     const rightTheme: ResolvedNimbusTheme = isDarkComparison
       ? "next-dark"

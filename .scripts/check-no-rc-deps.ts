@@ -1,16 +1,28 @@
 import fs from "fs";
 import path from "path";
-import glob from "glob";
 
 const rootDir = path.resolve(__dirname, "..");
+
+const findPackageJsonFiles = (dir: string, baseRel = ""): string[] => {
+  if (!fs.existsSync(dir)) return [];
+  const results: string[] = [];
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    if (entry.name === "node_modules" || entry.name === "dist") continue;
+    const relPath = baseRel ? `${baseRel}/${entry.name}` : entry.name;
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      results.push(...findPackageJsonFiles(fullPath, relPath));
+    } else if (entry.isFile() && entry.name === "package.json") {
+      results.push(relPath);
+    }
+  }
+  return results;
+};
 
 const run = () => {
   const pkgFiles = [
     "package.json",
-    ...glob.sync("packages/**/package.json", {
-      cwd: rootDir,
-      ignore: ["**/node_modules/**", "**/dist/**"],
-    }),
+    ...findPackageJsonFiles(path.join(rootDir, "packages"), "packages"),
   ];
 
   const violations: string[] = [];

@@ -15,7 +15,7 @@
   },
   "scripts": {
     "build": "yarn build:all",
-    "build:all": "yarn generate:next-index && yarn build:tokens && yarn build:icons && yarn build:components && yarn build:packages && yarn build:docs",
+    "build:all": "yarn generate:next-index && yarn build:tokens && yarn build:icons && yarn build:components && yarn build:packages --all && yarn build:docs",
     "build:components": "yarn generate:next-index && babel-node -x .ts ./.scripts/build-components",
     "build:packages": "yarn generate:next-index && babel-node -x .ts ./.scripts/build-packages",
     "build:docs": "babel-node -x .ts ./.scripts/json-documentation",

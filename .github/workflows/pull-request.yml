@@ -25,6 +25,8 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - uses: ./.github/actions/setup-node-deps
 
@@ -76,6 +78,13 @@ jobs:
 
       - name: Check nimbus-source-map.yml is up to date
         run: yarn source-map:check
+
+      - name: Check next-evolution gates
+        run: |
+          yarn check:base-invariance --base-ref "origin/${{ github.base_ref }}" --skip-jest
+          yarn check:next-breaking --base-ref "origin/${{ github.base_ref }}"
+          yarn check:no-rc-deps
+          yarn check:version-declarations
 
       - name: Run lint
         run: yarn lint

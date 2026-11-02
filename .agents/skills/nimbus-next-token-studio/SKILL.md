@@ -80,7 +80,7 @@ yarn build:packages
 yarn check:base-invariance
 ```
 
-- **Pass condition:** `yarn check:base-invariance` exits `0` with **0 diffs** on existing `base` and `dark` token values and confirms every leaf in `vars` is defined in `base`, `dark`, `next`, and `next-dark`.
+- **Pass condition:** `yarn check:base-invariance` exits `0` with **0 diffs** on existing `base` and `dark` token values (`color.light`, `color.dark`, `shadow.light`, `shadow.dark`) and theme assignments (`globals.css.ts`, `nimbus-theme-dark.css.ts`), verifies all four theme definitions (`base`, `dark`, `next`, `next-dark`) and compiled CSS variables resolve without circular or missing references, and passes the DOM/contract invariance test suite (`base-invariance.spec.tsx`).
 - If `yarn check:base-invariance` fails, fix the missing fallback or revert the unintended `base`/`dark` modification before proceeding.
 
 ### Step 4 — Verify Across All 4 Themes in Storybook

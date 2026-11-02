@@ -1,10 +1,46 @@
 import fs from "fs";
 import path from "path";
-import { execSync } from "child_process";
+import { execFileSync } from "child_process";
 import { generateNextIndex } from "./generate-next-index";
 
 const rootDir = path.resolve(__dirname, "..");
 const nextDir = path.join(rootDir, "packages/react/src/next");
+
+const compareAscii = (a: string, b: string): number => {
+  if (a < b) return -1;
+  if (a > b) return 1;
+  return 0;
+};
+
+const resolveDefaultBaseRef = (): string => {
+  try {
+    execFileSync("git", ["rev-parse", "--verify", "origin/master^{commit}"], {
+      cwd: rootDir,
+      stdio: ["ignore", "pipe", "ignore"],
+    });
+    return "origin/master";
+  } catch {
+    return "HEAD";
+  }
+};
+
+const validateGitRef = (ref: string): string => {
+  if (!ref || ref.startsWith("-")) {
+    throw new Error(`Invalid git ref argument: "${ref}"`);
+  }
+  try {
+    execFileSync("git", ["rev-parse", "--verify", `${ref}^{commit}`], {
+      cwd: rootDir,
+      stdio: ["ignore", "pipe", "ignore"],
+    });
+    return ref;
+  } catch {
+    // eslint-disable-next-line no-console
+    console.error(`❌ Invalid or unresolvable --base-ref "${ref}".`);
+    process.exit(1);
+    return ref;
+  }
+};
 
 const getExportedComponentDirs = (dir: string): string[] => {
   if (!fs.existsSync(dir)) return [];
@@ -13,21 +49,25 @@ const getExportedComponentDirs = (dir: string): string[] => {
     .filter((d) => d.isDirectory())
     .map((d) => d.name)
     .filter((name) => fs.existsSync(path.join(dir, name, "src", "index.ts")))
-    .sort();
+    .sort(compareAscii);
 };
 
 const getGitDirectoriesAtRef = (ref: string, relDir: string): string[] => {
   try {
-    const out = execSync(`git ls-tree -d --name-only ${ref}:${relDir}`, {
-      cwd: rootDir,
-      encoding: "utf8",
-      stdio: ["ignore", "pipe", "ignore"],
-    });
+    const out = execFileSync(
+      "git",
+      ["ls-tree", "-d", "--name-only", `${ref}:${relDir}`],
+      {
+        cwd: rootDir,
+        encoding: "utf8",
+        stdio: ["ignore", "pipe", "ignore"],
+      }
+    );
     return out
       .split(/\r?\n/)
       .map((s) => s.trim())
       .filter(Boolean)
-      .sort();
+      .sort(compareAscii);
   } catch {
     return [];
   }
@@ -36,8 +76,11 @@ const getGitDirectoriesAtRef = (ref: string, relDir: string): string[] => {
 const run = () => {
   const args = process.argv.slice(2);
   const baseRefIdx = args.indexOf("--base-ref");
-  const baseRef =
-    baseRefIdx !== -1 && args[baseRefIdx + 1] ? args[baseRefIdx + 1] : "HEAD";
+  const rawBaseRef =
+    baseRefIdx !== -1 && args[baseRefIdx + 1]
+      ? args[baseRefIdx + 1]
+      : resolveDefaultBaseRef();
+  const baseRef = validateGitRef(rawBaseRef);
 
   generateNextIndex(nextDir);
 

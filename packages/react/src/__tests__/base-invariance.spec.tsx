@@ -16,6 +16,14 @@ import {
   resolveNimbusTheme,
 } from "../../../../.storybook/theme";
 
+const MIN_THEME_CONTRACT_LEAF_COUNT = 90;
+
+const compareAscii = (a: string, b: string): number => {
+  if (a < b) return -1;
+  if (a > b) return 1;
+  return 0;
+};
+
 const collectLeafPaths = (
   obj: Record<string, unknown>,
   prefix = ""
@@ -31,7 +39,7 @@ const collectLeafPaths = (
       paths.push(currentPath);
     }
   });
-  return paths.sort();
+  return paths.sort(compareAscii);
 };
 
 const renderRepresentativeTree = (themeName: "base" | "dark") =>
@@ -67,13 +75,15 @@ describe("Base & Dark Theme Invariance Suite", () => {
       "height",
       "marginLeft",
       "marginRight",
-      "width"
+      "width",
     ]);
 
     const leafPaths = collectLeafPaths(
       themeVars as unknown as Record<string, unknown>
     );
-    expect(leafPaths.length).toBeGreaterThanOrEqual(90);
+    expect(leafPaths.length).toBeGreaterThanOrEqual(
+      MIN_THEME_CONTRACT_LEAF_COUNT
+    );
     expect(leafPaths).toEqual(
       expect.arrayContaining([
         "colors.primary.interactive",
@@ -88,49 +98,39 @@ describe("Base & Dark Theme Invariance Suite", () => {
         "fontSize.body.base",
         "shape.border.radius.base",
         "spacing.2",
-        "spacing.4"
+        "spacing.4",
       ])
     );
   });
 
-  it("renders core atomic & composite components with invariant DOM structure under theme=base", () => {
-    const { container } = renderRepresentativeTree("base");
+  it("renders core atomic & composite components with invariant DOM structure under theme=base and theme=dark", () => {
+    const baseResult = renderRepresentativeTree("base");
+    const darkResult = renderRepresentativeTree("dark");
 
-    const themeRoot = container.firstElementChild as HTMLElement;
-    expect(themeRoot).toBeTruthy();
-    expect(themeRoot.getAttribute("class")).toBe("");
+    const baseThemeRoot = baseResult.container.firstElementChild as HTMLElement;
+    const darkThemeRoot = darkResult.container.firstElementChild as HTMLElement;
+    expect(baseThemeRoot).toBeTruthy();
+    expect(darkThemeRoot).toBeTruthy();
+    expect(baseThemeRoot.getAttribute("class")).toBe("");
+    expect(darkThemeRoot.getAttribute("class")).toContain("dark");
 
-    const heading = container.querySelector("h2");
+    // Inner DOM beneath the ThemeProvider wrapper must be structurally identical
+    expect(baseThemeRoot.innerHTML).toBe(darkThemeRoot.innerHTML);
+
+    const heading = baseResult.container.querySelector("h2");
     expect(heading?.textContent).toBe("Orders");
 
-    const button = container.querySelector("button");
+    const button = baseResult.container.querySelector("button");
     expect(button?.textContent).toContain("Create order");
     expect(button?.hasAttribute("disabled")).toBe(false);
 
-    const input = container.querySelector(
+    const input = baseResult.container.querySelector(
       "input#search-orders"
     ) as HTMLInputElement | null;
     expect(input?.getAttribute("placeholder")).toBe("Search orders");
-  });
 
-  it("renders core atomic & composite components with invariant DOM structure under theme=dark", () => {
-    const { container } = renderRepresentativeTree("dark");
-
-    const themeRoot = container.firstElementChild as HTMLElement;
-    expect(themeRoot).toBeTruthy();
-    expect(themeRoot.getAttribute("class")).toContain("dark");
-
-    const heading = container.querySelector("h2");
-    expect(heading?.textContent).toBe("Orders");
-
-    const button = container.querySelector("button");
-    expect(button?.textContent).toContain("Create order");
-    expect(button?.hasAttribute("disabled")).toBe(false);
-
-    const input = container.querySelector(
-      "input#search-orders"
-    ) as HTMLInputElement | null;
-    expect(input?.getAttribute("placeholder")).toBe("Search orders");
+    baseResult.unmount();
+    darkResult.unmount();
   });
 
   it("renders Storybook ThemeNimbusProvider across all single and side-by-side themes without runtime errors", () => {
@@ -149,8 +149,17 @@ describe("Base & Dark Theme Invariance Suite", () => {
       )
     ).toBe("next");
 
-    const singleModes = ["auto", "base", "dark", "next", "next-dark"] as const;
-    singleModes.forEach((mode) => {
+    const singleModes: Array<{
+      mode: "auto" | "base" | "dark" | "next" | "next-dark";
+      expectedResolved: string;
+    }> = [
+      { mode: "auto", expectedResolved: "base" },
+      { mode: "base", expectedResolved: "base" },
+      { mode: "dark", expectedResolved: "dark" },
+      { mode: "next", expectedResolved: "next" },
+      { mode: "next-dark", expectedResolved: "next-dark" },
+    ];
+    singleModes.forEach(({ mode, expectedResolved }) => {
       const { container, unmount } = render(
         <ThemeNimbusProvider
           selectedTheme={mode}
@@ -162,11 +171,20 @@ describe("Base & Dark Theme Invariance Suite", () => {
         </ThemeNimbusProvider>
       );
       expect(container.textContent).toContain("5");
+      const wrapper = container.querySelector("[data-nimbus-theme]");
+      expect(wrapper?.getAttribute("data-nimbus-theme")).toBe(expectedResolved);
       unmount();
     });
 
-    const sideBySideModes = ["side-by-side", "side-by-side-dark"] as const;
-    sideBySideModes.forEach((mode) => {
+    const sideBySideExpectations: Array<{
+      mode: "side-by-side" | "side-by-side-dark";
+      leftTheme: string;
+      rightTheme: string;
+    }> = [
+      { mode: "side-by-side", leftTheme: "base", rightTheme: "next" },
+      { mode: "side-by-side-dark", leftTheme: "dark", rightTheme: "next-dark" },
+    ];
+    sideBySideExpectations.forEach(({ mode, leftTheme, rightTheme }) => {
       const { container, unmount } = render(
         <ThemeNimbusProvider selectedTheme={mode}>
           <Badge appearance="neutral" count="5" />
@@ -174,6 +192,9 @@ describe("Base & Dark Theme Invariance Suite", () => {
       );
       const panels = container.querySelectorAll("[data-nimbus-theme]");
       expect(panels.length).toBe(3);
+      expect(panels[0]?.getAttribute("data-nimbus-theme")).toBe(mode);
+      expect(panels[1]?.getAttribute("data-nimbus-theme")).toBe(leftTheme);
+      expect(panels[2]?.getAttribute("data-nimbus-theme")).toBe(rightTheme);
       unmount();
     });
   });

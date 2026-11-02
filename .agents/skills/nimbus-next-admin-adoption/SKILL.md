@@ -26,12 +26,12 @@ Do **not** use this skill to modify Nimbus packages themselves (use `nimbus-next
 ## Non-Negotiable Safety Rules in `admin`
 
 ### 1. Single Feature Flag (`NORTE_UI_NEXT`)
-All Norte UI adoption in `admin` is gated behind the single feature flag `NORTE_UI_NEXT`:
-- **Flag OFF (`NORTE_UI_NEXT = false`):** The shell renders under the legacy `base` / `dark` theme and mounts the untouched legacy `<View>.tsx` components. Visual and behavioral output with the flag OFF must remain **100% identical** to current production.
+All new Norte UI adoption in `admin` is gated behind the single feature flag `NORTE_UI_NEXT` (with the sole pre-existing production exceptions documented in Rule 2 below):
+- **Flag OFF (`NORTE_UI_NEXT = false`):** The shell renders under the legacy `base` / `dark` theme and mounts the untouched legacy `<View>.tsx` components (while the pre-existing `MenuWithSpotlight` and `ProfileMenu` subtrees continue using their local `theme="next"` providers as they already do in production). Visual and behavioral output with the flag OFF must remain **100% identical** to current production.
 - **Flag ON (`NORTE_UI_NEXT = true`):** The shell activates `NimbusThemeProvider` with `theme="next"` (or `next-dark`) and routes adopted views to their `next` variant or Path C opt-in props.
 
 ### 2. Protect Existing `theme="next"` Consumers in `stratus`
-Two components in `services-new-admin/packages/stratus` already consume `NimbusThemeProvider theme="next"` in production today:
+Two components in `services-new-admin/packages/stratus` are pre-existing production exceptions that already consume a local `NimbusThemeProvider theme="next"` today (even when `NORTE_UI_NEXT = false`):
 - `MenuWithSpotlight` (`packages/stratus/src/components/MenuWithSpotlight/MenuWithSpotlight.tsx`)
 - `ProfileMenu` (`packages/stratus/src/layouts/Navigation/components/ProfileMenu/ProfileMenu.tsx`)
 

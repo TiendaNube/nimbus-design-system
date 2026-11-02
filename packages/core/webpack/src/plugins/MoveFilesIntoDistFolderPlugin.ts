@@ -23,7 +23,7 @@ export class MoveFilesIntoDistFolderPlugin {
   apply(compiler: Compiler) {
     compiler.hooks.afterEmit.tapPromise(
       "MoveFilesIntoDistFolderPlugin",
-      async (compilation) => {
+      async () => {
         try {
           const outputPath = compiler.options.output.path;
           if (!outputPath) {
@@ -75,10 +75,7 @@ export class MoveFilesIntoDistFolderPlugin {
             })
           );
         } catch (error) {
-          const webpackError =
-            error instanceof Error ? error : new Error(String(error));
-          compilation.errors.push(webpackError as any);
-          throw webpackError;
+          throw error instanceof Error ? error : new Error(String(error));
         }
       }
     );

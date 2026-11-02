@@ -32,13 +32,16 @@ export function runSourceMapCli(config: SourceMapConfig): void {
   // so convention errors are caught in CI without causing git conflicts on nimbus-source-map.yml.
   const nextDir = path.join(config.cwd, "packages/react/src/next");
   if (!includeNextFlag && fs.existsSync(nextDir)) {
-    generateSourceMap({
+    const nextValidationDoc = generateSourceMap({
       ...config,
       groups: {
         ...config.groups,
         next: "packages/react/src/next",
       },
     });
+    if (nextValidationDoc.schema !== doc.schema) {
+      throw new Error("Unexpected schema mismatch during /next source-map validation.");
+    }
   }
 
   if (check) {

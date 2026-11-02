@@ -1,10 +1,13 @@
 import React from "react";
-import type { Preview } from "@storybook/react";
+import type { Decorator, Preview } from "@storybook/react";
 
 import { light, dark, ThemeDocsProvider, ThemeNimbusProvider } from "./theme";
 import "./static/style.css";
 
 const preview: Preview = {
+  initialGlobals: {
+    nimbusTheme: "auto",
+  },
   parameters: {
     actions: { argTypesRegex: "^on[A-Z].*" },
     controls: {
@@ -61,7 +64,7 @@ const preview: Preview = {
 
 export default preview;
 
-export const decorators = [
+export const decorators: Decorator[] = [
   (renderStory, context) => (
     <ThemeNimbusProvider
       selectedTheme={context.globals?.nimbusTheme}

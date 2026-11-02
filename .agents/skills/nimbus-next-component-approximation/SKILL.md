@@ -81,7 +81,7 @@ Instead, complete the skill by performing these two actions:
 
 ```markdown
 ### Approximation Reference
-- **Repository**: `TiendaNube/nimbus-design-system`
+- **Repository**: `<repository-owner>/<repository-name>` (e.g., `TiendaNube/nimbus-design-system` or `TiendaNube/nimbus-patterns`)
 - **Branch**: `approx/next-<component>-<slug>`
 - **Commit SHA**: `<40-char-immutable-sha>`
 - **Classification Path**: `Path C` | `Path D`

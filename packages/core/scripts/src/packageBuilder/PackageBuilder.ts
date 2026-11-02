@@ -1,13 +1,24 @@
 import fs from "fs";
 import { execSync } from "child_process";
 
+const RELEASE_SECTION_REGEX = /^releases\s*:/;
+const TOP_LEVEL_KEY_REGEX = /^[A-Za-z0-9_@-]+\s*:/;
+const RELEASE_ENTRY_REGEX = /^ {2,}"?(@[^":\s]+|[A-Za-z0-9_.-]+)"?\s*:/;
+const QUOTE_REGEX = /"/g;
+
 /* eslint no-console: "off" */
 export class PackageBuilder {
+  /**
+   * Parses a `.yarn/versions/*.yml` manifest file and returns the list of package names.
+   */
   public getPackagesToBuild(path: string): string[] {
     const content = this.getContentVersions(path);
     return this.processVersions(content);
   }
 
+  /**
+   * Collects the deduplicated union of package names across multiple `.yarn/versions/*.yml` files.
+   */
   public getPackagesToBuildFromPaths(paths: string[]): string[] {
     const union = new Set<string>();
     for (const manifestPath of paths) {
@@ -18,25 +29,26 @@ export class PackageBuilder {
     return Array.from(union);
   }
 
+  /**
+   * Extracts package names from the `releases:` block of a Yarn version manifest.
+   */
   private processVersions(content: string): string[] {
     const lines = content.split(/\r?\n/);
     const packages: string[] = [];
     let inReleases = false;
 
     for (const line of lines) {
-      if (/^releases\s*:/.test(line)) {
+      if (RELEASE_SECTION_REGEX.test(line)) {
         inReleases = true;
         continue;
       }
       if (inReleases) {
-        if (/^[A-Za-z0-9_@-]+\s*:/.test(line)) {
+        if (TOP_LEVEL_KEY_REGEX.test(line)) {
           break;
         }
-        const match = line.match(
-          /^ {2,}"?(@[^":\s]+|[A-Za-z0-9_.-]+)"?\s*:/
-        );
+        const match = RELEASE_ENTRY_REGEX.exec(line);
         if (match?.[1]) {
-          packages.push(match[1].replace(/"/g, ""));
+          packages.push(match[1].replace(QUOTE_REGEX, ""));
         }
       }
     }
@@ -49,7 +61,7 @@ export class PackageBuilder {
     return Array.from(
       new Set(
         Array.from(content.matchAll(regex), (match) =>
-          match[1].replace(/"/g, "")
+          match[1].replace(QUOTE_REGEX, "")
         )
       )
     );
