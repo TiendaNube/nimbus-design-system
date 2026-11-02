@@ -8,10 +8,50 @@ export class PackageBuilder {
     return this.processVersions(content);
   }
 
-  private processVersions(content: string) {
+  public getPackagesToBuildFromPaths(paths: string[]): string[] {
+    const union = new Set<string>();
+    for (const manifestPath of paths) {
+      for (const pkg of this.getPackagesToBuild(manifestPath)) {
+        union.add(pkg);
+      }
+    }
+    return Array.from(union);
+  }
+
+  private processVersions(content: string): string[] {
+    const lines = content.split(/\r?\n/);
+    const packages: string[] = [];
+    let inReleases = false;
+
+    for (const line of lines) {
+      if (/^releases\s*:/.test(line)) {
+        inReleases = true;
+        continue;
+      }
+      if (inReleases) {
+        if (/^[A-Za-z0-9_@-]+\s*:/.test(line)) {
+          break;
+        }
+        const match = line.match(
+          /^ {2,}"?(@[^":\s]+|[A-Za-z0-9_.-]+)"?\s*:/
+        );
+        if (match?.[1]) {
+          packages.push(match[1].replace(/"/g, ""));
+        }
+      }
+    }
+
+    if (packages.length > 0) {
+      return Array.from(new Set(packages));
+    }
+
     const regex = /^ {2}"?([^":]+)"?:/gm;
-    return Array.from(content.matchAll(regex), (match) =>
-      match[1].replace(/"/g, "")
+    return Array.from(
+      new Set(
+        Array.from(content.matchAll(regex), (match) =>
+          match[1].replace(/"/g, "")
+        )
+      )
     );
   }
 

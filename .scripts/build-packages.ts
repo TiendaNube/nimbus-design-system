@@ -8,15 +8,21 @@ dotenv.config({
 });
 
 try {
+  const args = process.argv.slice(2);
+  const buildAll =
+    args.includes("--all") || args.includes("--all-packages");
   const paths = glob.sync(path.join(".yarn/versions/*.yml"));
-  if (!paths.length) {
+
+  if (!paths.length && !buildAll) {
     throw new Error(
       "The versions file was not found so it was not possible to perform the build..."
     );
   }
 
   const packageBuilder = new PackageBuilder();
-  const packagesToBuild = packageBuilder.getPackagesToBuild(paths[0]);
+  const packagesToBuild = buildAll
+    ? ["@nimbus-ds/styles", "@nimbus-ds/components"]
+    : packageBuilder.getPackagesToBuildFromPaths(paths);
   // const nimbusHelper = packagesToBuild.find(
   //   (packageToBuild) => packageToBuild === "nimbus-helper"
   // );

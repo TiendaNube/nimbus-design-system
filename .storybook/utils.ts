@@ -170,6 +170,14 @@ export const convertTsConfigPathsToWebpackAliases = () => {
     rootDir,
     "packages/core/typings/src/index.ts"
   );
+  paths["@nimbus-ds/components"] = path.join(
+    rootDir,
+    "packages/react/src/index.ts"
+  );
+  paths["@nimbus-ds/components/next"] = path.join(
+    rootDir,
+    "packages/react/src/next/index.ts"
+  );
   paths[".storybook"] = path.join(rootDir, ".storybook");
   paths["@common"] = path.join(rootDir, "packages/react/src/common");
   return paths;

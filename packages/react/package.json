@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "files": [
     "dist",
-    "README.md"
+    "README.md",
+    "next"
   ],
   "sideEffects": false,
   "scripts": {
@@ -37,6 +38,11 @@
     ".": {
       "import": "./dist/index.js",
       "require": "./dist/index.js"
+    },
+    "./next": {
+      "types": "./dist/next/index.d.ts",
+      "import": "./dist/next/index.js",
+      "require": "./dist/next/index.js"
     },
     "./components-props.json": {
       "import": "./dist/components-props.json",
@@ -213,6 +219,13 @@
     "./TimePicker": {
       "import": "./dist/TimePicker/index.js",
       "require": "./dist/TimePicker/index.js"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "next": [
+        "./dist/next/index.d.ts"
+      ]
     }
   }
 }

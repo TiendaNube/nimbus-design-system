@@ -1,0 +1,8 @@
+{
+  "name": "@nimbus-ds/components/next",
+  "private": true,
+  "main": "../dist/next/index.js",
+  "module": "../dist/next/index.js",
+  "types": "../dist/next/index.d.ts",
+  "sideEffects": false
+}

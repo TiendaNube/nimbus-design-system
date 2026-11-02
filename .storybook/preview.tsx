@@ -27,11 +27,29 @@ const preview: Preview = {
     },
     options: {
       storySort: {
-        order: ["Atomic", "Composite", "Skeleton"],
+        order: ["Atomic", "Composite", "Next", "Skeleton"],
       },
     },
     backgrounds: {
       disable: true,
+    },
+  },
+  globalTypes: {
+    nimbusTheme: {
+      name: "Nimbus Theme",
+      description: "Active Nimbus theme generation and color mode",
+      defaultValue: "auto",
+      toolbar: {
+        icon: "paintbrush",
+        items: [
+          { value: "auto", title: "Auto (Base / Next by story)" },
+          { value: "base", title: "Base (Light)" },
+          { value: "dark", title: "Dark (Base Dark)" },
+          { value: "next", title: "Next (Norte UI Light)" },
+          { value: "next-dark", title: "Next Dark (Norte UI Dark)" },
+        ],
+        dynamicTitle: true,
+      },
     },
   },
 };
@@ -39,5 +57,12 @@ const preview: Preview = {
 export default preview;
 
 export const decorators = [
-  (renderStory) => <ThemeNimbusProvider>{renderStory()}</ThemeNimbusProvider>,
+  (renderStory, context) => (
+    <ThemeNimbusProvider
+      selectedTheme={context.globals?.nimbusTheme}
+      storyParameters={context.parameters}
+    >
+      {renderStory()}
+    </ThemeNimbusProvider>
+  ),
 ];

@@ -198,7 +198,18 @@ function buildComponentEntry(
   const srcFiles = listFiles(srcDir);
   const { unclaimed } = classifySrcFiles(srcDir, srcFiles, normalizedName);
 
-  const packageName = workspaceByLocation.get(relComponentRoot);
+  let packageName = workspaceByLocation.get(relComponentRoot);
+  if (!packageName && group === "next") {
+    const parentLocation = path.posix.dirname(
+      path.posix.dirname( path.posix.dirname(relComponentRoot) )
+    );
+    const parentPackage =
+      workspaceByLocation.get(parentLocation) ??
+      workspaceByLocation.get("packages/react");
+    if (parentPackage) {
+      packageName = `${parentPackage}/next`;
+    }
+  }
   if (!packageName) {
     throw new Error(
       `No yarn workspace found at ${relComponentRoot} — is ${name} missing its own package.json?`
