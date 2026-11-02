@@ -80,9 +80,11 @@ jobs:
         run: yarn source-map:check
 
       - name: Check next-evolution gates
+        env:
+          BASE_REF: origin/${{ github.base_ref }}
         run: |
-          yarn check:base-invariance --base-ref "origin/${{ github.base_ref }}" --skip-jest
-          yarn check:next-breaking --base-ref "origin/${{ github.base_ref }}"
+          yarn check:base-invariance --base-ref "$BASE_REF" --skip-jest
+          yarn check:next-breaking --base-ref "$BASE_REF"
           yarn check:no-rc-deps
           yarn check:version-declarations
 

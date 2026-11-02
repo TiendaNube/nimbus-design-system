@@ -33,7 +33,7 @@ const flattenTokenLeaves = (
 
 const parseCssVariables = (cssContent: string): Record<string, string> => {
   const varsMap: Record<string, string> = {};
-  const declRegex = /(--[A-Za-z0-9_-]+)\s*:\s*([^;}]+);/g;
+  const declRegex = /(--[A-Za-z0-9_-]+)\s*:\s*([^;}]+)(?=[;}])/g;
   let match = declRegex.exec(cssContent);
   while (match !== null) {
     varsMap[match[1].trim()] = match[2].trim();

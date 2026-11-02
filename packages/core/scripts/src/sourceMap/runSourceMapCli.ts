@@ -39,8 +39,16 @@ export function runSourceMapCli(config: SourceMapConfig): void {
         next: "packages/react/src/next",
       },
     });
-    if (nextValidationDoc.schema !== doc.schema) {
-      throw new Error("Unexpected schema mismatch during /next source-map validation.");
+    const nextComponents = nextValidationDoc.components.filter(
+      (entry) => entry.group === "next"
+    );
+    for (const entry of nextComponents) {
+      const entryPoint = path.join(nextDir, entry.name, "src", "index.ts");
+      if (!fs.existsSync(entryPoint)) {
+        throw new Error(
+          `Next component "${entry.name}" in packages/react/src/next is missing required entry point "src/index.ts".`
+        );
+      }
     }
   }
 
