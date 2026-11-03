@@ -25,9 +25,9 @@ export const variables = createTheme(vars, {
     primary: {
       surface: readPrimaryToken("surface"),
       surfaceHighlight: readPrimaryToken("surface-highlight"),
-      interactive: "#38786B",
-      interactiveHover: "#2E655A",
-      interactivePressed: "#245247",
+      interactive: readPrimaryToken("interactive"),
+      interactiveHover: readPrimaryToken("interactive-hover"),
+      interactivePressed: readPrimaryToken("interactive-pressed"),
       textLow: readPrimaryToken("text-low"),
       textHigh: readPrimaryToken("text-high"),
     },

@@ -32,12 +32,7 @@ const nextNorteuiDarkTheme = {
   ...globalTheme,
   colors: {
     ...globalTheme.colors,
-    primary: {
-      ...mapToneScale(nextNorteuiColors.primary),
-      interactive: "#84A3D8",
-      interactiveHover: "#9BB5E1",
-      interactivePressed: "#B3C8EB",
-    },
+    primary: mapToneScale(nextNorteuiColors.primary),
     success: mapToneScale(darkColors.success),
     warning: mapToneScale(darkColors.warning),
     danger: mapToneScale(darkColors.danger),
