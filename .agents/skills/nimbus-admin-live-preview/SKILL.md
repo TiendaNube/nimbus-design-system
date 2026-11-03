@@ -75,7 +75,7 @@ What `yarn watch:admin` does:
 
 - Ensures `packages/core/tokens/dist/index.js` and `packages/core/styles/dist/index.js` exist on startup.
 - Watches `packages/core/styles/src/**/*` and runs a fast incremental `@nimbus-ds/styles` build (`NIMBUS_SKIP_DTS=true` + `transpileOnly`) when `.css.ts` files change.
-- Watches `packages/core/tokens/tokens/**/*.json` and rebuilds `@nimbus-ds/tokens` + `@nimbus-ds/styles` when token JSON files change.
+- Watches `packages/core/tokens/src/**/*.json` and rebuilds `@nimbus-ds/tokens` + `@nimbus-ds/styles` when token JSON files change.
 - Watches `packages/react/src/next` and auto-updates `packages/react/src/next/index.ts` when new `/next` components are added.
 
 _(If adding new `/next` pattern folders in `nimbus-patterns`, you can also run `yarn watch:admin` in `<NIMBUS_PATTERNS_PATH>`.)_
@@ -113,13 +113,28 @@ Confirm that the Vite startup output shows the live bridge banner pointing to th
 | Component `.tsx` / `.ts` (`nimbus-design-system/packages/react/src/**`) | Direct Vite Fast Refresh (no Nimbus build)                                           | **< 200ms**     |
 | Pattern `.tsx` / `.ts` (`nimbus-patterns/packages/react/src/**`)        | Direct Vite Fast Refresh (no Nimbus build)                                           | **< 200ms**     |
 | Style `.css.ts` (`nimbus-design-system/packages/core/styles/src/**`)    | `yarn watch:admin` rebuilds `@nimbus-ds/styles` → Vite CSS HMR                       | **~5–8s**       |
-| Token `.json` (`nimbus-design-system/packages/core/tokens/tokens/**`)   | `yarn watch:admin` rebuilds `@nimbus-ds/tokens` + `@nimbus-ds/styles` → Vite CSS HMR | **~8–10s**      |
+| Token `.json` (`nimbus-design-system/packages/core/tokens/src/**`)      | `yarn watch:admin` rebuilds `@nimbus-ds/tokens` + `@nimbus-ds/styles` → Vite CSS HMR | **~8–10s**      |
 
 To preview **Norte UI (`next-norteui` / `next-norteui-dark`)** in Admin:
 
 - Ensure the active store in Admin has the `norte-ui` tag (`NORTE_UI_NEXT` feature flag in `packages/stratus/src/App/featuresFlags.ts`) so `ThemeManager` activates `<ThemeProvider theme="next-norteui">`.
 
-### Step 5 — Disconnect Cleanly When Finished
+### Step 5 — Formal Handoff When a Slice Is Complete (Draft PR + GitHub Issue)
+
+When the Designer + Agent pair finishes iterating on a slice of their Nimbus update in the live Admin preview and wants to formalize it:
+
+1. **Separate mixed changes first** (if both tokens and components were edited in the same session):
+   - Keep `packages/core/{tokens,styles}` (Path A) separate from `packages/react/src/**` (Paths B, C, and D).
+2. **For Path B, Path C, or Path D component/pattern updates (`nimbus-next-component-approximation`):**
+   - Run `yarn check:base-invariance` in the Nimbus repository (`0` diffs on `base`, `dark`, `next`, `next-dark`).
+   - Push the component approximation branch `approx/next-<component-kebab>-<short-slug>` (staging only the component directory, never shared aggregate files like `packages/react/src/next/index.ts` or `nimbus-source-map.yml`).
+   - Open an **unmerged Draft Pull Request** (`gh pr create --draft`) on `approx/next-<component-kebab>-<short-slug>` so the formal construction agent has the exact diff and Storybook Preview as its starting base.
+   - Open the intake **GitHub Issue** (`gh issue create`) containing the `### Approximation Reference` block (with `Repository`, `Branch`, `Commit SHA`, `Draft PR`, `Classification Path`, `Target Surface`, `Visual Evidence`, and `Proposed Contract Delta`).
+   - Follow the complete step-by-step templates in [`nimbus-next-component-approximation`](../nimbus-next-component-approximation/SKILL.md).
+3. **For Path A token/theme updates (`nimbus-next-token-studio`):**
+   - Follow [`nimbus-next-token-studio`](../nimbus-next-token-studio/SKILL.md) to verify `yarn check:base-invariance` and commit on `feat/next-norteui-tokens-<short-slug>`.
+
+### Step 6 — Disconnect Cleanly When Finished
 
 To return Admin to its standard `node_modules` dependencies:
 
