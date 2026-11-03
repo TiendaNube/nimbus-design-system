@@ -17,7 +17,7 @@ const mapToneScale = (group: ToneTokenMap) => ({
   interactiveHover: String(group["interactive-hover"].value),
   interactivePressed: String(group["interactive-pressed"].value),
   textLow: String(group["text-low"].value),
-  textHigh: String(group["text-high"].value)
+  textHigh: String(group["text-high"].value),
 });
 
 const colorDict = tokens.color as Record<string, Record<string, ToneTokenMap>>;
@@ -32,7 +32,12 @@ const nextNorteuiDarkTheme = {
   ...globalTheme,
   colors: {
     ...globalTheme.colors,
-    primary: mapToneScale(nextNorteuiColors.primary),
+    primary: {
+      ...mapToneScale(nextNorteuiColors.primary),
+      interactive: "#84A3D8",
+      interactiveHover: "#9BB5E1",
+      interactivePressed: "#B3C8EB",
+    },
     success: mapToneScale(darkColors.success),
     warning: mapToneScale(darkColors.warning),
     danger: mapToneScale(darkColors.danger),
@@ -40,14 +45,14 @@ const nextNorteuiDarkTheme = {
       ...mapToneScale(darkColors.neutral),
       background: String(darkColors.neutral.background.value),
       surfaceDisabled: String(darkColors.neutral["surface-disabled"].value),
-      textDisabled: String(darkColors.neutral["text-disabled"].value)
-    }
+      textDisabled: String(darkColors.neutral["text-disabled"].value),
+    },
   },
   utils: {
     focus: `0 0 0 3px ${String(
       nextNorteuiColors.primary["surface-highlight"].value
     )}`,
-    aiFocus: `0 0 0 3px ${globalTheme.colors.aiGenerative.surfaceHighlight}`
+    aiFocus: `0 0 0 3px ${globalTheme.colors.aiGenerative.surfaceHighlight}`,
   },
   shadow: {
     level: {
@@ -56,9 +61,9 @@ const nextNorteuiDarkTheme = {
       2: readShadow("2"),
       3: readShadow("3"),
       4: readShadow("4"),
-      5: readShadow("5")
-    }
-  }
+      5: readShadow("5"),
+    },
+  },
 };
 
 export const variables = createTheme(vars, nextNorteuiDarkTheme);

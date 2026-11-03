@@ -25,17 +25,17 @@ export const variables = createTheme(vars, {
     primary: {
       surface: readPrimaryToken("surface"),
       surfaceHighlight: readPrimaryToken("surface-highlight"),
-      interactive: readPrimaryToken("interactive"),
-      interactiveHover: readPrimaryToken("interactive-hover"),
-      interactivePressed: readPrimaryToken("interactive-pressed"),
+      interactive: "#4D73B8",
+      interactiveHover: "#3F63A3",
+      interactivePressed: "#34548C",
       textLow: readPrimaryToken("text-low"),
-      textHigh: readPrimaryToken("text-high")
-    }
+      textHigh: readPrimaryToken("text-high"),
+    },
   },
   utils: {
     focus: `0 0 0 3px ${readPrimaryToken("surface-highlight")}`,
-    aiFocus: `0 0 0 3px ${globalTheme.colors.aiGenerative.surfaceHighlight}`
-  }
+    aiFocus: `0 0 0 3px ${globalTheme.colors.aiGenerative.surfaceHighlight}`,
+  },
 });
 
 export default variables;
