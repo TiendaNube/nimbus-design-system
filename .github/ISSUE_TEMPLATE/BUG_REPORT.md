@@ -38,3 +38,21 @@ If applicable, add screenshots to help explain your problem.
 
 ❗️ **Additional context**
 Add any other context about the problem here.
+
+## Nimbus evolution
+
+Optional. Select one generation and all applicable paths (A–D); unchecked groups default to `current` and `not-evaluated`.
+Not evaluated cannot be combined with A–D; multiple generations require clarification.
+Paths are suggestions confirmed by Discovery; this context does not activate Admin or grant approval.
+For Norte UI token work, existing values and output for `base`, `dark`, `next`, and `next-dark` stay unchanged; renewed values belong only to `next-norteui` / `next-norteui-dark`.
+
+- **Target generation**:
+  - [ ] Current generation (`current`)
+  - [ ] Norte UI (`norte-ui`)
+- **Proposed evolution paths**:
+  - [ ] Not evaluated — help me choose (`not-evaluated`)
+  - [ ] Path A — Style values only; same API and structure (`A`)
+  - [ ] Path B — Internal structure changes under Norte UI; same API (`B`)
+  - [ ] Path C — New optional prop or variant; existing defaults unchanged (`C`)
+  - [ ] Path D — Incompatible API; separate /next component (`D`)
+- **Approximation link**: <!-- Optional: preview, draft PR or code URL. -->
