@@ -65,6 +65,12 @@ Also, **never** create a per-component `packages/react/src/next/<Component>/pack
 
 ---
 
+## Execution Modes
+
+During interactive exploration in a live preview (`NIMBUS_LOCAL=true`), follow [Visual Iteration vs. Formal Closure](../nimbus-admin-live-preview/SKILL.md#visual-iteration-vs-formal-closure): apply the smallest component source change, let Vite Fast Refresh update the preview, and return control for manual visual confirmation by the designer (inspecting the browser automatically only on explicit request). Run Steps 3–4 (base-invariance check, 6-theme visual evidence, Draft PR, and GitHub Issue creation) at **formal closure** when the user asks to formalize or hand off the slice.
+
+---
+
 ## Step-by-Step Workflow
 
 ### Step 1 — Inspect Working Tree & Separate Mixed Live-Admin Session Changes
@@ -151,9 +157,9 @@ EOF
 )"
 ```
 
-#### 3. Create (or update) the GitHub Issue with `### Approximation Reference` (`gh issue create`)
+#### 3. Create (or update) the GitHub Issue with `## Nimbus evolution` and `### Approximation Reference` (`gh issue create`)
 
-Create the intake GitHub Issue on the target repository (`TiendaNube/nimbus-design-system` or `TiendaNube/nimbus-patterns`) containing the canonical `### Approximation Reference` block so the automated Discovery, Specification, and Construction runtime (`.github/aw/runtime/stage_context.py`) extracts `approximation-reference.json` automatically:
+Create the intake GitHub Issue on the target repository (`TiendaNube/nimbus-design-system` or `TiendaNube/nimbus-patterns`) containing both the `## Nimbus evolution` context section (`ONB-1497`, `.github/aw/runtime/next_context.py`) and the canonical `### Approximation Reference` block so the automated Intake, Discovery, Specification, and Construction runtime (`.github/aw/runtime/stage_context.py`) extracts the evolution metadata and `approximation-reference.json` automatically:
 
 ```markdown
 ## Problem & Context
@@ -163,6 +169,19 @@ Create the intake GitHub Issue on the target repository (`TiendaNube/nimbus-desi
 ## Proposed Solution
 
 <High-level summary of the component approximation>
+
+## Nimbus evolution
+
+- **Target generation**:
+  - [ ] Current generation (`current`)
+  - [x] Norte UI (`norte-ui`)
+- **Proposed evolution paths**:
+  - [ ] Not evaluated — help me choose (`not-evaluated`)
+  - [ ] Path A — Style values only; same API and structure (`A`)
+  - [ ] Path B — Internal structure changes under Norte UI; same API (`B`)
+  - [ ] Path C — New optional prop or variant; existing defaults unchanged (`C`)
+  - [ ] Path D — Incompatible API; separate /next component (`D`)
+- **Approximation link**: <pr-url>
 
 ### Approximation Reference
 

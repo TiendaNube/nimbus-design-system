@@ -35,6 +35,12 @@ Use this skill whenever a Designer or Engineer wants to:
 
 ---
 
+## Visual Iteration vs. Formal Closure
+
+Apply the canonical [Visual Iteration vs. Formal Closure](../../../.agents/skills/nimbus-admin-live-preview/SKILL.md#visual-iteration-vs-formal-closure) timing rule: while exploring, apply the edit using the running preview and return control for manual visual confirmation by the designer. Automatic browser verification requires an explicit user request. Run formal validation and handoff requirements against the final diff when closure is requested.
+
+---
+
 ## Step-by-Step Workflow
 
 ### Step 0 — Verify or Bootstrap Local Admin Environment (`./admin setup`)
@@ -74,7 +80,7 @@ yarn watch:admin
 What `yarn watch:admin` does:
 
 - Ensures `packages/core/tokens/dist/index.js` and `packages/core/styles/dist/index.js` exist on startup.
-- Watches `packages/core/styles/src/**/*` and runs a fast incremental `@nimbus-ds/styles` build (`NIMBUS_SKIP_DTS=true` + `transpileOnly`) when `.css.ts` files change.
+- Watches `packages/core/styles/src/themes/*` (`nimbus-theme-*.css.ts` and `*.json`) and updates theme CSS directly in **< 1s** (no JS rebuild) when theme values change; runs an incremental `@nimbus-ds/styles` build (`NIMBUS_SKIP_DTS=true` + `transpileOnly`) for other `.css.ts` changes.
 - Watches `packages/core/tokens/src/**/*.json` and rebuilds `@nimbus-ds/tokens` + `@nimbus-ds/styles` when token JSON files change.
 - Watches `packages/react/src/next` and auto-updates `packages/react/src/next/index.ts` when new `/next` components are added.
 
@@ -108,12 +114,13 @@ Confirm that the Vite startup output shows the live bridge banner pointing to th
 
 ### Step 4 — Verify Theme & Iterate Live
 
-| Layer edited in local Nimbus                                            | How Admin updates                                                                    | Typical latency |
-| ----------------------------------------------------------------------- | ------------------------------------------------------------------------------------ | --------------- |
-| Component `.tsx` / `.ts` (`nimbus-design-system/packages/react/src/**`) | Direct Vite Fast Refresh (no Nimbus build)                                           | **< 200ms**     |
-| Pattern `.tsx` / `.ts` (`nimbus-patterns/packages/react/src/**`)        | Direct Vite Fast Refresh (no Nimbus build)                                           | **< 200ms**     |
-| Style `.css.ts` (`nimbus-design-system/packages/core/styles/src/**`)    | `yarn watch:admin` rebuilds `@nimbus-ds/styles` → Vite CSS HMR                       | **~5–8s**       |
-| Token `.json` (`nimbus-design-system/packages/core/tokens/src/**`)      | `yarn watch:admin` rebuilds `@nimbus-ds/tokens` + `@nimbus-ds/styles` → Vite CSS HMR | **~8–10s**      |
+| Layer edited in local Nimbus                                               | How Admin updates                                                                    | Typical latency |
+| -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ | --------------- |
+| Component `.tsx` / `.ts` (`nimbus-design-system/packages/react/src/**`)    | Direct Vite Fast Refresh (no Nimbus build)                                           | **< 200ms**     |
+| Pattern `.tsx` / `.ts` (`nimbus-patterns/packages/react/src/**`)           | Direct Vite Fast Refresh (no Nimbus build)                                           | **< 200ms**     |
+| Theme values (`packages/core/styles/src/themes/nimbus-theme-*.css.ts`)     | `yarn watch:admin` direct CSS fast-path → Vite CSS HMR (no JS rebuild)               | **< 1s**        |
+| Other style `.css.ts` (`nimbus-design-system/packages/core/styles/src/**`) | `yarn watch:admin` rebuilds `@nimbus-ds/styles` → Vite CSS HMR                       | **~5–8s**       |
+| Token `.json` (`nimbus-design-system/packages/core/tokens/src/**`)         | `yarn watch:admin` rebuilds `@nimbus-ds/tokens` + `@nimbus-ds/styles` → Vite CSS HMR | **~5–8s**       |
 
 To preview **Norte UI (`next-norteui` / `next-norteui-dark`)** in Admin:
 

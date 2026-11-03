@@ -35,6 +35,24 @@ Use this skill whenever a Designer or Engineer wants to:
 
 ---
 
+## Visual Iteration vs. Formal Closure
+
+Default to **visual iteration** while the designer is trying values, comparing variants, or asking for another small adjustment:
+
+- Identify the affected theme/component and edit the smallest relevant source change. Preserve the existing theme and contract boundaries throughout iteration.
+- Reuse the running Admin and watchers. Let HMR or the watcher perform the build needed to display the change; do not launch an additional full build for each adjustment.
+- **Manual visual verification by default:** after applying the source edit, return control with “Ready to review” (or “Listo para mirar”) and name the expected visible change. Do not open or inspect the browser, read computed styles, or capture screenshots for each adjustment. Ask the designer to confirm whether the change is visible and acceptable; until that confirmation, report it as applied in source with visual verification pending. Record the user's confirmation as the visual OK.
+- **Automatic visual verification on explicit request:** if the user asks to verify automatically (for example, “verificalo”), inspect the affected result in the current Admin view and report what was actually observed. A requested session-wide preference remains active until changed.
+- Do not make iteration wait for the full test suite, base-invariance gate, six-theme evidence, release metadata, or PR preparation on every value change.
+- When interaction timing is requested, measure from the start of execution until the edit is applied and ready for user review; include automatic verification only when requested. Label the measured interval clearly and report user confirmation separately. Do not present this execution interval as request-to-response time or HMR latency.
+- Investigate a broken preview or a suspected contract/base-theme regression immediately with the smallest relevant check. An explicitly requested validation also takes precedence over this lightweight loop.
+
+Enter **formal closure** when the user asks for a PR, handoff, release, or formal validation. State the classification: Path A follows `nimbus-next-token-studio`; Paths B/C/D follow `nimbus-next-component-approximation`. Run that workflow's required checks and gather its evidence against the final diff. Reuse checks already valid for that diff; repeat only checks invalidated by subsequent changes. Report outstanding checks accurately and do not present a draft with pending requirements as fully validated.
+
+This timing rule defers formal checks during exploration; it does not waive them at closure, change handoff criteria, or authorize publishing or merging.
+
+---
+
 ## Step-by-Step Workflow
 
 ### Step 0 — Verify or Bootstrap Local Admin Environment (`./admin setup`)
@@ -74,7 +92,7 @@ yarn watch:admin
 What `yarn watch:admin` does:
 
 - Ensures `packages/core/tokens/dist/index.js` and `packages/core/styles/dist/index.js` exist on startup.
-- Watches `packages/core/styles/src/**/*` and runs a fast incremental `@nimbus-ds/styles` build (`NIMBUS_SKIP_DTS=true` + `transpileOnly`) when `.css.ts` files change.
+- Watches `packages/core/styles/src/themes/*` (`nimbus-theme-*.css.ts` and `*.json`) and updates theme CSS directly in **< 1s** (no JS rebuild) when theme values change; runs an incremental `@nimbus-ds/styles` build (`NIMBUS_SKIP_DTS=true` + `transpileOnly`) for other `.css.ts` changes.
 - Watches `packages/core/tokens/src/**/*.json` and rebuilds `@nimbus-ds/tokens` + `@nimbus-ds/styles` when token JSON files change.
 - Watches `packages/react/src/next` and auto-updates `packages/react/src/next/index.ts` when new `/next` components are added.
 
@@ -108,12 +126,13 @@ Confirm that the Vite startup output shows the live bridge banner pointing to th
 
 ### Step 4 — Verify Theme & Iterate Live
 
-| Layer edited in local Nimbus                                            | How Admin updates                                                                    | Typical latency |
-| ----------------------------------------------------------------------- | ------------------------------------------------------------------------------------ | --------------- |
-| Component `.tsx` / `.ts` (`nimbus-design-system/packages/react/src/**`) | Direct Vite Fast Refresh (no Nimbus build)                                           | **< 200ms**     |
-| Pattern `.tsx` / `.ts` (`nimbus-patterns/packages/react/src/**`)        | Direct Vite Fast Refresh (no Nimbus build)                                           | **< 200ms**     |
-| Style `.css.ts` (`nimbus-design-system/packages/core/styles/src/**`)    | `yarn watch:admin` rebuilds `@nimbus-ds/styles` → Vite CSS HMR                       | **~5–8s**       |
-| Token `.json` (`nimbus-design-system/packages/core/tokens/src/**`)      | `yarn watch:admin` rebuilds `@nimbus-ds/tokens` + `@nimbus-ds/styles` → Vite CSS HMR | **~8–10s**      |
+| Layer edited in local Nimbus                                               | How Admin updates                                                                    | Typical latency |
+| -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ | --------------- |
+| Component `.tsx` / `.ts` (`nimbus-design-system/packages/react/src/**`)    | Direct Vite Fast Refresh (no Nimbus build)                                           | **< 200ms**     |
+| Pattern `.tsx` / `.ts` (`nimbus-patterns/packages/react/src/**`)           | Direct Vite Fast Refresh (no Nimbus build)                                           | **< 200ms**     |
+| Theme values (`packages/core/styles/src/themes/nimbus-theme-*.css.ts`)     | `yarn watch:admin` direct CSS fast-path → Vite CSS HMR (no JS rebuild)               | **< 1s**        |
+| Other style `.css.ts` (`nimbus-design-system/packages/core/styles/src/**`) | `yarn watch:admin` rebuilds `@nimbus-ds/styles` → Vite CSS HMR                       | **~5–8s**       |
+| Token `.json` (`nimbus-design-system/packages/core/tokens/src/**`)         | `yarn watch:admin` rebuilds `@nimbus-ds/tokens` + `@nimbus-ds/styles` → Vite CSS HMR | **~5–8s**       |
 
 To preview **Norte UI (`next-norteui` / `next-norteui-dark`)** in Admin:
 
