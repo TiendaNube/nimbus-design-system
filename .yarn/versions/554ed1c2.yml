@@ -1,7 +1,5 @@
 releases:
-  "@nimbus-ds/styles": minor
-  "@nimbus-ds/select": minor
-  "@nimbus-ds/components": minor
+  "@nimbus-ds/styles": patch
 
 declined:
   - nimbus-design-system

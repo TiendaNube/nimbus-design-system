@@ -2,11 +2,17 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
-## 2026-08-28 `9.69.1`
+## 2026-11-03 `9.69.2`
 
 #### 🛠 Breaking changes
 
 - `Select`'s rendered height changes from a variable ~34px to a fixed 32px (2rem), by giving its shared base style an explicit height (the same box-model pattern `Button` already uses) to match the design contract documented in Figma. This is a visual-only correction — no props, exports, or tokens change — and ships as a patch per this repo's convention for CSS-only visual fixes; it is filed under this heading because the `Breaking Change Documentation Verification` check requires a `🛠 Breaking changes` section for a `*.css.ts` dimension change, regardless of semver level. ([#523](https://github.com/TiendaNube/nimbus-design-system/pull/523) by [@claude](https://github.com/apps/claude))
+
+## 2026-11-03 `9.69.1`
+
+#### 🐛 Bug fixes
+
+- Radio: Changes the checked indicator size from `0.563rem` to `0.5rem` (8px), so it stays centered inside the radio on 1x pixel density screens instead of shifting by a subpixel. ([#599](https://github.com/TiendaNube/nimbus-design-system/pull/599) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
 
 ## 2026-08-31 `9.69.0`
 

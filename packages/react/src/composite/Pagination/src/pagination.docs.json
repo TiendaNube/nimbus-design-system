@@ -1,7 +1,7 @@
 {
   "id": "pagination",
   "name": "Pagination",
-  "totalProps": 5,
+  "totalProps": 7,
   "packageName": "@nimbus-ds/pagination",
   "version": "2.5.1",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/pagination",
@@ -29,6 +29,87 @@
       "default": true,
       "type": "boolean",
       "title": "showNumbers",
+      "required": false
+    },
+    {
+      "description": "Shows the \"go to page\" input next to the navigation, to jump straight to\na page by typing its number (digits only). Submitted on Enter or on blur;\na number outside the range goes to the nearest page.\nIt is only available when `pageCount` is 6 or more, and never replaces the\narrows or page numbers. Below the `md` breakpoint (672px) the compact\nfirst / previous / go-to-page / next / last layout is used instead, with its\nown input, whether or not this prop is set.",
+      "default": false,
+      "type": "boolean",
+      "title": "showInput",
+      "required": false
+    },
+    {
+      "description": "Translatable texts for the Pagination component.\nEvery text can be customized for localization; when a key is omitted\n(or empty) its English default is used.",
+      "type": "object",
+      "properties": {
+        "navigation": {
+          "description": "Accessible name of the navigation landmark that wraps the pagination.",
+          "default": "Pagination",
+          "type": "string",
+          "title": "navigation"
+        },
+        "previousPage": {
+          "description": "Accessible name of the previous page button.",
+          "default": "Previous page",
+          "type": "string",
+          "title": "previousPage"
+        },
+        "nextPage": {
+          "description": "Accessible name of the next page button.",
+          "default": "Next page",
+          "type": "string",
+          "title": "nextPage"
+        },
+        "firstPage": {
+          "description": "Accessible name of the first page button (compact layout).",
+          "default": "First page",
+          "type": "string",
+          "title": "firstPage"
+        },
+        "lastPage": {
+          "description": "Accessible name of the last page button (compact layout).",
+          "default": "Last page",
+          "type": "string",
+          "title": "lastPage"
+        },
+        "goToPage": {
+          "description": "Accessible name of the go to page input.",
+          "default": "Go to page",
+          "type": "string",
+          "title": "goToPage"
+        },
+        "goTo": {
+          "description": "Visible text before the go to page input (desktop layout).",
+          "default": "Go to",
+          "type": "string",
+          "title": "goTo"
+        },
+        "of": {
+          "description": "Text between the go to page input and the total number of pages,\nrendered as \"{of} {pageCount}\".",
+          "default": "of",
+          "type": "string",
+          "title": "of"
+        },
+        "pageAnnouncement": {
+          "description": "Text announced to screen readers after navigating to a page. A function\nso each language can order the words.",
+          "default": "(page, pageCount) => `Page ${page} of ${pageCount}`",
+          "type": "(page: number, pageCount: number) => string;",
+          "title": "pageAnnouncement"
+        }
+      },
+      "additionalProperties": false,
+      "propertyOrder": [
+        "navigation",
+        "previousPage",
+        "nextPage",
+        "firstPage",
+        "lastPage",
+        "goToPage",
+        "goTo",
+        "of",
+        "pageAnnouncement"
+      ],
+      "title": "labels",
       "required": false
     },
     {
