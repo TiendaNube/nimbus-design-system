@@ -4,7 +4,7 @@ import { execSync } from "child_process";
 import { generateNextIndex } from "./generate-next-index";
 
 const rootDir = path.resolve(__dirname, "..");
-const tokensDir = path.join(rootDir, "packages/core/tokens/tokens");
+const tokensDir = path.join(rootDir, "packages/core/tokens/src");
 const stylesSrcDir = path.join(rootDir, "packages/core/styles/src");
 const nextSrcDir = path.join(rootDir, "packages/react/src/next");
 
