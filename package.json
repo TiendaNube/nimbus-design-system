@@ -47,6 +47,7 @@
     "reset": "yarn clean && rm -rf node_modules .yarn/cache .turbo && git clean -fdX",
     "storybook": "yarn generate:next-index && storybook dev -p 6006",
     "start:dev": "yarn storybook",
+    "watch:admin": "babel-node -x .ts ./.scripts/watch-admin",
     "test": "jest --passWithNoTests --no-cache --runInBand --watchAll=false",
     "test:ci": "yarn types:check && jest --ci --coverage",
     "test:coverage": "yarn test --coverage",

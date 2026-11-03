@@ -8,7 +8,7 @@ import { type Compiler, type WebpackPluginInstance } from "webpack";
 import { rootDir } from "../utils";
 
 const entry = [
-  `node ${rootDir}/node_modules/.bin/dts-bundle-generator --no-check -o ./dist/index.d.ts ./src/index.ts`
+  `node ${rootDir}/node_modules/.bin/dts-bundle-generator --no-check -o ./dist/index.d.ts ./src/index.ts`,
 ];
 
 const runShellCommand = (command: string): Promise<void> =>
@@ -65,10 +65,12 @@ export const dtsBundleGeneratorPlugin = (
       compiler.hooks.afterEmit.tapPromise(
         "DtsBundleGeneratorPlugin",
         async () => {
-          if (!commands.length) return;
+          if (process.env.NIMBUS_SKIP_DTS === "true" || !commands.length) {
+            return;
+          }
           await runWithConcurrency(commands, maxConcurrency);
         }
       );
-    }
+    },
   };
 };
