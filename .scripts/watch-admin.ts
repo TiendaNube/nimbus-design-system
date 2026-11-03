@@ -30,7 +30,16 @@ const runStep = (label: string, cmd: string): void => {
 // Ensure initial build artifacts exist so Admin can start immediately
 generateNextIndex(nextSrcDir);
 
-if (!fs.existsSync(path.join(rootDir, "packages/core/tokens/dist/index.js"))) {
+if (!fs.existsSync(path.join(rootDir, "packages/core/webpack/dist/index.js"))) {
+  runStep(
+    "Initial @nimbus-ds/webpack build",
+    "yarn workspace @nimbus-ds/webpack build"
+  );
+}
+
+if (
+  !fs.existsSync(path.join(rootDir, "packages/core/tokens/dist/js/tokens.js"))
+) {
   runStep("Initial @nimbus-ds/tokens build", "yarn build:tokens");
 }
 

@@ -15,6 +15,11 @@ const baseConfig = {
     path: path.resolve(__dirname, "dist"),
     library: "@nimbus-ds/styles",
   },
+  optimization: {
+    // Keep module IDs tied to file paths instead of virtual CSS query hashes so
+    // pure CSS/token value edits do not rewrite dist/index.js during watch:admin.
+    moduleIds: "named" as const,
+  },
   module: { rules: [rules.cssLoaderExtractRule] },
 };
 
