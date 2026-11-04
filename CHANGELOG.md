@@ -7,7 +7,7 @@ Package-specific changes not released in any package will be added here just bef
 
 #### 🐛 Bug fixes
 
-- Serializes stable releases on a shared release branch and prints release metadata without interpreting PR bodies as shell code.
+- Serializes stable releases on a shared release branch and prints release metadata without interpreting PR bodies as shell code. ([#608](https://github.com/TiendaNube/nimbus-design-system/pull/608) by [@prescillahurbin-tiendanube](https://github.com/prescillahurbin-tiendanube))
 
 ## 2026-08-06
 

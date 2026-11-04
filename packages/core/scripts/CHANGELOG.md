@@ -6,7 +6,7 @@ This package is intended for internal use in generating custom script builds at 
 
 #### 🐛 Bug fixes
 
-- Builds the union of all deferred release records, including the aggregate, and skips an empty package selection safely. Existing single-file callers remain supported.
+- Builds the union of all deferred release records, including the aggregate, and skips an empty package selection safely. Existing single-file callers remain supported. ([#608](https://github.com/TiendaNube/nimbus-design-system/pull/608) by [@prescillahurbin-tiendanube](https://github.com/prescillahurbin-tiendanube))
 
 ## 2026-09-03 `1.9.0`
 
