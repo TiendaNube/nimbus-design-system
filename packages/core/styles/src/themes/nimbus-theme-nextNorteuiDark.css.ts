@@ -34,7 +34,7 @@ const nextNorteuiDarkTheme = {
     ...globalTheme.fontSize,
     body: {
       ...globalTheme.fontSize.body,
-      base: "0.8125rem", // 13px — Norte UI body-base
+      base: tokens.font.size["3-25"].value as string,
     },
   },
   colors: {

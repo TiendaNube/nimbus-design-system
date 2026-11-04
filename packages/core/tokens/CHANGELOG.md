@@ -2,6 +2,12 @@
 
 Our design tokens are the foundations of Nimbus Design System.
 
+## 2026-11-04 `9.7.0`
+
+#### 🎉 New features
+
+- Added the `font.size.3-25` token (`0.8125rem`, 13px), used by the Norte UI themes for `body-base` text. ([#610](https://github.com/TiendaNube/nimbus-design-system/pull/610) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
+
 ## 2026-05-04 `9.6.0`
 
 #### 🎉 New features
