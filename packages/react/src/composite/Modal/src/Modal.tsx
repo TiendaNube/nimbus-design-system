@@ -21,6 +21,7 @@ import {
 } from "@common/event-handling";
 import { type ModalProps, type ModalComponents } from "./modal.types";
 import { ModalBody, ModalFooter, ModalHeader } from "./components";
+import { useScopedPortalRoot } from "./useScopedPortalRoot";
 
 const Modal: React.FC<ModalProps> & ModalComponents = ({
   className,
@@ -49,6 +50,8 @@ const Modal: React.FC<ModalProps> & ModalComponents = ({
   });
 
   const { refThemeProvider } = useTheme();
+  const modalPortalId = portalId ?? "nimbus-modal-floating";
+  const portalRoot = useScopedPortalRoot(modalPortalId, refThemeProvider);
 
   const { context } = useFloating({
     open,
@@ -141,8 +144,8 @@ const Modal: React.FC<ModalProps> & ModalComponents = ({
 
   return (
     <FloatingPortal
-      id={portalId ?? "nimbus-modal-floating"}
-      root={refThemeProvider?.current}
+      id={refThemeProvider ? undefined : modalPortalId}
+      root={refThemeProvider ? portalRoot : undefined}
     >
       <FloatingOverlay
         className={[
