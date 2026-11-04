@@ -27,15 +27,15 @@ Read these when you touch the matching files, **before** editing:
 Read these when the **task** matches, regardless of which files are open (they have no
 globs — the trigger is what you are doing):
 
-| Rule / Skill file                                             | Read it when                                                                                                                                                                       |
-| ------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `components.mdc`                                              | Creating or modifying a React component                                                                                                                                            |
-| `icon-creation.mdc`                                           | Creating, renaming, editing or deleting **any** SVG icon. Mandatory: icons live only in `packages/icons/src/assets`, and the flow includes updating `packages/icons/CHANGELOG.md`. |
-| `.agents/skills/nimbus-prototype/SKILL.md`                    | Creating, iterating, handing off, or closing a disposable Playground prototype.                                                                                                    |
-| `.agents/skills/nimbus-admin-live-preview/SKILL.md`           | Connecting local `nimbus-design-system` / `nimbus-patterns` to `services-new-admin` (`NIMBUS_LOCAL=true`) for live preview of tokens, styles, and components.                      |
-| `.agents/skills/nimbus-next-token-studio/SKILL.md`            | Adding or updating `next-norteui` / `next-norteui-dark` tokens in `@nimbus-ds/tokens` or `@nimbus-ds/styles` (Path A).                                                             |
-| `.agents/skills/nimbus-next-component-approximation/SKILL.md` | Prototyping or refining a Path C or Path D (`packages/react/src/next/<Component>`) component for Norte UI.                                                                         |
-| `.agents/skills/nimbus-next-admin-adoption/SKILL.md`          | Adopting Norte UI themes, Path C props, or `@nimbus-ds/components/next` inside `services-new-admin` (`stratus`).                                                                   |
+| Rule / Skill file                                             | Read it when                                                                                                                                                                                      |
+| ------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `components.mdc`                                              | Creating or modifying a React component                                                                                                                                                           |
+| `icon-creation.mdc`                                           | Creating, renaming, editing or deleting **any** SVG icon. Mandatory: icons live only in `packages/icons/src/assets`, and the flow includes updating `packages/icons/CHANGELOG.md`.                |
+| `.agents/skills/nimbus-prototype/SKILL.md`                    | Creating, iterating, handing off, or closing a disposable Playground prototype.                                                                                                                   |
+| `.agents/skills/nimbus-admin-live-preview/SKILL.md`           | Connecting local `nimbus-design-system` / `nimbus-patterns` to `services-new-admin` (`NIMBUS_LOCAL=true`) for live preview of tokens, styles, and components.                                     |
+| `.agents/skills/nimbus-next-token-studio/SKILL.md`            | Adding or updating `next-norteui` / `next-norteui-dark` tokens in `@nimbus-ds/tokens` or `@nimbus-ds/styles` (Path A).                                                                            |
+| `.agents/skills/nimbus-next-component-approximation/SKILL.md` | Prototyping or refining a Path B, Path C, or Path D (`packages/react/src/next/<Component>`) component for Norte UI, or creating the `approx/*` Draft PR and GitHub Issue for formal construction. |
+| `.agents/skills/nimbus-next-admin-adoption/SKILL.md`          | Adopting Norte UI themes, Path C props, or `@nimbus-ds/components/next` inside `services-new-admin` (`stratus`).                                                                                  |
 
 Process docs: `docs/CONTRIBUTING.md`, `docs/BUILD_PROCESS.md`, `docs/RELEASE_PROCESS.md`.
 

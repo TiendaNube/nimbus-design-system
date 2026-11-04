@@ -94,8 +94,8 @@ export const container__checkmark = style({
 
 export const container__checkicon = style({
   display: "none",
-  width: "0.563rem",
-  height: "0.563rem",
+  width: "0.5rem",
+  height: "0.5rem",
   borderRadius: varsThemeBase.shape.border.radius.full,
 });
 

@@ -1,6 +1,6 @@
 ---
 name: nimbus-next-component-approximation
-description: This skill should be used when a Designer + Agent pair asks to "create a Path C or Path D component approximation", "prototype a next component under packages/react/src/next/", "refine a Nimbus component for Norte UI", or "publish an Approximation Reference to a GitHub Issue".
+description: This skill should be used when a Designer + Agent pair asks to "create a Path B, Path C, or Path D component approximation", "prototype a next component under packages/react/src/next/", "refine a Nimbus component for Norte UI", "create a Draft PR and GitHub Issue for a Nimbus update", "hand off a live Admin Nimbus slice to formal construction", or "publish an Approximation Reference to a GitHub Issue".
 version: 0.1.0
 ---
 
