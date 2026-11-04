@@ -141,7 +141,11 @@ It generates docs,
 and packs each workspace with actual `yarn pack` into a temporary directory. It
 checks packed manifest identity/version, `main`, `module`, `types`, `typings`, all
 non-null export targets (including every conditional/array alternative and each
-pattern), and inferred main declarations against archive entries. Missing files
+pattern), and inferred main declarations against archive entries. Aggregate component
+subpaths also require their corresponding `index.d.ts` for every exported JavaScript
+entry in the archive, including entries matched by export patterns. Other packages
+may share explicitly declared root types between their main and module builds.
+Missing files
 block publication, even if they exist outside the archive. Then it applies the
 captured deferred versions, regenerates docs for those versions, packs and checks
 again, and rechecks every registry target before publishing the first workspace
@@ -171,3 +175,20 @@ and doc changes for inspection; do not discard them without checking ownership.
 The workflow serializes runs with `cancel-in-progress: false` and uses the shared
 `release/publish` manifest branch. The release PR must be merged promptly: serialization alone does not update master, and
 stale master versions correctly fail registry preflight.
+
+If another release failed because `master` still had versions from before a published
+release, first inspect npm and merge the corresponding generated release PR. That PR
+touches ignored paths and may contain `[skip ci]`, so its merge does not start a new
+stable run. Rerunning the old failed run would reuse its old commit and stale plan.
+
+After the version state and pending declarations have been reviewed, an authorized
+maintainer can start **publish-release** from the Actions tab with **Run workflow**,
+selecting `master`, or use:
+
+```bash
+gh workflow run publish.yml --repo TiendaNube/nimbus-design-system --ref master
+```
+
+This is a publishing operation. The manual run plans from the current `master` head
+and performs the same preflight checks. Runs selected from other branches skip the
+publishing job; an empty plan skips publication and downstream release jobs.

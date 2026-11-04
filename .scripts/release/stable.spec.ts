@@ -108,6 +108,79 @@ it("checks inferred declarations when no types field is declared", () => {
     )
   ).toThrow("declarations");
 });
+
+const aggregateManifest = {
+  name: "@nimbus-ds/components",
+  version: "5.64.0",
+  main: "dist/index.js",
+  exports: {
+    ".": "./dist/index.js",
+    "./Pagination": "./dist/Pagination/index.js"
+  }
+};
+const aggregateEntries = [
+  "package/dist/index.js",
+  "package/dist/index.d.ts",
+  "package/dist/Pagination/index.js"
+];
+
+it("rejects aggregate subpath JavaScript without its component declarations", () => {
+  expect(() =>
+    verifyArchive(
+      aggregateManifest,
+      aggregateEntries,
+      aggregateManifest.name,
+      aggregateManifest.version
+    )
+  ).toThrow("dist/Pagination/index.d.ts");
+});
+
+it("accepts aggregate subpaths with their component declarations", () => {
+  expect(() =>
+    verifyArchive(
+      aggregateManifest,
+      [...aggregateEntries, "package/dist/Pagination/index.d.ts"],
+      aggregateManifest.name,
+      aggregateManifest.version
+    )
+  ).not.toThrow();
+});
+
+it("checks every component matched by an aggregate export pattern", () => {
+  expect(() =>
+    verifyArchive(
+      {
+        ...aggregateManifest,
+        exports: { ".": "./dist/index.js", "./*": "./dist/*/index.js" }
+      },
+      [
+        ...aggregateEntries,
+        "package/dist/Pagination/index.d.ts",
+        "package/dist/Badge/index.js"
+      ],
+      aggregateManifest.name,
+      aggregateManifest.version
+    )
+  ).toThrow("dist/Badge/index.d.ts");
+});
+
+it("allows separate module JavaScript to share explicitly declared root types", () => {
+  expect(() =>
+    verifyArchive(
+      {
+        name: release.ident,
+        version: "1.0.0",
+        main: "dist/index.js",
+        module: "dist/index.esm.js",
+        types: "dist/index.d.ts"
+      },
+      [...entries, "package/dist/index.esm.js"],
+      release.ident,
+      "1.0.0"
+    )
+  ).not.toThrow();
+});
+
 it("rejects malformed and conflicting Yarn plans", () => {
   expect(() => parsePlan("{}")).toThrow("Invalid");
   expect(() =>

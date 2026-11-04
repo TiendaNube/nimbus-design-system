@@ -151,6 +151,22 @@ function targetPattern(target: string): RegExp {
   );
 }
 
+function componentDeclarationTargets(
+  exports: unknown,
+  entries: string[]
+): string[] {
+  return exportTargets(exports)
+    .filter((target) => /^\.\/dist\/[^/]+\/index\.js$/.test(target))
+    .flatMap((target) => {
+      const pattern = targetPattern(`package/${target.replace(/^\.\//, "")}`);
+      return entries
+        .filter((entry) => pattern.test(entry))
+        .map((entry) =>
+          entry.slice("package/".length).replace(/\.js$/, ".d.ts")
+        );
+    });
+}
+
 export function verifyArchive(
   manifest: unknown,
   entries: string[],
@@ -177,6 +193,11 @@ export function verifyArchive(
     throw new Error(`No package entrypoints for ${expectedName}`);
   if (manifest.exports !== undefined)
     targets.push(...exportTargets(manifest.exports));
+  if (
+    expectedName === "@nimbus-ds/components" &&
+    manifest.exports !== undefined
+  )
+    targets.push(...componentDeclarationTargets(manifest.exports, entries));
   targets.forEach((target) => {
     const normalized = target.replace(/^\.\//, "");
     if (normalized.startsWith("/") || normalized.split("/").includes("..")) {

@@ -58,6 +58,13 @@ export class PackageBuilder {
     return release[1].replace(/^["']|["']$/g, "");
   }
 
+  /**
+   * Build selected workspaces and their dependencies from the repository root,
+   * which contains the pinned Yarn CLI under `.yarn/releases`.
+   * @param packages Workspace names to build; an empty selection is a no-op.
+   * @param removePackages Names excluded from selection and passed to Turbo's exclusion filters.
+   * @param force Whether to bypass Turbo's build cache.
+   */
   public build(
     packages: string[],
     removePackages: string[] = [],
