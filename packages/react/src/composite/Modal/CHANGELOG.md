@@ -2,6 +2,12 @@
 
 The Modal component allows us to call the user's attention to a floating box that can have text, actions or forms to perform tasks by changing the focus from the background. It is an intrusive component as it interrupts the user's operation to present a message or content.
 
+## 2026-10-02 `1.10.1`
+
+#### 🐛 Bug fixes
+
+- Modal: Fixes the floating content being rendered inside another theme provider's element when several or nested theme providers exist. It is now rendered inside the element of its nearest enclosing theme provider, keeping the theme and layering of the place where it is used, whatever the order in which providers or other floating elements were mounted. The `portalId` input and the default portal identifier values are unchanged. ([#583](https://github.com/TiendaNube/nimbus-design-system/pull/583))
+
 ## 2026-02-12 `1.9.0`
 
 #### 🎉 New features

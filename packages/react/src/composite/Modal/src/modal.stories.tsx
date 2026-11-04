@@ -7,6 +7,9 @@ import { Box } from "@nimbus-ds/box";
 import { Title } from "@nimbus-ds/title";
 import { Tag } from "@nimbus-ds/tag";
 import { Sidebar } from "@nimbus-ds/sidebar";
+import { Tooltip } from "@nimbus-ds/tooltip";
+import { Popover } from "@nimbus-ds/popover";
+import { ThemeProvider } from "@nimbus-ds/styles";
 import { Modal } from "./Modal";
 import { type ModalProps } from "./modal.types";
 
@@ -369,4 +372,104 @@ export const withIgnoreAttribute: Story = {
       </>
     ),
   },
+};
+
+export const withThemedSideArea: Story = {
+  render: (args) => {
+    const [baseOpen, setBaseOpen] = useState(false);
+    const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [topOpen, setTopOpen] = useState(false);
+    return (
+      <Box display="flex" gap="4" padding="4">
+        <ThemeProvider theme="dark">
+          <Box
+            data-testid="side-area"
+            backgroundColor="neutral-background"
+            padding="4"
+            display="flex"
+            flexDirection="column"
+            gap="2"
+          >
+            <Text color="neutral-textHigh">Side area (dark theme)</Text>
+            <Tooltip content="Side area tooltip">
+              <Button data-testid="side-tooltip-anchor">Tooltip</Button>
+            </Tooltip>
+            <Popover content={<Text>Side area popover</Text>}>
+              <Button data-testid="side-popover-anchor">Popover</Button>
+            </Popover>
+          </Box>
+        </ThemeProvider>
+        <Box display="flex" flexDirection="column" gap="2">
+          <Text>
+            Floating content is rendered inside the theme provider of its own
+            origin. Display the side area tooltip and popover first, then open
+            the base modal: its tooltip and popover keep the outer theme and
+            stay above it.
+          </Text>
+          <Box display="flex" gap="2">
+            <Button
+              data-testid="open-base-modal"
+              onClick={() => setBaseOpen(true)}
+            >
+              Open base modal
+            </Button>
+            <Button
+              data-testid="open-sidebar"
+              onClick={() => setSidebarOpen(true)}
+            >
+              Open sidebar
+            </Button>
+            <Button
+              data-testid="open-top-modal"
+              onClick={() => setTopOpen(true)}
+            >
+              Open top modal
+            </Button>
+          </Box>
+        </Box>
+        <Modal
+          {...args}
+          zIndex="base"
+          open={baseOpen}
+          onDismiss={() => setBaseOpen(false)}
+        >
+          <Modal.Header title="Base modal" />
+          <Modal.Body padding="none">
+            <Box display="flex" gap="2">
+              <Tooltip content="Modal tooltip">
+                <Button data-testid="modal-tooltip-anchor">Tooltip</Button>
+              </Tooltip>
+              <Popover content={<Text>Modal popover</Text>} renderOverlay>
+                <Button data-testid="modal-popover-anchor">Popover</Button>
+              </Popover>
+            </Box>
+          </Modal.Body>
+        </Modal>
+        <Sidebar open={sidebarOpen} onRemove={() => setSidebarOpen(false)}>
+          <Modal.Body>
+            <Box display="flex" gap="2">
+              <Tooltip content="Sidebar tooltip">
+                <Button data-testid="sidebar-tooltip-anchor">Tooltip</Button>
+              </Tooltip>
+              <Popover content={<Text>Sidebar popover</Text>}>
+                <Button data-testid="sidebar-popover-anchor">Popover</Button>
+              </Popover>
+            </Box>
+          </Modal.Body>
+        </Sidebar>
+        <Modal
+          {...args}
+          zIndex="top"
+          open={topOpen}
+          onDismiss={() => setTopOpen(false)}
+        >
+          <Modal.Header title="Top modal" />
+          <Modal.Body padding="none">
+            <Text>Top-layer modal above every floating component.</Text>
+          </Modal.Body>
+        </Modal>
+      </Box>
+    );
+  },
+  args: {},
 };

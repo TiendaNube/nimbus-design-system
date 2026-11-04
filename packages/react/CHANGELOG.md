@@ -16,6 +16,10 @@ every day, with simplicity, accessibility, consistency and performance.
 
 - Behavior change: Existing `Pagination` instances with a `pageCount` of 6 or more now show the compact first / previous / go-to-page / next / last layout below the `md` breakpoint (672px) instead of the page numbers, without any code change; the list is now also wrapped in a `<nav>` element. The API is unchanged. ([#585](https://github.com/TiendaNube/nimbus-design-system/pull/585) by [@claude[bot]](https://github.com/apps/claude))
 
+#### 🐛 Bug fixes
+
+- Tooltip, Popover, Modal and Sidebar: Fixes the floating content being rendered inside another theme provider's element when several or nested theme providers exist; it is now rendered inside its nearest enclosing theme provider. ([#583](https://github.com/TiendaNube/nimbus-design-system/pull/583))
+
 ## 2026-08-12 `5.62.0`
 
 #### 🛠 Reverted changes
