@@ -1,7 +1,7 @@
 # Add the following users as reviewers on new pull requests
 
-* @TiendaNube/access-tech-nimbus @prescillahurbin-tiendanube
+* @TiendaNube/access-tech-nimbus @TiendaNube/access-tech-smb
 
 # Shared with nimbus-patterns as the reusable-workflow source (nimbus-design-system#519)
-.github/workflows/ @harrytiendanube @EzeNube @prescillahurbin-tiendanube
-.github/actions/ @harrytiendanube @EzeNube @prescillahurbin-tiendanube
+.github/workflows/ @TiendaNube/access-tech-smb
+.github/actions/ @TiendaNube/access-tech-smb
