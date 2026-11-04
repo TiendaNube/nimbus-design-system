@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo, useCallback } from "react";
+import { accordion } from "@nimbus-ds/styles";
 
 import {
   type AccordionProps,
@@ -73,7 +74,12 @@ const Accordion: React.FC<AccordionProps> & AccordionComponents = ({
   } = rest as any;
 
   return (
-    <div className={className} {...divProps}>
+    <div
+      className={[accordion.classnames.container, className]
+        .filter(Boolean)
+        .join(" ")}
+      {...divProps}
+    >
       <AccordionContext.Provider value={context}>
         {children}
       </AccordionContext.Provider>

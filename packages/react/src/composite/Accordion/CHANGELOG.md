@@ -2,6 +2,12 @@
 
 The Accordion component allows us to compress content into containers that can be opened or closed.
 
+## 2026-11-04 `1.8.2`
+
+#### 🐛 Bug fixes
+
+- Fixes the first header and the last header or body covering the rounded corners of a parent `Card`: they now inherit the container's border radius. ([#605](https://github.com/TiendaNube/nimbus-design-system/pull/605) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
+
 ## 2026-02-12 `1.8.0`
 
 #### 🎉 New features
