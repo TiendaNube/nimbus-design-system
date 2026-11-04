@@ -7,7 +7,7 @@ Package-specific changes not released in any package will be added here just bef
 
 #### 🐛 Bug fixes
 
-- Recovers Pagination in the stable aggregate with `@nimbus-ds/components@5.64.0` and `@nimbus-ds/styles@9.70.0`; reissues the pending Accordion patch at `1.8.3` to avoid an already-published target. No component source behavior changes.
+- Recovers Pagination in the stable aggregate with `@nimbus-ds/components@5.64.0` and `@nimbus-ds/styles@9.70.0`; reissues the pending Accordion patch at `1.8.3` to avoid an already-published target. No component source behavior changes. ([#609](https://github.com/TiendaNube/nimbus-design-system/pull/609) by [@prescillahurbin-tiendanube](https://github.com/prescillahurbin-tiendanube))
 
 ## 2026-08-06
 

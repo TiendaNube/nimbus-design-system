@@ -6,7 +6,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 #### 💡 Others
 
-- Reissues Pagination styles alongside the recovered `@nimbus-ds/components@5.64.0` aggregate. These styles first shipped in `9.69.1`, not `9.69.0`.
+- Reissues Pagination styles alongside the recovered `@nimbus-ds/components@5.64.0` aggregate. These styles first shipped in `9.69.1`, not `9.69.0`. ([#609](https://github.com/TiendaNube/nimbus-design-system/pull/609) by [@prescillahurbin-tiendanube](https://github.com/prescillahurbin-tiendanube))
 
 ## 2026-11-03 `9.69.1`
 

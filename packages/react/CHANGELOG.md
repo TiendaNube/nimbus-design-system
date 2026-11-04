@@ -12,7 +12,7 @@ every day, with simplicity, accessibility, consistency and performance.
 
 #### 🐛 Bug fixes
 
-- Restores the complete aggregate JavaScript and declaration artifacts after the incomplete `5.63.1` publication. Pagination from #585 did not ship in aggregate `5.63.0`; this recovery is its first intended stable aggregate release.
+- Restores the complete aggregate JavaScript and declaration artifacts after the incomplete `5.63.1` publication. Pagination from #585 did not ship in aggregate `5.63.0`; this recovery is its first intended stable aggregate release. ([#609](https://github.com/TiendaNube/nimbus-design-system/pull/609) by [@prescillahurbin-tiendanube](https://github.com/prescillahurbin-tiendanube))
 - Restores the Accordion rounded-corner fix in the complete aggregate: the first header and last header or body inherit the parent Card radius. ([#605](https://github.com/TiendaNube/nimbus-design-system/pull/605) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
 
 #### 💡 Others

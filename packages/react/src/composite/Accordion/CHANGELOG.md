@@ -6,7 +6,7 @@ The Accordion component allows us to compress content into containers that can b
 
 #### 💡 Others
 
-- Reissues the rounded-corner fix with the coordinated aggregate recovery. The pending patch predicted already-published `1.8.2`; an exact deferred `1.8.3` target reconciles that drift without changing the manifest by hand.
+- Reissues the rounded-corner fix with the coordinated aggregate recovery. The pending patch predicted already-published `1.8.2`; an exact deferred `1.8.3` target reconciles that drift without changing the manifest by hand. ([#609](https://github.com/TiendaNube/nimbus-design-system/pull/609) by [@prescillahurbin-tiendanube](https://github.com/prescillahurbin-tiendanube))
 
 ## 2026-11-04 `1.8.2`
 
