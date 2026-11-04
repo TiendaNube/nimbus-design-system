@@ -1,0 +1,9 @@
+releases:
+  "@nimbus-ds/scripts": patch
+
+declined:
+  - nimbus-design-system
+  - nimbus-helper
+  - "@nimbus-ds/split-button"
+  - "@nimbus-ds/stepper"
+  - "@nimbus-ds/time-picker"

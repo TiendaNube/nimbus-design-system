@@ -3,6 +3,12 @@
 This is the log of notable changes to the Design System Nimbus that are developer-facing.
 Package-specific changes not released in any package will be added here just before the release. Until then, you can find them in changelogs of the individual packages (see [packages](./packages) directory).
 
+## 2026-11-04
+
+#### 🐛 Bug fixes
+
+- Serializes stable releases on a shared release branch and prints release metadata without interpreting PR bodies as shell code.
+
 ## 2026-08-06
 
 #### 🐛 Bug fixes

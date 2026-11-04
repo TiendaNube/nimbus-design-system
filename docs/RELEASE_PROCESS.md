@@ -81,7 +81,7 @@ yarn publish:rc @nimbus-ds/button --skip-build --otp=123456
 
 ### Publishing a stable release
 
-Stable versions are automatically published when new changes are merged into `master`. If you want to publish a version manually, you can do so by following the candidate process, but replacing `yarn publish:next` with `yarn publish:stable`.
+Stable versions are automatically published when a merge into `master` triggers the release workflow and public deferred releases are planned. For a manual stable release, first run `yarn publish:stable --check`, inspect the result, then run `yarn publish:stable`. Both paths use the [same validation and recovery guards](#stable-release-validation-and-recovery).
 After merging into `master`, a new version of [our component stories](https://tiendanube.github.io/nimbus-design-system) is generated automatically.
 
 ### Updating GitHub Releases
@@ -115,3 +115,59 @@ This is as simple as duplicating the most recent page and updating the version n
 For local publishing:
 
 - Ensure you are logged in to npm with `yarn npm login`, using credentials from the `Nimbus Design System` npm organization.
+
+## Stable release validation and recovery
+
+`yarn publish:stable` and the stable CI workflow use the same entrypoint. The
+legacy `publish:npm:stable` alias also runs these checks; it cannot bypass them.
+The entrypoint captures `yarn version apply --all --dry-run --json` before any
+files are consumed and publishes only planned public workspaces. Planned runtime,
+peer and optional dependencies are published before their dependents; packages
+outside the plan are unchanged. Dependency cycles fail with package names before
+builds or version application. An empty or
+private-only plan skips builds, publication, the release PR and downstream tag,
+release and notification jobs.
+
+For each planned target, npm must return a structured `E404` before proceeding.
+An existing exact version is release drift and blocks the entire release before
+version application. Authentication, network and server errors, malformed JSON
+and unexpected responses are failures, never evidence that a version is absent.
+Registry lookups explicitly use Yarn's configured `npmRegistryServer` (currently
+`https://registry.npmjs.org`).
+
+The script forces a fresh Turbo build of the selected workspaces and their dependencies. For the aggregate, it builds all component workspaces
+first because their manifest edges are missing, then builds the aggregate once.
+It generates docs,
+and packs each workspace with actual `yarn pack` into a temporary directory. It
+checks packed manifest identity/version, `main`, `module`, `types`, `typings`, all
+non-null export targets (including every conditional/array alternative and each
+pattern), and inferred main declarations against archive entries. Missing files
+block publication, even if they exist outside the archive. Then it applies the
+captured deferred versions, regenerates docs for those versions, packs and checks
+again, and rechecks every registry target before publishing the first workspace
+through Yarn's configured authentication. No tolerate-republish option is used.
+
+Safe local checks (neither applies versions nor writes to npm):
+
+```bash
+yarn publish:stable --check          # build, generate docs, registry and archive checks
+yarn publish:stable --dry-run        # alias of --check
+yarn publish:stable --validate-only  # registry and archive checks of existing build outputs
+```
+
+Check modes validate archives at the current manifest versions against the future
+registry plan. The publish run additionally validates archives after applying the
+new versions. Builds/docgen can update generated files; inspect their diff and
+preserve unrelated work. Temporary archives are removed on success and failure.
+
+Multi-package publication is not atomic. After a collision or partial publication,
+stop and reconcile explicitly: inspect registry versions and archive contents,
+identify what actually shipped, and declare fresh, reviewed deferred targets for
+remaining/recovery packages. Rebuild and repeat the complete check; never blindly
+retry, infer integrity-based permission to republish, hand-edit manifest versions,
+or reuse stale archives. A failure after version application leaves local version
+and doc changes for inspection; do not discard them without checking ownership.
+
+The workflow serializes runs with `cancel-in-progress: false` and uses the shared
+`release/publish` manifest branch. The release PR must be merged promptly: serialization alone does not update master, and
+stale master versions correctly fail registry preflight.

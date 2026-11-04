@@ -2,6 +2,12 @@
 
 This package is intended for internal use in generating custom script builds at design system build time.
 
+## 2026-11-04 `1.11.1`
+
+#### 🐛 Bug fixes
+
+- Builds the union of all deferred release records, including the aggregate, and skips an empty package selection safely. Existing single-file callers remain supported.
+
 ## 2026-09-03 `1.9.0`
 
 #### 🎉 New features

@@ -11,9 +11,15 @@ on:
       - "**/*.docs.json"
       - "packages/react/src/prototypes/**"
 
+concurrency:
+  group: publish-release-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   publish-packages-npm:
     runs-on: ubuntu-latest
+    outputs:
+      released: ${{ steps.publish.outputs.released }}
     timeout-minutes: 30
     env:
       TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
@@ -37,31 +43,15 @@ jobs:
         run: |
           echo "GITHUB_TOKEN=${{ secrets.PAT_CHANGE_BRANCH_PROTECTION_RULES_FROM_USER_NIMBUS }}" > .env
 
-      - name: Build tokens
-        run: yarn build:tokens
-
-      - name: Build icons
-        run: yarn build:icons
-
-      - name: Build components
-        run: |
-          export NODE_OPTIONS="--max_old_space_size=12288"
-          yarn build:components
-
-      - name: Build packages
-        run: |
-          export NODE_OPTIONS="--max_old_space_size=12288"
-          yarn build:packages
-
-      - name: Build docs
-        run: yarn build:docs
-
       - name: Publish packages
+        id: publish
         run: yarn publish:stable
         env:
+          NODE_OPTIONS: "--max_old_space_size=12288"
           YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTOMATION_PUBLISH }}
 
       - name: Create release PR
+        if: steps.publish.outputs.released == 'true'
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -73,11 +63,12 @@ jobs:
             packages/**/package.json
             **/*.docs.json
             .yarn/versions/**
-          branch: release/publish-${{ github.run_id }}
+          branch: release/publish
           base: master
 
   create-tag-and-release:
     needs: [publish-packages-npm]
+    if: needs.publish-packages-npm.outputs.released == 'true'
     permissions:
       contents: write
       discussions: write
@@ -94,7 +85,8 @@ jobs:
       SLACK_WEBHOOK_URL_TECH_PRODUCT_UPDATES: ${{ secrets.SLACK_WEBHOOK_URL_TECH_PRODUCT_UPDATES }}
 
   generate-documentation:
-    needs: [publish-packages-npm, create-tag-and-release, send-slack-notification]
+    needs:
+      [publish-packages-npm, create-tag-and-release, send-slack-notification]
     permissions:
       contents: write
       pull-requests: write
