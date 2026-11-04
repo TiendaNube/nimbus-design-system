@@ -13,6 +13,7 @@ const darkTheme = {
   colors: {
     primary: {
       surface: colors.primary.surface.value as string,
+      surfaceDisabled: colors.neutral["surface-disabled"].value as string,
       surfaceHighlight: colors.primary["surface-highlight"].value as string,
       interactive: colors.primary.interactive.value as string,
       interactiveHover: colors.primary["interactive-hover"].value as string,
@@ -22,6 +23,7 @@ const darkTheme = {
     },
     success: {
       surface: colors.success.surface.value as string,
+      surfaceDisabled: colors.neutral["surface-disabled"].value as string,
       surfaceHighlight: colors.success["surface-highlight"].value as string,
       interactive: colors.success.interactive.value as string,
       interactiveHover: colors.success["interactive-hover"].value as string,
@@ -31,6 +33,7 @@ const darkTheme = {
     },
     warning: {
       surface: colors.warning.surface.value as string,
+      surfaceDisabled: colors.neutral["surface-disabled"].value as string,
       surfaceHighlight: colors.warning["surface-highlight"].value as string,
       interactive: colors.warning.interactive.value as string,
       interactiveHover: colors.warning["interactive-hover"].value as string,
@@ -40,6 +43,7 @@ const darkTheme = {
     },
     danger: {
       surface: colors.danger.surface.value as string,
+      surfaceDisabled: colors.neutral["surface-disabled"].value as string,
       surfaceHighlight: colors.danger["surface-highlight"].value as string,
       interactive: colors.danger.interactive.value as string,
       interactiveHover: colors.danger["interactive-hover"].value as string,
@@ -66,6 +70,7 @@ const darkTheme = {
       surfaceHighlight: lightColors.aiGenerative["surface-highlight"]
         .value as string,
       surface: lightColors.aiGenerative.surface.value as string,
+      surfaceDisabled: colors.neutral["surface-disabled"].value as string,
       background: lightColors.aiGenerative.background.value as string,
       textHigh: lightColors.aiGenerative["text-high"].value as string,
       interactiveHover: lightColors.aiGenerative["interactive-hover"]

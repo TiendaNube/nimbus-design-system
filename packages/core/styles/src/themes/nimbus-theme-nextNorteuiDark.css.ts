@@ -24,6 +24,7 @@ const colorDict = tokens.color as Record<string, Record<string, ToneTokenMap>>;
 const nextNorteuiColors =
   colorDict["next-norteui-dark"] ?? colorDict["next-dark"];
 const darkColors = colorDict.dark;
+const surfaceDisabled = String(darkColors.neutral["surface-disabled"].value);
 const darkShadows = tokens.shadow.dark.level;
 const readShadow = (level: "0" | "1" | "2" | "3" | "4" | "5"): string =>
   String(darkShadows[level].value);
@@ -39,16 +40,17 @@ const nextNorteuiDarkTheme = {
   },
   colors: {
     ...globalTheme.colors,
-    primary: mapToneScale(nextNorteuiColors.primary),
-    success: mapToneScale(darkColors.success),
-    warning: mapToneScale(darkColors.warning),
-    danger: mapToneScale(darkColors.danger),
+    primary: { ...mapToneScale(nextNorteuiColors.primary), surfaceDisabled },
+    success: { ...mapToneScale(darkColors.success), surfaceDisabled },
+    warning: { ...mapToneScale(darkColors.warning), surfaceDisabled },
+    danger: { ...mapToneScale(darkColors.danger), surfaceDisabled },
     neutral: {
       ...mapToneScale(darkColors.neutral),
       background: String(darkColors.neutral.background.value),
-      surfaceDisabled: String(darkColors.neutral["surface-disabled"].value),
+      surfaceDisabled,
       textDisabled: String(darkColors.neutral["text-disabled"].value)
-    }
+    },
+    aiGenerative: { ...globalTheme.colors.aiGenerative, surfaceDisabled }
   },
   utils: {
     focus: `0 0 0 3px ${String(

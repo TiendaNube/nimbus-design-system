@@ -12,6 +12,7 @@ const nextTheme = {
     ...globalTheme.colors,
     primary: {
       surface: colors.primary.surface.value as string,
+      surfaceDisabled: globalTheme.colors.neutral.surfaceDisabled,
       surfaceHighlight: colors.primary["surface-highlight"].value as string,
       interactive: colors.primary.interactive.value as string,
       interactiveHover: colors.primary["interactive-hover"].value as string,

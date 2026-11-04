@@ -15,6 +15,7 @@ const colors = colorDict["next-norteui"];
 
 const mapToneScale = (group: ToneTokenMap) => ({
   surface: String(group.surface.value),
+  surfaceDisabled: String(group["surface-disabled"].value),
   surfaceHighlight: String(group["surface-highlight"].value),
   interactive: String(group.interactive.value),
   interactiveHover: String(group["interactive-hover"].value),
@@ -51,6 +52,7 @@ export const variables = createTheme(vars, {
     aiGenerative: {
       ...globalTheme.colors.aiGenerative,
       surface: String(aiGenerative.surface.value),
+      surfaceDisabled: String(aiGenerative["surface-disabled"].value),
       surfaceHighlight: aiSurfaceHighlight,
       interactiveHover: String(aiGenerative["interactive-hover"].value),
       interactivePressed: String(aiGenerative["interactive-pressed"].value),
