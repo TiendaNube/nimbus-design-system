@@ -2,6 +2,12 @@
 
 The Accordion component allows us to compress content into containers that can be opened or closed.
 
+## 2026-11-04 `1.8.3`
+
+#### 💡 Others
+
+- Reissues the rounded-corner fix with the coordinated aggregate recovery. The pending patch predicted already-published `1.8.2`; an exact deferred `1.8.3` target reconciles that drift without changing the manifest by hand.
+
 ## 2026-11-04 `1.8.2`
 
 #### 🐛 Bug fixes

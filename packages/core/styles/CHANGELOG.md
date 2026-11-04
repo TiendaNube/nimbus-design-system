@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2026-11-04 `9.70.0`
+
+#### 💡 Others
+
+- Reissues Pagination styles alongside the recovered `@nimbus-ds/components@5.64.0` aggregate. These styles first shipped in `9.69.1`, not `9.69.0`.
+
 ## 2026-11-03 `9.69.1`
 
 #### 🐛 Bug fixes
@@ -9,16 +15,19 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 - Radio: Changes the checked indicator size from `0.563rem` to `0.5rem` (8px), so it stays centered inside the radio on 1x pixel density screens instead of shifting by a subpixel. ([#599](https://github.com/TiendaNube/nimbus-design-system/pull/599) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
 - Accordion: Adds the `container` class and makes the first header and the last header or body inherit the parent's border radius, so they no longer cover the rounded corners of a `Card`. ([#605](https://github.com/TiendaNube/nimbus-design-system/pull/605) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
 
-## 2026-08-31 `9.69.0`
-
 #### 🎉 New features
 
-- Select: Adds a `small` size style variant. ([#530](https://github.com/TiendaNube/nimbus-design-system/pull/530) by [@noecondoleo](https://github.com/noecondoleo))
 - Pagination: Adds the styles for the "go to page" input and the compact layout shown below the `md` breakpoint when `pageCount` is 6 or more; the input width follows its content. ([#585](https://github.com/TiendaNube/nimbus-design-system/pull/585) by [@claude[bot]](https://github.com/apps/claude))
 
 #### 💡 Others
 
 - Behavior change: Existing `Pagination` instances with a `pageCount` of 6 or more now show the compact first / previous / go-to-page / next / last layout below the `md` breakpoint (672px) instead of the page numbers, without any code change; the list is now also wrapped in a `<nav>` element. The API is unchanged. ([#585](https://github.com/TiendaNube/nimbus-design-system/pull/585) by [@claude[bot]](https://github.com/apps/claude))
+
+## 2026-08-31 `9.69.0`
+
+#### 🎉 New features
+
+- Select: Adds a `small` size style variant. ([#530](https://github.com/TiendaNube/nimbus-design-system/pull/530) by [@noecondoleo](https://github.com/noecondoleo))
 
 ## 2026-09-08 `9.68.1`
 
