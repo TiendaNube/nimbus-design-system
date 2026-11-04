@@ -205,24 +205,22 @@ export interface CreatableComboboxProps {
   options?: ComboboxOption[];
   /**
    * Hierarchical (drill-down) fields only — i.e. `options` has at least one
-   * option with `children`. By default only leaves can be picked and a
-   * branch row just opens its children. With `true`, a branch can be picked
-   * as the final value too: clicking its row selects it, and a separate
-   * trailing chevron button opens its children (ArrowRight does the same
-   * from the keyboard; Enter selects).
+   * option with `children`. A branch row always just opens its children
+   * (click, Enter or ArrowRight). With `true`, once you are INSIDE a branch
+   * its own title row (between the two dividers) becomes a selectable
+   * option, so a parent category can be picked as the final value — but only
+   * after entering it. With `false`, only leaves can be picked.
    * @default false
    */
   selectableBranches?: boolean;
   /** Texts of the drill-down controls (the demo passes Spanish, as drawn). */
   labels?: {
-    /** Back control without a known destination (returning to the root). @default "Atrás" */
+    /** Back control without a known destination (returning to the root). @default "Volver" */
     back?: string;
-    /** Back control naming where it returns to; `{name}` is replaced. @default "Atrás a {name}" */
+    /** Back control naming where it returns to; `{name}` is replaced. @default "Volver a {name}" */
     backTo?: string;
     /** Joins a picked option and its parent in the field. @default "en" */
     in?: string;
-    /** Accessible name of a row's drill-in chevron; `{name}` is replaced. @default "Ver subcategorías de {name}" */
-    viewSubcategories?: string;
     /** Read after a branch's name by assistive tech. @default "tiene subcategorías" */
     branchHint?: string;
     /** Shown when a search finds nothing. @default "Sin resultados" */
@@ -279,11 +277,9 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
     ref
   ) => {
     const { options: sharedOptions, createOption } = useSharedOptions();
-    const backLabel = labels?.back ?? "Atrás";
-    const backToLabel = labels?.backTo ?? "Atrás a {name}";
+    const backLabel = labels?.back ?? "Volver";
+    const backToLabel = labels?.backTo ?? "Volver a {name}";
     const inLabel = labels?.in ?? "en";
-    const viewSubcategoriesLabel =
-      labels?.viewSubcategories ?? "Ver subcategorías de {name}";
     const branchHint = labels?.branchHint ?? "tiene subcategorías";
     const noResultsLabel = labels?.noResults ?? "Sin resultados";
     const resultsLabel = labels?.results ?? "Resultados";
@@ -365,7 +361,12 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
     // current value (so the picked row is visible), or at the root.
     useEffect(() => {
       if (!open || !hierarchical) return;
-      setLevelPath(selectedPath.slice(0, -1));
+      const leaf = selectedPath[selectedPath.length - 1];
+      const enterSelected =
+        !!leaf?.children?.length &&
+        selectedPath.length < MAX_LEVELS &&
+        selectableBranches;
+      setLevelPath(enterSelected ? selectedPath : selectedPath.slice(0, -1));
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [open]);
 
@@ -436,17 +437,21 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
     // from, so the two can never disagree about what item N is.
     type NavItem =
       | { type: "create" }
+      | { type: "heading" }
       | { type: "result"; result: TreeResult }
       | { type: "option"; option: ComboboxOption };
     // Tree levels below the root get a "back" button — a navigation action
     // outside the listbox, not an option, so it has no nav slot (it is
-    // reached by mouse, ArrowLeft or Backspace on an empty query). The
-    // level title is only the group's label, not a nav item.
+    // reached by mouse, ArrowLeft or Backspace on an empty query). With
+    // `selectableBranches`, the level's own title row is a real option and
+    // the level's first nav item (a parent can be picked once entered).
     const showBack = hierarchical && levelPath.length > 0 && !searching;
-    const navOffset = canCreate ? 1 : 0;
+    const showHeadingOption = showBack && selectableBranches;
+    const navOffset = (canCreate ? 1 : 0) + (showHeadingOption ? 1 : 0);
     const navItems: NavItem[] = useMemo(() => {
       const items: NavItem[] = [];
       if (canCreate) items.push({ type: "create" });
+      if (showHeadingOption) items.push({ type: "heading" });
       for (const result of treeResults) {
         if (!result.option.disabled) items.push({ type: "result", result });
       }
@@ -454,7 +459,7 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
         items.push({ type: "option", option });
       }
       return items;
-    }, [canCreate, treeResults, enabledVisibleOptions]);
+    }, [canCreate, showHeadingOption, treeResults, enabledVisibleOptions]);
 
     // Looked up by the row renderer below to know each *visible* option's
     // nav index (a disabled option has none — it's absent from this map —
@@ -519,9 +524,12 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
         setLevelPath((current) => current.slice(0, -1));
         setInputValue("");
         setHoveredOptionValue(null);
-        setActiveIndex(viaKeyboard && index >= 0 ? index : -1);
+        // The parent level has a selectable title row (nav item 0) whenever
+        // it is not the root and `selectableBranches` is on.
+        const titleOffset = levelPath.length > 1 && selectableBranches ? 1 : 0;
+        setActiveIndex(viaKeyboard && index >= 0 ? index + titleOffset : -1);
       },
-      [levelPath, rootOptions]
+      [levelPath, rootOptions, selectableBranches]
     );
 
     // Single-select: picking an option replaces the value, fills the
@@ -599,14 +607,17 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
       (item: NavItem) => {
         if (item.type === "create") {
           handleCreate();
+        } else if (item.type === "heading") {
+          const parent = levelPath[levelPath.length - 1];
+          if (parent) selectOption(parent, levelPath);
         } else if (item.type === "result") {
           const { option, ancestors } = item.result;
-          if (isBranch(option, ancestors.length) && !selectableBranches) {
+          if (isBranch(option, ancestors.length)) {
             drillToResult(item.result, true);
           } else {
             selectOption(option, [...ancestors, option]);
           }
-        } else if (isBranch(item.option) && !selectableBranches) {
+        } else if (isBranch(item.option)) {
           drillInto(item.option, true);
         } else {
           selectOption(item.option);
@@ -620,7 +631,6 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
         drillToResult,
         levelPath,
         hierarchical,
-        selectableBranches,
       ]
     );
 
@@ -665,18 +675,10 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
           }
           case "ArrowDown": {
             event.preventDefault();
-            // In a drill-down level the back row (and heading) sit above
-            // the options, so "first ArrowDown" lands on the first option,
-            // not on the back row — which stays reachable with ArrowUp,
-            // Home or ArrowLeft.
-            const firstIndex = hierarchical
-              ? Math.max(
-                  navItems.findIndex(
-                    (item) => item.type === "option" || item.type === "result"
-                  ),
-                  0
-                )
-              : 0;
+            // The first nav item is already the first selectable thing: the
+            // level's title row when it is selectable, otherwise the first
+            // option. The back button is not a nav item (ArrowLeft/Backspace).
+            const firstIndex = 0;
             if (!open) {
               setOpen(true);
               setActiveIndex(navItems.length ? firstIndex : -1);
@@ -829,16 +831,6 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
     const backText = backDestination
       ? backToLabel.replace("{name}", backDestination.label)
       : backLabel;
-    const fillRest = {
-      cursor: "pointer",
-      background: "none",
-      border: 0,
-      margin: 0,
-      padding: 0,
-      font: "inherit",
-      color: "inherit",
-      textAlign: "left" as const,
-    };
     const divider = (
       <Box
         aria-hidden="true"
@@ -856,150 +848,86 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
       current: boolean;
       /** Search results show the ancestor path under the title. */
       path?: string;
-      /** Picks (or, for a plain branch row, drills into) the option. */
+      /** The level's own title row: no child indent, medium weight. */
+      isTitle?: boolean;
+      /** Picks the option, or drills into it when it is a branch row. */
       onActivate: () => void;
-      /** Opens the branch's children — only on selectable branch rows. */
-      onDrill: () => void;
       label?: string;
     }) => {
-      const { option, navIndex, branch, current, path } = opts;
+      const { option, navIndex, branch, current, path, isTitle } = opts;
       const isDisabled = !!option.disabled;
-      // A branch that can also be picked gets its own chevron button next
-      // to the option (a sibling, so the option keeps valid semantics);
-      // otherwise the row is one option and the chevron is just an icon.
-      const split = branch && selectableBranches;
-      const fill = rowFill({
-        disabled: isDisabled,
-        active: navIndex !== undefined && activeIndex === navIndex,
-        hovered: hoveredOptionValue === option.value,
-        current,
-      });
-      const body = (
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            gap: 8,
-            padding: 8,
-            paddingLeft: 8 + (path ? 0 : childIndent),
-          }}
-        >
-          <div
-            style={{ display: "flex", flexDirection: "column", minWidth: 0 }}
-          >
-            <Text
-              color={isDisabled ? "neutral-textDisabled" : "neutral-textHigh"}
-            >
-              {option.label}
-            </Text>
-            {path && (
-              <Text
-                fontSize="caption"
-                lineHeight="caption"
-                color={isDisabled ? "neutral-textDisabled" : "neutral-textLow"}
-              >
-                {path}
-              </Text>
-            )}
-          </div>
-          {branch && !split && (
-            <Icon
-              source={<ChevronRightIcon />}
-              color={isDisabled ? "neutral-textDisabled" : "neutral-textHigh"}
-            />
-          )}
-        </div>
-      );
-      const optionProps = {
-        type: "button" as const,
-        id: navIndex !== undefined ? getOptionId(navIndex) : undefined,
-        role: "option",
-        "aria-selected": selected?.value === option.value,
-        "aria-disabled": isDisabled || undefined,
-        "aria-label": opts.label,
-        disabled: isDisabled,
-        "data-testid": dataTestId
-          ? `${dataTestId}-option-${option.value}`
-          : undefined,
-        onMouseDown: isDisabled
-          ? undefined
-          : (event: React.MouseEvent) => event.preventDefault(),
-        onClick: isDisabled ? undefined : opts.onActivate,
-      };
-      if (!split) {
-        return (
-          <Box
-            as="button"
-            key={opts.key}
-            {...optionProps}
-            onMouseEnter={() => setHoveredOptionValue(option.value)}
-            onMouseLeave={() => setHoveredOptionValue(null)}
-            display="block"
-            padding="none"
-            width="100%"
-            borderRadius="2"
-            borderWidth="none"
-            cursor={isDisabled ? "not-allowed" : "pointer"}
-            textAlign="left"
-            backgroundColor={fill}
-          >
-            {body}
-          </Box>
-        );
-      }
       return (
         <Box
+          as="button"
+          type="button"
           key={opts.key}
-          display="flex"
-          alignItems="stretch"
-          width="100%"
-          borderRadius="2"
-          backgroundColor={fill}
+          id={navIndex !== undefined ? getOptionId(navIndex) : undefined}
+          role="option"
+          aria-selected={!branch && selected?.value === option.value}
+          aria-disabled={isDisabled || undefined}
+          aria-label={opts.label}
+          disabled={isDisabled}
+          data-testid={
+            dataTestId ? `${dataTestId}-option-${option.value}` : undefined
+          }
+          onMouseDown={
+            isDisabled ? undefined : (event) => event.preventDefault()
+          }
+          onClick={isDisabled ? undefined : opts.onActivate}
           onMouseEnter={() => setHoveredOptionValue(option.value)}
           onMouseLeave={() => setHoveredOptionValue(null)}
+          display="block"
+          padding="none"
+          width="100%"
+          borderRadius="2"
+          borderWidth="none"
+          cursor={isDisabled ? "not-allowed" : "pointer"}
+          textAlign="left"
+          backgroundColor={rowFill({
+            disabled: isDisabled,
+            active: navIndex !== undefined && activeIndex === navIndex,
+            hovered: hoveredOptionValue === option.value,
+            current,
+          })}
         >
-          <button
-            {...optionProps}
+          <div
             style={{
-              ...fillRest,
-              flex: "1 1 auto",
-              minWidth: 0,
-              cursor: isDisabled ? "not-allowed" : "pointer",
-            }}
-          >
-            {body}
-          </button>
-          <button
-            type="button"
-            // A pointer affordance only: a button inside a listbox is not
-            // valid ARIA (axe: aria-required-children), so it is hidden from
-            // assistive tech and out of the tab order. Keyboard and screen
-            // reader users get the same action from ArrowRight on the
-            // option, which announces "<name>, <branchHint>".
-            aria-hidden="true"
-            tabIndex={-1}
-            disabled={isDisabled}
-            aria-label={viewSubcategoriesLabel.replace("{name}", option.label)}
-            data-testid={
-              dataTestId ? `${dataTestId}-drill-${option.value}` : undefined
-            }
-            onMouseDown={(event) => event.preventDefault()}
-            onClick={opts.onDrill}
-            style={{
-              ...fillRest,
-              flex: "0 0 auto",
-              padding: 8,
               display: "flex",
               alignItems: "center",
-              cursor: isDisabled ? "not-allowed" : "pointer",
+              justifyContent: "space-between",
+              gap: 8,
+              padding: 8,
+              paddingLeft: 8 + (path || isTitle ? 0 : childIndent),
             }}
           >
-            <Icon
-              source={<ChevronRightIcon />}
-              color={isDisabled ? "neutral-textDisabled" : "neutral-textHigh"}
-            />
-          </button>
+            <div
+              style={{ display: "flex", flexDirection: "column", minWidth: 0 }}
+            >
+              <Text
+                fontWeight={isTitle ? "medium" : undefined}
+                color={isDisabled ? "neutral-textDisabled" : "neutral-textHigh"}
+              >
+                {option.label}
+              </Text>
+              {path && (
+                <Text
+                  fontSize="caption"
+                  lineHeight="caption"
+                  color={
+                    isDisabled ? "neutral-textDisabled" : "neutral-textLow"
+                  }
+                >
+                  {path}
+                </Text>
+              )}
+            </div>
+            {branch && (
+              <Icon
+                source={<ChevronRightIcon />}
+                color={isDisabled ? "neutral-textDisabled" : "neutral-textHigh"}
+              />
+            )}
+          </div>
         </Box>
       );
     };
@@ -1094,11 +1022,6 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                   .map((a) => a.label)
                   .join(" > ");
                 const branch = isBranch(result.option, result.ancestors.length);
-                const pick = () =>
-                  selectOption(result.option, [
-                    ...result.ancestors,
-                    result.option,
-                  ]);
                 return treeRow({
                   key: result.option.value,
                   navIndex: resultNav >= 0 ? resultNav : undefined,
@@ -1113,11 +1036,15 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                   ]
                     .filter(Boolean)
                     .join(", "),
-                  onActivate:
-                    branch && !selectableBranches
-                      ? () => drillToResult(result)
-                      : pick,
-                  onDrill: () => drillToResult(result),
+                  // A branch result opens its level (the parent is then
+                  // picked from the title row inside); a leaf is picked.
+                  onActivate: branch
+                    ? () => drillToResult(result)
+                    : () =>
+                        selectOption(result.option, [
+                          ...result.ancestors,
+                          result.option,
+                        ]),
                 });
               })}
             </>
@@ -1125,15 +1052,34 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
             <div
               style={{ display: "flex", flexDirection: "column", gap: 4 }}
               role={currentParent ? "group" : undefined}
-              aria-labelledby={currentParent ? headingId : undefined}
+              aria-labelledby={
+                currentParent && !selectableBranches ? headingId : undefined
+              }
+              aria-label={
+                currentParent && selectableBranches
+                  ? currentParent.label
+                  : undefined
+              }
             >
               {currentParent && (
                 <>
-                  <div id={headingId} style={{ padding: 8 }}>
-                    <Text fontWeight="medium" color="neutral-textHigh">
-                      {currentParent.label}
-                    </Text>
-                  </div>
+                  {selectableBranches ? (
+                    treeRow({
+                      key: `title-${currentParent.value}`,
+                      navIndex: 0,
+                      option: currentParent,
+                      branch: false,
+                      current: selected?.value === currentParent.value,
+                      isTitle: true,
+                      onActivate: () => selectOption(currentParent, levelPath),
+                    })
+                  ) : (
+                    <div id={headingId} style={{ padding: 8 }}>
+                      <Text fontWeight="medium" color="neutral-textHigh">
+                        {currentParent.label}
+                      </Text>
+                    </div>
+                  )}
                   {divider}
                 </>
               )}
@@ -1146,11 +1092,9 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                   branch,
                   current: selected?.value === option.value,
                   label: branch ? `${option.label}, ${branchHint}` : undefined,
-                  onActivate:
-                    branch && !selectableBranches
-                      ? () => drillInto(option)
-                      : () => selectOption(option),
-                  onDrill: () => drillInto(option),
+                  onActivate: branch
+                    ? () => drillInto(option)
+                    : () => selectOption(option),
                 });
               })}
             </div>

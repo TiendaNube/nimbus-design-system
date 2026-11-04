@@ -290,10 +290,9 @@ export const FullScreen: Story = {
               options={TREE_OPTIONS}
               selectableBranches
               labels={{
-                back: "Atrás",
-                backTo: "Atrás a {name}",
+                back: "Volver",
+                backTo: "Volver a {name}",
                 in: "en",
-                viewSubcategories: "Ver subcategorías de {name}",
                 branchHint: "tiene subcategorías",
                 noResults: "Sin resultados",
                 results: "Resultados",
