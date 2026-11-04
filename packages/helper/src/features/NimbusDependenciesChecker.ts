@@ -19,7 +19,7 @@ export class NimbusDependenciesChecker {
         const outdatedDependencies = await this.checkOutdatedNimbusDependencies(
           nimbusDsDependencies
         );
-        this.showOutdatedDependenciesWarning(outdatedDependencies);
+        await this.showOutdatedDependenciesWarning(outdatedDependencies);
       }
     );
   }

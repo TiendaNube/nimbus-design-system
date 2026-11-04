@@ -27,9 +27,10 @@ describe("GIVEN <SplitButton.Action />", () => {
       const iconButton = screen.getByLabelText("Show more actions");
       fireEvent.click(iconButton);
 
+      const action1 = await screen.findByText(action1Text);
+      fireEvent.click(action1);
+
       await waitFor(() => {
-        const action1 = screen.getByText(action1Text);
-        fireEvent.click(action1);
         expect(mockedAction1Click).toHaveBeenCalledTimes(1);
       });
     });
@@ -77,11 +78,9 @@ describe("GIVEN <SplitButton.Action />", () => {
       const iconButton = screen.getByLabelText("Show more actions");
       fireEvent.click(iconButton);
 
-      await waitFor(() => {
-        const action1 = screen.getByText(action1Text);
-        fireEvent.click(action1);
-        expect(mockedAction1Click).not.toHaveBeenCalled();
-      });
+      const action1 = await screen.findByText(action1Text);
+      fireEvent.click(action1);
+      expect(mockedAction1Click).not.toHaveBeenCalled();
     });
 
     it("THEN should have disabled styling", async () => {

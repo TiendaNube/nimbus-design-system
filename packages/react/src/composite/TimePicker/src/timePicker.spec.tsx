@@ -117,10 +117,8 @@ describe("GIVEN <TimePicker />", () => {
 
       fireEvent.click(input);
 
-      await waitFor(() => {
-        const option = screen.getByText("10:00");
-        fireEvent.click(option);
-      });
+      const option = await screen.findByText("10:00");
+      fireEvent.click(option);
 
       expect(handleChange).not.toHaveBeenCalled();
 
@@ -137,10 +135,8 @@ describe("GIVEN <TimePicker />", () => {
 
       fireEvent.click(input);
 
-      await waitFor(() => {
-        const option = screen.getByText("10:00");
-        fireEvent.click(option);
-      });
+      const option = await screen.findByText("10:00");
+      fireEvent.click(option);
 
       fireEvent.keyDown(input, { key: "Escape" });
 
