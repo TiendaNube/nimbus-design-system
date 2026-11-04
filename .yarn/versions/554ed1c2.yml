@@ -1,8 +1,13 @@
+# One-off recovery: the current build reads this existing record first.
+# Include every recovery package without changing the pipeline.
 releases:
-  "@nimbus-ds/styles": patch
+  "@nimbus-ds/components": minor
+  "@nimbus-ds/styles": minor
+  "@nimbus-ds/accordion": 1.8.3
 
 declined:
   - nimbus-design-system
+  - nimbus-helper
   - "@nimbus-ds/split-button"
   - "@nimbus-ds/stepper"
   - "@nimbus-ds/time-picker"
