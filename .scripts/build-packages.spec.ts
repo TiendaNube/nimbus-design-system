@@ -24,8 +24,9 @@ it("builds packages from the second deferred file through the real CLI entrypoin
   try {
     await import("./build-packages");
     expect(execFileSync).toHaveBeenCalledWith(
-      "yarn",
+      process.execPath,
       expect.arrayContaining([
+        path.resolve(".yarn/releases/yarn-3.2.2.cjs"),
         "--filter=@nimbus-ds/styles...",
         "--filter=@nimbus-ds/components..."
       ]),
