@@ -20,6 +20,13 @@ const readPrimaryToken = (key: string): string =>
 
 export const variables = createTheme(vars, {
   ...globalTheme,
+  fontSize: {
+    ...globalTheme.fontSize,
+    body: {
+      ...globalTheme.fontSize.body,
+      base: tokens.font.size["3-25"].value as string,
+    },
+  },
   colors: {
     ...globalTheme.colors,
     primary: {
