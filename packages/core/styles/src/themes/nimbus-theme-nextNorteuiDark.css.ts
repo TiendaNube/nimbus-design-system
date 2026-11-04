@@ -30,6 +30,13 @@ const readShadow = (level: "0" | "1" | "2" | "3" | "4" | "5"): string =>
 
 const nextNorteuiDarkTheme = {
   ...globalTheme,
+  fontSize: {
+    ...globalTheme.fontSize,
+    body: {
+      ...globalTheme.fontSize.body,
+      base: "0.8125rem", // 13px — Norte UI body-base
+    },
+  },
   colors: {
     ...globalTheme.colors,
     primary: mapToneScale(nextNorteuiColors.primary),

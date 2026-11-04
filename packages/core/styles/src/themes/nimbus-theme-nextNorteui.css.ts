@@ -20,6 +20,13 @@ const readPrimaryToken = (key: string): string =>
 
 export const variables = createTheme(vars, {
   ...globalTheme,
+  fontSize: {
+    ...globalTheme.fontSize,
+    body: {
+      ...globalTheme.fontSize.body,
+      base: "0.8125rem", // 13px — Norte UI body-base
+    },
+  },
   colors: {
     ...globalTheme.colors,
     primary: {
