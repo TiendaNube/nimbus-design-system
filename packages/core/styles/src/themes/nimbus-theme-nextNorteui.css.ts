@@ -8,33 +8,52 @@ interface TokenLeaf {
   value: unknown;
 }
 
-type PrimaryTokenScale = Record<string, TokenLeaf>;
+type ToneTokenMap = Record<string, TokenLeaf>;
 
-const colorDict = tokens.color as Record<
-  string,
-  { primary: PrimaryTokenScale }
->;
-const primaryTokens = (colorDict["next-norteui"] ?? colorDict.next).primary;
-const readPrimaryToken = (key: string): string =>
-  String(primaryTokens[key].value);
+const colorDict = tokens.color as Record<string, Record<string, ToneTokenMap>>;
+const colors = colorDict["next-norteui"];
+
+const mapToneScale = (group: ToneTokenMap) => ({
+  surface: String(group.surface.value),
+  surfaceHighlight: String(group["surface-highlight"].value),
+  interactive: String(group.interactive.value),
+  interactiveHover: String(group["interactive-hover"].value),
+  interactivePressed: String(group["interactive-pressed"].value),
+  textLow: String(group["text-low"].value),
+  textHigh: String(group["text-high"].value)
+});
+
+const primary = mapToneScale(colors.primary);
+const { aiGenerative } = colors;
+const aiSurfaceHighlight = String(aiGenerative["surface-highlight"].value);
 
 export const variables = createTheme(vars, {
   ...globalTheme,
   colors: {
     ...globalTheme.colors,
-    primary: {
-      surface: readPrimaryToken("surface"),
-      surfaceHighlight: readPrimaryToken("surface-highlight"),
-      interactive: readPrimaryToken("interactive"),
-      interactiveHover: readPrimaryToken("interactive-hover"),
-      interactivePressed: readPrimaryToken("interactive-pressed"),
-      textLow: readPrimaryToken("text-low"),
-      textHigh: readPrimaryToken("text-high")
+    primary,
+    success: mapToneScale(colors.success),
+    warning: mapToneScale(colors.warning),
+    danger: mapToneScale(colors.danger),
+    neutral: {
+      ...mapToneScale(colors.neutral),
+      background: String(colors.neutral.background.value),
+      surfaceDisabled: String(colors.neutral["surface-disabled"].value),
+      textDisabled: String(colors.neutral["text-disabled"].value)
+    },
+    aiGenerative: {
+      ...globalTheme.colors.aiGenerative,
+      surface: String(aiGenerative.surface.value),
+      surfaceHighlight: aiSurfaceHighlight,
+      interactiveHover: String(aiGenerative["interactive-hover"].value),
+      interactivePressed: String(aiGenerative["interactive-pressed"].value),
+      textLow: String(aiGenerative["text-low"].value),
+      textHigh: String(aiGenerative["text-high"].value)
     }
   },
   utils: {
-    focus: `0 0 0 3px ${readPrimaryToken("surface-highlight")}`,
-    aiFocus: `0 0 0 3px ${globalTheme.colors.aiGenerative.surfaceHighlight}`
+    focus: `0 0 0 3px ${primary.surfaceHighlight}`,
+    aiFocus: `0 0 0 3px ${aiSurfaceHighlight}`
   }
 });
 
