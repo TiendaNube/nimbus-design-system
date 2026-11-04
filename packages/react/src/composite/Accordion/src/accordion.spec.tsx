@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
+import { accordion } from "@nimbus-ds/styles";
 
 import { Accordion } from "./Accordion";
 import { type AccordionProps } from "./accordion.types";
@@ -71,6 +72,16 @@ describe("GIVEN <Accordion />", () => {
       expect(screen.getByTestId("accordion-body-1")).toBeDefined();
       fireEvent.click(screen.getByTestId("accordion-header-2"));
       expect(screen.getByTestId("accordion-body-2")).toBeDefined();
+    });
+  });
+
+  describe("WHEN rendered with a className", () => {
+    it("THEN should keep the container class alongside the custom class", () => {
+      makeSut({ children: <div>content</div>, className: "custom-class" });
+      const root = screen.getByTestId("accordion-element");
+      expect(accordion.classnames.container).toBeTruthy();
+      expect(root.className).toContain(accordion.classnames.container);
+      expect(root.className).toContain("custom-class");
     });
   });
 

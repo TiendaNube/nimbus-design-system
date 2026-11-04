@@ -3,11 +3,17 @@
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories
 every day, with simplicity, accessibility, consistency and performance.
 
-## 2026-11-03 `5.63.1`
+## 2026-11-04 `5.63.2`
 
 #### 🐛 Bug fixes
 
 - Select: Fixed `Select` and `Select.Skeleton` rendering at 34px and 36px respectively, instead of the 32px defined in Figma; they now both render at 32px. ([#523](https://github.com/TiendaNube/nimbus-design-system/pull/523) by [@claude](https://github.com/apps/claude))
+
+## 2026-11-04 `5.63.1`
+
+#### 🐛 Bug fixes
+
+- Accordion: Fixes the first header and the last header or body covering the rounded corners of a parent `Card`: they now inherit the container's border radius. ([#605](https://github.com/TiendaNube/nimbus-design-system/pull/605) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
 
 ## 2026-08-31 `5.63.0`
 

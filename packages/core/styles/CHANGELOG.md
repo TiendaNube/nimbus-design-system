@@ -13,6 +13,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 #### 🐛 Bug fixes
 
 - Radio: Changes the checked indicator size from `0.563rem` to `0.5rem` (8px), so it stays centered inside the radio on 1x pixel density screens instead of shifting by a subpixel. ([#599](https://github.com/TiendaNube/nimbus-design-system/pull/599) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
+- Accordion: Adds the `container` class and makes the first header and the last header or body inherit the parent's border radius, so they no longer cover the rounded corners of a `Card`. ([#605](https://github.com/TiendaNube/nimbus-design-system/pull/605) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
 
 ## 2026-08-31 `9.69.0`
 
