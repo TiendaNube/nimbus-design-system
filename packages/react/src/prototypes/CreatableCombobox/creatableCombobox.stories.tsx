@@ -91,7 +91,7 @@ export const Playground: PlaygroundStory = {
               ? ENRICHED_OPTIONS
               : undefined
           }
-          labels={hierarchical ? { back: "Atrás" } : undefined}
+          selectableBranches={hierarchical}
           data-testid="playground-combobox"
         />
         <Button
@@ -288,7 +288,16 @@ export const FullScreen: Story = {
               placeholder="Buscar categoría"
               helperText="Esta categoría es solo visible para Google, no para tus clientes."
               options={TREE_OPTIONS}
-              labels={{ back: "Atrás", branchHint: "tiene subcategorías" }}
+              selectableBranches
+              labels={{
+                back: "Atrás",
+                backTo: "Atrás a {name}",
+                in: "en",
+                viewSubcategories: "Ver subcategorías de {name}",
+                branchHint: "tiene subcategorías",
+                noResults: "Sin resultados",
+                results: "Resultados",
+              }}
               name="categoryG"
             />
           </Box>

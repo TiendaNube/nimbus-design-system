@@ -201,6 +201,32 @@ export const TREE_OPTIONS: ComboboxOption[] = [
         children: [
           { value: "hogar-vajilla", label: "Vajilla" },
           { value: "hogar-utensilios", label: "Utensilios" },
+          {
+            value: "hogar-electro",
+            label: "Electrodomésticos pequeños",
+            children: [
+              {
+                value: "hogar-cafeteras",
+                label: "Cafeteras",
+                children: [
+                  {
+                    value: "hogar-cafeteras-capsulas",
+                    label: "Cafeteras de cápsulas",
+                  },
+                  {
+                    value: "hogar-cafeteras-filtro",
+                    label: "Cafeteras de filtro",
+                  },
+                  {
+                    value: "hogar-cafeteras-express",
+                    label: "Cafeteras espresso",
+                  },
+                ],
+              },
+              { value: "hogar-tostadoras", label: "Tostadoras" },
+              { value: "hogar-licuadoras", label: "Licuadoras" },
+            ],
+          },
         ],
       },
       { value: "hogar-jardin", label: "Jardinería" },
