@@ -2,6 +2,12 @@
 
 This package is intended for internal use in generating builds of each design system package. It contains all the necessary settings and dependencies to optimize the creation of our builds.
 
+## 2026-11-05 `1.7.4`
+
+#### 🐛 Bug fixes
+
+- Replaces transformed package manifests atomically so concurrent Yarn commands never read an empty or partial file during parallel builds. ([#608](https://github.com/TiendaNube/nimbus-design-system/pull/608) by [@prescillahurbin-tiendanube](https://github.com/prescillahurbin-tiendanube))
+
 ## 2026-08-06 `1.7.3`
 
 #### 🐛 Bug fixes
