@@ -97,7 +97,7 @@ reviews:
         file; the pipeline resolves that to `1.0.0`. Do not ask for `0.0.0` to be changed to
         `1.0.0`, and do not read `0.0.0` as a missing bump.
 
-        AUTOMATED RELEASE PR EXCEPTION: if the branch matches `release/publish-*`, `version`
+        AUTOMATED RELEASE PR EXCEPTION: if the branch is `release/publish` or matches `release/publish-*`, `version`
         changes are the release pipeline applying the deferred declarations and MUST pass. Never
         report those generated manifest updates as manual edits.
 
@@ -223,7 +223,7 @@ reviews:
           PASS if: no published component source changed, OR some `.yarn/versions/*.yml` in
           the PR has `"@nimbus-ds/components"` under `releases:` with a bump level at least as
           high as the required level computed below (major > minor > patch). Also PASS for the
-          automated release PR (branch `release/publish-*`).
+          automated release PR (branch `release/publish` or `release/publish-*`).
 
           EXCEPTION for a brand-new component package (its `package.json` is added in this PR,
           seeded with `"version": "0.0.0"`): its `major` is only the seed resolving to `1.0.0`, so
@@ -265,7 +265,7 @@ reviews:
           `path_filters`, so rely on the file list, not the diff body).
 
           PASS if: no generated artifact appears in the changed-file list, OR the PR is the
-          automated release PR (branch `release/publish-*`, title "feat: publish release")
+          automated release PR (branch `release/publish` or `release/publish-*`, title "feat: publish release")
           or the automated documentation commit ("chore: updated documentation for
           components and subcomponents").
 

@@ -28,9 +28,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: "Show return"
+        env:
+          PREVIOUS_TAG: ${{ steps.previoustag.outputs.tag }}
+          PR_BODY: ${{ steps.PR.outputs.pr_body }}
         run: |
-          echo "Tag: ${{ steps.previoustag.outputs.tag }}"
-          echo "Body:  ${{ steps.PR.outputs.pr_body }}"
+          printf 'Tag: %s\n' "$PREVIOUS_TAG"
+          printf 'Body: %s\n' "$PR_BODY"
 
       - name: Create Release
         id: create_release

@@ -23,6 +23,18 @@ yarn build
 
 This command will sequentially execute the build process for each Nimbus project.
 
+`yarn build:packages` merges every `.yarn/versions/*.yml` release selection,
+deduplicates package names and ignores declined decisions. A declared
+`@nimbus-ds/components` is built explicitly: component workspace dependencies do
+not imply the aggregate. Empty or declined-only selections log a skip and never
+invoke unfiltered Turbo. The parser accepts the block records written by Yarn
+(including quoted names, comments and exact versions); unsupported release syntax
+fails instead of silently omitting packages.
+
+Stable releases use `yarn publish:stable`, which builds the complete captured Yarn
+plan and its build dependencies once before applying deferred versions. See
+[release validation and recovery](./RELEASE_PROCESS.md#stable-release-validation-and-recovery).
+
 ---
 
 ### 2. Project builds

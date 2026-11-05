@@ -1,6 +1,7 @@
 import { type Compiler } from "webpack";
 import { promises as fs } from "fs";
 import path from "path";
+import { randomUUID } from "crypto";
 
 /**
  * Webpack plugin to move files into the output directory after the build.
@@ -50,11 +51,22 @@ export class MoveFilesIntoDistFolderPlugin {
             ? trailingWhitespaceMatch[1]
             : "";
 
-          // Overwrite package.json in the root project, preserving trailing whitespace if it had it.
+          // Replace atomically so concurrent Yarn readers never see a partial manifest.
           const newPackageJsonContent =
             JSON.stringify(transformedPackageJson, null, 2) +
             trailingWhitespace;
-          await fs.writeFile(pkgPath, newPackageJsonContent);
+          const temporaryPath = `${pkgPath}.${randomUUID()}.tmp`;
+          const { mode } = await fs.stat(pkgPath);
+          try {
+            await fs.writeFile(temporaryPath, newPackageJsonContent, {
+              mode,
+              flag: "wx"
+            });
+            await fs.chmod(temporaryPath, mode);
+            await fs.rename(temporaryPath, pkgPath);
+          } finally {
+            await fs.rm(temporaryPath, { force: true });
+          }
 
           // Move additional files (defaults: CHANGELOG.md, README.md)
           const filesToMove = this.options.files || [
