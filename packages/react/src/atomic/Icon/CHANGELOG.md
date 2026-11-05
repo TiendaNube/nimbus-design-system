@@ -6,7 +6,7 @@ Icons are used to visually communicate core parts of the product and available a
 
 #### 🎉 New features
 
-- Adds the `ai-generativeTextLow` color, so the Norte UI `AI` icon in `surface` mode can be expressed with the existing `color` prop. Documents how the Figma `Appearance`, `Mode` and `Size` properties map to `color` and to the `source` icon `size`. ([#PR](https://github.com/TiendaNube/nimbus-design-system/pull/PR) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
+- Adds the `ai-generativeTextLow` color, so the Norte UI `AI` icon in `surface` mode can be expressed with the existing `color` prop. Documents how the Figma `Appearance`, `Mode` and `Size` properties map to `color` and to the `source` icon `size`. ([#616](https://github.com/TiendaNube/nimbus-design-system/pull/616) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
 
 ## 2026-02-23 `1.34.0`
 
