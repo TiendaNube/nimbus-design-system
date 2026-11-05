@@ -1,13 +1,15 @@
 import { promises as fs } from "fs";
 import os from "os";
 import path from "path";
-import { type Compiler } from "webpack";
+import webpack from "webpack";
+import type { Compiler } from "webpack";
 import { MoveFilesIntoDistFolderPlugin } from "./MoveFilesIntoDistFolderPlugin";
 
 describe("MoveFilesIntoDistFolderPlugin", () => {
   let projectRoot: string;
   let pkgPath: string;
   let runPlugin: () => Promise<void>;
+  let compiler: Compiler;
   const originalManifest =
     '{"name":"@nimbus-ds/fixture","version":"1.0.0"}\n\n';
 
@@ -20,24 +22,31 @@ describe("MoveFilesIntoDistFolderPlugin", () => {
     await fs.writeFile(path.join(projectRoot, "README.md"), "Fixture readme");
     jest.spyOn(console, "log").mockImplementation(() => undefined);
     jest.spyOn(console, "error").mockImplementation(() => undefined);
-    const compiler = {
+    compiler = webpack({
       context: projectRoot,
-      options: { output: { path: path.join(projectRoot, "dist") } },
-      hooks: {
-        afterEmit: {
-          tapPromise: (_name: string, callback: () => Promise<void>) => {
-            runPlugin = callback;
-          }
-        }
-      }
-    } as unknown as Compiler;
+      mode: "none",
+      output: { path: path.join(projectRoot, "dist") }
+    });
     new MoveFilesIntoDistFolderPlugin({
       transform: (manifest) => ({ ...manifest, main: "dist/index.js" })
     }).apply(compiler);
+    const compilation = compiler.newCompilation(
+      compiler.newCompilationParams()
+    );
+    runPlugin = () => compiler.hooks.afterEmit.promise(compilation);
   });
 
   afterEach(async () => {
     jest.restoreAllMocks();
+    await new Promise<void>((resolve, reject) => {
+      compiler.close((error) => {
+        if (error) {
+          reject(error);
+          return;
+        }
+        resolve();
+      });
+    });
     await fs.rm(projectRoot, { recursive: true, force: true });
   });
 

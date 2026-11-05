@@ -3,6 +3,12 @@
 This is the log of notable changes to the Design System Nimbus that are developer-facing.
 Package-specific changes not released in any package will be added here just before the release. Until then, you can find them in changelogs of the individual packages (see [packages](./packages) directory).
 
+## 2026-11-05
+
+#### 🐛 Bug fixes
+
+- Prevents concurrent package builds from failing when Yarn reads a manifest being updated. ([#608](https://github.com/TiendaNube/nimbus-design-system/pull/608) by [@prescillahurbin-tiendanube](https://github.com/prescillahurbin-tiendanube))
+
 ## 2026-11-04
 
 #### 🐛 Bug fixes
