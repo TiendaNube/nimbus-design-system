@@ -2,6 +2,12 @@
 
 Icons are used to visually communicate core parts of the product and available actions. They can act as wayfinding tools to help merchants more easily understand where they are in the product, and common interaction patterns that are available.
 
+## 2026-11-05 `3.6.0`
+
+#### 🎉 New features
+
+- Adds the `ai-generativeTextLow` color, so the Norte UI `AI` icon in `surface` mode can be expressed with the existing `color` prop. Documents how the Figma `Appearance`, `Mode` and `Size` properties map to `color` and to the `source` icon `size`. ([#616](https://github.com/TiendaNube/nimbus-design-system/pull/616) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
+
 ## 2026-02-23 `1.34.0`
 
 #### 🎉 New features

@@ -3,6 +3,12 @@
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories
 every day, with simplicity, accessibility, consistency and performance.
 
+## 2026-11-05 `5.65.0`
+
+#### 🎉 New features
+
+- Icon: Adds the `ai-generativeTextLow` color, used by the Norte UI `AI` icon in `surface` mode. ([#616](https://github.com/TiendaNube/nimbus-design-system/pull/616) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
+
 ## 2026-11-04 `5.64.0`
 
 #### 🎉 New features
