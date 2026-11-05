@@ -2,6 +2,7 @@ releases:
   "@nimbus-ds/tokens": minor
   "@nimbus-ds/styles": minor
   "@nimbus-ds/icon": minor
+  "@nimbus-ds/thumbnail": patch
   "@nimbus-ds/components": minor
 
 declined:
@@ -26,5 +27,4 @@ declined:
   - "@nimbus-ds/segmented-control"
   - "@nimbus-ds/select"
   - "@nimbus-ds/tag"
-  - "@nimbus-ds/thumbnail"
   - "@nimbus-ds/toast"
