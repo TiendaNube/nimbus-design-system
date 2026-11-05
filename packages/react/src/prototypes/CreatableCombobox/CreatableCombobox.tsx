@@ -335,6 +335,9 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
       null
     );
     const [createHovered, setCreateHovered] = useState(false);
+    // The tree's back button is navigation, not a selection, so it never gets
+    // a background fill: hover only darkens its text/arrow (see below).
+    const [backHovered, setBackHovered] = useState(false);
     // Keyboard-driven "active" descendant, per the WAI-ARIA 1.2 combobox
     // pattern — deliberately a separate track from hover above: the two
     // must stay visually distinct (see the row rendering below) since a
@@ -958,8 +961,8 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
               data-testid={dataTestId ? `${dataTestId}-back` : undefined}
               onMouseDown={(event) => event.preventDefault()}
               onClick={() => goBack(false)}
-              onMouseEnter={() => setCreateHovered(true)}
-              onMouseLeave={() => setCreateHovered(false)}
+              onMouseEnter={() => setBackHovered(true)}
+              onMouseLeave={() => setBackHovered(false)}
               display="block"
               padding="none"
               width="100%"
@@ -968,7 +971,10 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
               borderWidth="none"
               cursor="pointer"
               textAlign="left"
-              backgroundColor={rowFill({ hovered: createHovered })}
+              // Always the popover's own background — never a hover, active
+              // or selected fill. Keyboard focus keeps Nimbus's focus-visible
+              // ring (Box's button style).
+              backgroundColor="neutral-background"
             >
               <div
                 style={{
@@ -978,8 +984,15 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                   padding: 8,
                 }}
               >
-                <Icon source={<ArrowLeftIcon />} color="neutral-textLow" />
-                <Text color="neutral-textLow">{backText}</Text>
+                <Icon
+                  source={<ArrowLeftIcon />}
+                  color={backHovered ? "neutral-textHigh" : "neutral-textLow"}
+                />
+                <Text
+                  color={backHovered ? "neutral-textHigh" : "neutral-textLow"}
+                >
+                  {backText}
+                </Text>
               </div>
             </Box>
             {divider}
