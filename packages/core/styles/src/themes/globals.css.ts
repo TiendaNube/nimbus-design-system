@@ -1,8 +1,10 @@
 import tokens from "@nimbus-ds/tokens/dist/js/tokens";
 import { createGlobalTheme, globalStyle } from "@vanilla-extract/css";
 import { vars } from "./contract.css";
+import { withToneSurfaceDisabled } from "./toneSurfaceDisabled";
 
 const colors = tokens.color.light;
+const surfaceDisabled = colors.neutral["surface-disabled"].value as string;
 const fontFamily = tokens.font.family;
 const fontSize = tokens.font.size;
 const fontWeight = tokens.font.weight;
@@ -11,7 +13,7 @@ const { shape } = tokens;
 const { motion, spacing, shadow, breakpoint, zIndex } = tokens;
 
 export const globalTheme = {
-  colors: {
+  colors: withToneSurfaceDisabled(surfaceDisabled, {
     primary: {
       surface: colors.primary.surface.value as string,
       surfaceHighlight: colors.primary["surface-highlight"].value as string,
@@ -80,7 +82,7 @@ export const globalTheme = {
       pinkHigh: colors.aiGradient["pink-high"].value as string,
       pinkLight: colors.aiGradient["pink-light"].value as string,
     },
-  },
+  }),
   fontFamily: {
     sans: fontFamily.sans.value as string,
     mono: fontFamily.mono.value as string,

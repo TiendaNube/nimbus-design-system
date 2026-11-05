@@ -1,44 +1,23 @@
 import { createGlobalThemeContract } from "@vanilla-extract/css";
 
+const toneColors = {
+  surface: "",
+  surfaceDisabled: "",
+  surfaceHighlight: "",
+  interactive: "",
+  interactiveHover: "",
+  interactivePressed: "",
+  textLow: "",
+  textHigh: "",
+};
+
 export const vars = createGlobalThemeContract(
   {
     colors: {
-      primary: {
-        surface: "",
-        surfaceHighlight: "",
-        interactive: "",
-        interactiveHover: "",
-        interactivePressed: "",
-        textLow: "",
-        textHigh: "",
-      },
-      success: {
-        surface: "",
-        surfaceHighlight: "",
-        interactive: "",
-        interactiveHover: "",
-        interactivePressed: "",
-        textLow: "",
-        textHigh: "",
-      },
-      warning: {
-        surface: "",
-        surfaceHighlight: "",
-        interactive: "",
-        interactiveHover: "",
-        interactivePressed: "",
-        textLow: "",
-        textHigh: "",
-      },
-      danger: {
-        surface: "",
-        surfaceHighlight: "",
-        interactive: "",
-        interactiveHover: "",
-        interactivePressed: "",
-        textLow: "",
-        textHigh: "",
-      },
+      primary: toneColors,
+      success: toneColors,
+      warning: toneColors,
+      danger: toneColors,
       neutral: {
         background: "",
         surface: "",
@@ -57,6 +36,7 @@ export const vars = createGlobalThemeContract(
         interactivePressed: "",
         surfaceHighlight: "",
         surface: "",
+        surfaceDisabled: "",
         background: "",
         textHigh: "",
       },

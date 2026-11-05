@@ -3,14 +3,16 @@ import tokens from "@nimbus-ds/tokens/dist/js/tokens";
 
 import { vars } from "./contract.css";
 import { globalTheme } from "./globals.css";
+import { withToneSurfaceDisabled } from "./toneSurfaceDisabled";
 
 const colors = tokens.color.dark;
+const surfaceDisabled = colors.neutral["surface-disabled"].value as string;
 const lightColors = tokens.color.light;
 const { shadow } = tokens;
 
 const darkTheme = {
   ...globalTheme,
-  colors: {
+  colors: withToneSurfaceDisabled(surfaceDisabled, {
     primary: {
       surface: colors.primary.surface.value as string,
       surfaceHighlight: colors.primary["surface-highlight"].value as string,
@@ -79,7 +81,7 @@ const darkTheme = {
       pinkHigh: lightColors.aiGradient["pink-high"].value as string,
       pinkLight: lightColors.aiGradient["pink-light"].value as string,
     },
-  },
+  }),
   utils: {
     // Keep focus rings consistent with base theme definitions
     focus: `0 0 0 3px ${globalTheme.colors.primary.surfaceHighlight}`,
