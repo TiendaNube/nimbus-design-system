@@ -1,8 +1,10 @@
 import tokens from "@nimbus-ds/tokens/dist/js/tokens";
 import { createGlobalTheme, globalStyle } from "@vanilla-extract/css";
 import { vars } from "./contract.css";
+import { withToneSurfaceDisabled } from "./toneSurfaceDisabled";
 
 const colors = tokens.color.light;
+const surfaceDisabled = colors.neutral["surface-disabled"].value as string;
 const fontFamily = tokens.font.family;
 const fontSize = tokens.font.size;
 const fontWeight = tokens.font.weight;
@@ -11,10 +13,9 @@ const { shape } = tokens;
 const { motion, spacing, shadow, breakpoint, zIndex } = tokens;
 
 export const globalTheme = {
-  colors: {
+  colors: withToneSurfaceDisabled(surfaceDisabled, {
     primary: {
       surface: colors.primary.surface.value as string,
-      surfaceDisabled: colors.neutral["surface-disabled"].value as string,
       surfaceHighlight: colors.primary["surface-highlight"].value as string,
       interactive: colors.primary.interactive.value as string,
       interactiveHover: colors.primary["interactive-hover"].value as string,
@@ -24,7 +25,6 @@ export const globalTheme = {
     },
     success: {
       surface: colors.success.surface.value as string,
-      surfaceDisabled: colors.neutral["surface-disabled"].value as string,
       surfaceHighlight: colors.success["surface-highlight"].value as string,
       interactive: colors.success.interactive.value as string,
       interactiveHover: colors.success["interactive-hover"].value as string,
@@ -34,7 +34,6 @@ export const globalTheme = {
     },
     warning: {
       surface: colors.warning.surface.value as string,
-      surfaceDisabled: colors.neutral["surface-disabled"].value as string,
       surfaceHighlight: colors.warning["surface-highlight"].value as string,
       interactive: colors.warning.interactive.value as string,
       interactiveHover: colors.warning["interactive-hover"].value as string,
@@ -44,7 +43,6 @@ export const globalTheme = {
     },
     danger: {
       surface: colors.danger.surface.value as string,
-      surfaceDisabled: colors.neutral["surface-disabled"].value as string,
       surfaceHighlight: colors.danger["surface-highlight"].value as string,
       interactive: colors.danger.interactive.value as string,
       interactiveHover: colors.danger["interactive-hover"].value as string,
@@ -71,7 +69,6 @@ export const globalTheme = {
       interactivePressed: colors.aiGenerative["interactive-pressed"]
         .value as string,
       surface: colors.aiGenerative.surface.value as string,
-      surfaceDisabled: colors.neutral["surface-disabled"].value as string,
       background: colors.aiGenerative.background.value as string,
       textHigh: colors.aiGenerative["text-high"].value as string,
       surfaceHighlight: colors.aiGenerative["surface-highlight"]
@@ -85,7 +82,7 @@ export const globalTheme = {
       pinkHigh: colors.aiGradient["pink-high"].value as string,
       pinkLight: colors.aiGradient["pink-light"].value as string,
     },
-  },
+  }),
   fontFamily: {
     sans: fontFamily.sans.value as string,
     mono: fontFamily.mono.value as string,

@@ -3,6 +3,7 @@ import tokens from "@nimbus-ds/tokens/dist/js/tokens";
 
 import { vars } from "./contract.css";
 import { globalTheme } from "./globals.css";
+import { withToneSurfaceDisabled } from "./toneSurfaceDisabled";
 
 interface TokenLeaf {
   value: unknown;
@@ -38,20 +39,19 @@ const nextNorteuiDarkTheme = {
       base: tokens.font.size["3-25"].value as string,
     },
   },
-  colors: {
+  colors: withToneSurfaceDisabled(surfaceDisabled, {
     ...globalTheme.colors,
-    primary: { ...mapToneScale(nextNorteuiColors.primary), surfaceDisabled },
-    success: { ...mapToneScale(darkColors.success), surfaceDisabled },
-    warning: { ...mapToneScale(darkColors.warning), surfaceDisabled },
-    danger: { ...mapToneScale(darkColors.danger), surfaceDisabled },
+    primary: mapToneScale(nextNorteuiColors.primary),
+    success: mapToneScale(darkColors.success),
+    warning: mapToneScale(darkColors.warning),
+    danger: mapToneScale(darkColors.danger),
     neutral: {
       ...mapToneScale(darkColors.neutral),
       background: String(darkColors.neutral.background.value),
-      surfaceDisabled,
+      surfaceDisabled: String(darkColors.neutral["surface-disabled"].value),
       textDisabled: String(darkColors.neutral["text-disabled"].value)
-    },
-    aiGenerative: { ...globalTheme.colors.aiGenerative, surfaceDisabled }
-  },
+    }
+  }),
   utils: {
     focus: `0 0 0 3px ${String(
       nextNorteuiColors.primary["surface-highlight"].value

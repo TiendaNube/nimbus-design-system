@@ -3,16 +3,17 @@ import tokens from "@nimbus-ds/tokens/dist/js/tokens";
 
 import { vars } from "./contract.css";
 import { globalTheme } from "./globals.css";
+import { withToneSurfaceDisabled } from "./toneSurfaceDisabled";
 
 const colors = tokens.color.next;
+const { surfaceDisabled } = globalTheme.colors.neutral;
 
 const nextTheme = {
   ...globalTheme,
-  colors: {
+  colors: withToneSurfaceDisabled(surfaceDisabled, {
     ...globalTheme.colors,
     primary: {
       surface: colors.primary.surface.value as string,
-      surfaceDisabled: globalTheme.colors.neutral.surfaceDisabled,
       surfaceHighlight: colors.primary["surface-highlight"].value as string,
       interactive: colors.primary.interactive.value as string,
       interactiveHover: colors.primary["interactive-hover"].value as string,
@@ -20,7 +21,7 @@ const nextTheme = {
       textLow: colors.primary["text-low"].value as string,
       textHigh: colors.primary["text-high"].value as string,
     },
-  },
+  }),
   utils: {
     focus: `0 0 0 3px ${colors.primary["surface-highlight"].value as string}`,
     aiFocus: `0 0 0 3px ${globalTheme.colors.aiGenerative.surfaceHighlight}`,
