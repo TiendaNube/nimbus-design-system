@@ -10,7 +10,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 #### 💡 Others
 
-- Thumbnail: Changes the background color from `neutral.surfaceDisabled` to `neutral.surfaceHighlight`, aligned with the Norte UI Figma. ([#PR](https://github.com/TiendaNube/nimbus-design-system/pulls) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
+- Thumbnail: Changes the background color from `neutral.surfaceDisabled` to `neutral.surfaceHighlight`, aligned with the Norte UI Figma. ([#619](https://github.com/TiendaNube/nimbus-design-system/pull/619) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
 
 ## 2026-11-04 `9.70.0`
 
