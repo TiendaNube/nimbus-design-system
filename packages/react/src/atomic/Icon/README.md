@@ -24,6 +24,22 @@ We use this component to reinforce, through an icon, a message, state or action 
 
 Icon has 3 predefined sizes large, medium and small and must be used taking into account the component and context in which they will be applied.
 
+### Figma (Norte UI) mapping
+
+The Figma `Icon` properties map to the existing API without new props:
+
+| Figma `Appearance` | `Mode=surface` → `color` | `Mode=light` → `color` |
+| ------------------ | ------------------------ | ---------------------- |
+| neutral            | `neutral-textHigh`       | `neutral-textLow`      |
+| primary            | `primary-textLow`        | `primary-interactive`  |
+| success            | `success-textLow`        | —                      |
+| warning            | `warning-textLow`        | —                      |
+| danger             | `danger-textLow`         | —                      |
+| AI                 | `ai-generativeTextLow`   | `ai-generative`        |
+| background         | —                        | `neutral-background`   |
+
+Figma `Size` maps to the `size` prop of the `@nimbus-ds/icons` SVG passed as `source` (`small` 16px, `medium` 24px, `large` 32px). For `Icon.Skeleton`, use `width` / `height` (`1rem`, `1.5rem`, `2rem`).
+
 ### AriaLabel
 
 This component does not have text, but it has a tag (Aria Label) to facilitate its identification by people with some type of visual or cognitive limitation. That's why we need to add a description that makes the icon's function clear.

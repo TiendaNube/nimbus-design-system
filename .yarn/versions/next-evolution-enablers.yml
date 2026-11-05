@@ -1,6 +1,7 @@
 releases:
   "@nimbus-ds/tokens": minor
   "@nimbus-ds/styles": minor
+  "@nimbus-ds/icon": minor
   "@nimbus-ds/components": minor
 
 declined:
@@ -10,3 +11,20 @@ declined:
   - "@nimbus-ds/split-button"
   - "@nimbus-ds/stepper"
   - "@nimbus-ds/time-picker"
+  - "@nimbus-ds/accordion"
+  - "@nimbus-ds/alert"
+  - "@nimbus-ds/button"
+  - "@nimbus-ds/checkbox"
+  - "@nimbus-ds/chip"
+  - "@nimbus-ds/file-uploader"
+  - "@nimbus-ds/icon-button"
+  - "@nimbus-ds/input"
+  - "@nimbus-ds/label"
+  - "@nimbus-ds/modal"
+  - "@nimbus-ds/multi-select"
+  - "@nimbus-ds/scroll-pane"
+  - "@nimbus-ds/segmented-control"
+  - "@nimbus-ds/select"
+  - "@nimbus-ds/tag"
+  - "@nimbus-ds/thumbnail"
+  - "@nimbus-ds/toast"

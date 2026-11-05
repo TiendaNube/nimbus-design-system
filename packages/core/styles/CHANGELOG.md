@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2026-11-05 `9.71.0`
+
+#### 🎉 New features
+
+- Icon: Adds the `ai-generativeTextLow` color, used by the Norte UI `AI` icon in `surface` mode. ([#PR](https://github.com/TiendaNube/nimbus-design-system/pull/PR) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
+
 ## 2026-11-04 `9.70.0`
 
 #### 💡 Others
