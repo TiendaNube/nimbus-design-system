@@ -212,6 +212,13 @@ export const globalTheme = {
       colors.aiGenerative["surface-highlight"].value as string
     }`,
   },
+  components: {
+    divider: {
+      // References the theme's own neutral surfaceHighlight so base, dark, next
+      // and next-dark keep the exact Divider color they had. Norte UI overrides it.
+      color: vars.colors.neutral.surfaceHighlight,
+    },
+  },
 };
 
 createGlobalTheme(":root", vars, globalTheme);

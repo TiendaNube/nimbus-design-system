@@ -176,6 +176,11 @@ export const vars = createGlobalThemeContract(
       focus: "",
       aiFocus: "",
     },
+    components: {
+      divider: {
+        color: "",
+      },
+    },
   },
   (_value, path) => `nimbus-${path.join("-")}`
 );
