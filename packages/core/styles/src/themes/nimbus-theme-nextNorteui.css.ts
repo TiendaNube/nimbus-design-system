@@ -63,6 +63,11 @@ export const variables = createTheme(vars, {
   utils: {
     focus: `0 0 0 3px ${primary.surfaceHighlight}`,
     aiFocus: `0 0 0 3px ${aiSurfaceHighlight}`
+  },
+  components: {
+    divider: {
+      color: vars.colors.neutral.interactive
+    }
   }
 });
 

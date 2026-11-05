@@ -67,6 +67,11 @@ const nextNorteuiDarkTheme = {
       4: readShadow("4"),
       5: readShadow("5")
     }
+  },
+  components: {
+    divider: {
+      color: vars.colors.neutral.interactive
+    }
   }
 };
 
