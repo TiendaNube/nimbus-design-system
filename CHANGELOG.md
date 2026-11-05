@@ -3,6 +3,12 @@
 This is the log of notable changes to the Design System Nimbus that are developer-facing.
 Package-specific changes not released in any package will be added here just before the release. Until then, you can find them in changelogs of the individual packages (see [packages](./packages) directory).
 
+## 2026-11-04
+
+#### 🐛 Bug fixes
+
+- Recovers Pagination in the stable aggregate with `@nimbus-ds/components@5.64.0` and `@nimbus-ds/styles@9.70.0`; reissues the pending Accordion patch at `1.8.3` to avoid an already-published target. No component source behavior changes. ([#609](https://github.com/TiendaNube/nimbus-design-system/pull/609) by [@prescillahurbin-tiendanube](https://github.com/prescillahurbin-tiendanube))
+
 ## 2026-08-06
 
 #### 🐛 Bug fixes

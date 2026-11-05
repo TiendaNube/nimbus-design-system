@@ -3,6 +3,22 @@
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories
 every day, with simplicity, accessibility, consistency and performance.
 
+## 2026-11-04 `5.64.0`
+
+#### 🎉 New features
+
+- Pagination: Adds the `showInput` prop for a "go to page" input that only accepts digits and takes an out-of-range number to the nearest page, the `labels` prop to translate its texts, a `<nav>` landmark, `aria-current="page"` on the current page, and a compact first / previous / go-to-page / next / last layout below the `md` breakpoint when `pageCount` is 6 or more. Existing consumers with a `pageCount` of 6 or more will see the compact layout on screens narrower than 672px. Fixes the input being overwritten while typing when `activePage` changes externally. ([#585](https://github.com/TiendaNube/nimbus-design-system/pull/585) by [@claude[bot]](https://github.com/apps/claude))
+- Icons: Adds the `chevron-first` and `chevron-last` icons, used by `Pagination`. ([#585](https://github.com/TiendaNube/nimbus-design-system/pull/585) by [@claude[bot]](https://github.com/apps/claude))
+
+#### 🐛 Bug fixes
+
+- Restores the complete aggregate JavaScript and declaration artifacts after the incomplete `5.63.1` publication. Pagination from #585 did not ship in aggregate `5.63.0`; this recovery is its first intended stable aggregate release. ([#609](https://github.com/TiendaNube/nimbus-design-system/pull/609) by [@prescillahurbin-tiendanube](https://github.com/prescillahurbin-tiendanube))
+- Restores the Accordion rounded-corner fix in the complete aggregate: the first header and last header or body inherit the parent Card radius. ([#605](https://github.com/TiendaNube/nimbus-design-system/pull/605) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
+
+#### 💡 Others
+
+- Behavior change: Existing `Pagination` instances with a `pageCount` of 6 or more now show the compact first / previous / go-to-page / next / last layout below the `md` breakpoint (672px) instead of the page numbers, without any code change; the list is now also wrapped in a `<nav>` element. The API is unchanged. ([#585](https://github.com/TiendaNube/nimbus-design-system/pull/585) by [@claude[bot]](https://github.com/apps/claude))
+
 ## 2026-11-04 `5.63.1`
 
 #### 🐛 Bug fixes
@@ -15,12 +31,6 @@ every day, with simplicity, accessibility, consistency and performance.
 
 - Select: Adds a `small` size variant. ([#530](https://github.com/TiendaNube/nimbus-design-system/pull/530) by [@noecondoleo](https://github.com/noecondoleo))
 - Select: Adds a `size` prop (`medium` | `small`) to `Select.Skeleton` to match the small `Select`. ([#530](https://github.com/TiendaNube/nimbus-design-system/pull/530) by [@noecondoleo](https://github.com/noecondoleo))
-- Pagination: Adds the `showInput` prop for a "go to page" input that only accepts digits and takes an out-of-range number to the nearest page, the `labels` prop to translate its texts, a `<nav>` landmark, `aria-current="page"` on the current page, and a compact first / previous / go-to-page / next / last layout below the `md` breakpoint when `pageCount` is 6 or more. Existing consumers with a `pageCount` of 6 or more will see the compact layout on screens narrower than 672px. Fixes the input being overwritten while typing when `activePage` changes externally. ([#585](https://github.com/TiendaNube/nimbus-design-system/pull/585) by [@claude[bot]](https://github.com/apps/claude))
-- Icons: Adds the `chevron-first` and `chevron-last` icons, used by `Pagination`. ([#585](https://github.com/TiendaNube/nimbus-design-system/pull/585) by [@claude[bot]](https://github.com/apps/claude))
-
-#### 💡 Others
-
-- Behavior change: Existing `Pagination` instances with a `pageCount` of 6 or more now show the compact first / previous / go-to-page / next / last layout below the `md` breakpoint (672px) instead of the page numbers, without any code change; the list is now also wrapped in a `<nav>` element. The API is unchanged. ([#585](https://github.com/TiendaNube/nimbus-design-system/pull/585) by [@claude[bot]](https://github.com/apps/claude))
 
 ## 2026-08-12 `5.62.0`
 
