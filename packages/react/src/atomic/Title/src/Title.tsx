@@ -11,7 +11,7 @@ const Title: React.FC<TitleProps> & TitleComponents = ({
   color = "neutral-textHigh",
   textAlign = "left",
   lineHeight,
-  fontWeight = "bold",
+  fontWeight,
   fontSize,
   children,
   ...rest
@@ -22,6 +22,7 @@ const Title: React.FC<TitleProps> & TitleComponents = ({
       className,
       title.sprinkle({ color, textAlign, lineHeight, fontWeight, fontSize }),
       title.classnames.appearance[As],
+      fontWeight === undefined && title.classnames.defaultFontWeight,
     ]
       .filter(Boolean)
       .join(" ")}

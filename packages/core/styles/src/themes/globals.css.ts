@@ -106,6 +106,7 @@ export const globalTheme = {
     regular: fontWeight.regular.value as string,
     medium: fontWeight.medium.value as string,
     bold: fontWeight.bold.value as string,
+    title: fontWeight.bold.value as string,
   },
   lineWeight: {
     body: {
