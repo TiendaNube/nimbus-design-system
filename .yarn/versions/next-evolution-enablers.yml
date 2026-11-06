@@ -5,6 +5,7 @@ releases:
   "@nimbus-ds/thumbnail": patch
   "@nimbus-ds/tag": patch
   "@nimbus-ds/badge": minor
+  "@nimbus-ds/chip": patch
   "@nimbus-ds/components": minor
 
 declined:
@@ -19,7 +20,6 @@ declined:
   - "@nimbus-ds/button"
   - "@nimbus-ds/card"
   - "@nimbus-ds/checkbox"
-  - "@nimbus-ds/chip"
   - "@nimbus-ds/file-uploader"
   - "@nimbus-ds/icon-button"
   - "@nimbus-ds/input"
