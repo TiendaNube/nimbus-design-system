@@ -1,3 +1,5 @@
+import tokens from "@nimbus-ds/tokens/dist/js/tokens";
+
 import { vars } from "./contract.css";
 
 const { aiGradient, aiGenerative, primary, neutral } = vars.colors;
@@ -87,4 +89,26 @@ export const aiGenerativeGradientsNorteui = {
     )} 0%, ${fade(aiGradient.pinkHigh, "0%")} 95.37%)`,
     `linear-gradient(${disabledBase}, ${disabledBase})`,
   ].join(", "),
+};
+
+/**
+ * Linear AI gradient used by strokes (borders) and SVG icons.
+ * Base themes keep the original 50deg blue-to-pink gradient.
+ */
+export const aiGenerativeLinearBase = {
+  angle: "50deg",
+  start: aiGradient.blueHigh,
+  middle: aiGradient.purpleHigh,
+  end: aiGradient.pinkHigh,
+};
+
+/**
+ * Norte UI uses the former hover gradient at 66deg (pink to blue). The blue is
+ * the base `aiGradient.blue-high` value, as in Figma.
+ */
+export const aiGenerativeLinearNorteui = {
+  angle: "66deg",
+  start: aiGradient.pinkHigh,
+  middle: aiGradient.purpleHigh,
+  end: String(tokens.color.light.aiGradient["blue-high"].value),
 };

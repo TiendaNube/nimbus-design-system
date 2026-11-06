@@ -3,7 +3,10 @@ import tokens from "@nimbus-ds/tokens/dist/js/tokens";
 
 import { vars } from "./contract.css";
 import { globalTheme } from "./globals.css";
-import { aiGenerativeGradientsNorteui } from "./aiGenerativeGradients";
+import {
+  aiGenerativeGradientsNorteui,
+  aiGenerativeLinearNorteui,
+} from "./aiGenerativeGradients";
 import { withToneSurfaceDisabled } from "./toneSurfaceDisabled";
 import { aiGradientNorteui } from "./aiGradientNorteui";
 
@@ -81,7 +84,8 @@ const nextNorteuiDarkTheme = {
     }
   },
   gradients: {
-    aiGenerative: aiGenerativeGradientsNorteui
+    aiGenerative: aiGenerativeGradientsNorteui,
+    aiGenerativeLinear: aiGenerativeLinearNorteui
   }
 };
 

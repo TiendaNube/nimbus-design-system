@@ -3,7 +3,10 @@ import tokens from "@nimbus-ds/tokens/dist/js/tokens";
 
 import { vars } from "./contract.css";
 import { globalTheme } from "./globals.css";
-import { aiGenerativeGradientsNorteui } from "./aiGenerativeGradients";
+import {
+  aiGenerativeGradientsNorteui,
+  aiGenerativeLinearNorteui,
+} from "./aiGenerativeGradients";
 import { aiGradientNorteui } from "./aiGradientNorteui";
 
 interface TokenLeaf {
@@ -77,7 +80,8 @@ export const variables = createTheme(vars, {
     }
   },
   gradients: {
-    aiGenerative: aiGenerativeGradientsNorteui
+    aiGenerative: aiGenerativeGradientsNorteui,
+    aiGenerativeLinear: aiGenerativeLinearNorteui
   }
 });
 

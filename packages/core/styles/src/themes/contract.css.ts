@@ -189,6 +189,12 @@ export const vars = createGlobalThemeContract(
         pressed: "",
         disabled: "",
       },
+      aiGenerativeLinear: {
+        angle: "",
+        start: "",
+        middle: "",
+        end: "",
+      },
     },
   },
   (_value, path) => `nimbus-${path.join("-")}`

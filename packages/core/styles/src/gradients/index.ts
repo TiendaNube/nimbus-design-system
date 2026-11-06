@@ -7,4 +7,7 @@ export {
   aiGenerativeHover,
   aiGenerativePressed,
   aiGenerativeDisabled,
+  aiGenerativeLinearInteractive,
+  aiGenerativeLinearHover,
+  aiGenerativeLinearDisabled,
 } from "./gradients";
