@@ -32,6 +32,10 @@ const readShadow = (level: "0" | "1" | "2" | "3" | "4" | "5"): string =>
 
 const nextNorteuiDarkTheme = {
   ...globalTheme,
+  fontWeight: {
+    ...globalTheme.fontWeight,
+    title: globalTheme.fontWeight.medium,
+  },
   fontSize: {
     ...globalTheme.fontSize,
     body: {

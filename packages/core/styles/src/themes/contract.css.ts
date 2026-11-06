@@ -72,6 +72,7 @@ export const vars = createGlobalThemeContract(
       regular: "",
       medium: "",
       bold: "",
+      title: "",
     },
     lineWeight: {
       body: {

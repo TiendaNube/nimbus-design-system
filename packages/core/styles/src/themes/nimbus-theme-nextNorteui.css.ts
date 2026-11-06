@@ -30,6 +30,10 @@ const aiSurfaceHighlight = String(aiGenerative["surface-highlight"].value);
 
 export const variables = createTheme(vars, {
   ...globalTheme,
+  fontWeight: {
+    ...globalTheme.fontWeight,
+    title: globalTheme.fontWeight.medium,
+  },
   fontSize: {
     ...globalTheme.fontSize,
     body: {
