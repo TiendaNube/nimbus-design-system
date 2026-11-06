@@ -12,6 +12,7 @@ every day, with simplicity, accessibility, consistency and performance.
 #### 💡 Others
 
 - Thumbnail: Changes the background color from `neutral.surfaceDisabled` to `neutral.surfaceHighlight`, aligned with the Norte UI Figma. ([#619](https://github.com/TiendaNube/nimbus-design-system/pull/619) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
+- Tag: Removes the borders and uses lighter tone backgrounds in the `next-norteui` theme, aligned with the Norte UI Figma. Other themes are unchanged. ([#621](https://github.com/TiendaNube/nimbus-design-system/pull/621) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
 
 ## 2026-11-04 `5.64.0`
 
