@@ -2,7 +2,7 @@ import tokens from "@nimbus-ds/tokens/dist/js/tokens";
 import { createGlobalTheme, globalStyle } from "@vanilla-extract/css";
 import { vars } from "./contract.css";
 import { withToneSurfaceDisabled } from "./toneSurfaceDisabled";
-import { createLinearGradient } from "../gradients/gradientBuilder";
+import { aiInteractiveBorder } from "./aiInteractiveBorder";
 
 const colors = tokens.color.light;
 const surfaceDisabled = colors.neutral["surface-disabled"].value as string;
@@ -225,6 +225,7 @@ export const globalTheme = {
       neutral: {
         background: vars.colors.neutral.surface,
         borderColor: vars.colors.neutral.surfaceHighlight,
+        color: vars.colors.neutral.textHigh,
       },
       primary: {
         background: vars.colors.primary.surface,
@@ -243,16 +244,7 @@ export const globalTheme = {
         borderColor: vars.colors.danger.surfaceHighlight,
       },
       aiGenerative: {
-        // Same value as createBorderGradient(gradients.aiGenerativeInteractive,
-        // neutral.surface), built inline because gradients import the themes.
-        background: `linear-gradient(${vars.colors.neutral.surface}, ${
-          vars.colors.neutral.surface
-        }) padding-box, ${createLinearGradient(
-          "50deg",
-          `${vars.colors.aiGradient.blueHigh} 28.22%`,
-          `${vars.colors.aiGradient.purpleHigh} 49.27%`,
-          `${vars.colors.aiGradient.pinkHigh} 83.12%`
-        )} border-box`,
+        background: aiInteractiveBorder(vars.colors.neutral.surface),
         borderColor: "transparent",
         color: vars.colors.neutral.textHigh,
       },

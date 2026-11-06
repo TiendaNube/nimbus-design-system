@@ -3,6 +3,7 @@ import tokens from "@nimbus-ds/tokens/dist/js/tokens";
 
 import { vars } from "./contract.css";
 import { globalTheme } from "./globals.css";
+import { aiInteractiveBorder } from "./aiInteractiveBorder";
 
 interface TokenLeaf {
   value: unknown;
@@ -72,6 +73,7 @@ export const variables = createTheme(vars, {
       neutral: {
         background: vars.colors.neutral.surfaceHighlight,
         borderColor: "transparent",
+        color: vars.colors.neutral.textLow,
       },
       primary: {
         background: vars.colors.primary.surfaceDisabled,
@@ -90,8 +92,10 @@ export const variables = createTheme(vars, {
         borderColor: "transparent",
       },
       aiGenerative: {
-        background: vars.colors.aiGenerative.surfaceDisabled,
-        borderColor: vars.colors.aiGenerative.textLow,
+        background: aiInteractiveBorder(
+          vars.colors.aiGenerative.surfaceDisabled
+        ),
+        borderColor: "transparent",
         color: vars.colors.aiGenerative.textLow,
       },
     },

@@ -181,7 +181,7 @@ export const vars = createGlobalThemeContract(
         color: "",
       },
       tag: {
-        neutral: { background: "", borderColor: "" },
+        neutral: { background: "", borderColor: "", color: "" },
         primary: { background: "", borderColor: "" },
         success: { background: "", borderColor: "" },
         warning: { background: "", borderColor: "" },
