@@ -2,7 +2,7 @@ import tokens from "@nimbus-ds/tokens/dist/js/tokens";
 import { createGlobalTheme, globalStyle } from "@vanilla-extract/css";
 import { vars } from "./contract.css";
 import { withToneSurfaceDisabled } from "./toneSurfaceDisabled";
-import { aiInteractiveBorder } from "./aiInteractiveBorder";
+import { aiInteractiveBorder, aiHoverBorder } from "./aiInteractiveBorder";
 
 const colors = tokens.color.light;
 const surfaceDisabled = colors.neutral["surface-disabled"].value as string;
@@ -248,6 +248,43 @@ export const globalTheme = {
         background: aiInteractiveBorder(vars.colors.neutral.surface),
         borderColor: "transparent",
         color: vars.colors.neutral.textHigh,
+      },
+    },
+    chip: {
+      // References the theme's own values so base, dark, next and next-dark
+      // keep the exact Chip look they had. Norte UI overrides them.
+      borderRadius: vars.shape.border.radius[1],
+      neutral: {
+        background: vars.colors.neutral.surface,
+        borderColor: vars.colors.neutral.interactive,
+        color: vars.colors.neutral.textHigh,
+        hover: {
+          background: vars.colors.neutral.surfaceHighlight,
+          borderColor: vars.colors.neutral.interactiveHover,
+        },
+        pressed: {
+          background: vars.colors.neutral.interactive,
+          borderColor: vars.colors.neutral.interactivePressed,
+        },
+        focus: {
+          borderColor: vars.colors.primary.interactive,
+          boxShadow: vars.utils.focus,
+        },
+      },
+      aiGenerative: {
+        background: aiInteractiveBorder(vars.colors.neutral.surface),
+        color: vars.colors.neutral.textHigh,
+        boxShadow: vars.utils.aiFocus,
+        hover: {
+          background: aiHoverBorder(vars.colors.neutral.surface),
+        },
+        pressed: {
+          background: aiHoverBorder(vars.colors.aiGenerative.surfaceHighlight),
+        },
+        focus: {
+          borderColor: vars.colors.primary.interactive,
+          boxShadow: vars.utils.focus,
+        },
       },
     },
     badge: {

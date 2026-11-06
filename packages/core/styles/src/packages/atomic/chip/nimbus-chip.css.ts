@@ -1,7 +1,8 @@
 import { style as vanillaStyle, styleVariants } from "@vanilla-extract/css";
 
 import { varsThemeBase } from "../../../themes";
-import { gradients, createBorderGradient } from "../../../gradients";
+
+const { neutral, aiGenerative } = varsThemeBase.components.chip;
 
 export const base = vanillaStyle({
   display: "flex",
@@ -18,26 +19,26 @@ export const base = vanillaStyle({
   lineHeight: varsThemeBase.lineWeight.body.caption,
   fontSize: varsThemeBase.fontSize.body.caption,
   fontFamily: varsThemeBase.fontFamily.sans,
-  background: varsThemeBase.colors.neutral.surface,
-  color: varsThemeBase.colors.neutral.textHigh,
+  background: neutral.background,
+  color: neutral.color,
 
   borderStyle: "solid",
-  borderRadius: varsThemeBase.shape.border.radius[1],
+  borderRadius: varsThemeBase.components.chip.borderRadius,
   borderWidth: varsThemeBase.shape.border.width[1],
-  borderColor: varsThemeBase.colors.neutral.interactive,
+  borderColor: neutral.borderColor,
   transition: `all ${varsThemeBase.motion.speed.fast} ease`,
 
   ":hover": {
-    background: varsThemeBase.colors.neutral.surfaceHighlight,
-    borderColor: varsThemeBase.colors.neutral.interactiveHover,
+    background: neutral.hover.background,
+    borderColor: neutral.hover.borderColor,
   },
   ":focus": {
-    borderColor: varsThemeBase.colors.primary.interactive,
-    boxShadow: varsThemeBase.utils.focus,
+    borderColor: neutral.focus.borderColor,
+    boxShadow: neutral.focus.boxShadow,
   },
   ":active": {
-    background: varsThemeBase.colors.neutral.interactive,
-    borderColor: varsThemeBase.colors.neutral.interactivePressed,
+    background: neutral.pressed.background,
+    borderColor: neutral.pressed.borderColor,
   },
 });
 
@@ -54,23 +55,21 @@ const appearance = styleVariants({
     base,
     {
       transition: `box-shadow ${varsThemeBase.motion.speed.fast} ease`,
-      background: createBorderGradient(
-        gradients.aiGenerativeInteractive,
-        varsThemeBase.colors.neutral.surface
-      ),
+      color: aiGenerative.color,
+      background: [varsThemeBase.colors.neutral.surface, aiGenerative.background],
       borderColor: "transparent",
       ":hover": {
-        background: createBorderGradient(
-          gradients.aiGenerativeHover,
-          varsThemeBase.colors.neutral.surface
-        ),
+        background: [
+          varsThemeBase.colors.neutral.surface,
+          aiGenerative.hover.background,
+        ],
         borderColor: "transparent",
       },
       ":active": {
-        background: createBorderGradient(
-          gradients.aiGenerativeHover,
-          varsThemeBase.colors.aiGenerative.surfaceHighlight
-        ),
+        background: [
+          varsThemeBase.colors.aiGenerative.surfaceHighlight,
+          aiGenerative.pressed.background,
+        ],
         borderColor: "transparent",
       },
     },
@@ -79,5 +78,11 @@ const appearance = styleVariants({
 
 export const aiGenerated = vanillaStyle([
   appearance["ai-generative"],
-  { boxShadow: varsThemeBase.utils.aiFocus },
+  {
+    boxShadow: aiGenerative.boxShadow,
+    ":focus": {
+      borderColor: aiGenerative.focus.borderColor,
+      boxShadow: aiGenerative.focus.boxShadow,
+    },
+  },
 ]);

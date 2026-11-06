@@ -78,6 +78,8 @@ const nextNorteuiDarkTheme = {
     },
     // No Norte UI dark Tag design yet: keep the default Tag look.
     tag: globalTheme.components.tag,
+    // No Norte UI dark Chip design yet: keep the default Chip look.
+    chip: globalTheme.components.chip,
     // No Norte UI dark Badge design yet: keep the default Badge look.
     badge: globalTheme.components.badge,
   },

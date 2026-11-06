@@ -189,6 +189,25 @@ export const vars = createGlobalThemeContract(
         danger: { background: "", borderColor: "" },
         aiGenerative: { background: "", borderColor: "", color: "" },
       },
+      chip: {
+        borderRadius: "",
+        neutral: {
+          background: "",
+          borderColor: "",
+          color: "",
+          hover: { background: "", borderColor: "" },
+          pressed: { background: "", borderColor: "" },
+          focus: { borderColor: "", boxShadow: "" },
+        },
+        aiGenerative: {
+          background: "",
+          color: "",
+          boxShadow: "",
+          hover: { background: "" },
+          pressed: { background: "" },
+          focus: { borderColor: "", boxShadow: "" },
+        },
+      },
       badge: {
         surface: {
           neutral: { background: "", color: "" },

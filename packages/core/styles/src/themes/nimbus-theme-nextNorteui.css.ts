@@ -103,6 +103,49 @@ export const variables = createTheme(vars, {
         color: vars.colors.aiGenerative.textLow,
       },
     },
+    chip: {
+      borderRadius: vars.shape.border.radius[3],
+      neutral: {
+        background: vars.colors.neutral.surfaceHighlight,
+        borderColor: "transparent",
+        color: vars.colors.neutral.textHigh,
+        hover: {
+          background: vars.colors.neutral.interactive,
+          borderColor: "transparent",
+        },
+        pressed: {
+          background: vars.colors.neutral.interactiveHover,
+          borderColor: "transparent",
+        },
+        focus: {
+          borderColor: "transparent",
+          boxShadow: `0 0 0 ${vars.shape.border.width[2]} ${vars.colors.neutral.textLow}`,
+        },
+      },
+      aiGenerative: {
+        background: aiInteractiveBorder(vars.colors.aiGenerative.surface),
+        color: vars.colors.aiGenerative.textLow,
+        boxShadow: "none",
+        // Figma darkens the border gradient with the overlay/interactive-hover
+        // (15%) and overlay/interactive-pressed (30%) layers of neutral.textHigh.
+        hover: {
+          background: aiInteractiveBorder(
+            vars.colors.aiGenerative.surfaceDisabled,
+            `color-mix(in srgb, ${vars.colors.neutral.textHigh} 15%, transparent)`
+          ),
+        },
+        pressed: {
+          background: aiInteractiveBorder(
+            vars.colors.aiGenerative.surfaceHighlight,
+            `color-mix(in srgb, ${vars.colors.neutral.textHigh} 30%, transparent)`
+          ),
+        },
+        focus: {
+          borderColor: "transparent",
+          boxShadow: `0 0 0 ${vars.shape.border.width[2]} ${vars.colors.aiGenerative.surfaceHighlight}`,
+        },
+      },
+    },
     badge: {
       surface: {
         neutral: {
