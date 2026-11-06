@@ -220,6 +220,14 @@
         "interactive-pressed": { "value": "{color.light.norteui-generative.60}" },
         "text-low": { "value": "{color.light.norteui-generative.20}" },
         "text-high": { "value": "{color.light.norteui-generative.5}" }
+      },
+      "aiGradient": {
+        "blue-high": { "value": "{color.light.norteui-primary.60}" },
+        "blue-light": { "value": "{color.light.norteui-primary.90}" },
+        "purple-high": { "value": "{color.light.norteui-generative.40}" },
+        "purple-light": { "value": "{color.light.norteui-generative.80}" },
+        "pink-high": { "value": "#D8446E" },
+        "pink-light": { "value": "#E5809D" }
       }
     }
   }

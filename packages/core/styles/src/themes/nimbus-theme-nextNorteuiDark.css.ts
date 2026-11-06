@@ -3,7 +3,12 @@ import tokens from "@nimbus-ds/tokens/dist/js/tokens";
 
 import { vars } from "./contract.css";
 import { globalTheme } from "./globals.css";
+import {
+  aiGenerativeGradientsNorteui,
+  aiGenerativeLinearNorteui,
+} from "./aiGenerativeGradients";
 import { withToneSurfaceDisabled } from "./toneSurfaceDisabled";
+import { aiGradientNorteui } from "./aiGradientNorteui";
 
 interface TokenLeaf {
   value: unknown;
@@ -54,7 +59,8 @@ const nextNorteuiDarkTheme = {
       background: String(darkColors.neutral.background.value),
       surfaceDisabled: String(darkColors.neutral["surface-disabled"].value),
       textDisabled: String(darkColors.neutral["text-disabled"].value)
-    }
+    },
+    aiGradient: aiGradientNorteui
   }),
   utils: {
     focus: `0 0 0 3px ${String(
@@ -76,6 +82,10 @@ const nextNorteuiDarkTheme = {
     divider: {
       color: vars.colors.neutral.interactive
     }
+  },
+  gradients: {
+    aiGenerative: aiGenerativeGradientsNorteui,
+    aiGenerativeLinear: aiGenerativeLinearNorteui
   }
 };
 

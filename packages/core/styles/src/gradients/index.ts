@@ -5,5 +5,9 @@ export { gradients, createLinearGradient, createBorderGradient };
 export {
   aiGenerativeInteractive,
   aiGenerativeHover,
+  aiGenerativePressed,
   aiGenerativeDisabled,
+  aiGenerativeLinearInteractive,
+  aiGenerativeLinearHover,
+  aiGenerativeLinearDisabled,
 } from "./gradients";

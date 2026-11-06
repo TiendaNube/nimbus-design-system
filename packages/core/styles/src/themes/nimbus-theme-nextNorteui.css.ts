@@ -3,6 +3,11 @@ import tokens from "@nimbus-ds/tokens/dist/js/tokens";
 
 import { vars } from "./contract.css";
 import { globalTheme } from "./globals.css";
+import {
+  aiGenerativeGradientsNorteui,
+  aiGenerativeLinearNorteui,
+} from "./aiGenerativeGradients";
+import { aiGradientNorteui } from "./aiGradientNorteui";
 
 interface TokenLeaf {
   value: unknown;
@@ -62,7 +67,8 @@ export const variables = createTheme(vars, {
       interactivePressed: String(aiGenerative["interactive-pressed"].value),
       textLow: String(aiGenerative["text-low"].value),
       textHigh: String(aiGenerative["text-high"].value)
-    }
+    },
+    aiGradient: aiGradientNorteui
   },
   utils: {
     focus: `0 0 0 3px ${primary.surfaceHighlight}`,
@@ -72,6 +78,10 @@ export const variables = createTheme(vars, {
     divider: {
       color: vars.colors.neutral.interactive
     }
+  },
+  gradients: {
+    aiGenerative: aiGenerativeGradientsNorteui,
+    aiGenerativeLinear: aiGenerativeLinearNorteui
   }
 });
 

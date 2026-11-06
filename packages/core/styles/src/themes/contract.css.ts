@@ -182,6 +182,20 @@ export const vars = createGlobalThemeContract(
         color: "",
       },
     },
+    gradients: {
+      aiGenerative: {
+        interactive: "",
+        hover: "",
+        pressed: "",
+        disabled: "",
+      },
+      aiGenerativeLinear: {
+        angle: "",
+        start: "",
+        middle: "",
+        end: "",
+      },
+    },
   },
   (_value, path) => `nimbus-${path.join("-")}`
 );
