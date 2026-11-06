@@ -12,27 +12,18 @@
  * ```
  */
 import { varsThemeBase } from "../themes";
-import { createLinearGradient } from "./gradientBuilder";
 
-const { aiGradient } = varsThemeBase.colors;
+/**
+ * The values live in the theme (`vars.gradients.aiGenerative`), so each theme
+ * can define its own gradient. Norte UI uses radial gradients; the other
+ * themes keep the original linear ones.
+ */
+const { aiGenerative } = varsThemeBase.gradients;
 
-export const aiGenerativeInteractive = createLinearGradient(
-  "50deg",
-  `${aiGradient.blueHigh} 28.22%`,
-  `${aiGradient.purpleHigh} 49.27%`,
-  `${aiGradient.pinkHigh} 83.12%`
-);
+export const aiGenerativeInteractive = aiGenerative.interactive;
 
-export const aiGenerativeHover = createLinearGradient(
-  "50deg",
-  `${aiGradient.pinkHigh} 28.22%`,
-  `${aiGradient.purpleHigh} 49.27%`,
-  `${aiGradient.blueHigh} 83.12%`
-);
+export const aiGenerativeHover = aiGenerative.hover;
 
-export const aiGenerativeDisabled = createLinearGradient(
-  "50deg",
-  `${aiGradient.blueLight} 28.22%`,
-  `${aiGradient.purpleLight} 49.27%`,
-  `${aiGradient.pinkLight} 83.12%`
-);
+export const aiGenerativePressed = aiGenerative.pressed;
+
+export const aiGenerativeDisabled = aiGenerative.disabled;

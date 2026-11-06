@@ -2,6 +2,7 @@ import tokens from "@nimbus-ds/tokens/dist/js/tokens";
 import { createGlobalTheme, globalStyle } from "@vanilla-extract/css";
 import { vars } from "./contract.css";
 import { withToneSurfaceDisabled } from "./toneSurfaceDisabled";
+import { aiGenerativeGradientsBase } from "./aiGenerativeGradients";
 
 const colors = tokens.color.light;
 const surfaceDisabled = colors.neutral["surface-disabled"].value as string;
@@ -219,6 +220,9 @@ export const globalTheme = {
       // and next-dark keep the exact Divider color they had. Norte UI overrides it.
       color: vars.colors.neutral.surfaceHighlight,
     },
+  },
+  gradients: {
+    aiGenerative: aiGenerativeGradientsBase,
   },
 };
 
