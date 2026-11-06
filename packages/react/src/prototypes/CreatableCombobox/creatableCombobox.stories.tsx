@@ -301,6 +301,36 @@ export const FullScreen: Story = {
             />
           </Box>
 
+          <Box
+            display="flex"
+            flexDirection="column"
+            gap="2"
+            width="100%"
+            maxWidth="480px"
+          >
+            <Text fontWeight="bold">
+              H — Multi-select hierarchical categories
+            </Text>
+            <CreatableCombobox
+              data-testid="field-h"
+              placeholder="Buscar categorías"
+              helperText="Elegí varias: cada categoría padre se selecciona desde su propia sección."
+              options={TREE_OPTIONS}
+              selectableBranches
+              multiple
+              labels={{
+                back: "Volver",
+                backTo: "Volver a {name}",
+                in: "en",
+                branchHint: "tiene subcategorías",
+                noResults: "Sin resultados",
+                results: "Resultados",
+                clearAll: "Limpiar selección",
+              }}
+              name="categoriesH"
+            />
+          </Box>
+
           <Box>
             <Button type="submit">Submit</Button>
           </Box>

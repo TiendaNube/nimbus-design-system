@@ -107,6 +107,42 @@ const ArrowLeftIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
+// Light, thin scrollbar for every popover list, from Nimbus tokens: the thumb
+// is neutral-surfaceHighlight (the same token TimePicker's scrolling list
+// uses), neutral-interactive on hover. WebKit gets a real 8px track — so the
+// scrollbar takes its own space beside the rows and never covers them — and
+// Firefox gets `scrollbar-width: thin`. Injected once into <head>.
+const SCROLL_CLASS = "nimbus-cc-scroll";
+const SCROLL_STYLE_ID = "nimbus-cc-scroll-style";
+const SCROLL_CSS = `
+.${SCROLL_CLASS}::-webkit-scrollbar { width: 8px; }
+.${SCROLL_CLASS}::-webkit-scrollbar-track { background: transparent; }
+.${SCROLL_CLASS}::-webkit-scrollbar-thumb {
+  background-color: var(--nimbus-colors-neutral-surfaceHighlight);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  border-radius: 8px;
+}
+.${SCROLL_CLASS}::-webkit-scrollbar-thumb:hover {
+  background-color: var(--nimbus-colors-neutral-interactive);
+  background-clip: padding-box;
+}
+@supports (-moz-appearance: none) {
+  .${SCROLL_CLASS} {
+    scrollbar-width: thin;
+    scrollbar-color: var(--nimbus-colors-neutral-surfaceHighlight) transparent;
+  }
+}
+`;
+const ensureScrollStyles = () => {
+  if (typeof document === "undefined") return;
+  if (document.getElementById(SCROLL_STYLE_ID)) return;
+  const el = document.createElement("style");
+  el.id = SCROLL_STYLE_ID;
+  el.textContent = SCROLL_CSS;
+  document.head.appendChild(el);
+};
+
 // A drill-down tree is at most this many levels deep (root = level 1);
 // children of a level-5 option are ignored.
 const MAX_LEVELS = 5;
@@ -223,6 +259,8 @@ export interface CreatableComboboxProps {
     in?: string;
     /** Read after a branch's name by assistive tech. @default "tiene subcategorías" */
     branchHint?: string;
+    /** Accessible name of the multiselect's "clear everything" button. @default "Limpiar selección" */
+    clearAll?: string;
     /** Shown when a search finds nothing. @default "Sin resultados" */
     noResults?: string;
     /** Accessible name of the listbox while showing search results. @default "Resultados" */
@@ -277,19 +315,24 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
     ref
   ) => {
     const { options: sharedOptions, createOption } = useSharedOptions();
+    useEffect(() => {
+      ensureScrollStyles();
+    }, []);
     const backLabel = labels?.back ?? "Volver";
     const backToLabel = labels?.backTo ?? "Volver a {name}";
     const inLabel = labels?.in ?? "en";
     const branchHint = labels?.branchHint ?? "tiene subcategorías";
     const noResultsLabel = labels?.noResults ?? "Sin resultados";
     const resultsLabel = labels?.results ?? "Resultados";
+    const clearAllLabel = labels?.clearAll ?? "Limpiar selección";
     // Drill-down tree mode (Figma node 72:16583): a fixed list with at least
-    // one branch, single-select. `levelPath` is the stack of branches the
+    // one branch (single- or multi-select). `levelPath` is the stack of branches the
     // popover has been drilled into (empty = the root level); `options`
     // below then means "the options of the level currently shown", so
     // filtering, keyboard nav and rendering all work per level.
-    const hierarchical =
-      !multiple && !!optionsProp?.some((option) => option.children?.length);
+    const hierarchical = !!optionsProp?.some(
+      (option) => option.children?.length
+    );
     const [levelPath, setLevelPath] = useState<ComboboxOption[]>([]);
     // Path (root to leaf) of the current single-select value in a tree.
     const [selectedPath, setSelectedPath] = useState<ComboboxOption[]>([]);
@@ -313,6 +356,11 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
     // stale value from the other mode's state around.
     const [selected, setSelected] = useState<ComboboxOption | null>(null);
     const [selectedMulti, setSelectedMulti] = useState<ComboboxOption[]>([]);
+    // Tree + multiselect: the root-to-option path of every picked value (for
+    // the chip tooltips); kept in step with `selectedMulti`.
+    const [multiPaths, setMultiPaths] = useState<
+      Record<string, ComboboxOption[]>
+    >({});
     // A picked tree value reads "<name> en <parent>" in the field (just the
     // name for a root item); the full path lives in the tooltip and the
     // input's accessible description.
@@ -364,6 +412,10 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
     // current value (so the picked row is visible), or at the root.
     useEffect(() => {
       if (!open || !hierarchical) return;
+      if (multiple) {
+        setLevelPath([]);
+        return;
+      }
       const leaf = selectedPath[selectedPath.length - 1];
       const enterSelected =
         !!leaf?.children?.length &&
@@ -419,11 +471,12 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
     // shown with the persistent "selected" highlight below, so reopening
     // the popover shows which option is the current one (matching native
     // `<select>`).
-    const visibleOptions = multiple
-      ? filteredOptions.filter(
-          (option) => !selectedMulti.some((o) => o.value === option.value)
-        )
-      : filteredOptions;
+    const visibleOptions =
+      multiple && !hierarchical
+        ? filteredOptions.filter(
+            (option) => !selectedMulti.some((o) => o.value === option.value)
+          )
+        : filteredOptions;
 
     // A `disabled` option (business rule, independent of selection — see
     // `ComboboxOption`) still renders, so the client can show *why* it
@@ -565,6 +618,17 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
           ? selectedMulti.filter((o) => o.value !== option.value)
           : [...selectedMulti, option];
         setSelectedMulti(next);
+        if (hierarchical) {
+          setMultiPaths((current) => {
+            const { [option.value]: _removed, ...rest } = current;
+            return alreadySelected
+              ? rest
+              : {
+                  ...rest,
+                  [option.value]: pathOverride ?? [...levelPath, option],
+                };
+          });
+        }
         onChange?.(next);
       },
       [multiple, selectedMulti, onChange, hierarchical, levelPath]
@@ -641,9 +705,33 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
       (option: ComboboxOption) => {
         const next = selectedMulti.filter((o) => o.value !== option.value);
         setSelectedMulti(next);
+        setMultiPaths((current) => {
+          const { [option.value]: _removed, ...rest } = current;
+          return rest;
+        });
         onChange?.(next);
       },
       [selectedMulti, onChange]
+    );
+
+    // Multiselect "clear everything": empties every chip (and so every
+    // hidden FormData input) in one click, like the single-select ×. It
+    // closes the list the same way that × does, but hands focus back to the
+    // input first — that focus would reopen it, and the close below, in the
+    // same batch, wins.
+    const handleClearAll = useCallback(
+      (event?: React.SyntheticEvent) => {
+        event?.stopPropagation();
+        setSelectedMulti([]);
+        setMultiPaths({});
+        setInputValue("");
+        setLevelPath([]);
+        inputRef.current?.focus();
+        setOpen(false);
+        setActiveIndex(-1);
+        onChange?.([]);
+      },
+      [onChange]
     );
 
     // Matches the Figma proposal: clearing resets the field to empty AND
@@ -773,8 +861,11 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
               if (open && levelPath.length > 0 && inputValue === "") {
                 event.preventDefault();
                 goBack(true);
+                return;
               }
-              return;
+              // At the root of a multiselect tree it falls through to
+              // dropping the last chip, like Field D.
+              if (!multiple) return;
             }
             // Multiselect only, and only once the query is already empty —
             // otherwise this is just normal text editing.
@@ -783,6 +874,13 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
             }
             const next = selectedMulti.slice(0, -1);
             setSelectedMulti(next);
+            if (hierarchical) {
+              const dropped = selectedMulti[selectedMulti.length - 1];
+              setMultiPaths((current) => {
+                const { [dropped.value]: _removed, ...rest } = current;
+                return rest;
+              });
+            }
             onChange?.(next);
             return;
           }
@@ -866,7 +964,7 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
           key={opts.key}
           id={navIndex !== undefined ? getOptionId(navIndex) : undefined}
           role="option"
-          aria-selected={!branch && selected?.value === option.value}
+          aria-selected={isOptionSelected(option)}
           aria-disabled={isDisabled || undefined}
           aria-label={opts.label}
           disabled={isDisabled}
@@ -924,12 +1022,24 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                 </Text>
               )}
             </div>
-            {branch && (
-              <Icon
-                source={<ChevronRightIcon />}
-                color={isDisabled ? "neutral-textDisabled" : "neutral-textHigh"}
-              />
-            )}
+            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              {multiple && current && (
+                <Icon
+                  source={<CheckIcon />}
+                  color={
+                    isDisabled ? "neutral-textDisabled" : "primary-interactive"
+                  }
+                />
+              )}
+              {branch && (
+                <Icon
+                  source={<ChevronRightIcon />}
+                  color={
+                    isDisabled ? "neutral-textDisabled" : "neutral-textHigh"
+                  }
+                />
+              )}
+            </div>
           </div>
         </Box>
       );
@@ -1001,6 +1111,8 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
         <div
           role="listbox"
           id={listboxId}
+          aria-multiselectable={multiple || undefined}
+          className={SCROLL_CLASS}
           aria-label={
             searching
               ? resultsLabel
@@ -1014,6 +1126,12 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
             gap: 4,
             overflowY: "auto",
             minHeight: 0,
+            // The scrollbar sits at the popover's edge, with the same 8px
+            // gap to the rows as the plain list: the wrapper's 8px padding
+            // is handed to this scroller (margin out, padding back in), so
+            // a list that does not scroll lays out exactly as before.
+            marginRight: -8,
+            paddingRight: 8,
           }}
         >
           {searching ? (
@@ -1040,7 +1158,7 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                   navIndex: resultNav >= 0 ? resultNav : undefined,
                   option: result.option,
                   branch,
-                  current: selected?.value === result.option.value,
+                  current: isOptionSelected(result.option),
                   path: pathText || undefined,
                   label: [
                     result.option.label,
@@ -1082,7 +1200,7 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                       navIndex: 0,
                       option: currentParent,
                       branch: false,
-                      current: selected?.value === currentParent.value,
+                      current: isOptionSelected(currentParent),
                       isTitle: true,
                       onActivate: () => selectOption(currentParent, levelPath),
                     })
@@ -1103,7 +1221,7 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                   navIndex: navIndexByValue.get(option.value),
                   option,
                   branch,
-                  current: selected?.value === option.value,
+                  current: isOptionSelected(option),
                   label: branch ? `${option.label}, ${branchHint}` : undefined,
                   onActivate: branch
                     ? () => drillInto(option)
@@ -1134,6 +1252,8 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
               <div
                 role="listbox"
                 id={listboxId}
+                aria-multiselectable={multiple || undefined}
+                className={SCROLL_CLASS}
                 style={{
                   display: "flex",
                   flexDirection: "column",
@@ -1498,7 +1618,17 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                     isn't literally the `Chip` component). */}
                   {multiple &&
                     selectedMulti.map((option) => (
-                      <div key={option.value} className={chip.classnames.base}>
+                      <div
+                        key={option.value}
+                        className={chip.classnames.base}
+                        title={
+                          hierarchical
+                            ? multiPaths[option.value]
+                                ?.map((o) => o.label)
+                                .join(" > ")
+                            : undefined
+                        }
+                      >
                         <Text
                           color="neutral-textHigh"
                           fontSize="caption"
@@ -1634,7 +1764,25 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                     becomes the × that clears it. Multiselect clears
                     per-chip instead (see above), so this slot is always
                     just the decorative chevron there. */}
-                {!multiple && selected && !disabled ? (
+                {multiple && selectedMulti.length >= 2 && !disabled ? (
+                  // Several chips picked: the chevron slot becomes a "clear
+                  // everything" × (same swap as the single-select ×), so the
+                  // right-hand column keeps its size and stays vertically
+                  // centered when the chips wrap.
+                  <button
+                    type="button"
+                    aria-label={clearAllLabel}
+                    title={clearAllLabel}
+                    data-testid={
+                      dataTestId ? `${dataTestId}-clear-all` : undefined
+                    }
+                    onMouseDown={(event) => event.preventDefault()}
+                    onClick={handleClearAll}
+                    className={inputStyles.classnames.container__icon}
+                  >
+                    <Icon source={<CloseIcon />} color="neutral-textLow" />
+                  </button>
+                ) : !multiple && selected && !disabled ? (
                   <button
                     type="button"
                     aria-label="Clear selection"
