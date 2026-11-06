@@ -189,6 +189,32 @@ export const vars = createGlobalThemeContract(
         danger: { background: "", borderColor: "" },
         aiGenerative: { background: "", borderColor: "", color: "" },
       },
+      badge: {
+        surface: {
+          neutral: { background: "", color: "" },
+          primary: { background: "", color: "" },
+          success: { background: "", color: "" },
+          warning: { background: "", color: "" },
+          danger: { background: "", color: "" },
+          aiGenerative: { background: "", color: "" },
+        },
+        light: {
+          neutral: { background: "", color: "" },
+          primary: { background: "", color: "" },
+          success: { background: "", color: "" },
+          warning: { background: "", color: "" },
+          danger: { background: "", color: "" },
+          aiGenerative: { background: "", color: "" },
+        },
+        dot: {
+          neutral: { background: "" },
+          primary: { background: "" },
+          success: { background: "" },
+          warning: { background: "" },
+          danger: { background: "" },
+          aiGenerative: { background: "" },
+        },
+      },
     },
   },
   (_value, path) => `nimbus-${path.join("-")}`

@@ -103,6 +103,70 @@ export const variables = createTheme(vars, {
         color: vars.colors.aiGenerative.textLow,
       },
     },
+    badge: {
+      surface: {
+        neutral: {
+          background: vars.colors.neutral.interactive,
+          color: vars.colors.neutral.textHigh,
+        },
+        primary: {
+          background: vars.colors.primary.interactive,
+          color: vars.colors.neutral.background,
+        },
+        success: {
+          background: vars.colors.success.interactivePressed,
+          color: vars.colors.neutral.background,
+        },
+        warning: {
+          background: vars.colors.warning.interactivePressed,
+          color: vars.colors.neutral.background,
+        },
+        danger: {
+          background: vars.colors.danger.interactivePressed,
+          color: vars.colors.neutral.background,
+        },
+        aiGenerative: {
+          background: vars.colors.aiGenerative.interactivePressed,
+          color: vars.colors.neutral.background,
+        },
+      },
+      light: {
+        neutral: {
+          background: vars.colors.neutral.surface,
+          color: vars.colors.neutral.textLow,
+        },
+        primary: {
+          background: vars.colors.primary.surface,
+          color: vars.colors.primary.textLow,
+        },
+        success: {
+          background: vars.colors.success.surface,
+          color: vars.colors.success.textLow,
+        },
+        warning: {
+          background: vars.colors.warning.surface,
+          color: vars.colors.warning.textLow,
+        },
+        danger: {
+          background: vars.colors.danger.surface,
+          color: vars.colors.danger.textLow,
+        },
+        aiGenerative: {
+          background: vars.colors.aiGenerative.surface,
+          color: vars.colors.aiGenerative.textLow,
+        },
+      },
+      dot: {
+        neutral: { background: vars.colors.neutral.interactive },
+        primary: { background: vars.colors.primary.interactive },
+        success: { background: vars.colors.success.interactivePressed },
+        warning: { background: vars.colors.warning.interactivePressed },
+        danger: { background: vars.colors.danger.interactivePressed },
+        aiGenerative: {
+          background: vars.colors.aiGenerative.interactivePressed,
+        },
+      },
+    },
   },
 });
 

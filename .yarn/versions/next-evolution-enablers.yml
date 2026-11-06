@@ -4,6 +4,7 @@ releases:
   "@nimbus-ds/icon": minor
   "@nimbus-ds/thumbnail": patch
   "@nimbus-ds/tag": patch
+  "@nimbus-ds/badge": minor
   "@nimbus-ds/components": minor
 
 declined:
