@@ -1023,14 +1023,6 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
               )}
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-              {multiple && current && (
-                <Icon
-                  source={<CheckIcon />}
-                  color={
-                    isDisabled ? "neutral-textDisabled" : "primary-interactive"
-                  }
-                />
-              )}
               {branch && (
                 <Icon
                   source={<ChevronRightIcon />}
@@ -1250,10 +1242,6 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
               treeContent
             ) : (
               <div
-                role="listbox"
-                id={listboxId}
-                aria-multiselectable={multiple || undefined}
-                className={SCROLL_CLASS}
                 style={{
                   display: "flex",
                   flexDirection: "column",
@@ -1262,292 +1250,321 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                   // 8px inset on every side between the popover edge and
                   // the rows, per the Figma popover frames (`.Popover menu`
                   // pad 8: node 149:11359 for enriched rows, and the
-                  // Combobox Open variants for plain rows). Rows keep their
-                  // own padding and the 4px gap.
+                  // Combobox Open variants for plain rows). The inset lives
+                  // on this non-scrolling frame, so the scrollbar below sits
+                  // 8px inside the popover at the top and bottom too — it
+                  // can never touch or be clipped by the rounded corners.
                   padding: 8,
-                  gap: 4,
                   maxHeight: 220,
-                  overflowY: "auto",
                 }}
               >
-                {visibleOptions.length === 0 && !canCreate && (
-                  <Box padding="2">
-                    <Text fontSize="caption" color="neutral-textLow">
-                      No matching tags
-                    </Text>
-                  </Box>
-                )}
-                {/* The create affordance comes first, styled as a link/action
+                <div
+                  role="listbox"
+                  id={listboxId}
+                  aria-multiselectable={multiple || undefined}
+                  className={SCROLL_CLASS}
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: 4,
+                    minHeight: 0,
+                    overflowY: "auto",
+                    // Scrollbar flush with the popover's right inset: margin
+                    // out, padding back in (nothing moves when it doesn't
+                    // scroll).
+                    marginRight: -8,
+                    paddingRight: 8,
+                  }}
+                >
+                  {visibleOptions.length === 0 && !canCreate && (
+                    <Box padding="2">
+                      <Text fontSize="caption" color="neutral-textLow">
+                        No matching tags
+                      </Text>
+                    </Box>
+                  )}
+                  {/* The create affordance comes first, styled as a link/action
                   (not a plain option) — matching the Figma proposal, where
                   typing an unmatched query surfaces "Crear '…'" ahead of any
                   remaining filtered matches. It's still part of the same
                   roving-focus listbox as the options below (nav index 0),
                   just visually distinct. */}
-                {canCreate && (
-                  <Box
-                    as="button"
-                    type="button"
-                    id={getOptionId(0)}
-                    role="option"
-                    aria-selected={false}
-                    data-testid={
-                      dataTestId ? `${dataTestId}-create` : undefined
-                    }
-                    // These rows are real `<button>`s (native click/Enter/Space
-                    // support), so a mouse click would otherwise move DOM focus
-                    // onto the row itself and off the input — breaking the
-                    // input's own onKeyDown (Backspace-removes-last-chip,
-                    // arrow nav) right after a pick. preventDefault on
-                    // mousedown stops that focus shift; the click still fires.
-                    onMouseDown={(event) => event.preventDefault()}
-                    onClick={handleCreate}
-                    onMouseEnter={() => setCreateHovered(true)}
-                    onMouseLeave={() => setCreateHovered(false)}
-                    display="flex"
-                    alignItems="center"
-                    gap="2"
-                    width="100%"
-                    boxSizing="border-box"
-                    padding="2"
-                    borderRadius="2"
-                    borderWidth="none"
-                    cursor="pointer"
-                    textAlign="left"
-                    // Create hovers with the PRIMARY treatment (mouse), and
-                    // gets the PRIMARY highlight tint — one shade stronger —
-                    // when it's the keyboard-active item. An explicit rest
-                    // value (matching the popover's own background) is
-                    // required here too: leaving it `undefined` drops Box's
-                    // background class entirely and the browser's native
-                    // unstyled-`<button>` grey shows through instead.
-                    backgroundColor={
-                      activeIndex === 0
-                        ? "primary-surfaceHighlight"
-                        : createHovered
-                        ? "primary-surface"
-                        : "neutral-background"
-                    }
-                  >
-                    <Icon
-                      source={<PlusCircleIcon />}
-                      color="primary-interactive"
-                    />
-                    <Text color="primary-interactive">{`Create "${inputValue.trim()}"`}</Text>
-                  </Box>
-                )}
-                {visibleOptions.map((option, optionIndex) => {
-                  // An "enriched" option (Figma node 149:11359) has a
-                  // subtitle and/or a tag; plain options keep the exact
-                  // markup they always had.
-                  const isEnriched = !!(option.subtitle || option.tag);
-                  const previousOption = visibleOptions[optionIndex - 1];
-                  // Enriched rows are separated by a 1px divider (Figma); two
-                  // plain neighbors stay undivided, as before.
-                  const showDivider =
-                    optionIndex > 0 &&
-                    (isEnriched ||
-                      !!(previousOption?.subtitle || previousOption?.tag));
-                  // `undefined` for a `disabled` option — it has no nav slot
-                  // (see `navIndexByValue` above), so it can never become the
-                  // keyboard-active item.
-                  const navIndex = navIndexByValue.get(option.value);
-                  const isActive =
-                    navIndex !== undefined && activeIndex === navIndex;
-                  const isHovered = hoveredOptionValue === option.value;
-                  // In practice this is only ever true for single-select's
-                  // current value: a multiselect pick is excluded from
-                  // `visibleOptions` entirely the moment it's selected (see
-                  // above), so this row never renders for one.
-                  const isChecked = isOptionSelected(option);
-                  // Independent of selection — a client-set business rule
-                  // (see `ComboboxOption.disabled`), not "already picked".
-                  const isBusinessDisabled = !!option.disabled;
-                  return (
-                    <React.Fragment key={option.value}>
-                      {showDivider && (
+                  {canCreate && (
+                    <Box
+                      as="button"
+                      type="button"
+                      id={getOptionId(0)}
+                      role="option"
+                      aria-selected={false}
+                      data-testid={
+                        dataTestId ? `${dataTestId}-create` : undefined
+                      }
+                      // These rows are real `<button>`s (native click/Enter/Space
+                      // support), so a mouse click would otherwise move DOM focus
+                      // onto the row itself and off the input — breaking the
+                      // input's own onKeyDown (Backspace-removes-last-chip,
+                      // arrow nav) right after a pick. preventDefault on
+                      // mousedown stops that focus shift; the click still fires.
+                      onMouseDown={(event) => event.preventDefault()}
+                      onClick={handleCreate}
+                      onMouseEnter={() => setCreateHovered(true)}
+                      onMouseLeave={() => setCreateHovered(false)}
+                      display="flex"
+                      alignItems="center"
+                      gap="2"
+                      width="100%"
+                      boxSizing="border-box"
+                      padding="2"
+                      borderRadius="2"
+                      borderWidth="none"
+                      cursor="pointer"
+                      textAlign="left"
+                      // Create hovers with the PRIMARY treatment (mouse), and
+                      // gets the PRIMARY highlight tint — one shade stronger —
+                      // when it's the keyboard-active item. An explicit rest
+                      // value (matching the popover's own background) is
+                      // required here too: leaving it `undefined` drops Box's
+                      // background class entirely and the browser's native
+                      // unstyled-`<button>` grey shows through instead.
+                      backgroundColor={
+                        activeIndex === 0
+                          ? "primary-surfaceHighlight"
+                          : createHovered
+                          ? "primary-surface"
+                          : "neutral-background"
+                      }
+                    >
+                      <Icon
+                        source={<PlusCircleIcon />}
+                        color="primary-interactive"
+                      />
+                      <Text color="primary-interactive">{`Create "${inputValue.trim()}"`}</Text>
+                    </Box>
+                  )}
+                  {visibleOptions.map((option, optionIndex) => {
+                    // An "enriched" option (Figma node 149:11359) has a
+                    // subtitle and/or a tag; plain options keep the exact
+                    // markup they always had.
+                    const isEnriched = !!(option.subtitle || option.tag);
+                    const previousOption = visibleOptions[optionIndex - 1];
+                    // Enriched rows are separated by a 1px divider (Figma); two
+                    // plain neighbors stay undivided, as before.
+                    const showDivider =
+                      optionIndex > 0 &&
+                      (isEnriched ||
+                        !!(previousOption?.subtitle || previousOption?.tag));
+                    // `undefined` for a `disabled` option — it has no nav slot
+                    // (see `navIndexByValue` above), so it can never become the
+                    // keyboard-active item.
+                    const navIndex = navIndexByValue.get(option.value);
+                    const isActive =
+                      navIndex !== undefined && activeIndex === navIndex;
+                    const isHovered = hoveredOptionValue === option.value;
+                    // In practice this is only ever true for single-select's
+                    // current value: a multiselect pick is excluded from
+                    // `visibleOptions` entirely the moment it's selected (see
+                    // above), so this row never renders for one.
+                    const isChecked = isOptionSelected(option);
+                    // Independent of selection — a client-set business rule
+                    // (see `ComboboxOption.disabled`), not "already picked".
+                    const isBusinessDisabled = !!option.disabled;
+                    return (
+                      <React.Fragment key={option.value}>
+                        {showDivider && (
+                          <Box
+                            aria-hidden="true"
+                            height="1px"
+                            width="100%"
+                            flexShrink="0"
+                            backgroundColor="neutral-surfaceHighlight"
+                          />
+                        )}
                         <Box
-                          aria-hidden="true"
-                          height="1px"
+                          as="button"
+                          type="button"
+                          id={
+                            navIndex !== undefined
+                              ? getOptionId(navIndex)
+                              : undefined
+                          }
+                          role="option"
+                          aria-selected={isChecked}
+                          aria-disabled={isBusinessDisabled || undefined}
+                          // Title + subtitle + tag, in reading order, as one
+                          // sensible name (plain options keep their text content).
+                          aria-label={
+                            isEnriched
+                              ? [
+                                  option.label,
+                                  option.subtitle,
+                                  option.tag?.label,
+                                ]
+                                  .filter(Boolean)
+                                  .join(", ")
+                              : undefined
+                          }
+                          disabled={isBusinessDisabled}
+                          data-testid={
+                            dataTestId
+                              ? `${dataTestId}-option-${option.value}`
+                              : undefined
+                          }
+                          // Same focus-preserving guard as the Create row above —
+                          // matters even more here, since multiselect keeps the
+                          // popover open across several picks in a row. Skipped
+                          // once disabled: there both would be no-ops anyway.
+                          // A *checked* row (single-select's current value)
+                          // keeps this guard and its onClick — it must stay
+                          // clickable/keyboard-selectable, re-picking it is a
+                          // harmless no-op.
+                          onMouseDown={
+                            isBusinessDisabled
+                              ? undefined
+                              : (event) => event.preventDefault()
+                          }
+                          onClick={
+                            isBusinessDisabled
+                              ? undefined
+                              : () => selectOption(option)
+                          }
+                          onMouseEnter={() =>
+                            setHoveredOptionValue(option.value)
+                          }
+                          onMouseLeave={() => setHoveredOptionValue(null)}
+                          display="flex"
+                          alignItems="center"
+                          justifyContent={
+                            multiple ? "space-between" : undefined
+                          }
+                          gap="2"
                           width="100%"
-                          flexShrink="0"
-                          backgroundColor="neutral-surfaceHighlight"
-                        />
-                      )}
-                      <Box
-                        as="button"
-                        type="button"
-                        id={
-                          navIndex !== undefined
-                            ? getOptionId(navIndex)
-                            : undefined
-                        }
-                        role="option"
-                        aria-selected={isChecked}
-                        aria-disabled={isBusinessDisabled || undefined}
-                        // Title + subtitle + tag, in reading order, as one
-                        // sensible name (plain options keep their text content).
-                        aria-label={
-                          isEnriched
-                            ? [option.label, option.subtitle, option.tag?.label]
-                                .filter(Boolean)
-                                .join(", ")
-                            : undefined
-                        }
-                        disabled={isBusinessDisabled}
-                        data-testid={
-                          dataTestId
-                            ? `${dataTestId}-option-${option.value}`
-                            : undefined
-                        }
-                        // Same focus-preserving guard as the Create row above —
-                        // matters even more here, since multiselect keeps the
-                        // popover open across several picks in a row. Skipped
-                        // once disabled: there both would be no-ops anyway.
-                        // A *checked* row (single-select's current value)
-                        // keeps this guard and its onClick — it must stay
-                        // clickable/keyboard-selectable, re-picking it is a
-                        // harmless no-op.
-                        onMouseDown={
-                          isBusinessDisabled
-                            ? undefined
-                            : (event) => event.preventDefault()
-                        }
-                        onClick={
-                          isBusinessDisabled
-                            ? undefined
-                            : () => selectOption(option)
-                        }
-                        onMouseEnter={() => setHoveredOptionValue(option.value)}
-                        onMouseLeave={() => setHoveredOptionValue(null)}
-                        display="flex"
-                        alignItems="center"
-                        justifyContent={multiple ? "space-between" : undefined}
-                        gap="2"
-                        width="100%"
-                        boxSizing="border-box"
-                        padding={isEnriched ? undefined : "2"}
-                        paddingX={isEnriched ? "2" : undefined}
-                        paddingY={isEnriched ? "1" : undefined}
-                        borderRadius="2"
-                        borderWidth="none"
-                        cursor={isBusinessDisabled ? "not-allowed" : "pointer"}
-                        textAlign="left"
-                        // Per the Figma "Select" states matrix (node 72:8987):
-                        // available options hover/keyboard-active with the
-                        // PRIMARY treatment (primary-surface on hover,
-                        // primary-surfaceHighlight — one shade stronger — when
-                        // active via keyboard; same convention as the Create
-                        // row above); the CURRENT value (single-select,
-                        // reopened) gets that same primary-surface tint too,
-                        // persistently — not just on hover, matching the
-                        // native `<select>` behavior of showing which option
-                        // is already chosen; and a business-`disabled` option
-                        // gets the flat NEUTRAL "disabled" fill regardless of
-                        // hover/active/checked — Figma's own disabled+hover
-                        // variant still renders the plain disabled grey, not a
-                        // hover tint. See the comment on the Create row above
-                        // for why the rest value can't be left `undefined`.
-                        backgroundColor={
-                          isBusinessDisabled
-                            ? "neutral-surfaceDisabled"
-                            : isActive
-                            ? "primary-surfaceHighlight"
-                            : isChecked || isHovered
-                            ? "primary-surface"
-                            : "neutral-background"
-                        }
-                      >
-                        {isEnriched ? (
-                          // Figma 149:11359: title (14/20) with the tag at the
-                          // far right of the same line (space-between), the
-                          // subtitle (12/16, neutral-textLow) beneath. The
-                          // selected enriched row keeps a neutral title (no
-                          // blue text, no check) — only the row fill is blue.
-                          <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                              flex: "1 1 auto",
-                              minWidth: 0,
-                            }}
-                          >
+                          boxSizing="border-box"
+                          padding={isEnriched ? undefined : "2"}
+                          paddingX={isEnriched ? "2" : undefined}
+                          paddingY={isEnriched ? "1" : undefined}
+                          borderRadius="2"
+                          borderWidth="none"
+                          cursor={
+                            isBusinessDisabled ? "not-allowed" : "pointer"
+                          }
+                          textAlign="left"
+                          // Per the Figma "Select" states matrix (node 72:8987):
+                          // available options hover/keyboard-active with the
+                          // PRIMARY treatment (primary-surface on hover,
+                          // primary-surfaceHighlight — one shade stronger — when
+                          // active via keyboard; same convention as the Create
+                          // row above); the CURRENT value (single-select,
+                          // reopened) gets that same primary-surface tint too,
+                          // persistently — not just on hover, matching the
+                          // native `<select>` behavior of showing which option
+                          // is already chosen; and a business-`disabled` option
+                          // gets the flat NEUTRAL "disabled" fill regardless of
+                          // hover/active/checked — Figma's own disabled+hover
+                          // variant still renders the plain disabled grey, not a
+                          // hover tint. See the comment on the Create row above
+                          // for why the rest value can't be left `undefined`.
+                          backgroundColor={
+                            isBusinessDisabled
+                              ? "neutral-surfaceDisabled"
+                              : isActive
+                              ? "primary-surfaceHighlight"
+                              : isChecked || isHovered
+                              ? "primary-surface"
+                              : "neutral-background"
+                          }
+                        >
+                          {isEnriched ? (
+                            // Figma 149:11359: title (14/20) with the tag at the
+                            // far right of the same line (space-between), the
+                            // subtitle (12/16, neutral-textLow) beneath. The
+                            // selected enriched row keeps a neutral title (no
+                            // blue text, no check) — only the row fill is blue.
                             <div
                               style={{
                                 display: "flex",
-                                alignItems: "center",
-                                justifyContent: "space-between",
-                                gap: 8,
+                                flexDirection: "column",
+                                flex: "1 1 auto",
+                                minWidth: 0,
                               }}
                             >
-                              <Text
-                                color={
-                                  isBusinessDisabled
-                                    ? "neutral-textDisabled"
-                                    : "neutral-textHigh"
-                                }
+                              <div
+                                style={{
+                                  display: "flex",
+                                  alignItems: "center",
+                                  justifyContent: "space-between",
+                                  gap: 8,
+                                }}
                               >
-                                {option.label}
-                              </Text>
-                              {option.tag && (
-                                <span
-                                  style={{
-                                    display: "inline-flex",
-                                    opacity: isBusinessDisabled ? 0.5 : 1,
-                                  }}
+                                <Text
+                                  color={
+                                    isBusinessDisabled
+                                      ? "neutral-textDisabled"
+                                      : "neutral-textHigh"
+                                  }
                                 >
-                                  <Tag appearance={option.tag.appearance}>
-                                    {option.tag.label}
-                                  </Tag>
-                                </span>
+                                  {option.label}
+                                </Text>
+                                {option.tag && (
+                                  <span
+                                    style={{
+                                      display: "inline-flex",
+                                      opacity: isBusinessDisabled ? 0.5 : 1,
+                                    }}
+                                  >
+                                    <Tag appearance={option.tag.appearance}>
+                                      {option.tag.label}
+                                    </Tag>
+                                  </span>
+                                )}
+                              </div>
+                              {option.subtitle && (
+                                <Text
+                                  fontSize="caption"
+                                  lineHeight="caption"
+                                  color={
+                                    isBusinessDisabled
+                                      ? "neutral-textDisabled"
+                                      : "neutral-textLow"
+                                  }
+                                >
+                                  {option.subtitle}
+                                </Text>
                               )}
                             </div>
-                            {option.subtitle && (
-                              <Text
-                                fontSize="caption"
-                                lineHeight="caption"
-                                color={
-                                  isBusinessDisabled
-                                    ? "neutral-textDisabled"
-                                    : "neutral-textLow"
-                                }
-                              >
-                                {option.subtitle}
-                              </Text>
-                            )}
-                          </div>
-                        ) : (
-                          <Text
-                            color={
-                              isBusinessDisabled
-                                ? "neutral-textDisabled"
-                                : isChecked
-                                ? "primary-interactive"
-                                : "neutral-textHigh"
-                            }
-                          >
-                            {option.label}
-                          </Text>
-                        )}
-                        {/* The checkmark marks "this is the current value" —
+                          ) : (
+                            <Text
+                              color={
+                                isBusinessDisabled
+                                  ? "neutral-textDisabled"
+                                  : isChecked
+                                  ? "primary-interactive"
+                                  : "neutral-textHigh"
+                              }
+                            >
+                              {option.label}
+                            </Text>
+                          )}
+                          {/* The checkmark marks "this is the current value" —
                         per the Figma matrix, still shown (muted) even on a
                         business-disabled option that happens to already be
                         selected, so it doesn't stop looking picked just
                         because it's now also blocked from being picked
                         again. */}
-                        {isChecked && !isEnriched && (
-                          <Icon
-                            source={<CheckIcon />}
-                            color={
-                              isBusinessDisabled
-                                ? "neutral-textDisabled"
-                                : "primary-interactive"
-                            }
-                          />
-                        )}
-                      </Box>
-                    </React.Fragment>
-                  );
-                })}
+                          {isChecked && !isEnriched && (
+                            <Icon
+                              source={<CheckIcon />}
+                              color={
+                                isBusinessDisabled
+                                  ? "neutral-textDisabled"
+                                  : "primary-interactive"
+                              }
+                            />
+                          )}
+                        </Box>
+                      </React.Fragment>
+                    );
+                  })}
+                </div>
               </div>
             )
           }
@@ -1675,7 +1692,7 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                       ? { "aria-description": fullPathText }
                       : {})}
                     style={
-                      hierarchical
+                      hierarchical && !multiple
                         ? // "<name> en <parent>": the picked name comes
                           // first, so a normal end-ellipsis keeps it visible.
                           { textOverflow: "ellipsis" }
@@ -1779,6 +1796,10 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                     onMouseDown={(event) => event.preventDefault()}
                     onClick={handleClearAll}
                     className={inputStyles.classnames.container__icon}
+                    // Same 24px icon box (4px each side) as Figma's trailing
+                    // icon, so the glyph sits where the single-select
+                    // chevron/× sits in Fields A-G (9px from the field edge).
+                    style={{ padding: "0 4px" }}
                   >
                     <Icon source={<CloseIcon />} color="neutral-textLow" />
                   </button>
@@ -1808,6 +1829,7 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                       inputRef.current?.focus();
                       if (!disabled) setOpen(true);
                     }}
+                    style={multiple ? { padding: "0 4px" } : undefined}
                     className={[
                       inputStyles.classnames.container__icon,
                       // Multiselect's own container now carries its
