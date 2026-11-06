@@ -181,6 +181,14 @@ export const vars = createGlobalThemeContract(
       divider: {
         color: "",
       },
+      tag: {
+        neutral: { background: "", borderColor: "", color: "" },
+        primary: { background: "", borderColor: "" },
+        success: { background: "", borderColor: "" },
+        warning: { background: "", borderColor: "" },
+        danger: { background: "", borderColor: "" },
+        aiGenerative: { background: "", borderColor: "", color: "" },
+      },
       badge: {
         surface: {
           neutral: { background: "", color: "" },

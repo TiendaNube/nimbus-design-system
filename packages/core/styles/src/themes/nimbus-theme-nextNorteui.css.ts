@@ -3,6 +3,7 @@ import tokens from "@nimbus-ds/tokens/dist/js/tokens";
 
 import { vars } from "./contract.css";
 import { globalTheme } from "./globals.css";
+import { aiInteractiveBorder } from "./aiInteractiveBorder";
 
 interface TokenLeaf {
   value: unknown;
@@ -71,6 +72,36 @@ export const variables = createTheme(vars, {
   components: {
     divider: {
       color: vars.colors.neutral.interactive,
+    },
+    tag: {
+      neutral: {
+        background: vars.colors.neutral.surfaceHighlight,
+        borderColor: "transparent",
+        color: vars.colors.neutral.textLow,
+      },
+      primary: {
+        background: vars.colors.primary.surfaceDisabled,
+        borderColor: "transparent",
+      },
+      success: {
+        background: vars.colors.success.surfaceDisabled,
+        borderColor: "transparent",
+      },
+      warning: {
+        background: vars.colors.warning.surfaceDisabled,
+        borderColor: "transparent",
+      },
+      danger: {
+        background: vars.colors.danger.surfaceDisabled,
+        borderColor: "transparent",
+      },
+      aiGenerative: {
+        background: aiInteractiveBorder(
+          vars.colors.aiGenerative.surfaceDisabled
+        ),
+        borderColor: "transparent",
+        color: vars.colors.aiGenerative.textLow,
+      },
     },
     badge: {
       surface: {
