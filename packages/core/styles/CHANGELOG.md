@@ -7,7 +7,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 #### 🎉 New features
 
 - Icon: Adds the `ai-generativeTextLow` color, used by the Norte UI `AI` icon in `surface` mode. ([#616](https://github.com/TiendaNube/nimbus-design-system/pull/616) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
-- Badge: Adds the `components.badge` theme values for the `surface`, `light` and `dot` variants. In `base`, `dark`, `next`, `next-dark` and `next-norteui-dark` they reference the current Badge colors, so the Badge looks exactly as before. In `next-norteui` they follow the Norte UI Figma. Also adds the `ai-generative` appearance. (by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
+- Badge: Adds the `components.badge` theme values for the `surface`, `light` and `dot` variants. In `base`, `dark`, `next`, `next-dark` and `next-norteui-dark` they reference the current Badge colors, so the Badge looks exactly as before. In `next-norteui` they follow the Norte UI Figma. Also adds the `ai-generative` appearance. ([#623](https://github.com/TiendaNube/nimbus-design-system/pull/623) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
 
 #### 💡 Others
 
