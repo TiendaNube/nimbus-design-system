@@ -21,7 +21,7 @@ const mapToneScale = (group: ToneTokenMap) => ({
   interactiveHover: String(group["interactive-hover"].value),
   interactivePressed: String(group["interactive-pressed"].value),
   textLow: String(group["text-low"].value),
-  textHigh: String(group["text-high"].value)
+  textHigh: String(group["text-high"].value),
 });
 
 const primary = mapToneScale(colors.primary);
@@ -51,7 +51,7 @@ export const variables = createTheme(vars, {
       ...mapToneScale(colors.neutral),
       background: String(colors.neutral.background.value),
       surfaceDisabled: String(colors.neutral["surface-disabled"].value),
-      textDisabled: String(colors.neutral["text-disabled"].value)
+      textDisabled: String(colors.neutral["text-disabled"].value),
     },
     aiGenerative: {
       ...globalTheme.colors.aiGenerative,
@@ -61,18 +61,82 @@ export const variables = createTheme(vars, {
       interactiveHover: String(aiGenerative["interactive-hover"].value),
       interactivePressed: String(aiGenerative["interactive-pressed"].value),
       textLow: String(aiGenerative["text-low"].value),
-      textHigh: String(aiGenerative["text-high"].value)
-    }
+      textHigh: String(aiGenerative["text-high"].value),
+    },
   },
   utils: {
     focus: `0 0 0 3px ${primary.surfaceHighlight}`,
-    aiFocus: `0 0 0 3px ${aiSurfaceHighlight}`
+    aiFocus: `0 0 0 3px ${aiSurfaceHighlight}`,
   },
   components: {
     divider: {
-      color: vars.colors.neutral.interactive
-    }
-  }
+      color: vars.colors.neutral.interactive,
+    },
+    badge: {
+      surface: {
+        neutral: {
+          background: vars.colors.neutral.interactive,
+          color: vars.colors.neutral.textHigh,
+        },
+        primary: {
+          background: vars.colors.primary.interactive,
+          color: vars.colors.neutral.background,
+        },
+        success: {
+          background: vars.colors.success.interactivePressed,
+          color: vars.colors.neutral.background,
+        },
+        warning: {
+          background: vars.colors.warning.interactivePressed,
+          color: vars.colors.neutral.background,
+        },
+        danger: {
+          background: vars.colors.danger.interactivePressed,
+          color: vars.colors.neutral.background,
+        },
+        aiGenerative: {
+          background: vars.colors.aiGenerative.interactivePressed,
+          color: vars.colors.neutral.background,
+        },
+      },
+      light: {
+        neutral: {
+          background: vars.colors.neutral.surface,
+          color: vars.colors.neutral.textLow,
+        },
+        primary: {
+          background: vars.colors.primary.surface,
+          color: vars.colors.primary.textLow,
+        },
+        success: {
+          background: vars.colors.success.surface,
+          color: vars.colors.success.textLow,
+        },
+        warning: {
+          background: vars.colors.warning.surface,
+          color: vars.colors.warning.textLow,
+        },
+        danger: {
+          background: vars.colors.danger.surface,
+          color: vars.colors.danger.textLow,
+        },
+        aiGenerative: {
+          background: vars.colors.aiGenerative.surface,
+          color: vars.colors.aiGenerative.textLow,
+        },
+      },
+      dot: {
+        neutral: { background: vars.colors.neutral.interactive },
+        primary: { background: vars.colors.primary.interactive },
+        success: { background: vars.colors.success.interactivePressed },
+        warning: { background: vars.colors.warning.interactivePressed },
+        danger: { background: vars.colors.danger.interactivePressed },
+        aiGenerative: {
+          background: vars.colors.aiGenerative.interactivePressed,
+        },
+      },
+    },
+  },
 });
 
 export default variables;

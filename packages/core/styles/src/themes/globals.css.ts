@@ -219,6 +219,73 @@ export const globalTheme = {
       // and next-dark keep the exact Divider color they had. Norte UI overrides it.
       color: vars.colors.neutral.surfaceHighlight,
     },
+    badge: {
+      // References the theme's own tone colors so base, dark, next and next-dark
+      // keep the exact Badge look they had. Norte UI overrides them.
+      surface: {
+        neutral: {
+          background: vars.colors.neutral.textLow,
+          color: vars.colors.neutral.background,
+        },
+        primary: {
+          background: vars.colors.primary.textLow,
+          color: vars.colors.neutral.background,
+        },
+        success: {
+          background: vars.colors.success.textLow,
+          color: vars.colors.neutral.background,
+        },
+        warning: {
+          background: vars.colors.warning.textLow,
+          color: vars.colors.neutral.background,
+        },
+        danger: {
+          background: vars.colors.danger.textLow,
+          color: vars.colors.neutral.background,
+        },
+        aiGenerative: {
+          background: vars.colors.aiGenerative.textLow,
+          color: vars.colors.neutral.background,
+        },
+      },
+      light: {
+        neutral: {
+          background: vars.colors.neutral.background,
+          color: vars.colors.neutral.textLow,
+        },
+        primary: {
+          background: vars.colors.neutral.background,
+          color: vars.colors.primary.textLow,
+        },
+        success: {
+          background: vars.colors.neutral.background,
+          color: vars.colors.success.textLow,
+        },
+        warning: {
+          background: vars.colors.neutral.background,
+          color: vars.colors.warning.textLow,
+        },
+        danger: {
+          background: vars.colors.neutral.background,
+          color: vars.colors.danger.textLow,
+        },
+        aiGenerative: {
+          background: vars.colors.neutral.background,
+          color: vars.colors.aiGenerative.textLow,
+        },
+      },
+      dot: {
+        neutral: { background: vars.colors.neutral.interactive },
+        primary: { background: vars.colors.primary.interactive },
+        success: { background: vars.colors.success.interactive },
+        warning: { background: vars.colors.warning.interactive },
+        danger: { background: vars.colors.danger.interactive },
+        // aiGenerative has no `interactive` color, so it uses interactivePressed.
+        aiGenerative: {
+          background: vars.colors.aiGenerative.interactivePressed,
+        },
+      },
+    },
   },
 };
 

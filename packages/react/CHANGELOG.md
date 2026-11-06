@@ -8,6 +8,7 @@ every day, with simplicity, accessibility, consistency and performance.
 #### 🎉 New features
 
 - Icon: Adds the `ai-generativeTextLow` color, used by the Norte UI `AI` icon in `surface` mode. ([#616](https://github.com/TiendaNube/nimbus-design-system/pull/616) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
+- Badge: Adds the `ai-generative` appearance, and uses the Norte UI Figma colors in the `next-norteui` theme: stronger `surface` backgrounds, tone `surface` backgrounds in `light`, and `interactivePressed` dots for `success`, `warning`, `danger` and `ai-generative`. Other themes are unchanged. (by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
 
 #### 💡 Others
 
