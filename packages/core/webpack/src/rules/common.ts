@@ -33,5 +33,6 @@ export const typescriptRule = {
      * on every pull request and before every push.
      */
     onlyCompileBundledFiles: true,
+    transpileOnly: process.env.NIMBUS_SKIP_DTS === "true",
   },
 };

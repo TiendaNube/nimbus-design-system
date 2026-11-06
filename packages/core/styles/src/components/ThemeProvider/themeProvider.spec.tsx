@@ -51,5 +51,19 @@ describe("GIVEN <ThemeProvider />", () => {
         screen.getByTestId("theme-provider-element").getAttribute("class")
       ).toContain("nextDark");
     });
+
+    it("THEN should correctly render the theme next-norteui", () => {
+      makeSut({ children: "My children", theme: "next-norteui" });
+      expect(
+        screen.getByTestId("theme-provider-element").getAttribute("class")
+      ).toContain("nextNorteui");
+    });
+
+    it("THEN should correctly render the theme next-norteui-dark", () => {
+      makeSut({ children: "My children", theme: "next-norteui-dark" });
+      expect(
+        screen.getByTestId("theme-provider-element").getAttribute("class")
+      ).toContain("nextNorteuiDark");
+    });
   });
 });

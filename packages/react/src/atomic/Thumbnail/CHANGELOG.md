@@ -2,6 +2,12 @@
 
 The Thumbnail component allows us to present thumbnails of images.
 
+## 2026-11-05 `2.4.2`
+
+#### 💡 Others
+
+- Changes the background color from `neutral.surfaceDisabled` to `neutral.surfaceHighlight`, aligned with the Norte UI Figma. The placeholder icon keeps the `neutral-interactive` color. ([#619](https://github.com/TiendaNube/nimbus-design-system/pull/619) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
+
 ## 2026-02-12 `2.4.0`
 
 #### 🎉 New features

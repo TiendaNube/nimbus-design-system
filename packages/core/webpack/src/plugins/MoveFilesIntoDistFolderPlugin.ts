@@ -50,11 +50,18 @@ export class MoveFilesIntoDistFolderPlugin {
             ? trailingWhitespaceMatch[1]
             : "";
 
-          // Overwrite package.json in the root project, preserving trailing whitespace if it had it.
+          // Overwrite package.json in the root project only when content changed,
+          // so file watchers (e.g. Vite) do not trigger spurious full reloads.
           const newPackageJsonContent =
             JSON.stringify(transformedPackageJson, null, 2) +
             trailingWhitespace;
-          await fs.writeFile(pkgPath, newPackageJsonContent);
+          if (newPackageJsonContent !== packageJsonRaw) {
+            await fs.writeFile(pkgPath, newPackageJsonContent);
+          }
+
+          if (process.env.NIMBUS_SKIP_DTS === "true") {
+            return;
+          }
 
           // Move additional files (defaults: CHANGELOG.md, README.md)
           const filesToMove = this.options.files || [
@@ -75,7 +82,7 @@ export class MoveFilesIntoDistFolderPlugin {
             })
           );
         } catch (error) {
-          console.error("Error in MoveFilesIntoDistFolderPlugin:", error);
+          throw error instanceof Error ? error : new Error(String(error));
         }
       }
     );

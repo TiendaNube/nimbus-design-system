@@ -10,7 +10,13 @@ export interface BadgeProperties {
    * Change the visual style of the badge.
    * @default neutral
    */
-  appearance?: "primary" | "success" | "warning" | "danger" | "neutral";
+  appearance?:
+    | "primary"
+    | "success"
+    | "warning"
+    | "danger"
+    | "neutral"
+    | "ai-generative";
   /**
    * Total items to be displayed without badge
    */

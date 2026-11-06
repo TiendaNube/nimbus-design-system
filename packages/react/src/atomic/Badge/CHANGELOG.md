@@ -2,6 +2,12 @@
 
 The badge component is used to communicate quantities of items or pending actions.
 
+## 2026-11-06 `3.5.0`
+
+#### 🎉 New features
+
+- Badge: Adds the `ai-generative` appearance, and uses the Norte UI Figma colors in the `next-norteui` theme: stronger `surface` backgrounds, tone `surface` backgrounds in `light`, and `interactivePressed` dots for `success`, `warning`, `danger` and `ai-generative`. Other themes are unchanged. ([#623](https://github.com/TiendaNube/nimbus-design-system/pull/623) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
+
 ## 2026-02-12 `3.2.0`
 
 #### 🎉 New features

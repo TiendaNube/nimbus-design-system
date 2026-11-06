@@ -1,44 +1,23 @@
 import { createGlobalThemeContract } from "@vanilla-extract/css";
 
+const toneColors = {
+  surface: "",
+  surfaceDisabled: "",
+  surfaceHighlight: "",
+  interactive: "",
+  interactiveHover: "",
+  interactivePressed: "",
+  textLow: "",
+  textHigh: "",
+};
+
 export const vars = createGlobalThemeContract(
   {
     colors: {
-      primary: {
-        surface: "",
-        surfaceHighlight: "",
-        interactive: "",
-        interactiveHover: "",
-        interactivePressed: "",
-        textLow: "",
-        textHigh: "",
-      },
-      success: {
-        surface: "",
-        surfaceHighlight: "",
-        interactive: "",
-        interactiveHover: "",
-        interactivePressed: "",
-        textLow: "",
-        textHigh: "",
-      },
-      warning: {
-        surface: "",
-        surfaceHighlight: "",
-        interactive: "",
-        interactiveHover: "",
-        interactivePressed: "",
-        textLow: "",
-        textHigh: "",
-      },
-      danger: {
-        surface: "",
-        surfaceHighlight: "",
-        interactive: "",
-        interactiveHover: "",
-        interactivePressed: "",
-        textLow: "",
-        textHigh: "",
-      },
+      primary: toneColors,
+      success: toneColors,
+      warning: toneColors,
+      danger: toneColors,
       neutral: {
         background: "",
         surface: "",
@@ -57,6 +36,7 @@ export const vars = createGlobalThemeContract(
         interactivePressed: "",
         surfaceHighlight: "",
         surface: "",
+        surfaceDisabled: "",
         background: "",
         textHigh: "",
       },
@@ -92,6 +72,7 @@ export const vars = createGlobalThemeContract(
       regular: "",
       medium: "",
       bold: "",
+      title: "",
     },
     lineWeight: {
       body: {
@@ -195,6 +176,64 @@ export const vars = createGlobalThemeContract(
     utils: {
       focus: "",
       aiFocus: "",
+    },
+    components: {
+      divider: {
+        color: "",
+      },
+      tag: {
+        neutral: { background: "", borderColor: "", color: "" },
+        primary: { background: "", borderColor: "" },
+        success: { background: "", borderColor: "" },
+        warning: { background: "", borderColor: "" },
+        danger: { background: "", borderColor: "" },
+        aiGenerative: { background: "", borderColor: "", color: "" },
+      },
+      chip: {
+        borderRadius: "",
+        neutral: {
+          background: "",
+          borderColor: "",
+          color: "",
+          hover: { background: "", borderColor: "" },
+          pressed: { background: "", borderColor: "" },
+          focus: { borderColor: "", boxShadow: "" },
+        },
+        aiGenerative: {
+          background: "",
+          color: "",
+          boxShadow: "",
+          hover: { background: "" },
+          pressed: { background: "" },
+          focus: { borderColor: "", boxShadow: "" },
+        },
+      },
+      badge: {
+        surface: {
+          neutral: { background: "", color: "" },
+          primary: { background: "", color: "" },
+          success: { background: "", color: "" },
+          warning: { background: "", color: "" },
+          danger: { background: "", color: "" },
+          aiGenerative: { background: "", color: "" },
+        },
+        light: {
+          neutral: { background: "", color: "" },
+          primary: { background: "", color: "" },
+          success: { background: "", color: "" },
+          warning: { background: "", color: "" },
+          danger: { background: "", color: "" },
+          aiGenerative: { background: "", color: "" },
+        },
+        dot: {
+          neutral: { background: "" },
+          primary: { background: "" },
+          success: { background: "" },
+          warning: { background: "" },
+          danger: { background: "" },
+          aiGenerative: { background: "" },
+        },
+      },
     },
   },
   (_value, path) => `nimbus-${path.join("-")}`

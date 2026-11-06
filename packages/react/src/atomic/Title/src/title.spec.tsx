@@ -1,8 +1,11 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
+import { ThemeProvider } from "@nimbus-ds/styles";
 
 import { Title } from "./Title";
 import { type TitleProps } from "./title.types";
+
+type Theme = NonNullable<React.ComponentProps<typeof ThemeProvider>["theme"]>;
 
 const content = "myText";
 
@@ -120,6 +123,40 @@ describe("GIVEN <Title />", () => {
       expect(screen.getByRole("heading").getAttribute("class")).toContain(
         "fontWeight_regular"
       );
+    });
+  });
+
+  describe("THEN should apply the default fontWeight class", () => {
+    it("THEN should use it without a ThemeProvider", () => {
+      makeSut();
+      expect(screen.getByRole("heading").getAttribute("class")).toContain(
+        "defaultFontWeight"
+      );
+    });
+
+    it.each<Theme>([
+      "base",
+      "dark",
+      "next",
+      "next-dark",
+      "next-norteui",
+      "next-norteui-dark"
+    ])("THEN should use it under %s", (theme) => {
+      render(
+        <ThemeProvider theme={theme}>
+          <Title>{content}</Title>
+        </ThemeProvider>
+      );
+      expect(screen.getByRole("heading").getAttribute("class")).toContain(
+        "defaultFontWeight"
+      );
+    });
+
+    it("THEN should not use it with an explicit fontWeight", () => {
+      makeSut({ fontWeight: "bold" });
+      const className = screen.getByRole("heading").getAttribute("class");
+      expect(className).toContain("fontWeight_bold");
+      expect(className).not.toContain("defaultFontWeight");
     });
   });
 

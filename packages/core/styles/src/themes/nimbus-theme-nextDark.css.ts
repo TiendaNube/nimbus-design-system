@@ -3,14 +3,16 @@ import tokens from "@nimbus-ds/tokens/dist/js/tokens";
 
 import { vars } from "./contract.css";
 import { globalTheme } from "./globals.css";
+import { withToneSurfaceDisabled } from "./toneSurfaceDisabled";
 
 const nextColors = tokens.color["next-dark"];
 const colors = tokens.color.dark;
+const surfaceDisabled = colors.neutral["surface-disabled"].value as string;
 const { shadow } = tokens;
 
 const nextDarkTheme = {
   ...globalTheme,
-  colors: {
+  colors: withToneSurfaceDisabled(surfaceDisabled, {
     ...globalTheme.colors,
     primary: {
       surface: nextColors.primary.surface.value as string,
@@ -61,7 +63,7 @@ const nextDarkTheme = {
       textLow: colors.neutral["text-low"].value as string,
       textHigh: colors.neutral["text-high"].value as string,
     },
-  },
+  }),
   utils: {
     focus: `0 0 0 3px ${
       nextColors.primary["surface-highlight"].value as string

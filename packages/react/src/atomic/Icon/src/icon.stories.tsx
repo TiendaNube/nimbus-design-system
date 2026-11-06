@@ -1,6 +1,7 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { TiendanubeIcon } from "@nimbus-ds/icons";
+import { Box } from "@nimbus-ds/box";
 import { Icon } from "./Icon";
 
 const meta: Meta<typeof Icon> = {
@@ -47,5 +48,22 @@ export const gradientColored: Story = {
   args: {
     source: <TiendanubeIcon size="large" />,
     color: "ai-generative",
+  },
+};
+
+/**
+ * Figma (Norte UI) `Size` maps to the `size` prop of the `@nimbus-ds/icons` SVG
+ * passed as `source`: small = 16px, medium = 24px, large = 32px.
+ */
+export const sizes: Story = {
+  render: (args) => (
+    <Box display="flex" alignItems="center" gap="4">
+      <Icon {...args} source={<TiendanubeIcon size="large" />} />
+      <Icon {...args} source={<TiendanubeIcon size="medium" />} />
+      <Icon {...args} source={<TiendanubeIcon size="small" />} />
+    </Box>
+  ),
+  args: {
+    color: "neutral-textHigh",
   },
 };

@@ -47,6 +47,7 @@
       "@nimbus-ds/scripts": ["./packages/core/scripts/src"],
       "@nimbus-ds/webpack": ["./packages/core/webpack/src"],
       "@nimbus-ds/components": ["./packages/react/src"],
+      "@nimbus-ds/components/next": ["./packages/react/src/next"],
       "@nimbus-ds/badge": ["./packages/react/src/atomic/Badge/src"],
       "@nimbus-ds/box": ["./packages/react/src/atomic/Box/src"],
       "@nimbus-ds/button": ["./packages/react/src/atomic/Button/src"],

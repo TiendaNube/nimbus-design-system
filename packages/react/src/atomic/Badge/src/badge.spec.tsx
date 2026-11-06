@@ -51,6 +51,13 @@ describe("GIVEN <Badge />", () => {
         screen.getByTestId("badge-element").getAttribute("class")
       ).toContain("surface_neutral");
     });
+
+    it("THEN should correctly render the appearance ai-generative", () => {
+      makeSut({ count: 99, appearance: "ai-generative" });
+      expect(
+        screen.getByTestId("badge-element").getAttribute("class")
+      ).toContain("surface_ai-generative");
+    });
   });
 
   describe("THEN should correctly render the theme light", () => {
@@ -95,6 +102,13 @@ describe("GIVEN <Badge />", () => {
         screen.getByTestId("badge-element").getAttribute("class")
       ).toContain("light_neutral");
     });
+
+    it("THEN should correctly render the appearance ai-generative", () => {
+      makeSut({ count: 99, appearance: "ai-generative", theme: "light" });
+      expect(
+        screen.getByTestId("badge-element").getAttribute("class")
+      ).toContain("light_ai-generative");
+    });
   });
 
   describe("THEN should correctly render the type dot", () => {
@@ -131,6 +145,13 @@ describe("GIVEN <Badge />", () => {
       expect(
         screen.getByTestId("badge-element").getAttribute("class")
       ).toContain("dot_neutral");
+    });
+
+    it("THEN should correctly render the appearance ai-generative", () => {
+      makeSut({ type: "dot", appearance: "ai-generative" });
+      expect(
+        screen.getByTestId("badge-element").getAttribute("class")
+      ).toContain("dot_ai-generative");
     });
 
     it("THEN should not render text content", () => {

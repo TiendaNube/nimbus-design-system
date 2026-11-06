@@ -44,6 +44,15 @@ describe("GIVEN <Icon />", () => {
       ).toContain("color_primary-textHigh");
     });
 
+    it("THEN should correctly render the color ai-generativeTextLow", () => {
+      mockIsGradient.mockReturnValue(false);
+      makeSut({ source: <svg />, color: "ai-generativeTextLow" });
+      expect(
+        screen.getByTestId("icon-element").getAttribute("class")
+      ).toContain("color_ai-generativeTextLow");
+      expect(mockApplyGradientToSvg).not.toHaveBeenCalled();
+    });
+
     it("THEN should correctly render the color success-textLow", () => {
       makeSut({ source: <svg />, color: "success-textLow" });
       expect(

@@ -1,6 +1,6 @@
 import nodePath from "path";
 import * as TJS from "typescript-json-schema";
-import { readFileSync, writeFileSync } from "fs";
+import { existsSync, readFileSync, writeFileSync } from "fs";
 import { camelCase, pascalCase, paramCase } from "change-case";
 import { defaultCompilerOptions, defaultSettings } from "./docgen.definitions";
 import { DocgenOptions, Prop, Doc, Paths, GeneratedDoc } from "./docgen.types";
@@ -51,48 +51,96 @@ export class Docgen {
     console.log(`Bundle documentation generated successfully in ${outputPath}`);
   }
 
+  /**
+   * Generates documentation metadata for all matched base and `/next` components.
+   */
   public generate(paths: Paths): GeneratedDoc[] {
     this.paths = { ...this.paths, ...paths };
 
     console.log(
       `Building documentation for ${paths.components.length} components...`
     );
-    const allPaths = [...paths.components, ...(paths?.subComponents ?? [])];
-    this.program = TJS.getProgramFromFiles(
-      allPaths.map((path) => nodePath.resolve(path)),
-      this.options.compilerOptions
-    );
-    this.generator = TJS.buildGenerator(this.program, this.options.settings);
 
-    // Building documentation
-    const docs = this.paths.components.map((path) => this.createDoc(path));
+    const isNextPath = (filePath: string) =>
+      filePath.includes("/src/next/") || filePath.includes("\\src\\next\\");
+
+    const baseComponents = paths.components.filter((p) => !isNextPath(p));
+    const nextComponents = paths.components.filter((p) => isNextPath(p));
+    const baseSubComponents = (paths?.subComponents ?? []).filter(
+      (p) => !isNextPath(p)
+    );
+    const nextSubComponents = (paths?.subComponents ?? []).filter((p) =>
+      isNextPath(p)
+    );
+
+    const docs: GeneratedDoc[] = [];
+
+    if (baseComponents.length > 0) {
+      const baseAllPaths = [...baseComponents, ...baseSubComponents];
+      this.program = TJS.getProgramFromFiles(
+        baseAllPaths.map((p) => nodePath.resolve(p)),
+        this.options.compilerOptions
+      );
+      this.generator = TJS.buildGenerator(this.program, this.options.settings);
+      docs.push(...baseComponents.map((p) => this.createDoc(p)));
+    }
+
+    if (nextComponents.length > 0) {
+      const nextAllPaths = [...nextComponents, ...nextSubComponents];
+      this.program = TJS.getProgramFromFiles(
+        nextAllPaths.map((p) => nodePath.resolve(p)),
+        this.options.compilerOptions
+      );
+      this.generator = TJS.buildGenerator(this.program, this.options.settings);
+      docs.push(...nextComponents.map((p) => this.createDoc(p)));
+    }
 
     console.log("Documentation generated successfully");
     return docs;
   }
 
+  /**
+   * Builds and persists the `.docs.json` artifact for a single component path.
+   */
   private createDoc(path: string): GeneratedDoc {
     console.log(`Creating documentation for ${path}...`);
 
     this.component.name = this.getComponentName(path);
     this.component.path = this.getComponentPath(path);
-    this.component.id = this.getComponentId();
+    const isNextComponent =
+      this.component.path.includes("/src/next/") ||
+      this.component.path.includes("\\src\\next\\");
+    const baseComponentId = this.getComponentId();
+    this.component.id = isNextComponent
+      ? `next/${baseComponentId}`
+      : baseComponentId;
 
     this.component.source = this.getSource(
       `${this.component.path}/${this.component.name}.tsx`
     );
 
-    this.component.sourcePackage = this.getSource(
-      `${this.component.path.replace(
-        `${this.component.name}/src`,
-        this.component.name
-      )}/package.json`
+    const componentPackageJsonPath = `${this.component.path.replace(
+      `${this.component.name}/src`,
+      this.component.name
+    )}/package.json`;
+    const fallbackReactPackageJsonPath = nodePath.resolve(
+      this.component.path,
+      "../../../../package.json"
+    );
+
+    this.component.sourcePackage = this.getSourceWithFallback(
+      componentPackageJsonPath,
+      fallbackReactPackageJsonPath
     );
 
     const polymorphicProps = this.getPolymorphicProps();
     const schema = this.getSchema(`${this.component.name}Properties`);
     const props = this.formatProps(schema, polymorphicProps);
-    const packageName = this.getPackageName();
+    const rawPackageName = this.getPackageName();
+    const packageName =
+      isNextComponent && !rawPackageName.endsWith("/next")
+        ? `${rawPackageName}/next`
+        : rawPackageName;
     const version = this.getVersion();
     const docLink = this.generateDocLink();
     const subComponents = this.getSubComponents();
@@ -108,7 +156,7 @@ export class Docgen {
       subComponents,
     };
 
-    const dist = `${this.component.path}/${this.component.id}.docs.json`;
+    const dist = `${this.component.path}/${baseComponentId}.docs.json`;
     writeFileSync(dist, JSON.stringify(doc, null, 2));
     console.log(`created ${dist} ✅`);
 
@@ -156,6 +204,9 @@ export class Docgen {
     return props;
   }
 
+  /**
+   * Generates the JSON schema definition for a TypeScript type name.
+   */
   private getSchema(fullTypeName: string): TJS.Definition {
     try {
       const schema = TJS.generateSchema(
@@ -184,6 +235,16 @@ export class Docgen {
 
   private getSource(path: string): string {
     return readFileSync(path, "utf8");
+  }
+
+  /**
+   * Reads `primaryPath` when it exists, falling back to `fallbackPath` otherwise.
+   */
+  private getSourceWithFallback(primaryPath: string, fallbackPath: string): string {
+    if (existsSync(primaryPath)) {
+      return readFileSync(primaryPath, "utf8");
+    }
+    return readFileSync(fallbackPath, "utf8");
   }
 
   private getComponentName(path: string): string {
