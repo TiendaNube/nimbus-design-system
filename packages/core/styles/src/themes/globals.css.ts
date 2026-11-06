@@ -2,6 +2,7 @@ import tokens from "@nimbus-ds/tokens/dist/js/tokens";
 import { createGlobalTheme, globalStyle } from "@vanilla-extract/css";
 import { vars } from "./contract.css";
 import { withToneSurfaceDisabled } from "./toneSurfaceDisabled";
+import { createLinearGradient } from "../gradients/gradientBuilder";
 
 const colors = tokens.color.light;
 const surfaceDisabled = colors.neutral["surface-disabled"].value as string;
@@ -217,6 +218,44 @@ export const globalTheme = {
       // References the theme's own neutral surfaceHighlight so base, dark, next
       // and next-dark keep the exact Divider color they had. Norte UI overrides it.
       color: vars.colors.neutral.surfaceHighlight,
+    },
+    tag: {
+      // References the theme's own tone colors so base, dark, next and next-dark
+      // keep the exact Tag look they had. Norte UI overrides them.
+      neutral: {
+        background: vars.colors.neutral.surface,
+        borderColor: vars.colors.neutral.surfaceHighlight,
+      },
+      primary: {
+        background: vars.colors.primary.surface,
+        borderColor: vars.colors.primary.surfaceHighlight,
+      },
+      success: {
+        background: vars.colors.success.surface,
+        borderColor: vars.colors.success.surfaceHighlight,
+      },
+      warning: {
+        background: vars.colors.warning.surface,
+        borderColor: vars.colors.warning.surfaceHighlight,
+      },
+      danger: {
+        background: vars.colors.danger.surface,
+        borderColor: vars.colors.danger.surfaceHighlight,
+      },
+      aiGenerative: {
+        // Same value as createBorderGradient(gradients.aiGenerativeInteractive,
+        // neutral.surface), built inline because gradients import the themes.
+        background: `linear-gradient(${vars.colors.neutral.surface}, ${
+          vars.colors.neutral.surface
+        }) padding-box, ${createLinearGradient(
+          "50deg",
+          `${vars.colors.aiGradient.blueHigh} 28.22%`,
+          `${vars.colors.aiGradient.purpleHigh} 49.27%`,
+          `${vars.colors.aiGradient.pinkHigh} 83.12%`
+        )} border-box`,
+        borderColor: "transparent",
+        color: vars.colors.neutral.textHigh,
+      },
     },
   },
 };

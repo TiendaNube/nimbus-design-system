@@ -21,7 +21,7 @@ const mapToneScale = (group: ToneTokenMap) => ({
   interactiveHover: String(group["interactive-hover"].value),
   interactivePressed: String(group["interactive-pressed"].value),
   textLow: String(group["text-low"].value),
-  textHigh: String(group["text-high"].value)
+  textHigh: String(group["text-high"].value),
 });
 
 const primary = mapToneScale(colors.primary);
@@ -47,7 +47,7 @@ export const variables = createTheme(vars, {
       ...mapToneScale(colors.neutral),
       background: String(colors.neutral.background.value),
       surfaceDisabled: String(colors.neutral["surface-disabled"].value),
-      textDisabled: String(colors.neutral["text-disabled"].value)
+      textDisabled: String(colors.neutral["text-disabled"].value),
     },
     aiGenerative: {
       ...globalTheme.colors.aiGenerative,
@@ -57,18 +57,45 @@ export const variables = createTheme(vars, {
       interactiveHover: String(aiGenerative["interactive-hover"].value),
       interactivePressed: String(aiGenerative["interactive-pressed"].value),
       textLow: String(aiGenerative["text-low"].value),
-      textHigh: String(aiGenerative["text-high"].value)
-    }
+      textHigh: String(aiGenerative["text-high"].value),
+    },
   },
   utils: {
     focus: `0 0 0 3px ${primary.surfaceHighlight}`,
-    aiFocus: `0 0 0 3px ${aiSurfaceHighlight}`
+    aiFocus: `0 0 0 3px ${aiSurfaceHighlight}`,
   },
   components: {
     divider: {
-      color: vars.colors.neutral.interactive
-    }
-  }
+      color: vars.colors.neutral.interactive,
+    },
+    tag: {
+      neutral: {
+        background: vars.colors.neutral.surfaceHighlight,
+        borderColor: "transparent",
+      },
+      primary: {
+        background: vars.colors.primary.surfaceDisabled,
+        borderColor: "transparent",
+      },
+      success: {
+        background: vars.colors.success.surfaceDisabled,
+        borderColor: "transparent",
+      },
+      warning: {
+        background: vars.colors.warning.surfaceDisabled,
+        borderColor: "transparent",
+      },
+      danger: {
+        background: vars.colors.danger.surfaceDisabled,
+        borderColor: "transparent",
+      },
+      aiGenerative: {
+        background: vars.colors.aiGenerative.surfaceDisabled,
+        borderColor: vars.colors.aiGenerative.textLow,
+        color: vars.colors.aiGenerative.textLow,
+      },
+    },
+  },
 });
 
 export default variables;

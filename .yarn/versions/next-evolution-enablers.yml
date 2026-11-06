@@ -3,6 +3,7 @@ releases:
   "@nimbus-ds/styles": minor
   "@nimbus-ds/icon": minor
   "@nimbus-ds/thumbnail": patch
+  "@nimbus-ds/tag": patch
   "@nimbus-ds/components": minor
 
 declined:
@@ -15,6 +16,7 @@ declined:
   - "@nimbus-ds/accordion"
   - "@nimbus-ds/alert"
   - "@nimbus-ds/button"
+  - "@nimbus-ds/card"
   - "@nimbus-ds/checkbox"
   - "@nimbus-ds/chip"
   - "@nimbus-ds/file-uploader"
@@ -26,5 +28,4 @@ declined:
   - "@nimbus-ds/scroll-pane"
   - "@nimbus-ds/segmented-control"
   - "@nimbus-ds/select"
-  - "@nimbus-ds/tag"
   - "@nimbus-ds/toast"

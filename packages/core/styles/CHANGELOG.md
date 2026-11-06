@@ -7,6 +7,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 #### 🎉 New features
 
 - Icon: Adds the `ai-generativeTextLow` color, used by the Norte UI `AI` icon in `surface` mode. ([#616](https://github.com/TiendaNube/nimbus-design-system/pull/616) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
+- Tag: Adds the `components.tag` theme values. In `base`, `dark`, `next`, `next-dark` and `next-norteui-dark` they reference the current Tag colors, so the Tag looks exactly as before. In `next-norteui` the borders are removed, the tones use `surfaceDisabled` as the background (`neutral` uses `surfaceHighlight`) and `ai-generative` uses `aiGenerative.surfaceDisabled` with an `aiGenerative.textLow` border and text, aligned with the Norte UI Figma. (by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
 
 #### 💡 Others
 

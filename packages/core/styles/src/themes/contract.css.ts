@@ -180,6 +180,14 @@ export const vars = createGlobalThemeContract(
       divider: {
         color: "",
       },
+      tag: {
+        neutral: { background: "", borderColor: "" },
+        primary: { background: "", borderColor: "" },
+        success: { background: "", borderColor: "" },
+        warning: { background: "", borderColor: "" },
+        danger: { background: "", borderColor: "" },
+        aiGenerative: { background: "", borderColor: "", color: "" },
+      },
     },
   },
   (_value, path) => `nimbus-${path.join("-")}`
