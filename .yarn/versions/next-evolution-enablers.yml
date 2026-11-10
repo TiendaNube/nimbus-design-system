@@ -6,6 +6,7 @@ releases:
   "@nimbus-ds/tag": patch
   "@nimbus-ds/badge": minor
   "@nimbus-ds/chip": patch
+  "@nimbus-ds/title": patch
   "@nimbus-ds/components": minor
 
 declined:
@@ -29,4 +30,5 @@ declined:
   - "@nimbus-ds/scroll-pane"
   - "@nimbus-ds/segmented-control"
   - "@nimbus-ds/select"
+  - "@nimbus-ds/sidebar"
   - "@nimbus-ds/toast"

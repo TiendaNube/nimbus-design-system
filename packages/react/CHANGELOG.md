@@ -7,13 +7,17 @@ every day, with simplicity, accessibility, consistency and performance.
 
 #### 🎉 New features
 
+- Next: Adds the `@nimbus-ds/components/next` subpath export (`packages/react/next`) for coexisting next-generation component evolutions. ([#597](https://github.com/TiendaNube/nimbus-design-system/pull/597) by [@harrytiendanube](https://github.com/harrytiendanube))
 - Icon: Adds the `ai-generativeTextLow` color, used by the Norte UI `AI` icon in `surface` mode. ([#616](https://github.com/TiendaNube/nimbus-design-system/pull/616) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
 - Badge: Adds the `ai-generative` appearance, and uses the Norte UI Figma colors in the `next-norteui` theme: stronger `surface` backgrounds, tone `surface` backgrounds in `light`, and `interactivePressed` dots for `success`, `warning`, `danger` and `ai-generative`. Other themes are unchanged. ([#623](https://github.com/TiendaNube/nimbus-design-system/pull/623) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
 
 #### 💡 Others
 
+- Title: Uses the theme `fontWeight.title` token (`600` in existing themes, `500` in Norte UI) when no `fontWeight` prop is passed, keeping existing themes unchanged. ([#617](https://github.com/TiendaNube/nimbus-design-system/pull/617) by [@noecondoleo](https://github.com/noecondoleo))
 - Thumbnail: Changes the background color from `neutral.surfaceDisabled` to `neutral.surfaceHighlight`, aligned with the Norte UI Figma. ([#619](https://github.com/TiendaNube/nimbus-design-system/pull/619) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
+- Divider: Uses the theme `components.divider.color` token (`neutral.interactive` in Norte UI, `neutral.surfaceHighlight` in existing themes). ([#620](https://github.com/TiendaNube/nimbus-design-system/pull/620) by [@noecondoleo](https://github.com/noecondoleo))
 - Tag: Removes the borders and uses lighter tone backgrounds in the `next-norteui` theme, aligned with the Norte UI Figma. Other themes are unchanged. ([#621](https://github.com/TiendaNube/nimbus-design-system/pull/621) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
+- Chip: Aligns `Chip` styles with the Norte UI Figma in the `next-norteui` theme via `components.chip` theme values while keeping existing themes unchanged. ([#624](https://github.com/TiendaNube/nimbus-design-system/pull/624) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
 
 ## 2026-11-04 `5.64.0`
 
