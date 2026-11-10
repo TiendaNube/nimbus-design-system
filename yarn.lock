@@ -2921,6 +2921,7 @@ __metadata:
     "@nimbus-ds/text": "workspace:^"
     "@nimbus-ds/webpack": "workspace:^"
   peerDependencies:
+    "@nimbus-ds/styles": "workspace:^"
     react: ^16.8 || ^17.0 || ^18.0 || ^19.0
     react-dom: ^16.8 || ^17.0 || ^18.0 || ^19.0
   languageName: unknown
@@ -3518,6 +3519,7 @@ __metadata:
     "@nimbus-ds/skeleton": "workspace:^"
     "@nimbus-ds/webpack": "workspace:^"
   peerDependencies:
+    "@nimbus-ds/styles": "workspace:^"
     react: ^16.8 || ^17.0 || ^18.0 || ^19.0
     react-dom: ^16.8 || ^17.0 || ^18.0 || ^19.0
   languageName: unknown
