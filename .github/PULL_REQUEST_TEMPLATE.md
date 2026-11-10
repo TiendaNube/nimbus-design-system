@@ -22,6 +22,10 @@
 - [ ] Documentation 📚
 - [ ] Tech debt 👩‍💻
 
+## Version check
+
+- [ ] `yarn bump:check` pasó en la rama de este PR y el job `check-version` está en verde. Si cambió un workspace, se declaró su estrategia en `.yarn/versions/*.yml`.
+
 ## Changes proposed ✔️
 
 -
