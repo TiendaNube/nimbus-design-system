@@ -7,7 +7,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 #### 🎉 New features
 
 - Themes: Adds the `next-norteui` and `next-norteui-dark` themes in `ThemeProvider` and exports `useNextThemeWarning`. ([#597](https://github.com/TiendaNube/nimbus-design-system/pull/597) by [@harrytiendanube](https://github.com/harrytiendanube))
-- Themes: Maps Norte UI semantic color palettes (`primary`, `success`, `warning`, `danger`, `neutral`, `aiGenerative`), `surfaceDisabled` tone colors, and `13px` `body.base` font size in `next-norteui` / `next-norteui-dark`. ([#610](https://github.com/TiendaNube/nimbus-design-system/pull/610), [#611](https://github.com/TiendaNube/nimbus-design-system/pull/611), [#613](https://github.com/TiendaNube/nimbus-design-system/pull/613) by [@FedeTrevi-se](https://github.com/FedeTrevi-se) and [@noecondoleo](https://github.com/noecondoleo))
+- Themes: Maps Norte UI semantic color palettes (`primary`, `success`, `warning`, `danger`, `neutral`, `aiGenerative`) and `surfaceDisabled` tone colors in `next-norteui`, while `next-norteui-dark` applies the `13px` `body.base` font size, the `Title` `500` weight and the Norte UI `Divider` over the existing dark palette. ([#610](https://github.com/TiendaNube/nimbus-design-system/pull/610), [#611](https://github.com/TiendaNube/nimbus-design-system/pull/611), [#613](https://github.com/TiendaNube/nimbus-design-system/pull/613) by [@FedeTrevi-se](https://github.com/FedeTrevi-se) and [@noecondoleo](https://github.com/noecondoleo))
 - Icon: Adds the `ai-generativeTextLow` color, used by the Norte UI `AI` icon in `surface` mode. ([#616](https://github.com/TiendaNube/nimbus-design-system/pull/616) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
 - Title: Adds the `fontWeight.title` theme token (`bold` by default, `medium` in Norte UI) and `title.classnames.defaultFontWeight`. ([#617](https://github.com/TiendaNube/nimbus-design-system/pull/617) by [@noecondoleo](https://github.com/noecondoleo))
 - Divider: Adds the `components.divider.color` theme value (`neutral.surfaceHighlight` in existing themes, `neutral.interactive` in Norte UI). ([#620](https://github.com/TiendaNube/nimbus-design-system/pull/620) by [@noecondoleo](https://github.com/noecondoleo))
@@ -17,7 +17,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 #### 💡 Others
 
-- Thumbnail: Changes the background color from `neutral.surfaceDisabled` to `neutral.surfaceHighlight`, aligned with the Norte UI Figma. ([#619](https://github.com/TiendaNube/nimbus-design-system/pull/619) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
+- Thumbnail: Adds the `components.thumbnail.background` theme value (`neutral.surfaceHighlight` in `next-norteui`, `neutral.surfaceDisabled` in the existing themes, which stay unchanged), aligned with the Norte UI Figma. ([#619](https://github.com/TiendaNube/nimbus-design-system/pull/619) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
 
 ## 2026-11-04 `9.70.0`
 

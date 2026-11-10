@@ -44,8 +44,8 @@ Always evaluate the lightest path first (**Path A → Path B → Path C → Path
 
 When building a Path D component under `packages/react/src/next/<Component>/src/`:
 
-- **Default approach (no `.css.ts` needed):** Compose `@nimbus-ds/styles` primitives (`Box`, `Text`, `sprinkles`, and `vars.*` semantic tokens) directly in `.tsx`. Most layout, spacing, radius, color, and typography changes in Norte UI require **zero** custom `.css.ts` files.
-- **Safety-net approach (local `<component>.css.ts`):** When pseudo-elements, complex selectors, keyframe animations, or layout rules cannot be expressed with `Box` or `sprinkles`, create a **component-local** Vanilla Extract stylesheet at `packages/react/src/next/<Component>/src/<component>.css.ts` importing `vars` from `@nimbus-ds/styles`.
+- **Default approach (no `.css.ts` needed):** Compose `@nimbus-ds/styles` primitives (`sprinkles` and `themeVars.*` semantic tokens) and `Box` / `Text` (imported from `@nimbus-ds/components`, not from `@nimbus-ds/styles`) directly in `.tsx`. Most layout, spacing, radius, color, and typography changes in Norte UI require **zero** custom `.css.ts` files.
+- **Safety-net approach (local `<component>.css.ts`):** When pseudo-elements, complex selectors, keyframe animations, or layout rules cannot be expressed with `Box` or `sprinkles`, create a **component-local** Vanilla Extract stylesheet at `packages/react/src/next/<Component>/src/<component>.css.ts` importing `themeVars` from `@nimbus-ds/styles`.
 - **Prohibited:** A Path D component approximation **must never** edit `packages/core/styles/**` to add component-specific styles (`subcomponents/`). Keeping styles local to `packages/react/src/next/<Component>/src/` prevents cross-package bottlenecks and merge conflicts across parallel component tracks.
 
 ### 3. Zero-Shared-Files Rule for Parallel Tracks (Decision `0082`)

@@ -31,7 +31,7 @@ A Path A change authored through `nimbus-next-token-studio` may only modify file
 - `packages/core/styles/src/themes/contract.css.ts` (or semantic token contract definitions exposed via `vars`)
 - `packages/core/styles/src/themes/globals.css.ts` (ONLY to provide an exact-value `:root` fallback in `globalTheme` when a new semantic token leaf is added to `vars` — never to alter an existing `base` token value)
 - `packages/core/styles/src/themes/nimbus-theme-dark.css.ts` (ONLY to provide an exact-value `dark` fallback when a new semantic token leaf is added to `vars` — never to alter an existing `dark` token value)
-- `packages/core/styles/src/themes/nimbus-theme-nextNorteui.css.ts` and `nimbus-theme-nextNorteuiDark.css.ts` (ONLY when a new semantic token leaf is not inherited from `globalTheme` and needs an exact-value fallback — never to alter an existing `next` or `next-dark` value; `admin` renders them for premium-plan stores)
+- `packages/core/styles/src/themes/nimbus-theme-next.css.ts` and `nimbus-theme-nextDark.css.ts` (ONLY when a new semantic token leaf is not inherited from `globalTheme` and needs an exact-value fallback — never to alter an existing `next` or `next-dark` value; `admin` renders them for premium-plan stores)
 - `packages/core/styles/src/themes/nimbus-theme-nextNorteui.css.ts`
 - `packages/core/styles/src/themes/nimbus-theme-nextNorteuiDark.css.ts`
 - `packages/core/styles/src/components/ThemeProvider/themeProvider.definitions.ts` (ONLY to register `next-norteui` and `next-norteui-dark`)

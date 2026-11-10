@@ -70,6 +70,9 @@ export const variables = createTheme(vars, {
     aiFocus: `0 0 0 3px ${aiSurfaceHighlight}`,
   },
   components: {
+    thumbnail: {
+      background: vars.colors.neutral.surfaceHighlight,
+    },
     divider: {
       color: vars.colors.neutral.interactive,
     },

@@ -8,7 +8,7 @@ import { aspectRatioProperties } from "../../../properties";
 export const container = style({
   display: "flex",
   overflow: "hidden",
-  background: varsThemeBase.colors.neutral.surfaceHighlight,
+  background: varsThemeBase.components.thumbnail.background,
   borderRadius: varsThemeBase.shape.border.radius[2],
 });
 

@@ -97,7 +97,8 @@ export const ThemeDocsProvider: React.FC<any> = (props) => {
     return () => channel.removeListener(DARK_MODE_EVENT_NAME, setDark);
   }, []);
 
-  const selectedTheme = props?.context?.store?.userGlobals?.globals?.nimbusTheme;
+  const selectedTheme =
+    props?.context?.store?.userGlobals?.globals?.nimbusTheme;
   let primaryStoryParameters:
     | { nimbusTheme?: string; fileName?: string }
     | undefined;
@@ -106,10 +107,15 @@ export const ThemeDocsProvider: React.FC<any> = (props) => {
   } catch {
     primaryStoryParameters = undefined;
   }
+  // "side-by-side-dark" is a comparison layout, not a theme: docs render it as dark.
+  const docsTheme =
+    selectedTheme === "side-by-side" || selectedTheme === "side-by-side-dark"
+      ? undefined
+      : selectedTheme;
   const resolvedTheme = resolveNimbusTheme(
-    selectedTheme,
+    docsTheme,
     primaryStoryParameters,
-    isDark
+    isDark || selectedTheme === "side-by-side-dark"
   );
   const isDarkSurface =
     selectedTheme === "side-by-side-dark" ||
@@ -211,7 +217,14 @@ export const ThemeNimbusProvider: React.FC<ThemeNimbusProviderProps> = ({
 
   return (
     <ThemeProvider theme={resolvedTheme} data-nimbus-theme={resolvedTheme}>
-      {children}
+      <div
+        style={{
+          backgroundColor: themeVars.colors.neutral.background,
+          color: themeVars.colors.neutral.textHigh,
+        }}
+      >
+        {children}
+      </div>
     </ThemeProvider>
   );
 };

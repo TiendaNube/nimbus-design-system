@@ -15,21 +15,34 @@ const Title: React.FC<TitleProps> & TitleComponents = ({
   fontSize,
   children,
   ...rest
-}: TitleProps) => (
-  <As
-    {...rest}
-    className={[
-      className,
-      title.sprinkle({ color, textAlign, lineHeight, fontWeight, fontSize }),
-      title.classnames.appearance[As],
-      fontWeight === undefined && title.classnames.defaultFontWeight,
-    ]
-      .filter(Boolean)
-      .join(" ")}
-  >
-    {children}
-  </As>
-);
+}: TitleProps) => {
+  const defaultFontWeightClass = title.classnames.defaultFontWeight;
+  // Fall back to "bold" when the styles package in use predates `defaultFontWeight`.
+  const resolvedFontWeight =
+    fontWeight ?? (defaultFontWeightClass ? undefined : "bold");
+
+  return (
+    <As
+      {...rest}
+      className={[
+        className,
+        title.sprinkle({
+          color,
+          textAlign,
+          lineHeight,
+          fontWeight: resolvedFontWeight,
+          fontSize,
+        }),
+        title.classnames.appearance[As],
+        fontWeight === undefined && defaultFontWeightClass,
+      ]
+        .filter(Boolean)
+        .join(" ")}
+    >
+      {children}
+    </As>
+  );
+};
 
 Title.displayName = "Title";
 Title.Skeleton = TitleSkeleton;

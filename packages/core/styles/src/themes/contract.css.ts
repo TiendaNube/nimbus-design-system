@@ -181,6 +181,9 @@ export const vars = createGlobalThemeContract(
       divider: {
         color: "",
       },
+      thumbnail: {
+        background: "",
+      },
       tag: {
         neutral: { background: "", borderColor: "", color: "" },
         primary: { background: "", borderColor: "" },

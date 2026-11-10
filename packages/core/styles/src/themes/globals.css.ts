@@ -215,6 +215,11 @@ export const globalTheme = {
     }`,
   },
   components: {
+    thumbnail: {
+      // Keeps the exact Thumbnail background base, dark, next and next-dark had.
+      // Norte UI overrides it.
+      background: vars.colors.neutral.surfaceDisabled,
+    },
     divider: {
       // References the theme's own neutral surfaceHighlight so base, dark, next
       // and next-dark keep the exact Divider color they had. Norte UI overrides it.

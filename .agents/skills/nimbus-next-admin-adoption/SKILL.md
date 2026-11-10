@@ -14,6 +14,7 @@ This skill guides a **Designer + Agent** pair through adopting Norte UI (`next-n
 ## When to Use This Skill
 
 Use this skill when adopting already-published `@nimbus-ds/styles`, `@nimbus-ds/components`, and `@nimbus-ds/patterns` Norte UI capabilities in `admin` (`services-new-admin/packages/stratus`):
+
 - Wiring or reading the single `NORTE_UI_NEXT` feature flag in `stratus` views.
 - Toggling Path C opt-in props based on `NORTE_UI_NEXT`.
 - Creating a coexisting `next/<View>.tsx` file for a view that adopts Path D components from `@nimbus-ds/components/next` and `@nimbus-ds/patterns/next`.
@@ -26,19 +27,25 @@ Do **not** use this skill to modify Nimbus packages themselves (use `nimbus-next
 ## Non-Negotiable Safety Rules in `admin`
 
 ### 1. Single Feature Flag (`NORTE_UI_NEXT`)
+
 All new Norte UI adoption in `admin` is gated behind the single store-tag feature flag `NORTE_UI_NEXT` (defined in `packages/stratus/src/App/featuresFlags.ts` and read via `useHasTags([NORTE_UI_NEXT])`, with the sole pre-existing production exceptions documented in Rule 2 below):
+
 - **Flag OFF (`NORTE_UI_NEXT = false`):** The shell (`packages/stratus/src/App/App.tsx`) renders under the legacy `base` / `dark` theme and mounts the untouched legacy `<View>.tsx` components (while the pre-existing `MenuWithSpotlight` and `ProfileMenu` subtrees continue using their local `<ThemeProvider theme="next">` providers for `isPremiumPlan` stores as they already do in production). Visual and behavioral output with the flag OFF must remain **100% identical** to current production.
 - **Flag ON (`NORTE_UI_NEXT = true`):** The shell activates `<ThemeProvider theme="next-norteui">` (from `@nimbus-ds/styles`, or `next-norteui-dark`) and routes adopted views to their `next` variant or Path C opt-in props.
 
 ### 2. Protect Existing `theme="next"` Consumers in `stratus`
+
 Two components in `services-new-admin/packages/stratus` are pre-existing production exceptions that already consume a local `<ThemeProvider theme="next">` today when `isPremiumPlan` (`isNext || isEvolucion` in `packages/stratus/src/App/components/Menu/hooks/useMenuTheme.ts`) is true (even when `NORTE_UI_NEXT = false`):
+
 - `MenuWithSpotlight` (`packages/stratus/src/App/components/Menu/components/MainMenu/components/MenuWithSpotlight/MenuWithSpotlight.tsx` — used across `MainMenu.tsx`, `BillingMenu.tsx`, `HelpMenu.tsx`, `AccountMenu.tsx`, and `SettingsMenu.tsx`)
 - `ProfileMenu` (`packages/stratus/src/App/components/Topbar/components/ProfileMenu/ProfileMenu.tsx`)
 
 Never break, remove, or regress these existing `theme="next"` integrations when wiring the global `NORTE_UI_NEXT` shell provider, and never switch them to `next-norteui`. With `NORTE_UI_NEXT = true` their local `theme="next"` provider still applies inside the `next-norteui` shell; how they should look then is not defined, so report what you see instead of changing it. Verify both components visually with `NORTE_UI_NEXT` both OFF and ON.
 
 ### 3. Legacy `<View>.tsx` Invariance & `FAST_REFRESH_SAFE` Rules for Path D View Duplication
+
 When a view adopts Path D components (`@nimbus-ds/components/next` or `@nimbus-ds/patterns/next`) whose prop contracts differ from legacy Nimbus:
+
 - Keep the existing `<View>.tsx` **untouched** for `NORTE_UI_NEXT = false` (`base` / `dark`).
 - Create a coexisting `next/<View>.tsx` file for `NORTE_UI_NEXT = true` (`next-norteui` / `next-norteui-dark`) that imports redesigned components from `@nimbus-ds/components/next` and `@nimbus-ds/patterns/next`.
 - Follow `packages/stratus/agents/skills/stratus-fast-refresh.md` (`FAST_REFRESH_SAFE`): export **React components only** from `next/<View>.tsx` (`COMPONENT_ONLY_EXPORTS`), use **direct imports** (`DIRECT_IMPORTS_ONLY`), and never add `export *` (`NO_EXPORT_STAR`) or barrel `index.ts` files (`NO_BARRELS`).
@@ -50,6 +57,7 @@ When a view adopts Path D components (`@nimbus-ds/components/next` or `@nimbus-d
 ## Step-by-Step Workflow
 
 ### Step 1 — Audit the Target View in `stratus`
+
 1. Inspect the target view in `services-new-admin/packages/stratus/src/`.
 2. List every Nimbus component and pattern imported by the view and check whether each uses:
    - **Path A / Path B:** Automatic when `NimbusThemeProvider theme="next-norteui"` is active at the shell level.
@@ -58,6 +66,7 @@ When a view adopts Path D components (`@nimbus-ds/components/next` or `@nimbus-d
 3. Audit any local `.css.ts`, `.scss`, or inline `style` overrides in the `stratus` view for hardcoded hex colors, pixel magic numbers, or internal `.nimbus-*` class selectors.
 
 ### Step 2 — Apply Path C Prop Toggling or Path D View Duplication
+
 - **If the view only uses Path A/B/C changes:**
   - Read the `NORTE_UI_NEXT` flag via the `stratus` feature-flag hook.
   - Pass Path C opt-in props conditionally only when `isNorteUiNextEnabled` is `true`, leaving the `false` branch identical to current production.
@@ -68,12 +77,15 @@ When a view adopts Path D components (`@nimbus-ds/components/next` or `@nimbus-d
   - Keep all business callbacks, data hooks, analytics events, and permission checks identical to `<View>.tsx` — change only the UI presentation and Nimbus prop mapping.
 
 ### Step 3 — Clean Up Fragile Local CSS Overrides
+
 In `next/<View>.tsx` (or token-based styles):
-- Replace hardcoded colors and spacing overrides with `@nimbus-ds/styles` `Box` props or `vars.*` semantic tokens so the view adapts cleanly to both `next-norteui` and `next-norteui-dark`.
+
+- Replace hardcoded colors and spacing overrides with `Box` / `Text` props (imported from `@nimbus-ds/components`) or `themeVars.*` semantic tokens (imported from `@nimbus-ds/styles`) so the view adapts cleanly to both `next-norteui` and `next-norteui-dark`.
 - Check global overrides in `packages/stratus/src/styles/_nimbus_temp.scss` (e.g., hardcoded `white` / `#fafafa` table/input backgrounds or `[class^='nimbus-']` selectors) to ensure they do not bleed over `next-norteui` / `next-norteui-dark` surfaces when `NORTE_UI_NEXT = true`.
 - Do not alter stylesheets used by the legacy `<View>.tsx` when `NORTE_UI_NEXT = false`.
 
 ### Step 4 — Verify Flag OFF vs. Flag ON
+
 1. Test the view with **`NORTE_UI_NEXT = false`**:
    - Confirm zero visual or functional diff on `base` and `dark`.
    - Confirm `MenuWithSpotlight` and `ProfileMenu` still render properly.

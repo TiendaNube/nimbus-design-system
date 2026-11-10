@@ -64,6 +64,27 @@ const nextDarkTheme = {
       textHigh: colors.neutral["text-high"].value as string,
     },
   }),
+  components: {
+    ...globalTheme.components,
+    badge: {
+      ...globalTheme.components.badge,
+      surface: {
+        ...globalTheme.components.badge.surface,
+        aiGenerative: {
+          ...globalTheme.components.badge.surface.aiGenerative,
+          // Dark surfaces need a light label over the ai-generative fill.
+          color: vars.colors.neutral.textHigh,
+        },
+      },
+      light: {
+        ...globalTheme.components.badge.light,
+        aiGenerative: {
+          ...globalTheme.components.badge.light.aiGenerative,
+          color: vars.colors.aiGenerative.surfaceHighlight,
+        },
+      },
+    },
+  },
   utils: {
     focus: `0 0 0 3px ${
       nextColors.primary["surface-highlight"].value as string

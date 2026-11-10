@@ -22,8 +22,10 @@ const mapToneScale = (group: ToneTokenMap) => ({
 });
 
 const colorDict = tokens.color as Record<string, Record<string, ToneTokenMap>>;
-const nextNorteuiColors =
-  colorDict["next-norteui-dark"] ?? colorDict["next-dark"];
+// There is no `next-norteui-dark` palette in `@nimbus-ds/tokens` yet, so this
+// theme explicitly uses the `next-dark` palette. Switch to `next-norteui-dark`
+// once that palette exists.
+const nextNorteuiColors = colorDict["next-dark"];
 const darkColors = colorDict.dark;
 const surfaceDisabled = String(darkColors.neutral["surface-disabled"].value);
 const darkShadows = tokens.shadow.dark.level;
@@ -73,6 +75,7 @@ const nextNorteuiDarkTheme = {
     },
   },
   components: {
+    thumbnail: globalTheme.components.thumbnail,
     divider: {
       color: vars.colors.neutral.interactive,
     },
@@ -81,7 +84,25 @@ const nextNorteuiDarkTheme = {
     // No Norte UI dark Chip design yet: keep the default Chip look.
     chip: globalTheme.components.chip,
     // No Norte UI dark Badge design yet: keep the default Badge look.
-    badge: globalTheme.components.badge,
+    // Readable ai-generative contrast on dark surfaces; rest of Badge is the default look.
+    badge: {
+      ...globalTheme.components.badge,
+      surface: {
+        ...globalTheme.components.badge.surface,
+        aiGenerative: {
+          ...globalTheme.components.badge.surface.aiGenerative,
+          // Dark surfaces need a light label over the ai-generative fill.
+          color: vars.colors.neutral.textHigh,
+        },
+      },
+      light: {
+        ...globalTheme.components.badge.light,
+        aiGenerative: {
+          ...globalTheme.components.badge.light.aiGenerative,
+          color: vars.colors.aiGenerative.surfaceHighlight,
+        },
+      },
+    },
   },
 };
 
