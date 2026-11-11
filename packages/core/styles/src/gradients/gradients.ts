@@ -33,7 +33,7 @@ export const aiGenerativeDisabled = aiGenerative.disabled;
  * A radial gradient with several layers does not work there: a border only
  * positions the last layer, and an SVG `<linearGradient>` needs plain color
  * stops. Angle and stops come from the theme (`aiGenerativeLinear`): Norte UI
- * uses 135deg blue to pink, the other themes the original 50deg gradients.
+ * goes to the bottom left, the other themes keep the original 50deg gradients.
  */
 const linear = varsThemeBase.gradients.aiGenerativeLinear;
 
