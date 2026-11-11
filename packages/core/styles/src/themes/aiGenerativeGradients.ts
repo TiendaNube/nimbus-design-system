@@ -18,24 +18,26 @@ export const aiGenerativeGradientsBase = {
 const fade = (color: string, amount: string) =>
   `color-mix(in srgb, ${color} ${amount}, transparent)`;
 
-// Layers taken from the Norte UI Button in Figma. The base pink color is
-// written as a flat gradient so the value also works in `background-image`.
-const purpleLayer = `radial-gradient(172.16% 156.18% at 105% -15.62%, ${
+// Option C layers: dark purple from the top right, blue across the left side
+// and pink from the bottom right. The base pink is written as a flat gradient
+// so the value also works in `background-image`.
+const purpleLayer = `radial-gradient(130% 160% at 105% -15.62%, ${
   aiGenerative.textLow
-} 0%, ${fade(aiGradient.purpleHigh, "70%")} 45%, ${fade(
+} 0%, ${fade(aiGradient.purpleHigh, "60%")} 40%, ${fade(
   aiGradient.purpleHigh,
   "0%"
-)} 100%)`;
-const blueLayer = `radial-gradient(84.01% 107.55% at 20.17% -22.66%, ${
+)} 85%)`;
+const blueLayer = `radial-gradient(110% 200% at 0% 60%, ${
   primary.interactive
-} 0%, ${fade(primary.interactive, "93%")} 20%, ${fade(
+} 0%, ${fade(primary.interactive, "85%")} 35%, ${fade(
   primary.interactive,
   "0%"
-)} 100%)`;
+)} 90%)`;
+const pinkLayer = `radial-gradient(70% 90% at 80% 100%, ${
+  aiGradient.pinkLight
+} 0%, ${fade(aiGradient.pinkLight, "0%")} 100%)`;
 const pinkBase = `linear-gradient(${aiGradient.pinkLight}, ${aiGradient.pinkLight})`;
-const pinkHighLayer = `radial-gradient(136.47% 87.46% at 33.81% 109%, ${
-  aiGradient.pinkHigh
-} 0%, ${fade(aiGradient.pinkHigh, "0%")} 95.37%)`;
+const layers = [purpleLayer, blueLayer, pinkLayer, pinkBase];
 const overlay = (amount: string) => {
   const color = fade(neutral.textHigh, amount);
   return `linear-gradient(0deg, ${color} 0%, ${color} 100%)`;
@@ -44,28 +46,14 @@ const disabledBase = fade(aiGradient.purpleLight, "20%");
 
 /**
  * Radial gradients for next-norteui and next-norteui-dark.
+ * Hover and pressed darken the same layers with the neutral overlay (15 % and
+ * 30 %), so the shape does not change between states.
  */
 export const aiGenerativeGradientsNorteui = {
-  interactive: [
-    purpleLayer,
-    blueLayer,
-    `radial-gradient(50% 50% at 50% 50%, ${aiGradient.pinkLight} 0%, ${fade(
-      aiGradient.pinkLight,
-      "0%"
-    )} 95%)`,
-    pinkBase,
-  ].join(", "),
-  hover: [overlay("15%"), purpleLayer, blueLayer, pinkHighLayer, pinkBase].join(
-    ", "
-  ),
-  pressed: [
-    overlay("30%"),
-    purpleLayer,
-    blueLayer,
-    pinkHighLayer,
-    pinkBase,
-  ].join(", "),
-  // Same layers as `hover` without the overlay, faded to about 20 % opacity.
+  interactive: layers.join(", "),
+  hover: [overlay("15%"), ...layers].join(", "),
+  pressed: [overlay("30%"), ...layers].join(", "),
+  // Disabled keeps the Figma values: the former layers faded to about 20 %.
   disabled: [
     `radial-gradient(172.16% 156.18% at 105% -15.62%, ${fade(
       aiGenerative.textLow,
