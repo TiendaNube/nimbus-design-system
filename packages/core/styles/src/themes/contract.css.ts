@@ -181,6 +181,62 @@ export const vars = createGlobalThemeContract(
       divider: {
         color: "",
       },
+      thumbnail: {
+        background: "",
+      },
+      tag: {
+        neutral: { background: "", borderColor: "", color: "" },
+        primary: { background: "", borderColor: "" },
+        success: { background: "", borderColor: "" },
+        warning: { background: "", borderColor: "" },
+        danger: { background: "", borderColor: "" },
+        aiGenerative: { background: "", borderColor: "", color: "" },
+      },
+      chip: {
+        borderRadius: "",
+        neutral: {
+          background: "",
+          borderColor: "",
+          color: "",
+          hover: { background: "", borderColor: "" },
+          pressed: { background: "", borderColor: "" },
+          focus: { borderColor: "", boxShadow: "" },
+        },
+        aiGenerative: {
+          background: "",
+          color: "",
+          boxShadow: "",
+          hover: { background: "" },
+          pressed: { background: "" },
+          focus: { borderColor: "", boxShadow: "" },
+        },
+      },
+      badge: {
+        surface: {
+          neutral: { background: "", color: "" },
+          primary: { background: "", color: "" },
+          success: { background: "", color: "" },
+          warning: { background: "", color: "" },
+          danger: { background: "", color: "" },
+          aiGenerative: { background: "", color: "" },
+        },
+        light: {
+          neutral: { background: "", color: "" },
+          primary: { background: "", color: "" },
+          success: { background: "", color: "" },
+          warning: { background: "", color: "" },
+          danger: { background: "", color: "" },
+          aiGenerative: { background: "", color: "" },
+        },
+        dot: {
+          neutral: { background: "" },
+          primary: { background: "" },
+          success: { background: "" },
+          warning: { background: "" },
+          danger: { background: "" },
+          aiGenerative: { background: "" },
+        },
+      },
     },
     gradients: {
       aiGenerative: {

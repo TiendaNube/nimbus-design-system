@@ -201,7 +201,9 @@ const buildPrimitiveRamps = (): PrimitiveRampGroup[] => {
         steps.push({
           step: stepKey,
           value,
-          tokenPath: `tokens.color.light.${group}[${JSON.stringify(stepKey)}].value`,
+          tokenPath: `tokens.color.light.${group}[${JSON.stringify(
+            stepKey
+          )}].value`,
         });
       }
     }
@@ -239,8 +241,7 @@ const buildScaleEntries = (
       next: live?.next || staticNext,
       "next-dark": live?.["next-dark"] || staticNextDark,
       "next-norteui": live?.["next-norteui"] || staticNextNorteui,
-      "next-norteui-dark":
-        live?.["next-norteui-dark"] || staticNextNorteuiDark,
+      "next-norteui-dark": live?.["next-norteui-dark"] || staticNextNorteuiDark,
     };
     const hasNextDiff =
       values["next-norteui"].toLowerCase() !== values.base.toLowerCase() ||
@@ -483,10 +484,7 @@ const buildScaleEntries = (
   return list;
 };
 
-const collectAllCssVarNames = (
-  node: unknown,
-  out: string[] = []
-): string[] => {
+const collectAllCssVarNames = (node: unknown, out: string[] = []): string[] => {
   if (typeof node === "string") {
     out.push(extractCssVarName(node));
   } else if (isRecord(node)) {
@@ -550,9 +548,8 @@ const TokenCatalog: React.FC<TokenCatalogProps> = ({
   initialSearch = "",
 }) => {
   const [category, setCategory] = useState<CatalogCategory>(initialCategory);
-  const [onlyNextDiff, setOnlyNextDiff] = useState<boolean>(
-    initialOnlyNextDiff
-  );
+  const [onlyNextDiff, setOnlyNextDiff] =
+    useState<boolean>(initialOnlyNextDiff);
   const [search, setSearch] = useState<string>(initialSearch);
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
   const [computedMap, setComputedMap] = useState<Record<string, ThemeValueMap>>(
@@ -676,7 +673,9 @@ const TokenCatalog: React.FC<TokenCatalogProps> = ({
     if (onlyNextDiff) {
       return primitiveRamps.filter(
         (ramp) =>
-          (ramp.group === "next" || ramp.group === "primary") &&
+          (ramp.group === "next" ||
+            ramp.group === "primary" ||
+            ramp.group.startsWith("norteui-")) &&
           matchesQuery([
             ramp.group,
             ...ramp.steps.map((s) => `${s.step} ${s.value}`),
@@ -902,8 +901,7 @@ const TokenCatalog: React.FC<TokenCatalogProps> = ({
           }}
         >
           <strong>Tip (Path A / Norte UI):</strong> Use the Storybook toolbar
-          theme selector at the top (
-          <code>Side-by-Side (Base vs Next)</code> or{" "}
+          theme selector at the top (<code>Side-by-Side (Base vs Next)</code> or{" "}
           <code>Side-by-Side (Dark vs Next Dark)</code>) to compare live token
           swatches side-by-side, or toggle{" "}
           <strong>Modified in Next (next ≠ base)</strong> below to inspect every
@@ -1036,9 +1034,8 @@ const TokenCatalog: React.FC<TokenCatalogProps> = ({
               }}
             >
               Top banner renders the active theme CSS variable live. The 4-row
-              matrix below compares resolved values across{" "}
-              <code>base</code>, <code>dark</code>, <code>next</code>, and{" "}
-              <code>next-dark</code>.
+              matrix below compares resolved values across <code>base</code>,{" "}
+              <code>dark</code>, <code>next</code>, and <code>next-dark</code>.
             </p>
           </div>
 
@@ -1126,8 +1123,7 @@ const TokenCatalog: React.FC<TokenCatalogProps> = ({
                           <span
                             style={{
                               padding: "2px 6px",
-                              borderRadius:
-                                themeVars.shape.border.radius.full,
+                              borderRadius: themeVars.shape.border.radius.full,
                               background: "#111827",
                               color: "#ffffff",
                               fontWeight: 700,
@@ -1211,7 +1207,8 @@ const TokenCatalog: React.FC<TokenCatalogProps> = ({
                                     width: "12px",
                                     height: "12px",
                                     borderRadius: "3px",
-                                    background: val !== "—" ? val : "transparent",
+                                    background:
+                                      val !== "—" ? val : "transparent",
                                     border: "1px solid rgba(128,128,128,0.4)",
                                     flexShrink: 0,
                                   }}
@@ -1334,9 +1331,14 @@ const TokenCatalog: React.FC<TokenCatalogProps> = ({
                     textTransform: "capitalize",
                   }}
                 >
-                  {ramp.group}
+                  {ramp.group === "next"
+                    ? "Next (Legacy) Primary Ramp"
+                    : ramp.group === "norteui-primary"
+                    ? "Norte UI Primary Ramp"
+                    : ramp.group}
                 </strong>
-                {ramp.group === "next" && (
+                {(ramp.group === "next" ||
+                  ramp.group === "norteui-primary") && (
                   <span
                     style={{
                       padding: "2px 8px",
@@ -1347,7 +1349,7 @@ const TokenCatalog: React.FC<TokenCatalogProps> = ({
                       fontWeight: 600,
                     }}
                   >
-                    Norte UI Primary Ramp
+                    {ramp.group === "next" ? "Legacy" : "Norte UI"}
                   </span>
                 )}
               </div>
@@ -1355,8 +1357,7 @@ const TokenCatalog: React.FC<TokenCatalogProps> = ({
               <div
                 style={{
                   display: "grid",
-                  gridTemplateColumns:
-                    "repeat(auto-fill, minmax(82px, 1fr))",
+                  gridTemplateColumns: "repeat(auto-fill, minmax(82px, 1fr))",
                   gap: themeVars.spacing["1-5"],
                 }}
               >
@@ -1651,6 +1652,12 @@ const TokenCatalog: React.FC<TokenCatalogProps> = ({
                     <div style={{ fontWeight: 700 }}>
                       next: {entry.values.next}
                     </div>
+                    {entry.values["next-norteui"].toLowerCase() !==
+                      entry.values.base.toLowerCase() && (
+                      <div style={{ fontWeight: 700 }}>
+                        next-norteui: {entry.values["next-norteui"]}
+                      </div>
+                    )}
                   </div>
                 )}
 
@@ -1753,6 +1760,21 @@ const TokenCatalog: React.FC<TokenCatalogProps> = ({
                     {entry.values.base}
                   </code>
                 </div>
+
+                {entry.hasNextDiff &&
+                  entry.values["next-norteui"].toLowerCase() !==
+                    entry.values.base.toLowerCase() && (
+                    <div
+                      style={{
+                        fontFamily: themeVars.fontFamily.mono,
+                        fontSize: "11px",
+                        fontWeight: 700,
+                        color: themeVars.colors.neutral.textLow,
+                      }}
+                    >
+                      next-norteui: {entry.values["next-norteui"]}
+                    </div>
+                  )}
 
                 {(entry.subcategory.startsWith("fontSize") ||
                   entry.subcategory === "fontFamily" ||

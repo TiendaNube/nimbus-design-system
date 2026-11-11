@@ -2,6 +2,12 @@
 
 This package is intended for internal use in generating builds of each design system package. It contains all the necessary settings and dependencies to optimize the creation of our builds.
 
+## 2026-11-05 `1.8.0`
+
+#### 🎉 New features
+
+- Added `@nimbus-ds/components/next` alias resolution, concurrency-bounded DTS bundle generation (`NIMBUS_SKIP_DTS` support), and error propagation in `MoveFilesIntoDistFolderPlugin`. ([#597](https://github.com/TiendaNube/nimbus-design-system/pull/597) by [@harrytiendanube](https://github.com/harrytiendanube))
+
 ## 2026-08-06 `1.7.3`
 
 #### 🐛 Bug fixes

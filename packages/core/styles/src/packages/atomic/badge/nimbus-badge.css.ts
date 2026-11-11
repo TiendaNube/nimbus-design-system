@@ -15,11 +15,33 @@ const baseDot = style({
 });
 
 export const dot = styleVariants({
-  primary: [baseDot, { backgroundColor: varsThemeBase.colors.primary.interactive }],
-  success: [baseDot, { backgroundColor: varsThemeBase.colors.success.interactive }],
-  warning: [baseDot, { backgroundColor: varsThemeBase.colors.warning.interactive }],
-  danger: [baseDot, { backgroundColor: varsThemeBase.colors.danger.interactive }],
-  neutral: [baseDot, { backgroundColor: varsThemeBase.colors.neutral.interactive }],
+  primary: [
+    baseDot,
+    { backgroundColor: varsThemeBase.components.badge.dot.primary.background },
+  ],
+  success: [
+    baseDot,
+    { backgroundColor: varsThemeBase.components.badge.dot.success.background },
+  ],
+  warning: [
+    baseDot,
+    { backgroundColor: varsThemeBase.components.badge.dot.warning.background },
+  ],
+  danger: [
+    baseDot,
+    { backgroundColor: varsThemeBase.components.badge.dot.danger.background },
+  ],
+  neutral: [
+    baseDot,
+    { backgroundColor: varsThemeBase.components.badge.dot.neutral.background },
+  ],
+  "ai-generative": [
+    baseDot,
+    {
+      backgroundColor:
+        varsThemeBase.components.badge.dot.aiGenerative.background,
+    },
+  ],
 });
 
 const base = style({
@@ -43,36 +65,48 @@ export const surface = styleVariants({
   primary: [
     base,
     {
-      backgroundColor: varsThemeBase.colors.primary.textLow,
-      color: varsThemeBase.colors.neutral.background,
+      backgroundColor:
+        varsThemeBase.components.badge.surface.primary.background,
+      color: varsThemeBase.components.badge.surface.primary.color,
     },
   ],
   success: [
     base,
     {
-      backgroundColor: varsThemeBase.colors.success.textLow,
-      color: varsThemeBase.colors.neutral.background,
+      backgroundColor:
+        varsThemeBase.components.badge.surface.success.background,
+      color: varsThemeBase.components.badge.surface.success.color,
     },
   ],
   warning: [
     base,
     {
-      backgroundColor: varsThemeBase.colors.warning.textLow,
-      color: varsThemeBase.colors.neutral.background,
+      backgroundColor:
+        varsThemeBase.components.badge.surface.warning.background,
+      color: varsThemeBase.components.badge.surface.warning.color,
     },
   ],
   danger: [
     base,
     {
-      backgroundColor: varsThemeBase.colors.danger.textLow,
-      color: varsThemeBase.colors.neutral.background,
+      backgroundColor: varsThemeBase.components.badge.surface.danger.background,
+      color: varsThemeBase.components.badge.surface.danger.color,
     },
   ],
   neutral: [
     base,
     {
-      backgroundColor: varsThemeBase.colors.neutral.textLow,
-      color: varsThemeBase.colors.neutral.background,
+      backgroundColor:
+        varsThemeBase.components.badge.surface.neutral.background,
+      color: varsThemeBase.components.badge.surface.neutral.color,
+    },
+  ],
+  "ai-generative": [
+    base,
+    {
+      backgroundColor:
+        varsThemeBase.components.badge.surface.aiGenerative.background,
+      color: varsThemeBase.components.badge.surface.aiGenerative.color,
     },
   ],
 });
@@ -81,36 +115,44 @@ export const light = styleVariants({
   primary: [
     base,
     {
-      backgroundColor: varsThemeBase.colors.neutral.background,
-      color: varsThemeBase.colors.primary.textLow,
+      backgroundColor: varsThemeBase.components.badge.light.primary.background,
+      color: varsThemeBase.components.badge.light.primary.color,
     },
   ],
   success: [
     base,
     {
-      backgroundColor: varsThemeBase.colors.neutral.background,
-      color: varsThemeBase.colors.success.textLow,
+      backgroundColor: varsThemeBase.components.badge.light.success.background,
+      color: varsThemeBase.components.badge.light.success.color,
     },
   ],
   warning: [
     base,
     {
-      backgroundColor: varsThemeBase.colors.neutral.background,
-      color: varsThemeBase.colors.warning.textLow,
+      backgroundColor: varsThemeBase.components.badge.light.warning.background,
+      color: varsThemeBase.components.badge.light.warning.color,
     },
   ],
   danger: [
     base,
     {
-      backgroundColor: varsThemeBase.colors.neutral.background,
-      color: varsThemeBase.colors.danger.textLow,
+      backgroundColor: varsThemeBase.components.badge.light.danger.background,
+      color: varsThemeBase.components.badge.light.danger.color,
     },
   ],
   neutral: [
     base,
     {
-      backgroundColor: varsThemeBase.colors.neutral.background,
-      color: varsThemeBase.colors.neutral.textLow,
+      backgroundColor: varsThemeBase.components.badge.light.neutral.background,
+      color: varsThemeBase.components.badge.light.neutral.color,
+    },
+  ],
+  "ai-generative": [
+    base,
+    {
+      backgroundColor:
+        varsThemeBase.components.badge.light.aiGenerative.background,
+      color: varsThemeBase.components.badge.light.aiGenerative.color,
     },
   ],
 });

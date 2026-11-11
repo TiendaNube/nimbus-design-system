@@ -2,6 +2,12 @@
 
 Dividers are used to separate content in a list or grid. They can be horizontal or vertical.
 
+## 2026-11-06 `1.2.1`
+
+#### 💡 Others
+
+- Uses the theme `components.divider.color` token (`neutral.interactive` in Norte UI, `neutral.surfaceHighlight` in existing themes). ([#620](https://github.com/TiendaNube/nimbus-design-system/pull/620) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-03-02 `1.2.0`
 
 #### 🎉 New features

@@ -82,6 +82,27 @@ const darkTheme = {
       pinkLight: lightColors.aiGradient["pink-light"].value as string,
     },
   }),
+  components: {
+    ...globalTheme.components,
+    badge: {
+      ...globalTheme.components.badge,
+      surface: {
+        ...globalTheme.components.badge.surface,
+        aiGenerative: {
+          ...globalTheme.components.badge.surface.aiGenerative,
+          // Dark surfaces need a light label over the ai-generative fill.
+          color: vars.colors.neutral.textHigh,
+        },
+      },
+      light: {
+        ...globalTheme.components.badge.light,
+        aiGenerative: {
+          ...globalTheme.components.badge.light.aiGenerative,
+          color: vars.colors.aiGenerative.surfaceHighlight,
+        },
+      },
+    },
+  },
   utils: {
     // Keep focus rings consistent with base theme definitions
     focus: `0 0 0 3px ${globalTheme.colors.primary.surfaceHighlight}`,

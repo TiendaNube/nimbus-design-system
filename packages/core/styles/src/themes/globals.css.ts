@@ -2,6 +2,7 @@ import tokens from "@nimbus-ds/tokens/dist/js/tokens";
 import { createGlobalTheme, globalStyle } from "@vanilla-extract/css";
 import { vars } from "./contract.css";
 import { withToneSurfaceDisabled } from "./toneSurfaceDisabled";
+import { aiInteractiveBorder, aiHoverBorder } from "./aiInteractiveBorder";
 import {
   aiGenerativeGradientsBase,
   aiGenerativeLinearBase,
@@ -218,10 +219,149 @@ export const globalTheme = {
     }`,
   },
   components: {
+    thumbnail: {
+      // Keeps the exact Thumbnail background base, dark, next and next-dark had.
+      // Norte UI overrides it.
+      background: vars.colors.neutral.surfaceDisabled,
+    },
     divider: {
       // References the theme's own neutral surfaceHighlight so base, dark, next
       // and next-dark keep the exact Divider color they had. Norte UI overrides it.
       color: vars.colors.neutral.surfaceHighlight,
+    },
+    tag: {
+      // References the theme's own tone colors so base, dark, next and next-dark
+      // keep the exact Tag look they had. Norte UI overrides them.
+      neutral: {
+        background: vars.colors.neutral.surface,
+        borderColor: vars.colors.neutral.surfaceHighlight,
+        color: vars.colors.neutral.textHigh,
+      },
+      primary: {
+        background: vars.colors.primary.surface,
+        borderColor: vars.colors.primary.surfaceHighlight,
+      },
+      success: {
+        background: vars.colors.success.surface,
+        borderColor: vars.colors.success.surfaceHighlight,
+      },
+      warning: {
+        background: vars.colors.warning.surface,
+        borderColor: vars.colors.warning.surfaceHighlight,
+      },
+      danger: {
+        background: vars.colors.danger.surface,
+        borderColor: vars.colors.danger.surfaceHighlight,
+      },
+      aiGenerative: {
+        background: aiInteractiveBorder(vars.colors.neutral.surface),
+        borderColor: "transparent",
+        color: vars.colors.neutral.textHigh,
+      },
+    },
+    chip: {
+      // References the theme's own values so base, dark, next and next-dark
+      // keep the exact Chip look they had. Norte UI overrides them.
+      borderRadius: vars.shape.border.radius[1],
+      neutral: {
+        background: vars.colors.neutral.surface,
+        borderColor: vars.colors.neutral.interactive,
+        color: vars.colors.neutral.textHigh,
+        hover: {
+          background: vars.colors.neutral.surfaceHighlight,
+          borderColor: vars.colors.neutral.interactiveHover,
+        },
+        pressed: {
+          background: vars.colors.neutral.interactive,
+          borderColor: vars.colors.neutral.interactivePressed,
+        },
+        focus: {
+          borderColor: vars.colors.primary.interactive,
+          boxShadow: vars.utils.focus,
+        },
+      },
+      aiGenerative: {
+        background: aiInteractiveBorder(vars.colors.neutral.surface),
+        color: vars.colors.neutral.textHigh,
+        boxShadow: vars.utils.aiFocus,
+        hover: {
+          background: aiHoverBorder(vars.colors.neutral.surface),
+        },
+        pressed: {
+          background: aiHoverBorder(vars.colors.aiGenerative.surfaceHighlight),
+        },
+        focus: {
+          borderColor: vars.colors.primary.interactive,
+          boxShadow: vars.utils.focus,
+        },
+      },
+    },
+    badge: {
+      // References the theme's own tone colors so base, dark, next and next-dark
+      // keep the exact Badge look they had. Norte UI overrides them.
+      surface: {
+        neutral: {
+          background: vars.colors.neutral.textLow,
+          color: vars.colors.neutral.background,
+        },
+        primary: {
+          background: vars.colors.primary.textLow,
+          color: vars.colors.neutral.background,
+        },
+        success: {
+          background: vars.colors.success.textLow,
+          color: vars.colors.neutral.background,
+        },
+        warning: {
+          background: vars.colors.warning.textLow,
+          color: vars.colors.neutral.background,
+        },
+        danger: {
+          background: vars.colors.danger.textLow,
+          color: vars.colors.neutral.background,
+        },
+        aiGenerative: {
+          background: vars.colors.aiGenerative.textLow,
+          color: vars.colors.neutral.background,
+        },
+      },
+      light: {
+        neutral: {
+          background: vars.colors.neutral.background,
+          color: vars.colors.neutral.textLow,
+        },
+        primary: {
+          background: vars.colors.neutral.background,
+          color: vars.colors.primary.textLow,
+        },
+        success: {
+          background: vars.colors.neutral.background,
+          color: vars.colors.success.textLow,
+        },
+        warning: {
+          background: vars.colors.neutral.background,
+          color: vars.colors.warning.textLow,
+        },
+        danger: {
+          background: vars.colors.neutral.background,
+          color: vars.colors.danger.textLow,
+        },
+        aiGenerative: {
+          background: vars.colors.neutral.background,
+          color: vars.colors.aiGenerative.textLow,
+        },
+      },
+      dot: {
+        neutral: { background: vars.colors.neutral.interactive },
+        primary: { background: vars.colors.primary.interactive },
+        success: { background: vars.colors.success.interactive },
+        warning: { background: vars.colors.warning.interactive },
+        danger: { background: vars.colors.danger.interactive },
+        // aiGenerative has no `interactive` color, so it uses interactivePressed.
+        aiGenerative: {
+          background: vars.colors.aiGenerative.interactivePressed,
+        },
+      },
     },
   },
   gradients: {

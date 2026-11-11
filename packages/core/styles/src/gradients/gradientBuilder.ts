@@ -1,5 +1,3 @@
-import * as gradients from "./gradients";
-
 /**
  * Creates a linear gradient with flexible direction and multiple color stops
  * @param direction - The direction of the gradient (e.g., "180deg", "to right", "45deg")
@@ -25,19 +23,7 @@ export const createLinearGradient = (
 };
 
 /**
- * Borders use the linear version of the AI gradients: the theme value can be
- * a radial gradient with several layers, and a border only positions the last
- * layer, so the others would repeat around the corners.
- */
-const linearBorderGradients: Record<string, string> = {
-  [gradients.aiGenerativeInteractive]: gradients.aiGenerativeLinearInteractive,
-  [gradients.aiGenerativeHover]: gradients.aiGenerativeLinearHover,
-  [gradients.aiGenerativeDisabled]: gradients.aiGenerativeLinearDisabled,
-};
-
-/**
  * Creates a border gradient with a fallback background color.
- * AI generative gradients are swapped for their linear version.
  * @param gradient - The gradient to use for the border. Commonly the return value of createLinearGradient function.
  * @param backgroundColor - The background color to use for the fallback.
  * @returns An array with the fallback background color and the border gradient.
@@ -54,9 +40,7 @@ export const createBorderGradient = (
   backgroundColor: string
 ): [string, string] => [
   backgroundColor,
-  `linear-gradient(${backgroundColor}, ${backgroundColor}) padding-box, ${
-    linearBorderGradients[gradient] ?? gradient
-  } border-box`,
+  `linear-gradient(${backgroundColor}, ${backgroundColor}) padding-box, ${gradient} border-box`,
 ];
 
 /**

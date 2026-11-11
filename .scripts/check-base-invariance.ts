@@ -231,8 +231,7 @@ const verifyTokenAndThemeSourceInvariance = (baseRef: string): string[] => {
     "packages/core/styles/src/themes/nimbus-theme-next.css.ts",
     "packages/core/styles/src/themes/nimbus-theme-nextDark.css.ts",
   ];
-  const normalizeLine = (line: string): string =>
-    line.trim().replace(/,$/, "");
+  const normalizeLine = (line: string): string => line.trim().replace(/,$/, "");
 
   for (const relFile of protectedThemeFiles) {
     const baselineContent = readGitFileAtRef(baseRef, relFile);
@@ -267,15 +266,17 @@ const verifyTokenAndThemeSourceInvariance = (baseRef: string): string[] => {
 
   // 3. If compiled CSS exists in packages/core/styles/dist, validate recursive CSS var resolution
   const baseCssPath = path.join(rootDir, "packages/core/styles/dist/index.css");
-  const extraThemeCssPaths = [
+  const requiredThemeCssPaths = [
     "packages/core/styles/dist/themes/dark.css",
     "packages/core/styles/dist/themes/next.css",
-    "packages/core/styles/dist/themes/nextDark.css",
     "packages/core/styles/dist/themes/next-dark.css",
-    "packages/core/styles/dist/themes/nextNorteui.css",
     "packages/core/styles/dist/themes/next-norteui.css",
-    "packages/core/styles/dist/themes/nextNorteuiDark.css",
     "packages/core/styles/dist/themes/next-norteui-dark.css",
+  ];
+  const optionalThemeCssPaths = [
+    "packages/core/styles/dist/themes/nextDark.css",
+    "packages/core/styles/dist/themes/nextNorteui.css",
+    "packages/core/styles/dist/themes/nextNorteuiDark.css",
   ];
   if (fs.existsSync(baseCssPath)) {
     const baseCss = fs.readFileSync(baseCssPath, "utf8");
@@ -289,7 +290,16 @@ const verifyTokenAndThemeSourceInvariance = (baseRef: string): string[] => {
       }
     }
 
-    for (const relCssPath of extraThemeCssPaths) {
+    for (const relCssPath of requiredThemeCssPaths) {
+      if (!fs.existsSync(path.join(rootDir, relCssPath))) {
+        errors.push(`Missing required compiled theme CSS file: ${relCssPath}`);
+      }
+    }
+
+    for (const relCssPath of [
+      ...requiredThemeCssPaths,
+      ...optionalThemeCssPaths,
+    ]) {
       const fullCssPath = path.join(rootDir, relCssPath);
       if (fs.existsSync(fullCssPath)) {
         const themeCss = fs.readFileSync(fullCssPath, "utf8");

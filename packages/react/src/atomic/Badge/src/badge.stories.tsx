@@ -51,6 +51,13 @@ export const danger: Story = {
   },
 };
 
+export const aiGenerative: Story = {
+  args: {
+    appearance: "ai-generative",
+    count: "+99",
+  },
+};
+
 export const dot: Story = {
   args: {
     type: "dot",
@@ -83,5 +90,12 @@ export const dotDanger: Story = {
   args: {
     type: "dot",
     appearance: "danger",
+  },
+};
+
+export const dotAiGenerative: Story = {
+  args: {
+    type: "dot",
+    appearance: "ai-generative",
   },
 };

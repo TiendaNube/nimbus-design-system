@@ -1,6 +1,5 @@
 import { style, styleVariants } from "@vanilla-extract/css";
 import { varsThemeBase } from "../../../themes";
-import { gradients, createBorderGradient } from "../../../gradients";
 
 const base = style({
   margin: 0,
@@ -25,51 +24,51 @@ export const appearance = styleVariants({
     base,
     {
       color: varsThemeBase.colors.primary.textLow,
-      backgroundColor: varsThemeBase.colors.primary.surface,
-      borderColor: varsThemeBase.colors.primary.surfaceHighlight,
+      backgroundColor: varsThemeBase.components.tag.primary.background,
+      borderColor: varsThemeBase.components.tag.primary.borderColor,
     },
   ],
   success: [
     base,
     {
       color: varsThemeBase.colors.success.textLow,
-      backgroundColor: varsThemeBase.colors.success.surface,
-      borderColor: varsThemeBase.colors.success.surfaceHighlight,
+      backgroundColor: varsThemeBase.components.tag.success.background,
+      borderColor: varsThemeBase.components.tag.success.borderColor,
     },
   ],
   warning: [
     base,
     {
       color: varsThemeBase.colors.warning.textLow,
-      backgroundColor: varsThemeBase.colors.warning.surface,
-      borderColor: varsThemeBase.colors.warning.surfaceHighlight,
+      backgroundColor: varsThemeBase.components.tag.warning.background,
+      borderColor: varsThemeBase.components.tag.warning.borderColor,
     },
   ],
   danger: [
     base,
     {
       color: varsThemeBase.colors.danger.textLow,
-      backgroundColor: varsThemeBase.colors.danger.surface,
-      borderColor: varsThemeBase.colors.danger.surfaceHighlight,
+      backgroundColor: varsThemeBase.components.tag.danger.background,
+      borderColor: varsThemeBase.components.tag.danger.borderColor,
     },
   ],
   neutral: [
     base,
     {
-      color: varsThemeBase.colors.neutral.textHigh,
-      backgroundColor: varsThemeBase.colors.neutral.surface,
-      borderColor: varsThemeBase.colors.neutral.surfaceHighlight,
+      color: varsThemeBase.components.tag.neutral.color,
+      backgroundColor: varsThemeBase.components.tag.neutral.background,
+      borderColor: varsThemeBase.components.tag.neutral.borderColor,
     },
   ],
   "ai-generative": [
     base,
     {
-      color: varsThemeBase.colors.neutral.textHigh,
-      background: createBorderGradient(
-        gradients.aiGenerativeInteractive,
-        varsThemeBase.colors.neutral.surface
-      ),
-      borderColor: "transparent",
+      color: varsThemeBase.components.tag.aiGenerative.color,
+      background: [
+        varsThemeBase.colors.neutral.surface,
+        varsThemeBase.components.tag.aiGenerative.background,
+      ],
+      borderColor: varsThemeBase.components.tag.aiGenerative.borderColor,
     },
   ],
 });

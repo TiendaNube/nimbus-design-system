@@ -21,8 +21,8 @@ const findPackageJsonFiles = (dir: string, baseRel = ""): string[] => {
   return results;
 };
 
-const getKnownWorkspacePackages = (): Set<string> => {
-  const known = new Set<string>();
+const getKnownWorkspacePackages = (): Map<string, string> => {
+  const known = new Map<string, string>();
   const pkgJsonFiles = findPackageJsonFiles(
     path.join(rootDir, "packages"),
     "packages"
@@ -33,10 +33,40 @@ const getKnownWorkspacePackages = (): Set<string> => {
       fs.readFileSync(path.join(rootDir, relPath), "utf8")
     );
     if (content.name) {
-      known.add(content.name);
+      known.set(content.name, content.version || "");
     }
   }
   return known;
+};
+
+const extractMajorPackages = (rawYaml: string): string[] => {
+  const majorPackages: string[] = [];
+  const lines = rawYaml.split(/\r?\n/);
+  let inReleases = false;
+
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith("#")) continue;
+
+    if (/^releases\s*:/.test(trimmed)) {
+      inReleases = true;
+      continue;
+    }
+
+    if (inReleases && /^[A-Za-z0-9_-]+\s*:/.test(line)) {
+      inReleases = false;
+    }
+
+    if (inReleases) {
+      const match = trimmed.match(
+        /^["']?(@nimbus-ds\/[a-z0-9-]+|[a-z0-9-]+)["']?\s*:\s*["']?major["']?\s*(?:#.*)?$/
+      );
+      if (match && match[1]) {
+        majorPackages.push(match[1]);
+      }
+    }
+  }
+  return majorPackages;
 };
 
 const getVersionManifestFiles = (): string[] => {
@@ -75,10 +105,18 @@ const run = () => {
       }
     }
 
-    if (!allowMajor && /:\s*["']?major["']?\s*$/m.test(raw)) {
-      errors.push(
-        `${relFile}: declares a "major" bump. Coexisting Norte UI evolution ships from master as "minor" or "patch" (Decision 0081).`
-      );
+    if (!allowMajor) {
+      const majorPackages = extractMajorPackages(raw);
+      for (const pkgName of majorPackages) {
+        const currentVersion = knownWorkspaces.get(pkgName);
+        if (currentVersion !== "0.0.0") {
+          errors.push(
+            `${relFile}: declares a "major" bump for "${pkgName}" (current version ${
+              currentVersion ?? "unknown"
+            }). Coexisting Norte UI evolution ships from master as "minor" or "patch" (Decision 0081).`
+          );
+        }
+      }
     }
   }
 

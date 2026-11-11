@@ -2,6 +2,12 @@
 
 The Chip component is used to flag criteria or attributes related to searches or filters of a list of information.
 
+## 2026-11-06 `2.6.2`
+
+#### 💡 Others
+
+- Chip: Aligns `Chip` styles with the Norte UI Figma in the `next-norteui` theme via `components.chip` theme values while keeping existing themes unchanged. ([#624](https://github.com/TiendaNube/nimbus-design-system/pull/624) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
+
 ## 2026-02-12 `2.6.0`
 
 #### 🎉 New features

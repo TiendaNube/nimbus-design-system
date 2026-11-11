@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { ThemeProvider } from "@nimbus-ds/styles";
+import { ThemeProvider, title } from "@nimbus-ds/styles";
 
 import { Title } from "./Title";
 import { type TitleProps } from "./title.types";
@@ -103,6 +103,34 @@ describe("GIVEN <Title />", () => {
     });
   });
 
+  describe("THEN should resolve the default fontWeight", () => {
+    it("THEN should render the themed default weight class when available", () => {
+      makeSut();
+      const className =
+        screen.getByRole("heading", { name: content }).getAttribute("class") ??
+        "";
+      expect(className).toContain(title.classnames.defaultFontWeight);
+      expect(className).not.toContain("fontWeight_bold");
+    });
+
+    it("THEN should fall back to bold when defaultFontWeight is not defined", () => {
+      const classnames = title.classnames as { defaultFontWeight?: string };
+      const original = classnames.defaultFontWeight;
+      classnames.defaultFontWeight = undefined;
+      try {
+        makeSut();
+        const className =
+          screen
+            .getByRole("heading", { name: content })
+            .getAttribute("class") ?? "";
+        expect(className).toContain("fontWeight_bold");
+        expect(className).not.toContain("undefined");
+      } finally {
+        classnames.defaultFontWeight = original;
+      }
+    });
+  });
+
   describe("THEN should correctly render a fontWeight", () => {
     it("THEN should correctly render a bold", () => {
       makeSut({ fontWeight: "bold" });
@@ -140,7 +168,7 @@ describe("GIVEN <Title />", () => {
       "next",
       "next-dark",
       "next-norteui",
-      "next-norteui-dark"
+      "next-norteui-dark",
     ])("THEN should use it under %s", (theme) => {
       render(
         <ThemeProvider theme={theme}>
