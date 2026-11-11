@@ -80,7 +80,7 @@ When a view adopts Path D components (`@nimbus-ds/components/next` or `@nimbus-d
 
 In `next/<View>.tsx` (or token-based styles):
 
-- Replace hardcoded colors and spacing overrides with `Box` / `Text` props (imported from `@nimbus-ds/components`) or `themeVars.*` semantic tokens (imported from `@nimbus-ds/styles >= 9.71.0` or under `NIMBUS_LOCAL=true`; when targeting `@nimbus-ds/styles <= 9.70.0`, retain `Box` / `Text` props or `--nimbus-*` CSS custom properties until `@nimbus-ds/styles` is upgraded) so the view adapts cleanly to both `next-norteui` and `next-norteui-dark`.
+- Replace hardcoded colors and spacing overrides with `Box` / `Text` props (imported from `@nimbus-ds/components`) or `themeVars.*` semantic tokens when the resolved `@nimbus-ds/styles` package exports `themeVars`. Otherwise, use `Box` / `Text` props or `--nimbus-*` CSS custom properties, verifying that every referenced `themeVars.*` or `--nimbus-*` property exists in the resolved `@nimbus-ds/styles` version (and using a supported alternative when a property is absent) so the view adapts cleanly to both `next-norteui` and `next-norteui-dark`.
 - Check global overrides in `packages/stratus/src/styles/_nimbus_temp.scss` (e.g., hardcoded `white` / `#fafafa` table/input backgrounds or `[class^='nimbus-']` selectors) to ensure they do not bleed over `next-norteui` / `next-norteui-dark` surfaces when `NORTE_UI_NEXT = true`.
 - Do not alter stylesheets used by the legacy `<View>.tsx` when `NORTE_UI_NEXT = false`.
 
