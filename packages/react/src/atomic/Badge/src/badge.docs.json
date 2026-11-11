@@ -10,6 +10,7 @@
       "description": "Change the visual style of the badge.",
       "default": "neutral",
       "enum": [
+        "ai-generative",
         "danger",
         "neutral",
         "primary",
