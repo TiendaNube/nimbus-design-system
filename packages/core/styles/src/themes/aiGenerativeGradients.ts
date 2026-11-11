@@ -18,62 +18,66 @@ export const aiGenerativeGradientsBase = {
 const fade = (color: string, amount: string) =>
   `color-mix(in srgb, ${color} ${amount}, transparent)`;
 
-// Option C layers: dark purple from the top right, blue across the left side
-// and pink from the bottom right. The base pink is written as a flat gradient
-// so the value also works in `background-image`.
-const purpleLayer = `radial-gradient(130% 160% at 105% -15.62%, ${
-  aiGenerative.textLow
-} 0%, ${fade(aiGradient.purpleHigh, "60%")} 40%, ${fade(
-  aiGradient.purpleHigh,
-  "0%"
-)} 85%)`;
-const blueLayer = `radial-gradient(110% 200% at 0% 60%, ${
-  primary.interactive
-} 0%, ${fade(primary.interactive, "85%")} 35%, ${fade(
-  primary.interactive,
-  "0%"
-)} 90%)`;
-const pinkLayer = `radial-gradient(70% 90% at 80% 100%, ${
+// Option B: the Figma layers with the blue layer painted above the purple one
+// and reaching a bit further (30 % instead of 20 %). Every state keeps this
+// order. The base pink is written as a flat gradient so the value also works
+// in `background-image`.
+const blueLayer = (alpha: string, midAlpha: string) =>
+  `radial-gradient(84.01% 107.55% at 20.17% -22.66%, ${fade(
+    primary.interactive,
+    alpha
+  )} 0%, ${fade(primary.interactive, midAlpha)} 30%, ${fade(
+    primary.interactive,
+    "0%"
+  )} 100%)`;
+const purpleLayer = (alpha: string, midAlpha: string) =>
+  `radial-gradient(172.16% 156.18% at 105% -15.62%, ${fade(
+    aiGenerative.textLow,
+    alpha
+  )} 0%, ${fade(aiGradient.purpleHigh, midAlpha)} 45%, ${fade(
+    aiGradient.purpleHigh,
+    "0%"
+  )} 100%)`;
+const pinkHighLayer = (alpha: string) =>
+  `radial-gradient(136.47% 87.46% at 33.81% 109%, ${fade(
+    aiGradient.pinkHigh,
+    alpha
+  )} 0%, ${fade(aiGradient.pinkHigh, "0%")} 95.37%)`;
+const pinkCenterLayer = `radial-gradient(50% 50% at 50% 50%, ${
   aiGradient.pinkLight
-} 0%, ${fade(aiGradient.pinkLight, "0%")} 100%)`;
-const pinkBase = `linear-gradient(${aiGradient.pinkLight}, ${aiGradient.pinkLight})`;
-const layers = [purpleLayer, blueLayer, pinkLayer, pinkBase];
+} 0%, ${fade(aiGradient.pinkLight, "0%")} 95%)`;
+const flat = (color: string) => `linear-gradient(${color}, ${color})`;
 const overlay = (amount: string) => {
   const color = fade(neutral.textHigh, amount);
   return `linear-gradient(0deg, ${color} 0%, ${color} 100%)`;
 };
-const disabledBase = fade(aiGradient.purpleLight, "20%");
+const pinkBase = flat(aiGradient.pinkLight);
+const hoverLayers = [
+  blueLayer("100%", "93%"),
+  purpleLayer("100%", "70%"),
+  pinkHighLayer("100%"),
+  pinkBase,
+];
 
 /**
- * Radial gradients for next-norteui and next-norteui-dark.
- * Hover and pressed darken the same layers with the neutral overlay (15 % and
- * 30 %), so the shape does not change between states.
+ * Radial gradients for next-norteui and next-norteui-dark (option B).
+ * Hover and pressed darken the hover layers with the neutral overlay (15 % and
+ * 30 %), as in Figma. Disabled uses the same layers at about 20 % opacity.
  */
 export const aiGenerativeGradientsNorteui = {
-  interactive: layers.join(", "),
-  hover: [overlay("15%"), ...layers].join(", "),
-  pressed: [overlay("30%"), ...layers].join(", "),
-  // Same option C layers faded to about 20 %, over purpleLight at 20 %.
+  interactive: [
+    blueLayer("100%", "93%"),
+    purpleLayer("100%", "70%"),
+    pinkCenterLayer,
+    pinkBase,
+  ].join(", "),
+  hover: [overlay("15%"), ...hoverLayers].join(", "),
+  pressed: [overlay("30%"), ...hoverLayers].join(", "),
   disabled: [
-    `radial-gradient(130% 160% at 105% -15.62%, ${fade(
-      aiGenerative.textLow,
-      "20%"
-    )} 0%, ${fade(aiGradient.purpleHigh, "12%")} 40%, ${fade(
-      aiGradient.purpleHigh,
-      "0%"
-    )} 85%)`,
-    `radial-gradient(110% 200% at 0% 60%, ${fade(
-      primary.interactive,
-      "20%"
-    )} 0%, ${fade(primary.interactive, "17%")} 35%, ${fade(
-      primary.interactive,
-      "0%"
-    )} 90%)`,
-    `radial-gradient(70% 90% at 80% 100%, ${fade(
-      aiGradient.pinkLight,
-      "20%"
-    )} 0%, ${fade(aiGradient.pinkLight, "0%")} 100%)`,
-    `linear-gradient(${disabledBase}, ${disabledBase})`,
+    blueLayer("20%", "19%"),
+    purpleLayer("20%", "14%"),
+    pinkHighLayer("20%"),
+    flat(fade(aiGradient.purpleLight, "20%")),
   ].join(", "),
 };
 
