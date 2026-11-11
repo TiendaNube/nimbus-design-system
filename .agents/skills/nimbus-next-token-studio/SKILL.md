@@ -31,7 +31,7 @@ A Path A change authored through `nimbus-next-token-studio` may only modify file
 - `packages/core/styles/src/themes/contract.css.ts` (or semantic token contract definitions exposed via `vars`)
 - `packages/core/styles/src/themes/globals.css.ts` (ONLY to provide an exact-value `:root` fallback in `globalTheme` when a new semantic token leaf is added to `vars` — never to alter an existing `base` token value)
 - `packages/core/styles/src/themes/nimbus-theme-dark.css.ts` (ONLY to provide an exact-value `dark` fallback when a new semantic token leaf is added to `vars` — never to alter an existing `dark` token value)
-- `packages/core/styles/src/themes/nimbus-theme-next.css.ts` and `nimbus-theme-nextDark.css.ts` (ONLY when a new semantic token leaf is not inherited from `globalTheme` and needs an exact-value fallback — never to alter an existing `next` or `next-dark` value; `admin` renders them for premium-plan stores)
+- `packages/core/styles/src/themes/nimbus-theme-next.css.ts` and `nimbus-theme-nextDark.css.ts` (ONLY to provide an exact legacy-equivalent fallback for a new semantic token leaf when its inherited value is missing or differs — never to alter an existing `next` or `next-dark` value; `admin` renders them for premium-plan stores)
 - `packages/core/styles/src/themes/nimbus-theme-nextNorteui.css.ts`
 - `packages/core/styles/src/themes/nimbus-theme-nextNorteuiDark.css.ts`
 - `packages/core/styles/src/components/ThemeProvider/themeProvider.definitions.ts` (ONLY to register `next-norteui` and `next-norteui-dark`)
@@ -85,7 +85,7 @@ When the user requests a PR or formal closure, run the required checks on the fi
    - Add the contract leaf in `contract.css.ts`.
    - Assign the exact legacy-equivalent fallback value in `globals.css.ts` (`:root` / `globalTheme`).
    - Assign the exact legacy-equivalent fallback value in `nimbus-theme-dark.css.ts` (`dark`).
-   - Confirm `nimbus-theme-next.css.ts` and `nimbus-theme-nextDark.css.ts` resolve the new leaf to the same legacy-equivalent value (they spread `globalTheme`).
+   - Confirm each of `nimbus-theme-next.css.ts` and `nimbus-theme-nextDark.css.ts` resolves the new leaf to that theme's exact legacy-equivalent value. Override the inherited value for the new leaf if necessary.
    - Assign the Norte UI target values in `nimbus-theme-nextNorteui.css.ts` (`next-norteui`) and `nimbus-theme-nextNorteuiDark.css.ts` (`next-norteui-dark`).
 3. If updating an existing semantic token for Norte UI:
    - Update **only** `nimbus-theme-nextNorteui.css.ts` and `nimbus-theme-nextNorteuiDark.css.ts`.

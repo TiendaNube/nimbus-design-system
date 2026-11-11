@@ -44,13 +44,13 @@ Always evaluate the lightest path first (**Path A → Path B → Path C → Path
 
 When building a Path D component under `packages/react/src/next/<Component>/src/`:
 
-- **Default approach (no `.css.ts` needed):** Compose `@nimbus-ds/styles` primitives (`sprinkles` and `themeVars.*` semantic tokens) and `Box` / `Text` (imported from `@nimbus-ds/components`, not from `@nimbus-ds/styles`) directly in `.tsx`. Most layout, spacing, radius, color, and typography changes in Norte UI require **zero** custom `.css.ts` files.
-- **Safety-net approach (local `<component>.css.ts`):** When pseudo-elements, complex selectors, keyframe animations, or layout rules cannot be expressed with `Box` or `sprinkles`, create a **component-local** Vanilla Extract stylesheet at `packages/react/src/next/<Component>/src/<component>.css.ts` importing `themeVars` from `@nimbus-ds/styles`.
+- **Default approach (no `.css.ts` needed):** Compose `Box` and `Text` props (imported from `@nimbus-ds/components`, not from `@nimbus-ds/styles`) directly in `.tsx`, or reference `themeVars.*` semantic tokens (exported by `@nimbus-ds/styles >= 9.71.0` / `NIMBUS_LOCAL=true`; in `@nimbus-ds/styles <= 9.70.0`, use `Box`/`Text` props or `--nimbus-*` CSS custom properties). Most layout, spacing, radius, color, and typography changes in Norte UI require **zero** custom `.css.ts` files.
+- **Safety-net approach (local `<component>.css.ts`):** When pseudo-elements, complex selectors, keyframe animations, or layout rules cannot be expressed with `Box` or `Text` props, create a **component-local** Vanilla Extract stylesheet at `packages/react/src/next/<Component>/src/<component>.css.ts` using `themeVars` from `@nimbus-ds/styles` (`>= 9.71.0` / `NIMBUS_LOCAL=true`, or `--nimbus-*` CSS custom properties).
 - **Prohibited:** A Path D component approximation **must never** edit `packages/core/styles/**` to add component-specific styles (`subcomponents/`). Keeping styles local to `packages/react/src/next/<Component>/src/` prevents cross-package bottlenecks and merge conflicts across parallel component tracks.
 
 ### 3. Zero-Shared-Files Rule for Parallel Tracks (Decision `0082`)
 
-So that multiple Designers and Engineers can work on different components in parallel with **zero git merge conflicts**, an `approx/*` branch **must only stage files inside the target component's folder** (`packages/react/src/next/<Component>/**` for Path D, or `packages/react/src/{atomic,composite}/<Component>/**` for Paths B/C).
+So that multiple Designers and Engineers can work on different components in parallel with **zero git merge conflicts**, an `approx/*` branch **must only stage files inside the target component's folder** (`packages/react/src/next/<Component>/**` for Path D, or the existing component folder for Paths B/C: in `nimbus-design-system` that is `packages/react/src/{atomic,composite}/<Component>/**`, in `nimbus-patterns` it is `packages/react/src/components/<Pattern>/**`).
 
 **Never hand-edit or commit any of these shared aggregate or generated files on an `approx/*` branch:**
 
@@ -190,7 +190,7 @@ Create the intake GitHub Issue on the target repository (`TiendaNube/nimbus-desi
 - **Commit SHA**: `<40-char-immutable-sha>`
 - **Draft PR**: `#<pr-number> (<pr-url>)`
 - **Classification Path**: `Path B` | `Path C` | `Path D`
-- **Target Surface**: `packages/react/src/next/<Component>` (or `packages/react/src/{atomic,composite}/<Component>`)
+- **Target Surface**: `packages/react/src/next/<Component>` (or, for Paths B/C: `packages/react/src/{atomic,composite}/<Component>` in `nimbus-design-system`, `packages/react/src/components/<Pattern>` in `nimbus-patterns`)
 - **Visual Evidence**: <6-theme Storybook screenshots/Preview links covering `base`, `dark`, `next`, `next-dark`, `next-norteui`, `next-norteui-dark` and/or live Admin screenshots>
 - **Proposed Contract Delta**: <Summary of added/removed/changed props, internal `useTheme` morphology, DOM changes, and keyboard/accessibility notes>
 ```
