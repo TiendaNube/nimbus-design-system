@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2026-11-11 `9.72.0`
+
+#### 🎉 New features
+
+- Button: Adds `components.button` theme values (sizes, focus ring, disabled, transparent, danger and ai-secondary colors). `base`, `dark`, `next` and `next-dark` keep the exact Button look; `next-norteui` and `next-norteui-dark` follow the Norte UI design. ([#628](https://github.com/TiendaNube/nimbus-design-system/pull/628) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-11-05 `9.71.0`
 
 #### 🎉 New features

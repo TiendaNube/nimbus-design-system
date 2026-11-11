@@ -2,6 +2,12 @@
 
 The Button component allows us to initiate actions, make state or page changes.
 
+## 2026-11-11 `2.11.2`
+
+#### 🎉 New features
+
+- `Button` and `Button.Skeleton` read their sizes and colors from the theme, so they follow the Norte UI design in `next-norteui` and `next-norteui-dark`. No API changes; other themes are unchanged. ([#628](https://github.com/TiendaNube/nimbus-design-system/pull/628) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-02-12 `2.11.0`
 
 #### 🎉 New features

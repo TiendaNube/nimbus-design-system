@@ -3,6 +3,12 @@
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories
 every day, with simplicity, accessibility, consistency and performance.
 
+## 2026-11-11 `5.66.0`
+
+#### 🎉 New features
+
+- Button: Follows the Norte UI design in `next-norteui` and `next-norteui-dark` (24/28/32px heights, 6px radius, filled danger, new focus ring, lighter ai-secondary glow), with no API changes. ([#628](https://github.com/TiendaNube/nimbus-design-system/pull/628) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-11-05 `5.65.0`
 
 #### 🎉 New features
