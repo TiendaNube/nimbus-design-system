@@ -225,6 +225,56 @@ export const globalTheme = {
       // and next-dark keep the exact Divider color they had. Norte UI overrides it.
       color: vars.colors.neutral.surfaceHighlight,
     },
+    // Every Button value references what the Button used before, so base, dark,
+    // next and next-dark keep the exact same Button. Norte UI overrides them.
+    button: {
+      small: {
+        height: "1.75rem",
+        padding: `${vars.spacing["1-5"]} ${vars.spacing[2]}`,
+        radius: vars.shape.border.radius[2],
+      },
+      medium: {
+        height: "2rem",
+        padding: `${vars.spacing["1-5"]} ${vars.spacing[3]}`,
+        radius: vars.shape.border.radius[2],
+      },
+      large: {
+        height: "2.75rem",
+        padding: `${vars.spacing[3]} ${vars.spacing[4]}`,
+        radius: vars.shape.border.radius[3],
+        gap: vars.spacing[2],
+      },
+      focus: vars.utils.focus,
+      primary: {
+        disabledBackground: vars.colors.neutral.surfaceDisabled,
+        disabledBorder: vars.colors.primary.surfaceHighlight,
+      },
+      neutral: {
+        disabledBackground: vars.colors.neutral.surfaceDisabled,
+        disabledBorder: vars.colors.neutral.surfaceHighlight,
+        focusBorder: vars.colors.primary.interactive,
+      },
+      transparent: {
+        hoverBorder: vars.colors.neutral.interactiveHover,
+        pressedBorder: vars.colors.neutral.interactivePressed,
+      },
+      danger: {
+        background: vars.colors.danger.surface,
+        border: vars.colors.danger.interactive,
+        text: vars.colors.danger.textLow,
+        hoverBackground: vars.colors.danger.surfaceHighlight,
+        pressedBackground: vars.colors.danger.interactive,
+        disabledBackground: vars.colors.neutral.surfaceDisabled,
+        disabledBorder: vars.colors.danger.surfaceHighlight,
+      },
+      aiSecondary: {
+        text: vars.colors.neutral.textHigh,
+        background: vars.colors.neutral.background,
+        hoverBackground: vars.colors.neutral.surface,
+        hoverGlow: vars.colors.aiGenerative.interactiveHover,
+        disabledBackground: vars.colors.neutral.surfaceDisabled,
+      },
+    },
     tag: {
       // References the theme's own tone colors so base, dark, next and next-dark
       // keep the exact Tag look they had. Norte UI overrides them.

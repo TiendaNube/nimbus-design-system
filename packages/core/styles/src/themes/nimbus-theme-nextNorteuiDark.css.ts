@@ -2,6 +2,7 @@ import { createTheme } from "@vanilla-extract/css";
 import tokens from "@nimbus-ds/tokens/dist/js/tokens";
 
 import { vars } from "./contract.css";
+import { buttonNorteui } from "./buttonNorteui";
 import { globalTheme } from "./globals.css";
 import { withToneSurfaceDisabled } from "./toneSurfaceDisabled";
 
@@ -79,6 +80,8 @@ const nextNorteuiDarkTheme = {
     divider: {
       color: vars.colors.neutral.interactive,
     },
+    // Norte UI dark keeps the base AI colors, whose glow is already light.
+    button: buttonNorteui(vars.colors.aiGenerative.interactiveHover),
     // No Norte UI dark Tag design yet: keep the default Tag look.
     tag: globalTheme.components.tag,
     // No Norte UI dark Chip design yet: keep the default Chip look.
