@@ -147,6 +147,11 @@ const ensureScrollStyles = () => {
 // children of a level-5 option are ignored.
 const MAX_LEVELS = 5;
 
+// Simple (single-line) option rows are 26px tall, as the Figma `Menu.Button`
+// (node 181:9267): padding 4px 8px around a 20px text line, centred in a
+// fixed 26px frame. Enriched rows (subtitle and/or tag) stay 44px.
+const ROW_HEIGHT = 26;
+
 // Case- and accent-insensitive text for matching ("camara" finds "Cámaras").
 const normalizeText = (text: string): string =>
   text
@@ -997,7 +1002,11 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
               alignItems: "center",
               justifyContent: "space-between",
               gap: 8,
-              padding: 8,
+              boxSizing: "border-box",
+              // One text line: a fixed 26px row. Result rows with a path
+              // line keep the same 4px/8px padding around both lines.
+              minHeight: ROW_HEIGHT,
+              padding: path ? "4px 8px" : "0 8px",
               paddingLeft: 8 + (path || isTitle ? 0 : childIndent),
             }}
           >
@@ -1022,7 +1031,34 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                 </Text>
               )}
             </div>
-            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                flexShrink: 0,
+                gap: 8,
+              }}
+            >
+              {/* Right-aligned check for a selected row (Figma Menu.Button,
+                  node 181:9267), in the 16px slot where a branch's chevron
+                  sits. A leaf always reserves the slot so the text never
+                  moves when the check appears; a selected branch shows the
+                  check and keeps its chevron to the right of it. */}
+              {current ? (
+                <Icon
+                  data-testid={
+                    dataTestId
+                      ? `${dataTestId}-check-${option.value}`
+                      : undefined
+                  }
+                  source={<CheckIcon />}
+                  color={
+                    isDisabled ? "neutral-textDisabled" : "primary-interactive"
+                  }
+                />
+              ) : (
+                !branch && <span style={{ width: 16, height: 16 }} />
+              )}
               {branch && (
                 <Icon
                   source={<ChevronRightIcon />}
@@ -1083,7 +1119,9 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                   display: "flex",
                   alignItems: "center",
                   gap: 8,
-                  padding: 8,
+                  boxSizing: "border-box",
+                  minHeight: ROW_HEIGHT,
+                  padding: "0 8px",
                 }}
               >
                 <Icon
@@ -1129,7 +1167,7 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
           {searching ? (
             <>
               {treeResults.length === 0 && (
-                <Box padding="2">
+                <Box paddingX="2" paddingY="1">
                   <Text fontSize="caption" color="neutral-textLow">
                     {noResultsLabel}
                   </Text>
@@ -1197,7 +1235,16 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                       onActivate: () => selectOption(currentParent, levelPath),
                     })
                   ) : (
-                    <div id={headingId} style={{ padding: 8 }}>
+                    <div
+                      id={headingId}
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        boxSizing: "border-box",
+                        minHeight: ROW_HEIGHT,
+                        padding: "0 8px",
+                      }}
+                    >
                       <Text fontWeight="medium" color="neutral-textHigh">
                         {currentParent.label}
                       </Text>
@@ -1277,7 +1324,7 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                   }}
                 >
                   {visibleOptions.length === 0 && !canCreate && (
-                    <Box padding="2">
+                    <Box paddingX="2" paddingY="1">
                       <Text fontSize="caption" color="neutral-textLow">
                         No matching tags
                       </Text>
@@ -1311,10 +1358,14 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                       onMouseLeave={() => setCreateHovered(false)}
                       display="flex"
                       alignItems="center"
+                      justifyContent="space-between"
                       gap="2"
                       width="100%"
+                      height={`${ROW_HEIGHT}px`}
+                      flexShrink="0"
                       boxSizing="border-box"
-                      padding="2"
+                      paddingX="2"
+                      paddingY="none"
                       borderRadius="2"
                       borderWidth="none"
                       cursor="pointer"
@@ -1334,11 +1385,13 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                           : "neutral-background"
                       }
                     >
+                      <Text color="primary-interactive">{`Create "${inputValue.trim()}"`}</Text>
+                      {/* Figma 181:9323: the label first, the plus icon at
+                          the end of the row. */}
                       <Icon
                         source={<PlusCircleIcon />}
                         color="primary-interactive"
                       />
-                      <Text color="primary-interactive">{`Create "${inputValue.trim()}"`}</Text>
                     </Box>
                   )}
                   {visibleOptions.map((option, optionIndex) => {
@@ -1433,15 +1486,16 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                           onMouseLeave={() => setHoveredOptionValue(null)}
                           display="flex"
                           alignItems="center"
-                          justifyContent={
-                            multiple ? "space-between" : undefined
-                          }
+                          justifyContent="space-between"
                           gap="2"
                           width="100%"
                           boxSizing="border-box"
-                          padding={isEnriched ? undefined : "2"}
-                          paddingX={isEnriched ? "2" : undefined}
-                          paddingY={isEnriched ? "1" : undefined}
+                          // Plain rows are a fixed 26px (Figma Menu.Button);
+                          // enriched rows size to their two lines (44px).
+                          height={isEnriched ? undefined : `${ROW_HEIGHT}px`}
+                          flexShrink="0"
+                          paddingX="2"
+                          paddingY={isEnriched ? "1" : "none"}
                           borderRadius="2"
                           borderWidth="none"
                           cursor={
@@ -1592,6 +1646,15 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                 style={
                   multiple
                     ? {
+                        // The field is 32px tall with one row of 24px chips
+                        // (Figma 181:9297 / 181:9310: 4px between the field's
+                        // edge and the chips, a 1px stroke inside that box),
+                        // so with the 1px CSS border it takes 3px of padding
+                        // on the three content sides; the trailing 4px sit
+                        // beside the 24px chevron / clear box. A second chip
+                        // row makes it 60px, as in the Figma.
+                        boxSizing: "border-box",
+                        minHeight: 32,
                         // Figma node 103:13574: the field is two columns —
                         // a chips/input content column that wraps, and the
                         // chevron as its own fixed column, centered on the
@@ -1600,10 +1663,16 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                         // in the inner content div below, not here.
                         flexWrap: "nowrap",
                         alignItems: "center",
-                        padding: 4,
+                        padding: "3px 4px 3px 3px",
                         gap: 4,
                       }
-                    : undefined
+                    : {
+                        // The Nimbus Input is 32px including its border;
+                        // the border-box keeps the outer height at 32px
+                        // instead of the 34px the bare container adds.
+                        boxSizing: "border-box",
+                        height: 32,
+                      }
                 }
               >
                 <div
@@ -1695,7 +1764,7 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                       hierarchical && !multiple
                         ? // "<name> en <parent>": the picked name comes
                           // first, so a normal end-ellipsis keeps it visible.
-                          { textOverflow: "ellipsis" }
+                          { textOverflow: "ellipsis", height: "100%" }
                         : multiple
                         ? {
                             width: "auto",
@@ -1713,7 +1782,8 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                             height: 24,
                             padding: 0,
                           }
-                        : undefined
+                        : // Fits the 30px inside the container's 1px border.
+                          { height: "100%" }
                     }
                     value={inputValue}
                     placeholder={
