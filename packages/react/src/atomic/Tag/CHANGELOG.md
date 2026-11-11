@@ -2,6 +2,12 @@
 
 The Tag component is used to categorize information, organize or indicate the status of elements or components using keywords, icons or colors.
 
+## 2026-11-06 `2.5.2`
+
+#### 💡 Others
+
+- Tag: Removes the borders and uses lighter tone backgrounds in the `next-norteui` theme, aligned with the Norte UI Figma. Other themes are unchanged. ([#621](https://github.com/TiendaNube/nimbus-design-system/pull/621) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
+
 ## 2026-02-12 `2.5.0`
 
 #### 🎉 New features

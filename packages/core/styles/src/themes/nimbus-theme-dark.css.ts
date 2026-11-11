@@ -3,14 +3,16 @@ import tokens from "@nimbus-ds/tokens/dist/js/tokens";
 
 import { vars } from "./contract.css";
 import { globalTheme } from "./globals.css";
+import { withToneSurfaceDisabled } from "./toneSurfaceDisabled";
 
 const colors = tokens.color.dark;
+const surfaceDisabled = colors.neutral["surface-disabled"].value as string;
 const lightColors = tokens.color.light;
 const { shadow } = tokens;
 
 const darkTheme = {
   ...globalTheme,
-  colors: {
+  colors: withToneSurfaceDisabled(surfaceDisabled, {
     primary: {
       surface: colors.primary.surface.value as string,
       surfaceHighlight: colors.primary["surface-highlight"].value as string,
@@ -78,6 +80,27 @@ const darkTheme = {
       purpleLight: lightColors.aiGradient["purple-light"].value as string,
       pinkHigh: lightColors.aiGradient["pink-high"].value as string,
       pinkLight: lightColors.aiGradient["pink-light"].value as string,
+    },
+  }),
+  components: {
+    ...globalTheme.components,
+    badge: {
+      ...globalTheme.components.badge,
+      surface: {
+        ...globalTheme.components.badge.surface,
+        aiGenerative: {
+          ...globalTheme.components.badge.surface.aiGenerative,
+          // Dark surfaces need a light label over the ai-generative fill.
+          color: vars.colors.neutral.textHigh,
+        },
+      },
+      light: {
+        ...globalTheme.components.badge.light,
+        aiGenerative: {
+          ...globalTheme.components.badge.light.aiGenerative,
+          color: vars.colors.aiGenerative.surfaceHighlight,
+        },
+      },
     },
   },
   utils: {

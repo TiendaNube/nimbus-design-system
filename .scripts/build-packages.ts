@@ -8,24 +8,22 @@ dotenv.config({
 });
 
 try {
+  const args = process.argv.slice(2);
+  const buildAll =
+    args.includes("--all") || args.includes("--all-packages");
   const paths = glob.sync(path.join(".yarn/versions/*.yml"));
-  if (!paths.length) {
-    throw new Error(
-      "The versions file was not found so it was not possible to perform the build..."
+
+  if (!paths.length && !buildAll) {
+    console.log(
+      "No version manifest files found in .yarn/versions/*.yml. Skipping package build (pass --all to build all packages)."
     );
+    process.exit(0);
   }
 
   const packageBuilder = new PackageBuilder();
-  const packagesToBuild = packageBuilder.getPackagesToBuild(paths[0]);
-  // const nimbusHelper = packagesToBuild.find(
-  //   (packageToBuild) => packageToBuild === "nimbus-helper"
-  // );
-  // if (!!nimbusHelper) {
-  //   packageBuilder.triggerBuildGithubAction(
-  //     "https://api.github.com/repos/tiendanube/nimbus-design-system/actions/workflows/62481985/dispatches",
-  //     { ref: "master" }
-  //   );
-  // }
+  const packagesToBuild = buildAll
+    ? ["@nimbus-ds/styles", "@nimbus-ds/components"]
+    : packageBuilder.getPackagesToBuildFromPaths(paths);
 
   const removePackages = [
     "nimbus-design-system",
@@ -33,8 +31,17 @@ try {
     "@nimbus-ds/webpack",
   ];
 
+  const buildablePackages = packagesToBuild.filter(
+    (pkg) => !removePackages.includes(pkg)
+  );
+
+  if (!buildablePackages.length) {
+    console.log("No eligible packages to build from version manifests.");
+    process.exit(0);
+  }
+
   const command = packageBuilder.getCommandBuildNPM(
-    packagesToBuild,
+    buildablePackages,
     removePackages
   );
   packageBuilder.execCommand(command);

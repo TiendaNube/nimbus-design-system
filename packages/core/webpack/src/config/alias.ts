@@ -4,13 +4,16 @@
  */
 import dashify from "dashify";
 import glob from "glob";
-import { join } from "path";
+import { basename, dirname, join } from "path";
 import { rootDir } from "../utils/constants";
 
-const paths = glob.sync(`${join(rootDir, "./packages/react/src/*/*/src")}`);
+const paths = glob.sync(
+  `${join(rootDir, "./packages/react/src/{atomic,composite}/*/src")}`
+);
 
 const packages = paths.reduce((prev: { [key: string]: string }, curr) => {
-  const key = `@nimbus-ds/${dashify(curr.split("/")[10])}`;
+  const componentDirName = basename(dirname(curr));
+  const key = `@nimbus-ds/${dashify(componentDirName)}`;
   prev[key] = curr;
   return prev;
 }, {});
@@ -21,6 +24,7 @@ export const aliasItems = {
   "@nimbus-ds/typings": join(rootDir, "./packages/core/typings/src"),
   "@nimbus-ds/styles": join(rootDir, "./packages/core/styles/src"),
   "@nimbus-ds/webpack": join(rootDir, "./packages/core/webpack/src"),
+  "@nimbus-ds/components/next": join(rootDir, "./packages/react/src/next"),
   "@common": join(rootDir, "./packages/react/src/common"),
   ...packages,
 };

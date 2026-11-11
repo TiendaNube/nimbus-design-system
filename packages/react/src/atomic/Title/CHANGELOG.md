@@ -2,6 +2,12 @@
 
 Tilte is a basic component that allows you to give titles and more hierarchy to blocks of text for sections or header components.
 
+## 2026-11-06 `3.4.1`
+
+#### 💡 Others
+
+- Title: Uses the theme `fontWeight.title` token (`600` in existing themes, `500` in Norte UI) when no `fontWeight` prop is passed, keeping the rendered weight in existing themes unchanged. ([#617](https://github.com/TiendaNube/nimbus-design-system/pull/617) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-08-12 `3.4.0`
 
 #### 🛠 Reverted changes

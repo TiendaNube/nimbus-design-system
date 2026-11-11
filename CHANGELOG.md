@@ -3,6 +3,12 @@
 This is the log of notable changes to the Design System Nimbus that are developer-facing.
 Package-specific changes not released in any package will be added here just before the release. Until then, you can find them in changelogs of the individual packages (see [packages](./packages) directory).
 
+## 2026-11-05
+
+#### 🎉 New features
+
+- Adds coexisting `next-norteui` and `next-norteui-dark` themes, the `@nimbus-ds/components/next` subpath export, live Admin preview watcher (`yarn watch:admin`), CI guardrails (`check:base-invariance`, `check:next-breaking`, `check:version-declarations`, `check:no-rc-deps`), and agent skills for the Norte UI evolution workflow. ([#597](https://github.com/TiendaNube/nimbus-design-system/pull/597) by [@harrytiendanube](https://github.com/harrytiendanube))
+
 ## 2026-11-04
 
 #### 🐛 Bug fixes

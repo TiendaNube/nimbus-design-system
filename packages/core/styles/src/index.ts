@@ -6,6 +6,7 @@
 
 export * from "./components";
 export { vars } from "./utils";
+export { vars as themeVars } from "./themes/contract.css";
 export {
   gradients,
   createLinearGradient,

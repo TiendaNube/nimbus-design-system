@@ -187,4 +187,43 @@ describe("generateSourceMap", () => {
       /generated[_-]?at|generator[_-]?version|source[_-]?sha/
     );
   });
+
+  it("resolves Path D /next components via parent packages/react workspace", () => {
+    const nextButtonDir = path.join(cwd, "packages/react/src/next/Button/src");
+    fs.mkdirSync(nextButtonDir, { recursive: true });
+    fs.writeFileSync(path.join(nextButtonDir, "index.ts"), "");
+    fs.writeFileSync(path.join(nextButtonDir, "Button.tsx"), "");
+    fs.writeFileSync(path.join(nextButtonDir, "button.types.ts"), "");
+
+    (execSync as jest.Mock).mockReturnValue(
+      [
+        { name: "@nimbus-ds/components", location: "packages/react" },
+        { name: "@nimbus-ds/box", location: "packages/react/src/atomic/Box" },
+        {
+          name: "@nimbus-ds/table",
+          location: "packages/react/src/composite/Table",
+        },
+        {
+          name: "@nimbus-ds/slider",
+          location: "packages/react/src/atomic/Slider",
+        },
+      ]
+        .map((w) => JSON.stringify(w))
+        .join("\n")
+    );
+
+    const cfg = baseConfig(cwd);
+    cfg.groups.next = "packages/react/src/next";
+
+    const doc = generateSourceMap(cfg);
+    const nextButton = doc.components.find(
+      (c) => c.group === "next" && c.name === "Button"
+    );
+
+    expect(nextButton).toEqual({
+      name: "Button",
+      group: "next",
+      package: "@nimbus-ds/components/next",
+    });
+  });
 });

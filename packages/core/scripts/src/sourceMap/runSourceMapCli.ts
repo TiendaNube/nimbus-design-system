@@ -13,9 +13,44 @@ import type { SourceMapConfig } from "./SourceMap.types";
  */
 export function runSourceMapCli(config: SourceMapConfig): void {
   const outPath = path.join(config.cwd, "nimbus-source-map.yml");
-  const doc = generateSourceMap(config);
+  const includeNextFlag = process.argv.includes("--include-next");
+  const effectiveConfig: SourceMapConfig = includeNextFlag
+    ? {
+        ...config,
+        groups: {
+          ...config.groups,
+          next: "packages/react/src/next",
+        },
+      }
+    : config;
+
+  const doc = generateSourceMap(effectiveConfig);
   const generated = writeYaml(doc);
   const check = process.argv.includes("--check");
+
+  // Also validate any Path D components under packages/react/src/next in memory
+  // so convention errors are caught in CI without causing git conflicts on nimbus-source-map.yml.
+  const nextDir = path.join(config.cwd, "packages/react/src/next");
+  if (!includeNextFlag && fs.existsSync(nextDir)) {
+    const nextValidationDoc = generateSourceMap({
+      ...config,
+      groups: {
+        ...config.groups,
+        next: "packages/react/src/next",
+      },
+    });
+    const nextComponents = nextValidationDoc.components.filter(
+      (entry) => entry.group === "next"
+    );
+    for (const entry of nextComponents) {
+      const entryPoint = path.join(nextDir, entry.name, "src", "index.ts");
+      if (!fs.existsSync(entryPoint)) {
+        throw new Error(
+          `Next component "${entry.name}" in packages/react/src/next is missing required entry point "src/index.ts".`
+        );
+      }
+    }
+  }
 
   if (check) {
     const current = fs.existsSync(outPath)

@@ -2,6 +2,12 @@
 
 This package is intended for internal use in generating custom script builds at design system build time.
 
+## 2026-11-05 `1.12.0`
+
+#### 🎉 New features
+
+- Added `/next` subpath support in `Docgen` and `SourceMap` (`validateNextInMemory`), and updated `PackageBuilder` to aggregate packages across all `.yarn/versions/*.yml` manifests. ([#597](https://github.com/TiendaNube/nimbus-design-system/pull/597) by [@harrytiendanube](https://github.com/harrytiendanube))
+
 ## 2026-09-03 `1.9.0`
 
 #### 🎉 New features

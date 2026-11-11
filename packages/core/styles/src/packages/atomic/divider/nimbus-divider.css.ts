@@ -5,7 +5,7 @@ import { vars } from "../../../utils";
 const base = style({
   width: "100%",
   height: varsThemeBase.shape.border.width[1],
-  backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
+  backgroundColor: varsThemeBase.components.divider.color,
   margin: 0,
   outline: "none",
   border: "none",

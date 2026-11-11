@@ -7,10 +7,18 @@ const baseConfig = {
     "./themes/dark": "./src/themes/nimbus-theme-dark.css.ts",
     "./themes/next": "./src/themes/nimbus-theme-next.css.ts",
     "./themes/next-dark": "./src/themes/nimbus-theme-nextDark.css.ts",
+    "./themes/next-norteui": "./src/themes/nimbus-theme-nextNorteui.css.ts",
+    "./themes/next-norteui-dark":
+      "./src/themes/nimbus-theme-nextNorteuiDark.css.ts",
   },
   output: {
     path: path.resolve(__dirname, "dist"),
     library: "@nimbus-ds/styles",
+  },
+  optimization: {
+    // Keep module IDs tied to file paths instead of virtual CSS query hashes so
+    // pure CSS/token value edits do not rewrite dist/index.js during watch:admin.
+    moduleIds: "named" as const,
   },
   module: { rules: [rules.cssLoaderExtractRule] },
 };

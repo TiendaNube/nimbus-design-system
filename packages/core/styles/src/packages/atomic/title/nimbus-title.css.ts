@@ -71,9 +71,18 @@ export const appearance = styleVariants({
   ],
 });
 
+/**
+ * Applied by `Title` when no `fontWeight` prop is passed. It is separate from
+ * `appearance`, which other components (e.g. the Editor pattern) reuse directly.
+ */
+export const defaultFontWeight = style({
+  fontWeight: varsThemeBase.fontWeight.title,
+});
+
 export const styles = {
   base,
   appearance,
+  defaultFontWeight,
 };
 
 /* -------------------------------------------------------------------------------------------------
