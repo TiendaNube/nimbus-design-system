@@ -53,26 +53,26 @@ export const aiGenerativeGradientsNorteui = {
   interactive: layers.join(", "),
   hover: [overlay("15%"), ...layers].join(", "),
   pressed: [overlay("30%"), ...layers].join(", "),
-  // Disabled keeps the Figma values: the former layers faded to about 20 %.
+  // Same option C layers faded to about 20 %, over purpleLight at 20 %.
   disabled: [
-    `radial-gradient(172.16% 156.18% at 105% -15.62%, ${fade(
+    `radial-gradient(130% 160% at 105% -15.62%, ${fade(
       aiGenerative.textLow,
       "20%"
-    )} 0%, ${fade(aiGradient.purpleHigh, "14%")} 45%, ${fade(
+    )} 0%, ${fade(aiGradient.purpleHigh, "12%")} 40%, ${fade(
       aiGradient.purpleHigh,
       "0%"
-    )} 100%)`,
-    `radial-gradient(84.01% 107.55% at 20.17% -22.66%, ${fade(
+    )} 85%)`,
+    `radial-gradient(110% 200% at 0% 60%, ${fade(
       primary.interactive,
       "20%"
-    )} 0%, ${fade(primary.interactive, "19%")} 20%, ${fade(
+    )} 0%, ${fade(primary.interactive, "17%")} 35%, ${fade(
       primary.interactive,
       "0%"
-    )} 100%)`,
-    `radial-gradient(136.47% 87.46% at 33.81% 109%, ${fade(
-      aiGradient.pinkHigh,
+    )} 90%)`,
+    `radial-gradient(70% 90% at 80% 100%, ${fade(
+      aiGradient.pinkLight,
       "20%"
-    )} 0%, ${fade(aiGradient.pinkHigh, "0%")} 95.37%)`,
+    )} 0%, ${fade(aiGradient.pinkLight, "0%")} 100%)`,
     `linear-gradient(${disabledBase}, ${disabledBase})`,
   ].join(", "),
 };
@@ -86,11 +86,18 @@ export const aiGenerativeLinearBase = {
   start: aiGradient.blueHigh,
   middle: aiGradient.purpleHigh,
   end: aiGradient.pinkHigh,
+  hoverStart: aiGradient.pinkHigh,
+  hoverMiddle: aiGradient.purpleHigh,
+  hoverEnd: aiGradient.blueHigh,
+  disabledStart: aiGradient.blueLight,
+  disabledMiddle: aiGradient.purpleLight,
+  disabledEnd: aiGradient.pinkLight,
 };
 
 /**
  * Norte UI uses a horizontal gradient (90deg): blue on the left, purple in the
- * middle and pink on the right. Colors come from the Norte UI `aiGradient`
+ * middle and pink on the right. Hover keeps the same order and disabled uses
+ * the light stops in that order. Colors come from the Norte UI `aiGradient`
  * stops.
  */
 export const aiGenerativeLinearNorteui = {
@@ -98,4 +105,10 @@ export const aiGenerativeLinearNorteui = {
   start: aiGradient.blueHigh,
   middle: aiGradient.purpleHigh,
   end: aiGradient.pinkHigh,
+  hoverStart: aiGradient.blueHigh,
+  hoverMiddle: aiGradient.purpleHigh,
+  hoverEnd: aiGradient.pinkHigh,
+  disabledStart: aiGradient.blueLight,
+  disabledMiddle: aiGradient.purpleLight,
+  disabledEnd: aiGradient.pinkLight,
 };
