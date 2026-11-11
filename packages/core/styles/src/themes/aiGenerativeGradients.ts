@@ -99,13 +99,13 @@ export const aiGenerativeLinearBase = {
 };
 
 /**
- * Norte UI uses a horizontal gradient (90deg): blue on the left, purple in the
- * middle and pink on the right. Hover keeps the same order and disabled uses
- * the light stops in that order. Colors come from the Norte UI `aiGradient`
- * stops.
+ * Norte UI uses a diagonal gradient (135deg): blue at the top left, purple in
+ * the middle and pink at the bottom right, following the radial option B.
+ * Hover keeps the same order and disabled uses the light stops in that order.
+ * Colors come from the Norte UI `aiGradient` stops.
  */
 export const aiGenerativeLinearNorteui = {
-  angle: "90deg",
+  angle: "135deg",
   start: aiGradient.blueHigh,
   middle: aiGradient.purpleHigh,
   end: aiGradient.pinkHigh,
