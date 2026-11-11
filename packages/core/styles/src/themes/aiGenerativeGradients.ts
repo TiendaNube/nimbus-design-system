@@ -1,5 +1,3 @@
-import tokens from "@nimbus-ds/tokens/dist/js/tokens";
-
 import { vars } from "./contract.css";
 
 const { aiGradient, aiGenerative, primary, neutral } = vars.colors;
@@ -103,12 +101,13 @@ export const aiGenerativeLinearBase = {
 };
 
 /**
- * Norte UI uses the former hover gradient at 66deg (pink to blue). The blue is
- * the base `aiGradient.blue-high` value, as in Figma.
+ * Norte UI uses a horizontal gradient (90deg): blue on the left, purple in the
+ * middle and pink on the right. Colors come from the Norte UI `aiGradient`
+ * stops.
  */
 export const aiGenerativeLinearNorteui = {
-  angle: "66deg",
-  start: aiGradient.pinkHigh,
+  angle: "90deg",
+  start: aiGradient.blueHigh,
   middle: aiGradient.purpleHigh,
-  end: String(tokens.color.light.aiGradient["blue-high"].value),
+  end: aiGradient.pinkHigh,
 };
