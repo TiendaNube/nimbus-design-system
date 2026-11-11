@@ -1,15 +1,7 @@
 import tokens from "@nimbus-ds/tokens/dist/js/tokens";
 
-interface TokenLeaf {
-  value: unknown;
-}
-
-const colorDict = tokens.color as Record<
-  string,
-  Record<string, Record<string, TokenLeaf>>
->;
-
-const { aiGradient } = colorDict["next-norteui"];
+// Typed access: renaming a `next-norteui` aiGradient token fails type checking.
+const { aiGradient } = tokens.color["next-norteui"];
 
 /**
  * AI gradient stops for next-norteui and next-norteui-dark.
