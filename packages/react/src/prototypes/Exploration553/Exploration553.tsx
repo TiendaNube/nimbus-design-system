@@ -48,7 +48,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
           const isLast = i === entries.length - 1;
           return (
             <Box as="li" key={entry === "ellipsis" ? "ellipsis" : entry.href}
-              display="flex" alignItems="center" gap="1">
+              display="flex" alignItems="center" gap="1" style={{ minWidth: 0 }}>
               {entry === "ellipsis" ? (
                 <Link
                   as="button"
@@ -58,7 +58,20 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
                   …
                 </Link>
               ) : isLast ? (
-                <Text as="span" color="neutral-textHigh" fontWeight="medium" aria-current="page">
+                <Text
+                  as="span"
+                  color="neutral-textHigh"
+                  fontWeight="medium"
+                  aria-current="page"
+                  title={entry.label}
+                  style={{
+                    display: "block",
+                    maxWidth: "240px",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    whiteSpace: "nowrap",
+                  }}
+                >
                   {entry.label}
                 </Text>
               ) : (
@@ -95,7 +108,7 @@ const long: Crumb[] = [
   { label: "Apparel", href: "#apparel" },
   { label: "Men", href: "#men" },
   { label: "Shirts", href: "#shirts" },
-  { label: "Linen shirt – summer collection 2026", href: "#linen" },
+  { label: "Linen shirt – summer collection 2026 – relaxed fit, long sleeve, natural dye", href: "#linen" },
 ];
 
 export const Exploration553: React.FC<{ maxVisible?: number }> = ({ maxVisible = 4 }) => {
