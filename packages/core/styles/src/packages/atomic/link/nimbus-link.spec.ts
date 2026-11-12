@@ -1,3 +1,9 @@
+import type {
+  ComplexStyleRule,
+  StyleRule,
+  createTheme as CreateTheme,
+  styleVariants as StyleVariants
+} from "@vanilla-extract/css";
 import { vars } from "../../../themes/contract.css";
 import { globalTheme } from "../../../themes/globals.css";
 import dark from "../../../themes/nimbus-theme-dark.css";
@@ -8,35 +14,36 @@ import nextNorteuiDark from "../../../themes/nimbus-theme-nextNorteuiDark.css";
 import "./nimbus-link.css";
 import type { appearance } from "./nimbus-link.css";
 
-type ThemeTokens = {
-  components: { link: { neutral: { hoverColor: string } } };
-};
-type StyleRule = {
-  ":hover"?: { color: string };
-  ":disabled"?: { color: string };
+type VanillaExtract = {
+  createTheme: typeof CreateTheme;
+  styleVariants: typeof StyleVariants;
 };
 
 type Captured = {
-  themeTokens: Record<string, ThemeTokens>;
-  variants: Record<string, unknown[]>;
+  themeTokens: Record<string, unknown>;
+  variants: Record<string, ComplexStyleRule>;
 };
 
 // jest.mock is hoisted above the imports, so the captured values live inside
 // the mock factory and are read back with jest.requireMock.
 jest.mock("@vanilla-extract/css", () => {
-  const actual = jest.requireActual("@vanilla-extract/css");
+  const actual = jest.requireActual<VanillaExtract>("@vanilla-extract/css");
   const captured: Captured = { themeTokens: {}, variants: {} };
   return {
     ...actual,
     captured,
-    createTheme: (contract: unknown, tokens: ThemeTokens) => {
-      const className = actual.createTheme(contract, tokens);
+    createTheme: (...args: Parameters<typeof actual.createTheme>) => {
+      const className = actual.createTheme(...args);
+      const [, tokens] = args;
       captured.themeTokens[className] = tokens;
       return className;
     },
-    styleVariants: (map: Record<string, unknown[]>) => {
-      Object.assign(captured.variants, map);
-      return actual.styleVariants(map);
+    styleVariants: (
+      styleMap: Record<string, ComplexStyleRule>,
+      debugId?: string
+    ) => {
+      Object.assign(captured.variants, styleMap);
+      return actual.styleVariants(styleMap, debugId);
     }
   };
 });
@@ -45,11 +52,29 @@ const { captured } = jest.requireMock<{ captured: Captured }>(
   "@vanilla-extract/css"
 );
 
-const hoverOf = (themeClassName: string) =>
-  captured.themeTokens[themeClassName].components.link.neutral.hoverColor;
+const isRecord = (value: unknown): value is Record<string, unknown> =>
+  typeof value === "object" && value !== null && !Array.isArray(value);
 
-const ruleOf = (name: keyof typeof appearance) =>
-  captured.variants[name][1] as StyleRule;
+const valueAt = (source: unknown, path: string[]): unknown =>
+  path.reduce<unknown>(
+    (node, key) => (isRecord(node) ? node[key] : undefined),
+    source
+  );
+
+const hoverOf = (themeClassName: string) =>
+  valueAt(captured.themeTokens[themeClassName], [
+    "components",
+    "link",
+    "neutral",
+    "hoverColor"
+  ]);
+
+// Each Link appearance is declared as [base, rule]: return the rule object.
+const ruleOf = (name: keyof typeof appearance): StyleRule | undefined => {
+  const variant = captured.variants[name];
+  const rule = Array.isArray(variant) ? variant[1] : variant;
+  return typeof rule === "object" && !Array.isArray(rule) ? rule : undefined;
+};
 
 describe("GIVEN the Link theme values", () => {
   describe("WHEN resolving the neutral hover color", () => {
@@ -73,7 +98,7 @@ describe("GIVEN the Link theme values", () => {
     });
 
     it("THEN the neutral appearance reads the theme hover color", () => {
-      expect(ruleOf("neutral")[":hover"]?.color).toBe(
+      expect(ruleOf("neutral")?.[":hover"]?.color).toBe(
         vars.components.link.neutral.hoverColor
       );
     });
@@ -86,7 +111,7 @@ describe("GIVEN the Link theme values", () => {
       "neutral",
       "neutral-background"
     ])("THEN the %s appearance uses neutral.textDisabled", (name) => {
-      expect(ruleOf(name)[":disabled"]?.color).toBe(
+      expect(ruleOf(name)?.[":disabled"]?.color).toBe(
         vars.colors.neutral.textDisabled
       );
     });
