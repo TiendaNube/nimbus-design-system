@@ -41,7 +41,7 @@ const Sidebar: React.FC<SidebarProps> & SidebarComponents = ({
     maxWidth,
   });
 
-  const { refThemeProvider } = useTheme();
+  const { themeClassName } = useTheme();
 
   const { context } = useFloating({
     open,
@@ -121,9 +121,11 @@ const Sidebar: React.FC<SidebarProps> & SidebarComponents = ({
   }
 
   return (
-    <FloatingPortal id="nimbus-sidebar" root={refThemeProvider?.current}>
+    <FloatingPortal id="nimbus-sidebar">
       <FloatingOverlay
-        className={sidebar.classnames.overlay}
+        className={[themeClassName, sidebar.classnames.overlay]
+          .filter(Boolean)
+          .join(" ")}
         data-testid="overlay-sidebar-button"
         lockScroll={!needRemoveScroll}
       >

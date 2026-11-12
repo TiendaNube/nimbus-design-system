@@ -2,6 +2,12 @@
 
 The Modal component allows us to call the user's attention to a floating box that can have text, actions or forms to perform tasks by changing the focus from the background. It is an intrusive component as it interrupts the user's operation to present a message or content.
 
+## 2026-10-01 `1.10.1`
+
+#### 🐛 Bug fixes
+
+- Render the modal on `body` with the theme class instead of inside the nearest `ThemeProvider`, which could be another provider's node because the portal id is shared. ([#580](https://github.com/TiendaNube/nimbus-design-system/pull/580) by [@alexisarias-tiendanube](https://github.com/alexisarias-tiendanube))
+
 ## 2026-02-12 `1.9.0`
 
 #### 🎉 New features

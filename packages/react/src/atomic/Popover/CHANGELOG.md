@@ -2,6 +2,12 @@
 
 Use Popovers to bring attention to specific user interface elements and suggest an action or to guide users through a new experience
 
+## 2026-10-01 `4.4.2`
+
+#### 🐛 Bug fixes
+
+- Render the popover and its overlay on `body` with the theme class, so they are no longer drawn inside the stacking context of the first `ThemeProvider` that portaled a popover. ([#580](https://github.com/TiendaNube/nimbus-design-system/pull/580) by [@alexisarias-tiendanube](https://github.com/alexisarias-tiendanube))
+
 ## 2026-03-02 `4.4.1`
 
 #### 🐛 Bug fixes

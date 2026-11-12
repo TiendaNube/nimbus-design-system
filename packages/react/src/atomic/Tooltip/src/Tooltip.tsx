@@ -29,7 +29,7 @@ const Tooltip: React.FC<TooltipProps> = ({
 }) => {
   const arrowRef = useRef(null);
   const [isVisible, setVisibility] = useState(false);
-  const { refThemeProvider } = useTheme();
+  const { themeClassName } = useTheme();
   const { context, strategy, floatingStyles } = useFloating({
     open: isVisible,
     placement: position,
@@ -82,20 +82,20 @@ const Tooltip: React.FC<TooltipProps> = ({
       >
         {children}
       </div>
-      <FloatingPortal
-        id="nimbus-tooltip-floating"
-        root={refThemeProvider?.current}
-      >
+      <FloatingPortal id="nimbus-tooltip-floating">
         {isVisible && (
           <div
             {...rest}
             {...otherProps}
             ref={context.refs.setFloating}
             className={[
+              themeClassName,
               className,
               tooltip.classnames.content,
               classNameStyles,
-            ].join(" ")}
+            ]
+              .filter(Boolean)
+              .join(" ")}
             style={{
               ...style,
               ...floatingStyles,

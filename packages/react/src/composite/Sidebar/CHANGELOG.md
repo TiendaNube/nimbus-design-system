@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-01 `3.6.2`
+
+#### 🐛 Bug fixes
+
+- Render the sidebar on `body` with the theme class instead of inside the nearest `ThemeProvider`, which could be another provider's node because the portal id is shared. ([#580](https://github.com/TiendaNube/nimbus-design-system/pull/580) by [@alexisarias-tiendanube](https://github.com/alexisarias-tiendanube))
+
 ## 2026-02-12 `3.6.0`
 
 #### 🎉 New features

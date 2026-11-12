@@ -85,7 +85,7 @@ const Popover: React.FC<PopoverProps> = ({
       }),
   ].filter((middleware) => middleware !== false);
 
-  const { refThemeProvider } = useTheme();
+  const { themeClassName } = useTheme();
 
   const { context, floatingStyles } = useFloating({
     open,
@@ -120,9 +120,14 @@ const Popover: React.FC<PopoverProps> = ({
     <div
       {...otherProps}
       ref={context.refs.setFloating}
-      className={[className, popover.classnames.content, classNameStyles].join(
-        " "
-      )}
+      className={[
+        themeClassName,
+        className,
+        popover.classnames.content,
+        classNameStyles,
+      ]
+        .filter(Boolean)
+        .join(" ")}
       style={{
         ...style,
         ...floatingStyles,
@@ -156,15 +161,14 @@ const Popover: React.FC<PopoverProps> = ({
             })
           : children}
       </div>
-      <FloatingPortal
-        id="nimbus-popover-floating"
-        root={refThemeProvider?.current}
-      >
+      <FloatingPortal id="nimbus-popover-floating">
         {open && (
           <>
             {renderOverlay && (
               <div
-                className={popover.classnames.overlay}
+                className={[themeClassName, popover.classnames.overlay]
+                  .filter(Boolean)
+                  .join(" ")}
                 data-testid="popover-overlay"
               />
             )}
