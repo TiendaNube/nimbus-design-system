@@ -1,5 +1,12 @@
 import { vars } from "./contract.css";
 
+/** Same shape as `vars.components.button`, with plain string values. */
+type StringLeaves<T> = {
+  [K in keyof T]: T[K] extends string ? string : StringLeaves<T[K]>;
+};
+
+export type ButtonThemeValues = StringLeaves<typeof vars.components.button>;
+
 /**
  * Button values for next-norteui and next-norteui-dark, taken from the
  * Norte UI Button in Figma. They reference theme colors, so the dark theme
@@ -8,7 +15,9 @@ import { vars } from "./contract.css";
  * `aiSecondaryHoverGlow` is passed by each theme because the AI
  * `interactive` color is only in the token palette, not in `vars`.
  */
-export const buttonNorteui = (aiSecondaryHoverGlow: string) => ({
+export const buttonNorteui = (
+  aiSecondaryHoverGlow: string
+): ButtonThemeValues => ({
   small: {
     height: "1.5rem",
     padding: `${vars.spacing[1]} ${vars.spacing[2]}`,
@@ -51,6 +60,8 @@ export const buttonNorteui = (aiSecondaryHoverGlow: string) => ({
   aiSecondary: {
     text: vars.colors.aiGenerative.textLow,
     background: vars.colors.aiGenerative.surface,
+    // Figma uses the AI surface-disabled tone as the hover fill: it is the
+    // next step after `surface`, not a disabled state.
     hoverBackground: vars.colors.aiGenerative.surfaceDisabled,
     hoverGlow: aiSecondaryHoverGlow,
     disabledBackground: vars.colors.aiGenerative.surface,

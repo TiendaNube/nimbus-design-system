@@ -1,5 +1,5 @@
 releases:
-  "@nimbus-ds/button": patch
+  "@nimbus-ds/button": minor
   "@nimbus-ds/components": minor
   "@nimbus-ds/styles": minor
 
