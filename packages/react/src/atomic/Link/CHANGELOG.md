@@ -6,7 +6,7 @@ The Link component allows us to navigate to external addresses.
 
 #### 🎉 New features
 
-- The neutral `Link` hover reads its color from the theme and follows the Norte UI design in `next-norteui`. The props are unchanged. Visual change for screens rendered with `next-norteui`: the neutral hover goes from `neutral.textDisabled` to `neutral.textHigh`, so it darkens instead of looking disabled. The disabled `Link` keeps `neutral.textDisabled` in every appearance. Not a breaking change under Decision 0081: Norte UI ships as `minor` because the theme is opt-in, and `base`, `dark`, `next`, `next-dark` and `next-norteui-dark` keep the exact previous Link (verified by `yarn check:base-invariance`). ([#630](https://github.com/TiendaNube/nimbus-design-system/pull/630) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
+- The neutral `Link` hover reads its color from the theme and follows the Norte UI design in `next-norteui`. The props are unchanged. Visual change for screens rendered with `next-norteui`: the neutral hover goes from `neutral.textDisabled` to `neutral.textHigh`, so it darkens instead of looking disabled. The disabled `Link` keeps `neutral.textDisabled` in every appearance. Not a breaking change under Decision 0081: Norte UI ships as `minor` because the theme is opt-in, and `base`, `dark`, `next` and `next-dark` keep the exact previous Link (verified by `yarn check:base-invariance`). `next-norteui-dark` also keeps the previous neutral hover (covered by `nimbus-link.spec.ts`). ([#630](https://github.com/TiendaNube/nimbus-design-system/pull/630) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
 
 ## 2026-02-12 `4.4.0`
 
