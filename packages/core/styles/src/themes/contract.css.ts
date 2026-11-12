@@ -241,6 +241,26 @@ export const vars = createGlobalThemeContract(
         },
       },
     },
+    gradients: {
+      aiGenerative: {
+        interactive: "",
+        hover: "",
+        pressed: "",
+        disabled: "",
+      },
+      aiGenerativeLinear: {
+        angle: "",
+        start: "",
+        middle: "",
+        end: "",
+        hoverStart: "",
+        hoverMiddle: "",
+        hoverEnd: "",
+        disabledStart: "",
+        disabledMiddle: "",
+        disabledEnd: "",
+      },
+    },
   },
   (_value, path) => `nimbus-${path.join("-")}`
 );

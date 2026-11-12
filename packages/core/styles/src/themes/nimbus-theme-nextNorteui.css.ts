@@ -4,6 +4,11 @@ import tokens from "@nimbus-ds/tokens/dist/js/tokens";
 import { vars } from "./contract.css";
 import { globalTheme } from "./globals.css";
 import { aiInteractiveBorder } from "./aiInteractiveBorder";
+import {
+  createAiGenerativeGradientsNorteui,
+  aiGenerativeLinearNorteui,
+} from "./aiGenerativeGradients";
+import { aiGradientNorteui } from "./aiGradientNorteui";
 
 interface TokenLeaf {
   value: unknown;
@@ -28,6 +33,15 @@ const mapToneScale = (group: ToneTokenMap) => ({
 const primary = mapToneScale(colors.primary);
 const { aiGenerative } = colors;
 const aiSurfaceHighlight = String(aiGenerative["surface-highlight"].value);
+const aiGenerativeGradients = createAiGenerativeGradientsNorteui({
+  textLow: String(aiGenerative["text-low"].value),
+  primaryInteractive: primary.interactive,
+  overlay: String(colors.neutral["text-high"].value),
+  purpleHigh: aiGradientNorteui.purpleHigh,
+  purpleLight: aiGradientNorteui.purpleLight,
+  pinkHigh: aiGradientNorteui.pinkHigh,
+  pinkLight: aiGradientNorteui.pinkLight,
+});
 
 export const variables = createTheme(vars, {
   ...globalTheme,
@@ -64,6 +78,7 @@ export const variables = createTheme(vars, {
       textLow: String(aiGenerative["text-low"].value),
       textHigh: String(aiGenerative["text-high"].value),
     },
+    aiGradient: aiGradientNorteui,
   },
   utils: {
     focus: `0 0 0 3px ${primary.surfaceHighlight}`,
@@ -217,6 +232,10 @@ export const variables = createTheme(vars, {
       // Hover darkens toward textHigh so it no longer reads as disabled.
       neutral: { hoverColor: vars.colors.neutral.textHigh },
     },
+  },
+  gradients: {
+    aiGenerative: aiGenerativeGradients,
+    aiGenerativeLinear: aiGenerativeLinearNorteui,
   },
 });
 

@@ -4,11 +4,14 @@ import { type GradientStop, type GradientTypes } from "../types";
 import { parseLinearGradient } from "../cssParser";
 
 /**
- * Gets gradient color stops for supported gradient types by reusing existing gradient definitions
+ * Gets gradient color stops for supported gradient types by reusing existing gradient definitions.
+ * Only the color stops come from the theme. The SVG gradient direction is set
+ * by `createSvgGradientDef` (horizontal by default) and intentionally ignores
+ * the CSS angle of `aiGenerativeLinearInteractive`.
  */
 export const getGradientStops = (type: GradientTypes): GradientStop[] => {
   if (type === "linear") {
-    return parseLinearGradient(gradients.aiGenerativeInteractive);
+    return parseLinearGradient(gradients.aiGenerativeLinearInteractive);
   }
 
   console.warn(`Unsupported gradient type: ${type}`);
