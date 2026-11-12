@@ -74,6 +74,12 @@
       "totalProps": 3,
       "props": [
         {
+          "description": "Disables the input, disallowing user interaction.",
+          "type": "boolean",
+          "title": "disabled",
+          "required": false
+        },
+        {
           "description": "Change the visual style of the input.",
           "default": "neutral",
           "enum": [
@@ -85,12 +91,6 @@
           ],
           "type": "string",
           "title": "appearance",
-          "required": false
-        },
-        {
-          "description": "Disables the input, disallowing user interaction.",
-          "type": "boolean",
-          "title": "disabled",
           "required": false
         },
         {
@@ -106,6 +106,12 @@
       "totalProps": 3,
       "props": [
         {
+          "description": "Disables the input, disallowing user interaction.",
+          "type": "boolean",
+          "title": "disabled",
+          "required": false
+        },
+        {
           "description": "Change the visual style of the input.",
           "default": "neutral",
           "enum": [
@@ -117,12 +123,6 @@
           ],
           "type": "string",
           "title": "appearance",
-          "required": false
-        },
-        {
-          "description": "Disables the input, disallowing user interaction.",
-          "type": "boolean",
-          "title": "disabled",
           "required": false
         },
         {
