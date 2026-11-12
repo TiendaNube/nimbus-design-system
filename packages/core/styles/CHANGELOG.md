@@ -2,6 +2,13 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2026-11-12 `9.72.0`
+
+#### 🎉 New features
+
+- Themes: Adds the `gradients.aiGenerative` (`interactive`, `hover`, `pressed`, `disabled`) and `gradients.aiGenerativeLinear` theme values. In `base`, `dark`, `next` and `next-dark` they hold the current linear AI gradients, so those themes look exactly as before. In `next-norteui` and `next-norteui-dark` the AI gradient is radial, with the blue layer above the purple one, and the linear version for borders and icons goes `to bottom left` (purple, blue, pink). Also adds the Norte UI `aiGradient` colors. ([#622](https://github.com/TiendaNube/nimbus-design-system/pull/622) by [@noecondoleo](https://github.com/noecondoleo))
+- Gradients: `aiGenerativeInteractive`, `aiGenerativeHover` and `aiGenerativeDisabled` now return the theme values as CSS variables, and the new `aiGenerativePressed` and `aiGenerativeLinearInteractive`, `aiGenerativeLinearHover` and `aiGenerativeLinearDisabled` exports are available. `createBorderGradient` uses the linear version of the AI gradients for borders. Code that reads the gradient string to extract colors should use the `aiGenerativeLinear*` exports. ([#622](https://github.com/TiendaNube/nimbus-design-system/pull/622) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-11-05 `9.71.0`
 
 #### 🎉 New features

@@ -14,7 +14,7 @@ jest.mock("../cssParser");
 jest.mock("../svgManipulation");
 jest.mock("@nimbus-ds/styles", () => ({
   gradients: {
-    aiGenerativeInteractive:
+    aiGenerativeLinearInteractive:
       "linear-gradient(90deg, #0050C3 5%, #4736B4 40%, #D8446E 95%)",
   },
 }));

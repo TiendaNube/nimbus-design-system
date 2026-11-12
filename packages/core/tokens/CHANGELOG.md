@@ -2,6 +2,12 @@
 
 Our design tokens are the foundations of Nimbus Design System.
 
+## 2026-11-12 `9.8.0`
+
+#### 🎉 New features
+
+- Added the Norte UI `color.next-norteui.aiGradient` colors (`blue-high`, `blue-light`, `purple-high`, `purple-light` from the Norte UI palettes; `pink-high` and `pink-light` keep the base values). ([#622](https://github.com/TiendaNube/nimbus-design-system/pull/622) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-11-04 `9.7.0`
 
 #### 🎉 New features
