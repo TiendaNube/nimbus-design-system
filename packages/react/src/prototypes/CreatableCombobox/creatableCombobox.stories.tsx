@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useId, useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Box } from "@nimbus-ds/box";
 import { Text } from "@nimbus-ds/text";
@@ -10,13 +10,38 @@ import { ENRICHED_OPTIONS, TREE_OPTIONS } from "./useSharedOptions";
 
 const STORAGE_KEY = "nimbus-prototype:creatable-combobox:options";
 
+/**
+ * Help text lives outside the combobox, as with Nimbus's other form controls
+ * (`Input`, `Select`, `MultiSelect` have no help-text prop; the patterns'
+ * `FormField` renders a caption `Text` below them). The control is described
+ * by it through the standard `aria-describedby` pass-through.
+ */
+const WithHelpText = ({
+  text,
+  children,
+}: {
+  text?: React.ReactNode;
+  children: (describedBy: string | undefined) => React.ReactNode;
+}) => {
+  const helpId = useId();
+  return (
+    <Box display="flex" flexDirection="column" gap="1" width="100%">
+      {children(text ? helpId : undefined)}
+      {text && (
+        <Text id={helpId} fontSize="caption" color="neutral-textLow">
+          {text}
+        </Text>
+      )}
+    </Box>
+  );
+};
+
 const meta: Meta<typeof CreatableCombobox> = {
   title: "Prototypes/CreatableCombobox",
   component: CreatableCombobox,
   argTypes: {
     placeholder: { control: "text" },
     disabled: { control: "boolean" },
-    helperText: { control: "text" },
     allowCreate: { control: "boolean" },
     name: { control: "text" },
     required: { control: "boolean" },
@@ -31,7 +56,8 @@ const meta: Meta<typeof CreatableCombobox> = {
 
 export default meta;
 type Story = StoryObj<typeof CreatableCombobox>;
-// The Playground adds one story-only control on top of the component props:
+// The Playground adds story-only controls on top of the component props
+// (`helperText` is rendered by the story, not by the component):
 // `hierarchical` swaps it to the 5-level drill-down tree (Figma node
 // 72:16583); `enriched` swaps the field to a fixed list of options that carry a
 // subtitle and/or a tag (Figma node 149:11359).
@@ -39,6 +65,7 @@ type PlaygroundStory = StoryObj<
   React.ComponentProps<typeof CreatableCombobox> & {
     enriched?: boolean;
     hierarchical?: boolean;
+    helperText?: string;
   }
 >;
 
@@ -46,7 +73,7 @@ type PlaygroundStory = StoryObj<
  * Internal working view — use the controls to explore props and states.
  * Deliberately has no "Selected: …" readout: an earlier iteration had one
  * here, and it read as the field's helper text changing on selection —
- * exactly the thing `helperText` is supposed to never do. The selected
+ * exactly the thing help text is supposed to never do. The selected
  * value is already visible in the field itself.
  *
  * Try the keyboard here: ArrowDown/ArrowUp move the active (highlighted)
@@ -58,12 +85,13 @@ export const Playground: PlaygroundStory = {
   argTypes: {
     enriched: { control: "boolean" },
     hierarchical: { control: "boolean" },
+    helperText: { control: "text" },
   },
   args: {
     placeholder: "Search or create a tag",
     disabled: false,
-    // Deliberately unrelated to any selection — helperText is an
-    // independent, optional caption. Try changing it in the controls, then
+    // Deliberately unrelated to any selection — the help text is an
+    // independent, optional caption rendered by the story. Try changing it in the controls, then
     // select or create a tag: it stays exactly as you left it.
     helperText: "Existing tags only — new ones need approval.",
     allowCreate: true,
@@ -73,7 +101,7 @@ export const Playground: PlaygroundStory = {
     enriched: false,
     hierarchical: false,
   },
-  render: ({ enriched, hierarchical, ...args }) => {
+  render: ({ enriched, hierarchical, helperText, ...args }) => {
     return (
       <Box
         display="flex"
@@ -82,18 +110,23 @@ export const Playground: PlaygroundStory = {
         width="100%"
         maxWidth="320px"
       >
-        <CreatableCombobox
-          {...args}
-          options={
-            hierarchical
-              ? TREE_OPTIONS
-              : enriched
-              ? ENRICHED_OPTIONS
-              : undefined
-          }
-          selectableBranches={hierarchical}
-          data-testid="playground-combobox"
-        />
+        <WithHelpText text={helperText}>
+          {(describedBy) => (
+            <CreatableCombobox
+              {...args}
+              options={
+                hierarchical
+                  ? TREE_OPTIONS
+                  : enriched
+                  ? ENRICHED_OPTIONS
+                  : undefined
+              }
+              selectableBranches={hierarchical}
+              aria-describedby={describedBy}
+              data-testid="playground-combobox"
+            />
+          )}
+        </WithHelpText>
         <Button
           appearance="neutral"
           onClick={() => {
@@ -176,14 +209,21 @@ export const FullScreen: Story = {
             width="100%"
             maxWidth="360px"
           >
-            <Text fontWeight="bold">Field A (required)</Text>
-            <CreatableCombobox
-              data-testid="field-a"
-              placeholder="Search or create a tag"
-              helperText="Existing tags are shared with Field B."
-              name="tagA"
-              required
-            />
+            <label htmlFor="field-a-input">
+              <Text fontWeight="bold">Field A (required)</Text>
+            </label>
+            <WithHelpText text="Existing tags are shared with Field B.">
+              {(describedBy) => (
+                <CreatableCombobox
+                  data-testid="field-a"
+                  id="field-a-input"
+                  placeholder="Search or create a tag"
+                  name="tagA"
+                  required
+                  aria-describedby={describedBy}
+                />
+              )}
+            </WithHelpText>
           </Box>
 
           <Box
@@ -193,13 +233,22 @@ export const FullScreen: Story = {
             width="100%"
             maxWidth="360px"
           >
-            <Text fontWeight="bold">Field B (shares the same option list)</Text>
-            <CreatableCombobox
-              data-testid="field-b"
-              placeholder="Search or create a tag"
-              helperText="A tag created here appears in Field A too."
-              name="tagB"
-            />
+            <label htmlFor="field-b-input">
+              <Text fontWeight="bold">
+                Field B (shares the same option list)
+              </Text>
+            </label>
+            <WithHelpText text="A tag created here appears in Field A too.">
+              {(describedBy) => (
+                <CreatableCombobox
+                  data-testid="field-b"
+                  id="field-b-input"
+                  placeholder="Search or create a tag"
+                  name="tagB"
+                  aria-describedby={describedBy}
+                />
+              )}
+            </WithHelpText>
           </Box>
 
           <Box
@@ -209,14 +258,21 @@ export const FullScreen: Story = {
             width="100%"
             maxWidth="360px"
           >
-            <Text fontWeight="bold">Field C (existing tags only)</Text>
-            <CreatableCombobox
-              data-testid="field-c"
-              placeholder="Search a tag"
-              helperText="This field can't create new tags — allowCreate is false."
-              allowCreate={false}
-              name="tagC"
-            />
+            <label htmlFor="field-c-input">
+              <Text fontWeight="bold">Field C (existing tags only)</Text>
+            </label>
+            <WithHelpText text="This field can't create new tags — allowCreate is false.">
+              {(describedBy) => (
+                <CreatableCombobox
+                  data-testid="field-c"
+                  id="field-c-input"
+                  placeholder="Search a tag"
+                  allowCreate={false}
+                  name="tagC"
+                  aria-describedby={describedBy}
+                />
+              )}
+            </WithHelpText>
           </Box>
 
           <Box
@@ -226,14 +282,21 @@ export const FullScreen: Story = {
             width="100%"
             maxWidth="360px"
           >
-            <Text fontWeight="bold">Field D (multiselect)</Text>
-            <CreatableCombobox
-              data-testid="field-d"
-              placeholder="Search or create tags"
-              helperText="Pick as many as you like — the list stays open, and Backspace on an empty query drops the last tag."
-              name="tagsD"
-              multiple
-            />
+            <label htmlFor="field-d-input">
+              <Text fontWeight="bold">Field D (multiselect)</Text>
+            </label>
+            <WithHelpText text="Pick as many as you like — the list stays open, and Backspace on an empty query drops the last tag.">
+              {(describedBy) => (
+                <CreatableCombobox
+                  data-testid="field-d"
+                  id="field-d-input"
+                  placeholder="Search or create tags"
+                  name="tagsD"
+                  multiple
+                  aria-describedby={describedBy}
+                />
+              )}
+            </WithHelpText>
           </Box>
 
           <Box
@@ -243,14 +306,21 @@ export const FullScreen: Story = {
             width="100%"
             maxWidth="360px"
           >
-            <Text fontWeight="bold">Field E (enriched options, single)</Text>
-            <CreatableCombobox
-              data-testid="field-e"
-              placeholder="Search a customer"
-              helperText="Title + subtitle + tag per row; the tag also shows in the field once picked. Filtering is by title only."
-              options={ENRICHED_OPTIONS}
-              name="customerE"
-            />
+            <label htmlFor="field-e-input">
+              <Text fontWeight="bold">Field E (enriched options, single)</Text>
+            </label>
+            <WithHelpText text="Title + subtitle + tag per row; the tag also shows in the field once picked. Filtering is by title only.">
+              {(describedBy) => (
+                <CreatableCombobox
+                  data-testid="field-e"
+                  id="field-e-input"
+                  placeholder="Search a customer"
+                  options={ENRICHED_OPTIONS}
+                  name="customerE"
+                  aria-describedby={describedBy}
+                />
+              )}
+            </WithHelpText>
           </Box>
 
           <Box
@@ -260,17 +330,24 @@ export const FullScreen: Story = {
             width="100%"
             maxWidth="360px"
           >
-            <Text fontWeight="bold">
-              Field F (enriched options, multiselect)
-            </Text>
-            <CreatableCombobox
-              data-testid="field-f"
-              placeholder="Search customers"
-              helperText="Same enriched rows; picked options become title-only chips."
-              options={ENRICHED_OPTIONS}
-              name="customersF"
-              multiple
-            />
+            <label htmlFor="field-f-input">
+              <Text fontWeight="bold">
+                Field F (enriched options, multiselect)
+              </Text>
+            </label>
+            <WithHelpText text="Same enriched rows; picked options become title-only chips.">
+              {(describedBy) => (
+                <CreatableCombobox
+                  data-testid="field-f"
+                  id="field-f-input"
+                  placeholder="Search customers"
+                  options={ENRICHED_OPTIONS}
+                  name="customersF"
+                  multiple
+                  aria-describedby={describedBy}
+                />
+              )}
+            </WithHelpText>
           </Box>
 
           <Box
@@ -280,25 +357,32 @@ export const FullScreen: Story = {
             width="100%"
             maxWidth="480px"
           >
-            <Text fontWeight="bold">
-              Field G (hierarchical, up to 5 levels)
-            </Text>
-            <CreatableCombobox
-              data-testid="field-g"
-              placeholder="Buscar categoría"
-              helperText="Esta categoría es solo visible para Google, no para tus clientes."
-              options={TREE_OPTIONS}
-              selectableBranches
-              labels={{
-                back: "Volver",
-                backTo: "Volver a {name}",
-                in: "en",
-                branchHint: "tiene subcategorías",
-                noResults: "Sin resultados",
-                results: "Resultados",
-              }}
-              name="categoryG"
-            />
+            <label htmlFor="field-g-input">
+              <Text fontWeight="bold">
+                Field G (hierarchical, up to 5 levels)
+              </Text>
+            </label>
+            <WithHelpText text="Esta categoría es solo visible para Google, no para tus clientes.">
+              {(describedBy) => (
+                <CreatableCombobox
+                  data-testid="field-g"
+                  id="field-g-input"
+                  placeholder="Buscar categoría"
+                  options={TREE_OPTIONS}
+                  selectableBranches
+                  labels={{
+                    back: "Volver",
+                    backTo: "Volver a {name}",
+                    in: "en",
+                    branchHint: "tiene subcategorías",
+                    noResults: "Sin resultados",
+                    results: "Resultados",
+                  }}
+                  name="categoryG"
+                  aria-describedby={describedBy}
+                />
+              )}
+            </WithHelpText>
           </Box>
 
           <Box
@@ -308,27 +392,34 @@ export const FullScreen: Story = {
             width="100%"
             maxWidth="480px"
           >
-            <Text fontWeight="bold">
-              H — Multi-select hierarchical categories
-            </Text>
-            <CreatableCombobox
-              data-testid="field-h"
-              placeholder="Buscar categorías"
-              helperText="Elegí varias: cada categoría padre se selecciona desde su propia sección."
-              options={TREE_OPTIONS}
-              selectableBranches
-              multiple
-              labels={{
-                back: "Volver",
-                backTo: "Volver a {name}",
-                in: "en",
-                branchHint: "tiene subcategorías",
-                noResults: "Sin resultados",
-                results: "Resultados",
-                clearAll: "Limpiar selección",
-              }}
-              name="categoriesH"
-            />
+            <label htmlFor="field-h-input">
+              <Text fontWeight="bold">
+                H — Multi-select hierarchical categories
+              </Text>
+            </label>
+            <WithHelpText text="Elegí varias: cada categoría padre se selecciona desde su propia sección.">
+              {(describedBy) => (
+                <CreatableCombobox
+                  data-testid="field-h"
+                  id="field-h-input"
+                  placeholder="Buscar categorías"
+                  options={TREE_OPTIONS}
+                  selectableBranches
+                  multiple
+                  labels={{
+                    back: "Volver",
+                    backTo: "Volver a {name}",
+                    in: "en",
+                    branchHint: "tiene subcategorías",
+                    noResults: "Sin resultados",
+                    results: "Resultados",
+                    clearAll: "Limpiar selección",
+                  }}
+                  name="categoriesH"
+                  aria-describedby={describedBy}
+                />
+              )}
+            </WithHelpText>
           </Box>
 
           <Box>

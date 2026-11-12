@@ -226,12 +226,11 @@ export interface CreatableComboboxProps {
   /** Namespaces the mocked shared store — see the "Two independent fields" story. */
   "data-testid"?: string;
   /**
-   * Optional caption shown below the field. Entirely independent of the
-   * current selection — this never auto-fills with it, and is free to hold
-   * any other guidance (e.g. an instruction or an error message). Omit to
-   * show nothing.
+   * Id(s) of the element(s) that describe the field (e.g. the help text a
+   * consumer renders below it, as `FormField` does). Passed to the `<input>`
+   * like on Nimbus's `Input`; the combobox renders no help text itself.
    */
-  helperText?: React.ReactNode;
+  "aria-describedby"?: string;
   /**
    * Whether typing an unmatched query offers a "Create '…'" affordance.
    * @default true
@@ -309,7 +308,7 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
       multiple = false,
       id,
       "data-testid": dataTestId,
-      helperText,
+      "aria-describedby": ariaDescribedby,
       allowCreate = true,
       options: optionsProp,
       selectableBranches = false,
@@ -1792,6 +1791,7 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
                     disabled={disabled}
                     required={required}
                     role="combobox"
+                    aria-describedby={ariaDescribedby}
                     aria-expanded={open}
                     aria-haspopup="listbox"
                     aria-controls={listboxId}
@@ -1945,16 +1945,6 @@ const CreatableCombobox = forwardRef<HTMLDivElement, CreatableComboboxProps>(
           ) : (
             <input type="hidden" name={name} value={selected?.value ?? ""} />
           ))}
-        {/* Independent of `selected` on purpose — see the prop doc above
-            and the pull request: an earlier iteration echoed the current
-            selection here, which the design review flagged since a field's
-            helper text should be free-standing, optional caption content,
-            not a mirror of the value already visible in the input. */}
-        {helperText && (
-          <Text fontSize="caption" color="neutral-textLow">
-            {helperText}
-          </Text>
-        )}
       </Box>
     );
   }
