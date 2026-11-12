@@ -15,6 +15,8 @@ import {
 const linearBorderGradients: Record<string, string> = {
   [gradients.aiGenerativeInteractive]: gradients.aiGenerativeLinearInteractive,
   [gradients.aiGenerativeHover]: gradients.aiGenerativeLinearHover,
+  // There is no linear pressed gradient: a pressed border uses the hover one.
+  [gradients.aiGenerativePressed]: gradients.aiGenerativeLinearHover,
   [gradients.aiGenerativeDisabled]: gradients.aiGenerativeLinearDisabled,
 };
 

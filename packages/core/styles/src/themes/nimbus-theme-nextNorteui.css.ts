@@ -5,7 +5,7 @@ import { vars } from "./contract.css";
 import { globalTheme } from "./globals.css";
 import { aiInteractiveBorder } from "./aiInteractiveBorder";
 import {
-  aiGenerativeGradientsNorteui,
+  createAiGenerativeGradientsNorteui,
   aiGenerativeLinearNorteui,
 } from "./aiGenerativeGradients";
 import { aiGradientNorteui } from "./aiGradientNorteui";
@@ -33,6 +33,15 @@ const mapToneScale = (group: ToneTokenMap) => ({
 const primary = mapToneScale(colors.primary);
 const { aiGenerative } = colors;
 const aiSurfaceHighlight = String(aiGenerative["surface-highlight"].value);
+const aiGenerativeGradients = createAiGenerativeGradientsNorteui({
+  textLow: String(aiGenerative["text-low"].value),
+  primaryInteractive: primary.interactive,
+  overlay: String(colors.neutral["text-high"].value),
+  purpleHigh: aiGradientNorteui.purpleHigh,
+  purpleLight: aiGradientNorteui.purpleLight,
+  pinkHigh: aiGradientNorteui.pinkHigh,
+  pinkLight: aiGradientNorteui.pinkLight,
+});
 
 export const variables = createTheme(vars, {
   ...globalTheme,
@@ -221,7 +230,7 @@ export const variables = createTheme(vars, {
     },
   },
   gradients: {
-    aiGenerative: aiGenerativeGradientsNorteui,
+    aiGenerative: aiGenerativeGradients,
     aiGenerativeLinear: aiGenerativeLinearNorteui,
   },
 });

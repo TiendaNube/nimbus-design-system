@@ -1,6 +1,6 @@
 import { vars } from "./contract.css";
 
-const { aiGradient, aiGenerative, primary, neutral } = vars.colors;
+const { aiGradient, aiGenerative } = vars.colors;
 
 /**
  * AI generative gradients for base, dark, next and next-dark.
@@ -15,70 +15,102 @@ export const aiGenerativeGradientsBase = {
   disabled: `linear-gradient(50deg, ${aiGradient.blueLight} 28.22%, ${aiGradient.purpleLight} 49.27%, ${aiGradient.pinkLight} 83.12%)`,
 };
 
-const fade = (color: string, amount: string) =>
-  `color-mix(in srgb, ${color} ${amount}, transparent)`;
-
-// Option B: the Figma layers with the blue layer painted above the purple one
-// and reaching a bit further (30 % instead of 20 %). Every state keeps this
-// order. The base pink is written as a flat gradient so the value also works
-// in `background-image`.
-const blueLayer = (alpha: string, midAlpha: string) =>
-  `radial-gradient(84.01% 107.55% at 20.17% -22.66%, ${fade(
-    primary.interactive,
-    alpha
-  )} 0%, ${fade(primary.interactive, midAlpha)} 30%, ${fade(
-    primary.interactive,
-    "0%"
-  )} 100%)`;
-const purpleLayer = (alpha: string, midAlpha: string) =>
-  `radial-gradient(172.16% 156.18% at 105% -15.62%, ${fade(
-    aiGenerative.textLow,
-    alpha
-  )} 0%, ${fade(aiGradient.purpleHigh, midAlpha)} 45%, ${fade(
-    aiGradient.purpleHigh,
-    "0%"
-  )} 100%)`;
-const pinkHighLayer = (alpha: string) =>
-  `radial-gradient(136.47% 87.46% at 33.81% 109%, ${fade(
-    aiGradient.pinkHigh,
-    alpha
-  )} 0%, ${fade(aiGradient.pinkHigh, "0%")} 95.37%)`;
-const pinkCenterLayer = `radial-gradient(50% 50% at 50% 50%, ${
-  aiGradient.pinkLight
-} 0%, ${fade(aiGradient.pinkLight, "0%")} 95%)`;
-const flat = (color: string) => `linear-gradient(${color}, ${color})`;
-const overlay = (amount: string) => {
-  const color = fade(neutral.textHigh, amount);
-  return `linear-gradient(0deg, ${color} 0%, ${color} 100%)`;
-};
-const pinkBase = flat(aiGradient.pinkLight);
-const hoverLayers = [
-  blueLayer("100%", "93%"),
-  purpleLayer("100%", "70%"),
-  pinkHighLayer("100%"),
-  pinkBase,
-];
+/**
+ * Colors the Norte UI gradients are built from, as hex values resolved per
+ * theme from `@nimbus-ds/tokens`.
+ */
+export interface AiGenerativeGradientPalette {
+  textLow: string;
+  primaryInteractive: string;
+  overlay: string;
+  purpleHigh: string;
+  purpleLight: string;
+  pinkHigh: string;
+  pinkLight: string;
+}
 
 /**
- * Radial gradients for next-norteui and next-norteui-dark (option B).
- * Hover and pressed darken the hover layers with the neutral overlay (15 % and
- * 30 %), as in Figma. Disabled uses the same layers at about 20 % opacity.
+ * Applies an opacity (0–100 %) to a hex color as `rgba()`. Unlike
+ * `color-mix()`, `rgba()` works in every browser the Admin supports
+ * (Chrome 103, Safari 14.5, Firefox 91 and later).
  */
-export const aiGenerativeGradientsNorteui = {
-  interactive: [
+const fade = (hex: string, amount: string): string => {
+  const match = /^#?([0-9a-f]{6})$/i.exec(hex.trim());
+  if (!match) {
+    throw new Error(`AI gradient colors must be 6-digit hex values: ${hex}`);
+  }
+  const value = parseInt(match[1], 16);
+  const alpha = Math.round((parseFloat(amount) / 100) * 1000) / 1000;
+  return `rgba(${(value >> 16) & 255}, ${(value >> 8) & 255}, ${
+    value & 255
+  }, ${alpha})`;
+};
+
+/**
+ * Radial gradients for next-norteui and next-norteui-dark (option B): the Figma
+ * layers with the blue layer painted above the purple one and reaching 30 %.
+ * Every state keeps this order. Hover and pressed darken the hover layers with
+ * the neutral overlay (15 % and 30 %), as in Figma. Disabled uses the same
+ * layers at about 20 % opacity. The base pink is written as a flat gradient so
+ * the value also works in `background-image`.
+ */
+export const createAiGenerativeGradientsNorteui = (
+  palette: AiGenerativeGradientPalette
+) => {
+  const blueLayer = (alpha: string, midAlpha: string) =>
+    `radial-gradient(84.01% 107.55% at 20.17% -22.66%, ${fade(
+      palette.primaryInteractive,
+      alpha
+    )} 0%, ${fade(palette.primaryInteractive, midAlpha)} 30%, ${fade(
+      palette.primaryInteractive,
+      "0%"
+    )} 100%)`;
+  const purpleLayer = (alpha: string, midAlpha: string) =>
+    `radial-gradient(172.16% 156.18% at 105% -15.62%, ${fade(
+      palette.textLow,
+      alpha
+    )} 0%, ${fade(palette.purpleHigh, midAlpha)} 45%, ${fade(
+      palette.purpleHigh,
+      "0%"
+    )} 100%)`;
+  const pinkHighLayer = (alpha: string) =>
+    `radial-gradient(136.47% 87.46% at 33.81% 109%, ${fade(
+      palette.pinkHigh,
+      alpha
+    )} 0%, ${fade(palette.pinkHigh, "0%")} 95.37%)`;
+  const pinkCenterLayer = `radial-gradient(50% 50% at 50% 50%, ${fade(
+    palette.pinkLight,
+    "100%"
+  )} 0%, ${fade(palette.pinkLight, "0%")} 95%)`;
+  const flat = (color: string) => `linear-gradient(${color}, ${color})`;
+  const overlay = (amount: string) => {
+    const color = fade(palette.overlay, amount);
+    return `linear-gradient(0deg, ${color} 0%, ${color} 100%)`;
+  };
+  const pinkBase = flat(fade(palette.pinkLight, "100%"));
+  const hoverLayers = [
     blueLayer("100%", "93%"),
     purpleLayer("100%", "70%"),
-    pinkCenterLayer,
+    pinkHighLayer("100%"),
     pinkBase,
-  ].join(", "),
-  hover: [overlay("15%"), ...hoverLayers].join(", "),
-  pressed: [overlay("30%"), ...hoverLayers].join(", "),
-  disabled: [
-    blueLayer("20%", "19%"),
-    purpleLayer("20%", "14%"),
-    pinkHighLayer("20%"),
-    flat(fade(aiGradient.purpleLight, "20%")),
-  ].join(", "),
+  ];
+
+  return {
+    interactive: [
+      blueLayer("100%", "93%"),
+      purpleLayer("100%", "70%"),
+      pinkCenterLayer,
+      pinkBase,
+    ].join(", "),
+    hover: [overlay("15%"), ...hoverLayers].join(", "),
+    pressed: [overlay("30%"), ...hoverLayers].join(", "),
+    disabled: [
+      blueLayer("20%", "19%"),
+      purpleLayer("20%", "14%"),
+      pinkHighLayer("20%"),
+      flat(fade(palette.purpleLight, "20%")),
+    ].join(", "),
+  };
 };
 
 /**

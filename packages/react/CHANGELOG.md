@@ -3,6 +3,16 @@
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories
 every day, with simplicity, accessibility, consistency and performance.
 
+## 2026-11-12 `5.66.0`
+
+#### 🎉 New features
+
+- AI gradients: Uses the Norte UI AI gradients in `next-norteui` and `next-norteui-dark` (radial for fills, linear for borders and icons) through `@nimbus-ds/styles` theme values. Other themes are unchanged. ([#622](https://github.com/TiendaNube/nimbus-design-system/pull/622) by [@noecondoleo](https://github.com/noecondoleo))
+
+#### 💡 Others
+
+- Icon: The `ai-generative` color reads its SVG gradient stops from `gradients.aiGenerativeLinearInteractive`. ([#622](https://github.com/TiendaNube/nimbus-design-system/pull/622) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-11-05 `5.65.0`
 
 #### 🎉 New features
