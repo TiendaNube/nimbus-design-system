@@ -73,7 +73,7 @@ export const appearance = styleVariants({
     {
       color: varsThemeBase.colors.neutral.textLow,
       ":hover": {
-        color: varsThemeBase.colors.neutral.textDisabled,
+        color: varsThemeBase.components.link.neutral.hoverColor,
       },
       ":active": {
         color: varsThemeBase.colors.neutral.textHigh,

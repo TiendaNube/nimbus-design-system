@@ -228,6 +228,10 @@ export const variables = createTheme(vars, {
         },
       },
     },
+    link: {
+      // Hover darkens toward textHigh so it no longer reads as disabled.
+      neutral: { hoverColor: vars.colors.neutral.textHigh },
+    },
   },
   gradients: {
     aiGenerative: aiGenerativeGradients,

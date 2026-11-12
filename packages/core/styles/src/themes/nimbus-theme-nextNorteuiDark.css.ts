@@ -100,6 +100,8 @@ const nextNorteuiDarkTheme = {
     tag: globalTheme.components.tag,
     // No Norte UI dark Chip design yet: keep the default Chip look.
     chip: globalTheme.components.chip,
+    // No Norte UI dark Link design yet: keep the default neutral Link hover.
+    link: globalTheme.components.link,
     // No Norte UI dark Badge design yet: keep the default Badge look.
     // Readable ai-generative contrast on dark surfaces; rest of Badge is the default look.
     badge: {

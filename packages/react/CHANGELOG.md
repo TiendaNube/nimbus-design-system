@@ -8,6 +8,7 @@ every day, with simplicity, accessibility, consistency and performance.
 #### 🎉 New features
 
 - AI gradients: Uses the Norte UI AI gradients in `next-norteui` and `next-norteui-dark` (radial for fills, linear for borders and icons) through `@nimbus-ds/styles` theme values. Other themes are unchanged. ([#622](https://github.com/TiendaNube/nimbus-design-system/pull/622) by [@noecondoleo](https://github.com/noecondoleo))
+- Link: Follows the Norte UI Link design in `next-norteui`. The props are unchanged. Visual change for screens rendered with `next-norteui`: the neutral hover goes from `neutral.textDisabled` to `neutral.textHigh`, so it darkens instead of looking disabled. The disabled `Link` keeps `neutral.textDisabled` in every appearance. Not a breaking change under Decision 0081: Norte UI ships as `minor` because the theme is opt-in, and `base`, `dark`, `next` and `next-dark` keep their token and theme values (verified by `yarn check:base-invariance`). `nimbus-link.spec.ts` checks that the neutral hover stays `neutral.textDisabled` in every theme except `next-norteui`. ([#630](https://github.com/TiendaNube/nimbus-design-system/pull/630) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
 
 #### 💡 Others
 
