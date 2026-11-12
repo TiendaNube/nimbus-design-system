@@ -2,6 +2,12 @@
 
 Icons are used to visually communicate core parts of the product and available actions. They can act as wayfinding tools to help merchants more easily understand where they are in the product, and common interaction patterns that are available.
 
+## 2026-11-12 `3.6.1`
+
+#### 💡 Others
+
+- The `ai-generative` color reads its SVG gradient stops from `gradients.aiGenerativeLinearInteractive`, so the icon follows the theme AI gradient colors. Existing themes are unchanged. ([#622](https://github.com/TiendaNube/nimbus-design-system/pull/622) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-11-05 `3.6.0`
 
 #### 🎉 New features
