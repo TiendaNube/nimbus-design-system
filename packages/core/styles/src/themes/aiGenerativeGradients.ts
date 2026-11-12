@@ -35,15 +35,15 @@ export interface AiGenerativeGradientPalette {
  * (Chrome 103, Safari 14.5, Firefox 91 and later).
  */
 const fade = (hex: string, amount: string): string => {
-  const match = /^#?([0-9a-f]{6})$/i.exec(hex.trim());
+  const match = /^#?([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i.exec(hex.trim());
   if (!match) {
     throw new Error(`AI gradient colors must be 6-digit hex values: ${hex}`);
   }
-  const value = parseInt(match[1], 16);
-  const alpha = Math.round((parseFloat(amount) / 100) * 1000) / 1000;
-  return `rgba(${(value >> 16) & 255}, ${(value >> 8) & 255}, ${
-    value & 255
-  }, ${alpha})`;
+  const [red, green, blue] = match
+    .slice(1)
+    .map((channel) => Number.parseInt(channel, 16));
+  const alpha = Math.round((Number.parseFloat(amount) / 100) * 1000) / 1000;
+  return `rgba(${red}, ${green}, ${blue}, ${alpha})`;
 };
 
 /**
