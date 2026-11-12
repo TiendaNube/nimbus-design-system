@@ -1,6 +1,7 @@
 import { type SVGAttributes } from "react";
 
 import { type spinner } from "@nimbus-ds/styles";
+import { type SpinnerExtendedColor } from "./spinner.definitions";
 
 export interface SpinnerProperties {
   /**
@@ -12,7 +13,7 @@ export interface SpinnerProperties {
    * Set the color for the spinner SVG fill.
    * @default primary-interactive
    */
-  color?: keyof typeof spinner.properties.color;
+  color?: keyof typeof spinner.properties.color | SpinnerExtendedColor;
 }
 
 export type SpinnerProps = SpinnerProperties & SVGAttributes<SVGElement>;

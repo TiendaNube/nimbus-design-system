@@ -65,6 +65,34 @@ describe("GIVEN <Spinner />", () => {
         screen.getByTestId("spinner-element").getAttribute("class")
       ).toContain("color_neutral-textLow");
     });
+
+    it("THEN should render the opt-in color warning-textLow from the theme", () => {
+      makeSut({ color: "warning-textLow" });
+      const spinner = screen.getByTestId("spinner-element");
+      expect(spinner.getAttribute("class")).not.toContain("color_");
+      expect(spinner.querySelector("circle")?.getAttribute("style")).toBe(
+        "stroke: var(--nimbus-colors-warning-textLow);"
+      );
+    });
+
+    it("THEN should render the opt-in color ai-generativeTextLow from the theme", () => {
+      makeSut({ color: "ai-generativeTextLow" });
+      const spinner = screen.getByTestId("spinner-element");
+      expect(spinner.getAttribute("class")).not.toContain("color_");
+      expect(spinner.querySelector("circle")?.getAttribute("style")).toBe(
+        "stroke: var(--nimbus-colors-aiGenerative-textLow);"
+      );
+    });
+
+    it("THEN should not set an inline stroke for existing colors", () => {
+      makeSut({ color: "primary-interactive" });
+      expect(
+        screen
+          .getByTestId("spinner-element")
+          .querySelector("circle")
+          ?.getAttribute("style")
+      ).toBeNull();
+    });
   });
 
   describe("THEN should correctly render the submitted size", () => {
