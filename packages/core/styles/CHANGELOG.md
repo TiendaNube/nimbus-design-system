@@ -6,7 +6,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 #### 🎉 New features
 
-- Button: Adds `components.button` theme values (sizes, focus ring, disabled, transparent, danger and ai-secondary colors). `base`, `dark`, `next` and `next-dark` keep the exact Button look; `next-norteui` and `next-norteui-dark` follow the Norte UI design. ([#628](https://github.com/TiendaNube/nimbus-design-system/pull/628) by [@noecondoleo](https://github.com/noecondoleo))
+- Button: Adds the `components.button` theme values (sizes, padding, radius, gap, focus ring, and primary, neutral, transparent, danger and ai-secondary colors). Visual change for screens rendered with `next-norteui` or `next-norteui-dark`: heights go from `1.75rem` / `2rem` / `2.75rem` to `1.5rem` / `1.75rem` / `2rem` (small / medium / large); radius goes from `8px` (`12px` in large) to `6px`; padding goes to `4px 8px` (small) and `4px 12px` (medium and large); the large gap goes from `8px` to `4px`; danger becomes a filled button (`danger.interactive` background, `danger.textHigh` text); the focus ring becomes `2px` `neutral.textLow`; primary and neutral disabled colors change; transparent loses its hover and pressed border; ai-secondary uses AI text and surface colors and a lighter hover glow. Not a breaking change under Decision 0081: Norte UI ships as `minor` because both themes are opt-in, and `base`, `dark`, `next` and `next-dark` keep the exact previous Button (verified by `yarn check:base-invariance`). ([#628](https://github.com/TiendaNube/nimbus-design-system/pull/628) by [@noecondoleo](https://github.com/noecondoleo))
 
 ## 2026-11-05 `9.71.0`
 
