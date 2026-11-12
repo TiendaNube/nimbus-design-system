@@ -6,7 +6,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 #### 🎉 New features
 
-- Link: Adds the `components.link.neutral.hoverColor` theme value for the neutral Link hover. In `base`, `dark`, `next`, `next-dark` and `next-norteui-dark` it references `neutral.textDisabled`, so the hover looks exactly as before. In `next-norteui` it uses `neutral.textHigh`, so the hover darkens instead of looking disabled. The disabled Link keeps `neutral.textDisabled` in every appearance. ([#PR](https://github.com/TiendaNube/nimbus-design-system/pull/PR) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
+- Link: Adds the `components.link.neutral.hoverColor` theme value for the neutral Link hover. In `base`, `dark`, `next`, `next-dark` and `next-norteui-dark` it references `neutral.textDisabled`, so the hover looks exactly as before. In `next-norteui` it uses `neutral.textHigh`, so the hover darkens instead of looking disabled. The disabled Link keeps `neutral.textDisabled` in every appearance. ([#630](https://github.com/TiendaNube/nimbus-design-system/pull/630) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
 
 ## 2026-11-05 `9.71.0`
 
