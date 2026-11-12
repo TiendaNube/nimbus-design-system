@@ -3,6 +3,12 @@
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories
 every day, with simplicity, accessibility, consistency and performance.
 
+## 2026-11-12 `5.66.0`
+
+#### 🎉 New features
+
+- Link: Follows the Norte UI Link design in `next-norteui`. The props are unchanged. Visual change for screens rendered with `next-norteui`: the neutral hover goes from `neutral.textDisabled` to `neutral.textHigh`, so it darkens instead of looking disabled. The disabled `Link` keeps `neutral.textDisabled` in every appearance. Not a breaking change under Decision 0081: Norte UI ships as `minor` because the theme is opt-in, and `base`, `dark`, `next`, `next-dark` and `next-norteui-dark` keep the exact previous Link (verified by `yarn check:base-invariance`). ([#630](https://github.com/TiendaNube/nimbus-design-system/pull/630) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
+
 ## 2026-11-05 `5.65.0`
 
 #### 🎉 New features

@@ -1,6 +1,6 @@
 releases:
   "@nimbus-ds/styles": minor
-  "@nimbus-ds/link": patch
+  "@nimbus-ds/link": minor
   "@nimbus-ds/components": minor
 
 declined:
