@@ -66,6 +66,7 @@ components:
   - { name: "Alert", group: "composite", package: "@nimbus-ds/alert", nested: ["AlertSkeleton"], extras: ["src/alert.definitions.ts"] }
   - { name: "Card", group: "composite", package: "@nimbus-ds/card", nested: ["CardBody", "CardFooter", "CardHeader"] }
   - { name: "Collapsible", group: "composite", package: "@nimbus-ds/collapsible", nested: ["CollapsibleBody", "CollapsibleItem"], contexts: ["CollapsibleContext"], extras: ["src/hooks/"] }
+  - { name: "Combobox", group: "composite", package: "@nimbus-ds/combobox", nested: ["ComboboxList", "ComboboxRow", "ComboboxValuePath"], extras: ["combobox.spec.md", "src/hooks/", "src/utils/"] }
   - { name: "Modal", group: "composite", package: "@nimbus-ds/modal", nested: ["ModalBody", "ModalFooter", "ModalHeader"] }
   - { name: "Pagination", group: "composite", package: "@nimbus-ds/pagination", nested: ["GoToPageInput"], extras: ["pagination.spec.md", "src/hooks/", "src/pagination.definitions.ts"] }
   - { name: "ScrollPane", group: "composite", package: "@nimbus-ds/scroll-pane", nested: ["ScrollPaneArrow", "ScrollPaneItem"], contexts: ["ScrollPaneContext"], extras: ["src/ScrollPane.definitions.ts"] }

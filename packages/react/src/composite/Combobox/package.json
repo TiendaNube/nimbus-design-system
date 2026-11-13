@@ -38,6 +38,8 @@
   },
   "devDependencies": {
     "@nimbus-ds/box": "workspace:^",
+    "@nimbus-ds/button": "workspace:^",
+    "@nimbus-ds/modal": "workspace:^",
     "@nimbus-ds/webpack": "workspace:^"
   }
 }

@@ -12,6 +12,7 @@ const Chip: React.FC<ChipProps> & ChipComponents = ({
   text,
   icon,
   removable,
+  removeLabel = "Dismiss chip",
   aiGenerated,
   onClick,
   ...rest
@@ -38,7 +39,7 @@ const Chip: React.FC<ChipProps> & ChipComponents = ({
     </Text>
     {removable && (
       <button
-        aria-label="Dismiss chip"
+        aria-label={removeLabel}
         data-testid="dismiss-chip-button"
         type="button"
         onClick={onClick}
