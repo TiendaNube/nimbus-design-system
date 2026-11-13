@@ -211,6 +211,11 @@ export const vars = createGlobalThemeContract(
           focus: { borderColor: "", boxShadow: "" },
         },
       },
+      popover: {
+        borderRadius: "",
+        filter: "",
+        padding: { base: "" },
+      },
       badge: {
         surface: {
           neutral: { background: "", color: "" },

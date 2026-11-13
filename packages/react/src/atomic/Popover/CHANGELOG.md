@@ -2,6 +2,12 @@
 
 Use Popovers to bring attention to specific user interface elements and suggest an action or to guide users through a new experience
 
+## 2026-11-13 `4.5.0`
+
+#### 🎉 New features
+
+- Reads its radius, shadow and `base` padding from the `components.popover` theme values of `@nimbus-ds/styles`. In `next-norteui` and `next-norteui-dark` the radius is 8px, the shadow is level 3 (the arrow keeps its shadow) and the `base` padding (the default) is 12px. `small` and `none` padding, the API and the look in the other themes are unchanged. ([#637](https://github.com/TiendaNube/nimbus-design-system/pull/637) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-03-02 `4.4.1`
 
 #### 🐛 Bug fixes
