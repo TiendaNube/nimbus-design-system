@@ -2986,7 +2986,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nimbus-ds/chip@workspace:packages/react/src/atomic/Chip":
+"@nimbus-ds/chip@workspace:^, @nimbus-ds/chip@workspace:packages/react/src/atomic/Chip":
   version: 0.0.0-use.local
   resolution: "@nimbus-ds/chip@workspace:packages/react/src/atomic/Chip"
   dependencies:
@@ -3008,6 +3008,26 @@ __metadata:
   dependencies:
     "@nimbus-ds/webpack": "workspace:^"
     "@vanilla-extract/dynamic": ^2.0.3
+  peerDependencies:
+    react: ^16.8 || ^17.0 || ^18.0 || ^19.0
+    react-dom: ^16.8 || ^17.0 || ^18.0 || ^19.0
+  languageName: unknown
+  linkType: soft
+
+"@nimbus-ds/combobox@workspace:packages/react/src/composite/Combobox":
+  version: 0.0.0-use.local
+  resolution: "@nimbus-ds/combobox@workspace:packages/react/src/composite/Combobox"
+  dependencies:
+    "@floating-ui/react": ^0.27.5
+    "@nimbus-ds/box": "workspace:^"
+    "@nimbus-ds/chip": "workspace:^"
+    "@nimbus-ds/icon": "workspace:^"
+    "@nimbus-ds/icons": "workspace:^"
+    "@nimbus-ds/popover": "workspace:^"
+    "@nimbus-ds/styles": "workspace:^"
+    "@nimbus-ds/tag": "workspace:^"
+    "@nimbus-ds/text": "workspace:^"
+    "@nimbus-ds/webpack": "workspace:^"
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0 || ^19.0
     react-dom: ^16.8 || ^17.0 || ^18.0 || ^19.0
