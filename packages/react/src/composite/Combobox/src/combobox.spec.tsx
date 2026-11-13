@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, within } from "@testing-library/react";
+import { act, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { input as inputStyles } from "@nimbus-ds/styles";
 
@@ -812,6 +812,21 @@ describe("GIVEN <Combobox />", () => {
       expect(screen.getByText("Sin resultados")).toBeInTheDocument();
     });
 
+    it("names the list by labels.listbox, Options by default", async () => {
+      const user = userEvent.setup();
+      const { unmount } = makeSut();
+      await user.click(getInput());
+      expect(
+        screen.getByRole("listbox", { name: "Options" })
+      ).toBeInTheDocument();
+      unmount();
+      makeSut({ labels: { listbox: "Opciones" } });
+      await user.click(getInput());
+      expect(
+        screen.getByRole("listbox", { name: "Opciones" })
+      ).toBeInTheDocument();
+    });
+
     it("translates the required message", () => {
       makeSut({ required: true, labels: { required: "Elegí un valor" } });
       expect((getInput() as HTMLInputElement).validationMessage).toBe(
@@ -1127,6 +1142,18 @@ describe("GIVEN <Combobox />", () => {
       // The typed text is the search text: nothing is called "Cámaraz".
       expect(screen.getByText("No results")).toBeInTheDocument();
     });
+
+    it("does not select the text of the input when it is focused", async () => {
+      const user = userEvent.setup();
+      const select = jest.spyOn(HTMLInputElement.prototype, "select");
+      makeSut({ defaultValue: CAMERA });
+      await user.click(getInput());
+      await user.keyboard("{Escape}");
+      await user.click(document.body);
+      await user.click(getInput());
+      expect(select).not.toHaveBeenCalled();
+      select.mockRestore();
+    });
   });
 
   describe("AC-037 Tab sequence and leaving the field", () => {
@@ -1214,5 +1241,121 @@ describe("GIVEN <Combobox />", () => {
         expect(getListbox()).not.toBeInTheDocument();
       }
     );
+  });
+
+  describe("AC-039 Focusable named list region", () => {
+    it("makes the scrolling listbox focusable and named while the focus stays in the input", async () => {
+      const user = userEvent.setup();
+      makeSut();
+      await user.click(getInput());
+      const listbox = screen.getByRole("listbox", { name: "Options" });
+      expect(listbox).toHaveAttribute("tabindex", "0");
+      expect(getInput()).toHaveFocus();
+      await user.keyboard("{ArrowDown}");
+      expect(getInput()).toHaveAttribute(
+        "aria-activedescendant",
+        getOption("Cámara").id
+      );
+      expect(getInput()).toHaveAttribute("aria-controls", listbox.id);
+    });
+
+    it("sends the focus back to the input when it is placed on the list", async () => {
+      const user = userEvent.setup();
+      makeSut();
+      await user.click(getInput());
+      expect(screen.getByRole("listbox")).toHaveAttribute("tabindex", "0");
+      act(() => screen.getByRole("listbox").focus());
+      expect(getInput()).toHaveFocus();
+      expect(getListbox()).toBeInTheDocument();
+    });
+  });
+
+  describe("AC-040 No hidden region in the Tab order", () => {
+    it("leaves no focusable list region once the list is closed", async () => {
+      const user = userEvent.setup();
+      makeSut();
+      await user.click(getInput());
+      expect(
+        document.querySelectorAll('[role="listbox"][tabindex="0"]')
+      ).toHaveLength(1);
+      await user.keyboard("{Escape}");
+      expect(getListbox()).not.toBeInTheDocument();
+      expect(document.querySelectorAll('[role="listbox"]')).toHaveLength(0);
+      expect(
+        document.querySelectorAll('[tabindex="0"][role="listbox"]')
+      ).toHaveLength(0);
+    });
+
+    it("lets Tab leave the field without trapping the focus", async () => {
+      const user = userEvent.setup();
+      render(
+        <>
+          <Combobox aria-label="Field" options={OPTIONS} />
+          <button type="button">After</button>
+        </>
+      );
+      await user.click(getInput());
+      expect(getListbox()).toBeInTheDocument();
+      await user.tab();
+      expect(screen.getByRole("button", { name: "After" })).toHaveFocus();
+      expect(getListbox()).not.toBeInTheDocument();
+      await user.tab({ shift: true });
+      expect(getInput()).toHaveFocus();
+    });
+  });
+
+  describe("AC-041 Active row visible", () => {
+    it("scrolls the active row into view as the arrow keys move it", async () => {
+      const user = userEvent.setup();
+      const scrollIntoView = jest.fn();
+      Element.prototype.scrollIntoView = scrollIntoView;
+      makeSut();
+      await user.click(getInput());
+      await user.keyboard("{ArrowDown}{ArrowDown}");
+      expect(scrollIntoView).toHaveBeenLastCalledWith({ block: "nearest" });
+      expect(
+        scrollIntoView.mock.instances[scrollIntoView.mock.instances.length - 1]
+      ).toBe(getOption("Bolsa"));
+      await user.keyboard("{End}");
+      expect(
+        scrollIntoView.mock.instances[scrollIntoView.mock.instances.length - 1]
+      ).toBe(getOption("Zapato"));
+      delete (Element.prototype as { scrollIntoView?: unknown }).scrollIntoView;
+    });
+  });
+
+  describe("AC-042 Choosing a selected row again in multiple mode", () => {
+    it("removes it and reports the remaining set, also in a hierarchy", async () => {
+      const user = userEvent.setup();
+      const onChange = jest.fn();
+      makeSut({ multiple: true, options: TREE, onChange });
+      await user.click(getInput());
+      await user.click(getOption(/^Electronics/));
+      await user.click(getOption("Phones"));
+      expect(onChange).toHaveBeenLastCalledWith([PHONES]);
+      expect(getOption("Phones")).toHaveAttribute("aria-selected", "true");
+      await user.click(getOption("Phones"));
+      expect(onChange).toHaveBeenLastCalledWith([]);
+      expect(getOption("Phones")).toHaveAttribute("aria-selected", "false");
+    });
+  });
+
+  describe("AC-043 Single reopens at the level of the value", () => {
+    it("opens the level that holds the selected option, and the root list without a value", async () => {
+      const user = userEvent.setup();
+      makeSut({ options: TREE });
+      await user.click(getInput());
+      expect(getOption(/^Fashion/)).toBeInTheDocument();
+      await user.type(getInput(), "accessories");
+      await user.click(getOption("Accessories, Fashion > Clothing"));
+      await user.click(getInput());
+      expect(
+        screen.getByRole("group", { name: "Clothing" })
+      ).toBeInTheDocument();
+      expect(getOption("Accessories")).toHaveAttribute("aria-selected", "true");
+      expect(
+        screen.getByRole("button", { name: "Back to Fashion" })
+      ).toBeInTheDocument();
+    });
   });
 });

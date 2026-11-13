@@ -191,25 +191,46 @@ globalStyle(`${field} ${chip_close_icon_container}:focus-visible`, {
  * Style - List
  * -----------------------------------------------------------------------------------------------*/
 
-export const list = style([
-  thinScrollbarAlways,
-  {
-    boxSizing: "border-box",
-    width: "100%",
-    maxHeight: LIST_MAX_HEIGHT,
-    overflowY: "auto",
-    padding: varsThemeBase.spacing[2],
-    display: "flex",
-    flexDirection: "column",
-    gap: varsThemeBase.spacing[1],
-    alignItems: "stretch",
-    alignSelf: "stretch"
-  }
-]);
+/**
+ * The list: it holds the back control, the level title and the scrolling
+ * region, and it is as tall as the maximum height allows.
+ */
+export const list = style({
+  boxSizing: "border-box",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "stretch",
+  alignSelf: "stretch",
+  gap: varsThemeBase.spacing[1],
+  width: "100%",
+  maxHeight: LIST_MAX_HEIGHT,
+  padding: varsThemeBase.spacing[2]
+});
 
 export const listHierarchical = style({
   maxHeight: LIST_MAX_HEIGHT_HIERARCHICAL
 });
+
+/**
+ * The scrolling region: it reaches the edges of the list so its scrollbar sits
+ * at the edge, and keeps the list padding inside so no row is covered.
+ */
+export const scroller = style([
+  thinScrollbarAlways,
+  {
+    display: "flex",
+    flexDirection: "column",
+    flex: "1 1 auto",
+    minHeight: 0,
+    margin: `0 calc(${varsThemeBase.spacing[2]} * -1)`,
+    padding: `0 ${varsThemeBase.spacing[2]}`,
+    overflowY: "auto",
+    outline: "none",
+    ":focus-visible": {
+      boxShadow: `inset ${varsThemeBase.utils.focus}`
+    }
+  }
+]);
 
 export const group = style({
   display: "flex",

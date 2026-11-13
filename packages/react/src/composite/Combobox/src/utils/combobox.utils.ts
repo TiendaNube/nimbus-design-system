@@ -18,6 +18,7 @@ export const DEFAULT_LABELS: ComboboxLabels = {
   clearAll: "Clear all",
   removeChip: "Remove {name}",
   noResults: "No results",
+  listbox: "Options",
   results: "Results",
   create: 'Create "{text}"',
   required: "Select a value"

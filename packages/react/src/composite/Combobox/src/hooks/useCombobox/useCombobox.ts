@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import type { KeyboardEvent } from "react";
+import type { FocusEvent, KeyboardEvent } from "react";
 
 import type { ComboboxOption } from "../../combobox.types";
 import {
@@ -331,7 +331,10 @@ export const useCombobox = (params: UseComboboxParams): UseComboboxResult => {
     if (!skipOpenOnFocus.current) openList();
   };
 
-  const handleBlur = (): void => {
+  const handleBlur = (event: FocusEvent<HTMLInputElement>): void => {
+    // Focus moving to the list (by assistive technology) keeps it open: the
+    // list sends the focus back to the input.
+    if (listRef.current?.contains(event.relatedTarget as Node | null)) return;
     closeList();
   };
 

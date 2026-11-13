@@ -55,6 +55,8 @@ export interface ComboboxLabels {
   removeChip: string;
   /** Message shown when no option matches. @default "No results" */
   noResults: string;
+  /** Accessible name of the scrolling list of options. @default "Options" */
+  listbox: string;
   /** Name of the group of results, announced with their number. @default "Results" */
   results: string;
   /** Create row, `{text}` is the typed text. @default "Create \"{text}\"" */

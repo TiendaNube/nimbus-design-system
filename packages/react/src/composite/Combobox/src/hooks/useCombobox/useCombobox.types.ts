@@ -1,4 +1,4 @@
-import type { KeyboardEvent, RefObject } from "react";
+import type { FocusEvent, KeyboardEvent, RefObject } from "react";
 import type { ComboboxLabels, ComboboxOption } from "../../combobox.types";
 import type { ComboboxEntry } from "../../utils";
 
@@ -87,7 +87,7 @@ export interface UseComboboxResult {
   openList: () => void;
   focusInput: () => void;
   handleFocus: () => void;
-  handleBlur: () => void;
+  handleBlur: (event: FocusEvent<HTMLInputElement>) => void;
   handleChange: (value: string) => void;
   handleKeyDown: (event: KeyboardEvent<HTMLInputElement>) => void;
 }
