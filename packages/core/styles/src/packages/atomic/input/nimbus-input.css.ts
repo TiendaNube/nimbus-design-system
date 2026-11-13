@@ -2,9 +2,13 @@ import { style as vanillaStyle, styleVariants } from "@vanilla-extract/css";
 import { varsThemeBase } from "../../../themes";
 import { gradients, createBorderGradient } from "../../../gradients";
 
+const inputTheme = varsThemeBase.components.input;
+const { background } = varsThemeBase.colors.neutral;
+const aiHoverOverlay = inputTheme.aiGenerative.hover.overlay;
+
 export const input = vanillaStyle({
-  padding: varsThemeBase.spacing[2],
-  height: "2rem",
+  padding: inputTheme.padding,
+  height: inputTheme.height,
   width: "100%",
   boxSizing: "border-box",
   fontWeight: varsThemeBase.fontWeight.regular,
@@ -31,7 +35,7 @@ export const container = vanillaStyle({
   position: "relative",
   width: "100%",
   borderWidth: varsThemeBase.shape.border.width[1],
-  borderRadius: varsThemeBase.shape.border.radius[2],
+  borderRadius: inputTheme.borderRadius,
   borderStyle: "solid",
   borderColor: varsThemeBase.colors.neutral.interactive,
   overflow: "hidden",
@@ -43,7 +47,7 @@ export const container = vanillaStyle({
   selectors: {
     "&:has(input:disabled)": {
       backgroundColor: varsThemeBase.colors.neutral.surfaceDisabled,
-      borderColor: varsThemeBase.colors.neutral.surfaceHighlight,
+      borderColor: inputTheme.disabled.borderColor,
     },
   },
 });
@@ -95,48 +99,63 @@ export const container__button = vanillaStyle({
   },
 });
 
+// `:hover` goes before `:focus-within` so a focused field keeps its focus
+// border while hovered. The disabled rule in `container` is more specific and
+// wins over both.
 export const appearance = styleVariants({
   neutral: [
     container,
     {
-      background: varsThemeBase.colors.neutral.background,
-      borderColor: varsThemeBase.colors.neutral.interactive,
+      background: inputTheme.neutral.background,
+      borderColor: inputTheme.neutral.borderColor,
+      ":hover": {
+        borderColor: inputTheme.neutral.hover.borderColor,
+      },
       ":focus-within": {
-        borderColor: varsThemeBase.colors.primary.interactiveHover,
-        boxShadow: varsThemeBase.utils.focus,
+        borderColor: inputTheme.neutral.focus.borderColor,
+        boxShadow: inputTheme.neutral.focus.boxShadow,
       },
     },
   ],
   success: [
     container,
     {
-      background: varsThemeBase.colors.success.surface,
-      borderColor: varsThemeBase.colors.success.interactive,
+      background: inputTheme.success.background,
+      borderColor: inputTheme.success.borderColor,
+      ":hover": {
+        borderColor: inputTheme.success.hover.borderColor,
+      },
       ":focus-within": {
-        borderColor: varsThemeBase.colors.success.interactiveHover,
-        boxShadow: varsThemeBase.utils.focus,
+        borderColor: inputTheme.success.focus.borderColor,
+        boxShadow: inputTheme.success.focus.boxShadow,
       },
     },
   ],
   warning: [
     container,
     {
-      background: varsThemeBase.colors.warning.surface,
-      borderColor: varsThemeBase.colors.warning.interactive,
+      background: inputTheme.warning.background,
+      borderColor: inputTheme.warning.borderColor,
+      ":hover": {
+        borderColor: inputTheme.warning.hover.borderColor,
+      },
       ":focus-within": {
-        borderColor: varsThemeBase.colors.warning.interactiveHover,
-        boxShadow: varsThemeBase.utils.focus,
+        borderColor: inputTheme.warning.focus.borderColor,
+        boxShadow: inputTheme.warning.focus.boxShadow,
       },
     },
   ],
   danger: [
     container,
     {
-      background: varsThemeBase.colors.danger.surface,
-      borderColor: varsThemeBase.colors.danger.interactive,
+      background: inputTheme.danger.background,
+      borderColor: inputTheme.danger.borderColor,
+      ":hover": {
+        borderColor: inputTheme.danger.hover.borderColor,
+      },
       ":focus-within": {
-        borderColor: varsThemeBase.colors.danger.interactiveHover,
-        boxShadow: varsThemeBase.utils.focus,
+        borderColor: inputTheme.danger.focus.borderColor,
+        boxShadow: inputTheme.danger.focus.boxShadow,
       },
     },
   ],
@@ -148,8 +167,16 @@ export const appearance = styleVariants({
         varsThemeBase.colors.neutral.background
       ),
       borderColor: "transparent",
+      ":hover": {
+        // Paints the theme overlay between the fill and the border gradient.
+        // The overlay is transparent outside Norte UI, so the border is unchanged.
+        background: [
+          background,
+          `linear-gradient(${background}, ${background}) padding-box, linear-gradient(${aiHoverOverlay}, ${aiHoverOverlay}) border-box, ${gradients.aiGenerativeLinearInteractive} border-box`,
+        ],
+      },
       ":focus-within": {
-        boxShadow: varsThemeBase.utils.focus,
+        boxShadow: inputTheme.aiGenerative.focus.boxShadow,
       },
     },
   ],
@@ -157,5 +184,5 @@ export const appearance = styleVariants({
 
 export const aiGenerated = vanillaStyle([
   appearance["ai-generative"],
-  { boxShadow: varsThemeBase.utils.aiFocus },
+  { boxShadow: inputTheme.aiGenerated.boxShadow },
 ]);

@@ -8,6 +8,7 @@ every day, with simplicity, accessibility, consistency and performance.
 #### 🎉 New features
 
 - AI gradients: Uses the Norte UI AI gradients in `next-norteui` and `next-norteui-dark` (radial for fills, linear for borders and icons) through `@nimbus-ds/styles` theme values. Other themes are unchanged. ([#622](https://github.com/TiendaNube/nimbus-design-system/pull/622) by [@noecondoleo](https://github.com/noecondoleo))
+- Input: In `next-norteui` the Input is 28px tall with a 6px radius, with a white background in every appearance, semantic borders in `interactivePressed` at rest and `textLow` on hover and focus for stronger contrast and a 2px `neutral.interactive` focus ring, through `@nimbus-ds/styles` theme values. `Input.Skeleton` follows the same size. Other themes are unchanged. ([#PR](https://github.com/TiendaNube/nimbus-design-system/pull/PR) by [@noecondoleo](https://github.com/noecondoleo))
 
 #### 💡 Others
 

@@ -296,6 +296,57 @@ export const globalTheme = {
         },
       },
     },
+    input: {
+      // References the theme's own values so base, dark, next and next-dark
+      // keep the exact Input look they had: hover keeps the rest border and the
+      // AI hover overlay is transparent. Norte UI overrides them.
+      height: "2rem",
+      padding: vars.spacing[2],
+      borderRadius: vars.shape.border.radius[2],
+      neutral: {
+        background: vars.colors.neutral.background,
+        borderColor: vars.colors.neutral.interactive,
+        hover: { borderColor: vars.colors.neutral.interactive },
+        focus: {
+          borderColor: vars.colors.primary.interactiveHover,
+          boxShadow: vars.utils.focus,
+        },
+      },
+      success: {
+        background: vars.colors.success.surface,
+        borderColor: vars.colors.success.interactive,
+        hover: { borderColor: vars.colors.success.interactive },
+        focus: {
+          borderColor: vars.colors.success.interactiveHover,
+          boxShadow: vars.utils.focus,
+        },
+      },
+      warning: {
+        background: vars.colors.warning.surface,
+        borderColor: vars.colors.warning.interactive,
+        hover: { borderColor: vars.colors.warning.interactive },
+        focus: {
+          borderColor: vars.colors.warning.interactiveHover,
+          boxShadow: vars.utils.focus,
+        },
+      },
+      danger: {
+        background: vars.colors.danger.surface,
+        borderColor: vars.colors.danger.interactive,
+        hover: { borderColor: vars.colors.danger.interactive },
+        focus: {
+          borderColor: vars.colors.danger.interactiveHover,
+          boxShadow: vars.utils.focus,
+        },
+      },
+      aiGenerative: {
+        hover: { overlay: "transparent" },
+        focus: { boxShadow: vars.utils.focus },
+      },
+      aiGenerated: { boxShadow: vars.utils.aiFocus },
+      disabled: { borderColor: vars.colors.neutral.surfaceHighlight },
+      skeleton: { height: "2rem", borderRadius: "0.5rem" },
+    },
     badge: {
       // References the theme's own tone colors so base, dark, next and next-dark
       // keep the exact Badge look they had. Norte UI overrides them.

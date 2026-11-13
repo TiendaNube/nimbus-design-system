@@ -43,6 +43,10 @@ const aiGenerativeGradients = createAiGenerativeGradientsNorteui({
   pinkLight: aiGradientNorteui.pinkLight,
 });
 
+// Figma focus/focus-state: a 2px neutral.textLow ring.
+// Figma focus/focus-state: 2px spread of neutral/interactive.
+const inputFocusRing = `0 0 0 ${vars.shape.border.width[2]} ${vars.colors.neutral.interactive}`;
+
 export const variables = createTheme(vars, {
   ...globalTheme,
   fontWeight: {
@@ -90,6 +94,68 @@ export const variables = createTheme(vars, {
     },
     divider: {
       color: vars.colors.neutral.interactive,
+    },
+    input: {
+      // 28px in total: a 26px field inside the 1px border.
+      height: "1.625rem",
+      padding: `${vars.spacing[1]} ${vars.spacing[2]}`,
+      borderRadius: vars.shape.border.radius.base,
+      neutral: {
+        background: vars.colors.neutral.background,
+        // One step darker than the base for stronger contrast.
+        borderColor: vars.colors.neutral.interactiveHover,
+        hover: { borderColor: vars.colors.neutral.interactivePressed },
+        focus: {
+          borderColor: vars.colors.neutral.interactivePressed,
+          boxShadow: inputFocusRing,
+        },
+      },
+      success: {
+        background: vars.colors.neutral.background,
+        // Rest uses interactive-pressed; hover and focus use text-low for stronger contrast.
+        borderColor: vars.colors.success.interactivePressed,
+        hover: { borderColor: vars.colors.success.textLow },
+        focus: {
+          borderColor: vars.colors.success.textLow,
+          boxShadow: inputFocusRing,
+        },
+      },
+      warning: {
+        background: vars.colors.neutral.background,
+        // Rest uses interactive-pressed; hover and focus use text-low for stronger contrast.
+        borderColor: vars.colors.warning.interactivePressed,
+        hover: { borderColor: vars.colors.warning.textLow },
+        focus: {
+          borderColor: vars.colors.warning.textLow,
+          boxShadow: inputFocusRing,
+        },
+      },
+      danger: {
+        background: vars.colors.neutral.background,
+        // Rest uses interactive-pressed; hover and focus use text-low for stronger contrast.
+        borderColor: vars.colors.danger.interactivePressed,
+        hover: { borderColor: vars.colors.danger.textLow },
+        focus: {
+          borderColor: vars.colors.danger.textLow,
+          boxShadow: inputFocusRing,
+        },
+      },
+      aiGenerative: {
+        // Figma darkens the border gradient with the overlay/interactive-hover
+        // (15%) layer of neutral.textHigh, like Chip.
+        hover: {
+          overlay: `color-mix(in srgb, ${vars.colors.neutral.textHigh} 15%, transparent)`,
+        },
+        focus: { boxShadow: inputFocusRing },
+      },
+      aiGenerated: {
+        boxShadow: `0 0 0 ${vars.shape.border.width[2]} ${vars.colors.aiGenerative.surfaceHighlight}`,
+      },
+      disabled: { borderColor: vars.colors.neutral.interactive },
+      skeleton: {
+        height: "1.75rem",
+        borderRadius: vars.shape.border.radius.base,
+      },
     },
     tag: {
       neutral: {
