@@ -4,7 +4,12 @@ import tokens from "@nimbus-ds/tokens/dist/js/tokens";
 import { vars } from "./contract.css";
 import { buttonNorteui } from "./buttonNorteui";
 import { globalTheme } from "./globals.css";
+import {
+  createAiGenerativeGradientsNorteui,
+  aiGenerativeLinearNorteui,
+} from "./aiGenerativeGradients";
 import { withToneSurfaceDisabled } from "./toneSurfaceDisabled";
+import { aiGradientNorteui } from "./aiGradientNorteui";
 
 interface TokenLeaf {
   value: unknown;
@@ -29,6 +34,17 @@ const colorDict = tokens.color as Record<string, Record<string, ToneTokenMap>>;
 const nextNorteuiColors = colorDict["next-dark"];
 const darkColors = colorDict.dark;
 const surfaceDisabled = String(darkColors.neutral["surface-disabled"].value);
+// Same colors the theme assigns to `vars`: the base AI text color, the
+// `next-dark` primary and the dark neutral text as the overlay.
+const aiGenerativeGradients = createAiGenerativeGradientsNorteui({
+  textLow: globalTheme.colors.aiGenerative.textLow,
+  primaryInteractive: String(nextNorteuiColors.primary.interactive.value),
+  overlay: String(darkColors.neutral["text-high"].value),
+  purpleHigh: aiGradientNorteui.purpleHigh,
+  purpleLight: aiGradientNorteui.purpleLight,
+  pinkHigh: aiGradientNorteui.pinkHigh,
+  pinkLight: aiGradientNorteui.pinkLight,
+});
 const darkShadows = tokens.shadow.dark.level;
 const readShadow = (level: "0" | "1" | "2" | "3" | "4" | "5"): string =>
   String(darkShadows[level].value);
@@ -58,6 +74,7 @@ const nextNorteuiDarkTheme = {
       surfaceDisabled: String(darkColors.neutral["surface-disabled"].value),
       textDisabled: String(darkColors.neutral["text-disabled"].value),
     },
+    aiGradient: aiGradientNorteui,
   }),
   utils: {
     focus: `0 0 0 3px ${String(
@@ -106,6 +123,10 @@ const nextNorteuiDarkTheme = {
         },
       },
     },
+  },
+  gradients: {
+    aiGenerative: aiGenerativeGradients,
+    aiGenerativeLinear: aiGenerativeLinearNorteui,
   },
 };
 

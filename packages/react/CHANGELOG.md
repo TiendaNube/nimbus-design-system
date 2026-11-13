@@ -3,11 +3,16 @@
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories
 every day, with simplicity, accessibility, consistency and performance.
 
-## 2026-11-11 `5.66.0`
+## 2026-11-12 `5.66.0`
 
 #### 🎉 New features
 
+- AI gradients: Uses the Norte UI AI gradients in `next-norteui` and `next-norteui-dark` (radial for fills, linear for borders and icons) through `@nimbus-ds/styles` theme values. Other themes are unchanged. ([#622](https://github.com/TiendaNube/nimbus-design-system/pull/622) by [@noecondoleo](https://github.com/noecondoleo))
 - Button: Follows the Norte UI Button design in `next-norteui` and `next-norteui-dark`. The props are unchanged. Visual change for screens rendered with `next-norteui` or `next-norteui-dark`: heights go from `1.75rem` / `2rem` / `2.75rem` to `1.5rem` / `1.75rem` / `2rem` (small / medium / large); radius goes from `8px` (`12px` in large) to `6px`; padding goes to `4px 8px` (small) and `4px 12px` (medium and large); the large gap goes from `8px` to `4px`; danger becomes a filled button (`danger.interactive` background, `danger.textHigh` text); the focus ring becomes `2px` `neutral.textLow`; primary and neutral disabled colors change; transparent loses its hover and pressed border; ai-secondary uses AI text and surface colors and a lighter hover glow. `Button.Skeleton` follows the medium Button in the same themes: height `2rem` → `1.75rem`, radius `0.5rem` → `6px`. Not a breaking change under Decision 0081: Norte UI ships as `minor` because both themes are opt-in, and `base`, `dark`, `next` and `next-dark` keep the exact previous Button (verified by `yarn check:base-invariance`). ([#628](https://github.com/TiendaNube/nimbus-design-system/pull/628) by [@noecondoleo](https://github.com/noecondoleo))
+
+#### 💡 Others
+
+- Icon: The `ai-generative` color reads its SVG gradient stops from `gradients.aiGenerativeLinearInteractive`. ([#622](https://github.com/TiendaNube/nimbus-design-system/pull/622) by [@noecondoleo](https://github.com/noecondoleo))
 
 ## 2026-11-05 `5.65.0`
 
