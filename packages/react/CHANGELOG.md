@@ -8,6 +8,8 @@ every day, with simplicity, accessibility, consistency and performance.
 #### 🎉 New features
 
 - AI gradients: Uses the Norte UI AI gradients in `next-norteui` and `next-norteui-dark` (radial for fills, linear for borders and icons) through `@nimbus-ds/styles` theme values. Other themes are unchanged. ([#622](https://github.com/TiendaNube/nimbus-design-system/pull/622) by [@noecondoleo](https://github.com/noecondoleo))
+- Combobox: Adds the new `Combobox` composite component to choose one or several values by typing, with instant creation, enriched options and hierarchies of up to six levels. ([#636](https://github.com/TiendaNube/nimbus-design-system/pull/636) by [@claude](https://github.com/apps/claude))
+- Chip: Adds the optional `removeLabel` prop to name the remove button; its default is unchanged. ([#636](https://github.com/TiendaNube/nimbus-design-system/pull/636) by [@claude](https://github.com/apps/claude))
 
 #### 💡 Others
 

@@ -180,6 +180,10 @@
       "import": "./dist/Collapsible/index.js",
       "require": "./dist/Collapsible/index.js"
     },
+    "./Combobox": {
+      "import": "./dist/Combobox/index.js",
+      "require": "./dist/Combobox/index.js"
+    },
     "./Modal": {
       "import": "./dist/Modal/index.js",
       "require": "./dist/Modal/index.js"

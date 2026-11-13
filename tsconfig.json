@@ -108,7 +108,8 @@
       ],
       "@nimbus-ds/time-picker": [
         "./packages/react/src/composite/TimePicker/src"
-      ]
+      ],
+      "@nimbus-ds/combobox": ["./packages/react/src/composite/Combobox/src"]
     }
   }
 }

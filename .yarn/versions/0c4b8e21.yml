@@ -1,0 +1,11 @@
+releases:
+  "@nimbus-ds/combobox": major
+  "@nimbus-ds/chip": minor
+  "@nimbus-ds/styles": minor
+  "@nimbus-ds/components": minor
+
+declined:
+  - "@nimbus-ds/split-button"
+  - "@nimbus-ds/stepper"
+  - "@nimbus-ds/time-picker"
+  - nimbus-design-system
