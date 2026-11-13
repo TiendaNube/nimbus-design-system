@@ -92,6 +92,12 @@ const nextNorteuiDarkTheme = {
     },
   },
   components: {
+    popover: {
+      borderRadius: vars.shape.border.radius[2],
+      // Shadow level 3 written as drop-shadow so the arrow gets it too.
+      filter: `drop-shadow(0px 3px 6px ${vars.colors.neutral.surfaceHighlight}) drop-shadow(0px 0px 1px ${vars.colors.neutral.interactiveHover})`,
+      padding: { base: vars.spacing[3] },
+    },
     thumbnail: globalTheme.components.thumbnail,
     divider: {
       color: vars.colors.neutral.interactive,

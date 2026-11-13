@@ -296,6 +296,14 @@ export const globalTheme = {
         },
       },
     },
+    popover: {
+      // Same radius and base padding the Popover had before they were
+      // theme-driven, so base, dark, next and next-dark keep their look.
+      // Norte UI overrides them.
+      borderRadius: vars.shape.border.radius[3],
+      filter: "drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.2))",
+      padding: { base: vars.spacing[4] },
+    },
     badge: {
       // References the theme's own tone colors so base, dark, next and next-dark
       // keep the exact Badge look they had. Norte UI overrides them.
