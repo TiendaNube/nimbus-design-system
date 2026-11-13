@@ -8,7 +8,7 @@ every day, with simplicity, accessibility, consistency and performance.
 #### 🎉 New features
 
 - AI gradients: Uses the Norte UI AI gradients in `next-norteui` and `next-norteui-dark` (radial for fills, linear for borders and icons) through `@nimbus-ds/styles` theme values. Other themes are unchanged. ([#622](https://github.com/TiendaNube/nimbus-design-system/pull/622) by [@noecondoleo](https://github.com/noecondoleo))
-- Popover: In `next-norteui` and `next-norteui-dark` the Popover has an 8px radius, the level 3 shadow and a 12px `base` padding (the default), through the `components.popover` theme values of `@nimbus-ds/styles`. Other themes are unchanged. ([#PR](https://github.com/TiendaNube/nimbus-design-system/pull/PR) by [@noecondoleo](https://github.com/noecondoleo))
+- Popover: In `next-norteui` and `next-norteui-dark` the Popover has an 8px radius, the level 3 shadow and a 12px `base` padding (the default), through the `components.popover` theme values of `@nimbus-ds/styles`. Other themes are unchanged. ([#637](https://github.com/TiendaNube/nimbus-design-system/pull/637) by [@noecondoleo](https://github.com/noecondoleo))
 
 #### 💡 Others
 
