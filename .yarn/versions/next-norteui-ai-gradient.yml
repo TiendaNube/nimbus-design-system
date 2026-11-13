@@ -3,13 +3,13 @@ releases:
   "@nimbus-ds/styles": minor
   "@nimbus-ds/icon": patch
   "@nimbus-ds/components": minor
+  "@nimbus-ds/button": minor
 
 declined:
   - nimbus-design-system
   - "@nimbus-ds/scripts"
   - "@nimbus-ds/accordion"
   - "@nimbus-ds/alert"
-  - "@nimbus-ds/button"
   - "@nimbus-ds/checkbox"
   - "@nimbus-ds/chip"
   - "@nimbus-ds/file-uploader"
@@ -27,3 +27,6 @@ declined:
   - "@nimbus-ds/thumbnail"
   - "@nimbus-ds/time-picker"
   - "@nimbus-ds/toast"
+  - "@nimbus-ds/card"
+  - "@nimbus-ds/pagination"
+  - "@nimbus-ds/sidebar"
