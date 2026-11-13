@@ -2,6 +2,12 @@
 
 The Chip component is used to flag criteria or attributes related to searches or filters of a list of information.
 
+## 2026-11-13 `2.7.0`
+
+#### 🎉 New features
+
+- Chip: Adds the optional `removeLabel` prop to name the remove button. It defaults to `Dismiss chip`, so existing chips are unchanged. ([#636](https://github.com/TiendaNube/nimbus-design-system/pull/636) by [@claude](https://github.com/apps/claude))
+
 ## 2026-11-06 `2.6.2`
 
 #### 💡 Others
