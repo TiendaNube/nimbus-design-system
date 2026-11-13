@@ -570,40 +570,40 @@ This is a new component; there is no previous contract to migrate.
 
 | Acceptance Criterion | Behavior or contract section | Verification scenario | Storybook or preview reference | Automated test reference |
 |---|---|---|---|---|
-| AC-001 | B-001 | Open with pointer focus, Tab into the input, click, typing, ArrowDown; focus returned by a component action does not open; close with Escape, outside press and focus leaving; disabled never opens. | — | — |
-| AC-002 | B-002 | Type "camara" with "Cámara" present; text only in subtitle or tag does not match; custom `filter` alone decides. | — | — |
-| AC-003 | B-003 | Pick an option; check input, `onChange`, reopen state, re-pick. | — | — |
-| AC-004 | B-004 | With `clearable` not `false`: activate the clear button; check `onChange(null)`, value and text cleared, list closed, focus in input. | — | — |
-| AC-005 | B-005 | Pick three options; chips order, open list, flat list shrinks. | — | — |
-| AC-006 | B-005 | Remove via button and via Backspace on empty input. | — | — |
-| AC-007 | B-006 | Clear all with 2+ chips; with 1 chip the chevron shows. | — | — |
-| AC-008 | B-007 | Unmatched text offers Create; equal text, empty text and sub-root level do not. | — | — |
-| AC-009 | B-008 | `onCreate` returns an option: selected at once, no loading or error state; equal `value` selects the existing option. | — | — |
-| AC-011 | B-009 | Render enriched options; measure rows, dividers, tag in field, no check. | — | — |
-| AC-012 | B-010 | Click and arrow past a disabled option. | — | — |
-| AC-013 | B-011 | Selected plain, selected branch, unselected rows; text position stable. | — | — |
-| AC-014 | B-012 | Branch via click, Enter, ArrowRight; back via control, ArrowLeft, Backspace; labels. | — | — |
-| AC-015 | B-013 | Seven-level tree; level 7 absent, level 6 without chevron. | — | — |
-| AC-016 | B-014 | Level title selects parent; absent from parent's level; `false` plain title. | — | — |
-| AC-017 | B-015 | Search across tree; ancestor paths with chevrons; branch vs leaf result; clear text. | — | — |
-| AC-018 | B-016 | Same-name options under different branches: field shows full path with chevrons; long path truncated at start; description text. | — | — |
-| AC-019 | B-017 | `FormData` of single and multiple forms. | — | — |
-| AC-020 | B-018 | Validity with 0/1 values × text/no text. | — | — |
-| AC-021 | B-019 | Duplicate `value` warning. | — | — |
-| AC-022 | B-020 | Controlled vs uncontrolled with `defaultValue`. | — | — |
-| AC-023 | B-021 | Inspect `aria-describedby` with and without path. | — | — |
-| AC-024 | B-022 | Measure field (34px with 1 chip row, 62px with 2), rows, padding, gaps, icon offset. | — | — |
-| AC-025 | B-022, B-023 | Long list: maximum height, scrollbar, nothing covered. | — | — |
-| AC-026 | B-024 | Default and overridden labels. | — | — |
-| AC-027 | B-025 | `danger` appearance; disabled interactions and tab order. | — | — |
-| AC-028 | B-026 | No match without creation. | — | — |
-| AC-029 | §11 | Read the accessibility tree in each state. | — | — |
-| AC-030 | §7 Keyboard | Press every key of the table in open and closed states; none moves focus out of the input. | — | — |
-| AC-031 | §7 Focus | Choose, change level, remove chip by pointer, press Escape; focus and active row. | — | — |
-| AC-032 | §9 | 320, 375, 414px: no horizontal scroll. | — | — |
-| AC-033 | §10 | Two instances used in turn. | — | — |
-| AC-034 | B-027 | `clearable={false}` with initial value: chevron, search without change, restore on leaving, choose another. | — | — |
-| AC-035 | B-016 | Two chips with the same label under different branches; unique label chip. | — | — |
-| AC-036 | B-028 | Select a single value, type a character; check `onChange(null)` once, preserved text, open filtered list, focus. | — | — |
-| AC-037 | §7 Focus, §11 Focus, B-001 | Tab and Shift+Tab through chips, input, clear buttons; Enter/Space on a button; list closes when focus leaves the input. | — | — |
-| AC-038 | B-001, B-004, B-006 | Tab to the clear button (single) and to clear-all (2+ chips), press Enter and Space; check empty value and text, closed list, focus in input, list not reopened. | — | — |
+| AC-001 | B-001 | Open with pointer focus, Tab into the input, click, typing, ArrowDown; focus returned by a component action does not open; close with Escape, outside press and focus leaving; disabled never opens. | `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › Single | `packages/react/src/composite/Combobox/src/combobox.spec.tsx` › "Opening and closing" |
+| AC-002 | B-002 | Type "camara" with "Cámara" present; text only in subtitle or tag does not match; custom `filter` alone decides. | `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › Single | `packages/react/src/composite/Combobox/src/combobox.spec.tsx` › "Filtering" |
+| AC-003 | B-003 | Pick an option; check input, `onChange`, reopen state, re-pick. | `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › Single | `packages/react/src/composite/Combobox/src/combobox.spec.tsx` › "Single selection" |
+| AC-004 | B-004 | With `clearable` not `false`: activate the clear button; check `onChange(null)`, value and text cleared, list closed, focus in input. | `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › Single | `packages/react/src/composite/Combobox/src/combobox.spec.tsx` › "Clearing a single value" |
+| AC-005 | B-005 | Pick three options; chips order, open list, flat list shrinks. | `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › Multiple | `packages/react/src/composite/Combobox/src/combobox.spec.tsx` › "Multiple selection" |
+| AC-006 | B-005 | Remove via button and via Backspace on empty input. | `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › Multiple | `packages/react/src/composite/Combobox/src/combobox.spec.tsx` › "Chip removal" |
+| AC-007 | B-006 | Clear all with 2+ chips; with 1 chip the chevron shows. | `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › Multiple | `packages/react/src/composite/Combobox/src/combobox.spec.tsx` › "Clear all" |
+| AC-008 | B-007 | Unmatched text offers Create; equal text, empty text and sub-root level do not. | `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › Creatable; `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › CreatableMultiple | `packages/react/src/composite/Combobox/src/combobox.spec.tsx` › "Create row" |
+| AC-009 | B-008 | `onCreate` returns an option: selected at once, no loading or error state; equal `value` selects the existing option. | `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › Creatable | `packages/react/src/composite/Combobox/src/combobox.spec.tsx` › "Instant creation" |
+| AC-011 | B-009 | Render enriched options; measure rows, dividers, tag in field, no check. | `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › EnrichedOptions | `packages/react/src/composite/Combobox/src/combobox.spec.tsx` › "Enriched options" |
+| AC-012 | B-010 | Click and arrow past a disabled option. | `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › EnrichedOptions | `packages/react/src/composite/Combobox/src/combobox.spec.tsx` › "Disabled option" |
+| AC-013 | B-011 | Selected plain, selected branch, unselected rows; text position stable. | `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › Single; `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › Hierarchical | `packages/react/src/composite/Combobox/src/combobox.spec.tsx` › "Selected indication" |
+| AC-014 | B-012 | Branch via click, Enter, ArrowRight; back via control, ArrowLeft, Backspace; labels. | `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › Hierarchical | `packages/react/src/composite/Combobox/src/combobox.spec.tsx` › "Hierarchy navigation" |
+| AC-015 | B-013 | Seven-level tree; level 7 absent, level 6 without chevron. | `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › SixLevels | `packages/react/src/composite/Combobox/src/combobox.spec.tsx` › "Level limit" |
+| AC-016 | B-014 | Level title selects parent; absent from parent's level; `false` plain title. | `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › Hierarchical; `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › HierarchicalParentsNotSelectable | `packages/react/src/composite/Combobox/src/combobox.spec.tsx` › "Choosing a parent" |
+| AC-017 | B-015 | Search across tree; ancestor paths with chevrons; branch vs leaf result; clear text. | `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › Hierarchical | `packages/react/src/composite/Combobox/src/combobox.spec.tsx` › "Hierarchical search" |
+| AC-018 | B-016 | Same-name options under different branches: field shows full path with chevrons; long path truncated at start; description text. | `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › HierarchicalWithValue; `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › LongPathValue | `packages/react/src/composite/Combobox/src/combobox.spec.tsx` › "Hierarchical value display" |
+| AC-019 | B-017 | `FormData` of single and multiple forms. | `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › InForm | `packages/react/src/composite/Combobox/src/combobox.spec.tsx` › "Form value" |
+| AC-020 | B-018 | Validity with 0/1 values × text/no text. | `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › InForm | `packages/react/src/composite/Combobox/src/combobox.spec.tsx` › "Required" |
+| AC-021 | B-019 | Duplicate `value` warning. | — | `packages/react/src/composite/Combobox/src/combobox.spec.tsx` › "Unique values" |
+| AC-022 | B-020 | Controlled vs uncontrolled with `defaultValue`. | `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › Single | `packages/react/src/composite/Combobox/src/combobox.spec.tsx` › "Controlled value" |
+| AC-023 | B-021 | Inspect `aria-describedby` with and without path. | `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › WithLabelAndHelpText; `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › HierarchicalWithValue | `packages/react/src/composite/Combobox/src/combobox.spec.tsx` › "Help text link" |
+| AC-024 | B-022 | Measure field (34px with 1 chip row, 62px with 2), rows, padding, gaps, icon offset. | `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › Single; `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › MultipleWithManyChips; `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › EnrichedOptions | — |
+| AC-025 | B-022, B-023 | Long list: maximum height, scrollbar, nothing covered. | `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › Single; `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › Hierarchical | — |
+| AC-026 | B-024 | Default and overridden labels. | `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › TranslatedLabels | `packages/react/src/composite/Combobox/src/combobox.spec.tsx` › "Labels" |
+| AC-027 | B-025 | `danger` appearance; disabled interactions and tab order. | `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › Appearances; `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › Disabled | `packages/react/src/composite/Combobox/src/combobox.spec.tsx` › "Appearance and disabled field" |
+| AC-028 | B-026 | No match without creation. | `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › Single | `packages/react/src/composite/Combobox/src/combobox.spec.tsx` › "No results" |
+| AC-029 | §11 | Read the accessibility tree in each state. | `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › Hierarchical; `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › EnrichedOptions | `packages/react/src/composite/Combobox/src/combobox.spec.tsx` › "Semantics and names" |
+| AC-030 | §7 Keyboard | Press every key of the table in open and closed states; none moves focus out of the input. | `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › Single | `packages/react/src/composite/Combobox/src/combobox.spec.tsx` › "Keyboard map" |
+| AC-031 | §7 Focus | Choose, change level, remove chip by pointer, press Escape; focus and active row. | `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › Single; `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › InsideModal | `packages/react/src/composite/Combobox/src/combobox.spec.tsx` › "Focus" |
+| AC-032 | §9 | 320, 375, 414px: no horizontal scroll. | `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › Hierarchical | — |
+| AC-033 | §10 | Two instances used in turn. | — | `packages/react/src/composite/Combobox/src/combobox.spec.tsx` › "Multiple instances" |
+| AC-034 | B-027 | `clearable={false}` with initial value: chevron, search without change, restore on leaving, choose another. | `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › NotClearable; `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › EnrichedNotClearable | `packages/react/src/composite/Combobox/src/combobox.spec.tsx` › "Non-clearable single value" |
+| AC-035 | B-016 | Two chips with the same label under different branches; unique label chip. | `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › HierarchicalMultiple | `packages/react/src/composite/Combobox/src/combobox.spec.tsx` › "Chips with the same label" |
+| AC-036 | B-028 | Select a single value, type a character; check `onChange(null)` once, preserved text, open filtered list, focus. | `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › Single | `packages/react/src/composite/Combobox/src/combobox.spec.tsx` › "Typing over a selected value" |
+| AC-037 | §7 Focus, §11 Focus, B-001 | Tab and Shift+Tab through chips, input, clear buttons; Enter/Space on a button; list closes when focus leaves the input. | `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › Multiple | `packages/react/src/composite/Combobox/src/combobox.spec.tsx` › "Tab sequence and leaving the field" |
+| AC-038 | B-001, B-004, B-006 | Tab to the clear button (single) and to clear-all (2+ chips), press Enter and Space; check empty value and text, closed list, focus in input, list not reopened. | `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › Single; `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › Multiple | `packages/react/src/composite/Combobox/src/combobox.spec.tsx` › "Keyboard clear leaves the list closed" |
