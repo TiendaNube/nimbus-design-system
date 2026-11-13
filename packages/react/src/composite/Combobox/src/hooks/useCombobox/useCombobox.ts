@@ -8,11 +8,16 @@ import {
   defaultFilter,
   fillLabel,
   getLevelOptions,
+  getLevelPathOf,
+  getNextActiveIndex,
+  getNextMultipleSelection,
   hasEqualLabel,
   hasHierarchy,
   isBranch,
   searchTree
 } from "../../utils";
+import { resolveKey } from "./useCombobox.keyboard";
+import type { ComboboxKeyAction } from "./useCombobox.keyboard";
 import type {
   ComboboxRowModel,
   UseComboboxParams,
@@ -38,10 +43,13 @@ const buildRows = (params: {
   const rows: ComboboxRowModel[] = [];
   const trimmed = query.trim();
 
-  if (params.canCreate && trimmed !== "" && !hierarchical) {
-    if (!hasEqualLabel(params.options, trimmed)) {
-      rows.push({ kind: "create", key: "create", text: trimmed });
-    }
+  const offersCreate =
+    params.canCreate &&
+    trimmed !== "" &&
+    !hierarchical &&
+    !hasEqualLabel(params.options, trimmed);
+  if (offersCreate) {
+    rows.push({ kind: "create", key: "create", text: trimmed });
   }
 
   const toOptionRow = (
@@ -92,6 +100,37 @@ const buildRows = (params: {
     rows.push(toOptionRow(option, levelAncestors, false))
   );
   return rows;
+};
+
+/**
+ * Back control text, name of the group of rows and whether the list shows
+ * search results, for the current level.
+ */
+const getLevelPresentation = (params: {
+  hierarchical: boolean;
+  searching: boolean;
+  levelPath: string[];
+  index: ReturnType<typeof buildIndex>["index"];
+  labels: UseComboboxParams["labels"];
+}): { isSearching: boolean; backLabel: string | null; groupLabel: string } => {
+  const { hierarchical, levelPath, index, labels } = params;
+  const isSearching = hierarchical && params.searching;
+  const levelName = (position: number): string =>
+    index.get(levelPath[position] ?? "")?.option.label ?? "";
+  const browsing = hierarchical && !isSearching;
+  let backLabel: string | null = null;
+  if (browsing && levelPath.length === 1) {
+    backLabel = labels.back;
+  } else if (browsing && levelPath.length > 1) {
+    backLabel = fillLabel(labels.backTo, {
+      name: levelName(levelPath.length - 2)
+    });
+  }
+  const groupLabel =
+    browsing && levelPath.length > 0
+      ? levelName(levelPath.length - 1)
+      : labels.results;
+  return { isSearching, backLabel, groupLabel };
 };
 
 /**
@@ -204,11 +243,8 @@ export const useCombobox = (params: UseComboboxParams): UseComboboxResult => {
    * Open and close
    * --------------------------------------------------------------------------------------------*/
 
-  const initialLevel = (): string[] => {
-    const selected = single ? selection[0] : undefined;
-    const entry = selected ? index.get(selected.value) : undefined;
-    return entry ? entry.ancestors.map((ancestor) => ancestor.value) : [];
-  };
+  const initialLevel = (): string[] =>
+    getLevelPathOf(single ? selection[0] : undefined, index);
 
   const openList = (): void => {
     if (disabled || open) return;
@@ -272,12 +308,8 @@ export const useCombobox = (params: UseComboboxParams): UseComboboxResult => {
       closeList();
       return;
     }
-    const isSelected = selection.some((item) => item.value === option.value);
-    if (!isSelected) {
-      commit([...selection, option]);
-    } else if (canToggle) {
-      commit(selection.filter((item) => item.value !== option.value));
-    }
+    const next = getNextMultipleSelection(selection, option, canToggle);
+    if (next !== selection) commit(next);
     setQuery(null);
     setActiveKey(null);
   };
@@ -364,111 +396,40 @@ export const useCombobox = (params: UseComboboxParams): UseComboboxResult => {
    * Keyboard
    * --------------------------------------------------------------------------------------------*/
 
-  const consume = (event: KeyboardEvent<HTMLInputElement>): void => {
-    event.preventDefault();
-  };
-
   const moveActive = (target: "next" | "previous" | "first" | "last"): void => {
     if (navigable.length === 0) return;
-    const last = navigable.length - 1;
-    const nextIndex = {
-      next: Math.min(activeIndex + 1, last),
-      previous: activeIndex < 0 ? last : Math.max(activeIndex - 1, 0),
-      first: 0,
-      last
-    }[target];
+    const nextIndex = getNextActiveIndex(target, activeIndex, navigable.length);
     setActiveKey(navigable[nextIndex].key);
   };
 
-  const handleVertical = (
-    event: KeyboardEvent<HTMLInputElement>,
-    target: "next" | "previous"
-  ): void => {
-    consume(event);
-    if (!open) {
-      openList();
-      return;
-    }
-    moveActive(target);
-  };
-
-  const handleEscape = (event: KeyboardEvent<HTMLInputElement>): void => {
-    if (!open) return;
-    consume(event);
-    event.stopPropagation();
-    closeList();
-  };
-
-  const handleArrowRight = (event: KeyboardEvent<HTMLInputElement>): void => {
-    if (!open || !hierarchical || activeRow?.kind !== "option") return;
-    if (!activeRow.branch) return;
-    const input = event.currentTarget;
-    const atEnd = input.selectionStart === input.value.length;
-    if (inputText !== "" && !atEnd) return;
-    consume(event);
-    enterLevel(
-      [...activeRow.ancestors, activeRow.option].map((item) => item.value)
-    );
-  };
-
-  const handleBack = (event: KeyboardEvent<HTMLInputElement>): void => {
-    if (!open || !hierarchical || inputText !== "" || levelPath.length === 0) {
-      return;
-    }
-    consume(event);
-    goBack();
-  };
-
-  const handleBackspace = (event: KeyboardEvent<HTMLInputElement>): void => {
-    if (inputText !== "") return;
-    if (open && hierarchical && levelPath.length > 0) {
-      handleBack(event);
-      return;
-    }
-    if (multiple && selection.length > 0) {
-      consume(event);
-      removeValue(selection[selection.length - 1]);
-    }
-  };
-
-  const handleEnter = (event: KeyboardEvent<HTMLInputElement>): void => {
-    if (!open || !activeRow) return;
-    consume(event);
-    activateRow(activeRow);
-  };
-
-  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>): void => {
-    if (disabled || event.nativeEvent.isComposing) return;
-    switch (event.key) {
-      case "ArrowDown":
-        handleVertical(event, "next");
+  const runKeyAction = (action: ComboboxKeyAction): void => {
+    switch (action.type) {
+      case "open":
+        openList();
         break;
-      case "ArrowUp":
-        handleVertical(event, "previous");
+      case "move":
+        moveActive(action.target);
         break;
-      case "Home":
-      case "End":
-        if (open) {
-          consume(event);
-          moveActive(event.key === "Home" ? "first" : "last");
+      case "activate":
+        if (activeRow) activateRow(activeRow);
+        break;
+      case "close":
+        closeList();
+        break;
+      case "enterBranch":
+        if (activeRow?.kind === "option") {
+          enterLevel(
+            [...activeRow.ancestors, activeRow.option].map((item) => item.value)
+          );
         }
         break;
-      case "Enter":
-        handleEnter(event);
+      case "back":
+        goBack();
         break;
-      case "Escape":
-        handleEscape(event);
+      case "removeLast":
+        removeValue(selection[selection.length - 1]);
         break;
-      case "ArrowRight":
-        handleArrowRight(event);
-        break;
-      case "ArrowLeft":
-        handleBack(event);
-        break;
-      case "Backspace":
-        handleBackspace(event);
-        break;
-      case "Tab":
+      case "tab":
         // Tab is not handled: the flag only tells where the focus is going.
         tabPressedInInput.current = true;
         break;
@@ -477,25 +438,37 @@ export const useCombobox = (params: UseComboboxParams): UseComboboxResult => {
     }
   };
 
+  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>): void => {
+    if (disabled || event.nativeEvent.isComposing) return;
+    const input = event.currentTarget;
+    const result = resolveKey(event.key, {
+      open,
+      hierarchical,
+      textEmpty: inputText === "",
+      depth: levelPath.length,
+      hasActiveRow: Boolean(activeRow),
+      activeRowIsBranch: activeRow?.kind === "option" && activeRow.branch,
+      caretAtEnd: input.selectionStart === input.value.length,
+      multiple,
+      selectionCount: selection.length
+    });
+    if (!result) return;
+    if (result.consume) event.preventDefault();
+    if (result.stop) event.stopPropagation();
+    runKeyAction(result.action);
+  };
+
   /* ----------------------------------------------------------------------------------------------
    * Derived presentation
    * --------------------------------------------------------------------------------------------*/
 
-  const isSearching = hierarchical && searchText !== "";
-  const levelName = (position: number): string =>
-    index.get(levelPath[position] ?? "")?.option.label ?? "";
-  let backLabel: string | null = null;
-  if (hierarchical && !isSearching && levelPath.length === 1) {
-    backLabel = labels.back;
-  } else if (hierarchical && !isSearching && levelPath.length > 1) {
-    backLabel = fillLabel(labels.backTo, {
-      name: levelName(levelPath.length - 2)
-    });
-  }
-  const groupLabel =
-    hierarchical && !isSearching && levelPath.length > 0
-      ? levelName(levelPath.length - 1)
-      : labels.results;
+  const { isSearching, backLabel, groupLabel } = getLevelPresentation({
+    hierarchical,
+    searching: searchText !== "",
+    levelPath,
+    index,
+    labels
+  });
 
   return {
     fieldRef,

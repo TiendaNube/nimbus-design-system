@@ -7,21 +7,24 @@ import React, {
 } from "react";
 import { useMergeRefs } from "@floating-ui/react";
 import { combobox, input as inputStyles } from "@nimbus-ds/styles";
-import { Chip } from "@nimbus-ds/chip";
-import { Icon } from "@nimbus-ds/icon";
 import { Popover } from "@nimbus-ds/popover";
 import { Tag } from "@nimbus-ds/tag";
-import { ChevronDownIcon, CloseIcon } from "@nimbus-ds/icons";
 
 import type { ComboboxLabels, ComboboxProps } from "./combobox.types";
-import { ComboboxList, ComboboxValuePath } from "./components";
+import {
+  ComboboxChips,
+  ComboboxHiddenInputs,
+  ComboboxList,
+  ComboboxTextInput,
+  ComboboxTrailing
+} from "./components";
 import { useCombobox } from "./hooks";
 import {
-  CHIP_PATH_SEPARATOR,
   DEFAULT_LABELS,
   PATH_TEXT_SEPARATOR,
-  fillLabel,
   getPath,
+  getTrailingControl,
+  joinClassNames,
   joinPath,
   toSelection
 } from "./utils";
@@ -129,16 +132,12 @@ const Combobox = forwardRef<HTMLInputElement, ComboboxProps>((props, ref) => {
       .filter(Boolean)
       .join(" ") || undefined;
 
-  const labelCount = selection.reduce<Record<string, number>>(
-    (counts, option) => ({
-      ...counts,
-      [option.label]: (counts[option.label] ?? 0) + 1
-    }),
-    {}
-  );
-
-  const showClear = single && hasValue && clearable && !disabled;
-  const showClearAll = multiple && selection.length >= 2 && !disabled;
+  const trailingControl = getTrailingControl({
+    multiple,
+    selectionCount: selection.length,
+    clearable,
+    disabled
+  });
 
   const handleFieldClick = (event: React.MouseEvent<HTMLDivElement>): void => {
     if (disabled || (event.target as HTMLElement).closest("button")) return;
@@ -153,58 +152,29 @@ const Combobox = forwardRef<HTMLInputElement, ComboboxProps>((props, ref) => {
     if (event.target !== inputRef.current) event.preventDefault();
   };
 
-  const fieldClassName = [
+  const fieldClassName = joinClassNames(
     inputStyles.classnames.appearance[appearance],
     combobox.classnames.field,
-    multiple ? combobox.classnames.fieldMultiple : null,
-    disabled ? combobox.classnames.fieldDisabled : null
-  ]
-    .filter(Boolean)
-    .join(" ");
+    multiple && combobox.classnames.fieldMultiple,
+    disabled && combobox.classnames.fieldDisabled
+  );
 
   const textInput = (
-    <span
-      className={[
-        combobox.classnames.inputBox,
-        multiple ? combobox.classnames.inputBoxMultiple : null
-      ]
-        .filter(Boolean)
-        .join(" ")}
-    >
-      {showValuePath && <ComboboxValuePath path={selectedPath} />}
-      <input
-        ref={setInputRef}
-        id={inputId}
-        data-testid={dataTestId}
-        className={[
-          combobox.classnames.input,
-          multiple ? combobox.classnames.inputMultiple : null,
-          showValuePath ? combobox.classnames.inputPathHidden : null
-        ]
-          .filter(Boolean)
-          .join(" ")}
-        type="text"
-        role="combobox"
-        autoComplete="off"
-        value={model.inputText}
-        placeholder={multiple && hasValue ? undefined : placeholder}
-        disabled={disabled}
-        aria-label={ariaLabel}
-        aria-labelledby={ariaLabelledBy}
-        aria-describedby={describedBy}
-        aria-required={required || undefined}
-        aria-expanded={open}
-        aria-haspopup="listbox"
-        aria-controls={open ? listboxId : undefined}
-        aria-autocomplete="list"
-        aria-activedescendant={open ? model.activeRowId : undefined}
-        onFocus={model.handleFocus}
-        onBlur={model.handleBlur}
-        onClick={model.openList}
-        onChange={(event) => model.handleChange(event.target.value)}
-        onKeyDown={model.handleKeyDown}
-      />
-    </span>
+    <ComboboxTextInput
+      model={model}
+      inputRef={setInputRef}
+      id={inputId}
+      listboxId={listboxId}
+      multiple={multiple}
+      placeholder={multiple && hasValue ? undefined : placeholder}
+      disabled={disabled}
+      required={required}
+      valuePath={showValuePath ? selectedPath : undefined}
+      aria-label={ariaLabel}
+      aria-labelledby={ariaLabelledBy}
+      aria-describedby={describedBy}
+      data-testid={dataTestId}
+    />
   );
 
   return (
@@ -237,34 +207,16 @@ const Combobox = forwardRef<HTMLInputElement, ComboboxProps>((props, ref) => {
           onMouseDown={handleFieldMouseDown}
         >
           <div className={combobox.classnames.content}>
-            {multiple &&
-              selection.map((option, position) => {
-                const path = getPath(option, index);
-                const descriptionId = `${baseId}-chip-${position}`;
-                const text =
-                  labelCount[option.label] > 1
-                    ? joinPath(path, CHIP_PATH_SEPARATOR)
-                    : option.label;
-                return (
-                  <React.Fragment key={option.value}>
-                    <Chip
-                      text={text}
-                      removable={!disabled}
-                      removeLabel={fillLabel(labels.removeChip, {
-                        name: option.label
-                      })}
-                      aria-describedby={descriptionId}
-                      onClick={(event) => {
-                        event.stopPropagation();
-                        model.removeValue(option);
-                      }}
-                    />
-                    <span id={descriptionId} hidden>
-                      {joinPath(path, PATH_TEXT_SEPARATOR)}
-                    </span>
-                  </React.Fragment>
-                );
-              })}
+            {multiple && (
+              <ComboboxChips
+                selection={selection}
+                index={index}
+                baseId={baseId}
+                disabled={disabled}
+                labels={labels}
+                onRemove={model.removeValue}
+              />
+            )}
             {textInput}
           </div>
           {single && selected?.tag && (
@@ -274,26 +226,15 @@ const Combobox = forwardRef<HTMLInputElement, ComboboxProps>((props, ref) => {
               </Tag>
             </span>
           )}
-          {showClear || showClearAll ? (
-            <button
-              type="button"
-              className={[
-                combobox.classnames.trailing,
-                combobox.classnames.trailingButton
-              ].join(" ")}
-              aria-label={showClear ? labels.clearSelection : labels.clearAll}
-              onClick={(event) => {
-                event.stopPropagation();
-                model.clearSelection();
-              }}
-            >
-              <Icon source={<CloseIcon />} color="neutral-textLow" />
-            </button>
-          ) : (
-            <span className={combobox.classnames.trailing} aria-hidden="true">
-              <Icon source={<ChevronDownIcon />} color="neutral-textLow" />
-            </span>
-          )}
+          <ComboboxTrailing
+            control={trailingControl}
+            label={
+              trailingControl === "clear"
+                ? labels.clearSelection
+                : labels.clearAll
+            }
+            onClear={model.clearSelection}
+          />
         </div>
       </Popover>
       {hasValuePath && (
@@ -301,18 +242,11 @@ const Combobox = forwardRef<HTMLInputElement, ComboboxProps>((props, ref) => {
           {joinPath(selectedPath, PATH_TEXT_SEPARATOR)}
         </span>
       )}
-      {name &&
-        selection.map((option) => (
-          <input
-            key={option.value}
-            type="hidden"
-            name={name}
-            value={option.value}
-          />
-        ))}
-      {name && single && !hasValue && (
-        <input type="hidden" name={name} value="" />
-      )}
+      <ComboboxHiddenInputs
+        name={name}
+        selection={selection}
+        multiple={multiple}
+      />
     </div>
   );
 });

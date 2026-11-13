@@ -1270,7 +1270,7 @@ describe("GIVEN <Combobox />", () => {
     });
   });
 
-  describe("AC-040 No hidden region in the Tab order", () => {
+  describe("AC-040 Tab leaves the field", () => {
     it("leaves no focusable list region once the list is closed", async () => {
       const user = userEvent.setup();
       makeSut();
@@ -1334,7 +1334,7 @@ describe("GIVEN <Combobox />", () => {
     });
   });
 
-  describe("AC-042 Choosing a selected row again in multiple mode", () => {
+  describe("AC-042 Choosing a selected option again", () => {
     it("removes it and reports the remaining set, also in a hierarchy", async () => {
       const user = userEvent.setup();
       const onChange = jest.fn();
@@ -1350,7 +1350,7 @@ describe("GIVEN <Combobox />", () => {
     });
   });
 
-  describe("AC-043 Single reopens at the level of the value", () => {
+  describe("AC-043 Reopening a single value in a hierarchy", () => {
     it("opens the level that holds the selected option, and the root list without a value", async () => {
       const user = userEvent.setup();
       makeSut({ options: TREE });

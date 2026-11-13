@@ -31,7 +31,7 @@ The Combobox is a new component. It coexists with `Select` and `MultiSelect`; it
 | Text input | Yes | Receives typing; shows the selected label in single mode. |
 | Selected-value display | No | Single mode: the label (with the option's tag and, in a hierarchy, the full path with chevron separators) inside the field. Multiple mode: one removable chip per value. |
 | Trailing control | Yes | Chevron when nothing can be cleared or clearing is not allowed; clear button (×) when it can. |
-| List | Yes | Popover of rows, as wide as the field. |
+| List | Yes | Popover as wide as the field: the back control and level title above a scrolling listbox of rows. |
 | Option row | Yes | Label, optional subtitle, optional tag, optional chevron (branch), optional check (selected). In hierarchical search results, also the ancestor path with chevron separators. |
 | Create row | No | First row of the list when creation is available. |
 | Back control | No | Hierarchy only, below the root level. |
@@ -186,7 +186,7 @@ With text typed in a hierarchy, the list MUST show matching options from the who
 
 ### B-016 - Hierarchical value display
 
-In single mode a selected option below the root MUST be displayed in the field as its full path from the root list, ending with its own label, with a chevron between levels (for example Fashion › Clothing › Accessories and Electronics › Accessories); a root option is displayed by its label. When the path does not fit, it MUST be truncated with an ellipsis at its start so that the option's own label stays visible. The path as text, with names separated by " > ", MUST be exposed as the field's accessible description. In multiple mode a chip MUST show its label; when two or more chips share the same label, those chips MUST show their full paths with chevron separators. Every chip MUST expose its full path as accessible description. The chevron separators are decorative.
+In single mode a selected option below the root MUST be displayed in the field as its full path from the root list, ending with its own label, with a chevron between levels (for example Fashion › Clothing › Accessories and Electronics › Accessories); a root option is displayed by its label. When the path does not fit, it MUST be truncated with an ellipsis at its start so that the option's own label stays visible. The path as text, with names separated by " > ", MUST be exposed as the field's accessible description. In multiple mode a chip MUST show its label; when two or more chips share the same label, those chips MUST show their full paths, the names separated by the text character "›". Every chip MUST expose its full path as accessible description. The chevron separators of the single value and of result rows are decorative.
 
 ### B-017 - Form value
 
@@ -214,11 +214,11 @@ The field MUST be 34px tall including its 1px border (the height of `Input`), wi
 
 ### B-023 - Scrolling
 
-A scrolling list MUST use the Nimbus thin scrollbar that is always visible. The scrollbar MUST NOT cover rows, chevrons or checks.
+A scrolling list MUST use the Nimbus thin scrollbar that is always visible. The scrollbar MUST NOT cover rows, chevrons or checks. The back control and the level title stay above the scrolling rows; the maximum heights of B-022 apply to the whole list.
 
 ### B-024 - Labels
 
-All component-provided texts MUST come from `labels`, each with an English default: `back` "Back", `backTo` "Back to {name}", `branchHint` "has subcategories", `clearSelection` "Clear selection", `clearAll` "Clear all", `removeChip` "Remove {name}", `noResults` "No results", `results` "Results", `create` "Create \"{text}\"", `required` "Select a value". A consumer MAY override any of them.
+All component-provided texts MUST come from `labels`, each with an English default: `back` "Back", `backTo` "Back to {name}", `branchHint` "has subcategories", `clearSelection` "Clear selection", `clearAll` "Clear all", `removeChip` "Remove {name}", `noResults` "No results", `listbox` "Options", `results` "Results", `create` "Create \"{text}\"", `required` "Select a value". A consumer MAY override any of them.
 
 ### B-025 - Appearance and disabled field
 
@@ -234,7 +234,27 @@ When `clearable` is `false` in single mode, the trailing control MUST be the che
 
 ### B-028 - Typing over a selected value
 
-With `clearable` not `false`, typing in the input while a single value is selected MUST clear that value and call `onChange(null)` on that first edit. The typed text MUST be preserved as the search text (it MUST NOT be cleared), the list MUST be open and filtered by it, and focus MUST stay in the input.
+With `clearable` not `false`, typing in the input while a single value is selected MUST clear that value and call `onChange(null)` on that first edit. The typed text MUST be preserved as the search text (it MUST NOT be cleared), the list MUST be open and filtered by it, and focus MUST stay in the input. The component MUST NOT select the text of the input when it receives focus, so typing edits the text that is shown.
+
+### B-029 - Choosing a selected option again (multiple)
+
+In multiple mode, choosing an option that is already selected (a hierarchical list keeps it visible and marked, B-005) MUST remove it and call `onChange` with the remaining set. Creation never removes: if `onCreate` returns an option that is already selected, the selection does not change (B-008).
+
+### B-030 - Reopening a single value in a hierarchy
+
+In single mode with a hierarchy, opening the list MUST show the level that contains the selected option, with that option marked selected (B-011), and the root list when no value is selected.
+
+### B-031 - Scrolling region
+
+The scrolling region of the list MUST be the listbox itself. It MUST be keyboard-focusable (`tabindex="0"`) and have the accessible name `labels.listbox`. While the list is open the focus MUST stay in the text input; if the focus is placed on the listbox other than by Tab from the text input (for example by assistive technology), it MUST return to the text input and the list MUST stay open.
+
+### B-032 - Tab leaves the field
+
+Tab and Shift+Tab MUST leave the field without trapping the focus. When Tab from the text input reaches the listbox (the list is rendered after the field, so this happens when nothing else is focusable after the field), the list MUST close and the focus MUST move on. When the list is closed no listbox, and so no focusable region of the list, remains in the document.
+
+### B-033 - Active row visible
+
+The active row MUST be kept visible: when the arrow keys, Home or End move it, the scrolling region MUST scroll just enough to show it.
 
 ---
 
@@ -271,6 +291,7 @@ Escape stops propagation only when it closes the list, so an enclosing Modal or 
 
 - While the list is open and focus is in the text input, no component action (choosing, changing level, removing, clearing, creating) moves focus out of it; the active row is exposed with `aria-activedescendant`. Focus leaves the input only through Tab or Shift+Tab, or a pointer press outside; the list then closes (B-001).
 - Closing the list with Escape keeps focus in the input; an outside press leaves focus where the press put it.
+- The scrolling region of the list is the listbox: focusable and named, but it never holds the focus (B-031); Tab leaves the field without a stop in it (B-032).
 - Tab sequence: chip remove buttons (in chip order), the text input, then the clear or clear-all button, all in the field's order and only while they are shown. They are real buttons outside the listbox, activated with Enter or Space; activating one by keyboard moves focus to the text input, and that return of focus does not open the list (B-001). The back control and the chevron are not in the tab sequence: the back control is reached through ArrowLeft and Backspace (B-012) or by pointer, and the chevron is decorative. Activating any of these buttons by pointer does not take focus from the input.
 
 ---
@@ -348,13 +369,13 @@ Escape stops propagation only when it closes the list, so an enclosing Modal or 
 ### Semantics
 
 - The text input has `role="combobox"`, `aria-expanded`, `aria-haspopup="listbox"`, `aria-controls` (the listbox) and `aria-autocomplete="list"`.
-- The list is a `listbox` (with `aria-multiselectable` in multiple mode); a hierarchy level is a `group` named by its title; rows are `option`s with `aria-selected`, `aria-disabled` where applicable.
+- The list is a `listbox` (with `aria-multiselectable` in multiple mode) that is also the scrolling region: it has `tabindex="0"` and the name `labels.listbox`; a hierarchy level is a `group` named by its title; rows are `option`s with `aria-selected`, `aria-disabled` where applicable.
 - Branch options expose `labels.branchHint` in their accessible name; the back control, chips' remove buttons and clear buttons are buttons outside the listbox.
 
 ### Accessible Name
 
 - The field is named by `aria-label`, `aria-labelledby` or an associated `<label>`; the placeholder is not its name.
-- Chip remove buttons are named `labels.removeChip` with the option label; clear and clear-all use `labels.clearSelection` and `labels.clearAll`; the back control by its visible text.
+- The listbox is named `labels.listbox`. Chip remove buttons are named `labels.removeChip` with the option label; clear and clear-all use `labels.clearSelection` and `labels.clearAll`; the back control by its visible text.
 - An enriched option's name is its label, subtitle and tag in that order.
 
 ### Keyboard Access
@@ -364,7 +385,7 @@ Escape stops propagation only when it closes the list, so an enclosing Modal or 
 ### Focus
 
 - A visible Nimbus focus ring appears on the field when the input is focused, and on buttons when they receive keyboard focus.
-- Focus order: the tab sequence in §7 Focus (chip remove buttons, text input, clear or clear-all button; never the back control or the chevron). Options are never in the tab sequence; they are reached with arrow keys.
+- Focus order: the tab sequence in §7 Focus (chip remove buttons, text input, clear or clear-all button; never the back control or the chevron). Options are never in the tab sequence; they are reached with arrow keys. The listbox never holds the focus (B-031).
 
 ### Screen Reader Behavior
 
@@ -383,7 +404,7 @@ Escape stops propagation only when it closes the list, so an enclosing Modal or 
 | Long content | Row labels wrap; chip labels clamp to one line; single value truncates. |
 | Missing optional content | No subtitle or tag: plain row; no `placeholder`: empty input. |
 | Empty data | `options` empty: the list shows `labels.noResults`; with `onCreate` and typed text the Create row is offered. |
-| Same label under different branches | Distinguished by the full path with chevron separators (B-015, B-016). |
+| Same label under different branches | Distinguished by the full path: chevron separators in the single value and in results, the text character "›" in chips (B-015, B-016). |
 | Disabled state | Field disabled: no events, no chip removal. |
 | Dynamic update | `options` change while open: the list re-filters; a selected value no longer in `options` stays selected. |
 | Multiple instances | Independent state. |
@@ -465,10 +486,10 @@ Escape stops propagation only when it closes the list, so an enclosing Modal or 
 **Given** the default theme, **When** measured, **Then** the field is 34px including its border (62px with two chip rows), plain rows are 26px, enriched rows 44px, path result rows have 4px vertical padding, list padding 8px, row gap 4px, trailing icon 9px from the field edge and vertically centered (B-022).
 
 ### AC-025 - Scrolling
-**Given** more rows than fit, **When** the list opens, **Then** it scrolls at the maximum height with the always-visible Nimbus thin scrollbar, visible without hovering, and no row, chevron or check is covered (B-022, B-023).
+**Given** more rows than fit, **When** the list opens, **Then** it scrolls at the maximum height with the always-visible Nimbus thin scrollbar, visible without hovering, no row, chevron or check is covered, and the back control and level title stay above the scrolling rows (B-022, B-023).
 
 ### AC-026 - Labels
-**Given** default and overridden `labels`, **When** each text appears, **Then** it shows the override or the English default, placeholders `{name}` and `{text}` replaced (B-024).
+**Given** default and overridden `labels`, **When** each text appears (including the name of the list), **Then** it shows the override or the English default, placeholders `{name}` and `{text}` replaced (B-024).
 
 ### AC-027 - Appearance and disabled field
 **Given** `appearance="danger"`, **When** rendered, **Then** the border follows `Input`; **Given** `disabled`, **Then** typing, opening, clearing and chip removal do nothing and the input is not tabbable (B-025).
@@ -495,16 +516,31 @@ Escape stops propagation only when it closes the list, so an enclosing Modal or 
 **Given** single mode, `clearable={false}` and an initial value, **When** the field is rendered, **Then** the trailing control is the chevron, not ×; **When** text is typed to search and then the list is closed or the field left without choosing, **Then** `onChange` is not called, the typed text is removed and the selected value is shown again; **When** another option is chosen, **Then** it becomes the value (B-027).
 
 ### AC-035 - Chips with the same label
-**Given** two selected options with the same label under different branches, **When** the field is rendered in multiple mode, **Then** both chips show their full paths with chevron separators; a chip whose label is unique shows its label only; every chip exposes its full path as accessible description (B-016).
+**Given** two selected options with the same label under different branches, **When** the field is rendered in multiple mode, **Then** both chips show their full paths separated by the text character "›"; a chip whose label is unique shows its label only; every chip exposes its full path as accessible description (B-016).
 
 ### AC-036 - Typing over a selected value
-**Given** a selected single value and `clearable` not `false`, **When** the person types in the input, **Then** `onChange(null)` fires on the first edit, the typed text stays in the input, the list is open and filtered by it, and focus stays in the input (B-028).
+**Given** a selected single value and `clearable` not `false`, **When** the person types in the input, **Then** `onChange(null)` fires on the first edit, the typed text stays in the input, the list is open and filtered by it, and focus stays in the input; the text of the input is not selected when the input receives focus (B-028).
 
 ### AC-037 - Tab sequence and leaving the field
 **Given** a field with chips, a selected single value or a clear button, **When** Tab and Shift+Tab are pressed, **Then** focus moves along the sequence chip remove buttons, text input, clear or clear-all button, without the back control or the chevron; activating a focused button with Enter or Space performs its action and moves focus to the input; when focus leaves the text input the list closes (§7 Focus, §11 Focus, B-001).
 
 ### AC-038 - Keyboard clear leaves the list closed
 **Given** a selected single value with `clearable` not `false` (or two or more chips) and focus on the clear (or clear-all) button, **When** Enter or Space is pressed, **Then** the value (or all chips) and the text are empty, the list is closed, focus is in the input, and the focus returned to the input does not open the list (B-001, B-004, B-006).
+
+### AC-039 - Focusable named list region
+**Given** an open list, **When** the accessibility tree is read and the focus is placed on the listbox other than by Tab, **Then** the listbox is the scrolling region, has `tabindex="0"` and the name `labels.listbox` ("Options" by default), the focus stays in the text input with the active row exposed by `aria-activedescendant`, and a focus placed on the listbox returns to the text input with the list still open (B-031).
+
+### AC-040 - Tab leaves the field
+**Given** a field with an open list, **When** Tab or Shift+Tab is pressed, **Then** the focus leaves the field without being trapped, the list closes, Tab from the text input of a field with nothing focusable after it does not stop on the list, and once the list is closed no listbox remains in the document (B-032).
+
+### AC-041 - Active row visible
+**Given** a list taller than its maximum height, **When** the arrow keys, Home or End move the active row, **Then** the scrolling region scrolls so that the active row is visible (B-033).
+
+### AC-042 - Choosing a selected option again
+**Given** `multiple` and a selected option, **When** that option is chosen again (also in a hierarchy, where the row stays visible and marked), **Then** it is removed and `onChange` receives the remaining set; an `onCreate` result that is already selected leaves the selection unchanged (B-029).
+
+### AC-043 - Reopening a single value in a hierarchy
+**Given** single mode, a hierarchy and a selected option below the root, **When** the list is opened again, **Then** it shows the level that contains the selected option with that option marked selected, and the root list when no value is selected (B-030).
 
 ### Acceptance Criteria Rules
 
@@ -536,7 +572,8 @@ Escape stops propagation only when it closes the list, so an enclosing Modal or 
 | AC-025 | B-023 | Supported | established | Scrollbar always visible, the existing Nimbus one: signed Design confirmation, issue #508 comment 6834339585. |
 | AC-029 (names of chip controls) | §11 | Supported | established | Reuse of Chip with a translatable, contextual remove label: request issue #508 comment 6806408691. |
 | AC-002 (accent-insensitive match, `filter`), AC-022 | B-002, B-020 | Design choice | — | Serves selection with filtering; the match and a controlled/uncontrolled value follow the conventions of Nimbus form controls. |
-| AC-018 (truncation at the start), AC-035 | B-016 | Design choice | — | Serves distinguishing same-name options and keeping the option's own label visible when the path does not fit; chips show the path only when labels collide. |
+| AC-018 (truncation at the start) | B-016 | Design choice | — | Serves keeping the option's own label visible when the path does not fit. |
+| AC-035 | B-016 | Supported | established | Chips show the path only when labels collide, with the text character "›" between the names: explicit Design decision of 2026-11-13, recorded on issue #508 in the revision 5 comment. |
 | AC-034 (no initial value case) | B-027 | Design choice | — | Serves the always-selected rule; defines the case where the consumer gives no initial value. |
 | AC-020, AC-021 | B-018, B-019 | Design choice | — | Serves form validity; validity by value count and unique values are required for a reliable form value. |
 | AC-024 (extra chip row 28px, maximum list heights) | B-022 | Design choice | — | Serves a usable list; 220px and 280px come from the explored behavior; 28px is a 24px chip plus a 4px gap. |
@@ -544,6 +581,10 @@ Escape stops propagation only when it closes the list, so an enclosing Modal or 
 | AC-027, AC-028 | B-025, B-026 | Design choice | — | Serves consistency with Nimbus form controls (`appearance`, disabled) and an empty list. |
 | AC-029 (semantics), AC-030, AC-031, AC-037, AC-038 | §11, §7, B-001 | Design choice | — | Serves operability by keyboard and assistive technology; no existing Nimbus combobox contract exists to reuse. |
 | AC-036 | B-028 | Design choice | — | Serves search over a selected value when clearing is allowed; keeps the behavior of the explored prototype. |
+| AC-036 (no selection on focus) | B-028 | Supported | established | The current behavior is kept, without selecting the text when the input receives focus: explicit Design decision of 2026-11-13, recorded on issue #508 in the revision 5 comment. |
+| AC-042, AC-043 | B-029, B-030 | Supported | established | Choosing a selected option again removes it in multiple mode, and a single value reopens at its own level in a hierarchy: explicit Design decision of 2026-11-13, recorded on issue #508 in the revision 5 comment. |
+| AC-039 (focusable, named region) | B-031 | Supported | established | The scrolling region is focusable with `tabindex="0"` and has an accessible name, the focus staying in the text input with `aria-activedescendant`; the technical solution is left to Engineering: explicit Design decision of 2026-11-13, recorded on issue #508 in the revision 5 comment. |
+| AC-039 (focus returns to the input), AC-040, AC-041 | B-031, B-032, B-033 | Design choice | — | Serves the combobox pattern without a keyboard trap: the focus lives in the text input, Tab leaves the field, the active row stays visible. |
 | AC-032, AC-033 | §9, §10 | Design choice | — | Serves narrow screens and several instances per form. |
 
 ---
@@ -607,3 +648,8 @@ This is a new component; there is no previous contract to migrate.
 | AC-036 | B-028 | Select a single value, type a character; check `onChange(null)` once, preserved text, open filtered list, focus. | `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › Single | `packages/react/src/composite/Combobox/src/combobox.spec.tsx` › "Typing over a selected value" |
 | AC-037 | §7 Focus, §11 Focus, B-001 | Tab and Shift+Tab through chips, input, clear buttons; Enter/Space on a button; list closes when focus leaves the input. | `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › Multiple | `packages/react/src/composite/Combobox/src/combobox.spec.tsx` › "Tab sequence and leaving the field" |
 | AC-038 | B-001, B-004, B-006 | Tab to the clear button (single) and to clear-all (2+ chips), press Enter and Space; check empty value and text, closed list, focus in input, list not reopened. | `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › Single; `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › Multiple | `packages/react/src/composite/Combobox/src/combobox.spec.tsx` › "Keyboard clear leaves the list closed" |
+| AC-039 | B-031 | Open the list; read the accessibility tree; focus the listbox with a script. | `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › Single | `packages/react/src/composite/Combobox/src/combobox.spec.tsx` › "Focusable named list region" |
+| AC-040 | B-032 | Tab and Shift+Tab with the list open; Tab from the last focusable field; close the list and look for a listbox. | `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › Single; `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › Multiple | `packages/react/src/composite/Combobox/src/combobox.spec.tsx` › "Tab leaves the field" |
+| AC-041 | B-033 | Long list: arrow keys, Home and End; check the active row is inside the scrolling region. | `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › Single | `packages/react/src/composite/Combobox/src/combobox.spec.tsx` › "Active row visible" |
+| AC-042 | B-029 | Multiple, hierarchy: choose an option twice; `onCreate` returning a selected option. | `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › HierarchicalMultiple | `packages/react/src/composite/Combobox/src/combobox.spec.tsx` › "Choosing a selected option again" |
+| AC-043 | B-030 | Select a nested option, reopen; open without a value. | `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › HierarchicalWithValue | `packages/react/src/composite/Combobox/src/combobox.spec.tsx` › "Reopening a single value in a hierarchy" |

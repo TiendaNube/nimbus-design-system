@@ -196,3 +196,90 @@ export const buildRowName = (
   ]
     .filter(Boolean)
     .join(", ");
+
+/**
+ * Joins the class names that are defined.
+ */
+export const joinClassNames = (
+  ...names: Array<string | null | undefined | false>
+): string => names.filter(Boolean).join(" ");
+
+/**
+ * Text of each chip: its label, or its full path when another selected option
+ * has the same label.
+ */
+export const getChipTexts = (
+  selection: ComboboxOption[],
+  index: Map<string, ComboboxEntry>
+): string[] => {
+  const counts = new Map<string, number>();
+  selection.forEach((option) =>
+    counts.set(option.label, (counts.get(option.label) ?? 0) + 1)
+  );
+  return selection.map((option) =>
+    (counts.get(option.label) ?? 0) > 1
+      ? joinPath(getPath(option, index), CHIP_PATH_SEPARATOR)
+      : option.label
+  );
+};
+
+/**
+ * Values of the branches to enter, from the root list, to reach the level that
+ * holds the option.
+ */
+export const getLevelPathOf = (
+  option: ComboboxOption | undefined,
+  index: Map<string, ComboboxEntry>
+): string[] => {
+  const entry = option ? index.get(option.value) : undefined;
+  return entry ? entry.ancestors.map((ancestor) => ancestor.value) : [];
+};
+
+/**
+ * Selection after an option is chosen in multiple mode: it is added, or
+ * removed when it was already selected and `canToggle` is true.
+ */
+export const getNextMultipleSelection = (
+  selection: ComboboxOption[],
+  option: ComboboxOption,
+  canToggle: boolean
+): ComboboxOption[] => {
+  const isSelected = selection.some((item) => item.value === option.value);
+  if (!isSelected) return [...selection, option];
+  return canToggle
+    ? selection.filter((item) => item.value !== option.value)
+    : selection;
+};
+
+/**
+ * Position of the active row after a move, without wrapping.
+ */
+export const getNextActiveIndex = (
+  target: "next" | "previous" | "first" | "last",
+  activeIndex: number,
+  count: number
+): number => {
+  const last = count - 1;
+  const positions = {
+    next: Math.min(activeIndex + 1, last),
+    previous: activeIndex < 0 ? last : Math.max(activeIndex - 1, 0),
+    first: 0,
+    last
+  };
+  return positions[target];
+};
+
+/**
+ * The control at the end of the field for the current value.
+ */
+export const getTrailingControl = (params: {
+  multiple: boolean;
+  selectionCount: number;
+  clearable: boolean;
+  disabled: boolean;
+}): "clear" | "clearAll" | "chevron" => {
+  const { multiple, selectionCount, clearable, disabled } = params;
+  if (disabled) return "chevron";
+  if (multiple) return selectionCount >= 2 ? "clearAll" : "chevron";
+  return selectionCount > 0 && clearable ? "clear" : "chevron";
+};

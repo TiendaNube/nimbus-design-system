@@ -16,6 +16,7 @@ import {
 import type { ComboboxRowProps } from "./ComboboxRow.types";
 
 const CHEVRON_SIZE = 12;
+const DISABLED_COLOR = "neutral-textDisabled";
 
 const OptionPath: React.FC<{ ancestors: ComboboxOption[] }> = ({
   ancestors
@@ -81,8 +82,8 @@ const OptionContent: React.FC<{
 }> = ({ row, twoLines }) => {
   const { option, ancestors, branch, selected, showPath } = row;
   const disabled = Boolean(option.disabled);
-  const textColor = disabled ? "neutral-textDisabled" : "neutral-textHigh";
-  const lowColor = disabled ? "neutral-textDisabled" : "neutral-textLow";
+  const textColor = disabled ? DISABLED_COLOR : "neutral-textHigh";
+  const lowColor = disabled ? DISABLED_COLOR : "neutral-textLow";
   return (
     <>
       {twoLines ? (
@@ -116,7 +117,7 @@ const OptionContent: React.FC<{
         {selected && !option.subtitle && !option.tag && (
           <Icon
             source={<CheckIcon />}
-            color={disabled ? "neutral-textDisabled" : "primary-interactive"}
+            color={disabled ? DISABLED_COLOR : "primary-interactive"}
           />
         )}
         {branch && (
