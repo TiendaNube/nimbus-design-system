@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Skeleton } from "@nimbus-ds/skeleton";
+import { themeVars } from "@nimbus-ds/styles";
 import { type InputSkeletonProps } from "./inputSkeleton.types";
 
 const InputSkeleton: React.FC<InputSkeletonProps> = ({
@@ -12,8 +13,8 @@ const InputSkeleton: React.FC<InputSkeletonProps> = ({
     className={className}
     data-testid={dataTestId}
     width={width ?? "100%"}
-    height="2rem"
-    borderRadius="0.5rem"
+    height={themeVars.components.input.skeleton.height}
+    borderRadius={themeVars.components.input.skeleton.borderRadius}
   />
 );
 

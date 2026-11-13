@@ -2,6 +2,12 @@
 
 The Input component allows the user to enter or edit information in text format.
 
+## 2026-11-13 `2.9.0`
+
+#### 🎉 New features
+
+- Reads its size, radius, colors, hover and focus from the `components.input` theme values of `@nimbus-ds/styles`. In `next-norteui` the Input is 28px tall with a 6px radius, `success`, `warning` and `danger` use a white background, the borders of `success`, `warning` and `danger` use `interactivePressed` at rest and `textLow` on hover and focus for stronger contrast, and focus shows a 2px `neutral.interactive` ring. `Input.Skeleton` follows the same size. The API and the look in the other themes are unchanged. ([#634](https://github.com/TiendaNube/nimbus-design-system/pull/634) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-08-12 `2.8.1`
 
 #### 🐛 Bug fixes
