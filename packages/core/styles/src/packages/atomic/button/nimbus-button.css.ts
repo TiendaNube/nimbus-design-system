@@ -158,7 +158,9 @@ export const appearance = styleVariants({
         background: gradients.aiGenerativeHover,
       },
       ":active": {
-        background: varsThemeBase.colors.aiGenerative.textLow,
+        // In base, dark, next and next-dark the pressed gradient is the flat
+        // aiGenerative.textLow, so those themes look the same as before.
+        background: gradients.aiGenerativePressed,
       },
       ":disabled": {
         background: createBorderGradient(
@@ -188,7 +190,7 @@ export const appearance = styleVariants({
       },
       ":active": {
         background: createBorderGradient(
-          gradients.aiGenerativeHover,
+          gradients.aiGenerativePressed,
           varsThemeBase.colors.aiGenerative.surfaceHighlight
         ),
       },
