@@ -82,7 +82,7 @@ const ComboboxList: React.FC<ComboboxListProps> = ({
       ) : (
         // The scrolling region is the listbox itself: it is focusable and named
         // so it is operable by assistive technology, but the focus lives in
-        // the text input, so it goes back there if something focuses the list.
+        // the text input (see `handleListFocus`).
         <div
           id={listboxId}
           role="listbox"
@@ -90,7 +90,7 @@ const ComboboxList: React.FC<ComboboxListProps> = ({
           aria-label={labels.listbox}
           aria-multiselectable={multiple || undefined}
           className={combobox.classnames.scroller}
-          onFocus={model.focusInput}
+          onFocus={model.handleListFocus}
         >
           <div
             role="group"

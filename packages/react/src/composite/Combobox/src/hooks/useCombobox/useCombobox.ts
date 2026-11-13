@@ -140,6 +140,7 @@ export const useCombobox = (params: UseComboboxParams): UseComboboxResult => {
   const listRef = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
   const skipOpenOnFocus = useRef(false);
+  const tabPressedInInput = useRef(false);
 
   const [innerSelection, setInnerSelection] = useState(defaultValue);
   const [open, setOpen] = useState(false);
@@ -328,6 +329,7 @@ export const useCombobox = (params: UseComboboxParams): UseComboboxResult => {
    * --------------------------------------------------------------------------------------------*/
 
   const handleFocus = (): void => {
+    tabPressedInInput.current = false;
     if (!skipOpenOnFocus.current) openList();
   };
 
@@ -336,6 +338,19 @@ export const useCombobox = (params: UseComboboxParams): UseComboboxResult => {
     // list sends the focus back to the input.
     if (listRef.current?.contains(event.relatedTarget as Node | null)) return;
     closeList();
+  };
+
+  // The list never holds the focus. Reached by Tab from the input (the list is
+  // rendered after the field), it closes so the focus moves on; reached any
+  // other way (assistive technology, script), the focus goes back to the input.
+  const handleListFocus = (): void => {
+    const byTab = tabPressedInInput.current;
+    tabPressedInInput.current = false;
+    if (byTab) {
+      closeList();
+    } else {
+      focusInput();
+    }
   };
 
   const handleChange = (text: string): void => {
@@ -453,6 +468,10 @@ export const useCombobox = (params: UseComboboxParams): UseComboboxResult => {
       case "Backspace":
         handleBackspace(event);
         break;
+      case "Tab":
+        // Tab is not handled: the flag only tells where the focus is going.
+        tabPressedInInput.current = true;
+        break;
       default:
         break;
     }
@@ -503,6 +522,7 @@ export const useCombobox = (params: UseComboboxParams): UseComboboxResult => {
     focusInput,
     handleFocus,
     handleBlur,
+    handleListFocus,
     handleChange,
     handleKeyDown
   };

@@ -1286,6 +1286,16 @@ describe("GIVEN <Combobox />", () => {
       ).toHaveLength(0);
     });
 
+    it("lets Tab leave a field that is the last focusable element without trapping the focus", async () => {
+      const user = userEvent.setup();
+      makeSut();
+      await user.click(getInput());
+      // The list is rendered after the field, so Tab reaches it first.
+      await user.tab();
+      expect(getListbox()).not.toBeInTheDocument();
+      expect(getInput()).not.toHaveFocus();
+    });
+
     it("lets Tab leave the field without trapping the focus", async () => {
       const user = userEvent.setup();
       render(

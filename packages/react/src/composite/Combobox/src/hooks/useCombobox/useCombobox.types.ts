@@ -88,6 +88,7 @@ export interface UseComboboxResult {
   focusInput: () => void;
   handleFocus: () => void;
   handleBlur: (event: FocusEvent<HTMLInputElement>) => void;
+  handleListFocus: () => void;
   handleChange: (value: string) => void;
   handleKeyDown: (event: KeyboardEvent<HTMLInputElement>) => void;
 }
