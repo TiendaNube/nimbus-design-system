@@ -123,6 +123,13 @@ const nextNorteuiDarkTheme = {
         },
       },
     },
+    // No Norte UI dark Toast design yet: Norte UI shape, default colors and shadow.
+    toast: {
+      ...globalTheme.components.toast,
+      borderRadius: vars.shape.border.radius.full,
+      gap: vars.spacing["1-5"],
+      paddingInlineEnd: vars.spacing[3],
+    },
   },
   gradients: {
     aiGenerative: aiGenerativeGradients,

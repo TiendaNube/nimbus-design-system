@@ -266,6 +266,13 @@ export const vars = createGlobalThemeContract(
           aiGenerative: { background: "" },
         },
       },
+      toast: {
+        borderRadius: "",
+        gap: "",
+        paddingInlineEnd: "",
+        boxShadow: "",
+        primary: { background: "" },
+      },
     },
     gradients: {
       aiGenerative: {
