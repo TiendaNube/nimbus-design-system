@@ -66,32 +66,18 @@ describe("GIVEN <Spinner />", () => {
       ).toContain("color_neutral-textLow");
     });
 
-    it("THEN should render the opt-in color warning-textLow from the theme", () => {
+    it("THEN should correctly render the color warning-textLow", () => {
       makeSut({ color: "warning-textLow" });
-      const spinner = screen.getByTestId("spinner-element");
-      expect(spinner.getAttribute("class")).not.toContain("color_");
-      expect(spinner.querySelector("circle")?.getAttribute("style")).toBe(
-        "stroke: var(--nimbus-colors-warning-textLow);"
-      );
-    });
-
-    it("THEN should render the opt-in color ai-generativeTextLow from the theme", () => {
-      makeSut({ color: "ai-generativeTextLow" });
-      const spinner = screen.getByTestId("spinner-element");
-      expect(spinner.getAttribute("class")).not.toContain("color_");
-      expect(spinner.querySelector("circle")?.getAttribute("style")).toBe(
-        "stroke: var(--nimbus-colors-aiGenerative-textLow);"
-      );
-    });
-
-    it("THEN should not set an inline stroke for existing colors", () => {
-      makeSut({ color: "primary-interactive" });
       expect(
-        screen
-          .getByTestId("spinner-element")
-          .querySelector("circle")
-          ?.getAttribute("style")
-      ).toBeNull();
+        screen.getByTestId("spinner-element").getAttribute("class")
+      ).toContain("color_warning-textLow");
+    });
+
+    it("THEN should correctly render the color ai-generativeTextLow", () => {
+      makeSut({ color: "ai-generativeTextLow" });
+      expect(
+        screen.getByTestId("spinner-element").getAttribute("class")
+      ).toContain("color_ai-generativeTextLow");
     });
   });
 

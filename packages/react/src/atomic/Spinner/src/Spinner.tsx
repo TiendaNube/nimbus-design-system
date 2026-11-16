@@ -3,11 +3,7 @@ import { assignInlineVars } from "@vanilla-extract/dynamic";
 import { spinner, vars } from "@nimbus-ds/styles";
 
 import { type SpinnerProps } from "./spinner.types";
-import {
-  sizes,
-  extendedColors,
-  isExtendedColor,
-} from "./spinner.definitions";
+import { sizes } from "./spinner.definitions";
 
 const Spinner: React.FC<SpinnerProps> = ({
   className,
@@ -21,14 +17,12 @@ const Spinner: React.FC<SpinnerProps> = ({
     [size]
   );
 
-  const extended = isExtendedColor(color);
-
   return (
     <svg
       viewBox="0 0 50 50"
       className={[
         className,
-        !extended && spinner.sprinkle({ color }),
+        spinner.sprinkle({ color }),
         spinner.classnames.base,
       ]
         .filter(Boolean)
@@ -39,14 +33,7 @@ const Spinner: React.FC<SpinnerProps> = ({
       })}
       {...rest}
     >
-      <circle
-        cx="25"
-        cy="25"
-        r="20"
-        fill="none"
-        strokeWidth="10"
-        style={extended ? { stroke: extendedColors[color] } : undefined}
-      />
+      <circle cx="25" cy="25" r="20" fill="none" strokeWidth="10" />
     </svg>
   );
 };

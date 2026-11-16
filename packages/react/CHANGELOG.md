@@ -8,6 +8,7 @@ every day, with simplicity, accessibility, consistency and performance.
 #### 🎉 New features
 
 - AI gradients: Uses the Norte UI AI gradients in `next-norteui` and `next-norteui-dark` (radial for fills, linear for borders and icons) through `@nimbus-ds/styles` theme values. Other themes are unchanged. ([#622](https://github.com/TiendaNube/nimbus-design-system/pull/622) by [@noecondoleo](https://github.com/noecondoleo))
+- Spinner: Adds the `warning-textLow` and `ai-generativeTextLow` values to the `color` prop, used by the Norte UI Spinner `warning` and `AI` colors. Existing colors and the default are unchanged. ([#631](https://github.com/TiendaNube/nimbus-design-system/pull/631) by [@noecondoleo](https://github.com/noecondoleo))
 
 #### 💡 Others
 
