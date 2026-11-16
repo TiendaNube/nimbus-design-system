@@ -87,8 +87,8 @@ export const variables = createTheme(vars, {
   components: {
     popover: {
       borderRadius: vars.shape.border.radius[2],
-      // Shadow level 3 written as drop-shadow so the arrow gets it too.
-      filter: `drop-shadow(0px 3px 6px ${vars.colors.neutral.surfaceHighlight}) drop-shadow(0px 0px 1px ${vars.colors.neutral.interactiveHover})`,
+      // Shadow level 2 written as drop-shadow so the arrow gets it too.
+      filter: `drop-shadow(0px 0px 2px ${vars.colors.neutral.interactiveHover})`,
       padding: { base: vars.spacing[3] },
     },
     thumbnail: {
