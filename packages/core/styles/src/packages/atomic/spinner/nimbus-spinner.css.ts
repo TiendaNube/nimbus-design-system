@@ -61,6 +61,10 @@ const spinnerColorProperties = {
   "danger-interactive": colorProperties["danger-interactive"],
   "danger-textLow": colorProperties["danger-textLow"],
 
+  "warning-textLow": colorProperties["warning-textLow"],
+
+  "ai-generativeTextLow": colorProperties["ai-generativeTextLow"],
+
   "neutral-background": colorProperties["neutral-background"],
   "neutral-surface": colorProperties["neutral-surface"],
   "neutral-interactive": colorProperties["neutral-interactive"],

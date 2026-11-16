@@ -2,6 +2,12 @@
 
 The Spinner component is used to inform the processing of tasks.
 
+## 2026-11-12 `3.3.0`
+
+#### 🎉 New features
+
+- Adds the `warning-textLow` and `ai-generativeTextLow` values to the `color` prop, used by the Norte UI Spinner `warning` and `AI` colors. Existing colors and the default are unchanged. ([#631](https://github.com/TiendaNube/nimbus-design-system/pull/631) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-02-12 `3.2.0`
 
 #### 🎉 New features
