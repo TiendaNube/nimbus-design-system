@@ -2,6 +2,7 @@ import { createTheme } from "@vanilla-extract/css";
 import tokens from "@nimbus-ds/tokens/dist/js/tokens";
 
 import { vars } from "./contract.css";
+import { buttonNorteui } from "./buttonNorteui";
 import { globalTheme } from "./globals.css";
 import { aiInteractiveBorder } from "./aiInteractiveBorder";
 import {
@@ -157,6 +158,8 @@ export const variables = createTheme(vars, {
         borderRadius: vars.shape.border.radius.base,
       },
     },
+    // AI interactive is lighter than interactiveHover, so the glow stays soft.
+    button: buttonNorteui(String(aiGenerative.interactive.value)),
     tag: {
       neutral: {
         background: vars.colors.neutral.surfaceHighlight,
