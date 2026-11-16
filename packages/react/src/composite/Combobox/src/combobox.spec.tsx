@@ -1456,4 +1456,122 @@ describe("GIVEN <Combobox />", () => {
       expect(onChange).not.toHaveBeenCalled();
     });
   });
+
+  describe("AC-044 Chip remove button names", () => {
+    const leaf = (value: string, label: string): ComboboxOption => ({
+      value,
+      label
+    });
+    const removeNames = () =>
+      screen
+        .getAllByTestId("dismiss-chip-button")
+        .map((button) => button.getAttribute("aria-label"));
+
+    it("keeps Remove {name} for chips with a unique label", () => {
+      makeSut({
+        multiple: true,
+        options: TREE,
+        defaultValue: [PHONES, ACCESSORIES_CLOTHING]
+      });
+      expect(removeNames()).toEqual(["Remove Phones", "Remove Accessories"]);
+    });
+
+    it("adds the immediate parent when chips share a label", () => {
+      makeSut({
+        multiple: true,
+        options: TREE,
+        defaultValue: [ACCESSORIES_CLOTHING, ACCESSORIES_ELECTRONICS, PHONES]
+      });
+      expect(removeNames()).toEqual([
+        "Remove Clothing › Accessories",
+        "Remove Electronics › Accessories",
+        "Remove Phones"
+      ]);
+    });
+
+    it("adds more levels when the parent and the label repeat", () => {
+      const menAccessories = leaf("men-acc", "Accessories");
+      const womenAccessories = leaf("women-acc", "Accessories");
+      const kidsAccessories = leaf("kids-acc", "Accessories");
+      const options: ComboboxOption[] = [
+        {
+          value: "men",
+          label: "Men",
+          children: [
+            {
+              value: "men-clothing",
+              label: "Clothing",
+              children: [menAccessories]
+            }
+          ]
+        },
+        {
+          value: "women",
+          label: "Women",
+          children: [
+            {
+              value: "women-clothing",
+              label: "Clothing",
+              children: [womenAccessories]
+            }
+          ]
+        },
+        {
+          value: "kids",
+          label: "Kids",
+          children: [kidsAccessories]
+        }
+      ];
+      makeSut({
+        multiple: true,
+        options,
+        defaultValue: [menAccessories, womenAccessories, kidsAccessories]
+      });
+      expect(removeNames()).toEqual([
+        "Remove Men › Clothing › Accessories",
+        "Remove Women › Clothing › Accessories",
+        "Remove Kids › Accessories"
+      ]);
+    });
+
+    it("keeps the label of an option without a parent that collides", () => {
+      const rootAccessories = leaf("root-acc", "Accessories");
+      const options: ComboboxOption[] = [
+        rootAccessories,
+        {
+          value: "fashion",
+          label: "Fashion",
+          children: [ACCESSORIES_CLOTHING]
+        }
+      ];
+      makeSut({
+        multiple: true,
+        options,
+        defaultValue: [rootAccessories, ACCESSORIES_CLOTHING]
+      });
+      expect(removeNames()).toEqual([
+        "Remove Accessories",
+        "Remove Fashion › Accessories"
+      ]);
+    });
+
+    it("uses the translated label with the name", () => {
+      const ropa: ComboboxOption = leaf("acc-ropa", "Accesorios");
+      const joyas: ComboboxOption = leaf("acc-joyas", "Accesorios");
+      const options: ComboboxOption[] = [
+        { value: "ropa", label: "Ropa", children: [ropa] },
+        { value: "joyeria", label: "Joyería", children: [joyas] }
+      ];
+      makeSut({
+        multiple: true,
+        options,
+        defaultValue: [ropa, joyas],
+        labels: { removeChip: "Quitar {name}" }
+      });
+      expect(removeNames()).toEqual([
+        "Quitar Ropa › Accesorios",
+        "Quitar Joyería › Accesorios"
+      ]);
+    });
+  });
 });

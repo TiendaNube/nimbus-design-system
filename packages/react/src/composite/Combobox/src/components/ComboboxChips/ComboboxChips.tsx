@@ -5,6 +5,7 @@ import {
   PATH_TEXT_SEPARATOR,
   fillLabel,
   getChipTexts,
+  getRemoveNames,
   getPath,
   joinPath
 } from "../../utils";
@@ -24,6 +25,7 @@ const ComboboxChips: React.FC<ComboboxChipsProps> = ({
   onRemove
 }) => {
   const texts = getChipTexts(selection, index);
+  const removeNames = getRemoveNames(selection, index);
   return (
     <>
       {selection.map((option, position) => {
@@ -33,7 +35,9 @@ const ComboboxChips: React.FC<ComboboxChipsProps> = ({
             <Chip
               text={texts[position]}
               removable={!disabled}
-              removeLabel={fillLabel(labels.removeChip, { name: option.label })}
+              removeLabel={fillLabel(labels.removeChip, {
+                name: removeNames[position]
+              })}
               aria-describedby={descriptionId}
               onClick={(event) => {
                 event.stopPropagation();

@@ -283,3 +283,52 @@ export const getTrailingControl = (params: {
   if (multiple) return selectionCount >= 2 ? "clearAll" : "chevron";
   return selectionCount > 0 && clearable ? "clear" : "chevron";
 };
+
+/**
+ * Labels of the last `depth` levels of an option's path.
+ */
+const getPathSuffix = (path: ComboboxOption[], depth: number): string =>
+  joinPath(path.slice(-depth), CHIP_PATH_SEPARATOR);
+
+/**
+ * Fewest levels, from the end of the path and at least two, that tell a path
+ * apart from the paths of the other options with the same label.
+ */
+const getTellingDepth = (
+  path: ComboboxOption[],
+  others: ComboboxOption[][]
+): number => {
+  const tells = (depth: number): boolean =>
+    others.every(
+      (other) => getPathSuffix(other, depth) !== getPathSuffix(path, depth)
+    );
+  const first = [2, ...path.slice(2).map((_, step) => step + 3)].find(
+    (depth) => depth >= path.length || tells(depth)
+  );
+  return Math.min(first ?? path.length, path.length);
+};
+
+/**
+ * Name of each chip as used by its remove button: its label when it is unique
+ * among the selected options, otherwise the shortest end of its path (its
+ * parent and its label, then more levels) that tells it apart from the other
+ * selected options with the same label. An option without a parent keeps its
+ * label.
+ */
+export const getRemoveNames = (
+  selection: ComboboxOption[],
+  index: Map<string, ComboboxEntry>
+): string[] => {
+  const paths = selection.map((option) => getPath(option, index));
+  return selection.map((option, position) => {
+    const path = paths[position];
+    const others = paths.filter(
+      (other, otherPosition) =>
+        otherPosition !== position &&
+        other[other.length - 1].label === option.label
+    );
+    if (others.length === 0) return option.label;
+    const depth = getTellingDepth(path, others);
+    return getPathSuffix(path, depth);
+  });
+};

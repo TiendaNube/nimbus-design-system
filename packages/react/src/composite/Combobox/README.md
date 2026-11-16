@@ -129,5 +129,5 @@ All keys are handled by the text input.
 
 - The text input is a `combobox` that controls a `listbox`; the active row is exposed with `aria-activedescendant`. The listbox is the scrolling region: it is focusable (`tabindex="0"`), named by `labels.listbox`, and never holds the focus (it goes back to the text input).
 - Rows are `option`s with `aria-selected`; a hierarchy level is a `group` named by its title.
-- The chip remove, clear and clear-all buttons are real buttons outside the listbox, named through `labels`.
+- The chip remove, clear and clear-all buttons are real buttons outside the listbox, named through `labels`. The remove button of a chip is named `labels.removeChip` with the option label; when chips share a label it uses the end of the path (for example "Remove Clothing › Accessories"), adding levels only while the names still repeat.
 - Selection is shown by fill and a check, not by color alone.

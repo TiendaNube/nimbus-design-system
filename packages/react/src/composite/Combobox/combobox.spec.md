@@ -256,6 +256,10 @@ Tab and Shift+Tab MUST leave the field without trapping the focus. When Tab from
 
 The active row MUST be kept visible: when the arrow keys, Home or End move it, the scrolling region MUST scroll just enough to show it.
 
+### B-034 - Chip remove button name
+
+The accessible name of a chip's remove button is `labels.removeChip` with `{name}` replaced by the option label. When two or more chips share the same label, `{name}` MUST be the end of the option's path: its immediate parent and its label, separated by the text character "›" (for example "Clothing › Accessories"); when that name is still the same as the name of another such chip, the preceding levels MUST be added, one at a time, until the names differ. An option without a parent keeps its label. The visible chip does not change.
+
 ---
 
 ## 7. Interaction Contract
@@ -375,7 +379,7 @@ Escape stops propagation only when it closes the list, so an enclosing Modal or 
 ### Accessible Name
 
 - The field is named by `aria-label`, `aria-labelledby` or an associated `<label>`; the placeholder is not its name.
-- The listbox is named `labels.listbox`. Chip remove buttons are named `labels.removeChip` with the option label; clear and clear-all use `labels.clearSelection` and `labels.clearAll`; the back control by its visible text.
+- The listbox is named `labels.listbox`. Chip remove buttons are named `labels.removeChip` with the option label, or with the end of its path when chips share a label (B-034); clear and clear-all use `labels.clearSelection` and `labels.clearAll`; the back control by its visible text.
 - An enriched option's name is its label, subtitle and tag in that order.
 
 ### Keyboard Access
@@ -542,6 +546,9 @@ Escape stops propagation only when it closes the list, so an enclosing Modal or 
 ### AC-043 - Reopening a single value in a hierarchy
 **Given** single mode, a hierarchy and a selected option below the root, **When** the list is opened again, **Then** it shows the level that contains the selected option with that option marked selected, and the root list when no value is selected (B-030).
 
+### AC-044 - Chip remove button names
+**Given** `multiple` and selected options, **When** the accessibility tree is read, **Then** the remove button of a chip with a unique label is named `labels.removeChip` with its label ("Remove Phones"); the buttons of chips that share a label are named with the immediate parent and the label ("Remove Clothing › Accessories", "Remove Electronics › Accessories"); chips whose parent and label also repeat get the preceding levels ("Remove Men › Clothing › Accessories", "Remove Women › Clothing › Accessories"); an option without a parent keeps its label; and the translated `labels.removeChip` is used with the same names (B-034).
+
 ### Acceptance Criteria Rules
 
 - Each criterion references the behavior or section it verifies; every normative behavior is covered by at least one criterion.
@@ -582,6 +589,7 @@ Escape stops propagation only when it closes the list, so an enclosing Modal or 
 | AC-029 (semantics), AC-030, AC-031, AC-037, AC-038 | §11, §7, B-001 | Design choice | — | Serves operability by keyboard and assistive technology; no existing Nimbus combobox contract exists to reuse. |
 | AC-036 | B-028 | Design choice | — | Serves search over a selected value when clearing is allowed; keeps the behavior of the explored prototype. |
 | AC-036 (no selection on focus) | B-028 | Supported | established | The current behavior is kept, without selecting the text when the input receives focus: explicit Design decision of 2026-11-13, recorded on issue #508 in the revision 5 comment. |
+| AC-044 | B-034 | Supported | established | Name of the chip remove button for chips with the same label: the immediate parent and the label separated by "›", more levels only when still repeated, unique labels unchanged: explicit Design decision of 2026-11-16, recorded on issue #508 in the revision 6 comment. |
 | AC-042, AC-043 | B-029, B-030 | Supported | established | Choosing a selected option again removes it in multiple mode, and a single value reopens at its own level in a hierarchy: explicit Design decision of 2026-11-13, recorded on issue #508 in the revision 5 comment. |
 | AC-039 (focusable, named region) | B-031 | Supported | established | The scrolling region is focusable with `tabindex="0"` and has an accessible name, the focus staying in the text input with `aria-activedescendant`; the technical solution is left to Engineering: explicit Design decision of 2026-11-13, recorded on issue #508 in the revision 5 comment. |
 | AC-039 (focus returns to the input), AC-040, AC-041 | B-031, B-032, B-033 | Design choice | — | Serves the combobox pattern without a keyboard trap: the focus lives in the text input, Tab leaves the field, the active row stays visible. |
@@ -653,3 +661,4 @@ This is a new component; there is no previous contract to migrate.
 | AC-041 | B-033 | Long list: arrow keys, Home and End; check the active row is inside the scrolling region. | `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › Single | `packages/react/src/composite/Combobox/src/combobox.spec.tsx` › "Active row visible" |
 | AC-042 | B-029 | Multiple, hierarchy: choose an option twice; `onCreate` returning a selected option. | `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › HierarchicalMultiple | `packages/react/src/composite/Combobox/src/combobox.spec.tsx` › "Choosing a selected option again" |
 | AC-043 | B-030 | Select a nested option, reopen; open without a value. | `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › HierarchicalWithValue | `packages/react/src/composite/Combobox/src/combobox.spec.tsx` › "Reopening a single value in a hierarchy" |
+| AC-044 | B-034 | Chips with unique labels; two chips with the same label under different parents; same parent and label under different grandparents; a root option that collides; translated `labels.removeChip`. | `packages/react/src/composite/Combobox/src/combobox.stories.tsx` › HierarchicalMultiple | `packages/react/src/composite/Combobox/src/combobox.spec.tsx` › "Chip remove button names" |
