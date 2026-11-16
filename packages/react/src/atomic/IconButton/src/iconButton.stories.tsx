@@ -14,6 +14,20 @@ const meta: Meta<typeof IconButton> = {
     source: { control: { disable: true } },
     ...argTypesConvert(iconButton.properties),
     disabled: { control: "boolean" },
+    // `size` takes any CSS length. These presets are the Norte UI sizes from
+    // Figma, plus the theme default (no value) and the current 44px.
+    size: {
+      control: "select",
+      options: ["default", "small", "medium", "2.75rem"],
+      mapping: {
+        default: undefined,
+        small: "1.5rem",
+        medium: "1.75rem",
+        "2.75rem": "2.75rem",
+      },
+      description:
+        "small = 24px, medium = 28px. Without a value it uses the theme default (44px, or 28px under Norte UI).",
+    },
   },
   tags: ["autodocs"],
 };
@@ -21,9 +35,38 @@ const meta: Meta<typeof IconButton> = {
 export default meta;
 type Story = StoryObj<typeof IconButton>;
 
+// No size: shows the theme default (44px, or 28px under Norte UI).
 export const basic: Story = {
   args: {
-    size: "2.75rem",
+    source: <TiendanubeIcon size="small" />,
+  },
+};
+
+export const small: Story = {
+  args: {
+    size: "small",
+    source: <TiendanubeIcon size="small" />,
+  },
+};
+
+export const medium: Story = {
+  args: {
+    size: "medium",
+    source: <TiendanubeIcon size="small" />,
+  },
+};
+
+export const transparent: Story = {
+  args: {
+    backgroundColor: "transparent",
+    borderColor: "transparent",
+    source: <TiendanubeIcon size="small" />,
+  },
+};
+
+export const disabled: Story = {
+  args: {
+    disabled: true,
     source: <TiendanubeIcon size="small" />,
   },
 };

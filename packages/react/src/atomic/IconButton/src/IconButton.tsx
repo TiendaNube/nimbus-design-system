@@ -1,5 +1,5 @@
 import React from "react";
-import { iconButton } from "@nimbus-ds/styles";
+import { iconButton, useTheme } from "@nimbus-ds/styles";
 import { Icon } from "@nimbus-ds/icon";
 
 import {
@@ -7,34 +7,56 @@ import {
   type IconButtonComponents,
 } from "./iconButton.types";
 import { IconButtonSkeleton } from "./components";
+import {
+  NORTEUI_ICON_BUTTON_SIZE,
+  isNorteUiTheme,
+} from "./iconButton.definitions";
+
+const defaultBackgroundColor: IconButtonProps["backgroundColor"] = {
+  xs: "neutral-surface",
+  active: "neutral-interactive",
+  hover: "neutral-surfaceHighlight",
+};
+
+const defaultBorderColor: IconButtonProps["borderColor"] = {
+  xs: "neutral-interactive",
+  active: "neutral-interactivePressed",
+  hover: "neutral-interactiveHover",
+  focus: "primary-interactive",
+};
 
 const IconButton: React.FC<IconButtonProps> & IconButtonComponents = ({
   className,
   style: _style,
   as: As = "button",
-  size = "2.75rem",
-  backgroundColor = {
-    xs: "neutral-surface",
-    active: "neutral-interactive",
-    hover: "neutral-surfaceHighlight",
-  },
-  borderColor = {
-    xs: "neutral-interactive",
-    active: "neutral-interactivePressed",
-    hover: "neutral-interactiveHover",
-    focus: "primary-interactive",
-  },
-  color = "neutral-textHigh",
+  size,
+  backgroundColor,
+  borderColor,
+  color,
   appearance,
   source,
   ...rest
 }: IconButtonProps) => {
+  const { currentTheme } = useTheme();
+  const isNorteUi = isNorteUiTheme(currentTheme);
+  const isAiGenerative = appearance === "ai-generative";
+  const isTransparent = backgroundColor === "transparent";
+
+  // Norte UI only replaces values the consumer did not pass, so explicit
+  // props keep working exactly as before in every theme.
   const sprinkleProps = {
-    size,
-    ...(appearance !== "ai-generative" && {
-      borderColor,
-      backgroundColor,
-    }),
+    size: size ?? (isNorteUi ? NORTEUI_ICON_BUTTON_SIZE : "2.75rem"),
+    ...(!isAiGenerative &&
+      !isNorteUi && {
+        borderColor: borderColor ?? defaultBorderColor,
+        backgroundColor: backgroundColor ?? defaultBackgroundColor,
+      }),
+    ...(!isAiGenerative &&
+      isNorteUi &&
+      !isTransparent && {
+        ...(borderColor !== undefined && { borderColor }),
+        ...(backgroundColor !== undefined && { backgroundColor }),
+      }),
   };
 
   const {
@@ -46,6 +68,23 @@ const IconButton: React.FC<IconButtonProps> & IconButtonComponents = ({
     ...sprinkleProps,
   });
 
+  const norteUiClassnames = isNorteUi
+    ? [
+        iconButton.classnames.norteui,
+        isAiGenerative && iconButton.classnames.norteuiAiGenerative,
+        !isAiGenerative &&
+          isTransparent &&
+          iconButton.classnames.norteuiTransparent,
+        !isAiGenerative &&
+          backgroundColor === undefined &&
+          iconButton.classnames.norteuiNeutral,
+      ]
+    : [];
+
+  const iconColor =
+    color ??
+    (isNorteUi && rest.disabled ? "neutral-textDisabled" : "neutral-textHigh");
+
   return (
     <As
       className={[
@@ -54,6 +93,7 @@ const IconButton: React.FC<IconButtonProps> & IconButtonComponents = ({
         appearance
           ? iconButton.classnames.appearance?.[appearance]
           : iconButton.classnames.base,
+        ...norteUiClassnames,
       ]
         .filter(Boolean)
         .join(" ")}
@@ -62,7 +102,7 @@ const IconButton: React.FC<IconButtonProps> & IconButtonComponents = ({
     >
       <Icon
         data-testid="icon-element"
-        color={color}
+        color={iconColor}
         cursor="pointer"
         source={source}
       />

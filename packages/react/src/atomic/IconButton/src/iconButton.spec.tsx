@@ -1,5 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
+import { ThemeProvider } from "@nimbus-ds/styles";
 
 import { IconButton } from "./IconButton";
 import { type IconButtonProps } from "./iconButton.types";
@@ -41,6 +42,73 @@ describe("GIVEN <IconButton />", () => {
       expect(
         screen.getByTestId("icon-button-element").getAttribute("class")
       ).toContain("appearance_ai-generative");
+    });
+  });
+
+  describe("WHEN rendered under a theme", () => {
+    const renderInTheme = (
+      theme: React.ComponentProps<typeof ThemeProvider>["theme"],
+      rest: IconButtonProps
+    ) =>
+      render(
+        <ThemeProvider theme={theme}>
+          <IconButton {...rest} data-testid="icon-button-element" />
+        </ThemeProvider>
+      );
+
+    const getClass = () =>
+      screen.getByTestId("icon-button-element").getAttribute("class") ?? "";
+    const getStyle = () =>
+      screen.getByTestId("icon-button-element").getAttribute("style") ?? "";
+
+    it.each(["base", "dark", "next", "next-dark"] as const)(
+      "THEN %s keeps the current IconButton",
+      (theme) => {
+        renderInTheme(theme, { source: <div /> });
+        expect(getClass()).not.toContain("norteui");
+        expect(getStyle()).toMatch(/2.75rem/);
+        expect(getClass()).toContain("backgroundColor-xs");
+      }
+    );
+
+    it.each(["next-norteui", "next-norteui-dark"] as const)(
+      "THEN %s uses the 28px Norte UI IconButton",
+      (theme) => {
+        renderInTheme(theme, { source: <div /> });
+        expect(getClass()).toContain("norteui");
+        expect(getClass()).toContain("norteuiNeutral");
+        expect(getClass()).not.toContain("backgroundColor-");
+        expect(getStyle()).toMatch(/1.75rem/);
+      }
+    );
+
+    it("THEN Norte UI keeps an explicit size", () => {
+      renderInTheme("next-norteui", { source: <div />, size: "2rem" });
+      expect(getStyle()).toMatch(/2rem/);
+    });
+
+    it("THEN Norte UI uses the transparent style for a transparent IconButton", () => {
+      renderInTheme("next-norteui", {
+        source: <div />,
+        backgroundColor: "transparent",
+      });
+      expect(getClass()).toContain("norteuiTransparent");
+      expect(getClass()).not.toContain("norteuiNeutral");
+    });
+
+    it("THEN Norte UI dims the icon when disabled", () => {
+      renderInTheme("next-norteui", { source: <div />, disabled: true });
+      expect(
+        screen.getByTestId("icon-element").getAttribute("class")
+      ).toContain("color_neutral-textDisabled");
+    });
+
+    it("THEN Norte UI uses the AI focus ring for ai-generative", () => {
+      renderInTheme("next-norteui", {
+        source: <div />,
+        appearance: "ai-generative",
+      });
+      expect(getClass()).toContain("norteuiAiGenerative");
     });
   });
 });

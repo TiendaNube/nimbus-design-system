@@ -37,40 +37,102 @@ const base = style({
   },
 });
 
+const appearance = styleVariants({
+  "ai-generative": [
+    base,
+    {
+      background: gradients.aiGenerativeInteractive,
+      border: "none",
+      outline: "none",
+      transition: `box-shadow ${varsThemeBase.motion.speed.fast} ease`,
+      ":hover": {
+        background: gradients.aiGenerativeHover,
+      },
+      ":active": {
+        background: varsThemeBase.colors.aiGenerative.textLow,
+        boxShadow: "none",
+      },
+      ":focus": {
+        boxShadow: "none",
+      },
+      ":focus-visible": {
+        boxShadow: varsThemeBase.utils.focus,
+        outline: "none",
+      },
+      ":disabled": {
+        background: createBorderGradient(
+          gradients.aiGenerativeDisabled,
+          varsThemeBase.colors.neutral.surfaceDisabled
+        ),
+        border: `${varsThemeBase.shape.border.width[1]} solid transparent`,
+      },
+    },
+  ],
+});
+
+/* -------------------------------------------------------------------------------------------------
+ * Norte UI (next-norteui / next-norteui-dark)
+ *
+ * The IconButton applies these classes only when the active theme is Norte UI,
+ * so base, dark, next and next-dark never receive them. They are declared after
+ * `base` and `appearance` so they win over those rules at the same specificity.
+ * Colors reference theme variables, so the dark theme resolves its own palette.
+ * -----------------------------------------------------------------------------------------------*/
+
+/** Shape and focus ring shared by every Norte UI IconButton. */
+const norteui = style({
+  borderRadius: varsThemeBase.shape.border.radius.base,
+  borderWidth: 0,
+  ":focus-visible": {
+    boxShadow: `0 0 0 ${varsThemeBase.shape.border.width[2]} ${varsThemeBase.colors.neutral.interactive}`,
+  },
+});
+
+/** Default fill, used when no backgroundColor is passed. */
+const norteuiNeutral = style({
+  backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
+  ":hover": {
+    backgroundColor: varsThemeBase.colors.neutral.interactive,
+  },
+  ":active": {
+    backgroundColor: varsThemeBase.colors.neutral.interactiveHover,
+  },
+  ":disabled": {
+    backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
+  },
+});
+
+/** Used when backgroundColor="transparent" is passed. */
+const norteuiTransparent = style({
+  backgroundColor: "transparent",
+  ":hover": {
+    backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
+  },
+  ":active": {
+    backgroundColor: varsThemeBase.colors.neutral.interactive,
+  },
+  ":focus-visible": {
+    boxShadow: `inset 0 0 0 ${varsThemeBase.shape.border.width[2]} ${varsThemeBase.colors.neutral.textLow}`,
+  },
+  ":disabled": {
+    backgroundColor: varsThemeBase.colors.neutral.surfaceDisabled,
+  },
+});
+
+/** Focus ring for the ai-generative appearance. */
+const norteuiAiGenerative = style({
+  ":focus-visible": {
+    boxShadow: `0 0 0 ${varsThemeBase.shape.border.width[2]} ${varsThemeBase.colors.aiGenerative.surfaceHighlight}`,
+  },
+});
+
 export const styles = {
   base,
-  appearance: styleVariants({
-    "ai-generative": [
-      base,
-      {
-        background: gradients.aiGenerativeInteractive,
-        border: "none",
-        outline: "none",
-        transition: `box-shadow ${varsThemeBase.motion.speed.fast} ease`,
-        ":hover": {
-          background: gradients.aiGenerativeHover,
-        },
-        ":active": {
-          background: varsThemeBase.colors.aiGenerative.textLow,
-          boxShadow: "none",
-        },
-        ":focus": {
-          boxShadow: "none",
-        },
-        ":focus-visible": {
-          boxShadow: varsThemeBase.utils.focus,
-          outline: "none",
-        },
-        ":disabled": {
-          background: createBorderGradient(
-            gradients.aiGenerativeDisabled,
-            varsThemeBase.colors.neutral.surfaceDisabled
-          ),
-          border: `${varsThemeBase.shape.border.width[1]} solid transparent`,
-        },
-      },
-    ],
-  }),
+  appearance,
+  norteui,
+  norteuiNeutral,
+  norteuiTransparent,
+  norteuiAiGenerative,
 };
 
 /* -------------------------------------------------------------------------------------------------
