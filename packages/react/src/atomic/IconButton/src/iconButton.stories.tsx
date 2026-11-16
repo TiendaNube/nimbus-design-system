@@ -14,16 +14,15 @@ const meta: Meta<typeof IconButton> = {
     source: { control: { disable: true } },
     ...argTypesConvert(iconButton.properties),
     disabled: { control: "boolean" },
-    // `size` takes any CSS length. These presets are the Norte UI sizes from
-    // Figma, plus the theme default (no value) and the current 44px.
+    // Only the Norte UI sizes from Figma, plus the theme default (no value),
+    // so stories do not promote hand-picked sizes.
     size: {
       control: "select",
-      options: ["default", "small", "medium", "2.75rem"],
+      options: ["default", "small", "medium"],
       mapping: {
         default: undefined,
         small: "1.5rem",
         medium: "1.75rem",
-        "2.75rem": "2.75rem",
       },
       description:
         "small = 24px, medium = 28px. Without a value it uses the theme default (44px, or 28px under Norte UI).",
@@ -73,7 +72,6 @@ export const disabled: Story = {
 
 export const primaryColor: Story = {
   args: {
-    size: "2.75rem",
     color: "primary-textHigh",
     source: <TiendanubeIcon size="small" />,
   },
@@ -81,7 +79,6 @@ export const primaryColor: Story = {
 
 export const aiGenerative: Story = {
   args: {
-    size: "2.75rem",
     color: "neutral-surface",
     appearance: "ai-generative",
     source: <GenerativeStarsIcon size="small" />,
@@ -90,7 +87,6 @@ export const aiGenerative: Story = {
 
 export const aiGenerativeDisabled: Story = {
   args: {
-    size: "2.75rem",
     color: "neutral-textDisabled",
     appearance: "ai-generative",
     source: <GenerativeStarsIcon size="small" />,
@@ -100,7 +96,6 @@ export const aiGenerativeDisabled: Story = {
 
 export const aiGenerativeSurface: Story = {
   args: {
-    size: "2.75rem",
     borderColor: "transparent",
     color: "ai-generative",
     backgroundColor: "ai-generativeSurface",
