@@ -95,8 +95,8 @@ const nextNorteuiDarkTheme = {
   components: {
     popover: {
       borderRadius: vars.shape.border.radius[2],
-      // Shadow level 2 written as drop-shadow so the arrow gets it too.
-      filter: `drop-shadow(0px 0px 2px ${vars.colors.neutral.interactiveHover})`,
+      // No Norte UI dark shadow design yet: keep the default Popover shadow.
+      filter: globalTheme.components.popover.filter,
       padding: { base: vars.spacing[3] },
     },
     thumbnail: globalTheme.components.thumbnail,
