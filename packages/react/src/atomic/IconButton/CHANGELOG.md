@@ -2,6 +2,12 @@
 
 Icons are used to visually communicate core parts of the product and available actions. They can act as wayfinding tools to help merchants more easily understand where they are in the product, and common interaction patterns that are available.
 
+## 2026-11-16 `4.5.0`
+
+#### 🎉 New features
+
+- `IconButton` and `IconButton.Skeleton` follow the Norte UI design in `next-norteui` and `next-norteui-dark`. The props are unchanged and values passed explicitly keep working. Visual change for screens rendered with `next-norteui` or `next-norteui-dark`: the default size goes from `2.75rem` to `1.75rem`; the radius goes from full to `6px`; the border is removed; the default fill is `neutral.surfaceHighlight` (hover `neutral.interactive`, pressed `neutral.interactiveHover`); disabled keeps the `neutral.surfaceHighlight` fill with a `neutral.textDisabled` icon; the focus ring becomes `2px` `neutral.interactive` (`aiGenerative.surfaceHighlight` for `ai-generative`); `backgroundColor="transparent"` gets `neutral.surfaceHighlight` on hover and `neutral.interactive` when pressed. `IconButton.Skeleton` goes from a `2.75rem` circle to `1.75rem` with a `6px` radius. Not a breaking change under Decision 0081: `base`, `dark`, `next` and `next-dark` keep the exact previous IconButton (verified by `yarn check:base-invariance`). ([#642](https://github.com/TiendaNube/nimbus-design-system/pull/642) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-02-12 `4.4.0`
 
 #### 🎉 New features
