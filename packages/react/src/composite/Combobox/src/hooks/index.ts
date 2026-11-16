@@ -4,3 +4,4 @@ export type {
   UseComboboxParams,
   UseComboboxResult
 } from "./useCombobox";
+export { useComboboxId } from "./useComboboxId";
