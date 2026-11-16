@@ -431,9 +431,11 @@ export const useCombobox = (params: UseComboboxParams): UseComboboxResult => {
       case "back":
         goBack();
         break;
-      case "removeLast":
-        removeValue(selection[selection.length - 1]);
+      case "removeLast": {
+        const last = selection.at(-1);
+        if (last) removeValue(last);
         break;
+      }
       case "tab":
         // Tab is not handled: the flag only tells where the focus is going.
         tabPressedInInput.current = true;

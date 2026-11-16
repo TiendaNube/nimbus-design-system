@@ -119,7 +119,7 @@ export const getLevelOptions = (
   levelPath: string[],
   index: Map<string, ComboboxEntry>
 ): ComboboxOption[] => {
-  const last = levelPath[levelPath.length - 1];
+  const last = levelPath.at(-1);
   if (last === undefined) return options;
   const entry = index.get(last);
   return entry
@@ -296,16 +296,15 @@ const getPathSuffix = (path: ComboboxOption[], depth: number): string =>
  */
 const getTellingDepth = (
   path: ComboboxOption[],
-  others: ComboboxOption[][]
+  others: ComboboxOption[][],
+  depth = 2
 ): number => {
-  const tells = (depth: number): boolean =>
-    others.every(
-      (other) => getPathSuffix(other, depth) !== getPathSuffix(path, depth)
-    );
-  const first = [2, ...path.slice(2).map((_, step) => step + 3)].find(
-    (depth) => depth >= path.length || tells(depth)
+  const tells = others.every(
+    (other) => getPathSuffix(other, depth) !== getPathSuffix(path, depth)
   );
-  return Math.min(first ?? path.length, path.length);
+  return depth >= path.length || tells
+    ? Math.min(depth, path.length)
+    : getTellingDepth(path, others, depth + 1);
 };
 
 /**
@@ -324,8 +323,7 @@ export const getRemoveNames = (
     const path = paths[position];
     const others = paths.filter(
       (other, otherPosition) =>
-        otherPosition !== position &&
-        other[other.length - 1].label === option.label
+        otherPosition !== position && other.at(-1)?.label === option.label
     );
     if (others.length === 0) return option.label;
     const depth = getTellingDepth(path, others);
