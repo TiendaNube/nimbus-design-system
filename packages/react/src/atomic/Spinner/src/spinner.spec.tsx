@@ -65,6 +65,20 @@ describe("GIVEN <Spinner />", () => {
         screen.getByTestId("spinner-element").getAttribute("class")
       ).toContain("color_neutral-textLow");
     });
+
+    it("THEN should correctly render the color warning-textLow", () => {
+      makeSut({ color: "warning-textLow" });
+      expect(
+        screen.getByTestId("spinner-element").getAttribute("class")
+      ).toContain("color_warning-textLow");
+    });
+
+    it("THEN should correctly render the color ai-generativeTextLow", () => {
+      makeSut({ color: "ai-generativeTextLow" });
+      expect(
+        screen.getByTestId("spinner-element").getAttribute("class")
+      ).toContain("color_ai-generativeTextLow");
+    });
   });
 
   describe("THEN should correctly render the submitted size", () => {

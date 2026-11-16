@@ -6,19 +6,19 @@ const base = style({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  height: "2rem",
+  height: varsThemeBase.components.button.medium.height,
   width: "fit-content",
   textDecoration: "none",
   cursor: "pointer",
   boxSizing: "border-box",
-  padding: `${varsThemeBase.spacing["1-5"]} ${varsThemeBase.spacing[3]}`,
+  padding: varsThemeBase.components.button.medium.padding,
   gap: varsThemeBase.spacing[1],
   fontWeight: varsThemeBase.fontWeight.medium,
   lineHeight: varsThemeBase.lineWeight.body.base,
   fontSize: varsThemeBase.fontSize.body.base,
   fontFamily: varsThemeBase.fontFamily.sans,
   color: varsThemeBase.colors.neutral.textHigh,
-  borderRadius: varsThemeBase.shape.border.radius[2],
+  borderRadius: varsThemeBase.components.button.medium.radius,
   borderWidth: varsThemeBase.shape.border.width[1],
   borderStyle: "solid",
   borderColor: varsThemeBase.colors.neutral.interactive,
@@ -28,7 +28,7 @@ const base = style({
     cursor: "not-allowed",
   },
   ":focus-visible": {
-    boxShadow: varsThemeBase.utils.focus,
+    boxShadow: varsThemeBase.components.button.focus,
     outline: "none",
   },
 });
@@ -40,17 +40,18 @@ export const fullWidth = style({
 export const size = styleVariants({
   medium: {},
   small: {
-    height: "1.75rem",
-    padding: `${varsThemeBase.spacing["1-5"]} ${varsThemeBase.spacing[2]}`,
+    height: varsThemeBase.components.button.small.height,
+    padding: varsThemeBase.components.button.small.padding,
+    borderRadius: varsThemeBase.components.button.small.radius,
     fontSize: varsThemeBase.fontSize.body.caption,
     lineHeight: varsThemeBase.lineWeight.body.caption,
   },
   large: {
-    height: "2.75rem",
-    padding: `${varsThemeBase.spacing[3]} ${varsThemeBase.spacing[4]}`,
+    height: varsThemeBase.components.button.large.height,
+    padding: varsThemeBase.components.button.large.padding,
     fontSize: varsThemeBase.fontSize.body.highlight,
-    borderRadius: varsThemeBase.shape.border.radius[3],
-    gap: varsThemeBase.spacing[2],
+    borderRadius: varsThemeBase.components.button.large.radius,
+    gap: varsThemeBase.components.button.large.gap,
     lineHeight: varsThemeBase.lineWeight.body.base,
   },
 });
@@ -71,8 +72,8 @@ export const appearance = styleVariants({
         borderColor: varsThemeBase.colors.primary.interactivePressed,
       },
       ":disabled": {
-        background: varsThemeBase.colors.neutral.surfaceDisabled,
-        borderColor: varsThemeBase.colors.primary.surfaceHighlight,
+        background: varsThemeBase.components.button.primary.disabledBackground,
+        borderColor: varsThemeBase.components.button.primary.disabledBorder,
       },
       ":focus": {
         borderColor: varsThemeBase.colors.primary.interactiveHover,
@@ -82,20 +83,20 @@ export const appearance = styleVariants({
   danger: [
     base,
     {
-      background: varsThemeBase.colors.danger.surface,
-      borderColor: varsThemeBase.colors.danger.interactive,
-      color: varsThemeBase.colors.danger.textLow,
+      background: varsThemeBase.components.button.danger.background,
+      borderColor: varsThemeBase.components.button.danger.border,
+      color: varsThemeBase.components.button.danger.text,
       ":hover": {
-        background: varsThemeBase.colors.danger.surfaceHighlight,
+        background: varsThemeBase.components.button.danger.hoverBackground,
         borderColor: varsThemeBase.colors.danger.interactiveHover,
       },
       ":active": {
-        background: varsThemeBase.colors.danger.interactive,
+        background: varsThemeBase.components.button.danger.pressedBackground,
         borderColor: varsThemeBase.colors.danger.interactivePressed,
       },
       ":disabled": {
-        background: varsThemeBase.colors.neutral.surfaceDisabled,
-        borderColor: varsThemeBase.colors.danger.surfaceHighlight,
+        background: varsThemeBase.components.button.danger.disabledBackground,
+        borderColor: varsThemeBase.components.button.danger.disabledBorder,
       },
       ":focus": {
         borderColor: varsThemeBase.colors.danger.interactive,
@@ -117,11 +118,11 @@ export const appearance = styleVariants({
         borderColor: varsThemeBase.colors.neutral.interactivePressed,
       },
       ":disabled": {
-        background: varsThemeBase.colors.neutral.surfaceDisabled,
-        borderColor: varsThemeBase.colors.neutral.surfaceHighlight,
+        background: varsThemeBase.components.button.neutral.disabledBackground,
+        borderColor: varsThemeBase.components.button.neutral.disabledBorder,
       },
       ":focus": {
-        borderColor: varsThemeBase.colors.primary.interactive,
+        borderColor: varsThemeBase.components.button.neutral.focusBorder,
       },
     },
   ],
@@ -133,11 +134,11 @@ export const appearance = styleVariants({
       color: varsThemeBase.colors.neutral.textHigh,
       ":hover": {
         backgroundColor: varsThemeBase.colors.neutral.surface,
-        borderColor: varsThemeBase.colors.neutral.interactiveHover,
+        borderColor: varsThemeBase.components.button.transparent.hoverBorder,
       },
       ":active": {
         backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
-        borderColor: varsThemeBase.colors.neutral.interactivePressed,
+        borderColor: varsThemeBase.components.button.transparent.pressedBorder,
       },
       ":disabled": {
         color: varsThemeBase.colors.neutral.textDisabled,
@@ -157,7 +158,9 @@ export const appearance = styleVariants({
         background: gradients.aiGenerativeHover,
       },
       ":active": {
-        background: varsThemeBase.colors.aiGenerative.textLow,
+        // In base, dark, next and next-dark the pressed gradient is the flat
+        // aiGenerative.textLow, so those themes look the same as before.
+        background: gradients.aiGenerativePressed,
       },
       ":disabled": {
         background: createBorderGradient(
@@ -173,28 +176,28 @@ export const appearance = styleVariants({
     {
       background: createBorderGradient(
         gradients.aiGenerativeInteractive,
-        varsThemeBase.colors.neutral.background
+        varsThemeBase.components.button.aiSecondary.background
       ),
       borderColor: "transparent",
-      color: varsThemeBase.colors.neutral.textHigh,
+      color: varsThemeBase.components.button.aiSecondary.text,
       position: "relative",
       ":hover": {
         background: createBorderGradient(
           gradients.aiGenerativeHover,
-          varsThemeBase.colors.neutral.surface
+          varsThemeBase.components.button.aiSecondary.hoverBackground
         ),
-        boxShadow: `0 0 16px color-mix(in srgb, ${varsThemeBase.colors.aiGenerative.interactiveHover} 70%, transparent)`,
+        boxShadow: `0 0 16px color-mix(in srgb, ${varsThemeBase.components.button.aiSecondary.hoverGlow} 70%, transparent)`,
       },
       ":active": {
         background: createBorderGradient(
-          gradients.aiGenerativeHover,
+          gradients.aiGenerativePressed,
           varsThemeBase.colors.aiGenerative.surfaceHighlight
         ),
       },
       ":disabled": {
         background: createBorderGradient(
           gradients.aiGenerativeDisabled,
-          varsThemeBase.colors.neutral.surfaceDisabled
+          varsThemeBase.components.button.aiSecondary.disabledBackground
         ),
         color: varsThemeBase.colors.neutral.textDisabled,
       },
