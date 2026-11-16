@@ -4,6 +4,7 @@ releases:
   "@nimbus-ds/icon": patch
   "@nimbus-ds/components": minor
   "@nimbus-ds/button": minor
+  "@nimbus-ds/spinner": minor
 
 declined:
   - nimbus-design-system
