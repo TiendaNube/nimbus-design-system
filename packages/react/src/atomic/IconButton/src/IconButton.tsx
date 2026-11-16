@@ -40,7 +40,20 @@ const IconButton: React.FC<IconButtonProps> & IconButtonComponents = ({
   const { currentTheme } = useTheme();
   const isNorteUi = isNorteUiTheme(currentTheme);
   const isAiGenerative = appearance === "ai-generative";
-  const isTransparent = backgroundColor === "transparent";
+
+  // Norte UI fill for the default, transparent and AI surface IconButtons.
+  // When one applies it owns background and border, so those sprinkles are
+  // skipped; any other explicit color keeps its sprinkles.
+  const norteUiFill =
+    !isNorteUi || isAiGenerative
+      ? undefined
+      : backgroundColor === undefined
+      ? iconButton.classnames.norteuiNeutral
+      : backgroundColor === "transparent"
+      ? iconButton.classnames.norteuiTransparent
+      : backgroundColor === "ai-generativeSurface"
+      ? iconButton.classnames.norteuiAiSurface
+      : undefined;
 
   // Norte UI only replaces values the consumer did not pass, so explicit
   // props keep working exactly as before in every theme.
@@ -53,7 +66,7 @@ const IconButton: React.FC<IconButtonProps> & IconButtonComponents = ({
       }),
     ...(!isAiGenerative &&
       isNorteUi &&
-      !isTransparent && {
+      !norteUiFill && {
         ...(borderColor !== undefined && { borderColor }),
         ...(backgroundColor !== undefined && { backgroundColor }),
       }),
@@ -72,12 +85,7 @@ const IconButton: React.FC<IconButtonProps> & IconButtonComponents = ({
     ? [
         iconButton.classnames.norteui,
         isAiGenerative && iconButton.classnames.norteuiAiGenerative,
-        !isAiGenerative &&
-          isTransparent &&
-          iconButton.classnames.norteuiTransparent,
-        !isAiGenerative &&
-          backgroundColor === undefined &&
-          iconButton.classnames.norteuiNeutral,
+        norteUiFill,
       ]
     : [];
 

@@ -96,6 +96,24 @@ describe("GIVEN <IconButton />", () => {
       expect(getClass()).not.toContain("norteuiNeutral");
     });
 
+    it("THEN Norte UI uses the AI surface style for ai-generativeSurface", () => {
+      renderInTheme("next-norteui", {
+        source: <div />,
+        backgroundColor: "ai-generativeSurface",
+      });
+      expect(getClass()).toContain("norteuiAiSurface");
+      expect(getClass()).not.toContain("backgroundColor-");
+    });
+
+    it("THEN base keeps the ai-generativeSurface sprinkle", () => {
+      renderInTheme("base", {
+        source: <div />,
+        backgroundColor: "ai-generativeSurface",
+      });
+      expect(getClass()).toContain("backgroundColor-xs");
+      expect(getClass()).not.toContain("norteui");
+    });
+
     it("THEN Norte UI dims the icon when disabled", () => {
       renderInTheme("next-norteui", { source: <div />, disabled: true });
       expect(

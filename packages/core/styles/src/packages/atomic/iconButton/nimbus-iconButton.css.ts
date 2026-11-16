@@ -119,6 +119,40 @@ const norteuiTransparent = style({
   },
 });
 
+/**
+ * Used when backgroundColor="ai-generativeSurface" is passed: the Figma
+ * "AI generative secondary" IconButton (AI surface fill with the AI gradient
+ * as a 1px border), matching the Norte UI ai-secondary Button.
+ */
+const norteuiAiSurface = style({
+  background: createBorderGradient(
+    gradients.aiGenerativeInteractive,
+    varsThemeBase.colors.aiGenerative.surface
+  ),
+  border: `${varsThemeBase.shape.border.width[1]} solid transparent`,
+  ":hover": {
+    background: createBorderGradient(
+      gradients.aiGenerativeHover,
+      varsThemeBase.colors.aiGenerative.surfaceDisabled
+    ),
+  },
+  ":active": {
+    background: createBorderGradient(
+      gradients.aiGenerativePressed,
+      varsThemeBase.colors.aiGenerative.surfaceHighlight
+    ),
+  },
+  ":focus-visible": {
+    boxShadow: `0 0 0 ${varsThemeBase.shape.border.width[2]} ${varsThemeBase.colors.aiGenerative.surfaceHighlight}`,
+  },
+  ":disabled": {
+    background: createBorderGradient(
+      gradients.aiGenerativeDisabled,
+      varsThemeBase.colors.aiGenerative.surface
+    ),
+  },
+});
+
 /** Focus ring for the ai-generative appearance. */
 const norteuiAiGenerative = style({
   ":focus-visible": {
@@ -132,6 +166,7 @@ export const styles = {
   norteui,
   norteuiNeutral,
   norteuiTransparent,
+  norteuiAiSurface,
   norteuiAiGenerative,
 };
 
