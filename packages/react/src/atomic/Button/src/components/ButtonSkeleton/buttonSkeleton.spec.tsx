@@ -24,4 +24,30 @@ describe("GIVEN <Button.Skeleton />", () => {
       );
     });
   });
+
+  describe("WHEN an older @nimbus-ds/styles has no components.button", () => {
+    it("THEN should keep the previous size", () => {
+      jest.isolateModules(() => {
+        jest.doMock("@nimbus-ds/styles", () => {
+          const actual = jest.requireActual("@nimbus-ds/styles");
+          const { button: _button, ...components } =
+            actual.themeVars.components;
+          return {
+            ...actual,
+            themeVars: { ...actual.themeVars, components },
+          };
+        });
+        /* eslint-disable @typescript-eslint/no-var-requires, global-require */
+        const {
+          ButtonSkeleton: OldStylesSkeleton,
+        } = require("./ButtonSkeleton");
+        /* eslint-enable @typescript-eslint/no-var-requires, global-require */
+        render(<OldStylesSkeleton data-testid="old-styles-skeleton" />);
+      });
+      const style =
+        screen.getByTestId("old-styles-skeleton").getAttribute("style") ?? "";
+      expect(style).toMatch(/--height__\w{0,9}: 2rem;/);
+      expect(style).toMatch(/--borderRadius__\w{0,9}: 0.5rem;/);
+    });
+  });
 });
