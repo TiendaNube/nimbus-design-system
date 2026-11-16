@@ -36,6 +36,7 @@ type Story = StoryObj<typeof IconButton>;
 
 // No size: shows the theme default (44px, or 28px under Norte UI).
 export const basic: Story = {
+  name: "Default",
   args: {
     source: <TiendanubeIcon size="small" />,
   },
@@ -66,13 +67,6 @@ export const transparent: Story = {
 export const disabled: Story = {
   args: {
     disabled: true,
-    source: <TiendanubeIcon size="small" />,
-  },
-};
-
-export const primaryColor: Story = {
-  args: {
-    color: "primary-textHigh",
     source: <TiendanubeIcon size="small" />,
   },
 };
