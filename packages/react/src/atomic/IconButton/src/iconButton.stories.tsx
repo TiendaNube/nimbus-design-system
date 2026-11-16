@@ -28,6 +28,9 @@ const meta: Meta<typeof IconButton> = {
         "small = 24px, medium = 28px. Without a value it uses the theme default (44px, or 28px under Norte UI).",
     },
   },
+  // Start every story with disabled off, so the control shows as a switch
+  // instead of "Set boolean".
+  args: { disabled: false },
   tags: ["autodocs"],
 };
 
