@@ -181,6 +181,35 @@ export const vars = createGlobalThemeContract(
       divider: {
         color: "",
       },
+      button: {
+        small: { height: "", padding: "", radius: "" },
+        medium: { height: "", padding: "", radius: "" },
+        large: { height: "", padding: "", radius: "", gap: "" },
+        focus: "",
+        primary: { disabledBackground: "", disabledBorder: "" },
+        neutral: {
+          disabledBackground: "",
+          disabledBorder: "",
+          focusBorder: "",
+        },
+        transparent: { hoverBorder: "", pressedBorder: "" },
+        danger: {
+          background: "",
+          border: "",
+          text: "",
+          hoverBackground: "",
+          pressedBackground: "",
+          disabledBackground: "",
+          disabledBorder: "",
+        },
+        aiSecondary: {
+          text: "",
+          background: "",
+          hoverBackground: "",
+          hoverGlow: "",
+          disabledBackground: "",
+        },
+      },
       thumbnail: {
         background: "",
       },
