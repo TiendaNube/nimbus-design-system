@@ -111,7 +111,7 @@ const ComboboxList: React.FC<ComboboxListProps> = ({
                   )}
                 <ComboboxRow
                   row={row}
-                  id={model.getRowId(rows.indexOf(row))}
+                  id={model.getRowId(position + (plainTitle ? 1 : 0))}
                   active={model.isActive(row)}
                   labels={labels}
                   onActivate={model.activateRow}

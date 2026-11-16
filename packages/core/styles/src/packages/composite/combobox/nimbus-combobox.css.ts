@@ -3,6 +3,9 @@ import { varsThemeBase } from "../../../themes";
 import { thinScrollbarAlways } from "../../../utils/scrollbar.css";
 import { chip_close_icon_container } from "../../atomic/chip/nimbus-chip.css";
 
+/** Focus indicator that forced-colors mode keeps (it drops box shadows). */
+const FORCED_COLORS_OUTLINE = "2px solid Highlight";
+
 /** Height of the field, border included: the height of `Input`. */
 const FIELD_MIN_HEIGHT = "34px";
 /** Height of a plain row, the create row, the back control and the title row. */
@@ -34,7 +37,14 @@ export const field = style({
   minHeight: FIELD_MIN_HEIGHT,
   paddingRight: varsThemeBase.spacing[1],
   cursor: "text",
-  alignItems: "center"
+  alignItems: "center",
+  "@media": {
+    "(forced-colors: active)": {
+      selectors: {
+        "&:focus-within": { outline: FORCED_COLORS_OUTLINE }
+      }
+    }
+  }
 });
 
 export const fieldMultiple = style({
@@ -177,6 +187,13 @@ export const trailingButton = style({
   ":focus-visible": {
     outline: "none",
     boxShadow: varsThemeBase.utils.focus
+  },
+  "@media": {
+    "(forced-colors: active)": {
+      selectors: {
+        "&:focus-visible": { outline: FORCED_COLORS_OUTLINE }
+      }
+    }
   }
 });
 
@@ -184,7 +201,10 @@ export const trailingButton = style({
 globalStyle(`${field} ${chip_close_icon_container}:focus-visible`, {
   outline: "none",
   borderRadius: varsThemeBase.shape.border.radius[1],
-  boxShadow: varsThemeBase.utils.focus
+  boxShadow: varsThemeBase.utils.focus,
+  "@media": {
+    "(forced-colors: active)": { outline: FORCED_COLORS_OUTLINE }
+  }
 });
 
 /* -------------------------------------------------------------------------------------------------
@@ -228,6 +248,13 @@ export const scroller = style([
     outline: "none",
     ":focus-visible": {
       boxShadow: `inset ${varsThemeBase.utils.focus}`
+    },
+    "@media": {
+      "(forced-colors: active)": {
+        selectors: {
+          "&:focus-visible": { outline: FORCED_COLORS_OUTLINE }
+        }
+      }
     }
   }
 ]);

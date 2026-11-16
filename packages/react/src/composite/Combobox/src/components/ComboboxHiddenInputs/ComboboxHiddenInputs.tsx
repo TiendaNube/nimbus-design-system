@@ -9,11 +9,12 @@ import type { ComboboxHiddenInputsProps } from "./ComboboxHiddenInputs.types";
 const ComboboxHiddenInputs: React.FC<ComboboxHiddenInputsProps> = ({
   name,
   selection,
-  multiple
+  multiple,
+  disabled
 }) => {
   if (!name) return null;
   if (!multiple && selection.length === 0) {
-    return <input type="hidden" name={name} value="" />;
+    return <input type="hidden" name={name} value="" disabled={disabled} />;
   }
   return (
     <>
@@ -23,6 +24,7 @@ const ComboboxHiddenInputs: React.FC<ComboboxHiddenInputsProps> = ({
           type="hidden"
           name={name}
           value={option.value}
+          disabled={disabled}
         />
       ))}
     </>

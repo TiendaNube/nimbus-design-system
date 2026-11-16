@@ -1,11 +1,5 @@
-import React, {
-  forwardRef,
-  useCallback,
-  useEffect,
-  useId,
-  useMemo
-} from "react";
-import { useMergeRefs } from "@floating-ui/react";
+import React, { forwardRef, useCallback, useEffect, useMemo } from "react";
+import { useId, useMergeRefs } from "@floating-ui/react";
 import { combobox, input as inputStyles } from "@nimbus-ds/styles";
 import { Popover } from "@nimbus-ds/popover";
 import { Tag } from "@nimbus-ds/tag";
@@ -78,7 +72,9 @@ const Combobox = forwardRef<HTMLInputElement, ComboboxProps>((props, ref) => {
   const multiple = props.multiple === true;
   const labels = useMemo(() => resolveLabels(labelsProp), [labelsProp]);
 
-  const baseId = useId().replace(/:/g, "");
+  // `useId` of Floating UI also works on React 16 and 17, where it is
+  // `undefined` on the first render.
+  const baseId = (useId() ?? "nimbus-combobox").replace(/:/g, "");
   const inputId = id ?? `${baseId}-input`;
   const listboxId = `${baseId}-listbox`;
 
@@ -246,6 +242,7 @@ const Combobox = forwardRef<HTMLInputElement, ComboboxProps>((props, ref) => {
         name={name}
         selection={selection}
         multiple={multiple}
+        disabled={disabled}
       />
     </div>
   );

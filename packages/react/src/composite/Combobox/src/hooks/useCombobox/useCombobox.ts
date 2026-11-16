@@ -83,13 +83,16 @@ const buildRows = (params: {
     return rows;
   }
 
-  const parentEntry = index.get(levelPath[levelPath.length - 1] ?? "");
+  const parentValue = levelPath.at(-1);
+  const parentEntry =
+    parentValue === undefined ? undefined : index.get(parentValue);
   if (parentEntry) {
     rows.push({
       kind: "title",
       key: "title",
       option: parentEntry.option,
-      selectable: params.selectableBranches,
+      // A disabled parent cannot be selected, not even from its own level.
+      selectable: params.selectableBranches && !parentEntry.option.disabled,
       selected: selectedValues.has(parentEntry.option.value)
     });
   }
@@ -115,8 +118,10 @@ const getLevelPresentation = (params: {
 }): { isSearching: boolean; backLabel: string | null; groupLabel: string } => {
   const { hierarchical, levelPath, index, labels } = params;
   const isSearching = hierarchical && params.searching;
-  const levelName = (position: number): string =>
-    index.get(levelPath[position] ?? "")?.option.label ?? "";
+  const levelName = (position: number): string => {
+    const value = levelPath[position];
+    return value === undefined ? "" : index.get(value)?.option.label ?? "";
+  };
   const browsing = hierarchical && !isSearching;
   let backLabel: string | null = null;
   if (browsing && levelPath.length === 1) {

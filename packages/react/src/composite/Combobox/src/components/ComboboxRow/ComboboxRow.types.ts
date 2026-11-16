@@ -1,7 +1,10 @@
 import type { ComboboxLabels } from "../../combobox.types";
 import type { ComboboxRowModel } from "../../hooks";
 
-export interface ComboboxRowProps {
+/**
+ * Properties of the ComboboxRow sub-component.
+ */
+export interface ComboboxRowProperties {
   row: ComboboxRowModel;
   /** Id of the row, referenced by `aria-activedescendant`. */
   id: string;
@@ -10,3 +13,8 @@ export interface ComboboxRowProps {
   labels: ComboboxLabels;
   onActivate: (row: ComboboxRowModel) => void;
 }
+
+/**
+ * Props of the ComboboxRow sub-component.
+ */
+export type ComboboxRowProps = ComboboxRowProperties;

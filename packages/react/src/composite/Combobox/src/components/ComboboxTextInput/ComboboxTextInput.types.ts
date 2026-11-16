@@ -2,7 +2,10 @@ import type { Ref } from "react";
 import type { ComboboxOption } from "../../combobox.types";
 import type { UseComboboxResult } from "../../hooks";
 
-export interface ComboboxTextInputProps {
+/**
+ * Properties of the ComboboxTextInput sub-component.
+ */
+export interface ComboboxTextInputProperties {
   /** State and actions of the Combobox. */
   model: UseComboboxResult;
   inputRef: Ref<HTMLInputElement>;
@@ -19,3 +22,8 @@ export interface ComboboxTextInputProps {
   "aria-describedby"?: string;
   "data-testid"?: string;
 }
+
+/**
+ * Props of the ComboboxTextInput sub-component.
+ */
+export type ComboboxTextInputProps = ComboboxTextInputProperties;

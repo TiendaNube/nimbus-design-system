@@ -1368,4 +1368,92 @@ describe("GIVEN <Combobox />", () => {
       ).toBeInTheDocument();
     });
   });
+
+  describe("Review regressions", () => {
+    it("AC-042 keeps the selection when onCreate returns an option that is already selected", async () => {
+      const user = userEvent.setup();
+      const onChange = jest.fn();
+      makeSut({
+        multiple: true,
+        defaultValue: [BAG],
+        onCreate: () => BAG,
+        onChange
+      });
+      await user.type(getInput(), "Eco");
+      await user.click(getOption(/Create/));
+      expect(onChange).not.toHaveBeenCalled();
+      expect(
+        screen.getByRole("button", { name: "Remove Bolsa" })
+      ).toBeInTheDocument();
+    });
+
+    it("AC-019 submits no value when the field is disabled", () => {
+      const read = (name: string) =>
+        new FormData(screen.getByTestId("form") as HTMLFormElement).getAll(
+          name
+        );
+      const { unmount } = render(
+        <form data-testid="form">
+          <Combobox
+            aria-label="Field"
+            name="single"
+            disabled
+            options={OPTIONS}
+            defaultValue={CAMERA}
+          />
+          <Combobox
+            aria-label="Many"
+            multiple
+            name="many"
+            disabled
+            options={OPTIONS}
+            defaultValue={[CAMERA, BAG]}
+          />
+        </form>
+      );
+      expect(read("single")).toEqual([]);
+      expect(read("many")).toEqual([]);
+      unmount();
+    });
+
+    it("AC-014 treats an option whose value is an empty string as a normal option", async () => {
+      const user = userEvent.setup();
+      makeSut({
+        options: [
+          {
+            value: "",
+            label: "Empty value",
+            children: [{ value: "child", label: "Child" }]
+          },
+          { value: "other", label: "Other" }
+        ]
+      });
+      await user.click(getInput());
+      expect(screen.getAllByRole("option")).toHaveLength(2);
+      expect(screen.queryByRole("button", { name: "Back" })).toBeNull();
+    });
+
+    it("AC-012 does not select the title of a disabled parent", async () => {
+      const user = userEvent.setup();
+      const onChange = jest.fn();
+      const child: ComboboxOption = { value: "child", label: "Child" };
+      makeSut({
+        options: [
+          {
+            value: "parent",
+            label: "Parent",
+            disabled: true,
+            children: [child]
+          },
+          { value: "other", label: "Other" }
+        ],
+        defaultValue: child,
+        onChange
+      });
+      await user.click(getInput());
+      expect(screen.queryByRole("option", { name: "Parent" })).toBeNull();
+      await user.click(screen.getByText("Parent"));
+      expect(onChange).not.toHaveBeenCalled();
+    });
+  });
 });
