@@ -28,6 +28,18 @@ const meta: Meta<typeof Basic> = {
         "A ref to the element rendered by this component. Because this component is polymorphic, the type will vary based on the value of the as prop.",
     },
     children: { control: { type: "text" } },
+    appearance: {
+      control: { type: "select" },
+      options: [
+        "neutral",
+        "primary",
+        "danger",
+        "transparent",
+        "ai-primary",
+        "ai-secondary",
+      ],
+    },
+    disabled: { control: { type: "boolean" } },
   },
   tags: ["autodocs"],
 };
