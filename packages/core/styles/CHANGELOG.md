@@ -6,7 +6,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 #### 🎉 New features
 
-- Toast: Adds the `components.toast` theme values (`borderRadius`, `gap`, `paddingInlineEnd`, `boxShadow` and `primary.background`). In `base`, `dark`, `next` and `next-dark` they hold the current Toast values, so the Toast looks exactly as before. Visual change for screens rendered with `next-norteui`: radius goes from `8px` to fully rounded (`radius.full`), the end padding from `8px` to `12px`, the icon gap from `4px` to `6px`, the Toast gets the Norte UI level-3 shadow (`neutral.surfaceHighlight` and `neutral.interactiveHover`) and the `primary` background goes from `primary.textLow` to `primary.interactiveHover`. `next-norteui-dark` gets the same shape and spacing and keeps the current colors and no shadow. Not a breaking change under Decision 0081: both Norte UI themes are opt-in (verified by `yarn check:base-invariance`). ([#644](https://github.com/TiendaNube/nimbus-design-system/pull/644) by [@noecondoleo](https://github.com/noecondoleo))
+- Toast: In `next-norteui` the Toast is fully rounded, with more space at the end and between icon and text, a soft shadow and a lighter `primary` background; `next-norteui-dark` gets the same shape and spacing, and the other themes look exactly as before. ([#644](https://github.com/TiendaNube/nimbus-design-system/pull/644) by [@noecondoleo](https://github.com/noecondoleo))
 
 ## 2026-11-12 `9.72.0`
 
