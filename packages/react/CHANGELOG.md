@@ -3,6 +3,12 @@
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories
 every day, with simplicity, accessibility, consistency and performance.
 
+## 2026-11-17 `5.67.0`
+
+#### 🎉 New features
+
+- IconButton: `IconButton` and `IconButton.Skeleton` follow the Norte UI design in `next-norteui` and `next-norteui-dark`: `1.75rem` default size, `6px` radius, no border, `neutral.surfaceHighlight` fill with new hover, pressed, disabled and focus states; `backgroundColor="transparent"` and `backgroundColor="ai-generativeSurface"` get their Norte UI states. Props are unchanged and explicit values keep working; other themes are unchanged. ([#642](https://github.com/TiendaNube/nimbus-design-system/pull/642) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-11-12 `5.66.0`
 
 #### 🎉 New features

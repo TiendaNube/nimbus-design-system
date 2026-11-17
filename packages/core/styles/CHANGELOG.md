@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2026-11-17 `9.73.0`
+
+#### 🎉 New features
+
+- IconButton: Adds the Norte UI IconButton classes (`norteui`, `norteuiNeutral`, `norteuiTransparent`, `norteuiAiSurface`, `norteuiAiGenerative`): `6px` radius, no border, `neutral.surfaceHighlight` fill (hover `neutral.interactive`, pressed `neutral.interactiveHover`), transparent and AI surface states, and `2px` focus rings. The IconButton applies them only in `next-norteui` and `next-norteui-dark`, so `base`, `dark`, `next` and `next-dark` are unchanged. ([#642](https://github.com/TiendaNube/nimbus-design-system/pull/642) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-11-12 `9.72.0`
 
 #### 🎉 New features
