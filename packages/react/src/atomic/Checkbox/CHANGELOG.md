@@ -2,6 +2,12 @@
 
 The Checkbox component allows us to choose one or several options from a selection list.
 
+## 2026-11-17 `2.6.0`
+
+#### 🎉 New features
+
+- Reads its hover, pressed, checked, disabled, label size and focus values from the `components.checkbox` theme values of `@nimbus-ds/styles`. In `next-norteui` the unchecked box gets a `neutral.surface` background with an `interactiveHover` border on hover and an `interactivePressed` border when pressed (per appearance), checked darkens to `primary.interactiveHover` and `primary.interactivePressed`, the indeterminate dash is `primary.interactive`, disabled uses a `neutral.surfaceHighlight` background with a `textDisabled` dash, the label is 12px (`caption`) and focus shows a 2px `neutral.interactiveHover` ring, aligned with the Norte UI Figma. `next-norteui-dark` takes the 12px label and keeps the current colors. The API is unchanged. Not a breaking change under Decision 0081: Norte UI ships as `minor` because both themes are opt-in, and `base`, `dark`, `next` and `next-dark` keep the exact previous Checkbox (verified by `yarn check:base-invariance`). ([#PR](https://github.com/TiendaNube/nimbus-design-system/pull/PR) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-02-12 `2.5.0`
 
 #### 🎉 New features

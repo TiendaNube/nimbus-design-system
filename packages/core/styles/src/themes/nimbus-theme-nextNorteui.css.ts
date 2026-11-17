@@ -158,6 +158,102 @@ export const variables = createTheme(vars, {
         borderRadius: vars.shape.border.radius.base,
       },
     },
+    checkbox: {
+      label: { fontSize: vars.fontSize.body.caption },
+      focus: { boxShadow: inputFocusRing },
+      hover: {
+        background: vars.colors.neutral.surface,
+        borderColor: {
+          neutral: vars.colors.neutral.interactiveHover,
+          danger: vars.colors.danger.interactiveHover,
+          primary: vars.colors.primary.interactiveHover,
+        },
+      },
+      pressed: {
+        background: vars.colors.neutral.surface,
+        borderColor: {
+          neutral: vars.colors.neutral.interactivePressed,
+          danger: vars.colors.danger.interactivePressed,
+          primary: vars.colors.primary.interactivePressed,
+        },
+      },
+      checked: {
+        hover: { background: vars.colors.primary.interactiveHover },
+        pressed: { background: vars.colors.primary.interactivePressed },
+      },
+      indeterminate: { color: vars.colors.primary.interactive },
+      disabled: {
+        background: vars.colors.neutral.surfaceHighlight,
+        borderColor: vars.colors.neutral.interactive,
+        indeterminateColor: vars.colors.neutral.textDisabled,
+      },
+    },
+    radio: {
+      dotSize: "0.5625rem",
+      label: { fontSize: vars.fontSize.body.caption },
+      focus: { boxShadow: inputFocusRing },
+      hover: {
+        background: vars.colors.neutral.surface,
+        borderColor: vars.colors.neutral.interactiveHover,
+      },
+      pressed: {
+        background: vars.colors.neutral.surfaceHighlight,
+        borderColor: vars.colors.neutral.interactivePressed,
+      },
+      checked: {
+        hover: { color: vars.colors.primary.interactiveHover },
+        pressed: { color: vars.colors.primary.interactivePressed },
+      },
+      disabled: {
+        background: vars.colors.neutral.surfaceHighlight,
+        borderColor: vars.colors.neutral.interactive,
+      },
+      checkedDisabled: {
+        background: vars.colors.neutral.surfaceDisabled,
+        borderColor: vars.colors.primary.surfaceDisabled,
+        dotColor: vars.colors.primary.surfaceDisabled,
+      },
+      button: {
+        background: vars.colors.neutral.background,
+        hover: {
+          background: vars.colors.neutral.surface,
+          borderColor: vars.colors.neutral.interactiveHover,
+        },
+        pressed: {
+          background: vars.colors.neutral.surfaceHighlight,
+          borderColor: vars.colors.neutral.interactivePressed,
+        },
+        checked: {
+          hover: { background: vars.colors.primary.interactiveHover },
+          pressed: { background: vars.colors.primary.interactivePressed },
+        },
+        disabled: {
+          background: vars.colors.neutral.surfaceHighlight,
+          borderColor: vars.colors.neutral.interactive,
+        },
+        checkedDisabled: {
+          background: vars.colors.primary.surfaceDisabled,
+          borderColor: vars.colors.primary.surfaceDisabled,
+          color: vars.colors.neutral.textDisabled,
+        },
+      },
+    },
+    toggle: {
+      label: { fontSize: vars.fontSize.body.caption },
+      focus: { boxShadow: inputFocusRing },
+      pressed: {
+        background: vars.colors.neutral.interactivePressed,
+        borderColor: vars.colors.neutral.interactivePressed,
+      },
+      disabled: {
+        background: vars.colors.neutral.interactive,
+        thumb: vars.colors.neutral.interactivePressed,
+      },
+      checkedDisabled: {
+        background: vars.colors.neutral.textDisabled,
+        thumb: vars.colors.neutral.interactive,
+      },
+    },
     // AI interactive is lighter than interactiveHover, so the glow stays soft.
     button: buttonNorteui(String(aiGenerative.interactive.value)),
     tag: {

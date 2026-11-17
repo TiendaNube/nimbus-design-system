@@ -397,6 +397,110 @@ export const globalTheme = {
       disabled: { borderColor: vars.colors.neutral.surfaceHighlight },
       skeleton: { height: "2rem", borderRadius: "0.5rem" },
     },
+    checkbox: {
+      // References what the Checkbox used before, so base, dark, next and
+      // next-dark keep the exact look: hover and pressed keep the rest colors.
+      // Norte UI overrides them.
+      label: { fontSize: vars.fontSize.body.base },
+      focus: { boxShadow: vars.utils.focus },
+      hover: {
+        background: vars.colors.neutral.background,
+        borderColor: {
+          neutral: vars.colors.neutral.interactive,
+          danger: vars.colors.danger.interactive,
+          primary: vars.colors.primary.interactive,
+        },
+      },
+      pressed: {
+        background: vars.colors.neutral.background,
+        borderColor: {
+          neutral: vars.colors.neutral.interactive,
+          danger: vars.colors.danger.interactive,
+          primary: vars.colors.primary.interactive,
+        },
+      },
+      checked: {
+        hover: { background: vars.colors.primary.interactive },
+        pressed: { background: vars.colors.primary.interactive },
+      },
+      indeterminate: { color: vars.colors.neutral.textLow },
+      disabled: {
+        background: vars.colors.neutral.surfaceDisabled,
+        borderColor: vars.colors.neutral.interactive,
+        indeterminateColor: vars.colors.neutral.textLow,
+      },
+    },
+    radio: {
+      // References what the Radio used before, so base, dark, next and
+      // next-dark keep the exact look. The button pressed values match its
+      // hover, which already won over :active. Norte UI overrides them.
+      dotSize: "0.5rem",
+      label: { fontSize: vars.fontSize.body.base },
+      focus: { boxShadow: vars.utils.focus },
+      hover: {
+        background: vars.colors.neutral.background,
+        borderColor: vars.colors.neutral.interactive,
+      },
+      pressed: {
+        background: vars.colors.neutral.background,
+        borderColor: vars.colors.neutral.interactive,
+      },
+      checked: {
+        hover: { color: vars.colors.primary.interactive },
+        pressed: { color: vars.colors.primary.interactive },
+      },
+      disabled: {
+        background: vars.colors.neutral.surfaceDisabled,
+        borderColor: vars.colors.neutral.interactive,
+      },
+      checkedDisabled: {
+        background: vars.colors.neutral.surfaceDisabled,
+        borderColor: vars.colors.neutral.interactive,
+        dotColor: vars.colors.neutral.textDisabled,
+      },
+      button: {
+        background: vars.colors.neutral.surface,
+        hover: {
+          background: vars.colors.neutral.surfaceHighlight,
+          borderColor: vars.colors.neutral.interactivePressed,
+        },
+        pressed: {
+          background: vars.colors.neutral.surfaceHighlight,
+          borderColor: vars.colors.neutral.interactivePressed,
+        },
+        checked: {
+          hover: { background: vars.colors.primary.interactive },
+          pressed: { background: vars.colors.primary.interactive },
+        },
+        disabled: {
+          background: vars.colors.neutral.surfaceDisabled,
+          borderColor: vars.colors.neutral.surfaceHighlight,
+        },
+        checkedDisabled: {
+          background: vars.colors.neutral.textDisabled,
+          borderColor: vars.colors.neutral.surfaceHighlight,
+          color: vars.colors.neutral.background,
+        },
+      },
+    },
+    toggle: {
+      // References what the Toggle used before, so base, dark, next and
+      // next-dark keep the exact look. Norte UI overrides them.
+      label: { fontSize: vars.fontSize.body.base },
+      focus: { boxShadow: vars.utils.focus },
+      pressed: {
+        background: vars.colors.neutral.interactiveHover,
+        borderColor: vars.colors.neutral.interactivePressed,
+      },
+      disabled: {
+        background: vars.colors.neutral.surfaceDisabled,
+        thumb: vars.colors.neutral.surfaceHighlight,
+      },
+      checkedDisabled: {
+        background: vars.colors.neutral.surfaceDisabled,
+        thumb: vars.colors.neutral.surfaceHighlight,
+      },
+    },
     badge: {
       // References the theme's own tone colors so base, dark, next and next-dark
       // keep the exact Badge look they had. Norte UI overrides them.

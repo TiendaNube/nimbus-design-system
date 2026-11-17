@@ -2,6 +2,12 @@
 
 Use radios when a user needs to select one option from a list.
 
+## 2026-11-17 `2.5.0`
+
+#### 🎉 New features
+
+- Reads its hover, pressed, checked, disabled, dot size, label size and focus values from the `components.radio` theme values of `@nimbus-ds/styles`. In `next-norteui` the radio gets a `neutral.surface` background with an `interactiveHover` border on hover and `surfaceHighlight` / `interactivePressed` when pressed, checked darkens to `primary.interactiveHover` and `primary.interactivePressed`, the dot is 9px, disabled uses `neutral.surfaceHighlight` (and `primary.surfaceDisabled` when checked), the label is 12px (`caption`) and focus shows a 2px `neutral.interactiveHover` ring. `as="button"` rests on `neutral.background`, takes the same hover and pressed colors, darkens when checked, and uses `primary.surfaceDisabled` when checked and disabled. `next-norteui-dark` takes the 12px label and the 9px dot and keeps the current colors. The API is unchanged. Not a breaking change under Decision 0081: Norte UI ships as `minor` because both themes are opt-in, and `base`, `dark`, `next` and `next-dark` keep the exact previous Radio (verified by `yarn check:base-invariance`). ([#PR](https://github.com/TiendaNube/nimbus-design-system/pull/PR) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-02-12 `2.4.0`
 
 #### 🎉 New features

@@ -5,6 +5,8 @@ import { varsThemeBase } from "../../../themes";
 import { borderColorProperties, cursorProperties } from "../../../properties";
 import { gradients, createBorderGradient } from "../../../gradients";
 
+const checkboxTheme = varsThemeBase.components.checkbox;
+
 /* -------------------------------------------------------------------------------------------------
  * Style
  * -----------------------------------------------------------------------------------------------*/
@@ -53,8 +55,8 @@ globalStyle(`${container} input:checked ~ ${container__checkmark}`, {
 });
 
 globalStyle(`${container} input:disabled ~ ${container__checkmark}`, {
-  backgroundColor: varsThemeBase.colors.neutral.surfaceDisabled,
-  borderColor: varsThemeBase.colors.neutral.interactive,
+  backgroundColor: checkboxTheme.disabled.background,
+  borderColor: checkboxTheme.disabled.borderColor,
 });
 
 globalStyle(
@@ -73,11 +75,23 @@ globalStyle(
 
 globalStyle(`${container} p`, {
   lineHeight: varsThemeBase.spacing[4],
+  fontSize: checkboxTheme.label.fontSize,
 });
 
 globalStyle(`${container} input:focus-visible ~ ${container__checkmark}`, {
-  boxShadow: varsThemeBase.utils.focus,
+  boxShadow: checkboxTheme.focus.boxShadow,
 });
+
+globalStyle(`${container__checkmark_checkindeterminate} > div`, {
+  color: checkboxTheme.indeterminate.color,
+});
+
+globalStyle(
+  `${container} input:disabled ~ ${container__checkmark} ${container__checkmark_checkindeterminate} > div`,
+  {
+    color: checkboxTheme.disabled.indeterminateColor,
+  }
+);
 
 const container__checkmark_aiGenerated = style({
   background: createBorderGradient(
@@ -137,13 +151,66 @@ const properties = {
   cursor: cursorProperties,
 };
 
-const sprinkle = createSprinkles(
-  defineProperties({
-    properties,
-  })
-);
+const checkboxProperties = defineProperties({
+  properties,
+});
+
+const sprinkle = createSprinkles(checkboxProperties);
 
 export const checkboxSprinkle = {
   sprinkle,
   properties,
 };
+
+/* -------------------------------------------------------------------------------------------------
+ * Hover and pressed
+ * Uses the border color sprinkle classes, so each appearance keeps its own
+ * border color. The base theme values repeat the rest colors.
+ * -----------------------------------------------------------------------------------------------*/
+
+const appearanceBorders = {
+  neutral: "neutral-interactive",
+  danger: "danger-interactive",
+  primary: "primary-interactive",
+} as const;
+
+(
+  Object.keys(appearanceBorders) as Array<keyof typeof appearanceBorders>
+).forEach((key) => {
+  const borderClass = `.${
+    checkboxProperties.styles.borderColor.values[appearanceBorders[key]]
+      .defaultClass
+  }`;
+
+  globalStyle(
+    `${container}:hover input:enabled:not(:checked) ~ ${borderClass}`,
+    {
+      backgroundColor: checkboxTheme.hover.background,
+      borderColor: checkboxTheme.hover.borderColor[key],
+    }
+  );
+
+  globalStyle(
+    `${container}:active input:enabled:not(:checked) ~ ${borderClass}`,
+    {
+      backgroundColor: checkboxTheme.pressed.background,
+      borderColor: checkboxTheme.pressed.borderColor[key],
+    }
+  );
+});
+
+globalStyle(
+  `${container}:hover input:enabled:checked ~ ${container__checkmark}:not(${container__checkmark_aiGenerated})`,
+  {
+    backgroundColor: checkboxTheme.checked.hover.background,
+    borderColor: checkboxTheme.checked.hover.background,
+  }
+);
+
+globalStyle(
+  `${container}:active input:enabled:checked ~ ${container__checkmark}:not(${container__checkmark_aiGenerated})`,
+  {
+    backgroundColor: checkboxTheme.checked.pressed.background,
+    borderColor: checkboxTheme.checked.pressed.background,
+  }
+);

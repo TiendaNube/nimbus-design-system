@@ -2,6 +2,12 @@
 
 The Tooltip component allows us to show additional information in a non-intrusive way.
 
+## 2026-11-17 `2.4.0`
+
+#### 🎉 New features
+
+- Reads its pressed, disabled, label size and focus values from the `components.toggle` theme values of `@nimbus-ds/styles`. In `next-norteui` the pressed off track is `neutral.interactivePressed`, disabled uses a `neutral.interactive` track with an `interactivePressed` thumb, checked and disabled uses a `textDisabled` track with an `interactive` thumb, the label is 12px (`caption`) and focus shows a 2px `neutral.interactiveHover` ring. `next-norteui-dark` takes the 12px label and keeps the current colors. The API is unchanged. Not a breaking change under Decision 0081: Norte UI ships as `minor` because both themes are opt-in, and `base`, `dark`, `next` and `next-dark` keep the exact previous Toggle (verified by `yarn check:base-invariance`). ([#PR](https://github.com/TiendaNube/nimbus-design-system/pull/PR) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-02-12 `2.3.0`
 
 #### 🎉 New features

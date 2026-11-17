@@ -3,6 +3,8 @@ import { defineProperties, createSprinkles } from "@vanilla-extract/sprinkles";
 import { cursorProperties } from "../../../properties";
 import { varsThemeBase } from "../../../themes";
 
+const radioTheme = varsThemeBase.components.radio;
+
 /* -------------------------------------------------------------------------------------------------
  * style as "base"
  * -----------------------------------------------------------------------------------------------*/
@@ -40,7 +42,7 @@ const container__content = styleVariants({
   button: [
     base,
     {
-      backgroundColor: varsThemeBase.colors.neutral.surface,
+      backgroundColor: radioTheme.button.background,
       borderColor: varsThemeBase.colors.neutral.interactive,
       color: varsThemeBase.colors.neutral.textHigh,
       ":active": {
@@ -48,8 +50,8 @@ const container__content = styleVariants({
         borderColor: varsThemeBase.colors.neutral.interactiveHover,
       },
       ":hover": {
-        background: varsThemeBase.colors.neutral.surfaceHighlight,
-        borderColor: varsThemeBase.colors.neutral.interactivePressed,
+        background: radioTheme.button.hover.background,
+        borderColor: radioTheme.button.hover.borderColor,
       },
     },
   ],
@@ -57,8 +59,8 @@ const container__content = styleVariants({
     base,
     {
       cursor: "not-allowed",
-      backgroundColor: varsThemeBase.colors.neutral.surfaceDisabled,
-      borderColor: varsThemeBase.colors.neutral.surfaceHighlight,
+      backgroundColor: radioTheme.button.disabled.background,
+      borderColor: radioTheme.button.disabled.borderColor,
       color: varsThemeBase.colors.neutral.textDisabled,
     },
   ],
@@ -94,8 +96,8 @@ export const container__checkmark = style({
 
 export const container__checkicon = style({
   display: "none",
-  width: "0.5rem",
-  height: "0.5rem",
+  width: radioTheme.dotSize,
+  height: radioTheme.dotSize,
   borderRadius: varsThemeBase.shape.border.radius.full,
 });
 
@@ -111,15 +113,64 @@ globalStyle(
   }
 );
 
+globalStyle(
+  `${container}:hover ${container__input}:enabled:not(:checked) ~ ${container__checkmark}`,
+  {
+    backgroundColor: radioTheme.hover.background,
+    borderColor: radioTheme.hover.borderColor,
+  }
+);
+
+globalStyle(
+  `${container}:active ${container__input}:enabled:not(:checked) ~ ${container__checkmark}`,
+  {
+    backgroundColor: radioTheme.pressed.background,
+    borderColor: radioTheme.pressed.borderColor,
+  }
+);
+
+globalStyle(
+  `${container}:hover ${container__input}:enabled:checked ~ ${container__checkmark}`,
+  {
+    borderColor: radioTheme.checked.hover.color,
+  }
+);
+
+globalStyle(
+  `${container}:hover ${container__input}:enabled:checked ~ ${container__checkmark} ${container__checkicon}`,
+  {
+    backgroundColor: radioTheme.checked.hover.color,
+  }
+);
+
+globalStyle(
+  `${container}:active ${container__input}:enabled:checked ~ ${container__checkmark}`,
+  {
+    borderColor: radioTheme.checked.pressed.color,
+  }
+);
+
+globalStyle(
+  `${container}:active ${container__input}:enabled:checked ~ ${container__checkmark} ${container__checkicon}`,
+  {
+    backgroundColor: radioTheme.checked.pressed.color,
+  }
+);
+
 globalStyle(`${container__input}:disabled ~ ${container__checkmark}`, {
-  backgroundColor: varsThemeBase.colors.neutral.surfaceDisabled,
-  borderColor: varsThemeBase.colors.neutral.interactive,
+  backgroundColor: radioTheme.disabled.background,
+  borderColor: radioTheme.disabled.borderColor,
+});
+
+globalStyle(`${container__input}:checked:disabled ~ ${container__checkmark}`, {
+  backgroundColor: radioTheme.checkedDisabled.background,
+  borderColor: radioTheme.checkedDisabled.borderColor,
 });
 
 globalStyle(
   `${container__input}:disabled ~ ${container__checkmark} ${container__checkicon}`,
   {
-    backgroundColor: varsThemeBase.colors.neutral.textDisabled,
+    backgroundColor: radioTheme.checkedDisabled.dotColor,
   }
 );
 
@@ -131,8 +182,12 @@ globalStyle(`${container} p`, {
   lineHeight: varsThemeBase.spacing[4],
 });
 
+globalStyle(`${container__content.radio} p`, {
+  fontSize: radioTheme.label.fontSize,
+});
+
 globalStyle(`${container__input}:focus-visible ~ ${container__checkmark}`, {
-  boxShadow: varsThemeBase.utils.focus,
+  boxShadow: radioTheme.focus.boxShadow,
 });
 
 /* -------------------------------------------------------------------------------------------------
@@ -142,7 +197,7 @@ globalStyle(`${container__input}:focus-visible ~ ${container__checkmark}`, {
 globalStyle(
   `${container__input}:focus-visible ~ ${container__content.button}`,
   {
-    boxShadow: varsThemeBase.utils.focus,
+    boxShadow: radioTheme.focus.boxShadow,
   }
 );
 
@@ -152,10 +207,36 @@ globalStyle(`${container__input}:checked ~ ${container__content.button}`, {
   color: varsThemeBase.colors.neutral.background,
 });
 
+// Pressed while unchecked. The base values repeat the hover, which already
+// won over :active.
+globalStyle(
+  `${container__input}:not(:checked) ~ ${container__content.button}:hover:active`,
+  {
+    background: radioTheme.button.pressed.background,
+    borderColor: radioTheme.button.pressed.borderColor,
+  }
+);
+
+globalStyle(
+  `${container__input}:checked ~ ${container__content.button}:hover`,
+  {
+    backgroundColor: radioTheme.button.checked.hover.background,
+    borderColor: radioTheme.button.checked.hover.background,
+  }
+);
+
+globalStyle(
+  `${container__input}:checked ~ ${container__content.button}:hover:active`,
+  {
+    backgroundColor: radioTheme.button.checked.pressed.background,
+    borderColor: radioTheme.button.checked.pressed.background,
+  }
+);
+
 globalStyle(`${container__input}:checked ~ ${container__content.disabled}`, {
-  backgroundColor: varsThemeBase.colors.neutral.textDisabled,
-  borderColor: varsThemeBase.colors.neutral.surfaceHighlight,
-  color: varsThemeBase.colors.neutral.background,
+  backgroundColor: radioTheme.button.checkedDisabled.background,
+  borderColor: radioTheme.button.checkedDisabled.borderColor,
+  color: radioTheme.button.checkedDisabled.color,
 });
 
 export const styles = {

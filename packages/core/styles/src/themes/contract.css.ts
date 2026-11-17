@@ -276,6 +276,46 @@ export const vars = createGlobalThemeContract(
         disabled: { borderColor: "" },
         skeleton: { height: "", borderRadius: "" },
       },
+      checkbox: {
+        label: { fontSize: "" },
+        focus: { boxShadow: "" },
+        hover: {
+          background: "",
+          borderColor: { neutral: "", danger: "", primary: "" },
+        },
+        pressed: {
+          background: "",
+          borderColor: { neutral: "", danger: "", primary: "" },
+        },
+        checked: { hover: { background: "" }, pressed: { background: "" } },
+        indeterminate: { color: "" },
+        disabled: { background: "", borderColor: "", indeterminateColor: "" },
+      },
+      radio: {
+        dotSize: "",
+        label: { fontSize: "" },
+        focus: { boxShadow: "" },
+        hover: { background: "", borderColor: "" },
+        pressed: { background: "", borderColor: "" },
+        checked: { hover: { color: "" }, pressed: { color: "" } },
+        disabled: { background: "", borderColor: "" },
+        checkedDisabled: { background: "", borderColor: "", dotColor: "" },
+        button: {
+          background: "",
+          hover: { background: "", borderColor: "" },
+          pressed: { background: "", borderColor: "" },
+          checked: { hover: { background: "" }, pressed: { background: "" } },
+          disabled: { background: "", borderColor: "" },
+          checkedDisabled: { background: "", borderColor: "", color: "" },
+        },
+      },
+      toggle: {
+        label: { fontSize: "" },
+        focus: { boxShadow: "" },
+        pressed: { background: "", borderColor: "" },
+        disabled: { background: "", thumb: "" },
+        checkedDisabled: { background: "", thumb: "" },
+      },
       badge: {
         surface: {
           neutral: { background: "", color: "" },
