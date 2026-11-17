@@ -167,16 +167,20 @@ export const appearance = styleVariants({
         varsThemeBase.colors.neutral.background
       ),
       borderColor: "transparent",
-      ":hover": {
-        // Paints the theme overlay between the fill and the border gradient.
-        // The overlay is transparent outside Norte UI, so the border is unchanged.
-        background: [
-          background,
-          `linear-gradient(${background}, ${background}) padding-box, linear-gradient(${aiHoverOverlay}, ${aiHoverOverlay}) border-box, ${gradients.aiGenerativeLinearInteractive} border-box`,
-        ],
-      },
       ":focus-within": {
         boxShadow: inputTheme.aiGenerative.focus.boxShadow,
+      },
+      selectors: {
+        // Paints the theme overlay between the fill and the border gradient.
+        // The overlay is transparent outside Norte UI, so the border is unchanged.
+        // Skipped when disabled: the disabled rule only resets the colors, not
+        // this background image.
+        "&:hover:not(:has(input:disabled))": {
+          background: [
+            background,
+            `linear-gradient(${background}, ${background}) padding-box, linear-gradient(${aiHoverOverlay}, ${aiHoverOverlay}) border-box, ${gradients.aiGenerativeLinearInteractive} border-box`,
+          ],
+        },
       },
     },
   ],
