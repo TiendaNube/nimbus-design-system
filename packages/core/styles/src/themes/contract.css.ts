@@ -245,6 +245,42 @@ export const vars = createGlobalThemeContract(
         filter: "",
         padding: { base: "" },
       },
+      input: {
+        height: "",
+        padding: "",
+        borderRadius: "",
+        neutral: {
+          background: "",
+          borderColor: "",
+          hover: { borderColor: "" },
+          focus: { borderColor: "", boxShadow: "" },
+        },
+        success: {
+          background: "",
+          borderColor: "",
+          hover: { borderColor: "" },
+          focus: { borderColor: "", boxShadow: "" },
+        },
+        warning: {
+          background: "",
+          borderColor: "",
+          hover: { borderColor: "" },
+          focus: { borderColor: "", boxShadow: "" },
+        },
+        danger: {
+          background: "",
+          borderColor: "",
+          hover: { borderColor: "" },
+          focus: { borderColor: "", boxShadow: "" },
+        },
+        aiGenerative: {
+          hover: { overlay: "" },
+          focus: { boxShadow: "" },
+        },
+        aiGenerated: { boxShadow: "" },
+        disabled: { borderColor: "" },
+        skeleton: { height: "", borderRadius: "" },
+      },
       badge: {
         surface: {
           neutral: { background: "", color: "" },
