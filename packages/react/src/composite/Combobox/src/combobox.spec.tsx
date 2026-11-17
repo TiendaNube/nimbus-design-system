@@ -1462,10 +1462,15 @@ describe("GIVEN <Combobox />", () => {
       value,
       label
     });
-    const removeNames = () =>
-      screen
-        .getAllByTestId("dismiss-chip-button")
-        .map((button) => button.getAttribute("aria-label"));
+    const removeNames = () => {
+      const buttons = screen.getAllByRole("button", {
+        name: /^(Remove|Quitar) /
+      });
+      expect(buttons).toHaveLength(
+        screen.getAllByTestId("dismiss-chip-button").length
+      );
+      return buttons.map((button) => button.getAttribute("aria-label"));
+    };
 
     it("keeps Remove {name} for chips with a unique label", () => {
       makeSut({

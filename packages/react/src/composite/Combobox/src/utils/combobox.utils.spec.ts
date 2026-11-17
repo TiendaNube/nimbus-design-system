@@ -27,4 +27,46 @@ describe("GIVEN getRemoveNames", () => {
       "Accessories"
     ]);
   });
+
+  it("adds every level needed when the parent and the label repeat", () => {
+    const fashionAccessories = leaf("fa", "Accessories");
+    const electronicsAccessories = leaf("ea", "Accessories");
+    const deepTree: ComboboxOption[] = [
+      {
+        value: "fashion",
+        label: "Fashion",
+        children: [
+          { value: "fc", label: "Common", children: [fashionAccessories] }
+        ]
+      },
+      {
+        value: "electronics",
+        label: "Electronics",
+        children: [
+          { value: "ec", label: "Common", children: [electronicsAccessories] }
+        ]
+      }
+    ];
+    const { index: deepIndex } = buildIndex(deepTree);
+    expect(
+      getRemoveNames([fashionAccessories, electronicsAccessories], deepIndex)
+    ).toEqual([
+      "Fashion › Common › Accessories",
+      "Electronics › Common › Accessories"
+    ]);
+  });
+
+  it("keeps the full path when two options have the same full label path", () => {
+    const one = leaf("one", "Accessories");
+    const two = leaf("two", "Accessories");
+    const twinTree: ComboboxOption[] = [
+      { value: "p1", label: "Fashion", children: [one] },
+      { value: "p2", label: "Fashion", children: [two] }
+    ];
+    const { index: twinIndex } = buildIndex(twinTree);
+    expect(getRemoveNames([one, two], twinIndex)).toEqual([
+      "Fashion › Accessories",
+      "Fashion › Accessories"
+    ]);
+  });
 });
