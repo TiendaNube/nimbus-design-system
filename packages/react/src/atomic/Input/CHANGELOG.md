@@ -2,7 +2,7 @@
 
 The Input component allows the user to enter or edit information in text format.
 
-## 2026-11-13 `2.9.0`
+## 2026-11-17 `2.9.0`
 
 #### 🎉 New features
 
