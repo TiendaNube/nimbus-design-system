@@ -17,6 +17,8 @@ export type ComboboxKeyAction =
 export interface ComboboxKeyContext {
   open: boolean;
   hierarchical: boolean;
+  /** Whether there is no typed search query, even if a selected label is shown. */
+  queryEmpty: boolean;
   /** Whether the text of the input is empty. */
   textEmpty: boolean;
   /** Number of levels entered below the root list. */
@@ -78,13 +80,16 @@ const resolveArrowRight: KeyResolver = (context) => {
     context.hasActiveRow &&
     context.activeRowIsBranch;
   // While searching, only when the caret is at the end of the text.
-  return canEnter && (context.textEmpty || context.caretAtEnd)
+  return canEnter && (context.queryEmpty || context.caretAtEnd)
     ? { action: { type: "enterBranch" }, consume: true }
     : null;
 };
 
 const resolveBack: KeyResolver = (context) =>
-  context.open && context.hierarchical && context.textEmpty && context.depth > 0
+  context.open &&
+  context.hierarchical &&
+  context.queryEmpty &&
+  context.depth > 0
     ? { action: { type: "back" }, consume: true }
     : null;
 

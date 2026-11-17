@@ -1579,4 +1579,143 @@ describe("GIVEN <Combobox />", () => {
       ]);
     });
   });
+  describe("Contract regression coverage", () => {
+    it.each([{ options: [] }, { options: OPTIONS }])(
+      "AC-029 keeps aria-controls valid with no visible options (%j)",
+      async ({ options }) => {
+        const user = userEvent.setup();
+        makeSut({ options });
+        await user.type(getInput(), "no-match");
+        const target = document.getElementById(
+          getInput().getAttribute("aria-controls") ?? ""
+        );
+        expect(target).toHaveAttribute("role", "listbox");
+        expect(screen.queryAllByRole("option")).toHaveLength(0);
+        expect(screen.getByText("No results")).toBeInTheDocument();
+      }
+    );
+
+    it.each([true, false])(
+      "AC-014 returns one level after reopening a selected leaf (clearable=%s)",
+      async (clearable) => {
+        const user = userEvent.setup();
+        makeSut({
+          options: TREE,
+          defaultValue: ACCESSORIES_CLOTHING,
+          clearable
+        });
+        await user.click(getInput());
+        await user.keyboard("{ArrowLeft}");
+        expect(
+          screen.getByRole("group", { name: "Fashion" })
+        ).toBeInTheDocument();
+        expect(getInput()).toHaveValue("Accessories");
+      }
+    );
+
+    it("AC-014 enters a branch with an empty query even when the caret is not at the end", async () => {
+      const user = userEvent.setup();
+      makeSut({ options: TREE, defaultValue: CLOTHING });
+      await user.click(getInput());
+      await user.keyboard("{Home}{ArrowDown}");
+      (getInput() as HTMLInputElement).setSelectionRange(0, 0);
+      await user.keyboard("{ArrowRight}");
+      expect(
+        screen.getByRole("group", { name: "Clothing" })
+      ).toBeInTheDocument();
+    });
+
+    it("AC-036 requests clearing a retained controlled value only on the first edit", async () => {
+      const user = userEvent.setup();
+      const onChange = jest.fn();
+      makeSut({ value: CAMERA, onChange });
+      await user.click(getInput());
+      await user.keyboard("xyz");
+      expect(onChange).toHaveBeenCalledTimes(1);
+      expect(onChange).toHaveBeenCalledWith(null);
+      expect(getInput()).toHaveValue("Cámaraxyz");
+    });
+
+    it.each(["{Escape}", "{Tab}"])(
+      "AC-022 restores a retained controlled value when closing with %s",
+      async (key) => {
+        const user = userEvent.setup();
+        makeSut({ value: CAMERA });
+        await user.click(getInput());
+        await user.keyboard("xyz");
+        await user.keyboard(key);
+        expect(getInput()).toHaveValue("Cámara");
+      }
+    );
+
+    it("AC-022 displays an externally changed controlled value during a search", async () => {
+      const user = userEvent.setup();
+      const { rerender } = makeSut({ value: CAMERA });
+      await user.click(getInput());
+      await user.keyboard("xyz");
+      rerender(<Combobox aria-label="Field" options={OPTIONS} value={BAG} />);
+      expect(getInput()).toHaveValue("Bolsa");
+    });
+
+    it("AC-036 starts a new edit after the parent replaces the controlled value", async () => {
+      const user = userEvent.setup();
+      const onChange = jest.fn();
+      const { rerender } = makeSut({ value: CAMERA, onChange });
+      await user.click(getInput());
+      await user.keyboard("xy");
+      rerender(
+        <Combobox
+          aria-label="Field"
+          options={OPTIONS}
+          value={BAG}
+          onChange={onChange}
+        />
+      );
+      await user.keyboard("z");
+      expect(onChange.mock.calls).toEqual([[null], [null]]);
+    });
+
+    it("AC-036 preserves search text when the parent accepts the clear request", async () => {
+      const user = userEvent.setup();
+      const Controlled = () => {
+        const [value, setValue] = React.useState<ComboboxOption | null>(CAMERA);
+        return (
+          <Combobox
+            aria-label="Field"
+            options={OPTIONS}
+            value={value}
+            onChange={setValue}
+          />
+        );
+      };
+      render(<Controlled />);
+      await user.click(getInput());
+      await user.keyboard("xyz");
+      await user.keyboard("{Escape}");
+      expect(getInput()).toHaveValue("Cámaraxyz");
+    });
+    it("AC-036 clears on the first edit after clearing becomes allowed", async () => {
+      const user = userEvent.setup();
+      const onChange = jest.fn();
+      const { rerender } = makeSut({
+        value: CAMERA,
+        clearable: false,
+        onChange
+      });
+      await user.click(getInput());
+      await user.keyboard("xy");
+      expect(onChange).not.toHaveBeenCalled();
+      rerender(
+        <Combobox
+          aria-label="Field"
+          options={OPTIONS}
+          value={CAMERA}
+          clearable
+          onChange={onChange}
+        />
+      );
+      await user.keyboard("zq");
+      expect(onChange.mock.calls).toEqual([[null]]);
+    });
+  });
 });

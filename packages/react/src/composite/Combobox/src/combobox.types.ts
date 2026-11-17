@@ -71,7 +71,7 @@ export interface ComboboxLabels {
 export type ComboboxAppearance = "neutral" | "success" | "warning" | "danger";
 
 /**
- * Properties shared by the single and the multiple Combobox.
+ * Documented properties of the single and the multiple Combobox.
  */
 export interface ComboboxProperties {
   /**
@@ -83,6 +83,15 @@ export interface ComboboxProperties {
    * @default false
    */
   multiple?: boolean;
+  /** Controlled option in single mode, or the full set in multiple mode. */
+  value?: ComboboxOption | ComboboxOption[] | null;
+  /** Initial option in single mode, or the initial set in multiple mode. */
+  defaultValue?: ComboboxOption | ComboboxOption[] | null;
+  /**
+   * Called with the next option (or null) in single mode, or the full set in multiple mode.
+   * @TJS-type (value: ComboboxOption | ComboboxOption[] | null) => void
+   */
+  onChange?: (value: ComboboxOption | ComboboxOption[] | null) => void;
   /**
    * Enables instant creation: it receives the trimmed typed text and returns the new option.
    * @TJS-type (label: string) => ComboboxOption
@@ -184,5 +193,8 @@ export interface ComboboxMultipleProperties {
 /**
  * Props of the Combobox: the shared properties and the ones of its mode.
  */
-export type ComboboxProps = Omit<ComboboxProperties, "multiple"> &
+export type ComboboxProps = Omit<
+  ComboboxProperties,
+  "multiple" | "value" | "defaultValue" | "onChange"
+> &
   (ComboboxSingleProperties | ComboboxMultipleProperties);

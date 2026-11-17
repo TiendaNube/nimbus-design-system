@@ -185,6 +185,7 @@ export const useCombobox = (params: UseComboboxParams): UseComboboxResult => {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const skipOpenOnFocus = useRef(false);
   const tabPressedInInput = useRef(false);
+  const clearRequested = useRef(false);
 
   const [innerSelection, setInnerSelection] = useState(defaultValue);
   const [open, setOpen] = useState(false);
@@ -194,7 +195,16 @@ export const useCombobox = (params: UseComboboxParams): UseComboboxResult => {
 
   const selection = value ?? innerSelection;
   const single = !multiple;
-  const keepsValueWhileSearching = single && !clearable;
+  const restoresValueOnClose = single && (!clearable || selection.length > 0);
+  const selectedValue = single ? selection[0]?.value : undefined;
+  const selectedLabel = single ? selection[0]?.label : undefined;
+
+  // A newly supplied single value supersedes the previous search. Accepting a
+  // clear request leaves the typed query intact.
+  useEffect(() => {
+    clearRequested.current = false;
+    if (selectedValue !== undefined) setQuery(null);
+  }, [selectedValue, selectedLabel]);
 
   const { index, duplicates } = useMemo(() => buildIndex(options), [options]);
   const duplicatesKey = duplicates.join("\u0000");
@@ -258,9 +268,10 @@ export const useCombobox = (params: UseComboboxParams): UseComboboxResult => {
   };
 
   const closeList = (): void => {
+    clearRequested.current = false;
     setOpen(false);
     setActiveKey(null);
-    if (keepsValueWhileSearching) setQuery(null);
+    if (restoresValueOnClose) setQuery(null);
   };
 
   const focusInput = (): void => {
@@ -392,7 +403,12 @@ export const useCombobox = (params: UseComboboxParams): UseComboboxResult => {
 
   const handleChange = (text: string): void => {
     setQuery(text);
-    if (single && selection.length > 0 && clearable) commit([]);
+    const startsSingleValueEdit =
+      single && selection.length > 0 && clearable && !clearRequested.current;
+    if (startsSingleValueEdit) {
+      clearRequested.current = true;
+      commit([]);
+    }
     openList();
     setActiveKey(null);
   };
@@ -451,6 +467,7 @@ export const useCombobox = (params: UseComboboxParams): UseComboboxResult => {
     const result = resolveKey(event.key, {
       open,
       hierarchical,
+      queryEmpty: searchText === "",
       textEmpty: inputText === "",
       depth: levelPath.length,
       hasActiveRow: Boolean(activeRow),

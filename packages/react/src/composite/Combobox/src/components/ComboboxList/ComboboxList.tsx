@@ -28,6 +28,7 @@ const ComboboxList: React.FC<ComboboxListProps> = ({
   const plainTitle =
     first?.kind === "title" && !first.selectable ? first.option : null;
   const optionRows = plainTitle ? rows.slice(1) : rows;
+  const hasOptions = optionRows.length > 0;
 
   const listClassName = [
     combobox.classnames.list,
@@ -73,25 +74,29 @@ const ComboboxList: React.FC<ComboboxListProps> = ({
           <div className={combobox.classnames.divider} aria-hidden="true" />
         </>
       )}
-      {optionRows.length === 0 ? (
+      {!hasOptions && (
         <div className={combobox.classnames.status}>
           <Text as="span" color="neutral-textLow">
             {labels.noResults}
           </Text>
         </div>
-      ) : (
-        // The scrolling region is the listbox itself: it is focusable and named
-        // so it is operable by assistive technology, but the focus lives in
-        // the text input (see `handleListFocus`).
-        <div
-          id={listboxId}
-          role="listbox"
-          tabIndex={0}
-          aria-label={labels.listbox}
-          aria-multiselectable={multiple || undefined}
-          className={combobox.classnames.scroller}
-          onFocus={model.handleListFocus}
-        >
+      )}
+      {/* The scrolling region is the named, focusable listbox. An empty listbox remains the
+         controlled popup; the status message is outside its option semantics. */}
+      <div
+        id={listboxId}
+        role="listbox"
+        tabIndex={0}
+        aria-label={labels.listbox}
+        aria-multiselectable={multiple || undefined}
+        className={
+          !hasOptions
+            ? combobox.classnames.visuallyHidden
+            : combobox.classnames.scroller
+        }
+        onFocus={model.handleListFocus}
+      >
+        {hasOptions && (
           <div
             role="group"
             aria-label={model.groupLabel}
@@ -119,8 +124,8 @@ const ComboboxList: React.FC<ComboboxListProps> = ({
               </React.Fragment>
             ))}
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };
