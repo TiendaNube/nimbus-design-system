@@ -3,6 +3,12 @@
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories
 every day, with simplicity, accessibility, consistency and performance.
 
+## 2026-11-17 `5.67.0`
+
+#### 🎉 New features
+
+- Input: In `next-norteui` the Input is 28px tall with a 6px radius, with a white background in every appearance, semantic borders in `interactivePressed` at rest and `textLow` on hover and focus for stronger contrast and a 2px `neutral.interactiveHover` focus ring, through `@nimbus-ds/styles` theme values. `Input.Skeleton` follows the same size. `next-norteui-dark` takes the same height, padding, radius and `Input.Skeleton` size and keeps the current colors. The props are unchanged, and so is the look in `base`, `dark`, `next` and `next-dark`. Not a breaking change under Decision 0081: Norte UI ships as `minor` because both themes are opt-in, and `base`, `dark`, `next` and `next-dark` keep the exact previous Input (verified by `yarn check:base-invariance`). ([#634](https://github.com/TiendaNube/nimbus-design-system/pull/634) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-11-12 `5.66.0`
 
 #### 🎉 New features
