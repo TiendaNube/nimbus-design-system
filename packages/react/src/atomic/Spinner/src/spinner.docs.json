@@ -29,6 +29,7 @@
       "description": "Set the color for the spinner SVG fill.",
       "default": "primary-interactive",
       "enum": [
+        "ai-generativeTextLow",
         "currentColor",
         "danger-interactive",
         "danger-surface",
@@ -42,7 +43,8 @@
         "primary-textLow",
         "success-interactive",
         "success-surface",
-        "success-textLow"
+        "success-textLow",
+        "warning-textLow"
       ],
       "type": "string",
       "title": "color",
