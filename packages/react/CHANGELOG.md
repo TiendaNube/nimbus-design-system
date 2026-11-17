@@ -7,7 +7,7 @@ every day, with simplicity, accessibility, consistency and performance.
 
 #### 🎉 New features
 
-- Popover: In `next-norteui` and `next-norteui-dark` the Popover has an 8px radius and a 12px `base` padding (the default), and in `next-norteui` the level 2 shadow, through the `components.popover` theme values of `@nimbus-ds/styles`. Other themes are unchanged. Not a breaking change under Decision 0081: Norte UI ships as `minor` because both themes are opt-in, and `base`, `dark`, `next` and `next-dark` keep the exact previous Popover (verified by `yarn check:base-invariance`). ([#637](https://github.com/TiendaNube/nimbus-design-system/pull/637) by [@noecondoleo](https://github.com/noecondoleo))
+- Popover: Follows the Norte UI design with a smaller radius, lighter shadow and tighter default padding, with no change in other themes. ([#637](https://github.com/TiendaNube/nimbus-design-system/pull/637) by [@noecondoleo](https://github.com/noecondoleo))
 
 ## 2026-11-12 `5.66.0`
 

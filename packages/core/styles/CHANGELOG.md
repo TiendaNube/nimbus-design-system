@@ -6,7 +6,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 #### 🎉 New features
 
-- Popover: Adds the `components.popover` theme values (`borderRadius`, `filter` and `padding.base`). In `base`, `dark`, `next` and `next-dark` they reference the current values (12px radius, the current drop shadow and 16px `base` padding), so the Popover looks exactly as before. In `next-norteui` and `next-norteui-dark` the radius is 8px and the `base` padding is 12px, aligned with the Norte UI Figma. In `next-norteui` the shadow is level 2 (applied as `drop-shadow` so the arrow gets it too); `next-norteui-dark` keeps the current shadow until there is a dark design. `small` and `none` padding are unchanged. Not a breaking change under Decision 0081: Norte UI ships as `minor` because both themes are opt-in, and `base`, `dark`, `next` and `next-dark` keep the exact previous Popover (verified by `yarn check:base-invariance`). ([#637](https://github.com/TiendaNube/nimbus-design-system/pull/637) by [@noecondoleo](https://github.com/noecondoleo))
+- Popover: Adds Norte UI theme values so the Popover gets a smaller radius, lighter shadow and tighter default padding in Norte UI, with no change in other themes. ([#637](https://github.com/TiendaNube/nimbus-design-system/pull/637) by [@noecondoleo](https://github.com/noecondoleo))
 
 ## 2026-11-12 `9.72.0`
 
