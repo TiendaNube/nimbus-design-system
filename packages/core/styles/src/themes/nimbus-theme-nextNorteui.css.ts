@@ -44,9 +44,9 @@ const aiGenerativeGradients = createAiGenerativeGradientsNorteui({
   pinkLight: aiGradientNorteui.pinkLight,
 });
 
-// Figma focus/focus-state: a 2px neutral.textLow ring.
-// Figma focus/focus-state: 2px spread of neutral/interactive.
-const inputFocusRing = `0 0 0 ${vars.shape.border.width[2]} ${vars.colors.neutral.interactive}`;
+// 2px ring in neutral.interactiveHover, one step darker than the Figma
+// neutral/interactive spread for stronger contrast.
+const inputFocusRing = `0 0 0 ${vars.shape.border.width[2]} ${vars.colors.neutral.interactiveHover}`;
 
 export const variables = createTheme(vars, {
   ...globalTheme,
