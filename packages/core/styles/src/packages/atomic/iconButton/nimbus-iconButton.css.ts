@@ -49,7 +49,9 @@ const appearance = styleVariants({
         background: gradients.aiGenerativeHover,
       },
       ":active": {
-        background: varsThemeBase.colors.aiGenerative.textLow,
+        // Flat aiGenerative.textLow in base, dark, next and next-dark; the
+        // darkened radial gradient in Norte UI, like the Button.
+        background: gradients.aiGenerativePressed,
         boxShadow: "none",
       },
       ":focus": {
@@ -82,15 +84,24 @@ const appearance = styleVariants({
 /** Shape and focus ring shared by every Norte UI IconButton. */
 const norteui = style({
   borderRadius: varsThemeBase.shape.border.radius.base,
-  borderWidth: 0,
   ":focus-visible": {
     boxShadow: `0 0 0 ${varsThemeBase.shape.border.width[2]} ${varsThemeBase.colors.neutral.interactive}`,
   },
 });
 
+/**
+ * No border for a Norte UI IconButton with its own backgroundColor and no
+ * borderColor. With an explicit borderColor this class is not applied, so
+ * base's 1px border shows in that color.
+ */
+const norteuiNoBorder = style({
+  borderWidth: 0,
+});
+
 /** Default fill, used when no backgroundColor is passed. */
 const norteuiNeutral = style({
   backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
+  borderWidth: 0,
   ":hover": {
     backgroundColor: varsThemeBase.colors.neutral.interactive,
   },
@@ -105,6 +116,7 @@ const norteuiNeutral = style({
 /** Used when backgroundColor="transparent" is passed. */
 const norteuiTransparent = style({
   backgroundColor: "transparent",
+  borderWidth: 0,
   ":hover": {
     backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
   },
@@ -168,6 +180,7 @@ export const styles = {
   base,
   appearance,
   norteui,
+  norteuiNoBorder,
   norteuiNeutral,
   norteuiTransparent,
   norteuiAiSurface,

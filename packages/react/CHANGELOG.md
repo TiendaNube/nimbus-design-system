@@ -7,7 +7,7 @@ every day, with simplicity, accessibility, consistency and performance.
 
 #### 🎉 New features
 
-- IconButton: `IconButton` and `IconButton.Skeleton` follow the Norte UI design in `next-norteui` and `next-norteui-dark`: `1.75rem` default size, `6px` radius, no border, `neutral.surfaceHighlight` fill with new hover, pressed, disabled and focus states; `backgroundColor="transparent"` and `backgroundColor="ai-generativeSurface"` get their Norte UI states. Props are unchanged and explicit values keep working; other themes are unchanged. ([#642](https://github.com/TiendaNube/nimbus-design-system/pull/642) by [@noecondoleo](https://github.com/noecondoleo))
+- IconButton: `IconButton` and `IconButton.Skeleton` follow the Norte UI design in `next-norteui` and `next-norteui-dark`: `1.75rem` default size, `6px` radius, no border, `neutral.surfaceHighlight` fill with new hover, pressed, disabled and focus states; `backgroundColor="transparent"` and `backgroundColor="ai-generativeSurface"` get their Norte UI states. Props are unchanged and explicit values keep working, except that under Norte UI the default, `transparent` and `ai-generativeSurface` fills own the border, so `borderColor` does not apply with them. With `ai-generativeSurface` and no `color`, the icon uses the AI color. Pressed `ai-generative` uses the `aiGenerativePressed` gradient. Other themes are unchanged. ([#642](https://github.com/TiendaNube/nimbus-design-system/pull/642) by [@noecondoleo](https://github.com/noecondoleo))
 
 ## 2026-11-12 `5.66.0`
 

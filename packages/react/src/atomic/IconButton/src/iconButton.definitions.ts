@@ -86,26 +86,58 @@ export const getColorSprinkles = ({
   };
 };
 
-/** Classes added under Norte UI: shape, the AI focus ring and the fill. */
-export const getNorteUiClassnames = (
-  isNorteUi: boolean,
-  isAiGenerative: boolean,
-  norteUiFill?: string
-): Array<string | undefined> => {
+interface NorteUiClassnameOptions {
+  isNorteUi: boolean;
+  isAiGenerative: boolean;
+  norteUiFill?: string;
+  borderColor: BorderColor;
+}
+
+/**
+ * Classes added under Norte UI: shape, the AI focus ring and the fill. With
+ * its own backgroundColor (no fill) the border is hidden unless a
+ * borderColor is passed, so an explicit borderColor still draws a border.
+ */
+export const getNorteUiClassnames = ({
+  isNorteUi,
+  isAiGenerative,
+  norteUiFill,
+  borderColor,
+}: NorteUiClassnameOptions): Array<string | undefined> => {
   if (!isNorteUi) return [];
-  return [
-    iconButton.classnames.norteui,
-    isAiGenerative ? iconButton.classnames.norteuiAiGenerative : undefined,
-    norteUiFill,
-  ];
+  if (isAiGenerative)
+    return [
+      iconButton.classnames.norteui,
+      iconButton.classnames.norteuiAiGenerative,
+    ];
+  const noBorder =
+    !norteUiFill && borderColor === undefined
+      ? iconButton.classnames.norteuiNoBorder
+      : undefined;
+  return [iconButton.classnames.norteui, norteUiFill ?? noBorder];
 };
 
-/** Icon color: the explicit one, else dimmed when disabled under Norte UI. */
-export const getIconColor = (
-  color: IconButtonProps["color"],
-  isNorteUi: boolean,
-  disabled?: boolean
-): NonNullable<IconButtonProps["color"]> => {
+interface IconColorOptions {
+  color: IconButtonProps["color"];
+  isNorteUi: boolean;
+  norteUiFill?: string;
+  disabled?: boolean;
+}
+
+/**
+ * Icon color: the explicit one; else, under Norte UI, the AI color on the AI
+ * surface fill and a dimmed color when disabled.
+ */
+export const getIconColor = ({
+  color,
+  isNorteUi,
+  norteUiFill,
+  disabled,
+}: IconColorOptions): NonNullable<IconButtonProps["color"]> => {
   if (color) return color;
-  return isNorteUi && disabled ? "neutral-textDisabled" : "neutral-textHigh";
+  if (!isNorteUi) return "neutral-textHigh";
+  if (disabled) return "neutral-textDisabled";
+  return norteUiFill === iconButton.classnames.norteuiAiSurface
+    ? "ai-generative"
+    : "neutral-textHigh";
 };

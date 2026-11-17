@@ -124,6 +124,48 @@ describe("GIVEN <IconButton />", () => {
       expect(getClass()).toContain("backgroundColor-xs");
       expect(getClass()).toContain("borderColor-xs");
       expect(getClass()).not.toContain("norteuiNeutral");
+      expect(getClass()).not.toContain("norteuiNoBorder");
+    });
+
+    it("THEN Norte UI hides the border for its own background without borderColor", () => {
+      renderInTheme("next-norteui", {
+        source: <div />,
+        backgroundColor: "neutral-surface",
+      });
+      expect(getClass()).toContain("norteuiNoBorder");
+    });
+
+    it("THEN Norte UI uses the AI icon color on the AI surface fill", () => {
+      renderInTheme("next-norteui-dark", {
+        source: <div />,
+        backgroundColor: "ai-generativeSurface",
+      });
+      // "ai-generative" is drawn as an SVG gradient, so Icon adds no color
+      // sprinkle (unlike neutral-textHigh, which adds color_neutral-textHigh).
+      const iconClass =
+        screen.getByTestId("icon-element").getAttribute("class") ?? "";
+      expect(iconClass).not.toContain("color_");
+    });
+
+    it("THEN Norte UI dims the AI surface icon when disabled", () => {
+      renderInTheme("next-norteui", {
+        source: <div />,
+        backgroundColor: "ai-generativeSurface",
+        disabled: true,
+      });
+      expect(
+        screen.getByTestId("icon-element").getAttribute("class")
+      ).toContain("color_neutral-textDisabled");
+    });
+
+    it("THEN base keeps the default icon color on ai-generativeSurface", () => {
+      renderInTheme("base", {
+        source: <div />,
+        backgroundColor: "ai-generativeSurface",
+      });
+      expect(
+        screen.getByTestId("icon-element").getAttribute("class")
+      ).toContain("color_neutral-textHigh");
     });
 
     it("THEN base keeps an explicit borderColor with ai-generativeSurface", () => {

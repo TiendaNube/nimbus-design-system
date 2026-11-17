@@ -37,7 +37,9 @@ const IconButton: React.FC<IconButtonProps> & IconButtonComponents = ({
     isNorteUi && !isAiGenerative ? getNorteUiFill(backgroundColor) : undefined;
 
   // Norte UI only replaces values the consumer did not pass, so explicit
-  // props keep working exactly as before in every theme.
+  // props keep working as before in every theme. Exception: under Norte UI
+  // the default, transparent and ai-generativeSurface fills own the border,
+  // so borderColor does not apply with them (see getNorteUiFill).
   const sprinkleProps = {
     size:
       size ?? (isNorteUi ? NORTEUI_ICON_BUTTON_SIZE : DEFAULT_ICON_BUTTON_SIZE),
@@ -59,12 +61,18 @@ const IconButton: React.FC<IconButtonProps> & IconButtonComponents = ({
     ...sprinkleProps,
   });
 
-  const norteUiClassnames = getNorteUiClassnames(
+  const norteUiClassnames = getNorteUiClassnames({
     isNorteUi,
     isAiGenerative,
-    norteUiFill
-  );
-  const iconColor = getIconColor(color, isNorteUi, rest.disabled);
+    norteUiFill,
+    borderColor,
+  });
+  const iconColor = getIconColor({
+    color,
+    isNorteUi,
+    norteUiFill,
+    disabled: rest.disabled,
+  });
 
   return (
     <As
