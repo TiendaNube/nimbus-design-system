@@ -2,6 +2,12 @@
 
 The Input component allows the user to enter or edit information in text format.
 
+## 2026-11-17 `2.9.0`
+
+#### 🎉 New features
+
+- Reads its size, radius, colors, hover and focus from the `components.input` theme values of `@nimbus-ds/styles`. In `next-norteui` the Input is 28px tall with a 6px radius, `success`, `warning` and `danger` use a white background, the borders of `success`, `warning` and `danger` use `interactivePressed` at rest and `textLow` on hover and focus for stronger contrast, and focus shows a 2px `neutral.interactiveHover` ring. `Input.Skeleton` follows the same size. `next-norteui-dark` takes the same height, padding, radius and `Input.Skeleton` size and keeps the current colors. The API is unchanged, and so is the look in `base`, `dark`, `next` and `next-dark`. Not a breaking change under Decision 0081: Norte UI ships as `minor` because both themes are opt-in, and `base`, `dark`, `next` and `next-dark` keep the exact previous Input (verified by `yarn check:base-invariance`). ([#634](https://github.com/TiendaNube/nimbus-design-system/pull/634) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-08-12 `2.8.1`
 
 #### 🐛 Bug fixes
