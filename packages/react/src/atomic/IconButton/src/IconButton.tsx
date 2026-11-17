@@ -8,22 +8,14 @@ import {
 } from "./iconButton.types";
 import { IconButtonSkeleton } from "./components";
 import {
+  DEFAULT_ICON_BUTTON_SIZE,
   NORTEUI_ICON_BUTTON_SIZE,
+  getColorSprinkles,
+  getIconColor,
+  getNorteUiClassnames,
+  getNorteUiFill,
   isNorteUiTheme,
 } from "./iconButton.definitions";
-
-const defaultBackgroundColor: IconButtonProps["backgroundColor"] = {
-  xs: "neutral-surface",
-  active: "neutral-interactive",
-  hover: "neutral-surfaceHighlight",
-};
-
-const defaultBorderColor: IconButtonProps["borderColor"] = {
-  xs: "neutral-interactive",
-  active: "neutral-interactivePressed",
-  hover: "neutral-interactiveHover",
-  focus: "primary-interactive",
-};
 
 const IconButton: React.FC<IconButtonProps> & IconButtonComponents = ({
   className,
@@ -41,35 +33,21 @@ const IconButton: React.FC<IconButtonProps> & IconButtonComponents = ({
   const isNorteUi = isNorteUiTheme(currentTheme);
   const isAiGenerative = appearance === "ai-generative";
 
-  // Norte UI fill for the default, transparent and AI surface IconButtons.
-  // When one applies it owns background and border, so those sprinkles are
-  // skipped; any other explicit color keeps its sprinkles.
   const norteUiFill =
-    !isNorteUi || isAiGenerative
-      ? undefined
-      : backgroundColor === undefined
-      ? iconButton.classnames.norteuiNeutral
-      : backgroundColor === "transparent"
-      ? iconButton.classnames.norteuiTransparent
-      : backgroundColor === "ai-generativeSurface"
-      ? iconButton.classnames.norteuiAiSurface
-      : undefined;
+    isNorteUi && !isAiGenerative ? getNorteUiFill(backgroundColor) : undefined;
 
   // Norte UI only replaces values the consumer did not pass, so explicit
   // props keep working exactly as before in every theme.
   const sprinkleProps = {
-    size: size ?? (isNorteUi ? NORTEUI_ICON_BUTTON_SIZE : "2.75rem"),
-    ...(!isAiGenerative &&
-      !isNorteUi && {
-        borderColor: borderColor ?? defaultBorderColor,
-        backgroundColor: backgroundColor ?? defaultBackgroundColor,
-      }),
-    ...(!isAiGenerative &&
-      isNorteUi &&
-      !norteUiFill && {
-        ...(borderColor !== undefined && { borderColor }),
-        ...(backgroundColor !== undefined && { backgroundColor }),
-      }),
+    size:
+      size ?? (isNorteUi ? NORTEUI_ICON_BUTTON_SIZE : DEFAULT_ICON_BUTTON_SIZE),
+    ...getColorSprinkles({
+      isNorteUi,
+      isAiGenerative,
+      norteUiFill,
+      backgroundColor,
+      borderColor,
+    }),
   };
 
   const {
@@ -81,17 +59,12 @@ const IconButton: React.FC<IconButtonProps> & IconButtonComponents = ({
     ...sprinkleProps,
   });
 
-  const norteUiClassnames = isNorteUi
-    ? [
-        iconButton.classnames.norteui,
-        isAiGenerative && iconButton.classnames.norteuiAiGenerative,
-        norteUiFill,
-      ]
-    : [];
-
-  const iconColor =
-    color ??
-    (isNorteUi && rest.disabled ? "neutral-textDisabled" : "neutral-textHigh");
+  const norteUiClassnames = getNorteUiClassnames(
+    isNorteUi,
+    isAiGenerative,
+    norteUiFill
+  );
+  const iconColor = getIconColor(color, isNorteUi, rest.disabled);
 
   return (
     <As

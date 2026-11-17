@@ -105,6 +105,36 @@ describe("GIVEN <IconButton />", () => {
       expect(getClass()).not.toContain("backgroundColor-");
     });
 
+    it("THEN Norte UI lets the AI surface fill own the border", () => {
+      renderInTheme("next-norteui", {
+        source: <div />,
+        backgroundColor: "ai-generativeSurface",
+        borderColor: "primary-interactive",
+      });
+      expect(getClass()).toContain("norteuiAiSurface");
+      expect(getClass()).not.toContain("borderColor-");
+    });
+
+    it("THEN Norte UI keeps explicit colors without a Norte UI fill", () => {
+      renderInTheme("next-norteui", {
+        source: <div />,
+        backgroundColor: "neutral-surface",
+        borderColor: "primary-interactive",
+      });
+      expect(getClass()).toContain("backgroundColor-xs");
+      expect(getClass()).toContain("borderColor-xs");
+      expect(getClass()).not.toContain("norteuiNeutral");
+    });
+
+    it("THEN base keeps an explicit borderColor with ai-generativeSurface", () => {
+      renderInTheme("base", {
+        source: <div />,
+        backgroundColor: "ai-generativeSurface",
+        borderColor: "primary-interactive",
+      });
+      expect(getClass()).toContain("borderColor-xs");
+    });
+
     it("THEN base keeps the ai-generativeSurface sprinkle", () => {
       renderInTheme("base", {
         source: <div />,

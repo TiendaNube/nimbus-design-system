@@ -141,6 +141,9 @@ const norteuiAiSurface = style({
       gradients.aiGenerativePressed,
       varsThemeBase.colors.aiGenerative.surfaceHighlight
     ),
+    // base sets an opaque :active border; keep it transparent so the AI
+    // gradient border stays visible.
+    borderColor: "transparent",
   },
   ":focus-visible": {
     boxShadow: `0 0 0 ${varsThemeBase.shape.border.width[2]} ${varsThemeBase.colors.aiGenerative.surfaceHighlight}`,
@@ -150,6 +153,7 @@ const norteuiAiSurface = style({
       gradients.aiGenerativeDisabled,
       varsThemeBase.colors.aiGenerative.surface
     ),
+    borderColor: "transparent",
   },
 });
 
