@@ -93,6 +93,12 @@ const nextNorteuiDarkTheme = {
     },
   },
   components: {
+    popover: {
+      borderRadius: vars.shape.border.radius[2],
+      // No Norte UI dark shadow design yet: keep the default Popover shadow.
+      filter: globalTheme.components.popover.filter,
+      padding: { base: vars.spacing[3] },
+    },
     thumbnail: globalTheme.components.thumbnail,
     divider: {
       color: vars.colors.neutral.interactive,
@@ -103,6 +109,18 @@ const nextNorteuiDarkTheme = {
     tag: globalTheme.components.tag,
     // No Norte UI dark Chip design yet: keep the default Chip look.
     chip: globalTheme.components.chip,
+    // No Norte UI dark Input colors yet: keep the default Input colors with the
+    // Norte UI measurements (28px total height, 6px radius).
+    input: {
+      ...globalTheme.components.input,
+      height: "1.625rem",
+      padding: `${vars.spacing[1]} ${vars.spacing[2]}`,
+      borderRadius: vars.shape.border.radius.base,
+      skeleton: {
+        height: "1.75rem",
+        borderRadius: vars.shape.border.radius.base,
+      },
+    },
     // No Norte UI dark Badge design yet: keep the default Badge look.
     // Readable ai-generative contrast on dark surfaces; rest of Badge is the default look.
     badge: {

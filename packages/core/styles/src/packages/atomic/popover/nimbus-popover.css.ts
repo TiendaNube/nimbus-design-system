@@ -20,9 +20,9 @@ const content = style({
   justifyContent: "center",
   alignItems: "center",
   minHeight: "2rem",
-  filter: `drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.2))`,
+  filter: varsThemeBase.components.popover.filter,
   boxSizing: "border-box",
-  borderRadius: varsThemeBase.shape.border.radius[3],
+  borderRadius: varsThemeBase.components.popover.borderRadius,
   transition: `opacity ${varsThemeBase.motion.speed.fast} ease`,
   zIndex: varsThemeBase.zIndex[800],
 });
@@ -65,6 +65,13 @@ const popoverBackgroundColorProperties = {
 
 const popoverColorProperties = popoverBackgroundColorProperties;
 
+// "base" reads the theme so Norte UI can use a 12px padding; "small" and
+// "none" keep the shared scale.
+const popoverPaddingProperties = {
+  ...paddingProperties,
+  base: varsThemeBase.components.popover.padding.base,
+};
+
 const defineProperties = defineRainbowProperties({
   conditions: {
     xs: {
@@ -88,7 +95,7 @@ const defineProperties = defineRainbowProperties({
   },
   staticProperties: {
     backgroundColor: popoverBackgroundColorProperties,
-    padding: paddingProperties,
+    padding: popoverPaddingProperties,
     color: popoverColorProperties,
     zIndex: zIndexProperties,
     overflow: overflowProperties,
@@ -98,7 +105,7 @@ const defineProperties = defineRainbowProperties({
 const properties = {
   backgroundColor: popoverBackgroundColorProperties,
   color: popoverColorProperties,
-  padding: paddingProperties,
+  padding: popoverPaddingProperties,
   zIndex: zIndexProperties,
   overflow: overflowProperties,
 };
