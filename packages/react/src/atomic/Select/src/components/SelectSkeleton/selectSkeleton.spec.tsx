@@ -12,15 +12,16 @@ describe("GIVEN <Select.Skeleton />", () => {
   describe("WHEN rendered", () => {
     it("THEN should render skeleton base", () => {
       makeSut();
+      // The size comes from the theme, so Norte UI can make it 28px / 24px tall.
       const skeleton = screen.getByTestId("skeleton-element");
       expect(skeleton.getAttribute("style")).toMatch(
         /--width__\w{0,9}: 15rem;/
       );
       expect(skeleton.getAttribute("style")).toMatch(
-        /--height__\w{0,9}: 2.25rem;/
+        /--height__\w{0,9}: var\(--nimbus-components-select-skeleton-medium-height\);/
       );
       expect(skeleton.getAttribute("style")).toMatch(
-        /--borderRadius__\w{0,9}: 0.5rem;/
+        /--borderRadius__\w{0,9}: var\(--nimbus-components-select-skeleton-medium-borderRadius\);/
       );
     });
   });
@@ -30,10 +31,10 @@ describe("GIVEN <Select.Skeleton />", () => {
       makeSut({ size: "medium" });
       const skeleton = screen.getByTestId("skeleton-element");
       expect(skeleton.getAttribute("style")).toMatch(
-        /--height__\w{0,9}: 2.25rem;/
+        /--height__\w{0,9}: var\(--nimbus-components-select-skeleton-medium-height\);/
       );
       expect(skeleton.getAttribute("style")).toMatch(
-        /--borderRadius__\w{0,9}: 0.5rem;/
+        /--borderRadius__\w{0,9}: var\(--nimbus-components-select-skeleton-medium-borderRadius\);/
       );
     });
 
@@ -41,10 +42,10 @@ describe("GIVEN <Select.Skeleton />", () => {
       makeSut({ size: "small" });
       const skeleton = screen.getByTestId("skeleton-element");
       expect(skeleton.getAttribute("style")).toMatch(
-        /--height__\w{0,9}: 1.75rem;/
+        /--height__\w{0,9}: var\(--nimbus-components-select-skeleton-small-height\);/
       );
       expect(skeleton.getAttribute("style")).toMatch(
-        /--borderRadius__\w{0,9}: 0.375rem;/
+        /--borderRadius__\w{0,9}: var\(--nimbus-components-select-skeleton-small-borderRadius\);/
       );
     });
   });

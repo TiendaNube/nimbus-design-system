@@ -48,6 +48,17 @@ const aiGenerativeGradients = createAiGenerativeGradientsNorteui({
 // neutral/interactive spread for stronger contrast.
 const inputFocusRing = `0 0 0 ${vars.shape.border.width[2]} ${vars.colors.neutral.interactiveHover}`;
 
+// Select and Textarea reuse the Input focus: its border and ring on any focus.
+const { input } = vars.components;
+const fieldFocusNorteui = {
+  neutral: { focus: { borderColor: input.neutral.focus.borderColor } },
+  success: { focus: { borderColor: input.success.focus.borderColor } },
+  warning: { focus: { borderColor: input.warning.focus.borderColor } },
+  danger: { focus: { borderColor: input.danger.focus.borderColor } },
+  focus: { boxShadow: input.neutral.focus.boxShadow },
+  focusVisible: { boxShadow: input.neutral.focus.boxShadow },
+};
+
 export const variables = createTheme(vars, {
   ...globalTheme,
   fontWeight: {
@@ -162,6 +173,24 @@ export const variables = createTheme(vars, {
       skeleton: {
         height: "1.75rem",
         borderRadius: vars.shape.border.radius.base,
+      },
+    },
+    select: {
+      // Medium matches Input (28px) and small is 24px, both with the border.
+      medium: {
+        height: "1.75rem",
+        paddingY: vars.spacing[1],
+        borderRadius: input.borderRadius,
+      },
+      small: {
+        height: "1.5rem",
+        paddingY: vars.spacing["0-5"],
+        borderRadius: input.borderRadius,
+      },
+      ...fieldFocusNorteui,
+      skeleton: {
+        medium: input.skeleton,
+        small: { height: "1.5rem", borderRadius: input.borderRadius },
       },
     },
     // AI interactive is lighter than interactiveHover, so the glow stays soft.

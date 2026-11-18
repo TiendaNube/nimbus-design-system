@@ -17,6 +17,17 @@ const lineWeight = tokens.line.height;
 const { shape } = tokens;
 const { motion, spacing, shadow, breakpoint, zIndex } = tokens;
 
+// Focus of the native form fields (Select, Textarea) outside Norte UI: a
+// pressed border on any focus and the theme focus ring only on keyboard focus.
+const fieldFocus = {
+  neutral: { focus: { borderColor: vars.colors.primary.interactivePressed } },
+  success: { focus: { borderColor: vars.colors.success.interactivePressed } },
+  warning: { focus: { borderColor: vars.colors.warning.interactivePressed } },
+  danger: { focus: { borderColor: vars.colors.danger.interactivePressed } },
+  focus: { boxShadow: "none" },
+  focusVisible: { boxShadow: vars.utils.focus },
+};
+
 export const globalTheme = {
   colors: withToneSurfaceDisabled(surfaceDisabled, {
     primary: {
@@ -404,6 +415,26 @@ export const globalTheme = {
       aiGenerated: { boxShadow: vars.utils.aiFocus },
       disabled: { borderColor: vars.colors.neutral.surfaceHighlight },
       skeleton: { height: "2rem", borderRadius: "0.5rem" },
+    },
+    select: {
+      // Same sizes the Select had before they were theme-driven: medium keeps
+      // its content height (`auto`). Rest, hover and disabled colors come from
+      // `components.input`; only the focus differs from Input outside Norte UI.
+      medium: {
+        height: "auto",
+        paddingY: vars.spacing[2],
+        borderRadius: vars.shape.border.radius[2],
+      },
+      small: {
+        height: "1.75rem",
+        paddingY: vars.spacing[1],
+        borderRadius: vars.shape.border.radius.base,
+      },
+      ...fieldFocus,
+      skeleton: {
+        medium: { height: "2.25rem", borderRadius: "0.5rem" },
+        small: { height: "1.75rem", borderRadius: "0.375rem" },
+      },
     },
     badge: {
       // References the theme's own tone colors so base, dark, next and next-dark

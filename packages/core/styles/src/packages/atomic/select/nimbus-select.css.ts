@@ -3,6 +3,11 @@ import { globalStyle, style, styleVariants } from "@vanilla-extract/css";
 import { varsThemeBase } from "../../../themes";
 import { gradients, createBorderGradient } from "../../../gradients";
 
+const selectTheme = varsThemeBase.components.select;
+const inputTheme = varsThemeBase.components.input;
+const { background } = varsThemeBase.colors.neutral;
+const aiHoverOverlay = inputTheme.aiGenerative.hover.overlay;
+
 export const container = style({
   position: "relative",
 });
@@ -22,12 +27,9 @@ const base = style({
   textAlign: "left",
   boxSizing: "border-box",
   color: varsThemeBase.colors.neutral.textHigh,
-  borderRadius: varsThemeBase.shape.border.radius[2],
   margin: 0,
-  paddingBottom: varsThemeBase.spacing[2],
   paddingLeft: varsThemeBase.spacing[2],
   paddingRight: varsThemeBase.spacing[8],
-  paddingTop: varsThemeBase.spacing[2],
   width: "100%",
   appearance: "none",
   outline: "none",
@@ -36,68 +38,55 @@ const base = style({
     color: varsThemeBase.colors.neutral.textLow,
   },
   ":disabled": {
-    border: `1px solid ${varsThemeBase.colors.neutral.surfaceHighlight}`,
+    border: `1px solid ${inputTheme.disabled.borderColor}`,
     backgroundColor: varsThemeBase.colors.neutral.surfaceDisabled,
     color: varsThemeBase.colors.neutral.textDisabled,
     cursor: "not-allowed",
   },
-  ":focus-visible": {
-    boxShadow: varsThemeBase.utils.focus,
-  },
 });
 
 export const size = styleVariants({
-  medium: {},
+  medium: {
+    height: selectTheme.medium.height,
+    paddingTop: selectTheme.medium.paddingY,
+    paddingBottom: selectTheme.medium.paddingY,
+    borderRadius: selectTheme.medium.borderRadius,
+  },
   small: {
-    height: "1.75rem",
+    height: selectTheme.small.height,
     fontSize: varsThemeBase.fontSize.body.caption,
-    paddingTop: varsThemeBase.spacing[1],
-    paddingBottom: varsThemeBase.spacing[1],
-    borderRadius: varsThemeBase.shape.border.radius.base,
+    paddingTop: selectTheme.small.paddingY,
+    paddingBottom: selectTheme.small.paddingY,
+    borderRadius: selectTheme.small.borderRadius,
+  },
+});
+
+// Rest, hover and disabled colors come from `components.input`; the focus
+// from `components.select`. `:focus-visible` goes after `:focus` so keyboard
+// focus keeps its ring. Hover skips disabled and focused fields, so their
+// borders win (selectors are emitted after the pseudo-classes).
+const tone = (name: "neutral" | "success" | "warning" | "danger") => ({
+  border: `1px solid ${inputTheme[name].borderColor}`,
+  backgroundColor: inputTheme[name].background,
+  selectors: {
+    "&:hover:not(:disabled, :focus)": {
+      borderColor: inputTheme[name].hover.borderColor,
+    },
+  },
+  ":focus": {
+    borderColor: selectTheme[name].focus.borderColor,
+    boxShadow: selectTheme.focus.boxShadow,
+  },
+  ":focus-visible": {
+    boxShadow: selectTheme.focusVisible.boxShadow,
   },
 });
 
 export const appearance = styleVariants({
-  neutral: [
-    base,
-    {
-      border: `1px solid ${varsThemeBase.colors.neutral.interactive}`,
-      backgroundColor: varsThemeBase.colors.neutral.background,
-      ":focus": {
-        borderColor: varsThemeBase.colors.primary.interactivePressed,
-      },
-    },
-  ],
-  success: [
-    base,
-    {
-      border: `1px solid ${varsThemeBase.colors.success.interactive}`,
-      backgroundColor: varsThemeBase.colors.success.surface,
-      ":focus": {
-        borderColor: varsThemeBase.colors.success.interactivePressed,
-      },
-    },
-  ],
-  warning: [
-    base,
-    {
-      border: `1px solid ${varsThemeBase.colors.warning.interactive}`,
-      backgroundColor: varsThemeBase.colors.warning.surface,
-      ":focus": {
-        borderColor: varsThemeBase.colors.warning.interactivePressed,
-      },
-    },
-  ],
-  danger: [
-    base,
-    {
-      border: `1px solid ${varsThemeBase.colors.danger.interactive}`,
-      backgroundColor: varsThemeBase.colors.danger.surface,
-      ":focus": {
-        borderColor: varsThemeBase.colors.danger.interactivePressed,
-      },
-    },
-  ],
+  neutral: [base, tone("neutral")],
+  success: [base, tone("success")],
+  warning: [base, tone("warning")],
+  danger: [base, tone("danger")],
   "ai-generative": [
     base,
     {
@@ -108,6 +97,19 @@ export const appearance = styleVariants({
       border: "transparent",
       borderWidth: varsThemeBase.shape.border.width[1],
       borderStyle: "solid",
+      ":focus-visible": {
+        boxShadow: selectTheme.focusVisible.boxShadow,
+      },
+      selectors: {
+        // Paints the Input overlay between the fill and the border gradient.
+        // The overlay is transparent outside Norte UI, so the border is unchanged.
+        "&:hover:not(:disabled)": {
+          background: [
+            background,
+            `linear-gradient(${background}, ${background}) padding-box, linear-gradient(${aiHoverOverlay}, ${aiHoverOverlay}) border-box, ${gradients.aiGenerativeLinearInteractive} border-box`,
+          ],
+        },
+      },
     },
   ],
 });
@@ -122,5 +124,5 @@ globalStyle(`${base} option[value=""][disabled]`, {
 
 export const aiGenerated = style([
   appearance["ai-generative"],
-  { boxShadow: varsThemeBase.utils.aiFocus },
+  { boxShadow: inputTheme.aiGenerated.boxShadow },
 ]);

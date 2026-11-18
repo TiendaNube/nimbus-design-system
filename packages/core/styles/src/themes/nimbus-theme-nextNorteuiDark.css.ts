@@ -121,6 +121,28 @@ const nextNorteuiDarkTheme = {
         borderRadius: vars.shape.border.radius.base,
       },
     },
+    // No Norte UI dark Select colors yet: keep the default Select colors and
+    // focus with the Norte UI measurements (28px medium, 24px small).
+    select: {
+      ...globalTheme.components.select,
+      medium: {
+        height: "1.75rem",
+        paddingY: vars.spacing[1],
+        borderRadius: vars.components.input.borderRadius,
+      },
+      small: {
+        height: "1.5rem",
+        paddingY: vars.spacing["0-5"],
+        borderRadius: vars.components.input.borderRadius,
+      },
+      skeleton: {
+        medium: vars.components.input.skeleton,
+        small: {
+          height: "1.5rem",
+          borderRadius: vars.components.input.borderRadius,
+        },
+      },
+    },
     // No Norte UI dark Badge design yet: keep the default Badge look.
     // Readable ai-generative contrast on dark surfaces; rest of Badge is the default look.
     badge: {

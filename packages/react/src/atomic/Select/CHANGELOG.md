@@ -2,6 +2,12 @@
 
 Use a select box when a user needs to select one option from a list.
 
+## 2026-11-18 `2.9.0`
+
+#### 🎉 New features
+
+- In `next-norteui` the Select matches the Input: medium is 28px tall and small 24px (was 28px), with a 6px radius, the Input borders, hover and focus, and a 2px `neutral.interactiveHover` focus ring. `Select.Skeleton` takes its sizes from the theme, so it follows the same heights; it falls back to the previous sizes if an older `@nimbus-ds/styles` without `components.select` is installed. `next-norteui-dark` takes the same sizes and radius and keeps the current colors. The props are unchanged, and so is the look in `base`, `dark`, `next` and `next-dark`. ([#XXX](https://github.com/TiendaNube/nimbus-design-system/pull/XXX) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-08-31 `2.8.0`
 
 #### 🎉 New features
