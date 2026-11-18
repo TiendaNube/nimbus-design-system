@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
+import { popover } from "@nimbus-ds/styles";
 import { Text } from "@nimbus-ds/text";
 import { Box } from "@nimbus-ds/box";
 import { Button } from "@nimbus-ds/button";
@@ -19,6 +20,14 @@ const meta: Meta<typeof Popover> = {
   argTypes: {
     children: { control: { disable: true } },
     content: { control: { disable: true } },
+    backgroundColor: {
+      control: { type: "select" },
+      options: Object.keys(popover.properties.backgroundColor),
+    },
+    padding: {
+      control: { type: "select" },
+      options: Object.keys(popover.properties.padding),
+    },
   },
   tags: ["autodocs"],
 };
