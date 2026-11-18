@@ -4,12 +4,23 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 ## 2026-11-17 `9.73.0`
 
+#### 🛠 Breaking changes
+
+- Toast: Visual change for screens rendered with `next-norteui` or `next-norteui-dark`:
+  - The gap between icon and text changes from `4px` to `6px`.
+  - The end padding changes from `8px` to `12px`.
+  - The border radius changes from `8px` to fully rounded (`radius.full`).
+  - `next-norteui` adds a box shadow (`neutral.surfaceHighlight` and `neutral.interactiveHover`).
+  - `next-norteui` changes the `primary` background from `primary.textLow` to `primary.interactiveHover`.
+
+  `base`, `dark`, `next` and `next-dark` keep the exact previous Toast. ([#644](https://github.com/TiendaNube/nimbus-design-system/pull/644) by [@noecondoleo](https://github.com/noecondoleo))
+
 #### 🎉 New features
 
 - Input: Adds the `components.input` theme values (field height and padding, radius, background, border, hover and focus per appearance, AI hover overlay and focus rings, disabled border and skeleton size). In `base`, `dark`, `next` and `next-dark` they reference the current Input values, so the Input looks exactly as before. In `next-norteui` the Input is 28px tall with a 6px radius, `success`, `warning` and `danger` use a white background, the borders of `success`, `warning` and `danger` use `interactivePressed` at rest and `textLow` on hover and focus for stronger contrast, and focus shows a 2px `neutral.interactiveHover` ring, aligned with the Norte UI Figma. `next-norteui-dark` takes the Norte UI measurements and keeps the current colors. Not a breaking change under Decision 0081: Norte UI ships as `minor` because both themes are opt-in, and `base`, `dark`, `next` and `next-dark` keep the exact previous Input (verified by `yarn check:base-invariance`). ([#634](https://github.com/TiendaNube/nimbus-design-system/pull/634) by [@noecondoleo](https://github.com/noecondoleo))
 - IconButton: Adds the Norte UI IconButton classes (`norteui`, `norteuiNoBorder`, `norteuiNeutral`, `norteuiTransparent`, `norteuiAiSurface`, `norteuiAiGenerative`): `6px` radius, no border, `neutral.surfaceHighlight` fill (hover `neutral.interactive`, pressed `neutral.interactiveHover`), transparent and AI surface states, and `2px` focus rings. The IconButton applies them only in `next-norteui` and `next-norteui-dark`, so `base`, `dark`, `next` and `next-dark` are unchanged. Pressed `ai-generative` IconButton uses `gradients.aiGenerativePressed` (flat `aiGenerative.textLow` outside Norte UI, as before). ([#642](https://github.com/TiendaNube/nimbus-design-system/pull/642) by [@noecondoleo](https://github.com/noecondoleo))
 - Popover: Adds Norte UI theme values so the Popover gets a smaller radius, lighter shadow and tighter default padding in Norte UI, with no change in other themes. ([#637](https://github.com/TiendaNube/nimbus-design-system/pull/637) by [@noecondoleo](https://github.com/noecondoleo))
-- Toast: Adds the `components.toast` theme values. In `base`, `dark`, `next` and `next-dark` they reference the current Toast values, so the Toast looks exactly as before. Visual change for screens rendered with `next-norteui` or `next-norteui-dark`: the radius goes from `8px` to fully rounded, the gap between icon and text from `4px` to `6px` and the end padding from `8px` to `12px`; in `next-norteui` the Toast also gets a soft shadow and the `primary` background goes from `primary.textLow` to `primary.interactiveHover`, aligned with the Norte UI Figma. Not a breaking change under Decision 0081: Norte UI ships as `minor` because both themes are opt-in, and `base`, `dark`, `next` and `next-dark` keep the exact previous Toast (verified by `yarn check:base-invariance`). ([#644](https://github.com/TiendaNube/nimbus-design-system/pull/644) by [@noecondoleo](https://github.com/noecondoleo))
+- Toast: Adds the `components.toast` theme values (`borderRadius`, `gap`, `paddingInlineEnd`, `boxShadow` and `primary.background`). In `base`, `dark`, `next` and `next-dark` they reference the current Toast values, so the Toast looks exactly as before. ([#644](https://github.com/TiendaNube/nimbus-design-system/pull/644) by [@noecondoleo](https://github.com/noecondoleo))
 
 ## 2026-11-12 `9.72.0`
 
