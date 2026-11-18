@@ -243,6 +243,11 @@ export const vars = createGlobalThemeContract(
           focus: { borderColor: "", boxShadow: "" },
         },
       },
+      popover: {
+        borderRadius: "",
+        filter: "",
+        padding: { base: "" },
+      },
       input: {
         height: "",
         padding: "",
