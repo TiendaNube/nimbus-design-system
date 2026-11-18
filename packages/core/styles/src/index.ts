@@ -47,6 +47,7 @@ export { accordion } from "./packages/composite/accordion";
 export { alert } from "./packages/composite/alert";
 export { card } from "./packages/composite/card";
 export { collapsible } from "./packages/composite/collapsible";
+export { combobox } from "./packages/composite/combobox";
 export { modal } from "./packages/composite/modal";
 export { pagination } from "./packages/composite/pagination";
 export { sidebar } from "./packages/composite/sidebar";
