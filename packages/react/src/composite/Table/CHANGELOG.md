@@ -2,6 +2,12 @@
 
 The Table component allows us to organize data with a tabular structure in a table.
 
+## 2026-11-18 `2.6.1`
+
+#### 🐛 Bug fixes
+
+- The sticky scrollbar no longer jitters when the table is scrolled horizontally slowly with a trackpad. The table and the sticky scrollbar now ignore the echo of their own sync, so they stop copying a stale position back to each other. ([#654](https://github.com/TiendaNube/nimbus-design-system/pull/654) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
+
 ## 2026-02-27 `2.6.0`
 
 #### 🎉 New features

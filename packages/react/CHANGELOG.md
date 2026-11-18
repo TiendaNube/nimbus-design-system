@@ -11,6 +11,10 @@ every day, with simplicity, accessibility, consistency and performance.
 - IconButton: `IconButton` and `IconButton.Skeleton` follow the Norte UI design in `next-norteui` and `next-norteui-dark`: `1.75rem` default size, `6px` radius, no border, `neutral.surfaceHighlight` fill with new hover, pressed, disabled and focus states; `backgroundColor="transparent"` and `backgroundColor="ai-generativeSurface"` get their Norte UI states. Props are unchanged and explicit values keep working, except that under Norte UI the default, `transparent` and `ai-generativeSurface` fills own the border, so `borderColor` does not apply with them. With `ai-generativeSurface` and no `color`, the icon uses the AI color. Pressed `ai-generative` uses the `aiGenerativePressed` gradient. Other themes are unchanged. ([#642](https://github.com/TiendaNube/nimbus-design-system/pull/642) by [@noecondoleo](https://github.com/noecondoleo))
 - Popover: Follows the Norte UI design with a smaller radius, lighter shadow and tighter default padding, with no change in other themes. ([#637](https://github.com/TiendaNube/nimbus-design-system/pull/637) by [@noecondoleo](https://github.com/noecondoleo))
 
+#### 🐛 Bug fixes
+
+- Table: The sticky scrollbar no longer jitters when the table is scrolled horizontally slowly with a trackpad. The table and the sticky scrollbar now ignore the echo of their own sync, so they stop copying a stale position back to each other. ([#654](https://github.com/TiendaNube/nimbus-design-system/pull/654) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
+
 ## 2026-11-12 `5.66.0`
 
 #### 🎉 New features
