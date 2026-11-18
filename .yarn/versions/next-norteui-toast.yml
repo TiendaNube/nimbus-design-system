@@ -6,3 +6,4 @@ declined:
   - "@nimbus-ds/split-button"
   - "@nimbus-ds/stepper"
   - "@nimbus-ds/time-picker"
+  - "@nimbus-ds/combobox"
