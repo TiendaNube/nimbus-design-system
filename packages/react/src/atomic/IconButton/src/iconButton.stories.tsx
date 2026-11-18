@@ -14,31 +14,68 @@ const meta: Meta<typeof IconButton> = {
     source: { control: { disable: true } },
     ...argTypesConvert(iconButton.properties),
     disabled: { control: "boolean" },
+    // Only the Norte UI sizes from Figma, plus the theme default (no value),
+    // so stories do not promote hand-picked sizes.
+    size: {
+      control: "select",
+      options: ["default", "small", "medium"],
+      mapping: {
+        default: undefined,
+        small: "1.5rem",
+        medium: "1.75rem",
+      },
+      description:
+        "small = 24px, medium = 28px. Without a value it uses the theme default (44px, or 28px under Norte UI).",
+    },
   },
+  // Start every story with disabled off, so the control shows as a switch
+  // instead of "Set boolean".
+  args: { disabled: false },
   tags: ["autodocs"],
 };
 
 export default meta;
 type Story = StoryObj<typeof IconButton>;
 
+// No size: shows the theme default (44px, or 28px under Norte UI).
 export const basic: Story = {
+  name: "Default",
   args: {
-    size: "2.75rem",
     source: <TiendanubeIcon size="small" />,
   },
 };
 
-export const primaryColor: Story = {
+export const small: Story = {
   args: {
-    size: "2.75rem",
-    color: "primary-textHigh",
+    size: "small",
+    source: <TiendanubeIcon size="small" />,
+  },
+};
+
+export const medium: Story = {
+  args: {
+    size: "medium",
+    source: <TiendanubeIcon size="small" />,
+  },
+};
+
+export const transparent: Story = {
+  args: {
+    backgroundColor: "transparent",
+    borderColor: "transparent",
+    source: <TiendanubeIcon size="small" />,
+  },
+};
+
+export const disabled: Story = {
+  args: {
+    disabled: true,
     source: <TiendanubeIcon size="small" />,
   },
 };
 
 export const aiGenerative: Story = {
   args: {
-    size: "2.75rem",
     color: "neutral-surface",
     appearance: "ai-generative",
     source: <GenerativeStarsIcon size="small" />,
@@ -47,7 +84,6 @@ export const aiGenerative: Story = {
 
 export const aiGenerativeDisabled: Story = {
   args: {
-    size: "2.75rem",
     color: "neutral-textDisabled",
     appearance: "ai-generative",
     source: <GenerativeStarsIcon size="small" />,
@@ -57,7 +93,6 @@ export const aiGenerativeDisabled: Story = {
 
 export const aiGenerativeSurface: Story = {
   args: {
-    size: "2.75rem",
     borderColor: "transparent",
     color: "ai-generative",
     backgroundColor: "ai-generativeSurface",
