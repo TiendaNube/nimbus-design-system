@@ -8,6 +8,8 @@ import {
 } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
+import { ThemeProvider } from "@nimbus-ds/styles";
+
 import { Popover } from "./Popover";
 import { type PopoverProps } from "./popover.types";
 
@@ -403,6 +405,38 @@ describe("GIVEN <Popover />", () => {
           screen.getByTestId("popover-element").getAttribute("class")
         ).toContain("padding-small");
       });
+    });
+  });
+
+  describe("WHEN several ThemeProviders are on the page", () => {
+    it("THEN each popover renders inside its own ThemeProvider", async () => {
+      render(
+        <>
+          <ThemeProvider theme="base" data-testid="theme-first">
+            <Popover content={<p>first content</p>} visible>
+              <p>first anchor</p>
+            </Popover>
+          </ThemeProvider>
+          <ThemeProvider theme="base" data-testid="theme-second">
+            <Popover content={<p>second content</p>} visible>
+              <p>second anchor</p>
+            </Popover>
+          </ThemeProvider>
+        </>
+      );
+      const first = await screen.findByText("first content");
+      const second = await screen.findByText("second content");
+      expect(screen.getByTestId("theme-first")).toContainElement(first);
+      expect(screen.getByTestId("theme-second")).toContainElement(second);
+      expect(
+        second.closest("#nimbus-popover-floating")?.parentElement
+      ).toBe(screen.getByTestId("theme-second"));
+    });
+
+    it("THEN it keeps the shared container without a ThemeProvider", async () => {
+      makeSut({ content: <p>no theme content</p>, visible: true });
+      const content = await screen.findByText("no theme content");
+      expect(content.closest("#nimbus-popover-floating")).not.toBeNull();
     });
   });
 });

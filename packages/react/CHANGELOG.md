@@ -13,6 +13,10 @@ every day, with simplicity, accessibility, consistency and performance.
 - Combobox: Adds the new `Combobox` composite component to choose one or several values by typing, with instant creation, enriched options and hierarchies of up to six levels. ([#636](https://github.com/TiendaNube/nimbus-design-system/pull/636) by [@claude](https://github.com/apps/claude))
 - Chip: Adds the optional `removeLabel` prop to name the remove button; its default is unchanged. ([#636](https://github.com/TiendaNube/nimbus-design-system/pull/636) by [@claude](https://github.com/apps/claude))
 
+#### 🐛 Bug fixes
+
+- Popover: Renders its content inside its own `ThemeProvider` when a page has several of them, instead of in the first one. ([#636](https://github.com/TiendaNube/nimbus-design-system/pull/636) by [@claude](https://github.com/apps/claude))
+
 ## 2026-11-12 `5.66.0`
 
 #### 🎉 New features
