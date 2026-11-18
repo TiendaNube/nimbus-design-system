@@ -43,12 +43,13 @@ const resolveLabels = (
  * options with a subtitle and a tag, and drill down through a hierarchy of up
  * to six levels.
  *
- * @example
+ * ```tsx
  * <Combobox
  *   aria-label="Category"
  *   options={[{ value: "bags", label: "Bags" }]}
  *   onChange={(option) => console.log(option)}
  * />
+ * ```
  */
 const Combobox = forwardRef<HTMLInputElement, ComboboxProps>((props, ref) => {
   const {
