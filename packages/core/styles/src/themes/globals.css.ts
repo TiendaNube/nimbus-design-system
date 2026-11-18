@@ -354,6 +354,28 @@ export const globalTheme = {
       filter: "drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.2))",
       padding: { base: vars.spacing[4] },
     },
+    fileUploader: {
+      // Same values the FileUploader had before they were theme-driven, so
+      // base, dark, next and next-dark keep their look: no padding and hover
+      // keeps the rest colors. Norte UI overrides them.
+      borderWidth: vars.shape.border.width[2],
+      padding: "0",
+      background: vars.colors.primary.surface,
+      borderColor: vars.colors.primary.interactive,
+      hover: {
+        background: vars.colors.primary.surface,
+        borderColor: vars.colors.primary.interactive,
+      },
+      dragging: {
+        background: vars.colors.primary.surfaceHighlight,
+        borderColor: vars.colors.primary.textHigh,
+      },
+      disabled: {
+        background: vars.colors.neutral.surfaceDisabled,
+        borderColor: vars.colors.neutral.interactive,
+      },
+      overlay: { borderWidth: vars.shape.border.width[2] },
+    },
     input: {
       // References the theme's own values so base, dark, next and next-dark
       // keep the exact Input look they had: hover keeps the rest border and the

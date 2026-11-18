@@ -245,6 +245,16 @@ export const vars = createGlobalThemeContract(
         filter: "",
         padding: { base: "" },
       },
+      fileUploader: {
+        borderWidth: "",
+        padding: "",
+        background: "",
+        borderColor: "",
+        hover: { background: "", borderColor: "" },
+        dragging: { background: "", borderColor: "" },
+        disabled: { background: "", borderColor: "" },
+        overlay: { borderWidth: "" },
+      },
       input: {
         height: "",
         padding: "",

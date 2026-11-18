@@ -1,6 +1,8 @@
 import {
   isFileAccepted,
   createFileListFromFiles,
+  isNorteUiTheme,
+  getLabelAppearance,
 } from "./FileUploader.definitions";
 
 const createFile = (name: string, type: string): File =>
@@ -217,6 +219,44 @@ describe("GIVEN createFileListFromFiles", () => {
       createFileListFromFiles(files, inputElement);
 
       expect(inputElement.files?.length).toBe(3);
+    });
+  });
+
+  describe("isNorteUiTheme", () => {
+    it.each(["next-norteui", "next-norteui-dark"])(
+      "returns true for %s",
+      (theme) => {
+        expect(isNorteUiTheme(theme)).toBe(true);
+      }
+    );
+
+    it.each(["base", "dark", "next", "next-dark", undefined])(
+      "returns false for %s",
+      (theme) => {
+        expect(isNorteUiTheme(theme)).toBe(false);
+      }
+    );
+  });
+
+  describe("getLabelAppearance", () => {
+    it("keeps the 20px icon and bold text outside Norte UI", () => {
+      expect(getLabelAppearance(false)).toEqual({
+        iconSize: 20,
+        fontWeight: "bold",
+        color: "primary-interactive",
+      });
+      expect(getLabelAppearance(false, true).color).toBe("neutral-interactive");
+    });
+
+    it("uses the 16px icon and regular text under Norte UI", () => {
+      expect(getLabelAppearance(true)).toEqual({
+        iconSize: 16,
+        fontWeight: "regular",
+        color: "primary-interactive",
+      });
+      expect(getLabelAppearance(true, true).color).toBe(
+        "neutral-textDisabled"
+      );
     });
   });
 });

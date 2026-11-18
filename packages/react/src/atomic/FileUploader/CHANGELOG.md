@@ -2,6 +2,12 @@
 
 The File Uploader component is used to upload files.
 
+## 2026-11-18 `2.10.0`
+
+#### 🎉 New features
+
+- Follows the Norte UI design in `next-norteui` and `next-norteui-dark`: 1px dashed `neutral.interactiveHover` border (the Input rest border), `neutral.surface` background, `8px` padding, a new hover state (`primary.surface` background, `primary.interactiveHover` border), dragging that looks like hover, a 16px icon, regular placeholder text and `neutral.textDisabled` icon and text when disabled. `FileUploader.Overlay` uses a 1px border. Props are unchanged, and so is the look in `base`, `dark`, `next` and `next-dark`. ([#PR](https://github.com/TiendaNube/nimbus-design-system/pull/PR) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-02-12 `2.9.0`
 
 #### 🎉 New features

@@ -1,9 +1,17 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
+import { ThemeProvider } from "@nimbus-ds/styles";
 
 import { FileUploader } from "./FileUploader";
 import { type FileUploaderProps } from "./fileUploader.types";
 import { isFileAccepted } from "./FileUploader.definitions";
+
+// Keeps the icon size visible in the DOM, so the theme tests can read it.
+jest.mock("@nimbus-ds/icons", () => ({
+  __esModule: true,
+  ...jest.requireActual("@nimbus-ds/icons"),
+  PlusCircleIcon: ({ size }: { size: number }) => <svg width={size} />,
+}));
 
 const makeSut = (rest?: FileUploaderProps) => {
   render(<FileUploader {...rest} data-testid="file-uploader-element" />);
@@ -485,5 +493,38 @@ describe("GIVEN <FileUploader />", () => {
       expect(screen.getByText("Helper text")).toBeDefined();
       expect(screen.getByText("Custom content")).toBeDefined();
     });
+  });
+
+  describe("WHEN rendered under a theme", () => {
+    const renderInTheme = (
+      theme: React.ComponentProps<typeof ThemeProvider>["theme"]
+    ) =>
+      render(
+        <ThemeProvider theme={theme}>
+          <FileUploader placeholder="Helper" />
+        </ThemeProvider>
+      );
+
+    const getIconSize = () =>
+      screen
+        .getByTestId("file-uploader-container")
+        .querySelector("svg")
+        ?.getAttribute("width");
+
+    it.each(["base", "dark", "next", "next-dark"] as const)(
+      "THEN %s keeps the 20px icon",
+      (theme) => {
+        renderInTheme(theme);
+        expect(getIconSize()).toBe("20");
+      }
+    );
+
+    it.each(["next-norteui", "next-norteui-dark"] as const)(
+      "THEN %s uses the 16px Norte UI icon",
+      (theme) => {
+        renderInTheme(theme);
+        expect(getIconSize()).toBe("16");
+      }
+    );
   });
 });
