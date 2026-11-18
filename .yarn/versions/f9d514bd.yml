@@ -5,6 +5,7 @@ releases:
 
 declined:
   - nimbus-design-system
+  - "@nimbus-ds/combobox"
   - "@nimbus-ds/split-button"
   - "@nimbus-ds/stepper"
   - "@nimbus-ds/time-picker"
