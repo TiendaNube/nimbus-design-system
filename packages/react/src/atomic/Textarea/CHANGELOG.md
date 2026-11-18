@@ -2,6 +2,12 @@
 
 The Textarea component allows the user to enter or edit information in long text format.
 
+## 2026-11-18 `2.8.0`
+
+#### 🎉 New features
+
+- In `next-norteui` the Textarea matches the Input: 6px radius, 6px by 8px padding, 20px lines, the Input borders, hover and focus, and a 2px `neutral.interactiveHover` focus ring. `Textarea.Skeleton` takes its size from the theme, so it follows the same radius; it falls back to the previous size if an older `@nimbus-ds/styles` without `components.textarea` is installed. `next-norteui-dark` takes the same padding, line height and radius and keeps the current colors. The props are unchanged, and so is the look in `base`, `dark`, `next` and `next-dark`. ([#XXX](https://github.com/TiendaNube/nimbus-design-system/pull/XXX) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-02-12 `2.7.0`
 
 #### 🎉 New features

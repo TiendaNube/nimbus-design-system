@@ -143,6 +143,18 @@ const nextNorteuiDarkTheme = {
         },
       },
     },
+    // No Norte UI dark Textarea colors yet: keep the default colors and focus
+    // with the Norte UI padding, line height and radius.
+    textarea: {
+      ...globalTheme.components.textarea,
+      paddingY: vars.spacing["1-5"],
+      paddingX: vars.spacing[2],
+      lineHeight: vars.lineWeight.body.base,
+      skeleton: {
+        height: "3.375rem",
+        borderRadius: vars.components.input.borderRadius,
+      },
+    },
     // No Norte UI dark Badge design yet: keep the default Badge look.
     // Readable ai-generative contrast on dark surfaces; rest of Badge is the default look.
     badge: {

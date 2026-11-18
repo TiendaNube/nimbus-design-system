@@ -16,10 +16,10 @@ describe("GIVEN <Textarea.Skeleton />", () => {
         /--width__\w{0,9}: 15rem;/
       );
       expect(skeleton.getAttribute("style")).toMatch(
-        /--height__\w{0,9}: 3.375rem;/
+        /--height__\w{0,9}: var\(--nimbus-components-textarea-skeleton-height\);/
       );
       expect(skeleton.getAttribute("style")).toMatch(
-        /--borderRadius__\w{0,9}: 0.5rem;/
+        /--borderRadius__\w{0,9}: var\(--nimbus-components-textarea-skeleton-borderRadius\);/
       );
     });
   });

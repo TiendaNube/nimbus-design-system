@@ -295,6 +295,18 @@ export const vars = createGlobalThemeContract(
           small: { height: "", borderRadius: "" },
         },
       },
+      textarea: {
+        paddingY: "",
+        paddingX: "",
+        lineHeight: "",
+        neutral: { focus: { borderColor: "" } },
+        success: { focus: { borderColor: "" } },
+        warning: { focus: { borderColor: "" } },
+        danger: { focus: { borderColor: "" } },
+        focus: { boxShadow: "" },
+        focusVisible: { boxShadow: "" },
+        skeleton: { height: "", borderRadius: "" },
+      },
       badge: {
         surface: {
           neutral: { background: "", color: "" },

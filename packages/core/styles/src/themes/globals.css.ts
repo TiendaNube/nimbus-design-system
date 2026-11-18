@@ -436,6 +436,16 @@ export const globalTheme = {
         small: { height: "1.75rem", borderRadius: "0.375rem" },
       },
     },
+    textarea: {
+      // Same padding, line height and skeleton the Textarea had before they
+      // were theme-driven. Radius, rest, hover and disabled colors come from
+      // `components.input`; the focus is the same as Select.
+      paddingY: vars.spacing[2],
+      paddingX: vars.spacing[2],
+      lineHeight: vars.lineWeight.body.caption,
+      ...fieldFocus,
+      skeleton: { height: "3.375rem", borderRadius: "0.5rem" },
+    },
     badge: {
       // References the theme's own tone colors so base, dark, next and next-dark
       // keep the exact Badge look they had. Norte UI overrides them.

@@ -193,6 +193,14 @@ export const variables = createTheme(vars, {
         small: { height: "1.5rem", borderRadius: input.borderRadius },
       },
     },
+    textarea: {
+      // 6px by 8px padding and 20px lines, as in Figma.
+      paddingY: vars.spacing["1-5"],
+      paddingX: vars.spacing[2],
+      lineHeight: vars.lineWeight.body.base,
+      ...fieldFocusNorteui,
+      skeleton: { height: "3.375rem", borderRadius: input.borderRadius },
+    },
     // AI interactive is lighter than interactiveHover, so the glow stays soft.
     button: buttonNorteui(String(aiGenerative.interactive.value)),
     tag: {
