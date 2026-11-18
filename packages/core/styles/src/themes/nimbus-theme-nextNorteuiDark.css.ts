@@ -93,6 +93,12 @@ const nextNorteuiDarkTheme = {
     },
   },
   components: {
+    popover: {
+      borderRadius: vars.shape.border.radius[2],
+      // No Norte UI dark shadow design yet: keep the default Popover shadow.
+      filter: globalTheme.components.popover.filter,
+      padding: { base: vars.spacing[3] },
+    },
     thumbnail: globalTheme.components.thumbnail,
     divider: {
       color: vars.colors.neutral.interactive,
