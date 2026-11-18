@@ -619,6 +619,110 @@ describe("GIVEN <Table />", () => {
       expect(wrapper.scrollLeft).toBe(200);
     });
 
+    it("THEN should not copy back the echo of a sync within 1px (no jitter)", () => {
+      const { container } = render(
+        <Table stickyScrollbar data-testid="table-element">
+          <tbody>
+            <tr>
+              <td>Content</td>
+            </tr>
+          </tbody>
+        </Table>
+      );
+
+      const wrapper = container.querySelector(
+        '[class*="container__wrapper"]'
+      ) as HTMLElement;
+      const track = container.querySelector(
+        '[class*="sticky_scrollbar_track"]'
+      ) as HTMLElement;
+
+      // Slow trackpad scroll: the wrapper is at a sub-pixel position and the
+      // track echoes a rounded value one frame later.
+      Object.defineProperty(wrapper, "scrollLeft", {
+        value: 100.5,
+        writable: true,
+      });
+      Object.defineProperty(track, "scrollLeft", {
+        value: 100,
+        writable: true,
+      });
+      track.dispatchEvent(new Event("scroll"));
+
+      expect(wrapper.scrollLeft).toBe(100.5);
+    });
+
+    it("THEN should ignore the delayed echo of a sync while the table keeps scrolling", () => {
+      const { container } = render(
+        <Table stickyScrollbar data-testid="table-element">
+          <tbody>
+            <tr>
+              <td>Content</td>
+            </tr>
+          </tbody>
+        </Table>
+      );
+
+      const wrapper = container.querySelector(
+        '[class*="container__wrapper"]'
+      ) as HTMLElement;
+      const track = container.querySelector(
+        '[class*="sticky_scrollbar_track"]'
+      ) as HTMLElement;
+
+      Object.defineProperty(wrapper, "scrollLeft", {
+        value: 100.5,
+        writable: true,
+      });
+      Object.defineProperty(track, "scrollLeft", {
+        value: 0,
+        writable: true,
+      });
+      wrapper.dispatchEvent(new Event("scroll"));
+      expect(track.scrollLeft).toBe(100.5);
+
+      // One frame later the track echoes the (rounded) value it was given,
+      // while the trackpad has already moved the table further.
+      wrapper.scrollLeft = 103;
+      track.scrollLeft = 100;
+      track.dispatchEvent(new Event("scroll"));
+
+      expect(wrapper.scrollLeft).toBe(103);
+    });
+
+    it("THEN should keep syncing consecutive scrolls without waiting a frame", () => {
+      const { container } = render(
+        <Table stickyScrollbar data-testid="table-element">
+          <tbody>
+            <tr>
+              <td>Content</td>
+            </tr>
+          </tbody>
+        </Table>
+      );
+
+      const wrapper = container.querySelector(
+        '[class*="container__wrapper"]'
+      ) as HTMLElement;
+      const track = container.querySelector(
+        '[class*="sticky_scrollbar_track"]'
+      ) as HTMLElement;
+
+      Object.defineProperty(wrapper, "scrollLeft", {
+        value: 0,
+        writable: true,
+      });
+      Object.defineProperty(track, "scrollLeft", {
+        value: 0,
+        writable: true,
+      });
+      [10, 20, 30].forEach((position) => {
+        wrapper.scrollLeft = position;
+        wrapper.dispatchEvent(new Event("scroll"));
+        expect(track.scrollLeft).toBe(position);
+      });
+    });
+
     it("THEN should set scrollbar inner width to match wrapper scroll width", () => {
       const { container } = render(
         <Table stickyScrollbar data-testid="table-element">
