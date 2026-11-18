@@ -50,4 +50,21 @@ describe("GIVEN <Chip />", () => {
       .getAttribute("class") as string;
     expect(className).toContain("appearance_ai-generative");
   });
+
+  it("THEN the remove button is named Dismiss chip by default", () => {
+    makeSut({ text: "text_chip", removable: true });
+    expect(screen.getByRole("button", { name: "Dismiss chip" })).toBeDefined();
+  });
+
+  it("THEN the remove button uses the removeLabel it receives", () => {
+    makeSut({
+      text: "text_chip",
+      removable: true,
+      removeLabel: "Quitar text_chip"
+    });
+    expect(
+      screen.getByRole("button", { name: "Quitar text_chip" })
+    ).toBeDefined();
+    expect(screen.queryByRole("button", { name: "Dismiss chip" })).toBeNull();
+  });
 });
