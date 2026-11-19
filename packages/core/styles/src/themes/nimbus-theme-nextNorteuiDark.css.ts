@@ -104,7 +104,7 @@ const nextNorteuiDarkTheme = {
       color: vars.colors.neutral.interactive,
     },
     // Norte UI dark keeps the base AI colors, whose glow is already light.
-    button: buttonNorteui(vars.colors.aiGenerative.interactiveHover),
+    button: buttonNorteui(globalTheme.colors.aiGenerative.interactiveHover),
     // No Norte UI dark Tag design yet: keep the default Tag look.
     tag: globalTheme.components.tag,
     // No Norte UI dark Chip design yet: keep the default Chip look.

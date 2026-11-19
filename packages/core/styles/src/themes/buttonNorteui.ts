@@ -1,4 +1,5 @@
 import { vars } from "./contract.css";
+import { fade } from "./aiGenerativeGradients";
 
 /** Same shape as `vars.components.button`, with plain string values. */
 type StringLeaves<T> = {
@@ -13,7 +14,9 @@ export type ButtonThemeValues = StringLeaves<typeof vars.components.button>;
  * resolves its own palette automatically.
  *
  * `aiSecondaryHoverGlow` is passed by each theme because the AI
- * `interactive` color is only in the token palette, not in `vars`.
+ * `interactive` color is only in the token palette, not in `vars`. It must be
+ * a 6-digit hex: the hover shadow applies it at 70 % as `rgba()`, because
+ * `color-mix()` does not work in every browser the Admin supports.
  */
 export const buttonNorteui = (
   aiSecondaryHoverGlow: string
@@ -64,6 +67,7 @@ export const buttonNorteui = (
     // next step after `surface`, not a disabled state.
     hoverBackground: vars.colors.aiGenerative.surfaceDisabled,
     hoverGlow: aiSecondaryHoverGlow,
+    hoverShadow: `0 0 16px ${fade(aiSecondaryHoverGlow, "70%")}`,
     disabledBackground: vars.colors.aiGenerative.surface,
   },
 });

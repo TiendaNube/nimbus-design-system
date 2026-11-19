@@ -207,6 +207,7 @@ export const vars = createGlobalThemeContract(
           background: "",
           hoverBackground: "",
           hoverGlow: "",
+          hoverShadow: "",
           disabledBackground: "",
         },
       },

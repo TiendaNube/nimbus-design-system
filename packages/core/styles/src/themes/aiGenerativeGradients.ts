@@ -34,7 +34,7 @@ export interface AiGenerativeGradientPalette {
  * `color-mix()`, `rgba()` works in every browser the Admin supports
  * (Chrome 103, Safari 14.5, Firefox 91 and later).
  */
-const fade = (hex: string, amount: string): string => {
+export const fade = (hex: string, amount: string): string => {
   const match = /^#?([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i.exec(hex.trim());
   if (!match) {
     throw new Error(`AI gradient colors must be 6-digit hex values: ${hex}`);
