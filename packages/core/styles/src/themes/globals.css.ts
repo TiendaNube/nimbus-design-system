@@ -2,7 +2,11 @@ import tokens from "@nimbus-ds/tokens/dist/js/tokens";
 import { createGlobalTheme, globalStyle } from "@vanilla-extract/css";
 import { vars } from "./contract.css";
 import { withToneSurfaceDisabled } from "./toneSurfaceDisabled";
-import { aiInteractiveBorder, aiHoverBorder } from "./aiInteractiveBorder";
+import {
+  aiInteractiveBorder,
+  aiHoverBorder,
+  aiLinearBorder,
+} from "./aiInteractiveBorder";
 import {
   aiGenerativeGradientsBase,
   aiGenerativeLinearBase,
@@ -431,11 +435,34 @@ export const globalTheme = {
         hover: { background: vars.colors.primary.interactive },
         pressed: { background: vars.colors.primary.interactive },
       },
-      indeterminate: { color: vars.colors.neutral.textLow },
+      indeterminate: {
+        color: vars.colors.neutral.textLow,
+        hoverColor: vars.colors.neutral.textLow,
+        pressedColor: vars.colors.neutral.textLow,
+      },
       disabled: {
         background: vars.colors.neutral.surfaceDisabled,
         borderColor: vars.colors.neutral.interactive,
         indeterminateColor: vars.colors.neutral.textLow,
+      },
+      // AI-generated: hover and pressed repeat the rest border, and disabled
+      // keeps the interactive gradient over neutral.surfaceDisabled.
+      aiGenerated: {
+        hover: { background: aiLinearBorder(vars.colors.neutral.background) },
+        pressed: {
+          background: aiLinearBorder(vars.colors.neutral.background),
+        },
+        checked: {
+          hover: {
+            background: aiLinearBorder(vars.colors.primary.interactive),
+          },
+          pressed: {
+            background: aiLinearBorder(vars.colors.primary.interactive),
+          },
+        },
+        disabled: {
+          background: aiLinearBorder(vars.colors.neutral.surfaceDisabled),
+        },
       },
     },
     radio: {

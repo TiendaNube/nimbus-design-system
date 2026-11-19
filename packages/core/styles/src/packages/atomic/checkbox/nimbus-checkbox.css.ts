@@ -127,10 +127,10 @@ globalStyle(
 globalStyle(
   `${container} input:disabled ~ ${container__checkmark_aiGenerated}`,
   {
-    background: createBorderGradient(
-      gradients.aiGenerativeInteractive,
-      varsThemeBase.colors.neutral.surfaceDisabled
-    ),
+    background: [
+      varsThemeBase.colors.neutral.surfaceDisabled,
+      checkboxTheme.aiGenerated.disabled.background,
+    ],
     borderColor: "transparent",
     backgroundColor: "transparent",
   }
@@ -212,5 +212,70 @@ globalStyle(
   {
     backgroundColor: checkboxTheme.checked.pressed.background,
     borderColor: checkboxTheme.checked.pressed.background,
+  }
+);
+
+/* -------------------------------------------------------------------------------------------------
+ * Indeterminate dash on hover and pressed
+ * -----------------------------------------------------------------------------------------------*/
+
+globalStyle(
+  `${container}:hover input:enabled ~ ${container__checkmark} ${container__checkmark_checkindeterminate} > div`,
+  {
+    color: checkboxTheme.indeterminate.hoverColor,
+  }
+);
+
+globalStyle(
+  `${container}:active input:enabled ~ ${container__checkmark} ${container__checkmark_checkindeterminate} > div`,
+  {
+    color: checkboxTheme.indeterminate.pressedColor,
+  }
+);
+
+/* -------------------------------------------------------------------------------------------------
+ * AI-generated hover and pressed
+ * The base theme values repeat the rest border, so only Norte UI changes.
+ * -----------------------------------------------------------------------------------------------*/
+
+const aiTheme = checkboxTheme.aiGenerated;
+
+globalStyle(
+  `${container}:hover input:enabled:not(:checked) ~ ${container__checkmark_aiGenerated}`,
+  {
+    background: [
+      varsThemeBase.colors.neutral.background,
+      aiTheme.hover.background,
+    ],
+  }
+);
+
+globalStyle(
+  `${container}:active input:enabled:not(:checked) ~ ${container__checkmark_aiGenerated}`,
+  {
+    background: [
+      varsThemeBase.colors.neutral.background,
+      aiTheme.pressed.background,
+    ],
+  }
+);
+
+globalStyle(
+  `${container}:hover input:enabled:checked ~ ${container__checkmark_aiGenerated}`,
+  {
+    background: [
+      varsThemeBase.colors.primary.interactive,
+      aiTheme.checked.hover.background,
+    ],
+  }
+);
+
+globalStyle(
+  `${container}:active input:enabled:checked ~ ${container__checkmark_aiGenerated}`,
+  {
+    background: [
+      varsThemeBase.colors.primary.interactive,
+      aiTheme.checked.pressed.background,
+    ],
   }
 );

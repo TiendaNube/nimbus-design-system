@@ -293,8 +293,14 @@ export const vars = createGlobalThemeContract(
           borderColor: { neutral: "", danger: "", primary: "" },
         },
         checked: { hover: { background: "" }, pressed: { background: "" } },
-        indeterminate: { color: "" },
+        indeterminate: { color: "", hoverColor: "", pressedColor: "" },
         disabled: { background: "", borderColor: "", indeterminateColor: "" },
+        aiGenerated: {
+          hover: { background: "" },
+          pressed: { background: "" },
+          checked: { hover: { background: "" }, pressed: { background: "" } },
+          disabled: { background: "" },
+        },
       },
       radio: {
         dotSize: "",

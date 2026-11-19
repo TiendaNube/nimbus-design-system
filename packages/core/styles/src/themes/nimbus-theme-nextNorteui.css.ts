@@ -4,7 +4,11 @@ import tokens from "@nimbus-ds/tokens/dist/js/tokens";
 import { vars } from "./contract.css";
 import { buttonNorteui } from "./buttonNorteui";
 import { globalTheme } from "./globals.css";
-import { aiInteractiveBorder } from "./aiInteractiveBorder";
+import {
+  aiInteractiveBorder,
+  aiLinearBorder,
+  aiLinearDisabledBorder,
+} from "./aiInteractiveBorder";
 import {
   createAiGenerativeGradientsNorteui,
   aiGenerativeLinearNorteui,
@@ -187,11 +191,52 @@ export const variables = createTheme(vars, {
         hover: { background: vars.colors.primary.interactiveHover },
         pressed: { background: vars.colors.primary.interactivePressed },
       },
-      indeterminate: { color: vars.colors.primary.interactive },
+      indeterminate: {
+        color: vars.colors.primary.interactive,
+        hoverColor: vars.colors.primary.interactiveHover,
+        pressedColor: vars.colors.primary.interactivePressed,
+      },
       disabled: {
         background: vars.colors.neutral.surfaceHighlight,
         borderColor: vars.colors.neutral.interactive,
         indeterminateColor: vars.colors.neutral.textDisabled,
+      },
+      // Figma darkens the AI border gradient with the overlay/interactive-hover
+      // (15%) and overlay/interactive-pressed (30%) layers of neutral.textHigh,
+      // like Chip, and fills the unchecked box with aiGenerative.surface.
+      // Disabled uses the disabled gradient over aiGenerative.surfaceDisabled.
+      aiGenerated: {
+        hover: {
+          background: aiLinearBorder(
+            vars.colors.aiGenerative.surface,
+            `color-mix(in srgb, ${vars.colors.neutral.textHigh} 15%, transparent)`
+          ),
+        },
+        pressed: {
+          background: aiLinearBorder(
+            vars.colors.aiGenerative.surface,
+            `color-mix(in srgb, ${vars.colors.neutral.textHigh} 30%, transparent)`
+          ),
+        },
+        checked: {
+          hover: {
+            background: aiLinearBorder(
+              vars.colors.primary.interactiveHover,
+              `color-mix(in srgb, ${vars.colors.neutral.textHigh} 15%, transparent)`
+            ),
+          },
+          pressed: {
+            background: aiLinearBorder(
+              vars.colors.primary.interactivePressed,
+              `color-mix(in srgb, ${vars.colors.neutral.textHigh} 30%, transparent)`
+            ),
+          },
+        },
+        disabled: {
+          background: aiLinearDisabledBorder(
+            vars.colors.aiGenerative.surfaceDisabled
+          ),
+        },
       },
     },
     radio: {
