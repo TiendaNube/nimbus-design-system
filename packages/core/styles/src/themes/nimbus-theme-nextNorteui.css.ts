@@ -399,6 +399,14 @@ export const variables = createTheme(vars, {
         },
       },
     },
+    toast: {
+      borderRadius: vars.shape.border.radius.full,
+      gap: vars.spacing["1-5"],
+      paddingInlineEnd: vars.spacing[3],
+      // Figma shadow-light/level-3 built from Norte UI neutrals.
+      boxShadow: `0px 3px 6px 0px ${vars.colors.neutral.surfaceHighlight}, 0px 0px 1px 0px ${vars.colors.neutral.interactiveHover}`,
+      primary: { background: vars.colors.primary.interactiveHover },
+    },
   },
   gradients: {
     aiGenerative: aiGenerativeGradients,

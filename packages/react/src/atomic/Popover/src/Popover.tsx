@@ -1,4 +1,10 @@
-import React, { useRef, useState, useMemo } from "react";
+import React, {
+  useEffect,
+  useRef,
+  useState,
+  useMemo,
+  type RefObject,
+} from "react";
 import {
   FloatingPortal,
   FloatingArrow,
@@ -18,6 +24,42 @@ import {
 import { popover, useTheme } from "@nimbus-ds/styles";
 
 import { type PopoverProps } from "./popover.types";
+
+/** Id of the container that holds the floating content inside a ThemeProvider. */
+const PORTAL_ID = "nimbus-popover-floating";
+
+/**
+ * Returns the `#nimbus-popover-floating` container that is a direct child of the
+ * ThemeProvider root, creating it when missing. Looking it up inside the root,
+ * instead of with `document.getElementById`, keeps the content of each Popover
+ * inside its own ThemeProvider when a page has several of them. The root is read
+ * in an effect because the ThemeProvider ref is attached after its children
+ * mount. Without a ThemeProvider root it keeps the previous global id lookup.
+ */
+const useThemePortalRoot = (
+  refThemeProvider: RefObject<HTMLElement | null> | undefined,
+) => {
+  const [portalRoot, setPortalRoot] = useState<HTMLElement | null>(null);
+  const [hasThemeRoot, setHasThemeRoot] = useState(!!refThemeProvider);
+  useEffect(() => {
+    const themeRoot = refThemeProvider?.current;
+    if (!themeRoot) {
+      setHasThemeRoot(false);
+      return;
+    }
+    let container = Array.from(themeRoot.children).find(
+      (child): child is HTMLElement => child.id === PORTAL_ID,
+    );
+    if (!container) {
+      container = document.createElement("div");
+      container.id = PORTAL_ID;
+      themeRoot.appendChild(container);
+    }
+    setHasThemeRoot(true);
+    setPortalRoot(container);
+  }, [refThemeProvider]);
+  return hasThemeRoot ? { root: portalRoot } : { id: PORTAL_ID };
+};
 
 const Popover: React.FC<PopoverProps> = ({
   className,
@@ -86,6 +128,7 @@ const Popover: React.FC<PopoverProps> = ({
   ].filter((middleware) => middleware !== false);
 
   const { refThemeProvider } = useTheme();
+  const portalProps = useThemePortalRoot(refThemeProvider);
 
   const { context, floatingStyles } = useFloating({
     open,
@@ -157,8 +200,7 @@ const Popover: React.FC<PopoverProps> = ({
           : children}
       </div>
       <FloatingPortal
-        id="nimbus-popover-floating"
-        root={refThemeProvider?.current}
+        {...portalProps}
       >
         {open && (
           <>

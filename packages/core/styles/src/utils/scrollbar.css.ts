@@ -36,10 +36,19 @@ export const thinScrollbar = style({
 /**
  * Thin scrollbar that is always visible (not just on hover).
  * Used for components where permanent scroll indication is needed.
+ *
+ * The standard `scrollbar-width` / `scrollbar-color` properties only apply where
+ * `::-webkit-scrollbar` is not supported (Firefox): in Chromium they override the
+ * WebKit pseudo-elements, and with macOS overlay scrollbars the bar then stays
+ * hidden until the person scrolls.
  */
 export const thinScrollbarAlways = style({
-  scrollbarWidth: "thin",
-  scrollbarColor: `${varsThemeBase.colors.neutral.interactive} transparent`,
+  "@supports": {
+    "not selector(::-webkit-scrollbar)": {
+      scrollbarWidth: "thin",
+      scrollbarColor: `${varsThemeBase.colors.neutral.interactive} transparent`,
+    },
+  },
   selectors: {
     "&::-webkit-scrollbar": {
       width: SCROLLBAR_WIDTH,

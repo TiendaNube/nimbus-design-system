@@ -576,6 +576,15 @@ export const globalTheme = {
         },
       },
     },
+    toast: {
+      // Keeps the exact Toast shape and colors base, dark, next and next-dark
+      // had. Norte UI overrides them.
+      borderRadius: vars.shape.border.radius[2],
+      gap: vars.spacing[1],
+      paddingInlineEnd: vars.spacing[2],
+      boxShadow: "none",
+      primary: { background: vars.colors.primary.textLow },
+    },
   },
   gradients: {
     aiGenerative: aiGenerativeGradientsBase,

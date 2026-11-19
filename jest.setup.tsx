@@ -25,6 +25,8 @@ jest.mock("@nimbus-ds/icons", () => ({
   ChevronLeftIcon: () => <svg />,
   ChevronRightIcon: () => <svg />,
   ClockIcon: () => <svg />,
+  CheckIcon: () => <svg />,
+  ArrowLeftIcon: () => <svg />,
 }));
 
 // Mock ResizeObserver
