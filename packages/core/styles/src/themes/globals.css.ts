@@ -6,6 +6,7 @@ import { aiInteractiveBorder, aiHoverBorder } from "./aiInteractiveBorder";
 import {
   aiGenerativeGradientsBase,
   aiGenerativeLinearBase,
+  fade,
 } from "./aiGenerativeGradients";
 
 const colors = tokens.color.light;
@@ -276,6 +277,12 @@ export const globalTheme = {
         background: vars.colors.neutral.background,
         hoverBackground: vars.colors.neutral.surface,
         hoverGlow: vars.colors.aiGenerative.interactiveHover,
+        // Hover glow: aiGenerative.interactiveHover at 70 %, as rgba() so it
+        // also works in browsers without color-mix() (Chrome 103 to 110).
+        hoverShadow: `0 0 16px ${fade(
+          colors.aiGenerative["interactive-hover"].value as string,
+          "70%"
+        )}`,
         disabledBackground: vars.colors.neutral.surfaceDisabled,
       },
     },

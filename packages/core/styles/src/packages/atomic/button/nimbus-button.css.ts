@@ -186,7 +186,7 @@ export const appearance = styleVariants({
           gradients.aiGenerativeHover,
           varsThemeBase.components.button.aiSecondary.hoverBackground
         ),
-        boxShadow: `0 0 16px color-mix(in srgb, ${varsThemeBase.components.button.aiSecondary.hoverGlow} 70%, transparent)`,
+        boxShadow: varsThemeBase.components.button.aiSecondary.hoverShadow,
       },
       ":active": {
         background: createBorderGradient(

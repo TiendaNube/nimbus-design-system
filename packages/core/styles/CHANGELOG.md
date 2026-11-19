@@ -25,6 +25,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 #### 🐛 Bug fixes
 
+- Input, Chip and Button: The AI hover and pressed overlays of Input and Chip in `next-norteui`, and the AI Secondary Button hover glow in every theme, use `rgba()` instead of `color-mix()`. `color-mix()` needs Chrome 111 and the Admin supports Chrome 103, so in Chrome 103 to 110 the Input and Chip borders did not darken and the Button had no glow. The colors and opacities do not change. ([#661](https://github.com/TiendaNube/nimbus-design-system/pull/661) by [@noecondoleo](https://github.com/noecondoleo))
 - Scrollbar: `thinScrollbarAlways` sets the standard `scrollbar-width` and `scrollbar-color` only where `::-webkit-scrollbar` is not supported (Firefox). In Chromium they replaced the thin WebKit scrollbar, so with macOS overlay scrollbars the bar of the Combobox list stayed hidden until the person scrolled. ([#636](https://github.com/TiendaNube/nimbus-design-system/pull/636) by [@claude](https://github.com/apps/claude))
 
 ## 2026-11-12 `9.72.0`
