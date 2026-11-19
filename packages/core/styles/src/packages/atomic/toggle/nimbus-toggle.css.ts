@@ -78,6 +78,14 @@ globalStyle(`${container}:has(${container__input}:focus-visible)`, {
   outline: "none",
 });
 
+// Off track border while focused. Hover and pressed keep their own border.
+globalStyle(
+  `${container} input:focus-visible:enabled:not(:checked) ~ ${container__slider}:not(:hover)`,
+  {
+    borderColor: toggleTheme.focus.borderColor,
+  }
+);
+
 globalStyle(`${container} input:checked ~ ${container__slider}`, {
   borderColor: varsThemeBase.colors.primary.interactive,
   backgroundColor: varsThemeBase.colors.primary.interactive,

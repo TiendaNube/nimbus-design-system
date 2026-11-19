@@ -181,6 +181,13 @@ const appearanceBorders = {
     checkboxProperties.styles.borderColor.values[appearanceBorders[key]]
       .defaultClass
   }`;
+  // Before hover and pressed, which win over it while the box is focused.
+  globalStyle(
+    `${container} input:focus-visible:enabled:not(:checked) ~ ${borderClass}`,
+    {
+      borderColor: checkboxTheme.focus.borderColor[key],
+    }
+  );
 
   globalStyle(
     `${container}:hover input:enabled:not(:checked) ~ ${borderClass}`,
@@ -239,6 +246,27 @@ globalStyle(
  * -----------------------------------------------------------------------------------------------*/
 
 const aiTheme = checkboxTheme.aiGenerated;
+
+// Focus goes before hover and pressed, which win over it.
+globalStyle(
+  `${container} input:focus-visible:enabled:not(:checked) ~ ${container__checkmark_aiGenerated}`,
+  {
+    background: [
+      varsThemeBase.colors.neutral.background,
+      aiTheme.focus.background,
+    ],
+  }
+);
+
+globalStyle(
+  `${container} input:focus-visible:enabled:checked ~ ${container__checkmark_aiGenerated}`,
+  {
+    background: [
+      varsThemeBase.colors.primary.interactive,
+      aiTheme.checked.focus.background,
+    ],
+  }
+);
 
 globalStyle(
   `${container}:hover input:enabled:not(:checked) ~ ${container__checkmark_aiGenerated}`,

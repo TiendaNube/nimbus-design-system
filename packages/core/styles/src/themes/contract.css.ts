@@ -283,7 +283,10 @@ export const vars = createGlobalThemeContract(
       },
       checkbox: {
         label: { fontSize: "" },
-        focus: { boxShadow: "" },
+        focus: {
+          boxShadow: "",
+          borderColor: { neutral: "", danger: "", primary: "" },
+        },
         hover: {
           background: "",
           borderColor: { neutral: "", danger: "", primary: "" },
@@ -298,14 +301,19 @@ export const vars = createGlobalThemeContract(
         aiGenerated: {
           hover: { background: "" },
           pressed: { background: "" },
-          checked: { hover: { background: "" }, pressed: { background: "" } },
+          focus: { background: "" },
+          checked: {
+            hover: { background: "" },
+            pressed: { background: "" },
+            focus: { background: "" },
+          },
           disabled: { background: "" },
         },
       },
       radio: {
         dotSize: "",
         label: { fontSize: "" },
-        focus: { boxShadow: "" },
+        focus: { boxShadow: "", borderColor: "" },
         hover: { background: "", borderColor: "" },
         pressed: { background: "", borderColor: "" },
         checked: { hover: { color: "" }, pressed: { color: "" } },
@@ -313,6 +321,7 @@ export const vars = createGlobalThemeContract(
         checkedDisabled: { background: "", borderColor: "", dotColor: "" },
         button: {
           background: "",
+          focus: { borderColor: "" },
           hover: { background: "", borderColor: "" },
           pressed: { background: "", borderColor: "" },
           checked: { hover: { background: "" }, pressed: { background: "" } },
@@ -322,7 +331,7 @@ export const vars = createGlobalThemeContract(
       },
       toggle: {
         label: { fontSize: "" },
-        focus: { boxShadow: "" },
+        focus: { boxShadow: "", borderColor: "" },
         pressed: { background: "", borderColor: "" },
         disabled: { background: "", thumb: "" },
         checkedDisabled: { background: "", thumb: "" },

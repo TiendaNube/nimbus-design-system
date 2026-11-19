@@ -113,6 +113,14 @@ globalStyle(
   }
 );
 
+// Before hover and pressed, which win over it while the radio is focused.
+globalStyle(
+  `${container__input}:focus-visible:enabled:not(:checked) ~ ${container__checkmark}`,
+  {
+    borderColor: radioTheme.focus.borderColor,
+  }
+);
+
 globalStyle(
   `${container}:hover ${container__input}:enabled:not(:checked) ~ ${container__checkmark}`,
   {
@@ -198,6 +206,14 @@ globalStyle(
   `${container__input}:focus-visible ~ ${container__content.button}`,
   {
     boxShadow: radioTheme.focus.boxShadow,
+  }
+);
+
+// Unchecked border while focused. Hover and pressed keep their own border.
+globalStyle(
+  `${container__input}:focus-visible:not(:checked) ~ ${container__content.button}:not(:hover)`,
+  {
+    borderColor: radioTheme.button.focus.borderColor,
   }
 );
 

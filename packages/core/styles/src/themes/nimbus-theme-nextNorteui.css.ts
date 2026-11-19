@@ -56,6 +56,11 @@ const neutralTextHigh = String(colors.neutral["text-high"].value);
 const overlayHover = fade(neutralTextHigh, "15%");
 const overlayPressed = fade(neutralTextHigh, "30%");
 
+// Fills the padding box with `fill` and paints a solid aiGenerative.textLow
+// border, in the same layered background the AI gradient borders use.
+const solidBorder = (fill: string) =>
+  `linear-gradient(${fill}, ${fill}) padding-box, linear-gradient(${vars.colors.aiGenerative.textLow}, ${vars.colors.aiGenerative.textLow}) border-box`;
+
 // 2px ring in neutral.interactiveHover, one step darker than the Figma
 // neutral/interactive spread for stronger contrast.
 const inputFocusRing = `0 0 0 ${vars.shape.border.width[2]} ${vars.colors.neutral.interactiveHover}`;
@@ -178,7 +183,16 @@ export const variables = createTheme(vars, {
     },
     checkbox: {
       label: { fontSize: vars.fontSize.body.caption },
-      focus: { boxShadow: inputFocusRing },
+      // Focus darkens the unchecked border to text-low, as the Input does.
+      // Indeterminate keeps its primary.interactive border.
+      focus: {
+        boxShadow: inputFocusRing,
+        borderColor: {
+          neutral: vars.colors.neutral.textLow,
+          danger: vars.colors.danger.textLow,
+          primary: vars.colors.primary.interactive,
+        },
+      },
       hover: {
         background: vars.colors.neutral.surface,
         borderColor: {
@@ -226,7 +240,10 @@ export const variables = createTheme(vars, {
             overlayPressed
           ),
         },
+        // Focus swaps the gradient for a solid aiGenerative.textLow border.
+        focus: { background: solidBorder(vars.colors.neutral.background) },
         checked: {
+          focus: { background: solidBorder(vars.colors.primary.interactive) },
           hover: {
             background: aiLinearBorder(
               vars.colors.primary.interactiveHover,
@@ -248,9 +265,14 @@ export const variables = createTheme(vars, {
       },
     },
     radio: {
-      dotSize: "0.5625rem",
+      dotSize: globalTheme.components.radio.dotSize,
       label: { fontSize: vars.fontSize.body.caption },
-      focus: { boxShadow: inputFocusRing },
+      // Focus darkens the unchecked radio border to text-low, as the Input
+      // does for stronger contrast.
+      focus: {
+        boxShadow: inputFocusRing,
+        borderColor: vars.colors.neutral.textLow,
+      },
       hover: {
         background: vars.colors.neutral.surface,
         borderColor: vars.colors.neutral.interactiveHover,
@@ -274,6 +296,8 @@ export const variables = createTheme(vars, {
       },
       button: {
         background: vars.colors.neutral.background,
+        // Focus darkens the unchecked border to text-low, as the Input does.
+        focus: { borderColor: vars.colors.neutral.textLow },
         hover: {
           background: vars.colors.neutral.surface,
           borderColor: vars.colors.neutral.interactiveHover,
@@ -299,7 +323,11 @@ export const variables = createTheme(vars, {
     },
     toggle: {
       label: { fontSize: vars.fontSize.body.caption },
-      focus: { boxShadow: inputFocusRing },
+      // Focus darkens the off track border to text-low, as the Input does.
+      focus: {
+        boxShadow: inputFocusRing,
+        borderColor: vars.colors.neutral.textLow,
+      },
       pressed: {
         background: vars.colors.neutral.interactivePressed,
         borderColor: vars.colors.neutral.interactivePressed,

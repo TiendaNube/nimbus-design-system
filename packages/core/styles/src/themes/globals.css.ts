@@ -414,7 +414,14 @@ export const globalTheme = {
       // next-dark keep the exact look: hover and pressed keep the rest colors.
       // Norte UI overrides them.
       label: { fontSize: vars.fontSize.body.base },
-      focus: { boxShadow: vars.utils.focus },
+      focus: {
+        boxShadow: vars.utils.focus,
+        borderColor: {
+          neutral: vars.colors.neutral.interactive,
+          danger: vars.colors.danger.interactive,
+          primary: vars.colors.primary.interactive,
+        },
+      },
       hover: {
         background: vars.colors.neutral.background,
         borderColor: {
@@ -452,11 +459,15 @@ export const globalTheme = {
         pressed: {
           background: aiLinearBorder(vars.colors.neutral.background),
         },
+        focus: { background: aiLinearBorder(vars.colors.neutral.background) },
         checked: {
           hover: {
             background: aiLinearBorder(vars.colors.primary.interactive),
           },
           pressed: {
+            background: aiLinearBorder(vars.colors.primary.interactive),
+          },
+          focus: {
             background: aiLinearBorder(vars.colors.primary.interactive),
           },
         },
@@ -471,7 +482,11 @@ export const globalTheme = {
       // hover, which already won over :active. Norte UI overrides them.
       dotSize: "0.5rem",
       label: { fontSize: vars.fontSize.body.base },
-      focus: { boxShadow: vars.utils.focus },
+      // borderColor repeats the rest border of the unchecked radio.
+      focus: {
+        boxShadow: vars.utils.focus,
+        borderColor: vars.colors.neutral.interactive,
+      },
       hover: {
         background: vars.colors.neutral.background,
         borderColor: vars.colors.neutral.interactive,
@@ -495,6 +510,8 @@ export const globalTheme = {
       },
       button: {
         background: vars.colors.neutral.surface,
+        // Repeats the rest border of the unchecked button.
+        focus: { borderColor: vars.colors.neutral.interactive },
         hover: {
           background: vars.colors.neutral.surfaceHighlight,
           borderColor: vars.colors.neutral.interactivePressed,
@@ -522,7 +539,11 @@ export const globalTheme = {
       // References what the Toggle used before, so base, dark, next and
       // next-dark keep the exact look. Norte UI overrides them.
       label: { fontSize: vars.fontSize.body.base },
-      focus: { boxShadow: vars.utils.focus },
+      // borderColor repeats the rest border of the off track.
+      focus: {
+        boxShadow: vars.utils.focus,
+        borderColor: vars.colors.neutral.interactive,
+      },
       pressed: {
         background: vars.colors.neutral.interactiveHover,
         borderColor: vars.colors.neutral.interactivePressed,

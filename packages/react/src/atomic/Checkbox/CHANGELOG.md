@@ -6,7 +6,7 @@ The Checkbox component allows us to choose one or several options from a selecti
 
 #### 🎉 New features
 
-- Follows the Norte UI Figma in `next-norteui` (hover, pressed, checked, disabled and AI-generated states, a 12px label and a 2px focus ring) through the `components.checkbox` theme values. The API is unchanged. `next-norteui-dark` takes the 12px label and keeps the current colors, and `base`, `dark`, `next` and `next-dark` are unchanged (opt-in `minor` under Decision 0081). ([#649](https://github.com/TiendaNube/nimbus-design-system/pull/649) by [@noecondoleo](https://github.com/noecondoleo))
+- Follows the Norte UI Figma in `next-norteui` (hover, pressed, checked, disabled and AI-generated states, a 12px label, a darker focus border and a 2px focus ring) through the `components.checkbox` theme values. The API is unchanged. `next-norteui-dark` takes the 12px label and keeps the current colors, and `base`, `dark`, `next` and `next-dark` are unchanged (opt-in `minor` under Decision 0081). ([#649](https://github.com/TiendaNube/nimbus-design-system/pull/649) by [@noecondoleo](https://github.com/noecondoleo))
 
 ## 2026-02-12 `2.5.0`
 

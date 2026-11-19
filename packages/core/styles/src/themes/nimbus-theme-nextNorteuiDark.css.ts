@@ -122,14 +122,13 @@ const nextNorteuiDarkTheme = {
       },
     },
     // No Norte UI dark Checkbox, Radio or Toggle colors yet: keep the default
-    // colors with the Norte UI caption label and the 9px Radio dot.
+    // colors with the Norte UI caption label.
     checkbox: {
       ...globalTheme.components.checkbox,
       label: { fontSize: vars.fontSize.body.caption },
     },
     radio: {
       ...globalTheme.components.radio,
-      dotSize: "0.5625rem",
       label: { fontSize: vars.fontSize.body.caption },
     },
     toggle: {
