@@ -12,6 +12,7 @@ import {
 import {
   createAiGenerativeGradientsNorteui,
   aiGenerativeLinearNorteui,
+  fade,
 } from "./aiGenerativeGradients";
 import { aiGradientNorteui } from "./aiGradientNorteui";
 
@@ -47,6 +48,13 @@ const aiGenerativeGradients = createAiGenerativeGradientsNorteui({
   pinkHigh: aiGradientNorteui.pinkHigh,
   pinkLight: aiGradientNorteui.pinkLight,
 });
+
+// overlay/interactive-hover (15%) and overlay/interactive-pressed (30%) layers
+// of neutral.textHigh, as rgba() because color-mix() needs Chrome 111 and the
+// Admin supports Chrome 103.
+const neutralTextHigh = String(colors.neutral["text-high"].value);
+const overlayHover = fade(neutralTextHigh, "15%");
+const overlayPressed = fade(neutralTextHigh, "30%");
 
 // 2px ring in neutral.interactiveHover, one step darker than the Figma
 // neutral/interactive spread for stronger contrast.
@@ -209,26 +217,26 @@ export const variables = createTheme(vars, {
         hover: {
           background: aiLinearBorder(
             vars.colors.aiGenerative.surface,
-            `color-mix(in srgb, ${vars.colors.neutral.textHigh} 15%, transparent)`
+            overlayHover
           ),
         },
         pressed: {
           background: aiLinearBorder(
             vars.colors.aiGenerative.surface,
-            `color-mix(in srgb, ${vars.colors.neutral.textHigh} 30%, transparent)`
+            overlayPressed
           ),
         },
         checked: {
           hover: {
             background: aiLinearBorder(
               vars.colors.primary.interactiveHover,
-              `color-mix(in srgb, ${vars.colors.neutral.textHigh} 15%, transparent)`
+              overlayHover
             ),
           },
           pressed: {
             background: aiLinearBorder(
               vars.colors.primary.interactivePressed,
-              `color-mix(in srgb, ${vars.colors.neutral.textHigh} 30%, transparent)`
+              overlayPressed
             ),
           },
         },
