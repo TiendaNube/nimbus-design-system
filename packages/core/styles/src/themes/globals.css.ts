@@ -346,6 +346,12 @@ export const globalTheme = {
         },
       },
     },
+    progressBar: {
+      // Default track (backgroundColor="neutral-surfaceDisabled"). Same color
+      // as before it was theme-driven, so base, dark, next and next-dark keep
+      // their look. Norte UI overrides it.
+      background: vars.colors.neutral.surfaceDisabled,
+    },
     popover: {
       // Same radius and base padding the Popover had before they were
       // theme-driven, so base, dark, next and next-dark keep their look.

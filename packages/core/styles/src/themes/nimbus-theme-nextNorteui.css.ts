@@ -90,6 +90,9 @@ export const variables = createTheme(vars, {
     aiFocus: `0 0 0 3px ${aiSurfaceHighlight}`,
   },
   components: {
+    progressBar: {
+      background: vars.colors.neutral.surfaceHighlight,
+    },
     popover: {
       borderRadius: vars.shape.border.radius[2],
       // Shadow level 2 written as drop-shadow so the arrow gets it too.

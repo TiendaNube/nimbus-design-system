@@ -240,6 +240,9 @@ export const vars = createGlobalThemeContract(
           focus: { borderColor: "", boxShadow: "" },
         },
       },
+      progressBar: {
+        background: "",
+      },
       popover: {
         borderRadius: "",
         filter: "",

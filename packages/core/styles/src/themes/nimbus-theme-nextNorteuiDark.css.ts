@@ -93,6 +93,9 @@ const nextNorteuiDarkTheme = {
     },
   },
   components: {
+    progressBar: {
+      background: vars.colors.neutral.surfaceHighlight,
+    },
     popover: {
       borderRadius: vars.shape.border.radius[2],
       // No Norte UI dark shadow design yet: keep the default Popover shadow.
