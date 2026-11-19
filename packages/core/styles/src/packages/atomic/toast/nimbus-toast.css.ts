@@ -9,9 +9,11 @@ const base = vanillaStyle({
   height: "2rem",
   width: "fit-content",
   boxSizing: "border-box",
-  gap: varsThemeBase.spacing[1],
+  gap: varsThemeBase.components.toast.gap,
   padding: varsThemeBase.spacing[2],
-  borderRadius: varsThemeBase.shape.border.radius[2],
+  paddingInlineEnd: varsThemeBase.components.toast.paddingInlineEnd,
+  borderRadius: varsThemeBase.components.toast.borderRadius,
+  boxShadow: varsThemeBase.components.toast.boxShadow,
   transition: `${varsThemeBase.motion.speed.fast} ease`,
   zIndex: varsThemeBase.zIndex[800],
 });
@@ -44,7 +46,7 @@ export const appearance = styleVariants({
   primary: [
     base,
     {
-      background: varsThemeBase.colors.primary.textLow,
+      background: varsThemeBase.components.toast.primary.background,
     },
   ],
   success: [
