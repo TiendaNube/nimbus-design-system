@@ -1,6 +1,7 @@
 releases:
   "@nimbus-ds/styles": minor
   "@nimbus-ds/progress-bar": minor
+  "@nimbus-ds/list": minor
   "@nimbus-ds/components": minor
 
 declined:

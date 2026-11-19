@@ -352,6 +352,11 @@ export const globalTheme = {
       // their look. Norte UI overrides it.
       background: vars.colors.neutral.surfaceDisabled,
     },
+    list: {
+      // Numbers and bullets. Same color as before it was theme-driven, so
+      // base, dark, next and next-dark keep their look. Norte UI overrides it.
+      markerColor: vars.colors.neutral.surfaceHighlight,
+    },
     popover: {
       // Same radius and base padding the Popover had before they were
       // theme-driven, so base, dark, next and next-dark keep their look.

@@ -243,6 +243,9 @@ export const vars = createGlobalThemeContract(
       progressBar: {
         background: "",
       },
+      list: {
+        markerColor: "",
+      },
       popover: {
         borderRadius: "",
         filter: "",

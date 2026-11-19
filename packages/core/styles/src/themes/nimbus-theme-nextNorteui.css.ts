@@ -93,6 +93,9 @@ export const variables = createTheme(vars, {
     progressBar: {
       background: vars.colors.neutral.surfaceHighlight,
     },
+    list: {
+      markerColor: vars.colors.neutral.textDisabled,
+    },
     popover: {
       borderRadius: vars.shape.border.radius[2],
       // Shadow level 2 written as drop-shadow so the arrow gets it too.
