@@ -8,6 +8,7 @@ releases:
 declined:
   - nimbus-design-system
   - "@nimbus-ds/accordion"
+  - "@nimbus-ds/combobox"
   - "@nimbus-ds/pagination"
   - "@nimbus-ds/slider"
   - "@nimbus-ds/split-button"
