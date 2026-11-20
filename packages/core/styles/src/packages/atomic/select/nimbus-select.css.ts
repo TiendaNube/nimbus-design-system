@@ -47,7 +47,14 @@ const base = style({
 
 export const size = styleVariants({
   medium: {
-    height: selectTheme.medium.height,
+    // The height applies only to dropdowns: a numeric `size` (rendered as the
+    // native `size` attribute) or `multiple` show a list box, which keeps its
+    // native height. `size="1"` is still a dropdown.
+    selectors: {
+      '&:not([multiple]):not([size]), &:not([multiple])[size="1"]': {
+        height: selectTheme.medium.height,
+      },
+    },
     paddingTop: selectTheme.medium.paddingY,
     paddingBottom: selectTheme.medium.paddingY,
     borderRadius: selectTheme.medium.borderRadius,
