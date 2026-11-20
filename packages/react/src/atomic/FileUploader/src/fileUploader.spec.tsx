@@ -497,33 +497,60 @@ describe("GIVEN <FileUploader />", () => {
 
   describe("WHEN rendered under a theme", () => {
     const renderInTheme = (
-      theme: React.ComponentProps<typeof ThemeProvider>["theme"]
+      theme: React.ComponentProps<typeof ThemeProvider>["theme"],
+      disabled = false
     ) =>
       render(
         <ThemeProvider theme={theme}>
-          <FileUploader placeholder="Helper" />
+          <FileUploader placeholder="Helper" disabled={disabled} />
         </ThemeProvider>
       );
 
-    const getIconSize = () =>
-      screen
-        .getByTestId("file-uploader-container")
-        .querySelector("svg")
-        ?.getAttribute("width");
+    const getIcon = () =>
+      screen.getByTestId("file-uploader-container").querySelector("svg");
+    const getIconSize = () => getIcon()?.getAttribute("width");
+    const getIconClass = () =>
+      getIcon()?.parentElement?.getAttribute("class") ?? "";
+    const getTextClass = () =>
+      screen.getByText("Helper").getAttribute("class") ?? "";
 
     it.each(["base", "dark", "next", "next-dark"] as const)(
-      "THEN %s keeps the 20px icon",
+      "THEN %s keeps the 20px icon and bold primary text",
       (theme) => {
         renderInTheme(theme);
         expect(getIconSize()).toBe("20");
+        expect(getIconClass()).toContain("color_primary-interactive");
+        expect(getTextClass()).toContain("fontWeight-bold");
+        expect(getTextClass()).toContain("color-primary-interactive");
+      }
+    );
+
+    it.each(["base", "dark", "next", "next-dark"] as const)(
+      "THEN %s keeps neutral-interactive when disabled",
+      (theme) => {
+        renderInTheme(theme, true);
+        expect(getIconClass()).toContain("color_neutral-interactive");
+        expect(getTextClass()).toContain("color-neutral-interactive");
       }
     );
 
     it.each(["next-norteui", "next-norteui-dark"] as const)(
-      "THEN %s uses the 16px Norte UI icon",
+      "THEN %s uses the 16px icon and regular primary text",
       (theme) => {
         renderInTheme(theme);
         expect(getIconSize()).toBe("16");
+        expect(getIconClass()).toContain("color_primary-interactive");
+        expect(getTextClass()).toContain("fontWeight-regular");
+        expect(getTextClass()).toContain("color-primary-interactive");
+      }
+    );
+
+    it.each(["next-norteui", "next-norteui-dark"] as const)(
+      "THEN %s uses neutral-textDisabled when disabled",
+      (theme) => {
+        renderInTheme(theme, true);
+        expect(getIconClass()).toContain("color_neutral-textDisabled");
+        expect(getTextClass()).toContain("color-neutral-textDisabled");
       }
     );
   });
