@@ -16,6 +16,9 @@ import {
   calculateFixedColumnOffsets,
 } from "./Table.definitions";
 
+/** Minimum scroll difference (px) for the sticky scrollbar to sync. */
+const SCROLL_SYNC_TOLERANCE = 1;
+
 const Table: React.FC<TableProps> & TableComponents = ({
   className,
   style: _style,
@@ -37,7 +40,6 @@ const Table: React.FC<TableProps> & TableComponents = ({
   });
   const scrollbarTrackRef = useRef<HTMLDivElement>(null);
   const scrollbarInnerRef = useRef<HTMLDivElement>(null);
-  const isSyncingRef = useRef(false);
 
   const totalGrowValue = useMemo(
     () =>
@@ -137,22 +139,37 @@ const Table: React.FC<TableProps> & TableComponents = ({
     const track = scrollbarTrackRef.current;
     if (!wrapper || !track) return undefined;
 
+    /**
+     * Writing `scrollLeft` on one element fires a scroll event on it a frame
+     * later (an "echo" of the sync). With slow trackpad scrolling the other
+     * element has already moved on by then, so copying the echo back makes
+     * both elements fight and the table jitters. Each side remembers the value
+     * it was given and ignores the event that only reports it (within 1px, to
+     * allow sub-pixel rounding). Positions already within 1px are not synced.
+     */
+    let expectedWrapperLeft: number | null = null;
+    let expectedTrackLeft: number | null = null;
+
+    const isEcho = (actual: number, expected: number | null) =>
+      expected !== null && Math.abs(actual - expected) < SCROLL_SYNC_TOLERANCE;
+
+    const isInSync = () =>
+      Math.abs(track.scrollLeft - wrapper.scrollLeft) < SCROLL_SYNC_TOLERANCE;
+
     const syncScrollFromWrapper = () => {
-      if (isSyncingRef.current) return;
-      isSyncingRef.current = true;
+      const echo = isEcho(wrapper.scrollLeft, expectedWrapperLeft);
+      expectedWrapperLeft = null;
+      if (echo || isInSync()) return;
+      expectedTrackLeft = wrapper.scrollLeft;
       track.scrollLeft = wrapper.scrollLeft;
-      requestAnimationFrame(() => {
-        isSyncingRef.current = false;
-      });
     };
 
     const syncScrollFromTrack = () => {
-      if (isSyncingRef.current) return;
-      isSyncingRef.current = true;
+      const echo = isEcho(track.scrollLeft, expectedTrackLeft);
+      expectedTrackLeft = null;
+      if (echo || isInSync()) return;
+      expectedWrapperLeft = track.scrollLeft;
       wrapper.scrollLeft = track.scrollLeft;
-      requestAnimationFrame(() => {
-        isSyncingRef.current = false;
-      });
     };
 
     wrapper.addEventListener("scroll", syncScrollFromWrapper);

@@ -18,6 +18,10 @@ every day, with simplicity, accessibility, consistency and performance.
 
 - Popover: Renders its content inside its own `ThemeProvider` when a page has several of them, instead of in the first one. ([#636](https://github.com/TiendaNube/nimbus-design-system/pull/636) by [@claude](https://github.com/apps/claude))
 
+#### 🐛 Bug fixes
+
+- Table: The sticky scrollbar no longer jitters when the table is scrolled horizontally slowly with a trackpad. The table and the sticky scrollbar now ignore the echo of their own sync, so they stop copying a stale position back to each other. ([#654](https://github.com/TiendaNube/nimbus-design-system/pull/654) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
+
 ## 2026-11-12 `5.66.0`
 
 #### 🎉 New features
