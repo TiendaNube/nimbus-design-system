@@ -29,7 +29,7 @@ export const container__item = vanillaStyle({
   position: "relative",
   selectors: {
     "&::marker": {
-      color: varsThemeBase.colors.neutral.surfaceHighlight,
+      color: varsThemeBase.components.list.markerColor,
     },
   },
 });
