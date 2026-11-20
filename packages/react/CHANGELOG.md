@@ -5,6 +5,18 @@ every day, with simplicity, accessibility, consistency and performance.
 
 ## 2026-11-20 `5.68.0`
 
+#### 🛠 Breaking changes
+
+- FileUploader: Visual change for screens rendered with `next-norteui` or `next-norteui-dark`, to match the Norte UI Figma:
+
+  - The border width of the container and of `FileUploader.Overlay` (`overlay__content`) changes from `2px` to `1px`.
+  - The container padding changes from none to `8px` (`spacing[2]`).
+  - The container background changes from `primary.surface` to `neutral.surface`, and the border from `primary.interactive` to `neutral.interactiveHover` (`next-norteui` reuses the Input rest border).
+  - A hover state is added (`primary.surface` background, `primary.interactiveHover` border), and dragging uses it instead of `primary.surfaceHighlight` with a `primary.textHigh` border.
+  - The icon changes from `20px` to `16px`, the placeholder from bold to regular, and the disabled icon and placeholder from `neutral.interactive` to `neutral.textDisabled`.
+
+  Props and the look in `base`, `dark`, `next` and `next-dark` are unchanged (verified by `yarn check:base-invariance`). Ships as `minor`: Norte UI themes are opt-in and this aligns FileUploader with its Figma contract. ([#657](https://github.com/TiendaNube/nimbus-design-system/pull/657) by [@noecondoleo](https://github.com/noecondoleo))
+
 #### 🎉 New features
 
 - FileUploader: Follows the Norte UI design in `next-norteui` and `next-norteui-dark`: 1px dashed `neutral.interactiveHover` border, `neutral.surface` background, `8px` padding, a new hover state, dragging that looks like hover, a 16px icon, regular placeholder text and `neutral.textDisabled` when disabled; `FileUploader.Overlay` uses a 1px border. Props are unchanged, and so is the look in `base`, `dark`, `next` and `next-dark`. ([#657](https://github.com/TiendaNube/nimbus-design-system/pull/657) by [@noecondoleo](https://github.com/noecondoleo))

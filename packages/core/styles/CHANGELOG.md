@@ -4,6 +4,18 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 ## 2026-11-20 `9.74.0`
 
+#### 🛠 Breaking changes
+
+- FileUploader: Visual change for screens rendered with `next-norteui` or `next-norteui-dark`, to match the Norte UI Figma:
+
+  - The border width of the container and of `FileUploader.Overlay` (`overlay__content`) changes from `2px` to `1px`.
+  - The container padding changes from none to `8px` (`spacing[2]`).
+  - The container background changes from `primary.surface` to `neutral.surface`, and the border from `primary.interactive` to `neutral.interactiveHover` (`next-norteui` reuses the Input rest border).
+  - A hover state is added (`primary.surface` background, `primary.interactiveHover` border), and dragging uses it instead of `primary.surfaceHighlight` with a `primary.textHigh` border.
+  - The icon changes from `20px` to `16px`, the placeholder from bold to regular, and the disabled icon and placeholder from `neutral.interactive` to `neutral.textDisabled`.
+
+  Props and the look in `base`, `dark`, `next` and `next-dark` are unchanged (verified by `yarn check:base-invariance`). Ships as `minor`: Norte UI themes are opt-in and this aligns FileUploader with its Figma contract. ([#657](https://github.com/TiendaNube/nimbus-design-system/pull/657) by [@noecondoleo](https://github.com/noecondoleo))
+
 #### 🎉 New features
 
 - FileUploader: Adds the `components.fileUploader` theme values (border width, padding, background and border at rest, hover, dragging and disabled, and the overlay border width). In `base`, `dark`, `next` and `next-dark` they reference the current FileUploader values (hover keeps the rest colors), so the FileUploader looks exactly as before. In `next-norteui` the border is 1px and reuses the Input rest and disabled borders, the background is `neutral.surface`, padding is `8px`, and hover and dragging use `primary.surface` with a `primary.interactiveHover` border, aligned with the Norte UI Figma. `next-norteui-dark` uses the same color roles on the dark palette. Verified by `yarn check:base-invariance`. ([#657](https://github.com/TiendaNube/nimbus-design-system/pull/657) by [@noecondoleo](https://github.com/noecondoleo))
