@@ -530,6 +530,7 @@ describe("GIVEN <FileUploader />", () => {
       (theme) => {
         renderInTheme(theme, true);
         expect(getIconClass()).toContain("color_neutral-interactive");
+        expect(getTextClass()).toContain("fontWeight-bold");
         expect(getTextClass()).toContain("color-neutral-interactive");
       }
     );
@@ -550,6 +551,7 @@ describe("GIVEN <FileUploader />", () => {
       (theme) => {
         renderInTheme(theme, true);
         expect(getIconClass()).toContain("color_neutral-textDisabled");
+        expect(getTextClass()).toContain("fontWeight-regular");
         expect(getTextClass()).toContain("color-neutral-textDisabled");
       }
     );
