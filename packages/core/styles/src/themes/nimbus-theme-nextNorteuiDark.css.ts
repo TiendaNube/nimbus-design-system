@@ -121,6 +121,20 @@ const nextNorteuiDarkTheme = {
         borderRadius: vars.shape.border.radius.base,
       },
     },
+    // No Norte UI dark Checkbox, Radio or Toggle colors yet: keep the default
+    // colors with the Norte UI caption label.
+    checkbox: {
+      ...globalTheme.components.checkbox,
+      label: { fontSize: vars.fontSize.body.caption },
+    },
+    radio: {
+      ...globalTheme.components.radio,
+      label: { fontSize: vars.fontSize.body.caption },
+    },
+    toggle: {
+      ...globalTheme.components.toggle,
+      label: { fontSize: vars.fontSize.body.caption },
+    },
     // No Norte UI dark Badge design yet: keep the default Badge look.
     // Readable ai-generative contrast on dark surfaces; rest of Badge is the default look.
     badge: {

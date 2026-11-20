@@ -2,6 +2,8 @@ import { style as vanillaStyle, globalStyle } from "@vanilla-extract/css";
 
 import { varsThemeBase } from "../../../themes";
 
+const toggleTheme = varsThemeBase.components.toggle;
+
 export const container = vanillaStyle({
   display: "flex",
   alignItems: "center",
@@ -57,10 +59,32 @@ export const container__slider = vanillaStyle({
   },
 });
 
+// Pressed while off and enabled. The base values repeat what hover and
+// :active already gave the slider.
+globalStyle(
+  `${container} input:enabled:not(:checked) ~ ${container__slider}:hover:active`,
+  {
+    borderColor: toggleTheme.pressed.borderColor,
+    backgroundColor: toggleTheme.pressed.background,
+  }
+);
+
+globalStyle(`${container} p`, {
+  fontSize: toggleTheme.label.fontSize,
+});
+
 globalStyle(`${container}:has(${container__input}:focus-visible)`, {
-  boxShadow: varsThemeBase.utils.focus,
+  boxShadow: toggleTheme.focus.boxShadow,
   outline: "none",
 });
+
+// Off track border while focused. Hover and pressed keep their own border.
+globalStyle(
+  `${container} input:focus-visible:enabled:not(:checked) ~ ${container__slider}:not(:hover)`,
+  {
+    borderColor: toggleTheme.focus.borderColor,
+  }
+);
 
 globalStyle(`${container} input:checked ~ ${container__slider}`, {
   borderColor: varsThemeBase.colors.primary.interactive,
@@ -94,20 +118,28 @@ globalStyle(`${container}:has(${container__input}:disabled)`, {
 });
 
 globalStyle(`${container} input:disabled ~ ${container__slider}`, {
-  borderColor: varsThemeBase.colors.neutral.surfaceDisabled,
-  backgroundColor: varsThemeBase.colors.neutral.surfaceDisabled,
+  borderColor: toggleTheme.disabled.background,
+  backgroundColor: toggleTheme.disabled.background,
 });
 
 globalStyle(`${container} input:disabled ~ ${container__slider}:before`, {
-  backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
+  backgroundColor: toggleTheme.disabled.thumb,
 });
 
 globalStyle(`${container} input:disabled ~ ${container__slider}:hover:before`, {
   // Reset background color
-  backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
+  backgroundColor: toggleTheme.disabled.thumb,
 });
 
 // Checked + disabled: keep non-interactive border color
 globalStyle(`${container} input:checked:disabled ~ ${container__slider}`, {
-  borderColor: varsThemeBase.colors.neutral.surfaceDisabled,
+  borderColor: toggleTheme.checkedDisabled.background,
+  backgroundColor: toggleTheme.checkedDisabled.background,
 });
+
+globalStyle(
+  `${container} input:checked:disabled ~ ${container__slider}:before, ${container} input:checked:disabled ~ ${container__slider}:hover:before`,
+  {
+    backgroundColor: toggleTheme.checkedDisabled.thumb,
+  }
+);
