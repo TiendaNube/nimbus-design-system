@@ -2,11 +2,17 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
-## 2026-11-17 `9.73.0`
+## 2026-11-20 `9.74.0`
 
-#### 🛠 Breaking changes
+#### 🎉 New features
 
+- IconButton: Adds the Norte UI IconButton classes (`norteui`, `norteuiNoBorder`, `norteuiNeutral`, `norteuiTransparent`, `norteuiAiSurface`, `norteuiAiGenerative`): `6px` radius, no border, `neutral.surfaceHighlight` fill (hover `neutral.interactive`, pressed `neutral.interactiveHover`), transparent and AI surface states, and `2px` focus rings. The IconButton applies them only in `next-norteui` and `next-norteui-dark`, so `base`, `dark`, `next` and `next-dark` are unchanged. Pressed `ai-generative` IconButton uses `gradients.aiGenerativePressed` (flat `aiGenerative.textLow` outside Norte UI, as before). ([#642](https://github.com/TiendaNube/nimbus-design-system/pull/642) by [@noecondoleo](https://github.com/noecondoleo))
+- Popover: Adds Norte UI theme values so the Popover gets a smaller radius, lighter shadow and tighter default padding in Norte UI, with no change in other themes. ([#637](https://github.com/TiendaNube/nimbus-design-system/pull/637) by [@noecondoleo](https://github.com/noecondoleo))
+- Checkbox, Radio and Toggle: Adds the `components.checkbox`, `components.radio` and `components.toggle` theme values, so in `next-norteui` the three components follow the Norte UI Figma (hover, pressed, checked, disabled and AI-generated states, a 12px label, a darker focus border and a 2px focus ring). `next-norteui-dark` takes the 12px label and keeps the current colors, and `base`, `dark`, `next` and `next-dark` are unchanged (opt-in `minor` under Decision 0081). ([#649](https://github.com/TiendaNube/nimbus-design-system/pull/649) by [@noecondoleo](https://github.com/noecondoleo))
+- Combobox: Adds the `combobox` styles (field layout, list, rows, back control, level title, selected path and the always-visible thin scrollbar of the list) for the new `@nimbus-ds/combobox` package. ([#636](https://github.com/TiendaNube/nimbus-design-system/pull/636) by [@claude](https://github.com/apps/claude))
+- Toast: Adds the `components.toast` theme values (`borderRadius`, `gap`, `paddingInlineEnd`, `boxShadow` and `primary.background`). In `base`, `dark`, `next` and `next-dark` they reference the current Toast values, so the Toast looks exactly as before. ([#644](https://github.com/TiendaNube/nimbus-design-system/pull/644) by [@noecondoleo](https://github.com/noecondoleo))
 - Toast: Visual change for screens rendered with `next-norteui` or `next-norteui-dark`:
+
   - The gap between icon and text changes from `4px` to `6px`.
   - The end padding changes from `8px` to `12px`.
   - The border radius changes from `8px` to fully rounded (`radius.full`).
@@ -15,18 +21,15 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
   `base`, `dark`, `next` and `next-dark` keep the exact previous Toast. ([#644](https://github.com/TiendaNube/nimbus-design-system/pull/644) by [@noecondoleo](https://github.com/noecondoleo))
 
-#### 🎉 New features
-
-- Input: Adds the `components.input` theme values (field height and padding, radius, background, border, hover and focus per appearance, AI hover overlay and focus rings, disabled border and skeleton size). In `base`, `dark`, `next` and `next-dark` they reference the current Input values, so the Input looks exactly as before. In `next-norteui` the Input is 28px tall with a 6px radius, `success`, `warning` and `danger` use a white background, the borders of `success`, `warning` and `danger` use `interactivePressed` at rest and `textLow` on hover and focus for stronger contrast, and focus shows a 2px `neutral.interactiveHover` ring, aligned with the Norte UI Figma. `next-norteui-dark` takes the Norte UI measurements and keeps the current colors. Not a breaking change under Decision 0081: Norte UI ships as `minor` because both themes are opt-in, and `base`, `dark`, `next` and `next-dark` keep the exact previous Input (verified by `yarn check:base-invariance`). ([#634](https://github.com/TiendaNube/nimbus-design-system/pull/634) by [@noecondoleo](https://github.com/noecondoleo))
-- IconButton: Adds the Norte UI IconButton classes (`norteui`, `norteuiNoBorder`, `norteuiNeutral`, `norteuiTransparent`, `norteuiAiSurface`, `norteuiAiGenerative`): `6px` radius, no border, `neutral.surfaceHighlight` fill (hover `neutral.interactive`, pressed `neutral.interactiveHover`), transparent and AI surface states, and `2px` focus rings. The IconButton applies them only in `next-norteui` and `next-norteui-dark`, so `base`, `dark`, `next` and `next-dark` are unchanged. Pressed `ai-generative` IconButton uses `gradients.aiGenerativePressed` (flat `aiGenerative.textLow` outside Norte UI, as before). ([#642](https://github.com/TiendaNube/nimbus-design-system/pull/642) by [@noecondoleo](https://github.com/noecondoleo))
-- Popover: Adds Norte UI theme values so the Popover gets a smaller radius, lighter shadow and tighter default padding in Norte UI, with no change in other themes. ([#637](https://github.com/TiendaNube/nimbus-design-system/pull/637) by [@noecondoleo](https://github.com/noecondoleo))
-- Checkbox, Radio and Toggle: Adds the `components.checkbox`, `components.radio` and `components.toggle` theme values, so in `next-norteui` the three components follow the Norte UI Figma (hover, pressed, checked, disabled and AI-generated states, a 12px label, a darker focus border and a 2px focus ring). `next-norteui-dark` takes the 12px label and keeps the current colors, and `base`, `dark`, `next` and `next-dark` are unchanged (opt-in `minor` under Decision 0081). ([#649](https://github.com/TiendaNube/nimbus-design-system/pull/649) by [@noecondoleo](https://github.com/noecondoleo))
-- Combobox: Adds the `combobox` styles (field layout, list, rows, back control, level title, selected path and the always-visible thin scrollbar of the list) for the new `@nimbus-ds/combobox` package. ([#636](https://github.com/TiendaNube/nimbus-design-system/pull/636) by [@claude](https://github.com/apps/claude))
-- Toast: Adds the `components.toast` theme values (`borderRadius`, `gap`, `paddingInlineEnd`, `boxShadow` and `primary.background`). In `base`, `dark`, `next` and `next-dark` they reference the current Toast values, so the Toast looks exactly as before. ([#644](https://github.com/TiendaNube/nimbus-design-system/pull/644) by [@noecondoleo](https://github.com/noecondoleo))
-
 #### 🐛 Bug fixes
 
 - Scrollbar: `thinScrollbarAlways` sets the standard `scrollbar-width` and `scrollbar-color` only where `::-webkit-scrollbar` is not supported (Firefox). In Chromium they replaced the thin WebKit scrollbar, so with macOS overlay scrollbars the bar of the Combobox list stayed hidden until the person scrolled. ([#636](https://github.com/TiendaNube/nimbus-design-system/pull/636) by [@claude](https://github.com/apps/claude))
+
+## 2026-11-17 `9.73.0`
+
+#### 🎉 New features
+
+- Input: Adds the `components.input` theme values (field height and padding, radius, background, border, hover and focus per appearance, AI hover overlay and focus rings, disabled border and skeleton size). In `base`, `dark`, `next` and `next-dark` they reference the current Input values, so the Input looks exactly as before. In `next-norteui` the Input is 28px tall with a 6px radius, `success`, `warning` and `danger` use a white background, the borders of `success`, `warning` and `danger` use `interactivePressed` at rest and `textLow` on hover and focus for stronger contrast, and focus shows a 2px `neutral.interactiveHover` ring, aligned with the Norte UI Figma. `next-norteui-dark` takes the Norte UI measurements and keeps the current colors. Not a breaking change under Decision 0081: Norte UI ships as `minor` because both themes are opt-in, and `base`, `dark`, `next` and `next-dark` keep the exact previous Input (verified by `yarn check:base-invariance`). ([#634](https://github.com/TiendaNube/nimbus-design-system/pull/634) by [@noecondoleo](https://github.com/noecondoleo))
 
 ## 2026-11-12 `9.72.0`
 
