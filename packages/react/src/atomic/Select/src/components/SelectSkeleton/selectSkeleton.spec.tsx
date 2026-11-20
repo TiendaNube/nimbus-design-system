@@ -1,52 +1,85 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
+import { Skeleton } from "@nimbus-ds/skeleton";
+import { themeVars } from "@nimbus-ds/styles";
 
 import { SelectSkeleton } from "./SelectSkeleton";
 import { type SelectSkeletonProps } from "./selectSkeleton.types";
+
+jest.mock("@nimbus-ds/skeleton", () => ({
+  Skeleton: jest.fn(() => null),
+}));
+
+const skeletonMock = Skeleton as unknown as jest.Mock;
+const selectSkeleton = themeVars.components.select.skeleton;
 
 const makeSut = (props?: SelectSkeletonProps) => {
   render(<SelectSkeleton {...props} data-testid="skeleton-element" />);
 };
 
+const lastSkeletonProps = () => skeletonMock.mock.calls.at(-1)?.[0];
+
 describe("GIVEN <Select.Skeleton />", () => {
+  beforeEach(() => {
+    skeletonMock.mockClear();
+  });
+
   describe("WHEN rendered", () => {
-    it("THEN should render skeleton base", () => {
+    it("THEN should pass the medium theme size and the default width", () => {
       makeSut();
-      // The size comes from the theme, so Norte UI can make it 28px / 24px tall.
-      const skeleton = screen.getByTestId("skeleton-element");
-      expect(skeleton.getAttribute("style")).toMatch(
-        /--width__\w{0,9}: 15rem;/
+      expect(lastSkeletonProps()).toEqual(
+        expect.objectContaining({
+          width: "15rem",
+          height: selectSkeleton.medium.height,
+          borderRadius: selectSkeleton.medium.borderRadius,
+          "data-testid": "skeleton-element",
+        })
       );
-      expect(skeleton.getAttribute("style")).toMatch(
-        /--height__\w{0,9}: var\(--nimbus-components-select-skeleton-medium-height\);/
-      );
-      expect(skeleton.getAttribute("style")).toMatch(
-        /--borderRadius__\w{0,9}: var\(--nimbus-components-select-skeleton-medium-borderRadius\);/
+    });
+
+    it("THEN should pass a custom width", () => {
+      makeSut({ width: "10rem" });
+      expect(lastSkeletonProps()).toEqual(
+        expect.objectContaining({ width: "10rem" })
       );
     });
   });
 
   describe("WHEN size is set", () => {
-    it("THEN should keep the medium dimensions with size medium", () => {
-      makeSut({ size: "medium" });
-      const skeleton = screen.getByTestId("skeleton-element");
-      expect(skeleton.getAttribute("style")).toMatch(
-        /--height__\w{0,9}: var\(--nimbus-components-select-skeleton-medium-height\);/
-      );
-      expect(skeleton.getAttribute("style")).toMatch(
-        /--borderRadius__\w{0,9}: var\(--nimbus-components-select-skeleton-medium-borderRadius\);/
-      );
-    });
+    it.each(["medium", "small"] as const)(
+      "THEN should pass the %s theme size",
+      (size) => {
+        makeSut({ size });
+        expect(lastSkeletonProps()).toEqual(
+          expect.objectContaining({
+            height: selectSkeleton[size].height,
+            borderRadius: selectSkeleton[size].borderRadius,
+          })
+        );
+      }
+    );
+  });
 
-    it("THEN should match the small select height and border radius with size small", () => {
-      makeSut({ size: "small" });
-      const skeleton = screen.getByTestId("skeleton-element");
-      expect(skeleton.getAttribute("style")).toMatch(
-        /--height__\w{0,9}: var\(--nimbus-components-select-skeleton-small-height\);/
-      );
-      expect(skeleton.getAttribute("style")).toMatch(
-        /--borderRadius__\w{0,9}: var\(--nimbus-components-select-skeleton-small-borderRadius\);/
-      );
-    });
+  describe("WHEN the installed styles have no components.select", () => {
+    it.each([
+      ["medium", "2.25rem", "0.5rem"],
+      ["small", "1.75rem", "0.375rem"],
+    ] as const)(
+      "THEN should fall back to the previous %s size",
+      (size, height, borderRadius) => {
+        jest.isolateModules(() => {
+          jest.doMock("@nimbus-ds/styles", () => ({ themeVars: {} }));
+          const { SelectSkeleton: IsolatedSelectSkeleton } =
+            jest.requireActual("./SelectSkeleton");
+          // The isolated registry has its own mocked Skeleton.
+          const isolatedSkeleton = jest.requireMock("@nimbus-ds/skeleton")
+            .Skeleton as jest.Mock;
+          render(<IsolatedSelectSkeleton size={size} />);
+          expect(isolatedSkeleton.mock.calls.at(-1)?.[0]).toEqual(
+            expect.objectContaining({ height, borderRadius })
+          );
+        });
+      }
+    );
   });
 });
