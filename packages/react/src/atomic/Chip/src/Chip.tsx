@@ -27,9 +27,9 @@ const Chip: React.FC<ChipProps> & ChipComponents = ({
       .filter(Boolean)
       .join(" ")}
   >
-    {icon && <Icon source={icon} color="neutral-textHigh" />}
+    {icon && <Icon source={icon} color="currentColor" />}
     <Text
-      color="neutral-textHigh"
+      color="currentColor"
       fontSize="caption"
       lineHeight="caption"
       lineClamp={1}
@@ -48,7 +48,7 @@ const Chip: React.FC<ChipProps> & ChipComponents = ({
         <Icon
           data-testid="close-chip"
           source={<CloseIcon size={12} />}
-          color="neutral-textHigh"
+          color="currentColor"
         />
       </button>
     )}
