@@ -3,21 +3,30 @@
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories
 every day, with simplicity, accessibility, consistency and performance.
 
-## 2026-11-17 `5.67.0`
+## 2026-11-20 `5.68.0`
 
 #### 🎉 New features
 
 - List: In `next-norteui` and `next-norteui-dark` the numbers and bullets use `neutral.textDisabled`, through `@nimbus-ds/styles` theme values. Props are unchanged, and so is the look in other themes. ([#658](https://github.com/TiendaNube/nimbus-design-system/pull/658) by [@noecondoleo](https://github.com/noecondoleo))
 - ProgressBar: In `next-norteui` and `next-norteui-dark` the default track uses `neutral.surfaceHighlight`, through `@nimbus-ds/styles` theme values. Props are unchanged, and so is the look in other themes. ([#658](https://github.com/TiendaNube/nimbus-design-system/pull/658) by [@noecondoleo](https://github.com/noecondoleo))
 - Input: In `next-norteui` the Input is 28px tall with a 6px radius, with a white background in every appearance, semantic borders in `interactivePressed` at rest and `textLow` on hover and focus for stronger contrast and a 2px `neutral.interactiveHover` focus ring, through `@nimbus-ds/styles` theme values. `Input.Skeleton` follows the same size. `next-norteui-dark` takes the same height, padding, radius and `Input.Skeleton` size and keeps the current colors. The props are unchanged, and so is the look in `base`, `dark`, `next` and `next-dark`. Not a breaking change under Decision 0081: Norte UI ships as `minor` because both themes are opt-in, and `base`, `dark`, `next` and `next-dark` keep the exact previous Input (verified by `yarn check:base-invariance`). ([#634](https://github.com/TiendaNube/nimbus-design-system/pull/634) by [@noecondoleo](https://github.com/noecondoleo))
+- Textarea: In `next-norteui` the Textarea follows the Norte UI Figma (6px radius, 6px by 8px padding, 20px lines and the Input borders, hover and focus); `next-norteui-dark` takes the same measurements with its current colors, and the API and `base`, `dark`, `next` and `next-dark` are unchanged. ([#655](https://github.com/TiendaNube/nimbus-design-system/pull/655) by [@noecondoleo](https://github.com/noecondoleo))
+- Select: In `next-norteui` the Select follows the Norte UI Figma (28px medium, 24px small, 6px radius and the Input borders, hover and focus); `next-norteui-dark` takes the same measurements with its current colors, and the API and `base`, `dark`, `next` and `next-dark` are unchanged. ([#655](https://github.com/TiendaNube/nimbus-design-system/pull/655) by [@noecondoleo](https://github.com/noecondoleo))
 - IconButton: `IconButton` and `IconButton.Skeleton` follow the Norte UI design in `next-norteui` and `next-norteui-dark`: `1.75rem` default size, `6px` radius, no border, `neutral.surfaceHighlight` fill with new hover, pressed, disabled and focus states; `backgroundColor="transparent"` and `backgroundColor="ai-generativeSurface"` get their Norte UI states. Props are unchanged and explicit values keep working, except that under Norte UI the default, `transparent` and `ai-generativeSurface` fills own the border, so `borderColor` does not apply with them. With `ai-generativeSurface` and no `color`, the icon uses the AI color. Pressed `ai-generative` uses the `aiGenerativePressed` gradient. Other themes are unchanged. ([#642](https://github.com/TiendaNube/nimbus-design-system/pull/642) by [@noecondoleo](https://github.com/noecondoleo))
 - Popover: Follows the Norte UI design with a smaller radius, lighter shadow and tighter default padding, with no change in other themes. ([#637](https://github.com/TiendaNube/nimbus-design-system/pull/637) by [@noecondoleo](https://github.com/noecondoleo))
+- Checkbox, Radio and Toggle: Follow the Norte UI Figma in `next-norteui` (states, a 12px label, a darker focus border and a 2px focus ring), with the same props. `next-norteui-dark` takes the 12px label and keeps the current colors, and `base`, `dark`, `next` and `next-dark` are unchanged (opt-in `minor` under Decision 0081). ([#649](https://github.com/TiendaNube/nimbus-design-system/pull/649) by [@noecondoleo](https://github.com/noecondoleo))
 - Combobox: Adds the new `Combobox` composite component to choose one or several values by typing, with instant creation, enriched options and hierarchies of up to six levels. ([#636](https://github.com/TiendaNube/nimbus-design-system/pull/636) by [@claude](https://github.com/apps/claude))
 - Chip: Adds the optional `removeLabel` prop to name the remove button; its default is unchanged. ([#636](https://github.com/TiendaNube/nimbus-design-system/pull/636) by [@claude](https://github.com/apps/claude))
 
 #### 🐛 Bug fixes
 
 - Popover: Renders its content inside its own `ThemeProvider` when a page has several of them, instead of in the first one. ([#636](https://github.com/TiendaNube/nimbus-design-system/pull/636) by [@claude](https://github.com/apps/claude))
+
+## 2026-11-17 `5.67.0`
+
+#### 🎉 New features
+
+- Input: In `next-norteui` the Input is 28px tall with a 6px radius, with a white background in every appearance, semantic borders in `interactivePressed` at rest and `textLow` on hover and focus for stronger contrast and a 2px `neutral.interactiveHover` focus ring, through `@nimbus-ds/styles` theme values. `Input.Skeleton` follows the same size. `next-norteui-dark` takes the same height, padding, radius and `Input.Skeleton` size and keeps the current colors. The props are unchanged, and so is the look in `base`, `dark`, `next` and `next-dark`. Not a breaking change under Decision 0081: Norte UI ships as `minor` because both themes are opt-in, and `base`, `dark`, `next` and `next-dark` keep the exact previous Input (verified by `yarn check:base-invariance`). ([#634](https://github.com/TiendaNube/nimbus-design-system/pull/634) by [@noecondoleo](https://github.com/noecondoleo))
 
 ## 2026-11-12 `5.66.0`
 

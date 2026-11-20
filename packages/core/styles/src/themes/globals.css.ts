@@ -2,7 +2,11 @@ import tokens from "@nimbus-ds/tokens/dist/js/tokens";
 import { createGlobalTheme, globalStyle } from "@vanilla-extract/css";
 import { vars } from "./contract.css";
 import { withToneSurfaceDisabled } from "./toneSurfaceDisabled";
-import { aiInteractiveBorder, aiHoverBorder } from "./aiInteractiveBorder";
+import {
+  aiInteractiveBorder,
+  aiHoverBorder,
+  aiLinearBorder,
+} from "./aiInteractiveBorder";
 import {
   aiGenerativeGradientsBase,
   aiGenerativeLinearBase,
@@ -16,6 +20,17 @@ const fontWeight = tokens.font.weight;
 const lineWeight = tokens.line.height;
 const { shape } = tokens;
 const { motion, spacing, shadow, breakpoint, zIndex } = tokens;
+
+// Focus of the native form fields (Select, Textarea) outside Norte UI: a
+// pressed border on any focus and the theme focus ring only on keyboard focus.
+const fieldFocus = {
+  neutral: { focus: { borderColor: vars.colors.primary.interactivePressed } },
+  success: { focus: { borderColor: vars.colors.success.interactivePressed } },
+  warning: { focus: { borderColor: vars.colors.warning.interactivePressed } },
+  danger: { focus: { borderColor: vars.colors.danger.interactivePressed } },
+  focus: { boxShadow: "none" },
+  focusVisible: { boxShadow: vars.utils.focus },
+};
 
 export const globalTheme = {
   colors: withToneSurfaceDisabled(surfaceDisabled, {
@@ -416,6 +431,184 @@ export const globalTheme = {
       disabled: { borderColor: vars.colors.neutral.surfaceHighlight },
       skeleton: { height: "2rem", borderRadius: "0.5rem" },
     },
+    select: {
+      // Same sizes the Select had before they were theme-driven: medium keeps
+      // its content height (`auto`). Rest, hover and disabled colors come from
+      // `components.input`; only the focus differs from Input outside Norte UI.
+      medium: {
+        height: "auto",
+        paddingY: vars.spacing[2],
+        borderRadius: vars.shape.border.radius[2],
+      },
+      small: {
+        height: "1.75rem",
+        paddingY: vars.spacing[1],
+        borderRadius: vars.shape.border.radius.base,
+      },
+      ...fieldFocus,
+      skeleton: {
+        medium: { height: "2.25rem", borderRadius: "0.5rem" },
+        small: { height: "1.75rem", borderRadius: "0.375rem" },
+      },
+    },
+    textarea: {
+      // Same padding, line height and skeleton the Textarea had before they
+      // were theme-driven. Radius, rest, hover and disabled colors come from
+      // `components.input`; the focus is the same as Select.
+      paddingY: vars.spacing[2],
+      paddingX: vars.spacing[2],
+      lineHeight: vars.lineWeight.body.caption,
+      ...fieldFocus,
+      skeleton: { height: "3.375rem", borderRadius: "0.5rem" },
+    },
+    checkbox: {
+      // References what the Checkbox used before, so base, dark, next and
+      // next-dark keep the exact look: hover and pressed keep the rest colors.
+      // Norte UI overrides them.
+      label: { fontSize: vars.fontSize.body.base },
+      focus: {
+        boxShadow: vars.utils.focus,
+        borderColor: {
+          neutral: vars.colors.neutral.interactive,
+          danger: vars.colors.danger.interactive,
+          primary: vars.colors.primary.interactive,
+        },
+      },
+      hover: {
+        background: vars.colors.neutral.background,
+        borderColor: {
+          neutral: vars.colors.neutral.interactive,
+          danger: vars.colors.danger.interactive,
+          primary: vars.colors.primary.interactive,
+        },
+      },
+      pressed: {
+        background: vars.colors.neutral.background,
+        borderColor: {
+          neutral: vars.colors.neutral.interactive,
+          danger: vars.colors.danger.interactive,
+          primary: vars.colors.primary.interactive,
+        },
+      },
+      checked: {
+        hover: { background: vars.colors.primary.interactive },
+        pressed: { background: vars.colors.primary.interactive },
+      },
+      indeterminate: {
+        color: vars.colors.neutral.textLow,
+        hoverColor: vars.colors.neutral.textLow,
+        pressedColor: vars.colors.neutral.textLow,
+      },
+      disabled: {
+        background: vars.colors.neutral.surfaceDisabled,
+        borderColor: vars.colors.neutral.interactive,
+        indeterminateColor: vars.colors.neutral.textLow,
+      },
+      // AI-generated: hover and pressed repeat the rest border, and disabled
+      // keeps the interactive gradient over neutral.surfaceDisabled.
+      aiGenerated: {
+        hover: { background: aiLinearBorder(vars.colors.neutral.background) },
+        pressed: {
+          background: aiLinearBorder(vars.colors.neutral.background),
+        },
+        focus: { background: aiLinearBorder(vars.colors.neutral.background) },
+        checked: {
+          hover: {
+            background: aiLinearBorder(vars.colors.primary.interactive),
+          },
+          pressed: {
+            background: aiLinearBorder(vars.colors.primary.interactive),
+          },
+          focus: {
+            background: aiLinearBorder(vars.colors.primary.interactive),
+          },
+        },
+        disabled: {
+          background: aiLinearBorder(vars.colors.neutral.surfaceDisabled),
+        },
+      },
+    },
+    radio: {
+      // References what the Radio used before, so base, dark, next and
+      // next-dark keep the exact look. The button pressed values match its
+      // hover, which already won over :active. Norte UI overrides them.
+      dotSize: "0.5rem",
+      label: { fontSize: vars.fontSize.body.base },
+      // borderColor repeats the rest border of the unchecked radio.
+      focus: {
+        boxShadow: vars.utils.focus,
+        borderColor: vars.colors.neutral.interactive,
+      },
+      hover: {
+        background: vars.colors.neutral.background,
+        borderColor: vars.colors.neutral.interactive,
+      },
+      pressed: {
+        background: vars.colors.neutral.background,
+        borderColor: vars.colors.neutral.interactive,
+      },
+      checked: {
+        hover: { color: vars.colors.primary.interactive },
+        pressed: { color: vars.colors.primary.interactive },
+      },
+      disabled: {
+        background: vars.colors.neutral.surfaceDisabled,
+        borderColor: vars.colors.neutral.interactive,
+      },
+      checkedDisabled: {
+        background: vars.colors.neutral.surfaceDisabled,
+        borderColor: vars.colors.neutral.interactive,
+        dotColor: vars.colors.neutral.textDisabled,
+      },
+      button: {
+        background: vars.colors.neutral.surface,
+        // Repeats the rest border of the unchecked button.
+        focus: { borderColor: vars.colors.neutral.interactive },
+        hover: {
+          background: vars.colors.neutral.surfaceHighlight,
+          borderColor: vars.colors.neutral.interactivePressed,
+        },
+        pressed: {
+          background: vars.colors.neutral.surfaceHighlight,
+          borderColor: vars.colors.neutral.interactivePressed,
+        },
+        checked: {
+          hover: { background: vars.colors.primary.interactive },
+          pressed: { background: vars.colors.primary.interactive },
+        },
+        disabled: {
+          background: vars.colors.neutral.surfaceDisabled,
+          borderColor: vars.colors.neutral.surfaceHighlight,
+        },
+        checkedDisabled: {
+          background: vars.colors.neutral.textDisabled,
+          borderColor: vars.colors.neutral.surfaceHighlight,
+          color: vars.colors.neutral.background,
+        },
+      },
+    },
+    toggle: {
+      // References what the Toggle used before, so base, dark, next and
+      // next-dark keep the exact look. Norte UI overrides them.
+      label: { fontSize: vars.fontSize.body.base },
+      // borderColor repeats the rest border of the off track.
+      focus: {
+        boxShadow: vars.utils.focus,
+        borderColor: vars.colors.neutral.interactive,
+      },
+      pressed: {
+        background: vars.colors.neutral.interactiveHover,
+        borderColor: vars.colors.neutral.interactivePressed,
+      },
+      disabled: {
+        background: vars.colors.neutral.surfaceDisabled,
+        thumb: vars.colors.neutral.surfaceHighlight,
+      },
+      checkedDisabled: {
+        background: vars.colors.neutral.surfaceDisabled,
+        thumb: vars.colors.neutral.surfaceHighlight,
+      },
+    },
     badge: {
       // References the theme's own tone colors so base, dark, next and next-dark
       // keep the exact Badge look they had. Norte UI overrides them.
@@ -482,6 +675,15 @@ export const globalTheme = {
           background: vars.colors.aiGenerative.interactivePressed,
         },
       },
+    },
+    toast: {
+      // Keeps the exact Toast shape and colors base, dark, next and next-dark
+      // had. Norte UI overrides them.
+      borderRadius: vars.shape.border.radius[2],
+      gap: vars.spacing[1],
+      paddingInlineEnd: vars.spacing[2],
+      boxShadow: "none",
+      primary: { background: vars.colors.primary.textLow },
     },
   },
   gradients: {
