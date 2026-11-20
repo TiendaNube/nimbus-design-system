@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import { Skeleton } from "@nimbus-ds/skeleton";
+import { Skeleton, type SkeletonProps } from "@nimbus-ds/skeleton";
 import { themeVars } from "@nimbus-ds/styles";
 
 import { SelectSkeleton } from "./SelectSkeleton";
@@ -10,14 +10,15 @@ jest.mock("@nimbus-ds/skeleton", () => ({
   Skeleton: jest.fn(() => null),
 }));
 
-const skeletonMock = Skeleton as unknown as jest.Mock;
+const skeletonMock = jest.mocked(Skeleton);
 const selectSkeleton = themeVars.components.select.skeleton;
 
 const makeSut = (props?: SelectSkeletonProps) => {
   render(<SelectSkeleton {...props} data-testid="skeleton-element" />);
 };
 
-const lastSkeletonProps = () => skeletonMock.mock.calls.at(-1)?.[0];
+const lastSkeletonProps = (): SkeletonProps | undefined =>
+  skeletonMock.mock.calls.at(-1)?.[0];
 
 describe("GIVEN <Select.Skeleton />", () => {
   beforeEach(() => {
@@ -70,10 +71,15 @@ describe("GIVEN <Select.Skeleton />", () => {
         jest.isolateModules(() => {
           jest.doMock("@nimbus-ds/styles", () => ({ themeVars: {} }));
           const { SelectSkeleton: IsolatedSelectSkeleton } =
-            jest.requireActual("./SelectSkeleton");
+            jest.requireActual<{ SelectSkeleton: typeof SelectSkeleton }>(
+              "./SelectSkeleton"
+            );
           // The isolated registry has its own mocked Skeleton.
-          const isolatedSkeleton = jest.requireMock("@nimbus-ds/skeleton")
-            .Skeleton as jest.Mock;
+          const isolatedSkeleton = jest.mocked(
+            jest.requireMock<{ Skeleton: typeof Skeleton }>(
+              "@nimbus-ds/skeleton"
+            ).Skeleton
+          );
           render(<IsolatedSelectSkeleton size={size} />);
           expect(isolatedSkeleton.mock.calls.at(-1)?.[0]).toEqual(
             expect.objectContaining({ height, borderRadius })

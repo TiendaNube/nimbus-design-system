@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import { Skeleton } from "@nimbus-ds/skeleton";
+import { Skeleton, type SkeletonProps } from "@nimbus-ds/skeleton";
 import { themeVars } from "@nimbus-ds/styles";
 
 import { TextareaSkeleton } from "./TextareaSkeleton";
@@ -9,10 +9,11 @@ jest.mock("@nimbus-ds/skeleton", () => ({
   Skeleton: jest.fn(() => null),
 }));
 
-const skeletonMock = Skeleton as unknown as jest.Mock;
+const skeletonMock = jest.mocked(Skeleton);
 const textareaSkeleton = themeVars.components.textarea.skeleton;
 
-const lastSkeletonProps = () => skeletonMock.mock.calls.at(-1)?.[0];
+const lastSkeletonProps = (): SkeletonProps | undefined =>
+  skeletonMock.mock.calls.at(-1)?.[0];
 
 describe("GIVEN <Textarea.Skeleton />", () => {
   beforeEach(() => {
@@ -45,10 +46,14 @@ describe("GIVEN <Textarea.Skeleton />", () => {
       jest.isolateModules(() => {
         jest.doMock("@nimbus-ds/styles", () => ({ themeVars: {} }));
         const { TextareaSkeleton: IsolatedTextareaSkeleton } =
-          jest.requireActual("./TextareaSkeleton");
+          jest.requireActual<{ TextareaSkeleton: typeof TextareaSkeleton }>(
+            "./TextareaSkeleton"
+          );
         // The isolated registry has its own mocked Skeleton.
-        const isolatedSkeleton = jest.requireMock("@nimbus-ds/skeleton")
-          .Skeleton as jest.Mock;
+        const isolatedSkeleton = jest.mocked(
+          jest.requireMock<{ Skeleton: typeof Skeleton }>("@nimbus-ds/skeleton")
+            .Skeleton
+        );
         render(<IsolatedTextareaSkeleton />);
         expect(isolatedSkeleton.mock.calls.at(-1)?.[0]).toEqual(
           expect.objectContaining({
