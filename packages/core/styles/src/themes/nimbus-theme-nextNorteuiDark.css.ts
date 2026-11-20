@@ -121,6 +121,40 @@ const nextNorteuiDarkTheme = {
         borderRadius: vars.shape.border.radius.base,
       },
     },
+    // No Norte UI dark Select colors yet: keep the default Select colors and
+    // focus with the Norte UI measurements (28px medium, 24px small).
+    select: {
+      ...globalTheme.components.select,
+      medium: {
+        height: "1.75rem",
+        paddingY: vars.spacing[1],
+        borderRadius: vars.components.input.borderRadius,
+      },
+      small: {
+        height: "1.5rem",
+        paddingY: vars.spacing["0-5"],
+        borderRadius: vars.components.input.borderRadius,
+      },
+      skeleton: {
+        medium: vars.components.input.skeleton,
+        small: {
+          height: "1.5rem",
+          borderRadius: vars.components.input.borderRadius,
+        },
+      },
+    },
+    // No Norte UI dark Textarea colors yet: keep the default colors and focus
+    // with the Norte UI padding, line height and radius.
+    textarea: {
+      ...globalTheme.components.textarea,
+      paddingY: vars.spacing["1-5"],
+      paddingX: vars.spacing[2],
+      lineHeight: vars.lineWeight.body.base,
+      skeleton: {
+        height: "3.375rem",
+        borderRadius: vars.components.input.borderRadius,
+      },
+    },
     // No Norte UI dark Checkbox, Radio or Toggle colors yet: keep the default
     // colors with the Norte UI caption label.
     checkbox: {

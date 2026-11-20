@@ -281,6 +281,32 @@ export const vars = createGlobalThemeContract(
         disabled: { borderColor: "" },
         skeleton: { height: "", borderRadius: "" },
       },
+      select: {
+        medium: { height: "", paddingY: "", borderRadius: "" },
+        small: { height: "", paddingY: "", borderRadius: "" },
+        neutral: { focus: { borderColor: "" } },
+        success: { focus: { borderColor: "" } },
+        warning: { focus: { borderColor: "" } },
+        danger: { focus: { borderColor: "" } },
+        focus: { boxShadow: "" },
+        focusVisible: { boxShadow: "" },
+        skeleton: {
+          medium: { height: "", borderRadius: "" },
+          small: { height: "", borderRadius: "" },
+        },
+      },
+      textarea: {
+        paddingY: "",
+        paddingX: "",
+        lineHeight: "",
+        neutral: { focus: { borderColor: "" } },
+        success: { focus: { borderColor: "" } },
+        warning: { focus: { borderColor: "" } },
+        danger: { focus: { borderColor: "" } },
+        focus: { boxShadow: "" },
+        focusVisible: { boxShadow: "" },
+        skeleton: { height: "", borderRadius: "" },
+      },
       checkbox: {
         label: { fontSize: "" },
         focus: {
