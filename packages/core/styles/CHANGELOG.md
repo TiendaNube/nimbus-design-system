@@ -21,6 +21,8 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
   `base`, `dark`, `next` and `next-dark` keep the exact previous Toast. ([#644](https://github.com/TiendaNube/nimbus-design-system/pull/644) by [@noecondoleo](https://github.com/noecondoleo))
 
+- Link: Adds the `components.link.neutral.hoverColor` theme value for the neutral Link hover. In `base`, `dark`, `next`, `next-dark` and `next-norteui-dark` it references `neutral.textDisabled`, so the hover looks exactly as before. In `next-norteui` it uses `neutral.textHigh`, so the hover darkens instead of looking disabled. The disabled Link keeps `neutral.textDisabled` in every appearance. ([#630](https://github.com/TiendaNube/nimbus-design-system/pull/630) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
+
 #### 🐛 Bug fixes
 
 - Scrollbar: `thinScrollbarAlways` sets the standard `scrollbar-width` and `scrollbar-color` only where `::-webkit-scrollbar` is not supported (Firefox). In Chromium they replaced the thin WebKit scrollbar, so with macOS overlay scrollbars the bar of the Combobox list stayed hidden until the person scrolled. ([#636](https://github.com/TiendaNube/nimbus-design-system/pull/636) by [@claude](https://github.com/apps/claude))

@@ -488,6 +488,10 @@ export const variables = createTheme(vars, {
       boxShadow: `0px 3px 6px 0px ${vars.colors.neutral.surfaceHighlight}, 0px 0px 1px 0px ${vars.colors.neutral.interactiveHover}`,
       primary: { background: vars.colors.primary.interactiveHover },
     },
+    link: {
+      // Hover darkens toward textHigh so it no longer reads as disabled.
+      neutral: { hoverColor: vars.colors.neutral.textHigh },
+    },
   },
   gradients: {
     aiGenerative: aiGenerativeGradients,

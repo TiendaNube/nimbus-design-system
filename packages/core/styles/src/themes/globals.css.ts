@@ -633,6 +633,11 @@ export const globalTheme = {
       boxShadow: "none",
       primary: { background: vars.colors.primary.textLow },
     },
+    link: {
+      // References the theme's own neutral textDisabled so base, dark, next and
+      // next-dark keep the exact neutral Link hover they had. Norte UI overrides it.
+      neutral: { hoverColor: vars.colors.neutral.textDisabled },
+    },
   },
   gradients: {
     aiGenerative: aiGenerativeGradientsBase,
