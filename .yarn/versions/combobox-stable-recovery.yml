@@ -1,10 +1,11 @@
 releases:
-  "@nimbus-ds/styles": minor
-  "@nimbus-ds/popover": minor
-  "@nimbus-ds/components": minor
+  "@nimbus-ds/components": 5.68.0
+  "@nimbus-ds/styles": 9.74.0
+  "@nimbus-ds/popover": 4.5.1
 
 declined:
   - nimbus-design-system
+  - "@nimbus-ds/combobox"
   - "@nimbus-ds/split-button"
   - "@nimbus-ds/stepper"
   - "@nimbus-ds/time-picker"

@@ -1,0 +1,177 @@
+{
+  "id": "combobox",
+  "name": "Combobox",
+  "totalProps": 20,
+  "packageName": "@nimbus-ds/combobox",
+  "version": "0.0.0",
+  "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/combobox",
+  "props": [
+    {
+      "description": "The options. An option with `children` is a branch of a hierarchy.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ComboboxOption",
+        "description": "An option of the Combobox. An option with `children` is a branch of a hierarchy."
+      },
+      "title": "options",
+      "required": true
+    },
+    {
+      "description": "Allows several values.",
+      "default": false,
+      "type": "boolean",
+      "title": "multiple",
+      "required": false
+    },
+    {
+      "description": "Controlled option in single mode, or the full set in multiple mode.",
+      "anyOf": [
+        {
+          "$ref": "#/definitions/ComboboxOption",
+          "description": "An option of the Combobox. An option with `children` is a branch of a hierarchy."
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ComboboxOption",
+            "description": "An option of the Combobox. An option with `children` is a branch of a hierarchy."
+          }
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "value",
+      "required": false
+    },
+    {
+      "description": "Initial option in single mode, or the initial set in multiple mode.",
+      "anyOf": [
+        {
+          "$ref": "#/definitions/ComboboxOption",
+          "description": "An option of the Combobox. An option with `children` is a branch of a hierarchy."
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ComboboxOption",
+            "description": "An option of the Combobox. An option with `children` is a branch of a hierarchy."
+          }
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "defaultValue",
+      "required": false
+    },
+    {
+      "description": "Called with the next option (or null) in single mode, or the full set in multiple mode.",
+      "type": "(value: ComboboxOption | ComboboxOption[] | null) => void",
+      "title": "onChange",
+      "required": false
+    },
+    {
+      "description": "Enables instant creation: it receives the trimmed typed text and returns the new option.",
+      "type": "(label: string) => ComboboxOption",
+      "title": "onCreate",
+      "required": false
+    },
+    {
+      "description": "Single mode: whether a selected value can be cleared.",
+      "default": true,
+      "type": "boolean",
+      "title": "clearable",
+      "required": false
+    },
+    {
+      "description": "Replaces the default match (label contains the query, ignoring case and diacritics).",
+      "type": "(option: ComboboxOption, query: string) => boolean",
+      "title": "filter",
+      "required": false
+    },
+    {
+      "description": "Hierarchy: whether a parent can be chosen from its own level.",
+      "default": true,
+      "type": "boolean",
+      "title": "selectableBranches",
+      "required": false
+    },
+    {
+      "description": "Shown while the input is empty and nothing is selected.",
+      "type": "string",
+      "title": "placeholder",
+      "required": false
+    },
+    {
+      "description": "Disables the whole field.",
+      "default": false,
+      "type": "boolean",
+      "title": "disabled",
+      "required": false
+    },
+    {
+      "description": "Visual style of the field.",
+      "default": "neutral",
+      "enum": [
+        "danger",
+        "neutral",
+        "success",
+        "warning"
+      ],
+      "type": "string",
+      "title": "appearance",
+      "required": false
+    },
+    {
+      "description": "Form field name. Renders hidden fields with the selected values.",
+      "type": "string",
+      "title": "name",
+      "required": false
+    },
+    {
+      "description": "Requires a value.",
+      "default": false,
+      "type": "boolean",
+      "title": "required",
+      "required": false
+    },
+    {
+      "description": "Id of the text input, for a `<label htmlFor>`.",
+      "type": "string",
+      "title": "id",
+      "required": false
+    },
+    {
+      "description": "Accessible name of the field.",
+      "type": "string",
+      "title": "aria-label",
+      "required": false
+    },
+    {
+      "description": "Id of the element that names the field.",
+      "type": "string",
+      "title": "aria-labelledby",
+      "required": false
+    },
+    {
+      "description": "Id of the element that describes the field, for example its help text.",
+      "type": "string",
+      "title": "aria-describedby",
+      "required": false
+    },
+    {
+      "description": "Translatable texts; any text left out uses its English default.",
+      "type": "Partial<ComboboxLabels>",
+      "title": "labels",
+      "required": false
+    },
+    {
+      "description": "Test identifier, set on the text input.",
+      "type": "string",
+      "title": "data-testid",
+      "required": false
+    }
+  ],
+  "subComponents": []
+}

@@ -47,6 +47,42 @@ const borderGradient = (
 export const aiInteractiveBorder = (fill: string, overlay?: string): string =>
   borderGradient(interactiveGradient, fill, overlay);
 
+const linear = vars.gradients.aiGenerativeLinear;
+
+const themeLinearGradient = (start: string, middle: string, end: string) =>
+  `linear-gradient(${linear.angle}, ${start} 28.22%, ${middle} 49.27%, ${end} 83.12%)`;
+
+/**
+ * Background value that paints `fill` inside the padding box and the theme
+ * linear AI gradient (`aiGenerativeLinearInteractive`) on a transparent
+ * border. Same value as
+ * `createBorderGradient(gradients.aiGenerativeInteractive, fill)` without the
+ * fallback, so a theme value built with it renders exactly like that call.
+ * @param fill color painted inside the padding box.
+ * @param overlay optional color layered over the border gradient.
+ */
+export const aiLinearBorder = (fill: string, overlay?: string): string =>
+  borderGradient(
+    themeLinearGradient(linear.start, linear.middle, linear.end),
+    fill,
+    overlay
+  );
+
+/**
+ * Same as `aiLinearBorder` with the theme linear disabled gradient
+ * (`aiGenerativeLinearDisabled`).
+ * @param fill color painted inside the padding box.
+ */
+export const aiLinearDisabledBorder = (fill: string): string =>
+  borderGradient(
+    themeLinearGradient(
+      linear.disabledStart,
+      linear.disabledMiddle,
+      linear.disabledEnd
+    ),
+    fill
+  );
+
 /**
  * Same as `aiInteractiveBorder` with the `aiGenerativeHover` gradient
  * (reversed color stops).
