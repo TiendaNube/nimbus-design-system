@@ -307,6 +307,61 @@ export const vars = createGlobalThemeContract(
         focusVisible: { boxShadow: "" },
         skeleton: { height: "", borderRadius: "" },
       },
+      checkbox: {
+        label: { fontSize: "" },
+        focus: {
+          boxShadow: "",
+          borderColor: { neutral: "", danger: "", primary: "" },
+        },
+        hover: {
+          background: "",
+          borderColor: { neutral: "", danger: "", primary: "" },
+        },
+        pressed: {
+          background: "",
+          borderColor: { neutral: "", danger: "", primary: "" },
+        },
+        checked: { hover: { background: "" }, pressed: { background: "" } },
+        indeterminate: { color: "", hoverColor: "", pressedColor: "" },
+        disabled: { background: "", borderColor: "", indeterminateColor: "" },
+        aiGenerated: {
+          hover: { background: "" },
+          pressed: { background: "" },
+          focus: { background: "" },
+          checked: {
+            hover: { background: "" },
+            pressed: { background: "" },
+            focus: { background: "" },
+          },
+          disabled: { background: "" },
+        },
+      },
+      radio: {
+        dotSize: "",
+        label: { fontSize: "" },
+        focus: { boxShadow: "", borderColor: "" },
+        hover: { background: "", borderColor: "" },
+        pressed: { background: "", borderColor: "" },
+        checked: { hover: { color: "" }, pressed: { color: "" } },
+        disabled: { background: "", borderColor: "" },
+        checkedDisabled: { background: "", borderColor: "", dotColor: "" },
+        button: {
+          background: "",
+          focus: { borderColor: "" },
+          hover: { background: "", borderColor: "" },
+          pressed: { background: "", borderColor: "" },
+          checked: { hover: { background: "" }, pressed: { background: "" } },
+          disabled: { background: "", borderColor: "" },
+          checkedDisabled: { background: "", borderColor: "", color: "" },
+        },
+      },
+      toggle: {
+        label: { fontSize: "" },
+        focus: { boxShadow: "", borderColor: "" },
+        pressed: { background: "", borderColor: "" },
+        disabled: { background: "", thumb: "" },
+        checkedDisabled: { background: "", thumb: "" },
+      },
       badge: {
         surface: {
           neutral: { background: "", color: "" },
@@ -332,6 +387,13 @@ export const vars = createGlobalThemeContract(
           danger: { background: "" },
           aiGenerative: { background: "" },
         },
+      },
+      toast: {
+        borderRadius: "",
+        gap: "",
+        paddingInlineEnd: "",
+        boxShadow: "",
+        primary: { background: "" },
       },
     },
     gradients: {

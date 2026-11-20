@@ -4,10 +4,15 @@ import tokens from "@nimbus-ds/tokens/dist/js/tokens";
 import { vars } from "./contract.css";
 import { buttonNorteui } from "./buttonNorteui";
 import { globalTheme } from "./globals.css";
-import { aiInteractiveBorder } from "./aiInteractiveBorder";
+import {
+  aiInteractiveBorder,
+  aiLinearBorder,
+  aiLinearDisabledBorder,
+} from "./aiInteractiveBorder";
 import {
   createAiGenerativeGradientsNorteui,
   aiGenerativeLinearNorteui,
+  fade,
 } from "./aiGenerativeGradients";
 import { aiGradientNorteui } from "./aiGradientNorteui";
 
@@ -43,6 +48,18 @@ const aiGenerativeGradients = createAiGenerativeGradientsNorteui({
   pinkHigh: aiGradientNorteui.pinkHigh,
   pinkLight: aiGradientNorteui.pinkLight,
 });
+
+// overlay/interactive-hover (15%) and overlay/interactive-pressed (30%) layers
+// of neutral.textHigh, as rgba() because color-mix() needs Chrome 111 and the
+// Admin supports Chrome 103.
+const neutralTextHigh = String(colors.neutral["text-high"].value);
+const overlayHover = fade(neutralTextHigh, "15%");
+const overlayPressed = fade(neutralTextHigh, "30%");
+
+// Fills the padding box with `fill` and paints a solid aiGenerative.textLow
+// border, in the same layered background the AI gradient borders use.
+const solidBorder = (fill: string) =>
+  `linear-gradient(${fill}, ${fill}) padding-box, linear-gradient(${vars.colors.aiGenerative.textLow}, ${vars.colors.aiGenerative.textLow}) border-box`;
 
 // 2px ring in neutral.interactiveHover, one step darker than the Figma
 // neutral/interactive spread for stronger contrast.
@@ -201,6 +218,166 @@ export const variables = createTheme(vars, {
       ...fieldFocusNorteui,
       skeleton: { height: "3.375rem", borderRadius: input.borderRadius },
     },
+    checkbox: {
+      label: { fontSize: vars.fontSize.body.caption },
+      // Focus darkens the unchecked border to text-low, as the Input does.
+      // Indeterminate keeps its primary.interactive border.
+      focus: {
+        boxShadow: inputFocusRing,
+        borderColor: {
+          neutral: vars.colors.neutral.textLow,
+          danger: vars.colors.danger.textLow,
+          primary: vars.colors.primary.interactive,
+        },
+      },
+      hover: {
+        background: vars.colors.neutral.surface,
+        borderColor: {
+          neutral: vars.colors.neutral.interactiveHover,
+          danger: vars.colors.danger.interactiveHover,
+          primary: vars.colors.primary.interactiveHover,
+        },
+      },
+      pressed: {
+        background: vars.colors.neutral.surface,
+        borderColor: {
+          neutral: vars.colors.neutral.interactivePressed,
+          danger: vars.colors.danger.interactivePressed,
+          primary: vars.colors.primary.interactivePressed,
+        },
+      },
+      checked: {
+        hover: { background: vars.colors.primary.interactiveHover },
+        pressed: { background: vars.colors.primary.interactivePressed },
+      },
+      indeterminate: {
+        color: vars.colors.primary.interactive,
+        hoverColor: vars.colors.primary.interactiveHover,
+        pressedColor: vars.colors.primary.interactivePressed,
+      },
+      disabled: {
+        background: vars.colors.neutral.surfaceHighlight,
+        borderColor: vars.colors.neutral.interactive,
+        indeterminateColor: vars.colors.neutral.textDisabled,
+      },
+      // Figma darkens the AI border gradient with the overlay/interactive-hover
+      // (15%) and overlay/interactive-pressed (30%) layers of neutral.textHigh,
+      // like Chip, and fills the unchecked box with aiGenerative.surface.
+      // Disabled uses the disabled gradient over aiGenerative.surfaceDisabled.
+      aiGenerated: {
+        hover: {
+          background: aiLinearBorder(
+            vars.colors.aiGenerative.surface,
+            overlayHover
+          ),
+        },
+        pressed: {
+          background: aiLinearBorder(
+            vars.colors.aiGenerative.surface,
+            overlayPressed
+          ),
+        },
+        // Focus swaps the gradient for a solid aiGenerative.textLow border.
+        focus: { background: solidBorder(vars.colors.neutral.background) },
+        checked: {
+          focus: { background: solidBorder(vars.colors.primary.interactive) },
+          hover: {
+            background: aiLinearBorder(
+              vars.colors.primary.interactiveHover,
+              overlayHover
+            ),
+          },
+          pressed: {
+            background: aiLinearBorder(
+              vars.colors.primary.interactivePressed,
+              overlayPressed
+            ),
+          },
+        },
+        disabled: {
+          background: aiLinearDisabledBorder(
+            vars.colors.aiGenerative.surfaceDisabled
+          ),
+        },
+      },
+    },
+    radio: {
+      dotSize: globalTheme.components.radio.dotSize,
+      label: { fontSize: vars.fontSize.body.caption },
+      // Focus darkens the unchecked radio border to text-low, as the Input
+      // does for stronger contrast.
+      focus: {
+        boxShadow: inputFocusRing,
+        borderColor: vars.colors.neutral.textLow,
+      },
+      hover: {
+        background: vars.colors.neutral.surface,
+        borderColor: vars.colors.neutral.interactiveHover,
+      },
+      pressed: {
+        background: vars.colors.neutral.surfaceHighlight,
+        borderColor: vars.colors.neutral.interactivePressed,
+      },
+      checked: {
+        hover: { color: vars.colors.primary.interactiveHover },
+        pressed: { color: vars.colors.primary.interactivePressed },
+      },
+      disabled: {
+        background: vars.colors.neutral.surfaceHighlight,
+        borderColor: vars.colors.neutral.interactive,
+      },
+      checkedDisabled: {
+        background: vars.colors.neutral.surfaceDisabled,
+        borderColor: vars.colors.primary.surfaceDisabled,
+        dotColor: vars.colors.primary.surfaceDisabled,
+      },
+      button: {
+        background: vars.colors.neutral.background,
+        // Focus darkens the unchecked border to text-low, as the Input does.
+        focus: { borderColor: vars.colors.neutral.textLow },
+        hover: {
+          background: vars.colors.neutral.surface,
+          borderColor: vars.colors.neutral.interactiveHover,
+        },
+        pressed: {
+          background: vars.colors.neutral.surfaceHighlight,
+          borderColor: vars.colors.neutral.interactivePressed,
+        },
+        checked: {
+          hover: { background: vars.colors.primary.interactiveHover },
+          pressed: { background: vars.colors.primary.interactivePressed },
+        },
+        disabled: {
+          background: vars.colors.neutral.surfaceHighlight,
+          borderColor: vars.colors.neutral.interactive,
+        },
+        checkedDisabled: {
+          background: vars.colors.primary.surfaceDisabled,
+          borderColor: vars.colors.primary.surfaceDisabled,
+          color: vars.colors.neutral.textDisabled,
+        },
+      },
+    },
+    toggle: {
+      label: { fontSize: vars.fontSize.body.caption },
+      // Focus darkens the off track border to text-low, as the Input does.
+      focus: {
+        boxShadow: inputFocusRing,
+        borderColor: vars.colors.neutral.textLow,
+      },
+      pressed: {
+        background: vars.colors.neutral.interactivePressed,
+        borderColor: vars.colors.neutral.interactivePressed,
+      },
+      disabled: {
+        background: vars.colors.neutral.interactive,
+        thumb: vars.colors.neutral.interactivePressed,
+      },
+      checkedDisabled: {
+        background: vars.colors.neutral.textDisabled,
+        thumb: vars.colors.neutral.interactive,
+      },
+    },
     // AI interactive is lighter than interactiveHover, so the glow stays soft.
     button: buttonNorteui(String(aiGenerative.interactive.value)),
     tag: {
@@ -339,6 +516,14 @@ export const variables = createTheme(vars, {
           background: vars.colors.aiGenerative.interactivePressed,
         },
       },
+    },
+    toast: {
+      borderRadius: vars.shape.border.radius.full,
+      gap: vars.spacing["1-5"],
+      paddingInlineEnd: vars.spacing[3],
+      // Figma shadow-light/level-3 built from Norte UI neutrals.
+      boxShadow: `0px 3px 6px 0px ${vars.colors.neutral.surfaceHighlight}, 0px 0px 1px 0px ${vars.colors.neutral.interactiveHover}`,
+      primary: { background: vars.colors.primary.interactiveHover },
     },
   },
   gradients: {
