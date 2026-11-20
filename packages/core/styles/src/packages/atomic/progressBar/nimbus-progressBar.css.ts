@@ -30,8 +30,9 @@ const fill = style({
 export const container = base;
 
 export const backgroundColor = styleVariants({
+  // Default track: reads the theme so Norte UI can use surfaceHighlight.
   "neutral-surfaceDisabled": {
-    backgroundColor: varsThemeBase.colors.neutral.surfaceDisabled,
+    backgroundColor: varsThemeBase.components.progressBar.background,
   },
   "neutral-background": {
     backgroundColor: varsThemeBase.colors.neutral.background,

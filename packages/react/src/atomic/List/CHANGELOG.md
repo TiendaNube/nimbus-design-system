@@ -2,6 +2,12 @@
 
 Use the list component to arrange a collection of text elements. Each list item begins with either a bullet or a number.
 
+## 2026-11-19 `2.5.0`
+
+#### 🎉 New features
+
+- In `next-norteui` and `next-norteui-dark` the numbers of ordered lists and the bullets of unordered lists use `neutral.textDisabled`, aligned with the Norte UI Figma. Props are unchanged, and so is the look in `base`, `dark`, `next` and `next-dark`. ([#658](https://github.com/TiendaNube/nimbus-design-system/pull/658) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-02-12 `2.4.0`
 
 #### 🎉 New features
