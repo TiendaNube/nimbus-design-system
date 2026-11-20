@@ -6,7 +6,7 @@ The Textarea component allows the user to enter or edit information in long text
 
 #### 🎉 New features
 
-- Follows the Norte UI Figma in `next-norteui` (6px radius, 6px by 8px padding, 20px lines and the Input borders, hover and focus) through the `components.textarea` theme values. The API is unchanged. `next-norteui-dark` takes the same sizes and keeps the current colors, and `base`, `dark`, `next` and `next-dark` are unchanged (opt-in `minor` under Decision 0081). ([#655](https://github.com/TiendaNube/nimbus-design-system/pull/655) by [@noecondoleo](https://github.com/noecondoleo))
+- In `next-norteui` the Textarea follows the Norte UI Figma (6px radius, 6px by 8px padding, 20px lines and the Input borders, hover and focus), with the same API and no change in the other themes. ([#655](https://github.com/TiendaNube/nimbus-design-system/pull/655) by [@noecondoleo](https://github.com/noecondoleo))
 
 ## 2026-02-12 `2.7.0`
 

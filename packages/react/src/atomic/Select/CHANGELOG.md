@@ -6,7 +6,7 @@ Use a select box when a user needs to select one option from a list.
 
 #### 🎉 New features
 
-- Follows the Norte UI Figma in `next-norteui` (28px medium and 24px small, 6px radius and the Input borders, hover and focus) through the `components.select` theme values. The API is unchanged. `next-norteui-dark` takes the same sizes and keeps the current colors, and `base`, `dark`, `next` and `next-dark` are unchanged (opt-in `minor` under Decision 0081). ([#655](https://github.com/TiendaNube/nimbus-design-system/pull/655) by [@noecondoleo](https://github.com/noecondoleo))
+- In `next-norteui` the Select follows the Norte UI Figma (28px medium, 24px small, 6px radius and the Input borders, hover and focus), with the same API and no change in the other themes. ([#655](https://github.com/TiendaNube/nimbus-design-system/pull/655) by [@noecondoleo](https://github.com/noecondoleo))
 
 ## 2026-08-31 `2.8.0`
 
