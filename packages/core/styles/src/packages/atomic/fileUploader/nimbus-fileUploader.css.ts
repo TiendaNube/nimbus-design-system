@@ -11,6 +11,8 @@ import {
   borderRadiusProperties,
 } from "../../../properties";
 
+const fileUploaderTheme = varsThemeBase.components.fileUploader;
+
 /* -------------------------------------------------------------------------------------------------
  * CSS Variables
  * -----------------------------------------------------------------------------------------------*/
@@ -32,26 +34,42 @@ export const container = style({
   gap: varsThemeBase.spacing[1],
   width: vars.width,
   height: vars.height,
-  background: varsThemeBase.colors.primary.surface,
+  padding: fileUploaderTheme.padding,
+  background: fileUploaderTheme.background,
   borderRadius: varsThemeBase.shape.border.radius[2],
-  borderWidth: varsThemeBase.shape.border.width[2],
-  borderColor: varsThemeBase.colors.primary.interactive,
+  borderWidth: fileUploaderTheme.borderWidth,
+  borderColor: fileUploaderTheme.borderColor,
   borderStyle: "dashed",
   transition: `background ${varsThemeBase.motion.speed.fast} ease, border-color ${varsThemeBase.motion.speed.fast} ease`,
+  selectors: {
+    "&:hover": {
+      background: fileUploaderTheme.hover.background,
+      borderColor: fileUploaderTheme.hover.borderColor,
+    },
+  },
 });
 
 const container__input = style({
   display: "none",
 });
 
+// `&:hover` too, so the hover colors never override these states.
 const disabled = style({
-  background: varsThemeBase.colors.neutral.surfaceDisabled,
-  borderColor: varsThemeBase.colors.neutral.interactive,
+  selectors: {
+    "&, &:hover": {
+      background: fileUploaderTheme.disabled.background,
+      borderColor: fileUploaderTheme.disabled.borderColor,
+    },
+  },
 });
 
 const dragging = style({
-  borderColor: varsThemeBase.colors.primary.textHigh,
-  background: varsThemeBase.colors.primary.surfaceHighlight,
+  selectors: {
+    "&, &:hover": {
+      background: fileUploaderTheme.dragging.background,
+      borderColor: fileUploaderTheme.dragging.borderColor,
+    },
+  },
 });
 
 export const skeleton = style({
@@ -94,7 +112,7 @@ export const overlay__content = style({
   gap: varsThemeBase.spacing[2],
   background: backgroundColor,
   borderRadius: varsThemeBase.shape.border.radius[2],
-  borderWidth: varsThemeBase.shape.border.width[2],
+  borderWidth: fileUploaderTheme.overlay.borderWidth,
   borderColor,
   borderStyle: "dashed",
   padding: varsThemeBase.spacing[4],

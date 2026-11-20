@@ -4,8 +4,21 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 ## 2026-11-20 `9.74.0`
 
+#### 🛠 Breaking changes
+
+- FileUploader: Visual change for screens rendered with `next-norteui` or `next-norteui-dark`, to match the Norte UI Figma:
+
+  - The border width of the container and of `FileUploader.Overlay` (`overlay__content`) changes from `2px` to `1px`.
+  - The container padding changes from none to `8px` (`spacing[2]`).
+  - The container background changes from `primary.surface` to `neutral.surface`, and the border from `primary.interactive` to `neutral.interactiveHover` (`next-norteui` reuses the Input rest border).
+  - A hover state is added (`primary.surface` background, `primary.interactiveHover` border), and dragging uses it instead of `primary.surfaceHighlight` with a `primary.textHigh` border.
+  - The icon changes from `20px` to `16px`, the placeholder from bold to regular, and the disabled icon and placeholder from `neutral.interactive` to `neutral.textDisabled`.
+
+  Props and the look in `base`, `dark`, `next` and `next-dark` are unchanged (verified by `yarn check:base-invariance`). Ships as `minor`: Norte UI themes are opt-in and this aligns FileUploader with its Figma contract. ([#657](https://github.com/TiendaNube/nimbus-design-system/pull/657) by [@noecondoleo](https://github.com/noecondoleo))
+
 #### 🎉 New features
 
+- FileUploader: Adds the `components.fileUploader` theme values (border width, padding, background and border at rest, hover, dragging and disabled, and the overlay border width). In `base`, `dark`, `next` and `next-dark` they reference the current FileUploader values (hover keeps the rest colors), so the FileUploader looks exactly as before. In `next-norteui` the border is 1px and reuses the Input rest and disabled borders, the background is `neutral.surface`, padding is `8px`, and hover and dragging use `primary.surface` with a `primary.interactiveHover` border, aligned with the Norte UI Figma. `next-norteui-dark` uses the same color roles on the dark palette. Verified by `yarn check:base-invariance`. ([#657](https://github.com/TiendaNube/nimbus-design-system/pull/657) by [@noecondoleo](https://github.com/noecondoleo))
 - List: Adds the `components.list.markerColor` theme value for the numbers and bullets. In `base`, `dark`, `next` and `next-dark` it keeps `neutral.surfaceHighlight`; in `next-norteui` and `next-norteui-dark` they use `neutral.textDisabled`, aligned with the Norte UI Figma. ([#658](https://github.com/TiendaNube/nimbus-design-system/pull/658) by [@noecondoleo](https://github.com/noecondoleo))
 - ProgressBar: Adds the `components.progressBar.background` theme value for the default track. In `base`, `dark`, `next` and `next-dark` it keeps `neutral.surfaceDisabled`; in `next-norteui` and `next-norteui-dark` the track uses `neutral.surfaceHighlight`, aligned with the Norte UI Figma. ([#658](https://github.com/TiendaNube/nimbus-design-system/pull/658) by [@noecondoleo](https://github.com/noecondoleo))
 - Textarea: In `next-norteui` the Textarea follows the Norte UI Figma (6px radius, 6px by 8px padding, 20px lines and the Input borders, hover and focus); `next-norteui-dark` takes the same measurements with its current colors, and the API and `base`, `dark`, `next` and `next-dark` are unchanged. ([#655](https://github.com/TiendaNube/nimbus-design-system/pull/655) by [@noecondoleo](https://github.com/noecondoleo))
