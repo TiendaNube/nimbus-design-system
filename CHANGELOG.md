@@ -5,9 +5,13 @@ Package-specific changes not released in any package will be added here just bef
 
 ## 2026-11-20
 
+#### 🎉 New features
+
+- Publishes Combobox in `@nimbus-ds/components@5.68.0` with its CSS in `@nimbus-ds/styles@9.74.0`. ([#636](https://github.com/TiendaNube/nimbus-design-system/pull/636) by [@claude](https://github.com/apps/claude))
+
 #### 🐛 Bug fixes
 
-- Publishes Combobox in `@nimbus-ds/components@5.68.0` with its CSS in `@nimbus-ds/styles@9.74.0`, and ships the Popover portal fix in `@nimbus-ds/popover@4.5.1`. ([#636](https://github.com/TiendaNube/nimbus-design-system/pull/636) by [@claude](https://github.com/apps/claude))
+- Ships the Popover portal fix in `@nimbus-ds/popover@4.5.1`. ([#636](https://github.com/TiendaNube/nimbus-design-system/pull/636) by [@claude](https://github.com/apps/claude))
 
 ## 2026-11-05
 
