@@ -1,0 +1,7 @@
+releases:
+  "@nimbus-ds/input": patch
+
+declined:
+  - nimbus-design-system
+  - "@nimbus-ds/slider"
+  - "@nimbus-ds/time-picker"
