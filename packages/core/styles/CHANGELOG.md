@@ -25,6 +25,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 #### 🐛 Bug fixes
 
+- Input, Select and Textarea: The AI-generative hover in `next-norteui` uses `rgba()` instead of `color-mix()`, so the border gradient no longer disappears in browsers without `color-mix()` support (the Admin supports Chrome 103). ([#655](https://github.com/TiendaNube/nimbus-design-system/pull/655) by [@noecondoleo](https://github.com/noecondoleo))
 - Scrollbar: `thinScrollbarAlways` sets the standard `scrollbar-width` and `scrollbar-color` only where `::-webkit-scrollbar` is not supported (Firefox). In Chromium they replaced the thin WebKit scrollbar, so with macOS overlay scrollbars the bar of the Combobox list stayed hidden until the person scrolled. ([#636](https://github.com/TiendaNube/nimbus-design-system/pull/636) by [@claude](https://github.com/apps/claude))
 
 ## 2026-11-17 `9.73.0`

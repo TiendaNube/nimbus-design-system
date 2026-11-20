@@ -177,10 +177,10 @@ export const variables = createTheme(vars, {
       },
       aiGenerative: {
         // Figma darkens the border gradient with the overlay/interactive-hover
-        // (15%) layer of neutral.textHigh, like Chip.
-        hover: {
-          overlay: `color-mix(in srgb, ${vars.colors.neutral.textHigh} 15%, transparent)`,
-        },
+        // (15%) layer of neutral.textHigh, like Chip. Select and Textarea reuse
+        // it. rgba() instead of color-mix(): without color-mix() support the
+        // whole hover background is dropped and the border turns transparent.
+        hover: { overlay: overlayHover },
         focus: { boxShadow: inputFocusRing },
       },
       aiGenerated: {
