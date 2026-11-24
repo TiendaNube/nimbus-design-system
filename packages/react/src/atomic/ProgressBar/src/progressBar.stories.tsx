@@ -118,6 +118,8 @@ export const WithBackgroundColor: Story = {
 };
 
 export const WithBoxShadow: Story = {
+  // Hidden from the Storybook sidebar.
+  tags: ["!dev"],
   args: {
     value: 60,
     appearance: "primary",
@@ -126,6 +128,8 @@ export const WithBoxShadow: Story = {
 };
 
 export const CustomHeight: Story = {
+  // Hidden from the Storybook sidebar.
+  tags: ["!dev"],
   args: {
     value: 50,
     appearance: "primary",
@@ -134,6 +138,8 @@ export const CustomHeight: Story = {
 };
 
 export const CustomHeightWithShadow: Story = {
+  // Hidden from the Storybook sidebar.
+  tags: ["!dev"],
   args: {
     value: 75,
     appearance: "success",

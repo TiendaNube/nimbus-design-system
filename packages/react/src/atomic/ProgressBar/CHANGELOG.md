@@ -2,6 +2,12 @@
 
 The ProgressBar component allows us to display the progress of an operation or task in a visual format.
 
+## 2026-11-19 `1.3.0`
+
+#### 🎉 New features
+
+- In `next-norteui` and `next-norteui-dark` the default track (`backgroundColor="neutral-surfaceDisabled"`) uses `neutral.surfaceHighlight`, aligned with the Norte UI Figma. Props are unchanged, and so is the look in `base`, `dark`, `next` and `next-dark`. ([#658](https://github.com/TiendaNube/nimbus-design-system/pull/658) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-03-04 `1.2.0`
 
 #### 🎉 New features

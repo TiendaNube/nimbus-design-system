@@ -93,11 +93,39 @@ const nextNorteuiDarkTheme = {
     },
   },
   components: {
+    progressBar: {
+      background: vars.colors.neutral.surfaceHighlight,
+    },
+    list: {
+      markerColor: vars.colors.neutral.textDisabled,
+    },
     popover: {
       borderRadius: vars.shape.border.radius[2],
       // No Norte UI dark shadow design yet: keep the default Popover shadow.
       filter: globalTheme.components.popover.filter,
       padding: { base: vars.spacing[3] },
+    },
+    // No Norte UI dark FileUploader design yet: the Norte UI color roles on
+    // the dark palette. Input keeps its default dark colors here, so the
+    // borders name the colors instead of reusing components.input.
+    fileUploader: {
+      borderWidth: vars.shape.border.width[1],
+      padding: vars.spacing[2],
+      background: vars.colors.neutral.surface,
+      borderColor: vars.colors.neutral.interactiveHover,
+      hover: {
+        background: vars.colors.primary.surface,
+        borderColor: vars.colors.primary.interactiveHover,
+      },
+      dragging: {
+        background: vars.colors.primary.surface,
+        borderColor: vars.colors.primary.interactiveHover,
+      },
+      disabled: {
+        background: vars.colors.neutral.surfaceDisabled,
+        borderColor: vars.colors.neutral.interactive,
+      },
+      overlay: { borderWidth: vars.shape.border.width[1] },
     },
     thumbnail: globalTheme.components.thumbnail,
     divider: {
@@ -121,6 +149,40 @@ const nextNorteuiDarkTheme = {
       skeleton: {
         height: "1.75rem",
         borderRadius: vars.shape.border.radius.base,
+      },
+    },
+    // No Norte UI dark Select colors yet: keep the default Select colors and
+    // focus with the Norte UI measurements (28px medium, 24px small).
+    select: {
+      ...globalTheme.components.select,
+      medium: {
+        height: "1.75rem",
+        paddingY: vars.spacing[1],
+        borderRadius: vars.components.input.borderRadius,
+      },
+      small: {
+        height: "1.5rem",
+        paddingY: vars.spacing["0-5"],
+        borderRadius: vars.components.input.borderRadius,
+      },
+      skeleton: {
+        medium: vars.components.input.skeleton,
+        small: {
+          height: "1.5rem",
+          borderRadius: vars.components.input.borderRadius,
+        },
+      },
+    },
+    // No Norte UI dark Textarea colors yet: keep the default colors and focus
+    // with the Norte UI padding, line height and radius.
+    textarea: {
+      ...globalTheme.components.textarea,
+      paddingY: vars.spacing["1-5"],
+      paddingX: vars.spacing[2],
+      lineHeight: vars.lineWeight.body.base,
+      skeleton: {
+        height: "3.375rem",
+        borderRadius: vars.components.input.borderRadius,
       },
     },
     // No Norte UI dark Checkbox, Radio or Toggle colors yet: keep the default

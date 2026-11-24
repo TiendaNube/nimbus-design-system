@@ -4,8 +4,25 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 ## 2026-11-20 `9.74.0`
 
+#### 🛠 Breaking changes
+
+- FileUploader: Visual change for screens rendered with `next-norteui` or `next-norteui-dark`, to match the Norte UI Figma:
+
+  - The border width of the container and of `FileUploader.Overlay` (`overlay__content`) changes from `2px` to `1px`.
+  - The container padding changes from none to `8px` (`spacing[2]`), and the container uses `box-sizing: border-box`, so padding and border stay inside `width` and `height` (for example, `height="3rem"` renders 48px tall instead of 52px, and `width="100%"` no longer overflows its parent).
+  - The container background changes from `primary.surface` to `neutral.surface`, and the border from `primary.interactive` to `neutral.interactiveHover` (`next-norteui` reuses the Input rest border).
+  - A hover state is added (`primary.surface` background, `primary.interactiveHover` border), and dragging uses it instead of `primary.surfaceHighlight` with a `primary.textHigh` border.
+  - The icon changes from `20px` to `16px`, the placeholder from bold to regular, and the disabled icon and placeholder from `neutral.interactive` to `neutral.textDisabled`.
+
+  Props and the look in `base`, `dark`, `next` and `next-dark` are unchanged (verified by `yarn check:base-invariance`). Ships as `minor`: Norte UI themes are opt-in and this aligns FileUploader with its Figma contract. ([#657](https://github.com/TiendaNube/nimbus-design-system/pull/657) by [@noecondoleo](https://github.com/noecondoleo))
+
 #### 🎉 New features
 
+- FileUploader: Adds the `components.fileUploader` theme values (border width, padding, background and border at rest, hover, dragging and disabled, and the overlay border width). In `base`, `dark`, `next` and `next-dark` they reference the current FileUploader values (hover keeps the rest colors), so the FileUploader looks exactly as before. In `next-norteui` the border is 1px and reuses the Input rest and disabled borders, the background is `neutral.surface`, padding is `8px`, and hover and dragging use `primary.surface` with a `primary.interactiveHover` border, aligned with the Norte UI Figma. `next-norteui-dark` uses the same color roles on the dark palette. Verified by `yarn check:base-invariance`. Adds the `norteui` class (`box-sizing: border-box`), which the FileUploader applies only in `next-norteui` and `next-norteui-dark`; other themes declare no `box-sizing`, so the host rule still applies. ([#657](https://github.com/TiendaNube/nimbus-design-system/pull/657) by [@noecondoleo](https://github.com/noecondoleo))
+- List: Adds the `components.list.markerColor` theme value for the numbers and bullets. In `base`, `dark`, `next` and `next-dark` it keeps `neutral.surfaceHighlight`; in `next-norteui` and `next-norteui-dark` they use `neutral.textDisabled`, aligned with the Norte UI Figma. ([#658](https://github.com/TiendaNube/nimbus-design-system/pull/658) by [@noecondoleo](https://github.com/noecondoleo))
+- ProgressBar: Adds the `components.progressBar.background` theme value for the default track. In `base`, `dark`, `next` and `next-dark` it keeps `neutral.surfaceDisabled`; in `next-norteui` and `next-norteui-dark` the track uses `neutral.surfaceHighlight`, aligned with the Norte UI Figma. ([#658](https://github.com/TiendaNube/nimbus-design-system/pull/658) by [@noecondoleo](https://github.com/noecondoleo))
+- Textarea: In `next-norteui` the Textarea follows the Norte UI Figma (6px radius, 6px by 8px padding, 20px lines and the Input borders, hover and focus); `next-norteui-dark` takes the same measurements with its current colors, and the API and `base`, `dark`, `next` and `next-dark` are unchanged. ([#655](https://github.com/TiendaNube/nimbus-design-system/pull/655) by [@noecondoleo](https://github.com/noecondoleo))
+- Select: In `next-norteui` the Select follows the Norte UI Figma (28px medium, 24px small, 6px radius and the Input borders, hover and focus); `next-norteui-dark` takes the same measurements with its current colors, and the API and `base`, `dark`, `next` and `next-dark` are unchanged. ([#655](https://github.com/TiendaNube/nimbus-design-system/pull/655) by [@noecondoleo](https://github.com/noecondoleo))
 - IconButton: Adds the Norte UI IconButton classes (`norteui`, `norteuiNoBorder`, `norteuiNeutral`, `norteuiTransparent`, `norteuiAiSurface`, `norteuiAiGenerative`): `6px` radius, no border, `neutral.surfaceHighlight` fill (hover `neutral.interactive`, pressed `neutral.interactiveHover`), transparent and AI surface states, and `2px` focus rings. The IconButton applies them only in `next-norteui` and `next-norteui-dark`, so `base`, `dark`, `next` and `next-dark` are unchanged. Pressed `ai-generative` IconButton uses `gradients.aiGenerativePressed` (flat `aiGenerative.textLow` outside Norte UI, as before). ([#642](https://github.com/TiendaNube/nimbus-design-system/pull/642) by [@noecondoleo](https://github.com/noecondoleo))
 - Popover: Adds Norte UI theme values so the Popover gets a smaller radius, lighter shadow and tighter default padding in Norte UI, with no change in other themes. ([#637](https://github.com/TiendaNube/nimbus-design-system/pull/637) by [@noecondoleo](https://github.com/noecondoleo))
 - Checkbox, Radio and Toggle: Adds the `components.checkbox`, `components.radio` and `components.toggle` theme values, so in `next-norteui` the three components follow the Norte UI Figma (hover, pressed, checked, disabled and AI-generated states, a 12px label, a darker focus border and a 2px focus ring). `next-norteui-dark` takes the 12px label and keeps the current colors, and `base`, `dark`, `next` and `next-dark` are unchanged (opt-in `minor` under Decision 0081). ([#649](https://github.com/TiendaNube/nimbus-design-system/pull/649) by [@noecondoleo](https://github.com/noecondoleo))
@@ -25,6 +42,7 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 #### 🐛 Bug fixes
 
+- Input, Select and Textarea: The AI-generative hover in `next-norteui` keeps its border gradient in browsers without `color-mix()` support. ([#655](https://github.com/TiendaNube/nimbus-design-system/pull/655) by [@noecondoleo](https://github.com/noecondoleo))
 - Scrollbar: `thinScrollbarAlways` sets the standard `scrollbar-width` and `scrollbar-color` only where `::-webkit-scrollbar` is not supported (Firefox). In Chromium they replaced the thin WebKit scrollbar, so with macOS overlay scrollbars the bar of the Combobox list stayed hidden until the person scrolled. ([#636](https://github.com/TiendaNube/nimbus-design-system/pull/636) by [@claude](https://github.com/apps/claude))
 
 ## 2026-11-17 `9.73.0`

@@ -21,6 +21,17 @@ const lineWeight = tokens.line.height;
 const { shape } = tokens;
 const { motion, spacing, shadow, breakpoint, zIndex } = tokens;
 
+// Focus of the native form fields (Select, Textarea) outside Norte UI: a
+// pressed border on any focus and the theme focus ring only on keyboard focus.
+const fieldFocus = {
+  neutral: { focus: { borderColor: vars.colors.primary.interactivePressed } },
+  success: { focus: { borderColor: vars.colors.success.interactivePressed } },
+  warning: { focus: { borderColor: vars.colors.warning.interactivePressed } },
+  danger: { focus: { borderColor: vars.colors.danger.interactivePressed } },
+  focus: { boxShadow: "none" },
+  focusVisible: { boxShadow: vars.utils.focus },
+};
+
 export const globalTheme = {
   colors: withToneSurfaceDisabled(surfaceDisabled, {
     primary: {
@@ -350,6 +361,17 @@ export const globalTheme = {
         },
       },
     },
+    progressBar: {
+      // Default track (backgroundColor="neutral-surfaceDisabled"). Same color
+      // as before it was theme-driven, so base, dark, next and next-dark keep
+      // their look. Norte UI overrides it.
+      background: vars.colors.neutral.surfaceDisabled,
+    },
+    list: {
+      // Numbers and bullets. Same color as before it was theme-driven, so
+      // base, dark, next and next-dark keep their look. Norte UI overrides it.
+      markerColor: vars.colors.neutral.surfaceHighlight,
+    },
     popover: {
       // Same radius and base padding the Popover had before they were
       // theme-driven, so base, dark, next and next-dark keep their look.
@@ -357,6 +379,28 @@ export const globalTheme = {
       borderRadius: vars.shape.border.radius[3],
       filter: "drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.2))",
       padding: { base: vars.spacing[4] },
+    },
+    fileUploader: {
+      // Same values the FileUploader had before they were theme-driven, so
+      // base, dark, next and next-dark keep their look: no padding and hover
+      // keeps the rest colors. Norte UI overrides them.
+      borderWidth: vars.shape.border.width[2],
+      padding: "0",
+      background: vars.colors.primary.surface,
+      borderColor: vars.colors.primary.interactive,
+      hover: {
+        background: vars.colors.primary.surface,
+        borderColor: vars.colors.primary.interactive,
+      },
+      dragging: {
+        background: vars.colors.primary.surfaceHighlight,
+        borderColor: vars.colors.primary.textHigh,
+      },
+      disabled: {
+        background: vars.colors.neutral.surfaceDisabled,
+        borderColor: vars.colors.neutral.interactive,
+      },
+      overlay: { borderWidth: vars.shape.border.width[2] },
     },
     input: {
       // References the theme's own values so base, dark, next and next-dark
@@ -408,6 +452,36 @@ export const globalTheme = {
       aiGenerated: { boxShadow: vars.utils.aiFocus },
       disabled: { borderColor: vars.colors.neutral.surfaceHighlight },
       skeleton: { height: "2rem", borderRadius: "0.5rem" },
+    },
+    select: {
+      // Same sizes the Select had before they were theme-driven: medium keeps
+      // its content height (`auto`). Rest, hover and disabled colors come from
+      // `components.input`; only the focus differs from Input outside Norte UI.
+      medium: {
+        height: "auto",
+        paddingY: vars.spacing[2],
+        borderRadius: vars.shape.border.radius[2],
+      },
+      small: {
+        height: "1.75rem",
+        paddingY: vars.spacing[1],
+        borderRadius: vars.shape.border.radius.base,
+      },
+      ...fieldFocus,
+      skeleton: {
+        medium: { height: "2.25rem", borderRadius: "0.5rem" },
+        small: { height: "1.75rem", borderRadius: "0.375rem" },
+      },
+    },
+    textarea: {
+      // Same padding, line height and skeleton the Textarea had before they
+      // were theme-driven. Radius, rest, hover and disabled colors come from
+      // `components.input`; the focus is the same as Select.
+      paddingY: vars.spacing[2],
+      paddingX: vars.spacing[2],
+      lineHeight: vars.lineWeight.body.caption,
+      ...fieldFocus,
+      skeleton: { height: "3.375rem", borderRadius: "0.5rem" },
     },
     checkbox: {
       // References what the Checkbox used before, so base, dark, next and

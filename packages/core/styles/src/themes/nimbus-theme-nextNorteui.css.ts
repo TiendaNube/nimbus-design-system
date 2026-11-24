@@ -65,6 +65,17 @@ const solidBorder = (fill: string) =>
 // neutral/interactive spread for stronger contrast.
 const inputFocusRing = `0 0 0 ${vars.shape.border.width[2]} ${vars.colors.neutral.interactiveHover}`;
 
+// Select and Textarea reuse the Input focus: its border and ring on any focus.
+const { input } = vars.components;
+const fieldFocusNorteui = {
+  neutral: { focus: { borderColor: input.neutral.focus.borderColor } },
+  success: { focus: { borderColor: input.success.focus.borderColor } },
+  warning: { focus: { borderColor: input.warning.focus.borderColor } },
+  danger: { focus: { borderColor: input.danger.focus.borderColor } },
+  focus: { boxShadow: input.neutral.focus.boxShadow },
+  focusVisible: { boxShadow: input.neutral.focus.boxShadow },
+};
+
 export const variables = createTheme(vars, {
   ...globalTheme,
   fontWeight: {
@@ -107,11 +118,38 @@ export const variables = createTheme(vars, {
     aiFocus: `0 0 0 3px ${aiSurfaceHighlight}`,
   },
   components: {
+    progressBar: {
+      background: vars.colors.neutral.surfaceHighlight,
+    },
+    list: {
+      markerColor: vars.colors.neutral.textDisabled,
+    },
     popover: {
       borderRadius: vars.shape.border.radius[2],
       // Shadow level 2 written as drop-shadow so the arrow gets it too.
       filter: `drop-shadow(0px 0px 2px ${vars.colors.neutral.interactiveHover})`,
       padding: { base: vars.spacing[3] },
+    },
+    fileUploader: {
+      borderWidth: vars.shape.border.width[1],
+      padding: vars.spacing[2],
+      background: vars.colors.neutral.surface,
+      // Same rest and disabled borders as the Input.
+      borderColor: vars.components.input.neutral.borderColor,
+      hover: {
+        background: vars.colors.primary.surface,
+        borderColor: vars.colors.primary.interactiveHover,
+      },
+      // No dragging state in Figma: it looks like hover.
+      dragging: {
+        background: vars.colors.primary.surface,
+        borderColor: vars.colors.primary.interactiveHover,
+      },
+      disabled: {
+        background: vars.colors.neutral.surfaceDisabled,
+        borderColor: vars.components.input.disabled.borderColor,
+      },
+      overlay: { borderWidth: vars.shape.border.width[1] },
     },
     thumbnail: {
       background: vars.colors.neutral.surfaceHighlight,
@@ -166,10 +204,10 @@ export const variables = createTheme(vars, {
       },
       aiGenerative: {
         // Figma darkens the border gradient with the overlay/interactive-hover
-        // (15%) layer of neutral.textHigh, like Chip.
-        hover: {
-          overlay: `color-mix(in srgb, ${vars.colors.neutral.textHigh} 15%, transparent)`,
-        },
+        // (15%) layer of neutral.textHigh, like Chip. Select and Textarea reuse
+        // it. rgba() instead of color-mix(): without color-mix() support the
+        // whole hover background is dropped and the border turns transparent.
+        hover: { overlay: overlayHover },
         focus: { boxShadow: inputFocusRing },
       },
       aiGenerated: {
@@ -180,6 +218,32 @@ export const variables = createTheme(vars, {
         height: "1.75rem",
         borderRadius: vars.shape.border.radius.base,
       },
+    },
+    select: {
+      // Medium matches Input (28px) and small is 24px, both with the border.
+      medium: {
+        height: "1.75rem",
+        paddingY: vars.spacing[1],
+        borderRadius: input.borderRadius,
+      },
+      small: {
+        height: "1.5rem",
+        paddingY: vars.spacing["0-5"],
+        borderRadius: input.borderRadius,
+      },
+      ...fieldFocusNorteui,
+      skeleton: {
+        medium: input.skeleton,
+        small: { height: "1.5rem", borderRadius: input.borderRadius },
+      },
+    },
+    textarea: {
+      // 6px by 8px padding and 20px lines, as in Figma.
+      paddingY: vars.spacing["1-5"],
+      paddingX: vars.spacing[2],
+      lineHeight: vars.lineWeight.body.base,
+      ...fieldFocusNorteui,
+      skeleton: { height: "3.375rem", borderRadius: input.borderRadius },
     },
     checkbox: {
       label: { fontSize: vars.fontSize.body.caption },
