@@ -1,6 +1,6 @@
 import React, { useMemo, useState, useCallback, useRef } from "react";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
-import { fileUploader, vars } from "@nimbus-ds/styles";
+import { fileUploader, vars, useTheme } from "@nimbus-ds/styles";
 import { PlusCircleIcon } from "@nimbus-ds/icons";
 import { Icon } from "@nimbus-ds/icon";
 import { Text } from "@nimbus-ds/text";
@@ -13,6 +13,8 @@ import { FileUploaderSkeleton, FileUploaderOverlay } from "./components";
 import {
   isFileAccepted,
   createFileListFromFiles,
+  isNorteUiTheme,
+  getLabelAppearance,
 } from "./FileUploader.definitions";
 
 const DEFAULT_INPUT_ID = "input-file";
@@ -39,7 +41,12 @@ const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
   asOverlay = false,
   ...rest
 }: FileUploaderProps) => {
-  const color = useMemo(() => (disabled ? "neutral" : "primary"), [disabled]);
+  const { currentTheme } = useTheme();
+  const norteUi = isNorteUiTheme(currentTheme);
+  const { iconSize, fontWeight, color } = useMemo(
+    () => getLabelAppearance(norteUi, disabled),
+    [norteUi, disabled]
+  );
   const [isDragging, setIsDragging] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const dragCounterRef = useRef(0);
@@ -166,6 +173,7 @@ const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
       className={[
         className,
         fileUploader.classnames.container,
+        norteUi && fileUploader.classnames.norteui,
         fileUploader.sprinkle({
           aspectRatio,
           flexDirection,
@@ -185,16 +193,9 @@ const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
     >
-      <Icon
-        color={`${color}-interactive`}
-        source={<PlusCircleIcon size={20} />}
-      />
+      <Icon color={color} source={<PlusCircleIcon size={iconSize} />} />
       {placeholder && (
-        <Text
-          color={`${color}-interactive`}
-          fontWeight="bold"
-          fontSize="caption"
-        >
+        <Text color={color} fontWeight={fontWeight} fontSize="caption">
           {placeholder}
         </Text>
       )}

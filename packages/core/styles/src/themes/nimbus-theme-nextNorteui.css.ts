@@ -130,6 +130,27 @@ export const variables = createTheme(vars, {
       filter: `drop-shadow(0px 0px 2px ${vars.colors.neutral.interactiveHover})`,
       padding: { base: vars.spacing[3] },
     },
+    fileUploader: {
+      borderWidth: vars.shape.border.width[1],
+      padding: vars.spacing[2],
+      background: vars.colors.neutral.surface,
+      // Same rest and disabled borders as the Input.
+      borderColor: vars.components.input.neutral.borderColor,
+      hover: {
+        background: vars.colors.primary.surface,
+        borderColor: vars.colors.primary.interactiveHover,
+      },
+      // No dragging state in Figma: it looks like hover.
+      dragging: {
+        background: vars.colors.primary.surface,
+        borderColor: vars.colors.primary.interactiveHover,
+      },
+      disabled: {
+        background: vars.colors.neutral.surfaceDisabled,
+        borderColor: vars.components.input.disabled.borderColor,
+      },
+      overlay: { borderWidth: vars.shape.border.width[1] },
+    },
     thumbnail: {
       background: vars.colors.neutral.surfaceHighlight,
     },

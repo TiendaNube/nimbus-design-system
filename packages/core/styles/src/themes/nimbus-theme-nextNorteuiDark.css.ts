@@ -105,6 +105,28 @@ const nextNorteuiDarkTheme = {
       filter: globalTheme.components.popover.filter,
       padding: { base: vars.spacing[3] },
     },
+    // No Norte UI dark FileUploader design yet: the Norte UI color roles on
+    // the dark palette. Input keeps its default dark colors here, so the
+    // borders name the colors instead of reusing components.input.
+    fileUploader: {
+      borderWidth: vars.shape.border.width[1],
+      padding: vars.spacing[2],
+      background: vars.colors.neutral.surface,
+      borderColor: vars.colors.neutral.interactiveHover,
+      hover: {
+        background: vars.colors.primary.surface,
+        borderColor: vars.colors.primary.interactiveHover,
+      },
+      dragging: {
+        background: vars.colors.primary.surface,
+        borderColor: vars.colors.primary.interactiveHover,
+      },
+      disabled: {
+        background: vars.colors.neutral.surfaceDisabled,
+        borderColor: vars.colors.neutral.interactive,
+      },
+      overlay: { borderWidth: vars.shape.border.width[1] },
+    },
     thumbnail: globalTheme.components.thumbnail,
     divider: {
       color: vars.colors.neutral.interactive,
