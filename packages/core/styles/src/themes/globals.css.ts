@@ -384,8 +384,6 @@ export const globalTheme = {
       // Same values the FileUploader had before they were theme-driven, so
       // base, dark, next and next-dark keep their look: no padding and hover
       // keeps the rest colors. Norte UI overrides them.
-      // content-box: width and height exclude the border, as before.
-      boxSizing: "content-box",
       borderWidth: vars.shape.border.width[2],
       padding: "0",
       background: vars.colors.primary.surface,

@@ -252,7 +252,6 @@ export const vars = createGlobalThemeContract(
         padding: { base: "" },
       },
       fileUploader: {
-        boxSizing: "",
         borderWidth: "",
         padding: "",
         background: "",

@@ -34,7 +34,6 @@ export const container = style({
   gap: varsThemeBase.spacing[1],
   width: vars.width,
   height: vars.height,
-  boxSizing: fileUploaderTheme.boxSizing,
   padding: fileUploaderTheme.padding,
   background: fileUploaderTheme.background,
   borderRadius: varsThemeBase.shape.border.radius[2],
@@ -48,6 +47,14 @@ export const container = style({
       borderColor: fileUploaderTheme.hover.borderColor,
     },
   },
+});
+
+/**
+ * Norte UI only: keeps the padding and border inside width and height.
+ * Other themes declare no box-sizing, so the host's rule still applies.
+ */
+const norteui = style({
+  boxSizing: "border-box",
 });
 
 const container__input = style({
@@ -136,6 +143,7 @@ export const overlay__image = style({
 export const styles = {
   container,
   container__input,
+  norteui,
   disabled,
   dragging,
   skeleton,

@@ -513,12 +513,17 @@ describe("GIVEN <FileUploader />", () => {
       getIcon()?.parentElement?.getAttribute("class") ?? "";
     const getTextClass = () =>
       screen.getByText("Helper").getAttribute("class") ?? "";
+    const getContainerClass = () =>
+      screen.getByTestId("file-uploader-container").getAttribute("class") ??
+      "";
 
     it.each(["base", "dark", "next", "next-dark"] as const)(
       "THEN %s keeps the 20px icon and bold primary text",
       (theme) => {
         renderInTheme(theme);
         expect(getIconSize()).toBe("20");
+        // No box-sizing class, so the host's box-sizing still applies.
+        expect(getContainerClass()).not.toContain("norteui");
         expect(getIconClass()).toContain("color_primary-interactive");
         expect(getTextClass()).toContain("fontWeight-bold");
         expect(getTextClass()).toContain("color-primary-interactive");
@@ -540,6 +545,7 @@ describe("GIVEN <FileUploader />", () => {
       (theme) => {
         renderInTheme(theme);
         expect(getIconSize()).toBe("16");
+        expect(getContainerClass()).toContain("norteui");
         expect(getIconClass()).toContain("color_primary-interactive");
         expect(getTextClass()).toContain("fontWeight-regular");
         expect(getTextClass()).toContain("color-primary-interactive");

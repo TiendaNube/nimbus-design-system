@@ -42,9 +42,10 @@ const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
   ...rest
 }: FileUploaderProps) => {
   const { currentTheme } = useTheme();
+  const norteUi = isNorteUiTheme(currentTheme);
   const { iconSize, fontWeight, color } = useMemo(
-    () => getLabelAppearance(isNorteUiTheme(currentTheme), disabled),
-    [currentTheme, disabled]
+    () => getLabelAppearance(norteUi, disabled),
+    [norteUi, disabled]
   );
   const [isDragging, setIsDragging] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -172,6 +173,7 @@ const FileUploader: React.FC<FileUploaderProps> & FileUploaderComponents = ({
       className={[
         className,
         fileUploader.classnames.container,
+        norteUi && fileUploader.classnames.norteui,
         fileUploader.sprinkle({
           aspectRatio,
           flexDirection,

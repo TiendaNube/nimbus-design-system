@@ -10,7 +10,7 @@ every day, with simplicity, accessibility, consistency and performance.
 - FileUploader: Visual change for screens rendered with `next-norteui` or `next-norteui-dark`, to match the Norte UI Figma:
 
   - The border width of the container and of `FileUploader.Overlay` (`overlay__content`) changes from `2px` to `1px`.
-  - The container padding changes from none to `8px` (`spacing[2]`), and `box-sizing` changes from `content-box` to `border-box`, so padding and border stay inside `width` and `height` (for example, `height="3rem"` renders 48px tall instead of 52px, and `width="100%"` no longer overflows its parent).
+  - The container padding changes from none to `8px` (`spacing[2]`), and the container uses `box-sizing: border-box`, so padding and border stay inside `width` and `height` (for example, `height="3rem"` renders 48px tall instead of 52px, and `width="100%"` no longer overflows its parent).
   - The container background changes from `primary.surface` to `neutral.surface`, and the border from `primary.interactive` to `neutral.interactiveHover` (`next-norteui` reuses the Input rest border).
   - A hover state is added (`primary.surface` background, `primary.interactiveHover` border), and dragging uses it instead of `primary.surfaceHighlight` with a `primary.textHigh` border.
   - The icon changes from `20px` to `16px`, the placeholder from bold to regular, and the disabled icon and placeholder from `neutral.interactive` to `neutral.textDisabled`.
