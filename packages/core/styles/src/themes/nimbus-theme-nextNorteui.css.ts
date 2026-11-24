@@ -131,6 +131,8 @@ export const variables = createTheme(vars, {
       padding: { base: vars.spacing[3] },
     },
     fileUploader: {
+      // border-box keeps the padding and border inside width and height.
+      boxSizing: "border-box",
       borderWidth: vars.shape.border.width[1],
       padding: vars.spacing[2],
       background: vars.colors.neutral.surface,

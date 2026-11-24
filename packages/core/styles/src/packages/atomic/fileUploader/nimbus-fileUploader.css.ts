@@ -34,6 +34,7 @@ export const container = style({
   gap: varsThemeBase.spacing[1],
   width: vars.width,
   height: vars.height,
+  boxSizing: fileUploaderTheme.boxSizing,
   padding: fileUploaderTheme.padding,
   background: fileUploaderTheme.background,
   borderRadius: varsThemeBase.shape.border.radius[2],

@@ -109,6 +109,7 @@ const nextNorteuiDarkTheme = {
     // the dark palette. Input keeps its default dark colors here, so the
     // borders name the colors instead of reusing components.input.
     fileUploader: {
+      boxSizing: "border-box",
       borderWidth: vars.shape.border.width[1],
       padding: vars.spacing[2],
       background: vars.colors.neutral.surface,
