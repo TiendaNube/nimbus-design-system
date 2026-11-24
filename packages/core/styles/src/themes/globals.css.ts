@@ -255,7 +255,9 @@ export const globalTheme = {
         iconSize: vars.spacing[6],
       },
       neutral: {
-        background: vars.colors.neutral.surfaceHighlight,
+        // Same light gray the Thumbnail uses; surfaceHighlight reads too dark
+        // here. Norte UI uses its lighter surfaceHighlight.
+        background: vars.colors.neutral.surfaceDisabled,
         color: vars.colors.neutral.textHigh,
       },
       ai: {
