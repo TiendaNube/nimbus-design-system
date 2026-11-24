@@ -137,6 +137,8 @@ const nextNorteuiDarkTheme = {
     tag: globalTheme.components.tag,
     // No Norte UI dark Chip design yet: keep the default Chip look.
     chip: globalTheme.components.chip,
+    // No Norte UI dark Link design yet: keep the default neutral Link hover.
+    link: globalTheme.components.link,
     // No Norte UI dark Input colors yet: keep the default Input colors with the
     // Norte UI measurements (28px total height, 6px radius).
     input: {

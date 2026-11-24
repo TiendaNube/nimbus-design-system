@@ -213,6 +213,9 @@ export const vars = createGlobalThemeContract(
       thumbnail: {
         background: "",
       },
+      link: {
+        neutral: { hoverColor: "" },
+      },
       tag: {
         neutral: { background: "", borderColor: "", color: "" },
         primary: { background: "", borderColor: "" },

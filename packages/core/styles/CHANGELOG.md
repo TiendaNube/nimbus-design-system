@@ -38,6 +38,8 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
   `base`, `dark`, `next` and `next-dark` keep the exact previous Toast. ([#644](https://github.com/TiendaNube/nimbus-design-system/pull/644) by [@noecondoleo](https://github.com/noecondoleo))
 
+- Link: Adds the `components.link.neutral.hoverColor` theme value for the neutral Link hover. In `base`, `dark`, `next`, `next-dark` and `next-norteui-dark` it references `neutral.textDisabled`, so the hover looks exactly as before. In `next-norteui` it uses `neutral.textHigh`, so the hover darkens instead of looking disabled. The disabled Link keeps `neutral.textDisabled` in every appearance. ([#630](https://github.com/TiendaNube/nimbus-design-system/pull/630) by [@FedeTrevi-se](https://github.com/FedeTrevi-se))
+
 #### 🐛 Bug fixes
 
 - Input, Select and Textarea: The AI-generative hover in `next-norteui` keeps its border gradient in browsers without `color-mix()` support. ([#655](https://github.com/TiendaNube/nimbus-design-system/pull/655) by [@noecondoleo](https://github.com/noecondoleo))
