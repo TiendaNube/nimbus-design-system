@@ -11,6 +11,16 @@ const toneColors = {
   textHigh: "",
 };
 
+const buttonToneColors = {
+  background: "",
+  border: "",
+  text: "",
+  hoverBackground: "",
+  pressedBackground: "",
+  disabledBackground: "",
+  disabledBorder: "",
+};
+
 export const vars = createGlobalThemeContract(
   {
     colors: {
@@ -192,16 +202,15 @@ export const vars = createGlobalThemeContract(
           disabledBorder: "",
           focusBorder: "",
         },
-        transparent: { hoverBorder: "", pressedBorder: "" },
-        danger: {
-          background: "",
-          border: "",
-          text: "",
+        transparent: {
+          hoverBorder: "",
+          pressedBorder: "",
           hoverBackground: "",
           pressedBackground: "",
-          disabledBackground: "",
-          disabledBorder: "",
         },
+        danger: buttonToneColors,
+        success: buttonToneColors,
+        warning: buttonToneColors,
         aiSecondary: {
           text: "",
           background: "",

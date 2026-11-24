@@ -7,6 +7,19 @@ type StringLeaves<T> = {
 
 export type ButtonThemeValues = StringLeaves<typeof vars.components.button>;
 
+export type ButtonTone = "danger" | "success" | "warning";
+
+/** Filled tone Button (danger, success, warning), as in the Norte UI Figma. */
+const buttonToneNorteui = (tone: ButtonTone): ButtonThemeValues["danger"] => ({
+  background: vars.colors[tone].interactive,
+  border: vars.colors[tone].interactive,
+  text: vars.colors[tone].textHigh,
+  hoverBackground: vars.colors[tone].interactiveHover,
+  pressedBackground: vars.colors[tone].interactivePressed,
+  disabledBackground: vars.colors[tone].surfaceDisabled,
+  disabledBorder: vars.colors[tone].surfaceDisabled,
+});
+
 /**
  * Button values for next-norteui and next-norteui-dark, taken from the
  * Norte UI Button in Figma. They reference theme colors, so the dark theme
@@ -47,16 +60,13 @@ export const buttonNorteui = (
   transparent: {
     hoverBorder: "transparent",
     pressedBorder: "transparent",
+    // One step darker than base, as in the Norte UI Figma.
+    hoverBackground: vars.colors.neutral.surfaceHighlight,
+    pressedBackground: vars.colors.neutral.interactive,
   },
-  danger: {
-    background: vars.colors.danger.interactive,
-    border: vars.colors.danger.interactive,
-    text: vars.colors.danger.textHigh,
-    hoverBackground: vars.colors.danger.interactiveHover,
-    pressedBackground: vars.colors.danger.interactivePressed,
-    disabledBackground: vars.colors.danger.surfaceDisabled,
-    disabledBorder: vars.colors.danger.surfaceDisabled,
-  },
+  danger: buttonToneNorteui("danger"),
+  success: buttonToneNorteui("success"),
+  warning: buttonToneNorteui("warning"),
   aiSecondary: {
     text: vars.colors.aiGenerative.textLow,
     background: vars.colors.aiGenerative.surface,

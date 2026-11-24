@@ -2,6 +2,7 @@ import tokens from "@nimbus-ds/tokens/dist/js/tokens";
 import { createGlobalTheme, globalStyle } from "@vanilla-extract/css";
 import { vars } from "./contract.css";
 import { withToneSurfaceDisabled } from "./toneSurfaceDisabled";
+import { type ButtonThemeValues, type ButtonTone } from "./buttonNorteui";
 import {
   aiInteractiveBorder,
   aiHoverBorder,
@@ -13,6 +14,24 @@ import {
 } from "./aiGenerativeGradients";
 
 const colors = tokens.color.light;
+
+/**
+ * success and warning Button values for base, dark, next and next-dark.
+ * Same recipe as the danger Button those themes already have: light
+ * surface, tone border and text-low label.
+ */
+const buttonToneBase = (
+  tone: Exclude<ButtonTone, "danger">
+): ButtonThemeValues["danger"] => ({
+  background: vars.colors[tone].surface,
+  border: vars.colors[tone].interactive,
+  text: vars.colors[tone].textLow,
+  hoverBackground: vars.colors[tone].surfaceHighlight,
+  pressedBackground: vars.colors[tone].interactive,
+  disabledBackground: vars.colors.neutral.surfaceDisabled,
+  disabledBorder: vars.colors[tone].surfaceHighlight,
+});
+
 const surfaceDisabled = colors.neutral["surface-disabled"].value as string;
 const fontFamily = tokens.font.family;
 const fontSize = tokens.font.size;
@@ -276,6 +295,8 @@ export const globalTheme = {
       transparent: {
         hoverBorder: vars.colors.neutral.interactiveHover,
         pressedBorder: vars.colors.neutral.interactivePressed,
+        hoverBackground: vars.colors.neutral.surface,
+        pressedBackground: vars.colors.neutral.surfaceHighlight,
       },
       danger: {
         background: vars.colors.danger.surface,
@@ -286,6 +307,9 @@ export const globalTheme = {
         disabledBackground: vars.colors.neutral.surfaceDisabled,
         disabledBorder: vars.colors.danger.surfaceHighlight,
       },
+      // success and warning are new: same recipe as danger, with their tone.
+      success: buttonToneBase("success"),
+      warning: buttonToneBase("warning"),
       aiSecondary: {
         text: vars.colors.neutral.textHigh,
         background: vars.colors.neutral.background,
