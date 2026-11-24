@@ -93,6 +93,16 @@ const nextNorteuiDarkTheme = {
     },
   },
   components: {
+    // Same sizes and color roles as the other themes, resolved to the Norte UI
+    // palette. The medium initial keeps 14px instead of the 13px Norte UI
+    // body base.
+    avatar: {
+      ...globalTheme.components.avatar,
+      medium: {
+        ...globalTheme.components.avatar.medium,
+        fontSize: globalTheme.fontSize.body.base,
+      },
+    },
     progressBar: {
       background: vars.colors.neutral.surfaceHighlight,
     },

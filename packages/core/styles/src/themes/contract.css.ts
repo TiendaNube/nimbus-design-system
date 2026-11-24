@@ -178,6 +178,13 @@ export const vars = createGlobalThemeContract(
       aiFocus: "",
     },
     components: {
+      avatar: {
+        small: { size: "", fontSize: "", iconSize: "" },
+        medium: { size: "", fontSize: "", iconSize: "" },
+        large: { size: "", fontSize: "", iconSize: "" },
+        neutral: { background: "", color: "" },
+        ai: { background: "", color: "" },
+      },
       divider: {
         color: "",
       },

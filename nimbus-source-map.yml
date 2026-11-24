@@ -33,6 +33,7 @@ groups:
   composite: "packages/react/src/composite"
 
 components:
+  - { name: "Avatar", group: "atomic", package: "@nimbus-ds/avatar", nested: ["AvatarSkeleton"] }
   - { name: "Badge", group: "atomic", package: "@nimbus-ds/badge", nested: ["BadgeSkeleton"] }
   - { name: "Box", group: "atomic", package: "@nimbus-ds/box" }
   - { name: "Button", group: "atomic", package: "@nimbus-ds/button", nested: ["ButtonSkeleton"] }
