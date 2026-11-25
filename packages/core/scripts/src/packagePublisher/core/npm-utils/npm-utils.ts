@@ -225,8 +225,82 @@ function bumpVersion(
   }
 }
 
+/**
+ * Compares two versions like "9.74.0" or "9.74.0-rc.2".
+ * A stable version is greater than its own release candidates.
+ */
+function compareVersions(a: string, b: string): number {
+  const [aBase, aRc] = a.split("-rc.");
+  const [bBase, bRc] = b.split("-rc.");
+  const aParts = aBase.split(".").map(Number);
+  const bParts = bBase.split(".").map(Number);
+  for (let i = 0; i < 3; i += 1) {
+    if (aParts[i] !== bParts[i]) return aParts[i] - bParts[i];
+  }
+  const aNumber = aRc === undefined ? Infinity : Number(aRc);
+  const bNumber = bRc === undefined ? Infinity : Number(bRc);
+  if (aNumber === bNumber) return 0;
+  return aNumber > bNumber ? 1 : -1;
+}
+
+/**
+ * Finds the newest published release candidate of a package whose base
+ * version is newer than `stableVersion` (an RC that is not released yet).
+ * @returns The RC version (e.g., "9.74.0-rc.2"), or undefined if there is none
+ */
+function getLatestUnreleasedRCVersion(
+  packageName: string,
+  stableVersion: string
+): string | undefined {
+  return getRemoteNpmPackageVersions(packageName)
+    .filter((v) => isValidRCVersion(v))
+    .filter((v) => compareVersions(getBaseVersionFromRC(v), stableVersion) > 0)
+    .sort(compareVersions)
+    .pop();
+}
+
+/**
+ * Reads a peer dependency range from a workspace package.json.
+ * @returns The range, or an empty string if the peer is not declared
+ */
+function getLocalPeerDependency(
+  packageName: string,
+  dependencyName: string
+): string {
+  try {
+    const output = execSync(
+      `npm pkg get peerDependencies.${dependencyName} --workspace=${packageName}`,
+      { encoding: "utf8", stdio: ["pipe", "pipe", "ignore"] }
+    );
+    const parsed = JSON.parse(output.trim());
+    const value =
+      typeof parsed === "object" && parsed !== null
+        ? parsed[packageName]
+        : parsed;
+    return typeof value === "string" ? value : "";
+  } catch {
+    return "";
+  }
+}
+
+/** Writes a peer dependency range in a workspace package.json. */
+function setLocalPeerDependency(
+  packageName: string,
+  dependencyName: string,
+  range: string
+): void {
+  execSync(
+    `npm pkg set "peerDependencies.${dependencyName}=${range}" --workspace=${packageName}`,
+    { stdio: "ignore" }
+  );
+}
+
 export {
   bumpVersion,
+  compareVersions,
+  getLatestUnreleasedRCVersion,
+  getLocalPeerDependency,
+  setLocalPeerDependency,
   getBaseVersionFromRC,
   getRCNumber,
   getRCVersionsForBase,

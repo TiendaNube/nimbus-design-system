@@ -6,6 +6,9 @@ import {
   getLocalNpmPackageVersions,
   setLocalNpmPackageVersion,
   bumpVersion,
+  getLatestUnreleasedRCVersion,
+  getLocalPeerDependency,
+  setLocalPeerDependency,
 } from "./core/npm-utils/npm-utils";
 import {
   isBumpType,
@@ -20,8 +23,12 @@ import type { PackageInfo } from "./rc-publisher.types";
  * Tool for publishing Release Candidate versions of Nimbus packages
  * Handles version calculation, building, and publishing to npm with rc tag
  */
+const STYLES_PACKAGE = "@nimbus-ds/styles";
+
 class RCPublisher {
   private _packageInfo: PackageInfo | null = null;
+  /** Original `@nimbus-ds/styles` peer range, restored after publishing. */
+  private originalStylesPeer?: string;
   private skipBuild: boolean = false;
   private otp?: string;
 
@@ -31,7 +38,9 @@ class RCPublisher {
 
   private get packageInfo(): PackageInfo {
     if (!this._packageInfo) {
-      throw new Error("Package info not initialized. Call findPackageByName first.");
+      throw new Error(
+        "Package info not initialized. Call findPackageByName first."
+      );
     }
     return this._packageInfo;
   }
@@ -297,6 +306,7 @@ For more details, see scripts/README.md`);
 
     console.log("📝 Updating package.json version...");
     setLocalNpmPackageVersion(this.packageInfo.name, rcVersion);
+    this.useStylesRCPeer();
 
     console.log("📤 Publishing to npm...");
     publishToNpm(this.packageInfo.name, {
@@ -308,7 +318,43 @@ For more details, see scripts/README.md`);
     await this.cleanup();
   }
 
+  /**
+   * A `workspace:^` peer on `@nimbus-ds/styles` is published as `^<local
+   * styles version>`, which no styles RC satisfies (semver skips
+   * prereleases of other versions). When an unreleased styles RC exists,
+   * publish the peer as `^<that RC>` instead, so it accepts that RC, later
+   * RCs and the stable release. Regular releases keep `workspace:^`.
+   */
+  useStylesRCPeer(): void {
+    const peer = getLocalPeerDependency(this.packageInfo.name, STYLES_PACKAGE);
+    if (!peer.startsWith("workspace:")) return;
+
+    const stylesVersion = getLocalNpmPackageVersions(STYLES_PACKAGE);
+    const stylesRC = getLatestUnreleasedRCVersion(
+      STYLES_PACKAGE,
+      stylesVersion
+    );
+    if (!stylesRC) return;
+
+    console.log(`🔗 Using ${STYLES_PACKAGE} peer range ^${stylesRC}`);
+    this.originalStylesPeer = peer;
+    setLocalPeerDependency(
+      this.packageInfo.name,
+      STYLES_PACKAGE,
+      `^${stylesRC}`
+    );
+  }
+
   async cleanup(): Promise<void> {
+    if (this._packageInfo?.name && this.originalStylesPeer) {
+      console.log(`🔄 Restoring original ${STYLES_PACKAGE} peer range...`);
+      setLocalPeerDependency(
+        this._packageInfo.name,
+        STYLES_PACKAGE,
+        this.originalStylesPeer
+      );
+      this.originalStylesPeer = undefined;
+    }
     if (this._packageInfo?.name && this._packageInfo?.version) {
       console.log("🔄 Restoring original package.json version...");
       setLocalNpmPackageVersion(

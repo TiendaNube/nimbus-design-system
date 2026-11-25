@@ -2,6 +2,12 @@
 
 This package is intended for internal use in generating custom script builds at design system build time.
 
+## 2026-11-25 `1.12.1`
+
+#### 🐛 Bug fixes
+
+- `yarn publish:rc`: when the package declares a `workspace:^` peer on `@nimbus-ds/styles` and an unreleased `@nimbus-ds/styles` release candidate exists, the RC is published with the peer range `^<that styles RC>`, so it accepts that RC, later RCs and the stable release. The original range is restored after publishing, and regular releases keep `workspace:^`. ([#673](https://github.com/TiendaNube/nimbus-design-system/pull/673) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-11-05 `1.12.0`
 
 #### 🎉 New features
