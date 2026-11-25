@@ -9,6 +9,10 @@ The Button component allows us to initiate actions, make state or page changes.
 - Adds `appearance="success"` and `appearance="warning"`. The default stays `neutral`, so Buttons that use the default appearance are unchanged. In `next-norteui` and `next-norteui-dark` they are filled buttons like `danger` (`interactive` background, tone hover and pressed, `surfaceDisabled` when disabled), as in the Norte UI Figma, with a `textHigh` label in `next-norteui` and a dark tone `surface` label in `next-norteui-dark`; in `base`, `dark`, `next` and `next-dark` they follow the danger Button of that theme with their own tone, and the pressed label changes to `textHigh` (`base`, `next`) or the tone `surface` (`dark`, `next-dark`). The label stays at or above 4.5:1 (WCAG AA) at rest, on hover and when pressed in every theme. ([#673](https://github.com/TiendaNube/nimbus-design-system/pull/673) by [@noecondoleo](https://github.com/noecondoleo))
 - Visual change for screens rendered with `next-norteui` or `next-norteui-dark`: the `transparent` Button hover goes from `neutral.surface` to `neutral.surfaceHighlight`, and pressed from `neutral.surfaceHighlight` to `neutral.interactive`, as in the Norte UI Figma. Not a breaking change under Decision 0081: Norte UI ships as `minor` because both themes are opt-in, and `base`, `dark`, `next` and `next-dark` keep the exact previous Button (verified by `yarn check:base-invariance`). ([#673](https://github.com/TiendaNube/nimbus-design-system/pull/673) by [@noecondoleo](https://github.com/noecondoleo))
 
+#### 🐛 Bug fixes
+
+- The pressed `danger` label now reaches at least 4.5:1 (WCAG AA) in every theme. It goes white in `base` and `next` (2.53:1 → 6.07:1) and in `dark` and `next-dark` (3.18:1 → 5.10:1), and to the dark danger `surface` in `next-norteui-dark` (2.62:1 → 7.00:1). `next-norteui` was already 5.40:1. Intended visual change, approved by design, limited to the pressed state: rest and hover are unchanged. ([#PR](https://github.com/TiendaNube/nimbus-design-system/pull/PR) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-11-11 `2.12.0`
 
 #### 🎉 New features

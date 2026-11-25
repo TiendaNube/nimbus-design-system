@@ -307,7 +307,9 @@ export const globalTheme = {
         text: vars.colors.danger.textLow,
         hoverBackground: vars.colors.danger.surfaceHighlight,
         pressedBackground: vars.colors.danger.interactive,
-        pressedText: vars.colors.danger.textLow,
+        // text-low on the pressed fill is 2.53:1, so the label goes white
+        // (6.07:1 in base and next). Dark themes override it.
+        pressedText: vars.colors.neutral.background,
         disabledBackground: vars.colors.neutral.surfaceDisabled,
         disabledBorder: vars.colors.danger.surfaceHighlight,
       },
@@ -752,10 +754,16 @@ createGlobalTheme(":root", vars, globalTheme);
 /**
  * Button values for dark and next-dark. The dark pressed fills are light,
  * so success and warning use the dark tone surface as the pressed label
- * (7.7:1 and 5.9:1). Everything else matches `globalTheme`.
+ * (7.7:1 and 5.9:1), and pressed danger uses a white label (5.10:1).
+ * Everything else matches `globalTheme`.
  */
 export const buttonDark = {
   ...globalTheme.components.button,
+  // danger keeps its red pressed fill, so its label goes white (5.10:1).
+  danger: {
+    ...globalTheme.components.button.danger,
+    pressedText: vars.colors.danger.textHigh,
+  },
   success: {
     ...globalTheme.components.button.success,
     pressedText: vars.colors.success.surface,
