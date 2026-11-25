@@ -749,6 +749,23 @@ export const globalTheme = {
 
 createGlobalTheme(":root", vars, globalTheme);
 
+/**
+ * Button values for dark and next-dark. The dark pressed fills are light,
+ * so success and warning use the dark tone surface as the pressed label
+ * (7.7:1 and 5.9:1). Everything else matches `globalTheme`.
+ */
+export const buttonDark = {
+  ...globalTheme.components.button,
+  success: {
+    ...globalTheme.components.button.success,
+    pressedText: vars.colors.success.surface,
+  },
+  warning: {
+    ...globalTheme.components.button.warning,
+    pressedText: vars.colors.warning.surface,
+  },
+};
+
 // Matches Figma's text rendering on macOS: without this, WebKit/Blink/Gecko
 // rasterize the same Geist weight visibly heavier than the design tool does.
 globalStyle("html", {
