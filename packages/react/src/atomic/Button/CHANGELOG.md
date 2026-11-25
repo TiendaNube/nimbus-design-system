@@ -11,7 +11,7 @@ The Button component allows us to initiate actions, make state or page changes.
 
 #### 🐛 Bug fixes
 
-- The pressed `danger` label now reaches at least 4.5:1 (WCAG AA) in every theme. It goes white in `base` and `next` (2.53:1 → 6.07:1) and in `dark` and `next-dark` (3.18:1 → 5.10:1), and to the dark danger `surface` in `next-norteui-dark` (2.62:1 → 7.00:1). `next-norteui` was already 5.40:1. Intended visual change, approved by design, limited to the pressed state: rest and hover are unchanged. ([#PR](https://github.com/TiendaNube/nimbus-design-system/pull/PR) by [@noecondoleo](https://github.com/noecondoleo))
+- The pressed `danger` label now reaches at least 4.5:1 (WCAG AA) in every theme. It goes white in `base` and `next` (2.53:1 → 6.07:1) and in `dark` and `next-dark` (3.18:1 → 5.10:1), and to the dark danger `surface` in `next-norteui-dark` (2.62:1 → 7.00:1). `next-norteui` was already 5.40:1. Intended visual change, approved by design, limited to the pressed state: rest and hover are unchanged. ([#676](https://github.com/TiendaNube/nimbus-design-system/pull/676) by [@noecondoleo](https://github.com/noecondoleo))
 
 ## 2026-11-11 `2.12.0`
 
@@ -41,7 +41,7 @@ The Button component allows us to initiate actions, make state or page changes.
 
 #### 🎉 New features
 
-- Added `size` property to `Button` component with support for `small` and `medium` sizes. ([365](https://github.com/TiendaNube/nimbus-design-system/pull/PR) by [@usuario](https://github.com/usuario))
+- Added `size` property to `Button` component with support for `small` and `medium` sizes. ([365](https://github.com/TiendaNube/nimbus-design-system/pull/676) by [@usuario](https://github.com/usuario))
 
 ## 2025-09-17 `2.8.0`
 

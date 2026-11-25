@@ -35,7 +35,7 @@ every day, with simplicity, accessibility, consistency and performance.
 
 #### 🐛 Bug fixes
 
-- Button: The pressed `danger` label now reaches at least 4.5:1 (WCAG AA) in every theme: white in `base`, `next`, `dark` and `next-dark`, and the dark danger `surface` in `next-norteui-dark`. Intended visual change, approved by design, limited to the pressed state; rest and hover are unchanged. ([#PR](https://github.com/TiendaNube/nimbus-design-system/pull/PR) by [@noecondoleo](https://github.com/noecondoleo))
+- Button: The pressed `danger` label now reaches at least 4.5:1 (WCAG AA) in every theme: white in `base`, `next`, `dark` and `next-dark`, and the dark danger `surface` in `next-norteui-dark`. Intended visual change, approved by design, limited to the pressed state; rest and hover are unchanged. ([#676](https://github.com/TiendaNube/nimbus-design-system/pull/676) by [@noecondoleo](https://github.com/noecondoleo))
 - Popover: Renders its content inside its own `ThemeProvider` when a page has several of them, instead of in the first one. ([#636](https://github.com/TiendaNube/nimbus-design-system/pull/636) by [@claude](https://github.com/apps/claude))
 
 ## 2026-11-17 `5.67.0`
