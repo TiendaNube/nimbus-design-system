@@ -44,4 +44,4 @@ export interface AvatarProperties {
 }
 
 export type AvatarProps = AvatarProperties &
-  Omit<HTMLAttributes<HTMLElement>, "children" | "aria-label">;
+  Omit<HTMLAttributes<HTMLElement>, "children" | "aria-label" | "style">;

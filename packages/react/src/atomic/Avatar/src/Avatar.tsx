@@ -13,7 +13,6 @@ import { AvatarSkeleton } from "./components";
  */
 const Avatar: React.FC<AvatarProps> & AvatarComponents = ({
   className,
-  style: _style,
   children,
   size = "medium",
   appearance = "neutral",

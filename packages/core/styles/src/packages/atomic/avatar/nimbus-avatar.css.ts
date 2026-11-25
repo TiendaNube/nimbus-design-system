@@ -21,47 +21,29 @@ export const base = style({
   userSelect: "none"
 });
 
-export const size = styleVariants({
-  small: {
-    width: tokens.small.size,
-    height: tokens.small.size,
-    fontSize: tokens.small.fontSize
-  },
-  medium: {
-    width: tokens.medium.size,
-    height: tokens.medium.size,
-    fontSize: tokens.medium.fontSize
-  },
-  large: {
-    width: tokens.large.size,
-    height: tokens.large.size,
-    fontSize: tokens.large.fontSize
-  }
-});
+const sizeNames = ["small", "medium", "large"] as const;
+
+const sizes = {
+  small: tokens.small,
+  medium: tokens.medium,
+  large: tokens.large
+};
+
+export const size = styleVariants(sizes, ({ size: diameter, fontSize }) => ({
+  width: diameter,
+  height: diameter,
+  fontSize
+}));
 
 /* Icons inside the avatar follow its size, whatever the SVG declares. */
-globalStyle(`${size.small} svg`, {
-  width: tokens.small.iconSize,
-  height: tokens.small.iconSize
+sizeNames.forEach((name) => {
+  globalStyle(`${size[name]} svg`, {
+    width: sizes[name].iconSize,
+    height: sizes[name].iconSize
+  });
 });
 
-globalStyle(`${size.medium} svg`, {
-  width: tokens.medium.iconSize,
-  height: tokens.medium.iconSize
-});
-
-globalStyle(`${size.large} svg`, {
-  width: tokens.large.iconSize,
-  height: tokens.large.iconSize
-});
-
-export const appearance = styleVariants({
-  neutral: {
-    background: tokens.neutral.background,
-    color: tokens.neutral.color
-  },
-  ai: {
-    background: tokens.ai.background,
-    color: tokens.ai.color
-  }
-});
+export const appearance = styleVariants(
+  { neutral: tokens.neutral, ai: tokens.ai },
+  ({ background, color }) => ({ background, color })
+);
