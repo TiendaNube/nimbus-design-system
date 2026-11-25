@@ -42,4 +42,13 @@ describe("GIVEN <Avatar.Skeleton />", () => {
       expect(style).toMatch(/--height__\w{0,9}: 1.25rem;/);
     });
   });
+
+  describe("WHEN rendered with a className", () => {
+    it("THEN should keep it next to the class that stops it from shrinking", () => {
+      makeSut({ className: "custom-class" });
+      const { className } = screen.getByTestId("skeleton-element");
+      expect(className).toContain("custom-class");
+      expect(className.split(" ").length).toBeGreaterThan(1);
+    });
+  });
 });

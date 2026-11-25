@@ -47,3 +47,6 @@ export const appearance = styleVariants(
   { neutral: tokens.neutral, ai: tokens.ai },
   ({ background, color }) => ({ background, color })
 );
+
+/* Keeps the skeleton circle at the avatar size inside a narrow flex row. */
+export const skeleton = style({ flexShrink: 0 });

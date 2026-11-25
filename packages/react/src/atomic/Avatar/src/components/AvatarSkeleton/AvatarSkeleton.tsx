@@ -1,4 +1,5 @@
 import React from "react";
+import { avatar } from "@nimbus-ds/styles";
 import { Skeleton } from "@nimbus-ds/skeleton";
 
 import { type AvatarSize } from "../../avatar.types";
@@ -17,7 +18,9 @@ const AvatarSkeleton: React.FC<AvatarSkeletonProps> = ({
   "data-testid": dataTestId
 }) => (
   <Skeleton
-    className={className}
+    className={[className, avatar.classnames.skeleton]
+      .filter(Boolean)
+      .join(" ")}
     width={AVATAR_SKELETON_SIZES[size]}
     height={AVATAR_SKELETON_SIZES[size]}
     borderRadius="9999px"

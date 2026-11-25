@@ -41,7 +41,19 @@ export interface AvatarProperties {
    * represents is visible next to it.
    */
   "aria-label"?: string;
+  /**
+   * Id of the element that names the avatar. Like `aria-label`, it exposes the
+   * avatar as an image with that name.
+   */
+  "aria-labelledby"?: string;
 }
 
+/**
+ * The avatar is not interactive, so it does not take `tabIndex`: a focusable
+ * avatar would land the focus on an element hidden from assistive technologies.
+ */
 export type AvatarProps = AvatarProperties &
-  Omit<HTMLAttributes<HTMLElement>, "children" | "aria-label" | "style">;
+  Omit<
+    HTMLAttributes<HTMLElement>,
+    "children" | "aria-label" | "aria-labelledby" | "style" | "tabIndex"
+  >;

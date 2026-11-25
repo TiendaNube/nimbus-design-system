@@ -83,8 +83,21 @@ describe("GIVEN <Avatar />", () => {
 
   describe("WHEN rendered with an accessible name", () => {
     it("THEN should be exposed as an image with that name", () => {
-      makeSut({ "aria-label": "Ruda Cerámica" });
-      expect(screen.getByRole("img", { name: "Ruda Cerámica" })).toBeDefined();
+      makeSut({ "aria-label": "Avatar" });
+      expect(screen.getByRole("img", { name: "Avatar" })).toBeDefined();
+    });
+  });
+
+  describe("WHEN rendered with aria-labelledby", () => {
+    it("THEN should be exposed as an image named by that element", () => {
+      render(
+        <>
+          <span id="avatar-name">Avatar</span>
+          <Avatar aria-labelledby="avatar-name">A</Avatar>
+        </>
+      );
+      const element = screen.getByRole("img", { name: "Avatar" });
+      expect(element.getAttribute("aria-hidden")).toBeNull();
     });
   });
 

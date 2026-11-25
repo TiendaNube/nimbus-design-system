@@ -17,15 +17,17 @@ const Avatar: React.FC<AvatarProps> & AvatarComponents = ({
   size = "medium",
   appearance = "neutral",
   "aria-label": ariaLabel,
+  "aria-labelledby": ariaLabelledBy,
   ...rest
 }: AvatarProps) => {
-  const isDecorative = !ariaLabel;
+  const isDecorative = !ariaLabel && !ariaLabelledBy;
 
   return (
     <span
       {...rest}
       role={isDecorative ? undefined : "img"}
       aria-label={ariaLabel}
+      aria-labelledby={ariaLabelledBy}
       aria-hidden={isDecorative ? true : undefined}
       className={[
         className,
