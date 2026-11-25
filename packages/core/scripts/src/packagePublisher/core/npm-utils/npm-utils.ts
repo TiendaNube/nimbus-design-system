@@ -244,19 +244,19 @@ function compareVersions(a: string, b: string): number {
 }
 
 /**
- * Finds the newest published release candidate of a package whose base
- * version is newer than `stableVersion` (an RC that is not released yet).
- * @returns The RC version (e.g., "9.74.0-rc.2"), or undefined if there is none
+ * Lists the published release candidates of a package whose base version
+ * is newer than `stableVersion` (RCs that are not released yet), oldest
+ * first.
+ * @returns RC versions (e.g., ["9.74.0-rc.1", "9.74.0-rc.2", "9.75.0-rc.1"])
  */
-function getLatestUnreleasedRCVersion(
+function getUnreleasedRCVersions(
   packageName: string,
   stableVersion: string
-): string | undefined {
+): string[] {
   return getRemoteNpmPackageVersions(packageName)
     .filter((v) => isValidRCVersion(v))
     .filter((v) => compareVersions(getBaseVersionFromRC(v), stableVersion) > 0)
-    .sort(compareVersions)
-    .pop();
+    .sort(compareVersions);
 }
 
 /**
@@ -298,7 +298,7 @@ function setLocalPeerDependency(
 export {
   bumpVersion,
   compareVersions,
-  getLatestUnreleasedRCVersion,
+  getUnreleasedRCVersions,
   getLocalPeerDependency,
   setLocalPeerDependency,
   getBaseVersionFromRC,

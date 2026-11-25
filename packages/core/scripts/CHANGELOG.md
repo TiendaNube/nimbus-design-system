@@ -6,7 +6,7 @@ This package is intended for internal use in generating custom script builds at 
 
 #### 🐛 Bug fixes
 
-- `yarn publish:rc`: when the package declares a `workspace:^` peer on `@nimbus-ds/styles` and an unreleased `@nimbus-ds/styles` release candidate exists, the RC is published with the peer range `^<that styles RC>`, so it accepts that RC, later RCs and the stable release. The original range is restored after publishing, and regular releases keep `workspace:^`. ([#673](https://github.com/TiendaNube/nimbus-design-system/pull/673) by [@noecondoleo](https://github.com/noecondoleo))
+- `yarn publish:rc`: a `workspace:^` peer on `@nimbus-ds/styles` is published with a range that accepts a `@nimbus-ds/styles` release candidate. The new `--styles-rc=<version>` option picks that RC (for example `--styles-rc=9.74.0-rc.2`, published as `^9.74.0-rc.2`). Without it, if all unreleased styles RCs share one version, the first RC of that version is used; if there are RCs for several versions, the publisher stops before building and asks for `--styles-rc`. The original range is restored after publishing, and regular releases keep `workspace:^`. ([#673](https://github.com/TiendaNube/nimbus-design-system/pull/673) by [@noecondoleo](https://github.com/noecondoleo))
 
 ## 2026-11-05 `1.12.0`
 

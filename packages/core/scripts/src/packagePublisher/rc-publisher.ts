@@ -6,8 +6,9 @@ import {
   getLocalNpmPackageVersions,
   setLocalNpmPackageVersion,
   bumpVersion,
-  getLatestUnreleasedRCVersion,
+  getUnreleasedRCVersions,
   getLocalPeerDependency,
+  versionExistsOnNpm,
   setLocalPeerDependency,
 } from "./core/npm-utils/npm-utils";
 import {
@@ -29,6 +30,8 @@ class RCPublisher {
   private _packageInfo: PackageInfo | null = null;
   /** Original `@nimbus-ds/styles` peer range, restored after publishing. */
   private originalStylesPeer?: string;
+  /** `@nimbus-ds/styles` peer range to publish, when it is not the default. */
+  private stylesPeerRange?: string;
   private skipBuild: boolean = false;
   private otp?: string;
 
@@ -52,7 +55,7 @@ class RCPublisher {
   showHelp(): void {
     console.log(`🚀 Nimbus RC Publisher
 
-Usage: yarn publish:rc <packageName> [version] [--skip-build] [--otp=123456]
+Usage: yarn publish:rc <packageName> [version] [--skip-build] [--otp=123456] [--styles-rc=9.74.0-rc.2]
 
 Parameters:
   packageName  (required) Name of package to publish (e.g., @nimbus-ds/button)
@@ -67,11 +70,17 @@ Examples:
   yarn publish:rc @nimbus-ds/button         # Specific package, use version files or current
   yarn publish:rc @nimbus-ds/button 1.3.0  # Specific package and version
   yarn publish:rc @nimbus-ds/button --otp=123456 --skip-build  # Combine flags
+  yarn publish:rc @nimbus-ds/components --styles-rc=9.74.0-rc.2  # Pair with a styles RC
 
 Options:
   -h, --help      Show this help message
   --skip-build    Skip the build process and publish package as-is
   --otp=123456    Provide 2FA one-time password for npm publish (6 digits from authenticator app)
+  --styles-rc=9.74.0-rc.2
+                  For packages with a workspace peer on @nimbus-ds/styles: publish the
+                  peer as ^<this styles RC>, so the RC installs with it. Without it, the
+                  only unreleased styles RC line is used; if there are several, the
+                  publisher stops and asks for this option.
 
 For more details, see scripts/README.md`);
   }
@@ -82,6 +91,7 @@ For more details, see scripts/README.md`);
     otp?: string;
     skipBuild: boolean;
     showHelp: boolean;
+    stylesRC?: string;
   } {
     // Parse arguments (filter out flags)
     const args = argv.slice(2).filter((arg) => !arg.startsWith("-"));
@@ -91,6 +101,14 @@ For more details, see scripts/README.md`);
     const otpArg = process.argv.find((arg) => arg.startsWith("--otp="));
     const otp = otpArg ? otpArg.split("=")[1] : undefined;
     const skipBuild = argv.includes("--skip-build");
+    const stylesRCArg = argv.find((arg) => arg.startsWith("--styles-rc="));
+    const stylesRC = stylesRCArg ? stylesRCArg.split("=")[1] : undefined;
+
+    if (stylesRCArg !== undefined && !isValidRCVersion(stylesRC ?? "")) {
+      throw new Error(
+        `\n❌ Invalid --styles-rc: "${stylesRC}". Use a styles RC version (major.minor.patch-rc.number), e.g. --styles-rc=9.74.0-rc.2`
+      );
+    }
     const showHelp = argv.includes("--help") || argv.includes("-h");
 
     // Validate OTP parameter
@@ -113,14 +131,15 @@ For more details, see scripts/README.md`);
       );
     }
 
-    return { packageName, version, otp, skipBuild, showHelp };
+    return { packageName, version, otp, skipBuild, showHelp, stylesRC };
   }
 
   async run(
     packageName: string,
     version = "",
     skipBuild = false,
-    otp?: string
+    otp?: string,
+    stylesRC?: string
   ): Promise<void> {
     try {
       console.log("🚀 Nimbus RC Publisher");
@@ -139,6 +158,14 @@ For more details, see scripts/README.md`);
       // Determine RC version to publish
       const rcVersion = await this.determineRCVersion(version);
       console.log(`🎯 Publishing version: ${rcVersion}\n`);
+
+      // Decide the styles peer before building, so an ambiguous case stops early
+      this.stylesPeerRange = this.resolveStylesPeerRange(stylesRC);
+      if (this.stylesPeerRange) {
+        console.log(
+          `🔗 ${STYLES_PACKAGE} peer range: ${this.stylesPeerRange}\n`
+        );
+      }
 
       // Confirm with user
       const confirmed = await this.confirmPublish(rcVersion);
@@ -306,7 +333,7 @@ For more details, see scripts/README.md`);
 
     console.log("📝 Updating package.json version...");
     setLocalNpmPackageVersion(this.packageInfo.name, rcVersion);
-    this.useStylesRCPeer();
+    this.applyStylesPeerRange();
 
     console.log("📤 Publishing to npm...");
     publishToNpm(this.packageInfo.name, {
@@ -321,27 +348,62 @@ For more details, see scripts/README.md`);
   /**
    * A `workspace:^` peer on `@nimbus-ds/styles` is published as `^<local
    * styles version>`, which no styles RC satisfies (semver skips
-   * prereleases of other versions). When an unreleased styles RC exists,
-   * publish the peer as `^<that RC>` instead, so it accepts that RC, later
-   * RCs and the stable release. Regular releases keep `workspace:^`.
+   * prereleases of other versions). For an RC, the peer is published as
+   * `^<styles RC>` instead: the one passed with `--styles-rc`, or, when all
+   * unreleased styles RCs share one version, the first RC of that version
+   * (so every RC of it and the stable release satisfy the range). Several
+   * unreleased versions are ambiguous, so the publisher stops and asks.
+   * Regular releases keep `workspace:^`.
+   * @returns The range to publish, or undefined to keep the declared peer
    */
-  useStylesRCPeer(): void {
+  resolveStylesPeerRange(stylesRC?: string): string | undefined {
     const peer = getLocalPeerDependency(this.packageInfo.name, STYLES_PACKAGE);
-    if (!peer.startsWith("workspace:")) return;
+    if (!peer.startsWith("workspace:")) {
+      if (stylesRC) {
+        console.log(
+          `⚠️  --styles-rc ignored: ${this.packageInfo.name} has no workspace peer on ${STYLES_PACKAGE}`
+        );
+      }
+      return undefined;
+    }
+
+    if (stylesRC) {
+      if (!versionExistsOnNpm(STYLES_PACKAGE, stylesRC)) {
+        throw new Error(
+          `\n❌ ${STYLES_PACKAGE}@${stylesRC} is not published. Publish that styles RC first or pass another --styles-rc.`
+        );
+      }
+      return `^${stylesRC}`;
+    }
 
     const stylesVersion = getLocalNpmPackageVersions(STYLES_PACKAGE);
-    const stylesRC = getLatestUnreleasedRCVersion(
-      STYLES_PACKAGE,
-      stylesVersion
-    );
-    if (!stylesRC) return;
+    const unreleased = getUnreleasedRCVersions(STYLES_PACKAGE, stylesVersion);
+    if (unreleased.length === 0) return undefined;
 
-    console.log(`🔗 Using ${STYLES_PACKAGE} peer range ^${stylesRC}`);
-    this.originalStylesPeer = peer;
+    const baseVersions = Array.from(
+      new Set(unreleased.map((v) => getBaseVersionFromRC(v)))
+    );
+    if (baseVersions.length > 1) {
+      throw new Error(
+        `\n❌ There are unreleased ${STYLES_PACKAGE} RCs for several versions (${unreleased.join(
+          ", "
+        )}). Pass the one this RC needs, e.g. --styles-rc=${unreleased[0]}`
+      );
+    }
+    return `^${unreleased[0]}`;
+  }
+
+  /** Publishes the resolved styles peer range; `cleanup` restores it. */
+  applyStylesPeerRange(): void {
+    if (!this.stylesPeerRange) return;
+    this.originalStylesPeer = getLocalPeerDependency(
+      this.packageInfo.name,
+      STYLES_PACKAGE
+    );
     setLocalPeerDependency(
       this.packageInfo.name,
       STYLES_PACKAGE,
-      `^${stylesRC}`
+      this.stylesPeerRange
     );
   }
 
