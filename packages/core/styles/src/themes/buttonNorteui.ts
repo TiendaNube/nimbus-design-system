@@ -9,13 +9,20 @@ export type ButtonThemeValues = StringLeaves<typeof vars.components.button>;
 
 export type ButtonTone = "danger" | "success" | "warning";
 
-/** Filled tone Button (danger, success, warning), as in the Norte UI Figma. */
-const buttonToneNorteui = (tone: ButtonTone): ButtonThemeValues["danger"] => ({
+/**
+ * Filled tone Button (danger, success, warning), as in the Norte UI Figma.
+ * `text` is the tone color used for the label in every state.
+ */
+const buttonToneNorteui = (
+  tone: ButtonTone,
+  text: "textHigh" | "surface" = "textHigh"
+): ButtonThemeValues["danger"] => ({
   background: vars.colors[tone].interactive,
   border: vars.colors[tone].interactive,
-  text: vars.colors[tone].textHigh,
+  text: vars.colors[tone][text],
   hoverBackground: vars.colors[tone].interactiveHover,
   pressedBackground: vars.colors[tone].interactivePressed,
+  pressedText: vars.colors[tone][text],
   disabledBackground: vars.colors[tone].surfaceDisabled,
   disabledBorder: vars.colors[tone].surfaceDisabled,
 });
@@ -27,9 +34,14 @@ const buttonToneNorteui = (tone: ButtonTone): ButtonThemeValues["danger"] => ({
  *
  * `aiSecondaryHoverGlow` is passed by each theme because the AI
  * `interactive` color is only in the token palette, not in `vars`.
+ *
+ * `toneText` is the label color of success and warning. The dark palette
+ * has light fills and a white `textHigh`, so next-norteui-dark passes
+ * `surface` (a dark tone, at least 5.8:1 in every state).
  */
 export const buttonNorteui = (
-  aiSecondaryHoverGlow: string
+  aiSecondaryHoverGlow: string,
+  toneText: "textHigh" | "surface" = "textHigh"
 ): ButtonThemeValues => ({
   small: {
     height: "1.5rem",
@@ -65,8 +77,8 @@ export const buttonNorteui = (
     pressedBackground: vars.colors.neutral.interactive,
   },
   danger: buttonToneNorteui("danger"),
-  success: buttonToneNorteui("success"),
-  warning: buttonToneNorteui("warning"),
+  success: buttonToneNorteui("success", toneText),
+  warning: buttonToneNorteui("warning", toneText),
   aiSecondary: {
     text: vars.colors.aiGenerative.textLow,
     background: vars.colors.aiGenerative.surface,

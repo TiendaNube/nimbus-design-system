@@ -71,6 +71,7 @@ const toneAppearance = (tone: "danger" | "success" | "warning") => ({
   ":active": {
     background: varsThemeBase.components.button[tone].pressedBackground,
     borderColor: varsThemeBase.colors[tone].interactivePressed,
+    color: varsThemeBase.components.button[tone].pressedText,
   },
   ":disabled": {
     background: varsThemeBase.components.button[tone].disabledBackground,

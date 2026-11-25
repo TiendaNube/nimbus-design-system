@@ -17,6 +17,7 @@ const buttonToneColors = {
   text: "",
   hoverBackground: "",
   pressedBackground: "",
+  pressedText: "",
   disabledBackground: "",
   disabledBorder: "",
 };

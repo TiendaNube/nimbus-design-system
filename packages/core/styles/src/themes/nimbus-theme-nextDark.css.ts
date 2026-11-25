@@ -66,6 +66,19 @@ const nextDarkTheme = {
   }),
   components: {
     ...globalTheme.components,
+    // The dark pressed fills are light, so success and warning use the dark
+    // tone surface as the pressed label (7.7:1 and 5.9:1).
+    button: {
+      ...globalTheme.components.button,
+      success: {
+        ...globalTheme.components.button.success,
+        pressedText: vars.colors.success.surface,
+      },
+      warning: {
+        ...globalTheme.components.button.warning,
+        pressedText: vars.colors.warning.surface,
+      },
+    },
     badge: {
       ...globalTheme.components.badge,
       surface: {

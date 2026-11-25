@@ -28,6 +28,9 @@ const buttonToneBase = (
   text: vars.colors[tone].textLow,
   hoverBackground: vars.colors[tone].surfaceHighlight,
   pressedBackground: vars.colors[tone].interactive,
+  // text-low on the pressed fill is below 4.5:1, so the label goes to
+  // text-high (8.3:1 success, 5.6:1 warning in base).
+  pressedText: vars.colors[tone].textHigh,
   disabledBackground: vars.colors.neutral.surfaceDisabled,
   disabledBorder: vars.colors[tone].surfaceHighlight,
 });
@@ -304,6 +307,7 @@ export const globalTheme = {
         text: vars.colors.danger.textLow,
         hoverBackground: vars.colors.danger.surfaceHighlight,
         pressedBackground: vars.colors.danger.interactive,
+        pressedText: vars.colors.danger.textLow,
         disabledBackground: vars.colors.neutral.surfaceDisabled,
         disabledBorder: vars.colors.danger.surfaceHighlight,
       },
