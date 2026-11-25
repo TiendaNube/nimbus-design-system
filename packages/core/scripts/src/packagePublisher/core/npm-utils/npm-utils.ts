@@ -245,42 +245,42 @@ function compareVersions(a: string, b: string): number {
 
 /**
  * Lists the published release candidates of a package whose base version
- * is newer than `stableVersion` (RCs that are not released yet), oldest
- * first.
+ * is newer than `stableVersion` and not published as a stable release yet
+ * (RCs that are not released yet), oldest first.
  * @returns RC versions (e.g., ["9.74.0-rc.1", "9.74.0-rc.2", "9.75.0-rc.1"])
  */
 function getUnreleasedRCVersions(
   packageName: string,
   stableVersion: string
 ): string[] {
-  return getRemoteNpmPackageVersions(packageName)
+  const publishedVersions = getRemoteNpmPackageVersions(packageName);
+  return publishedVersions
     .filter((v) => isValidRCVersion(v))
     .filter((v) => compareVersions(getBaseVersionFromRC(v), stableVersion) > 0)
+    .filter((v) => !publishedVersions.includes(getBaseVersionFromRC(v)))
     .sort(compareVersions);
 }
 
 /**
  * Reads a peer dependency range from a workspace package.json.
+ * Command and parsing failures are thrown, so the caller can stop and
+ * restore the package.
  * @returns The range, or an empty string if the peer is not declared
  */
 function getLocalPeerDependency(
   packageName: string,
   dependencyName: string
 ): string {
-  try {
-    const output = execSync(
-      `npm pkg get peerDependencies.${dependencyName} --workspace=${packageName}`,
-      { encoding: "utf8", stdio: ["pipe", "pipe", "ignore"] }
-    );
-    const parsed = JSON.parse(output.trim());
-    const value =
-      typeof parsed === "object" && parsed !== null
-        ? parsed[packageName]
-        : parsed;
-    return typeof value === "string" ? value : "";
-  } catch {
-    return "";
-  }
+  const output = execSync(
+    `npm pkg get peerDependencies.${dependencyName} --workspace=${packageName}`,
+    { encoding: "utf8", stdio: ["pipe", "pipe", "pipe"] }
+  );
+  const parsed = JSON.parse(output.trim());
+  const value =
+    typeof parsed === "object" && parsed !== null
+      ? parsed[packageName]
+      : parsed;
+  return typeof value === "string" ? value : "";
 }
 
 /** Writes a peer dependency range in a workspace package.json. */
