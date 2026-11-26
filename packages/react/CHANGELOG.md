@@ -36,10 +36,6 @@ every day, with simplicity, accessibility, consistency and performance.
 
 - Popover: Renders its content inside its own `ThemeProvider` when a page has several of them, instead of in the first one. ([#636](https://github.com/TiendaNube/nimbus-design-system/pull/636) by [@claude](https://github.com/apps/claude))
 
-#### 💡 Others
-
-- Declares `@nimbus-ds/styles` as a peer dependency, so the package manager warns when an app installs `@nimbus-ds/components` with a `@nimbus-ds/styles` too old for its components (for example, Avatar needs the `avatar` styles from `@nimbus-ds/styles` `9.74.0`). ([#674](https://github.com/TiendaNube/nimbus-design-system/pull/674) by [@noecondoleo](https://github.com/noecondoleo))
-
 ## 2026-11-17 `5.67.0`
 
 #### 🎉 New features
