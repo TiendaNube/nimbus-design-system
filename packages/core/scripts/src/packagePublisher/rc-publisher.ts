@@ -19,6 +19,7 @@ import {
 } from "./rc-publisher.definitions";
 import { buildPackage, getYarnWorkspaces } from "./core/workspaces/workspaces";
 import type { PackageInfo } from "./rc-publisher.types";
+import { EXIT_CODES } from "../common/constants";
 
 /**
  * Tool for publishing Release Candidate versions of Nimbus packages
@@ -189,6 +190,8 @@ For more details, see scripts/README.md`);
         error instanceof Error ? error.message : String(error)
       );
       await this.cleanup();
+      // Nothing was published: fail the command so CI does not report success
+      process.exitCode = EXIT_CODES.FAILURE;
     }
   }
 

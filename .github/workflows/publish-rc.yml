@@ -21,6 +21,12 @@ on:
           - patch
           - minor
           - major
+      styles_rc:
+        description: |
+          Optional @nimbus-ds/styles RC for the published packages' styles peer (e.g., 9.74.0-rc.2).
+          Required when there are unreleased styles RCs for several versions; otherwise leave empty.
+        required: false
+        type: string
 
 # The publishing job only needs repository read access from GITHUB_TOKEN.
 permissions:
@@ -88,7 +94,7 @@ jobs:
             if [ -n "$package" ]; then
               echo "📦 Publishing RC for $package with bump type: ${{ github.event.inputs.bump_type }}"
               set +e
-              echo "y" | yarn publish:rc "$package" "${{ github.event.inputs.bump_type }}" --skip-build | tee "$RUNNER_TEMP/publish-rc.log"
+              echo "y" | yarn publish:rc "$package" "${{ github.event.inputs.bump_type }}" --skip-build ${STYLES_RC:+"--styles-rc=$STYLES_RC"} | tee "$RUNNER_TEMP/publish-rc.log"
               EXIT_CODE=${PIPESTATUS[1]}
               set -e
               if [ $EXIT_CODE -ne 0 ]; then
@@ -119,6 +125,7 @@ jobs:
           echo "✅ All packages published successfully"
         env:
           YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTOMATION_PUBLISH }}
+          STYLES_RC: ${{ github.event.inputs.styles_rc }}
 
   report-published-rc:
     needs: publish-rc-packages
