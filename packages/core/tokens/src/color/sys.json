@@ -47,7 +47,7 @@
         "interactive-pressed": { "value": "{color.light.neutral.60}" },
         "text-disabled": { "value": "{color.light.neutral.50}" },
         "text-low": { "value": "{color.light.neutral.40}" },
-        "text-high": { "value": "{color.light.neutral.0}" }
+        "text-high": { "value": "{color.light.danger.60}" }
       },
       "aiGenerative": {
         "background": { "value": "{color.light.generative.100}" },
