@@ -3,6 +3,12 @@
 This is the log of notable changes to the Design System Nimbus that are developer-facing.
 Package-specific changes not released in any package will be added here just before the release. Until then, you can find them in changelogs of the individual packages (see [packages](./packages) directory).
 
+## 2026-11-27
+
+#### 🐛 Bug fixes
+
+- CI: The turbo `build` task now declares `dist/**` as its output, so a cache hit restores each package's build instead of only replaying its logs. Before, a cache hit on `@nimbus-ds/webpack` left it without `dist` and the `@nimbus-ds/components` build failed. ([#676](https://github.com/TiendaNube/nimbus-design-system/pull/676) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-11-20
 
 #### 🎉 New features
