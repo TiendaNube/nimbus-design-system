@@ -10,14 +10,14 @@ export const Basic: React.FC<InputProps> = forwardRef((props: InputProps) => (
 )) as React.FC<InputProps>;
 Basic.displayName = "Input";
 
-const meta: Meta<typeof Basic> = {
+const meta: Meta<typeof InputComponent> = {
   title: "Atomic/Input",
-  component: Basic,
+  component: InputComponent,
   tags: ["autodocs"],
 };
 
 export default meta;
-type Story = StoryObj<typeof Basic>;
+type Story = StoryObj<typeof InputComponent>;
 
 export const basic: Story = {
   args: {
