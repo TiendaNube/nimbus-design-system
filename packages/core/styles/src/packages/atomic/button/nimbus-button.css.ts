@@ -56,6 +56,32 @@ export const size = styleVariants({
   },
 });
 
+/**
+ * Filled tone Button. danger keeps the exact styles it had; success and
+ * warning use the same recipe with their own tone.
+ */
+const toneAppearance = (tone: "danger" | "success" | "warning") => ({
+  background: varsThemeBase.components.button[tone].background,
+  borderColor: varsThemeBase.components.button[tone].border,
+  color: varsThemeBase.components.button[tone].text,
+  ":hover": {
+    background: varsThemeBase.components.button[tone].hoverBackground,
+    borderColor: varsThemeBase.colors[tone].interactiveHover,
+  },
+  ":active": {
+    background: varsThemeBase.components.button[tone].pressedBackground,
+    borderColor: varsThemeBase.colors[tone].interactivePressed,
+    color: varsThemeBase.components.button[tone].pressedText,
+  },
+  ":disabled": {
+    background: varsThemeBase.components.button[tone].disabledBackground,
+    borderColor: varsThemeBase.components.button[tone].disabledBorder,
+  },
+  ":focus": {
+    borderColor: varsThemeBase.colors[tone].interactive,
+  },
+});
+
 export const appearance = styleVariants({
   primary: [
     base,
@@ -80,29 +106,7 @@ export const appearance = styleVariants({
       },
     },
   ],
-  danger: [
-    base,
-    {
-      background: varsThemeBase.components.button.danger.background,
-      borderColor: varsThemeBase.components.button.danger.border,
-      color: varsThemeBase.components.button.danger.text,
-      ":hover": {
-        background: varsThemeBase.components.button.danger.hoverBackground,
-        borderColor: varsThemeBase.colors.danger.interactiveHover,
-      },
-      ":active": {
-        background: varsThemeBase.components.button.danger.pressedBackground,
-        borderColor: varsThemeBase.colors.danger.interactivePressed,
-      },
-      ":disabled": {
-        background: varsThemeBase.components.button.danger.disabledBackground,
-        borderColor: varsThemeBase.components.button.danger.disabledBorder,
-      },
-      ":focus": {
-        borderColor: varsThemeBase.colors.danger.interactive,
-      },
-    },
-  ],
+  danger: [base, toneAppearance("danger")],
   neutral: [
     base,
     {
@@ -133,11 +137,13 @@ export const appearance = styleVariants({
       borderColor: "transparent",
       color: varsThemeBase.colors.neutral.textHigh,
       ":hover": {
-        backgroundColor: varsThemeBase.colors.neutral.surface,
+        backgroundColor:
+          varsThemeBase.components.button.transparent.hoverBackground,
         borderColor: varsThemeBase.components.button.transparent.hoverBorder,
       },
       ":active": {
-        backgroundColor: varsThemeBase.colors.neutral.surfaceHighlight,
+        backgroundColor:
+          varsThemeBase.components.button.transparent.pressedBackground,
         borderColor: varsThemeBase.components.button.transparent.pressedBorder,
       },
       ":disabled": {
@@ -203,4 +209,6 @@ export const appearance = styleVariants({
       },
     },
   ],
+  success: [base, toneAppearance("success")],
+  warning: [base, toneAppearance("warning")],
 });

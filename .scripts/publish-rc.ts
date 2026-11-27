@@ -19,14 +19,14 @@ async function main() {
   process.on("SIGINT", () => handleShutdown("SIGINT"));
   process.on("SIGTERM", () => handleShutdown("SIGTERM"));
 
-  const { packageName, version, otp, skipBuild, showHelp } =
+  const { packageName, version, otp, skipBuild, showHelp, stylesRC } =
     publisher.validateArgs(process.argv);
 
   if (showHelp) {
     return publisher.showHelp();
   }
 
-  await publisher.run(packageName, version, skipBuild, otp);
+  await publisher.run(packageName, version, skipBuild, otp, stylesRC);
 }
 
 if (require.main === module) {

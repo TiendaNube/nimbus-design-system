@@ -2,7 +2,7 @@ import { createTheme } from "@vanilla-extract/css";
 import tokens from "@nimbus-ds/tokens/dist/js/tokens";
 
 import { vars } from "./contract.css";
-import { globalTheme } from "./globals.css";
+import { buttonDark, globalTheme } from "./globals.css";
 import { withToneSurfaceDisabled } from "./toneSurfaceDisabled";
 
 const colors = tokens.color.dark;
@@ -84,6 +84,7 @@ const darkTheme = {
   }),
   components: {
     ...globalTheme.components,
+    button: buttonDark,
     badge: {
       ...globalTheme.components.badge,
       surface: {
