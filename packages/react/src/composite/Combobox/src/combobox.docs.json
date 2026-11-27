@@ -3,7 +3,7 @@
   "name": "Combobox",
   "totalProps": 20,
   "packageName": "@nimbus-ds/combobox",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "docLink": "https://nimbus.nuvemshop.com.br/documentation/composite-components/combobox",
   "props": [
     {
