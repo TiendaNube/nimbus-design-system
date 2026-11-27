@@ -99,122 +99,6 @@ const readGitFileAtRef = (ref: string, relPath: string): string | null => {
   }
 };
 
-/**
- * Visible changes to base, dark, next or next-dark that design approved.
- * Each entry names one property by its path in the theme source (for
- * example `globalTheme.components.button.danger.pressedText`). A removed
- * baseline line is accepted only when every baseline occurrence of that
- * line sits at an approved path and the current file assigns the approved
- * value at that same path. The same line anywhere else keeps failing. Once
- * the PR is merged the baseline already has the new value, so the entry no
- * longer has an effect and can be removed.
- */
-interface ApprovedBaseChange {
-  file: string;
-  path: string;
-  from: string;
-  to: string;
-  reason: string;
-  pr: string;
-}
-
-const approvedBaseChanges: ApprovedBaseChange[] = [
-  {
-    file: "packages/core/styles/src/themes/globals.css.ts",
-    path: "globalTheme.components.button.danger.pressedText",
-    from: "vars.colors.danger.textLow",
-    to: "vars.colors.neutral.background",
-    reason:
-      "Pressed danger Button label was 2.53:1 in base and next; white is 6.07:1 (WCAG AA). Approved by design.",
-    pr: "https://github.com/TiendaNube/nimbus-design-system/pull/676",
-  },
-];
-
-interface SourceAssignment {
-  path: string;
-  value: string;
-}
-
-const countChar = (text: string, char: string): number =>
-  text.split(char).length - 1;
-
-/**
- * Updates the key path for the braces a line leaves unmatched: pops one
- * key per extra `}` and pushes an empty key per extra `{` that has no key.
- */
-const applyUnmatchedBraces = (
-  stack: string[],
-  opens: number,
-  closes: number
-): void => {
-  for (let i = 0; i < closes - opens; i += 1) stack.pop();
-  if (opens > closes) {
-    for (let i = 0; i < opens - closes; i += 1) stack.push("");
-  }
-};
-
-/**
- * Reads the `key: value` assignments of a theme source file with the path
- * of object keys that leads to each one. Top-level objects start at their
- * `const` name. Good enough for the plain object literals of the theme
- * files; lines it cannot place get an empty path and never match.
- */
-const collectAssignments = (content: string): SourceAssignment[] => {
-  const result: SourceAssignment[] = [];
-  const stack: string[] = [];
-  for (const rawLine of content.split(/\r?\n/)) {
-    const line = rawLine.replace(/\/\/.*$/, "").trim();
-    if (!line) continue;
-    const declaration = line.match(
-      /^(?:export\s+)?const\s+([A-Za-z0-9_]+)\b[^=]*=\s*.*\{$/
-    );
-    const keyed = line.match(/^([A-Za-z0-9_"]+)\s*:\s*(.+?),?$/);
-    const opens = countChar(line, "{");
-    const closes = countChar(line, "}");
-    if (declaration && opens > closes) {
-      stack.push(declaration[1]);
-      continue;
-    }
-    if (keyed && opens > closes) {
-      stack.push(keyed[1].replace(/"/g, ""));
-      continue;
-    }
-    if (keyed && opens === closes) {
-      result.push({
-        path: [...stack, keyed[1].replace(/"/g, "")].join("."),
-        value: keyed[2].trim(),
-      });
-    }
-    applyUnmatchedBraces(stack, opens, closes);
-  }
-  return result;
-};
-
-const isApprovedBaseChange = (
-  relFile: string,
-  baselineLine: string,
-  baselineAssignments: SourceAssignment[],
-  currentAssignments: SourceAssignment[]
-): boolean => {
-  const occurrences = baselineAssignments.filter(
-    ({ path: assignmentPath, value }) =>
-      `${assignmentPath.split(".").pop()}: ${value}` === baselineLine
-  );
-  if (!occurrences.length) return false;
-  return occurrences.every(({ path: assignmentPath, value }) =>
-    approvedBaseChanges.some(
-      (change) =>
-        change.file === relFile &&
-        change.path === assignmentPath &&
-        change.from === value &&
-        currentAssignments.some(
-          (current) =>
-            current.path === change.path && current.value === change.to
-        )
-    )
-  );
-};
-
 const verifyTokenAndThemeSourceInvariance = (baseRef: string): string[] => {
   const errors: string[] = [];
 
@@ -366,23 +250,12 @@ const verifyTokenAndThemeSourceInvariance = (baseRef: string): string[] => {
     const currentNormalizedLines = new Set(
       currentContent.split(/\r?\n/).map(normalizeLine).filter(Boolean)
     );
-    const baselineAssignments = collectAssignments(baselineContent);
-    const currentAssignments = collectAssignments(currentContent);
     const assignmentRegex = /^\s*([A-Za-z0-9_"]+)\s*:\s*(.+?),?\s*$/gm;
     let match = assignmentRegex.exec(baselineContent);
     while (match !== null) {
       const fullLine = normalizeLine(match[0]);
       const rhs = match[2].trim();
-      if (
-        !rhs.endsWith("{") &&
-        !currentNormalizedLines.has(fullLine) &&
-        !isApprovedBaseChange(
-          relFile,
-          fullLine,
-          baselineAssignments,
-          currentAssignments
-        )
-      ) {
+      if (!rhs.endsWith("{") && !currentNormalizedLines.has(fullLine)) {
         errors.push(
           `Existing theme invariance violation in ${relFile}: baseline assignment "${fullLine}" was modified or removed.`
         );
