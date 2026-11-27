@@ -99,6 +99,44 @@ const readGitFileAtRef = (ref: string, relPath: string): string | null => {
   }
 };
 
+/**
+ * Visible changes to base, dark, next or next-dark that design approved.
+ * Each entry frees exactly one baseline assignment line in one file, and
+ * only when its approved replacement line is present. Every other baseline
+ * line keeps failing. Once the PR is merged the baseline contains `to`, so
+ * the entry no longer has an effect and can be removed.
+ */
+interface ApprovedBaseChange {
+  file: string;
+  from: string;
+  to: string;
+  reason: string;
+  pr: string;
+}
+
+const approvedBaseChanges: ApprovedBaseChange[] = [
+  {
+    file: "packages/core/styles/src/themes/globals.css.ts",
+    from: "pressedText: vars.colors.danger.textLow",
+    to: "pressedText: vars.colors.neutral.background",
+    reason:
+      "Pressed danger Button label was 2.53:1 in base and next; white is 6.07:1 (WCAG AA). Approved by design.",
+    pr: "https://github.com/TiendaNube/nimbus-design-system/pull/676",
+  },
+];
+
+const isApprovedBaseChange = (
+  relFile: string,
+  baselineLine: string,
+  currentLines: Set<string>
+): boolean =>
+  approvedBaseChanges.some(
+    (change) =>
+      change.file === relFile &&
+      change.from === baselineLine &&
+      currentLines.has(change.to)
+  );
+
 const verifyTokenAndThemeSourceInvariance = (baseRef: string): string[] => {
   const errors: string[] = [];
 
@@ -255,7 +293,11 @@ const verifyTokenAndThemeSourceInvariance = (baseRef: string): string[] => {
     while (match !== null) {
       const fullLine = normalizeLine(match[0]);
       const rhs = match[2].trim();
-      if (!rhs.endsWith("{") && !currentNormalizedLines.has(fullLine)) {
+      if (
+        !rhs.endsWith("{") &&
+        !currentNormalizedLines.has(fullLine) &&
+        !isApprovedBaseChange(relFile, fullLine, currentNormalizedLines)
+      ) {
         errors.push(
           `Existing theme invariance violation in ${relFile}: baseline assignment "${fullLine}" was modified or removed.`
         );

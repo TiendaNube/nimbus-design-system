@@ -7,7 +7,7 @@ The Button component allows us to initiate actions, make state or page changes.
 #### 🎉 New features
 
 - Adds `appearance="success"` and `appearance="warning"`. The default stays `neutral`, so Buttons that use the default appearance are unchanged. In `next-norteui` and `next-norteui-dark` they are filled buttons like `danger` (`interactive` background, tone hover and pressed, `surfaceDisabled` when disabled), as in the Norte UI Figma, with a `textHigh` label in `next-norteui` and a dark tone `surface` label in `next-norteui-dark`; in `base`, `dark`, `next` and `next-dark` they follow the danger Button of that theme with their own tone, and the pressed label changes to `textHigh` (`base`, `next`) or the tone `surface` (`dark`, `next-dark`). The label stays at or above 4.5:1 (WCAG AA) at rest, on hover and when pressed in every theme. ([#673](https://github.com/TiendaNube/nimbus-design-system/pull/673) by [@noecondoleo](https://github.com/noecondoleo))
-- Visual change for screens rendered with `next-norteui` or `next-norteui-dark`: the `transparent` Button hover goes from `neutral.surface` to `neutral.surfaceHighlight`, and pressed from `neutral.surfaceHighlight` to `neutral.interactive`, as in the Norte UI Figma. Not a breaking change under Decision 0081: Norte UI ships as `minor` because both themes are opt-in, and `base`, `dark`, `next` and `next-dark` keep the exact previous Button (verified by `yarn check:base-invariance`). ([#673](https://github.com/TiendaNube/nimbus-design-system/pull/673) by [@noecondoleo](https://github.com/noecondoleo))
+- Visual change for screens rendered with `next-norteui` or `next-norteui-dark`: the `transparent` Button hover goes from `neutral.surface` to `neutral.surfaceHighlight`, and pressed from `neutral.surfaceHighlight` to `neutral.interactive`, as in the Norte UI Figma. Not a breaking change under Decision 0081: Norte UI ships as `minor` because both themes are opt-in, and `base`, `dark`, `next` and `next-dark` keep the exact previous `transparent` Button (verified by `yarn check:base-invariance`). ([#673](https://github.com/TiendaNube/nimbus-design-system/pull/673) by [@noecondoleo](https://github.com/noecondoleo))
 
 #### 🐛 Bug fixes
 
@@ -41,7 +41,7 @@ The Button component allows us to initiate actions, make state or page changes.
 
 #### 🎉 New features
 
-- Added `size` property to `Button` component with support for `small` and `medium` sizes. ([365](https://github.com/TiendaNube/nimbus-design-system/pull/676) by [@usuario](https://github.com/usuario))
+- Added `size` property to `Button` component with support for `small` and `medium` sizes. ([365](https://github.com/TiendaNube/nimbus-design-system/pull/PR) by [@usuario](https://github.com/usuario))
 
 ## 2025-09-17 `2.8.0`
 
