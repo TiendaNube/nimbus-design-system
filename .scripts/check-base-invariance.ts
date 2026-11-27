@@ -139,6 +139,21 @@ const countChar = (text: string, char: string): number =>
   text.split(char).length - 1;
 
 /**
+ * Updates the key path for the braces a line leaves unmatched: pops one
+ * key per extra `}` and pushes an empty key per extra `{` that has no key.
+ */
+const applyUnmatchedBraces = (
+  stack: string[],
+  opens: number,
+  closes: number
+): void => {
+  for (let i = 0; i < closes - opens; i += 1) stack.pop();
+  if (opens > closes) {
+    for (let i = 0; i < opens - closes; i += 1) stack.push("");
+  }
+};
+
+/**
  * Reads the `key: value` assignments of a theme source file with the path
  * of object keys that leads to each one. Top-level objects start at their
  * `const` name. Good enough for the plain object literals of the theme
@@ -170,10 +185,7 @@ const collectAssignments = (content: string): SourceAssignment[] => {
         value: keyed[2].trim(),
       });
     }
-    for (let i = 0; i < closes - opens; i += 1) stack.pop();
-    if (opens > closes) {
-      for (let i = 0; i < opens - closes; i += 1) stack.push("");
-    }
+    applyUnmatchedBraces(stack, opens, closes);
   }
   return result;
 };
