@@ -7,6 +7,26 @@ type StringLeaves<T> = {
 
 export type ButtonThemeValues = StringLeaves<typeof vars.components.button>;
 
+export type ButtonTone = "danger" | "success" | "warning";
+
+/**
+ * Filled tone Button (danger, success, warning), as in the Norte UI Figma.
+ * `text` is the tone color used for the label in every state.
+ */
+const buttonToneNorteui = (
+  tone: ButtonTone,
+  text: "textHigh" | "surface" = "textHigh"
+): ButtonThemeValues["danger"] => ({
+  background: vars.colors[tone].interactive,
+  border: vars.colors[tone].interactive,
+  text: vars.colors[tone][text],
+  hoverBackground: vars.colors[tone].interactiveHover,
+  pressedBackground: vars.colors[tone].interactivePressed,
+  pressedText: vars.colors[tone][text],
+  disabledBackground: vars.colors[tone].surfaceDisabled,
+  disabledBorder: vars.colors[tone].surfaceDisabled,
+});
+
 /**
  * Button values for next-norteui and next-norteui-dark, taken from the
  * Norte UI Button in Figma. They reference theme colors, so the dark theme
@@ -14,9 +34,14 @@ export type ButtonThemeValues = StringLeaves<typeof vars.components.button>;
  *
  * `aiSecondaryHoverGlow` is passed by each theme because the AI
  * `interactive` color is only in the token palette, not in `vars`.
+ *
+ * `toneText` is the label color of success and warning. The dark palette
+ * has light fills and a white `textHigh`, so next-norteui-dark passes
+ * `surface` (a dark tone, at least 5.8:1 in every state).
  */
 export const buttonNorteui = (
-  aiSecondaryHoverGlow: string
+  aiSecondaryHoverGlow: string,
+  toneText: "textHigh" | "surface" = "textHigh"
 ): ButtonThemeValues => ({
   small: {
     height: "1.5rem",
@@ -47,16 +72,13 @@ export const buttonNorteui = (
   transparent: {
     hoverBorder: "transparent",
     pressedBorder: "transparent",
+    // One step darker than base, as in the Norte UI Figma.
+    hoverBackground: vars.colors.neutral.surfaceHighlight,
+    pressedBackground: vars.colors.neutral.interactive,
   },
-  danger: {
-    background: vars.colors.danger.interactive,
-    border: vars.colors.danger.interactive,
-    text: vars.colors.danger.textHigh,
-    hoverBackground: vars.colors.danger.interactiveHover,
-    pressedBackground: vars.colors.danger.interactivePressed,
-    disabledBackground: vars.colors.danger.surfaceDisabled,
-    disabledBorder: vars.colors.danger.surfaceDisabled,
-  },
+  danger: buttonToneNorteui("danger"),
+  success: buttonToneNorteui("success", toneText),
+  warning: buttonToneNorteui("warning", toneText),
   aiSecondary: {
     text: vars.colors.aiGenerative.textLow,
     background: vars.colors.aiGenerative.surface,

@@ -2,6 +2,12 @@
 
 This package is intended for internal use in generating custom script builds at design system build time.
 
+## 2026-11-25 `1.12.1`
+
+#### 🐛 Bug fixes
+
+- `yarn publish:rc`: a `workspace:^` peer on `@nimbus-ds/styles` is published with a range that accepts a `@nimbus-ds/styles` release candidate. The new `--styles-rc=<version>` option picks that RC (for example `--styles-rc=9.74.0-rc.2`, published as `^9.74.0-rc.2`). Without it, if all unreleased styles RCs (those whose version is not published as stable yet) share one version, the first RC of that version is used; if there are RCs for several versions, the publisher stops before building and asks for `--styles-rc`. The original range is restored after publishing, and regular releases keep `workspace:^`. `yarn publish:rc` now exits with code 1 when it cannot publish, so the `publish-rc-manual` workflow fails instead of passing; the workflow takes the styles RC in the new optional `styles_rc` input. ([#673](https://github.com/TiendaNube/nimbus-design-system/pull/673) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-11-05 `1.12.0`
 
 #### 🎉 New features

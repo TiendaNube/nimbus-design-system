@@ -46,6 +46,20 @@ describe("GIVEN <Button />", () => {
       ).toContain("appearance_danger");
     });
 
+    it("AND should correctly render the appearance success", () => {
+      makeSut({ appearance: "success", children: "button" });
+      expect(
+        screen.getByRole("button", { name: "button" }).getAttribute("class")
+      ).toContain("appearance_success");
+    });
+
+    it("AND should correctly render the appearance warning", () => {
+      makeSut({ appearance: "warning", children: "button" });
+      expect(
+        screen.getByRole("button", { name: "button" }).getAttribute("class")
+      ).toContain("appearance_warning");
+    });
+
     it("AND should correctly render the appearance neutral", () => {
       makeSut({ appearance: "neutral", children: "button" });
       expect(

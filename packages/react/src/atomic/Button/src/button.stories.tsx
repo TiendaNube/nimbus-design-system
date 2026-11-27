@@ -34,6 +34,8 @@ const meta: Meta<typeof Basic> = {
         "neutral",
         "primary",
         "danger",
+        "success",
+        "warning",
         "transparent",
         "ai-primary",
         "ai-secondary",
@@ -110,6 +112,20 @@ export const danger: Story = {
   args: {
     children: "Button",
     appearance: "danger",
+  },
+};
+
+export const success: Story = {
+  args: {
+    children: "Button",
+    appearance: "success",
+  },
+};
+
+export const warning: Story = {
+  args: {
+    children: "Button",
+    appearance: "warning",
   },
 };
 
