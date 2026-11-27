@@ -116,7 +116,17 @@ const meta: Meta<typeof Combobox> = {
   title: "Composite/Combobox",
   component: Combobox,
   tags: ["autodocs"],
-  parameters: { layout: "padded" },
+  parameters: {
+    layout: "padded",
+    docs: {
+      description: {
+        // The Docs page opens with the component itself, so its description
+        // leaves out the code example of the JSDoc.
+        component:
+          "Combobox lets a person choose one value, or several, from a list of options by typing to filter it. It can create options that do not exist yet, show options with a subtitle and a tag, and drill down through a hierarchy of up to six levels."
+      }
+    }
+  },
   decorators: [
     (Story) => (
       <Box width="100%" maxWidth="360px" minHeight="320px">
