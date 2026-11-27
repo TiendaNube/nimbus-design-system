@@ -1,8 +1,7 @@
 releases:
-  "@nimbus-ds/styles": minor
-  "@nimbus-ds/button": minor
-  "@nimbus-ds/components": minor
-  "@nimbus-ds/scripts": patch
+  "@nimbus-ds/styles": patch
+  "@nimbus-ds/button": patch
+  "@nimbus-ds/components": patch
 
 declined:
   - nimbus-design-system
@@ -17,4 +16,3 @@ declined:
   - "@nimbus-ds/split-button"
   - "@nimbus-ds/stepper"
   - "@nimbus-ds/time-picker"
-  - nimbus-helper

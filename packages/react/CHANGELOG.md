@@ -3,6 +3,16 @@
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories
 every day, with simplicity, accessibility, consistency and performance.
 
+## 2026-11-27 `5.69.0`
+
+#### 🎉 New features
+
+- Avatar: Adds the new `Avatar` atomic component to show the identity of a store, a person or an AI assistant with an initial or an icon inside a circle, in `small` (20px), `medium` (24px) and `large` (40px) sizes and `neutral` and `ai` appearances, with `Avatar.Skeleton`. It follows the current themes and Norte UI. ([#674](https://github.com/TiendaNube/nimbus-design-system/pull/674) by [@noecondoleo](https://github.com/noecondoleo))
+
+#### 🐛 Bug fixes
+
+- Button: In `next-norteui-dark` the pressed `danger` label now reaches 7.00:1 (WCAG AA), up from 2.62:1. Other themes are unchanged. ([#676](https://github.com/TiendaNube/nimbus-design-system/pull/676) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-11-20 `5.68.0`
 
 #### 🛠 Breaking changes
@@ -19,7 +29,6 @@ every day, with simplicity, accessibility, consistency and performance.
 
 #### 🎉 New features
 
-- Avatar: Adds the new `Avatar` atomic component to show the identity of a store, a person or an AI assistant with an initial or an icon inside a circle, in `small` (20px), `medium` (24px) and `large` (40px) sizes and `neutral` and `ai` appearances, with `Avatar.Skeleton`. It follows the current themes and Norte UI. ([#674](https://github.com/TiendaNube/nimbus-design-system/pull/674) by [@noecondoleo](https://github.com/noecondoleo))
 - FileUploader: Follows the Norte UI design in `next-norteui` and `next-norteui-dark`: 1px dashed `neutral.interactiveHover` border, `neutral.surface` background, `8px` padding inside `width` and `height`, a new hover state, dragging that looks like hover, a 16px icon, regular placeholder text and `neutral.textDisabled` when disabled; `FileUploader.Overlay` uses a 1px border. Props are unchanged, and so is the look in `base`, `dark`, `next` and `next-dark`. ([#657](https://github.com/TiendaNube/nimbus-design-system/pull/657) by [@noecondoleo](https://github.com/noecondoleo))
 - List: In `next-norteui` and `next-norteui-dark` the numbers and bullets use `neutral.textDisabled`, through `@nimbus-ds/styles` theme values. Props are unchanged, and so is the look in other themes. ([#658](https://github.com/TiendaNube/nimbus-design-system/pull/658) by [@noecondoleo](https://github.com/noecondoleo))
 - ProgressBar: In `next-norteui` and `next-norteui-dark` the default track uses `neutral.surfaceHighlight`, through `@nimbus-ds/styles` theme values. Props are unchanged, and so is the look in other themes. ([#658](https://github.com/TiendaNube/nimbus-design-system/pull/658) by [@noecondoleo](https://github.com/noecondoleo))

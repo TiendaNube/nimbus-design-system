@@ -35,9 +35,10 @@ const buttonToneNorteui = (
  * `aiSecondaryHoverGlow` is passed by each theme because the AI
  * `interactive` color is only in the token palette, not in `vars`.
  *
- * `toneText` is the label color of success and warning. The dark palette
- * has light fills and a white `textHigh`, so next-norteui-dark passes
- * `surface` (a dark tone, at least 5.8:1 in every state).
+ * `toneText` is the label color of success and warning, and the pressed
+ * label of danger. The dark palette has light fills and a white
+ * `textHigh`, so next-norteui-dark passes `surface` (a dark tone, at least
+ * 5.8:1 in every state, 7.0:1 on the pressed danger fill).
  */
 export const buttonNorteui = (
   aiSecondaryHoverGlow: string,
@@ -76,7 +77,12 @@ export const buttonNorteui = (
     hoverBackground: vars.colors.neutral.surfaceHighlight,
     pressedBackground: vars.colors.neutral.interactive,
   },
-  danger: buttonToneNorteui("danger"),
+  // danger keeps the white label at rest and hover. When pressed it uses
+  // `toneText`, because the dark pressed fill is too light for white.
+  danger: {
+    ...buttonToneNorteui("danger"),
+    pressedText: vars.colors.danger[toneText],
+  },
   success: buttonToneNorteui("success", toneText),
   warning: buttonToneNorteui("warning", toneText),
   aiSecondary: {

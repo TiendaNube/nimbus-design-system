@@ -2,6 +2,16 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2026-11-27 `9.75.0`
+
+#### 🎉 New features
+
+- Avatar: Adds the styles and theme values for the new Avatar component in every theme, without changing existing ones. ([#674](https://github.com/TiendaNube/nimbus-design-system/pull/674) by [@noecondoleo](https://github.com/noecondoleo))
+
+#### 🐛 Bug fixes
+
+- Button: In `next-norteui-dark` the pressed danger label goes from `danger.textHigh` (white) to `danger.surface`, because white on the light pressed danger fill was 2.62:1; it is now 7.00:1 (WCAG AA). `base`, `dark`, `next`, `next-dark` and `next-norteui` are unchanged. ([#676](https://github.com/TiendaNube/nimbus-design-system/pull/676) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-11-20 `9.74.0`
 
 #### 🛠 Breaking changes
@@ -18,7 +28,6 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 #### 🎉 New features
 
-- Avatar: Adds the styles and theme values for the new Avatar component in every theme, without changing existing ones. ([#674](https://github.com/TiendaNube/nimbus-design-system/pull/674) by [@noecondoleo](https://github.com/noecondoleo))
 - FileUploader: Adds the `components.fileUploader` theme values (border width, padding, background and border at rest, hover, dragging and disabled, and the overlay border width). In `base`, `dark`, `next` and `next-dark` they reference the current FileUploader values (hover keeps the rest colors), so the FileUploader looks exactly as before. In `next-norteui` the border is 1px and reuses the Input rest and disabled borders, the background is `neutral.surface`, padding is `8px`, and hover and dragging use `primary.surface` with a `primary.interactiveHover` border, aligned with the Norte UI Figma. `next-norteui-dark` uses the same color roles on the dark palette. Verified by `yarn check:base-invariance`. Adds the `norteui` class (`box-sizing: border-box`), which the FileUploader applies only in `next-norteui` and `next-norteui-dark`; other themes declare no `box-sizing`, so the host rule still applies. ([#657](https://github.com/TiendaNube/nimbus-design-system/pull/657) by [@noecondoleo](https://github.com/noecondoleo))
 - List: Adds the `components.list.markerColor` theme value for the numbers and bullets. In `base`, `dark`, `next` and `next-dark` it keeps `neutral.surfaceHighlight`; in `next-norteui` and `next-norteui-dark` they use `neutral.textDisabled`, aligned with the Norte UI Figma. ([#658](https://github.com/TiendaNube/nimbus-design-system/pull/658) by [@noecondoleo](https://github.com/noecondoleo))
 - ProgressBar: Adds the `components.progressBar.background` theme value for the default track. In `base`, `dark`, `next` and `next-dark` it keeps `neutral.surfaceDisabled`; in `next-norteui` and `next-norteui-dark` the track uses `neutral.surfaceHighlight`, aligned with the Norte UI Figma. ([#658](https://github.com/TiendaNube/nimbus-design-system/pull/658) by [@noecondoleo](https://github.com/noecondoleo))

@@ -39,7 +39,9 @@
         "danger",
         "neutral",
         "primary",
-        "transparent"
+        "success",
+        "transparent",
+        "warning"
       ],
       "type": "string",
       "title": "appearance",

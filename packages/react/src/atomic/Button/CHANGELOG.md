@@ -2,6 +2,12 @@
 
 The Button component allows us to initiate actions, make state or page changes.
 
+## 2026-11-27 `2.13.1`
+
+#### 🐛 Bug fixes
+
+- In `next-norteui-dark` the pressed `danger` label goes from white to the dark danger `surface`: 2.62:1 → 7.00:1 (WCAG AA). Rest and hover are unchanged, and so are `base`, `dark`, `next`, `next-dark` and `next-norteui`. ([#676](https://github.com/TiendaNube/nimbus-design-system/pull/676) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-11-24 `2.13.0`
 
 #### 🎉 New features
