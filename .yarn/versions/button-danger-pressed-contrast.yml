@@ -1,0 +1,18 @@
+releases:
+  "@nimbus-ds/styles": patch
+  "@nimbus-ds/button": patch
+  "@nimbus-ds/components": patch
+
+declined:
+  - nimbus-design-system
+  - "@nimbus-ds/alert"
+  - "@nimbus-ds/card"
+  - "@nimbus-ds/combobox"
+  - "@nimbus-ds/modal"
+  - "@nimbus-ds/pagination"
+  - "@nimbus-ds/scroll-pane"
+  - "@nimbus-ds/segmented-control"
+  - "@nimbus-ds/sidebar"
+  - "@nimbus-ds/split-button"
+  - "@nimbus-ds/stepper"
+  - "@nimbus-ds/time-picker"

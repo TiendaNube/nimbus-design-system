@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2026-11-27 `9.74.1`
+
+#### 🐛 Bug fixes
+
+- Button: In `next-norteui-dark` the pressed danger label goes from `danger.textHigh` (white) to `danger.surface`, because white on the light pressed danger fill was 2.62:1; it is now 7.00:1 (WCAG AA). `base`, `dark`, `next`, `next-dark` and `next-norteui` are unchanged. ([#676](https://github.com/TiendaNube/nimbus-design-system/pull/676) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-11-20 `9.74.0`
 
 #### 🛠 Breaking changes
