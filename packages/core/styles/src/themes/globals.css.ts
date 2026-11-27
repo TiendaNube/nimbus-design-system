@@ -256,6 +256,37 @@ export const globalTheme = {
     }`,
   },
   components: {
+    avatar: {
+      // small and medium fit the content box of Button medium and large;
+      // large (40px) is for headers and welcome screens, outside Buttons.
+      // Colors reference the theme's own tones, so every theme resolves them
+      // to its palette.
+      small: {
+        size: vars.spacing[5],
+        fontSize: vars.fontSize.body.caption,
+        iconSize: vars.spacing[3],
+      },
+      medium: {
+        size: vars.spacing[6],
+        fontSize: vars.fontSize.body.base,
+        iconSize: vars.spacing[4],
+      },
+      large: {
+        size: vars.spacing[10],
+        fontSize: vars.fontSize.title.h4,
+        iconSize: vars.spacing[6],
+      },
+      neutral: {
+        // Same light gray the Thumbnail uses; surfaceHighlight reads too dark
+        // here. Norte UI uses its lighter surfaceHighlight.
+        background: vars.colors.neutral.surfaceDisabled,
+        color: vars.colors.neutral.textHigh,
+      },
+      ai: {
+        background: vars.colors.aiGenerative.surface,
+        color: vars.colors.aiGenerative.textLow,
+      },
+    },
     thumbnail: {
       // Keeps the exact Thumbnail background base, dark, next and next-dark had.
       // Norte UI overrides it.

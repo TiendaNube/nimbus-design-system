@@ -2,7 +2,11 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
-## 2026-11-27 `9.74.1`
+## 2026-11-27 `9.75.0`
+
+#### 🎉 New features
+
+- Avatar: Adds the styles and theme values for the new Avatar component in every theme, without changing existing ones. ([#674](https://github.com/TiendaNube/nimbus-design-system/pull/674) by [@noecondoleo](https://github.com/noecondoleo))
 
 #### 🐛 Bug fixes
 

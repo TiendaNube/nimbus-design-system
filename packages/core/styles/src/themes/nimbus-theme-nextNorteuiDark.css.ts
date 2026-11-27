@@ -2,6 +2,7 @@ import { createTheme } from "@vanilla-extract/css";
 import tokens from "@nimbus-ds/tokens/dist/js/tokens";
 
 import { vars } from "./contract.css";
+import { avatarNorteui } from "./avatarNorteui";
 import { buttonNorteui } from "./buttonNorteui";
 import { globalTheme } from "./globals.css";
 import {
@@ -93,6 +94,7 @@ const nextNorteuiDarkTheme = {
     },
   },
   components: {
+    avatar: avatarNorteui,
     progressBar: {
       background: vars.colors.neutral.surfaceHighlight,
     },

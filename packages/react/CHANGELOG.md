@@ -3,7 +3,11 @@
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories
 every day, with simplicity, accessibility, consistency and performance.
 
-## 2026-11-27 `5.68.1`
+## 2026-11-27 `5.69.0`
+
+#### 🎉 New features
+
+- Avatar: Adds the new `Avatar` atomic component to show the identity of a store, a person or an AI assistant with an initial or an icon inside a circle, in `small` (20px), `medium` (24px) and `large` (40px) sizes and `neutral` and `ai` appearances, with `Avatar.Skeleton`. It follows the current themes and Norte UI. ([#674](https://github.com/TiendaNube/nimbus-design-system/pull/674) by [@noecondoleo](https://github.com/noecondoleo))
 
 #### 🐛 Bug fixes
 

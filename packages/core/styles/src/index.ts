@@ -13,6 +13,7 @@ export {
   createBorderGradient,
 } from "./gradients";
 
+export { avatar } from "./packages/atomic/avatar";
 export { badge } from "./packages/atomic/badge";
 export { box } from "./packages/atomic/box";
 export { button } from "./packages/atomic/button";

@@ -49,6 +49,10 @@
       "import": "./dist/components-props.json",
       "require": "./dist/components-props.json"
     },
+    "./Avatar": {
+      "import": "./dist/Avatar/index.js",
+      "require": "./dist/Avatar/index.js"
+    },
     "./Badge": {
       "import": "./dist/Badge/index.js",
       "require": "./dist/Badge/index.js"

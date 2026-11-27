@@ -5,6 +5,7 @@
 */
 
 // atomics
+export * from "@nimbus-ds/avatar";
 export * from "@nimbus-ds/badge";
 export * from "@nimbus-ds/box";
 export * from "@nimbus-ds/button";
