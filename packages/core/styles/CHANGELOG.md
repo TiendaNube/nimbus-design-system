@@ -2,6 +2,12 @@
 
 Nimbus Styles deprive all styles needed to build nimbus components.
 
+## 2026-11-27 `9.74.1`
+
+#### 🐛 Bug fixes
+
+- Button: In `next-norteui-dark` the pressed danger label goes from `danger.textHigh` (white) to `danger.surface`, because white on the light pressed danger fill was 2.62:1; it is now 7.00:1 (WCAG AA). `base`, `dark`, `next`, `next-dark` and `next-norteui` are unchanged. ([#676](https://github.com/TiendaNube/nimbus-design-system/pull/676) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-11-20 `9.74.0`
 
 #### 🛠 Breaking changes
@@ -43,7 +49,6 @@ Nimbus Styles deprive all styles needed to build nimbus components.
 
 #### 🐛 Bug fixes
 
-- Button: In `next-norteui-dark` the pressed danger label goes from `danger.textHigh` (white) to `danger.surface`, because white on the light pressed danger fill was 2.62:1; it is now 7.00:1 (WCAG AA). `base`, `dark`, `next`, `next-dark` and `next-norteui` are unchanged. ([#676](https://github.com/TiendaNube/nimbus-design-system/pull/676) by [@noecondoleo](https://github.com/noecondoleo))
 - Input, Select and Textarea: The AI-generative hover in `next-norteui` keeps its border gradient in browsers without `color-mix()` support. ([#655](https://github.com/TiendaNube/nimbus-design-system/pull/655) by [@noecondoleo](https://github.com/noecondoleo))
 - Scrollbar: `thinScrollbarAlways` sets the standard `scrollbar-width` and `scrollbar-color` only where `::-webkit-scrollbar` is not supported (Firefox). In Chromium they replaced the thin WebKit scrollbar, so with macOS overlay scrollbars the bar of the Combobox list stayed hidden until the person scrolled. ([#636](https://github.com/TiendaNube/nimbus-design-system/pull/636) by [@claude](https://github.com/apps/claude))
 

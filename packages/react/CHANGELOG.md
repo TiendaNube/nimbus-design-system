@@ -3,6 +3,12 @@
 Nimbus is an open-source Design System created by Tiendanube / Nuvemshop's team to empower and enhance more stories
 every day, with simplicity, accessibility, consistency and performance.
 
+## 2026-11-27 `5.68.1`
+
+#### 🐛 Bug fixes
+
+- Button: In `next-norteui-dark` the pressed `danger` label now reaches 7.00:1 (WCAG AA), up from 2.62:1. Other themes are unchanged. ([#676](https://github.com/TiendaNube/nimbus-design-system/pull/676) by [@noecondoleo](https://github.com/noecondoleo))
+
 ## 2026-11-20 `5.68.0`
 
 #### 🛠 Breaking changes
@@ -35,7 +41,6 @@ every day, with simplicity, accessibility, consistency and performance.
 
 #### 🐛 Bug fixes
 
-- Button: In `next-norteui-dark` the pressed `danger` label now reaches 7.00:1 (WCAG AA), up from 2.62:1. Other themes are unchanged. ([#676](https://github.com/TiendaNube/nimbus-design-system/pull/676) by [@noecondoleo](https://github.com/noecondoleo))
 - Popover: Renders its content inside its own `ThemeProvider` when a page has several of them, instead of in the first one. ([#636](https://github.com/TiendaNube/nimbus-design-system/pull/636) by [@claude](https://github.com/apps/claude))
 
 ## 2026-11-17 `5.67.0`
